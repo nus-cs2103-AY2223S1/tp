@@ -11,9 +11,12 @@ title: User Guide
     * [Getting help: `help`](#getting-help-help)
     * [Adding an internship application: `add`](#adding-an-internship-application-add)
     * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
+    * [Listing all archived internship application: `list-archive`](#listing-all-archived-internship-applications)
     * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
     * [Finding an internship application: `find`](#finding-an-internship-application-find)
     * [Editing an internship application: `edit`](#editing-an-internship-application-edit)
+    * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
+    * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -38,7 +41,9 @@ title: User Guide
     * **`help`**: Shows a message explaining the way to access help page.
    
     * **`list`** : Displays internship application.
-
+   
+    * **`list-archive`** : Displays archived internship application.
+   
     * **`add`**`c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` : Adds an internship application that was submitted on `2022-01-01` to `Google` with contact number `11111111` and email `google@example.com` for the role of `Software Engineer` to **CinternS**.
 
     * **`delete`**`2` : Deletes the 2nd application shown in the current list.
@@ -46,6 +51,10 @@ title: User Guide
     * **`find`**`google` : Finds the applications that contain keyword **google** in their company name and/or position.
    
     * **`edit`**`1 e/hr@internship.sg`: Edits the 1st application shown in the current list with new email address.
+   
+    * **`archive`**`3`: Archives the 3rd application shown in the current list. The application must be not archived.
+   
+    * **`retrieve`**`1`: Retrieves the 1st application shown in the current list. The application must be archived.
    
     * **`clear`**: Clears CinternS data.
 
@@ -107,6 +116,12 @@ Displays all the internship applications in the list.
 
 Format: `list`
 
+### Listing all archived internship applications:
+
+Displays all the archived internship applications in the list.
+
+Format: `list-archive`
+
 ### Deleting an internship application: `delete`
 
 Deletes the specified internship application from the list.
@@ -155,6 +170,36 @@ Examples:
 `edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
 `edit 2 c/Garena t/` edits the company of the 2nd application to be `Garena` and clears all existing tags.
 
+### Archiving an internship application: `archive`
+
+Archives the specified internship application from the list.
+
+Format: `archive INDEX`
+
+* Archives the internship application at the specified `INDEX`.
+* The application specified must be not archived.
+* The index refers to the index number shown in the displayed internship application list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available internships in the shown application list.
+
+Examples:
+* `list` followed by `archive 2` archives the 2nd internship application in the list.
+
+### Retrieving an internship application from archives: `retrieve`
+
+Retrieves the specified internship application from the list.
+
+Format: `retrieve INDEX`
+
+* Retrieves the internship application at the specified `INDEX`.
+* The application specified must be archived, `list-archive` command is recommended to be used before using this command.
+* The index refers to the index number shown in the displayed internship application list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available internships in the shown application list.
+
+Examples:
+* `list-archive` followed by `retrieve 1` retrieves the 2nd internship application in the list.
+
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
 
@@ -191,15 +236,18 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                            |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                                                      |
-| **Add**    | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
-| **List**   | `list`                                                                                                                                                                                      |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
-| **Edit**   | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
-| **Clear**  | `clear`                                                                                                                                                                                     |
-| **Exit**   | `exit`                                                                                                                                                                                      |
+| Action          | Format, Examples                                                                                                                                                                            |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**        | `help`                                                                                                                                                                                      |
+| **Add**         | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
+| **List**        | `list`                                                                                                                                                                                      |
+| **ListArchive** | `list-archive`                                                                                                                                                                              |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
+| **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
+| **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
+| **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
+| **Clear**       | `clear`                                                                                                                                                                                     |
+| **Exit**        | `exit`                                                                                                                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
