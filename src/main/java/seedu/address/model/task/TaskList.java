@@ -8,6 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 
 /**
@@ -35,6 +39,21 @@ public class TaskList implements Iterable<Task> {
     public void remove(Task toRemove) {
         requireNonNull(toRemove);
         internalList.remove(toRemove);
+    }
+
+    /**
+     * Replaces the task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the list.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        internalList.set(index, editedTask);
     }
 
     /**

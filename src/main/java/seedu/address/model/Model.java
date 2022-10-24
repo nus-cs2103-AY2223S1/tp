@@ -128,6 +128,12 @@ public interface Model {
     void deleteTask(Task target);
 
     /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task book.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /**
      * Returns whether the StudentId from the given {@code student} belongs to an existing student in
      * the address book.
      */

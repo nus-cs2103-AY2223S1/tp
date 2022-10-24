@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
@@ -71,8 +72,21 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.add(t);
     }
 
+    /**
+     * Deletes given task from task book.
+     */
     public void deleteTask(Task t) {
         tasks.remove(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task book.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
     }
 
     //// util methods

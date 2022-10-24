@@ -14,6 +14,7 @@ import seedu.address.model.task.Task;
  * Adds a task to the task book.
  */
 public class TaskCommand extends Command {
+
     public static final String COMMAND_WORD = "task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task. "

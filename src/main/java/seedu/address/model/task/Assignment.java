@@ -38,6 +38,19 @@ public class Assignment implements Task {
         return this.students;
     }
 
+    public void addStudent(List<String> studentsToAdd) {
+        this.students.addAll(studentsToAdd);
+    }
+
+    /**
+     * Deletes
+     *
+     * @param studentsToDelete
+     */
+    public void deleteStudent(List<String> studentsToDelete) {
+        this.students.removeAll(studentsToDelete);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
