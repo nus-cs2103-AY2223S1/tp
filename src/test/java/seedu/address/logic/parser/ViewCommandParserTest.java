@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -36,8 +35,8 @@ public class ViewCommandParserTest {
         PersonContainsAttributePredicate testPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        List.of("chinese"), new ArrayList<>(), new HashSet<>(),
-                        new HashSet<>());
+                        List.of("chinese"), new ArrayList<>(), new ArrayList<>(),
+                        new ArrayList<>());
         ViewCommand expectedViewCommand = new ViewCommand(testPredicate);
 
         assertParseSuccess(parser, " g/male ra/chinese", expectedViewCommand);
