@@ -1,5 +1,11 @@
 package seedu.address.model.person;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.util.Date;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -78,5 +84,17 @@ public class OfficeHour {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public String getUserInput() throws ParseException {
+        String[] seperateDay = value.split(", ");
+        int dayofWeek = DayOfWeek.valueOf(seperateDay[0]).getValue();
+        String[] seperateTime = seperateDay[1].split(" - ");
+        DateFormat formatter = new SimpleDateFormat("hh:mm a");
+        Date date1 = formatter.parse(seperateTime[0]);
+        Date date2 = formatter.parse(seperateTime[1]);
+        long difference = (date2.getTime() - date1.getTime())/ 3600000;
+        String startTime = new SimpleDateFormat("kk:mm").format(date1);
+        return String.format("%s-%s-%o", dayofWeek, startTime, difference);
     }
 }

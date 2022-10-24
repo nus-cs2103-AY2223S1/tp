@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -173,6 +174,14 @@ public class Professor extends Person {
     @Override
     public boolean doesOfficeHourMatch(List<String> officeHoursList) {
         return officeHoursList.stream().anyMatch(officeHours
-                -> officeHours.equals(this.getOfficeHour().value));
+                -> {
+            try {
+                System.out.println(getOfficeHour().getUserInput());
+                return officeHours.equals(this.getOfficeHour().getUserInput());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return false;
+        });
     }
 }
