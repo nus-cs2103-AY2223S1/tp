@@ -93,6 +93,6 @@ public class ModuleBuilder {
      * @return a Module that we are building
      */
     public Module build() {
-        return new Module(moduleName, moduleCode, moduleDescription, tags, students);
+        return new Module(moduleName, moduleCode, moduleDescription, tags);
     }
 }

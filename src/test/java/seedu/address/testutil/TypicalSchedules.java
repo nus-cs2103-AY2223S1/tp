@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ProfNus;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.schedule.ClassType;
 import seedu.address.model.module.schedule.Schedule;
@@ -38,10 +38,10 @@ public class TypicalSchedules {
 
     public TypicalSchedules() {}
     /**
-     * Returns an {@code AddressBook} with all the typical schedules.
+     * Returns an {@code ProfNus} with all the typical schedules.
      */
-    public static AddressBook getTypicalAddressBookWithSchedules() {
-        AddressBook ab = new AddressBook();
+    public static ProfNus getTypicalProfNusWithSchedules() {
+        ProfNus ab = new ProfNus();
         for (Module module: getTypicalModules()) {
             ab.addModule(module);
         }

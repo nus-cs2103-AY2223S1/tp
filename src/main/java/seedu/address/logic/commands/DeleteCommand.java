@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from profNus.
  */
 public class DeleteCommand extends Command {
 

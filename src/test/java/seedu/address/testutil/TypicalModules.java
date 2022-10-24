@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ProfNus;
 import seedu.address.model.module.Module;
 
 /**
@@ -43,10 +43,10 @@ public class TypicalModules {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical modules.
+     * Returns an {@code ProfNus} with all the typical modules.
      */
-    public static AddressBook getTypicalAddressBookWithModules() {
-        AddressBook ab = new AddressBook();
+    public static ProfNus getTypicalProfNusWithModules() {
+        ProfNus ab = new ProfNus();
         for (Module module : getTypicalModules()) {
             ab.addModule(module);
         }

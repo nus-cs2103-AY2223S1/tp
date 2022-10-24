@@ -11,16 +11,16 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalProfNus;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditStuCommand.EditStudentDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ProfNus;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
@@ -32,7 +32,7 @@ import seedu.address.testutil.StudentBuilder;
  */
 public class EditStuCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalProfNus(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -45,7 +45,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);
@@ -69,7 +69,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setPerson(lastStudent, editedStudent);
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);
@@ -85,7 +85,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);
     }
@@ -104,7 +104,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);
@@ -123,8 +123,8 @@ public class EditStuCommandTest {
     public void execute_duplicateStudentFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit person in filtered list into a duplicate in address book
-        Student personInList = (Student) model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // edit person in filtered list into a duplicate in profNus
+        Student personInList = (Student) model.getProfNus().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditStuCommand editStuCommand = new EditStuCommand(INDEX_FIRST_PERSON,
                 new EditStudentDescriptorBuilder(personInList).build());
 
@@ -142,14 +142,14 @@ public class EditStuCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of profNus
      */
     @Test
     public void execute_invalidStudentIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of profNus list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProfNus().getPersonList().size());
 
         EditStuCommand editStuCommand = new EditStuCommand(outOfBoundIndex,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());

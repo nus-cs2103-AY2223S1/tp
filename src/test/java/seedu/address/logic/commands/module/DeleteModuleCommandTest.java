@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showModuleWithModuleC
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalModuleCodes.CODE_FIRST_MODULE;
 import static seedu.address.testutil.TypicalModuleCodes.CODE_SECOND_MODULE;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBookWithModules;
+import static seedu.address.testutil.TypicalModules.getTypicalProfNusWithModules;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +26,7 @@ import seedu.address.model.module.ModuleCode;
  */
 public class DeleteModuleCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookWithModules(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalProfNusWithModules(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -39,7 +39,7 @@ public class DeleteModuleCommandTest {
                 false, false, true,
                 false, false, false);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
 
         assertCommandSuccess(deleteModuleCommand, model, expectedCommandResult, expectedModel);
@@ -66,7 +66,7 @@ public class DeleteModuleCommandTest {
                 false, false, true,
                 false, false, false);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
         showNoModule(expectedModel);
 

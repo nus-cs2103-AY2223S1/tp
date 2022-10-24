@@ -28,7 +28,6 @@ public class JsonAdaptedModule {
     private final String moduleDescription;
     private final String moduleName;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedSchedule> schedules = new ArrayList<>();
 
 
@@ -48,9 +47,6 @@ public class JsonAdaptedModule {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (students != null) {
-            this.students.addAll(students);
-        }
         if (schedules != null) {
             this.schedules.addAll(schedules);
         }
@@ -66,9 +62,6 @@ public class JsonAdaptedModule {
         moduleName = source.getName().fullName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
-        students.addAll(source.getStudents().stream()
-                .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
         schedules.addAll(source.getSchedules().stream()
                 .map(JsonAdaptedSchedule::new)
@@ -86,9 +79,6 @@ public class JsonAdaptedModule {
         final List<Schedule> moduleSchedules = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             moduleTags.add(tag.toModelType());
-        }
-        for (JsonAdaptedStudent person : students) {
-            moduleStudents.add(person.toModelType());
         }
         for (JsonAdaptedSchedule schedule: schedules) {
             moduleSchedules.add(schedule.toModelType());
@@ -122,10 +112,8 @@ public class JsonAdaptedModule {
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
         final Set<Tag> modelModuleTags = new HashSet<>(moduleTags);
-        final ArrayList<Student> modelModuleStudents = new ArrayList<>(moduleStudents);
         final List<Schedule> modelModuleSchedules = new ArrayList<>(moduleSchedules);
-        Module module = new Module(modelModuleName, modelModuleCode, modelModuleDescription, modelModuleTags,
-                modelModuleStudents);
+        Module module = new Module(modelModuleName, modelModuleCode, modelModuleDescription, modelModuleTags);
         module.addAllSchedules(modelModuleSchedules);
         return module;
     }

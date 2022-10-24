@@ -15,7 +15,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from profNus.
  */
 public class DeleteModuleCommand extends Command {
 

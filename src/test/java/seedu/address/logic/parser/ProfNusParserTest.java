@@ -29,9 +29,9 @@ import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
 
-public class AddressBookParserTest {
+public class ProfNusParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ProfNusParser parser = new ProfNusParser();
 
     @Test
     public void parseCommand_addStu() throws Exception {
