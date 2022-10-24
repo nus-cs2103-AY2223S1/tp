@@ -58,14 +58,31 @@
 
         <TabPane fx:id="tabPane" style="-fx-tab-max-height: -10;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
           <tabs>
+
             <Tab text="Students">
               <content>
-                <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                  <padding>
-                    <Insets top="10" right="10" bottom="10" left="10" />
-                  </padding>
-                  <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
+                <HBox VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox fx:id="personList" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
+                      <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                      </padding>
+                      <TextFlow textAlignment="CENTER">
+                        <Text styleClass="studentHeader" text="All Students" ></Text>
+                      </TextFlow>
+                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                    <VBox fx:id="allTutorList" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
+                      <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                      </padding>
+                      <TextFlow textAlignment="CENTER">
+                        <Text styleClass="studentHeader" text="All Teaching Assistants" ></Text>
+                      </TextFlow>
+                      <StackPane fx:id="allTutorsPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                  </children>
+                </HBox>
               </content>
             </Tab>
 
@@ -133,8 +150,6 @@
           </tabs>
         </TabPane>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">
           <padding>
@@ -147,6 +162,9 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
+
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+
 
       </VBox>
     </Scene>

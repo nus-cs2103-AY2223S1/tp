@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private TutorListPanel allTutorsPanel;
     private TutorListPanel tutorListPanel;
     private ModuleListPanel moduleListPanel;
     private ModuleInfoPanel moduleInfoPanel;
@@ -58,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane allTutorsPanelPlaceholder;
 
     @FXML
     private StackPane tutorListPanelPlaceholder;
@@ -148,6 +152,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        allTutorsPanel = new TutorListPanel(logic.getFilteredTutorList());
+        allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
+
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
@@ -197,8 +204,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabStudents() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getAllPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
+        allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
         tabPane.getSelectionModel().select(STUDENTLIST);
     }
 
@@ -210,6 +219,8 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabAllStudents() {
         personListPanel = new PersonListPanel(logic.getAllPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        allTutorsPanel = new TutorListPanel(logic.getAllTutorList());
+        allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
         tabPane.getSelectionModel().select(STUDENTLIST);
         resultDisplay.setFeedbackToUser("Show all students!");
     }

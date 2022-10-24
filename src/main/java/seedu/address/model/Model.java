@@ -187,6 +187,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered tutor list */
     ObservableList<Student> getFilteredTutorList();
 
+    /** Returns an unmodifiable view of the all tutor list */
+    ObservableList<Student> getAllTutorList();
+
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
 
