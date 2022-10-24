@@ -1,19 +1,114 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
-}
-
-#copyButton {
-    -fx-background-color: dimgray;
-}
-
-#copyButton:hover {
-    -fx-background-color: gray;
-}
-
-#copyButton:armed {
-    -fx-background-color: darkgray;
+#helpMessage {
+    -fx-text-fill: black;
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-color: transparent;
+}
+
+#instructions {
+    -fx-border-color: transparent;
+}
+
+.url-message {
+    -fx-text-fill: black;
+    -fx-padding: 5 0 0 0;
+}
+
+.url {
+    -fx-border-color: transparent;
+    -fx-padding: 4 0 4 0;
+}
+
+/** Hyperlink css **/
+
+.hyperlink {
+    -fx-text-fill: #639C79;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #adf0bf;
+}
+
+/** Accordion css adapted from https://stackoverflow.com/questions/21451386/titled-pane-css-settings **/
+
+.accordion {
+    -fx-background-color: white
+}
+
+.accordion > .titled-pane > .title {
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.accordion > .titled-pane:expanded >.title {
+    -fx-background-color: #adf0bf;
+}
+
+.titled-pane > .title > .text {
+    -fx-font-color: black;
+}
+
+.titled-pane > *.content {
+    -fx-background-color: #f6fff9;
+    -fx-padding: 10;
+    -fx-border-color: white;
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em;
+    -fx-background-insets: 1 0 -1 0, 0;
+    /** svg path adapted from https://icons.getbootstrap.com/icons/chevron-compact-down/ **/
+    -fx-shape: "M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z";
+}
+
+.titled-pane:collapsed > .title > .arrow-button .arrow {
+    -fx-rotate: 90;
+}
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
+/** Scroll bar css adapted from: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/ **/
+
+.scroll-bar:vertical .track {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius: 5px;
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: white;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 10.0 0.0 0.0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: derive(black,90.0%);
+    -fx-background-insets: 1px;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(#4D4C4F,10.0%);
+}
+
+.commands {
+    -fx-padding: 10;
+}
+
+.help-container {
+    -fx-background-color: white;
 }

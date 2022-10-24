@@ -16,11 +16,11 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a food to the tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a food to the tracker. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CALORIE + "CALORIES "
-            + PREFIX_TAG + "TAG...\n"
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Banana "
             + PREFIX_CALORIE + "50 "
