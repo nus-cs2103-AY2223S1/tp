@@ -181,15 +181,34 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
 
-            if (noPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE) && noPrefixesPresent(argMultimap,
-                    PREFIX_CLIENT_NAME) && noPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                       FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
+            String trimmedArgs = arguments.trim();
+
+            boolean isValidName = true;
+            boolean isValidEmail = true;
+            boolean isValidPhone = true;
+
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
             }
 
-            return new FindClientCommand(new ClientContainsKeywordsPredicate(
-                    argMultimap.getAllValues(PREFIX_NAME), argMultimap.getAllValues(PREFIX_CLIENT_EMAIL),
-                    argMultimap.getAllValues(PREFIX_CLIENT_PHONE)));
+            if(noPrefixesPresent(argMultimap, PREFIX_CLIENT_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE)) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
+            }
+
+            if(arePrefixesPresent(argMultimap, PREFIX_NAME) || arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)
+            || arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+                return new FindClientCommand(new ClientContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_CLIENT_NAME),
+                        argMultimap.getAllValues(PREFIX_CLIENT_EMAIL),
+                        argMultimap.getAllValues(PREFIX_CLIENT_PHONE)));
+            }
+            
+            else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
+            }
 
         } catch (ParseException pe) {
             throw new ParseException(
