@@ -170,7 +170,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     }
 
     @Override
-    public String getTip() {
+    public Tip getTip() {
         return tipList.generateTip();
     }
 

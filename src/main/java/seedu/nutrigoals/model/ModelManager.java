@@ -247,7 +247,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getTip() {
+    public Tip getTip() {
         return nutriGoals.getTip();
     }
 }

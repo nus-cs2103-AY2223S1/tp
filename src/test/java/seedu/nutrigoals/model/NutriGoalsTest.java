@@ -115,6 +115,8 @@ public class NutriGoalsTest {
         }
 
         @Override
-        public String getTip() { return new TipList().generateTip(); }
+        public Tip getTip() {
+            return new TipList().generateTip();
+        }
     }
 }

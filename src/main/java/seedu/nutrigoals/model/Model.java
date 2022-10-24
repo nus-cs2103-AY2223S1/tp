@@ -129,5 +129,5 @@ public interface Model {
     /**
      * Retrieves and returns a random tip from TIpList
      */
-    String getTip();
+    Tip getTip();
 }

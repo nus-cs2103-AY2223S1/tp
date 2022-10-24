@@ -23,6 +23,7 @@ import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.ReadOnlyNutriGoals;
 import seedu.nutrigoals.model.ReadOnlyUserPrefs;
+import seedu.nutrigoals.model.Tip;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.meal.Name;
@@ -211,7 +212,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public String getTip() {
+        public Tip getTip() {
             throw new AssertionError("This method should not be called.");
         }
     }

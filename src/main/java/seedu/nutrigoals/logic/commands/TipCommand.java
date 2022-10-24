@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.nutrigoals.logic.commands.exceptions.CommandException;
 import seedu.nutrigoals.model.Model;
+import seedu.nutrigoals.model.Tip;
 
 
 /**
@@ -20,7 +21,7 @@ public class TipCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        String randomTip = model.getTip();
+        Tip randomTip = model.getTip();
         return new CommandResult(String.format(TIP_GENERATED_SUCCESS, randomTip));
     }
 }
