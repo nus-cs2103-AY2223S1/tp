@@ -1,12 +1,5 @@
 package seedu.address.model.util;
 
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ModelManager;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Session;
-import seedu.address.testutil.AddressBookBuilder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -15,6 +8,15 @@ import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.JOLENE;
 import static seedu.address.testutil.TypicalPersons.KALEY;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.address.model.AddressBook;
+import seedu.address.model.ModelManager;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
+import seedu.address.testutil.AddressBookBuilder;
 
 public class NextSessionUtilTest {
 
