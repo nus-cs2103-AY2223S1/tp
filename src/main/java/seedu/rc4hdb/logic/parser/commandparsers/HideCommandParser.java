@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
 import seedu.rc4hdb.logic.parser.Parser;

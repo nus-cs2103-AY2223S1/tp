@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
@@ -46,7 +45,8 @@ public class HideCommand implements ModelCommand {
      */
     public HideCommand(List<String> fieldsToHide) {
         requireNonNull(fieldsToHide);
-        this.fieldsToHide = fieldsToHide;
+        this.fieldsToHide = new ArrayList<>();
+        this.fieldsToHide.addAll(fieldsToHide);
     }
 
     /**
