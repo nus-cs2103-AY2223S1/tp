@@ -16,4 +16,5 @@ public class Messages {
     public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%1$d lessons listed!";
     public static final String MESSAGE_INVALID_PARTICIPATION = "The participation value provided should be an "
             + "integer from 0 to 500";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "Student %1$s cannot be found in lesson %2$s";
 }

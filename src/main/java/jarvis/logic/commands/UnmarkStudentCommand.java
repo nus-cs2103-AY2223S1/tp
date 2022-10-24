@@ -14,6 +14,7 @@ import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Lesson;
 import jarvis.model.Model;
 import jarvis.model.Student;
+import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Marks a student as absent for a given lesson.
@@ -62,7 +63,11 @@ public class UnmarkStudentCommand extends Command {
 
         Lesson lessonToMark = lastShownLessonList.get(lessonIndex.getZeroBased());
         Student studentToMark = lastShownStudentList.get(studentIndex.getZeroBased());
-        lessonToMark.markAsAbsent(studentToMark);
+        try {
+            lessonToMark.markAsAbsent(studentToMark);
+        } catch (StudentNotFoundException snfe) {
+            throw new CommandException(String.format(Messages.MESSAGE_STUDENT_NOT_FOUND, studentToMark, lessonToMark));
+        }
         model.setLesson(lessonToMark, lessonToMark);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentToMark, lessonToMark));

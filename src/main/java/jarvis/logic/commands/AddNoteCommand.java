@@ -15,6 +15,7 @@ import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Lesson;
 import jarvis.model.Model;
 import jarvis.model.Student;
+import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Adds a note to a lesson.
@@ -64,21 +65,33 @@ public class AddNoteCommand extends Command {
         Lesson lessonToAdd = lastShownLessonList.get(lessonIndex.getZeroBased());
         String successMessage;
 
-        if (studentIndex != null) {
-            List<Student> lastShownStudentList = model.getFilteredStudentList();
-            if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-            }
-            Student studentToAdd = lastShownStudentList.get(studentIndex.getZeroBased());
-            lessonToAdd.addStudentNotes(note, studentToAdd);
-            successMessage = String.format(MESSAGE_ADD_STUDENT_NOTE_SUCCESS, studentToAdd, lessonToAdd, note);
+        if (studentIndex == null) {
+            successMessage = executeAddOverallNote(lessonToAdd);
         } else {
-            lessonToAdd.addOverallNotes(note);
-            successMessage = String.format(MESSAGE_ADD_OVERALL_NOTE_SUCCESS, lessonToAdd, note);
+            successMessage = executeAddStudentNote(model, lessonToAdd);
         }
         model.setLesson(lessonToAdd, lessonToAdd);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(successMessage);
+    }
+
+    private String executeAddOverallNote(Lesson lessonToAdd) {
+        lessonToAdd.addOverallNotes(note);
+        return String.format(MESSAGE_ADD_OVERALL_NOTE_SUCCESS, lessonToAdd, note);
+    }
+
+    private String executeAddStudentNote(Model model, Lesson lessonToAdd) throws CommandException {
+        List<Student> lastShownStudentList = model.getFilteredStudentList();
+        if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+        Student studentToAdd = lastShownStudentList.get(studentIndex.getZeroBased());
+        try {
+            lessonToAdd.addStudentNotes(note, studentToAdd);
+        } catch (StudentNotFoundException snfe) {
+            throw new CommandException(String.format(Messages.MESSAGE_STUDENT_NOT_FOUND, studentToAdd, lessonToAdd));
+        }
+        return String.format(MESSAGE_ADD_STUDENT_NOTE_SUCCESS, studentToAdd, lessonToAdd, note);
     }
 
     @Override
