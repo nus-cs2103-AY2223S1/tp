@@ -15,7 +15,7 @@ import friday.model.alias.exceptions.DuplicateAliasException;
  */
 public class AliasMap {
 
-    private final HashMap<String, String> internalMap = new HashMap<>();
+    private final Map<String, String> internalMap = new HashMap<>();
 
     /**
      * Returns true if the hashmap contains an alias with value {@code key}.
