@@ -153,7 +153,8 @@ public class FilterOrderCommandTest {
     public void generatePredicate_exactMatchingPriceRange_oneOrderFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
-        PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200.00), new Price(400.00));
+        PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200.00),
+                new Price(400.00));
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
             @Override
             public boolean test(Order order) {
