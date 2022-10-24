@@ -86,10 +86,10 @@ public class AttendanceList {
         attendanceList.get(indexToMark).markAsPresent();
     }
 
-     /**
-      * Removes the attendance at the given index.
-      * @param index of attendance to be removed
-      */
+    /**
+     * Removes the attendance at the given index.
+     * @param index of attendance to be removed
+     */
     public void removeAtIndex(Index index) {
         int indexToRemove = index.getZeroBased();
         if (indexToRemove >= attendanceList.size()) {

@@ -76,10 +76,10 @@ public class HomeworkList {
         homeworkList.get(indexToMark).markAsDone();
     }
 
-     /**
-      *  Removes the homework at the given index.
-      *  @param index of homework to be removed
-      */
+    /**
+     *  Removes the homework at the given index.
+     *  @param index of homework to be removed
+     */
     public void removeAtIndex(Index index) {
         int indexToEdit = index.getZeroBased();
         if (indexToEdit >= homeworkList.size()) {
