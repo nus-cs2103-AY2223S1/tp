@@ -32,7 +32,7 @@ public class CommandResult {
     private TuitionClass deletedClass;
 
     /** Types of command which are passed to the Ui to determine actions to take for each type **/
-    public enum CommandType { ADD, ASSIGN, CLEAR, DELETE, EDIT, EXIT, LIST, SHOW, HELP, OTHER }
+    public enum CommandType { ADD, ASSIGN, CLEAR, DELETE, EDIT, EXIT, LIST, SHOW, HELP, OTHER, NOK }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -52,10 +52,13 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      * This should only be called by ShowCommand, EditCommand,
-     * AssignCommand and UnassignCommand.
+     * NextOfKinCommand, AssignCommand and UnassignCommand.
      */
     public CommandResult(String feedbackToUser, CommandType type, int index) {
-        assert (type == CommandType.SHOW || type == CommandType.ASSIGN || type == CommandType.EDIT);
+        assert (type == CommandType.SHOW
+                || type == CommandType.ASSIGN
+                || type == CommandType.EDIT
+                || type == CommandType.NOK);
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.indexOfShownEntity = index;
         this.type = type;
@@ -107,7 +110,8 @@ public class CommandResult {
     public int getIndex() {
         assert(type == CommandType.SHOW
         || type == CommandType.ASSIGN
-        || type == CommandType.EDIT);
+        || type == CommandType.EDIT
+        || type == CommandType.NOK);
 
         return indexOfShownEntity;
     }
@@ -150,7 +154,8 @@ public class CommandResult {
     public boolean isUpdateDescription() {
         return this.type == CommandType.ASSIGN
                 || this.type == CommandType.EDIT
-                || this.type == CommandType.SHOW;
+                || this.type == CommandType.SHOW
+                || this.type == CommandType.NOK;
     }
 
     public boolean isDelete() {

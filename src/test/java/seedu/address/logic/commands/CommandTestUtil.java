@@ -243,7 +243,10 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel, CommandType type, int index) {
-        assert(type == CommandType.SHOW || type == CommandType.EDIT || type == CommandType.ASSIGN);
+        assert(type == CommandType.SHOW
+                || type == CommandType.EDIT
+                || type == CommandType.ASSIGN
+                || type == CommandType.NOK);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, type, index);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
