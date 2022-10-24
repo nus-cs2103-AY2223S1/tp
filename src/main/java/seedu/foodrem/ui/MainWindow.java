@@ -172,9 +172,9 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.foodrem.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, IllegalArgumentException {
+    private CommandResult<?> executeCommand(String commandText) throws CommandException, IllegalArgumentException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult<?> commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getOutput());
             uiView.viewFrom(commandResult.getOutput());
             // We need to hide the window to ensure it resizes on changing message to display.
