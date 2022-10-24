@@ -31,6 +31,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public String getStatus() {
+        return isDone() ? "[X]  [T]" : "[  ]  [T]";
+    }
+
+    @Override
     public boolean isSameTask(Task other) {
         if (other == this) {
             return true;

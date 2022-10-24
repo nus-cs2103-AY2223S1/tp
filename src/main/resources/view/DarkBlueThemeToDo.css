@@ -11,11 +11,11 @@
 }
 
 .list-cell:filled:even #cardPane {
-    -fx-background-color: derive(#4B3869, 0%);
+    -fx-background-color: derive(#2E0249, 35%);
 }
 
 .list-cell:filled:odd #cardPane {
-    -fx-background-color: derive(#4B3869, 0%);
+    -fx-background-color: derive(#2E0249, 35%);
 }
 
 .list-cell:filled:selected #cardPane {

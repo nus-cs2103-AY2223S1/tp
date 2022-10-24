@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: derive(#151E3D, 15%);
-    background-color: #151E3D; /* Used in the default.html file */
+    -fx-background-color: derive(#455985, 0%);
+    background-color: #455985; /* Used in the default.html file */
 }
 
 .label {
@@ -100,15 +100,11 @@
 }
 
 .list-cell:filled:even #cardPane {
-    -fx-background-color: derive(#151E3D, 10%);
+    -fx-background-color: derive(#25316D, 0%);
 }
 
 .list-cell:filled:odd #cardPane {
-    -fx-background-color: derive(#151E3D, 30%);
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-background-color: #424d5f;
+    -fx-background-color: derive(#25316D, 10%);
 }
 
 .list-cell:filled:selected #cardPane {
@@ -133,17 +129,17 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#151E3D, 10%);
+     -fx-background-color: derive(#25316D, 0%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#151E3D, 30%);
-     -fx-border-color: derive(#151E3D, 20%);
+     -fx-background-color: derive(#455985, 0%);
+     -fx-border-color: derive(#455985, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#151E3D, 10%);
+    -fx-background-color: derive(#25316D, 0%);
 }
 
 .result-display {
@@ -282,11 +278,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#151E3D, 20%);
+    -fx-background-color: derive(#25316D, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#151E3D, 50%);
+    -fx-background-color: derive(#25316D, 50%);
     -fx-background-insets: 3;
 }
 
@@ -333,7 +329,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: derive(#151E3D, 5%);
+    -fx-background-color: transparent, #25316D, transparent, #25316D;
     -fx-background-radius: 0;
 }
 

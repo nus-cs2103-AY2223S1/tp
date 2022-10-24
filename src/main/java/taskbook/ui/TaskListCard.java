@@ -13,9 +13,10 @@ import taskbook.model.task.Todo;
  */
 public class TaskListCard extends UiPart<Region> {
 
-    private static final String FXMLTODO = "TaskListCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
     private static final String FXMLDEADLINE = "TaskListDeadlineCard.fxml";
     private static final String FXMLEVENT = "TaskListEventCard.fxml";
+    private static final String FXMLTODO = "TaskListTodoCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

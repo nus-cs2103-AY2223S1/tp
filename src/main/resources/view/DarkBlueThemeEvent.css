@@ -5,17 +5,18 @@
 }
 
 .list-cell {
+    -fx-border-color: #3e7b91;
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
 }
 
 .list-cell:filled:even #cardPane {
-    -fx-background-color: derive(#123725, 5%);
+    -fx-background-color: derive(#664E88, 20%);
 }
 
 .list-cell:filled:odd #cardPane {
-    -fx-background-color: derive(#123725, 25%);
+    -fx-background-color: derive(#664E88, 20%);
 }
 
 .list-cell:filled:selected #cardPane {

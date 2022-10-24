@@ -31,6 +31,11 @@ public class Event extends Task {
         this.date = date;
     }
 
+    @Override
+    public String getStatus() {
+        return isDone() ? "[X]  [E]" : "[  ]  [E]";
+    }
+
     public LocalDate getDate() {
         return date;
     }
