@@ -22,4 +22,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_START_TIME = new Prefix("t/"); //same as PREFIX_TAG
     public static final Prefix PREFIX_PURPOSE = new Prefix("p/"); //same as PREFIX_PHONE
     public static final Prefix PREFIX_EVENT_TITLE = new Prefix("e/");
+
+    //Prefix associated with statistics
+    public static final Prefix PREFIX_TYPE = new Prefix("t/");
 }

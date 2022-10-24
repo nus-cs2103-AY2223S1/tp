@@ -4,16 +4,32 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.scene.chart.PieChart.Data;
 
+/**
+ * Represents a data point in the Statistical Data.
+ * Has a String {@code name} and double {@code value} as it is a piechart datapoint.
+ * Guarrantees: Immutable, data points are not null.
+ */
+
 public class StatisticData {
 
+    //PieChart data point.
     private final Data chartData;
 
+    /**
+     * Constructs a {@code StatisticData} with the given {@code name} and {@code value}.
+     * {@code name} and {@code value} must not be null.
+     */
     public StatisticData(String name, double value) {
         requireAllNonNull(name, value);
         this.chartData = new Data(name, value);
     }
 
-    public boolean isSameTitle(StatisticData otherData) {
+    /**
+     * Returns true if {@code otherData} has the same name as this instance of {@code StatisticData},
+     * false otherwise.
+     */
+    public boolean isSameName(StatisticData otherData) {
+        //short-circuit if same object.
         if (otherData == this) {
             return true;
         }
