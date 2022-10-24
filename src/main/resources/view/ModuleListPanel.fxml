@@ -24,7 +24,7 @@
         <TextFlow textAlignment="CENTER">
             <Text styleClass="scheduleHeader" text="Schedules" ></Text>
         </TextFlow>
-        <ListView fx:id="scheduleListView" style="list-cell"/>
+        <ListView fx:id="scheduleListView" style="list:cell"/>
         <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
         </padding>

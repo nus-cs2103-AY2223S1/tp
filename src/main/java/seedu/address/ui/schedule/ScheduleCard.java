@@ -50,13 +50,31 @@ public class ScheduleCard extends UiPart<Region> {
         super(FXML);
         this.schedule = schedule;
         id.setText(displayedIndex + ". ");
-        module.setText(schedule.getModule());
-        weekday.setText(schedule.getWeekday().name());
+        module.setText(schedule.getModule().toUpperCase());
+        weekday.setText(schedule.getWeekday().name() + ", ");
         classType.setText(schedule.getClassType().name());
-        startTime.setText(schedule.getStartTime());
+        startTime.setText(schedule.getStartTime() + " - ");
         endTime.setText(schedule.getEndTime());
-        venue.setText(schedule.getVenue().toString());
+        venue.setText("Venue: " + schedule.getVenue().toString());
+        setColor(getColor(schedule.getDuration()));
+    }
 
+    public void setColor(String color) {
+        cardPane.setStyle("-fx-font-size: 14; -fx-background-color: " + color + "; -fx-background-radius: 10px;");
+    }
+
+    private String getColor(double duration) {
+        if (duration <= 1) {
+            return "#ffb6c1"; // PINK
+        } else if (duration == 1.5) {
+            return "#F8C4B4"; // DARK RED
+        } else if (duration == 2) {
+            return "#E5EBB2"; // YELLOW
+        } else if (duration <= 3) {
+            return "#BCE29E"; // GREEN
+        } else {
+            return "#B8E8FC"; // BLUE
+        }
     }
 
     @Override
