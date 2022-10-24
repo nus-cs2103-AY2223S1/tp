@@ -46,6 +46,7 @@ public class UniquePersonList implements Iterable<Task> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+        internalList.sort(null);
     }
 
     /**
@@ -66,6 +67,7 @@ public class UniquePersonList implements Iterable<Task> {
         }
 
         internalList.set(index, editedTask);
+        internalList.sort(null);
     }
 
     /**
@@ -82,6 +84,7 @@ public class UniquePersonList implements Iterable<Task> {
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        internalList.sort(null);
     }
 
     /**
@@ -95,6 +98,7 @@ public class UniquePersonList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
+        internalList.sort(null);
     }
 
     /**

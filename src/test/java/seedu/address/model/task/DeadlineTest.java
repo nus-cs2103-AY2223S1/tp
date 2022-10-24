@@ -21,7 +21,7 @@ class DeadlineTest {
     }
 
     @Test
-    void isValidDeadline() {
+    public void isValidDeadline() {
         // null date
         assertThrows(NullPointerException.class, () -> Deadline.isValidDeadline(null));
 
@@ -41,7 +41,7 @@ class DeadlineTest {
     }
 
     @Test
-    void compareTo() {
+    public void compareTo() {
         // same date
         Deadline x = new Deadline("2022-10-15");
         Deadline y = new Deadline("2022-10-15");

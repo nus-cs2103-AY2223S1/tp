@@ -23,7 +23,7 @@ import seedu.address.model.task.Task;
 public class TypicalPersons {
 
     public static final Task ALICE = new PersonBuilder().withName("Assignment 2")
-            .withDeadline("2022-11-02")
+            .withDeadline("2022-01-02")
             .withModule("CS2100")
             .withTags("highPriority")
             .withIsDone(false)
