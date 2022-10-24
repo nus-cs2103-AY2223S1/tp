@@ -736,8 +736,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a guest
 
-   1. Prerequisites: Only one guest to be added; 
-   the name of the guest to be added should not be already in the guest book; 
+   1. Prerequisites: Only one guest to be added;
+      the name of the guest to be added should not exist in the guest book; 
    the format and data of the command should be valid.
    
    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 
@@ -797,8 +797,8 @@ testers are expected to do more *exploratory* testing.
 1. Editing a guest
    
    1. Prerequisite: Only 1 guest to be edited; the guest's index should exist; 
-   the guest should exist in the guest book; 
-   the format and content of the command should be valid.
+   The guest should exist in the guest book; 
+   The format and content of the command should be valid.
    
    2. Test case: `edit 1 n/Johnny`<br>
       Expected: Guest edit successfully, the first guest's name will change from "John Doe" to "Johnny"
