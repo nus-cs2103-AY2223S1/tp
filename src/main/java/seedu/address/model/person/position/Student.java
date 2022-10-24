@@ -135,18 +135,18 @@ public class Student extends Position {
         return String.format("%.2f/%d", totalGrade, totalWeightage);
     }
 
-    public Map<String, Number> getAssignmentAndGrade() {
+    public Map<String, Number> getAssignmentsAndGrade() {
         Map<String, Number> map = new HashMap<>();
         for (Assignment a: assignmentsList) {
-            map.put(a.getAssignmentName(), a.getScore());
+            map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getScore());
         }
         return map;
     }
 
-    public Map<String, Number> getAssignmentAndMaximumGrade() {
+    public Map<String, Number> getAssignmentsAndMaximumGrade() {
         Map<String, Number> map = new HashMap<>();
         for (Assignment a: assignmentsList) {
-            map.put(a.getAssignmentName(), a.getMaximumScore());
+            map.put(a.getAssignmentName() + " (" + a.getWeightage() + "%)", a.getMaximumScore());
         }
         return map;
     }

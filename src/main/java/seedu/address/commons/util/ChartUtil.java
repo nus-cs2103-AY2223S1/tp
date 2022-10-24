@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javafx.collections.FXCollections;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 
 /**
@@ -14,12 +14,10 @@ import javafx.scene.chart.XYChart;
  */
 public class ChartUtil {
 
-    // private static final double DEFAULT_TICK_UNIT = 5.0;
-
     /**
      * Creates a JavaFX BarChart with the given title, axis labels and data points.
      */
-    public static BarChart<String, Number> createBarChart(String title, String xLabel, String yLabel,
+    public static StackedBarChart<String, Number> createBarChart(String title, String xLabel, String yLabel,
                                                           Map<String, Number> results, Map<String, Number> maxResult) {
         final CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel(xLabel);
@@ -33,7 +31,7 @@ public class ChartUtil {
         // Disable auto-ranging so that we can configure our own tick units
         yAxis.setAutoRanging(false);
 
-        final BarChart<String, Number> barChart = new BarChart<String, Number>(xAxis, yAxis);
+        final StackedBarChart<String, Number> barChart = new StackedBarChart<String, Number>(xAxis, yAxis);
         barChart.setTitle(title);
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -49,7 +47,7 @@ public class ChartUtil {
             seriesResult.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
         barChart.getData().add(seriesResult);
-
+        barChart.setLegendVisible(false);
         return barChart;
     }
 }

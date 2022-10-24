@@ -44,7 +44,11 @@
             <Insets bottom="0" left="10" right="10" top="5" />
           </padding>
         </Label>
-        <StackPane fx:id="placeHolder" styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"/>
+        <StackPane fx:id="placeHolder" styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" maxHeight="300" onMouseClicked="#displayGraph">
+          <padding>
+            <Insets bottom="0" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
         <Label fx:id="address" styleClass="label-bright">
           <padding>
             <Insets bottom="0" left="10" right="10" top="20" />

@@ -3,11 +3,14 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import seedu.address.commons.util.ChartUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.position.Student;
@@ -28,6 +31,8 @@ public class InfoDisplay extends UiPart<Region> {
      */
 
     private Person person;
+
+    private StackedBarChart<String, Number> chart;
 
     @FXML
     private Label name;
@@ -56,7 +61,6 @@ public class InfoDisplay extends UiPart<Region> {
      * Displays information of a specified person.
      */
     public void setInfo(Person person) {
-        System.out.println("Setting info");
         this.person = person;
         name.setText(person.getName().fullName);
         position.setText(person.getPosition().value);
@@ -69,14 +73,28 @@ public class InfoDisplay extends UiPart<Region> {
         remark.setText("Remarks: " + person.getRemark().value);
         if (person.getPosition() instanceof Student) {
             Student s = (Student) person.getPosition();
-            BarChart<String, Number> chart = ChartUtil.createBarChart("Results",
-                    "Assignments", "Score", s.getAssignmentAndGrade(),
-                    s.getAssignmentAndMaximumGrade());
+            StackedBarChart<String, Number> chart = ChartUtil.createBarChart("Results",
+                    "Assignments", "Score", s.getAssignmentsAndGrade(),
+                    s.getAssignmentsAndMaximumGrade());
             chart.setAnimated(false);
+            this.chart = chart;
             placeHolder.getChildren().add(chart);
         } else {
             placeHolder.getChildren().clear();
         }
+    }
+
+    /**
+     * Displays a Graph in a new window.
+     */
+    public void displayGraph() {
+        System.out.println("clicked");
+        Stage stage = new Stage();
+        stage.setTitle("Grades of " + name.getText());
+        Group root = new Group(chart);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
@@ -91,6 +109,7 @@ public class InfoDisplay extends UiPart<Region> {
         misc.setText(null);
         address.setText(null);
         remark.setText(null);
+        placeHolder.getChildren().clear();
     }
 
     @Override
