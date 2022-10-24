@@ -70,6 +70,12 @@ public class UniquePersonList implements Iterable<Person> {
         return index;
     }
 
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param phone Phone number of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
     public Reward getCurrentReward(Phone phone) {
         requireNonNull(phone);
         Optional<Reward> currentReward = internalList.stream().filter(person -> person.getPhone().equals(phone))
@@ -77,6 +83,12 @@ public class UniquePersonList implements Iterable<Person> {
         return currentReward.get();
     }
 
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param email Email of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
     public Reward getCurrentReward(Email email) {
         requireNonNull(email);
         Optional<Reward> currentReward = internalList.stream().filter(person -> person.getEmail().equals(email))

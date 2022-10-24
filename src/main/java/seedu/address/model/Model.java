@@ -107,7 +107,19 @@ public interface Model {
      */
     int findEmail(Email email) throws PersonNotFoundException;
 
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param phone Phone number of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
     Reward getCurrentReward(Phone phone);
 
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param email Email of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
     Reward getCurrentReward(Email email);
 }
