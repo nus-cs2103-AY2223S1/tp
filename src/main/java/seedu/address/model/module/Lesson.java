@@ -26,7 +26,7 @@ public abstract class Lesson {
      * @param endTime time lesson ends
      */
     public Lesson(String module, int day, LocalTime startTime, LocalTime endTime) {
-        this.module = module;
+        this.module = module.toUpperCase();
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -54,6 +54,24 @@ public abstract class Lesson {
     }
 
     /**
+     * @return the String value of the lesson type (instead of abbreviation).
+     */
+    public String typeToString() {
+        switch (getType()) {
+        case "tut":
+            return "Tutorial";
+        case "lab":
+            return "Lab";
+        case "lec":
+            return "Lecture";
+        case "rec":
+            return "Recitation";
+        default:
+            return "Unknown lesson type";
+        }
+    }
+
+    /**
      * Returns true if a given string is a valid module name.
      */
     public static boolean isValidLesson(String test) {
@@ -76,6 +94,6 @@ public abstract class Lesson {
      * Format state as text for viewing.
      */
     public String toString() {
-        return module + day + startTime + endTime;
+        return module + " " + startTime + " to " + endTime;
     }
 }

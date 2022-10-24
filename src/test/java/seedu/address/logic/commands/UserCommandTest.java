@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -181,6 +182,15 @@ public class UserCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean setTimetable(Set<Lesson> lessons) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Lesson> getTimetable() {
             throw new AssertionError("This method should not be called.");
         }
     }

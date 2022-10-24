@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -25,6 +27,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Set<Lesson> timetable = new HashSet<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -150,6 +153,22 @@ public class ModelManager implements Model {
     public void removeLessonToUser(Lesson lesson) throws CommandException {
         addressBook.removeLessonToUser(lesson);
     }
+
+    @Override
+    public Set<Lesson> getTimetable() {
+        return timetable;
+    }
+
+    @Override
+    public boolean setTimetable(Set<Lesson> lessons) {
+        if (lessons.isEmpty()) {
+            return false;
+        }
+        timetable = lessons;
+        return true;
+    }
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 

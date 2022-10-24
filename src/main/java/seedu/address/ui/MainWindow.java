@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimetableWindow timetableWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -71,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timetableWindow = new TimetableWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -135,8 +137,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-
     }
 
     /**
@@ -168,6 +168,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the timetable window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleTimetable() {
+        timetableWindow.setTimetableMessage(logic.getTimetable());
+        if (!timetableWindow.isShowing()) {
+            timetableWindow.show();
+        } else {
+            timetableWindow.focus();
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -177,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        timetableWindow.hide();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -199,13 +213,16 @@ public class MainWindow extends UiPart<Stage> {
                 userProfile.update(logic.getUser());
             }
 
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
             }
 
             return commandResult;
