@@ -34,6 +34,10 @@ public class CommandResult {
         return this.commandType == CommandType.EXIT;
     }
 
+    public boolean isViewPatient() {
+        return this.commandType == CommandType.VIEW_PATIENT;
+    }
+
     public boolean isAddPatient() {
         return this.commandType == CommandType.ADD_PATIENT;
     }
