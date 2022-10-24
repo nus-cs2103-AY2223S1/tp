@@ -15,7 +15,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all items";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return CommandResult.from(MESSAGE_SUCCESS);
