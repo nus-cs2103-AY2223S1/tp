@@ -26,6 +26,7 @@ import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -38,6 +39,7 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
@@ -143,6 +145,14 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTask() throws Exception {
+        List<String> keywords = Arrays.asList("too", "lar", "laz");
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(FindTaskCommand.COMMAND_WORD + " "
+                + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTaskCommand(new TaskDescriptionContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
