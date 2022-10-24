@@ -9,7 +9,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Leave {
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
+    public static final String MESSAGE_CONSTRAINTS = "Input for leave period is invalid \n";
+            
     public final LocalDate startDate;
     public final LocalDate endDate;
 

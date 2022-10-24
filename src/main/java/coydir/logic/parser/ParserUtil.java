@@ -12,6 +12,7 @@ import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Address;
 import coydir.model.person.Department;
 import coydir.model.person.Email;
+import coydir.model.person.Leave;
 import coydir.model.person.Name;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
@@ -141,6 +142,22 @@ public class ParserUtil {
         return new Department(trimmedDepartment);
     }
 
+    /**
+     * Parses a {@code String leave period} into an {@code Leave}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the  given {@code leave period} is invalid.
+     */
+    public static Leave parseLeave(String leave) throws ParseException {
+        requireNonNull(leave);
+        String trimmedLeave = leave.trim();
+        String startDate = trimmedLeave.substring(0,6);
+        String endDate = trimmedLeave.substring(6);        
+        if (! Leave.isValidLeave(startDate, endDate)) {
+            throw new ParseException(Leave.MESSAGE_CONSTRAINTS);
+        }
+        return new Leave(startDate, endDate);
+    }
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
