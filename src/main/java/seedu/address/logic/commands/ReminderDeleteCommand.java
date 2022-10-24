@@ -45,7 +45,6 @@ public class ReminderDeleteCommand extends ReminderCommandGroup {
             throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
 
-
         Reminder toDelete = reminderList.get(index.getZeroBased());
         model.deleteReminder(toDelete);
 

@@ -32,4 +32,19 @@ public class ReminderClearCommand extends ReminderCommandGroup {
 
         return new CommandResult(successMessage);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (other instanceof ReminderClearCommand) {
+            return true;
+        }
+
+        return false;
+    }
 }
