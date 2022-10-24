@@ -84,15 +84,19 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        model.setPerson(personToEdit, editedPerson);
+
+        // Remove personToEdit from its tags, and remove unused tags from UniqueTagMapping
         personToEdit.getTags().forEach(tag -> {
             tag.removePerson(personToEdit);
             if (tag.isPersonListEmpty() && !model.notebookContainsTag(tag)) {
                 model.removeTag(tag);
             }
         });
+
+        // Add editedPerson to its tags
         editedPerson.getTags().forEach(tag -> tag.addPerson(editedPerson));
 
-        model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

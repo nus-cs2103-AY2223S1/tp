@@ -74,14 +74,15 @@ public class EditNoteCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 
-        // Remove no longer used tags
+        model.setNote(noteToEdit, editedNote);
+
+        // Remove unused tags from UniqueTagMapping
         noteToEdit.getTags().forEach(tag -> {
             if (tag.isPersonListEmpty() && !model.notebookContainsTag(tag)) {
                 model.removeTag(tag);
             }
         });
 
-        model.setNote(noteToEdit, editedNote);
         model.updateFilteredNoteList(Model.PREDICATE_SHOW_ALL_NOTES);
         return new CommandResult(String.format(MESSAGE_EDIT_NOTE_SUCCESS, editedNote));
 
