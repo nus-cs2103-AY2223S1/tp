@@ -35,7 +35,7 @@ public class ItemExpiryDate {
      * Produces a expiryDate object.
      *
      * @param dateString a string that represents the expiryDate of the
-     *                   format in ItemBoughtDateValidator.
+     *                   format {@link ItemExpiryDate#EXPIRY_DATE_FORMATTER}
      */
     public static ItemExpiryDate of(String dateString) {
         requireNonNull(dateString);

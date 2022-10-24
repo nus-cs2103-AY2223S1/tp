@@ -25,7 +25,7 @@ public class ItemBoughtDate {
      * Constructs an boughtDate.
      *
      * @param date a localDate that represents the boughtDate of the
-     *             format in ItemBoughtDateValidator.
+     *             format {@link ItemBoughtDate#BOUGHT_DATE_FORMATTER}
      */
     private ItemBoughtDate(LocalDate date) {
         boughtDate = date;
@@ -35,7 +35,7 @@ public class ItemBoughtDate {
      * Produces a boughtDate object.
      *
      * @param dateString a string that represents the boughtDate of the
-     *                   format in ItemBoughtDateValidator.
+     *                   format {@link ItemBoughtDate#BOUGHT_DATE_FORMATTER}
      */
     public static ItemBoughtDate of(String dateString) {
         requireNonNull(dateString);
