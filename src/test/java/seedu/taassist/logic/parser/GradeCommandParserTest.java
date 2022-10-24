@@ -16,9 +16,14 @@ import static seedu.taassist.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.taassist.logic.parser.ParserUtil.parseGrade;
 import static seedu.taassist.testutil.TestUtil.joinWithSpace;
 import static seedu.taassist.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.taassist.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.GradeCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.session.Session;
@@ -58,6 +63,16 @@ public class GradeCommandParserTest {
         Session session = new SessionBuilder().withName(VALID_SESSION_LAB1).build();
         String userInput = INDEX_FIRST_STUDENT + SESSION_DESC_LAB1 + GRADE_VALUE_DESC_12345;
         Double grade = parseGrade(VALID_GRADE_VALUE_12345);
-        assertParseSuccess(parser, userInput, new GradeCommand(INDEX_FIRST_STUDENT, session , grade));
+        assertParseSuccess(parser, userInput, new GradeCommand(new ArrayList<>(List.of(INDEX_FIRST_STUDENT)),
+                session , grade));
+    }
+
+    @Test
+    public void parse_validIndicesGradeAndSession_success() throws ParseException {
+        Session session = new SessionBuilder().withName(VALID_SESSION_LAB1).build();
+        String userInput = INDEX_FIRST_STUDENT + " " + INDEX_THIRD_STUDENT + SESSION_DESC_LAB1 + GRADE_VALUE_DESC_12345;
+        List<Index> indices = new ArrayList<>(List.of(INDEX_FIRST_STUDENT, INDEX_THIRD_STUDENT));
+        Double grade = parseGrade(VALID_GRADE_VALUE_12345);
+        assertParseSuccess(parser, userInput, new GradeCommand(indices, session, grade));
     }
 }

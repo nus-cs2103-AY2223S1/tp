@@ -176,7 +176,7 @@ public class TaAssistParserTest {
         String commandString = joinWithSpace(GradeCommand.COMMAND_WORD, index.toString(),
                 PREFIX_GRADE + value.toString(), PREFIX_SESSION + session.getSessionName());
         GradeCommand command = (GradeCommand) parser.parseCommand(commandString);
-        assertEquals(new GradeCommand(index, session, value), command);
+        assertEquals(new GradeCommand(new ArrayList<>(List.of(index)), session, value), command);
     }
 
     @Test
