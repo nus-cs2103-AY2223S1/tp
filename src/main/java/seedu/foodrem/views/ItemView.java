@@ -38,6 +38,9 @@ public class ItemView {
         tagsList.add(new Label("Tags: "));
         item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName))
                 .forEach(tag -> tagsList.add(tagViewFrom(tag.getName())));
+        if (tagsList.size() == 1) {
+            tagsList.add(new Label("-"));
+        }
         final HBox tags = new HBox(tagsList.toArray(Node[]::new));
         tags.setAlignment(Pos.CENTER_LEFT);
         tags.setSpacing(SPACING_UNIT);
