@@ -1,5 +1,7 @@
 package seedu.address.model.reminder;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,6 +19,7 @@ public class DateTime implements Comparable<DateTime> {
      * @param dateTime {@code String} representing a date and time.
      */
     public DateTime(String dateTime) {
+        requireNonNull(dateTime);
         assert(isValidDateTimeString(dateTime, DATE_TIME_FORMATTER));
         this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
     }
@@ -26,6 +29,7 @@ public class DateTime implements Comparable<DateTime> {
      * @param dateTime {@code LocalDateTime} representing a date and time.
      */
     public DateTime(LocalDateTime dateTime) {
+        requireNonNull(dateTime);
         this.dateTime = dateTime;
     }
 
