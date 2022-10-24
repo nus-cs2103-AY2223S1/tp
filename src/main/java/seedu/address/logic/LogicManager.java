@@ -44,6 +44,9 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+        if (!(commandResult.isRedo() || commandResult.isUndo())) {
+            model.commitAddressBook();
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());

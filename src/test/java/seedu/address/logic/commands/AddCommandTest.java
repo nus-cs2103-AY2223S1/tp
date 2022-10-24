@@ -20,6 +20,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.exceptions.NextStateNotFoundException;
+import seedu.address.model.exceptions.PreviousStateNotFoundException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -172,8 +174,24 @@ public class AddCommandTest {
         public Reward getCurrentReward(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public Reward getCurrentReward(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoAddressBook() throws PreviousStateNotFoundException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoAddressBook() throws NextStateNotFoundException {
             throw new AssertionError("This method should not be called.");
         }
     }
