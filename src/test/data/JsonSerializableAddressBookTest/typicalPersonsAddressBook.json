@@ -3,35 +3,51 @@
   "persons" : [ {
     "type" : "s",
     "name" : "Alice Pauline",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "94351253",
     "email" : "alice@example.com",
     "gender" : "F",
     "tagged" : [ "friends" ],
-    "moduleCode" : ""
+    "location" : "NUS",
+    "username" : "",
+    "year" : "1"
   }, {
     "type" : "s",
     "name" : "Benson Meier",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "gender" : "M",
     "tagged" : [ "owesMoney", "friends" ],
-    "moduleCode" : ""
+    "location" : "NUS",
+    "username" : "ben10",
+    "year" :  "1"
   }, {
     "type" : "s",
     "name" : "Carl Kurz",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "gender" : "M",
     "tagged" : [ ],
-    "moduleCode" : ""
+    "location" : "NUS",
+    "username" : "",
+    "year" :  "1"
   }, {
     "type" : "s",
     "name" : "Daniel Meier",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "gender" : "M",
     "tagged" : [ "friends" ],
-    "moduleCode" : ""
+    "location" : "NUS",
+    "username" : "",
+    "year" :  "1"
   }, {
     "type": "p",
     "name" : "Elle Meyer",
@@ -39,7 +55,12 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "gender": "F",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "location" : "NUS",
+    "username" : "",
+    "rating" : "5",
+    "specialisation" : "Computer Graphics",
+    "officeHour" : "TUESDAY: 6:00 PM to 9:00 PM"
   }, {
     "type": "t",
     "name" : "Fiona Kunz",
@@ -47,14 +68,22 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "gender": "F",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "location" : "NUS",
+    "username" : "",
+    "rating" : "5",
+    "specialisation" : "Computer Graphics"
   }, {
     "type" : "s",
     "name" : "George Best",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "9482442",
     "email" : "anna@example.com",
     "gender" : "M",
     "tagged" : [ ],
-    "moduleCode" : ""
+    "location" : "NUS",
+    "username" : "",
+    "year" :  "1"
   } ]
 }
