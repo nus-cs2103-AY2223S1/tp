@@ -71,6 +71,18 @@ public class Status {
         }
     }
 
+    /**
+     * Returns the String representation of only the completion status.
+     * @return String representing whether the issue is completed.
+     */
+    public String getCompletionStatus() {
+        if (this.completed) {
+            return "Completed";
+        } else {
+            return "Incomplete";
+        }
+    }
+
     @Override
     public String toString() {
         return String.valueOf(this.completed);
