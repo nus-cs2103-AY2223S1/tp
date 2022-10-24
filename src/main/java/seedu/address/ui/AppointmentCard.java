@@ -45,8 +45,8 @@ public class AppointmentCard extends UiPart<Region> {
         dateTime.setText(appointment.getFormattedDateTime() + appointment.getRecurringStatus());
         status.setText(appointment.getStatus());
         appointment.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getTagName()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
+                .sorted(Comparator.comparing(tag -> tag.toString()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.toString())));
     }
 
     @Override

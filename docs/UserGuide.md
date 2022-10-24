@@ -29,7 +29,7 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -47,7 +47,7 @@ Format: `help`
 
 Adds a patient into idENTify.
 
-Format: `Format: add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
+Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -64,6 +64,14 @@ Shows a list of all patients or appointments, depending on the parameter given.
 Format:
 * `list patients`
 * `list appts`
+
+### Grouping all patients/appointments : `group`
+
+Shows a list of all patients or appointments grouped by their tags, depending on the parameter given.
+
+Format:
+* `group patients`
+* `group appts`
 
 
 ### Editing a patient : `edit patients`

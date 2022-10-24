@@ -21,6 +21,7 @@ import java.util.stream.Stream;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.model.Key;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,7 +31,6 @@ public class Appointment {
     public static final String REASON_MESSAGE_CONSTRAINTS = "Reason should not be empty";
     public static final String DATE_MESSAGE_CONSTRAINTS = "Date should contain YYYY-MM-DD and HH:MM values";
     public static final String TIME_PERIOD_MESSAGE_CONSTRAINTS = "Time Period should contain valid Y M or D values";
-    public static final String TAG_QUANTITY_CONSTRAINTS = "Operation results in more than 1 tag in Appointment.";
     public static final DateTimeFormatter DATE_FORMATTER =
             new DateTimeFormatterBuilder().appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                     .appendOptional(DateTimeFormatter.ofPattern("HH:mm yyyy-MM-dd")).toFormatter();
@@ -221,6 +221,7 @@ public class Appointment {
         return test.isEmpty() || matcher.matches();
     }
 
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -277,7 +278,8 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return getStatus() + " " + getFormattedDateTime() + " for " + reason + getRecurringStatus();
+        return getStatus() + " " + getFormattedDateTime() + " for " + reason
+                + getRecurringStatus();
     }
 
     private String getStateIcon() {
@@ -299,6 +301,65 @@ public class Appointment {
             }
         }
         return recurring;
+    }
+
+    /**
+     * Returns the group number where this appointment belongs to, which is determined
+     * by its tags.
+     *
+     */
+    public int getGroupNumber() {
+        Set<Tag> tags = this.getTags();
+        if (tags.isEmpty()) {
+            return 0;
+        }
+        int value = 0;
+        for (Tag tag: tags) {
+            value += tag.ordinal();
+        }
+        if (tags.size() == 1) {
+            return value + 1;
+        }
+        if (tags.size() == 2) {
+            return value + 3;
+        }
+        return value + 4;
+    }
+
+    /**
+     * Returns -1 if this appointment appears before the other appointment, and
+     * returns 0 if this appointment has the same order as the other appointment, and
+     * returns 1 if this appointment appears after the other appointment.
+     *
+     * @param appointment The other appointment to compare with.
+     */
+    public int compareTo(Appointment appointment) {
+        return this.dateTime.isBefore(appointment.dateTime)
+                ? -1
+                : this.dateTime.isAfter(appointment.dateTime)
+                ? 1
+                : 0;
+    }
+
+    /**
+     * Returns 10 * group difference -1 if this appointment appears before the other appointment, and
+     * returns 10 * group difference if this appointment has the same order as the other appointment, and
+     * returns 10 * group difference + 1 if this appointment appears after the other appointment. This method
+     * makes sure that appointments with the same tag group are grouped together.
+     *
+     * @param appointment The other person to compare with.
+     */
+    public int groupCompareTo(Appointment appointment, Key key) {
+        int tagWeight = 10;
+        int personWeight = 10;
+        int dateWeight = 1;
+        if (key.equals(Key.TAG)) {
+            return tagWeight * (this.getGroupNumber() - appointment.getGroupNumber())
+                    + dateWeight * this.compareTo(appointment);
+        } else {
+            return personWeight * this.getPatientName().compareTo(appointment.getPatientName())
+                    + dateWeight + this.compareTo(appointment);
+        }
     }
 
     @Override
@@ -334,6 +395,4 @@ public class Appointment {
     public Observable[] getProperties() {
         return new Observable[] {isMarked, patient};
     }
-
-
 }
