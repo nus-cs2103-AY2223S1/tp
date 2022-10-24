@@ -45,6 +45,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
+    private Label project;
+    @FXML
     private FlowPane assignedContacts;
 
     /**
@@ -62,6 +64,14 @@ public class TaskCard extends UiPart<Region> {
         } else {
             String text = task.getDeadline().formatForUi();
             deadline.setText(text);
+        }
+
+        if (task.getProject().isUnspecified()) {
+            project.setVisible(false);
+            project.setManaged(false);
+        } else {
+            String text = task.getProject().toString();
+            project.setText(text);
         }
 
         isCompleted.setText("");

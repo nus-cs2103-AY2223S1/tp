@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.TaskParserUtil;
+import seedu.address.model.project.Project;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
@@ -25,6 +26,7 @@ class JsonAdaptedTask {
     private final String title;
     private final String isCompleted;
     private final String deadline;
+    private final String project;
     private final List<JsonAdaptedContact> assigned = new ArrayList<>();
 
     /**
@@ -34,10 +36,12 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(@JsonProperty("title") String title,
                            @JsonProperty("isCompleted") String isCompleted,
                            @JsonProperty("deadline") String deadline,
+                           @JsonProperty("project") String project,
                            @JsonProperty("assigned") List<JsonAdaptedContact> assigned) {
         this.title = title;
         this.isCompleted = isCompleted;
         this.deadline = deadline;
+        this.project = project;
         if (assigned != null) {
             this.assigned.addAll(assigned);
         }
@@ -52,6 +56,8 @@ class JsonAdaptedTask {
         isCompleted = String.valueOf(source.getCompleted());
 
         deadline = source.getDeadline().toString();
+
+        project = source.getProject().toString();
 
         assigned.addAll(source.getAssignedContacts().stream()
             .map(JsonAdaptedContact::new)
@@ -95,9 +101,18 @@ class JsonAdaptedTask {
             modelDeadline = Deadline.of(TaskParserUtil.convertStringToLocalDate(deadline));
         }
 
+        final Project modelProject;
+        if (project.equals(Project.UNSPECIFIED_PROJECT_IDENTIFIER)) {
+            modelProject = Project.UNSPECIFIED;
+        } else if (!Project.isValidProjectName(project)) {
+            throw new IllegalValueException(Project.MESSAGE_CONSTRAINTS);
+        } else {
+            modelProject = new Project(project);
+        }
+
         final Set<Contact> modelContacts = new HashSet<>(assignedContacts);
 
-        return new Task(modelTitle, modelIsCompleted, modelDeadline, modelContacts);
+        return new Task(modelTitle, modelIsCompleted, modelDeadline, modelProject, modelContacts);
     }
 
 }

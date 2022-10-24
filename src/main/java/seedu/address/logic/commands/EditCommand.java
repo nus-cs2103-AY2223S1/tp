@@ -103,7 +103,7 @@ public class EditCommand extends Command {
             Set<Contact> newAssignedContactList = new HashSet<>(task.getAssignedContacts());
             newAssignedContactList.remove(contactToEdit);
             newAssignedContactList.add(editedContact);
-            model.setTask(task, new Task(task.getTitle(), task.getCompleted(), task.getDeadline(),
+            model.setTask(task, new Task(task.getTitle(), task.getCompleted(), task.getDeadline(), task.getProject(),
                     newAssignedContactList));
         }
         model.updateFilteredTaskList(new AssignedToContactsPredicate(editedContact));

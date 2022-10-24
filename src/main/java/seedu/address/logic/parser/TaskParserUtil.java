@@ -15,6 +15,7 @@ import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.project.Project;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Title;
@@ -65,6 +66,21 @@ public class TaskParserUtil {
         } else {
             throw new ParseException(Deadline.MESSAGE_PARSE_FAILURE);
         }
+    }
+
+    /**
+     * Parses a {@code String project name} into a {@code Project}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code project} is invalid.
+     */
+    public static Project parseProject(String projectName) throws ParseException {
+        requireNonNull(projectName);
+        String trimmedProjectName = projectName.trim();
+        if (!Project.isValidProjectName(trimmedProjectName)) {
+            throw new ParseException(Project.MESSAGE_CONSTRAINTS);
+        }
+        return new Project(trimmedProjectName);
     }
 
     /**

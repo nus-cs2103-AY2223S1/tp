@@ -60,7 +60,8 @@ public class DeleteCommand extends Command {
         for (Task task : lastShownTaskList) {
             Set<Contact> newAssignedContactList = new HashSet<>(task.getAssignedContacts());
             newAssignedContactList.remove(contactToDelete);
-            Task newTask = new Task(task.getTitle(), task.getCompleted(), task.getDeadline(), newAssignedContactList);
+            Task newTask = new Task(task.getTitle(), task.getCompleted(), task.getDeadline(),
+                    task.getProject(), newAssignedContactList);
             model.setTask(task, newTask);
             modifiedTaskList.add(newTask);
         }

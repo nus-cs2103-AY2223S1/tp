@@ -30,7 +30,7 @@ public class AssignTaskCommand extends TaskCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Assigns/unassigns person(s) to a task.\n"
             + "Parameters: "
             + "TASK_INDEX (must be a positive integer) "
-            + "[" + PREFIX_ADD_CONTACT + "CONTACT_INDEX OR CONTACT_NAME]...\n"
+            + "[" + PREFIX_ADD_CONTACT + "CONTACT_INDEX OR CONTACT_NAME]... "
             + "[" + PREFIX_DELETE_CONTACT + "CONTACT_INDEX OR CONTACT_NAME]...\n"
             + "Example: " + COMMAND_WORD_FULL + " "
             + "1 "
@@ -110,6 +110,7 @@ public class AssignTaskCommand extends TaskCommand {
                 taskToModify.getTitle(),
                 taskToModify.getCompleted(),
                 taskToModify.getDeadline(),
+                taskToModify.getProject(),
                 contactSetToModify
         );
 

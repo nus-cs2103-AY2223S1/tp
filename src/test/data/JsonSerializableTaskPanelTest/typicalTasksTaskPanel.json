@@ -4,11 +4,13 @@
     "title": "Add tasks to list",
     "isCompleted": "false",
     "deadline": "UNSPECIFIED",
+    "project": "",
     "assigned": [ "Alice Pauline" ]
   }, {
     "title": "Assign contacts to task",
     "isCompleted": "false",
     "deadline": "01-01-2023",
+    "project": "CS2103T",
     "assigned": [ "George Best" ]
   } ]
 }
