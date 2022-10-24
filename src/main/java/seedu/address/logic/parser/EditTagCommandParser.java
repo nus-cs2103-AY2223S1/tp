@@ -10,42 +10,44 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.EditTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 
 /**
- * AddTagCommandParser parses the arguments and supplies these arguments
- * to the AddTagCommand.
+ * EditTagCommandParser parses the prefix arguments given by the user to
+ * create a EditTagCommand object.
  */
-public class AddTagCommandParser implements Parser<Command> {
+public class EditTagCommandParser implements Parser<Command> {
+    public static final String INVALID_INDEX_EDIT_TAG = "The index for edit tag is invalid.";
+
     @Override
     public Command parse(String args) throws ParseException {
         requireNonNull(args);
-        String[] indexWithTags = args.strip().split(" ", 2);
-        if (indexWithTags.length != 2) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTagCommand.MESSAGE_USAGE));
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer
+                .tokenize(args, PREFIX_DEADLINE, PREFIX_PRIORITY_STATUS);
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(INVALID_INDEX_EDIT_TAG);
         }
-        Index index = ParserUtil.parseIndex(indexWithTags[0]);
-        String tags = " " + indexWithTags[1];
-        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(tags, PREFIX_PRIORITY_STATUS, PREFIX_DEADLINE);
-        if (!areAnyPrefixesPresent(argMultiMap, PREFIX_PRIORITY_STATUS, PREFIX_DEADLINE)
-                || !argMultiMap.getPreamble().isEmpty()) {
+        if (!areAnyPrefixesPresent(argumentMultimap, PREFIX_PRIORITY_STATUS, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE));
         }
         PriorityTag priorityTag = null;
         DeadlineTag deadlineTag = null;
-        String priorityStatus = argMultiMap.getValue(PREFIX_PRIORITY_STATUS).orElse(null);
-        String deadline = argMultiMap.getValue(PREFIX_DEADLINE).orElse(null);
+        String priorityStatus = argumentMultimap.getValue(PREFIX_PRIORITY_STATUS).orElse(null);
+        String deadline = argumentMultimap.getValue(PREFIX_DEADLINE).orElse(null);
         if (priorityStatus != null) {
             priorityTag = ParserUtil.parsePriorityTag(priorityStatus);
         }
         if (deadline != null) {
             deadlineTag = ParserUtil.parseDeadlineTag(deadline);
         }
-        return new AddTagCommand(priorityTag, deadlineTag, index);
+        return new EditTagCommand(index, priorityTag, deadlineTag);
     }
 
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.commons.Criteria;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -86,6 +87,20 @@ public class DistinctTaskList implements Iterable<Task> {
         }
 
         taskList.set(index, editedTask);
+    }
+
+    /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
+        taskList.forEach(task -> {
+            if (task.isLinked() && task.getExam().equals(exam)) {
+                Task unlinkedTask = task.unlinkTask();
+                replaceTask(task, unlinkedTask, true);
+            }
+        });
     }
 
     /**

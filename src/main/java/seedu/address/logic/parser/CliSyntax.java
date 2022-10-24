@@ -19,6 +19,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_EXAM_DESCRIPTION = new Prefix("ex/");
     public static final Prefix PREFIX_EXAM_DATE = new Prefix("ed/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("dl/");
+    public static final Prefix PREFIX_MOD_NAME = new Prefix("m/");
+    public static final Prefix PREFIX_MOD_CREDIT = new Prefix("mc/");
     public static final Prefix PREFIX_EXAM_INDEX = new Prefix("e/");
     public static final Prefix PREFIX_TASK_INDEX = new Prefix("t/");
     public static final Prefix PREFIX_CRITERIA = new Prefix("c/");

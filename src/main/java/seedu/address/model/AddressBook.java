@@ -132,19 +132,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.contains(task);
     }
 
-    /**
-     * Unlinks all tasks that are currently linked to {@code exam}.
-     * @param exam
-     */
-    public void unlinkTasksFromExam(Exam exam) {
-        requireAllNonNull(exam);
-        this.tasks.forEach(task -> {
-            if (task.isLinked() && task.getExam().equals(exam)) {
-                Task unlinkedTask = task.unlinkTask();
-                replaceTask(task, unlinkedTask, true);
-            }
-        });
-    }
 
     /**
      * Replaces task by changing its given exam field from {@code previousExam}
@@ -339,6 +326,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void linkTaskToExam(Task task) {
         this.exams.linkTaskToExams(task);
+    }
+
+    /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        tasks.unlinkTasksFromExam(exam);
     }
 
     @Override

@@ -159,16 +159,8 @@ public class ModelManager implements Model {
     public void deleteTask(Task target) {
         addressBook.removeTask(target);
     }
-    @Override
-    public void unlinkTasksFromExam(Exam exam) {
-        requireNonNull(exam);
-        addressBook.unlinkTasksFromExam(exam);
-    }
-    @Override
-    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
-        requireAllNonNull(previousExam, newExam);
-        addressBook.updateExamFieldForTask(previousExam, newExam);
-    }
+
+
 
 
     //========== Exam List ==================================================================================
@@ -273,6 +265,17 @@ public class ModelManager implements Model {
         addressBook.sortTaskList(criteria);
     }
 
+    @Override
+    public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
+        addressBook.unlinkTasksFromExam(exam);
+    }
+
+    @Override
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        addressBook.updateExamFieldForTask(previousExam, newExam);
+    }
 
     //================================Exam Commands=====================================
     @Override

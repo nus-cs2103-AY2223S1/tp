@@ -164,6 +164,12 @@ public interface Model {
     void sortTaskList(Criteria criteria);
 
     /**
+     * Updates the task list to unlink all tasks that are currently linked to the give {@code exam}.
+     * @param exam
+     */
+    void unlinkTasksFromExam(Exam exam);
+
+    /**
      * Returns true if a exam with the same description and module and exam date
      * as {@code exam} exists in the exam list.
      */
@@ -197,7 +203,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExamList(Predicate<Exam>predicate);
-    void unlinkTasksFromExam(Exam exam);
 
     /**
      * Updates the exam field in task by replacing the previous exam with the new exam.

@@ -35,9 +35,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Module module = new Module(moduleCode);
         TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Task task = new Task(module, description);
-
-        return new AddTaskCommand(task);
+        return new AddTaskCommand(new Task(module, description));
     }
 
     /**
@@ -47,4 +45,5 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }
