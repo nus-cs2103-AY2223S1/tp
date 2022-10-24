@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventSortField;
 
 /**
- * Parses input arguments and creates and new ListEventsCommand object.
+ * Parses input arguments and creates a new ListEventsCommand object.
  */
 public class ListEventsCommandParser implements Parser<ListEventsCommand> {
 
