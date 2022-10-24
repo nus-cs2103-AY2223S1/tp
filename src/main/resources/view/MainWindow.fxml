@@ -33,7 +33,7 @@
           </Menu>
         </MenuBar>
 
-        <TabPane fx:id="tableViewPane" minWidth="340" prefHeight="600">
+        <TabPane fx:id="tableViewPane" minWidth="340" prefHeight="600" VBox.vgrow="ALWAYS">
             <Tab fx:id="residentTab" closable="false" styleClass="tab">
                 <VBox fx:id="residentTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>
@@ -47,7 +47,7 @@
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
-                    <StackPane fx:id="venueTableViewPlaceholder" VBox.vgrow="ALWAYS"/>
+                    <StackPane fx:id="bookingTableViewPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
             </Tab>
         </TabPane>

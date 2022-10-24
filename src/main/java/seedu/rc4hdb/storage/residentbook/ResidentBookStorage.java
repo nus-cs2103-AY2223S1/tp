@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 
@@ -14,56 +13,35 @@ import seedu.rc4hdb.model.ReadOnlyResidentBook;
 public interface ResidentBookStorage {
 
     /**
-     * Returns the file path of the data file.
-     */
-    Path getResidentBookFilePath();
-
-    /**
-     * Sets the file path to the {@code filePath}.
-     */
-    void setResidentBookFilePath(Path filePath);
-
-    ObservableValue<Path> getObservableResidentBookFilePath();
-
-    /**
-     * Returns ResidentBook data as a {@link ReadOnlyResidentBook}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
-     */
-    Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException, IOException;
-
-    /**
-     * @see #getResidentBookFilePath()
-     */
-    Optional<ReadOnlyResidentBook> readResidentBook(Path filePath) throws DataConversionException, IOException;
-
-    /**
-     * Saves the given {@link ReadOnlyResidentBook} to the storage.
-     * @param residentBook cannot be null.
-     * @throws IOException if there was any problem writing to the file.
-     */
-    void saveResidentBook(ReadOnlyResidentBook residentBook) throws IOException;
-
-    /**
-     * @see #saveResidentBook(ReadOnlyResidentBook)
-     */
-    void saveResidentBook(ReadOnlyResidentBook residentBook, Path filePath) throws IOException;
-
-    /**
-     * Deletes the resident book data file corresponding to {@code filePath}.
+     * Reads the resident book file data and returns a {@code ReadOnlyResidentBook}.
      *
-     * @param filePath path of the data file to be deleted. Cannot be null.
+     * @param folderPath location of the directory which holds the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
+    Optional<ReadOnlyResidentBook> readResidentBook(Path folderPath) throws DataConversionException, IOException;
+
+    /**
+     * Saves the data in {@code residentBook} to the resident_data.json file in the directory with path
+     * {@code folderPath}.
+     *
+     * @param folderPath location of the directory which holds the data. Cannot be null.
+     */
+    void saveResidentBook(ReadOnlyResidentBook residentBook, Path folderPath) throws IOException;
+
+    /**
+     * Deletes the resident book data file that is in the directory with path {@code folderPath}.
+     *
+     * @param folderPath location of the directory which holds the data. Cannot be null.
      * @throws IOException if there was any problem deleting the file.
      */
-    void deleteResidentBookFile(Path filePath) throws IOException;
+    void deleteResidentBookFile(Path folderPath) throws IOException;
 
     /**
-     * Creates the resident book data file corresponding to {@code filePath}.
+     * Creates an empty resident book data file that is in the directory with path {@code folderPath}.
      *
-     * @param filePath path of the data file to be created. Cannot be null.
+     * @param folderPath location of the directory which holds the data. Cannot be null.
      * @throws IOException if there was any problem creating the file.
      */
-    void createResidentBookFile(Path filePath) throws IOException;
+    void createResidentBookFile(Path folderPath) throws IOException;
 
 }

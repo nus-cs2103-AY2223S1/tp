@@ -23,6 +23,7 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.storage.Storage;
 
 /**
@@ -54,6 +55,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveResidentBook(model.getResidentBook());
+            storage.saveVenueBook(model.getVenueBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -98,11 +100,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getUserPrefsResidentBookFilePath() {
-        return model.getResidentBookFilePath();
-    }
-
-    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
@@ -118,12 +115,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableValue<Path> getObservableResidentBookFilePath() {
-        return storage.getObservableResidentBookFilePath();
-    }
-
-    @Override
     public ObservableList<Venue> getObservableVenues() {
         return model.getObservableVenues();
     }
+
+    @Override
+    public ObservableValue<Path> getObservableFolderPath() {
+        return storage.getObservableFolderPath();
+    }
+
+    @Override
+    public ObservableList<Booking> getObservableBookings() {
+        return model.getObservableBookings();
+    }
+
 }

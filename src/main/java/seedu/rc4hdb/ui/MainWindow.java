@@ -38,7 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
 
     private ResidentTableView residentTableView;
-    private VenueTableView venueTableView;
+    private BookingTableView bookingTableView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBoxRegion;
@@ -66,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane residentTableViewPlaceholder;
 
     @FXML
-    private StackPane venueTableViewPlaceholder;
+    private StackPane bookingTableViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -84,7 +84,7 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.logic.getObservableFields().addListener(getListChangeListener());
-        this.logic.getObservableResidentBookFilePath().addListener(getFileChangeListener());
+        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -140,18 +140,18 @@ public class MainWindow extends UiPart<Stage> {
         residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
-        venueTableView = new VenueTableView(logic.getObservableVenues());
-        venueTableViewPlaceholder.getChildren().add(venueTableView.getRoot());
+        bookingTableView = new BookingTableView(logic.getObservableBookings());
+        bookingTableViewPlaceholder.getChildren().add(bookingTableView.getRoot());
 
         residentTab.setContent(residentTableViewPlaceholder);
-        venueTab.setContent(venueTableViewPlaceholder);
+        venueTab.setContent(bookingTableViewPlaceholder);
 
         tableViewPane.getTabs().addAll(residentTab, venueTab);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableResidentBookFilePath());
+        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

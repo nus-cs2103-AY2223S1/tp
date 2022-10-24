@@ -2,6 +2,7 @@ package seedu.rc4hdb.model.venues;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -23,11 +24,6 @@ public class Venue implements BookingField {
     public static final String MESSAGE_CONSTRAINTS =
             "Venue should only consist of: 'meeting' ";
 
-    public static final String VALID_ROOM = "meeting";
-
-    //IMPORTANT: Venue is a singleton with just one Venue, Meeting Room as of now
-    public static final Venue MEETING_ROOM = new Venue(new VenueName("Meeting Room"));
-
     private ObservableList<Booking> bookings = FXCollections.observableArrayList();
     private final VenueName venueName;
 
@@ -40,12 +36,22 @@ public class Venue implements BookingField {
     }
 
     /**
+     * Constructs a Venue with pre-existing bookings.
+     * @param bookings The list of pre-existing bookings.
+     * @param venueName The name of the venue as specified by the venue book.
+     */
+    public Venue(List<Booking> bookings, VenueName venueName) {
+        this(venueName);
+        this.bookings = FXCollections.observableArrayList(bookings);
+    }
+
+    /**
      * Removes expired bookings from the list of bookings.
      */
     public void clearExpiredBookings() {
-        this.bookings = (ObservableList<Booking>) this.bookings.stream()
+        this.bookings = FXCollections.observableArrayList(this.bookings.stream()
                 .filter(b -> !b.hasExpired())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -101,10 +107,18 @@ public class Venue implements BookingField {
         return this.venueName.equals(otherVenueName);
     }
 
+    //==================== Start of getters =================================
+
     public ObservableList<Booking> getObservableBookings() {
         clearExpiredBookings();
         return this.bookings;
     }
+
+    public VenueName getVenueName() {
+        return venueName;
+    }
+
+    //==================== End of getters ====================================
 
     @Override
     public String toString() {

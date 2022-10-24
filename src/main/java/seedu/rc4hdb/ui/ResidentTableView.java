@@ -135,7 +135,7 @@ public class ResidentTableView extends UiPart<Region> {
      * Stylizes the {@code ResidentTableView} to maximise column width.
      */
     private void configureTableProperties() {
-        residentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.residentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         indexColumn.setResizable(false);
         indexColumn.setPrefWidth(70);

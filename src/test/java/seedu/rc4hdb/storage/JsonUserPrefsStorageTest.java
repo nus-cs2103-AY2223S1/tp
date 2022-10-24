@@ -16,6 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 
 public class JsonUserPrefsStorageTest {
 
@@ -74,7 +75,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setResidentBookFilePath(Paths.get("rc4hdb.json"));
+        userPrefs.setDataStorageFilePath(Paths.get("rc4hdb.json"));
         return userPrefs;
     }
 

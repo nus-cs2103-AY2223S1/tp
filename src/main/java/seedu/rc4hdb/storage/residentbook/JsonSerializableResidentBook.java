@@ -35,7 +35,9 @@ public class JsonSerializableResidentBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableResidentBook}.
      */
     public JsonSerializableResidentBook(ReadOnlyResidentBook source) {
-        residents.addAll(source.getResidentList().stream().map(JsonAdaptedResident::new).collect(Collectors.toList()));
+        residents.addAll(source.getResidentList()
+                .stream().map(JsonAdaptedResident::new)
+                .collect(Collectors.toList()));
     }
 
     /**

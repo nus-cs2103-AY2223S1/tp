@@ -40,10 +40,13 @@ public abstract class Booking {
 
     /**
      * Checks if the booking period overlaps with another booking period.
-     * @param booking The booking to check overlap with.
+     * @param other The booking to check overlap with.
      * @return True if both bookings overlap.
      */
-    public abstract boolean clashesWith(Booking booking);
+    public boolean clashesWith(Booking other) {
+        return dayOfWeek.equals(other.dayOfWeek)
+                && hourPeriod.clashesWith(other.hourPeriod);
+    }
 
     /**
      * Checks if the booking lies on the same day and time period.
@@ -55,6 +58,26 @@ public abstract class Booking {
         return this.hourPeriod.equals(hourPeriod)
                 && this.dayOfWeek.equals(bookingDay);
     }
+
+    //====================== Start of getters ===============================
+
+    public VenueName getVenueName() {
+        return venueName;
+    }
+
+    public Resident getResident() {
+        return resident;
+    }
+
+    public HourPeriod getHourPeriod() {
+        return hourPeriod;
+    }
+
+    public Day getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    //====================== End of getters =================================
 
     @Override
     public String toString() {

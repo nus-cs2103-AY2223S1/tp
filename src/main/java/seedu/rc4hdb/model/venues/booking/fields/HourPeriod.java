@@ -1,14 +1,15 @@
 package seedu.rc4hdb.model.venues.booking.fields;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 import static seedu.rc4hdb.model.venues.booking.fields.Hour.isValidHour;
+
+import seedu.rc4hdb.model.StringField;
 
 /**
  * Represents an interval of time that denominated in hours.
  * Guarantees: immutable; is valid as declared in {@link #isValidHourPeriod(String)}
  */
-public class HourPeriod implements BookingField {
+public class HourPeriod extends StringField implements BookingField {
 
     public static final String IDENTIFIER = "HourPeriod";
 
@@ -25,7 +26,7 @@ public class HourPeriod implements BookingField {
      * @param hourPeriodString A valid hourPeriodString.
      */
     public HourPeriod(String hourPeriodString) {
-        requireNonNull(hourPeriodString);
+        super(hourPeriodString);
         checkArgument(isValidHourPeriod(hourPeriodString), MESSAGE_CONSTRAINTS);
         String[] hours = hourPeriodString.split("-");
         assert hours.length == 2;

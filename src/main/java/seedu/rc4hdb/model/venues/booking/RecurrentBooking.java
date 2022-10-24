@@ -30,15 +30,4 @@ public class RecurrentBooking extends Booking {
         return false;
     }
 
-    /**
-     * Implements the clashesWith() method in the Booking class. Compares bookings based on day of the week.
-     * @param other the other booking to compare with.
-     * @return True if both bookings clash.
-     */
-    @Override
-    public boolean clashesWith(Booking other) {
-        return dayOfWeek.equals(other.dayOfWeek)
-                && hourPeriod.clashesWith(other.hourPeriod);
-    }
-
 }

@@ -9,6 +9,7 @@ import seedu.rc4hdb.model.venues.UniqueVenueList;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
@@ -20,7 +21,18 @@ import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
  */
 public class VenueBook implements ReadOnlyVenueBook {
 
-    private final UniqueVenueList venues = new UniqueVenueList();
+    private final UniqueVenueList venues;
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        venues = new UniqueVenueList();
+    }
 
     public VenueBook() {}
 
@@ -28,6 +40,7 @@ public class VenueBook implements ReadOnlyVenueBook {
      * Creates a VenueBook using the venues in the {@code toBeCopied}
      */
     public VenueBook(ReadOnlyVenueBook toBeCopied) {
+        this();
         resetData(toBeCopied);
     }
 
@@ -37,7 +50,7 @@ public class VenueBook implements ReadOnlyVenueBook {
      * Replaces the contents of the venue list with {@code venues}.
      * {@code venues} must not contain duplicate venues.
      */
-    public void setResidents(List<Venue> venues) {
+    public void setVenues(List<Venue> venues) {
         this.venues.setVenues(venues);
     }
 
@@ -46,7 +59,7 @@ public class VenueBook implements ReadOnlyVenueBook {
      */
     public void resetData(ReadOnlyVenueBook newData) {
         requireNonNull(newData);
-        setResidents(newData.getVenueList());
+        setVenues(newData.getVenueList());
     }
 
     //================== venue-level operations =====================================
@@ -79,7 +92,8 @@ public class VenueBook implements ReadOnlyVenueBook {
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    public void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException {
+    public void addBooking(VenueName venueName, Booking booking)
+            throws VenueNotFoundException, BookingClashesException {
         venues.addBooking(venueName, booking);
     }
 

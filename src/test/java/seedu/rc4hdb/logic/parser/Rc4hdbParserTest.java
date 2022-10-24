@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;

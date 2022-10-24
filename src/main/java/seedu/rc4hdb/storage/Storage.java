@@ -8,13 +8,27 @@ import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
+import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.model.UserPrefs;
-import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
+import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends ResidentBookStorage, UserPrefsStorage {
+public interface Storage extends DataStorage, UserPrefsStorage {
+
+    //================ File Path methods ==============================
+
+    @Override
+    Path getDataStorageFilePath();
+
+    @Override
+    ObservableValue<Path> getObservableFolderPath();
+
+    @Override
+    void setDataStorageFilePath(Path folderPath);
+
+    //================ UserPrefs methods ==============================
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -22,13 +36,7 @@ public interface Storage extends ResidentBookStorage, UserPrefsStorage {
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
-    @Override
-    Path getResidentBookFilePath();
-
-    ObservableValue<Path> getObservableResidentBookFilePath();
-
-    @Override
-    void setResidentBookFilePath(Path filePath);
+    //================ ResidentBook methods ===========================
 
     @Override
     Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException, IOException;
@@ -37,10 +45,26 @@ public interface Storage extends ResidentBookStorage, UserPrefsStorage {
     void saveResidentBook(ReadOnlyResidentBook residentBook) throws IOException;
 
     @Override
-    void deleteResidentBookFile(Path filePath) throws IOException;
+    void deleteResidentBookFile(Path folderPath) throws IOException;
 
     @Override
-    void createResidentBookFile(Path filePath) throws IOException;
+    void createResidentBookFile(Path folderPath) throws IOException;
+
+    //================ VenueBook methods ===============================
+
+    @Override
+    Optional<ReadOnlyVenueBook> readVenueBook() throws DataConversionException, IOException;
+
+    @Override
+    void saveVenueBook(ReadOnlyVenueBook venueBook) throws IOException;
+
+    @Override
+    void deleteVenueBookFile(Path folderPath) throws IOException;
+
+    @Override
+    void createVenueBookFile(Path folderPath) throws IOException;
+
+    //================ CsvResidentBookStorage methods ==================
 
     Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException;
 }
