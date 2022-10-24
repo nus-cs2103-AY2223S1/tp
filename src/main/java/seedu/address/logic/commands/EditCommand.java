@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
+            + PREFIX_LINK + "https://careers.tiktok.com/position "
             + PREFIX_DESCRIPTION + "Global e-Commerce";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";

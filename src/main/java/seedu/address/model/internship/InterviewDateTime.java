@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
+import java.util.Comparator;
 
 /**
  * Represents an Internship's interview date and time in the address book.
@@ -20,12 +21,6 @@ public class InterviewDateTime {
             + "[d MMM yyyy HH:mm] or [d/M/yyyy HH:mm] or [d MMM yyyy, h:mm a] or [d/M/yyyy, h:mm a]\n"
             + "Year can be omitted to default to current year.\n"
             + "When using AM/PM format, include a comma after the date.";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[0-3][0-9]/[0-3][0-9]/(?:[0-9][0-9])?[0-9][0-9]$";
 
     /*
      * For the dateTime 23/10/2022 09:00, the following formats are accepted:
@@ -95,6 +90,19 @@ public class InterviewDateTime {
         return value.hashCode();
     }
 
+    public static Comparator<Internship> getComparator() {
+        return (i1, i2) -> {
+            InterviewDateTime t1 = i1.getInterviewDateTime();
+            InterviewDateTime t2 = i2.getInterviewDateTime();
+            if (t1 == null && t2 == null) {
+                return 0;
+            } else if (t1 == null) {
+                return 1;
+            } else if (t2 == null) {
+                return -1;
+            }
+            return -t1.interviewDateTime.compareTo(t2.interviewDateTime);
+        };
+    }
+
 }
-
-

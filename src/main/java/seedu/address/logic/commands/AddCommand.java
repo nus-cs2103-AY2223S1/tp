@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "Tiktok "
-            + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
+            + PREFIX_LINK + "https://careers.tiktok.com/position "
             + PREFIX_DESCRIPTION + "Global e-Commerce "
             + PREFIX_APPLIED_DATE + "11/10/2022 "
             + PREFIX_TAG + "Frontend";
