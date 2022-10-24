@@ -1,5 +1,8 @@
 package seedu.address.model.module;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -26,6 +29,8 @@ public abstract class Lesson {
      * @param endTime time lesson ends
      */
     public Lesson(String module, int day, LocalTime startTime, LocalTime endTime) {
+        requireAllNonNull(module, day, startTime, endTime);
+        checkArgument(isValidLesson(module), MESSAGE_CONSTRAINTS);
         this.module = module;
         this.day = day;
         this.startTime = startTime;
