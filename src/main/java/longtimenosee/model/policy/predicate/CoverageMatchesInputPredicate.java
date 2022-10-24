@@ -25,14 +25,25 @@ public class CoverageMatchesInputPredicate implements Predicate<Policy> {
 
     @Override
     public boolean test(Policy policy) {
-        for (String keyword : keywords) {
+        boolean[] isMatch = new boolean[keywords.size()];
+        for (int i = 0; i < keywords.size(); i++) {
             for (Coverage coverage : policy.getCoverages()) {
-                if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keyword)) {
-                    return true;
+                if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keywords.get(i))) {
+                    isMatch[i] = true;
+                    break;
                 }
             }
         }
-        return false;
+        return isAllTrue(isMatch);
+    }
+
+    private boolean isAllTrue(boolean[] arr) {
+        for (boolean bool : arr) {
+            if (!bool) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

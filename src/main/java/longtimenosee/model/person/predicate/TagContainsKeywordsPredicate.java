@@ -25,14 +25,25 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        for (String keyword : keywords) {
+        boolean[] isMatch = new boolean[keywords.size()];
+        for (int i = 0; i < keywords.size(); i++) {
             for (Tag tag : person.getTags()) {
-                if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
-                    return true;
+                if (StringUtil.containsWordIgnoreCase(tag.tagName, keywords.get(i))) {
+                    isMatch[i] = true;
+                    break;
                 }
             }
         }
-        return false;
+        return isAllTrue(isMatch);
+    }
+
+    private boolean isAllTrue(boolean[] arr) {
+        for (boolean bool : arr) {
+            if (!bool) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
