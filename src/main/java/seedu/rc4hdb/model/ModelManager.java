@@ -53,7 +53,12 @@ public class ModelManager implements Model {
 
         this.observableFieldList = FXCollections.observableArrayList();
         this.observableVenueList = FXCollections.observableArrayList();
-        this.observableBookingList = FXCollections.observableArrayList();
+
+        if (observableVenueList.isEmpty()) {
+            this.observableBookingList = FXCollections.observableArrayList();
+        } else {
+            this.observableBookingList = observableVenueList.get(0).getObservableBookings();
+        }
     }
 
     public ModelManager() {
@@ -240,9 +245,10 @@ public class ModelManager implements Model {
     public ObservableList<Booking> getObservableBookings() {
         return this.observableBookingList;
     }
+
     @Override
-    public void setObservableBookings(List<Booking> modifiableFields) {
-        this.observableBookingList.setAll(modifiableFields);
+    public void setObservableBookings(VenueName venueName) {
+        this.observableBookingList.setAll(venueBook.getBookings(venueName));
     }
 
 }
