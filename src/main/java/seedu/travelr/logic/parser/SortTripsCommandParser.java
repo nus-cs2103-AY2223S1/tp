@@ -3,6 +3,7 @@ package seedu.travelr.logic.parser;
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_SORTBY;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
 import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_LOCATION;
 import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_NUM_EVENTS;
 import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_TIME;
@@ -49,6 +50,9 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
             break;
         case "eventcount":
             comp = COMPARE_BY_NUM_EVENTS;
+            break;
+        case "mark":
+            comp = COMPARE_BY_COMPLETION;
             break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTripsCommand.MESSAGE_USAGE));
