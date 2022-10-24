@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
@@ -39,7 +40,7 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
     public AddStuCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_ID, PREFIX_HANDLE, PREFIX_MODULE_CODE, PREFIX_STUDENT_TA);
+                        PREFIX_ID, PREFIX_HANDLE, PREFIX_MODULE_CODE, PREFIX_STUDENT_TA, PREFIX_CLASS_GROUP);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ID, PREFIX_HANDLE)
@@ -57,9 +58,10 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
         Set<ModuleCode> studentInfo = ParserUtil.parseStudentInfo(argMultimap.getAllValues(PREFIX_MODULE_CODE));
         Set<ModuleCode> teachingAssistantInfo = ParserUtil.parseStudentInfo(
                 argMultimap.getAllValues(PREFIX_STUDENT_TA));
+        Set<String> classGroups = ParserUtil.parseClassGroups(argMultimap.getAllValues(PREFIX_CLASS_GROUP));
 
         Student student = new Student(name, phone, email, address, tagList,
-                id, handle, studentInfo, teachingAssistantInfo);
+                id, handle, studentInfo, teachingAssistantInfo, classGroups);
 
         return new AddStuCommand(student);
     }

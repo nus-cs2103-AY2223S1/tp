@@ -37,6 +37,7 @@ public class StudentBuilder {
     private TelegramHandle telegramHandle;
     private Set<ModuleCode> studentInfo;
     private Set<ModuleCode> teachingInfo;
+    private Set<String> classGroups;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -51,6 +52,7 @@ public class StudentBuilder {
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         studentInfo = new HashSet<>();
         teachingInfo = new HashSet<>();
+        classGroups = new HashSet<>();
     }
 
     /**
@@ -66,6 +68,7 @@ public class StudentBuilder {
         telegramHandle = studentToCopy.getTelegramHandle();
         studentInfo = studentToCopy.getStudentModuleInfo();
         teachingInfo = studentToCopy.getTeachingAssistantInfo();
+        classGroups = studentToCopy.getClassGroups();
     }
 
     /**
@@ -83,11 +86,13 @@ public class StudentBuilder {
             telegramHandle = temp.getTelegramHandle();
             studentInfo = temp.getStudentModuleInfo();
             teachingInfo = temp.getTeachingAssistantInfo();
+            classGroups = temp.getClassGroups();
         } else {
             id = new StudentId(DEFAULT_ID);
             telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
             studentInfo = new HashSet<>();
             teachingInfo = new HashSet<>();
+            classGroups = new HashSet<>();
         }
     }
 
@@ -163,6 +168,14 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code classGroup} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withClassGroup(String ... classGroup) {
+        this.classGroups = SampleDataUtil.getClassGroups(classGroup);
+        return this;
+    }
+
 
     /**
      * Builds a {@code Student}.
@@ -170,7 +183,8 @@ public class StudentBuilder {
      * @return the student built for testing
      */
     public Student build() {
-        return new Student(name, phone, email, address, tags, id, telegramHandle, studentInfo, teachingInfo);
+        return new Student(name, phone, email, address, tags, id, telegramHandle, studentInfo, teachingInfo,
+                classGroups);
     }
 
 }

@@ -25,8 +25,8 @@
             </HBox>
             <FlowPane fx:id="studentInfo" />
             <Label fx:id="contactInfo" styleClass="cell_small_label" text="\$contactInfo" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
         </VBox>
         <rowConstraints>
             <RowConstraints />

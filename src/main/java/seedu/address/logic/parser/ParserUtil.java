@@ -148,7 +148,7 @@ public class ParserUtil {
         if (!StudentId.isValidStudentID(trimmedID)) {
             throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new StudentId(id);
+        return new StudentId(trimmedID);
     }
 
     /**
@@ -161,10 +161,10 @@ public class ParserUtil {
     public static TelegramHandle parseTelegramHandle(String handle) throws ParseException {
         requireNonNull(handle);
         String trimmedHandle = handle.trim();
-        if (!TelegramHandle.isValidTelegramHandle(handle)) {
+        if (!TelegramHandle.isValidTelegramHandle(trimmedHandle)) {
             throw new ParseException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
-        return new TelegramHandle(handle);
+        return new TelegramHandle(trimmedHandle);
     }
 
     /**
@@ -178,7 +178,7 @@ public class ParserUtil {
         requireNonNull(info);
         final Set<ModuleCode> moduleSet = new HashSet<>();
         for (String moduleCode: info) {
-            moduleSet.add(parseModuleCode(moduleCode));
+            moduleSet.add(parseModuleCode(parseModule(moduleCode)));
         }
         return moduleSet;
     }
@@ -194,9 +194,25 @@ public class ParserUtil {
         requireNonNull(info);
         final Set<ModuleCode> moduleSet = new HashSet<>();
         for (String moduleCode: info) {
-            moduleSet.add(parseModuleCode(moduleCode));
+            moduleSet.add(parseModuleCode(parseModule(moduleCode)));
         }
         return moduleSet;
+    }
+
+    /**
+     * Parses class groups
+     *
+     * @param classGroups
+     * @return String
+     * @throws ParseException If null.
+     */
+    public static Set<String> parseClassGroups(Collection<String> classGroups) throws ParseException {
+        requireNonNull(classGroups);
+        final Set<String> classGroupSet = new HashSet<>();
+        for (String classGroup: classGroups) {
+            classGroupSet.add(classGroup);
+        }
+        return classGroupSet;
     }
 
     /**
@@ -209,6 +225,9 @@ public class ParserUtil {
     public static ModuleName parseModuleName(String moduleName) throws ParseException {
         requireNonNull(moduleName);
         String trimmedModuleName = moduleName.trim();
+        if (!ModuleName.isValidName(trimmedModuleName)) {
+            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
         return new ModuleName(trimmedModuleName);
     }
 
@@ -223,6 +242,9 @@ public class ParserUtil {
         requireNonNull(moduleCode);
         String trimmedModuleCode = moduleCode.trim();
         String moduleCodeInUpperCase = trimmedModuleCode.toUpperCase();
+        if (!ModuleCode.isValidCode(moduleCodeInUpperCase)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
         return new ModuleCode(moduleCodeInUpperCase);
     }
 
@@ -236,6 +258,9 @@ public class ParserUtil {
     public static ModuleDescription parseModuleDescription(String moduleDescription) throws ParseException {
         requireNonNull(moduleDescription);
         String trimmedModuleDescription = moduleDescription.trim();
+        if (!ModuleDescription.isValidDescription(trimmedModuleDescription)) {
+            throw new ParseException(ModuleDescription.MESSAGE_CONSTRAINTS);
+        }
         return new ModuleDescription(trimmedModuleDescription);
     }
 
@@ -265,17 +290,6 @@ public class ParserUtil {
         }
         return modulesSet;
     }
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Parses weekday
@@ -316,9 +330,6 @@ public class ParserUtil {
         }
         return weekdaysSet;
     }
-
-
-
 
     /**
      * Parses class start time

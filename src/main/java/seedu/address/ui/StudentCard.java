@@ -65,12 +65,19 @@ public class StudentCard extends UiPart<Region> {
                     + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
             studentInfo.getChildren().add(temp);
         }
+        for (String classGroup: student.getClassGroups()) {
+            Label temp = new Label(classGroup);
+            temp.setStyle("-fx-text-fill: white; -fx-background-color: #fb7600;-fx-padding: 1 3 1 3; "
+                    + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
+            studentInfo.getChildren().add(temp);
+        }
         for (Tag tag: student.getTags()) {
             Label temp = new Label(tag.tagName);
             temp.setStyle("-fx-text-fill: white; -fx-background-color: #3e7b91;-fx-padding: 1 3 1 3; "
                     + "-fx-border-radius: 2; -fx-background-radius: 2; -fx-font-size: 11;");
             studentInfo.getChildren().add(temp);
         }
+
     }
 
     @Override
