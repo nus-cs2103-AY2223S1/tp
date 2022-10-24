@@ -1,5 +1,7 @@
 package seedu.application.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.application.logic.commands.exceptions.CommandException;
 import seedu.application.model.Model;
 
@@ -17,6 +19,7 @@ public class SortByInterviewCommand extends SortCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         model.sortApplicationListByInterview(shouldReverse());
         return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse() ? " reverse" : ""));
     }
