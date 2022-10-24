@@ -27,10 +27,10 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 1. Ensure you have Java `11` or above installed in your Computer.
 
 
-1. Download the latest `LTNS.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
+1. Download the latest `longtimenosee.jar` from [here](https://github.com/AY2223S1-CS2103T-W13-2/tp/releases).
 
 
-1. Copy the file to the folder you want to use as the _home folder_ for your LTNS.
+1. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -68,10 +68,6 @@ As such, the features available to you are split into 4 main features:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Words in round brackets and separated by a `/` are options for parameters to be supplied by the user. <br>
-Only one parameter can be specified. <br>
-e.g `(n/NAME)/(p/PHONE)` can be used as `n/John Doe` or as `p/12341234`
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -163,36 +159,35 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Search for contacts: `find`
+### Search for contacts: `findContact`
 
-Search for contacts based on certain metrics\
+Search for contacts based on certain metrics
 
-Format: `find (n/NAME)/(p/PHONE)/(e/EMAIL)/(a/ADDRESS)/(t/TAG)…​ `
+Format: `findContact [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]`
 
-For `NAME`:
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+The following table illustrates the details of each metric and their search range:
 
-For `TAG`:
-* The search is case-insensitive. e.g `friends` will match `Friends`
-* Only full words will be matched e.g. `colleagues` will not match `colleague`
-* Note: Only one tag can be specified
-
-For non-textual information i.e `PHONE`, `EMAIL`, `ADDRESS`:
-* The search is case-sensitive. e.g `hans@email.com` will not match `Hans@email.com`
-* Only full searches will be matched e.g `12341234` will not match `1234`
+| Metric          | Usage Details                                                                                                                                                                                                                                                                                                                                                                                           |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name            | <ul><li>The search is case-insensitive. e.g `hans` will match `Hans`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>Contacts matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`</li></ul>                                 |
+| Phone           | <ul><li>At least 3 numbers have to be specified</li><li>All contacts whose phone number contains the exact specified numbers will be listed</li></ul>                                                                                                                                                                                                                                                   |
+| Email           | <ul><li>The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com`</li><li>Only full emails are valid e.g. `Alice` will not yield a valid search</li></ul>                                                                                                                                                                                                                  |
+| Address         | <ul><li>The search is case-insensitive. e.g `Bedok` will match `bedok`</li><li>Any length of textual search except for an empty space is valid</li></ul>                                                                                                                                                                                                                                                |
+| Tag             | <ul><li>The search is case-insensitive. e.g `friends` will match `Friends`</li><li>Only full words will be matched e.g. `colleagues` will not match `colleague`</li><li>More than one tag can be specified to list all contacts that have all the specified tags. <br/> e.g. `friends` and `family` will list all contacts with both the `friends` and `family` tag </li></ul>                          |
+| Birthday        | <ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only contacts whose birthday falls on the specified date will be listed</li></ul>                                                                                                                                                                                                                         |
+| Income          | <ul><li>Any valid income value can be entered and it will be matched with the corresponding income bracket</li><li>All contacts whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`</li></ul>                                                                                                                        |
+| Risk Appetite   | <ul><li>Only one of the 3 levels, {H, M, L}, is allowed</li><li>All contacts whose risk appetite matches the specified risk level will be listed</ul>                                                                                                                                                                                                                                                   |
+| Policy Title    | <ul><li>The search is case insensitive. e.g `Health Plan` will match `health plan`</li><li>Any length of alphanumeric input except for an empty space will be valid</li><li>Contacts who are covered by a policy which contains at least one keyword will be listed</ul>                                                                                                                                |
+| Policy Coverage | <ul><li>Only inputs of the valid coverage type options are allowed</li><li>More than one coverage can be specified to list all contacts with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all contacts with both the `HEALTH` and `LIFE` coverage type </li><li>Contacts who are covered by policies which covers all the specified coverage types will be listed</ul> |
+| Policy Company  | <ul><li>Only one of the valid company abbreviations is allowed</li><li>Contacts who are covered by a policy belonging to the specified company will be listed</ul>                                                                                                                                                                                                                                      |
 
 Examples:
 
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find p/12341234` returns contacts with `12341234` as their phone number
-* `find t/friends` returns contacts with a `friends` tag
-
+* `findContact n/John` returns `john` and `John Doe`
+* `findContact n/alex david` returns `Alex Yeoh`, `David Li`
+* `findContact p/8743` returns contacts with that contain `8743` in their phone number
+* `findContact t/colleagues t/friends` returns contacts with both the `colleagues` and `friends` tag
+* `findContact n/alex t/friends` returns contacts with the name `alex` and tagged with a `friends` tag
 
 ### Deleting a person : `delete`
 
@@ -240,12 +235,6 @@ Sorting **KEYWORDS** include:
 * Example Usage:
 
 
-### Search for Contacts based on user's metrics: `find`
-* Format: `find [*KEYWORDS]`
-* Description:
-* Example Usage: `find n/Jim a/53`
-
-
 
 ### Assigning a Client to an Event/Policy 
 An existing client in your Client Book can be assigned to an Event or Policy.<br>
@@ -268,7 +257,26 @@ To find out how to do so, you can refer to the [Adding an Event](#adding-an-even
 ### Deleting a policy
 
 
-### Search for a policy 
+### Search for a policy: `findPolicy`
+
+Search for policies based on certain metrics
+
+Format: `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]`
+
+The following table illustrates the details of each metric and their search range:
+
+| Metric          | Usage Details                                                                                                                                                                                                                                                                                                                                                              |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Policy Title    | <ul><li>The search is case insensitive. e.g `Health Plan` will match `health plan`</li><li>Any length of alphanumeric input except for an empty space will be valid</li><li>Policies which titles contains at least one keyword will be listed</ul>                                                                                                                        |
+| Policy Coverage | <ul><li>Only inputs of the valid coverage type options are allowed</li><li>More than one coverage can be specified to list all policies with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all policies with both the `HEALTH` and `LIFE` coverage type </li><li>Policies which cover all the specified coverage types will be listed</ul> |
+| Policy Company  | <ul><li>Only one of the valid company abbreviations is allowed</li><li>Policies which belong to the specified company will be listed</ul>                                                                                                                                                                                                                                  |
+
+Examples:
+
+* `findPolicy ti/Health plan` returns `health plan` and `life plan`
+* `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both LIFE and HEALTH
+* `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
+* `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
 
 
 ### Assigning a Policy to a Client 
@@ -308,6 +316,24 @@ Format: `listEvents`
 
 ### Searching for an Event
 
+Search for events based on certain metrics
+
+Format: `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]`
+
+The following table illustrates the details of each metric and their search range:
+
+| Metric      | Usage Details                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Description | <ul><li>The search is case-insensitive. e.g `Meeting to discuss plans` will match `meeting to discuss plans`</li><li>Only full phrases will be matched e.g. `Meeting to discuss plans` will not match `Plans`</li><li>Only events for which description contains the complete specified phrase will be listed. <br/> e.g. `discuss plans` will return `Meeting to discuss plans` and `Discuss plans`</li></ul>         |
+| Person Name | <ul><li>The search is case-insensitive. e.g `John` will match `john`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>Events with the participant name contains at least one keyword will be listed. <br/> e.g. `Hans Bo` will return events which involve `Hans Gruber` or `Bo Yang`</li></ul> |
+| Date        | <ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only events which occur on the specified date will be listed</li></ul>                                                                                                                                                                                                                                                   |
+
+Examples:
+
+* `findEvent desc/coffee break meeting` returns events `morning coffee break meeting` and `afternoon coffee break meeting`
+* `findEvent n/Bernice` returns all events for which participant name contains `Bernice`
+* `findEvent date/2022-12-30` returns all events which occurs on `30th December 2022`
+* `findEvent n/Alice date/2022-11-15` returns all events for which participant name contains `Alice` and occurs on `15th November 2022`
 
 ### Viewing all Events in the next 7 days : `calendar`
 
@@ -337,16 +363,17 @@ Format: `calendar`
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                      |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**    | `clear`                                                                                                                                                               |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**     | `list`                                                                                                                                                                |
-| **Help**     | `help`                                                                                                                                                                |
-| **Find**     | `find [n/NAME] [p/PHONE] [e/EMAIL]...` <br> e.g: ` find n/Jim p/98765432`                                                                                             |
-| **Sort**     | `sort [COMPARABLE_METRIC]` <br> `e.g: sort AGE`                                                                                                                       |
-| **Pin**      | `pin [n/Name]` <br> e.g: `pin n/Jim`                                                                                                                                  |
-| **policies** | `policies`                                                                                                                                                            |
+| Action           | Format, Examples                                                                                                                                                                                              |
+|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                         |
+| **Clear**        | `clear`                                                                                                                                                                                                       |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                           |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                   |
+| **List**         | `list`                                                                                                                                                                                                        |
+| **Help**         | `help`                                                                                                                                                                                                        |
+| **Find Contact** | `findContact [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: ` find n/Jim p/98765432` |
+| **Find Policy**  | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                                                                  |
+| **Find Event**   | `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]` <br/> e.g: `findEvent date/2022-05-05`                                                                                                             |
+| **Sort**         | `sort [COMPARABLE_METRIC]` <br> `e.g: sort AGE`                                                                                                                                                               |
+| **Pin**          | `pin [n/Name]` <br> e.g: `pin n/Jim`                                                                                                                                                                          |
+| **policies**     | `policies`                                                                                                                                                                                                    |
