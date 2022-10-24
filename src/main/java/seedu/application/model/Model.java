@@ -120,6 +120,40 @@ public interface Model {
     void updateFilteredApplicationList(Predicate<Application> predicate);
 
     /**
+     * Sorts the application list by company.
+     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
+     *
+     * @param shouldReverse Whether to sort in the reversed order.
+     */
+    void sortApplicationListByCompany(boolean shouldReverse);
+
+    /**
+     * Sorts the application list by position.
+     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
+     *
+     * @param shouldReverse Whether to sort in the reversed order.
+     */
+    void sortApplicationListByPosition(boolean shouldReverse);
+
+    /**
+     * Sorts the application list by date.
+     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
+     *
+     * @param shouldReverse Whether to sort in the reversed order.
+     */
+    void sortApplicationListByDate(boolean shouldReverse);
+
+    /**
+     * Sorts the application list by interview date.
+     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
+     * Applications with no interviews are always sorted to the bottom of the list
+     * (regardless of the shouldReverse flag).
+     *
+     * @param shouldReverse Whether to sort in the reversed order.
+     */
+    void sortApplicationListByInterview(boolean shouldReverse);
+
+    /**
      * Updates the application list with interview when a new interview is added.
      */
     void updateApplicationListWithInterview();
@@ -148,28 +182,4 @@ public interface Model {
      * Restores the model's previously undone {@code ApplicationBook} state from the history.
      */
     void redoApplicationBook();
-
-    /**
-     * Sorts the application list by company.
-     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
-     *
-     * @param shouldReverse Whether to sort in the reversed order.
-     */
-    void sortApplicationListByCompany(boolean shouldReverse);
-
-    /**
-     * Sorts the application list by position.
-     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
-     *
-     * @param shouldReverse Whether to sort in the reversed order.
-     */
-    void sortApplicationListByPosition(boolean shouldReverse);
-
-    /**
-     * Sorts the application list by date.
-     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
-     *
-     * @param shouldReverse Whether to sort in the reversed order.
-     */
-    void sortApplicationListByDate(boolean shouldReverse);
 }

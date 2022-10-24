@@ -196,6 +196,54 @@ public class ModelManager implements Model {
         filteredApplications.setPredicate(predicate);
     }
 
+    @Override
+    public void sortApplicationListByCompany(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getCompany);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
+    @Override
+    public void sortApplicationListByPosition(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getPosition);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
+    @Override
+    public void sortApplicationListByDate(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getDate);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
+    @Override
+    public void sortApplicationListByInterview(boolean shouldReverse) {
+        Comparator<Application> comparator = (application1, application2) -> {
+            // Applications without interviews always compare greater than those with interviews
+            if (!application1.hasInterview()) {
+                return application2.hasInterview() ? 1 : 0;
+            }
+            if (!application2.hasInterview()) {
+                return -1;
+            }
+
+            Comparator<Application> interviewComparator = new InterviewComparator();
+            if (shouldReverse) {
+                interviewComparator = interviewComparator.reversed();
+            }
+            return interviewComparator.compare(application1, application2);
+        };
+
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
     //=========== Undo & Redo =====================================================================================
 
     @Override
@@ -231,33 +279,6 @@ public class ModelManager implements Model {
         applicationsWithInterview.addAll(filteredApplications);
         applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
         applicationsWithInterview.sort(new InterviewComparator());
-    }
-
-    @Override
-    public void sortApplicationListByCompany(boolean shouldReverse) {
-        Comparator<Application> comparator = Comparator.comparing(Application::getCompany);
-        if (shouldReverse) {
-            comparator = comparator.reversed();
-        }
-        sortedFilteredApplications.setComparator(comparator);
-    }
-
-    @Override
-    public void sortApplicationListByPosition(boolean shouldReverse) {
-        Comparator<Application> comparator = Comparator.comparing(Application::getPosition);
-        if (shouldReverse) {
-            comparator = comparator.reversed();
-        }
-        sortedFilteredApplications.setComparator(comparator);
-    }
-
-    @Override
-    public void sortApplicationListByDate(boolean shouldReverse) {
-        Comparator<Application> comparator = Comparator.comparing(Application::getDate);
-        if (shouldReverse) {
-            comparator = comparator.reversed();
-        }
-        sortedFilteredApplications.setComparator(comparator);
     }
 
     @Override

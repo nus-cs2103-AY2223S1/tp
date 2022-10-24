@@ -182,6 +182,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public void sortApplicationListByCompany(boolean shouldReverse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortApplicationListByPosition(boolean shouldReverse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortApplicationListByDate(boolean shouldReverse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortApplicationListByInterview(boolean shouldReverse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void commitApplicationBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -207,21 +227,6 @@ public class AddCommandTest {
         }
 
         public void updateApplicationListWithInterview() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void sortApplicationListByCompany(boolean shouldReverse) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void sortApplicationListByPosition(boolean shouldReverse) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void sortApplicationListByDate(boolean shouldReverse) {
             throw new AssertionError("This method should not be called.");
         }
     }
