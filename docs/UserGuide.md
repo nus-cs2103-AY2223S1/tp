@@ -275,8 +275,9 @@ Finds all students with classes on a particular date.
 Format: `find dt/yyyy-MM-dd`
 
 - Only the date is searched.
-- Anything that comes after `yyyy-MM-dd` will be ignored.
-e.g. `find dt/2022-10-15 1000-1100` will be interpreted as `find dt/2022-10-15`
+```yaml
+❗ Caution: Do not include class timing.
+```
 
 Example:
 
