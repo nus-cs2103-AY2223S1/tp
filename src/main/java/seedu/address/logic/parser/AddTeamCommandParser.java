@@ -63,26 +63,24 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
                     ? ParserUtil.parseName(cmd.getOptionValue(FLAG_DESCRIPTION_STR))
                     : new Name("No description added");
 
+            String nameString = name.toString();
+            String descriptionString = description.toString();
 
-            Team team = new Team(name, url);
 
-            return new AddTeamCommand(link);
+            Team team = new Team(nameString, descriptionString);
+
+            return new AddTeamCommand(team);
         } catch (MissingArgumentException e) {
             Option opt = e.getOption();
             switch (opt.getOpt()) {
             case FLAG_NAME_STR:
+            case FLAG_DESCRIPTION_STR:
                 throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-            case FLAG_URL_STR:
-                throw new ParseException(Link.URL_CONSTRAINTS);
             default:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeamCommand.MESSAGE_USAGE));
             }
         } catch (org.apache.commons.cli.ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeamCommand.MESSAGE_USAGE));
         }
-
-
-
-        return new AddTeamCommand(new Team(args.trim(), new ArrayList<>()));
     }
 }

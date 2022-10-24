@@ -6,7 +6,7 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Option flag definitions */
-    public static final String FLAG_NAME_STR = "c";
+    public static final String FLAG_NAME_STR = "n";
     public static final String FLAG_NAME_STR_LONG = "name";
     public static final String FLAG_PHONE_STR = "p";
     public static final String FLAG_PHONE_STR_LONG = "phone";

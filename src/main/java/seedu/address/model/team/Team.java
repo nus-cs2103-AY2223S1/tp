@@ -21,6 +21,7 @@ public class Team {
     public static final String MESSAGE_CONSTRAINTS = "Team names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
+    public static final String DESCRIPTION_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private final String teamName;
     private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
@@ -35,7 +36,7 @@ public class Team {
     public Team(String teamName, String description) {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidTeamName(description), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = description;
     }
@@ -204,6 +205,13 @@ public class Team {
     }
 
     /**
+     * Returns true if a given string is a valid description name.
+     */
+    public static boolean isValidTeamDescription(String test) {
+        return test.matches(DESCRIPTION_VALIDATION_REGEX);
+    }
+
+    /**
      * Returns true if both teams have the same name.
      */
     public boolean isSameTeam(Team otherTeam) {
@@ -264,7 +272,8 @@ public class Team {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTeamName());
-
+        builder.append("; Description: ");
+        builder.append(getDescription());
         List<Person> members = getTeamMembers();
         if (!members.isEmpty()) {
             builder.append("; Members: ");
