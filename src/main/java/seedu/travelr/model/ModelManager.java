@@ -135,7 +135,6 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         addressBook.addEventToBucketListAndAllEventsList(event);
-        //update filtered trip list??
     }
 
     @Override
