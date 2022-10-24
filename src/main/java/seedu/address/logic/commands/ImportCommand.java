@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -19,7 +21,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
-
+    
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds one or more persons to the address book from an external json source. "
             + "Parameters: FILE_PATH\n"
@@ -32,8 +34,33 @@ public class ImportCommand extends Command {
             "The specified file cannot be accessed due to insufficient privileges";
     public static final String MESSAGE_DUPLICATE_PERSON =
             "The specified file has persons duplicate to the address book";
-    public static final String MESSAGE_CONSTRAINTS_UNSATISFIED =
-            "The specified file contains incorrect format, invalid value and/or duplicate persons";
+    public static final Path VALID_DATA_FORMAT_PATH = Paths.get("data", "template", "template.json");
+    public static final String MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE =
+            "The specified file contains incorrect format, invalid value and/or duplicate persons.\n"
+            + "Please refer to the template file in" + VALID_DATA_FORMAT_PATH + ".\n"
+            + "You can add more person to the persons list in the file.";
+
+    private static final String VALID_DATA_FORMAT = "{\n"
+            + "  \"persons\" : [ {\n"
+            + "\t\"name\" : \"Russell James\",\n"
+            + "\t\"phone\" : \"81329112\",\n"
+            + "\t\"email\" : \"russellj@example.com\",\n"
+            + "\t\"address\" : \"35, Jurong East Ave, #30-22\",\n"
+            + "\t\"gender\" : \"male\",\n"
+            + "\t\"graduationDate\" : \"01-2025\",\n"
+            + "\t\"cap\" : \"5.00/5.00\",\n"
+            + "\t\"university\" : \"National University of Singapore\",\n"
+            + "\t\"major\" : \"Data Science and Analytics\",\n"
+            + "\t\"id\" : \"A021933\",\n"
+            + "\t\"title\" : \"Testing Engineer\",\n"
+            + "\t\"tagged\" : [ \"offered\" ]\n"
+            + "  } ]\n"
+            + "}";
+    private static final String MESSAGE_CONSTRAINTS_UNSATISFIED_EXAMPLE =
+            "The specified file contains incorrect format, invalid value and/or duplicate persons.\n"
+                    + "An example of valid data:\n"
+                    + VALID_DATA_FORMAT + "\n"
+                    + "You can add more person to the persons list in the file.";
 
     private final Path filePath;
 
@@ -55,7 +82,7 @@ public class ImportCommand extends Command {
         }
 
         model.appendAddressBook(toAppend);
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     /**
@@ -76,6 +103,20 @@ public class ImportCommand extends Command {
     }
 
     /**
+     * Creates a valid data format template that can be read or imported.
+     * Will create the file if it does not exist yet.
+     */
+    private static void createTemplate() throws CommandException {
+        try {
+            FileUtil.createFile(VALID_DATA_FORMAT_PATH);
+            FileUtil.writeToFile(VALID_DATA_FORMAT_PATH, VALID_DATA_FORMAT);
+        } catch (IOException e) {
+            // Gives an example instead if there is an error when creating the template file
+            throw new CommandException(MESSAGE_CONSTRAINTS_UNSATISFIED_EXAMPLE);
+        }
+    }
+
+    /**
      * Converts the json file from the specified file path into an appendable {@code AddressBook}.
      *
      * @throws CommandException if the data content or structure does not conform to the constraints.
@@ -86,7 +127,13 @@ public class ImportCommand extends Command {
         try {
             importedJsonNewPersons = appendableJsonStorage.readAddressBook();
         } catch (DataConversionException ive) {
-            throw new CommandException(MESSAGE_CONSTRAINTS_UNSATISFIED);
+            createTemplate();
+            throw new CommandException(MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE);
+        }
+
+        if (importedJsonNewPersons.isEmpty()) {
+            createTemplate();
+            throw new CommandException(MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE);
         }
 
         AddressBook appendableAddressBook = new AddressBook(importedJsonNewPersons.get());

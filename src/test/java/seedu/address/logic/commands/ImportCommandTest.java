@@ -56,21 +56,21 @@ public class ImportCommandTest {
     @Test
     public void execute_notJsonFormatFile_throwsCommandException() {
         assertThrows(CommandException.class,
-                ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED, () ->
+                ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE, () ->
                         new ImportCommand(NOT_JSON_FORMAT_FILE).execute(model));
     }
 
     @Test
     public void execute_duplicatePersonsInFile_throwsCommandException() {
         assertThrows(CommandException.class,
-                ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED, () ->
+                ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE, () ->
                         new ImportCommand(DUPLICATE_PERSON_FILE).execute(model));
     }
 
     @Test
     public void execute_invalidPersonInFile_throwsCommandException() {
         assertThrows(CommandException.class,
-                ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED, () ->
+                ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE, () ->
                         new ImportCommand(INVALID_PERSON_FILE).execute(model));
     }
 
