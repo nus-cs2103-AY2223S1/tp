@@ -5,9 +5,11 @@ import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.model.Model;
+import seedu.rc4hdb.model.resident.fields.ResidentFields;
 
 /**
  * Lists all persons in the address book to the user.
@@ -43,6 +45,8 @@ public class ListCommand implements ModelCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
+        model.setHiddenFields(fieldsToHide);
+        model.setVisibleFields(getVisibleFields());
         model.setObservableFields(fieldsToHide);
 
         // Determine which ListCommand constructor was invoked
@@ -64,5 +68,11 @@ public class ListCommand implements ModelCommand {
                     && otherCommand.fieldsToHide.containsAll(this.fieldsToHide);
         }
         return false;
+    }
+
+    private List<String> getVisibleFields() {
+        List<String> complement = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
+        complement.removeAll(fieldsToHide);
+        return complement;
     }
 }
