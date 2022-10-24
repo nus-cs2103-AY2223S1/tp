@@ -53,14 +53,14 @@ public class SelectTaskCommand extends Command {
         List<PersonTaskBridge> bridgeList = model.getFilteredBridgeList();
 
         Predicate<Person> isAssociatedContact = contact -> bridgeList.stream()
-                .filter((bridge) -> bridge.getTaskId().equals(contact.getId()))
+                .filter((bridge) -> bridge.getPersonId().equals(contact.getId()))
                 .collect(Collectors.toList())
                 .size() != 0;
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
         model.updateFilteredPersonList(isAssociatedContact);
 
-        return new CommandResult(Messages.MESSAGE_PERSONS_SELECTED_OVERVIEW);
+        return new CommandResult(Messages.MESSAGE_TASKS_SELECTED_OVERVIEW);
     }
 
     @Override
