@@ -14,9 +14,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Creates a new an item in FoodRem.
  */
 public class NewCommand extends Command {
-    public static final String MESSAGE_SUCCESS = "New item added as follows:";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in FoodRem";
-
     private final Item newItem;
 
     /**
@@ -32,11 +29,11 @@ public class NewCommand extends Command {
         requireNonNull(model);
 
         if (model.hasItem(newItem)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
+            throw new CommandException("This item already exists in FoodRem");
         }
 
         model.addItem(newItem);
-        return CommandResult.from(new ItemWithMessage(newItem, MESSAGE_SUCCESS));
+        return CommandResult.from(new ItemWithMessage(newItem, "New item added as follows:"));
     }
 
     public static String getUsage() {
