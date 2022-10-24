@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.INCREMENT_COMMAND;
-import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class IncrementCommand extends Command {
      * Creates and returns an {@code Item} with the quantity of {@code itemToEdit}
      * incremented by {@code editItemDescriptor}.
      */
-    private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) {
+    private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) throws CommandException {
         assert itemToIncrement != null;
 
         ItemQuantity incrementedQuantity;
@@ -48,7 +47,7 @@ public class IncrementCommand extends Command {
             incrementedQuantity = ItemQuantity.performArithmeticOperation(
                     itemToIncrement.getQuantity(), quantity, Double::sum);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("(Final Quantity) " + e.getMessage());
+            throw new CommandException("(Final Quantity) " + e.getMessage());
         }
 
         return new Item(itemToIncrement.getName(),
@@ -57,13 +56,14 @@ public class IncrementCommand extends Command {
                 itemToIncrement.getBoughtDate(),
                 itemToIncrement.getExpiryDate(),
                 itemToIncrement.getPrice(),
-                itemToIncrement.getRemarks());
+                itemToIncrement.getRemarks(),
+                itemToIncrement.getTagSet());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Item> lastShownList = model.getFilteredItemList();
+        List<Item> lastShownList = model.getCurrentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
@@ -73,8 +73,15 @@ public class IncrementCommand extends Command {
         Item incrementedItem = createIncrementedItem(itemToIncrement, quantity);
 
         model.setItem(itemToIncrement, incrementedItem);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, incrementedItem));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof IncrementCommand // instanceof handles nulls
+                && index.equals(((IncrementCommand) other).index)
+                && quantity.equals(((IncrementCommand) other).quantity)); // state check
     }
 
     public static String getUsage() {

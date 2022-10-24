@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.REMARK_COMMAND;
-import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class RemarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Item> lastShownList = model.getFilteredItemList();
+        List<Item> lastShownList = model.getCurrentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
@@ -65,7 +64,6 @@ public class RemarkCommand extends Command {
         Item remarkedItem = createItemWithRemark(itemToRemark, remark);
 
         model.setItem(itemToRemark, remarkedItem);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, remarkedItem));
     }
 

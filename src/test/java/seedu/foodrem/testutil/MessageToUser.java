@@ -21,7 +21,11 @@ public class MessageToUser {
     public static final String MESSAGE_FOR_QUANTITY_PRECISION_TOO_HIGH =
             "The item quantity should not have more than 4 decimal places.";
     public static final String MESSAGE_FOR_QUANTITY_TOO_LARGE =
-            "The item quantity should not be more than 4.";
+            "The item quantity should not be more than 1,000,000.";
+    public static final String MESSAGE_FOR_FINAL_QUANTITY_TOO_LARGE =
+            "(Final Quantity) " + MESSAGE_FOR_QUANTITY_TOO_LARGE;
+    public static final String MESSAGE_FOR_FINAL_QUANTITY_IS_NEGATIVE =
+            "(Final Quantity) " + MESSAGE_FOR_QUANTITY_IS_NEGATIVE;
 
     // Item unit validation
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =

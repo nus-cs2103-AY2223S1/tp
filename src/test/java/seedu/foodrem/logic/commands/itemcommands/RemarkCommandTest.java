@@ -1,6 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.CommandTestUtil;
+import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
@@ -36,7 +38,7 @@ public class RemarkCommandTest {
 
     @Test
     public void execute_remarksSpecified_success() {
-        Item originalItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item originalItem = model.getCurrentList().get(INDEX_FIRST_ITEM.getZeroBased());
 
         Item remarkedItem = new ItemBuilder(originalItem)
                 .withItemRemarks(remarkString)
@@ -47,36 +49,33 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, remarkedItem);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), remarkedItem);
+        expectedModel.setItem(model.getCurrentList().get(0), remarkedItem);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
 
-        Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-
+        Item itemInFilteredList = model.getCurrentList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item remarkedItem = new ItemBuilder(itemInFilteredList)
                 .withTags(CommandTestUtil.VALID_TAG_NAME_VEGETABLES)
                 .withItemRemarks(remarkString)
                 .build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_ITEM, itemRemark);
-
-        String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, remarkedItem);
-
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
+        expectedModel.setItem(model.getCurrentList().get(0), remarkedItem);
 
-        expectedModel.setItem(model.getFilteredItemList().get(0), remarkedItem);
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_ITEM, itemRemark);
+        remarkCommand.execute(expectedModel);
 
-        assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+        assertEquals(remarkedItem, expectedModel.getCurrentList().get(0));
     }
 
     @Test
     public void execute_invalidItemIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getCurrentList().size() + 1);
 
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, itemRemark);
 
@@ -104,18 +103,18 @@ public class RemarkCommandTest {
         final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_ITEM, new ItemRemark("test"));
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ResetCommand()));
+        assertNotEquals(standardCommand, new ResetCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_ITEM, itemRemark)));
+        assertNotEquals(standardCommand, new RemarkCommand(INDEX_SECOND_ITEM, itemRemark));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_ITEM, new ItemRemark("DIFFERENT"))));
+        assertNotEquals(standardCommand, new RemarkCommand(INDEX_FIRST_ITEM, new ItemRemark("DIFFERENT")));
     }
 }

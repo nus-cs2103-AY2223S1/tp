@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,40 +25,10 @@ public class Item {
     private final ItemExpiryDate expiryDate;
     private final ItemPrice price;
     private final ItemRemark remarks;
-
     private final Set<Tag> tagSet;
 
     /**
      * Constructs an item.
-     *
-     * @param name       Name of the item.
-     * @param quantity   Quantity of the item.
-     * @param unit       Unit of the item.
-     * @param boughtDate Date when the item was purchased.
-     * @param expiryDate Date when the item will expire.
-     * @param price      Price of one unit of the item.
-     * @param remarks    Remarks related to the item.
-     */
-    public Item(ItemName name,
-                ItemQuantity quantity,
-                ItemUnit unit,
-                ItemBoughtDate boughtDate,
-                ItemExpiryDate expiryDate,
-                ItemPrice price,
-                ItemRemark remarks) {
-        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price, remarks);
-        this.name = name;
-        this.quantity = quantity;
-        this.unit = unit;
-        this.boughtDate = boughtDate;
-        this.expiryDate = expiryDate;
-        this.price = price;
-        this.remarks = remarks;
-        this.tagSet = new HashSet<>();
-    }
-
-    /**
-     * Overloaded constructor in item.
      *
      * @param name       Name of the item.
      * @param quantity   Quantity of the item.
