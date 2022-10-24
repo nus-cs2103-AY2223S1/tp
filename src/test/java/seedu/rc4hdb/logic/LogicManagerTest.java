@@ -188,7 +188,12 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void setObservableFields(List<String> modifiableList) {
+        public void setVisibleFields(List<String> fieldsToShow) {
+            // do nothing
+        }
+
+        @Override
+        public void setHiddenFields(List<String> fieldsToHide) {
             // do nothing
         }
     }

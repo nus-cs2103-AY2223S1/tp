@@ -7,7 +7,6 @@ import java.util.List;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.fields.ResidentFields;
 
@@ -31,6 +30,8 @@ public class ShowCommand implements ModelCommand {
 
     public static final String LAST_COLUMN_REACHED = "(Please note that you have reached your last column. You must"
             + " have at least one column visible at all times)";
+
+    public static final String CANNOT_SHOW_NO_COLUMNS = "You must have at least one column visible at all times.";
 
     /**
      * The list of fields to pass to the TableView for hiding.
@@ -58,6 +59,9 @@ public class ShowCommand implements ModelCommand {
 
         if (!isValidList(fieldsToShow, model)) {
             throw new CommandException(INVALID_SUBSET);
+        }
+        if (fieldsToShow.isEmpty()) {
+            throw new CommandException(CANNOT_SHOW_NO_COLUMNS);
         }
 
         List<String> hiddenFields = getHiddenFields();
