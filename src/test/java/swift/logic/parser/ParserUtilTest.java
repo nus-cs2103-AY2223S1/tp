@@ -17,7 +17,7 @@ import swift.commons.core.index.Index;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.Name;
+import swift.model.person.PersonName;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
 import swift.model.task.TaskName;
@@ -89,14 +89,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
+        PersonName expectedName = new PersonName(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
+        PersonName expectedName = new PersonName(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 

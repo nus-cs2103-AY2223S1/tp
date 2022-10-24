@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import swift.commons.core.index.Index;
 import swift.logic.commands.EditTaskCommand;
 import swift.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import swift.model.person.Name;
+import swift.model.person.PersonName;
 import swift.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskCommandParserTest {
@@ -55,10 +55,10 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, PersonName.MESSAGE_CONSTRAINTS); // invalid name
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + CONTACT_INDEX_TASK1 , Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + CONTACT_INDEX_TASK1 , PersonName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

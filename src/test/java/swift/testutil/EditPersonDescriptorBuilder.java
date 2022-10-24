@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import swift.logic.commands.EditContactCommand.EditPersonDescriptor;
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.Name;
+import swift.model.person.PersonName;
 import swift.model.person.Person;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new PersonName(name));
         return this;
     }
 

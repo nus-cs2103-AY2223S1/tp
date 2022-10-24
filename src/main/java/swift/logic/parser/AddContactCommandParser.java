@@ -15,7 +15,7 @@ import swift.logic.commands.AddContactCommand;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.Name;
+import swift.model.person.PersonName;
 import swift.model.person.Person;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
@@ -40,7 +40,7 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
         }
 
         UUID id = UUID.randomUUID();
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        PersonName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());

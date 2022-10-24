@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.Name;
+import swift.model.person.PersonName;
 import swift.model.person.Person;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
@@ -24,7 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private UUID id;
-    private Name name;
+    private PersonName name;
     private Phone phone;
     private Email email;
     private Address address;
@@ -35,7 +35,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         id = UUID.fromString(DEFAULT_UUID);
-        name = new Name(DEFAULT_NAME);
+        name = new PersonName(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -66,7 +66,7 @@ public class PersonBuilder {
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
-        this.name = new Name(name);
+        this.name = new PersonName(name);
         return this;
     }
 

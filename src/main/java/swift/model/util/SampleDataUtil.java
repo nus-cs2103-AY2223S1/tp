@@ -9,7 +9,7 @@ import swift.model.AddressBook;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.Name;
+import swift.model.person.PersonName;
 import swift.model.person.Person;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
@@ -21,27 +21,27 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(UUID.fromString("6517916e-80c0-40e1-ac13-7cb870f57d80"),
-                new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                new PersonName("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
             new Person(UUID.fromString("049fb6e6-7e43-4075-a1e3-faad028faa0f"),
-                new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                new PersonName("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
             new Person(UUID.fromString("5f3f93b9-d839-4d5c-b197-9f3e53ebbb71"),
-                new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                new PersonName("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
             new Person(UUID.fromString("f2d431ed-1793-4761-9121-3652441e0ea2"),
-                new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                new PersonName("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
             new Person(UUID.fromString("98245b81-7d46-4834-b557-ed2f720110e8"),
-                new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                new PersonName("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
             new Person(UUID.fromString("1c6513a5-f530-4995-88ba-c9a7eb77d81c"),
-                new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                new PersonName("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
