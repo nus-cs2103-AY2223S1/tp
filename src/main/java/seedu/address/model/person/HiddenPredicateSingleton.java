@@ -88,6 +88,14 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
         hiddenAppts.clear();
     }
 
+    /**
+     * Resets the list of hidden patients and appointments to empty.
+     */
+    public static void clearHiddenAll() {
+        clearHiddenPatients();
+        clearHiddenAppts();
+    }
+
     public static Predicate<Appointment> getCurrApptPredicate() {
         return currApptPredicate;
     }

@@ -16,9 +16,11 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_PATIENTS = "Listed all patients.";
     public static final String MESSAGE_SUCCESS_APPOINTMENTS = "Listed all appointments.";
+    public static final String MESSAGE_SUCCESS_ALL = "Listed all patients and appointments";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " patients: List down all patients.\n"
-            + COMMAND_WORD + " appts: List down all appointments.\n";
+            + COMMAND_WORD + " appts: List down all appointments.\n"
+            + COMMAND_WORD + " all: List down all patients and appointments\n";
 
     private final String type;
 
@@ -29,16 +31,24 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        if (this.type.equals("patients")) {
-            requireNonNull(model);
+        requireNonNull(model);
+        switch (type) {
+        case "all":
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+            HiddenPredicateSingleton.clearHiddenAll();
+            return new CommandResult(MESSAGE_SUCCESS_ALL);
+        case "patients":
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             HiddenPredicateSingleton.clearHiddenPatients();
             return new CommandResult(MESSAGE_SUCCESS_PATIENTS);
-        } else {
-            requireNonNull(model);
+        case "appts":
             model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
             HiddenPredicateSingleton.clearHiddenAppts();
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);
+        default:
+            assert false : "Input should be either all, patients, appt; shouldn't reach here";
+            return null;
         }
     }
 
