@@ -153,11 +153,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getMedicationMap() {
-        return addressBook.getMedicationMap(this);
-    }
-
-    @Override
     public String getCensus() {
         return addressBook.getCensus(this);
     }

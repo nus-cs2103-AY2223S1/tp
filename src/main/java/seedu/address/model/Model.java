@@ -92,12 +92,6 @@ public interface Model {
     int getPersonCount();
 
     /**
-     * Returns a HashMap of all the medications in the address book.
-     * @return HashMap of all the medications in the address book
-     */
-    String getMedicationMap();
-
-    /**
      * Returns a string representation of the address book's census.
      */
     String getCensus();
