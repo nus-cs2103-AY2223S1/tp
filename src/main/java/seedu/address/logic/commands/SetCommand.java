@@ -100,7 +100,7 @@ public class SetCommand extends Command {
                                        SetPersonDescriptor setPersonDescriptor) {
         assert personToEdit != null;
         Name name = setPersonDescriptor.getName().orElse(personToEdit.getName());
-        Address addr = setPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Address addr = setPersonDescriptor.getAddress().orElse(personToEdit.getAddress().get());
         Set<Tag> tags = setPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Role role = setPersonDescriptor.getRole().orElse(personToEdit.getRole().get());
         Timezone timezone = setPersonDescriptor.getTimezone().orElse(personToEdit.getTimezone().get());

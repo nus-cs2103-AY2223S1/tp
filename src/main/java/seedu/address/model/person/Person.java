@@ -37,7 +37,7 @@ public class Person {
      */
     public Person(Name name, Address address, Set<Tag> tags,
                   Map<ContactType, Contact> contacts, Role role, Timezone timezone) {
-        requireAllNonNull(name, address, tags);
+        requireAllNonNull(name, tags);
         this.name = name;
         this.address = address;
         // mock user
@@ -53,8 +53,8 @@ public class Person {
         return name;
     }
 
-    public Address getAddress() {
-        return address;
+    public Optional<Address> getAddress() {
+        return address == null ? Optional.empty() : Optional.of(address);
     }
 
     public User getGitHubUser() {
