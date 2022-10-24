@@ -34,10 +34,20 @@ public class Leave {
     }
 
     /**
+     * Returns true if a leave overlaps with another.
+     */
+    public boolean isOverlapping(Leave otherLeave) {
+        return (this.startDate.compareTo(otherLeave.startDate) >= 0  && this.startDate.compareTo(otherLeave.endDate) <= 0)
+        || (this.endDate.compareTo(otherLeave.startDate) >= 0  && this.endDate.compareTo(otherLeave.endDate) <= 0);
+    
+    }
+
+
+    /**
      * Returns number of days
      */
     public int getTotalDays() {
-        return this.endDate.compareTo(this.startDate);
+        return this.endDate.compareTo(this.startDate) + 1;
     }
 
     @Override

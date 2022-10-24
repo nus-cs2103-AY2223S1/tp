@@ -148,15 +148,15 @@ public class ParserUtil {
      *
      * @throws ParseException if the  given {@code leave period} is invalid.
      */
-    public static Leave parseLeave(String leave) throws ParseException {
-        requireNonNull(leave);
-        String trimmedLeave = leave.trim();
-        String startDate = trimmedLeave.substring(0,6);
-        String endDate = trimmedLeave.substring(6);        
-        if (! Leave.isValidLeave(startDate, endDate)) {
+    public static Leave parseLeave(String leaveStart, String leaveEnd) throws ParseException {
+        requireNonNull(leaveStart);
+        requireNonNull(leaveEnd);
+        String start = leaveStart.trim();
+        String end = leaveEnd.trim();     
+        if (! Leave.isValidLeave(start, end)) {
             throw new ParseException(Leave.MESSAGE_CONSTRAINTS);
         }
-        return new Leave(startDate, endDate);
+        return new Leave(start, end);
     }
     /**
      * Parses a {@code String tag} into a {@code Tag}.
