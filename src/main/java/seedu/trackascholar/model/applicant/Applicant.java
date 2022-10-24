@@ -32,6 +32,18 @@ public class Applicant {
      * Every field must be present and not null.
      */
     public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
+                     ApplicationStatus applicationStatus, Set<Tag> tags, Pin pin) {
+        requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.scholarship = scholarship;
+        this.applicationStatus = applicationStatus;
+        this.pin = pin;
+        this.tags.addAll(tags);
+    }
+
+    public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
                      ApplicationStatus applicationStatus, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
         this.name = name;
@@ -172,13 +184,14 @@ public class Applicant {
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getScholarship().equals(getScholarship())
                 && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
-                && otherApplicant.getTags().equals(getTags());
+                && otherApplicant.getTags().equals(getTags())
+                && otherApplicant.getPin().equals(getPin());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, scholarship, applicationStatus, tags);
+        return Objects.hash(name, phone, email, scholarship, applicationStatus, tags, pin);
     }
 
     @Override
@@ -199,6 +212,8 @@ public class Applicant {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("; hasPinned: ")
+                .append(getPin().getHasPinned());
         return builder.toString();
     }
 

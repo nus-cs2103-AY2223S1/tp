@@ -15,6 +15,7 @@ import seedu.trackascholar.model.applicant.ApplicationStatus;
 import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
+import seedu.trackascholar.model.applicant.Pin;
 import seedu.trackascholar.model.applicant.Scholarship;
 import seedu.trackascholar.model.tag.Tag;
 
@@ -31,6 +32,8 @@ class JsonAdaptedApplicant {
 
     private final String scholarship;
     private final String applicationStatus;
+
+    private final boolean hasPinned;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,12 +45,14 @@ class JsonAdaptedApplicant {
                                 @JsonProperty("email") String email,
                                 @JsonProperty("scholarship") String scholarship,
                                 @JsonProperty("applicationStatus") String applicationStatus,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                                @JsonProperty("hasPinned") boolean hasPinned) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
+        this.hasPinned = hasPinned;
 
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -63,6 +68,7 @@ class JsonAdaptedApplicant {
         email = source.getEmail().value;
         scholarship = source.getScholarship().scholarship;
         applicationStatus = source.getApplicationStatus().applicationStatus;
+        hasPinned = source.getPin().getHasPinned();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -122,7 +128,8 @@ class JsonAdaptedApplicant {
         final ApplicationStatus modelApplicationStatus = new ApplicationStatus(applicationStatus);
 
         final Set<Tag> modelTags = new HashSet<>(applicantTags);
-        return new Applicant(modelName, modelPhone, modelEmail, modelScholarship, modelApplicationStatus, modelTags);
+        final Pin modelPin = new Pin(hasPinned);
+        return new Applicant(modelName, modelPhone, modelEmail, modelScholarship, modelApplicationStatus, modelTags, modelPin);
 
     }
 
