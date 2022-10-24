@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.task.TaskList;
 
@@ -17,16 +18,18 @@ import seedu.uninurse.model.task.TaskList;
 public class Patient extends Person {
     // Data fields
     private final ConditionList conditions;
+    private final MedicationList medications;
     private final TaskList tasks;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, ConditionList conditions, TaskList tasks,
-                   Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Address address, ConditionList conditions,
+            MedicationList medications, TaskList tasks, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         requireAllNonNull(name, phone, email, address, conditions, tasks, tags);
         this.conditions = conditions;
+        this.medications = medications;
         this.tasks = tasks;
     }
 
@@ -38,8 +41,22 @@ public class Patient extends Person {
     public Patient(Patient patient, ConditionList updatedConditions) {
         super(patient);
         this.conditions = updatedConditions;
+        this.medications = patient.medications;
         this.tasks = patient.tasks;
     }
+
+    /**
+     * Used to return a new immutable {@code Patient} when {@code MedicationList} is updated.
+     * @param patient the patient to be updated
+     * @param updatedMedications the updated medications.
+     */
+    public Patient(Patient patient, MedicationList updatedMedications) {
+        super(patient);
+        this.conditions = patient.conditions;
+        this.medications = updatedMedications;
+        this.tasks = patient.tasks;
+    }
+
 
     /**
      * Used to return a new immutable {@code Patient} when {@code TaskList} is updated.
@@ -49,11 +66,16 @@ public class Patient extends Person {
     public Patient(Patient patient, TaskList updatedTasks) {
         super(patient);
         this.conditions = patient.conditions;
+        this.medications = patient.medications;
         this.tasks = updatedTasks;
     }
 
     public ConditionList getConditions() {
         return conditions;
+    }
+
+    public MedicationList getMedications() {
+        return medications;
     }
 
     public TaskList getTasks() {
