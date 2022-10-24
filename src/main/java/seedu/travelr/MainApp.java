@@ -63,8 +63,6 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
         
-//        model.updateFilteredEventList(model.getBucketPredicate());
-
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
