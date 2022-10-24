@@ -525,6 +525,30 @@ tag friends
       - Cons:
         - User has to provide an index (more to type).
 
+### Motivational quotes
+
+#### Implementation
+As an encouragement, Rapportbook will show a motivational quote on the starting page of Rapportbook. The quote is randomly selected from a list of 300 quotes, and will not change until Rapportbook is restarted.
+
+The following is the class diagram for this feature.
+![QuoteListClassDiagram](images/motivational-quote/QuoteListClassDiagram.png)
+
+The quotes are stored as a static list, in the `QuoteList` class. As this class has only static variables and methods, it should not be instantiated and hence does not have a constructor. To access a quote, the class provides the `QuoteList#getRandomQuote()` method which will return a random quote from the quote list. Once the `getRandomQuote()` method has been called, the quote returend will be stored as a static variable, which will be used as the return value for subsequent calls.
+
+#### Design considerations:
+- **Aspect: How the quotes are stored.**
+  - Alternative 1 (current choice): Stored as a static variable in a class
+      - Pros:
+        - Easy to implement.
+      - Cons:
+        - Every quote will be loaded into memory even though only 1 quote is used.
+  - Alternative 2: Stored in a JSON file
+      - Pros:
+        - Reduces memory use.
+        - Allows users to add their own quotes.
+      - Cons:
+        - High effort for a small feature.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -771,6 +795,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. Contact already has at least one of the tag(s) specified.
     * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
     * Use case resumes at step 2.
+
+#### Use case: View motivational quote
+1. User accesses the home page of Rapportbook.
+2. Rapportbook shows a motivational quote on the home page.
+   Use case ends.
 
 #### Use case: Request help manual
 1. User requests help for application usage.
