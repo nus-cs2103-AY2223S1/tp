@@ -154,7 +154,7 @@ List Box:
 **Example Input:**
 
 ```text
-view 1 
+view 1
 ```
 
 **Expected Output:**
@@ -194,7 +194,7 @@ inc 1 qty/3
 Command Output Box:
 
 ```text
-Incremented Item: 
+Incremented Item:
 Name: Onions
 Quantity: 11 kg
 Bought Date: 10-10-2022
@@ -226,7 +226,7 @@ dec 1 qty/4
 Command Output Box:
 
 ```text
-Decremented Item: 
+Decremented Item:
 Name: Onions
 Quantity: 7 kg
 Bought Date: 10-10-2022
@@ -269,7 +269,7 @@ edit 1 qty/100 n/Potatoes
 Command Output Box:
 
 ```text
-Edited Item: 
+Edited Item:
 Name: Onions
 Quantity: 100 kg
 Bought Date: 10-10-2022
