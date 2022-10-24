@@ -62,6 +62,8 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+        
+//        model.updateFilteredEventList(model.getBucketPredicate());
 
         logic = new LogicManager(model, storage);
 
