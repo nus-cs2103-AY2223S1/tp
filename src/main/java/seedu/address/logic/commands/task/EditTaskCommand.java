@@ -3,8 +3,11 @@ package seedu.address.logic.commands.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -13,6 +16,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -75,9 +80,9 @@ public class EditTaskCommand extends TaskCommand {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        String updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle().toString());
+        Title updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
 
-        return new Task(new Title(updatedTitle));
+        return new Task(updatedTitle);
     }
 
     @Override
@@ -103,14 +108,17 @@ public class EditTaskCommand extends TaskCommand {
      * corresponding field value of the person.
      */
     public static class EditTaskDescriptor {
-        private String title;
 
+        private Title title;
+        private boolean isCompleted;
+        private Deadline deadline;
+        private Set<Contact> assignedContacts;
 
         public EditTaskDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code contacts} is used internally.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
@@ -123,14 +131,44 @@ public class EditTaskCommand extends TaskCommand {
             return CollectionUtil.isAnyNonNull(title);
         }
 
-        public void setTitle(String title) {
+        public void setTitle(Title title) {
             this.title = title;
         }
 
-        public Optional<String> getTitle() {
+        public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
+        public void setCompleted(boolean isCompleted) {
+            this.isCompleted = isCompleted;
+        }
+
+        public boolean getCompleted() {
+            return isCompleted;
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
+        }
+
+        public void setAssignedContacts(Set<Contact> assignedContacts) {
+            this.assignedContacts = (assignedContacts != null) ? new HashSet<>(assignedContacts) : null;
+        }
+
+        /**
+         * Returns an unmodifiable contact set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code contact} is null.
+         */
+        public Optional<Set<Contact>> getAssignedContacts() {
+            return (assignedContacts != null)
+                ? Optional.of(Collections.unmodifiableSet(assignedContacts))
+                : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -147,7 +185,10 @@ public class EditTaskCommand extends TaskCommand {
             // state check
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
-            return getTitle().equals(e.getTitle());
+            return getTitle().equals(e.getTitle())
+                    && getCompleted() == e.getCompleted()
+                    && getDeadline() == e.getDeadline()
+                    && getAssignedContacts().equals(e.getAssignedContacts());
         }
     }
 }

@@ -62,11 +62,11 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
 
 
         if (beforeArgs.isPresent()) {
-            before = Optional.ofNullable(DeadlineTaskCommandParser.parseDeadline(beforeArgs.get()));
+            before = Optional.ofNullable(TaskParserUtil.parseDeadline(beforeArgs.get()));
         }
 
         if (afterArgs.isPresent()) {
-            after = Optional.ofNullable(DeadlineTaskCommandParser.parseDeadline(afterArgs.get()));
+            after = Optional.ofNullable(TaskParserUtil.parseDeadline(afterArgs.get()));
         }
 
         try {

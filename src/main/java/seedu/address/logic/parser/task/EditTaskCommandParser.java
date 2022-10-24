@@ -10,6 +10,7 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,7 +37,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editTaskDescriptor.setTitle(ParserUtil
+            editTaskDescriptor.setTitle(TaskParserUtil
                     .parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
 

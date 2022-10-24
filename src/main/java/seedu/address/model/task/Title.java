@@ -17,7 +17,7 @@ public class Title {
      */
     public static final String VALIDATION_REGEX = "\\S.*";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Title}

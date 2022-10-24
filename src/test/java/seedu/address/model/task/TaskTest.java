@@ -6,8 +6,6 @@ import static seedu.address.logic.commands.TaskCommandTestUtil.VALID_TITLE_TASK_
 import static seedu.address.testutil.TypicalTasks.TASK_ONE;
 import static seedu.address.testutil.TypicalTasks.TASK_TWO;
 
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
@@ -26,7 +24,7 @@ public class TaskTest {
         Task editedTaskOne =
                 new TaskBuilder(TASK_ONE)
                         .withContacts("Kloppo")
-                        .withDeadline(Deadline.of(LocalDate.of(2022, 9, 9)))
+                        .withDeadline("2 January 2023")
                         .build();
         assertTrue(TASK_ONE.isSameTask(editedTaskOne));
 

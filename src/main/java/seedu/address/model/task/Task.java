@@ -17,7 +17,6 @@ public class Task {
     private final Title title;
     private final boolean isCompleted; // defaults to false if not specified
 
-
     // data fields
     private final Deadline deadline; // optional
     private final Set<Contact> assignedContacts = new HashSet<>();
@@ -125,7 +124,7 @@ public class Task {
 
         if (!deadline.isUnspecified()) {
             builder.append("; Deadline: ");
-            builder.append(deadline.toString());
+            builder.append(deadline);
         }
 
         return builder.toString();

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
@@ -47,7 +47,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        title = source.getTitle().value;
+        title = source.getTitle().toString();
 
         isCompleted = String.valueOf(source.getCompleted());
 
@@ -92,11 +92,7 @@ class JsonAdaptedTask {
         if (deadline.equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
             modelDeadline = Deadline.UNSPECIFIED;
         } else {
-            try {
-                modelDeadline = Deadline.of(deadline);
-            } catch (ParseException pe) {
-                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
-            }
+            modelDeadline = Deadline.of(TaskParserUtil.convertStringToLocalDate(deadline));
         }
 
         final Set<Contact> modelContacts = new HashSet<>(assignedContacts);

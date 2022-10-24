@@ -2,13 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Title;
 
 /**
@@ -19,7 +27,7 @@ public class TaskParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses a {@code String title} into a {@code title}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code title} is invalid.
@@ -31,6 +39,32 @@ public class TaskParserUtil {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+    */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+
+        if (trimmedDeadline.equals("?") || trimmedDeadline.equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
+            return Deadline.UNSPECIFIED;
+        }
+
+        List<Date> parseResult = new PrettyTimeParser().parse(trimmedDeadline);
+
+        if (!parseResult.isEmpty()) {
+            return Deadline.of(TaskParserUtil.convertToLocalDate(parseResult.get(0)));
+        } else {
+            throw new ParseException(Deadline.MESSAGE_PARSE_FAILURE);
+        }
     }
 
     /**
@@ -60,6 +94,19 @@ public class TaskParserUtil {
             indexSet.add(Index.fromOneBased(Integer.parseInt(trimmedIndex)));
         }
         return indexSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> contacts} into a {@code Set<Contact>}.
+     */
+    public static Set<Contact> parseContacts(Collection<String> contacts) {
+        requireNonNull(contacts);
+        final Set<Contact> contactSet = new HashSet<>();
+        for (String contactName : contacts) {
+            //TODO: Update
+            contactSet.add(new Contact(contactName));
+        }
+        return contactSet;
     }
 
     /**
@@ -95,6 +142,25 @@ public class TaskParserUtil {
             }
         }
         return textSet;
+    }
+
+    /**
+     * Convert given Date object to LocalDate object.
+     */
+    public static LocalDate convertToLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    /**
+     * Parses string to LocalDate object. Used for initialising TypicalTasks so the string given is always in
+     * correct format.
+     */
+    public static LocalDate convertStringToLocalDate(String date) {
+        List<Date> result = new PrettyTimeParser().parse(date);
+        if (date.trim().equals("?") || date.trim().equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
+            return Deadline.UNSPECIFIED.getDate();
+        }
+        return TaskParserUtil.convertToLocalDate(result.get(0));
     }
 
 }
