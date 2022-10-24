@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -211,8 +213,34 @@ public class Item {
      */
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, unit, boughtDate, expiryDate, price, remarks, tagSet);
+        // Use this method for custom fields hashing instead of implementing your own
+        // Defensive programming to guard against possible null values.
+        List<Object> attributesToHash = new ArrayList<>();
+        if (name != null) {
+            attributesToHash.add(name);
+        }
+        if (quantity != null) {
+            attributesToHash.add(quantity);
+        }
+        if (unit != null) {
+            attributesToHash.add(unit);
+        }
+        if (boughtDate != null) {
+            attributesToHash.add(boughtDate);
+        }
+        if (expiryDate != null) {
+            attributesToHash.add(expiryDate);
+        }
+        if (price != null) {
+            attributesToHash.add(price);
+        }
+        if (remarks != null) {
+            attributesToHash.add(remarks);
+        }
+        if (tagSet != null) {
+            attributesToHash.add(tagSet);
+        }
+        return Objects.hash(attributesToHash.toArray());
     }
 
     /**
