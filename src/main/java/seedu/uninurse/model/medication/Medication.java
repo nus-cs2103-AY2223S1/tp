@@ -54,7 +54,7 @@ public class Medication {
 
     @Override
     public String toString() {
-        return medicationType + " \\| " + medicationDosage;
+        return medicationType + " | " + medicationDosage;
     }
 
     @Override

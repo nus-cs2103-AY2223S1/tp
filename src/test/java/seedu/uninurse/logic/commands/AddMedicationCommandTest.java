@@ -92,6 +92,7 @@ public class AddMedicationCommandTest {
                 editedPatient.getName(), medicationToAdd);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPerson(patientToAddMedication, editedPatient);
 
         assertCommandSuccess(addMedicationCommand, model, expectedMessage,

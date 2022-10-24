@@ -142,6 +142,12 @@ public class Patient extends Person {
                     .append(conditions);
         }
 
+        MedicationList medications = getMedications();
+        if (!medications.isEmpty()) {
+            builder.append("\nMedications:\n")
+                    .append(medications);
+        }
+
         TaskList tasks = getTasks();
         if (!tasks.isEmpty()) {
             builder.append("\nTasks:\n")
