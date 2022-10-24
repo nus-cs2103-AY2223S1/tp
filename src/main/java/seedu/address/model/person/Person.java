@@ -126,13 +126,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Gender: ")
-                .append(getGender());
-
-        if (!getDob().isEmpty()) { //Need check if DateOfBirth is empty
-            builder.append("; Date of Birth: ")
+                .append(getGender())
+                .append("; Date of birth: ")
                 .append(getDob());
-        }
-
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

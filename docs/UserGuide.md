@@ -87,10 +87,10 @@ Format: `help`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER [d/DOB] [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB [t/TAG]`
 
-- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`)
-- The parameters in [ ] are optional parameters, including date of birth (`d`), purchase history (`ph`), tag (`t`).
+- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
+- The parameters in [ ] are optional parameters, including tag (`t`).
 - A person in the contact list can have more than 1 tag.
 
 Examples:
@@ -104,19 +104,9 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 - Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
 
-__Optional Parameter 2: Date of Birth__
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
+__Additional Parameter 2: Date of Birth__
 
 - Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
-- NAME can contain more than 1 word.
-
-
-Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20/03/2000`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/24/09/2000`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/2/1/2000`
-
 
 ### Listing all persons : `list`
 
@@ -211,19 +201,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person : `deletePerson`
 
 Deletes the specified person from the application.
 
-Format: `delete INDEX`
+Format: `deletePerson INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be **a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the application.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `deletePerson 2` deletes the 2nd person in the application.
+* `find Betsy` followed by `deletePerson 1` deletes the 1st person in the results of the `find` command.
 
 ### Add an event: `addEvent`
 

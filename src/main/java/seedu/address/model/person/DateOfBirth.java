@@ -11,11 +11,9 @@ import java.time.format.DateTimeParseException;
  * Represents a Person's date of birth in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class DateOfBirth {
+public class DateOfBirth implements Comparable<DateOfBirth> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date of birth must be in format: dd/mm/yyyy";
-    private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
-        "compareTo() of DateOfBirth must take in argument of type LocalDate";
 
     //for checking if valid input date format
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
@@ -27,17 +25,8 @@ public class DateOfBirth {
     //for changing to user-readable format
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
+
     public final LocalDate date;
-
-    private boolean isEmpty;
-
-    /**
-     * Constructs an empty {@code DateOfBirth}.
-     */
-    private DateOfBirth() {
-        this.date = null;
-        this.isEmpty = true;
-    }
 
     /**
      * Constructs an {@code DateOfBirth}.
@@ -48,26 +37,15 @@ public class DateOfBirth {
         requireNonNull(date);
         checkArgument(isValidDateOfBirth(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
-        this.isEmpty = false;
     }
 
     /**
-     * Constructs an empty {@code DateOfBirth}.
-     */
-    public static DateOfBirth getEmptyDateOfBirth() {
-        return new DateOfBirth();
-    }
-
-    /**
-     * Returns true if a given string is a valid DOB input, "" empty string is used to represent an empty DateOfBirth.
+     * Returns true if a given string is a valid DOB input.
      * @return boolean
      */
 
     //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidDateOfBirth(String test) {
-        if (test == null) {
-            return true;
-        }
         try {
             LocalDate.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
@@ -76,32 +54,9 @@ public class DateOfBirth {
         return true;
     }
 
-    /**
-     * Returns 1 if the other object is a DateOfBirth that is later,
-     * -1 if the other object is a DateOfBirth that is earlier,
-     * and 0 if the other object is a DateOfBirth that is of the same date .
-     * @param other The object to compare with
-     * @return int
-     */
-    public int compareTo(Object other) {
-        if (other == null) {
-            return -1;
-        }
-        if (!(other instanceof DateOfBirth)) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-        }
-        if (this.isEmpty() & ((DateOfBirth) other).isEmpty()) {
-            return 0;
-        }
-        return this.date.compareTo(((DateOfBirth) other).date);
-    }
-
-    /**
-     * Returns true if DateOfBirth is empty, false otherwise
-     * @return boolean
-     */
-    public boolean isEmpty() {
-        return this.isEmpty;
+    @Override
+    public int compareTo(DateOfBirth d) {
+        return this.date.compareTo(d.date);
     }
 
     /**
@@ -109,29 +64,30 @@ public class DateOfBirth {
      * @return String
      */
     public String toLogFormat() {
-        if (this.isEmpty()) {
-            return null;
-        }
         return this.date.format(logFormatter);
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (!(other instanceof DateOfBirth)) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-        }
-        if (this.isEmpty() & ((DateOfBirth) other).isEmpty()) {
-            return true;
-        }
-        return this.date.equals(((DateOfBirth) other).date);
+    public String toString() {
+        return this.date.format(outputFormatter);
     }
 
     @Override
-    public String toString() {
-        if (this.isEmpty()) {
-            return "";
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
         }
-        return this.date.format(outputFormatter);
+
+        // instanceof handles nulls
+        if (!(other instanceof DateOfBirth)) {
+            return false;
+        }
+
+        // state check
+        DateOfBirth d = (DateOfBirth) other;
+
+        return this.date.equals(d.date);
     }
 
     @Override

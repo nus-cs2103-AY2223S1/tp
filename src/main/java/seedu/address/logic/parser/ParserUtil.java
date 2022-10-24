@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -184,21 +186,29 @@ public class ParserUtil {
     }
 
     /**
-     * Returns the String date passed to it.
+     * Parses a {@code String startDate} into a {@code StartDate}.
+     * Leading and trailing whitespaces will be trimmed.
      */
-    public static String parseDate(String date) {
-        requireNonNull(date);
-
-        return date;
+    public static StartDate parseStartDate(String startDate) throws ParseException {
+        requireNonNull(startDate);
+        String trimmedStartDate = startDate.trim();
+        if (!StartDate.isValidStartDate(startDate)) {
+            throw new ParseException(StartDate.MESSAGE_CONSTRAINTS);
+        }
+        return new StartDate(trimmedStartDate);
     }
 
     /**
-     * Returns the String time passed to it.
+     * Parses a {@code String startTime} into a {@code StartTime}.
+     * Leading and trailing whitespaces will be trimmed.
      */
-    public static String parseTime(String time) {
-        requireNonNull(time);
-
-        return time;
+    public static StartTime parseStartTime(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        if (!StartTime.isValidStartTime(startTime)) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        return new StartTime(trimmedStartTime);
     }
 
     /**

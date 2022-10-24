@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -27,10 +29,10 @@ public class SampleDataUtil {
                 getTagSet("friends"), new Gender("male")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new DateOfBirth("11/5/1968"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), new Gender("male")),
+                getTagSet("colleagues", "friends"), new Gender("female")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new DateOfBirth("4/12/2002"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), new Gender("male")),
+                getTagSet("neighbours"), new Gender("female")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new DateOfBirth("29/7/1996"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"), new Gender("male")),
@@ -45,12 +47,12 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event("2/2 Sale", "2nd February 2022", "2am", "For football fans"),
-            new Event("4/4 Sale", "4th April 2022", "4am", "For computer scientists"),
-            new Event("6/6 Sale", "6th June 2022", "6am", "For car enthusiasts"),
-            new Event("8/8 Sale", "8th August 2022", "8am", "For bread lovers"),
-            new Event("10/10 Sale", "10th October 2022", "10am", "For watch hobbyists"),
-            new Event("12/12 Sale", "12th December 2022", "12pm", "For stationery buyers")
+            new Event("2/2 Sale", new StartDate("2/2/2022"), new StartTime("02:00"), "For football fans"),
+            new Event("4/4 Sale", new StartDate("4/4/2022"), new StartTime("16:00"), "For computer scientists"),
+            new Event("6/6 Sale", new StartDate("6/6/2022"), new StartTime("06:00"), "For car enthusiasts"),
+            new Event("8/8 Sale", new StartDate("8/8/2022"), new StartTime("20:00"), "For bread lovers"),
+            new Event("10/10 Sale", new StartDate("10/10/2022"), new StartTime("10:00"), "For watch hobbyists"),
+            new Event("12/12 Sale", new StartDate("12/12/2022"), new StartTime("12:00"), "For stationery buyers")
         };
     }
 

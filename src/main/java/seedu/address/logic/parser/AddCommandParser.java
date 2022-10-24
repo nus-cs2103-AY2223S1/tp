@@ -39,21 +39,16 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                  PREFIX_EMAIL, PREFIX_DOB, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GENDER); // add gender prefix
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER,
+                PREFIX_DOB) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        } // gender prefix is checked since it's not optional
-        DateOfBirth dob;
-        if (arePrefixesPresent(argMultimap, PREFIX_DOB)) { //As dob is an optional field, need check if present
-            dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
-        } else {
-            dob = DateOfBirth.getEmptyDateOfBirth();
-        }
+        } 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
+        DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, dob, address, tagList, gender);

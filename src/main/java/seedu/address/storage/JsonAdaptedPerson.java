@@ -104,16 +104,6 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        final DateOfBirth modelDob;
-        if (!DateOfBirth.isValidDateOfBirth(dob)) {
-            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
-        }
-        if (dob == null) { //check if DateOfBirth is empty
-            modelDob = DateOfBirth.getEmptyDateOfBirth(); //create empty DateOfBirth object
-        } else {
-            modelDob = new DateOfBirth(dob);
-        }
-
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -121,6 +111,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+        
         if (gender == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
         }
@@ -128,6 +119,17 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
+        
+        if (dob == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                     DateOfBirth.class.getSimpleName()));
+        }
+
+        if (!DateOfBirth.isValidDateOfBirth(dob)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+
+        final DateOfBirth modelDob = new DateOfBirth(dob);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags, modelGender);
