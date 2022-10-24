@@ -2,7 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-# Developer Guide
 
 ## Table of contents
 * [Implementation](#implementation)
@@ -10,6 +9,7 @@ title: Developer Guide
     * [Implementation details](#implementation-details)
     * [Design Considerations](#design-considerations)
   * [Statistics Display Feature](#statistics-display-feature)
+  * [Mark Student Feature](#mark-student-feature)
   * [Schedule List Feature](#schedule-list-feature)
   * [[Proposed] Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
@@ -159,6 +159,7 @@ The features covered in this guide are:
 
 * [Edit Class Feature](#edit-class-feature)
 * [Statistics Display Feature](#statistics-display-feature)
+* [Mark Student Feature](#mark-student-feature)
 * [[Proposed] Sort-by feature](#proposed-sort-by-feature)
 * [[Proposed] Find-by feature](#proposed-find-by-feature)
 
@@ -283,7 +284,34 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
-### [Proposed] Sort-by feature
+---
+
+### Mark Student Feature
+
+This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class, while setting the student's next class date to be a week later.
+
+#### Implementation Details
+
+This command executes 3 main actions, they are:
+1. Display a cross beside the student's name in the Schedule list.
+   - `ScheduleCard.java` contains a `Label` called `markStatus` to display the cross if the student is marked.
+   - `ScheduleCard#setMarkStatus(Person person)` sets the text of markStatus to be `[X]` if the `person` is marked, else `[ ]`.
+
+2. Increment the money owed by the student.
+   - This action will add `ratesPerClass` field to `MoneyOwed` field in `Person`.
+   - The addition of money is called through `Money#addTo(Money money)` method.
+   - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
+
+3. Set the next class to be a week later.
+   - This action will update `Class` to be `7` days later at the same `startTime` and `endTime`.
+   - Addition of days to the current `Class` date is called through `Class#addDays(int numberOfDays)` method.
+   - The next `Class` will be checked if it clashes with another `Class`. If it does not, it will be saved in `ClassStorage`. All these are called through `ClassStorage#saveClass()`.
+   - The marked `Class` will be deleted from `ClassStorage`.
+
+
+---
+
+### [Proposed] Sort-by Feature
 
 This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
 
@@ -301,9 +329,8 @@ The following diagram illustrates how the operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-<<<<<<< HEAD
---------------------------------------------------------------------------------------------------------------------
-=======
+
+---
 
 ### [Proposed] Find-by feature
 
@@ -338,7 +365,6 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
->>>>>>> 3edb1f6263bbc24dff50228e6030932fe15223be
 
 ## Appendix: Requirements
 
