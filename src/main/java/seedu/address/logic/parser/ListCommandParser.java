@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -17,27 +17,27 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
         userInput = userInput.trim().toUpperCase();
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_BUYER_PARAMETER, userInput)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_BUYER_PARAMETER, userInput)) {
             return new ListCommand(ListCommand.LIST_BUYER);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SUPPLIER_PARAMETER, userInput)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SUPPLIER_PARAMETER, userInput)) {
             return new ListCommand(ListCommand.LIST_SUPPLIER);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_DELIVERER_PARAMETER, userInput)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_DELIVERER_PARAMETER, userInput)) {
             return new ListCommand(ListCommand.LIST_DELIVERER);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_ORDER_PARAMETER, userInput)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_ORDER_PARAMETER, userInput)) {
             return new ListCommand(ListCommand.LIST_ORDER);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_PET_PARAMETER, userInput)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_PET_PARAMETER, userInput)) {
             return new ListCommand(ListCommand.LIST_PET);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_ALL_PARAMETER, userInput)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_ALL_PARAMETER, userInput)) {
             return new ListCommand(ListCommand.LIST_ALL);
         }
 

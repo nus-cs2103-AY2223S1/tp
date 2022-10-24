@@ -8,6 +8,7 @@ import seedu.address.logic.commands.SortDelivererCommand;
 import seedu.address.logic.commands.SortOrderCommand;
 import seedu.address.logic.commands.SortPetCommand;
 import seedu.address.logic.commands.SortSupplierCommand;
+import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
@@ -66,23 +67,23 @@ public class SortCommandParserUtil {
 
     private static Comparator<? extends Person> parseToSelectedPersonComparator(String attribute) {
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_ADDRESS_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_ADDRESS_PARAMETER, attribute)) {
             return PERSON_ADDRESS_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_EMAIL_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_EMAIL_PARAMETER, attribute)) {
             return PERSON_EMAIL_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_LOCATION_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_LOCATION_PARAMETER, attribute)) {
             return PERSON_LOCATION_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_NAME_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_NAME_PARAMETER, attribute)) {
             return PERSON_NAME_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PHONE_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_PHONE_PARAMETER, attribute)) {
             return PERSON_PHONE_COMPARATOR;
         }
 
@@ -97,8 +98,8 @@ public class SortCommandParserUtil {
      *     for sorting.
      */
     public static Comparator<Buyer> parseToSelectedBuyerComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty() || SortCommand.isValidParameter(
-                SortCommand.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
+        if (attribute.isEmpty() || CommandUtil.isValidParameter(
+                CommandUtil.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
             return BUYER_COMPARATOR;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
@@ -123,8 +124,8 @@ public class SortCommandParserUtil {
      *     for sorting.
      */
     public static Comparator<Supplier> parseToSelectedSupplierComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty() || SortCommand.isValidParameter(
-                SortCommand.ACCEPTABLE_SORT_PET_LIST_SIZE_PARAMETER, attribute)) {
+        if (attribute.isEmpty() || CommandUtil.isValidParameter(
+                CommandUtil.ACCEPTABLE_SORT_PET_LIST_SIZE_PARAMETER, attribute)) {
             return SUPPLIER_COMPARATOR;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
@@ -149,8 +150,8 @@ public class SortCommandParserUtil {
      *     for sorting.
      */
     public static Comparator<Deliverer> parseToSelectedDelivererComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty() || SortCommand.isValidParameter(
-                SortCommand.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
+        if (attribute.isEmpty() || CommandUtil.isValidParameter(
+                CommandUtil.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
             return DELIVERER_COMPARATOR;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
@@ -175,24 +176,24 @@ public class SortCommandParserUtil {
      *     for sorting.
      */
     public static Comparator<Order> parseToSelectedOrderComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty() || SortCommand.isValidParameter(
-                SortCommand.ACCEPTABLE_SORT_DUE_DATE_PARAMETER, attribute)) {
+        if (attribute.isEmpty() || CommandUtil.isValidParameter(
+                CommandUtil.ACCEPTABLE_SORT_DUE_DATE_PARAMETER, attribute)) {
             return ORDER_DUE_DATE_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PRICE_RANGE_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_PRICE_RANGE_PARAMETER, attribute)) {
             return ORDER_PRICE_RANGE_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
             return ORDER_PRICE_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_STATUS_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_STATUS_PARAMETER, attribute)) {
             return ORDER_STATUS_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_DUE_DATE_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_DUE_DATE_PARAMETER, attribute)) {
             return ORDER_DUE_DATE_COMPARATOR;
         }
         throw new ParseException(String.format(SortOrderCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,
@@ -209,52 +210,52 @@ public class SortCommandParserUtil {
      *     for sorting.
      */
     public static Comparator<Pet> parseToSelectedPetComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty() || SortCommand.isValidParameter(
-                SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
+        if (attribute.isEmpty() || CommandUtil.isValidParameter(
+                CommandUtil.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
             return PET_PRICE_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_NAME_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_NAME_PARAMETER, attribute)) {
             return PET_NAME_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_COLOR_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_COLOR_PARAMETER, attribute)) {
             return PET_COLOR_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_COLOR_PATTERN_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_COLOR_PATTERN_PARAMETER, attribute)) {
             return PET_COLOR_PATTERN_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_BIRTH_DATE_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_BIRTH_DATE_PARAMETER, attribute)) {
             return PET_BIRTH_DATE_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_SPECIES_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_SPECIES_PARAMETER, attribute)) {
             return PET_SPECIES_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_HEIGHT_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_HEIGHT_PARAMETER, attribute)) {
             return PET_HEIGHT_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_WEIGHT_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_WEIGHT_PARAMETER, attribute)) {
             return PET_WEIGHT_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_VACCINATION_STATUS_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_VACCINATION_STATUS_PARAMETER, attribute)) {
             return PET_VACCINATION_STATUS_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
             return PET_PRICE_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_TAGS_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_TAGS_PARAMETER, attribute)) {
             return PET_TAG_COMPARATOR;
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_CERTIFICATES_PARAMETER, attribute)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SORT_CERTIFICATES_PARAMETER, attribute)) {
             return PET_CERTIFICATE_COMPARATOR;
         }
 

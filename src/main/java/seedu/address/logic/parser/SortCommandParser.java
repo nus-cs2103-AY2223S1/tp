@@ -14,6 +14,7 @@ import seedu.address.logic.commands.SortDelivererCommand;
 import seedu.address.logic.commands.SortOrderCommand;
 import seedu.address.logic.commands.SortPetCommand;
 import seedu.address.logic.commands.SortSupplierCommand;
+import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.SortCommandParserUtil;
 import seedu.address.model.order.Order;
@@ -40,23 +41,23 @@ public class SortCommandParser implements Parser<SortCommand> {
         final String listType = matcher.group("listType");
         final String attributes = matcher.group("attributes");
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_BUYER_PARAMETER, listType)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_BUYER_PARAMETER, listType)) {
             return parseToSortBuyerCommand(attributes);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SUPPLIER_PARAMETER, listType)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_SUPPLIER_PARAMETER, listType)) {
             return parseToSortSupplierCommand(attributes);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_DELIVERER_PARAMETER, listType)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_DELIVERER_PARAMETER, listType)) {
             return parseToSortDelivererCommand(attributes);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_ORDER_PARAMETER, listType)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_ORDER_PARAMETER, listType)) {
             return parseToSortOrderCommand(attributes);
         }
 
-        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_PET_PARAMETER, listType)) {
+        if (CommandUtil.isValidParameter(CommandUtil.ACCEPTABLE_PET_PARAMETER, listType)) {
             return parseToSortPetCommand(attributes);
         }
 
