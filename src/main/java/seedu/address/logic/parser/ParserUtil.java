@@ -112,6 +112,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String repository} and checks its validity.
+     * Leading a trailing whitespaces will be trimmed.
+     * It is an overloaded method that does not return a Repository object
+     * @param repository string argument input
+     * @throws ParseException if the given {@code repository} is invalid.
+     */
+    public static void parseRepositoryValidity(String repository) throws ParseException {
+        requireNonNull(repository);
+        String trimmedRepository = repository.trim();
+        if (!Repository.isValidRepository(trimmedRepository)) {
+            throw new ParseException(Repository.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading a trailing whitespaces will be trimmed.
      *
