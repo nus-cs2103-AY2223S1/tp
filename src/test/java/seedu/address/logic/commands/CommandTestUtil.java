@@ -73,7 +73,7 @@ public class CommandTestUtil {
     public static final String INVALID_MODS_DESC = " " + PREFIX_MODULE + "cs****"; // space not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB; // empty string not allowed for github
-    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "bobby wong"; // only one word allowed
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM; // only one word allowed
 
     public static final String VALID_TASK_NAME_FINISH_TP = "Finish TP";
     public static final String VALID_DEADLINE_FINISH_TP = "2022-11-15 00:00";
