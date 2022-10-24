@@ -8,9 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMessages.VALID_MESSAGE_HAPPY_BIRTHDAY;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -88,7 +85,7 @@ class GenerateMessageCommandTest {
     }
 
     private class ModelStubMessagesGenerating extends CommandTestUtil.ModelStub {
-        private List<Message> messagesAdded = new ArrayList<>();
+        private ObservableList<Message> messagesAdded = FXCollections.observableArrayList();
         private ObservableList<Person> personList = FXCollections.observableArrayList();
         private TargetPerson targetPerson = new TargetPerson();
 
@@ -129,7 +126,7 @@ class GenerateMessageCommandTest {
         }
 
         @Override
-        public List<Message> getMessages() {
+        public ObservableList<Message> getMessages() {
             return messagesAdded;
         }
 

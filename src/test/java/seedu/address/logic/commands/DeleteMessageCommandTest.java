@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.message.Message;
@@ -63,7 +65,7 @@ class DeleteMessageCommandTest {
     }
 
     private class ModelStubAcceptingMessagesAddedAndDeleted extends CommandTestUtil.ModelStub {
-        private List<Message> messagesAdded = new ArrayList<>();
+        private ObservableList<Message> messagesAdded = FXCollections.observableArrayList();
 
         @Override
         public boolean hasMessage(Message message) {
@@ -81,7 +83,7 @@ class DeleteMessageCommandTest {
         }
 
         @Override
-        public List<Message> getMessages() {
+        public ObservableList<Message> getMessages() {
             return messagesAdded;
         }
     }
