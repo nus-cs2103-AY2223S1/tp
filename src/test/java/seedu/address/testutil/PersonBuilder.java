@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.meeting.MeetingDate;
@@ -81,7 +82,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -137,7 +138,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code plans} into a {@code Set<Plan>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withPlans(String ... plans) {
+    public PersonBuilder withPlans(String... plans) {
         this.plans = SampleDataUtil.getPlanSet(plans);
         return this;
     }

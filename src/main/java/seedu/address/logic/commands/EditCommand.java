@@ -12,11 +12,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -43,21 +46,21 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
-            + "by the index number used in the displayed client list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_INCOME + "INCOME] "
-            + "[" + PREFIX_MEETING_DATE + "MEETINGDATE] "
-            + "[" + PREFIX_TAG + "TAG]..."
-            + "[" + PREFIX_RISK + "RISK] "
-            + "[" + PREFIX_PLAN + "PLAN] \n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the index number used in the displayed client list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_INCOME + "INCOME] "
+        + "[" + PREFIX_MEETING_DATE + "MEETINGDATE] "
+        + "[" + PREFIX_TAG + "TAG]..."
+        + "[" + PREFIX_RISK + "RISK] "
+        + "[" + PREFIX_PLAN + "PLAN] \n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -67,7 +70,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -104,7 +107,6 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        Set<Plan> plans = new HashSet<>();
         assert personToEdit != null;
         Portfolio portfolio = personToEdit.getPortfolio();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -113,19 +115,18 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Income updatedIncome = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         MeetingDate updatedMeetingDate = editPersonDescriptor.getMeetingDate().orElse(personToEdit.getMeetingDate());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Risk risk = editPersonDescriptor.getRisk().orElse(portfolio.getRisk());
-        if (editPersonDescriptor.getPlans().isPresent()) {
-            //if want to continue adding plans without overriding
-            //plans.addAll(portfolio.getPlans());
-            plans.addAll(editPersonDescriptor.getPlans().get());
-        } else {
-            plans = portfolio.getPlans();
-        }
+        Set<Tag> updatedTags = Stream.of(editPersonDescriptor.getTags().orElse(new HashSet<>()), personToEdit.getTags())
+            .flatMap(Collection::stream)
+            .collect(Collectors.toSet());
+        Risk updatedRisk = editPersonDescriptor.getRisk().orElse(portfolio.getRisk());
+        Set<Plan> updatedPlans = Stream
+            .of(editPersonDescriptor.getPlans().orElse(new HashSet<>()), personToEdit.getPortfolio().getPlans())
+            .flatMap(Collection::stream)
+            .collect(Collectors.toSet());
 
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
-                updatedMeetingDate, updatedTags, risk, plans);
+            updatedMeetingDate, updatedTags, updatedRisk, updatedPlans);
     }
 
     @Override
@@ -143,7 +144,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+            && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
@@ -161,7 +162,8 @@ public class EditCommand extends Command {
         private Risk risk;
         private Set<Plan> plans;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -283,14 +285,14 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getIncome().equals(e.getIncome())
-                    && getMeetingDate().equals(e.getMeetingDate())
-                    && getTags().equals(e.getTags())
-                    && getRisk().equals(e.getRisk())
-                    && getPlans().equals(e.getPlans());
+                && getPhone().equals(e.getPhone())
+                && getEmail().equals(e.getEmail())
+                && getAddress().equals(e.getAddress())
+                && getIncome().equals(e.getIncome())
+                && getMeetingDate().equals(e.getMeetingDate())
+                && getTags().equals(e.getTags())
+                && getRisk().equals(e.getRisk())
+                && getPlans().equals(e.getPlans());
         }
     }
 }
