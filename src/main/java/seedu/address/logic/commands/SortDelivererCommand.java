@@ -36,4 +36,16 @@ public class SortDelivererCommand extends SortCommand {
         model.sortDeliverer(comparator);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (!(object instanceof SortDelivererCommand)) {
+            return false;
+        }
+
+        return comparator.equals(((SortDelivererCommand) object).comparator);
+    }
 }
