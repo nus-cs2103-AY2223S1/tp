@@ -114,6 +114,8 @@ public class LogicManager implements Logic {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             setActiveAddressBook(latestBook, initialData);
             model.setStoredIndex(allBooks.length - 1);
+            model.setAddressBookFilePath(latestBook);
+            storage.saveAddressBook(initialData);
         }
         return result;
     }

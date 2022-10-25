@@ -182,6 +182,8 @@ public class MainWindow extends UiPart<Stage> {
         try {
             if (!logic.addAddressBook()) {
                 resultDisplay.setFeedbackToUser("Maximum amount of address book created");
+            } else {
+                refreshStatusBar();
             }
         } catch (IOException | DataConversionException e) {
             resultDisplay.setFeedbackToUser("Sorry! Error creating File");
