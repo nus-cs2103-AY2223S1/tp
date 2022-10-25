@@ -20,21 +20,37 @@ public class CommandResult {
     /** Filter transactions. */
     private final boolean filterTransactions;
 
+    /** Sort transactions. */
+    private final boolean sortTransactions;
+
     /**
      * Constructs a {@code CommandResult} with all the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean filterTransactions,
+                         boolean sortTransactions) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showUserGuide = showUserGuide;
+        this.exit = exit;
+        this.filterTransactions = filterTransactions;
+        this.sortTransactions = sortTransactions;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with 4 specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit, boolean filterTransactions) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showUserGuide = showUserGuide;
         this.exit = exit;
         this.filterTransactions = filterTransactions;
+        this.sortTransactions = false;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified 3 fields.
      */
     public CommandResult(String feedbackToUser, boolean showUserGuide, boolean exit) {
-        this(feedbackToUser, showUserGuide, exit, false);
+        this(feedbackToUser, showUserGuide, exit, false, false);
     }
 
     /**
@@ -64,6 +80,10 @@ public class CommandResult {
     @Override
     public String toString() {
         return feedbackToUser;
+    }
+
+    public boolean isSortTransactions() {
+        return sortTransactions;
     }
 
     @Override

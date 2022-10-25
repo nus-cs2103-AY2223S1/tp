@@ -232,4 +232,12 @@ public class Client implements ReadOnlyClient {
         return transactions.getBuyTransactionList();
     }
 
+    public ObservableList<Transaction> getSortOldestTransaction() {
+        return transactions.getOldestTransactionList();
+    }
+
+    public ObservableList<Transaction> getSortLatestTransaction() {
+        return transactions.getLatestTransactionList();
+    }
+
 }

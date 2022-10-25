@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.LogicManager;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -217,7 +218,7 @@ public class MainWindow extends UiPart<Stage> {
      * Handles changes to the UI whenever the filtered command is executed.
      */
     private void handleFilterTransaction(CommandResult result) {
-        ObservableList<Client> clientList = logic.getFilteredClientList();
+        ObservableList<Client> clientList = LogicManager.getFilteredClientList();
         companyListPanel.setCompanyList(FXCollections.observableArrayList());
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         Iterator<Client> itr = clientList.listIterator();
@@ -232,9 +233,32 @@ public class MainWindow extends UiPart<Stage> {
         transactionListPanel.setTransactionList(transactions);
     }
 
+    private void handleSortTransaction(CommandResult result) {
+        ObservableList<Client> clientList = logic.getFilteredClientList();
+        companyListPanel.setCompanyList(FXCollections.observableArrayList());
+        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+        Client client = clientList.get(getIndex(result));
+            if (isOldestSort(result)) {
+                transactions.addAll(client.getSortOldestTransaction());
+            } else {
+                transactions.addAll(client.getSortLatestTransaction());
+            }
+        transactionListPanel.setTransactionList(transactions);
+    }
+
     private boolean isBuyFilter(CommandResult result) {
         String output = result.toString();
         return (output.contains("buy"));
+    }
+
+    private boolean isOldestSort(CommandResult result) {
+        String output = result.toString();
+        return (output.contains("oldest"));
+    }
+
+    private int getIndex(CommandResult result) {
+        String[] output = result.toString().split("index ");
+        return output[1].charAt(0) - '1';
     }
 
     /**
@@ -260,6 +284,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleFilterTransaction(commandResult);
             } else {
                 handleClientDetailsUpdate(commandResult);
+            }
+
+            if (commandResult.isSortTransactions()) {
+                handleSortTransaction(commandResult);
             }
 
             return commandResult;

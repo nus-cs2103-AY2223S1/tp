@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,9 @@ import seedu.address.model.client.Client;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Transaction> PREDICATE_SHOW_ALL_TRANSACTION_SPECIFIED_CLIENT = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,4 +93,13 @@ public interface Model {
      * Updates the total transaction of the filtered client list.
      */
     double calculateTotalTransaction(ObservableList<Client> filteredClientList);
+
+    /** Returns an unmodifiable view of the sorted transaction list */
+    ObservableList<Transaction> getSortedTransactionList();
+
+    /**
+     * Updates the filter of the sorted transaction list to sort by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSortedTransactionList(Predicate<Transaction> predicate);
 }
