@@ -154,6 +154,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+* [Add feature](#add-internship-feature)
+* [Find feature](#find-internships-from-company)
+* [Filter feature](#filter-by-applicationstatus-feature)
+* [Mark feature](#mark-internship-feature)
+* [Sort feature](#sort-internships-feature)
+
 ### Add `Internship` feature
 
 #### Implementation
@@ -243,7 +249,34 @@ The following activity diagram summarizes what happens when a user executes a ma
     - Pros: Allow easy filtering by `ApplicationStatus`
     - Cons: Fixed variation of `applicationStatus`
 
+### Sort `Internships` feature
+	
+#### Implementation
 
+`ModelManager` provides a `FilteredList` that is stored as an `ObservableList`.
+`InternshipListPanel` stores this `ObservableList` to display the list of internship applications to the user.
+- In order to sort the list of applications, we wrap the `FilteredList` as a `SortedList` in `ModelManager` 
+before returning it as the `ObservableList`.
+- This allows ModelManager to accept a `Comparator` using the method `updateSortedInternshipList` 
+and update the `Comparator` of the `SortedList`.
+- The `SortedList` will then be sorted according to the `Comparator` provided and the `ObservableList` will display the 
+internship applications in the sorted order.
+
+The following sequence diagram illustrates how the list is updated when the user enters the `sort applied` command:
+
+<img src="images/SortSequenceDiagram.png" width="350" />
+
+
+#### Design Considerations
+	
+- **Storing the list of internship applications:**
+    - **Alternative 1:** Update the stored internship list according to the sort criteria
+        - Pros: Easily view in sorted order without having to re-type sort command
+        - Cons: Not able to view original order once sorted
+    - **Alternative 2 (current choice):** Maintain the stored list according to the order it was added by user
+        - Pros: Allow user to view internship applications in the original order it was added 
+        - Cons: Have to re-enter the sort command when the reopens the application
+- Display internships in a reverse chronological order to easily refer to recent applications
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
