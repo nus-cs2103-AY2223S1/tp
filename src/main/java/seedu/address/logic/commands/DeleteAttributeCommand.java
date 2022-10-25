@@ -27,7 +27,7 @@ import seedu.address.ui.MainPanelName;
 public class DeleteAttributeCommand extends Command{
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_DELETE_SUCCESS = "Contact Attribute successfully deleted";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a person's Contacts. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a person's specified contact. "
     + "Parameters: "
     + PREFIX_EMAIL + "EMAIL "
     + PREFIX_PHONE + "PHONE "
