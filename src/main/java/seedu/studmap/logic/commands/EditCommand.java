@@ -139,7 +139,8 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email,
+                    id, gitName, handle, address, tags);
         }
 
         public Optional<Name> getName() {
@@ -233,6 +234,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getId().equals(e.getId())
+                    && getGitName().equals(e.getGitName())
+                    && getHandle().equals(e.getHandle())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
@@ -245,6 +249,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             studentData.setName(getName().orElse(studentToEdit.getName()));
             studentData.setPhone(getPhone().orElse(studentToEdit.getPhone()));
             studentData.setEmail(getEmail().orElse(studentToEdit.getEmail()));
+            studentData.setId(getId().orElse(studentToEdit.getId()));
+            studentData.setGitUser(getGitName().orElse(studentToEdit.getGitName()));
+            studentData.setTeleHandle(getHandle().orElse(studentToEdit.getTeleHandle()));
             studentData.setAddress(getAddress().orElse(studentToEdit.getAddress()));
             studentData.setTags(getTags().orElse(studentToEdit.getTags()));
 
@@ -253,7 +260,8 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
         @Override
         public boolean hasEdits() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email,
+                    id, gitName, handle, address, tags);
         }
     }
 }

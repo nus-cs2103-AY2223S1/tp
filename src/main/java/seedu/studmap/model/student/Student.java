@@ -130,6 +130,9 @@ public class Student {
         studentData.setName(this.getName());
         studentData.setPhone(this.getPhone());
         studentData.setEmail(this.getEmail());
+        studentData.setId(this.getId());
+        studentData.setGitUser(this.getGitName());
+        studentData.setTeleHandle(this.getTeleHandle());
         studentData.setAddress(this.getAddress());
 
         studentData.setTags(new HashSet<>(this.getTags()));
@@ -189,7 +192,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, gitName, teleHandle, name, phone, email, address, tags, attendances);
+        return Objects.hash(name, phone, email, id, gitName, teleHandle, address, tags, attendances);
     }
 
     @Override
