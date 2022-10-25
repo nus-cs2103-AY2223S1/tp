@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -159,6 +160,21 @@ public class TaAssist implements ReadOnlyTaAssist {
         setStudents(updatedStudents);
     }
 
+
+    /**
+     * Removes the {@code session} from the {@code moduleClass}
+     * as well as all students in the {@code moduleClass}.
+     * {@code moduleClass} must exist in TA-Assist.
+     */
+    public void removeSession(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
+        List<Student> updatedStudents = students.asUnmodifiableObservableList().stream()
+                .map(student -> student.removeSession(moduleClass, session))
+                .collect(Collectors.toList());
+        setStudents(updatedStudents);
+        setModuleClass(moduleClass, moduleClass.removeSession(session));
+    }
+
     //// util methods
 
     @Override
@@ -189,4 +205,5 @@ public class TaAssist implements ReadOnlyTaAssist {
     public int hashCode() {
         return students.hashCode();
     }
+
 }

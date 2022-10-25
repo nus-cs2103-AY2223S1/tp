@@ -2,12 +2,14 @@ package seedu.taassist.model;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -64,7 +66,7 @@ public interface Model {
      * Deletes the given student.
      * The student must exist in TA-Assist.
      */
-    void deleteStudent(Student target);
+    void removeStudent(Student target);
 
     /**
      * Adds the given student.
@@ -104,7 +106,7 @@ public interface Model {
      * Deletes the given class.
      * The class must exist in TA-Assist.
      */
-    void deleteModuleClass(ModuleClass moduleClass);
+    void removeModuleClass(ModuleClass moduleClass);
 
     /**
      * Replaces the module class {@code target} in the list with {@code editedModuleClass}.
@@ -117,7 +119,17 @@ public interface Model {
      * Deletes multiple classes.
      * The classes must exist in TA-Assist.
      */
-    void deleteModuleClasses(Collection<ModuleClass> moduleClasses);
+    void removeModuleClasses(Collection<ModuleClass> moduleClasses);
+
+    /**
+     * Removes the specified {@code session} from the specified {@code moduleClass}.
+     */
+    void removeSession(ModuleClass moduleClass, Session session);
+
+    /**
+     * Removes the specified {@code sessions} from the specified {@code moduleClass}.
+     */
+    void removeSession(ModuleClass moduleClass, Set<Session> sessions);
 
     /**
      * Adds the given class.
@@ -141,4 +153,5 @@ public interface Model {
     ModuleClass getFocusedClass();
 
     SimpleStringProperty getFocusLabelProperty();
+
 }

@@ -71,6 +71,15 @@ public class ModuleClass implements Identity<ModuleClass> {
     }
 
     /**
+     * Returns a new {@code ModuleClass} by removing the {@code session}.
+     */
+    public ModuleClass removeSession(Session session) {
+        List<Session> newSessions = new ArrayList<>(sessions);
+        newSessions.remove(session);
+        return new ModuleClass(className, newSessions);
+    }
+
+    /**
      * Returns true if both modules have the same name and session list.
      * This defines a stronger notion of equality between two module classes.
      *
@@ -113,4 +122,5 @@ public class ModuleClass implements Identity<ModuleClass> {
     public String toString() {
         return '[' + className + ']';
     }
+
 }

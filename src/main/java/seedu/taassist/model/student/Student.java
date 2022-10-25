@@ -97,6 +97,16 @@ public class Student implements Identity<Student> {
     }
 
     /**
+     * Returns a new student by removing the data for the given {@code session} in {@code moduleClass}
+     */
+    public Student removeSession(ModuleClass moduleClass, Session session) {
+        List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
+            .map(d -> d.getModuleClass().isSame(moduleClass) ? d.removeSession(session) : d)
+            .collect(Collectors.toList());
+        return new Student(name, phone, email, address, updatedModuleData);
+    }
+
+    /**
      * Returns a new student by updating this student's grade for the
      * given {@code session} in {@code moduleClass}.
      */

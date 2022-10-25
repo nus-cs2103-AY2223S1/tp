@@ -34,7 +34,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
-        expectedModel.deleteStudent(studentToDelete);
+        expectedModel.removeStudent(studentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -57,7 +57,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         Model expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
-        expectedModel.deleteStudent(studentToDelete);
+        expectedModel.removeStudent(studentToDelete);
         showNoStudent(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

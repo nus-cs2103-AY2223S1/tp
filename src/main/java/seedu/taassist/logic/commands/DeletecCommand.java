@@ -46,7 +46,7 @@ public class DeletecCommand extends Command {
                     model.getModuleClassList()));
         }
 
-        model.deleteModuleClasses(moduleClasses);
+        model.removeModuleClasses(moduleClasses);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClasses));
     }
 
