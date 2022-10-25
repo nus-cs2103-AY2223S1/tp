@@ -22,6 +22,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -212,6 +214,49 @@ public class ParserUtil {
         } else {
             return new MeetingDate(null);
         }
+    }
+
+    /**
+     * Parses a {@code String risk} into an {@code Risk}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Risk can be null.
+     * @throws ParseException if the given {@code risk} is invalid.
+     */
+    public static Risk parseRisk(String risk) throws ParseException {
+        if (risk != null) {
+            String trimmedRisk = risk.trim();
+            if (!Risk.isValidRisk(risk)) {
+                throw new ParseException(Risk.MESSAGE_CONSTRAINTS);
+            }
+            return new Risk(trimmedRisk);
+        } else {
+            return new Risk(null);
+        }
+    }
+
+    /**
+     * Parses a {@code String plan} into an {@code Plan}.
+     * Plan can be null.
+     * @throws ParseException if the given {@code plan} is invalid.
+     */
+    public static Plan parsePlan(String plan) throws ParseException {
+        requireNonNull(plan);
+        if (!Plan.isValidPlan(plan)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Plan(plan);
+    }
+
+    /**
+     * Parses {@code Collection<String> Plans} into a {@code Set<Plan>}.
+     */
+    public static Set<Plan> parsePlans(Collection<String> plans) throws ParseException {
+        requireNonNull(plans);
+        final Set<Plan> planSet = new HashSet<>();
+        for (String planName : plans) {
+            planSet.add(parsePlan(planName));
+        }
+        return planSet;
     }
 
     /**

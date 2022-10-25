@@ -18,6 +18,6 @@ public class LockCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_LOCK_MESSAGE, false, false, true);
+        return new CommandResult(SHOWING_LOCK_MESSAGE, false, false, true, 0);
     }
 }

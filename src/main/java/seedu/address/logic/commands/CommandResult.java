@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+
 /**
  * Represents the result of a command execution.
  */
@@ -27,20 +28,26 @@ public class CommandResult {
     private final boolean lock;
 
     /**
+     * The index of client when viewing portfolio.
+     */
+    private final int index;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean lock) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean lock, int index) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.lock = lock;
+        this.index = index;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false);
+        this(feedbackToUser, showHelp, exit, false, 0);
     }
 
     /**
@@ -48,7 +55,19 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, 0);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code index},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, int index) {
+        this(feedbackToUser, false, false, false, index);
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     public String getFeedbackToUser() {
