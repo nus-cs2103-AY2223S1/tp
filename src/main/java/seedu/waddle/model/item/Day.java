@@ -14,7 +14,7 @@ public class Day {
     private final Comparator<Item> startTimeComparator = new Comparator<Item>() {
         @Override
         public int compare(Item item1, Item item2) {
-            return item1.getStartTime().get().compareTo(item2.getStartTime().get());
+            return item1.getStartTime().compareTo(item2.getStartTime());
         }
     };
     private final int dayNumber;
@@ -90,11 +90,11 @@ public class Day {
             // same start time
             boolean sameStartTime = item.getStartTime().equals(newItem.getStartTime());
             // start time of new item is within the duration of a preceding item
-            boolean startTimeConflict = newItem.getStartTime().get().isAfter(item.getStartTime().get())
-                && newItem.getStartTime().get().isBefore(item.getEndTime().get());
+            boolean startTimeConflict = newItem.getStartTime().isAfter(item.getStartTime())
+                && newItem.getStartTime().isBefore(item.getEndTime());
             // end time of new item eats into a proceeding item
-            boolean endTimeConflict = newItem.getEndTime().get().isAfter(item.getStartTime().get())
-                    && newItem.getEndTime().get().isBefore(item.getEndTime().get());
+            boolean endTimeConflict = newItem.getEndTime().isAfter(item.getStartTime())
+                    && newItem.getEndTime().isBefore(item.getEndTime());
 
 
             if (sameStartTime || startTimeConflict || endTimeConflict) {

@@ -3,7 +3,6 @@ package seedu.waddle.model.item;
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
-import java.util.Optional;
 
 /**
  * Represents an item in the itinerary.
@@ -45,27 +44,27 @@ public class Item {
         return duration;
     }
 
-    public Optional<LocalTime> getStartTime() {
-        return Optional.ofNullable(this.startTime);
+    public LocalTime getStartTime() {
+        return this.startTime;
     }
 
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Optional<LocalTime> getEndTime() {
-        return Optional.ofNullable(this.startTime.plusMinutes(this.duration.getDuration()));
+    public LocalTime getEndTime() {
+        return this.startTime.plusMinutes(this.duration.getDuration());
     }
 
-    public Optional<String> getTimeString() {
+    public String getTimeString() {
         if (this.startTime != null) {
             if (this.duration != null) {
-                return Optional.of(this.startTime + " - " + getEndTime().get());
+                return this.startTime + " - " + getEndTime();
             } else {
-                return Optional.of(this.startTime.toString());
+                return this.startTime.toString();
             }
         }
-        return Optional.empty();
+        return "(Not planned)";
     }
 
     public void resetStartTime() {
