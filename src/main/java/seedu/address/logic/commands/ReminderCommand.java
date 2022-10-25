@@ -18,7 +18,7 @@ public class ReminderCommand extends Command {
     public static final String COMMAND_WORD = "remind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a reminder for a given contact\n"
-            + "Example: " + COMMAND_WORD + "1 r/update client information d/20-10-2022";
+            + "Example: " + COMMAND_WORD + " 1 r/update client information d/20-10-2022";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder to Person: %1$s";
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Removed reminder from Person: %1$s";
@@ -46,6 +46,7 @@ public class ReminderCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         personToEdit.getReminders().add(reminder);
+        model.addReminder(personToEdit, reminder);
 
         return new CommandResult(generateSuccessMessage(personToEdit));
     }

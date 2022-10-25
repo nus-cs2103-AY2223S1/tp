@@ -1,12 +1,7 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -30,37 +25,10 @@ public class ReminderListPanel extends UiPart<Region> {
     /**
      * Creates a {@code ReminderListPanel} with the given {@code ObservableList}.
      */
-    public ReminderListPanel(ObservableList<Person> personList) {
+    public ReminderListPanel(SortedList<Pair<Person, Reminder>> personList) {
         super(FXML);
-        SortedList<Pair<Person, Reminder>> sorted = sort(personList);
-        reminderListView.setItems(sorted);
+        reminderListView.setItems(personList);
         reminderListView.setCellFactory(listView -> new ReminderListViewCell());
-    }
-
-    /**
-     * Updates the items in the {@code ReminderListPanel} with the given {@code ObservableList}.
-     */
-    public void updateItems(ObservableList<Person> personList) {
-        SortedList<Pair<Person, Reminder>> sorted = sort(personList);
-        reminderListView.setItems(sorted);
-    }
-
-    /**
-     * Sorts the {@code ObservableList} and returns a {@code SortedList}
-     * @param personList The {@code ObservableList} to be sorted
-     * @return The sorted {@code SortedList}
-     */
-    private SortedList<Pair<Person, Reminder>> sort(ObservableList<Person> personList) {
-        ArrayList<Pair<Person, Reminder>> total = new ArrayList<>();
-        for (Person person : personList) {
-            total.addAll(person.getReminders().stream().map(reminder -> new Pair<Person, Reminder>(
-                    person, reminder
-            )).collect(Collectors.toList()));
-        }
-        SortedList<Pair<Person, Reminder>> sorted = new SortedList<>(FXCollections.observableArrayList(total));
-        sorted.setComparator(Comparator.comparing(x -> x.getKey().getName().fullName));
-        sorted.setComparator(Comparator.comparing(x -> x.getValue().date));
-        return sorted;
     }
 
     /**

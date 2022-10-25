@@ -24,6 +24,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String DATE_FORMAT_PATTERN = "d-MM-yyyy";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -105,7 +107,7 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+        if (!Birthday.isValidDate(trimmedBirthday)) {
             throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
         return new Birthday(trimmedBirthday);
@@ -139,7 +141,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String reminder} into an {@code Reminder}.
+     * Parses a {@code String reminder} into an {@code Set<Reminder>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
