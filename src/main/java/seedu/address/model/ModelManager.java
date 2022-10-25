@@ -24,9 +24,11 @@ import seedu.address.model.util.NextSessionUtil;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
     private ObservableList<TimeSlot> timeSlots;
     private boolean isDayView;
     private boolean isFullView;

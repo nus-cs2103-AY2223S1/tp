@@ -20,6 +20,7 @@ import seedu.address.model.person.Session;
  */
 public class NextSessionUtil {
     public static final String MESSAGE_NO_NEXT_SESSION_FOUND = "No next Session timing!";
+
     private final Session timeNowSession;
     private final ArrayList<Session> toSortList;
     private final HashMap<Session, Person> sessionPersonHashMap;
