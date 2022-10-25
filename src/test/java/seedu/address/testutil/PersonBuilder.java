@@ -48,7 +48,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        address = personToCopy.getAddress();
+        address = personToCopy.getAddress().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
         contacts = new HashMap<>(personToCopy.getContacts());
         role = personToCopy.getRole().orElse(null);
@@ -75,7 +75,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = address != null ? new Address(address) : null;
         return this;
     }
 
@@ -91,7 +91,7 @@ public class PersonBuilder {
      * Sets the {@code Role} of the {@code Person} that we are building
      */
     public PersonBuilder withRole(String role) {
-        this.role = new Role(role);
+        this.role = role != null ? new Role(role) : null;
         return this;
     }
 
@@ -99,7 +99,7 @@ public class PersonBuilder {
      * Sets the {@code Role} of the {@code Person} that we are building
      */
     public PersonBuilder withTimezone(String timezone) {
-        this.timezone = new Timezone(timezone);
+        this.timezone = timezone != null ? new Timezone(timezone) : null;
         return this;
     }
 

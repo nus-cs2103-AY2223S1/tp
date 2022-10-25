@@ -3,19 +3,24 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -91,6 +96,31 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getSortedFilteredPersonList_listIsSorted() {
+        modelManager.updateSortedFilteredPersonList(Person::compareTo);
+        modelManager.addPerson(CARL);
+        modelManager.addPerson(BENSON);
+        modelManager.addPerson(ALICE);
+        assertSorted(modelManager.getSortedFilteredPersonList());
+    }
+
+    private void assertSorted(ObservableList<Person> list) {
+        Iterator<Person> iterator = list.iterator();
+        Person prev = null;
+        while (iterator.hasNext()) {
+            if (prev == null) {
+                prev = iterator.next();
+                continue;
+            }
+
+            Person current = iterator.next();
+            if (current.getName().compareTo(prev.getName()) < 0) {
+                fail("List is not sorted.");
+            }
+        }
     }
 
     @Test
