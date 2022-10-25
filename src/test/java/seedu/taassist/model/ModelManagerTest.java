@@ -7,10 +7,12 @@ import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.BENSON;
+import static seedu.taassist.testutil.TypicalStudents.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -91,6 +93,38 @@ public class ModelManagerTest {
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void setFilteredListPredicate_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setFilteredListPredicate(null));
+    }
+
+    @Test
+    public void setFilteredListPredicate_validPredicate_setsFilteredListPredicate() {
+        modelManager.addStudent(ALICE);
+        modelManager.addStudent(BENSON);
+        modelManager.setFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("A")));
+        assertEquals(List.of(ALICE), modelManager.getFilteredStudentList());
+    }
+
+    @Test
+    public void andFilteredListPredicate_noPreviousPredicate_setsFilteredListPredicate() {
+        modelManager.addStudent(ALICE);
+        modelManager.addStudent(BENSON);
+        modelManager.andFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("A")));
+        assertEquals(List.of(ALICE), modelManager.getFilteredStudentList());
+    }
+
+    @Test
+    public void andFilteredListPredicate_hasPreviousPredicate_setsFilteredListPredicate() {
+        modelManager.addStudent(ALICE);
+        modelManager.addStudent(BENSON);
+        modelManager.addStudent(CARL);
+        modelManager.setFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("A")));
+        assertEquals(List.of(ALICE, CARL), modelManager.getFilteredStudentList());
+        modelManager.andFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("R")));
+        assertEquals(List.of(CARL), modelManager.getFilteredStudentList());
     }
 
     @Test
