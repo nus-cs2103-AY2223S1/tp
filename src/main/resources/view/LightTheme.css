@@ -13,6 +13,7 @@
     -fx-font-size: 11pt;
     -fx-text-fill: black;
     -fx-opacity: 1;
+    -fx-font-family: "Courier New";
 }
 
 .label-bright-padding {
@@ -20,6 +21,8 @@
     -fx-text-fill: black;
     -fx-opacity: 1;
     -fx-padding: 0 0 10 0;
+    -fx-font-family: "Courier New";
+    -fx-font-weight: bold;
 }
 
 .label-header {
@@ -30,7 +33,7 @@
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Courier New";
 }
 
 .tab-pane {
@@ -70,7 +73,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Courier New";
     -fx-text-fill: black;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -116,7 +119,8 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Courier New";
+    -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
@@ -124,6 +128,7 @@
 .cell_small_label {
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+    -fx-font-family: "Courier New";
 }
 
 .stack-pane {
@@ -143,7 +148,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Courier New";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -153,7 +158,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Courier New";
     -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -193,7 +198,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Courier New";
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
@@ -213,7 +218,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #F7ECDE;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Courier New", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -320,7 +325,7 @@
     -fx-border-color: #54BAB9 #54BAB9 #54BAB9 #54BAB9;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Courier";
+    -fx-font-family: "Courier New";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -347,3 +352,23 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#linkCardPane {
+    -fx-background-color: #F7ECDE;
+    -fx-padding: 1 3 1 3;
+}
+
+#linkName {
+    -fx-font-size: 16px;
+    -fx-font-family: "Courier New";
+}
+.hyperlink {
+    -fx-border-color: transparent;
+    -fx-padding: 4 0 4 0;
+    -fx-text-fill: blue;
+}
+
+.hyperlink:hover {
+    -fx-underline: true;
+}
+
