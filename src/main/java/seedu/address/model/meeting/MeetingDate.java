@@ -14,8 +14,8 @@ import java.util.Locale;
  */
 public class MeetingDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in the form of dd MMM yyyy [HH:mm]. " +
-            "Meeting time is optional";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be in the form of dd MMM yyyy [HH:mm]. "
+            + "Meeting time is optional";
 
     public final String value;
 
