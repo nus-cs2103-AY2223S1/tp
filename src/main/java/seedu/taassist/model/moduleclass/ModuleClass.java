@@ -95,7 +95,7 @@ public class ModuleClass implements Identity<ModuleClass> {
     @Override
     public boolean isSame(ModuleClass otherModule) {
         return otherModule == this
-            || (otherModule != null && otherModule.className.equals(this.className));
+                || (otherModule != null && otherModule.className.equals(this.className));
     }
 
     public boolean hasSession(Session toCheck) {

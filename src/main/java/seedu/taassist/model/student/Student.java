@@ -108,12 +108,8 @@ public class Student implements Identity<Student> {
      */
     @Override
     public boolean isSame(Student otherStudent) {
-        if (otherStudent == this) {
-            return true;
-        }
-
-        return otherStudent != null
-                && otherStudent.getName().equals(getName());
+        return otherStudent == this
+                || (otherStudent != null && otherStudent.getName().equals(getName()));
     }
 
     /**
