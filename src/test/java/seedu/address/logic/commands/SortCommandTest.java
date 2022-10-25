@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -37,8 +38,8 @@ public class SortCommandTest {
         SortByAppointment sortByAppointment = new SortByAppointment("asc");
         int result = sortByAppointment.compare(MUSAB_WITH_NO_APPT, ELLE);
         int result2 = sortByAppointment.compare(MUSAB_WITH_NO_APPT, AMY);
-        assertTrue(result == 1);
-        assertTrue(result2 == 0);
+        assertEquals(1, result);
+        assertEquals(0, result2);
     }
 
     @Test
