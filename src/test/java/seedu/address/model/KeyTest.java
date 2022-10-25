@@ -28,11 +28,14 @@ public class KeyTest {
     public void isKeyNameCorrect() {
         assertEquals(Key.TAG.toString(), "Tag");
         assertEquals(Key.PATIENT.toString(), "Patient");
+        assertEquals(Key.MARK.toString(), "Mark");
     }
 
     @Test
     public void isKeyConversionCorrect() {
         assertThrows(IllegalArgumentException.class, () -> Key.convertToKey("Date"));
         assertEquals(Key.convertToKey("Tag"), Key.TAG);
+        assertEquals(Key.convertToKey("p"), Key.PATIENT);
+        assertEquals(Key.convertToKey("m"), Key.MARK);
     }
 }

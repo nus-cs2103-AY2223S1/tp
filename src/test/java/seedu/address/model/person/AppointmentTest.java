@@ -54,7 +54,10 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 = 2019-12-10 16:30
-        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_BENSON), 0);
+        // BENSON < CARL
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        SECOND_APPOINTMENT_CARL.setPatient(CARL);
+        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), -1);
 
         // 2019-12-10 16:30 > 2010-12-31 23:45
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
@@ -69,7 +72,10 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 = 2019-12-10 16:30
-        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_BENSON), 0);
+        // CARL > BENSON
+        APPOINTMENT_BENSON.setPatient(CARL);
+        SECOND_APPOINTMENT_CARL.setPatient(BENSON);
+        assertEquals(SECOND_APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 > 2010-12-31 23:45
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
@@ -87,6 +93,7 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // APPOINTMENT_BENSON == APPOINTMENT_BENSON
+        APPOINTMENT_BENSON.setPatient(BENSON);
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_BENSON), 0);
 
         // APPOINTMENT_BENSON > APPOINTMENT_DAVID

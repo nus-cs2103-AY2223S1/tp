@@ -263,7 +263,9 @@ public class Appointment {
     public void setPatient(Person patient) {
         this.patient.set(patient);
     }
-
+    public int getMarked() {
+        return this.isMarked.get() ? 1 : 0;
+    }
     public Person getPatient() {
         return patient.get();
     }
@@ -352,12 +354,16 @@ public class Appointment {
     public int groupCompareTo(Appointment appointment, Key key) {
         int tagWeight = 10;
         int personWeight = 10;
+        int markWeight = 10;
         int dateWeight = 1;
         if (key.equals(Key.TAG)) {
             return tagWeight * (this.getGroupNumber() - appointment.getGroupNumber())
                     + dateWeight * this.compareTo(appointment);
-        } else {
+        } else if (key.equals(Key.PATIENT)) {
             return personWeight * this.getPatientName().compareTo(appointment.getPatientName())
+                    + dateWeight + this.compareTo(appointment);
+        } else {
+            return markWeight * Integer.compare(this.getMarked(), appointment.getMarked())
                     + dateWeight + this.compareTo(appointment);
         }
     }

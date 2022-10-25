@@ -40,6 +40,9 @@ public interface Model {
     /** {@code comparator} that group appointments by their patients */
     Comparator<Appointment> COMPARATOR_GROUP_PATIENT_APPOINTMENTS = (a1, a2) -> a1.groupCompareTo(a2, Key.PATIENT);
 
+    /** {@code comparator} that group appointments by their mark status */
+    Comparator<Appointment> COMPARATOR_GROUP_MARK_APPOINTMENTS = (a1, a2) -> a1.groupCompareTo(a2, Key.MARK);
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

@@ -19,6 +19,7 @@ public class GroupAppointmentCommandTest {
     private Model model;
     private Model expectedModel1;
     private Model expectedModel2;
+    private Model expectedModel3;
 
     @BeforeEach
     public void setUp() {
@@ -27,6 +28,8 @@ public class GroupAppointmentCommandTest {
         expectedModel1.updateAppointmentComparator(Model.COMPARATOR_GROUP_TAG_APPOINTMENTS);
         expectedModel2 = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel2.updateAppointmentComparator(Model.COMPARATOR_GROUP_PATIENT_APPOINTMENTS);
+        expectedModel3 = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel3.updateAppointmentComparator(Model.COMPARATOR_GROUP_MARK_APPOINTMENTS);
     }
 
     @Test
@@ -39,5 +42,9 @@ public class GroupAppointmentCommandTest {
                 new GroupAppointmentCommand(Key.PATIENT), model,
                 String.format(GroupAppointmentCommand.MESSAGE_SUCCESS_APPOINTMENTS, "patient"),
                 expectedModel2);
+        assertCommandSuccess(
+                new GroupAppointmentCommand(Key.MARK), model,
+                String.format(GroupAppointmentCommand.MESSAGE_SUCCESS_APPOINTMENTS, "mark"),
+                expectedModel3);
     }
 }

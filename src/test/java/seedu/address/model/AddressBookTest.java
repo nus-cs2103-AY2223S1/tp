@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EAR;
+import static seedu.address.model.Model.COMPARATOR_GROUP_MARK_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENTS;
 import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENT_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_GROUP_TAG_APPOINTMENTS;
@@ -12,6 +13,7 @@ import static seedu.address.model.Model.COMPARATOR_UNGROUP_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_UNGROUP_PATIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.getDefaultAppointments;
+import static seedu.address.testutil.TypicalAppointments.getGroupedAppointmentsByMark;
 import static seedu.address.testutil.TypicalAppointments.getGroupedAppointmentsByPatient;
 import static seedu.address.testutil.TypicalAppointments.getGroupedAppointmentsByTag;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -135,13 +137,20 @@ public class AddressBookTest {
     public void appointmentCompared() {
         addressBook.setAppointments(getDefaultAppointments());
         List<Appointment> ungrouped = getDefaultAppointments();
-        List<Appointment> groupedByTag = getGroupedAppointmentsByTag();
-        List<Appointment> groupedByPatient = getGroupedAppointmentsByPatient();
         assertEquals(addressBook.getAppointmentList(), ungrouped);
+
         addressBook.sortAppointments(COMPARATOR_GROUP_TAG_APPOINTMENTS);
+        List<Appointment> groupedByTag = getGroupedAppointmentsByTag();
         assertEquals(addressBook.getAppointmentList(), groupedByTag);
+
         addressBook.sortAppointments(COMPARATOR_GROUP_PATIENT_APPOINTMENTS);
+        List<Appointment> groupedByPatient = getGroupedAppointmentsByPatient();
         assertEquals(addressBook.getAppointmentList(), groupedByPatient);
+
+        addressBook.sortAppointments(COMPARATOR_GROUP_MARK_APPOINTMENTS);
+        List<Appointment> groupedByMark = getGroupedAppointmentsByMark();
+        assertEquals(addressBook.getAppointmentList(), groupedByMark);
+
         addressBook.sortAppointments(COMPARATOR_UNGROUP_APPOINTMENTS);
         assertEquals(addressBook.getAppointmentList(), ungrouped);
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY;
+import static seedu.address.model.Model.COMPARATOR_GROUP_MARK_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENT_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_GROUP_TAG_APPOINTMENTS;
 
@@ -18,7 +19,7 @@ public class GroupAppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS_APPOINTMENTS = "Grouped all appointments by %1$s.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + DESCRIPTOR_WORD
-            + ": Group all appointments by their tags or patients.\n"
+            + ": Group all appointments by their tags or patients or mark status.\n"
             + "Parameters: KEY (must be either \"tag\" or \"patient\") "
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " "
             + PREFIX_KEY + "tag ";
@@ -35,8 +36,10 @@ public class GroupAppointmentCommand extends Command {
         requireNonNull(model);
         if (this.key.equals(Key.TAG)) {
             model.updateAppointmentComparator(COMPARATOR_GROUP_TAG_APPOINTMENTS);
-        } else {
+        } else if (this.key.equals(Key.PATIENT)) {
             model.updateAppointmentComparator(COMPARATOR_GROUP_PATIENT_APPOINTMENTS);
+        } else {
+            model.updateAppointmentComparator(COMPARATOR_GROUP_MARK_APPOINTMENTS);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS_APPOINTMENTS, key.toString().toLowerCase()));
     }
