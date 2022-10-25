@@ -51,7 +51,10 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
         boolean isSelfPresent = isSelfAtStart || isSelfAtMiddle || isSelfAtEnd;
 
         if (isSelfAtMiddle) {
-            preamble = preamble.replaceAll(" 0 ", " ");
+            while (isSelfAtMiddle) {
+                preamble = preamble.replace(" 0 ", " ");
+                isSelfAtMiddle = preamble.contains(" 0 ");
+            }
         }
         if (isSelfAtStart) {
             preamble = preamble.substring(2);
@@ -63,6 +66,7 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
         Set<Index> nonSelfIndexList;
 
         try {
+            System.out.println(preamble);
             nonSelfIndexList = ParserUtil.parseIndices(preamble);
         } catch (ParseException pe) {
             logger.warning("Split Debt command Person index list has items that cannot be parsed to an Index");
