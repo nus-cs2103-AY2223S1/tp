@@ -115,10 +115,11 @@ public class CommandBox extends UiPart<Region> {
     private static class CommandRetriever {
         private final ArrayList<String> commandHistory;
         private int index;
+        private String currentCommand;
 
         public CommandRetriever() {
             commandHistory = new ArrayList<>();
-            commandHistory.add("");
+            currentCommand = "";
 
             index = 0;
         }
@@ -130,23 +131,18 @@ public class CommandBox extends UiPart<Region> {
          * @param command the user-inputted String of the successfully executed command.
          */
         public void addCommand(String command, TextField textField) {
-            addToCommandHistory(command);
-            initialiseForNextCommand();
+            commandHistory.add(command);
             textField.setText("");
 
-            index = commandHistory.size() - 1;
+            index = commandHistory.size();
         }
 
-        private void addToCommandHistory(String command) {
-            commandHistory.set(commandHistory.size() - 1, command);
+        private boolean isCurrentCommand() {
+            return index == commandHistory.size();
         }
 
-        private void initialiseForNextCommand() {
-            commandHistory.add("");
-        }
-
-        private boolean isMostRecentCommand() {
-            return index == commandHistory.size() - 1;
+        private boolean isMostRecentInCommandHistory() {
+            return commandHistory.size() > 0 && index == commandHistory.size() - 1;
         }
 
         private boolean noPreviousCommand() {
@@ -154,7 +150,15 @@ public class CommandBox extends UiPart<Region> {
         }
 
         private boolean noNextCommand() {
-            return index >= commandHistory.size() - 1;
+            return index >= commandHistory.size();
+        }
+
+        private void setCurrentCommand(String command) {
+            currentCommand = command;
+        }
+
+        private String getCurrentCommand() {
+            return currentCommand;
         }
 
         /**
@@ -166,8 +170,8 @@ public class CommandBox extends UiPart<Region> {
         public void getPreviousCommand(TextField textField) {
             if (noPreviousCommand()) {
                 return;
-            } else if (isMostRecentCommand()) {
-                addToCommandHistory(textField.getText());
+            } else if (isCurrentCommand()) {
+                setCurrentCommand(textField.getText());
             }
             textField.setText(commandHistory.get(--index));
         }
@@ -180,8 +184,11 @@ public class CommandBox extends UiPart<Region> {
         public void getNextCommand(TextField textField) {
             if (noNextCommand()) {
                 return;
+            } else if (isMostRecentInCommandHistory()) {
+                textField.setText(getCurrentCommand());
+            } else {
+                textField.setText(commandHistory.get(++index));
             }
-            textField.setText(commandHistory.get(++index));
         }
     }
 }
