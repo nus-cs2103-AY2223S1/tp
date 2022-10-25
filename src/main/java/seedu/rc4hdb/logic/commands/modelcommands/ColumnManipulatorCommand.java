@@ -5,6 +5,7 @@ import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
@@ -20,6 +21,8 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
 
     public static final String AT_LEAST_ONE_VISIBLE_COLUMN = "You must have at least one column visible at all times!";
 
+    public static final String INVALID_FIELDS_ENTERED = "Invalid column fields entered.";
+
     public static final String INVALID_SUBSET = "Please enter columns to show or hide "
             + "that are currently in the table view.\n"
             + "To display columns outside of the current view, use the reset command.\n";
@@ -30,8 +33,12 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
 
     public ColumnManipulatorCommand(List<String> fieldsToShow, List<String> fieldsToHide) {
         requireAllNonNull(fieldsToShow, fieldsToHide);
-        this.fieldsToShow = fieldsToShow;
-        this.fieldsToHide = fieldsToHide;
+
+        List<String> lowerCaseFieldsToShow = generateLowerCaseListFrom(fieldsToShow);
+        List<String> lowerCaseFieldsToHide = generateLowerCaseListFrom(fieldsToHide);
+
+        this.fieldsToShow = lowerCaseFieldsToShow;
+        this.fieldsToHide = lowerCaseFieldsToHide;
     }
 
     public static List<String> generateComplementListFrom(List<String> inputList) {
@@ -39,6 +46,20 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         List<String> complementList = new ArrayList<>(ALL_FIELDS);
         complementList.removeAll(inputList);
         return complementList;
+    }
+
+    public static void requireAllFieldsValid(List<String> fieldList) throws CommandException {
+        for (String field : fieldList) {
+            if (!ALL_FIELDS.contains(field.toLowerCase())) {
+                throw new CommandException(INVALID_FIELDS_ENTERED);
+            }
+        }
+    }
+
+    private static List<String> generateLowerCaseListFrom(List<String> inputList) {
+        return inputList.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -79,7 +100,8 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         }
     }
 
-    public static void requireValidList(Model model, List<String> inputList) throws CommandException {
+    public static void requireValidSubsetOfAlreadyVisibleFields(Model model,
+                                                                List<String> inputList) throws CommandException {
         if (!isValidSubsetOfAlreadyVisibleFields(model, inputList)) {
             throw new CommandException(INVALID_SUBSET);
         }

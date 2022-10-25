@@ -16,8 +16,9 @@ public class ListCommand extends ColumnManipulatorCommand {
     public static final String EXCLUDE_SPECIFIER = "/e";
 
     public ListCommand() {
-        super(ColumnManipulatorCommand.ALL_FIELDS, new ArrayList<>()); // very sus
+        super(ColumnManipulatorCommand.ALL_FIELDS, new ArrayList<>());
     }
+
     public ListCommand(List<String> fieldsToShow, List<String> fieldsToHide) {
         super(fieldsToShow, fieldsToHide);
     }
@@ -25,12 +26,20 @@ public class ListCommand extends ColumnManipulatorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireAtLeastOneVisibleColumn(this.fieldsToShow);
+
+        requireAllFieldsValid(fieldsToShow);
+        requireAllFieldsValid(fieldsToHide);
+
+        requireAtLeastOneVisibleColumn(fieldsToShow);
 
         model.updateFilteredResidentList(Model.PREDICATE_SHOW_ALL_RESIDENTS);
         model.setVisibleFields(fieldsToShow);
         model.setHiddenFields(fieldsToHide);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE));
+        if (fieldsToShow.equals(ColumnManipulatorCommand.ALL_FIELDS)) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, COMMAND_PAST_TENSE));
+        } else {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE));
+        }
     }
 }

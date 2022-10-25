@@ -19,7 +19,11 @@ public class HideOnlyCommand extends ColumnManipulatorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireValidList(model, fieldsToHide);
+
+        requireAllFieldsValid(fieldsToShow);
+        requireAllFieldsValid(fieldsToHide);
+
+        requireValidSubsetOfAlreadyVisibleFields(model, fieldsToHide);
 
         List<String> updatedFieldsToHide = getUnionOfFieldsToHideAndAlreadyHiddenFields(model, fieldsToHide);
         List<String> updatedFieldsToShow = generateComplementListFrom(updatedFieldsToHide);

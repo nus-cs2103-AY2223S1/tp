@@ -13,10 +13,6 @@ public class ShowOnlyCommand extends ColumnManipulatorCommand {
     public static final String COMMAND_PAST_TENSE = "shown only";
     public static final String COMMAND_PRESENT_TENSE = "show";
 
-    public ShowOnlyCommand() {
-        super(ColumnManipulatorCommand.ALL_FIELDS, new ArrayList<>()); // very sus
-    }
-
     public ShowOnlyCommand(List<String> fieldsToShow, List<String> fieldsToHide) {
         super(fieldsToShow, fieldsToHide);
     }
@@ -24,7 +20,11 @@ public class ShowOnlyCommand extends ColumnManipulatorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireValidList(model, fieldsToShow);
+
+        requireAllFieldsValid(fieldsToShow);
+        requireAllFieldsValid(fieldsToHide);
+
+        requireValidSubsetOfAlreadyVisibleFields(model, fieldsToShow);
         requireAtLeastOneVisibleColumn(fieldsToShow);
 
         model.setVisibleFields(fieldsToShow);
