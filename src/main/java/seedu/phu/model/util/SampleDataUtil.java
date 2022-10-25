@@ -25,7 +25,7 @@ public class SampleDataUtil {
         return new Internship[] {
             new Internship(new Name("Google"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Remark("Technical Interview (3 Questions - 2 Medium, 1 Hard)"),
-                new Position("Backend Intern"), new ApplicationProcess("Apply"), new Date("20-10-2022"),
+                new Position("Backend Intern"), new ApplicationProcess("Applied"), new Date("20-10-2022"),
                 new Website("https://careers.google.com/"), getTagSet("Golang", "Summer")),
             new Internship(new Name("TikTok"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Remark("One Raffles Quay, Level 26 South Tower, Singapore 048583"), new Position("Frontend Intern"),

@@ -329,7 +329,75 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
-  
+
+
+### View feature
+
+#### Proposed Implementation
+The proposed view mechanism is implemented mainly using the help of `ExactMatchPredicate`.
+It implements `Predicate<Internship>` where the test method looks for the exact match of the internship requested.
+
+The predicate is used in the Model interface on the `updateViewItem` method
+
+The following sequence diagram shows how the view command works.
+
+TODO: ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+#### Design Considerations
+**How to view the Internship**:
+* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current)
+    * Pros: Simple, Better cohesion, more maintainability
+    * Cons: More code to write
+
+**How to display the internship in view panel**:
+* **Alternative 1 (current choice)**: Fully display with prefix denoting category
+    * Pros: More descriptive and easier to understand
+    * Cons: Makes UI seem wordy
+
+* **Alternative 2** Only display details with no category
+    * Pros: Looks cleaner
+    * Cons: Difficult to understand for new users
+
+**Parameters for view command**:
+* **Alternative 1 (current choice)**: `INDEX` parameter only takes in one index
+    * Pros: Easier to implement
+    * Cons: User will have to use the `view` command multiple times to view multiple internships
+
+* **Alternative 2** `INDEX` parameter can have multiple indexes
+    * Pros: User can view multiple details at once
+    * Cons: Makes `view` UI panel large, difficult to implement
+
+### Copy feature
+
+#### Proposed Implementation
+The proposed copy mechanism is implemented mainly using the help of `CopyCommandParser`
+It implements `Predicate<Internship>` where the test method looks for the exact match of the internship requested.
+
+The following sequence diagram shows how the copy command works.
+
+TODO: ![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+#### Design Considerations
+**How to copy the Internship**:
+* Use `java.awt` library `Toolkit` and `StringSelection` classes (current)
+    * Pros: Simple, cleaner code
+    * Cons: Limited extensibility
+
+**How to copy the internship details**:
+* **Alternative 1 (current choice)**: Copy to clipboard
+    * Pros: Easy to use
+    * Cons: Unable to choose the exact selection to copy
+
+* **Alternative 2** Make text highlightable to manually copy
+    * Pros: Can choose the exact selection to copy
+    * Cons: Slow to use
+
+**Parameters for copy command**:
+* `INDEX` parameter only takes in one index
+    * Pros: Easier to implement, makes more sense
+
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -622,15 +690,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an internship
 
-   1. Test case: `dd n/Google p/Backend Intern pr/APPLY d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
+   1. Test case: `dd n/Google p/Backend Intern pr/APPLIED d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
-      date being `11 Dec 2022`, arnd application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
+      date being `11 Dec 2022`, application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
       website `https://careers.google.com/jobs`, remark `offer for Y2 summer break`, and 2 tags: `high` and `java`. 
       A success message is shown with the details of the added internship. The entire application list is displayed.
    
    2. Test case: `add n/Google p/Backend Intern`<br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
-      date being today's date (by default), arnd application process `APPLY` (by default), phone `NA` (by default),
+      date being today's date (by default), application process `APPLIED` (by default), phone `NA` (by default),
       email `NA` (by default), website `NA` (by default), and empty remark. A success message is shown with the details
       of the added internship. The entire application list is displayed.
 
@@ -717,8 +785,8 @@ testers are expected to do more *exploratory* testing.
     8. Test case: `find c/d 2022-02-02`
         Expected: The application throws an error message since an invalid date format is given.
    
-    9. Test case: `find c/pr APPLY`
-        Expected: The application lists all application process in stage `APPLY`
+    9. Test case: `find c/pr APPLIED`
+        Expected: The application lists all application process in stage `APPLIED`
    
     10. Test case: `find c/pr Unknown_Process`
         Expected: The applications throws an error message.

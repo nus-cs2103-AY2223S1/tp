@@ -13,7 +13,7 @@ public class ApplicationProcess extends ComparableModel {
      * Represents the possible state of application process of an internship.
      */
     public enum ApplicationProcessState {
-        APPLY, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED;
+        APPLIED, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED;
 
         /**
          * Returns true if a given string is a valid application state.
@@ -40,7 +40,7 @@ public class ApplicationProcess extends ComparableModel {
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Application process can take the following values: "
-            + "APPLY, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED";
+            + "APPLIED, ASSESSMENT, INTERVIEW, OFFER, ACCEPTED, REJECTED";
 
     public final ApplicationProcessState value;
 

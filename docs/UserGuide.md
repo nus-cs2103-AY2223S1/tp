@@ -121,9 +121,9 @@ Adds an internship into the list.
 
 Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
-* Possible options for `APPLICATION_PROCESS` : `APPLY`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
-* Case-insensitive: `Apply`, `APPLY`, and `apply` are all acceptable inputs.
-* `APPLICATION_PROCESS` will be set to `APPLY` by default.
+* Possible options for `APPLICATION_PROCESS` : `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
+* Case-insensitive: `Applied`, `APPLIED`, and `applied` are all acceptable inputs.
+* `APPLICATION_PROCESS` will be set to `APPLIED` by default.
 * `DATE` should be in dd-mm-yyyy format.
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
@@ -136,7 +136,7 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 </div>
 
 Examples:
-* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLY d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
+* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
 * `add n/Tiktok p/backend engineer`
 * `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
@@ -168,17 +168,17 @@ Examples:
 
 ### Locating internships by: `find`
 
-Find internships whose data in the target category matched the given keyword/s.
+Find internships whose data in the target category matches the given keyword/s.
 
 Format: `find [c/CATEGORY] KEYWORDS…`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * The `CATEGORY` tag refers to company_name (or n), position (or p), application_process (or pr), tags (or t), date (or d) (case-insensitive)
-* If not specified, the `CATEGORY` tag will be set to company_name as a default
+* If not specified, the `CATEGORY` tag will be set to company_name as the default category.
 * Only the target category is searched.
 * A `KEYWORD` will match any string if the `KEYWORD` is contained in that string e.g. `Han` will match both `Reyhan` and `Handy`
-* Internships whose target category match at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
+* Internships whose target category matches at least one keyword will be returned (i.e. OR search). e.g. `c/company_name Hans Bo` can return internships with company name of `Hans Gruber` or `Bo Yang`
 * For the find by date category, all `KEYWORD` must be a valid date in `dd-mm-yyyy` format
 
 Examples:
@@ -195,7 +195,7 @@ Format: `delete INDEX...`
 
 * Deletes the internship at the specified `INDEX`.
 * The index refers to the index number shown in the displayed internship list.
-* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * Can add multiple `INDEX` to delete multiple internships.
 
 Examples:
@@ -209,7 +209,8 @@ View details of list item at index
 Format: `view INDEX`
 
 * Only the index is searched.
-* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * More details about the company at the index will be displayed. 
 
 Examples:
@@ -228,6 +229,16 @@ Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
+### Copy details of internship : `copy`
+
+Copies all details of internship at index into clipboard
+
+Format: `copy INDEX`
+
+* Only the internship at the specified `INDEX` is copied.
+* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* Full details of the internship will be copied into system clipboard.
 
 ### Undo previous command : `undo`
 
@@ -255,11 +266,11 @@ Format: `exit`
 
 ### Saving the data
 
-PleaseHireUs data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+PleaseHireUs data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-PleaseHireUs data are saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update data directly by editing that data file.
+PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update the data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
