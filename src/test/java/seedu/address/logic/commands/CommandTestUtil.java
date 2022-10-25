@@ -49,7 +49,7 @@ public class CommandTestUtil {
             " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_BRAVO;
     public static final String TASKDEADLINE_DESC_ALPHA =
             " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_ALPHA;
-    public static final String TASKDEALINE_DESC_BRAVO =
+    public static final String TASKDEADLINE_DESC_BRAVO =
             " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_BRAVO;
     public static final String TASKMARK_DESC_ALPHA =
             " " + PREFIX_TASK_MARK + VALID_TASKMARK_ALPHA;
