@@ -27,7 +27,7 @@
                 <URL value="@DarkTheme.css"/>
             </stylesheets>
 
-            <ScrollPane maxWidth="720" maxHeight="500" fitToWidth="true" fitToHeight="true"
+            <ScrollPane maxWidth="720" maxHeight="580" fitToWidth="true" fitToHeight="true"
                         styleClass="edge-to-edge">
             <BorderPane fx:id="iterationContainer" style="-fx-background-color: #3C424B;">
                 <top>
@@ -77,8 +77,9 @@
                             <Button text="+   Choose Image" styleClass="addButton"
                                     onAction="#chooseFile" minHeight="189"/>
                             <StackPane fx:id="dragDropTarget" styleClass="imagePreview">
-                                <Label text="Or drag and drop an image here" styleClass="uploadImagePrompt"/>
-                                <ImageView fitWidth="350" fitHeight="189" fx:id="imagePreview"/>
+                                <Label text="Or drag and drop an image here" styleClass="uploadImagePrompt"
+                                       wrapText="true" fx:id="dragDropTargetLabel"/>
+                                <ImageView fitWidth="350" fitHeight="189" preserveRatio="true" fx:id="imagePreview"/>
                             </StackPane>
                             <VBox.margin>
                                 <Insets top="24"/>

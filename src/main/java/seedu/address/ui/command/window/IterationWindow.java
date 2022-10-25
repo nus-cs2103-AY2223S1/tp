@@ -30,6 +30,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(CommissionWindow.class);
     private static final String FXML = "IterationWindow.fxml";
+    private static final String DEFAULT_MESSAGE_DRAG_DROP_TARGET_LABEL = "Or drag and drop an image here";
 
     private final Stage windowStage;
     private final CommandBox.CommandExecutor commandExecutor;
@@ -47,6 +48,8 @@ public abstract class IterationWindow extends UiPart<Stage> {
     private TextField feedback;
     @FXML
     private StackPane dragDropTarget;
+    @FXML
+    private Label dragDropTargetLabel;
     @FXML
     private ImageView imagePreview;
     @FXML
@@ -142,6 +145,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
                 imagePath = file.getAbsolutePath();
                 imagePreview.setImage(new Image(file.toURI().toString()));
                 errorDisplay.clearError();
+                dragDropTargetLabel.setText("");
                 return;
             } catch (ParseException e) {
                 // not a valid image
@@ -169,6 +173,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
             Image imageSelected = new Image(selectedFile.toURI().toString());
             imagePreview.setImage(imageSelected);
             errorDisplay.clearError();
+            dragDropTargetLabel.setText("");
         }
     }
 
@@ -180,5 +185,6 @@ public abstract class IterationWindow extends UiPart<Stage> {
         errorDisplay.clearError();
         imagePreview.setImage(null);
         imagePath = "";
+        dragDropTargetLabel.setText(DEFAULT_MESSAGE_DRAG_DROP_TARGET_LABEL);
     }
 }

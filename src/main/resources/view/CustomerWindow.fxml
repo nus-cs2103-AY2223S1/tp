@@ -26,7 +26,7 @@
                 <URL value="@DarkTheme.css"/>
             </stylesheets>
 
-            <ScrollPane maxWidth="720" maxHeight="400" fitToWidth="true" fitToHeight="true"
+            <ScrollPane maxWidth="720" maxHeight="450" fitToWidth="true" fitToHeight="true"
                         styleClass="edge-to-edge">
             <BorderPane fx:id="customerContainer" style="-fx-background-color: #3C424B;">
                 <top>
