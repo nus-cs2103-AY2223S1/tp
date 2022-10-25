@@ -20,6 +20,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 
 /**
@@ -43,6 +44,10 @@ public class FindCommandTest {
                 new ClassContainsKeywordsPredicate(Collections.singletonList("2022-10-10"));
         ClassContainsKeywordsPredicate classTwoPredicate =
                 new ClassContainsKeywordsPredicate(Collections.singletonList("2022-10-11"));
+        EmailContainsKeywordsPredicate emailFirstPredicate =
+                new EmailContainsKeywordsPredicate(Collections.singletonList("fong_teng@yahoo.com"));
+        EmailContainsKeywordsPredicate emailSecondPredicate =
+                new EmailContainsKeywordsPredicate(Collections.singletonList("wongtf@gmail.com"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -50,11 +55,14 @@ public class FindCommandTest {
         FindCommand findAddressSecondCommand = new FindCommand(addressSecondPredicate);
         FindCommand findClassOneCommand = new FindCommand(classOnePredicate);
         FindCommand findClassTwoCommand = new FindCommand(classTwoPredicate);
+        FindCommand findEmailFirstCommand = new FindCommand(emailFirstPredicate);
+        FindCommand findEmailSecondCommand = new FindCommand(emailSecondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
         assertTrue(findAddressFirstCommand.equals(findAddressFirstCommand));
         assertTrue(findClassOneCommand.equals(findClassOneCommand));
+        assertTrue(findEmailFirstCommand.equals(findEmailFirstCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
@@ -63,16 +71,20 @@ public class FindCommandTest {
         assertTrue(findAddressFirstCommand.equals(findAddressFirstCommandCopy));
         FindCommand findClassOneCommandCopy = new FindCommand(classOnePredicate);
         assertTrue(findClassOneCommand.equals(findClassOneCommandCopy));
+        FindCommand findEmailFirstCommandCopy = new FindCommand(emailFirstPredicate);
+        assertTrue(findEmailSecondCommand.equals(findEmailFirstCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
         assertFalse(findAddressFirstCommand.equals(2));
         assertFalse(findSecondCommand.equals(1));
+        assertFalse(findEmailFirstCommand.equals(1));
 
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
         assertFalse(findAddressFirstCommand.equals(null));
         assertFalse(findClassOneCommand.equals(null));
+        assertFalse(findEmailFirstCommand.equals(null));
 
         // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
@@ -82,6 +94,9 @@ public class FindCommandTest {
 
         // different date -> returns false
         assertFalse(findClassOneCommand.equals(findClassTwoCommand));
+
+        // different address -> returns false
+        assertFalse(findEmailFirstCommand.equals(findEmailSecondCommand));
     }
 
     @Test
