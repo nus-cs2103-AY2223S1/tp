@@ -27,8 +27,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final String COMPACT_MENUITEM_TEXT = "Compacted Cards";
-    private static final String EXPAND_MENUITEM_TEXT = "Expanded Cards";
+    private static final String COMPACT_MENUITEM_TEXT = "Compacted Mode";
+    private static final String EXPAND_MENUITEM_TEXT = "Expanded Mode";
     private static final String LIGHT_THEME_MENUITEM_TEXT = "Light Theme";
     private static final String DARK_THEME_MENUITEM_TEXT = "Dark Theme";
 
@@ -233,11 +233,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleCompactExpand() {
         if (isExpanded) {
-            logger.info("Switching to compacted cards...");
+            logger.info("Switching to compacted mode...");
             isExpanded = false;
             compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
         } else {
-            logger.info("Switching to expanded cards...");
+            logger.info("Switching to expanded mode...");
             isExpanded = true;
             compactExpandItem.setText(COMPACT_MENUITEM_TEXT);
         }
