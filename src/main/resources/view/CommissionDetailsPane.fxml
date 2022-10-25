@@ -12,6 +12,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.shape.Circle?>
 
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <HBox id="detailsPane" fx:id="detailsPane"
       xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
     <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
@@ -24,12 +26,20 @@
                     <Insets bottom="5" left="5" right="5" top="5" />
                 </padding>
                 <HBox alignment="CENTER_LEFT" spacing="5">
-                    <Label id="title" fx:id="title" styleClass="cell_title_label" text="\$first" wrapText="true">
+                    <Label id="title" fx:id="title" styleClass="cell_title_label" text="\$first"
+                           wrapText="true" maxWidth="Infinity" HBox.hgrow="ALWAYS">
                         <minHeight>
                             <!-- Ensures that the label text is never truncated -->
                             <Region fx:constant="USE_PREF_SIZE" />
                         </minHeight>
                     </Label>
+                    <MenuButton fx:id="optionsIcon" styleClass="optionsIconMenuButton" maxWidth="4"
+                                style="-fx-padding: 0 4 0 4">
+                        <items>
+                            <MenuItem text="Edit"/>
+                            <MenuItem text="Delete"/>
+                        </items>
+                    </MenuButton>
                     <VBox.margin>
                         <Insets bottom="8.0" />
                     </VBox.margin>

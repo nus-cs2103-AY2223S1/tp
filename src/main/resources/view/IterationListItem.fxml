@@ -7,38 +7,56 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 
 <VBox id="iterationListItem" fx:id="iterationListItem"
       xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
-    <BorderPane>
+
+    <BorderPane style="-fx-padding: 4 16 4 16">
         <left>
-            <Label fx:id="id" styleClass="cell_small_label" text="\$id" style="-fx-text-fill: #666C77;">
+            <Label fx:id="id" styleClass="cell_small_label" text="\$id"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-font-family: Arial;
+                   -fx-text-fill: #666C77;">
                 <BorderPane.margin>
-                    <Insets right="4.0" />
+                    <Insets right="16"/>
                 </BorderPane.margin>
             </Label>
         </left>
         <center>
             <HBox alignment="CENTER_LEFT">
-                <Label fx:id="description" styleClass="cell_small_label" text="\$description"
-                       style="-fx-font-size: 13px;" wrapText="true">
+                <Label fx:id="description" styleClass="cell_small_label"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: Arial;
+                       -fx-text-fill: #D8D8D8;" text="\$description" wrapText="true">
                     <minHeight>
                         <!-- Ensures that the label text is never truncated (with the wrapText attribute)-->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minHeight>
                 </Label>
+                <BorderPane.margin>
+                    <Insets right="16"/>
+                </BorderPane.margin>
             </HBox>
         </center>
         <right>
-            <Label fx:id="date" styleClass="cell_small_label" text="\$date"
-                   style="-fx-text-fill: #666C77"/>
+            <HBox alignment="TOP_RIGHT">
+                <Label fx:id="date" styleClass="cell_small_label" text="\$date"
+                       style="-fx-text-fill: #666C77"/>
+                <MenuButton fx:id="optionsIcon" styleClass="optionsIconMenuButton" maxWidth="4"
+                            style="-fx-padding: 0 0 0 16">
+                    <items>
+                        <MenuItem text="Edit"/>
+                        <MenuItem text="Delete"/>
+                    </items>
+                </MenuButton>
+            </HBox>
         </right>
         <VBox.margin>
             <Insets top="4.0" bottom="8.0" />
         </VBox.margin>
     </BorderPane>
-    <HBox alignment="CENTER_LEFT">
-        <ImageView fx:id="artImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+    <HBox alignment="CENTER_LEFT" style="-fx-padding: 4 16 4 16">
+        <ImageView fx:id="artImage" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <HBox.margin>
                 <Insets right="16.0" />
             </HBox.margin>

@@ -4,6 +4,9 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -16,6 +19,7 @@ import seedu.address.model.customer.Customer;
 public class CustomerDetailsPane extends UiPart<Region> {
 
     private static final String FXML = "CustomerDetailsPane.fxml";
+    private static final Image ICON_OPTIONS_MENU = new Image("/images/options button.png");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,6 +43,8 @@ public class CustomerDetailsPane extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private MenuButton optionsIcon;
 
     /**
      * Creates a {@code CustomerCode} with the given {@code Customer} and index to display.
@@ -50,6 +56,10 @@ public class CustomerDetailsPane extends UiPart<Region> {
         customer.addListener((observable, oldValue, newValue) -> {
             this.updateUI(newValue);
         });
+        ImageView optionsIconPlaceHolder = new ImageView(ICON_OPTIONS_MENU);
+        optionsIconPlaceHolder.setFitWidth(5);
+        optionsIconPlaceHolder.setFitHeight(22.5);
+        optionsIcon.setGraphic(optionsIconPlaceHolder);
     }
 
     private void updateUI(Customer customer) {
