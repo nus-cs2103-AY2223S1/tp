@@ -5,12 +5,11 @@ import java.util.Random;
 
 /**
  * TipList class to store all tips and the random tip generator.
- * Meant for developer use as a built-in repository of healthy-lifestyle
- * tips.
+ * Meant for developer use as a built-in repository of Tip objects.
  */
 public class TipList {
-    private final ArrayList<Tip> listOfTips = new ArrayList<>();
-    private final Random r = new Random();
+    private static final ArrayList<Tip> listOfTips = new ArrayList<>();
+    private static final Random r = new Random();
 
     /**
      * Constructs a {@code TipList} with a default list of tips.
@@ -60,8 +59,16 @@ public class TipList {
      *
      * @return a randomly generated tip
      */
-    public Tip generateTip() {
+    public static Tip generateTip() {
         int randomIndex = r.nextInt(listOfTips.size());
         return listOfTips.get(randomIndex);
+    }
+
+    /**
+     * Returns listOfTips for developer viewing and testing purposes.
+     * @return listOfTips
+     */
+    public static ArrayList<Tip> getListOfTips() {
+        return listOfTips;
     }
 }
