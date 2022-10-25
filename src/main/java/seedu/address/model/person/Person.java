@@ -24,6 +24,7 @@ public class Person {
     private final Social social;
 
     // Data fields
+    private final Tutorial tutorial;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -31,12 +32,13 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Occupation occupation, Name name, Phone phone, Email email,
-                  Address address, Set<Tag> tags, Social social) {
+                 Tutorial tutorial, Address address, Set<Tag> tags, Social social) {
         requireAllNonNull(name, phone, email, address, tags, social);
         this.occupation = occupation;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.tutorial = tutorial;
         this.address = address;
         this.tags.addAll(tags);
         this.social = social;
@@ -56,6 +58,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Tutorial getTutorial() {
+        return tutorial;
     }
 
     public Address getAddress() {
@@ -106,6 +112,7 @@ public class Person {
                 && otherPerson.getOccupation().equals(getOccupation())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getTutorial().equals(getTutorial())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getSocial().equals(getSocial());
@@ -114,7 +121,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(occupation, name, phone, email, address, tags, social);
+        return Objects.hash(occupation, name, phone, email, tutorial, address, tags, social);
     }
 
     @Override
@@ -128,6 +135,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Tutorial")
+                .append(getTutorial())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Social: ")
