@@ -31,7 +31,7 @@ public class MakeStatsCommandParser {
         Index index;
 
         //Check if prefix and index are present
-        if (!arePrefixesPresent(argMultimap, PREFIX_TYPE)
+        if (!argMultimap.getValue(PREFIX_TYPE).isPresent()
             || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE));
         }
@@ -53,13 +53,5 @@ public class MakeStatsCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE));
         }
         return new MakeStatsCommand(index, isGenderStatistic);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

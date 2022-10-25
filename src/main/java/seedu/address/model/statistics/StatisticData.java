@@ -9,7 +9,6 @@ import javafx.scene.chart.PieChart.Data;
  * Has a String {@code name} and double {@code value} as it is a piechart datapoint.
  * Guarrantees: Immutable, data points are not null.
  */
-
 public class StatisticData {
 
     //PieChart data point.

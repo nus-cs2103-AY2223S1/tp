@@ -128,7 +128,13 @@ public interface Model {
      */
     void updateEventPersonReference();
 
+    /**
+     * Updates the list of Statistical PieChart datapoints
+     */
     void setData(ObservableList<PieChart.Data> newData);
 
+    /**
+     *Return the list of Statistical PieChart datapoints
+     */
     ObservableList<PieChart.Data> getPieChartData();
 }

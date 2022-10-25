@@ -200,6 +200,7 @@ public class ModelManager implements Model {
         // All events in the event list are displayed since the predicate returns true for all events
         this.updateFilteredEventList(x -> x.getUids().setPersonNames(this));
     }
+
     @Override
     public void setData(ObservableList<PieChart.Data> newData) {
         requireNonNull(newData);
