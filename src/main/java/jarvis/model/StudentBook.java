@@ -73,7 +73,7 @@ public class StudentBook implements ReadOnlyStudentBook {
      * Number of students in student book must be less than MAX_STUDENTS.
      */
     public void addStudent(Student p) {
-        if (numStudents() > MAX_STUDENTS) {
+        if (numStudents() >= MAX_STUDENTS) {
             throw new MaxStudentsExceededException("Maximum number of students (" + MAX_STUDENTS + ") exceeded");
         }
         students.add(p);
