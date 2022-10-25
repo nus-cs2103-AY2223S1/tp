@@ -138,31 +138,35 @@ Examples:
 
 ### Editing a client : `client -e`
 
-Edits the client for a specific project.
+Edits the specified client.
 
-Format: `client -e pid/PROJECT_ID [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+Format: `client -e cid/CLIENT_ID [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 
-* Edits the client of the project with the specified `PROJECT_ID`.
+* Edits the client with the specified `CLIENT_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `client -e 1 n/Amy` Edits the client tagged to project with `PROJECT_ID` 1 with new `CLIENT_NAME` Amy.
-*  `client -e 2 n/Bob p/91234567` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Amy and `CLIENT_CONTACT_NUMBER` 91234567.
-*  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com.
+*  `client -e cid/1 n/Amy` Edits the client tagged to project with `CLIENT_ID` 1 to have the new `CLIENT_NAME` Amy.
+*  `client -e cid/2 n/Bob p/12345678` Edits the client tagged with `CLIENT_ID` 2 to have the new `CLIENT_NAME` Bob 
+   and `CLIENT_PHONE` 91234567.
+*  `client -e cid/3 n/Charlie e/charlie@gmail.com` Edits the client with `PROJECT_ID` 3 to have the new 
+   `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -e cid/4 n/Dave p/12345678 e/dave@gmail.com` Edits the client with `PROJECT_ID` 4 to have the new 
+   `CLIENT_NAME` Dave, `CLIENT_PHONE` 12345678 and `CLIENT_EMAIL` dave@gmail.com.
 
 ### Deleting a client : `client -d`
 
-Removes the client from a project.
+Removes the specified client.
 
-Format: `client -d i/PROJECT_ID n/CLIENT_NAME`
+Format: `client -d CLIENT_ID`
 
-* Deletes the client with `CLIENT_NAME` tagged to the specified project with given `PROJECT_ID`.
+* Deletes the client with the specified `CLIENT_ID`.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `client -d 1 n/Amy` Deletes client with `CLIENT_NAME` Amy tagged to project with `PROJECT_ID` 1.
+* `client -d 1` Deletes client with `CLIENT_ID` 1.
+* `client -d 6` Deletes client with `CLIENT_ID` 6.
 
 ### Adding an issue : `issue -a`
 
