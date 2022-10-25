@@ -76,7 +76,7 @@ Adds a profile to NUScheduler.
 Format: `profile -a n/NAME p/PHONE_NUMBER e/EMAIL [tg/TELEGRAM_USERNAME] [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A profile can have 0 or more tags
+A profile can have 0 or more tags.
 </div>
 
 Examples:
@@ -142,10 +142,11 @@ Example:
 
 Adds an event with a name and a start timing and end timing.
 
-Format: `event -a n/NAME s/START e/END [p/PROFILE]…`
+Format: `event -a n/NAME s/START e/END [t/TAG]… [p/PROFILE]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An event can have 0 or more profiles
+An event can have 0 or more profiles.
+An event can have 0 or more tags.
 </div>
 
 ### Viewing upcoming events: `event -u`
@@ -166,7 +167,7 @@ Shows a list of all events in the NUScheduler.
 
 Format: `event -v`
 
-### Finding events by name: `event -f KEYWORD [MORE_KEYWORDS]`
+### Finding events by date or name: `event -f KEYWORD_OR_DATE [MORE]`
 
 Find events whose names contain any of the given keywords.
 
@@ -213,8 +214,8 @@ No FAQ Yet.
 | **Edit Profile**           | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
 | **View Profiles**          | `profile -v`                                                                    |
 | **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]`                                            |
-| **Add Event**              | `event -a n/NAME s/START e/END [p/PROFILE]…`                                    |
+| **Add Event**              | `event -a n/NAME s/START e/END [t/TAG]… [p/PROFILE]…`                           |
 | **Delete Event**           | `event -d INDEX`                                                                |
 | **View Events**            | `event -v`                                                                      |
 | **View Upcoming Event(s)** | `event -u DAYS`                                                                 |
-| **Find Event**             | `event -f KEYWORD [MORE_KEYWORDS]`                                              |
+| **Find Event**             | `event -f KEYWORD_OR_DATE [MORE]`                                               |
