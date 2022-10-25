@@ -1,8 +1,9 @@
 package tracko.logic.commands.order;
 
-import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
+import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
@@ -16,7 +17,6 @@ import javafx.util.Pair;
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.CommandTestUtil;
-import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.model.Model;
 import tracko.model.ModelManager;
@@ -47,7 +47,7 @@ public class EditOrderCommandTest {
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
-        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -59,10 +59,12 @@ public class EditOrderCommandTest {
         defaultItemList.add(new ItemQuantityPairBuilder().build());
 
         OrderBuilder orderInList = new OrderBuilder(lastOrder);
-        Order editedOrder = orderInList.withName(CommandTestUtil.VALID_NAME_BOB).withPhone(CommandTestUtil.VALID_PHONE_BOB)
+        Order editedOrder = orderInList.withName(CommandTestUtil.VALID_NAME_BOB)
+                .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withItemList(defaultItemList).build();
 
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder()
+                .withName(CommandTestUtil.VALID_NAME_BOB)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).withItemList(defaultItemList).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(indexLastOrder, descriptor);
 
@@ -71,7 +73,7 @@ public class EditOrderCommandTest {
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.setOrder(lastOrder, editedOrder);
 
-        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -83,7 +85,7 @@ public class EditOrderCommandTest {
 
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
 
-        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -100,16 +102,17 @@ public class EditOrderCommandTest {
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
-        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidOrderIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder()
+            .withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     /**
@@ -126,7 +129,7 @@ public class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex,
                 new EditOrderDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -142,7 +145,7 @@ public class EditOrderCommandTest {
                 .withUnlinkedPair(unlinkedPair).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST.fromZeroBased(0), descriptor);
 
-        CommandTestUtil.assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_ONE_ORDERED_ITEM);
+        assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_ONE_ORDERED_ITEM);
     }
 
     @Test
@@ -163,7 +166,7 @@ public class EditOrderCommandTest {
 
         Model expectedModel = new ModelManager(copiedModel.getTrackO(), new UserPrefs());
         expectedModel.setOrder(copiedModel.getFilteredOrderList().get(0), editedOrder);
-        CommandTestUtil.assertCommandSuccess(editOrderCommand, copiedModel, expectedMessage, expectedModel);
+        assertCommandSuccess(editOrderCommand, copiedModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -176,7 +179,7 @@ public class EditOrderCommandTest {
                 .withUnlinkedPair(unlinkedPair).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST.fromZeroBased(0), descriptor);
 
-        CommandTestUtil.assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_NONEXISTENT_ITEM);
+        assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_NONEXISTENT_ITEM);
     }
 
     @Test

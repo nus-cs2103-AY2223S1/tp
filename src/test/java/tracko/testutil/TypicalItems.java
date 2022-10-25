@@ -79,7 +79,8 @@ public class TypicalItems {
     }
 
     public static List<InventoryItem> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(DEFAULT_INVENTORY_ITEM, INVENTORY_ITEM_1, INVENTORY_ITEM_2, INVENTORY_ITEM_3, INVENTORY_ITEM_4, INVENTORY_ITEM_5, INVENTORY_ITEM_6, INVENTORY_ITEM_7));
+        return new ArrayList<>(Arrays.asList(DEFAULT_INVENTORY_ITEM, INVENTORY_ITEM_1, INVENTORY_ITEM_2,
+            INVENTORY_ITEM_3, INVENTORY_ITEM_4, INVENTORY_ITEM_5, INVENTORY_ITEM_6, INVENTORY_ITEM_7));
     }
 
     /**

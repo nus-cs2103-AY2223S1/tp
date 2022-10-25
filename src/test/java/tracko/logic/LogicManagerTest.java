@@ -18,8 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 // import tracko.logic.commands.order.AddOrderCommand;
-import tracko.logic.Logic;
-import tracko.logic.LogicManager;
 import tracko.logic.commands.CommandResult;
 // import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.exceptions.CommandException;
@@ -48,7 +46,8 @@ public class LogicManagerTest {
     public void setUp() {
         JsonTrackOStorage trackOStorage =
                 new JsonTrackOStorage(temporaryFolder.resolve("orders.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+            new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(trackOStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }

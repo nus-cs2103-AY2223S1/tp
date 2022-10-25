@@ -47,10 +47,12 @@ public class OrderContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
-        InventoryItem appleKeychainInventoryItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
-                new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
-        InventoryItem bananaKeychainInventoryItem = new InventoryItem(new ItemName("Banana Keychain"), new Description("test"),
-                new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
+        InventoryItem appleKeychainInventoryItem = new InventoryItem(
+            new ItemName("Apple Keychain"), new Description("test"), new Quantity(300),
+                new HashSet<>(), new Price(2.00), new Price(5.00));
+        InventoryItem bananaKeychainInventoryItem = new InventoryItem(
+            new ItemName("Banana Keychain"), new Description("test"), new Quantity(300),
+                new HashSet<>(), new Price(2.00), new Price(5.00));
 
         // One keyword
         OrderContainsKeywordsPredicate predicate =
@@ -76,10 +78,12 @@ public class OrderContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        InventoryItem appleKeychainInventoryItem = new InventoryItem(new ItemName("Apple Keychain"), new Description("test"),
-            new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
-        InventoryItem bananaKeychainInventoryItem = new InventoryItem(new ItemName("Banana Keychain"), new Description("test"),
-            new Quantity(300), new HashSet<>(), new Price(1.99), new Price(4.85));
+        InventoryItem appleKeychainInventoryItem = new InventoryItem(
+            new ItemName("Apple Keychain"), new Description("test"), new Quantity(300),
+                new HashSet<>(), new Price(2.00), new Price(5.00));
+        InventoryItem bananaKeychainInventoryItem = new InventoryItem(
+            new ItemName("Banana Keychain"), new Description("test"), new Quantity(300),
+                new HashSet<>(), new Price(1.99), new Price(4.85));
 
         // Zero keywords
         OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate(Collections.emptyList());

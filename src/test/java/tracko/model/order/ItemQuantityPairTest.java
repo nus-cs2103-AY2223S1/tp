@@ -16,21 +16,23 @@ import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
 
-public class InventoryItemQuantityPairTest {
+public class ItemQuantityPairTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ItemQuantityPair(null, null));
         Integer validQuantity = 3;
         assertThrows(NullPointerException.class, () -> new ItemQuantityPair(null, new Quantity(validQuantity)));
-        InventoryItem validInventoryItem = new InventoryItem(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
+        InventoryItem validInventoryItem = new InventoryItem(
+            new ItemName("Valid Item Name"), new Description("Valid Item Description"),
                 new Quantity(10), new HashSet<>(), new Price(10.00), new Price(20.00));
         assertThrows(NullPointerException.class, () -> new ItemQuantityPair(validInventoryItem, null));
     }
 
     @Test
     public void getItem() {
-        InventoryItem validInventoryItem = new InventoryItem(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
+        InventoryItem validInventoryItem = new InventoryItem(
+            new ItemName("Valid Item Name"), new Description("Valid Item Description"),
                 new Quantity(10), new HashSet<>(), new Price(10.00), new Price(20.00));
         Quantity validQuantity = new Quantity(1);
         ItemQuantityPair validPair = new ItemQuantityPair(validInventoryItem, validQuantity);
@@ -40,7 +42,8 @@ public class InventoryItemQuantityPairTest {
 
     @Test
     public void getQuantity() {
-        InventoryItem validInventoryItem = new InventoryItem(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
+        InventoryItem validInventoryItem = new InventoryItem(
+            new ItemName("Valid Item Name"), new Description("Valid Item Description"),
                 new Quantity(10), new HashSet<>(), new Price(9.99), new Price(19.99));
         Quantity validQuantity = new Quantity(1);
         ItemQuantityPair validPair = new ItemQuantityPair(validInventoryItem, validQuantity);
@@ -50,7 +53,8 @@ public class InventoryItemQuantityPairTest {
 
     @Test
     public void toStringTest() {
-        InventoryItem validInventoryItem = new InventoryItem(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
+        InventoryItem validInventoryItem = new InventoryItem(
+            new ItemName("Valid Item Name"), new Description("Valid Item Description"),
                 new Quantity(10), new HashSet<>(), new Price(9.9), new Price(19.9));
         Quantity validQuantity = new Quantity(1);
         ItemQuantityPair validPair = new ItemQuantityPair(validInventoryItem, validQuantity);
@@ -60,10 +64,12 @@ public class InventoryItemQuantityPairTest {
 
     @ Test
     public void equals() {
-        InventoryItem validInventoryItemOne = new InventoryItem(new ItemName("Valid Item Name One"), new Description("Valid Item Description One"),
+        InventoryItem validInventoryItemOne = new InventoryItem(
+            new ItemName("Valid Item Name One"), new Description("Valid Item Description One"),
                 new Quantity(10), new HashSet<>(), new Price(10.00), new Price(20.00));
         Quantity validQuantityOne = new Quantity(1);
-        InventoryItem validInventoryItemTwo = new InventoryItem(new ItemName("Valid Item Name Two"), new Description("Valid Item Description Two"),
+        InventoryItem validInventoryItemTwo = new InventoryItem(
+            new ItemName("Valid Item Name Two"), new Description("Valid Item Description Two"),
                 new Quantity(10), new HashSet<>(), new Price(20.00), new Price(39.99));
         Quantity validQuantityTwo = new Quantity(2);
         ItemQuantityPair validPairOne = new ItemQuantityPair(validInventoryItemOne, validQuantityOne);

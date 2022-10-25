@@ -26,6 +26,9 @@ public class JsonAdaptedItemQuantityPairTest {
     private static final Double VALID_SELL_PRICE = PAIR_2.getItem().getSellPrice().value;
     private static final InventoryList VALID_INVENTORY_LIST = INVENTORY_LIST;
 
+    private static final Double INCONSISTENT_COST_PRICE = VALID_COST_PRICE + 1.00;
+    private static final Double INCONSISTENT_SELL_PRICE = VALID_SELL_PRICE + 1.00;
+
     @Test
     public void toModelTypeWithInventoryList_validItemDetails_returnsItemQuantityPair() throws Exception {
         JsonAdaptedItemQuantityPair pair = new JsonAdaptedItemQuantityPair(PAIR_2);
@@ -138,7 +141,6 @@ public class JsonAdaptedItemQuantityPairTest {
 
     @Test
     public void toModelTypeWithInventoryList_inconsistentCostPrice_throwsIllegalValueException() {
-        Double INCONSISTENT_COST_PRICE = VALID_COST_PRICE + 1.00;
         JsonAdaptedItemQuantityPair pair =
             new JsonAdaptedItemQuantityPair(VALID_ITEM_NAME, VALID_QUANTITY,
                 INCONSISTENT_COST_PRICE, VALID_SELL_PRICE);
@@ -148,7 +150,6 @@ public class JsonAdaptedItemQuantityPairTest {
 
     @Test
     public void toModelTypeWithInventoryList_inconsistentSellPrice_throwsIllegalValueException() {
-        Double INCONSISTENT_SELL_PRICE = VALID_SELL_PRICE + 1.00;
         JsonAdaptedItemQuantityPair pair =
             new JsonAdaptedItemQuantityPair(VALID_ITEM_NAME, VALID_QUANTITY,
                 VALID_COST_PRICE, INCONSISTENT_SELL_PRICE);

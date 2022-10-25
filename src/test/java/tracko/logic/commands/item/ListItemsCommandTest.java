@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.CommandTestUtil;
-import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
@@ -26,13 +25,13 @@ public class ListItemsCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         CommandTestUtil.assertCommandSuccess(
-                new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+                new ListItemsCommand(), model, ListItemsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
         CommandTestUtil.assertCommandSuccess(
-                new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+                new ListItemsCommand(), model, ListItemsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

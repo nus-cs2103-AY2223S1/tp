@@ -13,7 +13,6 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.CommandTestUtil;
-import tracko.logic.commands.item.FindItemCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
