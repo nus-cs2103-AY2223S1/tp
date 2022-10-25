@@ -4,20 +4,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.task.Task;
-import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
