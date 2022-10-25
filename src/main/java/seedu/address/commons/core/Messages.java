@@ -16,6 +16,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_UNIQUE_COMPARATOR = "The sort command requires exactly one option.";
 
     /* Commission Messages */
+    public static final String MESSAGE_COMMISSIONS_LISTED_OVERVIEW = "%1$d commissions listed!";
     public static final String MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX = "The commission index provided is invalid";
     public static final String MESSAGE_NO_ACTIVE_COMMISSION = "This command requires you to open a commission first!";
     public static final String MESSAGE_INVALID_COMMISSION_DEADLINE = "The commission deadline provided is invalid. "
