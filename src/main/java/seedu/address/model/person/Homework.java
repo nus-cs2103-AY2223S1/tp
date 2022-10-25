@@ -29,6 +29,14 @@ public class Homework {
     }
 
     /**
+     * Method to indicate homework as undone
+     *
+     */
+    public void markAsUndone() {
+        isCompleted = false;
+    }
+
+    /**
      * Getter method for isCompleted
      * @return boolean value of isCompleted
      */

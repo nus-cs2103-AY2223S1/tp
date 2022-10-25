@@ -77,6 +77,19 @@ public class HomeworkList {
     }
 
     /**
+     * Homework object of the specified index in the Homework list will be marked
+     *
+     * @param index index in the Homework list to be marked
+     */
+    public void unmarkAtIndex(Index index) {
+        int indexToMark = index.getZeroBased();
+        if (indexToMark >= homeworkList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_HOMEWORK_INDEX);
+        }
+        homeworkList.get(indexToMark).markAsUndone();
+    }
+
+    /**
      *  Removes the homework at the given index.
      *  @param index of homework to be removed
      */
