@@ -183,7 +183,8 @@ public class MainWindow extends UiPart<Stage> {
         logic.showAllLists();
 
         personListPanel.removeHeading();
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(), logic.getFilteredPersonList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(),
+                logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         personTaskListPanel.removeHeading();
