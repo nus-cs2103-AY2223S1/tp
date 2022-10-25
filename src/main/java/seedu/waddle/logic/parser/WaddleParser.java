@@ -18,6 +18,7 @@ import seedu.waddle.logic.commands.DeleteItemCommand;
 import seedu.waddle.logic.commands.EditCommand;
 import seedu.waddle.logic.commands.EditItemCommand;
 import seedu.waddle.logic.commands.ExitCommand;
+import seedu.waddle.logic.commands.ExportCommand;
 import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.HelpCommand;
 import seedu.waddle.logic.commands.HomeCommand;
@@ -61,8 +62,6 @@ public class WaddleParser {
             return parseHomeCommand(commandWord, arguments);
         case WISH:
             return parseWishCommand(commandWord, arguments);
-        case SCHEDULE:
-            return parseScheduleCommand(commandWord, arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_STAGE);
         }
@@ -109,6 +108,9 @@ public class WaddleParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -154,6 +156,9 @@ public class WaddleParser {
         //TODO: help commands must change here
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

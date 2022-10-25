@@ -44,12 +44,6 @@ public class StageManager {
         this.selectedItinerary = selectedItinerary;
     }
 
-    public void setScheduleStage(Itinerary selectedItinerary) throws NullPointerException {
-        requireNonNull(selectedItinerary);
-        this.currentStage = Stages.SCHEDULE;
-        this.selectedItinerary = selectedItinerary;
-    }
-
     public void switchStage(Stages selectedStage) {
         this.currentStage = selectedStage;
     }

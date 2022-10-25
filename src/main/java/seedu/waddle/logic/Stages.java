@@ -6,6 +6,5 @@ package seedu.waddle.logic;
 public enum Stages {
     NONE, // used in CommandResult to indicate that no state change occurred
     HOME, //home page
-    WISH, //wishlist stage
-    SCHEDULE //scheduling stage
+    WISH //wishlist stage
 }

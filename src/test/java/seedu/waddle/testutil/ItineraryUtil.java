@@ -29,7 +29,7 @@ public class ItineraryUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + itinerary.getName().fullName + " ");
         sb.append(PREFIX_COUNTRY + itinerary.getCountry().country + " ");
-        sb.append(PREFIX_START_DATE + itinerary.getStartDate().date + " ");
+        sb.append(PREFIX_START_DATE + itinerary.getStartDate().toString() + " ");
         sb.append(PREFIX_ITINERARY_DURATION + itinerary.getDuration().toString() + " ");
         sb.append(PREFIX_PEOPLE + itinerary.getPeople().numOfPeople + " ");
         sb.append(PREFIX_BUDGET + itinerary.getBudget().toString());

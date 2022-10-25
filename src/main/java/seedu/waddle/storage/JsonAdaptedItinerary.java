@@ -58,7 +58,7 @@ class JsonAdaptedItinerary {
     public JsonAdaptedItinerary(Itinerary source) {
         name = source.getName().fullName;
         country = source.getCountry().country;
-        startDate = source.getStartDate().date;
+        startDate = source.getStartDate().date.toString();
         duration = source.getDuration().toString();
         people = source.getPeople().numOfPeople;
         budget = source.getBudget().toString();
