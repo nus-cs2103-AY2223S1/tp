@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddLinkCommand;
+import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -35,10 +36,13 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SwapTaskNumbersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ModuleUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -51,6 +55,13 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddPersonCommand command = (AddPersonCommand) parser.parseCommand(PersonUtil.getAddPersonCommand(person));
         assertEquals(new AddPersonCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addModule() throws Exception {
+        Module module = new ModuleBuilder().build();
+        AddModuleCommand command = (AddModuleCommand) parser.parseCommand(ModuleUtil.getAddModuleCommand(module));
+        assertEquals(new AddModuleCommand(module), command);
     }
 
     @Test
