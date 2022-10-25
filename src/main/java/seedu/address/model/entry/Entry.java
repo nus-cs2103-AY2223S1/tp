@@ -2,6 +2,7 @@ package seedu.address.model.entry;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -38,6 +39,10 @@ public abstract class Entry {
 
     public Date getDate() {
         return date;
+    }
+
+    public LocalDate getLocalDate() {
+        return date.getLocalDate();
     }
 
     public YearMonth getYearMonth() {

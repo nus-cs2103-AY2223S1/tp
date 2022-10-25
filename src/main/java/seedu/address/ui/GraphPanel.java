@@ -22,6 +22,7 @@ public class GraphPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(seedu.address.ui.GraphPanel.class);
     private EntryPieChart pieChart;
     private EntryLineChart lineChart;
+    private final NoEntryFound noEntryFound = new NoEntryFound();
 
     @FXML
     private Label chartTitle;
@@ -31,13 +32,10 @@ public class GraphPanel extends UiPart<Region> {
 
     /**
      * TODO: Edit image to pie chart
-     * Creates a {@code GraphPanel} with a default pie chart image
+     * Creates a {@code GraphPanel} with a default pie chart image.
      */
     public GraphPanel(EntryType entryType, ObservableList<PieChart.Data> pieChartData) {
         super(FXML);
-
-        this.pieChart = new EntryPieChart(pieChartData);
-
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             chartTitle.setText(EXPENSE_CHART_TITLE);
@@ -48,18 +46,22 @@ public class GraphPanel extends UiPart<Region> {
         default:
             break;
         }
+
+        if (pieChartData == null) {
+            graphPlaceholder.getChildren().add(noEntryFound.getRoot());
+            return;
+        }
+
+        this.pieChart = new EntryPieChart(pieChartData);
         graphPlaceholder.getChildren().add(pieChart.getRoot());
 
     }
 
     /**
-     * Creates a {@code GraphPanel} with a line chart image
+     * Creates a {@code GraphPanel} with a line chart image.
      */
     public GraphPanel(EntryType entryType, XYChart.Series<String, Number> lineGraphData) {
         super(FXML);
-
-        this.lineChart = new EntryLineChart(lineGraphData);
-
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             chartTitle.setText(EXPENSE_CHART_TITLE);
@@ -70,6 +72,13 @@ public class GraphPanel extends UiPart<Region> {
         default:
             break;
         }
+
+        if (lineGraphData == null) {
+            graphPlaceholder.getChildren().add(noEntryFound.getRoot());
+            return;
+        }
+
+        this.lineChart = new EntryLineChart(lineGraphData);
         graphPlaceholder.getChildren().add(lineChart.getRoot());
     }
 

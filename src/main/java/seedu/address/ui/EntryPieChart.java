@@ -24,6 +24,11 @@ public class EntryPieChart extends UiPart<Region> {
      */
     public EntryPieChart(ObservableList<PieChart.Data> pieChartData) {
         super(FXML);
+        if (pieChartData.size() == 0) {
+            pieChart.setVisible(false);
+            return;
+        }
+        pieChart.setVisible(true);
         pieChart.setData(pieChartData);
     }
 }
