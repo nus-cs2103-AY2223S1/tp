@@ -1,13 +1,12 @@
 package seedu.workbook.model;
 
-import javafx.collections.ObservableList;
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Stage;
-import seedu.workbook.model.internship.UniqueInternshipList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.UniqueInternshipList;
 
 /**
  * Wraps all data at the WorkBook level

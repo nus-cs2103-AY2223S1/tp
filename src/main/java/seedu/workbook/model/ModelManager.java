@@ -1,17 +1,17 @@
 package seedu.workbook.model;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import seedu.workbook.commons.core.GuiSettings;
-import seedu.workbook.commons.core.LogsCenter;
-import seedu.workbook.model.internship.Internship;
+import static java.util.Objects.requireNonNull;
+import static seedu.workbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.workbook.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.workbook.commons.core.GuiSettings;
+import seedu.workbook.commons.core.LogsCenter;
+import seedu.workbook.model.internship.Internship;
 
 /**
  * Represents the in-memory model of the WorkBook data.

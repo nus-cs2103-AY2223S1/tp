@@ -1,8 +1,5 @@
 package seedu.workbook.model;
 
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 

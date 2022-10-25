@@ -1,15 +1,15 @@
 package seedu.workbook.model.internship.util;
 
-import seedu.workbook.model.internship.Stage;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import seedu.workbook.model.internship.Stage;
+
 /**
- * Contains utility methods used in implementing methods with regards to {@code Stage} for GUI.
+ * Contains utility methods used in implementing methods regarding {@code Stage} for GUI.
  */
 public class StageUtil {
 
@@ -22,6 +22,7 @@ public class StageUtil {
             new Stage("Rejected")
     );
 
+    // CHECKSTYLE.OFF: LineLength
     private static final List<String> applicationSentTips = Arrays.asList(
             "Contact the hiring manager/recruitment by submitting a short follow-up email to show interest in the company and stand out!",
             "Keep a copy of your resume by the phone so that you can refer to them and answer questions if the company were to call you for a short interview!",
@@ -29,7 +30,8 @@ public class StageUtil {
             "Prepare for interviews and assessment by brushing up on your interview and coding skills! Refer to our tips included in “Online Assessment”, “Technical Interview” and “Behavioural Interview” for more advice!"
     );
 
-    // The hyperlink for 'Algorithm cheat sheets' is not included
+    // 'Algorithm cheat sheets': https://www.techinterviewhandbook.org/algorithms/study-cheatsheet/
+    // 'LeetCode': https://leetcode.com/
     private static final List<String> onlineAssessmentTips = Arrays.asList(
             "Decide on a programming language! We highly recommend Python as it has a huge library of useful functions and data structures!",
             "Remember to make a note of all the important keywords in the question!",
@@ -37,7 +39,8 @@ public class StageUtil {
             "Keep Practicing. Not sure which questions to try? Have a look at LeetCode!"
     );
 
-    // The hyperlinks for 'STAR' and 'online mock interviews' are not included
+    // 'STAR': https://www.themuse.com/advice/star-interview-method
+    // 'online mock interviews': https://interviewing.io/?urc=DMCa
     private static final List<String> technicalInterviewTips = Arrays.asList(
             "Mainly looking at your soft-skills and your ability to adapt and navigate about scenarios presented in the workplace.",
             "Prepare relevant-to-the-role experiences beforehand, especially if it’s from school projects because you’re still a student! ;)",
@@ -46,7 +49,7 @@ public class StageUtil {
     );
 
     private static final List<String> behavioralInterviewTips = Arrays.asList(
-            "Do not jump into coding right away. Coding questions tend to be vague and underspecified on purpose  to gauge your attention to detail and carefulness. Ask at least 2-3 clarifying questions!",
+            "Do not jump into coding right away. Coding questions tend to be vague and underspecified on purpose to gauge your attention to detail and carefulness. Ask at least 2-3 clarifying questions!",
             "Before starting, go through the different ways you could solve this question, discussing the time and space complexity tradeoffs!",
             "Explain what you are trying to achieve as you are coding to your interviewer, so he knows exactly what you are doing at each step!",
             "Once finished, remember to ALWAYS check that your code compiles and works for edge cases as well!"
@@ -68,8 +71,9 @@ public class StageUtil {
             "Ask for feedback from the company so that you can do better the next time! It’ll be good to find out what went well, what could be improved on and how to go about improving them!",
             "Most importantly, keep trying and move on to the next opportunity, they are plenty awaiting you! Sharpen, refine your skills before applying for internships again, you’ll be one step closer to landing the internship of your dream!"
     );
+    // CHECKSTYLE.ON: LineLength
 
-    private static final List<List<String>> listOfTips= Arrays.asList(
+    private static final List<List<String>> listOfTips = Arrays.asList(
             applicationSentTips,
             onlineAssessmentTips,
             technicalInterviewTips,

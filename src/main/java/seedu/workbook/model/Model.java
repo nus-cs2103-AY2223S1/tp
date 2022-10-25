@@ -1,11 +1,12 @@
 package seedu.workbook.model;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.workbook.commons.core.GuiSettings;
 import seedu.workbook.model.internship.Internship;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.

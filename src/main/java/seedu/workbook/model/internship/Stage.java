@@ -1,9 +1,9 @@
 package seedu.workbook.model.internship;
 
-import seedu.workbook.model.internship.util.StageUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
+
+import seedu.workbook.model.internship.util.StageUtil;
 
 /**
  * Represents an Internship's application stage in WorkBook.
