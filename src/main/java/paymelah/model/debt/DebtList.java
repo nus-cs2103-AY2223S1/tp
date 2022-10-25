@@ -51,6 +51,11 @@ public class DebtList {
         return totalDebt;
     }
 
+    public Debt getEarliestDebt() {
+        assert debts.size() > 0 : "getEarliestDebt should not be called when DebtList is empty";
+        return debts.get(0);
+    }
+
     /**
      * Adds a debt to the list.
      *
@@ -60,7 +65,15 @@ public class DebtList {
     public DebtList addDebt(Debt toAdd) {
         requireNonNull(toAdd);
         DebtList edited = new DebtList(this);
-        edited.debts.add(toAdd);
+
+        int index = 0;
+        for (Debt prevDebt : edited.debts) {
+            if (toAdd.compareDateTimeWith(prevDebt) < 0) {
+                break;
+            }
+            index++;
+        }
+        edited.debts.add(index, toAdd);
         edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
         return edited;
     }
