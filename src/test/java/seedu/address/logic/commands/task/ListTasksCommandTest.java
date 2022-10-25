@@ -28,6 +28,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.AssignedToContactsPredicate;
+import seedu.address.model.task.ContainsProjectsPredicate;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.DeadlineIsAfterPredicate;
 import seedu.address.model.task.DeadlineIsBeforePredicate;
@@ -269,4 +270,59 @@ public class ListTasksCommandTest {
         );
     }
 
+    @Test
+    public void execute_keywordAndProject_noResults() throws CommandException {
+        hideAllTasks(model);
+        Predicate<Task> basePredicate = Model.PREDICATE_INCOMPLETE_TASKS.and(new TitleContainsKeywordPredicate("ass"));
+
+        List<String> projectNames = List.of("Test Project");
+        ContainsProjectsPredicate projectsPredicate = new ContainsProjectsPredicate(projectNames);
+
+        expectedModel.updateFilteredTaskList(basePredicate.and(projectsPredicate));
+
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "ass",
+                        projectNames,
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        new HashSet<>()
+                );
+
+        assertCommandSuccess(
+                command,
+                model,
+                command.getSuccessMessage(model),
+                expectedModel
+        );
+    }
+
+    @Test
+    public void execute_multipleProjects_noResults() throws CommandException {
+        hideAllTasks(model);
+        Predicate<Task> basePredicate = Model.PREDICATE_INCOMPLETE_TASKS;
+
+        List<String> projectNames = List.of("Test Project", "Another Project");
+        ContainsProjectsPredicate projectsPredicate = new ContainsProjectsPredicate(projectNames);
+
+        expectedModel.updateFilteredTaskList(basePredicate.and(projectsPredicate));
+
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "",
+                        projectNames,
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        new HashSet<>()
+                );
+
+        assertCommandSuccess(
+                command,
+                model,
+                command.getSuccessMessage(model),
+                expectedModel
+        );
+    }
 }
