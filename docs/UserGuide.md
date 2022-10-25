@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-## Introduction
+![App Logo](images/guest_book_320.png)
 
-![App Logo](../src/main/resources/images/guest_book.png)
+## Introduction
 
 GuestBook is a **desktop app for managing guests in a hotel,
 optimized for use via a Command Line Interface** (CLI)
