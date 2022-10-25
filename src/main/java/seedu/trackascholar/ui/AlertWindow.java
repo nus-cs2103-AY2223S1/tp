@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
 
 /**
  * Prompts an alert window
@@ -23,6 +24,7 @@ public class AlertWindow {
         Node closeButton = confirmationAlert.getDialogPane().lookupButton(closeButtonType);
         closeButton.setId("closeBtn");
         confirmationAlert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        confirmationAlert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         confirmationAlert.showAndWait()
                 .filter(response -> response.getButtonData() == ButtonBar.ButtonData.YES)
                 .ifPresent(response ->

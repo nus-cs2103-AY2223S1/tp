@@ -15,6 +15,8 @@ import seedu.trackascholar.model.applicant.ApplicationStatus;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Applicant> PREDICATE_SHOW_ALL_APPLICANTS = unused -> true;
+    Predicate<Applicant> PREDICATE_SHOW_PINNED_APPLICANTS =
+            applicant -> applicant.getPin().getHasPinned();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,9 +91,13 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered applicant list */
     ObservableList<Applicant> getFilteredApplicantList();
 
+    /** Returns an unmodifiable view of the pinned applicant list */
+    ObservableList<Applicant> getPinnedApplicantList();
+
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
+
 }
