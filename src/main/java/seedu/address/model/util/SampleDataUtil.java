@@ -55,6 +55,16 @@ public class SampleDataUtil {
         };
     }
 
+    public static Tag[] getSampleTags() {
+        return new Tag[] {
+            new Tag("CS2101", 3),
+            new Tag("CS2103T", 3),
+            new Tag("CS2102", 1),
+            new Tag("GEA1000", 2),
+            new Tag("ACC1701X", 1)
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -62,6 +72,9 @@ public class SampleDataUtil {
         }
         for (Task sampleTask : getSampleTasks()) {
             sampleAb.addTask(sampleTask);
+        }
+        for (Tag sampleTag : getSampleTags()) {
+            sampleAb.addTag(sampleTag);
         }
         return sampleAb;
     }
