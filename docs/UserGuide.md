@@ -325,25 +325,25 @@ Examples:
 
 Marks a lesson as completed.
 
-Format: `marklesson li/LESSON_INDEX`
+Format: `marklesson INDEX`
 
-* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
-* `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refer to the index number shown in the lesson list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `marklesson li/2` marks the 2nd lesson as completed.
+* `marklesson 2` marks the 2nd lesson as completed.
 
 ### Marking a lesson as not completed : `unmarklesson`
 
 Marks a lesson as not completed.
 
-Format: `unmarklesson li/LESSON_INDEX`
+Format: `unmarklesson INDEX`
 
-* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
-* `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refer to the index number shown in the lesson list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `unmarklesson li/2` marks the 2nd lesson as not completed.
+* `unmarklesson 2` marks the 2nd lesson as not completed.
 
 ### Marking a student as present for a lesson : `markstudent`
 
@@ -466,8 +466,8 @@ Action | Format                                                                 
 **Add studio** | `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`                 | `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4`
 **Add mastery check** | `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...` | `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2`
 **Delete lesson** | `deletelesson INDEX`                                                                              | `deletelesson 2`
-**Mark lesson** | `marklesson li/LESSON_INDEX`                                                                      | `marklesson li/2`
-**Unmark lesson** | `unmarklesson li/LESSON_INDEX`                                                                    | `unmarklesson li/2`
+**Mark lesson** | `marklesson INDEX`                                                                      | `marklesson 2`
+**Unmark lesson** | `unmarklesson INDEX`                                                                    | `unmarklesson 2`
 **Mark student** | `markstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                    | `markstudent li/2 si/3`
 **Unmark student** | `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                  | `unmarkstudent li/2 si/3`
 **Add note** | `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`                                               | `addnote n/Get back to jeff on streams li/1 si/2`
