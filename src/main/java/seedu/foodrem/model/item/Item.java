@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -97,16 +98,17 @@ public class Item {
         return expiryDate;
     }
 
-    public Set<Tag> getTagSet() {
-        return tagSet;
-    }
-
     public ItemPrice getPrice() {
         return price;
     }
 
     public ItemRemark getRemarks() {
         return remarks;
+    }
+
+    // Instantiate new set to preserve immutability of item.
+    public Set<Tag> getTagSet() {
+        return new HashSet<>(tagSet);
     }
 
     /**
