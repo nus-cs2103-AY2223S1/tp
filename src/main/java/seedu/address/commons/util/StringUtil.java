@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * Helper functions for handling strings.
@@ -36,6 +37,20 @@ public class StringUtil {
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code name} contains the {@code word}.
+     * Ignores case, only requirement is the {@code word} shows up in some substring of the
+     * {@code name}.
+     */
+    public static boolean containsNameIgnoreCase(String name, String word) {
+        requireNonNull(name);
+        requireNonNull(word);
+
+        return !word.isEmpty()
+                && Pattern.compile(Pattern.quote(word), Pattern.CASE_INSENSITIVE)
+                          .matcher(name).find();
     }
 
     /**

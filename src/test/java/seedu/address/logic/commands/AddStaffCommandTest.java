@@ -37,14 +37,14 @@ public class AddStaffCommandTest {
         Staff validStaff = new StaffBuilder().build();
         AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, validProject.getProjectName());
 
-        String expectedMessaage = String.format(AddStaffCommand.MESSAGE_ADD_STAFF_SUCCESS, validStaff);
+        String expectedMessage = String.format(AddStaffCommand.MESSAGE_ADD_STAFF_SUCCESS, validStaff);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Project expectedProject = new ProjectBuilder().build();
         expectedProject.getStaffList().add(validStaff);
         expectedModel.addProject(expectedProject);
 
-        assertCommandSuccess(addStaffCommand, model, expectedMessaage, expectedModel);
+        assertCommandSuccess(addStaffCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
