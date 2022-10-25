@@ -19,19 +19,19 @@ import seedu.studmap.model.student.StudentData;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Add tag for an existing student in the student map.
+ * Deletes tag for an existing student in the student map.
  */
-public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagCommandStudentEditor> {
+public class DelTagCommand extends EditStudentCommand<DelTagCommand.DelTagCommandStudentEditor> {
 
     public static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
 
-    public static final String COMMAND_WORD = "addtag";
+    public static final String COMMAND_WORD = "deltag";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, new tag: %2$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags for a student in the student map.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes tags from a student in the student map.\n"
             + "Parameters:\n"
-            + "  INDEX (must be a positive integer or use \"all\" to add tags for everyone in the list) \n"
+            + "  INDEX (must be a positive integer or use \"all\" to delete tags from everyone in the list) \n"
             + "  [" + PREFIX_TAG + "TAG]...\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "lab "
@@ -40,54 +40,54 @@ public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagComman
             + PREFIX_TAG + "tutorial "
             + PREFIX_TAG + "needRemedial";
 
-    public static final String MESSAGE_SINGLE_ADD_TAGS_SUCCESS = "Added tags %1$s Student: %2$s";
+    public static final String MESSAGE_SINGLE_DEL_TAGS_SUCCESS = "Deleted tags %1$s Student: %2$s";
 
-    public static final String MESSAGE_MULTI_ADD_TAGS_SUCCESS = "Added tags %1$s for %2$d students";
+    public static final String MESSAGE_MULTI_DEL_TAGS_SUCCESS = "Deleted tags %1$s for %2$d students";
 
-    public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
+    public static final String MESSAGE_TAGS_NOT_DELETED = "At least one tag must be deleted";
 
-    public AddTagCommand(IndexListGenerator indexListGenerator, AddTagCommandStudentEditor editor) {
+    public DelTagCommand(IndexListGenerator indexListGenerator, DelTagCommandStudentEditor editor) {
         super(indexListGenerator, editor);
     }
 
     @Override
     public String getSingleEditSuccessMessage(Student editedStudent) {
-        return String.format(MESSAGE_SINGLE_ADD_TAGS_SUCCESS, CollectionUtil.collectionToString(studentEditor.tags),
+        return String.format(MESSAGE_SINGLE_DEL_TAGS_SUCCESS, CollectionUtil.collectionToString(studentEditor.tags),
                 editedStudent.getName());
     }
 
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
-        return String.format(MESSAGE_MULTI_ADD_TAGS_SUCCESS,
+        return String.format(MESSAGE_MULTI_DEL_TAGS_SUCCESS,
                 CollectionUtil.collectionToString(studentEditor.tags),
                 editedStudents.size());
     }
 
     @Override
     public String getNoEditMessage() {
-        return MESSAGE_TAGS_NOT_ADDED;
+        return MESSAGE_TAGS_NOT_DELETED;
     }
 
 
     /**
-     * A static StudentEditor that adds tags to a given Student.
+     * A static StudentEditor that deletes tags to a given Student.
      */
-    public static class AddTagCommandStudentEditor implements StudentEditor {
+    public static class DelTagCommandStudentEditor implements StudentEditor {
 
         private Set<Tag> tags;
 
         /**
          * Parameterless constructor.
          */
-        public AddTagCommandStudentEditor() {
+        public DelTagCommandStudentEditor() {
         }
 
         /**
          * Constructor with tags.
          *
-         * @param tags Tags that this editor will add to a given Student.
+         * @param tags Tags that this editor will delete from a given Student.
          */
-        public AddTagCommandStudentEditor(Set<Tag> tags) {
+        public DelTagCommandStudentEditor(Set<Tag> tags) {
             requireNonNull(tags);
             setTags(tags);
         }
@@ -107,7 +107,7 @@ public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagComman
 
             StudentData studentData = studentToEdit.getStudentData();
             Set<Tag> newTags = studentData.getTags();
-            newTags.addAll(tags);
+            newTags.removeAll(tags);
             studentData.setTags(newTags);
 
             return new Student(studentData);
