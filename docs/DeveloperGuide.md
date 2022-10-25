@@ -250,6 +250,38 @@ The following sequence diagram shows how the addNote operation works:
     * Pros: Would be more precise (Title of notes are unique).
     * Cons: Long command would be needed to delete a note with a long Title.
 
+### Find Person
+
+### Implementation
+
+The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
+
+Given below is an example usage scenario and how the find feature behaves at each step.
+
+Step 1. The user executes 'find David' command to find all Persons in the address book that includes the name `David`.
+
+Step 2. A `FindCommand` is constructed with a `NameContainsKeywordPredicate` which checks through the list of persons in the address book and only shows those with their first/last name matching `David`.
+
+Step 3. The `FindCommand` is executed and the `NameContainsKeywordsPredicate` is used to update the filtered person list.
+
+The following sequence diagram shows how the find command works:
+
+<img src="images/FindCommandSequence.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Design considerations:
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** Chooses person based on the whole first/last name matching the keyword.
+    * Pros: More specific Persons list after the find command.
+    * Cons: User needs to know the first/last name of the person they are trying to find.
+
+* **Alternative 2:** Chooses person if name contains the keyword.
+    * Pros: Easier to find person.
+    * Cons: Persons list may show other persons that are not desired by the user.
+
 ### Find Person by Tag feature
 
 #### Implementation
