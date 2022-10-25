@@ -76,6 +76,11 @@ public class AddressBookTest {
         }
 
         @Override
+        public ObservableList<Client> getModifiableClientList() {
+            return clients;
+        }
+
+        @Override
         public ObservableList<Client> getClientList() {
             return clients;
         }

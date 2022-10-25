@@ -30,6 +30,8 @@ public interface ReadOnlyAddressBook {
 
     ObservableList<Issue> getModifiableIssueList();
 
+    ObservableList<Client> getModifiableClientList();
+
     /**
      * Returns an unmodifiable view of the clients list.
      * This list will not contain any duplicate clients.
