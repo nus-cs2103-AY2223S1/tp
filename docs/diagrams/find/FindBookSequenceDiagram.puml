@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PrimaryParser" as PrimaryParser LOGIC_COLOR
+participant ":FindBookArgumentsParser" as FindBookArgumentsParser LOGIC_COLOR
+participant "f:FindBookCommand" as FindBookCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find book moby")]
+activate LogicManager
+
+LogicManager -> PrimaryParser : parse("find book moby")
+activate PrimaryParser
+
+create FindBookArgumentsParser
+PrimaryParser -> FindBookArgumentsParser
+activate FindBookArgumentsParser
+
+PrimaryParser <-- FindBookArgumentsParser
+deactivate FindBookArgumentsParser
+
+PrimaryParser -> FindBookArgumentsParser : parse("moby")
+activate FindBookArgumentsParser
+
+create FindBookCommand
+FindBookArgumentsParser -> FindBookCommand
+activate FindBookCommand
+
+FindBookArgumentsParser <-- FindBookCommand : f
+deactivate FindBookCommand
+
+PrimaryParser <-- FindBookArgumentsParser : f
+deactivate FindBookArgumentsParser
+PrimaryParser <[hidden]- FindBookArgumentsParser
+destroy FindBookArgumentsParser
+
+LogicManager <-- PrimaryParser : f
+deactivate PrimaryParser
+
+LogicManager -> FindBookCommand : execute()
+activate FindBookCommand
+
+FindBookCommand -> Model : updateFilteredBookList("moby")
+activate Model
+
+FindBookCommand <-- Model
+deactivate Model
+
+create CommandResult
+FindBookCommand -> CommandResult
+activate CommandResult
+
+FindBookCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- FindBookCommand : result
+deactivate FindBookCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

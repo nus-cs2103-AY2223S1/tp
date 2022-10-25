@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -10,11 +11,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="BookFace" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root minHeight="600" minWidth="1050" onCloseRequest="#handleExit" title="BookFace" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/book_face_32.png" />
   </icons>
@@ -48,30 +48,34 @@
         </StackPane>
 
         <HBox prefWidth="400" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-        <VBox fx:id="personList" minWidth="750" prefWidth="750" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <HBox alignment="CENTER" maxHeight="50.0" minWidth="500" prefHeight="50.0" prefWidth="500" styleClass="list-background" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <Label styleClass="list-title" text="User List" underline="true" wrapText="true">
-                        <font>
-                           <Font size="100" />
-                        </font></Label>
-          </HBox>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-        </VBox>
-          <VBox fx:id="testList" minWidth="750" prefWidth="750" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-            <HBox alignment="CENTER" maxHeight="50.0" minWidth="500" prefHeight="50.0" prefWidth="500" styleClass="list-background" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-              <Label styleClass="list-title" text="Book List" underline="true" wrapText="true">
-                        <font>
-                           <Font size="100" />
-                        </font></Label>
-            </HBox>
-            <StackPane fx:id="bookListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-            <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
-          </VBox>
+          <StackPane minWidth="500" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <VBox fx:id="personList" minWidth="500" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" minWidth="500.0" prefHeight="50.0" prefWidth="500.0" styleClass="list-background" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <Label styleClass="list-title" text="User List" underline="true" wrapText="true">
+                  <font>
+                    <Font size="100" />
+                  </font></Label>
+              </HBox>
+              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+            </VBox>
+          </StackPane>
+          <StackPane minWidth="500" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <VBox fx:id="testList" minWidth="500" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" minWidth="500" prefHeight="50.0" prefWidth="500" styleClass="list-background" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                <Label styleClass="list-title" text="Book List" underline="true" wrapText="true">
+                  <font>
+                    <Font size="100" />
+                  </font></Label>
+              </HBox>
+              <StackPane fx:id="bookListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+            </VBox>
+          </StackPane>
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

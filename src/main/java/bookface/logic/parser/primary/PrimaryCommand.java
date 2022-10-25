@@ -18,7 +18,7 @@ import bookface.logic.parser.list.ListCommandParser;
 /**
  * An enum class that contains all the valid user commands.
  */
-public enum PrimaryCommands implements CommandReturnable {
+public enum PrimaryCommand implements CommandReturnable {
     ADD((args) -> new AddCommandParser().parse(args)),
     EDIT((args) -> new EditCommandParser().parse(args)),
     DELETE((args) -> new DeleteCommandParser().parse(args)),
@@ -32,7 +32,7 @@ public enum PrimaryCommands implements CommandReturnable {
 
     private final ParserFunction<? super String, ? extends Command> commandFunction;
 
-    PrimaryCommands(ParserFunction<? super String, ? extends Command> commandString) {
+    PrimaryCommand(ParserFunction<? super String, ? extends Command> commandString) {
         this.commandFunction = commandString;
     }
 
