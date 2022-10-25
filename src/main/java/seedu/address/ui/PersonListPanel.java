@@ -28,7 +28,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setItems(buyerList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
-
+    
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code PersonCard}.
      */

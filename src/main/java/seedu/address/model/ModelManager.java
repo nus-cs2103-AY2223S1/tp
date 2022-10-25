@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.buyer.Buyer;
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final PersonBook personBook;
     private final PropertyBook propertyBook;
     private final FilteredList<Buyer> filteredBuyers;
+    private final SortedList<Buyer> sortedBuyers;
     private final FilteredList<Property> filteredProperties;
 
     /**
@@ -40,6 +43,7 @@ public class ModelManager implements Model {
         this.propertyBook = new PropertyBook(propertyModel);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredBuyers = new FilteredList<>(this.personBook.getPersonList());
+        sortedBuyers = new SortedList<>(this.personBook.getPersonList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
@@ -138,10 +142,28 @@ public class ModelManager implements Model {
     public ObservableList<Buyer> getFilteredPersonList() {
         return filteredBuyers;
     }
+    
     @Override
     public void updateFilteredPersonList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
         filteredBuyers.setPredicate(predicate);
+    }
+
+    //=========== Sorted Buyer List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Buyer} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Buyer> getSortedPersonList() {
+        return sortedBuyers;
+    }
+
+    @Override
+    public void updateSortedPersonList(Comparator<Buyer> comparator) {
+        requireNonNull(comparator);
+        sortedBuyers.setComparator(comparator);
     }
 
     //=========== PropertyBook ================================================================================

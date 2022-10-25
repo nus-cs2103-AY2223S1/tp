@@ -1,12 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * The API of the Model component.
@@ -114,6 +117,20 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Buyer> predicate);
 
+    //=========== Sorted Buyer List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the sorted buyer list
+     */
+    ObservableList<Buyer> getSortedPersonList();
+
+    /**
+     * Updates the comparator of the sorted buyer list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedPersonList(Comparator<Buyer> comparator);
+    
     //=========== PropertyBook ================================================================================
 
     /**

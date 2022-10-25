@@ -35,6 +35,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Buyer> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the sorted list of persons */
+    ObservableList<Buyer> getSortedPersonList();
+
     /**
      * Returns the PropertyBook.
      *
