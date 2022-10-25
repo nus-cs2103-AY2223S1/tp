@@ -2,6 +2,9 @@ package seedu.classify.model.student;
 
 import java.util.Comparator;
 
+/**
+ * Compares the names of two students lexicographically
+ */
 public class NameComparator implements Comparator<Student> {
 
     private static NameComparator instance = null;
@@ -9,6 +12,9 @@ public class NameComparator implements Comparator<Student> {
     private NameComparator() {
     }
 
+    /**
+     * Returns the single instance of the NameComparator.
+     */
     public static NameComparator getNameComparator() {
         if (instance == null) {
             instance = new NameComparator();

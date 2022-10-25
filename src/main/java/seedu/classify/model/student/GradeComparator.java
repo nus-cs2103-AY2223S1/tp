@@ -2,10 +2,16 @@ package seedu.classify.model.student;
 
 import java.util.Comparator;
 
+/**
+ * Compares the grades of 2 students in a particular exam
+ */
 public class GradeComparator implements Comparator<Student> {
 
     private final String exam;
 
+    /**
+     * Creates a GradeComparator object using the given {@code String exam}, to compare the grades in that exam.
+     */
     public GradeComparator(String exam) {
         assert exam.equals("CA1") || exam.equals("CA2") || exam.equals("SA1") || exam.equals("SA2");
         this.exam = exam;

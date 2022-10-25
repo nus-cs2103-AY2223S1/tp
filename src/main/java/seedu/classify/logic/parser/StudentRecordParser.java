@@ -4,10 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.classify.commons.core.Messages;
-
 import seedu.classify.logic.commands.AddStudCommand;
-import seedu.classify.logic.commands.Command;
 import seedu.classify.logic.commands.ClearCommand;
+import seedu.classify.logic.commands.Command;
 import seedu.classify.logic.commands.DeleteCommand;
 import seedu.classify.logic.commands.EditCommand;
 import seedu.classify.logic.commands.ExitCommand;

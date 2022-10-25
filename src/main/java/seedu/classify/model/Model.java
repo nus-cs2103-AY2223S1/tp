@@ -92,12 +92,6 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
-     * Sorts the filtered student list using the given {@code comparator}.
-     * @param comparator
-     */
-    void sortFilteredStudentList(Comparator<Student> comparator);
-
-    /**
      * Calculates the mean {@code String exam} score of the filtered student list.
      */
     double calculateExamMean(String exam);

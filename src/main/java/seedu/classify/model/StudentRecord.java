@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.classify.model.student.NameComparator;
 import seedu.classify.model.student.Student;
 import seedu.classify.model.student.UniqueStudentList;
 
@@ -76,6 +77,7 @@ public class StudentRecord implements ReadOnlyStudentRecord {
      */
     public void addStudent(Student p) {
         students.add(p);
+        sortList(NameComparator.getNameComparator());
     }
 
     /**

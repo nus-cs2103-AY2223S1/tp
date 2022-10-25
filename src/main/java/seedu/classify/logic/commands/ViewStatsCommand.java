@@ -10,6 +10,11 @@ import seedu.classify.model.student.ClassPredicate;
 import seedu.classify.model.student.GradeComparator;
 import seedu.classify.model.student.GradeLessThanMeanPredicate;
 
+/**
+ * Calculates the mean of a particular exam from a particular class, using the given class and given exam. Returns the
+ * list of students in the class, sorted by the grade of the particular exam, and, if specified, shows only the
+ * students whose grade falls below the calculated mean.
+ */
 public class ViewStatsCommand extends Command {
 
     public static final String COMMAND_WORD = "viewstats";
@@ -25,6 +30,10 @@ public class ViewStatsCommand extends Command {
     private final String exam;
     private final boolean isFilterOn;
 
+    /**
+     * creates a ViewStatsCommand to view the mean of a particular exam of a particular class,
+     * using the specified fields.
+     */
     public ViewStatsCommand(ClassPredicate predicate, String className, String exam, boolean isFilterOn) {
         this.predicate = predicate;
         this.className = className.toUpperCase();

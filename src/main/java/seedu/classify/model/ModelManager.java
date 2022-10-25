@@ -150,12 +150,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortFilteredStudentList(Comparator<Student> comparator) {
-        this.filteredStudents.sortFilteredStudentList(comparator);
-
-    }
-
-    @Override
     public double calculateExamMean(String exam) {
         return this.filteredStudents.calculateExamMean(exam);
     }
