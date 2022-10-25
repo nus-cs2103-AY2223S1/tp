@@ -153,11 +153,11 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc {name} e/ {email} p/ {phone_number} [m/ {module1} {module2}] [t/ {tag1}]`
+Format: `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module1} m/ {module2}] gh/ {github} tele/ {telegram}...`
 
 Examples:
-* `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S`
-* `addc Betsy Crowe e/ betsycrowe@gmail.com p/ 89985432 t/ friend`
+* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S gh/ bobby tele/ bmartin`
+* `addc n/ Betsy Crowe p/ 89985432 e/ betsycrowe@gmail.com gh/betsycrowe tele/croweybetty`
 
 #### Listing all contact : `listc`
 
@@ -243,20 +243,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                              |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add task**       | `add {task_name} by/{deadline} m/{module_code}` <br> e.g. `add finish problem set 5 by/tomorrow 5pm m/CS2040S`                                                               |
-| **Edit task**      | `edit {task_index} {field prefix + field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                 |
-| **Delete task**    | `del {task_index}` <br> e.g. `delete 5`                                                                                                                                       |
-| **Mark task**      | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                        |
-| **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                                    |
-| **Find tasks**     | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`                                                                                 |
-| **List tasks**     | `list` / `list time`                                                                                                                                                          |
-| **Add contact**    | `addc {name} e/ {email} p/ {phone_number} [m/{module1} {module2}] [t/{tag1}]` <br> e.g., `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S t/ friend` |
-| **Clear contacts** | `clear`                                                                                                                                                                       |
-| **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit contact**   | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                                     |
-| **Find contacts**  | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`                                                                                 |
-| **List contacts**  | `listc`                                                                                                                                                                       |
-| **Help**           | `help`                                                                                                                                                                        |
+Action | Format, Examples
+--------|------------------
+**Add task** | `add {task_name} by/{deadline} m/{module_code}` <br> e.g. `add finish problem set 5 by/Week 6 Sunday m/CS2040S`
+**Delete task** | `del {task_index}` <br> e.g. `delete 5`
+**Mark task** | `mark {task_index}` <br> e.g. `mark 3`
+**Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
+**Find tasks** | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`
+**List tasks** | `list` / `list time`
+**Add contact** | `addc n/ {name} p/ {phone_number} e/ {email} [t/ {tag}] [m/ {module_1} m/ {module_2}] gh/ {github} tele/ {telegram}...` <br> e.g., `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S gh/ bobby tele/ bmartin`
+**Clear contacts** | `clear`
+**Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
+**Edit contact** | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`        
+**Find contacts** | `findc n/ {name}` <br> `findc m/ {module}`<br> e.g., `findc n/ John`, <br> `findc m/ CS1231S`
+**List contacts** | `listc`
+**Help** | `help`
 

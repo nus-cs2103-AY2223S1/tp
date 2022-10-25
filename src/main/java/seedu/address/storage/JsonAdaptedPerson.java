@@ -13,9 +13,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +33,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
+    private final String github;
+    private final String telegram;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +43,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("mods") List<JsonAdaptedModule> modules) {
+                             @JsonProperty("mods") List<JsonAdaptedModule> modules,
+                             @JsonProperty("github") String github, @JsonProperty("telegram") String telegram) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +55,8 @@ class JsonAdaptedPerson {
         if (modules != null) {
             this.modules.addAll(modules);
         }
+        this.github = github;
+        this.telegram = telegram;
     }
 
     /**
@@ -66,6 +73,9 @@ class JsonAdaptedPerson {
         modules.addAll(source.getModules().stream()
                 .map(JsonAdaptedModule::new)
                 .collect(Collectors.toList()));
+        github = source.getGithub().value;
+        telegram = source.getTelegram().telehandle;
+
     }
 
     /**
@@ -118,7 +128,26 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Set<Module> modelModules = new HashSet<>(personModules);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModules);
+
+        if (github == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Github.class.getSimpleName()));
+        }
+        if (!Github.isValidGh(github)) {
+            throw new IllegalValueException(Github.MESSAGE_CONSTRAINTS);
+        }
+        final Github modelGithub = new Github(github);
+
+        if (telegram == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Telegram.class.getSimpleName()));
+        }
+        if (!Telegram.isValidTele(telegram)) {
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        final Telegram modelTelegram = new Telegram(telegram);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelModules, modelGithub,
+                modelTelegram);
     }
 
 }
