@@ -207,6 +207,11 @@ public class AddCommandTest {
         public boolean hasStudentWithMatchingId(Student student) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void clearStudentPictures() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.ToDo;
 
@@ -38,7 +39,9 @@ class JsonSerializableTaskBook {
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
         tasks.addAll(source.getTaskList().stream().map(x -> x.getClass().equals(ToDo.class)
                                     ? new JsonAdaptedToDo(x)
-                                    : new JsonAdaptedDeadline(x))
+                                    : x.getClass().equals(Deadline.class)
+                                    ? new JsonAdaptedDeadline(x)
+                                    : new JsonAdaptedAssignment(x))
                 .collect(Collectors.toList()));
     }
 

@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a deadline in the task book.
+ * Represents a Deadline in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Deadline implements Task {

@@ -132,4 +132,9 @@ public interface Model {
      * the address book.
      */
     boolean hasStudentWithMatchingId(Student student);
+
+    /**
+     * Clears the Images when Addressbook is reset.
+     */
+    void clearStudentPictures();
 }

@@ -17,7 +17,8 @@ import seedu.address.model.task.Task;
 )
 @JsonSubTypes({
     @JsonSubTypes.Type(value = JsonAdaptedToDo.class, name = "ToDo"),
-    @JsonSubTypes.Type(value = JsonAdaptedDeadline.class, name = "Deadline")
+    @JsonSubTypes.Type(value = JsonAdaptedDeadline.class, name = "Deadline"),
+    @JsonSubTypes.Type(value = JsonAdaptedAssignment.class, name = "Assignment")
 })
 public abstract class JsonAdaptedTask {
     public abstract Task toModelType() throws IllegalValueException;

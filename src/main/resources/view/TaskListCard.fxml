@@ -29,6 +29,7 @@
             </HBox>
             <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
             <Label fx:id="date" styleClass="cell_small_label" wrapText="true" />
+            <Label fx:id ="students" styleClass="cell_small_label" wrapText="true"/>
         </VBox>
         <rowConstraints>
             <RowConstraints />

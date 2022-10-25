@@ -1,14 +1,17 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_ADD_STUDENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Assignment;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.FormatDate;
 import seedu.address.model.task.Task;
@@ -28,7 +31,10 @@ public class TaskCommandParser implements Parser<TaskCommand> {
      */
     public TaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASK_TITLE, PREFIX_TASK_DESCRIPTION, PREFIX_DEADLINE_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_TASK_TITLE,
+                        PREFIX_TASK_DESCRIPTION,
+                        PREFIX_DEADLINE_DATE,
+                        PREFIX_ASSIGNMENT_ADD_STUDENTS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK_TITLE, PREFIX_TASK_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -36,21 +42,40 @@ public class TaskCommandParser implements Parser<TaskCommand> {
                     TaskCommand.MESSAGE_USAGE));
         }
 
-        TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
-        TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT_ADD_STUDENTS, PREFIX_DEADLINE_DATE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    TaskCommand.MESSAGE_USAGE));
+        }
 
+        // if it's a deadline
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE_DATE)) {
-            // if it's a deadline
+            TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
+            TaskDescription description = ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
             FormatDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE_DATE).get());
+
             Task task = new Deadline(title, description, date);
 
             return new TaskCommand(task);
-        } else {
-            // if it's a toDo
-            Task task = new ToDo(title, description);
+        }
 
+        if (arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT_ADD_STUDENTS)) {
+            TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
+            TaskDescription description = ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
+            List<String> students = ParserUtil
+                    .parseStudents(argMultimap.getValue(PREFIX_ASSIGNMENT_ADD_STUDENTS).get());
+            Task task = new Assignment(title, description, students);
             return new TaskCommand(task);
         }
+
+        // if it's a toDo
+        TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
+        TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
+
+        Task task = new ToDo(title, description);
+
+        return new TaskCommand(task);
     }
 
     /**
