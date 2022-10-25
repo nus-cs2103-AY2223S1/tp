@@ -18,7 +18,7 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/nose` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/ear`, `t/nose t/throat` etc.
@@ -405,6 +405,6 @@ Action | Format, Examples
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
 **Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD] [t/TAG]…​` <br> e.g., `edit appts 1 r/Cough`
-**List** | `list patients` <br> `list appointments` <br> `list all`
+**List** | `list patients` <br> `list appts` <br> `list all`
 **Help** | `help`
 **Exit** | `exit`
