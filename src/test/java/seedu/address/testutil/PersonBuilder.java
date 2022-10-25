@@ -17,7 +17,7 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-    public static final String DEFAULT_ID = " fd913768-8881-4f1a-9b38-7532be0a8d31";
+    public static final String DEFAULT_ID = "fd913768-8881-4f1a-9b38-7532be0a8d31";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";

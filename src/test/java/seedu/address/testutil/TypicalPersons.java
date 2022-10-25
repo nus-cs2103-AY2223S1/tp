@@ -28,7 +28,7 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder()
-            .withId("04ed48e8-4b78-4c36-82ce-e6133fdf84d4")
+            .withId("ce8e09f9-a330-4387-b862-2c5523264142")
             .withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
@@ -37,7 +37,7 @@ public class TypicalPersons {
             .withTags("friends")
             .build();
     public static final Person BENSON = new PersonBuilder()
-            .withId("f157b133-ee98-4207-8cc3-36074c089696")
+            .withId("1b75e80a-7f43-40b1-b576-f8e2b26a873c")
             .withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com")
@@ -46,7 +46,7 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder()
-            .withId("6f38053f-5961-4a28-9cf7-7e2fbba84145")
+            .withId("d6c74f5b-c510-4838-a86f-d4bb22a7424")
             .withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
@@ -54,7 +54,7 @@ public class TypicalPersons {
             .withRemark("free on wednesday")
             .build();
     public static final Person DANIEL = new PersonBuilder()
-            .withId("eb0786bb-fd90-4988-89bc-cebaf72195d6")
+            .withId("1a442dad-8807-4ad6-a256-b63aff2c9175")
             .withName("Daniel Meier")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
@@ -63,7 +63,7 @@ public class TypicalPersons {
             .withTags("friends")
             .build();
     public static final Person ELLE = new PersonBuilder()
-            .withId(" ceb503c2-b79f-4dd7-b146-f6f9d6533452")
+            .withId("bab841db-58a7-4db7-9271-45b3b641883e")
             .withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
@@ -71,7 +71,7 @@ public class TypicalPersons {
             .withRemark("")
             .build();
     public static final Person FIONA = new PersonBuilder()
-            .withId("0939d991-524a-4192-9270-1ff62d6ff3d1")
+            .withId("f5a4c27e-3aa0-410f-8e4c-f8120630006b")
             .withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
@@ -79,7 +79,7 @@ public class TypicalPersons {
             .withRemark("")
             .build();
     public static final Person GEORGE = new PersonBuilder()
-            .withId("27b533cb-a978-4250-9cd1-f8743ca60f54")
+            .withId("b8a3a593-2d0f-4a55-8345-a08f5ef14d5f")
             .withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com")
             .withAddress("4th street")
