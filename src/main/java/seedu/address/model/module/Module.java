@@ -223,7 +223,7 @@ public class Module {
         Set<Person> persons = getPersons();
         if (!persons.isEmpty()) {
             builder.append("; Persons: ");
-            persons.forEach(builder::append);
+            persons.forEach(person -> builder.append("[" + person.toString() + "]"));
         }
 
         return builder.toString();
