@@ -42,6 +42,7 @@
            </columns>
          </TableView>
          <Label fx:id="generalNotes" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="General Notes:" />
+         <Label fx:id="hasClash" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="hasClash" visible="false" />
         </VBox>
       <rowConstraints>
          <RowConstraints />
