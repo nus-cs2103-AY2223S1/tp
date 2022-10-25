@@ -4,10 +4,8 @@ import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.travelr.logic.commands.AddCommand;
@@ -32,7 +30,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESC, PREFIX_TAG, PREFIX_LOCATION, PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESC, PREFIX_LOCATION, PREFIX_DATE);
 
         // Location and DateField is optional
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESC)
@@ -42,13 +40,12 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
-        Set<Event> eventList = ParserUtil.parseEvents(argMultimap.getAllValues(PREFIX_TAG));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION)
                 .orElse(Location.getDefaultValue()));
         DateField dateField = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE)
                 .orElse(DateField.getDefaultValue()));
 
-        Trip trip = new Trip(title, description, eventList, location, dateField);
+        Trip trip = new Trip(title, description, location, dateField);
 
         return new AddCommand(trip);
     }
