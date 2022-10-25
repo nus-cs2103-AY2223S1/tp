@@ -54,6 +54,7 @@ public class Itinerary {
         this.unscheduledItemList = new UniqueItemList();
         this.days = new ArrayList<>();
         for (int i = 0; i < duration.getValue(); i++) {
+            // TODO day number should start with 1 instead of 0?
             this.days.add(new Day(i));
         }
     }

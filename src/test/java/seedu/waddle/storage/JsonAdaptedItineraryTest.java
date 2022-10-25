@@ -32,6 +32,7 @@ public class JsonAdaptedItineraryTest {
     private static final String VALID_PEOPLE = SUMMER.getPeople().toString();
     private static final String VALID_BUDGET = SUMMER.getBudget().toString();
     private static final List<JsonAdaptedItem> VALID_EMPTY_ITEM_LIST = new ArrayList<>();
+    private static final List<JsonAdaptedDay> VALID_EMPTY_DAY_LIST = new ArrayList<>();
 
     /*
     TODO: Make non-empty item list
@@ -47,7 +48,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(INVALID_NAME, VALID_COUNTRY, VALID_START_DATE,
-                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -55,7 +56,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(null, VALID_COUNTRY, VALID_START_DATE,
-                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -63,7 +64,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_invalidCountry_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, INVALID_COUNTRY, VALID_START_DATE,
-                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = Country.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -71,7 +72,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_nullCountry_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, null, VALID_START_DATE,
-                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Country.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -79,7 +80,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_invalidStartDate_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, INVALID_START_DATE,
-                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -87,7 +88,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_nullStartDate_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, null,
-                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -96,7 +97,7 @@ public class JsonAdaptedItineraryTest {
     public void toModelType_invalidDuration_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary =
                 new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, VALID_START_DATE, INVALID_DURATION, VALID_PEOPLE,
-                        VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                        VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -104,7 +105,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_nullDuration_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, VALID_START_DATE,
-                null, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                null, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItineraryDuration.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -112,7 +113,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_invalidPeople_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, VALID_START_DATE,
-                VALID_DURATION, INVALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, INVALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = People.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
@@ -120,7 +121,7 @@ public class JsonAdaptedItineraryTest {
     @Test
     public void toModelType_nullPeople_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, VALID_START_DATE,
-                VALID_DURATION, null, VALID_BUDGET, VALID_EMPTY_ITEM_LIST);
+                VALID_DURATION, null, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, People.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }

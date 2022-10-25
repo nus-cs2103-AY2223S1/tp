@@ -57,7 +57,6 @@ public class AddCommand extends Command {
         }
 
         model.addItinerary(toAdd);
-        System.out.println("number of days in a newly created itinerary with duration: " + this.toAdd.getDays().size());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

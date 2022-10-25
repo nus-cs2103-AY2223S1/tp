@@ -45,7 +45,6 @@ public class UnplanCommand extends Command {
 
         Item unplannedItem;
         try {
-            System.out.println(multiIndex.toString());
             unplannedItem = itinerary.unplanItem(multiIndex);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_INVALID_INDEX_NUMBER);
