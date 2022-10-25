@@ -125,4 +125,21 @@ public class OpenLinkCommand extends Command {
         }
     }
     //@@author
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof OpenLinkCommand)) {
+            return false;
+        }
+
+        // state check
+        OpenLinkCommand c = (OpenLinkCommand) other;
+        return moduleCode.equals(c.moduleCode) && linkAliases.equals(c.linkAliases);
+    }
 }

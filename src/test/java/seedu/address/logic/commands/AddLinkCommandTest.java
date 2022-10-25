@@ -23,7 +23,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +36,6 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonAdaptedLink;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddLinkCommand.
