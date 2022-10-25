@@ -5,12 +5,30 @@ title: User Guide
 
 InternConnect is a **desktop app for managing internship applicants, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, InternConnect can get your application management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+# Table of Contents
+1. [Quick Start](#1-quick-start)
+2. [Fields](#2-fields)
+   1. [Identity Fields](#21-identity-fields)
+   2. [Data Fields](#22-data-fields)
+   3. [Tag Fields](#23-tag-fields)
+3. [Features](#3-features)
+   1. [Viewing help](#31-viewing-help-help)
+   2. [Adding an applicant](#32-adding-an-applicant-add)
+   3. [Listing all applicants](#33-listing-all-applicants-list)
+   4. [Viewing the detail of an applicant](#34-viewing-the-detail-of-an-applicant-view)
+   5. [Editing an applicant](#35-editing-an-applicant-edit)
+   6. [Locating applicants by field](#36-locating-applicants-by-field-find)
+   7. [Importing applicants from an external text file](#37-importing-applicants-from-an-external-text-file-import)
+   8. [Deleting an applicant](#38-deleting-an-applicant-delete)
+   9. [Clearing all entries](#39-clearing-all-entries-clear)
+   10. [Exiting the program](#310-exiting-the-program-exit)
+   11. [Saving the data](#311-saving-the-data)
+   12. [Editing the data file](#312-editing-the-data-file)
+4. [Command Summary](#4-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -34,13 +52,24 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Fields
+## 2. Fields
 
-Identity Fields (Mandatory)
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the fields:**<br>
+
+* Identity fields and Data fields are mandatory
+
+* Tag fields are optional
+
+</div>
+
+
+### 2.1 Identity Fields
 1. Email
    Parameter: 
    Constraints:
@@ -48,17 +77,19 @@ Identity Fields (Mandatory)
    
 1. ...
 
-Data Fields (Mandatory)
+
+### 2.2 Data Fields
 1. Name
    ...
 
-Tag Fields (Optional)
+
+### 2.3 Tag Fields
 1. Tags
    ...
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -93,40 +124,40 @@ Tag Fields (Optional)
 </div>
 
 
-### Viewing help: `help`
+### 3.1 Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
 
-### Adding an applicant: `add`
+### 3.2 Adding an applicant: `add`
 
 Adds an applicant to InternConnect.
 
 Format: `add {mandatory_field_parameter/IDENTITY_FIELD} [t/TAG]...`
 
-* For `mandatory_field_parameter` arguments, please refer to the `parameter` of each fields in the [Fields](#fields) section above.
+* For `mandatory_field_parameter` arguments, please refer to the `parameter` of each fields in the [Fields](#2-fields) section above.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
 
 
-### Listing all persons : `list`
+### 3.3 Listing all applicants: `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all applicants in InternConnect.
 
 Format: `list`
 
 
-### View the detail of an applicant: `view`
+### 3.4 Viewing the detail of an applicant: `view`
 
 Shows a detailed view of a selected applicant listed in InternConnect.
 
 Format: `view INDEX`
 
 
-### Editing an applicant : `edit`
+### 3.5 Editing an applicant: `edit`
 
 Edits an existing applicant in InternConnect.
 
@@ -145,9 +176,9 @@ Examples:
 *  `edit 2 name/Betty` Edits the name of the 2nd person to be `Betty`.
 
 
-### Locating person's fields by field: `find`
+### 3.6 Locating applicants by field: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds applicants whose names contain any of the given keywords.
 
 Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
 
@@ -164,7 +195,7 @@ Examples:
 * `find gender/F cap/5 ` returns female applicants with a CAP of 5
 
 
-### Importing applicants from an external text file: `import`
+### 3.7 Importing applicants from an external text file: `import`
 
 Imports applicants from the specified file path.
 
@@ -173,13 +204,13 @@ Format: `import FILE_PATH`
 * The file has to exist in the specified file path.
 * More than 1 applicants can be listed in the file, as long as they have all the mandatory fields, satisfy the value constraints, and do not cause duplicates in the InternConnect.
 * The file must be in json format.
-* For example of valid input file, refer to this [[template](templates/template.json)] file.
+* For example of valid input file, refer to this [template](templates/template.json) file.
 
 Examples:
 * `import nus_students.json` Imports NUS students listed in the `nus_students.json` file
 
 
-### Deleting an applicant: `delete`
+### 3.8 Deleting an applicant: `delete`
 
 Deletes the specified applicant from InternConnect.
 
@@ -194,24 +225,24 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
 
-### Clearing all entries: `clear`
+### 3.9 Clearing all entries: `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
 
-### Exiting the program: `exit`
+### 3.10 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### 3.11 Saving the data
 
 InternConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 3.12 Editing the data file
 
 InternConnect data are saved as a JSON file `[JAR file location]/data/internconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -221,7 +252,7 @@ If your changes to the data file makes its format invalid, InternConnect will di
 
 -----------------------------------------------------------------------------------------------------
 
-## Command summary
+## 4. Command summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                  |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
