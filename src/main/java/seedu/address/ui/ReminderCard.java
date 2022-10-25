@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
+
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
@@ -44,10 +46,11 @@ public class ReminderCard extends UiPart<Region> {
     public ReminderCard(Person person, Reminder reminder, int displayedIndex) {
         super(FXML);
         this.person = person;
+        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         reminderTask.setText(reminder.task);
         reminderDate.setText(reminder.date
-                .format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
+                .format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
     }
 
     @Override

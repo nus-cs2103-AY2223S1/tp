@@ -4,8 +4,11 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Reminder;
 
 /**
  * The API of the Model component.
@@ -84,4 +87,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns a sorted list of the reminder list */
+    SortedList<Pair<Person, Reminder>> getSortedReminderList();
+
+    /**
+     * Adds the given person reminder pair.
+     */
+    void addReminder(Person person, Reminder reminder);
+
+    /**
+     * Deletes the given person reminder pair.
+     * The reminder must exist in the address book.
+     */
+    void deleteReminder(Pair<Person, Reminder> target);
 }

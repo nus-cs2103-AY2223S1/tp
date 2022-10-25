@@ -1,8 +1,10 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
 
 /**
  * Represents a Reminder in the address book.
@@ -18,19 +20,12 @@ public class Reminder {
      * @param date A valid date to associated to the reminder.
      */
     public Reminder(String reminder, String date) {
+
+        assert Birthday.isValidDate(date) : "date should be in format of '" + DATE_FORMAT_PATTERN + "'";
+
         this.task = reminder;
-        LocalDate tempDate;
-        try {
-            tempDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("d-MM-yyyy"));
-        } catch (DateTimeParseException e) {
-            try {
-                tempDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-d"));
-            } catch (DateTimeParseException e1) {
-                // Placeholder before date validation is implemented.
-                tempDate = LocalDate.of(2000, 1, 1);
-            }
-        }
-        this.date = tempDate;
+        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
+
     }
 
     @Override
