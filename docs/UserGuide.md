@@ -68,10 +68,12 @@ guest management tasks done faster than traditional GUI apps.
 [//]: # (  e.g. `[t/TAG]…​` can be used as ` ` &#40;i.e. 0 times&#41;, `t/friend`, `t/friend t/family` etc.)
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -89,7 +91,7 @@ Format: `help`
 
 ### Adding a guest: `add`
 
-Adds a guest to the guest book. This is akin to checking a guest in with their personal and room details.
+Adds a guest to the guest book. This is akin to checking in a guest with their personal and room details.
 
 Format: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
@@ -163,6 +165,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro`<br>
+
+
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
 ### Deleting a guest : `delete`
@@ -182,9 +186,17 @@ Examples:
 
 ### Marking all rooms as unclean: `markRoomsUnclean`
 
-Marks all room clean statuses of all guests as "no".
+This command functions to mark room clean statuses of all guests as "no".
+
+This command is typically used at the end or the start of the day when the hotel manager wishes to 
+update all the room clean statuses to "no" efficiently. This clean slate would allow the hotel 
+managers to keep abreast of the rooms that are cleaned or uncleaned for the day.
 
 Format: `markRoomsUnclean`
+
+Common errors: 
+* Missing out the "s" after the "Rooms"
+* Capitalising the "m" in "mark"
 
 ### Clearing all entries : `clear`
 
@@ -236,3 +248,17 @@ _Details coming soon ..._
 | **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                             |
 | **List**             | `list`                                                                                                                                                                                         |
 | **Help**             | `help`                                                                                                                                                                                         |
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+| Term             | Definition                                                                                                                               |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | `Refers to characters that are numbers 0-9 and alphabets A-Z, both uppercase and lowercase.`                                             |
+| **CLI**          | `Stands for Command Line Interface, it refers to a text-based interface used to execute opertaions of the system.`                       |
+| **Guest**        | `A guest staying at the hotel`                                                                                                           |
+| **GUI**          | `Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.` |
+| **Hard disk**    | `A data storage device used to store and retrieve data.`                                                                                 |
+| **Index**        | `The number that corresponds to the position of the Guest in the list.`                                                                  |
+| **JSON file**    | `Stands for JavaScript Object Notation, it refers to a file format to store data.`                                                       |
