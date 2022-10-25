@@ -17,6 +17,8 @@ public abstract class Task {
 
     private final Deadline deadline;
 
+    private boolean isDone = false;
+
     /**
      * Constructs a {@code Task}.
      *
@@ -49,6 +51,18 @@ public abstract class Task {
         return deadline;
     }
 
+    public boolean getIsDone() {
+        return isDone;
+    }
+
+    public void setDone() {
+        isDone = true;
+    }
+
+    public void setNotDone() {
+        isDone = false;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -58,14 +72,15 @@ public abstract class Task {
             Task otherTask = (Task) other;
             return name.equals(otherTask.name)
                     && description.equals(otherTask.description)
-                    && deadline.equals(otherTask.deadline);
+                    && deadline.equals(otherTask.deadline)
+                    && isDone == otherTask.isDone;
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description);
+        return Objects.hash(id, name, description, isDone);
     }
 
     /**
