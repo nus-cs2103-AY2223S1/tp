@@ -74,7 +74,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime, appointmentTagList);
 
         boolean isAnyAppointmentFieldSpecified =
-                !reason.isEmpty() || !startDateTime.isEmpty() || !endDateTime.isEmpty() || !appointmentTagList.isEmpty();
+                !reason.isEmpty() || !startDateTime.isEmpty() || !endDateTime.isEmpty()
+                        || !appointmentTagList.isEmpty();
 
         return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isAnyAppointmentFieldSpecified);
     }

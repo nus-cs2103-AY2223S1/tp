@@ -103,14 +103,18 @@ public class PredicateGeneratorUtil {
      *                      Empty string denotes no {@code startDateTime} requirement.
      * @param endDateTime Tests for appointments before {@code endDateTime}.
      *                    Empty string denotes no {@code endDateTime} requirement.
+     * @param tagString tags to test, separated by spaces.
      * @return a {@Code CombinedAppointmentPredicate} with the given reason and date range.
      */
     public static CombinedAppointmentPredicate generateCombinedAppointmentPredicate(
-            String reason, String startDateTime, String endDateTime) {
+            String reason, String startDateTime, String endDateTime, String tagString) {
+        List<String> tagList = tagString.isEmpty()
+                ? Collections.emptyList()
+                : Arrays.asList(tagString.split("\\s+"));
 
         LocalDateTime start = parseStartDateTime(startDateTime);
         LocalDateTime end = parseEndDateTime(endDateTime);
-        return new CombinedAppointmentPredicate(reason, start, end);
+        return new CombinedAppointmentPredicate(reason, start, end, tagList);
     }
 
     /**
@@ -119,7 +123,7 @@ public class PredicateGeneratorUtil {
      * @return a {@code CombinedAppointmentPredicate} with all empty fields.
      */
     public static CombinedAppointmentPredicate generateEmptyCombinedAppointmentPredicate() {
-        return generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        return generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
     }
 
     /**
@@ -129,7 +133,7 @@ public class PredicateGeneratorUtil {
      * @return a {@code CombinedAppointmentPredicate} with only reason present and other fields empty.
      */
     public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyReason(String reason) {
-        return generateCombinedAppointmentPredicate(reason, EMPTY_STRING, EMPTY_STRING);
+        return generateCombinedAppointmentPredicate(reason, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
     }
 
     /**
@@ -144,7 +148,7 @@ public class PredicateGeneratorUtil {
      */
     public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyDateTime(
             String startDateTime, String endDateTime) {
-        return generateCombinedAppointmentPredicate(EMPTY_STRING, startDateTime, endDateTime);
+        return generateCombinedAppointmentPredicate(EMPTY_STRING, startDateTime, endDateTime, EMPTY_STRING);
     }
 
     /**
@@ -158,7 +162,18 @@ public class PredicateGeneratorUtil {
 
     public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyDateTime(
             LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        return new CombinedAppointmentPredicate(EMPTY_STRING, startDateTime, endDateTime);
+        return new CombinedAppointmentPredicate(EMPTY_STRING, startDateTime, endDateTime, Collections.emptyList());
+    }
+
+    /**
+     * Creates a {@code CombinedAppointmentPredicate} with only tags present and other fields empty.
+     *
+     * @param tags tags to test. Tags can be passed in separately or as a single string separated by spaces.
+     * @return a {@code CombinedAppointmentPredicate} with only tags present and other fields empty.
+     */
+    public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyTags(String... tags) {
+        String tagString = String.join(" ", tags);
+        return generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, tagString);
     }
 
     private static LocalDateTime parseStartDateTime(String startDateTime) {
