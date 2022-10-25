@@ -99,8 +99,8 @@ public class Person implements Comparable<Person> {
     }
 
     @Override
-    public int compareTo(Person o) {
-        return this.getName().fullName.compareTo(o.getName().fullName);
+    public int compareTo(Person other) {
+        return this.getName().compareTo(other.getName());
     }
 
     /**
