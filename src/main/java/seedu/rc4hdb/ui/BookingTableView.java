@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.booking.Booking;
@@ -75,9 +76,11 @@ public class BookingTableView extends UiPart<Region> {
     }
 
     private void populateRows() {
-        dayColumn.setCellFactory(this::pop);
+        dayColumn.setCellValueFactory(new PropertyValueFactory<>("day"));
+        dayColumn.setCellFactory(this::populateDayColumn);
         for (int i = 0; i < hourColumn.size(); i++) {
             int finalI = i;
+            hourColumn.get(i).setCellValueFactory(new PropertyValueFactory<>("bookedBy"));
             hourColumn.get(i).setCellFactory(tc -> populateNthColumn(tc, finalI));
         }
     }
@@ -120,11 +123,10 @@ public class BookingTableView extends UiPart<Region> {
             @Override
             public void updateItem(Resident[] bookedBy, boolean empty) {
                 super.updateItem(bookedBy, empty);
-                Resident resident = bookedBy[n + 8];
-                if (empty || resident.equals(null)) {
+                if (empty || bookedBy == null || bookedBy[n + 8] == null) {
                     setText(null);
                 } else {
-                    setText(resident.getName().value);
+                    setText(bookedBy[n + 8].getName().value);
                 }
             }
         };
