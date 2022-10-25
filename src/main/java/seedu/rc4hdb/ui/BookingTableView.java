@@ -2,10 +2,9 @@ package seedu.rc4hdb.ui;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -25,45 +24,48 @@ public class BookingTableView extends UiPart<Region> {
 
     private static final List<String> daysOfWeek = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
 
-    private final TableColumn<Booking, Day> dayColumn = new TableColumn<>("Day");
-    private final TableColumn<Booking, Hour> firstColumn = new TableColumn<>("0800");
-    private final TableColumn<Booking, Hour> secondColumn = new TableColumn<>("0900");
-    private final TableColumn<Booking, Hour> thirdColumn = new TableColumn<>("1000");
-    private final TableColumn<Booking, Hour> fourthColumn = new TableColumn<>("1100");
-    private final TableColumn<Booking, Hour> fifthColumn = new TableColumn<>("1200");
-    private final TableColumn<Booking, Hour> sixthColumn = new TableColumn<>("1300");
-    private final TableColumn<Booking, Hour> seventhColumn = new TableColumn<>("1400");
-    private final TableColumn<Booking, Hour> eighthColumn = new TableColumn<>("1500");
-    private final TableColumn<Booking, Hour> ninthColumn = new TableColumn<>("1600");
-    private final TableColumn<Booking, Hour> tenthColumn = new TableColumn<>("1700");
-    private final TableColumn<Booking, Hour> eleventhColumn = new TableColumn<>("1800");
-    private final TableColumn<Booking, Hour> twelfthColumn = new TableColumn<>("1900");
-    private final TableColumn<Booking, Hour> thirteenthColumn = new TableColumn<>("2000");
-    private final TableColumn<Booking, Hour> fourteenthColumn = new TableColumn<>("2100");
-    private final TableColumn<Booking, Hour> fifteenthColumn = new TableColumn<>("2200");
-    private final TableColumn<Booking, Hour> sixteenthColumn = new TableColumn<>("2300");
-
-    private ObservableList<Booking> observableBookings = FXCollections.observableArrayList();
+    private final TableColumn<DailySchedule, Day> dayColumn = new TableColumn<>("Day");
+    private final TableColumn<DailySchedule, Hour> firstColumn = new TableColumn<>("0800");
+    private final TableColumn<DailySchedule, Hour> secondColumn = new TableColumn<>("0900");
+    private final TableColumn<DailySchedule, Hour> thirdColumn = new TableColumn<>("1000");
+    private final TableColumn<DailySchedule, Hour> fourthColumn = new TableColumn<>("1100");
+    private final TableColumn<DailySchedule, Hour> fifthColumn = new TableColumn<>("1200");
+    private final TableColumn<DailySchedule, Hour> sixthColumn = new TableColumn<>("1300");
+    private final TableColumn<DailySchedule, Hour> seventhColumn = new TableColumn<>("1400");
+    private final TableColumn<DailySchedule, Hour> eighthColumn = new TableColumn<>("1500");
+    private final TableColumn<DailySchedule, Hour> ninthColumn = new TableColumn<>("1600");
+    private final TableColumn<DailySchedule, Hour> tenthColumn = new TableColumn<>("1700");
+    private final TableColumn<DailySchedule, Hour> eleventhColumn = new TableColumn<>("1800");
+    private final TableColumn<DailySchedule, Hour> twelfthColumn = new TableColumn<>("1900");
+    private final TableColumn<DailySchedule, Hour> thirteenthColumn = new TableColumn<>("2000");
+    private final TableColumn<DailySchedule, Hour> fourteenthColumn = new TableColumn<>("2100");
+    private final TableColumn<DailySchedule, Hour> fifteenthColumn = new TableColumn<>("2200");
+    private final TableColumn<DailySchedule, Hour> sixteenthColumn = new TableColumn<>("2300");
 
     @FXML
-    private TableView<Booking> bookingTableView;
+    private TableView<DailySchedule> bookingTableView;
+    private ObservableList<DailySchedule> weeklySchedule;
 
     /**
      * Constructor for a VenueTableView instance. The venue list is processed to remove expired bookings.
      * @param bookingList The list of venues
      */
-    public BookingTableView(ObservableList<Booking> bookingList) {
+    public BookingTableView(List<Booking> bookingList) {
         super(FXML);
         requireNonNull(bookingList);
 
-        this.observableBookings = bookingList;
-        this.bookingTableView.setItems(bookingList);
+        this.bookingTableView.setItems(weeklySchedule);
         populateDayOfWeekColumn(dayColumn);
         addColumns();
         populateRows();
         configureTableProperties();
+    }
 
-        //this.observableBookings.setAll(bookingList);
+    public ObservableList<DailySchedule> getWeeklySchedule(List<Booking> bookingList) {
+        HashMap<Day, List<Booking>> bookingMap = new HashMap<>();
+        for (Day day : Day.daysOfWeek.stream().map()) {
+
+        }
     }
 
     private void addColumns() {
@@ -86,66 +88,36 @@ public class BookingTableView extends UiPart<Region> {
         this.bookingTableView.getColumns().add(sixteenthColumn);
     }
 
-    private void populateRows() {
+    private void populateRows(List<Booking> bookings) {
         this.dayColumn.setCellFactory(this::populateDayOfWeekColumn);
-//        this.firstColumn.setCellValueFactory(new PropertyValueFactory<>("Resident"));
-        ObservableList<Booking> firstPeriod = separateByPeriod("8");
-    }
-
-    private ObservableList<Booking> separateByPeriod(String startHour) {
-        Comparator<Booking> byDayOfWeek = new Comparator<Booking>() {
-            @Override
-            public int compare(Booking o1, Booking o2) {
-                return o1.compare(o2);
-            }
-        };
-
-        ObservableList<Booking> firstPeriod = this.observableBookings
-                .filtered(b -> b.getHourPeriod().getStart().toString().equals(startHour))
-                .sorted(byDayOfWeek);
-
-        return firstPeriod;
-
-//        Stream<Day> DaysBooked = firstPeriod.map(b -> b.getDayOfWeek().toString())
-//                .anyMatch(b -> {
-//                    for (int i = 0; i < 7; i++) {
-//                        return b.equals(daysOfWeek.get(i));
-//                    }
-//                    return
-//                });
-
-        // I want to get the index of the days that has no booking with time period that starts at 8
-
-//        String test = firstPeriod.map(c -> c.toString()).collect(Collectors.joining());
-//        System.out.print(test);
 
     }
-
-
 
     /**
      * Code referenced from:
      * https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx
      */
-    private TableCell<Booking, Day> populateDayOfWeekColumn(TableColumn<Booking, Day> column) {
+    private TableCell<DailySchedule, Day> populateDayOfWeekColumn(TableColumn<DailySchedule, Day> column) {
         return new TableCell<>() {
             @Override
             public void updateIndex(int index) {
                 super.updateIndex(index);
                 if (index > 6 || index < 0) {
                 } else {
-                    setText(daysOfWeek.get(index));
+                    setText(dailySchedule.getDay().value);
                 }
             }
         };
     }
+
+    private TableCell<>
 
     private void configureTableProperties() {
         this.bookingTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
 
-    public void setObservableFields(ObservableList<Booking> list) {
-        this.observableBookings.setAll(list);
+    public void updateTable(List<Booking> bookings) {
+        populateRows(bookings);
     }
 }
