@@ -16,6 +16,7 @@ import jarvis.model.Lesson;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.Studio;
+import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Adds participation for a student for a given studio.
@@ -72,7 +73,11 @@ public class AddParticipationCommand extends Command {
         }
         Studio studioToMark = (Studio) lessonToMark;
         Student studentToMark = lastShownStudentList.get(studentIndex.getZeroBased());
-        studioToMark.setParticipationForStudent(studentToMark, participation);
+        try {
+            studioToMark.setParticipationForStudent(studentToMark, participation);
+        } catch (StudentNotFoundException snfe) {
+            throw new CommandException(String.format(Messages.MESSAGE_STUDENT_NOT_FOUND, studentToMark, lessonToMark));
+        }
         model.setLesson(studioToMark, studioToMark);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(String.format(MESSAGE_ADD_PARTICIPATION_SUCCESS, studentToMark, studioToMark,
