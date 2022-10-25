@@ -76,7 +76,7 @@ Examples:
 
 Format:
 * `edit_team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
-* 
+
 Examples:
 * `edit_team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description to "Software Engineering"
 
@@ -236,6 +236,25 @@ Format:
 
 Examples:
 * `delete_link 1`
+
+### Find members : `find_member`
+Finds all members in the current team by name or by email and displays them in the member list.
+
+Format:
+* `find_member [-n MEMBER_NAME] [-e MEMBER_EMAIL]`
+
+Examples
+* `find_member -n Alex`
+* `find_member -e alexyeoh`
+
+### Find tasks : `find_task`
+Find all tasks in the current team by name and displays them in the task list.
+
+Format:
+* `find_task -n TASK_NAME`
+
+Examples
+* `find_task -n User Guide`
 
 ### Clearing all entries : `clear`
 

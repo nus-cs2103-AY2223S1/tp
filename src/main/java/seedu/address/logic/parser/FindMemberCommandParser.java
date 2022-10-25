@@ -51,7 +51,7 @@ public class FindMemberCommandParser implements Parser<FindMemberCommand> {
 
             if (cmd.getOptions().length > 1) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_ONE_FLAG));
             }
 
             if (cmd.hasOption(FLAG_NAME_STR)) {

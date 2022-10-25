@@ -26,6 +26,8 @@ public class FindMemberCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "-" + FLAG_NAME_STR + " Alex ";
 
+    public static final String MESSAGE_ONE_FLAG = "Please supply only 1 flag by selecting name or email only.";
+
     public final Predicate<Person> predicate;
 
     public FindMemberCommand(Predicate<Person> predicate) {
