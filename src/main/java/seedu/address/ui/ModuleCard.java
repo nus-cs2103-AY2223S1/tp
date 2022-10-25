@@ -25,8 +25,8 @@ import seedu.address.model.module.task.Task;
  */
 public class ModuleCard extends UiPart<Region> {
     private static final String FXML = "ModuleListCard.fxml";
-    private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Error: Your desktop prevents" +
-            " link URLs to be opened from Plannit. "
+    private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Error: Your desktop prevents"
+            + " link URLs to be opened from Plannit. "
             + "Please enable system security permissions for Plannit to use this feature.";
     private static final String OS_NAME_LOWERCASE_WINDOWS = "windows";
     private static final String WINDOWS_OPEN_LINK_COMMAND_KEY = "rundll32 url.dll,FileProtocolHandler ";
@@ -125,7 +125,7 @@ public class ModuleCard extends UiPart<Region> {
             rt.exec(WINDOWS_OPEN_LINK_COMMAND_KEY + linkUrl);
         } else if (os.contains(OS_NAME_LOWERCASE_MAC)) {
             rt.exec(MAC_OPEN_LINK_COMMAND_KEY + linkUrl);
-        } else if (os.contains(OS_NAME_LOWERCASE_LINUX)){
+        } else if (os.contains(OS_NAME_LOWERCASE_LINUX)) {
             String[] cmd = {LINUX_OPEN_LINK_COMMAND_KEY, linkUrl};
             rt.exec(cmd);
         }

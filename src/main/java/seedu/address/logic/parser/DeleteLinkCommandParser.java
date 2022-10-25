@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;

@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalModules.GE3238;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

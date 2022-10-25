@@ -12,8 +12,8 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.link.Link;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.link.Link;
 
 /**
  * Parses input arguments and creates a new {@code AddLinkCommand} object

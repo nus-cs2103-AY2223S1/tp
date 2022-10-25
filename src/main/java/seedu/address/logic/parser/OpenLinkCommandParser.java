@@ -1,17 +1,17 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.OpenLinkCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ModuleCode;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
+import seedu.address.logic.commands.OpenLinkCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
 
 /**
  * Parses input arguments and creates a new {@code OpenLinkCommand} object
