@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -43,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelsPlaceholder;
 
     @FXML
     private StackPane recordListPanelPlaceholder;
@@ -110,30 +111,39 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    /**
+     * Sets which panel is visible and updates it.
+     * @param isPersonPanel Flag to indicate is updatePanel a PersonListPanel
+     * @param updatedPanel the updatedPanel to replace the old panel
+     */
+    void updatePanel(Boolean isPersonPanel, UiPart<Region> updatedPanel) {
+        assert updatedPanel instanceof PersonListPanel
+                || updatedPanel instanceof RecordListPanel;
+        personListPanel.getRoot().setVisible(isPersonPanel);
+        recordListPanel.getRoot().setVisible(!isPersonPanel);
+        listPanelsPlaceholder.getChildren().remove(updatedPanel.getRoot());
+        listPanelsPlaceholder.getChildren().add(updatedPanel.getRoot());
+    }
+
     void showPersonList() {
-        recordListPanel.getRoot().setVisible(false);
-        personListPanel.getRoot().setVisible(true);
+        PersonListPanel updatedPanel = new PersonListPanel(logic.getFilteredPersonList());
+        updatePanel(true, updatedPanel);
     }
 
     void showRecordList() {
-        recordListPanel.getRoot().setVisible(true);
-        personListPanel.getRoot().setVisible(false);
+        RecordListPanel updatedPanel = new RecordListPanel(logic.getFilteredRecordList());
+        updatePanel(false, updatedPanel);
     }
 
-    void updateRecordList() {
-        personListPanelPlaceholder.getChildren().remove(recordListPanel.getRoot());
-        recordListPanel = new RecordListPanel(logic.getFilteredRecordList());
-        personListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
-    }
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
         recordListPanel = new RecordListPanel(logic.getFilteredRecordList());
-        personListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
+        listPanelsPlaceholder.getChildren().add(recordListPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        listPanelsPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -210,7 +220,6 @@ public class MainWindow extends UiPart<Stage> {
 
             // Controls which list to display
             if (commandResult.isShowRecords()) {
-                updateRecordList();
                 showRecordList();
             } else {
                 showPersonList();
