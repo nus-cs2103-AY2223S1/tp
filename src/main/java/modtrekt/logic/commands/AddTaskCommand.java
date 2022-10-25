@@ -64,7 +64,7 @@ public class AddTaskCommand extends Command {
                 ? new Task(description, modCode, false, Task.Priority.NONE)
                 : new Deadline(description, modCode, deadline, false, Task.Priority.NONE);
         model.addTask(newTask);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newTask.getDescription()));
     }
 
     @Override
