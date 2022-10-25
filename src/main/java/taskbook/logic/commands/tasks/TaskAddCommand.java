@@ -44,7 +44,7 @@ public abstract class TaskAddCommand extends Command {
      * @param assignment Represents task assigned to user or others.
      */
     protected TaskAddCommand(Name name, Description description, Assignment assignment) {
-        requireAllNonNull(name, description, assignment, tags);
+        requireAllNonNull(name, description, assignment);
         this.name = name;
         this.description = description;
         this.assignment = assignment;
