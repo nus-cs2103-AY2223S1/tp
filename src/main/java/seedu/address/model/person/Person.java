@@ -154,8 +154,11 @@ public class Person {
      * Marks the specified mod as taken if it exists in the current list of mods linked to this batchmate.
      *
      * @param mod The mod to be marked.
+     * @return 1 if the specified mod exists and is marked, or 0 if the mod is not in the list of mods.
      */
-    public void markModIfExist(Mod mod) {
+    public int markModIfExist(Mod mod) {
+        int count = 0;
+
         for (int j = 0; j < this.mods.size(); j++) {
 
             Mod currentMod = this.mods.get(j);
@@ -164,10 +167,11 @@ public class Person {
 
             if (currentModName.equals(targetModName)) {
                 currentMod.markMod();
+                count++;
                 break;
             }
         }
-        // Do nothing if mod does not exist in the list of mods.
+        return count;
     }
 
     /**
