@@ -35,7 +35,8 @@
         </AnchorPane>
         <AnchorPane HBox.hgrow="NEVER">
           <children>
-            <CheckBox fx:id="isCompleted" mnemonicParsing="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <CheckBox fx:id="isCompleted" mnemonicParsing="false"
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
           </children>
         </AnchorPane>
       </children>

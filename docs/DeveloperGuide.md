@@ -592,7 +592,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 5a1. Arrow shows an error message.
 
       Use case resumes at step 4.
- 
+
 * 5b. The given person name is invalid.
 
     * 5b1. Arrow shows an error message.
