@@ -52,6 +52,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getStatus() {
+        return isDone() ? "[X]  [D]" : "[  ]  [D]";
+    }
+
+    @Override
     public LocalDate getDate() {
         return date;
     }

@@ -49,6 +49,10 @@ public class Todo extends Task {
     }
 
     @Override
+    public String getStatus() {
+        return isDone() ? "[X]  [T]" : "[  ]  [T]";
+    }
+
     public LocalDate getDate() {
         return null;
     }
