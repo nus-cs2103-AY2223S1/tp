@@ -7,7 +7,8 @@
     "email" : "alice@example.com",
     "tutorial": "T08",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "social" : "null null null null null"
   }, {
     "occupation" : "STUDENT",
     "name" : "Benson Meier",
@@ -15,7 +16,8 @@
     "email" : "johnd@example.com",
     "tutorial": "T09",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "social" : "null null null null null"
   }, {
     "occupation" : "STUDENT",
     "name" : "Carl Kurz",
@@ -23,7 +25,8 @@
     "email" : "heinz@example.com",
     "tutorial": "T10",
     "address" : "wall street",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "social" : "null null null null null"
   }, {
     "occupation" : "STUDENT",
     "name" : "Daniel Meier",
@@ -31,7 +34,8 @@
     "email" : "cornelia@example.com",
     "tutorial": "T11",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "social" : "null null null null null"
   }, {
     "occupation" : "STUDENT",
     "name" : "Elle Meyer",
@@ -39,7 +43,8 @@
     "email" : "werner@example.com",
     "tutorial": "T12",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "social" : "null null null null null"
   }, {
     "occupation" : "STUDENT",
     "name" : "Fiona Kunz",
@@ -47,7 +52,8 @@
     "email" : "lydia@example.com",
     "tutorial": "T13",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "social" : "null null null null null"
   }, {
     "occupation" : "STUDENT",
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "email" : "anna@example.com",
     "tutorial": "F08",
     "address" : "4th street",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "social" : "null null null null null"
   } ]
 }

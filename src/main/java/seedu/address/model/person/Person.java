@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,6 +21,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Social social;
 
     // Data fields
     private final Tutorial tutorial;
@@ -29,8 +31,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Occupation occupation, Name name, Phone phone, Email email, Tutorial tutorial, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Occupation occupation, Name name, Phone phone, Email email, Tutorial tutorial, Address address, Set<Tag> tags, Social social) {
+        requireAllNonNull(name, phone, email, address, tags, social);
         this.occupation = occupation;
         this.name = name;
         this.phone = phone;
@@ -38,6 +40,7 @@ public class Person {
         this.tutorial = tutorial;
         this.address = address;
         this.tags.addAll(tags);
+        this.social = social;
     }
 
     public Occupation getOccupation() {
@@ -62,6 +65,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Social getSocial() {
+        return social;
     }
 
     /**
@@ -106,19 +113,21 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTutorial().equals(getTutorial())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getSocial().equals(getSocial());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(occupation, name, phone, email, tutorial, address, tags);
+        return Objects.hash(occupation, name, phone, email, tutorial, address, tags, social);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getOccupation())
+        builder.append("Occupation: ")
+                .append(getOccupation())
                 .append("; Name: ")
                 .append(getName())
                 .append("; Phone: ")
@@ -128,7 +137,9 @@ public class Person {
                 .append("; Tutorial")
                 .append(getTutorial())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Social: ")
+                .append(getSocial());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

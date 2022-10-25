@@ -2,14 +2,27 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
+## **uNivUSal Developer Guide**
+
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [Implementation](#implementation)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* uNivUSal is adapted based on the [**se-education.org**](https://se-education.org) initiative, [`AddressBook Level 3`](https://se-education.org/addressbook-level3).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -153,6 +166,99 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[Proposed\] Social Media feature
+
+#### Proposed Implementation
+
+The proposed social media feature is facilitated by a new class `SocialMedia`, which will be a new field of the `Person` class. Additionally, it implements the following features:
+
+* `SocialMedia#addWhatsapp()` - Adds a link to the Person object's Whatsapp account.
+* `SocialMedia#addTelegram()` - Adds a link to the Person object's Telegram account.
+* `SocialMedia#addInstagram()` - Adds a link to the Person object's Instagram account.
+* `SocialMedia#addEmail()` - Adds a link to the Person object's Email account.
+* `SocialMedia#prefer()` - Sets one of the added social media account to be the preferred mode of communication.
+* `SocialMedia#delete()` - Deletes one of the added social media account.
+
+Given below is an example usage scenario and how the Social Media feature behaves at each step.
+
+Step 1. The user executes `include 1 \TELEGRAM #t.me/JohnDoe123` to add the Telegram link `t.me/JohnDoe123` to the Telegram social media of the first person in the list.
+        The `AddressBookParser` then calls `IncludeCommand.addTelegram(1, t.me/JohnDoe123)` to add the command to the queue.
+
+Step 2. The user executes `include 1 \WHATSAPP #wa.me/12345678` to add the Whatsapp link `wa.me/12345678` to the Whatsapp social media of the first person in the list.
+        The `AddressBookParser` then calls `IncludeCommand.addWhatsapp(1, wa.me/12345678)` to add the command to the queue. 
+
+Step 3. The user executes `prefer 1 \TELEGRAM` to set the preferred mode of communication of the first person in the list to the Telegram social media account.
+        The `AddressBookParser` then calls `PreferCommand.prefer(1, TELEGRAM)` to add the command to the queue.
+
+Step 4. The user realises that the added Telegram link was wrong. The user executes `include 1 \TELEGRAM #t.me/JohnDoe321` to set the Telegram link `t.me/JohnDoe321` to be the latest Telegram social media of the first person in the list.
+        The `AddressBookParser` then calls `IncludeCommand.addTelegram(1, t.me/JohnDoe321)` to add the command to the queue.
+
+Step 5. The user realises that the preferred mode of communication of the first person in the list is actually Whatsapp. The user executes `prefer 1 \WHATSAPP` to set the preferred mode of communication of the first person in the list to the Whatsapp social media account.
+        The `AddressBookParser` then calls `PreferCommand.prefer(1, WHATSAPP)` to add the command to the queue.
+
+Step 6. The user realises that the first person in the contact list does not have a Telegram account. THe user executes `exclude 1 \TELEGRAM` to delete the Telegram social media account of the first person in the contact list.
+        The `AddressBookParser` then calls `ExcludeCommand.exclude(1, TELEGRAM)` to add the command to the queue.
+
+The following sequence diagram shows how the `addTelegram()` command works:
+
+![CreateGroupSequenceDiagram](images/SocialMediaAddSequenceDiagram.png)
+
+### \[Proposed\] History feature
+
+#### Proposed Implementation
+
+The proposed history feature is facilitated by managing commands with the new `HistoryList` component. Additionally, it implements the following features:
+
+* `HistoryList#addToHistory()` - Adds a command to a list.
+* `HistoryList#isMax()` - Checks if the list already has five commands.
+* `HistoryList#printList()` - Prints the current contents of the list.
+
+Given below is an example usage scenario and how the grouping mechanism behaves at each step.
+
+Step 1. The user executes `list` to see the list of contacts. The `AddressBookParser` then calls `HistoryList.addToHistory(list)` to add the command to the queue.
+
+Step 2. The user executes `help` to get help for his commands. The `AddressBookParser` then calls `HistoryList.addToHistory(help)` to add the command to the queue.
+
+Step 3. The user now wants to see his past few commands and executes `history` to see. The `HistoryCommand` then calls the `HistoryList.printList()` to show the previous commands.
+
+The following sequence diagram shows how the `HistoryCommand()` command works:
+
+![CreateGroupSequenceDiagram](images/HistorySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If there are no previous commands, then a message indicating there are no commands will be printed.
+
+</div>
+
+### \[Proposed\] Grouping feature
+
+#### Proposed Implementation
+
+The proposed grouping feature is facilitated by managing groups with the existing `model` component. Additionally, it implements the following features:
+
+* `Group#createGroup()` - Creates a new group.
+* `Group#addPersonToGroup()` - Adds a person to a group.
+* `Group#removePersonFromGroup()` - Removes a person from a group.
+* `Group#deleteGroup()` - Deletes a group (without deleting the people in the group).
+* `Group#getGroupPersonList()` - Returns list of grouped persons.
+
+Given below is an example usage scenario and how the grouping mechanism behaves at each step.
+
+Step 1. The user executes `newgroup friends` to create a new group called friends. The `Model` calls `createGroup(friends)` to create the group.
+
+Step 2. The user executes `group 1 friends` to group first person in the list with `friends`. The `Model` then calls `addPersonToGroup(person, group)` to add the specified person to the specified group.
+
+Step 3. The user now decides that it was a mistake to consider this person a friend. The user executes `ungroup 1 friends` to ungroup the first person in the list from `friends`. The `Model` then calls `removePersonFromGroup(person, group)` to remove the specified person from the specified group.
+
+Step 4. The user decides to delete the group `friends`. The user executes `dgroup friends` to delete the group `friends`. The `Model` calls `deleteGroup(group)` to delete the specified group.
+
+The following sequence diagram shows how the `createGroup()` command works:
+
+![CreateGroupSequenceDiagram](images/CreateGroupSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CreateGroupCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 ### \[Proposed\] Undo/redo feature
 
