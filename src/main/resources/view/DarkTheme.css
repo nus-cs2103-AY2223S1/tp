@@ -39,6 +39,10 @@
     background-color: #282345; /* Used in the default.html file */
 }
 
+.tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
 .tab-label {
     -fx-text-fill: white;
     -fx-font-size: 12pt;
