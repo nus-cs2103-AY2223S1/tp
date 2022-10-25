@@ -176,7 +176,6 @@ public class Professor extends Person {
         return officeHoursList.stream().anyMatch(officeHours
                 -> {
             try {
-                System.out.println(getOfficeHour().getUserInput());
                 return officeHours.equals(this.getOfficeHour().getUserInput());
             } catch (ParseException e) {
                 e.printStackTrace();

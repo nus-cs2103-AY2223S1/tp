@@ -152,10 +152,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     private List<String> getKeywordList(Prefix prefix) {
         String[] keywordsString = argMultimap.getValue(prefix).get().split("\\s+");
-        for (String str : keywordsString)
-            System.out.println(str);
         return Arrays.asList(keywordsString);
-
     }
 
     private List<String> getSpecialisationList() {

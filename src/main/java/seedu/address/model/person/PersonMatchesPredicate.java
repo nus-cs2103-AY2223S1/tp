@@ -412,6 +412,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
                 && ratingsList.equals(((PersonMatchesPredicate) other).ratingsList)
                 && yearsList.equals(((PersonMatchesPredicate) other).yearsList)
                 && specList.equals(((PersonMatchesPredicate) other).specList)
+                && officeHoursList.equals(((PersonMatchesPredicate) other).officeHoursList)
                 && needsAllTags == ((PersonMatchesPredicate) other).needsAllTags
                 && needsAllModules == ((PersonMatchesPredicate) other).needsAllModules); // state check
     }
