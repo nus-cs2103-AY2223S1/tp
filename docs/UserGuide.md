@@ -209,7 +209,7 @@ Format: `clear`
 
 Adds a note to the SectresBook.
 
-Format: `addNote title/TITLE content/CONTENT [tag/TAG] `
+Format: `addNote title/TITLE content/CONTENT [tag/TAG]... `
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 TITLE must be unique and not longer than 100 characters. Tags are also optional.
@@ -229,7 +229,7 @@ Format: `listNote`
 
 Edits an existing specified note in the SectresBook.
 
-Format: `editNote INDEX [title/TITLE] [content/CONTENT] [tag/TAG]`
+Format: `editNote INDEX [title/TITLE] [content/CONTENT] [tag/TAG]...`
 
 Example of usage:
 
