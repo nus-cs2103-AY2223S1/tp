@@ -3,6 +3,7 @@ package hobbylist.model;
 import java.nio.file.Path;
 
 import hobbylist.commons.core.GuiSettings;
+import hobbylist.commons.core.ThemeSettings;
 
 /**
  * Unmodifiable view of user prefs.
@@ -10,6 +11,8 @@ import hobbylist.commons.core.GuiSettings;
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
+
+    ThemeSettings getThemeSettings();
 
     Path getHobbyListFilePath();
 

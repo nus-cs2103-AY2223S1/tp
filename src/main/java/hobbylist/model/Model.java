@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import hobbylist.commons.core.GuiSettings;
+import hobbylist.commons.core.ThemeSettings;
 import hobbylist.model.activity.Activity;
 import javafx.collections.ObservableList;
 
@@ -33,6 +34,16 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' theme settings.
+     */
+    ThemeSettings getThemeSettings();
+
+    /**
+     * Sets the user prefs' theme settings.
+     */
+    void setThemeSettings(ThemeSettings themeSettings);
 
     /**
      * Returns the user prefs' HobbyList file path.
