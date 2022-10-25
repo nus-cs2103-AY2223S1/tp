@@ -49,6 +49,6 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /** Returns an unmodifiable view of the filtered list of tasks */
-    ObservableList<Task> getFilteredTaskList();
+    /** Returns an unmodifiable view of the sorted list of tasks */
+    ObservableList<Task> getSortedTaskList();
 }

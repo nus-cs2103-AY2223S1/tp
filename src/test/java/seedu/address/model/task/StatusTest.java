@@ -30,13 +30,13 @@ public class StatusTest {
         assertFalse(Status.isValidStatus("a")); // invalid string
 
         // valid addresses
-        assertTrue(Status.isValidStatus("true"));
-        assertTrue(Status.isValidStatus("false"));
+        assertTrue(Status.isValidStatus("Complete"));
+        assertTrue(Status.isValidStatus("Not complete"));
     }
 
     @Test
     public void getIsComplete() {
-        assertFalse(new Status("false").getIsComplete());
-        assertTrue(new Status("true").getIsComplete());
+        assertFalse(new Status("Not complete").getIsComplete());
+        assertTrue(new Status("Complete").getIsComplete());
     }
 }

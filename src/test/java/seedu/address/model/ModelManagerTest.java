@@ -94,8 +94,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
+    public void getSortedTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedTaskList().remove(0));
     }
 
     @Test

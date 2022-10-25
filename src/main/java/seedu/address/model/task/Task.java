@@ -60,6 +60,14 @@ public class Task {
     }
 
     /**
+     * Returns true if the task is marked as complete.
+     * @return
+     */
+    public boolean isTaskComplete() {
+        return this.status.getIsComplete();
+    }
+
+    /**
      * Returns true if the tasks have the same name and module code.
      * This defines a weaker notion of equality between two tasks.
      */

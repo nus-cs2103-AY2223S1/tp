@@ -182,12 +182,12 @@ public class CommandTestUtil {
      * {@code model}'s task list.
      */
     public static void showTaskAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getSortedTaskList().size());
 
-        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        Task task = model.getSortedTaskList().get(targetIndex.getZeroBased());
         final String[] splitName = task.getName().fullName.split("\\s+");
         model.updateFilteredTaskList(new TaskContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredTaskList().size());
+        assertEquals(1, model.getSortedTaskList().size());
     }
 }

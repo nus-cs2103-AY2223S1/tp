@@ -26,13 +26,13 @@ public class UnmarkTaskCommandTest {
 
     // To make things easier to test, task 0 will be marked and task 1 will be unmarked
     public UnmarkTaskCommandTest() {
-        model.setTask(model.getFilteredTaskList().get(0), model.getFilteredTaskList().get(0).withStatus(true));
-        model.setTask(model.getFilteredTaskList().get(1), model.getFilteredTaskList().get(1).withStatus(false));
+        model.setTask(model.getSortedTaskList().get(0), model.getSortedTaskList().get(0).withStatus(true));
+        model.setTask(model.getSortedTaskList().get(1), model.getSortedTaskList().get(1).withStatus(false));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToUnmark = model.getFilteredTaskList().get(0);
+        Task taskToUnmark = model.getSortedTaskList().get(0);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());
@@ -47,7 +47,7 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedTaskList().size() + 1);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(unmarkTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -55,7 +55,7 @@ public class UnmarkTaskCommandTest {
 
     @Test
     public void excecute_unmarkMarkedTask_success() {
-        Task taskToMark = model.getFilteredTaskList().get(0);
+        Task taskToMark = model.getSortedTaskList().get(0);
         UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(Index.fromZeroBased(0));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getTaskList(), new UserPrefs());

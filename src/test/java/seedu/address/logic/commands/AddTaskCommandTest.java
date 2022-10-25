@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalTasks.LAB_2;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -158,12 +159,17 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public ObservableList<Task> getFilteredTaskList() {
+        public ObservableList<Task> getSortedTaskList() {
             return null;
         }
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedTaskList(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -199,6 +205,11 @@ public class AddTaskCommandTest {
 
         @Override
         public void deleteTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int indexOf(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
