@@ -10,13 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.studmap.commons.exceptions.IllegalValueException;
-import seedu.studmap.model.student.Address;
-import seedu.studmap.model.student.Attendance;
-import seedu.studmap.model.student.Email;
-import seedu.studmap.model.student.Name;
-import seedu.studmap.model.student.Phone;
-import seedu.studmap.model.student.Student;
-import seedu.studmap.model.student.StudentData;
+import seedu.studmap.model.student.*;
 import seedu.studmap.model.tag.Tag;
 
 /**
@@ -29,6 +23,9 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
+    private final String StudentId;
+    private final String gitName;
+    private final String handle;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attended = new ArrayList<>();
@@ -38,12 +35,17 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("studmap") String address,
+                              @JsonProperty("email") String email, @JsonProperty("StudentId") String StudentId,
+                              @JsonProperty("gitName") String gitName, @JsonProperty("handle") String handle,
+                              @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("attended") List<JsonAdaptedAttendance> attended) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.StudentId = StudentId;
+        this.gitName = gitName;
+        this.handle = handle;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -60,6 +62,9 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        StudentId = source.getId().value;
+        gitName = source.getGitName().value;
+        handle = source.getTeleHandle().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -75,14 +80,14 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Tag> studentTags = new ArrayList<>();
+        final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            studentTags.add(tag.toModelType());
+            personTags.add(tag.toModelType());
         }
 
-        final List<Attendance> studentAttendances = new ArrayList<>();
+        final List<Attendance> personAttendances = new ArrayList<>();
         for (JsonAdaptedAttendance attendance : attended) {
-            studentAttendances.add(attendance.toModelType());
+            personAttendances.add(attendance.toModelType());
         }
 
         if (name == null) {
@@ -109,6 +114,33 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
+        if (StudentId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentID.class.getSimpleName()));
+        }
+        if (!StudentID.isValidStudentID(StudentId)) {
+            throw new IllegalValueException(StudentID.MESSAGE_CONSTRAINTS);
+        }
+        final StudentID modelId = new StudentID(StudentId);
+
+        if (gitName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GitName.class.getSimpleName()));
+        }
+        if (!GitName.isValidGitName(gitName)) {
+            throw new IllegalValueException(GitName.MESSAGE_CONSTRAINTS);
+        }
+        final GitName modelGit = new GitName(gitName);
+
+        if (handle == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TeleHandle.class.getSimpleName()));
+        }
+        if (!TeleHandle.isValidTeleHandle(handle)) {
+            throw new IllegalValueException(TeleHandle.MESSAGE_CONSTRAINTS);
+        }
+        final TeleHandle modelHandle = new TeleHandle(handle);
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -117,13 +149,16 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(studentTags);
-        final Set<Attendance> modelAttendances = new HashSet<>(studentAttendances);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Attendance> modelAttendances = new HashSet<>(personAttendances);
 
         StudentData studentData = new StudentData();
         studentData.setName(modelName);
         studentData.setPhone(modelPhone);
         studentData.setEmail(modelEmail);
+        studentData.setId(modelId);
+        studentData.setGitUser(modelGit);
+        studentData.setTeleHandle(modelHandle);
         studentData.setAddress(modelAddress);
         studentData.setTags(modelTags);
         studentData.setAttendances(modelAttendances);
