@@ -30,7 +30,7 @@ public class SampleDataUtil {
                 getTagSet("foodcourt")),
             new Eatery(new Name("The Deck"), new Phone(""), new Cuisine("variety"),
                 new Location("Faculty of Arts & Social Sciences"),
-                getTagSet("fodocourt")),
+                getTagSet("foodcourt")),
             new Eatery(new Name("KOI"), new Phone("69933323"), new Cuisine("bubble tea"),
                 new Location("Central Square"),
                 getTagSet()),
