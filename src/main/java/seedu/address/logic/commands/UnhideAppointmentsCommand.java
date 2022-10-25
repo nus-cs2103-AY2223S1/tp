@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Objects;
@@ -26,7 +27,10 @@ public class UnhideAppointmentsCommand extends Command {
             + "the appointments which are not hidden. Also able to hide by marked/unmarked appointments\n"
             + "Parameters: [" + PREFIX_REASON + "REASON [MORE_REASONS]]\n"
             + "OR: [" + PREFIX_TAG + "TAG [MORE_TAGS]]\n"
-            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_REASON + "pain infection";
+            + "OR: [" + PREFIX_STATUS + "STATUS]\n"
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_REASON + "pain infection"
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_STATUS + "marked";
+
 
     private Predicate<Appointment> predicate;
 

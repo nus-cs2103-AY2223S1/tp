@@ -11,7 +11,6 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.HiddenPredicateSingleton;
-import seedu.address.model.person.HideAppointmentPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 
@@ -24,9 +23,9 @@ public class UnhidePatientsCommand extends Command {
     public static final String COMMAND_WORD = "unhide";
     public static final String DESCRIPTOR_WORD = "patients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides all persons whose names or tags contain any of\n"
-            + "the specified keywords (case-insensitive) and displays them and their appointments as 2 lists with\n"
-            + "index numbers. Also able to unhide by patient tags.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides all persons whose names or tags contain\n"
+            + "any of the specified keywords (case-insensitive) and displays them and \n"
+            + "their appointments as 2 lists with index numbers. Also able to unhide by patient tags.\n"
             + "Parameters: [" + PREFIX_NAME + "NAME [MORE_NAMES]]\n"
             + "OR: " + "[" + PREFIX_TAG + "TAG [MORE_TAGS]]...\n"
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " alice bob charlie";

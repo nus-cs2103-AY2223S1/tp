@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Objects;
@@ -24,9 +24,10 @@ public class HideAppointmentsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all appointments which reason or tags"
             + " contain any of the specified keywords (case-insensitive) and displays\n"
-            + "the appointments which are not hidden. Also able to hide by marked/unmarked appointments\n"
+            + "the appointments which are not hidden. Also able to hide by marked/unmarked status.\n"
             + "Parameters: [" + PREFIX_REASON + "REASON [MORE_REASONS]]\n"
             + "OR: [" + PREFIX_TAG + "TAG [MORE_TAGS]]\n"
+            + "OR: [" + PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " " + PREFIX_REASON + "pain infection";
 
     private Predicate<Appointment> predicate;

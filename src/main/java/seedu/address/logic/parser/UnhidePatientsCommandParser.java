@@ -27,8 +27,9 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
             return new UnhidePatientsCommand(
                     new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
         }
-        if (!argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhidePatientsCommand.MESSAGE_USAGE));
+        if (argMultimap.getValue(PREFIX_NAME).isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhidePatientsCommand.MESSAGE_USAGE));
         }
         String trimmedArgs = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
         if (trimmedArgs.isEmpty()) {
@@ -38,5 +39,4 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
         String[] keywords = trimmedArgs.split("\\s+");
         return new UnhidePatientsCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
-
 }
