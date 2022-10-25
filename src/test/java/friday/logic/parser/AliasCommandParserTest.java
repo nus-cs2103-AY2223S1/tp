@@ -15,15 +15,15 @@ import friday.model.alias.ReservedKeyword;
 
 public class AliasCommandParserTest {
 
-    private static final String VALID_ALIAS = "ls";
+    private static final Alias VALID_ALIAS = new Alias("ls");
+    private static final ReservedKeyword VALID_KEYWORD = new ReservedKeyword(ListCommand.COMMAND_WORD);
     private static final String INVALID_PREFIX = "g/ ";
     private static final String VALID_ALIAS_ARG = " " + PREFIX_ALIAS + VALID_ALIAS;
     private static final String VALID_RESERVED_KEYWORD_ARG = " " + PREFIX_RESERVED_KEYWORD + ListCommand.COMMAND_WORD;
     private static final String INVALID_ARGS_1 = INVALID_PREFIX + VALID_ALIAS + VALID_RESERVED_KEYWORD_ARG;
     private static final String INVALID_ARGS_2 = VALID_ALIAS_ARG + INVALID_PREFIX + ListCommand.COMMAND_WORD;
     private AliasCommandParser parser = new AliasCommandParser();
-    private AliasCommand expectedCommand = new AliasCommand(new Alias(VALID_ALIAS),
-            new ReservedKeyword(ListCommand.COMMAND_WORD));
+    private AliasCommand expectedCommand = new AliasCommand(VALID_ALIAS, VALID_KEYWORD);
 
     @Test
     public void parse_validArgs_returnsAliasCommand() {
