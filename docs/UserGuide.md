@@ -24,13 +24,13 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list`** : Lists all students and teaching assistants.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the ProfNUS application.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/A0837092R t/@john_doe c/CS2030S cg/CS2030S:Tut07`: Adds a student named `John Doe` to the ProfNUS application.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delstu`**`3` : Deletes the 3rd student shown in the current list of students.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all students, teaching assistants, modules and schedules.
 
    * **`exit`** : Exits the app.
 
@@ -71,19 +71,20 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `addstu`
+### Adding a student/teaching assistant: `add`
 
-Adds a person to the module.
+Adds a student/teaching assistant to the module.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [m/MODULE]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags or modules(including 0)
+A person can have any number of tags, modules, ta modules and class groups (including 0).
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Adam Doink t/TA e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 m/CS1101S`
+* `add n/Adam Doink e/ad4md01nk@example.com a/Kent Ridge Hall p/1234567 c/CS1101S cg/CS1101S:Tut07`
+* `add n/David Lim e/ad4md01nk@example.com a/Tembuso College p/82738419 c/CS2030S ta/CS1101S cg/CS1101S:Tut07`
 
 ![addstu](images/userguide/addstu.png)
 
@@ -105,16 +106,11 @@ Examples:
 
 ### Listing all students : `list`
 
-Shows a list of all the students in the module with their contact information in the application.
+Shows a list of all the students and teaching assistants in ProfNUS with their contact information in the application.
 
-Format: `list MODULE_NAME [MORE_MODULE_NAMES]`
-- The module name is case-insensitive. e.g CS1101S will match cs1101s
-- Students matching at least one module will be returned
-- Only exact module matches will be returned. e.g. CS1231 will not match CS1231S
+Format: `list`
 
 Examples:
-- `list CS1101S returns` Alex Yeoh and Bernice Yu
-- `list CS1101S CS1231S` returns Bernice Yu only`
 
 ![list](images/userguide/list.png)
 
@@ -128,22 +124,41 @@ Shows a list of all modules in the ProfNUS application.
 Format: `mlist`
 
 
-### Editing a person : `edit`
+### Editing a student : `editstu`
 
-Edits an existing person in the ProfNUS application.
+Edits an existing student in the ProfNUS application.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, modules, ta modules and class groups, the existing information of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editstu 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `editstu 2 n/Betsy Crower ta/` Edits the name of the 2nd student to be `Betsy Crower` and clears all ta modules.
+
+
+### Editing a teaching assistant : `editta`
+
+Edits an existing teaching assistant in the ProfNUS application.
+
+Format: `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
+
+* Edits the teaching assistant at the specified `INDEX`. The index refers to the index number shown in the displayed teaching assistant list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, modules, ta modules and class groups, the existing information of the teaching assistant will be removed i.e adding of tags is not cumulative.
+* You can remove all the teaching assistant’s modules by typing `c/` without
+  specifying any modules after it.
+
+Examples:
+*  `editta 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teaching assistant to be `91234567` and `johndoe@example.com` respectively.
+*  `editta 2 n/Betsy Crower ta/` Edits the name of the 2nd teaching assistant to be `Betsy Crower` and clears all ta modules.
+
 
 ### Locating persons by name: `find`
 
@@ -163,19 +178,33 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a student : `delstu`
 
-Deletes the specified person from the ProfNUS application.
+Deletes the specified student from the ProfNUS application.
 
-Format: `delete INDEX`
+Format: `delstu INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the list of students.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the list of students.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### Deleting a teaching assistant : `delta`
+
+Deletes the specified teaching assistant from the ProfNUS application.
+
+Format: `delta INDEX`
+
+* Deletes the teaching assistant at the specified `INDEX`.
+* The index refers to the index number shown in the displayed teaching assistant list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delta 2` deletes the 2nd teaching assistant in the list of teaching assistants.
+* `find Betsy` followed by `delta 1` deletes the 1st teaching assistant in the results of the `find` command.
 
 ### Deleting a module: `mdel`
 
