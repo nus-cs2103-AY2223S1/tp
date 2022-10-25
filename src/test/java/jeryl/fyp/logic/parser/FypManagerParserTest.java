@@ -22,6 +22,7 @@ import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.logic.commands.ExitCommand;
 import jeryl.fyp.logic.commands.FindProjectNameCommand;
+import jeryl.fyp.logic.commands.FindTagsCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
@@ -30,6 +31,7 @@ import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.TagsContainKeywordsPredicate;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 import jeryl.fyp.testutil.StudentBuilder;
 import jeryl.fyp.testutil.StudentUtil;
@@ -76,11 +78,19 @@ public class FypManagerParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findProjectName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindProjectNameCommand command = (FindProjectNameCommand) parser.parseCommand(
                 FindProjectNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining("/")));
         assertEquals(new FindProjectNameCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTags() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTagsCommand command = (FindTagsCommand) parser.parseCommand(
+                FindTagsCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining("/")));
+        assertEquals(new FindTagsCommand(new TagsContainKeywordsPredicate(keywords)), command);
     }
 
     @Test

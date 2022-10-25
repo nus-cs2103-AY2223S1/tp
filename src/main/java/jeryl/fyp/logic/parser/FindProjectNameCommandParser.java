@@ -7,7 +7,6 @@ import java.util.Arrays;
 import jeryl.fyp.logic.commands.FindProjectNameCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
-//import jeryl.fyp.model.student.TagsContainKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindProjectNameCommand object
@@ -21,7 +20,6 @@ public class FindProjectNameCommandParser implements Parser<FindProjectNameComma
      */
     public FindProjectNameCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        //System.out.println(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectNameCommand.MESSAGE_USAGE));

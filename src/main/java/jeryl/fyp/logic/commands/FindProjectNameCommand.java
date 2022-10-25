@@ -24,8 +24,8 @@ public class FindProjectNameCommand extends Command {
     //private final TagsContainKeywordsPredicate tagsPredicate;
 
     /**
-     * Takes in two predicates to check if projectName/tags contain keyword (to be specified)
-     * @param projectNamePredicate predicate on whether project name contains keyword
+     * Takes in a predicate (to be specified)
+     * @param projectNamePredicate predicate on whether student's projectName contains keyword
      */
     public FindProjectNameCommand(ProjectNameContainsKeywordsPredicate projectNamePredicate) {
         this.projectNamePredicate = projectNamePredicate;

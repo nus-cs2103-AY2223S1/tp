@@ -9,30 +9,30 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import jeryl.fyp.logic.commands.FindProjectNameCommand;
-import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.logic.commands.FindTagsCommand;
+import jeryl.fyp.model.student.TagsContainKeywordsPredicate;
 
-public class FindProjectNameCommandParserTest {
+public class FindTagsCommandParserTest {
 
-    private FindProjectNameCommandParser parser = new FindProjectNameCommandParser();
+    private FindTagsCommandParser parser = new FindTagsCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, FindProjectNameCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_COMMAND_FORMAT, FindTagsCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindProjectNameCommand expectedFindProjectNameCommand =
-                new FindProjectNameCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList("neural network",
+        FindTagsCommand expectedFindTagsCommand =
+                new FindTagsCommand(new TagsContainKeywordsPredicate(Arrays.asList("neural network",
                         VALID_PROJECT_NAME_BOB)));
-        assertParseSuccess(parser, "neural network/" + VALID_PROJECT_NAME_BOB, expectedFindProjectNameCommand);
+        assertParseSuccess(parser, "neural network/" + VALID_PROJECT_NAME_BOB, expectedFindTagsCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n neural network \n / \t " + VALID_PROJECT_NAME_BOB + "  \t",
-                expectedFindProjectNameCommand);
+                expectedFindTagsCommand);
     }
 
 }

@@ -17,30 +17,30 @@ import org.junit.jupiter.api.Test;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
 import jeryl.fyp.model.UserPrefs;
-import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.TagsContainKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindProjectNameCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindTagsCommand}.
  */
-public class FindProjectNameCommandTest {
+public class FindTagsCommandTest {
     private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
     @Test
     public void equals() {
-        ProjectNameContainsKeywordsPredicate firstPredicate =
-                new ProjectNameContainsKeywordsPredicate(Collections.singletonList("first"));
-        ProjectNameContainsKeywordsPredicate secondPredicate =
-                new ProjectNameContainsKeywordsPredicate(Collections.singletonList("second"));
+        TagsContainKeywordsPredicate firstPredicate =
+                new TagsContainKeywordsPredicate(Collections.singletonList("first"));
+        TagsContainKeywordsPredicate secondPredicate =
+                new TagsContainKeywordsPredicate(Collections.singletonList("second"));
 
-        FindProjectNameCommand findFirstCommand = new FindProjectNameCommand(firstPredicate);
-        FindProjectNameCommand findSecondCommand = new FindProjectNameCommand(secondPredicate);
+        FindTagsCommand findFirstCommand = new FindTagsCommand(firstPredicate);
+        FindTagsCommand findSecondCommand = new FindTagsCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindProjectNameCommand findFirstCommandCopy = new FindProjectNameCommand(firstPredicate);
+        FindTagsCommand findFirstCommandCopy = new FindTagsCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -56,8 +56,8 @@ public class FindProjectNameCommandTest {
     @Test
     public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("abc");
-        FindProjectNameCommand command = new FindProjectNameCommand(predicate);
+        TagsContainKeywordsPredicate predicate = preparePredicate("abc");
+        FindTagsCommand command = new FindTagsCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
@@ -66,17 +66,17 @@ public class FindProjectNameCommandTest {
     @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 2);
-        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("de/ woRld/ de ");
-        FindProjectNameCommand command = new FindProjectNameCommand(predicate);
+        TagsContainKeywordsPredicate predicate = preparePredicate("de/ woRld/ de ");
+        FindTagsCommand command = new FindTagsCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredStudentList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code ProjectNameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TagsContainKeywordsPredicate}.
      */
-    private ProjectNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new ProjectNameContainsKeywordsPredicate(Arrays.asList(userInput.split("/")));
+    private TagsContainKeywordsPredicate preparePredicate(String userInput) {
+        return new TagsContainKeywordsPredicate(Arrays.asList(userInput.split("/")));
     }
 }
