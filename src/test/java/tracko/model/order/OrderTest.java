@@ -18,10 +18,10 @@ public class OrderTest {
         Order firstOrder = model.getFilteredOrderList().get(0);
         Order secondOrder = model.getFilteredOrderList().get(1);
 
-        Price firstTotalOrderPrice = firstOrder.getTotalOrderPrice();
-        Price secondTotalOrderPrice = secondOrder.getTotalOrderPrice();
+        Double firstTotalOrderPrice = firstOrder.calculateTotalOrderPrice();
+        Double secondTotalOrderPrice = secondOrder.calculateTotalOrderPrice();
 
-        assertEquals(firstTotalOrderPrice.getPrice(), 750.00);
-        assertEquals(secondTotalOrderPrice.getPrice(), 1000.00);
+        assertEquals(firstTotalOrderPrice, 750.00);
+        assertEquals(secondTotalOrderPrice, 1000.00);
     }
 }

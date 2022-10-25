@@ -65,7 +65,7 @@ public class ItemQuantityPairTest {
                 new Quantity(10), new HashSet<>(), new Price(523.98), new Price(300.67));
         Quantity validQuantity = new Quantity(50);
         ItemQuantityPair validPair = new ItemQuantityPair(validItem, validQuantity);
-        Double validPairPrice = validPair.getPrice();
+        Double validPairPrice = validPair.calculatePrice();
 
         assertEquals(validPairPrice, 26199.00);
         assertNotEquals(validPairPrice, 500);
