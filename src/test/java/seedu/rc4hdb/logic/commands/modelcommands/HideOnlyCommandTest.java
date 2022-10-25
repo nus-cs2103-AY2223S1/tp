@@ -1,18 +1,30 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.AT_LEAST_ONE_VISIBLE_COLUMN;
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.INVALID_FIELDS_ENTERED;
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.INVALID_SUBSET;
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW;
+import static seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand.COMMAND_PAST_TENSE;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.ALL_VALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.DUPLICATE_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.HIDDEN_FIELDS_AFTER_VALID_SUBSEQUENT_HIDEONLY_COMMAND;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.INVALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.INVALID_SUBSEQUENT_FIELDS_FOR_HIDE;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.MIXED_CASE_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_SUBSEQUENT_FIELDS_FOR_HIDE;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.*;
-import static seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand.COMMAND_PAST_TENSE;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import static seedu.rc4hdb.testutil.TypicalFieldLists.*;
-import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 public class HideOnlyCommandTest {
     private Model model;
@@ -82,7 +94,8 @@ public class HideOnlyCommandTest {
         expectedModel.setVisibleFields(alreadyVisibleFields);
         expectedModel.setHiddenFields(HIDDEN_FIELDS_AFTER_VALID_SUBSEQUENT_HIDEONLY_COMMAND);
 
-        List<String> complementList = ColumnManipulatorCommand.generateComplementListFrom(VALID_SUBSEQUENT_FIELDS_FOR_HIDE);
+        List<String> complementList = ColumnManipulatorCommand.generateComplementListFrom(
+                VALID_SUBSEQUENT_FIELDS_FOR_HIDE);
         assertCommandSuccess(new HideOnlyCommand(complementList, VALID_SUBSEQUENT_FIELDS_FOR_HIDE), model,
                 String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE), expectedModel);
     }
@@ -94,7 +107,9 @@ public class HideOnlyCommandTest {
         model.setVisibleFields(fieldsToShow);
         model.setHiddenFields(VALID_FIELDS);
 
-        List<String> complementList = ColumnManipulatorCommand.generateComplementListFrom(INVALID_SUBSEQUENT_FIELDS_FOR_HIDE);
-        assertCommandFailure(new HideOnlyCommand(complementList, INVALID_SUBSEQUENT_FIELDS_FOR_HIDE), model, INVALID_SUBSET);
+        List<String> complementList = ColumnManipulatorCommand.generateComplementListFrom(
+                INVALID_SUBSEQUENT_FIELDS_FOR_HIDE);
+        assertCommandFailure(new HideOnlyCommand(complementList, INVALID_SUBSEQUENT_FIELDS_FOR_HIDE),
+                model, INVALID_SUBSET);
     }
 }

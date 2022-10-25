@@ -1,16 +1,23 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 
-import static java.util.Objects.requireNonNull;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 
+/**
+ * Resets the visibilities for all columns in the UI table.
+ */
 public class ResetCommand extends ColumnManipulatorCommand {
     public static final String COMMAND_WORD = "reset";
     public static final String COMMAND_PAST_TENSE = COMMAND_WORD;
 
+    /**
+     * Constructor for a ResetCommand instance.
+     */
     public ResetCommand() {
         super(ColumnManipulatorCommand.ALL_FIELDS, new ArrayList<>());
     }

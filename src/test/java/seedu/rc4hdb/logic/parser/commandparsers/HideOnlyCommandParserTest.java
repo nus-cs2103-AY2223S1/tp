@@ -1,16 +1,27 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.generateComplementListFrom;
+import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.INTENDED_USAGE_FORMAT;
+import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.INVALID_FIELDS_ENTERED;
+import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.WHITESPACE;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
+import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.ALL_VALID_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.DUPLICATE_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.EMPTY_STRING;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.INVALID_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.MIXED_CASE_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.VALID_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.ALL_VALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.DUPLICATE_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_FIELDS;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.generateComplementListFrom;
+
 import seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand;
-import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.*;
-import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
-import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
-import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.*;
-import static seedu.rc4hdb.testutil.TypicalFieldLists.*;
 
 public class HideOnlyCommandParserTest {
 

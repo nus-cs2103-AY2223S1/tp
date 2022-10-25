@@ -1,14 +1,18 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.COMMAND_WORD;
 import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.EXCLUDE_SPECIFIER;
 import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.INCLUDE_SPECIFIER;
+
+import java.util.List;
+
+import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses user input for a ListCommand.
+ */
 public class ListCommandParser extends ColumnManipulatorCommandParser {
 
     public static final List<String> LIST_OF_SPECIFIERS = List.of(INCLUDE_SPECIFIER, EXCLUDE_SPECIFIER);

@@ -1,26 +1,35 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.generateComplementListFrom;
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.EXCLUDE_SPECIFIER;
 import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.INCLUDE_SPECIFIER;
-import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.*;
+import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.INVALID_FIELDS_ENTERED;
+import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.WHITESPACE;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
+import static seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.ALL_VALID_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.DUPLICATE_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.EMPTY_STRING;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.INVALID_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.MIXED_CASE_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.VALID_LETTERS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.ALL_VALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.DUPLICATE_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_FIELDS;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import static seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser.INTENDED_SPECIFIER_USAGE_MESSAGE;
-import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.*;
-import static seedu.rc4hdb.testutil.TypicalFieldLists.*;
+
+import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 
 public class ListCommandParserTest {
 
-    private final ListCommandParser parser = new ListCommandParser();
-    public static final String INCLUDE_SPECIFIER_PREFIX = INCLUDE_SPECIFIER + WHITESPACE;
     public static final String EXCLUDE_SPECIFIER_PREFIX = EXCLUDE_SPECIFIER + WHITESPACE;
+    public static final String INCLUDE_SPECIFIER_PREFIX = INCLUDE_SPECIFIER + WHITESPACE;
+    private final ListCommandParser parser = new ListCommandParser();
 
     // Note that the inputs now are letters representing column names, rather than
     // verbose column names which was used when testing the command classes.

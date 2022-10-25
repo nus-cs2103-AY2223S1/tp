@@ -1,10 +1,8 @@
 package seedu.rc4hdb.testutil;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser;
-
+/**
+ * Utility class for testing column manipulator commands.
+ */
 public class TypicalColumnManipulatorInputs {
 
     // The letters here correspond to the list counterparts of the same name in TypicalFieldLists

@@ -14,7 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 /**
  * Represents the in-memory model of the resident book data.
@@ -40,7 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
-        this.visibleFields = FXCollections.observableArrayList(ResidentFields.LOWERCASE_FIELDS);
+        this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
         this.hiddenFields = FXCollections.observableArrayList();
     }
 

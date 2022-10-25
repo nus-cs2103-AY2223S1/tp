@@ -13,6 +13,9 @@ import seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
+/**
+ * Represents a parser for commands that can interact with Model to manipulate columns in the UI table.
+ */
 public abstract class ColumnManipulatorCommandParser implements Parser<ColumnManipulatorCommand> {
 
     public static final String INTENDED_USAGE_FORMAT = "Please enter the %s command followed by"
@@ -102,6 +105,11 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
         return hashMapOfFieldLists.get(COMPLEMENT_LIST);
     }
 
+    /**
+     * Enforces the input arguments after the command word should not be empty.
+     * @param args The input arguments read from the user
+     * @throws ParseException if the arguments are empty
+     */
     public void requireNonEmpty(String args) throws ParseException {
         if (args.isEmpty()) {
             throw new ParseException(String.format(INTENDED_USAGE_FORMAT,

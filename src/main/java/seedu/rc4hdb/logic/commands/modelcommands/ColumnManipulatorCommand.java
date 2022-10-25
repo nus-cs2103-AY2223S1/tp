@@ -11,6 +11,9 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.fields.ResidentField;
 
+/**
+ * Represents a command that is able to tell the model which columns in the UI table to manipulate.
+ */
 public abstract class ColumnManipulatorCommand implements ModelCommand {
 
     public static final String RESTORE_FULL_VIEW = "Use the reset command to restore the full table view.";
@@ -31,6 +34,11 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
     protected final List<String> fieldsToShow;
     protected final List<String> fieldsToHide;
 
+    /**
+     * Constructor for a ColumnManipulatorCommand instance.
+     * @param fieldsToShow The fields to set to visible in the UI table
+     * @param fieldsToHide The fields to set to not visible in the UI table
+     */
     public ColumnManipulatorCommand(List<String> fieldsToShow, List<String> fieldsToHide) {
         requireAllNonNull(fieldsToShow, fieldsToHide);
 
@@ -41,6 +49,11 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         this.fieldsToHide = lowerCaseFieldsToHide;
     }
 
+    /**
+     * Generates the complement of the input list based on the global list of possible fields.
+     * @param inputList The base list whose complement is to be generated
+     * @return A complement list containing the fields that are not in the input list.
+     */
     public static List<String> generateComplementListFrom(List<String> inputList) {
         requireNonNull(inputList);
         List<String> complementList = new ArrayList<>(ALL_FIELDS);
@@ -48,6 +61,11 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         return complementList;
     }
 
+    /**
+     * Validates the field list against the list of possible fields.
+     * @param fieldList The field list to be validated
+     * @throws CommandException if there are invalid fields
+     */
     public static void requireAllFieldsValid(List<String> fieldList) throws CommandException {
         for (String field : fieldList) {
             if (!ALL_FIELDS.contains(field.toLowerCase())) {
@@ -94,12 +112,26 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         return alreadyVisibleFields.containsAll(inputList);
     }
 
+    /**
+     * Enforces the need for at least one visible column in the UI table.
+     * @param fieldsToShow The list of fields to be set to visible in the UI table
+     * @throws CommandException if there are no fields in the field list
+     */
     public static void requireAtLeastOneVisibleColumn(List<String> fieldsToShow) throws CommandException {
         if (fieldsToShow.isEmpty()) {
             throw new CommandException(AT_LEAST_ONE_VISIBLE_COLUMN);
         }
     }
 
+    /**
+     * Enforces the need for subsequent showOnly and hideOnly commands to have
+     * a fieldsToShow and fieldsToHide list that is a subset of the fields
+     * already visible in the UI table.
+     * @param model The model that contains the UI table
+     * @param inputList The fieldsToShow or fieldsToHide list depending on the command
+     *                  invoking this method
+     * @throws CommandException if the field list is not a valid subset
+     */
     public static void requireValidSubsetOfAlreadyVisibleFields(Model model,
                                                                 List<String> inputList) throws CommandException {
         if (!isValidSubsetOfAlreadyVisibleFields(model, inputList)) {
@@ -107,6 +139,13 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         }
     }
 
+    /**
+     * Returns the union of the fieldsToHide list and the existing list of already
+     * hidden fields in the model.
+     * @param model The model that contains the UI table
+     * @param inputList The fields to take union with
+     * @return A list of fields representing the larger list of fields to be hidden
+     */
     public static List<String> getUnionOfFieldsToHideAndAlreadyHiddenFields(Model model, List<String> inputList) {
         List<String> unionList = new ArrayList<>(getAlreadyHiddenFields(model));
         unionList.addAll(inputList);

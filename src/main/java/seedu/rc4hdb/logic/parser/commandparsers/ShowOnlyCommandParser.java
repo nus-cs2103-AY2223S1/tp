@@ -1,11 +1,15 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 import seedu.rc4hdb.logic.commands.modelcommands.ShowOnlyCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses user input for a ShowOnlyCommand.
+ */
 public class ShowOnlyCommandParser extends ColumnManipulatorCommandParser {
 
     @Override

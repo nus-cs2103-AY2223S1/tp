@@ -5,6 +5,9 @@ import java.util.List;
 
 import seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand;
 
+/**
+ * Utility class for testing column manipulator command parsers.
+ */
 public class TypicalFieldLists {
     public static final List<String> ALL_VALID_FIELDS = new ArrayList<>(ColumnManipulatorCommand.ALL_FIELDS);
 

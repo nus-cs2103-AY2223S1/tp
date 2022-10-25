@@ -1,18 +1,20 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.MESSAGE_SUCCESS_FORMAT;
 import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.generateComplementListFrom;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.logic.commands.modelcommands.ResetCommand.COMMAND_PAST_TENSE;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_FIELDS;
-import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 public class ResetCommandTest {
 

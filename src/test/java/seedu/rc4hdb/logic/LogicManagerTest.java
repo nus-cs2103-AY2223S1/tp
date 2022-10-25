@@ -69,7 +69,8 @@ public class LogicManagerTest {
         String listCommand = ListCommand.COMMAND_WORD;
         model = new ModelStubForListCommand();
         logic = new LogicManager(model, storage);
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS);
+        assertCommandSuccess(listCommand,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, ListCommand.COMMAND_PAST_TENSE));
     }
 
     @Test

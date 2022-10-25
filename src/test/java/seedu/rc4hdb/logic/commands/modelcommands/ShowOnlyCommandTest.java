@@ -1,18 +1,29 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.AT_LEAST_ONE_VISIBLE_COLUMN;
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.INVALID_FIELDS_ENTERED;
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.INVALID_SUBSET;
+import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.modelcommands.ShowOnlyCommand.COMMAND_PAST_TENSE;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.ALL_VALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.DUPLICATE_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.INVALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.INVALID_SUBSEQUENT_FIELDS_FOR_SHOW;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.MIXED_CASE_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_FIELDS;
+import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_SUBSEQUENT_FIELDS_FOR_SHOW;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.*;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.modelcommands.ShowOnlyCommand.COMMAND_PAST_TENSE;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import static seedu.rc4hdb.testutil.TypicalFieldLists.*;
-import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 public class ShowOnlyCommandTest {
     private Model model;
