@@ -24,8 +24,8 @@ import coydir.logic.commands.FindCommand;
 import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
 import coydir.logic.parser.exceptions.ParseException;
-import coydir.model.person.NameContainsKeywordsPredicate;
 import coydir.model.person.Person;
+import coydir.model.person.PersonMatchesKeywordsPredicate;
 import coydir.testutil.EditPersonDescriptorBuilder;
 import coydir.testutil.PersonBuilder;
 import coydir.testutil.PersonUtil;
@@ -75,7 +75,9 @@ public class DatabaseParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(
+                    new PersonMatchesKeywordsPredicate(keywords.get(0), keywords.get(1), keywords.get(2))
+                    ), command);
     }
 
     @Test

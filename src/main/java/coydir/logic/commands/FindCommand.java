@@ -7,10 +7,7 @@ import static java.util.Objects.requireNonNull;
 
 import coydir.commons.core.Messages;
 import coydir.model.Model;
-import coydir.model.person.DepartmentContainsKeywordPredicate;
-import coydir.model.person.NameContainsKeywordPredicate;
 import coydir.model.person.PersonMatchesKeywordsPredicate;
-import coydir.model.person.PositionContainsKeywordPredicate;
 
 /**
  * Finds and lists all persons in database whose name contains any of the argument keywords.

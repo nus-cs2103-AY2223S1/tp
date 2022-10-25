@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import coydir.commons.core.GuiSettings;
-import coydir.model.person.NameContainsKeywordsPredicate;
+import coydir.model.person.PersonMatchesKeywordsPredicate;
 import coydir.testutil.DatabaseBuilder;
 
 public class ModelManagerTest {
@@ -117,8 +117,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentDatabase, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String keyName = ALICE.getName().fullName;
+        modelManager.updateFilteredPersonList(new PersonMatchesKeywordsPredicate(keyName, "", ""));
         assertFalse(modelManager.equals(new ModelManager(database, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
