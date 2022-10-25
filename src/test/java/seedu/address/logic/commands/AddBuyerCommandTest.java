@@ -1,13 +1,21 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -20,13 +28,6 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.PersonBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 
 public class AddBuyerCommandTest {
 
@@ -50,12 +51,12 @@ public class AddBuyerCommandTest {
 
     @Test
     public void execute_duplicateBuyer_throwsCommandException() {
-            Buyer validBuyer = new PersonBuilder().buildBuyer();
-            AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer, new ArrayList<>());
-            ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
+        Buyer validBuyer = new PersonBuilder().buildBuyer();
+        AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer, new ArrayList<>());
+        ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
 
-            assertThrows(CommandException.class,
-                    AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
     }
 
     @Test
