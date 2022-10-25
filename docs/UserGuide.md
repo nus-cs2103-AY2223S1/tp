@@ -125,12 +125,12 @@ Format: `listPersons [s/FIELD]`
   * `d` or `D` sort by date of birth
   * `g` or `G` sort by gender
 
-* It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
+* It is optional to include the sorting prefix and field. If the sorting prefix and field to sort by are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The sorted result is permanent on the underlying contacts list.<br><br>
+:information_source: **Note:** The sorted result is permanent on the underlying contact list.<br><br>
 
 For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will display the sorted results from the first `listPersons s/n` command since the sorted result is permanent.
 </div>
@@ -253,8 +253,8 @@ Shows a list of all events in the application.
 
 Format: `listEvents [s/FIELD]`
 
-* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
-  * `n` or `N` sort by name ignoring case differences
+* Sorts the events by the specified field in **ascending** order. `FIELD` must take one the following values:
+  * `e` or `E` sort by event title ignoring case differences
   * `d` or `D` sort by date
 
 * It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
@@ -264,7 +264,7 @@ Format: `listEvents [s/FIELD]`
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sorted result is permanent on the underlying events list.<br><br>
 
-For example, if `listEvents s/n` and `listEvents` are executed back-to-back, the result of the second `listEvents` command will display the sorted results from the first `listEvents s/n` command since the sorted result is permanent.
+For example, if `listEvents s/e` and `listEvents` are executed back-to-back, the result of the second `listEvents` command will display the sorted results from the first `listEvents s/e` command since the sorted result is permanent.
 </div>
 
 Examples:
