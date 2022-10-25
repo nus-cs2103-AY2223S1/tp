@@ -26,7 +26,13 @@ public class ScoresCommand extends Command {
 
     private final Session session;
 
+    /**
+     * Constructs a {@code ScoresCommand} with the provided {@code Session}.
+     *
+     * @param session the provided {@code Session}.
+     */
     public ScoresCommand(Session session) {
+        requireNonNull(session);
         this.session = session;
     }
 

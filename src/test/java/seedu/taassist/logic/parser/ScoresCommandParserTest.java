@@ -1,7 +1,6 @@
 package seedu.taassist.logic.parser;
 
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taassist.logic.commands.CommandTestUtil.CLASS_DESC_CS1101S;
 import static seedu.taassist.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.taassist.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.taassist.logic.commands.CommandTestUtil.SESSION_DESC_LAB1;
