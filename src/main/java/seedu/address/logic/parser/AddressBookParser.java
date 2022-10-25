@@ -20,11 +20,14 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GroupAppointmentCommand;
+import seedu.address.logic.commands.GroupPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UngroupCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -77,6 +80,24 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case GroupPatientCommand.COMMAND_WORD:
+            if (descriptor.equals(GroupPatientCommand.DESCRIPTOR_WORD)) {
+                return new GroupPatientCommand();
+            } else if (descriptor.equals(GroupAppointmentCommand.DESCRIPTOR_WORD)) {
+                return new GroupAppointmentCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
+
+        case UngroupCommand.COMMAND_WORD:
+            if (!descriptor.isEmpty()) {
+                return new UngroupCommand(descriptor);
+            } else if (!arguments.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UngroupCommand.MESSAGE_USAGE));
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
@@ -109,6 +130,7 @@ public class AddressBookParser {
             } else {
                 throw new ParseException(INCOMPLETE_LIST_COMMAND);
             }
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
