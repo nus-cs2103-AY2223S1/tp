@@ -45,7 +45,7 @@ public class ItemCard extends UiPart<Region> {
         this.description.setText(item.getDescription());
         this.priority.setText("Stars: " + item.getPriority().getStars());
         this.duration.setText("Duration: " + item.getDuration());
-        this.time.setText("Time: " + item.getTimeString().orElseGet(() -> "(Not planned)"));
+        this.time.setText("Time: " + item.getTimeString());
         this.cost.setText("Cost: " + item.getCost().getValue());
     }
 
