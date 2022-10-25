@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
 import swift.commons.core.LogsCenter;
@@ -18,10 +22,6 @@ import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 import swift.storage.Storage;
-
-import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
-import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
-import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 /**
  * The main LogicManager of the app.

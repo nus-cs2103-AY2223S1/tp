@@ -1,5 +1,9 @@
 package swift.ui;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.UUID;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,11 +13,6 @@ import javafx.scene.layout.Region;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
-
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
 
 /**
  * A UI component that displays information of a {@code Task}.

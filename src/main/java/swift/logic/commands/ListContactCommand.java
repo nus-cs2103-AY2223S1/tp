@@ -1,9 +1,8 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static swift.model.Model.PREDICATE_HIDE_ALL_TASKS;
-import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import swift.model.Model;
 

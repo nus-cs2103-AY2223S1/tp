@@ -1,13 +1,5 @@
 package swift.logic.commands;
 
-import swift.commons.core.Messages;
-import swift.commons.core.index.Index;
-import swift.logic.commands.exceptions.CommandException;
-import swift.model.Model;
-import swift.model.bridge.PersonTaskBridge;
-import swift.model.person.Person;
-import swift.model.task.Task;
-
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -16,6 +8,14 @@ import static java.util.Objects.requireNonNull;
 import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
+import swift.commons.core.Messages;
+import swift.commons.core.index.Index;
+import swift.logic.commands.exceptions.CommandException;
+import swift.model.bridge.PersonTaskBridge;
+import swift.model.Model;
+import swift.model.person.Person;
+import swift.model.task.Task;
 
 /**
  * Command to display all tasks using its specified index from address book.
