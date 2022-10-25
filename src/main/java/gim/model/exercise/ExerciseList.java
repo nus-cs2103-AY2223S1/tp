@@ -136,8 +136,6 @@ public class ExerciseList implements Iterable<Exercise> {
      * Filters the displayedList based on the filtered list that user filtered.
      */
     public void filterDisplayedList(ObservableList<Exercise> filteredList) {
-        System.out.println(displayedList);
-        System.out.println(filteredList);
         displayedList.setAll(filteredList);
     }
 }
