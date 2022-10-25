@@ -5,6 +5,8 @@ import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jarvis.commons.core.index.Index;
+
 /**
  * Represents a Lesson in JARVIS.
  * Guarantees: details are present and not null.
@@ -101,11 +103,19 @@ public abstract class Lesson {
 
     public abstract LessonType getLessonType();
 
-    public void addOverallNotes(String overallNotes) {
+    public void addOverallNote(String overallNotes) {
         notes.addNote(overallNotes);
     }
 
-    public void addStudentNotes(String studentNotes, Student student) {
+    public void addStudentNote(String studentNotes, Student student) {
         notes.addNote(student, studentNotes);
+    }
+
+    public String deleteOverallNote(Index index) {
+        return notes.deleteNote(index.getOneBased()); // overall notes contains a header note at index 0
+    }
+
+    public String deleteStudentNote(Student student, Index index) {
+        return notes.deleteNote(student, index.getZeroBased());
     }
 }
