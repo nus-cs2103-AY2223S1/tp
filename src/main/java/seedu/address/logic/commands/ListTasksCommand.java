@@ -47,11 +47,12 @@ public class ListTasksCommand extends Command {
             return new CommandResult(NO_TASKS);
         }
 
-        if (complete && incomplete) {
+        if ((complete == null && incomplete == null)
+                || (Boolean.TRUE.equals(complete) && Boolean.TRUE.equals(incomplete))) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, tasks));
-        } else if (complete) {
+        } else if (Boolean.TRUE.equals(complete)) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, completedTasks));
-        } else if (incomplete) {
+        } else if (Boolean.TRUE.equals(incomplete)) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, incompleteTasks));
         }
         return new CommandResult("Invalid command format!\n" + MESSAGE_USAGE);
