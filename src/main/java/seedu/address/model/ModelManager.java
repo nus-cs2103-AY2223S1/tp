@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 
 /**
@@ -27,6 +28,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
 
     private final FilteredList<Person> filteredMembers;
+
+    private final FilteredList<Task> filteredTasks;
 
     private final FilteredList<Link> filteredLinks;
 
@@ -42,6 +45,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMembers = new FilteredList<>(this.addressBook.getTeam().getTeamMembers());
+        filteredTasks = new FilteredList<>(this.addressBook.getTeam().getTaskList());
         filteredLinks = new FilteredList<>(this.addressBook.getLinkList());
     }
 
@@ -199,6 +203,11 @@ public class ModelManager implements Model {
         return filteredMembers;
     }
 
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook} based on the specified predicate.
@@ -219,6 +228,12 @@ public class ModelManager implements Model {
     public void updateFilteredMembersList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredMembers.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override

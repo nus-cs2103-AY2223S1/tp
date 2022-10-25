@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_FILTER_STR;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.model.team.TaskList.NO_TASKS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -45,6 +47,7 @@ public class ListTasksCommand extends Command {
         } else if (!filter.equals("")) {
             return new CommandResult("Invalid command format!" + MESSAGE_USAGE);
         }
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, tasks));
     }
 

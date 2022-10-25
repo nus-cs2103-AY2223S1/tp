@@ -39,7 +39,7 @@ public class TeamDetailsCard extends UiPart<Region> {
 
         memberListPanel.getChildren().add(members.getRoot());
 
-        TaskListPanel tasks = new TaskListPanel(team.getTaskList());
+        TaskListPanel tasks = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanel.getChildren().add(tasks.getRoot());
 
         teamNameDisplay.setWrapText(true);
