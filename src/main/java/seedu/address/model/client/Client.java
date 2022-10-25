@@ -105,10 +105,6 @@ public class Client {
         meetings.remove(meeting);
     }
 
-    public boolean hasProduct(Product product) {
-        return products.contains(product);
-    }
-
     /**
      * Returns true if client has the given product.
      */
