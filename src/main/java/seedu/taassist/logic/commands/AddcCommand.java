@@ -27,8 +27,8 @@ public class AddcCommand extends Command {
             + PREFIX_MODULE_CLASS + "CS1231" + " "
             + PREFIX_MODULE_CLASS + "CS1101S";
 
-    public static final String MESSAGE_SUCCESS = "New class(es) added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "The class(es) %1$s already exist(s) in TA-Assist";
+    public static final String MESSAGE_SUCCESS = "Added new class(es): [%1$s]";
+    public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "These classes already exists: [%1$s]";
 
     private final Set<ModuleClass> moduleClasses;
 
@@ -76,14 +76,14 @@ public class AddcCommand extends Command {
 
     private static String getClassesAddedMessage(Set<ModuleClass> newClasses) {
         requireAllNonNull(newClasses);
-        String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
+        String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(", "));
         return String.format(MESSAGE_SUCCESS, newClassesStr);
     }
 
     private static String getDuplicateClassesMessage(Set<ModuleClass> duplicateClasses) {
         requireAllNonNull(duplicateClasses);
         String duplicateClassesStr = duplicateClasses.stream().map(Object::toString)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(", "));
         return String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClassesStr);
     }
 

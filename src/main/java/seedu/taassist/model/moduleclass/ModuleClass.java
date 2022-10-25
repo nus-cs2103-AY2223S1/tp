@@ -111,6 +111,6 @@ public class ModuleClass implements Identity<ModuleClass> {
      * Formats state as text for viewing.
      */
     public String toString() {
-        return '[' + className + ']';
+        return getClassName();
     }
 }
