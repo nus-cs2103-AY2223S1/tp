@@ -13,6 +13,14 @@ guest management tasks done faster than traditional GUI apps.
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## How to use the User Guide
+* For a quick and easy way to get started with GuestBook, you can visit the [Quick Start](#quick-start) section.
+* To understand the terms we use in GuestBook, you can visit the [Glossary](#glossary) section.
+* To see the amazing features that GuestBook provides and how to use them, you can visit the [Features](#features) section.
+* Having issues? You can check out the [FAQ](#faq) section to see find solutions to your issues.
+* Have a question for us? Feel free to [contact us](#contact-us) and we will do our best to assist you.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Components of the UI
 
@@ -39,7 +47,7 @@ guest management tasks done faster than traditional GUI apps.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to the guest book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
 
    * **`edit`** `1` `n/Bob rc/no rq/Room Service`: Edits the first guest shown in the current list.
 
@@ -66,11 +74,11 @@ guest management tasks done faster than traditional GUI apps.
 | **Alphanumeric** | `Refers to characters that are numbers 0-9 and alphabets A-Z, both uppercase and lowercase.`                                                          |
 | **dd/MM/yy**     | `Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year and they must be separated by a "/".` |
 | **CLI**          | `Stands for Command Line Interface, it refers to a text-based interface used to execute opertaions of the system.`                                    |
-| **Guest**        | `A guest staying at the hotel`                                                                                                                        |
+| **Guest**        | `A guest staying at the hotel.`                                                                                                                       |
 | **GUI**          | `Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.`              |
 | **Hard disk**    | `A data storage device used to store and retrieve data.`                                                                                              |
 | **Index**        | `The number that corresponds to the position of the Guest in the list.`                                                                               |
-| **Java**         | `A programming language used to run Guest Book.`                                                                                                      |
+| **Java**         | `A programming language used to run GuestBook.`                                                                                                       |
 | **JSON file**    | `Stands for JavaScript Object Notation, it refers to a file format to store data.`                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -118,7 +126,7 @@ Format: `help`
 
 ### Adding a guest : `add`
 
-This command adds a guest to the guest book. This is akin to checking in a guest with their personal 
+This command adds a guest to GuestBook. This is akin to checking in a guest with their personal 
 and room details.
 
 Format: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
@@ -132,7 +140,7 @@ Constraints of parameters:
 * `ROOM` should only contain alphanumeric characters and a hyphen.
 * `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
-* `REQUEST` is an optional field and it should be at most 500 characters long.
+* `REQUEST` is an optional field, and it should be at most 500 characters long.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/22 - 24/05/22 ng/3`
@@ -140,13 +148,13 @@ Examples:
 
 ### Listing all guests : `list`
 
-This command displays a list of all guests in the guest book.
+This command displays a list of all guests in GuestBook.
 
 Format: `list`
 
 ### Editing a guest : `edit`
 
-This command edits an existing guest in the guest book.
+This command edits an existing guest in GuestBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
@@ -160,7 +168,7 @@ Examples:
 
 ### Billing a guest : `bill`
 
-This command updates the bill of a guest in the guest book.
+This command updates the bill of a guest in GuestBook.
 
 Format: `bill INDEX b/BILL`
 
@@ -170,15 +178,15 @@ Format: `bill INDEX b/BILL`
 
 * The existing bill value will be increased by the input value.
 
-* The bill value **must be either an integer or a double with up to 2 decimal places**
+* The bill value **must be either an integer or a double with up to 2 decimal places.**
 
 Examples:
 * `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
 * `bill 2 n/-10` Subtracts 10 from the bill of the 2nd guest.
 
 Common mistakes:
-* Missing out the b/ prefix in the bill command
-* Editing the bill using the edit command instead of the bill command
+* Missing out the b/ prefix in the bill command.
+* Editing the bill using the edit command instead of the bill command.
 
 ### Locating guests : `find`
 
@@ -203,7 +211,7 @@ Examples:
 
 ### Deleting a guest : `delete`
 
-This command deletes the specified guest from the guest book. 
+This command deletes the specified guest from GuestBook. 
 
 This command is typically used when a guest has checked out of the hotel. Do note that this command 
 is irreversible. Once deleted, the specific guest's data cannot be retrieved. Please use this 
@@ -215,7 +223,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd guest in the guest book.
+* `list` followed by `delete 2` deletes the 2nd guest in GuestBook.
 
 * `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
 
@@ -235,9 +243,9 @@ Common mistakes:
 
 ### Clearing all entries : `clear`
 
-This command clears all entries from the guest book. 
+This command clears all entries from GuestBook. 
 
-This command is typically used as a hard reset of the entire guest book. Do note that this command 
+This command is typically used as a hard reset of all guest data in GuestBook. Do note that this command 
 is irreversible. Once cleared, all the guest data cannot be retrieved. Please use this command 
 with utmost caution.
 
@@ -260,10 +268,6 @@ GuestBook data are saved as a JSON file `[JAR file location]/data/guestbook.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 

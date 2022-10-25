@@ -5,27 +5,7 @@ title: Developer Guide
 
 ---
 * Table of Contents
-  * Acknowledgements
-  * Setting up, getting started
-  * Design
-    * Architecture
-    * UI component
-    * Logic component
-    * Model component
-    * Storage component
-    * Common classes
-  * Implementation
-  * Documentation, logging, testing, configuration, dev-ops
-  * Appendix: Requirements
-    * Product scope
-    * User stories
-    * Use cases
-    * Non-Functional Requirements
-    * Glossary
-  * Appendix: Instructions for manual testing
-    * Launch and shutdown
-    * Deleting a guest
-    * Saving data
+{:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -147,7 +127,7 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the guest book data i.e., all `Guest` objects (which are contained in a `UniqueGuestBook` object).
+* stores the GuestBook data i.e., all `Guest` objects (which are contained in a `UniqueGuestBook` object).
 * stores the currently 'selected' `Guest` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Guest>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -160,7 +140,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both guest book data and user preference data in json format, and read them back into corresponding objects.
+* can save both GuestBook data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `GuestBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -303,7 +283,7 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 ### MarkRoomsUnclean Command
 
 #### Implementation
-* The `markRoomsUnclean` command edits all the guests in the guest book and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
+* The `markRoomsUnclean` command edits all the guests in GuestBook and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
 
 The following activity diagram summarizes what happens when a user enters a `markRoomsUnclean` command.
 
@@ -314,7 +294,7 @@ The following activity diagram summarizes what happens when a user enters a `mar
 * Alternative 1: Allow `markRoomsUnclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
   * Cons: User is unable to change all the guests' isRoomClean statuses in a single command.
-* Alternative 2 (current choice): Allow `markRoomsUnclean` command to change all guests' isRoomClean statuses in the guest book instead of the last shown list.
+* Alternative 2 (current choice): Allow `markRoomsUnclean` command to change all guests' isRoomClean statuses in GuestBook instead of the last shown list.
   * Pros: User is able to change all the guests' isRoomClean statuses in a single command.
   * Cons: There is less flexibility in marking groups of guests' room as unclean.
 
@@ -323,7 +303,7 @@ Taking into consideration the context of GuestBook that operates for small hotel
 ### Find Command
 
 #### Implementation:
-* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `Name` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
+* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `fields` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
 
 The following activity diagram summarizes what happens when a user enters a `find` command.
 
@@ -331,34 +311,11 @@ The following activity diagram summarizes what happens when a user enters a `fin
 
 #### Design Considerations:
 
-**Aspect: Allowing searching only through `Name` field**
-* As the hotel manager would usually search by the Guest's name, it would be appropriate enough to search by the Guest's name. However, we do not rule out the possibility that the hotel manager might want to search by other fields as well. Hence, there could be another implementation, further elaborated on in the `Proposed` section below.
+**Aspect: Allowing searching only through all fields**
+* As the hotel manager would usually appreciate the ability to search by other fields such as by Room, it is appropriate to make the `find` command to scan through all the fields of the guests.
 
 **Aspect: Only matching full keywords**
 * The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
-
-### \[Proposed\] Improved `find` Command
-
-#### Proposed Implementation
-
-The current `find` command enables the hotel manager to only search by the `Name` field. However, it is possible that the hotel manager might want to search by other fields as well, such as `Room`.
-Hence, we should make the `find` functionality extensible enough to search by other fields.
-
-The following activity diagram summarizes the proposed implementation of what should happen when a user enters a `find` command.
-
-![ProposedImplementationFindActivityDiagram](images/ProposedImplementationFindActivityDiagram.png)
-
-#### Design Considerations:
-
-**Aspect: How to implement the extensible `find` command:**
-
-* **Alternative 1:** Use the functionality to find `Name` for other fields .
-    * Pros: Easy to implement.
-    * Cons: May lead to bugs as `Name` fields only accept alphanumeric characters, while other fields can accept other symbols.
-
-* **Alternative 2 (current choice):** Create the functionality for matching keywords for each field.
-    * Pros: Will be more accurate.
-    * Cons: We must ensure that the implementation of each field predicate are correct.
 
 
 ### \[Proposed\] Undo/Redo Command
@@ -367,31 +324,31 @@ The following activity diagram summarizes the proposed implementation of what sh
 
 The proposed undo/redo mechanism is facilitated by `VersionedGuestBook`. It extends `GuestBook` with an undo/redo history, stored internally as an `guestBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedGuestBook#commit()` — Saves the current guest book state in its history.
-* `VersionedGuestBook#undo()` — Restores the previous guest book state from its history.
-* `VersionedGuestBook#redo()` — Restores a previously undone guest book state from its history.
+* `VersionedGuestBook#commit()` — Saves the current GuestBook state in its history.
+* `VersionedGuestBook#undo()` — Restores the previous GuestBook state from its history.
+* `VersionedGuestBook#redo()` — Restores a previously undone GuestBook state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitGuestBook()`, `Model#undoGuestBook()` and `Model#redoGuestBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedGuestBook` will be initialized with the initial guest book state, and the `currentStatePointer` pointing to that single guest book state.
+Step 1. The user launches the application for the first time. The `VersionedGuestBook` will be initialized with the initial GuestBook state, and the `currentStatePointer` pointing to that single GuestBook state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th guest in the guest book. The `delete` command calls `Model#commitGuestBook()`, causing the modified state of the guest book after the `delete 5` command executes to be saved in the `guestBookStateList`, and the `currentStatePointer` is shifted to the newly inserted guest book state.
+Step 2. The user executes `delete 5` command to delete the 5th guest in GuestBook. The `delete` command calls `Model#commitGuestBook()`, causing the modified state of GuestBook after the `delete 5` command executes to be saved in the `guestBookStateList`, and the `currentStatePointer` is shifted to the newly inserted GuestBook state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new guest. The `add` command also calls `Model#commitGuestBook()`, causing another modified guest book state to be saved into the `guestBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new guest. The `add` command also calls `Model#commitGuestBook()`, causing another modified GuestBook state to be saved into the `guestBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitGuestBook()`, so the guest book state will not be saved into the `guestBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitGuestBook()`, so the GuestBook state will not be saved into the `guestBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the guest was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoGuestBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous guest book state, and restores the guest book to that state.
+Step 4. The user now decides that adding the guest was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoGuestBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous GuestBook state, and restores the GuestBook to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -408,17 +365,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoGuestBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the guest book to that state.
+The `redo` command does the opposite — it calls `Model#redoGuestBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores GuestBook to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `guestBookStateList.size() - 1`, pointing to the latest guest book state, then there are no undone GuestBook states to restore. The `redo` command uses `Model#canRedoGuestBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `guestBookStateList.size() - 1`, pointing to the latest GuestBook state, then there are no undone GuestBook states to restore. The `redo` command uses `Model#canRedoGuestBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the guest book, such as `list`, will usually not call `Model#commitGuestBook()`, `Model#undoGuestBook()` or `Model#redoGuestBook()`. Thus, the `guestBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify GuestBook, such as `list`, will usually not call `Model#commitGuestBook()`, `Model#undoGuestBook()` or `Model#redoGuestBook()`. Thus, the `guestBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitGuestBook()`. Since the `currentStatePointer` is not pointing at the end of the `guestBookStateList`, all guest book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitGuestBook()`. Since the `currentStatePointer` is not pointing at the end of the `guestBookStateList`, all GuestBook states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -430,7 +387,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire guest book.
+* **Alternative 1 (current choice):** Saves the entire GuestBook.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -736,7 +693,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a guest
 
    1. Prerequisites: Only one guest to be added.
-      The name of the guest to be added should not exist in the guest book.
+      The name of the guest to be added should not exist in GuestBook.
    The format and data of the command should be valid.
 
    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73
@@ -746,7 +703,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `add n/John Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added,
-      because the name is already in the guest book. Error details shown in the status message.
+      because the name is already in GuestBook. Error details shown in the status message.
          Status bar remains the same.
 
    4. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
@@ -796,7 +753,7 @@ testers are expected to do more *exploratory* testing.
 1. Editing a guest
    
    1. Prerequisite: Only 1 guest to be edited; the guest's index should exist.
-   The guest should exist in the guest book.
+   The guest should exist in GuestBook.
    The format and content of the command should be valid.
 
    2. Test case: `edit 1 n/Johnny`<br>
