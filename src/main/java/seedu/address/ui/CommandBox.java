@@ -67,6 +67,14 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Sets focus on the CommandTextField.
+     */
+    public void focus() {
+        commandTextField.requestFocus();
+    }
+
+
+    /**
      * Add events to commandTextField.
      */
     private void addEvents() {
@@ -74,8 +82,10 @@ public class CommandBox extends UiPart<Region> {
         // prevents the suggestions popup from disappearing when user presses tab.
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.TAB) {
-                handleTextChanged();
-                event.consume();
+                // Allow Tab key to shift focus to other GUI elements
+                if (suggestionsPopup.isShowing()) {
+                    suggestionsPopup.hide();
+                }
             }
         });
     }
@@ -161,6 +171,11 @@ public class CommandBox extends UiPart<Region> {
         if (currentText.isEmpty()) {
             suggestionsPopup.hide();
             return;
+        }
+
+        // "/" requests focus on the CommandTextField. Since it is an invalid starting command text, we can clear it.
+        if (commandTextField.getText().length() == 1 && commandTextField.getText().equals("/")) {
+            commandTextField.clear();
         }
 
         // Guard: If suggestions do not match text in command text field, stop
