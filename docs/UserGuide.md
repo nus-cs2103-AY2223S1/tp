@@ -396,6 +396,23 @@ Tags: friends
 
 ---
 
+### Sorting clients : `sort`
+
+Sorts clients in the FinBook according to given parameter.
+
+Format: `sort n/ or i/ or m/ ​`
+
+
+* Sorts clients in ascending order according to parameter.
+* At least one of the parameters must be provided.
+
+Examples:
+
+* `sort n/` Sorts clients in ascending order according to name.
+* `sort m/` Sorts clients according to their meeting dates in chronological order.
+
+---
+
 ### Changing Light/Dark mode
 
 Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
@@ -457,5 +474,6 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                        |
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                               |
+| **Sort**             | `sort PARAM`<br> e.g., `sort /n`                                                                                                                                                                                                                                                          |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                    |
 
