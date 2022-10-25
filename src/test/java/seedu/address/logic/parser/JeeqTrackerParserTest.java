@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompany.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalRemark.BAD_SELLER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -30,6 +29,7 @@ import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -45,8 +45,8 @@ import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ClientUtil;
-import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.RemarkUtil;
 
 
 public class JeeqTrackerParserTest {
@@ -115,10 +115,10 @@ public class JeeqTrackerParserTest {
     }
 
     @Test
-    public void parseCommand_create() throws Exception {
-        CreateCommand command = (CreateCommand) parser.parseCommand(
-                CompanyUtil.getCreateCommand(ALICE, INDEX_FIRST_CLIENT));
-        assertEquals(new CreateCommand(INDEX_FIRST_CLIENT, ALICE), command);
+    public void parseCommand_remark() throws Exception {
+        RemarkCommand command = (RemarkCommand) parser.parseCommand(
+                RemarkUtil.getRemarkCommand(BAD_SELLER, INDEX_FIRST_CLIENT));
+        assertEquals(new RemarkCommand(INDEX_FIRST_CLIENT, BAD_SELLER), command);
     }
 
     @Test

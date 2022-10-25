@@ -41,7 +41,7 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label companies;
+    private Label remarks;
     @FXML
     private Label transactions;
     @FXML
@@ -58,7 +58,7 @@ public class ClientCard extends UiPart<Region> {
         address.setText("Address: " + client.getAddress().value);
         phone.setText("Phone: " + client.getPhone().value);
         email.setText("Email: " + client.getEmail().value);
-        companies.setText(client.getCompanies().toString());
+        remarks.setText(client.getRemarks().toString());
         transactions.setText("Total: " + formatPrice(client.getTotalTransacted()));
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

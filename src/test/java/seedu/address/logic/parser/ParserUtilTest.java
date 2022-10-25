@@ -18,8 +18,6 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.company.CompanyAddress;
-import seedu.address.model.company.CompanyName;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -34,13 +32,14 @@ public class ParserUtilTest {
     private static final String INVALID_QUANTITY = "100h";
 
     private static final String INVALID_PRICE = "1213a";
+    private static final String INVALID_TEXT = " ";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
-
+    private static final String VALID_TEXT = "Good buyer";
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -252,56 +251,14 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
     }
 
-
     @Test
-    public void parseCompanyAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompanyAddress((String) null));
+    public void parseText_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseText(INVALID_TEXT));
     }
 
     @Test
-    public void parseCompanyAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseText_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseText(null));
     }
 
-    @Test
-    public void parseCompanyAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        CompanyAddress expectedAddress = new CompanyAddress(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseCompanyAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseCompanyAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        CompanyAddress expectedAddress = new CompanyAddress(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseCompanyAddress(addressWithWhitespace));
-    }
-
-    @Test
-    public void parseInvalidCompanyName_throwsParseException() {
-        assertThrows(ParseException.class, CompanyName.MESSAGE_CONSTRAINTS, ()
-                -> ParserUtil.parseCompanyName("%$&^"));
-    }
-
-    @Test
-    public void parseCompanyName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompanyName((String) null));
-    }
-
-    @Test
-    public void parseCompanyName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompanyName(INVALID_NAME));
-    }
-
-    @Test
-    public void parseCompanyName_validValueWithoutWhitespace_returnsName() throws Exception {
-        CompanyName expectedName = new CompanyName(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseCompanyName(VALID_NAME));
-    }
-
-    @Test
-    public void parseCompanyName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        CompanyName expectedName = new CompanyName(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseCompanyName(nameWithWhitespace));
-    }
 }

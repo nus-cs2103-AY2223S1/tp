@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODE;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteCompanyCommand;
+import seedu.address.logic.commands.DeleteRemarkCommand;
 import seedu.address.logic.commands.DeleteTransactionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -39,8 +39,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteClientCommand(index);
         case "transaction":
             return new DeleteTransactionCommand(index);
-        case "company":
-            return new DeleteCompanyCommand(index);
+        case "remark":
+            return new DeleteRemarkCommand(index);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }

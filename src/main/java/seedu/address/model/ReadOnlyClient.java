@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.company.Company;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -10,10 +10,10 @@ import seedu.address.model.transaction.Transaction;
 public interface ReadOnlyClient {
 
     /**
-     * Returns an unmodifiable view of the companies list.
-     * This list will not contain any duplicate companies.
+     * Returns an unmodifiable view of the remarks list.
+     * This list will not contain any duplicate remarks.
      */
-    ObservableList<Company> getCompanyList();
+    ObservableList<Remark> getRemarkList();
 
     /**
      * Returns an unmodifiable view of the transactions list.

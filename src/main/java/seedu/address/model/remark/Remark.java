@@ -1,4 +1,4 @@
-package seedu.address.model.company;
+package seedu.address.model.remark;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,14 +10,13 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Point of contact in the client.
+ * Represents a remark for the client.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Company {
+public class Remark {
 
     // Identity fields
-    private final CompanyName name;
-    private final CompanyAddress address;
+    private final Text text;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -25,20 +24,15 @@ public class Company {
     /**
      * Every field must be present and not null.
      */
-    public Company(CompanyName name, CompanyAddress address, Set<Tag> tags) {
-        requireAllNonNull(name, address, tags);
-        this.name = name;
-        this.address = address;
+    public Remark(Text text, Set<Tag> tags) {
+        requireAllNonNull(text, tags);
+        this.text = text;
 
         this.tags.addAll(tags);
     }
 
-    public CompanyName getName() {
-        return name;
-    }
-
-    public CompanyAddress getAddress() {
-        return address;
+    public Text getText() {
+        return text;
     }
 
     /**
@@ -50,21 +44,21 @@ public class Company {
     }
 
     /**
-     * Returns true if both companies have the same name.
-     * This defines a weaker notion of equality between two companies.
+     * Returns true if both remarks have the same text.
+     * This defines a weaker notion of equality between two remarks.
      */
-    public boolean isSameCompany(Company otherCompany) {
-        if (otherCompany == this) {
+    public boolean isSameRemark(Remark otherRemark) {
+        if (otherRemark == this) {
             return true;
         }
 
-        return otherCompany != null
-                && otherCompany.getName().equals(getName());
+        return otherRemark != null
+                && otherRemark.getText().value.equals(getText().value);
     }
 
     /**
-     * Returns true if both companies have the same identity and data fields.
-     * This defines a stronger notion of equality between two companies.
+     * Returns true if both remarks have the same identity and data fields.
+     * This defines a stronger notion of equality between two remarks.
      */
     @Override
     public boolean equals(Object other) {
@@ -72,28 +66,25 @@ public class Company {
             return true;
         }
 
-        if (!(other instanceof Company)) {
+        if (!(other instanceof Remark)) {
             return false;
         }
 
-        Company otherCompany = (Company) other;
-        return otherCompany.getName().equals(getName())
-                && otherCompany.getAddress().equals(getAddress())
-                && otherCompany.getTags().equals(getTags());
+        Remark otherRemark = (Remark) other;
+        return otherRemark.getText().value.equals(getText().value)
+                && otherRemark.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(text, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getText());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
