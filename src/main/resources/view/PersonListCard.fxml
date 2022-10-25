@@ -24,17 +24,17 @@
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5.0">
-                <Label fx:id="id" styleClass="cell_big_label" textFill="WHITE">
+                <Label fx:id="id" focusTraversable="false" styleClass="cell_big_label" textFill="WHITE">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
+                <Label fx:id="name" focusTraversable="false" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
             </HBox>
             <FlowPane fx:id="specialTags" />
             <FlowPane fx:id="tags" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
+            <Label fx:id="phone" focusTraversable="false" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
                 <graphic>
                     <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -42,7 +42,7 @@
                         </image>
                     </ImageView>
                 </graphic></Label>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+            <Label fx:id="address" focusTraversable="false" styleClass="cell_small_label" text="\$address" textFill="WHITE">
                 <graphic>
                     <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -50,7 +50,7 @@
                         </image>
                     </ImageView>
                 </graphic></Label>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE">
+            <Label fx:id="email" focusTraversable="false" styleClass="cell_small_label" text="\$email" textFill="WHITE">
                 <graphic>
                     <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -58,7 +58,7 @@
                         </image>
                     </ImageView>
                 </graphic></Label>
-            <Label fx:id="income" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+            <Label fx:id="income" focusTraversable="false" styleClass="cell_small_label" text="\$address" textFill="WHITE">
                 <graphic>
                     <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -66,7 +66,7 @@
                         </image>
                     </ImageView>
                 </graphic></Label>
-            <Label fx:id="monthly" styleClass="cell_small_label" text="\$monthly" textFill="WHITE">
+            <Label fx:id="monthly" focusTraversable="false" styleClass="cell_small_label" text="\$monthly" textFill="WHITE">
                 <graphic>
                     <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -79,7 +79,7 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="129.0" spacing="5">
                     <children>
-                        <Label fx:id="id1" alignment="BOTTOM_LEFT" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
+                        <Label fx:id="id1" alignment="BOTTOM_LEFT" focusTraversable="false" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
                             <minWidth>
                                 <Region fx:constant="USE_PREF_SIZE" />
                             </minWidth>
@@ -92,7 +92,7 @@
                         <Insets bottom="10.0" />
                     </padding>
                 </HBox>
-                <ListView fx:id="appointments" prefHeight="127.0" prefWidth="129.0" />
+                <ListView fx:id="appointments" focusTraversable="false" prefHeight="127.0" prefWidth="129.0" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
