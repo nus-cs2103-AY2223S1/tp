@@ -10,7 +10,9 @@ import static swift.testutil.TypicalIntegratedAddressBook.PERSON2_UUID;
 import static swift.testutil.TypicalIntegratedAddressBook.TASK1_UUID;
 import static swift.testutil.TypicalIntegratedAddressBook.TASK3_UUID;
 import static swift.testutil.TypicalIntegratedAddressBook.getTypicalAddressBook;
-import static swift.testutil.TypicalTaskIndexes.*;
+import static swift.testutil.TypicalTaskIndexes.INDEX_FIRST_TASK;
+import static swift.testutil.TypicalTaskIndexes.INDEX_SECOND_TASK;
+import static swift.testutil.TypicalTaskIndexes.INDEX_THIRD_TASK;
 
 import java.util.UUID;
 
