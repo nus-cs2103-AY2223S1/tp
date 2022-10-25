@@ -229,7 +229,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPatientList(Predicate<Patient> predicate) {
+    public void updateFilteredPatientList(Predicate<? super Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
     }
@@ -242,7 +242,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+    public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
     }
@@ -262,7 +262,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredBillList(Predicate<Bill> predicate) {
+    public void updateFilteredBillList(Predicate<? super Bill> predicate) {
         requireNonNull(predicate);
         filteredBills.setPredicate(predicate);
     }
@@ -361,5 +361,4 @@ public class ModelManager implements Model {
     public void setBillAsPaid(Bill bill) {
         this.addressBook.setBillAsPaid(bill);
     }
-
 }
