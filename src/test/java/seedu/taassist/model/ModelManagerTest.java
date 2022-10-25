@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.setFilteredListPredicate(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taAssist, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        modelManager.setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
