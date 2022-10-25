@@ -8,6 +8,7 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import soconnect.logic.commands.SearchCommand;
@@ -21,7 +22,6 @@ import soconnect.model.person.search.ContactMightBeRelevantPredicate;
  * Parses input arguments and creates a new {@code SearchCommand} object.
  */
 public class SearchCommandParser implements Parser<SearchCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the {@code SearchCommand}
      * and returns a {@code SearchCommand} object for execution.
@@ -39,8 +39,23 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
+        if (!isValidSearchKeyword(argMultimap)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+        }
         String condition = argMultimap.getPreamble().toLowerCase();
         return parseSearchCondition(argMultimap, condition);
+    }
+
+    /**
+     * Checks whether the search keywords are of valid types or not.
+     * Invalid types are keywords that do not contain any letters or numbers.
+     * For example, "++" is invalid, but "a+l+e+x" is valid.
+     */
+    private boolean isValidSearchKeyword(ArgumentMultimap argMultimap) {
+        List<String> keywords = argMultimap.getAllValues();
+        return keywords.stream().anyMatch(
+                keyword -> !keyword.replaceAll("[^a-zA-Z0-9]", "").trim().isEmpty());
     }
 
     /**
@@ -69,7 +84,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
     private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition) {
         Predicate<Person> contactMightBeRelevantPredicate =
-                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
+                new ContactMightBeRelevantPredicate(argMultimap);
         if (isJointCondition) {
             return new SearchCommand(new ContactContainsAllKeywordsPredicate(argMultimap),
                     contactMightBeRelevantPredicate);
