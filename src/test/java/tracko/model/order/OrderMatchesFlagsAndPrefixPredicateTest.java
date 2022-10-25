@@ -169,7 +169,7 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
         // one keyword each
         Order order1 = new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(appleKeychainItem, new Quantity(1))).withName("Alice Tan")
-                .withAddress("75 Clementi Street, Blk 990, #45-09").withDelivedStatus(true).withPaymentStatus(true).build();
+                .withAddress("75 Clementi Street, Blk 990, #45-09").withDelivereddStatus(true).withPaymentStatus(true).build();
         Order order2 = new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).withName("Bobbert Bobbertson")
                 .withAddress("23 King Albert Park Street, 632093").build();
@@ -277,7 +277,7 @@ public class OrderMatchesFlagsAndPrefixPredicateTest {
 
     @Test
     public void test_orderMatchesFlags() {
-        Order order1 = new OrderBuilder().withDelivedStatus(true).withPaymentStatus(true).build();
+        Order order1 = new OrderBuilder().withDelivereddStatus(true).withPaymentStatus(true).build();
         OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(EMPTY_LIST, EMPTY_LIST,
                 EMPTY_LIST, true, true, true, true);
         assertTrue(predicate.test(order1));

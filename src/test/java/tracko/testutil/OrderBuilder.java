@@ -128,7 +128,7 @@ public class OrderBuilder {
     /**
      * Sets the delivery status of the {@code Order} that we are building.
      */
-    public OrderBuilder withDelivedStatus(Boolean isDelivered) {
+    public OrderBuilder withDelivereddStatus(Boolean isDelivered) {
         this.isDelivered = isDelivered;
         return this;
     }
