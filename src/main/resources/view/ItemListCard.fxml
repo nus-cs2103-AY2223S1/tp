@@ -26,6 +26,8 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
+                <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
             </HBox>
         </VBox>
     </GridPane>

@@ -3,6 +3,9 @@ package seedu.waddle.model.item;
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
+import java.util.Optional;
+
+import javax.swing.text.html.Option;
 
 /**
  * Represents an item in the itinerary.
@@ -12,7 +15,6 @@ public class Item {
     private Priority priority;
     private Cost cost;
     private Duration duration;
-
     private LocalTime startTime;
     // private Category category;
 
@@ -44,12 +46,19 @@ public class Item {
         return duration;
     }
 
-    public LocalTime getStartTime() {
-        return this.startTime;
+    public Optional<LocalTime> getStartTime() {
+        return Optional.ofNullable(this.startTime);
     }
 
-    public LocalTime getEndTime() {
-        return this.startTime.plusMinutes(this.duration.getDuration());
+    public Optional<LocalTime> getEndTime() {
+        return Optional.ofNullable(this.startTime.plusMinutes(this.duration.getDuration()));
+    }
+
+    public Optional<String> getTimeString() {
+        if (this.startTime != null && this.duration != null) {
+            return Optional.of(this.startTime + " - " + getEndTime().get());
+        }
+        return Optional.empty();
     }
 
     public void resetStartTime() {

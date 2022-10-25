@@ -17,7 +17,7 @@ public class JsonAdaptedItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private final String description;
-    private final String priority;
+    private final Integer stars;
     private final String cost;
     //private final String duration;
 
@@ -26,11 +26,11 @@ public class JsonAdaptedItem {
      */
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("description") String description,
-                           @JsonProperty("priority") String priority,
+                           @JsonProperty("priority") Integer stars,
                            @JsonProperty("cost") String cost,
                            @JsonProperty("duration") String duration) {
         this.description = description;
-        this.priority = priority;
+        this.stars = stars;
         this.cost = cost;
         //this.duration = duration;
     }
@@ -40,7 +40,7 @@ public class JsonAdaptedItem {
      */
     public JsonAdaptedItem(Item source) {
         description = source.getDescription();
-        priority = source.getPriority().priority;
+        stars = source.getPriority().getStars();
         cost = source.getCost().toString();
         //TODO duration and startTime null error
         //duration = source.getDuration().toString();
@@ -65,15 +65,15 @@ public class JsonAdaptedItem {
         */
         final String modelDescription = description;
 
-        if (priority == null) {
+        if (stars == null) {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, Priority.class.getSimpleName()));
         }
-        if (!Priority.isValidPriority(priority)) {
+        if (!Priority.isValidPriority(stars)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
 
-        final Priority modelPriority = new Priority(priority);
+        final Priority modelPriority = new Priority(stars);
         final Cost modelCost = new Cost(cost);
         //final Duration modelDuration = new Duration(duration);
 
