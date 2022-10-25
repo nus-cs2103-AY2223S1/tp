@@ -34,6 +34,7 @@ import seedu.address.ui.TextValidation;
 public class CalendarLogic {
     private static final String SUCCESS_MESSAGE = "success";
     private static final String FAILURE_MESSAGE = "failure";
+    private static final String EMPTY_MESSAGE = "";
 
 
     private static final String[] MONTH_NAMES = {
@@ -150,7 +151,7 @@ public class CalendarLogic {
     public void refresh() {
         resetGridPane();
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
-        textValidation.setTextValidation("");
+        textValidation.setTextValidation(EMPTY_MESSAGE);
         drawCalendar();
     }
 
@@ -160,7 +161,7 @@ public class CalendarLogic {
     public void previous() {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getPreviousMonth(currentMonth);
-        textValidation.setTextValidation("");
+        textValidation.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
 
