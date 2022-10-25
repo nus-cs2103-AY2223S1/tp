@@ -73,7 +73,7 @@ public class SimpleImageStorage implements ImageStorage {
     }
 
     /**
-     * @param imagePath location of the image. Cannot be null
+     * @param imagePath Location of the image. Cannot be null.
      * @throws DataConversionException if the file format is not as expected.
      */
     public BufferedImage getImage(Path imagePath) throws IOException {

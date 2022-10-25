@@ -84,7 +84,7 @@ public class EditIterationCommand extends Command {
         Path updateImagePath =
                 editIterationDescriptor.getImagePath().orElse(iterationToEdit.getImagePath());
 
-        Iteration editedIteration = new Iteration(updatedDate, updatedDescription, updateImagePath, updatedFeedback);
+        Iteration editedIteration = new Iteration(updatedDate, updatedDescription, updatedImagePath, updatedFeedback);
 
         if (editIterationDescriptor.getImagePath().isPresent()) {
             // new image upload, image save required
@@ -99,7 +99,7 @@ public class EditIterationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage...storage) throws CommandException {
+    public CommandResult execute(Model model, Storage... storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCommission()) {
