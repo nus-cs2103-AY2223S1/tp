@@ -25,18 +25,20 @@ create TagCommandParser
 SoConnectParser -> TagCommandParser
 activate TagCommandParser
 
-create TagAddCommandParser
-TagCommandParser -> TagAddCommandParser
-activate TagAddCommandParser
 
-TagAddCommandParser --> TagCommandParser
-deactivate TagAddCommandParser
 
 TagCommandParser --> SoConnectParser
 deactivate TagCommandParser
 
 SoConnectParser -> TagCommandParser : parse("("add 1 t/friend")
 activate TagCommandParser
+
+create TagAddCommandParser
+TagCommandParser --> TagAddCommandParser
+activate TagAddCommandParser
+
+TagAddCommandParser --> TagCommandParser
+deactivate TagAddCommandParser
 
 TagCommandParser -> TagAddCommandParser : parse("1 t/friend")
 activate TagAddCommandParser

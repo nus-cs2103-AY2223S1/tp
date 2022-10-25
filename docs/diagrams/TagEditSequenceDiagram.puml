@@ -25,18 +25,18 @@ create TagCommandParser
 SoConnectParser -> TagCommandParser
 activate TagCommandParser
 
+TagCommandParser --> SoConnectParser
+deactivate TagCommandParser
+
+SoConnectParser -> TagCommandParser : parse("("edit t/friend t/bestFriend")
+activate TagCommandParser
+
 create TagEditCommandParser
 TagCommandParser -> TagEditCommandParser
 activate TagEditCommandParser
 
 TagEditCommandParser --> TagCommandParser
 deactivate TagEditCommandParser
-
-TagCommandParser --> SoConnectParser
-deactivate TagCommandParser
-
-SoConnectParser -> TagCommandParser : parse("("edit t/friend t/bestFriend")
-activate TagCommandParser
 
 TagCommandParser -> TagEditCommandParser : parse("t/friend t/bestFriend")
 activate TagEditCommandParser

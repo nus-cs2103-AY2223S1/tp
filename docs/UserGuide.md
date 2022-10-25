@@ -176,13 +176,13 @@ Format: `tag delete t/TAG`
 Example:
 * `tag delete t/family` deletes the `family` tag.
 
-### Remove a Tag to a Contact: `tag remove`
+### Remove a Tag from a Contact: `tag remove`
 
-Adds an existing tag to an existing contact.
+Removes an existing tag from an existing contact.
 
 Format: `tag remove INDEX t/TAG`
 
-* Removes a `TAG` to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+* Removes a `TAG` from the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.

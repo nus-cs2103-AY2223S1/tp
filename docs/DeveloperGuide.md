@@ -461,15 +461,19 @@ Step 1. The user executes `tag add 1 t/friend` command to add the tag, `friend`,
 
 Step 2. The `tag add` command collects the list of contacts shown, containing them in `Model#getFilteredPersonList()`.
 
-Step 3. The `tag add` command creates the same contact with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
+Step 3. The `tag add` command recreates the same contact and adds the new tag, containing this new contact in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
 
 Step 4. The `tag add` command replaces the old contact with the new, updated contact, calling `Model#setPerson(Person target, Person editedPerson)`.
-
-Step 5. The contact indicated by `INDEX` now has the `friend` tag.
 
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
 ![TagAddSequenceDiagram](images/TagAddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagAddCommandParser` and `TagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 5. The contact indicated by `INDEX` now has the `friend` tag.
 
 #### Design consideration
 
@@ -501,11 +505,15 @@ Step 1. The user executes `tag edit t/friend t/bestFriend` command to edit the o
 
 Step 2. The `tag edit` command edits the old tag with the new tag, calling `Model#editTag(oldTag, newTag)`.
 
-Step 3. The old tag on every contact and every task is now replaced with the new tag for display.
-
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
 ![TagEditSequenceDiagram](images/TagEditSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagEditCommandParser` and `TagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 3. The old tag on every contact and every task is now replaced with the new tag for display.
 
 #### Design consideration
 
