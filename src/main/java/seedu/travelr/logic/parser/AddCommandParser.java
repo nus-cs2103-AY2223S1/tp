@@ -14,7 +14,6 @@ import seedu.travelr.model.component.DateField;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Location;
 import seedu.travelr.model.component.Title;
-import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**

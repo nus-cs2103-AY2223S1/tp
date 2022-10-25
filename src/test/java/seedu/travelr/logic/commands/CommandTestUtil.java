@@ -50,18 +50,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTripDescriptor DESC_GERMANY;
-    public static final EditCommand.EditTripDescriptor DESC_ANTARCTICA;
-
-    static {
-        DESC_GERMANY = new EditTripDescriptorBuilder().withTitle(VALID_TITLE_GERMANY)
-                .withDescription(VALID_DESCRIPTION_GERMANY)
-                .withEvents(VALID_EVENT_EATING).build();
-        DESC_ANTARCTICA = new EditTripDescriptorBuilder().withTitle(VALID_TITLE_ANTARCTICA)
-                .withDescription(VALID_DESCRIPTION_ANTARCTICA)
-                .withEvents(VALID_EVENT_SIGHTSEEING, VALID_EVENT_EATING).build();
-    }
-
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
