@@ -5,12 +5,16 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS1101;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS2030S;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -21,6 +25,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS1101;
@@ -40,9 +46,11 @@ import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -56,36 +64,54 @@ public class AddContactCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withModules(VALID_MODULE_CS2030S).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S,
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
                 new AddContactCommand(expectedPersonMultipleTags));
 
         Person expectedPersonMultipleModules = new PersonBuilder(BOB).withTags(VALID_TAG_HUSBAND)
                 .withModules(VALID_MODULE_CS2030S, VALID_MODULE_CS1101).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + TAG_DESC_HUSBAND + MODULE_DESC_CS1101 + MODULE_DESC_CS2030S,
+                + TAG_DESC_HUSBAND + MODULE_DESC_CS1101 + MODULE_DESC_CS2030S
+                + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
                 new AddContactCommand(expectedPersonMultipleModules));
+
+        // multiple githubs - last github accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S
+                        + GITHUB_DESC_AMY + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
+
+        // multiple telegrams - last telegram accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S
+                        + GITHUB_DESC_BOB + TELEGRAM_DESC_AMY + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
     }
 
     @Test
@@ -93,7 +119,8 @@ public class AddContactCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + MODULE_DESC_CS1101, new AddContactCommand(expectedPerson));
+                        + MODULE_DESC_CS1101 + GITHUB_DESC_AMY + TELEGRAM_DESC_AMY,
+                        new AddContactCommand(expectedPerson));
     }
 
     @Test
@@ -125,35 +152,54 @@ public class AddContactCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND + MODULE_DESC_CS2030S, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                Tag.MESSAGE_CONSTRAINTS);
 
         // invalid mods
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + INVALID_MODS_DESC, Module.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + INVALID_MODS_DESC + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                Module.MESSAGE_CONSTRAINTS);
+
+        // invalid Github
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + MODULE_DESC_CS2030S
+                        + INVALID_GITHUB_DESC + TELEGRAM_DESC_BOB,
+                Github.MESSAGE_CONSTRAINTS);
+
+        // invalid Telegram
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + MODULE_DESC_CS2030S
+                        + GITHUB_DESC_BOB + INVALID_TELEGRAM_DESC,
+                Telegram.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + MODULE_DESC_CS2030S, Name.MESSAGE_CONSTRAINTS);
+                + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S,
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S
+                        + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
     }
 }

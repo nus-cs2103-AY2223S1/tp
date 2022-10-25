@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -42,6 +45,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MODULE_CS1101 = "CS1101";
     public static final String VALID_MODULE_CS2030S = "CS2030S";
+    public static final String VALID_GITHUB_AMY = "AMYBEE";
+    public static final String VALID_GITHUB_BOB = "BOB5";
+    public static final String VALID_TELEGRAM_AMY = "AMYBEEE";
+    public static final String VALID_TELEGRAM_BOB = "BOB555";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -55,6 +62,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String MODULE_DESC_CS1101 = " " + PREFIX_MODULE + VALID_MODULE_CS1101;
     public static final String MODULE_DESC_CS2030S = " " + PREFIX_MODULE + VALID_MODULE_CS2030S;
+    public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
+    public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
+    public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
+    public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -62,21 +73,26 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_MODS_DESC = " " + PREFIX_MODULE + "cs****"; // space not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB + "amy bee"; // only one word allowed
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "box lee lee"; // only one word allowed
 
     public static final String VALID_TASK_NAME_FINISH_TP = "Finish TP";
     public static final String VALID_DEADLINE_FINISH_TP = "2022-11-15 00:00";
+    public static final String HUMAN_DEADLINE_FINISH_TP = "15/11/2022 00:00";
     public static final String VALID_MODULE_FINISH_TP = "CS2103T";
     public static final String VALID_TASK_NAME_LAB_2 = "Lab 2";
     public static final String VALID_DEADLINE_LAB_2 = "2022-02-02 23:59";
+    public static final String HUMAN_DEADLINE_LAB_2 = "2 Feb 2022 23:59";
     public static final String VALID_MODULE_LAB_2 = "CS2030S";
 
-    public static final String TASK_NAME_DESC_FINISH_TP = VALID_TASK_NAME_FINISH_TP;
+    public static final String TASK_NAME_DESC_FINISH_TP = " " + PREFIX_NAME + VALID_TASK_NAME_FINISH_TP;
     public static final String MODULE_DESC_FINISH_TP = " " + PREFIX_MODULE + VALID_MODULE_FINISH_TP;
-    public static final String DEADLINE_DESC_FINISH_TP = " " + PREFIX_DEADLINE + VALID_DEADLINE_FINISH_TP;
-    public static final String TASK_NAME_DESC_LAB_2 = VALID_TASK_NAME_LAB_2;
+    public static final String DEADLINE_DESC_FINISH_TP = " " + PREFIX_DEADLINE + HUMAN_DEADLINE_FINISH_TP;
+    public static final String TASK_NAME_DESC_LAB_2 = " " + PREFIX_NAME + VALID_TASK_NAME_LAB_2;
     public static final String MODULE_DESC_LAB_2 = " " + PREFIX_MODULE + VALID_MODULE_LAB_2;
-    public static final String DEADLINE_DESC_LAB_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_LAB_2;
+    public static final String DEADLINE_DESC_LAB_2 = " " + PREFIX_DEADLINE + HUMAN_DEADLINE_LAB_2;
     public static final String INVALID_TASK_NAME_DESC = "John\nEvelyn\tTan";
+    public static final String INVALID_TASK_NAME_PREF = " " + PREFIX_NAME + " ";
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "Software Engineering";
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "foobar";
 
@@ -86,13 +102,22 @@ public class CommandTestUtil {
     public static final EditContactCommand.EditPersonDescriptor DESC_AMY;
     public static final EditContactCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditTaskCommand.EditTaskDescriptor DESC_FINISH_TP;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_LAB_2;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).withModules(VALID_MODULE_CS1101).build();
+                .withTags(VALID_TAG_FRIEND).withModules(VALID_MODULE_CS1101)
+                .withGithub(VALID_GITHUB_AMY).withTelegram(VALID_TELEGRAM_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withModules(VALID_MODULE_CS2030S).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withModules(VALID_MODULE_CS2030S)
+                .withGithub(VALID_GITHUB_BOB).withTelegram(VALID_TELEGRAM_BOB).build();
+        DESC_FINISH_TP = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_FINISH_TP)
+                .withModule(VALID_MODULE_FINISH_TP).withDeadline(VALID_DEADLINE_FINISH_TP).build();
+        DESC_LAB_2 = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_LAB_2)
+                .withModule(VALID_MODULE_LAB_2).withDeadline(VALID_DEADLINE_LAB_2).build();
     }
 
     /**

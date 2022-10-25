@@ -13,6 +13,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteContactCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.FindTaskCommand;
@@ -73,6 +74,9 @@ public class AddressBookParser {
 
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
+
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
 
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);

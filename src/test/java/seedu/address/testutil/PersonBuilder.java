@@ -6,9 +6,11 @@ import java.util.Set;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,6 +23,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_GITHUB = "AmesBees";
+    public static final String DEFAULT_TELEGRAM = "amybee";
 
     private Name name;
     private Phone phone;
@@ -28,6 +32,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Set<Module> modules;
+    private Github github;
+    private Telegram telegram;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +45,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         modules = new HashSet<>();
+        github = new Github(DEFAULT_GITHUB);
+        telegram = new Telegram(DEFAULT_TELEGRAM);
     }
 
     /**
@@ -51,6 +59,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         modules = new HashSet<>(personToCopy.getModules());
+        github = personToCopy.getGithub();
+        telegram = personToCopy.getTelegram();
     }
 
     /**
@@ -103,8 +113,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Github} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGithub(String github) {
+        this.github = new Github(github);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = new Telegram(telegram);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, modules);
+        return new Person(name, phone, email, address, tags, modules, github, telegram);
     }
 
 }

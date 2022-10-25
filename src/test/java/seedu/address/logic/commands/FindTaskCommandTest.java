@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.FINISH_TP;
-import static seedu.address.testutil.TypicalTasks.LAB_2;
+import static seedu.address.testutil.TypicalTasks.FINISH_TUTORIAL;
+import static seedu.address.testutil.TypicalTasks.WATCH_LECTURE;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.util.Arrays;
@@ -24,7 +24,6 @@ import seedu.address.model.task.TaskContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindTaskCommand}.
  */
 public class FindTaskCommandTest {
-    //should be getTypicalTaskList()
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTaskList(), new UserPrefs());
 
@@ -68,11 +67,11 @@ public class FindTaskCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
-        TaskContainsKeywordsPredicate predicate = preparePredicate("Lab TP");
+        TaskContainsKeywordsPredicate predicate = preparePredicate("Tutorial lecture");
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(LAB_2, FINISH_TP), model.getSortedTaskList());
+        assertEquals(Arrays.asList(FINISH_TUTORIAL, WATCH_LECTURE), model.getSortedTaskList());
     }
 
     /**
