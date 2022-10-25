@@ -18,7 +18,7 @@ public class SortCommand extends Command {
             + " in ascending or descending order"
             + "(KEYWORD: name, appt, risk) \n"
             + "Parameters: [KEYWORD]/ [KEYWORD] desc\n"
-            + "Example: " + COMMAND_WORD + " name" + "/"  + COMMAND_WORD + " name desc";
+            + "Example: " + COMMAND_WORD + " name" + "/" + COMMAND_WORD + " name desc";
 
     public static final String MESSAGE_SUCCESS = "Sorted all persons by %1$s";
 
