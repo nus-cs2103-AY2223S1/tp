@@ -78,6 +78,29 @@ The following table describes the sections in detail:
 | 6        | Tutor Details Pane    | Displays full details of a tutor saved in Tuthub.                                   |
 | 7        | Storage File Location | Displays the location of your **Tuthub** data file.                                 |          
 
+**3.2.3 Notes About Command Format**
+
+Some general rules that Tuthub commands follow:
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/good` or as `n/John Doe`.
+
+* Items with `…` after them can be used as many times as the user would like.<br>
+  e.g. `[t/TAG]…` can be used multiple times like `t/good` or `t/good t/highRatings`, or can be omitted altogether.
+
+:information_source: **Information:**
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will ignore follow-up inputs.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Features
 
