@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -28,10 +27,6 @@ public class AllTagCustomerCommandParser implements Parser<AllTagCustomerCommand
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        if (tagSet.isEmpty()) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllTagCustomerCommand.MESSAGE_USAGE));
-        }
 
         List<Tag> tags = new ArrayList<>();
         for (Tag tag : tagSet) {
