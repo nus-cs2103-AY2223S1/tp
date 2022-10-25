@@ -69,7 +69,9 @@ public class PersonTest {
                 + "Email: alice@example.com; "
                 + "Address: 123, Jurong West Ave 6, #08-111; "
                 + "Tags: [friends]; "
-                + "Assignment: Group 1 [Midterms]";
+                + "Assignment: Group 1 [Midterms (LOW)]";
+        System.out.println(str);
+        System.out.println(aliliCopy.toString());
         assertTrue(aliliCopy.toString().equals(str));
     }
 
