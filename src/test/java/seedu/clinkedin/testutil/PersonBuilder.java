@@ -137,7 +137,7 @@ public class PersonBuilder {
         return this;
     }
 
-    /**  
+    /**
      * Parses the {@code links} into a {@code Set<Link>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withLinks(String ... links) {
