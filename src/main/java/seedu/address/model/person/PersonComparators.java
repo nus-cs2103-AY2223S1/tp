@@ -7,11 +7,6 @@ import java.util.Optional;
  * Comparators for fields in person model.
  */
 public class PersonComparators {
-
-    public static Comparator<Person> reverseComparator(Comparator<Person> comparator) {
-        return ((o1, o2) -> -comparator.compare(o1, o2));
-    }
-
     public static final Comparator<Person> NAME_COMPARATOR = (Comparator.comparing(Person::getName));
 
     public static final Comparator<Person> ADDRESS_COMPARATOR = ((o1, o2) -> {
@@ -31,11 +26,19 @@ public class PersonComparators {
     });
 
     /**
+     * Reverses the comparator so we can sort in descending order.
+     */
+    public static Comparator<Person> reverseComparator(Comparator<Person> comparator) {
+        return ((o1, o2) -> -comparator.compare(o1, o2));
+    }
+
+
+    /**
      * Compare between two Optional fields, {@code o1} and {@code o2}.
      * When both of them are present, returns 0 as it cannot be determined.
      * When one of them is present, returns 1 when {@code o1} is present else -1.
      */
-    public static int compareOptional(Optional<?> o1, Optional<?> o2) {
+    private static int compareOptional(Optional<?> o1, Optional<?> o2) {
         if (o1.isPresent() && o2.isPresent()) {
             return 0; // cannot be determined
         }

@@ -2,12 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -29,7 +25,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons with specified fields\n"
             + "Parameters: (" + buildParameters(PREFIX_NAME, PREFIX_ROLE, PREFIX_ADDRESS) + ")[/desc]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix().replace("/", "")
-            + ", "  + COMMAND_WORD + " " + PREFIX_NAME + "/desc";
+            + ", " + COMMAND_WORD + " " + PREFIX_NAME + "/desc";
 
     private final Comparator<Person> comparator;
 

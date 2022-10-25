@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCENDING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.model.person.PersonComparators.ADDRESS_COMPARATOR;
@@ -10,10 +9,7 @@ import static seedu.address.model.person.PersonComparators.NAME_COMPARATOR;
 import static seedu.address.model.person.PersonComparators.ROLE_COMPARATOR;
 import static seedu.address.model.person.PersonComparators.reverseComparator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
