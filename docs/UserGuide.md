@@ -25,6 +25,7 @@ but it also has a Graphical User Interface for simpler and quicker task.
         * [3.3.2 List contact](#332-list-contact)
     - [3.4 Github-Related Commands](#34-github-related-commands)
         * [3.4.1 Open a person's github profile page](#341-opening-a-persons-github-profile-page-github)
+    - [3.5 Fast Template Command](#35-fast-template-command)
 
 <div style="page-break-after: always;"></div>
 
@@ -127,3 +128,37 @@ Format: `github INDEX`
 Example command: `github 1`
 
 --------------------------------------------------------------------------------------------------------------------
+## 3.5 Fast Template Command
+
+Returns a template with all the fields of a Person on the CLI. 
+
+Format: `tt PERSON`
+* PERSON can be `prof`, `student`, or `ta`.
+
+Example:
+`tt prof` -> the template `prof n/ m/ s/ p/ e/ g/ t/ l/ r/ o/` will be on the CLI.
+
+`tt student` -> the template `prof n/ m/ p/ e/ g/ t/ l/ git/ y/` will be on the CLI.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install SoConnect in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action           | Format, Examples                                                                                                                                                                                     |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a Person** | `PERSON n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `student n/James Ho m/CS1231 p/12345678 e/jamesho@example.com g/M t/bestfriend t/colleague l/UTown Residences git/jamesho y/2` |
+| **Clear**        | `clear`                                                                                                                                                                                              |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                  |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                          |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                           |
+| **List**         | `list`                                                                                                                                                                                               |
+| **Help**         | `help`                                                                                                                                                                                               |
+| **Template**     | `tt PERSON` <br> e.g., `tt ta`                                                                                                                                                                       |
