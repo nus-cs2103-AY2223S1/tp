@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import java.nio.file.Path;
 
@@ -86,7 +86,7 @@ public class StorageManagerTest {
          * {@link JsonTaskBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonTaskBookStorageTest} class.
          */
-        TaskBook original = getTypicalTaskBook();
+        TaskBook original = getTypicalTaskBookWithToDos();
         storageManager.saveTaskBook(original);
         ReadOnlyTaskBook retrieved = storageManager.readTaskBook().get();
         assertEquals(original, new TaskBook(retrieved));

@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalToDos.FIRST;
 import static seedu.address.testutil.TypicalToDos.SECOND;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -111,7 +111,7 @@ public class ModelManagerTest {
 
     @Test
     public void setTaskBook_validTaskBook_setsTaskBook() {
-        TaskBook taskBook = getTypicalTaskBook();
+        TaskBook taskBook = getTypicalTaskBookWithToDos();
         modelManager.setTaskBook(taskBook);
         assertEquals(taskBook, modelManager.getTaskBook());
     }
