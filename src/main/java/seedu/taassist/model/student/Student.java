@@ -1,5 +1,6 @@
 package seedu.taassist.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -90,6 +91,7 @@ public class Student implements Identity<Student> {
      * If the student is already enrolled in the module class returned.
      */
     public Student addModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
         if (isInModuleClass(moduleClass)) {
             return this;
         }
@@ -103,6 +105,7 @@ public class Student implements Identity<Student> {
      * of this student for the given {@code ModuleClass}.
      */
     public Student removeModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
         List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
                 .filter(data -> !data.getModuleClass().isSame(moduleClass))
                 .collect(Collectors.toList());
@@ -113,6 +116,7 @@ public class Student implements Identity<Student> {
      * Returns a new student by removing the data for the given {@code session} in {@code moduleClass}
      */
     public Student removeSession(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
         List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
             .map(d -> d.getModuleClass().isSame(moduleClass) ? d.removeSession(session) : d)
             .collect(Collectors.toList());

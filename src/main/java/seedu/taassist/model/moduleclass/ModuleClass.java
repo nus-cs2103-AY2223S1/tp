@@ -71,9 +71,24 @@ public class ModuleClass implements Identity<ModuleClass> {
     }
 
     /**
+     * Returns a new {@code ModuleClass} by adding the provided {@code Session}.
+     * If the session already exists, the original {@code ModuleClass} is returned.
+     */
+    public ModuleClass addSession(Session session) {
+        requireNonNull(session);
+        if (hasSession(session)) {
+            return this;
+        }
+        List<Session> newSessions = new ArrayList<>(sessions);
+        newSessions.add(session);
+        return new ModuleClass(className, newSessions);
+    }
+
+    /**
      * Returns a new {@code ModuleClass} by removing the {@code session}.
      */
     public ModuleClass removeSession(Session session) {
+        requireNonNull(session);
         List<Session> newSessions = new ArrayList<>(sessions);
         newSessions.remove(session);
         return new ModuleClass(className, newSessions);
