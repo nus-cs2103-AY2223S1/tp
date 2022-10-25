@@ -3,8 +3,11 @@ package coydir.model.person;
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 
 import coydir.model.tag.Tag;
@@ -26,7 +29,7 @@ public class Person {
     private final Department department;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Leave> leaves = new HashSet<>();
+    private Queue<Leave> leaves = new PriorityQueue<>(new CustomLeaveComparator());
     private final int totalNumberOfLeaves;
     private int leavesLeft = 0;
 
@@ -46,6 +49,14 @@ public class Person {
         this.tags.addAll(tags);
         this.totalNumberOfLeaves = numberOfLeaves;
         this.leavesLeft = numberOfLeaves;
+    }
+
+    public static class CustomLeaveComparator implements Comparator<Leave> {
+        @Override
+        public int compare(Leave o1, Leave o2) {
+            return o1.startDate.compareTo(o2.startDate);
+            
+        }
     }
 
     public Name getName() {
@@ -92,8 +103,8 @@ public class Person {
         this.leaves.remove(toDelete);
     }
 
-    public Set<Leave> getLeaves() {
-        return Collections.unmodifiableSet(leaves);
+    public Queue<Leave> getLeaves() {
+        return this.leaves;
     }
 
     public int getTotalNumberOfLeaves() {
@@ -106,6 +117,10 @@ public class Person {
 
     public void setLeavesLeft(int leavesLeft) {
         this.leavesLeft = leavesLeft;
+    }
+
+    public void setLeaves(Queue<Leave> newLeaves) {
+        this.leaves = newLeaves;
     }
 
     /**
@@ -183,7 +198,7 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        Set<Leave> leaves = getLeaves();
+        Queue<Leave> leaves = getLeaves();
         if (!leaves.isEmpty()) {
             builder.append("; Leaves: ");
             leaves.forEach(builder::append);

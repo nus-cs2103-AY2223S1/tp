@@ -17,8 +17,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_ID = new Prefix("id/");
     public static final Prefix PREFIX_STARTDATE = new Prefix("sd/");
     public static final Prefix PREFIX_ENDDATE = new Prefix("ed/");
+    public static final Prefix PREFIX_INDEX = new Prefix("i/");
     
-
     public static final Prefix[] PREFIX_LIST = {
         PREFIX_NAME,
         PREFIX_PHONE,
@@ -28,6 +28,9 @@ public class CliSyntax {
         PREFIX_ADDRESS,
         PREFIX_LEAVE,
         PREFIX_TAG,
-        PREFIX_ID
+        PREFIX_ID,
+        PREFIX_STARTDATE,
+        PREFIX_ENDDATE,
+        PREFIX_INDEX
     };
 }

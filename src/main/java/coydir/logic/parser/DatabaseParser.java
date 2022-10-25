@@ -12,6 +12,7 @@ import coydir.logic.commands.BatchAddCommand;
 import coydir.logic.commands.ClearCommand;
 import coydir.logic.commands.Command;
 import coydir.logic.commands.DeleteCommand;
+import coydir.logic.commands.DeleteLeaveCommand;
 import coydir.logic.commands.EditCommand;
 import coydir.logic.commands.ExitCommand;
 import coydir.logic.commands.FindCommand;
@@ -79,6 +80,9 @@ public class DatabaseParser {
         
         case AddLeaveCommand.COMMAND_WORD:
             return new AddLeaveCommandParser().parse(arguments);
+        
+        case DeleteLeaveCommand.COMMAND_WORD:
+            return new DeleteLeaveCommandParser().parse(arguments);
 
         default:
             throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);

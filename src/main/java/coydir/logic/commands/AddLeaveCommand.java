@@ -28,13 +28,13 @@ public class AddLeaveCommand extends Command {
             + PREFIX_ENDDATE + "END DATE "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "1 "
-            + PREFIX_STARTDATE + "010122 "
-            + PREFIX_ENDDATE + "060122 ";
+            + PREFIX_STARTDATE + "01-01-22 "
+            + PREFIX_ENDDATE + "06-01-22 ";
     
     public static final String MESSAGE_LEAVE_ADDED_SUCCESS = "Leave added successfully for %1$s";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This leave period already exists";
     public static final String MESSAGE_OVERLAPPING_LEAVE = "You cannot have overlapping leaves";
-    private EmployeeId targetId;
+    EmployeeId targetId;
     private Leave leave;
 
     public AddLeaveCommand(EmployeeId targetid, Leave leave ) {
