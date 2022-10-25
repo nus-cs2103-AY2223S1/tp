@@ -30,11 +30,17 @@ public class EateryTest {
         // null -> returns false
         assertFalse(TypicalEateries.ALICE.isSameEatery(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, same location, all other attributes different -> returns true
+        Eatery alsoEditedAlice = new EateryBuilder(TypicalEateries.ALICE)
+                .withPhone(VALID_PHONE_BOB).withCuisine(VALID_CUISINE_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(TypicalEateries.ALICE.isSameEatery(alsoEditedAlice));
+
+        // same name, all other attributes different -> returns false
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
                 .withPhone(VALID_PHONE_BOB).withCuisine(VALID_CUISINE_BOB)
                 .withLocation(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(TypicalEateries.ALICE.isSameEatery(editedAlice));
+        assertFalse(TypicalEateries.ALICE.isSameEatery(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new EateryBuilder(TypicalEateries.ALICE).withName(VALID_NAME_BOB).build();

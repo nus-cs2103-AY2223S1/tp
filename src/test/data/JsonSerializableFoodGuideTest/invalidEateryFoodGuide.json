@@ -1,8 +1,8 @@
 {
   "eateries": [ {
-    "name": "Hans Muster",
+    "name": "",
     "phone": "9482424",
-    "email": "invalidemail!3e",
+    "email": "emailemail",
     "address": "4th street"
   } ]
 }

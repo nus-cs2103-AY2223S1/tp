@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import eatwhere.foodguide.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Eatery}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Eatery}'s {@code Location} matches any of the keywords given.
  */
 public class LocationContainsKeywordsPredicate implements Predicate<Eatery> {
     private final List<String> keywords;

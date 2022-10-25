@@ -50,7 +50,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String HELP_DESC = " " + PREFIX_HELP;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME; // empty string not allowed
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_CUISINE_DESC = " " + PREFIX_CUISINE + "bob!yahoo"; // "!" not allowed in cuisine
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_LOCATION; // empty string not allowed for addresses

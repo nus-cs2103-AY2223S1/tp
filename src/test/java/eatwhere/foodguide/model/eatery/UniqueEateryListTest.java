@@ -42,7 +42,7 @@ public class UniqueEateryListTest {
     public void contains_eateryWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEateryList.add(TypicalEateries.ALICE);
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withLocation(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueEateryList.contains(editedAlice));
     }
