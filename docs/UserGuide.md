@@ -143,12 +143,14 @@ Examples:
 
 Adds a task to the task list.
 
-Format: `add_task n/NAME c/CONTACT_INDEX`
+Format: `add_task n/NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]...`
+
+- Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
 
 Examples:
 
-- `add_task n/CS2103T iP c/1`
-- `add_task n/CS2101 Assignment c/2`
+- `add_task n/CS2103T iP d/Finish milestones dl/12-12-2022 2359 c/1`
+- `add_task n/CS2101 Assignment dl/12-12-2022 2359 c/2`
 
 ### Listing tasks by contact: `list_task`
 
@@ -241,13 +243,13 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 ## Command summary
 
 | Action             | Format                                                                         |
-| ------------------ | ------------------------------------------------------------------------------ |
+|--------------------|--------------------------------------------------------------------------------|
 | **Add Contact**    | `add_contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                |
 | **List Contacts**  | `list_contact`                                                                 |
 | **Find Contact**   | `find_contact KEYWORD [MORE_KEYWORDS]`                                         |
 | **Edit Contact**   | `edit_contact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
 | **Delete Contact** | `delete_contact INDEX`                                                         |
-| **Add Task**       | `add_task n/NAME c/CONTACT_INDEX`                                              |
+| **Add Task**       | `add_task n/NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`            |
 | **List Tasks**     | `list_task c/CONTACT_INDEX`                                                    |
 | **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
 | **Edit Task**      | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`                                   |
