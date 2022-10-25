@@ -15,7 +15,7 @@ public class EventSortField {
 
     public static final String MESSAGE_CONSTRAINTS = "Event sort field must either be e, E, d or D.";
 
-    // Accept exactly one upper or lower case n or d
+    // Accept exactly one upper or lower case e or d
     public static final String VALIDATION_REGEX = "[eEdD]{1}";
 
 
