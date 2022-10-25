@@ -78,16 +78,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TASK_TITLE = "Grade assignments";
     public static final String VALID_TASK_DESCRIPTION = "Complete by tonight";
-<<<<<<< HEAD
-    public static final String VALID_FORMAT_DATE = "2022-10-22";
-    public static final String INVALID_TASK_TITLE = "invalid title#";
-    public static final String INVALID_TASK_DESCRIPTION = "invalid description?";
-    public static final String INVALID_FORMAT_DATE = "04-10-2021";
 
-    public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;
-    public static final String TASK_DESCRIPTION_DESC = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_DESCRIPTION;
-    public static final String FORMAT_DATE_DESC = " " + PREFIX_DEADLINE_DATE + VALID_FORMAT_DATE;
-=======
     public static final String VALID_DEADLINE_DATE = "2022-09-09";
     public static final String VALID_ASSIGNMENT_STUDENTS = "Adam, Ben, Charles";
     public static final String VALID_ASSIGNMENT_STUDENT_ADAM = "Adam";
@@ -102,7 +93,7 @@ public class CommandTestUtil {
     public static final String DEADLINE_DATE_DESC = " " + PREFIX_DEADLINE_DATE + VALID_DEADLINE_DATE;
     public static final String ASSIGNMENT_ADD_STUDENTS_DESC =
             " " + PREFIX_ASSIGNMENT_ADD_STUDENTS + VALID_ASSIGNMENT_STUDENTS;
->>>>>>> master
+
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)

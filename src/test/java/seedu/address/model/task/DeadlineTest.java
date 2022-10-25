@@ -3,7 +3,7 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FORMAT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -18,7 +18,7 @@ public class DeadlineTest {
 
     private final TaskTitle validTaskTitle = new TaskTitle(VALID_TASK_TITLE);
     private final TaskDescription validTaskDescription = new TaskDescription(VALID_TASK_DESCRIPTION);
-    private final FormatDate validFormatDate = new FormatDate(VALID_FORMAT_DATE);
+    private final FormatDate validFormatDate = new FormatDate(VALID_DEADLINE_DATE);
 
     @Test
     public void constructor_nullValues_throwsNullPointerException() {
