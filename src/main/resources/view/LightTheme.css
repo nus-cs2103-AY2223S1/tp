@@ -1,14 +1,14 @@
 @import "BaseTheme.css";
 
 .root {
-    -style-background-color: derive(#1d1d1d, 20%);
+    -style-background-color: #FFFDE7;
     -style-pane-background-color: -style-background-color;
     -style-menu-bar-color: #292e34;
     -style-status-bar-color: #3c4147;
     -style-border-color: grey;
 
     -style-text-color: white;
-    -style-pane-text-color: white;
+    -style-pane-text-color: black;
     -style-placeholder-color: #ccccce;
 
     -style-inner-shadow: innershadow(three-pass-box, -style-border-color, 5, 0, 0, 0);
@@ -20,13 +20,13 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #b19cd9; /* reddish grey */
-    -fx-effect: innershadow(three-pass-box, derive(#b19cd9, -10%) , 4, 0, 0, 0);
+    -fx-background-color: #f2f2f2; /* reddish grey */
+    -fx-effect: innershadow(three-pass-box, derive(#f2f2f2, -10%) , 4, 0, 0, 0);
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #966fd6;
-    -fx-effect: innershadow(three-pass-box, derive(#966fd6, -10%), 4, 0, 0, 0);
+    -fx-background-color: -style-background-color;
+    -fx-effect: innershadow(three-pass-box, derive(#f2f2f2, -10%), 4, 0, 0, 0);
 }
 
 .list-cell:filled:selected .student-cardPane {
@@ -86,7 +86,7 @@
 }
 
 .studentHeader {
-    -fx-fill: white;
+    -fx-fill: black;
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-weight: bold;
     -fx-font-size: 25px;
@@ -110,7 +110,7 @@
 }
 
 .scheduleHeader {
-    -fx-fill: white;
+    -fx-fill: black;
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-weight: bold;
     -fx-font-size: 25px;

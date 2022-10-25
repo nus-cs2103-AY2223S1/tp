@@ -28,7 +28,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -39,6 +39,10 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Theme">
+            <MenuItem mnemonicParsing="false" onAction="#applyLightTheme" text="Light" />
+            <MenuItem mnemonicParsing="false" onAction="#applyDarkTheme" text="Dark" />
           </Menu>
           <Menu mnemonicParsing="false" text="Module">
             <MenuItem fx:id="tabModule" mnemonicParsing="false" onAction="#handleShowTabAllModules" text="Module" />
@@ -126,14 +130,12 @@
             </Tab>
 
             <Tab text="Schedules">
-              <content>
                 <VBox fx:id="scheduleList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
                   <StackPane fx:id="scheduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
-              </content>
             </Tab>
 
 
