@@ -48,7 +48,7 @@ public class TaskListCard extends UiPart<Region> {
         super(task instanceof Todo ? FXMLTODO : task instanceof Deadline ? FXMLDEADLINE : FXMLEVENT);
         this.task = task;
         this.relatedParty.setText(task.getName().fullName);
-        this.description.setText(task.getDescription().toString());
+        this.description.setText(task.toUiString());
         this.assignment.setText(task.getAssignment().toString());
         this.isDone.setText(task.getStatus());
         this.id.setText(displayedIndex + ". ");

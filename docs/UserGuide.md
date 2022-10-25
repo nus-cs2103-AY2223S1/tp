@@ -235,15 +235,18 @@ Examples:
 * `task find a/FROM` will change the task list in the GUI to show a task list where all tasks are assigned to the user by someone else.
 * `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
 
-## Sorting tasks : `contact sort`
+### Sorting tasks : `contact sort`
 
 Sorts the person list based on the input flag.
 
 Format: `contact sort s/SORT`
 
 SORT flags:
-* ca: Chronologically sort tasks by date and time added
-* a: Alphabetically sort contact names
+* ca: Chronologically sort tasks by date and time added.
+* a: Alphabetically sort contact names.
+* ra: Alphabetically sort contact names in reverse order.
+* p: Numerically sort contact phone numbers in ascending order.
+* rp: Numerically sort contact phone numbers in descending order.
 
 Examples:
 * `contact sort s/a` will change the contact list in the GUI to show a contact list where names are sorted by alphabetical order.
@@ -255,8 +258,11 @@ Sorts the task list based on the input flag.
 Format: `task sort s/SORT`
 
 SORT flags:
-* ca: Chronologically sort tasks by date and time added
-* a: Alphabetically sort task descriptions
+* ca: Chronologically sort tasks by date and time added.
+* a: Alphabetically sort task descriptions.
+* ra: Alphabetically sort task descriptions in reverse order.
+* cd: Chronologically sort tasks by their associated dates in ascending order. Tasks without dates are at the end of the list, in no particular order.
+* rcd: Chronologically sort tasks by their associated dates in descending order. Tasks without dates are at the end of the list, in no particular order.
 
 Examples:
 * `task sort s/a` will change the task list in the GUI to show a task list sorted by description alphabetical order

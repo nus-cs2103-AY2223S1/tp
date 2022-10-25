@@ -55,8 +55,14 @@ public class Deadline extends Task {
         return isDone() ? "[X]  [D]" : "[  ]  [D]";
     }
 
+    @Override
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public boolean hasDate() {
+        return true;
     }
 
     @Override
@@ -102,6 +108,14 @@ public class Deadline extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), date);
+    }
+
+    @Override
+    public String toUiString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+               .append(String.format(" [by %s]", getDate().toString()));;
+        return builder.toString();
     }
 
     @Override

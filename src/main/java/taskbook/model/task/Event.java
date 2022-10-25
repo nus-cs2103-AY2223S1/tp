@@ -61,6 +61,11 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean hasDate() {
+        return true;
+    }
+
+    @Override
     public boolean isSameTask(Task other) {
         if (other == this) {
             return true;
@@ -103,6 +108,14 @@ public class Event extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), date);
+    }
+
+    @Override
+    public String toUiString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+               .append(String.format(" [at %s]", getDate().toString()));;
+        return builder.toString();
     }
 
     @Override

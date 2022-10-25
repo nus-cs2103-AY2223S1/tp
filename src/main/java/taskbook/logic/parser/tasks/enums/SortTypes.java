@@ -5,7 +5,10 @@ package taskbook.logic.parser.tasks.enums;
  */
 public enum SortTypes {
     DESC_ALPHABETICAL("a"),
-    DESC_CHRONOLOGICAL_ADDED("ca"),
+    DESC_REVERSE_ALPHABETICAL("ra"),
+    CHRONOLOGICAL_ADDED("ca"),
+    CHRONOLOGICAL_DATE("cd"),
+    REVERSE_CHRONOLOGICAL_DATE("rcd"),
     INVALID("INVALID_SORT_TYPE");
 
     public final String flag;
@@ -26,8 +29,14 @@ public enum SortTypes {
         switch (str) {
         case "a":
             return DESC_ALPHABETICAL;
+        case "ra":
+            return DESC_REVERSE_ALPHABETICAL;
         case "ca":
-            return DESC_CHRONOLOGICAL_ADDED;
+            return CHRONOLOGICAL_ADDED;
+        case "cd":
+            return CHRONOLOGICAL_DATE;
+        case "rcd":
+            return REVERSE_CHRONOLOGICAL_DATE;
         default:
             return INVALID;
         }

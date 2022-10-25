@@ -141,6 +141,15 @@ public class Person {
     }
 
     /**
+     * Compares this person and the other person to decide name reversealphabetical order.
+     * @param other input person.
+     * @return -1 if this person's name is alphabetically first, 1 otherwise.
+     */
+    public int compareByNameReverseAlphabeticalTo(Person other) {
+        return this.getName().compareByReverseAlphabeticalTo(other.getName());
+    }
+
+    /**
      * Checks of this person's name contains the query.
      * @param query input query.
      * @return true if the query exists exactly in this task, false otherwise.
@@ -148,5 +157,23 @@ public class Person {
     public boolean isQueryInPerson(String query) {
         requireNonNull(query);
         return getName().isQueryInName(query);
+    }
+
+    /**
+     * Compares this person's phone number and another person's phone number to determine ascending order.
+     * @param other person.
+     * @return positive integer if this person's phone number is numerically greater, 0 if equal, negative otherwise.
+     */
+    public int compareByPhoneNumberAscendingTo(Person other) {
+        return this.getPhone().comparePhoneNumberAscending(other.getPhone());
+    }
+
+    /**
+     * Compares this person's phone number and another person's phone number to determine descending order.
+     * @param other person.
+     * @return positive integer if this person's phone number is numerically smaller, 0 if equal, negative otherwise.
+     */
+    public int compareByPhoneNumberDescendingTo(Person other) {
+        return this.getPhone().comparePhoneNumberDescending(other.getPhone());
     }
 }
