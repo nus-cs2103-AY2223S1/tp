@@ -95,7 +95,7 @@ public class DebtList {
         }
         DebtList edited = new DebtList(this);
         edited.debts.remove(toMark);
-        edited.debts.add(toMark.markAsPaid());
+        edited.debts.add(toMark.setPaid(true));
         edited.totalDebt = totalDebt.subtract(toMark.getMoney().getValue());
         return edited;
     }
@@ -106,15 +106,15 @@ public class DebtList {
      * @param toUnmark The debt to mark as unpaid from the list.
      * @return The modified {@code DebtList}.
      */
-    public DebtList UnmarkDebt(Debt toUnmark) {
+    public DebtList unmarkDebt(Debt toUnmark) {
         requireNonNull(toUnmark);
         if (!contains(toUnmark)) {
             throw new DebtNotFoundException();
         }
         DebtList edited = new DebtList(this);
         edited.debts.remove(toUnmark);
-        edited.debts.add(toUnmark.markAsUnpaid());
-        edited.totalDebt = totalDebt.subtract(toUnmark.getMoney().getValue());
+        edited.debts.add(toUnmark.setPaid(false));
+        edited.totalDebt = totalDebt.add(toUnmark.getMoney().getValue());
         return edited;
     }
 
