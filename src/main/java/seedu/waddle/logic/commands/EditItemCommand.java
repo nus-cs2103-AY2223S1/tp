@@ -3,7 +3,7 @@ package seedu.waddle.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 
@@ -37,7 +37,7 @@ public class EditItemCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]"
             + "[" + PREFIX_COST + "COST]"
-            + "[" + PREFIX_DURATION + "DURATION]"
+            + "[" + PREFIX_ITEM_DURATION + "DURATION]"
             + "[" + PREFIX_START_TIME + "START TIME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Visit the Eiffel Tower ";

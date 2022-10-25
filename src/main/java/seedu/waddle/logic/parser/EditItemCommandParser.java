@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 
@@ -26,7 +26,7 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
-                                           PREFIX_COST, PREFIX_DURATION, PREFIX_START_TIME);
+                                           PREFIX_COST, PREFIX_ITEM_DURATION, PREFIX_START_TIME);
 
         MultiIndex multiIndex;
 
@@ -53,9 +53,9 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
                     ParserUtil.parseCost(argMultimap.getValue(PREFIX_COST).get()));
         }
 
-        if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_ITEM_DURATION).isPresent()) {
             editItemDescriptor.setDuration(
-                    ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get()));
+                    ParserUtil.parseDuration(argMultimap.getValue(PREFIX_ITEM_DURATION).get()));
         }
 
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
