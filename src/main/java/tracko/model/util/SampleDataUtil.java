@@ -23,16 +23,16 @@ import tracko.model.order.Phone;
 public class SampleDataUtil {
     private static final Item ITEM_1 = new Item(new ItemName("Chair"),
         new Description("Carved mahogany wooden chair"),
-          new Quantity(300), new HashSet<>(), new Price(80.50), new Price(149.99));
+          new Quantity(300), new HashSet<>(), new Price(149.99), new Price(80.50));
     private static final Item ITEM_2 = new Item(new ItemName("Pillow"),
         new Description("Ergonomic with recycled polystyrene filling"),
-           new Quantity(300), new HashSet<>(), new Price(14.99), new Price(29.99));
+           new Quantity(300), new HashSet<>(), new Price(29.99), new Price(14.99));
     private static final Item ITEM_3 = new Item(new ItemName("Bolster"),
         new Description("Premium cotton filling"),
-            new Quantity(300), new HashSet<>(), new Price(10.00), new Price(20.00));
+            new Quantity(300), new HashSet<>(), new Price(20.00), new Price(10.00));
     private static final Item ITEM_4 = new Item(new ItemName("Mattress"),
         new Description("King-sized with memory foam"),
-            new Quantity(300), new HashSet<>(), new Price(200.00), new Price(500.00));
+            new Quantity(300), new HashSet<>(), new Price(500.00), new Price(200.00));
 
     public static Item[] getSampleItems() {
         return new Item[] { ITEM_1, ITEM_2, ITEM_3, ITEM_4 };
