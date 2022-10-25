@@ -29,7 +29,7 @@
       </HBox>
 
       <HBox HBox.hgrow="ALWAYS">
-        <VBox id="personalParticulars" minWidth="280" maxWidth="280" HBox.hgrow="NEVER">
+        <VBox id="personalParticulars" minWidth="280" maxWidth="500" HBox.hgrow="ALWAYS">
           <Label fx:id="personalParticulars" text="Personal Particulars" />
 
           <HBox fx:id="phoneBox" alignment="CENTER_LEFT">
@@ -46,8 +46,8 @@
 
         <Region minWidth="5" HBox.hgrow="NEVER" />
 
-        <HBox minWidth="240" maxWidth="240">
-          <VBox id="roomDetails" minWidth="240" HBox.hgrow="NEVER">
+        <HBox HBox.hgrow="ALWAYS">
+          <VBox id="roomDetails" minWidth="240" maxWidth="500" HBox.hgrow="ALWAYS">
             <Label fx:id="roomDetails" text="Room Details" />
 
             <HBox fx:id="roomBox" alignment="CENTER_LEFT">
@@ -71,8 +71,8 @@
 
         <Region minWidth="10" HBox.hgrow="NEVER"/>
 
-        <HBox minWidth="195" maxWidth="195" HBox.hgrow="NEVER">
-          <VBox id="roomStatus" minWidth="195" HBox.hgrow="NEVER">
+        <HBox HBox.hgrow="ALWAYS">
+          <VBox id="roomStatus" minWidth="195" maxWidth="500" HBox.hgrow="ALWAYS">
             <Label fx:id="roomStatus" text="Room Status" />
 
             <HBox fx:id="isRoomCleanBox" alignment="CENTER_LEFT">
