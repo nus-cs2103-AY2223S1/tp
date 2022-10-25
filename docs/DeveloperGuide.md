@@ -566,6 +566,7 @@ Use case ends.
 **MSS**
 1. Tutor adds class group to student by entering command with index of student and class group.
 2. GREWZ adds class group to student.
+Use case ends.
 
 **Extensions**
 * 1a. GREWZ detects an error in entered index.
