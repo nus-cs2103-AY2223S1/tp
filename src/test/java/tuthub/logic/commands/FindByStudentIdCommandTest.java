@@ -73,6 +73,16 @@ public class FindByStudentIdCommandTest {
         assertEquals(Arrays.asList(ALICE, CARL), model.getFilteredTutorList());
     }
 
+    @Test
+    public void execute_multiplePartialKeywords_multipleTutorsFound() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
+        StudentIdContainsKeywordsPredicate predicate = preparePredicate("569L A9875");
+        FindByStudentIdCommand command = new FindByStudentIdCommand(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, CARL), model.getFilteredTutorList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code StudentIdContainsKeywordsPredicate}.
      */

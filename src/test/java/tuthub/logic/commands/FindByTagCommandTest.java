@@ -5,9 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.commons.core.Messages.MESSAGE_TUTORS_LISTED_OVERVIEW;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tuthub.testutil.TypicalTutors.HOON;
-import static tuthub.testutil.TypicalTutors.IDA;
-import static tuthub.testutil.TypicalTutors.JACKSON;
+import static tuthub.testutil.TypicalTutors.LOPEZ;
+import static tuthub.testutil.TypicalTutors.MIKE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,49 +18,49 @@ import tuthub.model.Model;
 import tuthub.model.ModelManager;
 import tuthub.model.Tuthub;
 import tuthub.model.UserPrefs;
-import tuthub.model.tutor.ModuleContainsKeywordsPredicate;
+import tuthub.model.tutor.TagContainsKeywordsPredicate;
 import tuthub.model.tutor.Tutor;
 
 /**
- * Contains integration tests (interaction with the model) for {@code FindByModuleCommand}.
+ * Contains integration tests (interaction with the model) for {@code FindByTagCommand}.
  */
-public class FindByModuleCommandTest {
-    private List<Tutor> testTaList = Arrays.asList(IDA, HOON, JACKSON);
+public class FindByTagCommandTest {
+    private List<Tutor> testTaList = Arrays.asList(LOPEZ, MIKE);
     private Model model = new ModelManager(getTestTaTuthub(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTestTaTuthub(), new UserPrefs());
 
     @Test
     public void equals() {
-        ModuleContainsKeywordsPredicate firstPredicate =
-                new ModuleContainsKeywordsPredicate(Collections.singletonList("first"));
-        ModuleContainsKeywordsPredicate secondPredicate =
-                new ModuleContainsKeywordsPredicate(Collections.singletonList("second"));
+        TagContainsKeywordsPredicate firstPredicate =
+                new TagContainsKeywordsPredicate(Collections.singletonList("first"));
+        TagContainsKeywordsPredicate secondPredicate =
+                new TagContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindByModuleCommand findByModuleFirstCommand = new FindByModuleCommand(firstPredicate);
-        FindByModuleCommand findByModuleSecondCommand = new FindByModuleCommand(secondPredicate);
+        FindByTagCommand findFirstCommand = new FindByTagCommand(firstPredicate);
+        FindByTagCommand findSecondCommand = new FindByTagCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findByModuleFirstCommand.equals(findByModuleFirstCommand));
+        assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindByModuleCommand findByModuleFirstCommandCopy = new FindByModuleCommand(firstPredicate);
-        assertTrue(findByModuleFirstCommand.equals(findByModuleFirstCommandCopy));
+        FindByTagCommand findFirstCommandCopy = new FindByTagCommand(firstPredicate);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findByModuleFirstCommand.equals(1));
+        assertFalse(findFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findByModuleFirstCommand.equals(null));
+        assertFalse(findFirstCommand.equals(null));
 
         // different tutor -> returns false
-        assertFalse(findByModuleFirstCommand.equals(findByModuleSecondCommand));
+        assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noTutorFound() {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 0);
-        ModuleContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindByModuleCommand command = new FindByModuleCommand(predicate);
+        TagContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTutorList());
@@ -70,21 +69,21 @@ public class FindByModuleCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTutorsFound() {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
-        ModuleContainsKeywordsPredicate predicate = preparePredicate("cs2105 cs2103t");
-        FindByModuleCommand command = new FindByModuleCommand(predicate);
+        TagContainsKeywordsPredicate predicate = preparePredicate("friends owesMoney");
+        FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON, JACKSON), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(LOPEZ, MIKE), model.getFilteredTutorList());
     }
 
     @Test
     public void execute_multiplePartialKeywords_multipleTutorsFound() {
         String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
-        ModuleContainsKeywordsPredicate predicate = preparePredicate("105 103");
-        FindByModuleCommand command = new FindByModuleCommand(predicate);
+        TagContainsKeywordsPredicate predicate = preparePredicate("iEnd EsmoN");
+        FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON, JACKSON), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(LOPEZ, MIKE), model.getFilteredTutorList());
     }
 
     private Tuthub getTestTaTuthub() {
@@ -96,9 +95,9 @@ public class FindByModuleCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code ModuleContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TagContainsKeywordsPredicate}.
      */
-    private ModuleContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new ModuleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TagContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new TagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

@@ -42,11 +42,6 @@ public class TutorTest {
         // name differs in case, all other attributes same -> returns false
         Tutor editedBob = new TutorBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameTutor(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new TutorBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameTutor(editedBob));
     }
 
     @Test

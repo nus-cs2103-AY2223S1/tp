@@ -47,6 +47,10 @@ public class TeachingNominationContainsKeywordsPredicateTest {
         TeachingNominationContainKeywordsPredicate predicate =
                 new TeachingNominationContainKeywordsPredicate(Collections.singletonList("1"));
         assertTrue(predicate.test(new TutorBuilder().withTeachingNomination("1").build()));
+
+        // Partial keywords
+        predicate = new TeachingNominationContainKeywordsPredicate(Collections.singletonList("1"));
+        assertTrue(predicate.test(new TutorBuilder().withTeachingNomination("10").build()));
     }
 
     @Test

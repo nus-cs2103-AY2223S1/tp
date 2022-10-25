@@ -18,17 +18,17 @@ public class ModuleContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("cs2100");
         List<String> secondPredicateKeywordList = Arrays.asList("cs2100", "cs2105");
 
-        ModuleContainsKeywordPredicate firstPredicate =
-                new ModuleContainsKeywordPredicate(firstPredicateKeywordList);
-        ModuleContainsKeywordPredicate secondPredicate =
-                new ModuleContainsKeywordPredicate(secondPredicateKeywordList);
+        ModuleContainsKeywordsPredicate firstPredicate =
+                new ModuleContainsKeywordsPredicate(firstPredicateKeywordList);
+        ModuleContainsKeywordsPredicate secondPredicate =
+                new ModuleContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> return true
-        ModuleContainsKeywordPredicate firstPredicateCopy =
-                new ModuleContainsKeywordPredicate(firstPredicateKeywordList);
+        ModuleContainsKeywordsPredicate firstPredicateCopy =
+                new ModuleContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,28 +44,32 @@ public class ModuleContainsKeywordsPredicateTest {
     @Test
     public void test_moduleContainsKeywords_returnsTrue() {
         // One keyword
-        ModuleContainsKeywordPredicate predicate =
-                new ModuleContainsKeywordPredicate(Collections.singletonList("cs2105"));
+        ModuleContainsKeywordsPredicate predicate =
+                new ModuleContainsKeywordsPredicate(Collections.singletonList("cs2105"));
         assertTrue(predicate.test(new TutorBuilder().withName("Alice").withModule("cs2105").build()));
 
         // Mixed case keywords
-        predicate = new ModuleContainsKeywordPredicate(Collections.singletonList("cS2105"));
+        predicate = new ModuleContainsKeywordsPredicate(Collections.singletonList("cS2105"));
         assertTrue(predicate.test(new TutorBuilder().withName("Alice").withModule("cs2105").build()));
+
+        // Partial keywords
+        predicate = new ModuleContainsKeywordsPredicate(Collections.singletonList("105"));
+        assertTrue(predicate.test(new TutorBuilder().withModule("cs2105").build()));
     }
 
     @Test
     public void test_moduleDoesNotContainKeywords_returnFalse() {
         // Zero keywords
-        ModuleContainsKeywordPredicate predicate =
-                new ModuleContainsKeywordPredicate(Collections.emptyList());
+        ModuleContainsKeywordsPredicate predicate =
+                new ModuleContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TutorBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new ModuleContainsKeywordPredicate(Arrays.asList("cs2100"));
+        predicate = new ModuleContainsKeywordsPredicate(Arrays.asList("cs2100"));
         assertFalse(predicate.test(new TutorBuilder().withName("Alice").withModule("cs2105").build()));
 
         // Keywords match phone and email, but does not match module
-        predicate = new ModuleContainsKeywordPredicate(Arrays.asList("99999999", "alice@email.com", "Main", "Street"));
+        predicate = new ModuleContainsKeywordsPredicate(Arrays.asList("99999999", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new TutorBuilder().withName("Alice").withPhone("99999999")
                 .withEmail("alice@email.com").withModule("cs2105").build()));
     }

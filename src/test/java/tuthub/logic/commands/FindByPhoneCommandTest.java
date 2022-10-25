@@ -73,6 +73,16 @@ public class FindByPhoneCommandTest {
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredTutorList());
     }
 
+    @Test
+    public void execute_multiplePartialKeywords_multipleTutorsFound() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
+        PhoneContainsKeywordsPredicate predicate = preparePredicate("943 987");
+        FindByPhoneCommand command = new FindByPhoneCommand(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredTutorList());
+    }
+
     /**
      * Parses {@code userInput} into a  {@code PhoneContainsKeywordsPredicate}
      */

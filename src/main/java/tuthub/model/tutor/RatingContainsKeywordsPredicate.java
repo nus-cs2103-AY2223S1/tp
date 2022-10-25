@@ -18,7 +18,7 @@ public class RatingContainsKeywordsPredicate implements Predicate<Tutor> {
     @Override
     public boolean test(Tutor tutor) {
         return keywords.stream()
-                .anyMatch((keyword -> StringUtil.containsWordIgnoreCase(tutor.getRating().value, keyword)));
+                .anyMatch((keyword -> StringUtil.containsWordIgnoreCasePartialMatch(tutor.getRating().value, keyword)));
     }
 
     @Override

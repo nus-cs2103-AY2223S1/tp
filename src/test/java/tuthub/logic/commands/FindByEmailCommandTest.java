@@ -73,6 +73,16 @@ public class FindByEmailCommandTest {
         assertEquals(Arrays.asList(ALICE, CARL), model.getFilteredTutorList());
     }
 
+    @Test
+    public void execute_multiplePartialKeywords_multipleTutorsFound() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 2);
+        EmailContainsKeywordsPredicate predicate = preparePredicate("alice heinz");
+        FindByEmailCommand command = new FindByEmailCommand(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, CARL), model.getFilteredTutorList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code EmailContainsKeywordsPredicate}.
      */
