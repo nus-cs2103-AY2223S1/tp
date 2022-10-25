@@ -2,8 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -19,6 +22,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SortField;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -222,5 +226,22 @@ public class ParserUtil {
         requireNonNull(purpose);
 
         return purpose;
+    }
+
+    /**
+     * Returns the uid list passed to it.
+     */
+    public static List<Index> parseIndexes(String indexes) throws ParseException {
+        requireNonNull(indexes);
+        String trimmedIndexes = indexes.trim();
+        List<String> strIndexes = Arrays.asList(trimmedIndexes.split("\\s+"));
+        List<Index> indexList = new ArrayList<>();
+        for (String index : strIndexes) {
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indexList.add(Index.fromOneBased(Integer.parseInt(index)));
+        }
+        return indexList;
     }
 }

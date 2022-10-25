@@ -21,8 +21,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Parses input arguments and creates a new AddPersonCommand object
@@ -58,7 +58,8 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
             gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get(), Boolean.FALSE);
         }
 
-        Person person = new Person(name, phone, email, dob, address, tagList, gender);
+        Uid uid = new Uid();
+        Person person = new Person(name, phone, email, dob, address, tagList, gender, uid);
 
         return new AddPersonCommand(person);
     }
