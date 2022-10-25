@@ -8,11 +8,6 @@ import org.junit.jupiter.api.Test;
 public class AppUtilTest {
 
     @Test
-    public void getImage_exitingImage() {
-        assertNotNull(AppUtil.getImage("/images/ta_assist_32.png"));
-    }
-
-    @Test
     public void getImage_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> AppUtil.getImage(null));
     }

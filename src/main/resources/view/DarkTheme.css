@@ -133,24 +133,26 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #070F37;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: #070F37;
+     -fx-border-top-width: 0px;
+     -fx-border-radius: 0;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#070F37, 30%);
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Impact";
+    -fx-font-style: normal;
+    -fx-text-fill: black;
+    -fx-font-weight: 300;
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-background: transparent;
 }
 
 .result-display .label {
@@ -158,7 +160,10 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Impact";
+    -fx-font-style: normal;
+    -fx-text-fill: black;
+    -fx-font-weight: 300;
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -192,15 +197,22 @@
     -fx-text-fill: white;
 }
 
-.menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+#buttonBar {
+    -fx-background-color: derive(#EDA7A7, 20%);
 }
 
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
+#helpBtn {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Impact";
+    -fx-font-style: normal;
+    -fx-text-fill: black;
+    -fx-font-weight: 300;
+    -fx-padding: 5;
+    -fx-background-color: transparent;
+}
+#helpBtn:pressed {
+    -fx-background-color: #fe7f9c;
+    -fx-opacity: 0.5;
 }
 
 .menu .left-container {
@@ -308,24 +320,22 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
 #commandTypeLabel {
     -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
+    -fx-text-fill: #BCBCBC;
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #F8F8F8;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Impact';
+    -fx-font-style: normal;
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 0 0 20 20;
 }
 
 #filterField, #studentListPanel, #studentWebpage {
@@ -333,8 +343,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: #a1a4b0;
 }
 
 #classes {
