@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -20,6 +21,9 @@ public class IssueListPanel extends UiPart<Region> {
     @FXML
     private ListView<Issue> issueListView;
 
+    @FXML
+    private Label issueListViewName;
+
     /**
      * Creates a {@code IssueListPanel} with the given {@code ObservableList}.
      */
@@ -27,6 +31,7 @@ public class IssueListPanel extends UiPart<Region> {
         super(FXML);
         issueListView.setItems(issueList);
         issueListView.setCellFactory(listView -> new IssueListViewCell());
+        issueListViewName.setText("Issues List");
     }
 
     /**

@@ -70,7 +70,7 @@ public class Repository {
         return repository.matches(VALIDATION_REGEX);
     }
 
-    public String getRepositoryUrl() {
+    public String getUiRepresentation() {
         return "https://github.com/" + projectRepository;
     }
 
