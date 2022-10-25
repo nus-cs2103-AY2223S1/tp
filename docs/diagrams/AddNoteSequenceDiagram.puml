@@ -1,0 +1,93 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddNoteCommandParser" as AddNoteCommandParser LOGIC_COLOR
+participant ":Title" as Note_Title LOGIC_COLOR
+participant ":Content" as Content LOGIC_COLOR
+participant ":Note" as Note LOGIC_COLOR
+participant "a:AddNoteCommand" as AddNoteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addNote n_t/Meeting \nn_c/3rd October 9pm")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addNote n_t/Meeting \nn_c/3rd October 9pm")
+activate AddressBookParser
+
+create AddNoteCommandParser
+AddressBookParser -> AddNoteCommandParser
+activate AddNoteCommandParser
+
+AddNoteCommandParser --> AddressBookParser
+deactivate AddNoteCommandParser
+
+AddressBookParser -> AddNoteCommandParser : parse("n_t/Meeting \nn_c/3rd October 9pm")
+activate AddNoteCommandParser
+
+create Note_Title
+AddNoteCommandParser -> Note_Title
+activate Note_Title
+
+Note_Title --> AddNoteCommandParser
+deactivate Note_Title
+
+create Content
+AddNoteCommandParser -> Content
+activate Content
+
+Content --> AddNoteCommandParser
+deactivate Content
+
+create Note
+AddNoteCommandParser -> Note
+activate Note
+
+Note --> AddNoteCommandParser
+deactivate Note
+
+create AddNoteCommand
+AddNoteCommandParser -> AddNoteCommand
+activate AddNoteCommand
+
+AddNoteCommand --> AddNoteCommandParser : a
+deactivate AddNoteCommand
+
+AddNoteCommandParser --> AddressBookParser : a
+deactivate AddNoteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddNoteCommandParser -[hidden]-> AddressBookParser
+destroy AddNoteCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddNoteCommand : execute()
+activate AddNoteCommand
+
+AddNoteCommand -> Model : addNote()
+activate Model
+
+Model --> AddNoteCommand
+deactivate Model
+
+create CommandResult
+AddNoteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddNoteCommand
+deactivate CommandResult
+
+AddNoteCommand --> LogicManager : result
+deactivate AddNoteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
