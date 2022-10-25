@@ -8,6 +8,7 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -25,20 +26,20 @@ public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns students from a class. "
-            + "Parameters: INDEX... (must be positive integers) "
+    public static final String MESSAGE_USAGE = "> Unassigns students from a class.\n"
+            + "Parameters: INDEX... "
             + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
-    public static final String MESSAGE_SUCCESS = "Students with %1$s %2$s are unassigned from: %3$s";
+    public static final String MESSAGE_SUCCESS = "Students unassigned from [ %1$s ]:\n[ %2$s ]";
 
     private final List<Index> indices;
     private final ModuleClass moduleClassToUnassign;
 
     /**
-     * Creates an UnassignCommand to unassign the given {@Code ModuleClass} from students at the given {@Code Indices}.
+     * Creates an UnassignCommand to unassign the given {@code ModuleClass} from students at the given {@code Indices}.
      */
     public UnassignCommand(List<Index> indices, ModuleClass moduleClassToUnassign) {
         requireAllNonNull(indices);
@@ -77,8 +78,13 @@ public class UnassignCommand extends Command {
             model.setStudent(student, editedStudent);
         }
 
-        String indexOrIndices = indices.size() == 1 ? "index" : "indices";
-        return new CommandResult(String.format(MESSAGE_SUCCESS, indexOrIndices, indices, moduleClassToUnassign));
+        return new CommandResult(getSuccessMessage(studentsToUnassign, moduleClassToUnassign));
+    }
+
+    private static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
+        String studentNames = students.stream().map(student -> student.getName().toString())
+                .collect(Collectors.joining(", "));
+        return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);
     }
 
     @Override

@@ -6,6 +6,7 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
@@ -15,6 +16,7 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.StudentModuleData;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -24,14 +26,14 @@ public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign students to a class. "
-            + "Parameters: INDEX... (must be positive integers) "
+    public static final String MESSAGE_USAGE = "> Assigns students to a class.\n"
+            + "Parameters: INDEX... "
             + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 2 3 "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
-    public static final String MESSAGE_SUCCESS = "Students with %1$s %2$s are assigned to: %3$s";
+    public static final String MESSAGE_SUCCESS = "Students assigned to [ %1$s ]:\n[ %2$s ]";
 
     private final List<Index> indices;
     private final ModuleClass moduleClassToAssign;
@@ -78,8 +80,13 @@ public class AssignCommand extends Command {
             model.setStudent(student, editedStudent);
         }
 
-        String indexOrIndices = indices.size() == 1 ? "index" : "indices";
-        return new CommandResult(String.format(MESSAGE_SUCCESS, indexOrIndices, indices, moduleClassToAssign));
+        return new CommandResult(getSuccessMessage(studentsToAssign, moduleClassToAssign));
+    }
+
+    private static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
+        String studentNames = students.stream().map(student -> student.getName().toString())
+                .collect(Collectors.joining(", "));
+        return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);
     }
 
     @Override
