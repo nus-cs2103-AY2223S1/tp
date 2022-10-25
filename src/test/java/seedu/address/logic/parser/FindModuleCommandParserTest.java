@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindModuleCommand;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 public class FindModuleCommandParserTest {
 
     private FindModuleCommandParser parser = new FindModuleCommandParser();
@@ -24,7 +23,7 @@ public class FindModuleCommandParserTest {
     public void parse_validArgs_returnsFindModuleCommand() {
         // no leading and trailing whitespaces
         FindModuleCommand expectedFindModuleCommand =
-                new FindModuleCommand(new ModuleCodeContainsKeywordsPredicate(Arrays.asList("CS2100", "CS2103T")));
+                new FindModuleCommand(Arrays.asList("CS2100", "CS2103T"));
         assertParseSuccess(parser, "CS2100 CS2103T", expectedFindModuleCommand);
 
         // multiple whitespaces between keywords
