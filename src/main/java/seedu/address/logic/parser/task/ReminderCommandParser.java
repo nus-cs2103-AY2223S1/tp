@@ -15,8 +15,8 @@ import seedu.address.model.task.TaskUntilDeadlinePredicate;
 public class ReminderCommandParser implements Parser<ReminderCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddTaskCommand
-     * and returns an AddTaskCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ReminderCommand
+     * and returns an ReminderCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ReminderCommand parse(String args) throws ParseException {

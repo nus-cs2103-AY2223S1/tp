@@ -13,11 +13,10 @@ public class TaskUntilDeadlinePredicate implements Predicate<Task> {
     }
 
     /**
-     * Returns true if task contains any of the description or deadline keywords.
-     * By default, empty keyword lists will return true.
+     * Returns true if the task's deadline is before or on the day of the specified deadline.
      *
-     * @param  task Task that will be checked for matching keywords.
-     * @return boolean indicating if task contains supplied keywords.
+     * @param  task Task that will be checked for its deadline.
+     * @return boolean indicating if task deadline is before or on the day of the specified deadline.
      */
     // TODO Implement for tags
     @Override

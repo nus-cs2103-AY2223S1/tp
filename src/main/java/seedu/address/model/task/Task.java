@@ -127,7 +127,7 @@ public class Task {
      */
     public boolean deadlinesUpToAndIncluding(Deadline deadline) {
         requireNonNull(deadline);
-        return (this.deadline.compareTo(deadline) <= 0);
+        return this.deadline.compareTo(deadline) <= 0;
     }
 
     /**
