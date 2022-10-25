@@ -14,7 +14,7 @@
 
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="SoConnect" minWidth="600" minHeight="740" onCloseRequest="#handleExit">
+         title="SoConnect" minWidth="740" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/soccat.png" />
   </icons>
