@@ -1,0 +1,29 @@
+{
+  "persons" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "gender": "Female",
+    "graduationDate": "05-2024",
+    "cap": "3.9/5.0",
+    "university": "Singapore University",
+    "major": "Computer Science",
+    "id" : "171932",
+    "title" : "[Campus Recruitment] Intern, Software Engineer",
+    "tagged" : [ "interview", "rejected" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "gender": "Male",
+    "graduationDate": "01-2025",
+    "cap": "4.0/5.0",
+    "university": "NUS",
+    "major": "Computer Engineering",
+    "id" : "J021932",
+    "title" : "Intern, Software Engineer (May'23 - Aug'23)",
+    "tagged" : [ "KIV" ]
+  } ]
+}
