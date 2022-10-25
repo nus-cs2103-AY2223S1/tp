@@ -167,6 +167,18 @@ Shows a list of all events in the NUScheduler.
 
 Format: `event -v`
 
+### Editing a event : `event -e`
+
+Edits an existing event in NUScheduler.
+
+Format: `event -e INDEX [n/NAME] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
+
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
+* You can remove all the event’s tags by typing `t/` without specifying any tags after it.
+
 ### Finding events by date or name: `event -f KEYWORD_OR_DATE [MORE]`
 
 Find events whose names contain any of the given keywords.
@@ -216,6 +228,7 @@ No FAQ Yet.
 | **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]`                                            |
 | **Add Event**              | `event -a n/NAME s/START e/END [t/TAG]… [p/PROFILE]…`                           |
 | **Delete Event**           | `event -d INDEX`                                                                |
+| **Edit Event**             | `event -e INDEX [n/NAME] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`               |
 | **View Events**            | `event -v`                                                                      |
 | **View Upcoming Event(s)** | `event -u DAYS`                                                                 |
 | **Find Event**             | `event -f KEYWORD_OR_DATE [MORE]`                                               |
