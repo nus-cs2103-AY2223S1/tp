@@ -68,7 +68,7 @@ public class IncludeCommand extends Command {
     }
 
     /**
-     * Includes the link to the Socials s of the person p
+     * Includes the link to the Socials s of the Person p
      * @param p Person to be edited
      * @param s Socials to be edited
      * @throws CommandException
