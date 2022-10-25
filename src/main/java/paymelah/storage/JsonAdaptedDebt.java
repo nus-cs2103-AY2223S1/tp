@@ -27,8 +27,9 @@ class JsonAdaptedDebt {
      * Constructs a {@code JsonAdaptedDebt} with the given debt details.
      */
     @JsonCreator
-    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money, @JsonProperty("date") String date,
-                           @JsonProperty("time") String time, @JsonProperty("isPaid") boolean isPaid) {
+    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money,
+            @JsonProperty("date") String date, @JsonProperty("time") String time,
+            @JsonProperty("isPaid") boolean isPaid) {
         this.description = description;
         this.money = money;
         this.date = date;
