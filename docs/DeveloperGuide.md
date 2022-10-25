@@ -167,7 +167,7 @@ The Set Command makes use of the following classes:
 
 * `SetCommand` — Updates the `Person` object in the model.
 * `SetCommandParser` — Parses the arguments supplied by the user.
-* `SetPersonDescriptor` — Contains the updated information from the user. 
+* `SetPersonDescriptor` — Contains the updated information from the user.
 
 In particular, `SetPersonDescriptor` contains the following fields
 
@@ -279,18 +279,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Delete User Attributes Feature (In Github Contact Page)
 
-When the user navigates to the ContactDetail Page of a specified Person, this feature allows the User to delete specified attributes from the command line. 
+When the user navigates to the ContactDetail Page of a specified Person, this feature allows the User to delete specified attributes from the command line.
 
 The Delete Attribute feature will make use of the following classes:
 * `DeleteAttributeCommand` — Removes specified attribute from specified `Person` object in the model.
 * `DeleteAttributeCommandParser` — Parses the arguments supplied by the user - the `name` of the person whose `attribute` will be deleted.
-* `DeleteAttributePersonDescriptor` - Contains the attributes of the Person after an Attribute has been deleted. 
+* `DeleteAttributePersonDescriptor` - Contains the attributes of the Person after an Attribute has been deleted.
 
 Step 1: The user enters the `ContactDetailPage` of a previously added `Person`.
 
 Step 2: The user executes `delete name/Bob role/DevOps`. `DeleteAttributeCommandParser` parses the arguments and
-creates a `DeletePersonDescriptor` containing null value for the attribute `Role` while maintaining the values for the other 
-attributes. A`DeleteAttributeCommand` instance containing that `DeletePersonDescriptor` will then be created. When executed, 
+creates a `DeletePersonDescriptor` containing null value for the attribute `Role` while maintaining the values for the other
+attributes. A`DeleteAttributeCommand` instance containing that `DeletePersonDescriptor` will then be created. When executed,
 the currently selected `Person`'s attributes will be updated according to the deleted attribute.
 
 ### [Proposed] Add user using GitHub account
@@ -436,7 +436,7 @@ Use Case ends.
 
 **Use case: UC-07 - Delete a Contact from a person**
 
-**Preconditions:** 
+**Preconditions:**
 * Person has been added to the system.
 * User is inside the person's Contact Detail Page.
 
@@ -471,7 +471,7 @@ Use Case ends.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to load the contact list within 2 seconds.
 5. Without noticeable delay, should be able to add and update contact information.
-6. Without noticeable delay, should be able to delete contact information. 
+6. Without noticeable delay, should be able to delete contact information.
 7. Must be able to cache github repository list for future use.
 8. Must be able to display search results for find function within 3 seconds.
 

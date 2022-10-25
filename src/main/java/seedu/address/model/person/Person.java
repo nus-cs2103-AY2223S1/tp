@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private final Name name;
@@ -37,7 +37,7 @@ public class Person {
      */
     public Person(Name name, Address address, Set<Tag> tags,
                   Map<ContactType, Contact> contacts, Role role, Timezone timezone) {
-        requireAllNonNull(name, address, tags);
+        requireAllNonNull(name, tags);
         this.name = name;
         this.address = address;
         // mock user
@@ -53,8 +53,8 @@ public class Person {
         return name;
     }
 
-    public Address getAddress() {
-        return address;
+    public Optional<Address> getAddress() {
+        return address == null ? Optional.empty() : Optional.of(address);
     }
 
     public User getGitHubUser() {
@@ -98,6 +98,11 @@ public class Person {
             && otherPerson.getName().equals(getName());
     }
 
+    @Override
+    public int compareTo(Person other) {
+        return this.getName().compareTo(other.getName());
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -131,9 +136,7 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-            .append("; Address: ")
-            .append(getAddress());
+        builder.append(getName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -149,6 +152,7 @@ public class Person {
             }
         }
 
+        getAddress().ifPresent(a -> builder.append("; Address: " + a));
         getRole().ifPresent(r -> builder.append("; Role: " + r));
         getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
