@@ -162,7 +162,7 @@ public class AddCommandTest {
         public void updatePassword(String oldPassword, String newPassword) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void sort(String sortParam) {
             throw new AssertionError("This method should not be called.");

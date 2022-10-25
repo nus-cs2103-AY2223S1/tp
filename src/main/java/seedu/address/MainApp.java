@@ -77,14 +77,12 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
-            logger.info("tryingg");
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample FinBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("heree");
             logger.warning("Data file not in the correct format. Will be starting with an empty FinBook");
             initialData = new AddressBook();
         } catch (IOException e) {
