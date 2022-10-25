@@ -308,9 +308,10 @@ public class ParserUtil {
         if (!isPresent) {
             return new OfficeHour(trimmedOfficeHour, false);
         }
-        if (!OfficeHour.isValidOfficeHour(trimmedOfficeHour)) {
+        if (!OfficeHour.isValidOfficeHourInstruction(officeHour)) {
             throw new ParseException(OfficeHour.MESSAGE_CONSTRAINTS);
         }
+
         // trimmedField: DayOfWeek-HH:mm-Duration
         // fieldArr: [DayOfWeek, HH:mm, Duration]
         String[] fieldArr = officeHour.split("-");
@@ -326,8 +327,11 @@ public class ParserUtil {
         String formattedOfficeHour = dayOfWeek.toString()
                 + ", "
                 + startTime.format(TIME_FORMATTER)
-                + " to "
+                + " - "
                 + endTime.format(TIME_FORMATTER);
+        if (!OfficeHour.isValidOfficeHour(formattedOfficeHour)) {
+            throw new ParseException(OfficeHour.MESSAGE_CONSTRAINTS);
+        }
         return new OfficeHour(formattedOfficeHour, true);
     }
 

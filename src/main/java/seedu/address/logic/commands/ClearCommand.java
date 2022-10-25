@@ -24,6 +24,7 @@ public class ClearCommand extends Command {
             throw new CommandException(MESSAGE_EMPTY_LIST);
         }
         model.setAddressBook(new AddressBook());
+        model.updatePieChart();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

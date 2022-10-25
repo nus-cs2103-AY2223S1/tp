@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Professor's office hour in the address book.
@@ -22,6 +23,10 @@ public class OfficeHour {
      * Duration must be specified as an integer (1 - 9)
      */
     public static final String VALIDATION_REGEX =
+            "^(?:SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY)+,"
+                    + "+ (([0]{1}\\d{1})|([1]{1}[0-2]{1}))+:+([0-5]{1}\\d{1}) "
+                    + "+(?:PM|AM) +-+ (([0]{1}\\d{1})|([1]{1}[0-2]{1}))+:+([0-5]{1}\\d{1}) +(?:PM|AM)$";
+    public static final String INSTRUCTION_REGEX =
             "^(?=\\S{9}$)([1-5]{1})+-+(([0-1]{1}\\d{1})|([2]{1}[0-3]{1}))+:+([0-5]{1}\\d{1}-\\d{1})$";
 
 
@@ -34,7 +39,7 @@ public class OfficeHour {
     public OfficeHour(String officeHour, boolean isPresent) {
         requireNonNull(officeHour);
         if (isPresent) {
-            // there should be a regex validation check here
+            checkArgument(isValidOfficeHour(officeHour), MESSAGE_CONSTRAINTS);
             value = officeHour;
         } else {
             value = EMPTY_OFFICE_HOUR;
@@ -50,6 +55,15 @@ public class OfficeHour {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string matches instruction format.
+     * @param test target string
+     * @return true if a given string is a correct instruction
+     */
+    public static boolean isValidOfficeHourInstruction(String test) {
+        return test.matches(INSTRUCTION_REGEX);
+    }
+
     @Override
     public String toString() {
         return this.value;
@@ -61,7 +75,6 @@ public class OfficeHour {
                 || (other instanceof OfficeHour
                 && value.equals(((OfficeHour) other).value));
     }
-
     @Override
     public int hashCode() {
         return value.hashCode();
