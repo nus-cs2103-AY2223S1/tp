@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.DateUtil.getLocalDate;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -26,7 +27,9 @@ public class UnMarkTaskCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Task unMarkedTask = new TaskBuilder().withStatus(false).build();
+        Task unMarkedTask = new TaskBuilder().withTitle("Buy Ginger")
+                .withDeadline(getLocalDate("2029-02-10"))
+                .withStatus(false).build();
         UnMarkTaskCommand unMarkTaskCommand = new UnMarkTaskCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(UnMarkTaskCommand.MESSAGE_UNMARK_TASK_SUCCESS, unMarkedTask);

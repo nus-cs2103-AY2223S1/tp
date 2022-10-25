@@ -41,7 +41,9 @@ public class UpdateTaskCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Task updatedTask = new TaskBuilder().build();
+        Task updatedTask = new TaskBuilder().withTitle("Buy Ginger")
+                .withDeadline(getLocalDate("2029-02-10"))
+                .withStatus(false).build();
         UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder(updatedTask).build();
         UpdateTaskCommand updateTaskCommand = new UpdateTaskCommand(indexFirstTask, descriptor);
 
