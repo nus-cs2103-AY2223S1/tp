@@ -55,23 +55,6 @@ public class SampleDataUtil {
         };
     }
 
-    public static Task[] getSampleTasks() {
-        return new Task[] {
-            new Task(new Description("CS2103T Tutorial"), new Deadline("2020-10-10 10:00"), false,
-                getTagSet("school")),
-            new Task(new Description("CS2103T Lab"), new Deadline("2020-10-10 12:00"), false,
-                getTagSet("school")),
-            new Task(new Description("CS2103T Lecture"), new Deadline("2020-10-10 14:00"), false,
-                getTagSet("school")),
-            new Task(new Description("CS2103T Meeting"), new Deadline("2020-10-10 16:00"), true,
-                getTagSet("school")),
-            new Task(new Description("CS2103T Project"), new Deadline("2020-10-10 18:00"), true,
-                getTagSet("school")),
-            new Task(new Description("CS2103T Quiz"), new Deadline("2020-10-10 20:00"), true,
-                getTagSet("school"))
-        };
-    }
-
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
