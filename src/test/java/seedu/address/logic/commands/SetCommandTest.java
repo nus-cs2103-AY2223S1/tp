@@ -125,8 +125,8 @@ public class SetCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        Person personInList = model.getAddressBook().getPersonList().get(1);
-        model.setSelectedPerson(model.getAddressBook().getPersonList().get(0));
+        Person personInList = model.getAddressBook().getSortedPersonList().get(1);
+        model.setSelectedPerson(model.getAddressBook().getSortedPersonList().get(0));
         SetCommand editCommand = new SetCommand(new SetPersonDescriptorBuilder(personInList).build());
 
         assertCommandFailure(editCommand, model, SetCommand.MESSAGE_DUPLICATE_PERSON);
