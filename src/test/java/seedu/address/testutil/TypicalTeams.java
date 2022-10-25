@@ -26,6 +26,9 @@ public class TypicalTeams {
     public static final Team BACKEND = new TeamBuilder().withName("Backend")
             .withMembers(DANIEL, ELLE).build();
 
+    public static final Team INTERNS = new TeamBuilder().withName("Interns")
+            .withMembers(ALICE, BENSON, CARL).build();
+
     private TypicalTeams() {}
 
     public static AddressBook getTypicalAddressBookWithTeams() {

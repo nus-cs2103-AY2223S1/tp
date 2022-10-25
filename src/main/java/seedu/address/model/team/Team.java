@@ -199,7 +199,8 @@ public class Team {
         }
 
         seedu.address.model.team.Team otherTeam = (seedu.address.model.team.Team) other;
-        return otherTeam.getName().equals(getName());
+        return otherTeam.getName().equals(getName()) && otherTeam.getTasks().equals(getTasks())
+                && otherTeam.getMembers().equals(getMembers());
     }
 
     @Override

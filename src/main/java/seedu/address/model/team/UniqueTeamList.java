@@ -8,8 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.team.exceptions.DuplicateTeamException;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
@@ -57,10 +55,12 @@ public class UniqueTeamList implements Iterable<Team> {
      * @return {@code Team} at the specified index.
      */
     public Team get(int index) {
+        requireNonNull(index);
         return internalList.get(index);
     }
 
     public void setTeamName(int targetIndex, Name newTeamName) {
+        requireAllNonNull(newTeamName);
         internalList.get(targetIndex).setName(newTeamName);
     }
 
@@ -82,7 +82,7 @@ public class UniqueTeamList implements Iterable<Team> {
     public void remove(Team toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TeamNotFoundException();
         }
     }
 
@@ -98,7 +98,7 @@ public class UniqueTeamList implements Iterable<Team> {
     public void setTeams(List<Team> teams) {
         requireAllNonNull(teams);
         if (!teamsAreUnique(teams)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTeamException();
         }
 
         internalList.setAll(teams);
@@ -109,6 +109,7 @@ public class UniqueTeamList implements Iterable<Team> {
      *
      */
     public void addTask(int index, Task task) {
+        requireNonNull(task);
         internalList.get(index).addTask(task);
     }
 
@@ -117,6 +118,7 @@ public class UniqueTeamList implements Iterable<Team> {
      *
      */
     public void editTask(int teamIndex, int taskIndex, seedu.address.model.task.Name newName) {
+        requireNonNull(newName);
         internalList.get(teamIndex).editTask(taskIndex, newName);
     }
 
