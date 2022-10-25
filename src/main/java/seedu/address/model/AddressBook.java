@@ -181,6 +181,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.updateTotalNumOfTasks(key.getModule(), tasks);
     }
 
+    /**
+     * Resets number of tasks and number of completed tasks of all modules to 0.
+     */
+    public void resetAllTaskCount() {
+        modules.resetAllTaskCount();
+    }
+
     //// util methods
 
     @Override

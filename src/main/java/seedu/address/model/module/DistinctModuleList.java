@@ -96,6 +96,18 @@ public class DistinctModuleList implements Iterable<Module> {
     }
 
     /**
+     * Resets number of tasks and number of completed tasks of all modules to 0.
+     */
+    public void resetAllTaskCount() {
+        moduleList.forEach(module -> {
+            int index = moduleList.indexOf(module);
+            Module updatedModule = module.setNumOfCompletedTasks(0);
+            updatedModule = updatedModule.setTotalNumOfTasks(0);
+            moduleList.set(index, updatedModule);
+        });
+    }
+
+    /**
      * Removes the equivalent module from the module list.
      * The module must exist in the list.
      */

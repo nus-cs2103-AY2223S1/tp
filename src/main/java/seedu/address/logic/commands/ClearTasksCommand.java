@@ -22,6 +22,7 @@ public class ClearTasksCommand extends Command {
 
         AddressBook newAddressBook = new AddressBook();
         newAddressBook.setModules(moduleList);
+        newAddressBook.resetAllTaskCount();
 
         model.setAddressBook(newAddressBook);
 
