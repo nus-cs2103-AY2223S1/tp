@@ -210,7 +210,7 @@ The user flow is illustrated in the *Activity Diagram* as shown below.
   * Advantages: Easier to maintain for the developer. Acts like a switch and when a `Task` is already completed, marking it again will do nothing (Saves more computational power).
   * Disadvantages: Harder for future extension in the event that we need to do much more than just toggling the status of a `Task`.
 
-### Edit Supplier feature
+### \[Developed\] Edit Supplier feature
 
 #### Implementation
 
@@ -341,6 +341,11 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
+
+**NOTE:**
+
+While this explanation describes a proposed way to implement undo and redo in `AddressBook`, note that it
+can be done in an identical fashion for `TaskList` and `Inventory` as well.
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -552,9 +557,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Vendor clicks on the help tab
-2. Salesy shows the various commands that are available to use.
-3. Vendor clicks on the <u>drop down of the task </u> that she wants to further expand
-4. <u>Drop down</u> will expand and vendor is able to view the command guide.
+2. Salesy shows the link to Salesy's user guide page.
+3. Vendor clicks on the <u>copy button</u> to copy the link.
 
    Use case ends
 
