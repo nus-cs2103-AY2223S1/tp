@@ -9,9 +9,9 @@ import static seedu.studmap.commons.util.AppUtil.checkArgument;
  */
 public class StudentID {
 
-    public static final String MESSAGE_CONSTRAINTS = "Student ID should be in the format AXXXXXXXA";
+    public static final String MESSAGE_CONSTRAINTS = "Student ID should be in the format EXXXXXXX";
 
-    public static final String VALIDATION_REGEX = "^[A]\\d{7}[A-Z]$";
+    public static final String VALIDATION_REGEX = "^[E]\\d{7}";
 
     public final String value;
 
@@ -22,7 +22,7 @@ public class StudentID {
      */
     public StudentID(String studentID) {
         requireNonNull(studentID);
-        checkArgument(isValidStudentID(studentID), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidStudentID(studentID), MESSAGE_CONSTRAINTS);
         this.value = studentID;
     }
 

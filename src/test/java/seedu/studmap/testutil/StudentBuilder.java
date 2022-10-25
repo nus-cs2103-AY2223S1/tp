@@ -26,7 +26,7 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_ID = "A1234567B";
+    public static final String DEFAULT_ID = "E1234567";
     public static final String DEFAULT_GIT = "GitUser";
     public static final String DEFAULT_TELE = "@CS2103T";
 

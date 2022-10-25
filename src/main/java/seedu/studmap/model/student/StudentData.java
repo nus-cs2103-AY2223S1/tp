@@ -10,8 +10,8 @@ import seedu.studmap.model.tag.Tag;
  * A parameter object for Student constructor.
  */
 public class StudentData {
-    private StudentID id;
-    private GitName gitUser;
+    private StudentID studentID;
+    private GitName gitName;
     private TeleHandle teleHandle;
     private Name name;
     private Phone phone;
@@ -22,19 +22,19 @@ public class StudentData {
     private Set<Assignment> assignments = new HashSet<>();
 
     public StudentID getId() {
-        return id;
+        return studentID;
     }
 
     public void setId(StudentID id) {
-        this.id = id;
+        this.studentID = id;
     }
 
     public GitName getGitUser() {
-        return gitUser;
+        return gitName;
     }
 
     public void setGitUser(GitName gitName) {
-        this.gitUser = gitName;
+        this.gitName = gitName;
     }
 
     public TeleHandle getTeleHandle() {
@@ -121,8 +121,8 @@ public class StudentData {
         return Objects.equals(name, that.name)
                 && Objects.equals(phone, that.phone)
                 && Objects.equals(email, that.email)
-                && Objects.equals(id, that.id)
-                && Objects.equals(gitUser, that.gitUser)
+                && Objects.equals(studentID, that.studentID)
+                && Objects.equals(gitName, that.gitName)
                 && Objects.equals(teleHandle, that.teleHandle)
                 && Objects.equals(address, that.address)
                 && Objects.equals(tags, that.tags)
@@ -132,7 +132,8 @@ public class StudentData {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, id, gitUser, teleHandle, address, tags, attendances, assignments);
+        return Objects.hash(name, phone, email, studentID, gitName,
+                teleHandle, address, tags, attendances, assignments);
     }
 
 }

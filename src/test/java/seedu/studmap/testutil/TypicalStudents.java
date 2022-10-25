@@ -31,40 +31,40 @@ public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withId("A1234567A").withGitName("user1").withTeleHandle("@user1").withPhone("94351253")
+            .withId("E1234561").withGitName("user1").withTeleHandle("@user1").withPhone("94351253")
             .withTags("friends").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withId("A1234567B").withGitName("user2")
+            .withId("E1234562").withGitName("user2")
             .withTeleHandle("@user2").withTags("owesMoney", "friends")
             .addAttended("T01", "T02")
             .addNotAttended("T03").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
 
-            .withEmail("heinz@example.com").withId("A1234567C").withGitName("user3")
+            .withEmail("heinz@example.com").withId("E1234563").withGitName("user3")
             .withTeleHandle("@user3").withAddress("wall street").addAssignedMarked("A01", "A02")
             .addAssignedReceived("A03")
             .addAssignedNew("A04").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withId("A1234567D").withGitName("user4")
+            .withEmail("cornelia@example.com").withId("E1234564").withGitName("user4")
             .withTeleHandle("@user4").withAddress("10th street").withTags("friends").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withId("A1234567E").withGitName("user5")
+            .withEmail("werner@example.com").withId("E1234565").withGitName("user5")
             .withTeleHandle("@user5").withAddress("michegan ave").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withId("A1234567F").withGitName("user6")
+            .withEmail("lydia@example.com").withId("E1234566").withGitName("user6")
             .withTeleHandle("@user6").withAddress("little tokyo").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withId("A1234567G").withGitName("user7")
+            .withEmail("anna@example.com").withId("E1234567").withGitName("user7")
             .withTeleHandle("@user7").withAddress("4th street").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withId("A1234567H").withGitName("user8")
+            .withEmail("stefan@example.com").withId("E1234568").withGitName("user8")
             .withTeleHandle("@user8").withAddress("little india").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withId("A1234567I").withGitName("user9")
+            .withEmail("hans@example.com").withId("E1234569").withGitName("user9")
             .withTeleHandle("@user9").withAddress("chicago ave").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}

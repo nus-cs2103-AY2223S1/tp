@@ -33,7 +33,7 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
-    private final String StudentId;
+    private final String studentID;
     private final String gitName;
     private final String handle;
     private final String address;
@@ -46,7 +46,7 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("StudentId") String StudentId,
+                              @JsonProperty("email") String email, @JsonProperty("studentID") String StudentId,
                               @JsonProperty("gitName") String gitName, @JsonProperty("handle") String handle,
                               @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
@@ -55,7 +55,7 @@ class JsonAdaptedStudent {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.StudentId = StudentId;
+        this.studentID = StudentId;
         this.gitName = gitName;
         this.handle = handle;
         this.address = address;
@@ -77,7 +77,7 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        StudentId = source.getId().value;
+        studentID = source.getId().value;
         gitName = source.getGitName().value;
         handle = source.getTeleHandle().value;
         address = source.getAddress().value;
@@ -137,14 +137,14 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
-        if (StudentId == null) {
+        if (studentID == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StudentID.class.getSimpleName()));
         }
-        if (!StudentID.isValidStudentID(StudentId)) {
+        if (!StudentID.isValidStudentID(studentID)) {
             throw new IllegalValueException(StudentID.MESSAGE_CONSTRAINTS);
         }
-        final StudentID modelId = new StudentID(StudentId);
+        final StudentID modelId = new StudentID(studentID);
 
         if (gitName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
