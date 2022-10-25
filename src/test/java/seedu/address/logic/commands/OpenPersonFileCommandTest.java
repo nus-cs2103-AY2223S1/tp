@@ -20,7 +20,6 @@ import seedu.address.model.UserPrefs;
 class OpenPersonFileCommandTest {
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -41,7 +40,6 @@ class OpenPersonFileCommandTest {
 
         assertCommandFailure(openPersonFileCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-
     @Test
     public void equals() {
         OpenPersonFileCommand openPersonFileFirstCommand = new OpenPersonFileCommand(INDEX_FIRST_PERSON);

@@ -1,14 +1,12 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.SetPersonFileCommand;
 
 /**
  * Represents a Person's pdf file in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPdfFilePath(String)}
+ * Guarantees: immutable; is always valid
  */
 public class FilePath {
 
@@ -20,7 +18,12 @@ public class FilePath {
     public static final String MESSAGE_CONSTRAINTS =
             "File Path should be a valid absolute file path to a pdf in your directory\n"
             + "Example: "
-            + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf";
+            + "C:/Users/Ryzen/repos/CS2103T/tp/data/Test_PDF.pdf\n"
+            + "Check if the users file path is correct";
+
+    public static final String MESSAGE_CHANGED_FILEPATH = "File path cannot access PDF File\n"
+            + "It may have been moved, edited, or deleted.\n"
+            + "Check if the users file path is correct\n";
 
     public final String value;
 
@@ -31,40 +34,7 @@ public class FilePath {
      */
     public FilePath(String filePath) {
         requireNonNull(filePath);
-        if (filePath.equals("")) {
-            this.value = EMPTY_FILEPATH;
-        } else {
-            checkArgument(isValidPdfFilePath(filePath), MESSAGE_CONSTRAINTS);
-            this.value = filePath;
-        }
-    }
-
-    /**
-     * Constructs an empty {@code FilePath}.
-     */
-    public FilePath() {
-        this.value = EMPTY_FILEPATH;
-    }
-
-    /**
-     * Returns true if a given string is a valid PDF file or is empty.
-     */
-    public static boolean isValidFilePath(String test) {
-        return isEmptyPdfFilePath(test) || isValidPdfFilePath(test);
-    }
-
-    /**
-     * Returns true if a given string is a valid PDF file Path.
-     */
-    public static boolean isValidPdfFilePath(String test) {
-        return test.contains(".pdf") && FileUtil.checkPdfFilePath(test);
-    }
-
-    /**
-     * Returns true if the given file path is empty
-     */
-    public static boolean isEmptyPdfFilePath(String test) {
-        return test.equals(EMPTY_FILEPATH);
+        this.value = filePath;
     }
 
     public boolean isEmpty() {
