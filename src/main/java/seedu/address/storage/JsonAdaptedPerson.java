@@ -17,6 +17,9 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Plan;
+import seedu.address.model.portfolio.Portfolio;
+import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,6 +36,8 @@ class JsonAdaptedPerson {
     private final String income;
     private final String meetingDate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String risk;
+    private final List<JsonAdaptedPlan> planned = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,7 +47,9 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("income") String income,
                              @JsonProperty("meetingDate") String meetingDate,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("risk") String risk,
+                             @JsonProperty("plan") List<JsonAdaptedPlan> planned) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,12 +63,21 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (risk != null) {
+            this.risk = risk;
+        } else {
+            this.risk = "";
+        }
+        if (planned != null) {
+            this.planned.addAll(planned);
+        }
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        Portfolio portfolio = source.getPortfolio();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -70,6 +86,10 @@ class JsonAdaptedPerson {
         meetingDate = source.getMeetingDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        risk = portfolio.getRisk().value;
+        planned.addAll(portfolio.getPlans().stream()
+                .map(JsonAdaptedPlan::new)
                 .collect(Collectors.toList()));
     }
 
@@ -82,6 +102,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Plan> personPlans = new ArrayList<>();
+        for (JsonAdaptedPlan plan : planned) {
+            personPlans.add(plan.toModelType());
         }
 
         if (name == null) {
@@ -135,8 +160,22 @@ class JsonAdaptedPerson {
             modelMeetingDate = new MeetingDate("");
         }
 
+        if (risk != null && !Risk.isValidRisk(risk)) {
+            throw new IllegalValueException(Risk.MESSAGE_CONSTRAINTS);
+        }
+        final Risk modelRisk;
+
+        if (risk != null) {
+            modelRisk = new Risk(risk);
+        } else {
+            modelRisk = new Risk("");
+        }
+
+        final Set<Plan> modelPlans = new HashSet<>(personPlans);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags,
+                modelRisk, modelPlans);
     }
 
 }

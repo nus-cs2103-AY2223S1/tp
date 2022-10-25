@@ -2,6 +2,7 @@
   -main-background: #13315C;
   -second-background: #0B2545;
   -contrast-background: #8DA9C4;
+  -white-background: #EEF4ED;
   -text: #738979;
 }
 
@@ -47,27 +48,23 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
+    -fx-base: #13315C;
+    -fx-control-inner-background: #13315C;
     -fx-background-color: #1d1d1d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
+    -fx-table-cell-border-color: #13315C;
+    -fx-table-header-border-color: #13315C;
     -fx-padding: 5;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: transparent;
+    -fx-background-color: #13315C;
 }
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+    -fx-background-color: #13315C;
+    -fx-border-color: #13315C;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -85,11 +82,11 @@
 
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: transparent;
-    -fx-border-color: transparent transparent transparent #EEF4ED;
+    -fx-border-color: transparent transparent transparent;
 }
 
 .split-pane {
-    -fx-background-color: #EEF4ED;
+    -fx-background-color: transparent;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
 }
@@ -97,7 +94,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #EEF4ED;
+    -fx-background-color: #13315C;
 }
 
 .list-cell {
@@ -124,13 +121,13 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #D6D6D6;
 }
 
 .cell_big_label {
     -fx-font-family: 'Montserrat', sans-serif;
     -fx-font-size: 22px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #D6D6D6;
 }
 
 .cell_small_label {
@@ -343,6 +340,11 @@
     -fx-padding: 3 5 3 5;
 }
 
+#cardPanePortfolio {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
@@ -409,13 +411,7 @@
      -fx-font-size: 20px;
 }
 
-#personDetails {
-    -fx-background-color: #EEF4ED;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-}
-
-#personDetails2 {
+#personDetails, #personDetails2, #riskLevel, #currentPlans {
     -fx-background-color: #EEF4ED;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
@@ -443,5 +439,31 @@
     -fx-font-size: 14;
     -fx-border-radius: 7;
 }
+
+#plans .label {
+    -fx-text-fill: #0B2545;
+    -fx-padding: 3 5 3 5;
+    -fx-font-size: 16;
+    -fx-word-wrap: break-word;
+}
+
+#scroller {
+    -fx-background-color: transparent;
+}
+
+#portfolio {
+    -fx-background-color: -second-background;
+}
+
+#vBoxMainWindow {
+    -fx-background-color: -main-background;
+}
+
+#personDetailsSplitPane {
+    -fx-background-color: -white-background;
+}
+
+
+
 
 
