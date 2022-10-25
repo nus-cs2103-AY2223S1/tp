@@ -280,6 +280,11 @@
     -fx-text-fill: #C3E0FF;
 }
 
+#todoTags {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
 /* This is the styling for scrolling vertical bar beside Command Result Display, Contact and Todo. */
 .scroll-bar {
     -fx-background-color: #060959;

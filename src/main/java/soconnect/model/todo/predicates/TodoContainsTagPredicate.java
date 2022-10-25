@@ -1,11 +1,13 @@
-package soconnect.model.todo;
+package soconnect.model.todo.predicates;
 
 import java.util.function.Predicate;
 
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Todo;
 
 /**
- * Tests that a {@code Todo} contains a certain {@code Tag}.
+ * Tests that a {@code Todo} contains a certain {@code Tag} and
+ * the {@code Date} of the {@code Todo} should not be earlier than the current date.
  */
 public class TodoContainsTagPredicate implements Predicate<Todo> {
 

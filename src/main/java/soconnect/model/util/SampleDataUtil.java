@@ -1,5 +1,6 @@
 package soconnect.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,7 @@ import soconnect.model.person.Name;
 import soconnect.model.person.Person;
 import soconnect.model.person.Phone;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Date;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
@@ -52,14 +54,19 @@ public class SampleDataUtil {
      * @return Array of sample {@code Todo}s.
      */
     public static Todo[] getSampleTodos() {
+        // Generated date should be updated to current date
+        Date now = new Date(LocalDate.now());
+
+        Date tomorrow = new Date(LocalDate.now().plusDays(1));
+
         return new Todo[] {
-            new Todo(new Description("Watch recorded lecture videos"), new Priority("high"),
+            new Todo(new Description("Watch recorded lecture videos"), now, new Priority("high"),
                 getTagSet("math")),
-            new Todo(new Description("Revise content"), new Priority("medium"),
+            new Todo(new Description("Revise content"), now, new Priority("medium"),
                 getTagSet("english")),
-            new Todo(new Description("Prepare for tutorials"), new Priority("low"),
+            new Todo(new Description("Prepare for tutorials"), tomorrow, new Priority("low"),
                 getTagSet("math", "chinese")),
-            new Todo(new Description("Prepare presentation slides"), new Priority("high"),
+            new Todo(new Description("Prepare presentation slides"), tomorrow, new Priority("high"),
                 new HashSet<>())
         };
     }

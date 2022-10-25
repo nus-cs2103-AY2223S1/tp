@@ -1,6 +1,7 @@
 package soconnect.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import soconnect.model.person.Email;
 import soconnect.model.person.Name;
 import soconnect.model.person.Phone;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Date;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Priority;
 
@@ -152,6 +154,46 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String} into an {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINS);
+        }
+        return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses the given two dates into {@code List<Date} to represent a date range.
+     * The {@code startDate} should not be after the {@code endDate}.
+     *
+     * @throws ParseException If the given {@code startDate} is after the {@code endDate} or they are invalid.
+     */
+    public static List<Date> parseDateRange(String startDate, String endDate) throws ParseException {
+        requireAllNonNull(startDate, endDate);
+
+        try {
+            Date start = parseDate(startDate);
+            Date end = parseDate(endDate);
+            if (start.isAfter(end)) {
+                throw new ParseException(Date.MESSAGE_INVALID_DATE_RANGE);
+            }
+
+            List<Date> dateRange = new ArrayList<>();
+            dateRange.add(start);
+            dateRange.add(end);
+            return dateRange;
+        } catch (ParseException e) {
+            throw new ParseException(Date.MESSAGE_INVALID_DATE_RANGE);
+        }
     }
 
     /**

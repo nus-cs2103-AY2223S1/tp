@@ -113,7 +113,7 @@ public class UniqueTodoList implements Iterable<Todo> {
                 int index = todoTags.indexOf(oldTag);
                 todoTags.set(index, newTag);
                 Set<Tag> newTags = new HashSet<>(todoTags);
-                Todo newTodo = new Todo(oldTodo.getDescription(), oldTodo.getPriority(), newTags);
+                Todo newTodo = new Todo(oldTodo.getDescription(), oldTodo.getDate(), oldTodo.getPriority(), newTags);
                 internalList.set(i, newTodo);
             }
         }
@@ -131,7 +131,8 @@ public class UniqueTodoList implements Iterable<Todo> {
             if (todoTags.contains(tag)) {
                 todoTags.remove(tag);
                 Set<Tag> updatedTags = new HashSet<>(todoTags);
-                Todo updatedTodo = new Todo(oldTodo.getDescription(), oldTodo.getPriority(), updatedTags);
+                Todo updatedTodo = new Todo(oldTodo.getDescription(), oldTodo.getDate(),
+                        oldTodo.getPriority(), updatedTags);
                 internalList.set(i, updatedTodo);
             }
         }
@@ -141,7 +142,7 @@ public class UniqueTodoList implements Iterable<Todo> {
      * Sort the {@code TodoList} in order of decreasing {@code Priority}.
      */
     private void sort() {
-        SortedList<Todo> sorted = internalList.sorted((curr, next) -> curr.getPriority().compareTo(next.getPriority()));
+        SortedList<Todo> sorted = internalList.sorted((curr, next) -> curr.compareTo(next));
         internalList.setAll(sorted);
     }
 

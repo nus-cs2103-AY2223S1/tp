@@ -1,22 +1,26 @@
 package soconnect.ui;
 
-import java.util.logging.Logger;
+import static java.util.Objects.requireNonNull;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import soconnect.commons.core.LogsCenter;
+import soconnect.logic.commands.todo.TodoShowCommand;
 import soconnect.model.todo.Todo;
 
 /**
  * Panel containing the list of todos.
  */
 public class TodoListPanel extends UiPart<Region> {
+    public static final String TODAY_HEADER = TodoShowCommand.TODAY_CONDITION;
+
+    public static final String ALL_HEADER = "ALL";
+
     private static final String FXML = "TodoListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TodoListPanel.class);
 
     @FXML
     private Label header;
@@ -26,11 +30,27 @@ public class TodoListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TodoListPanel} with the given todoHeader and {@code ObservableList}.
      */
-    public TodoListPanel(String todoHeader, ObservableList<Todo> todoList) {
+    public TodoListPanel(SimpleStringProperty todoListHeader, ObservableList<Todo> todoList) {
         super(FXML);
-        header.setText(todoHeader);
+        header.textProperty().bind(todoListHeader);
         todoListView.setItems(todoList);
         todoListView.setCellFactory(listView -> new TodoListViewCell());
+    }
+
+    /**
+     * Formats the header displayed on the {@code TodoListPanel}, the first character
+     * of the given {@code header} will be capitalized and the rest of the string remains unchanged.
+     *
+     * @param header The header of the {@code TodoListPanel}.
+     * @return The formatted header.
+     */
+    public static String formatTodoHeader(String header) {
+        requireNonNull(header);
+        if (header.isEmpty()) {
+            return header;
+        }
+
+        return header.substring(0, 1).toUpperCase() + header.substring(1);
     }
 
     /**

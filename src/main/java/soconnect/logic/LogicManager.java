@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.commons.core.LogsCenter;
@@ -73,8 +74,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public String getTodoHeader() {
-        return "Today";
+    public SimpleStringProperty getTodoListHeader() {
+        return model.getTodoListHeader();
     }
 
     @Override

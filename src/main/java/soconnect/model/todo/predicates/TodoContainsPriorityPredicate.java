@@ -1,6 +1,9 @@
-package soconnect.model.todo;
+package soconnect.model.todo.predicates;
 
 import java.util.function.Predicate;
+
+import soconnect.model.todo.Priority;
+import soconnect.model.todo.Todo;
 
 /**
  * Tests that a {@code Todo} is of a certain {@code Priority}.

@@ -114,7 +114,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic);
-        todoListPanel = new TodoListPanel(logic.getTodoHeader(), logic.getFilteredTodoList());
+        todoListPanel = new TodoListPanel(logic.getTodoListHeader(), logic.getFilteredTodoList());
         mainDisplay = new MainDisplay(personListPanel, todoListPanel);
         mainDisplayPlaceholder.getChildren().add(mainDisplay.getRoot());
 
