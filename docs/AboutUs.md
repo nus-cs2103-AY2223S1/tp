@@ -14,7 +14,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/Aishwarya-Hariharan-Iyer)]
 [[portfolio](team/aishwarya-hariharan-iyer.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: UI
 
 ### Conrad Lew Kian Loong
 
