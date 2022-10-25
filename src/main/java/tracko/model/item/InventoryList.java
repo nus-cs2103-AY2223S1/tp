@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tracko.model.item.exceptions.DuplicateItemException;
 import tracko.model.item.exceptions.ItemNotFoundException;
+import tracko.model.order.Order;
 
 /**
  * Represents the list of items in the inventory.
@@ -56,6 +57,20 @@ public class InventoryList implements Iterable<Item> {
     public void delete(Item toDelete) {
         requireNonNull(toDelete);
         internalList.remove(toDelete);
+    }
+
+    /**
+     * Decreases quantity of items in Inventory list according to items in order
+     * that was marked as delivered
+     * @param deliveredOrder order that was delivered
+     */
+    public void reduceItems(Order deliveredOrder) {
+        // decreases the quantity of each item delivered in the inventory list according to the quantity delivered
+        internalList.stream().forEach(item -> deliveredOrder.getItemList().stream().forEach(orderItem -> {
+            if (item.isSameItem(orderItem.getItem())) {
+                item.reduceItem(orderItem.getQuantityValue());
+            }
+        }));
     }
 
     /**
