@@ -142,11 +142,11 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc n/ {name} p/ {phone_number} e/ {email} m/ {module1} m/ {module2}...`
+Format: `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module1} m/ {module2}] gh/ {github} tele/ {telegram}...`
 
 Examples:
-* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S`
-* `addc n/ Betsy Crowe p/ 89985432 e/ betsycrowe@gmail.com`
+* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S gh/ bobby tele/ bmartin`
+* `addc n/ Betsy Crowe p/ 89985432 e/ betsycrowe@gmail.com gh/betsycrowe tele/croweybetty`
 
 #### Listing all contact : `listc`
 
@@ -240,7 +240,7 @@ Action | Format, Examples
 **Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
 **Find tasks** | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`
 **List tasks** | `list` / `list time`
-**Add contact** | `addc n/ {name} p/ {phone_number} e/ {email} t/ {tag} m/ {module_1} m/ {module_2}...` <br> e.g., `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S`
+**Add contact** | `addc n/ {name} p/ {phone_number} e/ {email} [t/ {tag}] [m/ {module_1} m/ {module_2}] gh/ {github} tele/ {telegram}...` <br> e.g., `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S gh/ bobby tele/ bmartin`
 **Clear contacts** | `clear`
 **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
 **Edit contact** | `edit INDEX [n/name}] [p/{phone_number}] [e/{email}] [a/{address}] [t/{tag}]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
