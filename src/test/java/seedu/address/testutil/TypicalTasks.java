@@ -25,6 +25,7 @@ public class TypicalTasks {
                     .withCompleted(false)
                     .withDeadline("01 January 2023")
                     .withContacts("George Best")
+                    .withProject("CS2103T")
                     .build();
     public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();
     public static final Task TASK_FOUR = new TaskBuilder().withTitle("Set tags for a task").build();

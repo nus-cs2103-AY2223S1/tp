@@ -3,11 +3,13 @@
     "title": "Assign task to Alex",
     "isCompleted": "false",
     "deadline": "UNSPECIFIED",
+    "project": "",
     "contacts": [ "Alex Yeoh" ]
   }, {
     "title": "Assign task to Alex",
     "isCompleted": "false",
     "deadline": "UNSPECIFIED",
+    "project": "",
     "contacts": [ "Alex Yeoh" ]
   } ]
 }

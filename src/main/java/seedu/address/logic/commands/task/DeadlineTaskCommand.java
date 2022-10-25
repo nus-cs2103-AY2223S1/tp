@@ -66,6 +66,7 @@ public class DeadlineTaskCommand extends TaskCommand {
                         taskToUpdate.getTitle(),
                         taskToUpdate.getCompleted(),
                         newDeadline,
+                        taskToUpdate.getProject(),
                         taskToUpdate.getAssignedContacts()
         );
 
