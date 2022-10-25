@@ -96,6 +96,35 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Applicant findSimilarApplicant(Applicant applicant) {
+        requireNonNull(applicant);
+        return trackAScholar.findSimilarApplicant(applicant);
+    }
+
+    @Override
+    public void importWithReplace(ObservableList<Applicant> applicantList) {
+        requireNonNull(applicantList);
+        for (Applicant a: applicantList) {
+            if (!this.hasApplicant(a)) {
+                this.addApplicant(a);
+            } else {
+                Applicant existingApplicant = this.findSimilarApplicant(a);
+                this.setApplicant(existingApplicant, a);
+            }
+        }
+    }
+
+    @Override
+    public void importWithoutReplace(ObservableList<Applicant> applicantList) {
+        requireNonNull(applicantList);
+        for (Applicant a: applicantList) {
+            if (!this.hasApplicant(a)) {
+                this.addApplicant(a);
+            }
+        }
+    }
+
+    @Override
     public void deleteApplicant(Applicant target) {
         trackAScholar.removeApplicant(target);
     }
