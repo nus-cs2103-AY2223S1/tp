@@ -54,13 +54,13 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(word);
 
-        String preppedWord = word.trim();
+        String preppedWord = word.trim().toUpperCase();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence.toUpperCase();
 
-        return preppedSentence.contains(word);
+        return preppedSentence.contains(preppedWord);
     }
 
     /**
