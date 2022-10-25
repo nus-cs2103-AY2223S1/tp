@@ -34,13 +34,13 @@ contains some sample data.<br>
 
 ### 1.1. Command summary
 
-
 | Action                                  | Format                                                                  | Short Description                                                               |
 |-----------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
 | [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
 | [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
-| [`find-module`](#213-find-module)       | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#214-list-module)       | `list-module`                                                           | List all modules in home page after finding                                     |
+| [`edit-module`](#213-edit-module)       | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
+| [`find-module`](#214-find-module)       | `find-module     KEYWORD`                            <br/>                   | Find module that starts with specified keyword in home page                     |
+| [`list-module`](#215-list-module)       | `list-module`                                        <br/>                   | List all modules in home page after finding                                     |
 | [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
 | [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
 | [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
@@ -130,9 +130,47 @@ Example:
 ```
 delete-module m/CS2103T
 ```
-In the above example, we are deleting module CS2103T from Plannit.
+In the above example, we are deleting module `CS2103T` from Plannit.
 
-#### 2.1.3. Find module
+#### 2.1.3. Edit module
+You can edit a module on Plannit using the `edit-module` command.
+
+This command will require an index and at least one of the following flags:
+* `m/`: To be followed by the new module code of the module to be edited on Plannit.
+* `t/`: To be followed by the new module title of the module to be edited on Plannit.
+
+Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
+* `INDEX` is the currently displayed index number of the module you are editing for on the screen.
+* You cannot edit a module such that the new module code coincides with the module code of another 
+  module on Plannit (case-insensitive).
+* If `MODULE_TITLE` is empty, then the module title will be deleted from Plannit.
+
+Examples:
+
+```
+edit-module 3 m/CS2103T
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2103T`.
+
+```
+edit-module 3 m/CS2103T t/
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2103T`, 
+and at the same time, removing the module title.
+
+```
+edit-module 3 m/CS2103T t/Software Engineering
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2103T`,
+and at the same time, changing the module title to `Software Engineering`.
+
+```
+edit-module 3 t/Software Engineering
+```
+In the above example, we are changing the module title of the third module on Plannit to 
+`Software Engineering`.
+
+#### 2.1.4. Find module
 You can find all modules in Plannit whose module code starts with a specific keyword.
 
 Format: `find-module KEYWORD`
@@ -153,7 +191,7 @@ remain on the home page after executing the `find-module` command. This is diffe
 from the behavior of [`goto`](#252-navigate-between-modules)
 </div>
 
-#### 2.1.4. List module
+#### 2.1.5. List module
 Show a list of all modules in Plannit after finding module.
 
 Format: `list-module`
