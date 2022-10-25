@@ -82,7 +82,7 @@ public class CommandBox extends UiPart<Region> {
         }
 
         String previousInput = inputHistory.getPreviousInput();
-        commandTextField.setText(previousInput);
+        updateText(previousInput);
     }
 
     /**
@@ -94,7 +94,15 @@ public class CommandBox extends UiPart<Region> {
         }
 
         String nextInput = inputHistory.getNextInput();
-        commandTextField.setText(nextInput);
+        updateText(nextInput);
+    }
+
+    /**
+     * Change current text with the given input.
+     */
+    private void updateText(String input) {
+        commandTextField.setText(input);
+        commandTextField.positionCaret(input.length());
     }
 
     /**
