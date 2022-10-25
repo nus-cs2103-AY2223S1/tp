@@ -111,6 +111,10 @@ Adds a new Professor contact to your contacts list.
 
 Format: `prof n/NAME m/MODULE_CODE [s/SPECIALISATION] p/PHONE e/EMAIL g/GENDER [t/TAG]... l/LOCATION git/GITHUB_USERNAME [r/RATING]`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When adding a Professor, you can enter multiple module codes in the same command, but only the last module code will be taken.
+</div>
+
 Examples:
 * `prof n/Hartin Menz m/CS1101s s/Discrete Math p/98765432 e/HMenz@example.com g/M t/friends l/COM2 LT4 git/hartinmenz r/5 o/2-12:00-2`
 * `prof n/Koro Sensei m/CS3230 p/98663357 e/KoroSensei@gmail.com g/M t/wanted git/senseikoro`
@@ -120,6 +124,10 @@ Examples:
 Adds a new Teaching Assistant contact to your contacts list.
 
 Format: `ta n/NAME m/MODULE_CODE p/PHONE e/EMAIL g/GENDER [t/TAG]... l/LOCATION git/GITHUB_USERNAME [r/RATING]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Similar to professor, when adding a Teaching Assistant, you can enter multiple module codes in the same command, but only the last module code will be taken.
+</div>
 
 Examples:
 * `ta n/Alice Doe m/CS2100 p/98765432 e/AliceD@example.com g/F t/friends t/owesMoney l/COM1-0203 git/alicyD r/5`
