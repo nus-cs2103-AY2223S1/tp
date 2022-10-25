@@ -1,0 +1,200 @@
+.background {
+    -fx-background-color: -style-background-color;
+    background-color: #383838; /* Used in the default.html file */
+}
+
+.tab-pane {
+    -fx-padding: 0 0 0 1;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 0 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+}
+
+.split-pane {
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
+    -fx-background-color: -style-background-color;
+}
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: -style-pane-background-color;
+}
+
+.list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+    -fx-background-insets: 0 0 10 0;
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
+    -fx-background-color: transparent;
+}
+
+.list-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.pane-with-border {
+     -fx-background-color: -style-background-color;
+     -fx-border-color: transparent;
+     -fx-border-top-width: 1px;
+}
+
+.menu-bar {
+    -fx-background-color: -style-menu-bar-color;
+    -fx-effect: -style-pane-shadow;
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: -style-font-family;
+    -fx-text-fill: -style-text-color;
+    -fx-opacity: 0.9;
+}
+
+.context-menu {
+    -fx-background-color: -style-menu-bar-color;
+    -fx-effect: -style-pane-shadow;
+}
+
+.context-menu .label {
+    -fx-font-size: 14pt;
+    -fx-text-fill: -style-text-color;
+}
+
+#commandTextField {
+    -fx-background-color: -style-background-color;
+    -fx-background-insets: 0;
+    -fx-border-color: -style-border-color;
+    -fx-border-insets: 0;
+    -fx-border-width: 1;
+    -fx-font-family: -style-font-family;
+    -fx-font-size: 13pt;
+    -fx-text-fill: -style-pane-text-color;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: -style-inner-shadow;
+}
+
+.result-display {
+    -fx-background-color: -style-border-color;
+    -fx-font-family: -style-font-family;
+    -fx-font-size: 13pt;
+    -fx-text-fill: -style-pane-text-color;
+    -fx-effect: -style-inner-shadow;
+}
+
+#resultDisplay .content {
+    -fx-background-color: -style-background-color;
+    -fx-border-width: 0;
+}
+
+#moduleClassListHeader {
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-font-style: italic;
+    -fx-fill: -style-pane-text-color;
+}
+
+#moduleClassList {
+    -fx-background-radius: 0 7 7 0;
+    -fx-border-radius: 0 7 7 0;
+    -fx-alignment: center;
+    -fx-border-color: -style-border-color;
+    -fx-border-width: 1 1 1 8;
+    -fx-effect: -style-list-glow-shadow;
+}
+
+#divider {
+    -fx-padding: 0;
+    -fx-background-color: #b7b9bd;
+    -fx-border-color: #b7b9bd;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-inset: 7;
+}
+
+#studentClassListHeader {
+    -fx-font-family: sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-font-style: italic;
+    -fx-fill: -style-pane-text-color;
+}
+
+#studentList {
+    -fx-background-radius: 7 0 0 7;
+    -fx-border-radius: 7 0 0 7;
+    -fx-alignment: center;
+    -fx-border-color: -style-border-color;
+    -fx-border-width: 1 8 1 1;
+    -fx-effect: -style-list-glow-shadow;
+}
+
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.status-bar {
+    -fx-background-color: -style-status-bar-color;
+    -fx-effect: -style-pane-shadow;
+}
+
+.status-bar .label {
+    -fx-font-family: -style-font-family;
+    -fx-text-fill: -style-text-color;
+    -fx-padding: 4px;
+    -fx-pref-height: 30px;
+}
+
+.status-bar-with-border {
+    -fx-border-color: -style-status-bar-color;
+    -fx-border-width: 1px;
+}
+
+.scroll-bar {
+    -fx-background-color: derive(-style-pane-background-color, -5%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(-style-background-color, -20%);
+    -fx-background-insets: 3;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: black;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}

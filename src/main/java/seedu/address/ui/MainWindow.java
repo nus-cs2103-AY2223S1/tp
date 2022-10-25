@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.theme.Theme.constructTheme;
+
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,6 +22,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.schedule.ScheduleGridPanel;
 import seedu.address.ui.schedule.ScheduleListPanel;
+import seedu.address.ui.theme.Theme;
+import seedu.address.ui.theme.ThemeException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -49,6 +54,7 @@ public class MainWindow extends UiPart<Stage> {
     private ScheduleGridPanel scheduleGridPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private Theme theme;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -100,7 +106,9 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        GuiSettings guiSettings = logic.getGuiSettings();
+        setWindowDefaultSize(guiSettings);
+        applyTheme(constructTheme(guiSettings.getTheme()));
 
         setAccelerators();
 
@@ -309,13 +317,39 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    private void applyTheme(Theme newTheme) {
+        ObservableList<String> uiTheme = primaryStage.getScene().getStylesheets();
+        uiTheme.clear();
+        try {
+            String switchedTheme = newTheme.getTheme();
+            uiTheme.add(switchedTheme);
+            uiTheme.add(Theme.EXTENSION.getTheme());
+            theme = newTheme;
+            logger.info(String.format(Theme.SUCCESS_MESSAGE, theme));
+        } catch (ThemeException e) {
+            logger.info(e.getMessage());
+        }
+    }
+
+    /** Sets theme to Light Theme. */
+    @FXML
+    public void applyLightTheme() {
+        applyTheme(Theme.LIGHT);
+    }
+
+    /** Sets theme to Dark Theme. */
+    @FXML
+    public void applyDarkTheme() {
+        applyTheme(Theme.DARK);
+    }
+
     /**
      * Closes the application.
      */
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), theme.toString());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
