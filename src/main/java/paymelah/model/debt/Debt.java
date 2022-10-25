@@ -46,6 +46,9 @@ public class Debt {
         return time;
     }
 
+    /**
+     * Compares with another Debt using date and time.
+     */
     public int compareDateTimeWith(Debt o) {
         int dateComparison = this.date.compareTo(o.date);
         return dateComparison == 0 ? this.time.compareTo(o.time) : dateComparison;
