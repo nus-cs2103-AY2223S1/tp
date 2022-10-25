@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -152,6 +153,11 @@ public class ModelManager implements Model {
                 || Password.check(oldPassword, userPrefs.getPasswordHash()).withArgon2()) {
             userPrefs.setPasswordHash(Password.hash(newPassword).addRandomSalt().withArgon2().getResult());
         }
+    }
+
+    public void sort(String sortParam) {
+        requireNonNull(sortParam);
+        addressBook.sort(sortParam);
     }
 
     @Override

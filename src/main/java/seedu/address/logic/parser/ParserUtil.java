@@ -316,4 +316,9 @@ public class ParserUtil {
         }
         return file.toPath();
     }
+
+    public static String parseSort(String sortParam) throws ParseException {
+        requireNonNull(sortParam);
+        return sortParam.trim();
+    }
 }
