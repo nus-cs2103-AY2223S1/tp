@@ -175,6 +175,18 @@ Examples:
 * `delete id/2356`
 * `delete index/1`
 
+### Predicting a student's grade : `predict`
+
+Watson has rudimentary data analysis and prediction abilities.
+It can predict a student's grade based on the student's past grades.
+
+Format: `predict n/NAME s/SUBJECT`
+
+* Predicts the grade of the next assignment for the input subject for the input student/
+* The name refers to the name of the student.
+* The subject refers to the subject of the assignment to predict.
+* The student should be taking the subject.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the database.
