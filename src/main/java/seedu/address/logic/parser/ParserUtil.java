@@ -157,18 +157,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String text} and dissassembles it into index.
-     *
-     * @throws ParseException if the input is more than 1, or does not start with an integer.
-     */
-    public static String[] parseIndexedRemove(String text) throws ParseException {
-        String[] args = text.split("");
-        if (args.length > 1 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_REMOVE_COMMAND_FORMAT));
-        }
-        return args;
-    }
-    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
