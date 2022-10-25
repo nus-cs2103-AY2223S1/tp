@@ -2,7 +2,6 @@ package seedu.rc4hdb.ui;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.DailySchedule;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 
@@ -25,8 +25,10 @@ public class BookingTableView extends UiPart<Region> {
 
     private static final String FXML = "BookingTableView.fxml";
 
-    private static final List<String> hours = List.of("0800", "1000", "1100", "1200", "1300", "1400", "1500", "1600",
-            "1700", "1800", "1900", "2000", "2100", "2200", "2300");
+    private static final List<String> hours = List.of("0800", "0900", "1000", "1100", "1200", "1300", "1400", "1500",
+            "1600", "1700", "1800", "1900", "2000", "2100", "2200", "2300");
+
+    private static final int START_HOUR = 8;
 
     private final TableColumn<DailySchedule, Day> dayColumn = new TableColumn<>("Day");
     private final List<TableColumn<DailySchedule, Resident[]>> hourColumn;
@@ -54,24 +56,6 @@ public class BookingTableView extends UiPart<Region> {
         updateTable(bookingList);
     }
 
-    /**
-     * Builds a list of daily schedules, corresponding to a week.
-     */
-    public List<DailySchedule> buildWeeklySchedule(List<Booking> bookingList) {
-        List<DailySchedule> weeklySchedule = new ArrayList<>();
-        List<Day> days = Day.DAYS_OF_WEEK.stream().map(Day::new).collect(Collectors.toList());
-        for (Day day : days) {
-            List<Booking> dailyBooking = new ArrayList<>();
-            for (Booking booking : bookingList) {
-                if (booking.getDayOfWeek().equals(day)) {
-                    dailyBooking.add(booking);
-                }
-            }
-            weeklySchedule.add(DailySchedule.of(dailyBooking, day));
-        }
-        return weeklySchedule;
-    }
-
     private void addColumns() {
         this.bookingTableView.getColumns().add(dayColumn);
         this.bookingTableView.getColumns().addAll(hourColumn);
@@ -85,20 +69,6 @@ public class BookingTableView extends UiPart<Region> {
             hourColumn.get(i).setCellValueFactory(new PropertyValueFactory<>("bookedBy"));
             hourColumn.get(i).setCellFactory(tc -> populateNthColumn(tc, finalI));
         }
-    }
-
-    private TableCell<DailySchedule, Day> pop(TableColumn<DailySchedule, Day> column) {
-        return new TableCell<>() {
-            @Override
-            public void updateIndex(int index) {
-                super.updateIndex(index);
-                if (isEmpty() || index < 0) {
-                    setText(null);
-                } else {
-                    setText(Integer.toString(index + 1));
-                }
-            }
-        };
     }
 
     /**
@@ -125,10 +95,10 @@ public class BookingTableView extends UiPart<Region> {
             @Override
             public void updateItem(Resident[] bookedBy, boolean empty) {
                 super.updateItem(bookedBy, empty);
-                if (empty || bookedBy == null || bookedBy[n + 8] == null) {
+                if (empty || bookedBy == null || bookedBy[n + START_HOUR] == null) {
                     setText(null);
                 } else {
-                    setText(bookedBy[n + 8].getName().value);
+                    setText(bookedBy[n + START_HOUR].getName().value);
                 }
             }
         };
@@ -139,7 +109,7 @@ public class BookingTableView extends UiPart<Region> {
     }
 
     public void updateTable(List<Booking> bookings) {
-        this.weeklySchedule.setAll(buildWeeklySchedule(bookings));
+        this.weeklySchedule.setAll(DailySchedule.generateWeeklySchedule(bookings));
     }
 
 }

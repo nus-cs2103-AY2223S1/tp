@@ -43,7 +43,8 @@ public class HourPeriod extends StringField implements BookingField {
         String[] hours = test.split("-");
         return hours.length == 2
                 && isValidHour(hours[0])
-                && isValidHour(hours[1]);
+                && isValidHour(hours[1])
+                && Integer.parseInt(hours[0]) < Integer.parseInt(hours[1]);
     }
 
     /**
@@ -52,8 +53,8 @@ public class HourPeriod extends StringField implements BookingField {
      * @return true if both clashes with each other.
      */
     public boolean clashesWith(HourPeriod other) {
-        return !(endHour.isAfterOrDuring(other.startHour)
-                && startHour.isAfterOrDuring(other.endHour));
+        return !(startHour.isAfterOrDuring(other.endHour)
+                || other.startHour.isAfterOrDuring(endHour));
     }
 
     public Hour getStart() {
