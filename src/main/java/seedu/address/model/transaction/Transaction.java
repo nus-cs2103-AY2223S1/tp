@@ -50,8 +50,4 @@ public abstract class Transaction {
         return localDate;
     }
 
-    public boolean isOlderThan(Transaction transaction) {
-        return this.date.isOlderThan(transaction);
-    }
-
 }

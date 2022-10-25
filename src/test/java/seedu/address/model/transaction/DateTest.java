@@ -62,4 +62,19 @@ class DateTest {
         Date otherDate = new Date(value);
         assertEquals(date, otherDate);
     }
+
+    @Test
+    public void isOlderDate() {
+        // older date
+        Date date1 = new Date("11/09/2003");
+        Date date2 = new Date("11/09/2001");
+
+        assertFalse(date1.isOlderThan(date2));
+        assertFalse(date1.isOlderThan(new Date("12/09/2002")));
+        assertFalse(date1.isOlderThan(date1));
+
+        // earlier date
+        assertTrue(date2.isOlderThan(date1));
+    }
+
 }

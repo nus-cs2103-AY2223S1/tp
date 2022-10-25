@@ -146,13 +146,13 @@ public class TransactionLog {
 
             //if sort by oldest, old == 1, else old == 0.
             if (old == 1) {
-                if (arr.get(j).isOlderThan(pivot)) {
+                if (arr.get(j).date.isOlderThan(pivot.date)) {
 
                     i++;
                     swap(arr, i, j);
                 }
             } else {
-                if (!arr.get(j).isOlderThan(pivot)) {
+                if (!arr.get(j).date.isOlderThan(pivot.date)) {
 
                     i++;
                     swap(arr, i, j);

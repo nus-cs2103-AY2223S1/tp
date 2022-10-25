@@ -84,11 +84,11 @@ public class Date {
 
 
     /**
-     * Compares current transaction's date with another transaction.
-     * @param transaction Another chosen transaction.
-     * @return True if current date is older than other transaction's date.
+     * Compares current transaction's date with another date.
+     * @param date Another chosen date.
+     * @return True if current date is older than other date.
      */
-    public boolean isOlderThan(Transaction transaction) {
-        return this.localDate.isBefore(transaction.getLocalDate());
+    public boolean isOlderThan(Date date) {
+        return this.localDate.isBefore(date.localDate);
     }
 }
