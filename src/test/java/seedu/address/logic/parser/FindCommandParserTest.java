@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 
@@ -81,8 +82,14 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validAddressPrefix_returnsFindCommand() {
-        // TODO: Update test case with a/ prefix
-        assertParseFailure(parser, ADDRESS_DESC_AMY, "a/ search not implemented yet.");
+        FindCommand expectedAddressCommand =
+                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList("Pasir", "Ris", "Bukit", "Timah")));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " a/Pasir Ris Bukit Timah", expectedAddressCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " a/Pasir Ris             Bukit Timah", expectedAddressCommand);
     }
 
     @Test
