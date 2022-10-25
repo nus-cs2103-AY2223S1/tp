@@ -7,23 +7,26 @@
 
 <?import javafx.scene.control.Label?>
 <VBox maxHeight="Infinity" HBox.hgrow="ALWAYS" maxWidth="Infinity" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label style="-fx-font-size: 14pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
+        Application Status Summary
+    </Label>
     <GridPane fx:id="stackedBar" VBox.vgrow="ALWAYS" style="-fx-border-radius: 25px;" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity">
-        <VBox alignment="CENTER" GridPane.columnIndex="0" VBox.vgrow="ALWAYS" style="-fx-background-color: #7ED957" minHeight="50">
-            <Label fx:id="appliedLabel"/>
+        <VBox alignment="CENTER" GridPane.columnIndex="0" VBox.vgrow="ALWAYS" style="-fx-background-color: #fa9960" minHeight="50">
+            <Label fx:id="appliedLabel" />
         </VBox>
-        <VBox alignment="CENTER" GridPane.columnIndex="1" VBox.vgrow="ALWAYS" style="-fx-background-color: #004AAD">
+        <VBox alignment="CENTER" GridPane.columnIndex="1" VBox.vgrow="ALWAYS" style="-fx-background-color: #33c2ff">
             <Label fx:id="assessmentLabel" />
         </VBox>
-        <VBox alignment="CENTER" GridPane.columnIndex="2" VBox.vgrow="ALWAYS" style="-fx-background-color: #FF66C4">
+        <VBox alignment="CENTER" GridPane.columnIndex="2" VBox.vgrow="ALWAYS" style="-fx-background-color: #ffe74e">
             <Label fx:id="interviewLabel" />
         </VBox>
-        <VBox alignment="CENTER" GridPane.columnIndex="3" VBox.vgrow="ALWAYS" style="-fx-background-color: #FF914D">
+        <VBox alignment="CENTER" GridPane.columnIndex="3" VBox.vgrow="ALWAYS" style="-fx-background-color: #f487fc">
             <Label fx:id="offerLabel" />
         </VBox>
-        <VBox alignment="CENTER" GridPane.columnIndex="4" VBox.vgrow="ALWAYS" style="-fx-background-color: #008037">
+        <VBox alignment="CENTER" GridPane.columnIndex="4" VBox.vgrow="ALWAYS" style="-fx-background-color: #8df863">
             <Label fx:id="acceptedLabel" />
         </VBox>
-        <VBox alignment="CENTER" GridPane.columnIndex="5" VBox.vgrow="ALWAYS" style="-fx-background-color: #FF1616">
+        <VBox alignment="CENTER" GridPane.columnIndex="5" VBox.vgrow="ALWAYS" style="-fx-background-color: #fc5f5f">
             <Label fx:id="rejectedLabel" />
         </VBox>
         <VBox alignment="CENTER" GridPane.columnIndex="6" VBox.vgrow="ALWAYS" style="-fx-background-color: gray">
