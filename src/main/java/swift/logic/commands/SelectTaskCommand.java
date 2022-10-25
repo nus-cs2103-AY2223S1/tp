@@ -13,7 +13,9 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
-import static swift.model.Model.*;
+import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 /**
  * Command to display all tasks using its specified index from address book.
@@ -45,6 +47,7 @@ public class SelectTaskCommand extends Command {
 
         // Display only selected task
         Task selectedTask = lastShownTaskList.get(targetIndex.getZeroBased());
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateFilteredTaskList(task -> task.equals(selectedTask));
 
         model.updateFilteredBridgeList(PREDICATE_SHOW_ALL_BRIDGE);

@@ -19,6 +19,10 @@ import swift.model.person.Person;
 import swift.model.task.Task;
 import swift.storage.Storage;
 
+import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
 /**
  * The main LogicManager of the app.
  */
@@ -90,5 +94,12 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void showAllLists() {
+        model.updateFilteredBridgeList(PREDICATE_SHOW_ALL_BRIDGE);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 }

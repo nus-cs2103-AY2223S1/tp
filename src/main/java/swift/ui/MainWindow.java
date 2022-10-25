@@ -180,6 +180,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleTaskTab() {
+        logic.showAllLists();
+
         personListPanel.removeHeading();
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(), logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
