@@ -116,7 +116,7 @@ List Box:
 
 > Sorts the list of currently displayed items by the provided criteria
 
-**Note:**
+
 * Only one of the sorting criteria must be provided.
 
 **Example Input:**
@@ -148,9 +148,8 @@ List Box:
 
 > Displays the item at the specified index
 
-```note
-Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
-```
+**Note:**
+* Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
 
 **Example Input:**
 
