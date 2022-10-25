@@ -22,9 +22,10 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks survey in the person identified by the index number in the displayed person list as completed"
             + "Parameters: INDEX (must be a positive integer), s/NAME OF SURVEY\n" + "Example: " + COMMAND_WORD
-            + " 1\n s/Shopping survey";
+            + " 1 s/Shopping survey";
 
     public static final String MESSAGE_MARK_PERSON_SUCCESS = "Marked survey as done: %1$s";
+    public static final String MESSAGE_INVALID_SURVEY = "Wrong survey. Please type in the correct survey name";
 
     private final Index targetIndex;
     private final Survey targetSurvey;
@@ -51,6 +52,11 @@ public class MarkCommand extends Command {
 
         Person targetPerson = lastShownList.get(targetIndex.getZeroBased());
         Set<Survey> surveySet = targetPerson.getSurveys();
+
+        if (!surveySet.stream().anyMatch(x -> x.survey.equals(targetSurvey.survey))) {
+            throw new CommandException(MESSAGE_INVALID_SURVEY);
+        }
+
         Set<Survey> newSurveySet = new HashSet<>();
 
         for (Survey s : surveySet) {
