@@ -191,7 +191,6 @@ Format: `hide appts r/REASON [MORE_REASONS]`
 
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
-* `hide appts s/marked` hides all marked appointments.<br>
 
 By tag:
 
@@ -208,8 +207,8 @@ Examples:
 By marked/unmarked status:
 Hides appointments which are marked/unmarked.
 
-Format: `hide appts s/marked` or `hide appts s/m` <br>
-Alternative: `hide appts s/unmarked` or `hide appts s/um`
+Format: `hide appts s/STATUS` 
+Shortform: `marked` status can be shortened to `m`, `unmarked` can be shortened to `um`.
 
 Examples:
 * `hide appts s/marked` hides all appointments that has been marked.
