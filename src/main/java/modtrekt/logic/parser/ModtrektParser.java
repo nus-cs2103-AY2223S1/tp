@@ -1,7 +1,6 @@
 package modtrekt.logic.parser;
 
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static modtrekt.logic.commands.utils.AddCommandMessages.MESSAGE_ADD_COMMAND_PREFIXES;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -14,7 +13,7 @@ import com.beust.jcommander.UnixStyleUsageFormatter;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.util.StringUtil;
-import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.AddModuleCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
@@ -60,8 +59,11 @@ public class ModtrektParser {
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(EditModuleCommand.COMMAND_WORD, new EditModuleCommand())
+                .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
                 .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
                 .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
+                .addCommand(AddModuleCommand.COMMAND_WORD, new AddModuleCommand())
+                .addCommand(AddModuleCommand.COMMAND_WORD_SHORTHAND, new AddModuleCommand())
                 .build();
         try {
             // Get the tokens from the user input.
@@ -71,7 +73,10 @@ public class ModtrektParser {
             // Since we're treating e.g. "add task" and "add module" as separate commands,
             // we'll consider "task" or "module" the scope of the command, and add it to the command word.
             String scope = tokens.size() >= 2 ? tokens.get(1) : null;
-            if ("module".equals(scope) || "task".equals(scope)) {
+            String mainCommandWord = tokens.size() >= 1 ? tokens.get(0) : null;
+            // support shorthand for module, no extra -m or module flag needed, hence we remove
+            // it from the token list.
+            if ("module".equals(scope) || "mod".equals(scope) || "task".equals(scope)) {
                 tokens.remove(1);
                 tokens.set(0, tokens.get(0) + " " + scope);
             }
@@ -123,14 +128,6 @@ public class ModtrektParser {
         switch (commandWord) {
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
-        case AddCommand.COMMAND_WORD:
-            if (arguments.contains(AddCommand.COMMAND_IDENTIFIER)) {
-                return new AddCommandParser().parse(arguments);
-            } else if (arguments.contains(AddTaskCommand.COMMAND_IDENTIFIER)) {
-                return new AddTaskCommandParser().parse(arguments);
-            } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ADD_COMMAND_PREFIXES));
-            }
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
