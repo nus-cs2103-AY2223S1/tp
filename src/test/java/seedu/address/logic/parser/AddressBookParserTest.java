@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import static seedu.address.model.person.testutil.Assert.assertThrows;
-import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,7 +22,6 @@ import seedu.address.logic.commands.AddGroupMemberCommand;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.commands.DeleteGroupMemberCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
