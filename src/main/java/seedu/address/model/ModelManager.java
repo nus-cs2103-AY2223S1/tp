@@ -24,7 +24,7 @@ public class ModelManager implements Model {
 
     private final TeachersPet teachersPet;
     private final UserPrefs userPrefs;
-    private FilteredList<Person> filteredPersons;
+    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> filteredSchedule;
 
     /**
@@ -117,6 +117,12 @@ public class ModelManager implements Model {
         teachersPet.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void sortPersons(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        teachersPet.sortPersons(comparator);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -132,34 +138,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void sortFilteredPersonList(Comparator<Person> comparator) {
-        requireNonNull(comparator);
-        ArrayList<Person> sortedList = replaceSelectionSort(filteredPersons, comparator);
-        ObservableList<Person> observableList = FXCollections.observableList(sortedList);
-        this.filteredPersons = new FilteredList<>(observableList);
-        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    private static ArrayList<Person> replaceSelectionSort(FilteredList<Person> filteredList, Comparator<Person> comparator) {
-        ArrayList<Person> duplicatedList = new ArrayList<>();
-        for (int i = 0; i < filteredList.size(); i++) {
-            duplicatedList.add(filteredList.get(i));
-        }
-        int n = duplicatedList.size();
-        for (int i = 1; i < n; ++i) {
-            Person curr = duplicatedList.get(i);
-            int j = i - 1;
-
-            while (j >= 0 && comparator.compare(duplicatedList.get(j), curr) == 1) {
-                duplicatedList.set(j + 1, duplicatedList.get(j));
-                j = j - 1;
-            }
-            duplicatedList.set(j + 1, curr);
-        }
-        return duplicatedList;
     }
 
     //=========== Filtered Schedule List Accessors =============================================================

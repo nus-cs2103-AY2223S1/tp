@@ -3,11 +3,14 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -95,6 +98,32 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    public void sortPersons(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        ArrayList<Person> sortedList = replaceSelectionSort(internalList, comparator);
+        internalList.setAll(sortedList);
+    }
+
+
+    private static ArrayList<Person> replaceSelectionSort(ObservableList<Person> observableList, Comparator<Person> comparator) {
+        ArrayList<Person> duplicatedList = new ArrayList<>();
+        for (int i = 0; i < observableList.size(); i++) {
+            duplicatedList.add(observableList.get(i));
+        }
+        int n = duplicatedList.size();
+        for (int i = 1; i < n; ++i) {
+            Person curr = duplicatedList.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && comparator.compare(duplicatedList.get(j), curr) == 1) {
+                duplicatedList.set(j + 1, duplicatedList.get(j));
+                j = j - 1;
+            }
+            duplicatedList.set(j + 1, curr);
+        }
+        return duplicatedList;
     }
 
     /**
