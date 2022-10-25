@@ -110,7 +110,7 @@ public class JsonAdaptedItem {
                     Price.class.getSimpleName()));
         }
         if (!Price.isValidPrice(sellPrice)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
         final Price modelSellPrice = new Price(sellPrice);
 
@@ -120,7 +120,7 @@ public class JsonAdaptedItem {
                     Price.class.getSimpleName()));
         }
         if (!Price.isValidPrice(costPrice)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
         final Price modelCostPrice = new Price(costPrice);
 
