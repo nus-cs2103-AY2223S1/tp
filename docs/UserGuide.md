@@ -25,14 +25,14 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
    Some example commands you can try:
 
    * **`list`** : Lists all tutors.
-   
+
    * **`view`**`3` : Displays full details of the 3rd tutor shown in the current list.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3 s/A1234567X tn/3 r/5.0` : Adds a tutor named `John Doe` to Tuthub.
 
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
-   
-   * **`save`** : Saves the data to your local device. 
+
+   * **`save`** : Saves the data to your local device.
 
    * **`clear`** : Deletes all tutors.
 
@@ -165,8 +165,8 @@ Examples:
 
 ### Sorting tutors by quantitative measures: `sort`
 
-Looking for tutors with the best reviews? The sort command allows you to sort the 
-list of tutors in ascending or descending order based on different quantitative 
+Looking for tutors with the best reviews? The sort command allows you to sort the
+list of tutors in ascending or descending order based on different quantitative
 measures, such as rating and teaching nomination. More specifications on the sort command is visible below.
 
 Format: `sort ORDER PREFIX`
