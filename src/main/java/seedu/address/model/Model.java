@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.exceptions.NextStateNotFoundException;
+import seedu.address.model.exceptions.PreviousStateNotFoundException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -122,4 +124,10 @@ public interface Model {
      * @return the current Reward points of a Customer
      */
     Reward getCurrentReward(Email email);
+
+    void commitAddressBook();
+
+    void undoAddressBook() throws PreviousStateNotFoundException;
+
+    void redoAddressBook() throws NextStateNotFoundException;
 }
