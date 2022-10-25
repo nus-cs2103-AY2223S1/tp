@@ -10,6 +10,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.contact.AddContactCommand;
 import seedu.address.logic.commands.contact.DeleteContactCommand;
 import seedu.address.logic.commands.contact.EditContactCommand;
@@ -98,6 +100,12 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
 
@@ -133,6 +141,56 @@ public class AddressBookParser {
 
         case SortByIdCommand.COMMAND_WORD:
             return new SortByIdCommand();
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Parses user input into String to determine tab to show.
+     *
+     * @param userInput full user input string
+     * @return the unique int id of the tab to show
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public int parseCommandForTab(String userInput) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        switch (commandWord) {
+
+        case AddContactCommand.COMMAND_WORD:
+        case EditContactCommand.COMMAND_WORD:
+        case DeleteContactCommand.COMMAND_WORD:
+        case ClearCommand.COMMAND_WORD:
+        case FindContactCommand.COMMAND_WORD:
+        case FilterContactCommand.COMMAND_WORD:
+        case ListContactCommand.COMMAND_WORD:
+            return 0;
+
+        case ExitCommand.COMMAND_WORD:
+        case HelpCommand.COMMAND_WORD:
+            return 3;
+
+        case AddTagCommand.COMMAND_WORD:
+        case DeleteTagCommand.COMMAND_WORD:
+            return 2;
+
+        case AddTaskCommand.COMMAND_WORD:
+        case DeleteTaskCommand.COMMAND_WORD:
+        case EditTaskCommand.COMMAND_WORD:
+        case FindTaskCommand.COMMAND_WORD:
+        case FilterTaskCommand.COMMAND_WORD:
+        case MarkTaskCommand.COMMAND_WORD:
+        case UnmarkTaskCommand.COMMAND_WORD:
+        case ListTaskCommand.COMMAND_WORD:
+        case SortByDeadlineCommand.COMMAND_WORD:
+        case SortByIdCommand.COMMAND_WORD:
+            return 1;
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

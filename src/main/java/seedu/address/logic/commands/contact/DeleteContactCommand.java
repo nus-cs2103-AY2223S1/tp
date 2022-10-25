@@ -49,6 +49,7 @@ public class DeleteContactCommand extends Command {
             model.decreaseTagCount(tag);
         }
         model.deletePerson(personToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 

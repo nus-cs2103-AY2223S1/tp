@@ -4,8 +4,8 @@
 
 ![Ui](docs/images/Ui.png)
 
-YellowBook is a desktop application for university students who are involved in many projects to organize their project 
-contacts and tasks. 
+YellowBook is a desktop application for university students who are involved in many projects to organize their project
+contacts and tasks.
 
 YellowBook is optimised for use via a Command Line Interface (CLI).
 
