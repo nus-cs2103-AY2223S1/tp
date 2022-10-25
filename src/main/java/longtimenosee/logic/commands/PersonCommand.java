@@ -7,16 +7,18 @@ import longtimenosee.model.Model;
  */
 public class PersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "showClient";
+    public static final String COMMAND_WORD = "contacts";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Listed all clients";
+    public static final String MESSAGE_SUCCESS = "Listed all contacts";
 
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false);
+
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, true, false, false);
+
     }
 }

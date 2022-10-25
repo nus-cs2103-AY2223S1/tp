@@ -8,6 +8,7 @@ import longtimenosee.logic.commands.CommandResult;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.ReadOnlyAddressBook;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.FinancialAdvisorIncome;
 import longtimenosee.model.policy.Policy;
@@ -55,4 +56,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    ObservableList<Event> getFilteredEventList();
 }

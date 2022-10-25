@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes AddEventCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then
+    :Throw InvalidCommandException;
+else ([ValidSyntax])
+if () then
+    : Throw InvalidPersonException;
+else ([Person Name exists in AB])
+    if () then
+    : Throw OverlapEventException;
+    else ([Event doesn't overlap])
+    : ModeManager adds event to AB;
+    : UniqueEventList is updated;
+    endif
+    endif
+endif
+stop
+@enduml

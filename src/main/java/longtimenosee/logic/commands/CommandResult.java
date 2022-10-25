@@ -21,29 +21,40 @@ public class CommandResult {
     private final boolean showPolicy;
 
     /** The application should display clients. */
-    private final boolean showClients;
+    private final boolean showPerson;
+
+
+    /** The application should display events. */
+    private final boolean showEvent;
 
     private final boolean showIncome;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showPolicy, boolean showClient, boolean showIncome) {
+                         boolean showPolicy, boolean showPerson, boolean showEvent, boolean showIncome) {
+
+
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showPolicy = showPolicy;
-        this.showClients = showClient;
+        this.showPerson = showPerson;
+        this.showEvent = showEvent;
         this.showIncome = showIncome;
+
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean showPolicy, boolean showClients, boolean showIncome) {
-        this(feedbackToUser, false, false, showPolicy, showClients, showIncome);
+
+    public CommandResult(String feedbackToUser, boolean showPolicy, boolean showClients, boolean showEvent) {
+        this(feedbackToUser, false, false, showPolicy, showClients, showEvent, false);
+
     }
 
     public String getFeedbackToUser() {
@@ -62,11 +73,15 @@ public class CommandResult {
         return showPolicy;
     }
 
-    public boolean isShowClient() {
-        return showClients;
+    public boolean isShowPerson() {
+        return showPerson;
     }
     public boolean isShowIncome() {
         return showIncome;
+    }
+
+    public boolean isShowEvent() {
+        return showEvent;
     }
 
     @Override
@@ -91,7 +106,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showPolicy, showPerson, showEvent, showIncome);
     }
 
 }

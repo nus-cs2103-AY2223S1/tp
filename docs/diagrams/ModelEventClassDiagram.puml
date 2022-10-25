@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+ModelManager --> "1" AddressBook
+AddressBook *-right-> "1" UniqueEventList
+
+ModelManager -down->"~* filtered" Event
+UniqueEventList -right-> Event
+
+
+Event *--> Description
+Event *--> PersonName
+Event *--> Duration
+Event *--> Date
+@enduml

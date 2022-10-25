@@ -12,6 +12,11 @@ import longtimenosee.model.person.Person;
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a NameContainsKeywordsPredicate object, which consists of a keywords input.
+     *
+     * @param keywords is the keywords input by the user to be compared.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

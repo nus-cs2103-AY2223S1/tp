@@ -9,6 +9,9 @@ import java.util.Set;
 import longtimenosee.commons.core.index.Index;
 import longtimenosee.commons.util.StringUtil;
 import longtimenosee.logic.parser.exceptions.ParseException;
+import longtimenosee.model.event.Date;
+import longtimenosee.model.event.Description;
+import longtimenosee.model.event.Duration;
 import longtimenosee.model.person.Address;
 import longtimenosee.model.person.Birthday;
 import longtimenosee.model.person.Email;
@@ -53,8 +56,8 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!longtimenosee.model.person.Name.isValidName(trimmedName)) {
+            throw new ParseException(longtimenosee.model.person.Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -193,7 +196,7 @@ public class ParserUtil {
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
         String trimmedCompanyTag = company.trim();
-        if (!Title.isValidTitle(trimmedCompanyTag)) {
+        if (!Company.isValidCompany(trimmedCompanyTag)) {
             throw new ParseException(Company.MESSAGE_FORMAT_CONSTRAINTS);
         }
         return new Company(trimmedCompanyTag);
@@ -238,7 +241,46 @@ public class ParserUtil {
         }
         return coverageSet;
     }
+    // Parse functions related to Event //
+    /**
+     * Parses a {@code String startTime, endTime} into a {@code Duration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code startTime, endTime} is invalid.
+     */
+    public static Duration parseDuration(String startTime, String endTime) throws ParseException {
+        requireNonNull(startTime);
+        requireNonNull(endTime);
+        String strippedStartTime = startTime.strip();
+        String strippedEndTime = endTime.strip();
+        if (!Duration.isValidTime(strippedStartTime) || !Duration
+                .isValidTime((strippedEndTime))) {
+            throw new ParseException(Duration.FORMAT_CONSTRAINTS);
+        }
+        String finalInput = strippedStartTime + "__" + strippedEndTime;
+        if (!Duration.isValidStartAndEnd(finalInput)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+        }
+        return new Duration(finalInput);
+    }
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String strippedDate = date.strip();
+        if (!Date.isValidFormat(strippedDate)) {
+            throw new ParseException(Date.MESSAGE_FORMAT_CONSTRAINTS);
+        }
 
+        if (!Date.isValidRange(strippedDate)) {
+            throw new ParseException(Date.RANGE_FORMAT_CONSTRAINTS);
+        }
+        return new Date(strippedDate);
+    }
     /**
      * Parses {@code String policyDate} into a {@code PolicyDate}.
      * Leading and trailing whitespaces will be trimmed.
@@ -252,4 +294,20 @@ public class ParserUtil {
         return new PolicyDate(policyDate);
     }
 
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String strippedDescription = description.strip();
+        if (!Description.isValidDescription(strippedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(strippedDescription);
+    }
 }

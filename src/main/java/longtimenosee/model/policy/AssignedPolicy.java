@@ -67,6 +67,10 @@ public class AssignedPolicy {
         return this.endDate;
     }
 
+    public boolean isSamePolicy(Policy policyToCheck) {
+        return this.policy.isSamePolicy(policyToCheck);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();

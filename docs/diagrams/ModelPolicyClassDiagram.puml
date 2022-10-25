@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class UniquePolicyList
+Class Policy
+Class Commission
+Class Company
+Class Coverage
+Class Title
+Class AddressBook
+Class ModelManager
+
+ModelManager --> "1" AddressBook
+AddressBook *-right-> "1" UniquePolicyList
+
+ModelManager -down-> "~* filtered" Policy
+UniquePolicyList -right-> "~* all" Policy
+
+Policy *--> "1..*" Coverage
+Policy *--> Company
+Policy *--> Commission
+Policy *--> Title
+
+Commission -[hidden]right-> Company
+Commission -[hidden]right-> Coverage
+
+@enduml

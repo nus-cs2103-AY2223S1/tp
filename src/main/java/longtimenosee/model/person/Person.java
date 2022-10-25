@@ -40,7 +40,6 @@ public class Person {
 
     private Set<AssignedPolicy> assignedPolicies = new HashSet<>();
     private Birthday birthday;
-    //private ArrayList<Event> events; // TODO: EventList class
     //private PersonNotes notes; //TODO: Just a string
     private Income income;
     private RiskAppetite ra;
@@ -146,6 +145,10 @@ public class Person {
 
     public boolean addPolicy(AssignedPolicy assignedPolicy) {
         return assignedPolicies.add(assignedPolicy);
+    }
+
+    public boolean removePolicy(AssignedPolicy assignedPolicy) {
+        return assignedPolicies.remove(assignedPolicy);
     }
 
     public Birthday getBirthday() {
