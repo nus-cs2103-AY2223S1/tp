@@ -14,7 +14,7 @@ public class LocateGymCommandParserTest {
     @Test
     public void parseFailure() {
         String invalidInput = "@121asfb";
-        String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT, LocateGymCommand.MESSAGE_USSAGE);
+        String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT, LocateGymCommand.MESSAGE_USAGE);
         assertParseFailure(parser, invalidInput, expected);
     }
 
