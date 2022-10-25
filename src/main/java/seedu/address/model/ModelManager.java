@@ -38,7 +38,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyPennyWise pennyWise, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(pennyWise, userPrefs);
 
-        logger.fine("Initializing with penny wise: " + pennyWise + " and user prefs " + userPrefs);
+        logger.fine("Initializing with PennyWise: " + pennyWise + " and user preferences " + userPrefs);
 
         this.pennyWise = new PennyWise(pennyWise);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -183,11 +183,6 @@ public class ModelManager implements Model {
     public void updateFilteredIncomeList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredIncome.setPredicate(predicate);
-    }
-
-    @Override
-    public void setMonthForChart(YearMonth month) {
-        this.monthForChart = month;
     }
 
     /**

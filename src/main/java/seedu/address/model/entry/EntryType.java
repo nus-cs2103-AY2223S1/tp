@@ -10,6 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EntryType {
     public static final String ENTRY_TYPE_EXPENDITURE = "e";
     public static final String ENTRY_TYPE_INCOME = "i";
+    public static final String ENTRY_TYPE_EXPENDITURE_LABEL = "expenditure";
+    public static final String ENTRY_TYPE_INCOME_LABEL = "income";
 
     public static final String MESSAGE_CONSTRAINTS = "Entry type should only be either '"
             + ENTRY_TYPE_EXPENDITURE
@@ -24,13 +26,13 @@ public class EntryType {
         EXPENDITURE() {
             @Override
             public String toString() {
-                return ENTRY_TYPE_EXPENDITURE;
+                return ENTRY_TYPE_EXPENDITURE_LABEL;
             }
         },
         INCOME() {
             @Override
             public String toString() {
-                return ENTRY_TYPE_INCOME;
+                return ENTRY_TYPE_INCOME_LABEL;
             }
         };
 
