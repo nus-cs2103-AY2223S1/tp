@@ -244,6 +244,6 @@ Action | Format, Examples
 **Clear contacts** | `clear`
 **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
 **Edit contact** | `edit INDEX [n/name}] [p/{phone_number}] [e/{email}] [a/{address}] [t/{tag}]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find contacts** | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`
+**Find contacts** | `findc n/ {name}` <br> `findc m/ {module}` <br> `findc ts/ {task_index}` <br> e.g., `findc n/ John`, `findc m/ CS1231S`, `findc ts/ 2`
 **List contacts** | `listc`
 **Help** | `help`
