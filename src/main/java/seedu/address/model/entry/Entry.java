@@ -7,8 +7,6 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents an Entry in the PennyWise application.
  * Guarantees: details are present and not null, field values are validated, immutable.

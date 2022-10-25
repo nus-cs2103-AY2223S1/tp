@@ -28,12 +28,14 @@ public class EntryType {
             public String toString() {
                 return ENTRY_TYPE_EXPENDITURE_LABEL;
             }
+
         },
         INCOME() {
             @Override
             public String toString() {
                 return ENTRY_TYPE_INCOME_LABEL;
             }
+
         };
 
         /**
@@ -50,6 +52,7 @@ public class EntryType {
             }
             return Type.INCOME;
         }
+
     };
 
     private final Type entryType;

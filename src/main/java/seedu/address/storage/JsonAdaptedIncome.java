@@ -10,7 +10,7 @@ import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.Income;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * Jackson-friendly version of {@link Income}
