@@ -29,7 +29,7 @@ import modtrekt.model.module.Module;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add module";
-    public static final String COMMAND_WORD_SHORTHAND = "add -m";
+    public static final String COMMAND_WORD_SHORTHAND = "add mod";
     public static final String COMMAND_IDENTIFIER = "-m";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. \n"
             + "Usage 1: " + COMMAND_WORD + " " + COMMAND_IDENTIFIER + " "
@@ -42,10 +42,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
-
-
-    @Parameter(names = "-m", description = "Module flag", required = true)
-    private Boolean flag = false;
 
     @Parameter(names = "-c", description = "ModCode", required = true,
             converter = ModCodeConverter.class)

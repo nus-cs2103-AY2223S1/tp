@@ -58,7 +58,6 @@ public class ModtrektParser {
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
-                .addCommand(AddTaskCommand.COMMAND_WORD_SHORTHAND, new AddTaskCommand())
                 .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
                 .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
                 .addCommand(AddCommand.COMMAND_WORD, new AddCommand())
@@ -73,13 +72,16 @@ public class ModtrektParser {
             // we'll consider "task" or "module" the scope of the command, and add it to the command word.
             String scope = tokens.size() >= 2 ? tokens.get(1) : null;
             String mainCommandWord = tokens.size() >= 1 ? tokens.get(0) : null;
-            if ("module".equals(scope) || "task".equals(scope)) {
+            // support shorthand for module, no extra -m or module flag needed, hence we remove
+            // it from the token list.
+            if ("module".equals(scope) || (mainCommandWord.equals("add") && "mod".equals(scope))) {
                 tokens.remove(1);
                 tokens.set(0, tokens.get(0) + " " + scope);
             }
 
-            // Support shorthand commands by duplicating -m and -t flag
-            if (mainCommandWord.equals("add") && ("-t".equals(scope) || "-m".equals(scope))) {
+            // no shorthand for adding tasks, we reuse the task word as a flag for our description, so
+            // it is not deleted from the list.
+            if ("task".equals(scope)) {
                 tokens.set(0, tokens.get(0) + " " + scope);
             }
 
