@@ -2,6 +2,7 @@ package coydir.model.person;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 /**
  * Represents a Leave in the database.
@@ -10,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class Leave {
     public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static final String MESSAGE_CONSTRAINTS = "Input for leave period is invalid \n";
-            
+    public static final CustomLeaveComparator COMPARATOR = new CustomLeaveComparator();
     public final LocalDate startDate;
     public final LocalDate endDate;
 
@@ -43,6 +44,13 @@ public class Leave {
     
     }
 
+    public static class CustomLeaveComparator implements Comparator<Leave> {
+        @Override
+        public int compare(Leave o1, Leave o2) {
+            return o2.startDate.compareTo(o1.startDate);
+            
+        }
+    }
 
     /**
      * Returns number of days

@@ -29,7 +29,7 @@ public class Person {
     private final Department department;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Queue<Leave> leaves = new PriorityQueue<>(new CustomLeaveComparator());
+    private Queue<Leave> leaves = new PriorityQueue<>(Leave.COMPARATOR);
     private final int totalNumberOfLeaves;
     private int leavesLeft = 0;
 
@@ -49,14 +49,6 @@ public class Person {
         this.tags.addAll(tags);
         this.totalNumberOfLeaves = numberOfLeaves;
         this.leavesLeft = numberOfLeaves;
-    }
-
-    public static class CustomLeaveComparator implements Comparator<Leave> {
-        @Override
-        public int compare(Leave o1, Leave o2) {
-            return o1.startDate.compareTo(o2.startDate);
-            
-        }
     }
 
     public Name getName() {

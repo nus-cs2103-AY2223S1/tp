@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import static coydir.logic.parser.CliSyntax.PREFIX_ID;
 import static coydir.logic.parser.CliSyntax.PREFIX_STARTDATE;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -34,19 +33,11 @@ public class DeleteLeaveCommand extends Command {
     public static final String MESSAGE_NO_SUCH_LEAVE = "There is no such leave";
     public static final String MESSAGE_INVALID_INDEX = "Invalid index given";
     private EmployeeId targetId;
-    private int index;
-    
-    public static class CustomLeaveComparator implements Comparator<Leave> {
-        @Override
-        public int compare(Leave o1, Leave o2) {
-            return o1.startDate.compareTo(o2.startDate);
-        }
-    }
+    private int index;    
 
     public DeleteLeaveCommand(EmployeeId targetid, int index ) {
         this.targetId = targetid;
-        this.index = index;
-        
+        this.index = index;        
     }
 
     @Override
@@ -58,29 +49,25 @@ public class DeleteLeaveCommand extends Command {
         }
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
-                if (index >= person.getLeaves().size()) {
+                if (index > person.getLeaves().size()) {
+                    System.out.println("hey");
                     throw new CommandException(MESSAGE_INVALID_INDEX);
                 }
                 Leave removedLeave = null;
-                Queue<Leave> newLeaves = new PriorityQueue<>(new CustomLeaveComparator());
                 Queue<Leave> oldLeaves = person.getLeaves();
-                int counter = 0;
-                for (Leave leave: oldLeaves) {
-                   Leave temp = oldLeaves.remove();
-                   if (counter != index) {
-                        newLeaves.add(temp);
-                   } else {
-                        removedLeave = leave;
-                   }
+                Queue<Leave> newLeaves = new PriorityQueue<>(oldLeaves);
+                int counter = 1;
+                while (counter++ < index) {
+                    newLeaves.remove();                    
                 }
-                if (removedLeave == null) {
-                    throw new CommandException(MESSAGE_NO_SUCH_LEAVE);
-                }
-                return new CommandResult(String.format(MESSAGE_LEAVE_REMOVE_SUCCESS,person.getName()));
-                    }
-                }
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                removedLeave = newLeaves.remove();
+                oldLeaves.remove(removedLeave);
+                person.setLeavesLeft(person.getLeavesLeft() + removedLeave.getTotalDays());
+                return new CommandResult(String.format(MESSAGE_LEAVE_REMOVE_SUCCESS,person.getName()));                   
             }
+        }
+        throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
                     
     @Override
     public boolean equals(Object other) {
