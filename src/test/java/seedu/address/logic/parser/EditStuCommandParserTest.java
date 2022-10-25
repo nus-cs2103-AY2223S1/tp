@@ -34,7 +34,6 @@ import seedu.address.model.student.Attendance;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
 import seedu.address.model.student.Telegram;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditStuCommandParserTest {
@@ -86,8 +85,8 @@ public class EditStuCommandParserTest {
         assertParseFailure(parser, "1" + TELEGRAM_DESC_BOB + INVALID_TELEGRAM_DESC, Telegram.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_TELEGRAM_AMY + VALID_ATTENDANCE_AMY,
-                StuName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_TELEGRAM_AMY
+                        + VALID_ATTENDANCE_AMY, StuName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
