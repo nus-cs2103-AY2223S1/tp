@@ -29,11 +29,12 @@ public class SortOrderCommandTest {
 
     @Test
     public void execute_noAttributes_noDifference() {
-        CommandResult expectedResult = new CommandResult(SortBuyerCommand.MESSAGE_SUCCESS);
+        CommandResult expectedResult = new CommandResult(SortOrderCommand.MESSAGE_SUCCESS);
 
         try {
             Comparator<Order> comparator = getOrderComparator("");
             SortOrderCommand command = new SortOrderCommand(comparator);
+            oExpectedModel.sortOrder(comparator);
             assertCommandSuccess(command, oModel, expectedResult, oExpectedModel);
             assertEquals(oModel.getFilteredOrderList(), oExpectedModel.getFilteredOrderList());
         } catch (ParseException e) {
