@@ -1,19 +1,11 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BUDGET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
-
-import java.util.Set;
 
 /**
  * Utility class for task test cases.

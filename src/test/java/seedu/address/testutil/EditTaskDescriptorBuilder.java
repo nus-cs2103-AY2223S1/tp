@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.deadline.Deadline;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;

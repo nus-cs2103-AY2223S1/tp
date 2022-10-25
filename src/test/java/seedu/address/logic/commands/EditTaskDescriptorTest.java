@@ -1,16 +1,16 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.address.testutil.EditTaskDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ALPHA;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BRAVO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_BRAVO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDESCRIPTION_BRAVO;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskDescriptorTest {
     @Test
@@ -32,7 +32,8 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_ALPHA.equals(DESC_BRAVO));
 
         // different description -> returns false
-        EditTaskDescriptor editedAlpha = new EditTaskDescriptorBuilder(DESC_ALPHA).withDescription(VALID_TASKDESCRIPTION_BRAVO).build();
+        EditTaskDescriptor editedAlpha = new EditTaskDescriptorBuilder(DESC_ALPHA)
+                .withDescription(VALID_TASKDESCRIPTION_BRAVO).build();
         assertFalse(DESC_ALPHA.equals(editedAlpha));
 
         // different deadline -> returns false

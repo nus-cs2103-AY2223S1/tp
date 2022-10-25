@@ -1,17 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.EditTaskDescriptorBuilder;
-import seedu.address.testutil.TaskBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ALPHA;
@@ -23,6 +11,19 @@ import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class EditTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -49,7 +50,8 @@ public class EditTaskCommandTest {
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withDescription(VALID_TASKDESCRIPTION_ALPHA).build();
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_TASKDESCRIPTION_ALPHA).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withDescription(VALID_TASKDESCRIPTION_ALPHA).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -113,7 +115,8 @@ public class EditTaskCommandTest {
     @Test
     public void execute_invalidTaskIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_TASKDESCRIPTION_ALPHA).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withDescription(VALID_TASKDESCRIPTION_ALPHA).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

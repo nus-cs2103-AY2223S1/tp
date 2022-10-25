@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditTaskCommand;
-import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -39,7 +39,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                     .parseTaskDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
-            editTaskDescriptor.setTaskDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get()));
+            editTaskDescriptor.setTaskDeadline(ParserUtil.parseDeadline(
+                    argMultimap.getValue(PREFIX_TASK_DEADLINE).get()));
         }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {

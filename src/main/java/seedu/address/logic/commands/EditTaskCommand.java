@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -8,14 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.deadline.Deadline;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 /**
  * Edits the details of an existing task in the address book.
@@ -98,7 +98,8 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        TaskDescription updatedTaskDescription = editTaskDescriptor.getTaskDescription().orElse(taskToEdit.getTaskDescription());
+        TaskDescription updatedTaskDescription = editTaskDescriptor.getTaskDescription()
+                .orElse(taskToEdit.getTaskDescription());
 
         Deadline updatedDeadline = editTaskDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
 
@@ -139,7 +140,6 @@ public class EditTaskCommand extends Command {
         public Optional<TaskDescription> getTaskDescription() {
             return Optional.ofNullable(taskDescription);
         }
-        
 
         public void setTaskDeadline(Deadline deadline) {
             this.deadline = deadline;
@@ -148,7 +148,7 @@ public class EditTaskCommand extends Command {
         public Optional<Deadline> getTaskDeadline() {
             return Optional.ofNullable(deadline);
         }
-        
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
