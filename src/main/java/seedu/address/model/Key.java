@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidKey(String)}
  */
 public enum Key {
-    PATIENT("Patient"), TAG("Tag");
+    PATIENT("Patient"), TAG("Tag"), MARK("Mark");
 
     public static final String MESSAGE_CONSTRAINTS = "Key should be either tag or patient.";
     private String keyContent;
@@ -32,7 +32,8 @@ public enum Key {
      */
     public static boolean isValidKey(String keyContent) {
         return keyContent.equalsIgnoreCase("patient")
-                || keyContent.equalsIgnoreCase("tag");
+                || keyContent.equalsIgnoreCase("tag")
+                || keyContent.equalsIgnoreCase("mark");
     }
 
     /**
@@ -43,10 +44,15 @@ public enum Key {
      */
     public static Key convertToKey(String keyContent) {
         requireNonNull(keyContent);
-        if (keyContent.equalsIgnoreCase("patient")) {
+        if (keyContent.equalsIgnoreCase("patient")
+                || keyContent.equalsIgnoreCase("p")) {
             return Key.PATIENT;
-        } else if (keyContent.equalsIgnoreCase("tag")) {
+        } else if (keyContent.equalsIgnoreCase("tag")
+                || keyContent.equalsIgnoreCase("t")) {
             return Key.TAG;
+        } else if (keyContent.equalsIgnoreCase("mark")
+                || keyContent.equalsIgnoreCase("m")) {
+            return Key.MARK;
         } else {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }

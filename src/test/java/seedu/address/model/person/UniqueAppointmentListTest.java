@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.COMPARATOR_GROUP_MARK_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENT_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_GROUP_TAG_APPOINTMENTS;
 import static seedu.address.model.Model.COMPARATOR_UNGROUP_APPOINTMENTS;
@@ -10,6 +11,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_BENSON;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_CARL;
 import static seedu.address.testutil.TypicalAppointments.getDefaultAppointments;
+import static seedu.address.testutil.TypicalAppointments.getGroupedAppointmentsByMark;
 import static seedu.address.testutil.TypicalAppointments.getGroupedAppointmentsByPatient;
 import static seedu.address.testutil.TypicalAppointments.getGroupedAppointmentsByTag;
 
@@ -118,13 +120,20 @@ public class UniqueAppointmentListTest {
     public void appointmentCompared() {
         uniqueAppointmentList.setAppointments(getDefaultAppointments());
         List<Appointment> ungrouped = getDefaultAppointments();
-        List<Appointment> groupedByTag = getGroupedAppointmentsByTag();
-        List<Appointment> groupedByPatient = getGroupedAppointmentsByPatient();
         assertEquals(uniqueAppointmentList.asUnmodifiableObservableList(), ungrouped);
+
         uniqueAppointmentList.sort(COMPARATOR_GROUP_TAG_APPOINTMENTS);
+        List<Appointment> groupedByTag = getGroupedAppointmentsByTag();
         assertEquals(uniqueAppointmentList.asUnmodifiableObservableList(), groupedByTag);
+
         uniqueAppointmentList.sort(COMPARATOR_GROUP_PATIENT_APPOINTMENTS);
+        List<Appointment> groupedByPatient = getGroupedAppointmentsByPatient();
         assertEquals(uniqueAppointmentList.asUnmodifiableObservableList(), groupedByPatient);
+
+        uniqueAppointmentList.sort(COMPARATOR_GROUP_MARK_APPOINTMENTS);
+        List<Appointment> groupedByMark = getGroupedAppointmentsByMark();
+        assertEquals(uniqueAppointmentList.asUnmodifiableObservableList(), groupedByMark);
+
         uniqueAppointmentList.sort(COMPARATOR_UNGROUP_APPOINTMENTS);
         assertEquals(uniqueAppointmentList.asUnmodifiableObservableList(), ungrouped);
     }

@@ -11,6 +11,9 @@ import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_ELLE;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_GEORGE;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_CARL;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_GEORGE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +50,10 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 = 2019-12-10 16:30
-        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), 0);
+        // BENSON < CARL
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        SECOND_APPOINTMENT_CARL.setPatient(CARL);
+        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), -1);
 
         // 2019-12-10 16:30 > 2010-12-31 23:45
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
@@ -59,7 +65,10 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 = 2019-12-10 16:30
-        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), 0);
+        // CARL > BENSON
+        APPOINTMENT_BENSON.setPatient(CARL);
+        SECOND_APPOINTMENT_CARL.setPatient(BENSON);
+        assertEquals(SECOND_APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 > 2010-12-31 23:45
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
@@ -74,6 +83,7 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // APPOINTMENT_BENSON == APPOINTMENT_BENSON
+        APPOINTMENT_BENSON.setPatient(BENSON);
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_BENSON), 0);
 
         // APPOINTMENT_BENSON > APPOINTMENT_DAVID
@@ -96,6 +106,7 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_DANIEL.groupCompareTo(SECOND_APPOINTMENT_GEORGE, Key.TAG), -9);
 
         // Single tag vs single tag
+        SECOND_APPOINTMENT_GEORGE.setPatient(GEORGE);
         assertEquals(SECOND_APPOINTMENT_GEORGE.groupCompareTo(SECOND_APPOINTMENT_GEORGE, Key.TAG), 0);
 
         // Single tag vs double tag

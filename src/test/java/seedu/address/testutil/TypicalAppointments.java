@@ -94,4 +94,16 @@ public class TypicalAppointments {
                 new AppointmentBuilder(SECOND_APPOINTMENT_GEORGE).build(),
                 new AppointmentBuilder(APPOINTMENT_GEORGE).build()));
     }
+
+    public static List<Appointment> getGroupedAppointmentsByMark() {
+        setAll();
+        return new ArrayList<>(Arrays.asList(
+                new AppointmentBuilder(SECOND_APPOINTMENT_GEORGE).build(),
+                new AppointmentBuilder(APPOINTMENT_ELLE).build(),
+                new AppointmentBuilder(APPOINTMENT_BENSON).withTags("nose").build(),
+                new AppointmentBuilder(SECOND_APPOINTMENT_CARL).withTags("ear").build(),
+                new AppointmentBuilder(APPOINTMENT_CARL).withTags("throat").build(),
+                new AppointmentBuilder(APPOINTMENT_DANIEL).build(),
+                new AppointmentBuilder(APPOINTMENT_GEORGE).build()));
+    }
 }
