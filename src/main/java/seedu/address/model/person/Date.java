@@ -24,7 +24,7 @@ public class Date implements Comparable<Date> {
     @Override
     public String toString() {
         return localDate.format(java.time.format
-                .DateTimeFormatter.ofPattern("d-MMM-yyyy"));
+                .DateTimeFormatter.ofPattern("d-MMM-uuuu"));
     }
 
     @Override

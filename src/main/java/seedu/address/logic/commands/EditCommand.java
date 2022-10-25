@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPerson;
@@ -39,6 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INCOME + "INCOME] "
             + "[" + PREFIX_MONTHLY + "MONTHLY} "
             + "[" + PREFIX_RISKTAG + "RISKTAG] "
+            + "[" + PREFIX_PLANTAG + "PLANTAG] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
