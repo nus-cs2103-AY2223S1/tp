@@ -78,6 +78,7 @@ public class EditPatientCommandTest {
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
+        //expectedModel.setPerson(editedPerson, editedPerson);
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage,
                 EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
