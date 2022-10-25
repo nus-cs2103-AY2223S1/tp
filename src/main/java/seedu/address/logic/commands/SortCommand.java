@@ -24,7 +24,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons with specified fields\n"
             + "Parameters: (" + buildParameters(PREFIX_NAME, PREFIX_ROLE, PREFIX_ADDRESS) + ")[/desc]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix().replace("/", "")
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME.getAlias().replace("/", "")
             + ", " + COMMAND_WORD + " " + PREFIX_NAME + "/desc";
 
     private final Comparator<Person> comparator;
@@ -35,7 +35,7 @@ public class SortCommand extends Command {
 
     private static String buildParameters(Prefix... prefixes) {
         return Arrays.stream(prefixes)
-                .map(s -> s.getPrefix().replace("/", ""))
+                .map(s -> s.getAlias().replace("/", ""))
                 .collect(Collectors.joining("|"));
     }
 
