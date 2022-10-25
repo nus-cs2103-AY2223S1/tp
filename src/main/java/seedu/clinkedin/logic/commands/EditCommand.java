@@ -13,12 +13,14 @@ import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.clinkedin.commons.core.Messages;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.CollectionUtil;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -123,9 +125,10 @@ public class EditCommand extends Command {
         UniqueTagTypeMap updatedTags = original;
         Note updatednote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
+        Set<Link> updatedLinks = editPersonDescriptor.getLinks().orElse(personToEdit.getLinks());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedStatus,
-                updatednote);
+                updatednote, updatedLinks);
     }
 
     @Override
@@ -160,6 +163,8 @@ public class EditCommand extends Command {
         private Status status;
         private Note note;
 
+        private Set<Link> links;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -175,6 +180,7 @@ public class EditCommand extends Command {
             setNewTagTypeMap(toCopy.oldTagTypeMap);
             setStatus(toCopy.status);
             setNote(toCopy.note);
+            setLinks(toCopy.links);
         }
 
         /**
@@ -184,7 +190,7 @@ public class EditCommand extends Command {
             if (!newTagTypeMap.isEmpty() || !oldTagTypeMap.isEmpty()) {
                 return true;
             }
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note, links);
         }
 
         public void setName(Name name) {
@@ -269,6 +275,14 @@ public class EditCommand extends Command {
             return (newTagTypeMap != null) ? Optional.of(newTagTypeMap) : Optional.empty();
         }
 
+        public void setLinks(Set<Link> links) {
+            this.links = links;
+        }
+
+        public Optional<Set<Link>> getLinks() {
+            return Optional.ofNullable(links);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -291,7 +305,8 @@ public class EditCommand extends Command {
                     && getOldTagTypeMap().equals(e.getOldTagTypeMap())
                     && getNewTagTypeMap().equals(e.getNewTagTypeMap())
                     && getStatus().equals(e.getStatus())
-                    && getNote().equals(e.getNote());
+                    && getNote().equals(e.getNote())
+                    && getLinks().equals(e.getLinks());
         }
     }
 }

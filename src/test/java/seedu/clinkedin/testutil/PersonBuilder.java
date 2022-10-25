@@ -1,5 +1,9 @@
 package seedu.clinkedin.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -30,6 +34,8 @@ public class PersonBuilder {
     private Status status;
     private Note note;
 
+    private Set<Link> links;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -41,6 +47,7 @@ public class PersonBuilder {
         tags = new UniqueTagTypeMap();
         status = new Status(DEFAULT_STATUS);
         note = new Note(DEFAULT_NOTE);
+        links = new HashSet<>();
     }
 
     /**
@@ -56,6 +63,7 @@ public class PersonBuilder {
         tags = tagTypeMap;
         status = personToCopy.getStatus();
         note = personToCopy.getNote();
+        links = new HashSet<>(personToCopy.getLinks());
     }
 
     /**
@@ -114,8 +122,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code links} into a {@code Set<Link>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withLinks(String ... links) {
+        this.links = SampleDataUtil.getLinkSet(links);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, status, note);
+        return new Person(name, phone, email, address, tags, status, note, links);
     }
 
 }

@@ -13,10 +13,10 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 ## Table of Contents
 {:toc}
 
-## Introduction 
+## Introduction
 ![Ui](images/Ui.png)
 
-CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
+CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
 If you can type fast, CLInkedIn can get your Recruitment tasks done faster than traditional GUI apps.
 
@@ -168,21 +168,21 @@ Examples:
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
+Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [MORE_TAGGED_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The personal information and tags will be searched.  
+* The personal information and tags will be searched.
 * Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Search can be further refined by specifying the type of tag to search for.  
+* Search can be further refined by specifying the type of tag to search for.
   e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find Java` returns list of candidates with Java skills 
+* `find Java` returns list of candidates with Java skills
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find n/John` returns `John Doe`
 * `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
@@ -204,14 +204,14 @@ Examples:
 
 ### Creating a custom tag type: `create`
 
-Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types. 
+Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types.
 
-Format: `create TAG_TYPE TAG_ALIAS` 
+Format: `create TAG_TYPE TAG_ALIAS`
 
 - Creates a new `TAG_TYPE` tag type.
 - `TAG_ALIAS` can be used to add tags to this custom tag type.
 
-Examples:  
+Examples:
 
 - `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
 
