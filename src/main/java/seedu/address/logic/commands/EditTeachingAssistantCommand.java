@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_TA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
 import java.util.List;
 
@@ -82,8 +83,11 @@ public class EditTeachingAssistantCommand extends EditStuCommand {
             } else {
                 model.addTutor(editedStudent);
             }
+        } else {
+            model.deleteTutor(studentToEdit);
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
                 true, false, false);

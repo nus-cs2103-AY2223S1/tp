@@ -75,7 +75,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addStuCommand = "addstu n/Amy Bee p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111 "
+        String addStuCommand = "add n/Amy Bee p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111 "
                 + STUDENT_DESC_ID + STUDENT_DESC_TELEGRAM;
         Student expectedStudent = new StudentBuilder().build();
         ModelManager expectedModel = new ModelManager();
