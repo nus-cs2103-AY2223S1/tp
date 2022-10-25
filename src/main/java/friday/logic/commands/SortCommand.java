@@ -1,7 +1,16 @@
 package friday.logic.commands;
 
-
-import static friday.logic.parser.CliSyntax.*;
+import static friday.logic.parser.CliSyntax.ORDER_ASCENDING;
+import static friday.logic.parser.CliSyntax.ORDER_DESCENDING;
+import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_FINALS;
+import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
+import static friday.logic.parser.CliSyntax.PREFIX_MIDTERM;
+import static friday.logic.parser.CliSyntax.PREFIX_NAME;
+import static friday.logic.parser.CliSyntax.PREFIX_PRACTICAL;
+import static friday.logic.parser.CliSyntax.PREFIX_RA1;
+import static friday.logic.parser.CliSyntax.PREFIX_RA2;
+import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
