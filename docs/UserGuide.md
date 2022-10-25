@@ -221,15 +221,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add Client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Add offer** | `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE` <br> e.g., `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Delete offer** | `deleteO INDEX` <br> e.g., `deleteO 2`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Edit offer** | `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]` <br> e.g., `editO 2 n/Betsy Crower o/123456`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action           | Format, Examples                                                                                                                                                      |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Client**   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add offer**    | `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE` <br> e.g., `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`                                                          |
+| **Clear**        | `clear`                                                                                                                                                               |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Delete offer** | `deleteO INDEX` <br> e.g., `deleteO 2`                                                                                                                                |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Edit offer**   | `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]` <br> e.g., `editO 2 n/Betsy Crower o/123456`                                                                    |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**         | `list`                                                                                                                                                                |
+| **Help**         | `help`                                                                                                                                                                |
