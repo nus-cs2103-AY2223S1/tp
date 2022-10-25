@@ -11,6 +11,8 @@ public class RiskTag extends Tag {
     public static final String MESSAGE_CONSTRAINTS = "Risk tag name should be [LOW], [MEDIUM], or [HIGH]";
     public static final String VALIDATION_REGEX = "(HIGH|MEDIUM|LOW)";
 
+    private int risk;
+
     /**
      * Constructs a {@code Tag}.
      *
@@ -19,8 +21,30 @@ public class RiskTag extends Tag {
     public RiskTag(String tagName) {
         super(tagName);
         checkArgument(isValidRiskTagName(tagName), MESSAGE_CONSTRAINTS);
+        // only setRisk after we are sure that tagName is valid
+        this.risk = setRisk(tagName);
     }
 
+    public int getRisk() {
+        return this.risk;
+    }
+
+    public int setRisk(String tagName) {
+        switch (tagName) {
+
+        case "HIGH":
+            return this.risk = 3;
+
+        case "MEDIUM":
+            return this.risk = 2;
+
+        case "LOW":
+            return this.risk = 1;
+
+        default:
+            return this.risk = 0;
+        }
+    }
 
     /**
      * Returns true if a given string is a valid tag name.

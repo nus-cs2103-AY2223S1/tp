@@ -184,7 +184,7 @@ You can sort the contacts in descending order by adding `desc` behind the `KEYWO
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
 
-Types of `KEYWORD`: name
+Types of `KEYWORD`: `name`, `appt`, `risk`
 
 * Returns all the contacts sorted by the given `KEYWORD`
   ![result for 'sort name'](images/sortAlphabetResult.png)
