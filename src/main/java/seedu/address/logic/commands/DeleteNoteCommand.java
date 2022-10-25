@@ -40,6 +40,14 @@ public class DeleteNoteCommand extends Command {
 
         Note noteToDelete = notebook.get(targetIndex.getZeroBased());
         model.deleteNote(noteToDelete);
+
+        // Remove unused tags from UniqueTagMapping
+        noteToDelete.getTags().forEach(tag -> {
+            if (tag.isPersonListEmpty() && !model.notebookContainsTag(tag)) {
+                model.removeTag(tag);
+            }
+        });
+
         return new CommandResult(String.format(MESSAGE_DELETE_NOTE_SUCCESS, noteToDelete));
     }
 
