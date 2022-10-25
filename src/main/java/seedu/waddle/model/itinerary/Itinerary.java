@@ -191,6 +191,7 @@ public class Itinerary {
     public Item unplanItem(MultiIndex index) {
         Day day = this.days.get(index.getDayIndex().getZeroBased());
         Item unplannedItem = day.removeItem(index.getTaskIndex());
+        unplannedItem.resetStartTime();
         addItem(unplannedItem);
         sortUnscheduledItemList();
         this.budget.updateSpending(-unplannedItem.getCost().getValue());
