@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Reward {
 
-    public static final String MESSAGE_CONSTRAINTS = "Reward points can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Reward points can take any NON-NEGATIVE values"
+            + ", and it should not be blank";
 
     /*
      * The first character of the reward must not be a whitespace,
@@ -20,19 +21,20 @@ public class Reward {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Reward}.
      *
-     * @param reward A valid address.
+     * @param reward A valid reward.
      */
     public Reward(String reward) {
         requireNonNull(reward);
         checkArgument(isValidReward(reward), MESSAGE_CONSTRAINTS);
         int integerValue = Integer.valueOf(reward);
+        checkArgument(integerValue >= 0, MESSAGE_CONSTRAINTS);
         value = String.valueOf(integerValue);
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid reward.
      */
     public static boolean isValidReward(String test) {
         return test.matches(VALIDATION_REGEX);

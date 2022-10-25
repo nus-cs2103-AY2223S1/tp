@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reward;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -164,6 +165,15 @@ public class AddCommandTest {
 
         @Override
         public int findEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Reward getCurrentReward(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Reward getCurrentReward(Email email) {
             throw new AssertionError("This method should not be called.");
         }
     }
