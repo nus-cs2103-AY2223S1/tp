@@ -27,6 +27,7 @@ public class ListTasksCommandParserTest {
                 new ListTasksCommand(
                         "",
                         List.of(),
+                        List.of(),
                         Optional.empty(),
                         Optional.empty(),
                         new HashSet<>()
@@ -37,6 +38,7 @@ public class ListTasksCommandParserTest {
                 " hi",
                 new ListTasksCommand(
                         "hi",
+                        List.of(),
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
@@ -50,6 +52,7 @@ public class ListTasksCommandParserTest {
                 new ListTasksCommand(
                         "",
                         List.of(),
+                        List.of(),
                         Optional.empty(),
                         Optional.empty(),
                         new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON))
@@ -62,6 +65,7 @@ public class ListTasksCommandParserTest {
                 " hi c/1 c/2",
                 new ListTasksCommand(
                         "hi",
+                        List.of(),
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
@@ -77,6 +81,7 @@ public class ListTasksCommandParserTest {
                 " hi c/1 c/2 -c",
                 new ListTasksCommand(
                         "hi",
+                        List.of(),
                         List.of(ListTasksCommand.COMPLETED_FLAG),
                         Optional.empty(),
                         Optional.empty(),
@@ -89,6 +94,7 @@ public class ListTasksCommandParserTest {
                 " hi c/1 c/2 -a",
                 new ListTasksCommand(
                         "hi",
+                        List.of(),
                         List.of(ListTasksCommand.ALL_FLAG),
                         Optional.empty(),
                         Optional.empty(),
@@ -105,6 +111,7 @@ public class ListTasksCommandParserTest {
                 new ListTasksCommand(
                         "",
                         List.of(),
+                        List.of(),
                         Optional.of(Deadline.of(LocalDate.now().plusDays(1))),
                         Optional.empty(),
                         new HashSet<>()
@@ -116,6 +123,7 @@ public class ListTasksCommandParserTest {
                 " after today",
                 new ListTasksCommand(
                         "",
+                        List.of(),
                         List.of(),
                         Optional.empty(),
                         Optional.of(Deadline.of(LocalDate.now())),

@@ -55,6 +55,7 @@ public class ListTasksCommandTest {
                 new ListTasksCommand(
                         "",
                         List.of(),
+                        List.of(),
                         Optional.empty(),
                         Optional.empty(),
                         new HashSet<>()
@@ -75,6 +76,7 @@ public class ListTasksCommandTest {
         ListTasksCommand command =
                 new ListTasksCommand(
                         "",
+                        List.of(),
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
@@ -103,6 +105,7 @@ public class ListTasksCommandTest {
                 new ListTasksCommand(
                         "",
                         List.of(),
+                        List.of(),
                         Optional.empty(),
                         Optional.empty(),
                         personIndexes
@@ -121,6 +124,7 @@ public class ListTasksCommandTest {
         ListTasksCommand command =
                 new ListTasksCommand(
                         "ass",
+                        List.of(),
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
@@ -146,6 +150,7 @@ public class ListTasksCommandTest {
                 new ListTasksCommand(
                         "test",
                         List.of(),
+                        List.of(),
                         Optional.empty(),
                         Optional.empty(),
                         new HashSet<>()
@@ -169,6 +174,7 @@ public class ListTasksCommandTest {
         ListTasksCommand command =
                 new ListTasksCommand(
                         "",
+                        List.of(),
                         List.of(ListTasksCommand.ALL_FLAG),
                         Optional.empty(),
                         Optional.of(Deadline.of(LocalDate.of(2022, 9, 20))),
@@ -193,6 +199,7 @@ public class ListTasksCommandTest {
         ListTasksCommand command =
                 new ListTasksCommand(
                         "",
+                        List.of(),
                         List.of(ListTasksCommand.ALL_FLAG),
                         Optional.of(Deadline.of(LocalDate.of(2022, 9, 20))),
                         Optional.empty(),
@@ -218,6 +225,7 @@ public class ListTasksCommandTest {
         ListTasksCommand command =
                 new ListTasksCommand(
                         "",
+                        List.of(),
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
@@ -246,6 +254,7 @@ public class ListTasksCommandTest {
         ListTasksCommand command =
                 new ListTasksCommand(
                         "ass",
+                        List.of(),
                         List.of(),
                         Optional.empty(),
                         Optional.empty(),
