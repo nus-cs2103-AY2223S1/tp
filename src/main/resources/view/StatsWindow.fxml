@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Statistics" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Statistics" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -20,7 +20,7 @@
 
       <HBox fx:id="helpMessageContainer" alignment="CENTER">
         <children>
-               <PieChart fx:id="chart" style="-fx-border-color: white; -fx-background-color: lightgrey;" />
+               <PieChart fx:id="chart" legendSide="LEFT" style="-fx-border-color: white; -fx-background-color: lightgrey;" />
         </children>
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />

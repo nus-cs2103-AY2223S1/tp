@@ -134,7 +134,7 @@ public interface Model {
     void setData(ObservableList<PieChart.Data> newData);
 
     /**
-     *Return the list of Statistical PieChart datapoints
+     * Return the list of Statistical PieChart datapoints
      */
     ObservableList<PieChart.Data> getPieChartData();
 }
