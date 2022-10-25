@@ -15,6 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TELEGRAM = new Prefix("telegram/");
     public static final Prefix PREFIX_ROLE = new Prefix("role/");
     public static final Prefix PREFIX_TIMEZONE = new Prefix("timezone/");
-    public static final Prefix PREFIX_DESCENDING = new Prefix("-desc");
 
 }
