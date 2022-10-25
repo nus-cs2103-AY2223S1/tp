@@ -23,7 +23,7 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds the person with the specified name into the current team.\n"
             + "Parameters: NAME\n"
-            + "Example: " + COMMAND_WORD + " Alice";
+            + "Example: " + COMMAND_WORD + " \"Alice Jane\"";
 
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person is already in the team";

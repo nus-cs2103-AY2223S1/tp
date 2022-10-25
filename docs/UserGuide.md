@@ -41,9 +41,13 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 **:information_source: Notes about the command format:**<br>
 
-*  Quotes optional for string arguments (i.e. `add member "egg"` and `add_member egg` are equivalent) when there is only one string argument.
-* Double Tab to autocomplete string values (Coming soon!)
-* Arguments are delimited with flags (`add member "egg" --email="asd@a.com"`) (Coming soon!)
+* Quotes are optional for words (i.e. `add member "word"` and `add member word` are equivalent) when there is 
+   only one string argument. 
+  * However, for words containing spaces, they should be surrounded with quotation marks. 
+     Otherwise, they will be treated as 2 separate words (i.e. `add member "two words"` and `add member two words` are 
+     not the same). 
+* Double <kbd>Tab</kbd> to autocomplete string values (Coming soon!)
+* Arguments are delimited with flags (`add member "word" --email="sample@email.com"`)
 </div>
 
 ### Viewing help : `help`
@@ -51,57 +55,57 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 Format:
 * `help`
 
-### Creating a new team `add_team`
+### Creating a new team `add team`
 
 Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name.
 
 Format:
-* `add_team TEAM_NAME`
+* `add team TEAM_NAME`
 
 Examples:
-* `add_team CS2103` will create a new team by the name of "CS2103"
+* `add team CS2103` will create a new team by the name of "CS2103"
 
-### Set a new team `set_team`
+### Set a new team `set team`
 
 Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
 
 Format:
-* `set_team TEAM_NAME`
+* `set team TEAM_NAME`
 
 Examples:
-* `set_team CS2103` will change the current working team to be the "CS2103" team.
+* `set team CS2103` will change the current working team to be the "CS2103" team.
 
-### Delete an existing team `delete_team`
+### Delete an existing team `delete team`
 
 Delete an existing team from the user's list of teams. Throws an error under these conditions.
  - The target team does not exist.
  - The target team is the only existing team.
 
 Format:
-* `delete_team TEAM_NAME`
+* `delete team TEAM_NAME`
 
 Examples:
-* `delete_team CS2103` will delete the team with the name "CS2103"
+* `delete team CS2103` will delete the team with the name "CS2103"
 
-### Adding a new member to the team `add_member`
+### Adding a new member to the team `add member`
 
 Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
 
 Format:
-* `add_member TASK_INDEX`
+* `add member TASK_INDEX`
 
 Examples:
-* `add_member 1` will add the first person in the list of people as a member of the current team.
+* `add member 1` will add the first person in the list of people as a member of the current team.
 
-### Delete a member from team `delete_member`
+### Delete a member from team `delete member`
 
 Delete a team member from the user’s team. Will throw an error if no member with that name is found. Take note that
 names are case-sensitive.
 
 Format:
-* `delete_member TEAM_MEMBER_INDEX`
-* `delete_member --index=INDEX` (Coming soon!)
-* `delete_member -i INDEX` (Coming soon!)
+* `delete member TEAM_MEMBER_INDEX`
+* `delete member --index=INDEX` (Coming soon!)
+* `delete member -i INDEX` (Coming soon!)
 
 Examples:
 * `delete member 2` will delete the second member of the current team.
@@ -109,76 +113,76 @@ Examples:
 * `delete member -i 2`
 
 
-### Listing all members of the team : `list_members`
+### Listing all members of the team : `list members`
 
 View all the members currently in the team, in the form of a list.
 
 Format:
-* `list_members`
+* `list members`
 
-### Add task to team : `add_task`
+### Add task to team : `add task`
 
 Add a new task to the current team.
 
 Format:
-* `add_task TASK_NAME`
+* `add task TASK_NAME`
 
 Examples:
-*  `add_task bake with butter` will add a task with the name "bake with butter" to the current team's task list.
-*  `add_task fry` will add a task with the name "fry" to the current team's task list.
+*  `add task bake with butter` will add a task with the name "bake with butter" to the current team's task list.
+*  `add task fry` will add a task with the name "fry" to the current team's task list.
 
-### Assign task to team member: `assign_task`
+### Assign task to team member: `assign task`
 
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
 
-Format: `assign_task TASK_INDEX TEAM_MEMBER_NAME`
+Format: `assign task TASK_INDEX TEAM_MEMBER_NAME`
 
 Examples:
-* `assign_task 1 Alex` will assign the first task on the task list to a member in the team named Alex.
-* `assign_task 2 Bernice` will assign the second task on the task list to a member in the team named Bernice.
+* `assign task 1 Alex` will assign the first task on the task list to a member in the team named Alex.
+* `assign task 2 Bernice` will assign the second task on the task list to a member in the team named Bernice.
 
-### Assign task to random team member: `assign_task_rand`
+### Assign task to random team member: `assign random`
 
 Assign an existing task to a random team member in the user’s team. Will display an error message if either the task is
 not found in the user’s team or if there are no team members to assign the task to (if the team is empty, or if the task
 has already been assigned to all members of the team.
 
-Format: `assign_task_rand TASK_INDEX`
+Format: `assign random TASK_INDEX`
 
 Examples:
-* `assign_task_rand 1` will assign the first task on the task list to a random team member.
+* `assign random 1` will assign the first task on the task list to a random team member.
 
 
-### Set Deadline for task: `set_deadline`
+### Set Deadline for task: `set deadline`
 
 Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If
 deadline has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in YYYY-MM-DD HH:MM format.
 
-Format: `set_deadline TASK_INDEX DEADLINE`
+Format: `set deadline TASK_INDEX DEADLINE`
 
 Examples:
-* `set_deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
+* `set deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
 
-### Delete task from team : `delete_task`
+### Delete task from team : `delete task`
 
 Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
 
 Format:
-* `delete_task TASK_INDEX`
+* `delete task TASK_INDEX`
 
 Examples:
 * `delete task 1` will delete the first task of the current team.
 
-### List tasks in team: `list_tasks`
+### List tasks in team: `list tasks`
 
 View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete
 or remaining tasks.
 
 Format:
-* `list_tasks` will list all the tasks of the current team.
-* `list_tasks -f i` will list all the incomplete tasks of the current team.
-* `list_tasks -f c` will list all the completed tasks of the current team.
+* `list tasks` will list all the tasks of the current team.
+* `list tasks -i` will list all the incomplete tasks of the current team.
+* `list tasks -c` will list all the completed tasks of the current team.
 
 ### Mark tasks as done: `mark`
 
@@ -197,35 +201,35 @@ View the number of tasks assigned to each user in the team.
 Format:
 * `summary`
 
-### Add a new link : `add_link`
+### Add a new link : `add link`
 
 Add a new link to the user's currently selected team.
 
 Format:
-* `add_link -n NAME -l URL`
+* `add link -n NAME -l URL`
 
 Examples:
-* `add_link -n google -l "https://google.com`
+* `add link -n google -l "https://google.com`
 
-### Edit an existing link : `edit_link`
+### Edit an existing link : `edit link`
 
-Edit an exisitng link in the user's currently selected team.
+Edit an existing link in the user's currently selected team.
 
 Format:
-* `edit_link INDEX [-n NAME] [-l URL]`
+* `edit link INDEX [-n NAME] [-l URL]`
 
 Examples:
-* `edit_link 1 -n facebook -l "https://facebook.com`
+* `edit link 1 -n facebook -l "https://facebook.com`
 
-* ### Delete an existing link : `delete_link`
+* ### Delete an existing link : `delete link`
 
 Delete the specified link from the user's currently selected team.
 
 Format:
-* `delete_link INDEX`
+* `delete link INDEX`
 
 Examples:
-* `delete_link 1`
+* `delete link 1`
 
 ### Clearing all entries : `clear`
 

@@ -12,7 +12,6 @@ import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
 
@@ -26,8 +25,8 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a task to the specified member in the team.\n"
             + "Parameters: TASK_INDEX (must be a positive integer) \n"
-            + "Parameters: PERSON_NAME \n"
-            + "Example: " + COMMAND_WORD + " 1" + " \"Bernice Yu\"";
+            + "Parameters: PERSON_INDEX \n"
+            + "Example: " + COMMAND_WORD + " 1" + " 2";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned Task: %1$s assigned to %2$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
@@ -39,7 +38,7 @@ public class AssignTaskCommand extends Command {
     private Index taskIndex;
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
-    private Name memberName;
+    private Index memberName;
 
     public AssignTaskCommand() {
     }
