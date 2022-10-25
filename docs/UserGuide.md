@@ -18,25 +18,27 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/ear`, `t/nose t/throat` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Tag names must only be from the following: `ear`, `nose`, `throat` (not case-sensitive). <br>
+  e.g. `t/sick` will cause an error message.
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -106,7 +108,7 @@ Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -118,11 +120,15 @@ Examples:
 
 Edits an existing patient's appointment in idENTify.
 
-Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIMEPERIOD]`
+Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIMEPERIOD] [t/TAG]…​`
 
 * Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed appointment list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* When editing tags, the existing tags of the appointment will be removed i.e. adding of tags is not cumulative.
+* You can remove all the appointment’s tags by typing `t/` without
+  specifying any tags after it. <br>
+  e.g. `edit appts  1 t/`
 
 Examples:
 * `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30`
@@ -147,7 +153,7 @@ Hides patients whose names contain any of the given tags.
 
 Format: `hide patients t/TAG [MORE_TAGS]`
 
-* The search is case-insensitive. e.g `EAR` will match `ear`
+* The search is case-insensitive. e.g. `EAR` will match `ear`
 * All tags of a patient are searched.
 
 Examples:
@@ -301,7 +307,7 @@ Books an appointment for the specified patient at INDEX with a given REASON, DAT
 
 Appointments added are sorted according to their date.
 
-Format: `book INDEX r/REASON d/DATE [pe/TIME PERIOD]`
+Format: `book INDEX r/REASON d/DATE [pe/TIME PERIOD] [t/TAG]…​`
 
 * The index refers to the index number shown in the displayed patient list.
 * The index must be a positive integer 1, 2, 3, …​
@@ -395,15 +401,15 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
-**Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
+**Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD] [t/TAG]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Group Patients** | `group patients`
-**Group Appointents** | `group appts k/[KEY]` <br> e.g., `group appts k/mark`
+**Group Appointents** | `group appts [k/KEY]` <br> e.g., `group appts k/mark`
 **Ungroup** | `ungroup patients` <br> `ungroup appts`
 **Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
-**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD]` <br> e.g., `edit appts 1 r/Cough`
-**List** | `list patients` <br> `list appointments`
+**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD] [t/TAG]` <br> e.g., `edit appts 1 r/Cough`
+**List** | `list patients` <br> `list appointments` <br> `list all`
 **Help** | `help`
 **Exit** | `exit`
