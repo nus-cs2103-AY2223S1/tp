@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+user -[USER_COLOR]> ui : "timetable user"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("timetable user")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : setTimetable(lessons)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml
