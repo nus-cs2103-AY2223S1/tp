@@ -6,8 +6,8 @@ import static seedu.intrack.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class TaskTest {
-    String invalidTaskName = "";
-    String invalidTaskTime = "TODAY";
+    private String invalidTaskName = "";
+    private String invalidTaskTime = "TODAY";
 
     @Test
     public void constructor_nullTaskName_throwsNullPointerException() {
