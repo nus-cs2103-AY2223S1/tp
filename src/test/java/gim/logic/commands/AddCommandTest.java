@@ -141,7 +141,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortDisplayedList(Predicate<Exercise> predicate) {
+        public void sortFilteredExerciseList(Predicate<Exercise> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterFilteredExerciseList(Predicate<Exercise> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -119,6 +119,13 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     }
 
     /**
+     * Returns the internalUnmodifiableList of type ObservableList in ExerciseList.
+     * */
+    public ObservableList<Exercise> getUnmodifiableList() {
+        return exerciseList.asUnmodifiableList();
+    }
+
+    /**
      * Sorts the displayed exercise list according to chronological order of exercise dates.
      */
     public void sortDisplayedList() {
@@ -130,6 +137,13 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      */
     public void resetDisplayedList() {
         exerciseList.resetDisplayedList();
+    }
+
+    /**
+     * Filters the displayed exercise list.
+     */
+    public void filterDisplayedList(ObservableList<Exercise> filteredList) {
+        exerciseList.filterDisplayedList(filteredList);
     }
 
     @Override

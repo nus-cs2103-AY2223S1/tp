@@ -18,7 +18,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortDisplayedList(PREDICATE_SHOW_ALL_EXERCISES);
+        model.sortFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -89,6 +89,13 @@ public class ExerciseList implements Iterable<Exercise> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
+    public ObservableList<Exercise> asUnmodifiableList() {
+        return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the displayed list {@code ObservableList}.
+     */
     public ObservableList<Exercise> asDisplayedList() {
         return displayedList;
     }
@@ -119,9 +126,18 @@ public class ExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Resets the displayedList to the default order (internalList).
+     * Resets the displayedList to the default order (internalUnmodifiableList).
      */
     public void resetDisplayedList() {
         displayedList.setAll(internalUnmodifiableList);
+    }
+
+    /**
+     * Filters the displayedList based on the filtered list that user filtered.
+     */
+    public void filterDisplayedList(ObservableList<Exercise> filteredList) {
+        System.out.println(displayedList);
+        System.out.println(filteredList);
+        displayedList.setAll(filteredList);
     }
 }

@@ -89,15 +89,25 @@ public interface Model {
     ExerciseHashMap getExerciseHashMap();
 
     /**
-     * Updates the filter of the filtered exercise list to filter by the given {@code predicate}.
+     * Resets the filtered exercise list to default order and updates filter of filtered list
+     * by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
 
     /**
-     * Sorts the displayed exercise list according to chronological order of exercise dates.
+     * Filters the filtered exercise list by updating the filter of filtered list
+     * by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
      */
-    void sortDisplayedList(Predicate<Exercise> predicate);
+    void filterFilteredExerciseList(Predicate<Exercise> predicate);
+
+    /**
+     * Sorts the filtered exercise list and updates filter of filtered list
+     * by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void sortFilteredExerciseList(Predicate<Exercise> predicate);
 
     /**
      * Resets the displayed exercise list to the default ordering.
