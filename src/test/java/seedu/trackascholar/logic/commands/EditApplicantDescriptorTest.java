@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,8 +52,8 @@ public class EditApplicantDescriptorTest {
         editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withScholarship(VALID_SCHOLARSHIP_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        // different majors -> returns false
+        editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withMajors(VALID_MAJOR_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

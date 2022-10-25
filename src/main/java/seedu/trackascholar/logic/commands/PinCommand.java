@@ -16,7 +16,7 @@ import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
 import seedu.trackascholar.model.applicant.Pin;
 import seedu.trackascholar.model.applicant.Scholarship;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * Pins an applicant identified using its displayed index from TrackAScholar.
@@ -58,7 +58,7 @@ public class PinCommand extends Command {
         Email email = applicantToPin.getEmail();
         Scholarship scholarship = applicantToPin.getScholarship();
         ApplicationStatus applicationStatus = applicantToPin.getApplicationStatus();
-        Set<Tag> tags = applicantToPin.getTags();
+        Set<Major> tags = applicantToPin.getMajors();
         Pin pin = new Pin(true);
 
         return new Applicant(name, phone, email, scholarship, applicationStatus, tags, pin);

@@ -27,7 +27,7 @@ public class PinCard extends UiPart<Region> {
     public final Applicant applicant;
 
     @FXML
-    private HBox cardPane;
+    private HBox pinCardPane;
     @FXML
     private Label name;
     @FXML
@@ -39,7 +39,7 @@ public class PinCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane majors;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Applicant} and index to display.
@@ -55,9 +55,9 @@ public class PinCard extends UiPart<Region> {
         //Ensure only pinned applicants are here
         assert applicant.getPin().getHasPinned();
         email.setText(applicant.getEmail().value);
-        applicant.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        applicant.getMajors().stream()
+                .sorted(Comparator.comparing(major -> major.major))
+                .forEach(major -> majors.getChildren().add(new Label(major.major)));
     }
 
     @Override

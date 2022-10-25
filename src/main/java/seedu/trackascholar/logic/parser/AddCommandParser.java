@@ -3,10 +3,10 @@ package seedu.trackascholar.logic.parser;
 import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -19,7 +19,7 @@ import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
 import seedu.trackascholar.model.applicant.Scholarship;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -34,7 +34,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SCHOLARSHIP, PREFIX_APPLICATION_STATUS, PREFIX_TAG);
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SCHOLARSHIP, PREFIX_APPLICATION_STATUS, PREFIX_MAJOR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SCHOLARSHIP, PREFIX_PHONE,
                 PREFIX_APPLICATION_STATUS, PREFIX_EMAIL)
@@ -48,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Scholarship scholarship = ParserUtil.parseScholarship(argMultimap.getValue(PREFIX_SCHOLARSHIP).get());
         ApplicationStatus applicationStatus =
                 ParserUtil.parseApplicationStatus(argMultimap.getValue(PREFIX_APPLICATION_STATUS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Major> majorList = ParserUtil.parseMajors(argMultimap.getAllValues(PREFIX_MAJOR));
 
-        Applicant applicant = new Applicant(name, phone, email, scholarship, applicationStatus, tagList);
+        Applicant applicant = new Applicant(name, phone, email, scholarship, applicationStatus, majorList);
 
         return new AddCommand(applicant);
     }

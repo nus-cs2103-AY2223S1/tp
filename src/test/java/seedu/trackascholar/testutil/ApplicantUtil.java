@@ -2,17 +2,17 @@ package seedu.trackascholar.testutil;
 
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import seedu.trackascholar.logic.commands.AddCommand;
 import seedu.trackascholar.logic.commands.EditCommand.EditApplicantDescriptor;
 import seedu.trackascholar.model.applicant.Applicant;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * A utility class for Applicant.
@@ -36,8 +36,8 @@ public class ApplicantUtil {
         sb.append(PREFIX_EMAIL + applicant.getEmail().value + " ");
         sb.append(PREFIX_SCHOLARSHIP + applicant.getScholarship().scholarship + " ");
         sb.append(PREFIX_APPLICATION_STATUS + applicant.getApplicationStatus().applicationStatus + " ");
-        applicant.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        applicant.getMajors().stream().forEach(
+            s -> sb.append(PREFIX_MAJOR + s.major + " ")
         );
         return sb.toString();
     }
@@ -55,12 +55,12 @@ public class ApplicantUtil {
         descriptor.getApplicationStatus()
                 .ifPresent(applicationStatus -> sb.append(PREFIX_APPLICATION_STATUS)
                         .append(applicationStatus.applicationStatus).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        if (descriptor.getMajors().isPresent()) {
+            Set<Major> majors = descriptor.getMajors().get();
+            if (majors.isEmpty()) {
+                sb.append(PREFIX_MAJOR);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                majors.forEach(s -> sb.append(PREFIX_MAJOR).append(s.major).append(" "));
             }
         }
         return sb.toString();

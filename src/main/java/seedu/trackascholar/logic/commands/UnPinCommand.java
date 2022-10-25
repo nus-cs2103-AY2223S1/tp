@@ -16,7 +16,7 @@ import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
 import seedu.trackascholar.model.applicant.Pin;
 import seedu.trackascholar.model.applicant.Scholarship;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * Pins an applicant identified using its displayed index from TrackAScholar.
@@ -27,7 +27,7 @@ public class UnPinCommand extends Command {
             + ": Unpins the applicant identified by the index number used in the displayed applicant list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    public static final String MESSAGE_UNPIN_APPLICANT_SUCCESS = "Pinned Applicant: %1$s";
+    public static final String MESSAGE_UNPIN_APPLICANT_SUCCESS = "Unpinned Applicant: %1$s";
 
     private final Index index;
 
@@ -58,7 +58,7 @@ public class UnPinCommand extends Command {
         Email email = applicantToPin.getEmail();
         Scholarship scholarship = applicantToPin.getScholarship();
         ApplicationStatus applicationStatus = applicantToPin.getApplicationStatus();
-        Set<Tag> tags = applicantToPin.getTags();
+        Set<Major> tags = applicantToPin.getMajors();
         Pin pin = new Pin(false);
 
         return new Applicant(name, phone, email, scholarship, applicationStatus, tags, pin);
