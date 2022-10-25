@@ -1,7 +1,9 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-### Tagging functionality
+### Tagging Feature Implementation 
 
-#### Implementation
+#### Implementation Details
+
+<!-- TODO: ADD TAG CLASS DIAGRAM -->
 
 The tagging functionality is facilitated by the `UniqueTagList` stored in `FoodRem`. Additionally, each `Item` stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
@@ -14,7 +16,7 @@ Given below is an UML diagram of `Tag` and the classes related to it:
 
 #### Design Considerations
 
-**Aspect: Storage of `Tag`**
+When storing a tag, these are the alternatives to consider.
 
 * **Alternative 1 (current choice):** Store `Tag` in a separate `UniqueTagList` and each `Item` stores its own set of associated `Tag`
 
