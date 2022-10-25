@@ -331,6 +331,6 @@ _Details coming soon ..._
 | **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
 | **ListEvents**   | `listEvents`                                                                                                                                                                           |
-| **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX_1 [PERSON_INDEX_2 PERSON_INDEX_3 ...]` <br> e.g., `tagEvent 2 p/1 3`                                                                                |
-| **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX_1 [PERSON_INDEX_2 PERSON_INDEX_3 ...]` <br> e.g., `untagEvent 3 p/4 5`                                                                            |
+| **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
+| **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
 | **Help**         | `help`                                                                                                                                                                                 |
