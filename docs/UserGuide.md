@@ -259,3 +259,4 @@ _Details coming soon ..._
 | **Find contacts**  | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`                                                                                 |
 | **List contacts**  | `listc`                                                                                                                                                                       |
 | **Help**           | `help`                                                                                                                                                                        |
+
