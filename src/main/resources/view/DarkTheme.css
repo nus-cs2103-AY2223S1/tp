@@ -10,6 +10,10 @@
 .background {
     -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , AliceBlue, -fx-bg-color);
     background-color: -fx-bg-color; /* Used in the default.html file */
+    -fx-background-image: url("/images/bg.png");
+    -fx-background-position: center center;
+    -fx-background-size: auto;
+    -fx-background-repeat: stretch;
 }
 
 .label {
@@ -125,7 +129,6 @@
 
 .inspectionPanel-VBox {
     -fx-background-color: linear-gradient(to left, -fx-shadow-color 99.5%, orangered 100%);
-    -fx-background-radius: 20;
     -fx-padding: 5, 5, 5, 5;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
 }
@@ -357,7 +360,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(-fx-shadow-color, 20%);
+    -fx-background-color: transparent;
     -fx-background-radius: 20;
     -fx-padding: 1;
 }
@@ -371,7 +374,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(-fx-shadow-color, 10%);
     -fx-background-insets: 3;
     -fx-background-radius: 20;
 }
