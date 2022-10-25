@@ -239,6 +239,39 @@ The following sequence diagram shows how the `edit` feature works.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/EditSequenceDiagram.png)
 
+### Delete Person
+
+#### Implementation
+
+The delete person feature is facilitated by `DeleteCommand`. It allows users to delete a person from the SectresBook that match the full
+First name or Last name of the person.
+
+Given below is the example usage scenario and how the delete feature behaves at each step.
+
+Step 1. The user executes 'delete David' command to delete a person with the name 'David' from the SectresBook.
+
+Step 2. The `DeleteCommandParser` creates a `FindCommand` with 'David'.
+
+Step 3. The `DeleteCommand` is executed with Index 1.
+
+The following sequence diagram shows how the delete command works:
+
+<img src="images/DeleteSequenceWithNameDiagram.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) 
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </div>
+
+#### Design Considerations:
+
+**Aspect: How delete executes:**
+
+* **Alternative 1 (Currect choice):** Deletes person based on complete first/last name from input.
+  * Pros: Less strictness of input from the user to delete a person.
+  * Cons: User may accidentally delete a person not meant to be deleted.
+* **Alternative 2:** Delete a person based on complete name i.e. first and last name required in input.
+  * Pros: Stricter input requirement, ensuring that persons are not accidentally deleted.
+  * Cons: Longer input required for the same output.
+
 ### addNote feature
 
 #### Implementation
@@ -322,6 +355,38 @@ The following sequence diagram shows how the addNote operation works:
     * Pros: Would be more precise (Title of notes are unique).
     * Cons: Long command would be needed to delete a note with a long Title.
 
+### Find Person
+
+### Implementation
+
+The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
+
+Given below is an example usage scenario and how the find feature behaves at each step.
+
+Step 1. The user executes 'find David' command to find all Persons in the address book that includes the name `David`.
+
+Step 2. A `FindCommand` is constructed with a `NameContainsKeywordPredicate` which checks through the list of persons in the address book and only shows those with their first/last name matching `David`.
+
+Step 3. The `FindCommand` is executed and the `NameContainsKeywordsPredicate` is used to update the filtered person list.
+
+The following sequence diagram shows how the find command works:
+
+<img src="images/FindCommandSequence.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Design considerations:
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** Chooses person based on the whole first/last name matching the keyword.
+    * Pros: More specific Persons list after the find command.
+    * Cons: User needs to know the first/last name of the person they are trying to find.
+
+* **Alternative 2:** Chooses person if name contains the keyword.
+    * Pros: Easier to find person.
+    * Cons: Persons list may show other persons that are not desired by the user.
+
 ### Find Person by Tag feature
 
 #### Implementation
@@ -341,6 +406,8 @@ The following sequence diagram shows how the findTag command works:
 <img src="images/FindTagSequenceDiagram.png" width="740"/>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 #### Design considerations:
 
