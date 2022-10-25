@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.HBox?>
 <HBox fx:id="placeHolder" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1" styleClass="filterStatusDisplay">
-    <Label fx:id="filterStatusDisplay" text="Current View: No Filter" styleClass="filterLabel"/>
+    <Label fx:id="filterStatusDisplay" text="Current View: Showing all tasks" styleClass="filterLabel"/>
 </HBox>

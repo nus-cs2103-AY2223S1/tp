@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-NotioNUS is a **desktop app for managing module tasks, which can be used via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NotioNUS can get your task management done faster than traditional GUI apps.
+NotionUS is a **desktop app for managing module tasks, which can be used via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, NotionUS can get your task management done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,9 +14,9 @@ NotioNUS is a **desktop app for managing module tasks, which can be used via a C
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest NotioNUS.jar from [here](https://github.com/AY2223S1-CS2103T-F12-3/tp).
+2. Download the latest NotionUS.jar from [here](https://github.com/AY2223S1-CS2103T-F12-3/tp).
 
-3. Move the file to the folder you want to use as the home folder for NotioNUS
+3. Move the file to the folder you want to use as the home folder for NotionUS
 
 4. Double-click the file to start the application. A GUI as shown below should appear.
 	Note: The application will contain some sample data when launched.
@@ -34,7 +34,8 @@ NotioNUS is a **desktop app for managing module tasks, which can be used via a C
    	Deletes the task in the task list with task id `taskId`.
    - `edit <taskId> <module> <taskName>` : 
    	Changes the module and task name of the task with `taskId` to `module` and `taskName` respectively.
-
+   - `find WORD [MORE_WORDS]` :
+    Finds task names with the words (not case-sensitive or strictly matched words)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +43,7 @@ NotioNUS is a **desktop app for managing module tasks, which can be used via a C
 
 ### Getting help : `help`
 
-Displays list of commands and information about NotioNUS.
+Displays list of commands and information about NotionUS.
 
 Format: `help`
 
@@ -76,6 +77,17 @@ Format : `tag <taskId> <tag>`
 * `tag`: The word to tag the task with
 
 Example: `tag 2 optional`
+
+## List and Find
+
+`list` and `find` are commands that filter the list according to the prefix used. There are multiple ways to filter the tasklist, such as
+listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple filter commands (both `list` and `find`) to filter a list
+down to the results you are looking for. To reset the list, use the command `ls -a`.
+
+Current filters applied will be shown in the UI at the top bar.
+
+**Note that using two `find` commands in succession is different from using one `find` command searching either of two words. Refer to the usage 
+of the `find` command below.**
 
 ### Listing all tasks : `ls -a`
 
@@ -121,6 +133,25 @@ Format: `ls -d <date>`
 
 Example: `ls -d 2022-11-11`
 
+### Find tasks by name : `find`
+
+The `find` command finds the task names which contain the word or words given in the prefix. 
+`find` is not case-sensitive and the keyword being searched does not have to match a whole word
+(Example: searching `tap` in task name `tape` will be shown).
+
+Format: `find WORD [MORE_WORDS]`
+
+Singular word search example: `find tutorial`
+
+Multiple word search example: `find Week tutorial`
+finds **any** task name with either `Week` or `tutorial`.
+
+*Note that this is **NOT** the same as:*
+
+`find Week` followed by `find tutorial`
+
+as it filters the task names with `Week` then filters task names with `tutorial`.
+
 ### Editing a task : `edit`
 
 Edits an existing task in the task list.
@@ -164,21 +195,17 @@ Loads previous command into the text input box.
 
 ### Saving the data
 
-NotioNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-NotioNUS data are saved as a JSON file `[JAR file location]/data/notionusdata.json`. Advanced users are welcome to update data directly by editing that data file.
+NotionUS data are saved as a JSON file `[JAR file location]/data/NotionUSdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
 
 **Caution:**
-If your changes to the data file makes its format invalid, NotioNUS will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
-### Find tasks by name `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -198,6 +225,6 @@ To be added..
 | **Clear**  | `clear`                                                                     |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                         |
 | **Edit**   | `edit <taskId> <module> <taskname>…​`<br> e.g.,`edit 1 CS2103T ip`          |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                  |
+| **Find**   | `find WORD [MORE_WORDS]`<br> e.g., `find task1 task2`                       |
 | **List**   | `ls -a` `ls -u` `ls -m` `ls --module <module>` `ls -t <tag>` `ls -d <date>` |
 | **Help**   | `help`                                                                      |

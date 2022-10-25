@@ -15,6 +15,7 @@ Class TaskListPanel
 Class TaskCard
 Class StatusBarFooter
 Class CommandBox
+Class FilterStatusDisplay
 }
 
 package Model <<Rectangle>> {
@@ -34,6 +35,7 @@ MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" TaskListPanel
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" FilterStatusDisplay
 MainWindow --> "0..1" HelpWindow
 
 TaskListPanel -down-> "*" TaskCard
