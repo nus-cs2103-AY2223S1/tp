@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.List;
 
@@ -20,11 +21,13 @@ public class DeleteClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-d";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + " " + COMMAND_FLAG
-            + ": Deletes the client identified by the project id it is tied to. \n"
-            + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + COMMAND_WORD + "" + COMMAND_FLAG + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
+            + ": Deletes the client identified by the Client ID. "
+            + "Parameters: "
+            + "CLIENT ID "
+            + "Example: " + COMMAND_WORD + " "
+            + COMMAND_FLAG + " "
+            + "1 ";
 
     public static final String MESSAGE_SUCCESS = "Deleted Client: %1$s";
 
