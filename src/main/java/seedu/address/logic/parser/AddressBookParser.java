@@ -18,9 +18,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEventsCommand;
+import seedu.address.logic.commands.MakeStatsCommand;
 import seedu.address.logic.commands.TagEventCommand;
 import seedu.address.logic.commands.UntagEventCommand;
-import seedu.address.logic.commands.MakeStatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
