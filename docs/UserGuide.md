@@ -107,12 +107,31 @@ The Add-Related commands include `student`, `prof` and `ta`. These are the comma
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3.3 Searching-Related Commands
-### 3.3.1 Locate contact<a id="331-locate-contact"></a>
-[coming soon]
-### 3.3.2 List contact<a id="332-list-contact"></a>
-[coming soon]
+### Finding a contact: `find`
+
+Finds all contacts based on the fields provided.
+
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Find can be used with any field as long as at least one field is provided.
+* The search is case-insensitive. e.g `bob` will match `Bob`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only full words will be matched e.g. `Bob` will not match `Bobby`
+* Persons matching at least one of the fields will be returned (i.e. `OR` search).
+  e.g. `find n/alex bob t/friends` will return `Alex`, `Bob`, as well all contacts with the tag `friend` (case insensitive)
+
+###
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 <div style="page-break-after: always;"></div>
 
+
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
 --------------------------------------------------------------------------------------------------------------------
 ## 3.4 Github-Related Commands
 ### 3.4.1 Opening a person's github profile page: `github`
