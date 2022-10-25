@@ -15,7 +15,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.client.Client;
-import seedu.address.model.transaction.Transaction;
 import seedu.address.storage.Storage;
 
 /**
@@ -24,7 +23,6 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-
     private final Model model;
     private final Storage storage;
     private final JeeqTrackerParser jeeqTrackerParser;
@@ -65,10 +63,6 @@ public class LogicManager implements Logic {
         return model.getFilteredClientList();
     }
 
-    @Override
-    public ObservableList<Transaction> getSortedTransactionList() {
-        return model.getSortedTransactionList();
-    }
 
     @Override
     public Path getJeeqTrackerFilePath() {

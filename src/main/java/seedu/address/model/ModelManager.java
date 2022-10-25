@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
-import seedu.address.model.transaction.Transaction;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,8 +23,6 @@ public class ModelManager implements Model {
     private final JeeqTracker jeeqTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClientsList;
-
-    private final FilteredList<Transaction> sortedTransactionList;
 
     /**
      * Initializes a ModelManager with the given jeeqTracker and userPrefs.
@@ -38,7 +35,6 @@ public class ModelManager implements Model {
         this.jeeqTracker = new JeeqTracker(jeeqTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClientsList = new FilteredList<>(this.jeeqTracker.getClientList());
-        sortedTransactionList = new FilteredList<>(this.jeeqTracker.getClientList().get(0).getTransactionList());
     }
 
     public ModelManager() {
@@ -164,23 +160,6 @@ public class ModelManager implements Model {
             filteredList.add(client);
         }
         return filteredList.calculateTotalTransaction();
-    }
-
-    //=========== Filtered Transaction List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
-     * {@code versionedJeeqTracker}
-     */
-    @Override
-    public ObservableList<Transaction> getSortedTransactionList() {
-        return sortedTransactionList;
-    }
-
-    @Override
-    public void updateSortedTransactionList(Predicate<Transaction> predicate) {
-        requireNonNull(predicate);
-        sortedTransactionList.setPredicate(predicate);
     }
 
 }

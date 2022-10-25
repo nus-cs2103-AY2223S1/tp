@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.client.Client;
-import seedu.address.model.transaction.Transaction;
 
 /**
  * API of the Logic component
@@ -33,9 +32,6 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of clients */
     ObservableList<Client> getFilteredClientList();
-
-    /** Returns an unmodifiable view of the filtered list of clients */
-    ObservableList<Transaction> getSortedTransactionList();
 
     /**
      * Returns the user prefs' address book file path.

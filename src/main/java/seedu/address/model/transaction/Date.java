@@ -21,9 +21,9 @@ public class Date {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
     public final String date;
+    public final LocalDate localDate;
     private final String unformattedDate;
 
-    public final LocalDate localDate;
 
     /**
      * Constructs a {@code Date}.

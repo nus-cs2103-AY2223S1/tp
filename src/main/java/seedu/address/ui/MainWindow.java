@@ -243,11 +243,11 @@ public class MainWindow extends UiPart<Stage> {
         companyListPanel.setCompanyList(FXCollections.observableArrayList());
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         Client client = clientList.get(0);
-            if (isOldestSort(result)) {
-                transactions.addAll(client.getSortOldestTransaction());
-            } else {
-                transactions.addAll(client.getSortLatestTransaction());
-            }
+        if (isOldestSort(result)) {
+            transactions.addAll(client.getSortOldestTransaction());
+        } else {
+            transactions.addAll(client.getSortLatestTransaction());
+        }
         transactionListPanel.setTransactionList(transactions);
     }
 

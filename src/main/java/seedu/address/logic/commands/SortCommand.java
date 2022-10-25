@@ -1,23 +1,19 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.compare;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TRANSACTION_SPECIFIED_CLIENT;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.client.NameEqualsKeywordPredicate;
 
-import java.util.List;
 
 /**
- * Finds and lists all clients in address book whose name contains any of the argument keywords.
- * Keyword matching is case-insensitive.
+ * Sorts a specified client in JeeqTracker by either latest or oldest transaction.
  */
 public class SortCommand extends Command {
 
@@ -37,6 +33,11 @@ public class SortCommand extends Command {
 
     private final Index index;
 
+
+    /**
+     * @param index of the client in the client list to sort
+     * @param isLatest checks if transactions sort by latest or oldest
+     */
     public SortCommand(Index index, boolean isLatest) {
         requireNonNull(index);
         this.isLatest = isLatest;
