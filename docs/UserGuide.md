@@ -66,8 +66,9 @@ If it is an appointment list, then appointments will be sorted by their datetime
 with the same datetime, they will be sorted by their attached patients' information.
 
 Format:
-* `list patients`
-* `list appts`
+* `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
+* `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
+* `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
 
 ### Grouping all patients : `group patients`
 
