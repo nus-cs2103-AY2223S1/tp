@@ -4,7 +4,8 @@ package tracko.model.item;
  * Represents an item entity in the application.
  */
 public interface Item {
-    public ItemName getItemName();
-    public Price getCostPrice();
-    public Price getSellPrice();
+    ItemName getItemName();
+    Price getCostPrice();
+    Price getSellPrice();
+    boolean isSameItem(Item otherItem);
 }

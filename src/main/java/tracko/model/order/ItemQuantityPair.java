@@ -3,6 +3,7 @@ package tracko.model.order;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import tracko.model.item.InventoryItem;
+import tracko.model.item.Item;
 import tracko.model.item.Quantity;
 
 /**
@@ -10,32 +11,32 @@ import tracko.model.item.Quantity;
  * */
 public class ItemQuantityPair {
 
-    private final InventoryItem inventoryItem;
+    private final Item item;
     private Quantity quantity;
 
     /**
      *  * Constructs an ItemQuantityPair with the given Item and Quantity.
-     * @param inventoryItem The given item
+     * @param item The given item
      * @param quantity The given quantity
      */
-    public ItemQuantityPair(InventoryItem inventoryItem, Quantity quantity) {
-        requireAllNonNull(inventoryItem, quantity);
-        this.inventoryItem = inventoryItem;
+    public ItemQuantityPair(Item item, Quantity quantity) {
+        requireAllNonNull(item, quantity);
+        this.item = item;
         this.quantity = quantity;
     }
 
     /**
      * Returns the referenced {@code Item} object of this ItemQuantityPair.
      */
-    public InventoryItem getItem() {
-        return inventoryItem;
+    public Item getItem() {
+        return item;
     }
 
     /**
      * Returns the item name of the referenced {@code Item} object of this ItemQuantityPair.
      */
     public String getItemName() {
-        return inventoryItem.getItemName().toString();
+        return item.getItemName().toString();
     }
 
     /**
@@ -56,7 +57,7 @@ public class ItemQuantityPair {
      * Returns true if the given {@code ItemQuantityPair} has the same item.
      */
     public boolean hasSameItem(ItemQuantityPair otherPair) {
-        return inventoryItem.isSameItem(otherPair.inventoryItem);
+        return item.isSameItem(otherPair.item);
     }
 
     /**

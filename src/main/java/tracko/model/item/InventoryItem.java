@@ -23,12 +23,12 @@ public class InventoryItem implements Item {
 
     /**
      * Constructs an {@code item}.
-     * @param itemName The name of the item.
-     * @param description The description of the item.
-     * @param quantity The quantity of the item.
-     * @param tags The tags associated with the item.
-     * @param sellPrice The price the item is sold at.
-     * @param costPrice The price the item was bought at.
+     * @param itemName The name of the item
+     * @param description The description of the item
+     * @param quantity The quantity of the item
+     * @param tags The tags associated with the item
+     * @param sellPrice The price the item is sold at
+     * @param costPrice The price the item cost to produce
      */
     public InventoryItem(ItemName itemName, Description description, Quantity quantity, Set<Tag> tags,
                          Price sellPrice, Price costPrice) {
@@ -101,16 +101,17 @@ public class InventoryItem implements Item {
     }
 
     /**
-     * Returns true if both items have the same name.
+     * Returns true if both items are {@code InventoryItem}s and have the same name.
      * This defines a weaker notion of equality between two items.
      */
-    public boolean isSameItem(InventoryItem otherInventoryItem) {
-        if (otherInventoryItem == this) {
+    @Override
+    public boolean isSameItem(Item otherItem) {
+        if (otherItem == this) {
             return true;
         }
 
-        return otherInventoryItem != null
-                && otherInventoryItem.getItemName().equals(getItemName());
+        return (otherItem instanceof InventoryItem)
+            && otherItem.getItemName().equals(getItemName());
     }
 
     /**
