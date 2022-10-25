@@ -330,6 +330,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.updateExamFieldForTask(previousExam, newExam);
     }
 
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        tasks.updateModuleFieldForTask(previousModule, newModule);
+    }
+
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        exams.updateModuleFieldForExam(previousModule, newModule);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

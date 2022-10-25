@@ -1,6 +1,7 @@
 package seedu.address.model.exam;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAnyNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * Exam class represents an exam which stores the module code, the
@@ -102,6 +104,28 @@ public class Exam {
         ExamDate updatedExamDate = editExamDescriptor.getExamDate().orElse(examDate);
         return new Exam(updatedModule, updatedDescription, updatedExamDate);
     }
+
+    /**
+     * Creates and returns a {@code Exam} with the details of {@code this}
+     * edited with {@code editExamDescriptor}.
+     */
+    public Exam edit(Module newModule, ExamDescription newDescription, ExamDate newExamDate ) {
+        requireAnyNonNull(newModule, newDescription, newExamDate);
+        Module updatedModule = module;
+        ExamDescription updatedDescription = examDescription;
+        ExamDate updatedExamDate = examDate;
+        if (newModule != null) {
+            updatedModule = newModule;
+        }
+        if (newDescription != null) {
+            updatedDescription = newDescription;
+        }
+        if (newExamDate != null) {
+            updatedExamDate = newExamDate;
+        }
+        return new Exam(updatedModule, updatedDescription, updatedExamDate);
+    }
+
 
     @Override
     public boolean equals(Object other) {

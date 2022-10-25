@@ -9,6 +9,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
@@ -115,6 +117,22 @@ public class DistinctTaskList implements Iterable<Task> {
             if (task.isLinked() && task.getExam().equals(previousExam)) {
                 Task editedTask = task.linkTask(newExam);
                 replaceTask(task, editedTask, true);
+            }
+        });
+    }
+
+    /**
+     * Replaces task by changing its given module field from {@code previousModule}
+     * to {@code newModule} for tasks that have their module field as {@code previousModule}.
+     * @param previousModule The module in the task's module field.
+     * @param newModule The new module which will replace the previous module in the task's module field.
+     */
+    public void updateModuleFieldForTask(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        taskList.forEach(task-> {
+            if (task.getModule().equals(previousModule)) {
+                Task editedTask = task.edit(newModule, null);
+                replaceTask(task, editedTask, false);
             }
         });
     }

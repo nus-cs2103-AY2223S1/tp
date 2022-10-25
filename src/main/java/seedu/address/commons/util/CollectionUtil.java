@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import seedu.address.model.module.exceptions.NullModuleCodeException;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
@@ -24,6 +26,16 @@ public class CollectionUtil {
     public static void requireAllNonNull(Collection<?> items) {
         requireNonNull(items);
         items.forEach(Objects::requireNonNull);
+    }
+
+    /**
+     * Throws NullPointerException if all of {@code items} is null.
+     */
+    public static void requireAnyNonNull(Object... items) {
+        requireNonNull(items);
+        if (!isAnyNonNull(items)) {
+            throw new NullPointerException();
+        };
     }
 
     /**

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
@@ -76,12 +77,18 @@ public class EditModuleCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_NOT_EDITED);
         }
 
-        if (model.hasTaskWithModule(moduleToEdit)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK);
-        }
-
         try {
             model.replaceModule(moduleToEdit, editedModule);
+
+            if (!moduleToEdit.isSameModule(editedModule)) {
+                if (model.hasTaskWithModule(moduleToEdit)) {
+                    model.updateModuleFieldForTask(moduleToEdit, editedModule);
+                }
+                if (model.hasExamWithModule(moduleToEdit)) {
+                    model.updateModuleFieldForExam(moduleToEdit, editedModule);
+                }
+            }
+
         } catch (DuplicateModuleException e) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_MODULE);
         }

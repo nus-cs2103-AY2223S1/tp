@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAnyNonNull;
 
 import java.util.Objects;
 
@@ -243,9 +244,21 @@ public class Task {
      */
     public Task edit(EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(editTaskDescriptor);
-
         Module updatedModule = editTaskDescriptor.getModule().orElse(module);
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+    }
+
+    public Task edit(Module newModule, TaskDescription newTaskDescription) {
+        requireAnyNonNull(newModule, newTaskDescription);
+        Module updatedModule = module;
+        TaskDescription updatedDescription = description;
+        if (newModule != null) {
+            updatedModule = newModule;
+        }
+        if (newTaskDescription != null) {
+            updatedDescription = newTaskDescription;
+        }
         return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
     }
 

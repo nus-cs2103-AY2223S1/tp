@@ -111,6 +111,22 @@ public class DistinctExamList implements Iterable<Exam> {
         }
     }
 
+    /**
+     * Replaces exam by changing its given module field from {@code previousModule}
+     * to {@code newModule} for exams that have their module field as {@code previousModule}.
+     * @param previousModule The module in the exam's module field.
+     * @param newModule The new module which will replace the previous module in the exams's module field.
+     */
+    public void updateModuleFieldForExam(Module previousModule, Module newModule) {
+        requireAllNonNull(previousModule, newModule);
+        examList.forEach(exam -> {
+            if (exam.getModule().equals(previousModule)) {
+                Exam editedExam = exam.edit(newModule, null, null);
+                replaceExam(exam, editedExam, false);
+            }
+        });
+    }
+
     @Override
     public Iterator<Exam> iterator() {
         return examList.iterator();

@@ -210,4 +210,18 @@ public interface Model {
      * @param newExam The new exam which will replace the previous exam in the task's exam field.
      */
     void updateExamFieldForTask(Exam previousExam, Exam newExam);
+
+    /**
+     * Updates the module field in task by replacing the previous module with the new module.
+     * @param previousModule The module in the task's module field.
+     * @param newModule The new module which will replace the previous module in the task's module field.
+     */
+    void updateModuleFieldForTask(Module previousModule, Module newModule);
+
+    /**
+     * Updates the module field in exam by replacing the previous module with the new module.
+     * @param previousModule The module in the exam's module field.
+     * @param newModule The new module which will replace the previous module in the exam's module field.
+     */
+    void updateModuleFieldForExam(Module previousModule, Module newModule);
 }
