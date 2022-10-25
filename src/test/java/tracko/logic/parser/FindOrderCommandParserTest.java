@@ -4,8 +4,10 @@ import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +16,6 @@ import tracko.logic.parser.order.FindOrderCommandParser;
 import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
 
 public class FindOrderCommandParserTest {
-    // TODO: Update test cases according to new implementations
-
     private FindOrderCommandParser parser = new FindOrderCommandParser();
 
     @Test
@@ -30,7 +30,7 @@ public class FindOrderCommandParserTest {
         FindOrderCommand expectedFindOrderCommand =
                 new FindOrderCommand(
                         new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList("Alice", "Bob"),
-                                Collections.EMPTY_LIST, Collections.EMPTY_LIST,
+                                new ArrayList<>() , new ArrayList<>(),
                                 false, false, false, false));
         assertParseSuccess(parser, " n/Alice Bob", expectedFindOrderCommand);
 
