@@ -32,6 +32,7 @@
             <MenuItem mnemonicParsing="false" onAction="#handleStar" text="Star" />
             <MenuItem mnemonicParsing="false" onAction="#handleSky" text="Sky" />
             <MenuItem mnemonicParsing="false" onAction="#handleLight" text="Light" />
+            <MenuItem mnemonicParsing="false" onAction="#handleTree" text="Tree" />
           </Menu>
         </MenuBar>
 
