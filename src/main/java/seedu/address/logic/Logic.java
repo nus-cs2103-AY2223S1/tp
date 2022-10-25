@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPersonBook;
 import seedu.address.model.ReadOnlyPropertyBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 
 /**
@@ -33,7 +33,7 @@ public interface Logic {
     ReadOnlyPersonBook getPersonModel();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Buyer> getFilteredPersonList();
 
     /**
      * Returns the PropertyBook.
@@ -46,7 +46,7 @@ public interface Logic {
     ObservableList<Property> getFilteredPropertyList();
 
     /**
-     * Returns the user prefs' person model file path.
+     * Returns the user prefs' buyer model file path.
      */
     Path getPersonModelFilePath();
 

@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditBuyerCommand;
-import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -39,37 +38,37 @@ public class EditBuyerCommandParser extends Parser<EditBuyerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBuyerCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditBuyerCommand.EditBuyerDescriptor editBuyerDescriptor = new EditBuyerCommand.EditBuyerDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editBuyerDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editBuyerDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editBuyerDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editBuyerDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
-            editPersonDescriptor.setPriceRange(ParserUtil
+            editBuyerDescriptor.setPriceRange(ParserUtil
                     .parsePriceRange(argMultimap.getValue(PREFIX_PRICE_RANGE).get()));
         }
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
-            editPersonDescriptor.setDesiredCharacteristics(ParserUtil
+            editBuyerDescriptor.setDesiredCharacteristics(ParserUtil
                     .parseCharacteristics(argMultimap.getValue(PREFIX_CHARACTERISTICS).get()));
         }
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
-            editPersonDescriptor.setPriority(ParserUtil
+            editBuyerDescriptor.setPriority(ParserUtil
                     .parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editBuyerDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditBuyerCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditBuyerCommand(index, editPersonDescriptor);
+        return new EditBuyerCommand(index, editBuyerDescriptor);
     }
 
 }
