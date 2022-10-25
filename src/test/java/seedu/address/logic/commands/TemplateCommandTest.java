@@ -62,5 +62,4 @@ class TemplateCommandTest {
         assertNotEquals(otherCommand, new TemplateCommand("student"));
         assertNotEquals(otherCommand, new TemplateCommand("ta"));
     }
-    
 }
