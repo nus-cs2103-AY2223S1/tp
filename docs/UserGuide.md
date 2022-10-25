@@ -185,17 +185,22 @@ Example:
 
 ### Autocomplete: `search`
 
-Show a list of names or tags that match the current search query.
-This feature is only available when searching for names or tags.
+Displays a list of search queries based on the current search query with the last parameter completed. The completed parameter will depend on the contacts that match the current search query. User can choose one of the search queries and perform the searching without having to type the full parameter.
 
-Format: `search [n/NAME_PREFIX]`, `search [t/TAG_PREFIX]`
+Format: Refer to the [`search`](#Search for a Contact) command format above.
 
-* Only names or tags with their prefix that match the current name or tag search query will be returned. E.g. `An` will match `Angel` but not `Jordan`.
-* The search is case-insensitive. E.g `hans` will match `Hans`.
+* This feature is only available when search command is entered (i.e. the command entered matches the [`search`](#Search for a Contact) format stated above).
+* Only the last parameter will be completed (e.g. `search and n/NAME p/PHONE`, only the last parameter `PHONE` will be completed).
+* The list of search queries will include the current search query.
+* No result will be displayed if there is no contact matches the current search query.
+* No result will be displayed if the last parameter is empty.
 
 Example:
-* `search n/An` will show a list of names that start with `An`.
-* `search t/fa` will show a list of tags that start with `fa`.
+* `search or n/John p/` displays nothing as the last parameter `PHONE` is empty.
+* `search and n/John a/N`, displays a list of search queries containing `search and n/John a/N` and `search and n/John a/NUS` if SoConnect has contacts with name `John` and address `NUS`
+* `search and n/John a/N` displays nothing if SoConnect does not have any contact with name `John` or has contact with name `John` but does not start with `N`.
+* `search or n/John a/N` displays a list of search queries containing `search and n/John a/N`, `search and n/John a/NUS`, `search and n/John a/NYC` if SoConnect has contacts with address `NTU` and `NYC`, does not have to care about the name in the contact since it is `or` condition.
+* `search or n/John a/N` displays nothing if SoConnect does not have contacts with address starts with `N`.
 
 ### Deleting a contact : `delete`
 
@@ -264,19 +269,22 @@ Format: `clear`
 
 Adds a todo to your SoConnect.
 
-Format: `todo add d/DESCRIPTION priority/PRIORITY [t/TAG]…​`
-* PRIORITY can only be `low`, `medium`, `high`.
-* The todo list will always be sorted in decreasing priority.
+Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
+
+* `DATE` should be of the format dd-MM-yyyy (e.g. 24-03-2022).
+* `PRIORITY` can only be `low`, `medium`, `high`.
+* The todo list will always be sorted by date from earliest to latest, then follow by decreasing priority.
 
 Examples:
-* `todo add d/Watched recorded videos for CS2100 priority/low t/CS2100`
-* `todo add d/Prepare slides for OP2 priority/high t/CS2101 t/CS2103T`
+* `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
+* `todo add d/Prepare slides for OP2 date/25-03-2022 pr/high t/CS2101 t/CS2103T`
 
 ### Editing a todo : `todo edit`
 
 Edits an existing todo in your SoConnect.
 
-Format: `todo edit INDEX [d/DESCRIPTION] [priority/PRIORITY] [t/TAG]…​`
+Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
+
 * Edits the todo at the specified `INDEX`. The index refers to the index number shown in the displayed todo list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Parameters given will overwrite the existing values completely.
@@ -284,7 +292,7 @@ Format: `todo edit INDEX [d/DESCRIPTION] [priority/PRIORITY] [t/TAG]…​`
 
 Examples:
 *  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
-*  `todo edit 1 priority/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
+*  `todo edit 1 pr/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
 
 ### Deleting a todo : `todo delete`
 
@@ -297,7 +305,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `todo show all` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
+* `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
 
 ### Clearing all todos : `todo clear`
 
@@ -309,16 +317,20 @@ Format: `todo clear`
 
 Shows a filtered list of todos in your SoConnect.
 
-Format: `todo show CONDITION`
+Format: `todo show`, `todo show today`, `todo show date/DATE`, `todo show date/DATE to DATE`, `todo show t/TAG`, `todo show pr/Priority`
 
-Conditions:
-* `all`: Shows all todos.
-* `priority/PRIORITY`: Shows all todos of the specified priority.
+* `todo show`: Shows all todos.
+* `todo show today`: Shows all todos with the date same as the current date.
+* `todo show date/DATE`: show all todos with the specified date.
+* `todo show date/DATE1 to DATE2`: shows all todos with the date from `DATE1` to `DATE2`.
+* `pr/PRIORITY`: Shows all todos with the specified priority.
 * `t/TAG`: Shows all todos with the specified tag.
 
 Examples:
-* `todo show priority/low` shows all todos that are low priority.
-* `todo show t/2103T` shows all todos tagged by `CS2103T`.
+* `todo show date/25-10-2022`: show all todos with the date `25-10-2022`.
+* `todo show date/24-10-2022 to 26-10-2022`: shows all todos with the date from `24-10-2022` to `26-10-2022`.
+* `pr/high`: Shows all todos with the priority `high`.
+* `t/friends`: Shows all todos with the tag `friends`.
 
 ### Exiting the program : `exit`
 
@@ -355,22 +367,22 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                          |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                                                                    |
-| **Clear**       | `clear`                                                                                                                                                                                                   |
-| **Customise**   | `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> `customise order [t/] [p/] [e/] [a/]` <br> e.g, `customise hide a/ e/ p/` `customise show a/` `customise order a/ p/` |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                       |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                         |
-| **Search**      | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g., `seach or n/John Doe t/cs2103t`                                                                                                                |
-| **List**        | `list`                                                                                                                                                                                                    |
-| **Sort**        | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/!friend n/`                                                                                                                                       |
-| **Help**        | `help`                                                                                                                                                                                                    |
-| **Create Tag**  | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                                                       |
-| **Edit Tag**    | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                                                     |
-| **Add Tag**     | `tag add INDEX t/TAG` <br> e.g., `tag add 1 t/friend`                                                                                                                                                     |
-| **Add Todo**    | `todo add d/DESCRIPTION priority/PRIORITY [t/TAG]…​` <br> e.g., `todo add d/Revise priority/high`                                                                                                         |
-| **Edit Todo**   | `todo edit INDEX [d/DESCRIPTION] [priority/PRIORITY] [t/TAG]…​` <br> e.g., `todo edit t/CS2101`                                                                                                           |
-| **Delete Todo** | `todo delete INDEX` <br> e.g., `todo delete 3`                                                                                                                                                            |
-| **Clear Todo**  | `todo clear`                                                                                                                                                                                              |
-| **Show Todo**   | `todo show CONDITION` <br> e.g., `todo show all`, `todo show priority/high`, `todo show t/CS2100`                                                                                                         |
+| Action          | Format, Examples                                                                                                                                                                                                      |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                                                                                |
+| **Clear**       | `clear`                                                                                                                                                                                                               |
+| **Customise**   | `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> `customise order [t/] [p/] [e/] [a/]` <br> e.g, `customise hide a/ e/ p/` `customise show a/` `customise order a/ p/`             |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                   |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                     |
+| **Search**      | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g., `seach or n/John Doe t/cs2103t`                                                                                                                            |
+| **List**        | `list`                                                                                                                                                                                                                |
+| **Sort**        | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/!friend n/`                                                                                                                                                   |
+| **Help**        | `help`                                                                                                                                                                                                                |
+| **Create Tag**  | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                                                                   |
+| **Edit Tag**    | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                                                                 |
+| **Add Tag**     | `tag add INDEX t/TAG` <br> e.g., `tag add 1 t/friend`                                                                                                                                                                 |
+| **Add Todo**    | `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​` <br> e.g., `todo add d/Revise priority/high`                                                                                                                 |
+| **Edit Todo**   | `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​` <br> e.g., `todo edit t/CS2101`                                                                                                                 |
+| **Delete Todo** | `todo delete INDEX` <br> e.g., `todo delete 3`                                                                                                                                                                        |
+| **Clear Todo**  | `todo clear`                                                                                                                                                                                                          |
+| **Show Todo**   | `todo show`<br> `todo show today` <br> `todo show date/DATE` <br> `todo show date/DATE to DATE` <br> `todo show t/TAG` <br> `todo show pr/Priority` <br> e.g., `todo show`, `todo show pr/high`, `todo show t/CS2100` |
