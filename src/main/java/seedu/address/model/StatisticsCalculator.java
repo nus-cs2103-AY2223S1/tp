@@ -7,38 +7,38 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
 /**
- * A calculator that calculates the statistics of a particular AddressBook.
+ * A calculator that calculates the statistics of a particular TeachersPet.
  */
 public class StatisticsCalculator {
     private static final Logger logger = LogsCenter.getLogger(StatisticsCalculator.class);
 
-    private final ReadOnlyAddressBook addressBook;
+    private final ReadOnlyTeachersPet teachersPet;
 
     /**
      * Constructs an {@code StatisticsCalculator}.
      *
-     * @param addressBook AddressBook used to calculate the statistics.
+     * @param teachersPet TeachersPet used to calculate the statistics.
      */
-    public StatisticsCalculator(ReadOnlyAddressBook addressBook) {
-        this.addressBook = addressBook;
+    public StatisticsCalculator(ReadOnlyTeachersPet teachersPet) {
+        this.teachersPet = teachersPet;
     }
 
     /**
-     * Calculates the number of people in AddressBook.
+     * Calculates the number of people in TeachersPet.
      *
-     * @return the number of people stored in AddressBook.
+     * @return the number of people stored in TeachersPet.
      */
     public int getSize() {
-        return addressBook.getPersonList().size();
+        return teachersPet.getPersonList().size();
     }
 
     /**
-     * Sums up the total money owed by the people in AddressBook.
+     * Sums up the total money owed by the people in TeachersPet.
      *
      * @return the total amount of money owed.
      */
     public String getAmountOwed() {
-        ObservableList<Person> personList = addressBook.getPersonList();
+        ObservableList<Person> personList = teachersPet.getPersonList();
         int moneyOwed = 0;
         try {
             for (Person person : personList) {
@@ -51,12 +51,12 @@ public class StatisticsCalculator {
     }
 
     /**
-     * Sums up the total money paid by the people in AddressBook.
+     * Sums up the total money paid by the people in TeachersPet.
      *
      * @return the total amount of money paid.
      */
     public String getAmountPaid() {
-        ObservableList<Person> personList = addressBook.getPersonList();
+        ObservableList<Person> personList = teachersPet.getPersonList();
         int moneyPaid = 0;
         try {
             for (Person person : personList) {

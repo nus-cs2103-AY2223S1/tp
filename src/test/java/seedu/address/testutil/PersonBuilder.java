@@ -86,14 +86,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
@@ -106,14 +98,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} next of kin phone of the {@code Person} that we are building.
-     */
-    public PersonBuilder withNokPhone(String nokPhone) {
-        this.nokPhone = new Phone(nokPhone);
         return this;
     }
 
@@ -162,6 +146,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAdditionalNotes(String additionalNotes) {
         this.additionalNotes = new AdditionalNotes(additionalNotes);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 

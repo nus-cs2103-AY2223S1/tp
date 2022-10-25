@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AVA;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -99,6 +100,15 @@ public class PersonTest {
         Person person = new PersonBuilder(ALICE).build();
         person.setClass(new Class());
         assertEquals(person.getAClass().classDateTime, "");
+    }
+
+    @Test
+    public void owesMoneyTest() {
+        Person debtor = AVA;
+        assertTrue(debtor.isOwingMoney());
+
+        Person nonDebtor = new PersonBuilder(AVA).withMoneyOwed(0).build();
+        assertFalse(nonDebtor.isOwingMoney());
     }
 
 }

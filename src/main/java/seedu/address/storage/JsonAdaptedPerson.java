@@ -116,7 +116,7 @@ class JsonAdaptedPerson {
 
         final Phone modelNokPhone;
         if (nokPhone == null) {
-            modelNokPhone = new Phone("87654321");
+            modelNokPhone = new Phone();
         } else {
             if (!Phone.isValidPhone(nokPhone)) {
                 throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);

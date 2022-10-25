@@ -19,7 +19,7 @@ public class StatisticsDisplay extends UiPart<Region> {
     }
 
     /**
-     * Displays the statistics of the AddressBook to the user.
+     * Displays the statistics of the TeachersPet to the user.
      */
     public void showStatisticsToUser(int numberOfStudents, String amountOwed, String amountCollected) {
         statisticsDisplay.setText(String.format("Number of students: %d\n"

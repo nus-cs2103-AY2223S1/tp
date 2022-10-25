@@ -33,7 +33,7 @@ public class Person {
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
-     * // Todo: Note that this is a temporary design and subject to update in future iteration
+     * // Todo: Note that nokPhone will be initialized with passed-in arguments in future iteration.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -137,6 +137,15 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getPhone().equals(getPhone());
+    }
+
+    /**
+     * Determines whether the person is owing money.
+     *
+     * @return true if the person is owing money
+     */
+    public boolean isOwingMoney() {
+        return moneyOwed.isGreaterThanZero();
     }
 
     /**

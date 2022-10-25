@@ -33,11 +33,21 @@ public class Money {
 
     /**
      * Validates whether amount is valid.
+     *
      * @param amount the value to be validated
      * @return true if a given integer is non-negative
      */
     public static boolean isValidMoney(Integer amount) {
         return amount >= 0;
+    }
+
+    /**
+     * Validates whether amount is more than zero.
+     *
+     * @return true if amount is positive
+     */
+    public boolean isGreaterThanZero() {
+        return value > 0;
     }
 
     @Override

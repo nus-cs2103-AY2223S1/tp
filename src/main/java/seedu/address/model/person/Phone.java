@@ -11,8 +11,9 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain numbers, and it should start with 6, 8, or 9, "
+                    + "and be exactly 8 digits long";
+    public static final String VALIDATION_REGEX = "[689]\\d{7}";
     public final String value;
 
     /**
@@ -28,6 +29,8 @@ public class Phone {
 
     /**
      * Constructs a {@code Phone} with default value "87654321".
+     * // Todo: removing this constructor when NokPhone added as argument to `add command`
+     * ps: Using magic literal can be extremely disastrous in debugging.
      */
     public Phone() {
         value = "87654321";
@@ -38,13 +41,6 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is a valid next of kin phone number.
-     */
-    public static boolean isValidNokPhone(String test) {
-        return isValidPhone(test);
     }
 
     @Override
