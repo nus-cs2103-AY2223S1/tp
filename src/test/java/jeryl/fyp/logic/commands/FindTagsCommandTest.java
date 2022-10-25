@@ -2,8 +2,7 @@ package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jeryl.fyp.testutil.TypicalStudents.CARL;
-import static jeryl.fyp.testutil.TypicalStudents.FIONA;
+import static jeryl.fyp.testutil.TypicalStudents.BENSON;
 import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -65,12 +64,12 @@ public class FindTagsCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
-        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 2);
-        TagsContainKeywordsPredicate predicate = preparePredicate("de/ woRld/ de ");
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 1);
+        TagsContainKeywordsPredicate predicate = preparePredicate("smo / wES");
         FindTagsCommand command = new FindTagsCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(BENSON), model.getFilteredStudentList());
     }
 
     /**

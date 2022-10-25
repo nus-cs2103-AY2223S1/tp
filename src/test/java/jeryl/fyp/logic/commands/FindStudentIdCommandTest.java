@@ -66,7 +66,7 @@ public class FindStudentIdCommandTest {
     @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 2);
-        StudentIdContainsKeywordsPredicate predicate = preparePredicate("de/ woRld/ de ");
+        StudentIdContainsKeywordsPredicate predicate = preparePredicate("2427  / 563");
         FindStudentIdCommand command = new FindStudentIdCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
