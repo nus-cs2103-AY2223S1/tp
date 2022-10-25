@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+box "Logic" LOGIC_COLOR_T1
+participant ":LogicManager" as logic LOGIC_COLOR
+participant ":TuthubParser" as parser LOGIC_COLOR
+participant ":CommentCommandParser" as ccp LOGIC_COLOR
+participant ":CommentCommand" as comment LOGIC_COLOR
+participant ":CommandResult" as result LOGIC_COLOR
+end box
+
+box "Model" MODEL_COLOR_T1
+participant "tutor:Tutor" as tutor MODEL_COLOR
+end box
+
+--> logic: executeCommand(comment 1 c/Often late)
+activate logic
+logic -> parser: parseCommand(comment 1 c/Often late)
+activate parser
+parser -> ccp: parse(comment 1 c/Often late)
+activate ccp
+ccp -> comment
+activate comment
+comment --> ccp
+deactivate comment
+ccp --> parser
+deactivate ccp
+parser --> logic
+deactivate parser
+logic -> comment
+activate comment
+comment -> tutor: setTutor
+activate tutor
+tutor --> comment
+deactivate tutor
+comment -> result
+activate result
+result --> comment
+deactivate result
+comment --> logic
+deactivate comment
+<-- logic
+deactivate logic
+@enduml
