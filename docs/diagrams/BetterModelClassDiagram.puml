@@ -19,6 +19,8 @@ Item *--> ItemBoughtDate
 Item *--> ItemExpiryDate
 Item *--> ItemQuantity
 Item *--> ItemName
+Item *--> ItemPrice
+Item *--> ItemRemark
 Tag *-right--> TagName
 
 @enduml
