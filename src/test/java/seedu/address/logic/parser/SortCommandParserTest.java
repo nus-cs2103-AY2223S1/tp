@@ -53,21 +53,21 @@ public class SortCommandParserTest {
     @Test
     public void parse_validArgs_returnsSortCommandDesc() {
         SortCommand expectedSortCommandName =
-                new SortCommand(new SortByName("desc"), "name");
+                new SortCommand(new SortByName("desc"), "name in descending order");
         assertParseSuccess(parser, "name desc", expectedSortCommandName);
 
         SortCommand expectedSortCommandAppt =
-                new SortCommand(new SortByAppointment("desc"), "appt");
+                new SortCommand(new SortByAppointment("desc"), "appt in descending order");
         assertParseSuccess(parser, "appt desc", expectedSortCommandAppt);
 
         SortCommand expectedSortCommandRisk =
-                new SortCommand(new SortByRiskTag("desc"), "risk");
-        assertParseSuccess(parser, "risk", expectedSortCommandRisk);
+                new SortCommand(new SortByRiskTag("desc"), "risk in descending order");
+        assertParseSuccess(parser, "risk desc", expectedSortCommandRisk);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name desc \n", expectedSortCommandName);
         assertParseSuccess(parser, " \t appt desc \n", expectedSortCommandAppt);
-        assertParseSuccess(parser, " \t risk \n", expectedSortCommandRisk);
+        assertParseSuccess(parser, " \t risk desc \n", expectedSortCommandRisk);
     }
 }
 
