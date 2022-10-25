@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -26,13 +28,16 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-
+    private TabPaneManager dataPanels;
+    @FXML
+    private TabPane dataPanelsTabPanes;
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private GroupListPanel groupListPanel;
+    private AssignmentListPanel assignmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,12 +52,19 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane groupListPanelPlaceholder;
+    @FXML
+    private StackPane assignmentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private Tab assignmentListPanelTab;
+    @FXML
+    private Tab personListPanelTab;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,6 +133,9 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
+        assignmentListPanel = new AssignmentListPanel(logic.getFilteredPersonList());
+        assignmentListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -129,6 +144,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        dataPanels = new TabPaneManager(dataPanelsTabPanes,
+                personListPanelTab,
+                assignmentListPanelTab);
     }
 
 

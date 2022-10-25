@@ -102,6 +102,7 @@ public class DeleteTaskAllCommand extends Command {
                     personToDeleteTask.getAddress(), personToDeleteTask.getTags(),
                     assignments, personToDeleteTask.getPersonGroups());
 
+            editedPerson.setWorkloadScore();
             model.setPerson(personToDeleteTask, editedPerson);
             successfullyDeleted.add(editedPerson);
         }

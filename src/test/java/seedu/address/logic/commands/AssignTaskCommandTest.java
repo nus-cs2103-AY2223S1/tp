@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Workload;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.testutil.PersonBuilder;
@@ -43,6 +44,7 @@ public class AssignTaskCommandTest {
 
         String groupName = ORAL_PRESENTATION.getName().toString();
         String assignmentName = "Assignment ABC";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
 
         Person editedPerson = new PersonBuilder(personToAssignTask)
                 .withAssignments(new String[]{"Alpha", "Beta"},
@@ -55,12 +57,12 @@ public class AssignTaskCommandTest {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
                 ELLE.getName(),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
         );
 
         String expectedMessage = String.format(AssignTaskCommand.MESSAGE_ASSIGN_TASK_SUCCESS + "\n"
                         + AssignTaskCommand.MESSAGE_ARGUMENTS,
-                ELLE.getName(), groupName, assignmentName);
+                ELLE.getName(), groupName, assignmentToAssign);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToAssignTask, editedPerson);
@@ -75,6 +77,7 @@ public class AssignTaskCommandTest {
 
         String groupName = ORAL_PRESENTATION.getName().toString();
         String assignmentName = "Assignment ABC";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
 
         Person editedPerson = new PersonBuilder(personToAssignTask)
                 .withAssignments(new String[]{groupName},
@@ -87,12 +90,12 @@ public class AssignTaskCommandTest {
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
                 ELLE.getName(),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
         );
 
         String expectedMessage = String.format(AssignTaskCommand.MESSAGE_ASSIGN_TASK_SUCCESS + "\n"
                         + AssignTaskCommand.MESSAGE_ARGUMENTS,
-                ELLE.getName(), groupName, assignmentName);
+                ELLE.getName(), groupName, assignmentToAssign);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToAssignTask, editedPerson);

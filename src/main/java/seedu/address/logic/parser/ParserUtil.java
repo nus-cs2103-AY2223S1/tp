@@ -217,7 +217,6 @@ public class ParserUtil {
     public static PersonGroup parsePersonGroup(String personGroup) {
         requireNonNull(personGroup);
         String trimmedPersonGroup = personGroup.trim();
-
         return new PersonGroup(trimmedPersonGroup);
     }
 
