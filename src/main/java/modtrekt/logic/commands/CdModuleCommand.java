@@ -50,6 +50,6 @@ public class CdModuleCommand extends Command {
                     moduleCode.toString()));
         }
         model.setCurrentModule(moduleCode);
-        return new CommandResult(String.format("Changed current module to %s", moduleCode.toString()));
+        return new CommandResult(String.format("Changed current module to %s!", moduleCode.toString()));
     }
 }

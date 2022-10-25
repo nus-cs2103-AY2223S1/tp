@@ -63,6 +63,6 @@ public class ArchiveTaskCommand extends Command {
 
         // Archive the task.
         model.setTask(target, target.archive());
-        return new CommandResult("Archived task.");
+        return new CommandResult("Yay! I successfully marked this task as done!");
     }
 }

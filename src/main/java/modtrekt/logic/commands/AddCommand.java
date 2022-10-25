@@ -25,7 +25,7 @@ public class AddCommand extends Command {
             + "Usage 2: " + COMMAND_WORD + " " + COMMAND_IDENTIFIER + " "
             + CliSyntax.PREFIX_MOD_CODE + "<CODE>";
 
-    public static final String MESSAGE_SUCCESS = "New module added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Yay! I added a new module: %1$s!";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
 
     private final Module toAdd;

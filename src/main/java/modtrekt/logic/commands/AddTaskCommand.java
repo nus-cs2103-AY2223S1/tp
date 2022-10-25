@@ -21,7 +21,7 @@ public class AddTaskCommand extends Command {
             + "[" + CliSyntax.PREFIX_DEADLINE + "<YYYY-MM-DD> ] "
             + CliSyntax.PREFIX_MOD_CODE + " <MODULE CODE> ";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_SUCCESS = "I added a new task: %1$s! Good Luck!";
 
     private final Task toAdd;
 

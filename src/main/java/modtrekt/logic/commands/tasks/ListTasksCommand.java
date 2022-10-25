@@ -32,10 +32,10 @@ public class ListTasksCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         if (areArchivedTasksShown) {
             model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult("Listed all tasks, including those archived.");
+            return new CommandResult("Here is the list of all tasks, including those marked as done!");
         } else {
             model.updateFilteredTaskList(Model.PREDICATE_HIDE_ARCHIVED_TASKS);
-            return new CommandResult("Listed all unarchived tasks.");
+            return new CommandResult("Here is the list of all active tasks!");
         }
     }
 

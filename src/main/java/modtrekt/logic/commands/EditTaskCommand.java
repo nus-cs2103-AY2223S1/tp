@@ -31,7 +31,7 @@ public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task successfully edited: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "I successfully edited the task: %1$s!";
 
     @Parameter(names = "-t", description = "Index of the task to edit",
             required = true, converter = IndexConverter.class)

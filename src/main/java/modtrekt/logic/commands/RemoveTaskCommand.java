@@ -23,7 +23,7 @@ public class RemoveTaskCommand extends Command {
             + "Prefixes: " + CliSyntax.PREFIX_MODULE + ": Modules, " + CliSyntax.PREFIX_TASK + ": Tasks\n"
             + "Format: " + COMMAND_WORD + " " + CliSyntax.PREFIX_MODULE + " <INDEX>";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Removed Task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "I successfully deleted the task: %1$s!";
 
     private final Index targetIndex;
 

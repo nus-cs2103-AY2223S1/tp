@@ -62,6 +62,6 @@ public class UndoneModuleCommand extends Command {
 
         // Undone the module.
         model.setModule(target, target.undone());
-        return new CommandResult("Marked module as undone.");
+        return new CommandResult("I successfully marked this module as not done!");
     }
 }

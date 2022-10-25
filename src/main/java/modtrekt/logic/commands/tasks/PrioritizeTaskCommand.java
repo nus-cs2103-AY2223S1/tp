@@ -77,7 +77,8 @@ public class PrioritizeTaskCommand extends Command {
 
         // Set the priority rating for the task.
         model.setTask(target, target.setPriority(priority));
-        return new CommandResult(String.format("Set task #%d's priority to %s.", index.getOneBased(), priority));
+        return new CommandResult(String.format("I set task #%d's priority to %s! Good Luck!",
+                index.getOneBased(), priority));
     }
 
     @Override

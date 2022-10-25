@@ -22,7 +22,7 @@ public class RemoveCommand extends Command {
             + "Prefixes: " + CliSyntax.PREFIX_MODULE + ": Modules, " + CliSyntax.PREFIX_TASK + ": Tasks\n"
             + "Format: " + COMMAND_WORD + " " + CliSyntax.PREFIX_MODULE + " <INDEX>";
 
-    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "I successfully deleted the module: %1$s!";
 
     private final Index targetIndex;
 

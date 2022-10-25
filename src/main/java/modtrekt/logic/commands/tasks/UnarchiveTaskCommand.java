@@ -62,6 +62,6 @@ public class UnarchiveTaskCommand extends Command {
 
         // Unarchive the task.
         model.setTask(target, target.unarchive());
-        return new CommandResult("Unarchived task.");
+        return new CommandResult("I successfully marked this task as not done!");
     }
 }
