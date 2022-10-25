@@ -66,7 +66,7 @@ public class EditItemDescriptorBuilder {
      * Sets the {@code Bought Date} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withItemBoughtDate(String boughtDate) {
-        descriptor.setItemBoughtDate(new ItemBoughtDate(boughtDate));
+        descriptor.setItemBoughtDate(ItemBoughtDate.of(boughtDate));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class EditItemDescriptorBuilder {
      * Sets the {@code Expiry Date} of the {@code EditItemDescriptor} that we are building.
      */
     public EditItemDescriptorBuilder withItemExpiryDate(String boughtDate) {
-        descriptor.setItemExpiryDate(new ItemExpiryDate(boughtDate));
+        descriptor.setItemExpiryDate(ItemExpiryDate.of(boughtDate));
         return this;
     }
 

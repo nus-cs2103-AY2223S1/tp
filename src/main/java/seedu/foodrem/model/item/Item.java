@@ -198,8 +198,8 @@ public class Item {
                 name,
                 quantity,
                 String.valueOf(unit).isBlank() ? "" : " " + unit,
-                String.valueOf(boughtDate).isBlank() ? "Not Set" : boughtDate,
-                String.valueOf(expiryDate).isBlank() ? "Not Set" : expiryDate,
+                boughtDate.isNotSet() ? "Not Set" : boughtDate,
+                expiryDate.isNotSet() ? "Not Set" : expiryDate,
                 "$" + price,
                 String.valueOf(remarks).isBlank() ? "No Remarks" : remarks,
                 tagsString);
