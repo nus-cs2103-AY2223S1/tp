@@ -3,6 +3,8 @@ package swift.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
 import swift.commons.core.index.Index;
@@ -36,6 +38,12 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTaskDescriptor.setTaskName(ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editTaskDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            editTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT).isPresent()) {
             editTaskDescriptor.setContactIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).get()));

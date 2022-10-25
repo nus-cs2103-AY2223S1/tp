@@ -25,15 +25,15 @@ public class Task {
      *
      * @param id          A unique identifier for the task.
      * @param name        A valid task name.
-     * @param description A valid description, which may be null.
-     * @param deadline    A valid deadline, which may be null.
+     * @param description A valid and optional description.
+     * @param deadline    A valid and optional deadline.
      */
-    public Task(UUID id, TaskName name, Description description, Deadline deadline) {
+    public Task(UUID id, TaskName name, Optional<Description> description, Optional<Deadline> deadline) {
         requireAllNonNull(id, name, description, deadline);
         this.id = id;
         this.name = name;
-        this.description = Optional.ofNullable(description);
-        this.deadline = Optional.ofNullable(deadline);
+        this.description = description;
+        this.deadline = deadline;
     }
 
     public UUID getId() {

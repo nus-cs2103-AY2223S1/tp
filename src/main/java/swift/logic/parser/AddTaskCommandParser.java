@@ -1,11 +1,13 @@
 package swift.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -31,6 +33,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTACT, PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
@@ -39,13 +42,13 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         try {
             TaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
-            Description description = null;
+            Optional<Description> description = Optional.empty();
             if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-                description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+                description = Optional.of(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
             }
-            Deadline deadline = null;
+            Optional<Deadline> deadline = Optional.empty();
             if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-                deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+                deadline = Optional.of(ParserUtil.parseDeadline((argMultimap.getValue(PREFIX_DEADLINE).get())));
             }
             Set<Index> indices = ParserUtil.parseIndices(argMultimap.getAllValues(PREFIX_CONTACT));
 

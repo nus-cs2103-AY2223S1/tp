@@ -18,6 +18,8 @@ import swift.commons.util.CollectionUtil;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.Prefix;
 import swift.model.Model;
+import swift.model.task.Deadline;
+import swift.model.task.Description;
 import swift.model.task.Task;
 import swift.model.task.TaskName;
 
@@ -91,8 +93,10 @@ public class EditTaskCommand extends Command {
 
         UUID updatedId = taskToEdit.getId();
         TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getName());
+        Optional<Description> updatedDescription = editTaskDescriptor.getDescription().or(taskToEdit::getDescription);
+        Optional<Deadline> updatedDeadline = editTaskDescriptor.getDeadline().or(taskToEdit::getDeadline);
 
-        return new Task(updatedId, updatedTaskName);
+        return new Task(updatedId, updatedTaskName, updatedDescription, updatedDeadline);
     }
 
     @Override
@@ -119,6 +123,8 @@ public class EditTaskCommand extends Command {
     */
     public static class EditTaskDescriptor {
         private TaskName taskName;
+        private Description description;
+        private Deadline deadline;
         private Index contactIndex;
 
         public EditTaskDescriptor() {}
@@ -129,6 +135,8 @@ public class EditTaskCommand extends Command {
         */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTaskName(toCopy.taskName);
+            setDescription(toCopy.description);
+            setDeadline(toCopy.deadline);
             setContactIndex(toCopy.contactIndex);
         }
 
@@ -136,7 +144,7 @@ public class EditTaskCommand extends Command {
         * Returns true if at least one field is edited.
         */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(taskName, contactIndex);
+            return CollectionUtil.isAnyNonNull(taskName, description, deadline, contactIndex);
         }
 
         public void setTaskName(TaskName taskName) {
@@ -145,6 +153,22 @@ public class EditTaskCommand extends Command {
 
         public Optional<TaskName> getTaskName() {
             return Optional.ofNullable(taskName);
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
         }
 
         public void setContactIndex(Index contactIndex) {
@@ -171,7 +195,9 @@ public class EditTaskCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTaskName().equals(e.getTaskName())
-                && getContactIndex().equals(e.getContactIndex());
+                    && getDescription().equals(e.getDescription())
+                    && getDeadline().equals(e.getDeadline())
+                    && getContactIndex().equals(e.getContactIndex());
         }
     }
 }
