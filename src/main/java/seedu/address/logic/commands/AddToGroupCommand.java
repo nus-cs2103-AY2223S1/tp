@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +35,7 @@ public class AddToGroupCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) GROUPNAME\n"
             + "Example: " + COMMAND_WORD + " 1 friends";
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book/group.";
     public static final String MESSAGE_GROUP_PERSON_SUCCESS = "Grouped Person: %1$s";
 
     private final Index index;
@@ -74,7 +75,11 @@ public class AddToGroupCommand extends Command {
         return new CommandResult(String.format(MESSAGE_GROUP_PERSON_SUCCESS, groupedPerson));
     }
 
-    private Person createGroupedPerson(Person personToGroup, Group groupToAdd) {
+    /**
+     * Creates and returns a {@code Person} with the group {@code groupToAdd}
+     * added to {@code personToGroup}.
+     */
+    private Person createGroupedPerson(Person personToGroup, Group groupToAdd) throws CommandException {
         assert personToGroup != null;
 
         Occupation occupation = personToGroup.getOccupation();
@@ -83,18 +88,19 @@ public class AddToGroupCommand extends Command {
         Email email = personToGroup.getEmail();
         Address address = personToGroup.getAddress();
         Set<Tag> tags = personToGroup.getTags();
+        Social social = personToGroup.getSocial();
 
         Set<Group> previousGroups = new HashSet<>(personToGroup.getGroups());
         Set<Group> updatedGroups;
 
         if (previousGroups.contains(groupToAdd)) {
-            updatedGroups = previousGroups;
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } else {
             previousGroups.add(groupToAdd);
             updatedGroups = previousGroups;
         }
 
-        return new Person(occupation, name, phone, email, address, tags, updatedGroups);
+        return new Person(occupation, name, phone, email, address, tags, social, updatedGroups);
     }
 
 }

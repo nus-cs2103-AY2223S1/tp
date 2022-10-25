@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PreferCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.UngroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.HistoryList;
 
@@ -99,6 +100,9 @@ public class AddressBookParser {
 
         case AddToGroupCommand.COMMAND_WORD:
             return new AddToGroupCommandParser().parse(arguments);
+
+        case UngroupCommand.COMMAND_WORD:
+            return new UngroupCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
             return new HistoryCommand();
