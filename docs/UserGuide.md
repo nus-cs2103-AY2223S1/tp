@@ -52,7 +52,7 @@ title: User Guide
    
     * **`edit`**`1 e/hr@internship.sg`: Edits the 1st application shown in the current list with new email address.
    
-    * **`archive`**`3`: Archives the 3rd application shown in the current list. The application must be not archived.
+    * **`archive`**`3`: Archives the 3rd application shown in the current list. The application must be unarchived.
    
     * **`retrieve`**`1`: Retrieves the 1st application shown in the current list. The application must be archived.
    
@@ -133,7 +133,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index must be within the range of available internships in the application list.
 
-Examples:
+Example:
 * `list` followed by `delete 2` deletes the 2nd internship application in the list.
 
 ### Finding an internship application: `find`
@@ -148,7 +148,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will return `Shopee HQ`, `Google Singapore`
 
-Examples:
+Example:
 * `find Software` returns `Google` and `Wise` application whose position contain software keyword.
 ![FindExample](images/FindExample.png)
 
@@ -177,12 +177,12 @@ Archives the specified internship application from the list.
 Format: `archive INDEX`
 
 * Archives the internship application at the specified `INDEX`.
-* The application specified must be not archived.
+* The application specified must be unarchived.
 * The index refers to the index number shown in the displayed internship application list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index must be within the range of available internships in the shown application list.
 
-Examples:
+Example:
 * `list` followed by `archive 2` archives the 2nd internship application in the list.
 
 ### Retrieving an internship application from archives: `retrieve`
@@ -197,7 +197,7 @@ Format: `retrieve INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index must be within the range of available internships in the shown application list.
 
-Examples:
+Example:
 * `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list.
 
 ### Clearing all entries: `clear`
