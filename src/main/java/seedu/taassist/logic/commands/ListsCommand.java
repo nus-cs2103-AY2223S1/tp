@@ -37,7 +37,7 @@ public class ListsCommand extends Command {
         return new CommandResult(getSuccessMessage(sessions, focusedClass));
     }
 
-    private static String getSuccessMessage(List<Session> sessions, ModuleClass focusedClass) {
+    public static String getSuccessMessage(List<Session> sessions, ModuleClass focusedClass) {
         if (sessions.isEmpty()) {
             return MESSAGE_EMPTY_SESSION_LIST;
         }

@@ -24,12 +24,13 @@ import seedu.taassist.testutil.ModuleClassBuilder;
 
 public class UnassignCommandParserTest {
 
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnassignCommand.COMMAND_WORD, UnassignCommand.MESSAGE_USAGE);
     private UnassignCommandParser parser = new UnassignCommandParser();
 
     @Test
     public void parse_emptyUserInput_failure() {
-        assertParseFailure(parser, PREAMBLE_WHITESPACE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UnassignCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_WHITESPACE, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -40,8 +41,7 @@ public class UnassignCommandParserTest {
 
     @Test
     public void parse_missingIndex_failure() {
-        assertParseFailure(parser, CLASS_DESC_CS1231S, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UnassignCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, CLASS_DESC_CS1231S, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -52,8 +52,7 @@ public class UnassignCommandParserTest {
 
     @Test
     public void parse_missingModuleClass_failure() {
-        assertParseFailure(parser, INDEX_FIRST_STUDENT.toString(), String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UnassignCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, INDEX_FIRST_STUDENT.toString(), MESSAGE_INVALID_FORMAT);
     }
 
     @Test

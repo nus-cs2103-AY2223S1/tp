@@ -23,24 +23,25 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.testutil.ModuleClassBuilder;
 
 public class DeletecCommandParserTest {
+
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.COMMAND_WORD, DeletecCommand.MESSAGE_USAGE);
     private DeletecCommandParser parser = new DeletecCommandParser();
+
 
     @Test
     public void parse_emptyUserInput_failure() {
-        assertParseFailure(parser, PREAMBLE_WHITESPACE,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_WHITESPACE, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_missingPrefix_failure() {
-        assertParseFailure(parser, VALID_CLASS_CS1101S, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeletecCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, VALID_CLASS_CS1101S, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_nonEmptyPreamble_failure() {
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + CLASS_DESC_CS1101S,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletecCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + CLASS_DESC_CS1101S, MESSAGE_INVALID_FORMAT);
     }
 
     @Test

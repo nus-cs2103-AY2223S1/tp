@@ -81,7 +81,7 @@ public class GradeCommand extends Command {
         return new CommandResult(getSuccessMessage(oldStudents, session, grade));
     }
 
-    private static String getSuccessMessage(List<Student> students, Session session, Double grade) {
+    public static String getSuccessMessage(List<Student> students, Session session, Double grade) {
         String studentNames = students.stream().map(student -> student.getName().toString())
                 .collect(Collectors.joining(", "));
         return String.format(MESSAGE_SUCCESS, grade, session.getSessionName(), studentNames);

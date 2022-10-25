@@ -13,11 +13,14 @@ import seedu.taassist.model.student.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.COMMAND_WORD, FindCommand.MESSAGE_USAGE);
     private FindCommandParser parser = new FindCommandParser();
+
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", MESSAGE_INVALID_FORMAT);
     }
 
     @Test

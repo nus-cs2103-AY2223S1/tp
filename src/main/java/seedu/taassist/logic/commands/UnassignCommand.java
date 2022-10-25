@@ -81,7 +81,7 @@ public class UnassignCommand extends Command {
         return new CommandResult(getSuccessMessage(studentsToUnassign, moduleClassToUnassign));
     }
 
-    private static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
+    public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
         String studentNames = students.stream().map(student -> student.getName().toString())
                 .collect(Collectors.joining(", "));
         return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);

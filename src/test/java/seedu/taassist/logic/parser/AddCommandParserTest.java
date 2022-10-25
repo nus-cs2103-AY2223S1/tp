@@ -39,7 +39,11 @@ import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.StudentBuilder;
 
 public class AddCommandParserTest {
+
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE);
     private AddCommandParser parser = new AddCommandParser();
+
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -99,7 +103,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = MESSAGE_INVALID_FORMAT;
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
@@ -134,7 +138,6 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + CLASS_DESC_CS1101S + CLASS_DESC_CS1231S,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                + ADDRESS_DESC_BOB + CLASS_DESC_CS1101S + CLASS_DESC_CS1231S, MESSAGE_INVALID_FORMAT);
     }
 }

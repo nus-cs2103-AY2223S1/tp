@@ -59,8 +59,9 @@ class UnassignCommandTest {
         indices.add(Index.fromOneBased(1));
 
         UnassignCommand unassignCommand = new UnassignCommand(indices, moduleClass);
-        String expectedMessage = String.format(UnassignCommand.MESSAGE_SUCCESS, "index", indices, moduleClass);
         Student expectedStudent = new StudentBuilder(ALICE).withModuleClasses().build();
+        String expectedMessage = UnassignCommand.getSuccessMessage(new ArrayList<>(List.of(expectedStudent)),
+                moduleClass);
 
         CommandResult commandResult = unassignCommand.execute(modelStub);
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
@@ -77,9 +78,10 @@ class UnassignCommandTest {
         indices.add(Index.fromOneBased(2));
 
         UnassignCommand unassignCommand = new UnassignCommand(indices, moduleClass);
-        String expectedMessage = String.format(UnassignCommand.MESSAGE_SUCCESS, "indices", indices, moduleClass);
         Student expectedStudent1 = new StudentBuilder(ALICE).withModuleClasses().build();
         Student expectedStudent2 = new StudentBuilder(BOB).withModuleClasses().build();
+        String expectedMessage = UnassignCommand.getSuccessMessage(new ArrayList<>(
+                List.of(expectedStudent1, expectedStudent2)), moduleClass);
 
         CommandResult commandResult = unassignCommand.execute(modelStub);
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());

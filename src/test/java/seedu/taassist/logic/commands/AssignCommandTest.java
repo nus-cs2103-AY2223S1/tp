@@ -58,9 +58,8 @@ class AssignCommandTest {
         indices.add(Index.fromOneBased(1));
 
         AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
-        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, "index", indices, CS1101S);
         Student expectedStudent = new StudentBuilder(ALICE).withModuleClasses(CS1101S).build();
-
+        String expectedMessage = AssignCommand.getSuccessMessage(new ArrayList<>(List.of(expectedStudent)), CS1101S);
         assertEquals(expectedMessage, assignCommand.execute(modelStub).getFeedbackToUser());
         assertEquals(expectedStudent, modelStub.student);
     }
@@ -74,10 +73,10 @@ class AssignCommandTest {
         indices.add(Index.fromOneBased(2));
 
         AssignCommand assignCommand = new AssignCommand(indices, CS1101S);
-        String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS, "indices", indices, CS1101S);
         Student expectedStudent1 = new StudentBuilder(ALICE).withModuleClasses(CS1101S).build();
         Student expectedStudent2 = new StudentBuilder(BOB).withModuleClasses(CS1101S).build();
-
+        String expectedMessage = AssignCommand.getSuccessMessage(
+                new ArrayList<>(List.of(expectedStudent1, expectedStudent2)), CS1101S);
         assertEquals(expectedMessage, assignCommand.execute(modelStub).getFeedbackToUser());
         assertEquals(expectedStudent1, modelStub.students.get(0));
         assertEquals(expectedStudent2, modelStub.students.get(1));
