@@ -106,6 +106,10 @@ public class Order {
         return timeCreated;
     }
 
+    public Price getTotalOrderPrice() {
+        return this.totalOrderPrice;
+    }
+
     public boolean isDeliverable() {
         return itemList.stream()
                         .map(pair -> pair.getQuantityValue() < pair.getItem().getTotalQuantityValue())
