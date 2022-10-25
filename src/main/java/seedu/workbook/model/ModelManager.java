@@ -94,12 +94,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean internshipStageHasNoTips(Internship internship) {
-        requireNonNull(internship);
-        return versionedWorkBook.internshipHasNoTips(internship);
-    }
-
-    @Override
     public void deleteInternship(Internship target) {
         versionedWorkBook.removeInternship(target);
     }

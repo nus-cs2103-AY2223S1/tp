@@ -95,10 +95,6 @@ public class VersionedWorkBook extends WorkBook {
                 && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
     }
 
-    public boolean internshipHasNoTips(Internship internship) {
-        return Stage.hasNoTips(internship.getStage());
-    }
-
     /**
      * Thrown when trying to {@code undo()} but can't.
      */

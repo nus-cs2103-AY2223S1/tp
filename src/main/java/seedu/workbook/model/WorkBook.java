@@ -101,10 +101,6 @@ public class WorkBook implements ReadOnlyWorkBook {
 
     //// util methods
 
-    public boolean internshipStageHasNoTips(Internship internship) {
-        return Stage.hasNoTips(internship.getStage());
-    }
-
     @Override
     public String toString() {
         return internships.asUnmodifiableObservableList().size() + " internship applications";

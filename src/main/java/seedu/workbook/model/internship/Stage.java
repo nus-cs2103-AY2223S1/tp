@@ -1,8 +1,9 @@
 package seedu.workbook.model.internship;
 
+import seedu.workbook.model.internship.util.StageUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
-import static seedu.workbook.model.internship.util.StageUtil.stageWithTips;
 
 /**
  * Represents an Internship's application stage in WorkBook.
@@ -43,15 +44,8 @@ public class Stage {
     /**
      * Returns true if a given stage has curated tips.
      */
-    public static boolean hasNoTips(Stage stage) {
-        return !stageWithTips.contains(stage);
-    }
-
-    /**
-     * Returns list of stages with curated tips.
-     */
-    public static String stageWithTipsToString() {
-        return stageWithTips.toString();
+    public boolean hasNoTips() {
+        return !StageUtil.getStagesWithTips().contains(this);
     }
 
     @Override

@@ -3,13 +3,17 @@ package seedu.workbook.model.internship.util;
 import seedu.workbook.model.internship.Stage;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Contains utility methods used in implementing methods with regards to {@code Stage} for GUI.
+ */
 public class StageUtil {
 
-    public static final List<Stage> stageWithTips = Arrays.asList(
+    private static final List<Stage> stagesWithTips = Arrays.asList(
             new Stage("Application Sent"),
             new Stage("Online Assessment"),
             new Stage("Technical Interview"),
@@ -74,25 +78,46 @@ public class StageUtil {
             rejectedTips
     );
 
-    public static final Map<Stage, List<String>> tipsForStage = new HashMap<>();
+
+    private static final Map<Stage, List<String>> tipsForStage = new HashMap<>();
 
     /**
      * Constructor for StageUtil class
      * Populates the map whereby each stage is mapped to a list of tips.
      */
-    public StageUtil() {
+    private StageUtil() {
         for (int i = 0; i < tipsForStage.size(); i++) {
-            tipsForStage.put(stageWithTips.get(i), listOfTips.get(i));
+            tipsForStage.put(stagesWithTips.get(i), listOfTips.get(i));
         }
     }
 
     /**
-     * Returns a list of tips depending on the stage.
-     * @param input user input
+     * Returns the list of stages with curated tips.
+     */
+    public static List<Stage> getStagesWithTips() {
+        return stagesWithTips;
+    }
+
+    /**
+     * Returns a list of tips if stage is present in {@code stagesWithTips},
+     * otherwise return an empty list.
+     * @param input the user input
      * @return a list of stage-specific tips
      */
     public static List<String> getStageSpecificTip(String input) {
-        return tipsForStage.get(new Stage(input));
+        Stage providedStage = new Stage(input);
+        return (!stagesWithTips.contains(providedStage))
+                ? Collections.emptyList()
+                : tipsForStage.get(providedStage);
+    }
+
+    /**
+     * Returns the list of stages with curated tips as a string
+     * for {@code CommandResult} message to hint users on
+     * the stages we have tips for.
+     */
+    public static String stagesWithTipsToString() {
+        return stagesWithTips.toString();
     }
 
 }

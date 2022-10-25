@@ -3,15 +3,18 @@ package seedu.workbook.logic.commands;
 import seedu.workbook.logic.commands.exceptions.CommandException;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Stage;
+import seedu.workbook.model.internship.util.StageUtil;
 
 import static java.util.Objects.requireNonNull;
+
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+
+import static seedu.workbook.model.internship.util.StageUtil.stagesWithTipsToString;
 
 /**
  * Adds an Internship to WorkBook.
@@ -45,7 +48,7 @@ public class AddCommand extends Command {
 
     /** Message string displaying successful execution of the add command, but stage is not in our pre-defined list */
     public static final String MESSAGE_SUCCESS_STAGE_NO_TIPS = "New internship application added: %1$s, " +
-            "however, do you mean " + Stage.stageWithTipsToString() + " for the stages? We curated " +
+            "however, do you mean " + stagesWithTipsToString() + " for the stages? We curated " +
             "some nifty tips for those stages!";
 
     /** Message string displaying error message for unsuccessful execution of the add command for a duplicate */
@@ -73,7 +76,7 @@ public class AddCommand extends Command {
         model.addInternship(toAdd);
         model.commitWorkBook();
 
-        if (model.internshipStageHasNoTips(toAdd)) {
+        if (toAdd.stageHasNoTips()) {
             return new CommandResult(String.format(MESSAGE_SUCCESS_STAGE_NO_TIPS, toAdd));
         } else {
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
