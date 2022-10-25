@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
-import javafx.collections.ObservableList;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
@@ -10,6 +9,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
