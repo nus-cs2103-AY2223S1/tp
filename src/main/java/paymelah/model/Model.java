@@ -113,7 +113,7 @@ public interface Model {
     void undoAddressBook();
 
     /**
-     * Retrieves and display the most recent Command message in the undo history.
+     * Retrieves and displays the most recent Command message in the undo history.
      */
     String popPreviousCommandMessage();
 }

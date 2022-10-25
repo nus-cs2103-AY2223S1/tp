@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Makes a copy of this {@code AddressBook}.
+     * Returns a copy of this {@code AddressBook}.
      */
     public AddressBook getCopy() {
         return new AddressBook(this);

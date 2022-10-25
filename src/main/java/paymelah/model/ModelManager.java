@@ -129,16 +129,18 @@ public class ModelManager implements Model {
 
     @Override
     public int getHistoriesSize() {
+        assert addressBookHistories.size() == commandMessageHistories.size(): "Undo histories sizes do not match";
         return addressBookHistories.size();
     }
 
     @Override
     public void saveAddressBook() {
-        if (addressBookHistories.offerLast(addressBook.getCopy())) {
+        AddressBook toBeSaved = addressBook.getCopy();
+        if (addressBookHistories.offerLast(toBeSaved)) {
             return;
         } else {
             addressBookHistories.pollFirst();
-            addressBookHistories.offerLast(addressBook.getCopy());
+            addressBookHistories.offerLast(toBeSaved);
         }
     }
 
