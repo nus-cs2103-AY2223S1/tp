@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
+import java.util.Comparator;
+
 /**
  * Panel containing the list of CalendarEvents.
  */
@@ -34,7 +36,7 @@ public class CalendarEventListPanel extends UiPart<Region> {
     public VBox getCalendarEventList(int currentDay) {
         Text tDate = getTextDate(currentDay);
         calendarEventList.getChildren().add(tDate);
-        calendarDayEvents.stream()
+        calendarDayEvents.stream().sorted()
                 .forEach(x -> calendarEventList.getChildren()
                         .add(new EventButton(x, primaryStage).getRoot()));
         return calendarEventList;
