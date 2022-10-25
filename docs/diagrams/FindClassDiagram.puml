@@ -6,19 +6,25 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Class "<<interface>>\nPredicate" as Predicate
 
-CombinedPersonPredicate .up.> Predicate
-CombinedAppointmentPredicate .up.> Predicate
+CombinedPersonPredicate .up.|> Predicate
+CombinedAppointmentPredicate .up.|> Predicate
 
 FindCommand -left-> "1" CombinedPersonPredicate
 FindCommand -right-> "1" CombinedAppointmentPredicate
 
-CombinedPersonPredicate --> "0..1" Name
-CombinedPersonPredicate --> "0..1" Phone
-CombinedPersonPredicate --> "0..1" Email
-CombinedPersonPredicate --> "0..1" Address
-CombinedPersonPredicate --> "*" Tag
+show CombinedPersonPredicate fields
+class CombinedPersonPredicate {
+    name : String
+    phone : String
+    email : String
+    address : String
+    tagList : List<String>
+}
 
-CombinedAppointmentPredicate --> "0..1" reason
-CombinedAppointmentPredicate --> "0..1" startDateTime
-CombinedAppointmentPredicate --> "0..1" endDateTime
+show CombinedAppointmentPredicate fields
+class CombinedAppointmentPredicate {
+    reason : String
+    startDateTime : LocalDateTime
+    endDateTime : LocalDateTime
+}
 @enduml

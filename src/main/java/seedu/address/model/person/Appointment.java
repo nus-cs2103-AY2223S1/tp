@@ -338,7 +338,7 @@ public class Appointment {
                 ? -1
                 : this.dateTime.isAfter(appointment.dateTime)
                 ? 1
-                : 0;
+                : this.getPatient().compareTo(appointment.getPatient());
     }
 
     /**

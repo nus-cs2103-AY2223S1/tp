@@ -94,7 +94,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     private String getAppointmentsString() {
@@ -132,7 +133,7 @@ public class Person {
                 ? -1
                 : this.getName().compareTo(person.getName()) > 0
                 ? 1
-                : 0;
+                : this.getPhone().compareTo(person.getPhone());
     }
 
     /**

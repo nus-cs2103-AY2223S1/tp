@@ -92,16 +92,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         }
     }
 
-    private void addTags(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap)
-            throws ParseException {
-        if (argMultimap.getValue(PREFIX_TAG).isEmpty()) {
-            return;
-        }
-
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(descriptor::setTags);
-
-    }
-
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a

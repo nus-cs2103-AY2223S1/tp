@@ -20,7 +20,7 @@ public class HidePatientsCommandParserTest {
 
     @Test
     public void parse_validArgs_returnHideCommand() {
-        assertParseSuccess(parser, "sam", new HidePatientsCommand(
+        assertParseSuccess(parser, "patients n/sam", new HidePatientsCommand(
                 new NameContainsKeywordsPredicate(Arrays.asList("sam"))));
     }
 

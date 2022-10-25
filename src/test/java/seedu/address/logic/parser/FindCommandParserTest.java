@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.REASON_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_APPOINTMENT_DESC_EAR;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_EAR;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_THROAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
@@ -59,14 +60,17 @@ public class FindCommandParserTest {
         CombinedPersonPredicate expectedPersonPredicate = generateCombinedPersonPredicate(
                 VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_TAG_THROAT);
         CombinedAppointmentPredicate expectedAppointmentPredicate =
-                generateCombinedAppointmentPredicate(VALID_REASON_AMY, validDateTimeStart, validDateTimeEnd);
+                generateCombinedAppointmentPredicate(VALID_REASON_AMY, validDateTimeStart, validDateTimeEnd,
+                        VALID_TAG_EAR);
         boolean isAnyAppointmentFieldSpecified = true;
 
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, isAnyAppointmentFieldSpecified);
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + TAG_DESC_THROAT + REASON_DESC_AMY + dateTimeStartDesc + dateTimeEndDesc, expectedFindCommand);
+                + TAG_DESC_THROAT
+                + REASON_DESC_AMY + dateTimeStartDesc + dateTimeEndDesc
+                + TAG_APPOINTMENT_DESC_EAR, expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + PREAMBLE_WHITESPACE
@@ -76,7 +80,8 @@ public class FindCommandParserTest {
                 + PREAMBLE_WHITESPACE + TAG_DESC_THROAT + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + REASON_DESC_AMY + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + dateTimeStartDesc + PREAMBLE_WHITESPACE
-                + PREAMBLE_WHITESPACE + dateTimeEndDesc + PREAMBLE_WHITESPACE, expectedFindCommand);
+                + PREAMBLE_WHITESPACE + dateTimeEndDesc + PREAMBLE_WHITESPACE
+                + PREAMBLE_WHITESPACE + TAG_APPOINTMENT_DESC_EAR + PREAMBLE_WHITESPACE, expectedFindCommand);
     }
 
     @Test

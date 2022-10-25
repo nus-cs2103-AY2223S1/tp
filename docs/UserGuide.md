@@ -55,24 +55,47 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 a/John street, block 123, #01-01`
-* `add n/Betsy Crowe p/88888888 a/Newgate Prison t/e`
+* `add n/Betsy Crowe p/88888888 a/Newgate Prison t/ear`
 
 ### Listing all patients/appointments : `list`
 
-Shows a list of all patients or appointments, depending on the parameter given.
+Shows a list of all patients or appointments, depending on the parameter given. \
+If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
+phone numbers. \
+If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments 
+with the same datetime, they will be sorted by their attached patients' information.
 
 Format:
-* `list patients`
-* `list appts`
+* `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
+* `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
+* `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
 
-### Grouping all patients/appointments : `group`
+### Grouping all patients : `group patients`
 
-Shows a list of all patients or appointments grouped by their tags, depending on the parameter given.
+Shows a list of all patients grouped by their tags.
 
 Format:
 * `group patients`
-* `group appts`
 
+### Grouping all appointments : `group appts`
+
+Shows a list of all appointments grouped by their tags or attached patients, depending on the parameter given.
+
+Format:
+* `group appts k/[KEY]`
+
+Examples:
+* `group appts k/tag`
+* `group appts k/patient`
+* `group appts k/mark`
+
+### Ungrouping all patients/ appointments : `ungroup`
+
+Shows a list of all patients or appointments ungrouped 
+
+Format:
+* `ungroup patients`
+* `ungroup appts`
 
 ### Editing a patient : `edit patients`
 
@@ -112,11 +135,11 @@ respectively. Existing time period will not be edited.
 ####By name:
 Filters out (hides) patients whose names contain any of the given keywords.
 
-Format: `hide patients KEYWORD [MORE_KEYWORDS]`
+Format: `hide patients n/NAME [MORE_NAMES]`
 
 Examples:
-* `hide patients John` hides `john` and `John Doe`
-* `hide patients alex david` hides `Alex Yeoh`, `David Li`<br>
+* `hide patients n/John` hides `john` and `John Doe`
+* `hide patients n/alex david` hides `Alex Yeoh`, `David Li`<br>
 
 ####By tag:
 
@@ -124,16 +147,103 @@ Hides patients whose names contain any of the given tags.
 
 Format: `hide patients t/TAG [MORE_TAGS]`
 
-* The search is case-insensitive. e.g `FRIENDS` will match `friends`
+* The search is case-insensitive. e.g `EAR` will match `ear`
 * All tags of a patient are searched.
 
 Examples:
-* `hide patients t/friends colleagues` hides all patients with a friends OR colleagues tag.
+* `hide patients t/ear nose` hides all patients with a ear OR nose tag.
+
+### Unhiding patients by name or tag: `unhide patients`
+
+####By name:
+Shows (unhides) patients that were previously hidden whose names contain any of the given keywords.
+
+Format: `unhide patients n/NAME [MORE_NAMES]`
+
+Examples:
+* `unhide patients n/John` unhides `john` and `John Doe`
+* `unhide patients n/alex david` unhides `Alex Yeoh`, `David Li`<br>
+
+####By tag:
+
+Unhides patients that were previously hidden whose names contain any of the given tags.
+
+Format: `unhide patients t/TAG [MORE_TAGS]`
+
+* The search is case-insensitive. e.g `EAR` will match `ear`
+* All tags of a patient are searched.
+
+Examples:
+* `unhide patients t/nose ear` unhides all patients with a nose OR ear tag.
+
+### Hiding appointments by reason, tag, or marked status: `hide appts`
+
+####By reason:
+Filters out (hides) appointments that has a reason that matches the given keyword.
+
+Format: `hide appts r/REASON [MORE_REASONS]`
+
+Examples:
+* `hide appts r/nose` hides all appointments with "nose" in the reason.
+* `hide appts s/marked` hides all marked appointments.<br>
+
+####By tag:
+
+Hides appointments which contain any of the given tags.
+
+Format: `hide appts t/TAG [MORE_TAGS]`
+
+* The search is case-insensitive. e.g `EAR` will match `ear`
+* All tags of an appointment are searched.
+
+Examples:
+* `hide appts t/ear nose` hides all appointments with a ear OR nose tag.
+
+####By marked/unmarked status:
+Hides appointments which are marked/unmarked.
+
+Format: `hide appts s/marked` or `hide appts s/m` <br>
+Alternative: `hide appts s/unmarked` or `hide appts s/um`
+
+Examples:
+* `hide appts s/marked` hides all appointments that has been marked.
+* `hide appts s/um` hides all appointments that has been ummarked.
+
+### Unhiding appointments by reason, tag or status: `unhide appts`
+
+####By reason:
+Shows (unhides) appointments that were previously hidden whose reason contain any of the given keywords.
+
+Format: `unhide appts r/reason [MORE_REASONS]`
+
+Examples:
+* `unhide appts r/pain` unhides all appointments with "pain" as part of the reason.
+
+####By tag:
+
+Unhides appointments that were previously hidden which contain any of the given tags.
+
+Format: `unhide appts t/TAG [MORE_TAGS]`
+
+* The search is case-insensitive. e.g `EAR` will match `ear`
+* All tags of an appointment are searched.
+
+Examples:
+* `unhide appts t/nose ear` unhides all appointments with a nose OR ear tag.
+
+####By marked/unmarked status:
+Unhides appointments that were previously hidden which are marked/unmarked.
+
+Format: `unhide appts s/marked` or `unhide appts s/m` <br>
+Alternative: `unhide appts s/unmarked` or `unhide appts s/um`
+
+Examples:
+* `unhide appts s/marked` unhides all appointments that has been marked.
 
 ### Find results that satisify an input criteria: `find`
 Finds patients and appointments that matches all the given criteria specified.
 
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`
 
 * At least 1 of the optional fields must be provided.
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -142,29 +252,31 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] 
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be hidden (i.e. `OR` search).
   e.g. `Hans Bo` will hide `Hans Gruber`, `Bo Yang`
-* `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/TAG]…​` are fields to find information about the patient (patient criteria).
+* `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
   * `[n/NAME]` searches for the name of the patients.
   * `[p/PHONE]` searches for the phone number of the patients.
   * `[e/EMAIL]` searches for the email of the patients.
   * `[a/ADDRESS]` searches for the address of the patients.
-  * `[t/TAG]…` searches for matching tags of the patients.
-* `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` are fields to find information about appointments (appointment criteria).
+  * `[t/TAG]` searches for matching tags of the patients.
+* `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
   * `[r/REASON]` searches for appointments with the given reason.
   * `[ds/DATE_START]` searches for appointments occuring at or after `DATE_START`.
   * `[ds/DATE_END]` searches for appointments occuring at or before `DATE_END`.
+  * `[ta/APPOINTMENT_TAG]` searches for matching tags of the appointments.
 * Only patients and appointments that satisifies all criteria will be displayed.
   * A patient must satisify all patient criteria and have at least 1 appointment that satisifies all the appointment criteria to be displayed.
   * An appointment must satisify all appointment criteria and belong to a patient that satisifes all the patient criteria to be displayed.
-* All fields except `[ds/DATE_START]`, `[de/DATE_END]` and `[t/TAG]` supports partial match.
+* All fields except `[ds/DATE_START]`, `[de/DATE_END]`, `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` supports partial match.
   * e.g When finding names, searching `John Do` will match someone named `John Doe`.
-* For `[t/TAG]` fields, only tags with a full match will be matched
-  * e.g Finding a tag `Cough` will not match a tag labelled `Coughing`.
+* For `[t/PATIENT_TAG]` and `[ta/APPOINTMENT_TAG]` fields, only tags with a full match will be matched
+  * e.g Finding a tag `Ea` will not match a tag labelled `Ear`.
 * `[ds/DATE_START]` must be a date equal to or before `[ds/DATE_END]`.
 
 Examples:
 * `find n/John p/12345` displays all patients with `John` in their names and `12345` in their phone numbers, as well as all their appointments.
 * `find ds/2020-01-01 00:00` displays all appointments occuring at or after 1st of January 2020. It will also display all patients with at least one of said appointments.
 * `find a/Clementi r/Sleep Apena` displays all patients whose address contains `Clementi` and has at least 1 appointment containing `Sleep Apena` as its reason. It will also only display appointments containing `Sleep Apena` of said patients.
+* `find ta/Throat ta/Nose` displays all appointments with both `Throat` and `Nose` tags, and all patients with at least one of said appointments.
 * `find t/throat` returns `Bernice Yu` and `David Li`, both of which contains the `Throat` tag. <br>
   ![result for 'find t/throat'](images/FindThroatTagResult.png)
 
@@ -282,8 +394,11 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
+**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
+**Group Patients** | `group patients`
+**Group Appointents** | `group appts k/[KEY]` <br> e.g., `group appts k/mark`
+**Ungroup** | `ungroup patients` <br> `ungroup appts`
 **Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`

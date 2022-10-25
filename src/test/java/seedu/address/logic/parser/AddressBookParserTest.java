@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_APPOINTMENT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -144,28 +145,32 @@ public class AddressBookParserTest {
         String phone = "1234";
         String email = "abcd";
         String address = "clementi";
-        String tag = "throat";
+        String personTag = "throat";
+
         String reason = "cough";
         String dateTimeStart = "2022-12-13 12:12";
         String dateTimeStartToParse = "2022-12-13T12:12";
         String dateTimeEnd = "2025-12-13 12:12";
         String dateTimeEndToParse = "2025-12-13T12:12";
+        String appointmentTag = "ear";
         searchString.add(PREFIX_NAME + name);
         searchString.add(PREFIX_PHONE + phone);
         searchString.add(PREFIX_EMAIL + email);
         searchString.add(PREFIX_ADDRESS + address);
         searchString.add(PREFIX_REASON + reason);
-        searchString.add(PREFIX_TAG + tag);
+        searchString.add(PREFIX_TAG + personTag);
         searchString.add(PREFIX_DATE_TIME_START + dateTimeStart);
         searchString.add(PREFIX_DATE_TIME_END + dateTimeEnd);
+        searchString.add(PREFIX_TAG_APPOINTMENT + appointmentTag);
 
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + String.join(" ", searchString));
 
         CombinedPersonPredicate expectedPersonPredicate =
-                new CombinedPersonPredicate(name, phone, email, address, Collections.singletonList(tag));
+                new CombinedPersonPredicate(name, phone, email, address, Collections.singletonList(personTag));
         CombinedAppointmentPredicate expectedAppointmentPredicate = new CombinedAppointmentPredicate(reason,
-                LocalDateTime.parse(dateTimeStartToParse), LocalDateTime.parse(dateTimeEndToParse));
+                LocalDateTime.parse(dateTimeStartToParse), LocalDateTime.parse(dateTimeEndToParse),
+                Collections.singletonList(appointmentTag));
         boolean isAnyAppointmentFieldSpecified = true;
         assertEquals(new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate,
                         isAnyAppointmentFieldSpecified), command);
