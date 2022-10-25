@@ -1,4 +1,4 @@
-package seedu.address.ui.PopupWindow;
+package seedu.address.ui.popupWindow;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -53,6 +53,9 @@ public class PopupPanelForPet extends PopUpPanel {
     @FXML
     private TextField weightField;
 
+    /**
+     * Constructs a {@code PopupPanelForPet} by setting input sequence and prompt text style.
+     */
     public PopupPanelForPet() {
         super(FXML);
         petNameField.requestFocus();

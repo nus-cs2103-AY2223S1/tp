@@ -1,4 +1,4 @@
-package seedu.address.ui.PopupWindow;
+package seedu.address.ui.popupWindow;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -64,6 +64,9 @@ public class PopupPanelForBuyer extends PopUpPanel {
     @FXML
     private ScrollPane scrollPane;
 
+    /**
+     * Constructs a {@code PopupPanelForBuyer} by setting input sequence, prompt text style and keyboard shortcut.
+     */
     public PopupPanelForBuyer() {
         super(FXML);
         orderComponents = new ArrayList<>();

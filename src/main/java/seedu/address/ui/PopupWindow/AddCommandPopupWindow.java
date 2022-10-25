@@ -1,4 +1,4 @@
-package seedu.address.ui.PopupWindow;
+package seedu.address.ui.popupWindow;
 
 import java.util.logging.Logger;
 

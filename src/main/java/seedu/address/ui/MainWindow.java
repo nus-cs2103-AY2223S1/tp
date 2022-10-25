@@ -21,11 +21,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.PopupWindow.AddCommandPopupWindow;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
+import seedu.address.ui.popupWindow.AddCommandPopupWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -250,7 +250,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleList(String listType) {
         listType = listType.trim().toUpperCase();
-        switch(listType) {
+        switch (listType) {
         case ListCommand.LIST_BUYER:
             showBuyer();
             break;
@@ -360,7 +360,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
 
-        } catch(CommandException | ParseException e){
+        } catch (CommandException | ParseException e){
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

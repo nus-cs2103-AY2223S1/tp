@@ -1,4 +1,4 @@
-package seedu.address.ui.PopupWindow;
+package seedu.address.ui.popupWindow;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;

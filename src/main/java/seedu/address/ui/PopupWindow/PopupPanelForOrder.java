@@ -1,4 +1,4 @@
-package seedu.address.ui.PopupWindow;
+package seedu.address.ui.popupWindow;
 
 import java.time.LocalDate;
 
@@ -47,6 +47,9 @@ public class PopupPanelForOrder extends PopUpPanel {
     @FXML
     private TextField speciesField;
 
+    /**
+     * Constructs a {@code PopupPanelForOrder} by setting input sequence and prompt text style.
+     */
     public PopupPanelForOrder() {
         super(FXML);
         speciesField.requestFocus();

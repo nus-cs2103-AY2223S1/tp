@@ -1,4 +1,4 @@
-package seedu.address.ui.PopupWindow;
+package seedu.address.ui.popupWindow;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -60,6 +60,9 @@ public class PopupPanelForSupplier extends PopUpPanel {
     @FXML
     private TextField phoneField;
 
+    /**
+     * Constructs a {@code PopupPanelForSupplier} by setting input sequence, prompt text style and keyboard shortcut.
+     */
     public PopupPanelForSupplier() {
         super(FXML);
         petComponents = new ArrayList<>();
