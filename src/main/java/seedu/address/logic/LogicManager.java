@@ -45,7 +45,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText, mainPanelName);
 
         if (!command.canExecuteAt(mainPanelName)) {
             throw new CommandException("Command not found.");

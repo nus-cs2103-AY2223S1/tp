@@ -1,5 +1,8 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -21,6 +24,8 @@ public class Timezone {
      * @param timezone A valid timezone.
      */
     public Timezone(String timezone) {
+        requireNonNull(timezone);
+        checkArgument(isValidTimezone(timezone), MESSAGE_CONSTRAINTS);
         this.timezone = timezone;
     }
 

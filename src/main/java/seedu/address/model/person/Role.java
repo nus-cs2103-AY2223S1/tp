@@ -1,14 +1,20 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Software Engineer's role in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
 public class Role implements Comparable<Role> {
     public static final String MESSAGE_CONSTRAINTS =
-        "Roles should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Roles should \n"
+        + "1. contain only alphanumeric characters and spaces\n"
+        + "2. start with alphabet\n"
+        + "3. not empty";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[a-zA-z][a-zA-Z\\d ]*";
     public final String role;
 
     /**
@@ -17,6 +23,8 @@ public class Role implements Comparable<Role> {
      * @param role A valid role.
      */
     public Role(String role) {
+        requireNonNull(role);
+        checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
         this.role = role;
     }
 
