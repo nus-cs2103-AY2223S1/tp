@@ -57,13 +57,13 @@ can get your contact and module management tasks done faster than traditional GU
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. for add `c/NAME`, NAME is the user parameter and can be replaced with John Doe
+  e.g. for add `n/NAME`, NAME is the user parameter and can be replaced with John Doe
 
 * Items in square brackets are optional.<br>
-  e.g. `c/NAME [/t TAG]` can be used as `c/John Doe t/friend` or as `c/John Doe`.
+  e.g. `n/NAME [/t TAG]` can be used as `c/John Doe t/friend` or as `c/John Doe`.
 
 * Parameters after the identifier c/ and m/ can be in any order. e.g. `add c n/NAME p/NUMBER e/EMAIL` is similar
-  to `add c n/NAME e/EMAIL p/NUMBER`.
+  to `addp n/NAME e/EMAIL p/NUMBER`.
 
 * If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the
   parameter will be taken.<br>
@@ -72,14 +72,13 @@ can get your contact and module management tasks done faster than traditional GU
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
 # Commands
 
 ## For both modules and contacts
 
 ### Listing all modules and contacts : `list`
 
-Shows a list of all modules and contacts in the list.
+Shows a list of all the modules and contacts in the list.
 
 Format: `list`
 
@@ -87,10 +86,10 @@ Format: `list`
 
 Finds modules and contacts whose fields contain any of the given keywords.
 
-Format: find `KEYWORD [ANOTHER_KEYWORD]`
+Format: find `KEYWORD [ANOTHER_KEYWORD]…​`
 
-* The search is case-insensitive; e.g `cs2030s` will match `CS2030S`, or `Cs2030s`.
-* The order of the keywords does not matter; e.g `Bob McGhee` will match `mcghee bob`.
+* The search is case-insensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
+* The order of the keywords does not matter; e.g. `Bob McGhee` will match `mcghee bob`.
 * Any field associated with the contact or module can be found using this command.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
 * Modules or contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will return `Bob McGhee` and `Seaward Broad`.
@@ -99,11 +98,11 @@ Examples:
 
 * `find CS2030S` returns `cs2030s`
 * `find bob jessica` returns `Bob McGhee` and `Jessica Lim`
-// Put screenshot here
+//TODO Put screenshot here
 
 ### Clearing all contacts and modules : `clear`
 
-Clears all entries from the contact list.
+Clears all entries from both the contact and module list.
 
 Format: `clear`
 
@@ -137,7 +136,7 @@ Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`
 A contact can have any number of tags (including 0)
 </div>
 
-* A `Tag` can only accept alphanumerical characters with **no spaces**.
+* A`Tag`can only accept alphanumerical characters with **no spaces**, i.e.`t/Labmate`is valid, while`t/Lab Mate`is not.
 
 Examples:
 
@@ -149,7 +148,7 @@ Examples:
 
 Edits an existing contact in the contact list.
 
-Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -219,7 +218,7 @@ Examples:
 
 * `editm 1 l/Every Friday a/Functional Expressionism` Edits the lecture details and assignment details of the 1st module to be `Every Friday`
   and `Functional Expressionism` respectively.
-* `editm 2 n/MA1521 t/` Edits the module code of the 2nd module to be `MA1521` and clears all existing assignment details.
+* `editm 2 m/MA1521 a/` Edits the module code of the 2nd module to be `MA1521` and clears all existing assignment details.
 
 ### Deleting a module : `deletem`
 
@@ -234,7 +233,7 @@ Format: `deletem MODULE_INDEX`
 Examples:
 
 * `list` followed by `deletem 2` deletes the 2nd module in the address book.
-* `find CS2030S` followed by `deletep=m 1` deletes the 1st module in the results of the `find` command.
+* `find CS2030S` followed by `deletem 1` deletes the 1st module in the results of the `find` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -253,9 +252,9 @@ the data of your previous SOCompiler home folder.
 | Add    | Module         | `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`          |
 | Add    | Contact        | `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                             |
 | Edit   | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
-| Edit   | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`                                                                               |
-| Delete | Module         | `deletem INDEX`                                                                                                                                |
-| Delete | Contact        | `deletec INDEX`                                                                                                                                |                                                                                                                                           |
+| Edit   | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
+| Delete | Module         | `deletem MODULE_INDEX`                                                                                                                         |
+| Delete | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
 | Clear  | Both           | `clear`                                                                                                                                        |
 | List   | Both           | `list`                                                                                                                                         |
 | Find   | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
