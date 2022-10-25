@@ -22,7 +22,7 @@ class JsonAdaptedTask {
     private final boolean isDone;
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskDesc") String taskDesc,
@@ -38,7 +38,7 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         taskDesc = source.getDesc().taskDesc;
-        deadline = source.getDeadline().deadline;
+        deadline = source.getDeadline();
         isDone = source.isDone();
     }
 

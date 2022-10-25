@@ -93,6 +93,12 @@ public class LessonBook implements ReadOnlyLessonBook {
         lessons.remove(key);
     }
 
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        for (Lesson l: lessons) {
+            l.setStudent(targetStudent, editedStudent);
+        }
+    }
+
     //// util methods
 
     @Override

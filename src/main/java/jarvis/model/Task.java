@@ -57,19 +57,6 @@ public class Task {
     }
 
     /**
-     * Returns true if both task have the same description.
-     * This defines a weaker notion of equality between two tasks.
-     */
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
-            return true;
-        }
-
-        return otherTask != null
-                && otherTask.getDesc().equals(getDesc());
-    }
-
-    /**
      * Returns true if both tasks have the same description and data fields.
      * This defines a stronger notion of equality between two tasks.
      */

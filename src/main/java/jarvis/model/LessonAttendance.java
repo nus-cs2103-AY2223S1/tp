@@ -1,9 +1,10 @@
 package jarvis.model;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import jarvis.model.exceptions.StudentNotFoundException;
 
@@ -12,21 +13,16 @@ import jarvis.model.exceptions.StudentNotFoundException;
  */
 public class LessonAttendance {
 
-    private final HashMap<Student, Boolean> attendance;
-
+    private final TreeMap<Student, Boolean> attendance;
     /**
      * Creates the attendance list for a lesson.
      * @param students Students who are involved in the lesson.
      */
     public LessonAttendance(Collection<Student> students) {
-        attendance = new HashMap<>();
+        attendance = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
         for (Student stu : students) {
             attendance.put(stu, false);
         }
-    }
-
-    public LessonAttendance(HashMap<Student, Boolean> lessonAttendance) {
-        attendance = lessonAttendance;
     }
 
     /**
@@ -72,8 +68,10 @@ public class LessonAttendance {
         return studentsNameBuilder.toString();
     }
 
-    public HashMap<Student, Boolean> getMap() {
-        return attendance;
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        boolean b = attendance.get(targetStudent);
+        attendance.remove(targetStudent);
+        attendance.put(editedStudent, b);
     }
 
     @Override
@@ -116,9 +114,5 @@ public class LessonAttendance {
     @Override
     public int hashCode() {
         return attendance.hashCode();
-    }
-
-    public HashMap<Student, Boolean> getAttendance() {
-        return attendance;
     }
 }

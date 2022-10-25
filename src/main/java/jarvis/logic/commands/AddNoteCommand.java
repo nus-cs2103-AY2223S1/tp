@@ -68,7 +68,7 @@ public class AddNoteCommand extends Command {
         if (studentIndex == null) {
             successMessage = executeAddOverallNote(lessonToAdd);
         } else {
-            successMessage = executeAddStudentNote(model, lessonToAdd);
+            successMessage = executeAddStudentNote(lessonToAdd);
         }
         model.setLesson(lessonToAdd, lessonToAdd);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
@@ -80,12 +80,8 @@ public class AddNoteCommand extends Command {
         return String.format(MESSAGE_ADD_OVERALL_NOTE_SUCCESS, lessonToAdd, note);
     }
 
-    private String executeAddStudentNote(Model model, Lesson lessonToAdd) throws CommandException {
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
-        if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-        Student studentToAdd = lastShownStudentList.get(studentIndex.getZeroBased());
+    private String executeAddStudentNote(Lesson lessonToAdd) throws CommandException {
+        Student studentToAdd = lessonToAdd.getStudent(studentIndex);
         try {
             lessonToAdd.addStudentNote(note, studentToAdd);
         } catch (StudentNotFoundException snfe) {

@@ -3,6 +3,7 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,6 +26,17 @@ import javafx.collections.ObservableList;
  * @see Lesson#equals(Object)
  */
 public class UniqueLessonList implements Iterable<Lesson> {
+
+    private static final Comparator<Lesson> LESSON_COMPARATOR = (l1, l2) -> {
+        if (l1.isCompleted() != l2.isCompleted()) {
+            return l1.isCompleted() ? 1 : -1;
+        }
+        if (l1.isCompleted()) {
+            return l2.startDateTime().compareTo(l1.startDateTime());
+        } else {
+            return l1.startDateTime().compareTo(l2.startDateTime());
+        }
+    };
 
     private final ObservableList<Lesson> internalList = FXCollections.observableArrayList();
     private final ObservableList<Lesson> internalUnmodifiableList =
@@ -63,6 +75,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
 
         internalList.add(toAdd);
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**
@@ -97,6 +110,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
 
         internalList.set(index, editedLesson);
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**
@@ -108,11 +122,13 @@ public class UniqueLessonList implements Iterable<Lesson> {
         if (!internalList.remove(toRemove)) {
             throw new LessonNotFoundException();
         }
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     public void setLessons(UniqueLessonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**
@@ -126,6 +142,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
 
         internalList.setAll(lessons);
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**

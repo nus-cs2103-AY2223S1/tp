@@ -71,7 +71,7 @@ public class DeleteNoteCommand extends Command {
         if (studentIndex == null) {
             successMessage = executeDeleteOverallNote(lessonToDelete);
         } else {
-            successMessage = executeDeleteStudentNote(model, lessonToDelete);
+            successMessage = executeDeleteStudentNote(lessonToDelete);
         }
         model.setLesson(lessonToDelete, lessonToDelete);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
@@ -88,12 +88,8 @@ public class DeleteNoteCommand extends Command {
         }
     }
 
-    private String executeDeleteStudentNote(Model model, Lesson lessonToDelete) throws CommandException {
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
-        if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-        Student studentToDelete = lastShownStudentList.get(studentIndex.getZeroBased());
+    private String executeDeleteStudentNote(Lesson lessonToDelete) throws CommandException {
+        Student studentToDelete = lessonToDelete.getStudent(studentIndex);
         try {
             String deletedNote = lessonToDelete.deleteStudentNote(studentToDelete, noteIndex);
             return String.format(MESSAGE_DELETE_STUDENT_NOTE_SUCCESS, studentToDelete, lessonToDelete, deletedNote);

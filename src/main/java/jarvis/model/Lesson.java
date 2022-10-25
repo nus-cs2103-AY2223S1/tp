@@ -3,9 +3,16 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.Set;
 
+import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
+import jarvis.logic.commands.exceptions.CommandException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Lesson in JARVIS.
@@ -16,6 +23,8 @@ public abstract class Lesson {
     // Identity fields
     private final LessonDesc lessonDesc;
     private final TimePeriod timePeriod;
+    private final ArrayList<Student> studentList;
+    private final ObservableList<Student> observableStudentList;
 
     // Data fields
     private final LessonAttendance attendance;
@@ -25,19 +34,21 @@ public abstract class Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes) {
-        requireAllNonNull(timePeriod, attendance, notes);
+    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students) {
+        requireAllNonNull(timePeriod, students);
         this.lessonDesc = lessonDesc;
         this.timePeriod = timePeriod;
-        this.attendance = attendance;
-        this.notes = notes;
+        this.studentList = new ArrayList<>(students);
+        this.observableStudentList = FXCollections.observableArrayList(studentList);
+        this.attendance = new LessonAttendance(students);
+        this.notes = new LessonNotes(students);
     }
 
-    public LocalDateTime startTime() {
+    public LocalDateTime startDateTime() {
         return timePeriod.getStart();
     }
 
-    public LocalDateTime endTime() {
+    public LocalDateTime endDateTime() {
         return timePeriod.getEnd();
     }
 
@@ -45,16 +56,37 @@ public abstract class Lesson {
         return timePeriod.hasOverlap(other.timePeriod);
     }
 
+    public Student getStudent(Index studentIndex) throws CommandException {
+        int index = studentIndex.getZeroBased();
+        if (index >= studentList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+        return studentList.get(index);
+    }
+
     public Set<Student> getStudents() {
         return attendance.getAllStudents();
+    }
+
+    public ObservableList<Student> getObservableStudentList() {
+        return observableStudentList;
+    }
+
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        attendance.setStudent(targetStudent, editedStudent);
+        notes.setStudent(targetStudent, editedStudent);
+        studentList.remove(targetStudent);
+        studentList.add(editedStudent);
+        studentList.sort(Comparator.comparing(s -> s.getName().toString()));
+        observableStudentList.setAll(studentList);
     }
 
     public String getStudentsName() {
         return attendance.getAllStudentsName();
     }
 
-    public boolean isPresent(Student student) {
-        return attendance.isPresent(student);
+    public String isPresent(Student student) {
+        return attendance.isPresent(student) ? "Present" : "Absent";
     }
 
     public void markAsPresent(Student student) {
@@ -93,8 +125,12 @@ public abstract class Lesson {
         return attendance;
     }
 
-    public LessonNotes getNotes() {
-        return notes;
+    public String getStudentNotes(Student student) {
+        return notes.getStudentNotes(student);
+    }
+
+    public String getGeneralNotes() {
+        return notes.getGeneralNotes();
     }
 
     public abstract LessonType getLessonType();
@@ -108,7 +144,7 @@ public abstract class Lesson {
     }
 
     public String deleteOverallNote(Index index) {
-        return notes.deleteNote(index.getOneBased()); // overall notes contains a header note at index 0
+        return notes.deleteNote(index.getZeroBased());
     }
 
     public String deleteStudentNote(Student student, Index index) {

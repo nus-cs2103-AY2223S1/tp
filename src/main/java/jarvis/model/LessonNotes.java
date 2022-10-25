@@ -2,7 +2,8 @@ package jarvis.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Comparator;
+import java.util.TreeMap;
 
 import jarvis.model.exceptions.NoteNotFoundException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,31 +14,19 @@ import jarvis.model.exceptions.StudentNotFoundException;
  * Represents the notes for a lesson in JARVIS.
  */
 public class LessonNotes {
-    private final ArrayList<String> overallNotes;
-    private final HashMap<Student, ArrayList<String>> studentNotes;
+    private final ArrayList<String> generalNotes;
+    private final TreeMap<Student, ArrayList<String>> studentNotes;
 
     /**
      * Creates the notes for a lesson.
      * @param students Students who are involved in the lesson.
      */
     public LessonNotes(Collection<Student> students) {
-        overallNotes = new ArrayList<>();
-        overallNotes.add("Lesson Notes:\n");
-
-        studentNotes = new HashMap<>();
+        studentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
+        generalNotes = new ArrayList<>();
         for (Student stu : students) {
             studentNotes.put(stu, new ArrayList<>());
         }
-    }
-
-    /**
-     * Creates the notes for a lesson with the specified student notes.
-     *
-     * @param studentNotes The specified student notes.
-     */
-    public LessonNotes(HashMap<Student, ArrayList<String>> studentNotes) {
-        overallNotes = new ArrayList<>();
-        this.studentNotes = studentNotes;
     }
 
     /**
@@ -45,7 +34,7 @@ public class LessonNotes {
      * @param notes Lines to append to the overall lesson notes.
      */
     public void addNote(String notes) {
-        overallNotes.add(notes);
+        generalNotes.add(notes);
     }
 
     /**
@@ -67,10 +56,10 @@ public class LessonNotes {
      * @return String of the deleted note.
      */
     public String deleteNote(int index) {
-        if (index >= overallNotes.size()) {
+        if (index >= generalNotes.size()) {
             throw new NoteNotFoundException();
         }
-        return overallNotes.remove(index);
+        return generalNotes.remove(index);
     }
 
     /**
@@ -91,21 +80,25 @@ public class LessonNotes {
         return specifiedStudentNotes.remove(index);
     }
 
-    public String getNotes() {
-        StringBuilder formattedOverallNotes = new StringBuilder();
-        for (String overallNote: overallNotes) {
-            formattedOverallNotes.append(overallNote);
-            formattedOverallNotes.append("\n");
+    public String getGeneralNotes() {
+        StringBuilder formattedGeneralNotes = new StringBuilder("Lesson Notes:\n");
+        int index = 0;
+        for (String generalNote: generalNotes) {
+            formattedGeneralNotes.append(++index + ". ");
+            formattedGeneralNotes.append(generalNote);
+            formattedGeneralNotes.append("\n");
         }
-        return formattedOverallNotes.toString();
+        return formattedGeneralNotes.toString();
     }
 
-    public String getNotes(Student student) {
+    public String getStudentNotes(Student student) {
         if (!studentNotes.containsKey(student)) {
             throw new StudentNotFoundException();
         }
         StringBuilder formattedStudentNotes = new StringBuilder();
+        int index = 0;
         for (String studentNote: studentNotes.get(student)) {
+            formattedStudentNotes.append(++index + ". ");
             formattedStudentNotes.append(studentNote);
             formattedStudentNotes.append("\n");
         }
@@ -113,15 +106,21 @@ public class LessonNotes {
     }
 
     public String getAllNotes() {
-        StringBuilder formattedAllNotes = new StringBuilder(getNotes());
+        StringBuilder formattedAllNotes = new StringBuilder(getGeneralNotes());
         formattedAllNotes.append("\nNotes for individual students:\n");
         for (Student student: studentNotes.keySet()) {
             formattedAllNotes.append(student.toString());
             formattedAllNotes.append(":\n");
-            formattedAllNotes.append(getNotes(student));
+            formattedAllNotes.append(getStudentNotes(student));
             formattedAllNotes.append("\n");
         }
         return formattedAllNotes.toString();
+    }
+
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        ArrayList<String> tempNotes = studentNotes.get(targetStudent);
+        studentNotes.remove(targetStudent);
+        studentNotes.put(editedStudent, tempNotes);
     }
 
     public String toFullString() {

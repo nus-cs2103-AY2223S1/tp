@@ -1,8 +1,9 @@
 package jarvis.model;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import jarvis.model.exceptions.StudentNotFoundException;
 
@@ -12,7 +13,7 @@ import jarvis.model.exceptions.StudentNotFoundException;
  * 0 and 500 inclusive.
  */
 public class StudioParticipation {
-    private final HashMap<Student, Integer> participation;
+    private final TreeMap<Student, Integer> participation;
 
     /**
      * Creates a StudioParticipation and initializes the participation
@@ -20,7 +21,7 @@ public class StudioParticipation {
      * @param students Students involved in the lesson.
      */
     public StudioParticipation(Collection<Student> students) {
-        participation = new HashMap<>();
+        participation = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
         for (Student stu : students) {
             participation.put(stu, 0);
         }
@@ -39,6 +40,12 @@ public class StudioParticipation {
             throw new StudentNotFoundException();
         }
         return participation.get(student);
+    }
+
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        int studentParticipation = participation.get(targetStudent);
+        participation.remove(targetStudent);
+        participation.put(editedStudent, studentParticipation);
     }
 
     @Override
@@ -70,20 +77,5 @@ public class StudioParticipation {
     @Override
     public int hashCode() {
         return participation.hashCode();
-    }
-
-    public HashMap<Student, Integer> getParticipation() {
-        return participation;
-    }
-
-    public String toFullString() {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<Student, Integer> entry : participation.entrySet()) {
-            sb.append(entry.getKey().toFullString());
-            sb.append(": ");
-            sb.append(entry.getValue());
-            sb.append("\n");
-        }
-        return sb.toString();
     }
 }

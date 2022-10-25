@@ -161,8 +161,8 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student targetStudent, Student editedStudent) {
         requireAllNonNull(targetStudent, editedStudent);
-
         studentBook.setStudent(targetStudent, editedStudent);
+        lessonBook.setStudent(targetStudent, editedStudent);
     }
 
     //=========== TaskBook ================================================================================
