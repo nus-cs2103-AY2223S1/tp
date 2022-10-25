@@ -14,6 +14,8 @@ title: User Guide
     * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
     * [Finding an internship application: `find`](#finding-an-internship-application-find)
     * [Editing an internship application: `edit`](#editing-an-internship-application-edit)
+    * [Adding or editing an interview: `interview`](#adding--editing-an-interview-interview)
+    * [Removing an interview: `remove-i`](#removing-an-interview-remove-i)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -46,7 +48,11 @@ title: User Guide
     * **`find`**`google` : Finds the applications that contain keyword **google** in their company name and/or position.
    
     * **`edit`**`1 e/hr@internship.sg`: Edits the 1st application shown in the current list with new email address.
-   
+
+    * **`interview`**`5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`: Adds interview to the 5th application in the displayed application list / Edits existing interview in the 5th displayed application.
+
+    * **`remove-i`**`3`: Removes the 3rd interview in the displayed interview list.
+
     * **`clear`**: Clears CinternS data.
 
     * **`exit`** : Exits the app.
@@ -133,7 +139,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `ByteDance` will not match `ByteDances`
 * Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will return `Shopee HQ`, `Google Singapore`
 
-Examples:
+Example:
 * `find Software` returns `Google` and `Wise` application whose position contain software keyword.
 ![FindExample](images/FindExample.png)
 
@@ -155,24 +161,14 @@ Examples:
 * `edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
 * `edit 2 c/Garena t/` edits the company of the 2nd application to be `Garena` and clears all existing tags.
 
-### Clearing all entries: `clear`
-Clears all entries from CinternS.
-
-Format: `clear`
-
-### Exiting the program: `exit`
-Exits the program.
-
-Format: `exit`
-
-### Adding / Editing an interview: `application`
+### Adding / Editing an interview: `interview`
 Adds an interview to an existing application or edits an existing interview in an application.
 
 Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b><br>
-InterviewDate must be specified in the format <em>yyyy-MM-dd</em>.<br>
-InterviewTime must be specified in the format <em>HHmm</em>.<br>
+1. InterviewDate must be specified in the format <em>yyyy-MM-dd</em>.<br>
+2. InterviewTime must be specified in the format <em>HHmm</em>.<br>
 </div>
 <br>
 
@@ -197,9 +193,19 @@ Format: `remove-i INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index must be within the range of available interviews in the interview list.
 
-Examples:
+Example:
 
 * `remove-i 3` removes the interview in the interview list with display index `i3`.
+
+### Clearing all entries: `clear`
+Clears all entries from CinternS.
+
+Format: `clear`
+
+### Exiting the program: `exit`
+Exits the program.
+
+Format: `exit`
 
 ### Saving the data
 
@@ -227,15 +233,17 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                            |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                                                      |
-| **Add**    | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
-| **List**   | `list`                                                                                                                                                                                      |
-| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
-| **Edit**   | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
-| **Clear**  | `clear`                                                                                                                                                                                     |
-| **Exit**   | `exit`                                                                                                                                                                                      |
+| Action        | Format, Examples                                                                                                                                                                            |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**      | `help`                                                                                                                                                                                      |
+| **Add**       | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
+| **List**      | `list`                                                                                                                                                                                      |
+| **Delete**    | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
+| **Edit**      | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
+| **Interview** | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`        |
+| **Remove-i**  | `remove-i`<br/> e.g., `remove-i 3`                                                                                                                                                          |
+| **Clear**     | `clear`                                                                                                                                                                                     |
+| **Exit**      | `exit`                                                                                                                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
