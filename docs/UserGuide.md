@@ -207,7 +207,7 @@ Examples:
 By marked/unmarked status:
 Hides appointments which are marked/unmarked.
 
-Format: `hide appts s/STATUS` 
+Format: `hide appts s/STATUS` <br>
 Shortform: `marked` status can be shortened to `m`, `unmarked` can be shortened to `um`.
 
 Examples:
