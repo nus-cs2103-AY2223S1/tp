@@ -21,7 +21,7 @@ public class HistoryCommandTest {
     }
 
     @Test
-    public void execute_history_not_empty() {
+    public void execute_history_filled() {
         HistoryList.addToHistory("test");
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS + HistoryList.printList());
         assertCommandSuccess(new HistoryCommand(), model, expectedCommandResult, expectedModel);

@@ -16,12 +16,12 @@ import seedu.address.logic.commands.ExcludeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.IncludeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PreferCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
-import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.HistoryList;
 
@@ -51,7 +51,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-    switch (commandWord) {
+        switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             HistoryList.addToHistory(userInput);
             return new AddCommandParser().parse(arguments);
