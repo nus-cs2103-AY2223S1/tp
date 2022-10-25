@@ -14,7 +14,7 @@ import seedu.application.logic.commands.UndoCommand;
  * A utility class containing a list of {@code Command} objects to be used in tests.
  */
 public class TypicalCommands {
-    public static final Command ADD_COMMAND = new AddCommand(new ApplicationBuilder(GOOGLE).build());
+    public static final Command ADD_COMMAND = new AddCommand(GOOGLE);
     public static final Command CLEAR_COMMAND = new ClearCommand();
     public static final Command DELETE_COMMAND = new DeleteCommand(INDEX_FIRST_APPLICATION);
     public static final Command REDO_COMMAND = new RedoCommand();

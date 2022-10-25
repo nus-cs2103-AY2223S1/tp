@@ -16,14 +16,14 @@ import seedu.application.model.application.interview.Interview;
  */
 public class DeleteInterviewCommand extends Command {
 
-    public static final String COMMAND_WORD = "remove-i";
+    public static final String COMMAND_WORD = "delete-i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the interview identified by the index number used in the displayed interview list.\n"
+            + ": Deletes the interview identified by the index number used in the displayed interview list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Removed Interview: %1$s";
+    public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Deleted Interview: %1$s";
 
     private final Index targetIndex;
 
@@ -40,14 +40,14 @@ public class DeleteInterviewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERVIEW_DISPLAYED_INDEX);
         }
 
-        Application applicationToRemoveInterview = lastShownList.get(targetIndex.getZeroBased());
-        Application editedApplication = new Application(applicationToRemoveInterview);
-        model.setApplication(applicationToRemoveInterview, editedApplication);
+        Application applicationToDeleteInterview = lastShownList.get(targetIndex.getZeroBased());
+        Application editedApplication = new Application(applicationToDeleteInterview);
+        model.setApplication(applicationToDeleteInterview, editedApplication);
         model.updateApplicationListWithInterview();
 
-        assert applicationToRemoveInterview.getInterview().isEmpty();
-        Interview removedInterview = applicationToRemoveInterview.getInterview().get();
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, removedInterview));
+        assert applicationToDeleteInterview.getInterview().isPresent();
+        Interview deletedInterview = applicationToDeleteInterview.getInterview().get();
+        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, deletedInterview));
     }
 
     @Override

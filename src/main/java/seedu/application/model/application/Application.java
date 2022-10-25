@@ -24,6 +24,7 @@ public class Application {
     private final Email email;
     private final Position position;
     private final Date date;
+    private final Status status;
     private final boolean isArchived;
     private final Optional<Interview> interview;
 
@@ -31,70 +32,68 @@ public class Application {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Instantiate Application with empty Interview.
+     * Instantiates Application with an empty Interview.
      *
-     * @param company name that represents the company
-     * @param contact number of the company.
-     * @param email of the company.
-     * @param position that the user applies to.
-     * @param date of the user applies to this position.
+     * @param company Company name that represents the company
+     * @param contact Contact number of the company.
+     * @param email Email of the company.
+     * @param position Position that the user applies to.
+     * @param date Date on which the user submits the application.
+     * @param status Status of the application.
+     * @param tags Set of tags the user can add to the application.
      */
-    public Application(Company company, Contact contact, Email email, Position position, Date date, Set<Tag> tags) {
+    public Application(Company company, Contact contact, Email email, Position position, Date date, Status status,
+            Set<Tag> tags) {
         requireAllNonNull(company, contact, email, position, date, tags);
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
+        this.status = status;
         this.tags.addAll(tags);
         this.interview = Optional.empty();
         this.isArchived = false;
     }
 
-    //Private constructor for set application to archive application or retrieve application.
+    // Private constructor for set application to archive application or retrieve application.
     private Application(Application application, boolean isArchived) {
         requireAllNonNull(application);
-        this.company = application.getCompany();
-        this.contact = application.getContact();
-        this.email = application.getEmail();
-        this.position = application.getPosition();
-        this.date = application.getDate();
-        this.tags.addAll(application.getTags());
+        this.company = application.company;
+        this.contact = application.contact;
+        this.email = application.email;
+        this.position = application.position;
+        this.date = application.date;
+        this.status = application.status;
+        this.tags.addAll(application.tags);
         this.isArchived = isArchived;
-        this.interview = application.getInterview();
+        this.interview = application.interview;
     }
 
     /**
-     * Instantiate Application with empty Interview.
+     * Instantiate Application with an empty Interview.
      *
-     * @param application that either contains empty interview or non-empty interview.
+     * @param application Application that either contains empty interview or non-empty interview.
      */
     public Application(Application application) {
-        requireAllNonNull(application);
-        this.company = application.getCompany();
-        this.contact = application.getContact();
-        this.email = application.getEmail();
-        this.position = application.getPosition();
-        this.date = application.getDate();
-        this.tags.addAll(application.getTags());
-        this.interview = Optional.empty();
-        this.isArchived = application.isArchived();
+        this(application, application.isArchived());
     }
 
     /**
      * Instantiate Application with non-empty Interview.
      *
-     * @param application that either contains empty interview or non-empty interview.
-     * @param interview to be added into the application.
+     * @param application Application that either contains empty interview or non-empty interview.
+     * @param interview Interview to be added into the application.
      */
     public Application(Application application, Interview interview) throws InvalidInterviewException {
         requireAllNonNull(application, interview);
-        this.company = application.getCompany();
-        this.contact = application.getContact();
-        this.email = application.getEmail();
-        this.position = application.getPosition();
-        this.date = application.getDate();
-        this.tags.addAll(application.getTags());
+        this.company = application.company;
+        this.contact = application.contact;
+        this.email = application.email;
+        this.position = application.position;
+        this.date = application.date;
+        this.status = application.status;
+        this.tags.addAll(application.tags);
         interviewIsAfterApplication(interview, application);
         this.interview = Optional.of(interview);
         this.isArchived = application.isArchived();
@@ -119,6 +118,11 @@ public class Application {
     public Date getDate() {
         return date;
     }
+
+    public Status getStatus() {
+        return status;
+    }
+
     public Optional<Interview> getInterview() {
         return interview;
     }
@@ -149,12 +153,12 @@ public class Application {
         }
 
         return otherApplication != null
-                && otherApplication.getCompany().equals(getCompany())
-                && otherApplication.getPosition().equals(getPosition());
+                && otherApplication.company.equals(company)
+                && otherApplication.position.equals(position);
     }
 
     private void interviewIsAfterApplication(Interview interview, Application application) {
-        if (interview.getInterviewDate().value.isBefore(application.getDate().value)) {
+        if (interview.getInterviewDate().value.isBefore(application.date.value)) {
             throw new InvalidInterviewException();
         }
     }
@@ -188,13 +192,14 @@ public class Application {
         }
 
         Application otherApplication = (Application) other;
-        return otherApplication.getCompany().equals(getCompany())
-                && otherApplication.getContact().equals(getContact())
-                && otherApplication.getEmail().equals(getEmail())
-                && otherApplication.getPosition().equals(getPosition())
-                && otherApplication.getDate().equals(getDate())
-                && otherApplication.getTags().equals(getTags())
-                && otherApplication.getInterview().equals((getInterview()));
+        return otherApplication.company.equals(company)
+                && otherApplication.contact.equals(contact)
+                && otherApplication.email.equals(email)
+                && otherApplication.position.equals(position)
+                && otherApplication.date.equals(date)
+                && otherApplication.status.equals(status)
+                && otherApplication.tags.equals(tags)
+                && otherApplication.interview.equals((interview));
     }
 
     @Override
@@ -206,26 +211,22 @@ public class Application {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getCompany())
+        builder.append(company)
                 .append("; Position applied: ")
-                .append(getPosition())
+                .append(position)
                 .append("; Contact number: ")
-                .append(getContact())
+                .append(contact)
                 .append("; Email: ")
-                .append(getEmail())
+                .append(email)
                 .append("; Apply on: ")
-                .append(getDate());
+                .append(date);
 
-        Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
 
-        if (getInterview().isPresent()) {
-            builder.append("; \nInterview: ")
-                    .append(getInterview().get());
-        }
+        interview.ifPresent(x -> builder.append("; \nInterview: ").append(x));
 
         return builder.toString();
     }

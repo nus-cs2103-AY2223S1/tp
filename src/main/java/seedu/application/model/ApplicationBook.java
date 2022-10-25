@@ -74,7 +74,7 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
      */
     public boolean hasSameInterviewTime(Application application) {
         requireNonNull(application);
-        return applications.hasSameInterviewTimeAs(application);
+        return applications.hasSameInterviewTime(application);
     }
 
     /**
@@ -83,7 +83,7 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
      */
     public boolean hasSameInterviewTime(Interview interview) {
         requireNonNull(interview);
-        return applications.hasSameInterviewTimeAs(interview);
+        return applications.hasSameInterviewTime(interview);
     }
 
     /**
@@ -92,7 +92,7 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
      */
     public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
         requireAllNonNull(interview, application);
-        return applications.hasSameInterviewTimeAsExcludeSelf(interview, application);
+        return applications.hasSameInterviewTimeExcludeSelf(interview, application);
     }
 
     /**

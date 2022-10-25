@@ -12,6 +12,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.Status;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.InterviewDate;
 import seedu.application.model.application.interview.InterviewTime;
@@ -27,22 +28,22 @@ public class SampleDataUtil {
         return new Application[] {
             new Application(new Company("Google"), new Contact("68882888"), new Email("internships@google.com.sg"),
                     new Position("Software Engineer Intern"), new Date("2022-09-10"),
-                    getTagSet("preferred")),
+                    Status.REJECTED, getTagSet("preferred")),
             new Application(new Company("Grab"), new Contact("67773777"), new Email("internships@grab.com.sg"),
                     new Position("Backend Engineer Intern"), new Date("2022-10-01"),
-                    getTagSet("seniorReferral")),
+                    Status.INTERVIEW, getTagSet("seniorReferral")),
             new Application(new Company("ByteDance"), new Contact("63334333"), new Email("hr@bytedance.com.sg"),
                     new Position("Frontend Engineer Intern"), new Date("2021-08-08"),
-                    getTagSet("BytePlus")),
+                    Status.OFFERED, getTagSet("BytePlus")),
             new Application(new Company("Shopee"), new Contact("67436743"), new Email("talent@shopee.com.sg"),
                     new Position("Quality Assurance Intern"), new Date("2021-09-30"),
-                    getTagSet("consumerTech")),
+                    Status.INTERVIEW, getTagSet("consumerTech")),
             new Application(new Company("Wise"), new Contact("64164161"), new Email("humanresource@wise.org"),
                     new Position("Software Engineer Intern"), new Date("2022-09-10"),
-                    getTagSet("fintechCompany")),
+                    Status.INTERVIEW, getTagSet("fintechCompany")),
             new Application(new Company("Stripe"), new Contact("66210987"), new Email("intern@stripe.org"),
                     new Position("System Analyst"), new Date("2022-10-08"),
-                    getTagSet("financialServices", "tech"))
+                    Status.PENDING, getTagSet("financialServices", "tech"))
         };
     }
 

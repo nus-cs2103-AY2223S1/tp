@@ -20,14 +20,14 @@ public class SortByCompanyCommand extends SortCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.sortApplicationListByCompany(shouldReverse());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse() ? " reverse" : ""));
+        model.sortApplicationListByCompany(shouldReverse);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse ? " reverse" : ""));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortByCompanyCommand // instanceof handles nulls
-                && shouldReverse() == ((SortByCompanyCommand) other).shouldReverse()); // state check
+                && shouldReverse == ((SortByCompanyCommand) other).shouldReverse); // state check
     }
 }

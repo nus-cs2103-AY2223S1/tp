@@ -1,0 +1,63 @@
+package seedu.application.model.application;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.application.commons.util.AppUtil.checkArgument;
+
+/**
+ * Represents a Status of an internship application.
+ * Must be one of the values declared in {@value #VALID_STATUSES}.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
+ */
+public enum Status {
+    INTERVIEW("interview"),
+    OFFERED("offered"),
+    PENDING("pending"),
+    REJECTED("rejected");
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Status should be one of the following: pending, interview, offered, rejected";
+
+    public final String status;
+
+    /**
+     * Constructs a {@code Status}.
+     *
+     * @param status A valid status in String.
+     */
+    private Status(String status) {
+        this.status = status;
+    }
+
+    /**
+     * Returns true if a given string is a valid status.
+     */
+    public static boolean isValidStatus(String test) {
+        for (Status s : values()) {
+            if (s.status.equals(test)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns a Status if a given string is a valid status.
+     */
+    public static Status getStatus(String status) {
+        requireNonNull(status);
+        checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
+        for (Status s : values()) {
+            if (s.status.equals(status)) {
+                return s;
+            }
+        }
+        return null; // IllegalArgumentException should have been thrown.
+    }
+
+    /**
+     * Returns the String value of the status.
+     */
+    public String getValue() {
+        return status;
+    }
+}
