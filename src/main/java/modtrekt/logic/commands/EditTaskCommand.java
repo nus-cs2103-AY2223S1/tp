@@ -9,13 +9,13 @@ import java.util.Objects;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
-import modtrekt.commons.core.Messages;
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.DeadlineConverter;
 import modtrekt.logic.parser.converters.DescriptionConverter;
 import modtrekt.logic.parser.converters.IndexConverter;
 import modtrekt.logic.parser.converters.ModCodeConverter;
+import modtrekt.logic.parser.converters.PriorityConverter;
 import modtrekt.model.Model;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Deadline;
@@ -48,6 +48,9 @@ public class EditTaskCommand extends Command {
             converter = DescriptionConverter.class)
     private Description targetDescription;
 
+    @Parameter(names = "-p", description = "New priority level for the task", converter = PriorityConverter.class)
+    private Task.Priority targetPriority;
+
     /**
      * Returns a new EditTaskCommand object, with no fields initialized, for use with JCommander.
      */
@@ -63,11 +66,16 @@ public class EditTaskCommand extends Command {
      * @param targetDescription the description that you want to change to
      */
     public EditTaskCommand(Index targetIndex, ModCode targetModule, LocalDate targetDeadline,
-                           Description targetDescription) {
+                           Description targetDescription, Task.Priority targetPriority) {
         this.targetIndex = targetIndex;
         this.targetModule = targetModule;
         this.targetDeadline = targetDeadline;
         this.targetDescription = targetDescription;
+        this.targetPriority = targetPriority;
+    }
+
+    public static EditTaskCommand editPriority(Index targetIndex, Task.Priority targetPriority) {
+        return new EditTaskCommand(targetIndex, null, null, null, targetPriority);
     }
 
     @Override
@@ -75,8 +83,16 @@ public class EditTaskCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
+        // Check that there is at least one task.
+        if (lastShownList.size() == 0) {
+            throw new CommandException("There are no tasks.");
+        }
+
+        // Check that the task index is not out of bounds.
+        // The 0-based index is guaranteed by the Index class invariant to be >= 0.
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(String.format("Task index must an integer between 1 and %d inclusive.",
+                    lastShownList.size()));
         }
 
         Task taskToEdit = lastShownList.get(targetIndex.getZeroBased());
@@ -85,11 +101,26 @@ public class EditTaskCommand extends Command {
             throw new CommandException("Please enter a parameter to edit\n"
                     + "\t-c  New module code for the task\n"
                     + "\t-d  New deadline for the task\n"
-                    + "\t-ds New description for the task");
+                    + "\t-ds New description for the task\n"
+                    + "\t-p  New priority level for the task");
         }
 
         boolean isDone = taskToEdit.isDone();
-        Task.Priority priority = taskToEdit.getPriority();
+
+        // Check that the task does not already have the same priority rating.
+        if (taskToEdit.getPriority() == targetPriority) {
+            if (targetPriority == Task.Priority.NONE) {
+                throw new CommandException(String.format("Task #%d has already had no priority set.",
+                        targetIndex.getOneBased()
+                ));
+            }
+            throw new CommandException(String.format("Task #%d has already been set to %s priority.",
+                    targetIndex.getOneBased(),
+                    targetPriority
+            ));
+        }
+        Task.Priority priority = targetPriority != null ? targetPriority : taskToEdit.getPriority();
+
         ModCode code = targetModule != null ? targetModule : taskToEdit.getModule();
         if (!model.hasModuleWithModCode(code)) {
             throw new CommandException(String.format("Module code %s does not exist.",
@@ -124,13 +155,16 @@ public class EditTaskCommand extends Command {
 
         if (other instanceof EditTaskCommand) {
             EditTaskCommand newOther = (EditTaskCommand) other;
+
             return ((targetIndex == null && newOther.targetIndex == null) || targetIndex.equals(newOther.targetIndex))
                     && ((targetModule == null && newOther.targetModule == null)
                     || targetModule.equals(newOther.targetModule))
                     && ((targetDescription == null && newOther.targetDescription == null)
                     || targetDescription.equals(newOther.targetDescription))
                     && ((targetDeadline == null && newOther.targetDeadline == null)
-                    || targetDeadline.equals(newOther.targetDeadline));
+                    || targetDeadline.equals(newOther.targetDeadline))
+                    && ((targetPriority == null && newOther.targetPriority == null)
+                    || targetPriority.equals(newOther.targetPriority));
         }
 
         return false;

@@ -25,7 +25,7 @@ class EditTaskCommandTest {
         EditTaskCommand cmd =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("study for exams"));
+                        new Description("study for exams"), null);
         assertEquals(cmd, cmd);
     }
 
@@ -34,23 +34,23 @@ class EditTaskCommandTest {
         EditTaskCommand a =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("study for exams"));
+                        new Description("study for exams"), null);
         EditTaskCommand b =
                 new EditTaskCommand(Index.fromOneBased(2), new ModCode("CS2109S"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("study for exams"));
+                        new Description("study for exams"), null);
         EditTaskCommand c =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2103T"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("study for exams"));
+                        new Description("study for exams"), null);
         EditTaskCommand d =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("preparing for exams"));
+                        new Description("preparing for exams"), null);
         EditTaskCommand e =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
                         LocalDate.parse("1999-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("studying for exams"));
+                        new Description("studying for exams"), null);
         assertNotEquals(a, b);
         assertNotEquals(a, c);
         assertNotEquals(a, d);
@@ -62,11 +62,11 @@ class EditTaskCommandTest {
         EditTaskCommand cmd1 =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("study for exams"));
+                        new Description("study for exams"), null);
         EditTaskCommand cmd2 =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("study for exams"));
+                        new Description("study for exams"), null);
         assertEquals(cmd1, cmd2);
     }
 
@@ -75,7 +75,7 @@ class EditTaskCommandTest {
         EditTaskCommand expected =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        new Description("study for exams"));
+                        new Description("study for exams"), null);
         Command actual =
                 new ModtrektParser()
                         .parseCommand("edit task 1 -c CS2109S -d 2000-12-11 -ds \"study for exams\"");
@@ -86,10 +86,10 @@ class EditTaskCommandTest {
     public void testParser_validModule_returnsValidCommand() throws ParseException {
         EditTaskCommand ai =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2109S"),
-                        null, null);
+                        null, null, null);
         EditTaskCommand swe =
                 new EditTaskCommand(Index.fromOneBased(1), new ModCode("CS2103T"),
-                        null, null);
+                        null, null, null);
 
         assertEquals(ai, new ModtrektParser().parseCommand("edit task 1 -c CS2109S"));
         assertEquals(swe, new ModtrektParser().parseCommand("edit task 1 -c CS2103T"));
@@ -100,11 +100,11 @@ class EditTaskCommandTest {
         EditTaskCommand date1 =
                 new EditTaskCommand(Index.fromOneBased(1), null,
                         LocalDate.parse("2000-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        null);
+                        null, null);
         EditTaskCommand date2 =
                 new EditTaskCommand(Index.fromOneBased(1), null,
                         LocalDate.parse("1998-12-11".trim(), DateTimeFormatter.ofPattern("yyyy-M-d")),
-                        null);
+                        null, null);
         assertEquals(date1, new ModtrektParser().parseCommand("edit task 1 -d 2000-12-11"));
         assertEquals(date2, new ModtrektParser().parseCommand("edit task 1 -d 1998-12-11"));
     }
@@ -113,10 +113,10 @@ class EditTaskCommandTest {
     public void testParser_validDescription_returnsValidCommand() throws ParseException {
         EditTaskCommand read =
                 new EditTaskCommand(Index.fromOneBased(1), null, null,
-                        new Description("read book"));
+                        new Description("read book"), null);
         EditTaskCommand buy =
                 new EditTaskCommand(Index.fromOneBased(1), null, null,
-                        new Description("buy book"));
+                        new Description("buy book"), null);
         assertEquals(read, new ModtrektParser().parseCommand("edit task 1 -ds \"read book\""));
         assertEquals(buy, new ModtrektParser().parseCommand("edit task 1 -ds \"buy book\""));
     }
@@ -136,7 +136,7 @@ class EditTaskCommandTest {
 
     @Test
     public void testParser_invalidFlags_throwsParseException() {
-        assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit task 1 -p high"));
+        assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit task -t 1 -p high"));
         assertThrows(ParseException.class, () -> new ModtrektParser().parseCommand("edit -a -b -c -p high"));
     }
 

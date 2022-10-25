@@ -26,7 +26,6 @@ import modtrekt.logic.commands.RemoveCommand;
 import modtrekt.logic.commands.UndoneModuleCommand;
 import modtrekt.logic.commands.tasks.DoneTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
-import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
 import modtrekt.logic.commands.tasks.UndoneTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 
@@ -56,7 +55,6 @@ public class ModtrektParser {
                 .addCommand(ListTasksCommand.COMMAND_WORD, new ListTasksCommand())
                 .addCommand(DoneTaskCommand.COMMAND_WORD, new DoneTaskCommand())
                 .addCommand(UndoneTaskCommand.COMMAND_WORD, new UndoneTaskCommand())
-                .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(EditModuleCommand.COMMAND_WORD, new EditModuleCommand())
                 .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
