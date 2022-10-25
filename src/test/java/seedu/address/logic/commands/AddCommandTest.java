@@ -179,6 +179,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateCalendarEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public String nextCommand() {
             throw new AssertionError("This method should not be called.");
         }

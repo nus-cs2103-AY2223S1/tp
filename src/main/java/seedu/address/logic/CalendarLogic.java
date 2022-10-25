@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -46,6 +47,7 @@ public class CalendarLogic {
     private Logic logic;
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
+    private ObservableList<CalendarEvent> filteredCalendarEventList;
 
     /**
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
@@ -57,13 +59,19 @@ public class CalendarLogic {
         this.topCalendar = topCalendar;
         this.logic = logic;
         this.primaryStage = primaryStage;
+        ListChangeListener<CalendarEvent> temp = (x) -> {
+            x.next();
+            refresh();
+        };
+        this.filteredCalendarEventList = logic.getFilteredCalendarEventList();
+        filteredCalendarEventList.addListener(temp);
     }
 
     /**
      * Initialises the logic components for the Calendar.
      */
     public void initialiseLogic() {
-        calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
     }
@@ -136,7 +144,7 @@ public class CalendarLogic {
      */
     public void refresh() {
         resetGridPane();
-        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         drawCalendar();
     }
 
@@ -144,7 +152,7 @@ public class CalendarLogic {
      * Displays the CalendarEvents in the previous month.
      */
     public void previous() {
-        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getPreviousMonth(currentMonth);
         updateCalendarMonth();
     }
@@ -153,7 +161,7 @@ public class CalendarLogic {
      * Displays the CalendarEvents in the next month.
      */
     public void next() {
-        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getNextMonth(currentMonth);
         updateCalendarMonth();
     }

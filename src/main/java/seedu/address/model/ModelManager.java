@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final CommandHistory commandHistory;
+    private final ObservableList<CalendarEvent> calendarEventList2;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.commandHistory = new CommandHistory(commandHistory);
+        this.calendarEventList2 = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -153,9 +155,14 @@ public class ModelManager implements Model {
     }
 
     private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Person> lastShownList) {
-        ObservableList<CalendarEvent> calendarEventList = FXCollections.observableArrayList();
-        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
-        return calendarEventList;
+        calendarEventList2.clear();
+        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList2.addAll(e));
+        return calendarEventList2;
+    }
+
+    @Override
+    public void updateCalendarEventList() {
+        getCalendarEventList(filteredPersons);
     }
 
     //=========== Command History=============================================================

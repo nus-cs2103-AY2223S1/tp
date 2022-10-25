@@ -104,4 +104,6 @@ public interface Model {
     String nextCommand();
 
     String prevCommand();
+
+    void updateCalendarEventList();
 }
