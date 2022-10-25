@@ -10,6 +10,7 @@ src/main/resources/docs/
 
 # VSCode files
 /bin/
+/.vscode/
 
 # Storage/log files
 /data/

@@ -101,6 +101,8 @@ public class ModelManager implements Model {
     @Override
     public void addInternship(Internship internship) {
         versionedWorkBook.addInternship(internship);
+        // resets ui view to show all internships whenever add command is executed
+        // ideal behaviour TBD
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 

@@ -58,6 +58,24 @@ public class DateTime {
         return true;
     }
 
+    /**
+     * Note that DateTimeParseException will be thrown if this is called on DateTime.EMPTY
+     */
+    public boolean isAfter(DateTime other) {
+        LocalDateTime thisDate = LocalDateTime.parse(this.value, dateFormatter);
+        LocalDateTime otherDate = LocalDateTime.parse(other.value, dateFormatter);
+        return thisDate.isAfter(otherDate);
+    }
+
+    /**
+     * Note that DateTimeParseException will be thrown if this is called on DateTime.EMPTY
+     */
+    public boolean isPast() {
+        LocalDateTime thisDate = LocalDateTime.parse(this.value, dateFormatter);
+        return LocalDateTime.now().isAfter(thisDate);
+    }
+
+
     @Override
     public String toString() {
         return value;

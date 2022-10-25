@@ -138,6 +138,14 @@ public class CommandTestUtil {
     }
 
     /**
+     * Updates {@code model}'s filtered list to show none of the internships in the {@code model}'s work book.
+     */
+    public static void filterOutAllInternships(Model model) {
+        model.updateFilteredInternshipList(unused -> false);
+        assertEquals(0, model.getFilteredInternshipList().size());
+    }
+
+    /**
      * Deletes the first internship in {@code model}'s filtered list from {@code model}'s work book.
      */
     public static void deleteFirstInternship(Model model) {

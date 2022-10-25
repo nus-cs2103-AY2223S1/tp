@@ -12,6 +12,7 @@ import static seedu.workbook.testutil.TypicalInternships.getTypicalWorkBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +20,8 @@ import seedu.workbook.model.Model;
 import seedu.workbook.model.ModelManager;
 import seedu.workbook.model.UserPrefs;
 import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.InternshipComparator;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -71,7 +74,9 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());
+        List<Internship> expectedInternshipList = Arrays.asList(CARL, ELLE, FIONA);
+        Collections.sort(expectedInternshipList, new InternshipComparator());
+        assertEquals(expectedInternshipList, model.getFilteredInternshipList());
     }
 
     /**
