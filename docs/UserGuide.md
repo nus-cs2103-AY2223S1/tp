@@ -201,6 +201,42 @@ Example:
 * `rfind t/opensDaily veryNice` returns all reviews that has the tag `opensDaily` OR `veryNice`
 * `rfind n/eatery t/opensDaily` returns all reviews where name includes `eatery` OR has the tag `opensDaily`
 
+### Sorting stall list: `ssort`
+
+Sorts the stall list by specified criteria.
+
+Format: `ssort CRITERIA`
+
+* The criteria must be provided and should not be blank.
+* Below are the supported sorting criteria:
+
+| Criteria       | Notes                          |
+|----------------|--------------------------------|
+| `name`         | Sorts from 0 to 9, then A to Z |
+| `reversedname` | Sorts from Z to A, then 9 to 0 |
+
+* The command will fail if two or more criteria are provided or any other criteria not listed above is provided. <br>
+Examples: `ssort name reversedname`, `ssort address`
+
+### Sorting review list: `rsort`
+
+Sorts the review list by specified criteria.
+
+* The criteria must be provided and should not be blank.
+* Below are the supported sorting criteria:
+
+| Criteria         | Notes                          |
+|------------------|--------------------------------|
+| `name`           | Sorts from 0 to 9, then A to Z |
+| `reversedname`   | Sorts from Z to A, then 9 to 0 |
+| `date`           | Sorts from oldest to newest    |
+| `reverseddate`   | Sorts from newest to oldest    |
+| `rating`         | Sorts from lowest to highest   |
+| `reversedrating` | Sorts from highest to lowest   |
+
+* The command will fail if two or more criteria are provided or any other criteria not listed above is provided. <br>
+Examples: `rsort name date`, `rsort content`
+
 ### Clearing all entries : `clear`
 
 Deletes all entries from the stall list and review list.
@@ -251,9 +287,10 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **redit** | `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…` <br> e.g., `redit d/20/09/2022 c/Great food!`        |
 | **rlist** | `rlist`                                                                                                      |
 | **rfind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                       |
+| **rsort** | `rsort CRITERIA` <br> e.g., `rsort rating`                                                                   |                                                                   
 | **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`      |
 | **sdel**  | `sdel INDEX`                                                                                                 |
 | **sedit** | `sedit INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…` <br> e.g., `sedit n/John Chicken Rice a/Blk 123 Bedok South`    |
 | **slist** | `slist`                                                                                                      |
 | **sfind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                       |
-
+| **ssort** | `ssort CRITERIA` <br> e.g., `ssort reversedname`                                                             |

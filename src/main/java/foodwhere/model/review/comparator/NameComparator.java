@@ -10,6 +10,6 @@ import foodwhere.model.review.Review;
 public class NameComparator implements Comparator<Review> {
     @Override
     public int compare(Review r1, Review r2) {
-        return r1.getName().fullName.compareTo(r2.getName().fullName);
+        return r1.getName().fullName.compareToIgnoreCase(r2.getName().fullName);
     }
 }

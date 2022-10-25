@@ -9,8 +9,8 @@ import foodwhere.model.stall.Stall;
  */
 public enum StallsComparatorList {
 
-    NAME("name (A to Z)", new NameComparator()),
-    REVERSEDNAME("name (Z to A)", new NameComparator().reversed());
+    NAME("name (0 to 9, then A to Z)", new NameComparator()),
+    REVERSEDNAME("name (Z to A, then 9 to 0)", new NameComparator().reversed());
 
     public static final String MESSAGE_CONSTRAINTS = "See user guide for the supported criteria";
 
