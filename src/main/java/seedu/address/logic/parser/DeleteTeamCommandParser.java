@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.util.ArrayList;
-
 import seedu.address.logic.commands.DeleteTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.team.Team;
@@ -18,6 +16,6 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
      */
     @Override
     public DeleteTeamCommand parse(String args) throws ParseException {
-        return new DeleteTeamCommand(new Team(args.trim(), new ArrayList<>()));
+        return new DeleteTeamCommand(new Team(args.trim() , "No description added"));
     }
 }

@@ -20,5 +20,7 @@ public class CliSyntax {
     public static final String FLAG_FILTER_STR_LONG = "filter";
     public static final String FLAG_URL_STR = "l";
     public static final String FLAG_URL_STR_LONG = "link";
+    public static final String FLAG_DESCRIPTION_STR = "d";
+    public static final String FLAG_DESCRIPTION_LONG = "description";
 
 }
