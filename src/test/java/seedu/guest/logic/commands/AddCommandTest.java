@@ -51,6 +51,16 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_roomOccupied_throwsCommandException() {
+        Guest anotherGuest = new GuestBuilder().withName("Anderson").build();
+        Guest validGuest = new GuestBuilder().build();
+        AddCommand addCommand = new AddCommand(anotherGuest);
+        ModelStub modelStub = new ModelStubWithGuest(validGuest);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_ROOM_OCCUPIED, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Guest alice = new GuestBuilder().withName("Alice").build();
         Guest bob = new GuestBuilder().withName("Bob").build();
@@ -169,6 +179,12 @@ public class AddCommandTest {
         public boolean hasGuest(Guest guest) {
             requireNonNull(guest);
             return this.guest.isSameGuest(guest);
+        }
+
+        @Override
+        public boolean hasSameRoom(Guest guest) {
+            requireNonNull(guest);
+            return this.guest.isSameRoom(guest);
         }
     }
 
