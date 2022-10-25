@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-title Proposed Person and SupplyItem relationship
+title Person and SupplyItem relationship
 Package Model <<Rectangle>>{
 Class "<<interface>>\nModel" as Model
 Class ModelManager
@@ -15,8 +15,6 @@ Class Name
 Class Phone
 Class Tag
 Class SupplyItem
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
 
 ModelManager .up.|> Model
 Person *--> Name

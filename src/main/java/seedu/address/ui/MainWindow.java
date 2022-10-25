@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private TaskListPanel taskListPanel;
     private InventoryPanel inventoryPanel;
+    private StatsCard statsCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -54,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane statsPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -124,8 +128,12 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        inventoryPanel = new InventoryPanel(logic.getFilteredSupplyItemList());
+        inventoryPanel = new InventoryPanel(logic.getFilteredSupplyItemList(), logic::increaseSupplyItemHandler,
+                logic::decreaseSupplyItemHandler, logic::changeIncDecAmountHandler);
         inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
+
+        statsCard = new StatsCard(logic.getFilteredSupplyItemList(), logic.getFilteredTaskList());
+        statsPanelPlaceholder.getChildren().add(statsCard.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -185,6 +193,10 @@ public class MainWindow extends UiPart<Stage> {
         return taskListPanel;
     }
 
+    public StatsCard getStatsCard() {
+        return statsCard;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -203,6 +215,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            // Essential to refresh Stats Panel after a command is executed.
+            statsCard = new StatsCard(logic.getFilteredSupplyItemList(), logic.getFilteredTaskList());
+            statsPanelPlaceholder.getChildren().set(0, statsCard.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

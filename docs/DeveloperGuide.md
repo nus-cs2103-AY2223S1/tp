@@ -210,7 +210,7 @@ The user flow is illustrated in the *Activity Diagram* as shown below.
   * Advantages: Easier to maintain for the developer. Acts like a switch and when a `Task` is already completed, marking it again will do nothing (Saves more computational power).
   * Disadvantages: Harder for future extension in the event that we need to do much more than just toggling the status of a `Task`.
 
-### Edit Supplier feature
+### \[Developed\] Edit Supplier feature
 
 #### Implementation
 
@@ -263,22 +263,84 @@ Then, multiple processes occur to parse, validate and execute the command.
   `Model#hasPersonExcluding(Person person, Person excludedPerson)` facilitates this by first excluding the `Person` to be edited from the duplicate checks, then calling `Person#isSamePerson(Person otherPerson)` to compare the edited `Person` with all other `Person`s.
   Again, this checks if the two `Person` objects have the same `Name` or `Phone` attributes.
   ![EditCommandVerifyActivityDiagram](images/EditCommandVerifyActivityDiagram.png)
+- `model#hasSupplyItemSuppliedBy(Person supplier)` checks if any `SupplyItem` in the inventory is being supplied by the supplier that is going to be edited. If yes, `EditItemSupplierCommand` is called to update that particular `SupplyItem` with the new `supplier` field: `editedPerson`. 
+  This is necessitated by the relationship between `Person` and `SupplyItem`, as illustrated below.
+  <img src="images/SupplierAndSupplyItemClassDiagram.png" width="500" />
 
-- If all checks pass, `Model#setPerson(Person target, Person editedPerson)` is called to replace the old `Person` with the edited `Person` within the `ObservableList<Person>`, which is encapsulated within the `UniquePersonList` class and serves to ensure uniqueness of all of its `Person` contents.
-
-The following activity diagram summarises what happens when a user executes an edit supplier command.
+- If all checks pass, `Model#setPerson(Person target, Person editedPerson)` is called to replace the old `Person` with the edited `Person` within the `ObservableList<Person>`, which is encapsulated within the `UniquePersonList` class and serves to ensure uniqueness of all of its `Person` contents. 
+- The following activity diagram summarises what happens when a user executes an edit supplier command.
 ![EditCommandSummaryActivityDiagram](images/EditCommandSummaryActivityDiagram.png)
 
-#### Proposed enhancements/changes
+### \[Developed\] AddTask feature
 
-Subsequently, the `SupplyItem` class which encapsulates an item in a vendor's inventory will be implemented. Each instance of this class contains a reference to a `Person` (i.e. each item in the inventory is supplied by one supplier).
-As a result, editing a supplier's details necessitate a corresponding update to the `SupplyItem` object that has a reference to the edited `Person`.
+**Implementation**
 
-<img src="images/SupplierAndSupplyItemClassDiagram.png" width="500" />
+This feature allow us to `Tasks` to be added to the `TaskList` for vendors to keep track of tasks they need to do.
+
+The proposed addTask feature is facilitated by `AddTaskCommand` and `AddTaskCommandParser` classes
+
+The `AddTaskCommandParser` parses the input given by the user and ensures that all input required to create the
+tasks are present and valid. Once inputs are parsed and are valid, a `Task` instance will be created and will be
+added to the taskList.
+
+The feature will be implemented with the help of the following operations:
+* `Model#addTask(Task task)` which adds a newly created `Task` instance to the taskList.
+* `AddTaskCommandParser#parse(String arg)` which will parse the input then create a new task then returns an 
+AddTaskCommand with the new task created.
+
+Given below is an example of how `AddTaskCommand` is being executed
+
+**Steps**
+
+Step 1. The user enters the `addTask d/Buy Chicken dl/2020-12-12 t/Food` command.
+d/ represents the task description, dl/ represents deadline and t/ represents tag.
+
+Step 2. The `AddTaskCommandParser` parses the input and ensures that command is valid.
+For it to be valid, all compulsory field such as deadline and descriptions must be present.
+Tag field is optional. Further checks are that date given are in the correct format of 
+`yyyy-mm-dd`. Also date given must be a valid gregorian calendar date.
+Which means **01 <= dd <= 28/29/30/31** depending on month especially February. 
+**01 <= mm <= 12** for month.
+If these checks are not valid, an exception will be thrown.
+If checks are valid, a new Task instance will be created and a `AddTaskCommand` with the argument
+containing the new Task will be created.
+
+Step 3. The execute method in `AddTaskCommand` is being called. Then `Model#addTask(Task task)`
+method is being called. Which will add the new Task into the `TaskList`.
+
+Step 4. `CommandResult` is then returned, notifying the user that the `Task` is successfully added.
+
+**Activity Diagram**
+The user flow is illustrated in the *Activity Diagram* below.
+
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+**Design considerations**
+
+**Aspect: How deadline should be handled**
+
+* **Alternative 1 (current choice):** Parser will convert String format of date into localDate
+    * Pros: More versatile, make it easier for us developer to compare between task should we want
+  to make any comparison using the date
+    * Cons: More strict input must be given by user in the current format `yyyy-mm-dd`
+
+* **Alternative 2:** Deadline remains as a string format.
+    * Pros: Simpler way of displaying deadline to user, lesser bugs since we do not have to 
+  parse the string into localDate which reduces the amount of bugs.
+    * Cons: More restrictive when it comes to using dateline to compare and sort the task
+  based on deadline. 
+
+_{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
+
+**NOTE:**
+
+While this explanation describes a proposed way to implement undo and redo in `AddressBook`, note that it
+can be done in an identical fashion for `TaskList` and `Inventory` as well.
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -483,16 +545,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `Salesy` and the **Actor** is the `canteen vendor`, unless specified otherwise)
+(For all use cases below, the **System** is `Salesy` and the **Actor** is the `NUS canteen vendor`, unless specified otherwise)
 
 **Use case: View the help page**
 
 **MSS**
 
 1. Vendor clicks on the help tab
-2. Salesy shows the various commands that are available to use.
-3. Vendor clicks on the <u>drop down of the task </u> that she wants to further expand
-4. <u>Drop down</u> will expand and vendor is able to view the command guide.
+2. Salesy shows the link to Salesy's user guide page.
+3. Vendor clicks on the <u>copy button</u> to copy the link.
 
    Use case ends
 
@@ -507,10 +568,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Salesy detects that the command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the add task command.
+* 1a. Salesy detects that the command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the add task command.
+    
+    Use case resumes at step 1.
+    
+* 1b. Salesy detects that the command entered has an invalid date.
+    * 1b1. Salesy shows an error message specific to invalid date.
+    
+    Use case resumes at step 1.
 
-      Use case resumes at step 1.
+* 1c. Salesy detects that the command entered has a date that is before today.
+    * 1c1. Salesy issues a warning.
+    Use case resumes at step 2.
+
+**Use case: Delete a task**
+
+**MSS**
+
+1. Vendor requests to delete a specific task in the list.
+2. Salesy deletes the task from the task list and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Salesy detects that the command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the specified delete task command.
+    
+    Use case resumes at step 1.
+
+* 1b. Salesy detects that the index does not exist on the task list.
+    * 1b1. Salesy shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Edit a task**
+
+**MSS**
+
+1. Vendor requests to edit a specific task in the list.
+2. Salesy updates the task from the task list and shows a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Salesy detects that the command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the specified edit task command.
+
+    Use case resumes at step 1.
+
+* 1b. Salesy detects that the index does not exist on the task list.
+    * 1b1. Salesy shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Mark a task as done**
 
@@ -525,14 +637,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty
+* 1a. The list is empty
 
   Use case ends.
-* 2b. The given index is invalid.
+* 3b. The given index is invalid.
 
-    * 2b1. Salesy shows an error message.
+    * 3b1. Salesy shows an error message.
 
-  Use case resumes at step 2.
+  Use case resumes at step 3.
+
+**Use case: Un marks a task as done**
+
+**MSS**
+
+1. Vendor requests to <u>list pending tasks</u>.
+2. Salesy shows a list of tasks
+3. Vendor requests to un mark a specific task in the list as done.
+4. Salesy un marks the task as done.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+
+  Use case ends.
+* 3b. The given index is invalid.
+
+    * 3b1. Salesy shows an error message.
+
+  Use case resumes at step 3.
+
+**Use case: View pending tasks**
+
+**MSS**
+
+1. Vendor requests to view pending tasks
+2. Salesy shows a list of tasks that are marked undone.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 **Use case: Decrement supplies**
 
@@ -551,49 +700,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 4a. The amount to be decremented results in negative quantity
+* 3a. The amount to be decremented results in negative quantity
 
-    * 4a1. Salesy displays an error message.
-
-      Use case resumes at step 3.
-
-**Use case: Delete a task**
-
-**MSS**
-
-1.  Vendor requests to list tasks
-2.  Salesy shows a list of tasks
-3.  Vendor requests to delete a specific task in the list
-4.  Salesy deletes the task
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Salesy shows an error message.
+    * 3a1. Salesy displays an error message.
 
       Use case resumes at step 2.
-
-**Use case: View pending tasks**
-
-**MSS**
-
-1. Vendor requests to view pending tasks
-2. Salesy shows a list of tasks that are marked undone.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
 
 **Use case: Add a supplier**
 
@@ -606,10 +717,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the add supplier command.
-* 2b. A supplier with the same name/phone already exists.
-    * 2b1. Salesy shows an error message that the supplier already exists.
+* 1a. The command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the add supplier command.
+* 1b. A supplier with the same name/phone already exists.
+    * 1b1. Salesy shows an error message that the supplier already exists.
 
     Use case resumes at step 1.
 
@@ -624,10 +735,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the delete supplier command.
-* 2b. The index number specified is invalid.
-    * 2b1. Salesy shows an error message that the index provided is invalid.
+* 1a. The command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the delete supplier command.
+* 1b. The index number specified is invalid.
+    * 1b1. Salesy shows an error message that the index provided is invalid.
 
     Use case resumes at step 1.
 
@@ -640,6 +751,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Extensions**
+
+* 1a. The list is empty.
+    Use case ends.
+
 **Use case: Find a supplier**
 
 **MSS**
@@ -651,10 +767,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
-  * 2a1. Salesy displays an empty list.
-* 2b. No existing suppliers match the vendor's query.
-  * 2b1. Salesy displays an empty list.
+* 1a. The list is empty.
+  * 1a1. Salesy displays an empty list.
+* 1b. No existing suppliers match the vendor's query.
+  * 1b1. Salesy displays an empty list.
   
   Use case ends.
 
@@ -669,12 +785,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The command entered is in an invalid format.
-    * 2a1. Salesy shows an error message as well as a guide on the edit supplier command.
-* 2b. The index number to specify a supplier to edit is invalid.
-    * 2b1. Salesy shows an error message that the index provided is invalid.
-* 2c. The new name/phone for the edited supplier conflicts with an existing supplier's name/phone.
-    * 2c1. Salesy shows an error message that there is already an existing supplier with the provided details.
+* 1a. The command entered is in an invalid format.
+    * 1a1. Salesy shows an error message as well as a guide on the edit supplier command.
+* 1b. The index number to specify a supplier to edit is invalid.
+    * 1b1. Salesy shows an error message that the index provided is invalid.
+* 1c. The new name/phone for the edited supplier conflicts with an existing supplier's name/phone.
+    * 1c1. Salesy shows an error message that there is already an existing supplier with the provided details.
 
   Use case resumes at step 1.
 

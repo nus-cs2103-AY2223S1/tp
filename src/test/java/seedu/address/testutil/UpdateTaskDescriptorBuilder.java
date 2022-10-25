@@ -31,7 +31,6 @@ public class UpdateTaskDescriptorBuilder {
         descriptor = new UpdateTaskDescriptor();
         descriptor.setTitle(task.getTitle());
         descriptor.setDeadline(task.getDeadline());
-        descriptor.setStatus(task.getStatus());
         descriptor.setTags(task.getTags());
     }
 
@@ -48,14 +47,6 @@ public class UpdateTaskDescriptorBuilder {
      */
     public UpdateTaskDescriptorBuilder withDeadline(LocalDate deadline) {
         descriptor.setDeadline(deadline);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Status} of the {@code UpdateTaskDescriptor} that we are building.
-     */
-    public UpdateTaskDescriptorBuilder withStatus(boolean status) {
-        descriptor.setStatus(status);
         return this;
     }
 

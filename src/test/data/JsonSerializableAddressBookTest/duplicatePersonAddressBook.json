@@ -1,14 +1,14 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
+    "name": "ABC Pte Ltd",
+    "phone": "67089005",
     "price" : "$1.70",
     "item" : "Chips",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
+    "name": "ABC Pte Ltd",
+    "phone": "67089005",
     "price" : "$1.40",
     "item" : "Sprite",
     "address": "4th street"

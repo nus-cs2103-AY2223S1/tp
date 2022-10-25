@@ -1,0 +1,15 @@
+@startuml
+
+title AddTaskCommand
+
+:start;
+:User executes "addTask d/Buy Chicken dl/2020-12-12 t/Food" command;
+
+if () then ([valid command])
+    :Create new Task from the valid input;
+    :Add new Task into the taskList;
+else ([else])
+    :Alert user that command is invalid;
+endif
+stop
+@enduml

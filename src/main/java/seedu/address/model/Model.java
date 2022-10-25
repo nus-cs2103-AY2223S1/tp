@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -95,6 +96,21 @@ public interface Model {
     boolean hasSupplyItem(SupplyItem item);
 
     /**
+     * Returns true if there is a duplicated supply item in the inventory, ignoring {@code excludedItem}.
+     */
+    boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem);
+
+    /**
+     * Returns true if {@code supplier} is a supplier for some supply item in the inventory.
+     */
+    boolean hasSupplyItemSuppliedBy(Person supplier);
+
+    /**
+     * Returns the SupplyItem that is supplied by {@code supplier}, if any.
+     */
+    Optional<SupplyItem> supplyItemSuppliedBy(Person supplier);
+
+    /**
      * Replaces the given supply item {@code target} with {@code editedSupplyItem}.
      * {@code item} must exist in the inventory.
      */
@@ -105,6 +121,21 @@ public interface Model {
      * Deletes the supply item at the specified {@code index}.
      */
     void deleteSupplyItem(Index index);
+
+    /**
+     * Increases the supply item at the specified {@code targetIndex} by {@code amount}.
+     */
+    void increaseSupplyItem(Index targetIndex, int amount);
+
+    /**
+     * Decreases the supply item at the specified {@code targetIndex} by {@code amount}.
+     */
+    void decreaseSupplyItem(Index targetIndex, int amount);
+
+    /**
+     * Changes the increase/decrease amount at the specified {@code targetIndex} to {@code amount}.
+     */
+    void changeIncDecAmount(Index targetIndex, int amount);
 
     /**
      * Adds a new task to taskList

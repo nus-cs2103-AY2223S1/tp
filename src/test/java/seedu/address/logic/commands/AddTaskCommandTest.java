@@ -7,8 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -48,6 +50,19 @@ public class AddTaskCommandTest {
     }
 
     @Test
+    public void execute_taskAcceptedByModelHasDeadlinePastToday_addSuccessfulShowsWarning() throws CommandException {
+        AddTaskCommandTest.ModelStubAcceptingTaskAdded modelStub = new AddTaskCommandTest.ModelStubAcceptingTaskAdded();
+        Task validTaskWithDeadlinePastToday = new TaskBuilder()
+                .withDeadline(LocalDate.of(2020, 10, 10)).build();
+
+        CommandResult commandResult = new AddTaskCommand(validTaskWithDeadlinePastToday).execute(modelStub);
+
+        assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_WARNING, validTaskWithDeadlinePastToday),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTaskWithDeadlinePastToday), modelStub.tasksAdded);
+    }
+
+    @Test
     public void execute_duplicateTask_throwsCommandException() {
         Task validTask = new TaskBuilder().build();
         AddTaskCommand addTaskCommand = new AddTaskCommand(validTask);
@@ -77,7 +92,7 @@ public class AddTaskCommandTest {
         // null -> returns false
         assertFalse(addBuyChickenCommand.equals(null));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(addBuyChickenCommand.equals(addBuyOilCommand));
     }
 
@@ -158,46 +173,54 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Adds a new supply {@code item} to inventory.
-         *
-         * @param item
-         */
         @Override
         public void addSupplyItem(SupplyItem item) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if there is a duplicated supply item in the inventory.
-         *
-         * @param item
-         */
         @Override
         public boolean hasSupplyItem(SupplyItem item) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Replaces the given supply item {@code target} with {@code editedSupplyItem}.
-         * {@code item} must exist in the inventory.
-         *
-         * @param item
-         * @param targetIndex
-         */
+        @Override
+        public boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSupplyItemSuppliedBy(Person supplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<SupplyItem> supplyItemSuppliedBy(Person supplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void setSupplyItem(SupplyItem item, Index targetIndex) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Deletes the supply item at the specified {@code index}.
-         *
-         * @param index
-         */
         @Override
         public void deleteSupplyItem(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void increaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void decreaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void changeIncDecAmount(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -215,9 +238,6 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns an unmodifiable view of the filtered supplyItem list
-         */
         @Override
         public ObservableList<SupplyItem> getFilteredSupplyItemList() {
             return null;
@@ -250,17 +270,12 @@ public class AddTaskCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Updates the filter of the filtered supply item to filter by the given {@code predicate}.
-         *
-         * @param predicate
-         * @throws NullPointerException if (@code predicate) is null.
-         */
         @Override
         public void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
     }
 

@@ -17,6 +17,7 @@ Class TaskListPanel
 Class TaskCard
 Class InventoryPanel
 Class SupplyItemCard
+Class StatsCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -39,6 +40,7 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" TaskListPanel
 MainWindow *-down-> "1" InventoryPanel
+MainWindow *-down-> "1" StatsCard
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
@@ -56,18 +58,21 @@ InventoryPanel --|> UiPart
 TaskCard --|> UiPart
 PersonCard --|> UiPart
 SupplyItemCard --|> UiPart
+StatsCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 TaskCard ..> Model
 PersonCard ..> Model
 SupplyItemCard ..> Model
+StatsCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 TaskListPanel -[hidden]left- HelpWindow
 InventoryPanel -[hidden]left- HelpWindow
+StatsCard -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

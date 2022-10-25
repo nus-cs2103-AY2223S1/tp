@@ -12,7 +12,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
@@ -45,7 +44,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 2, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -101,14 +100,12 @@ public class MainApp extends Application {
             taskListOptional = storage.readTaskList();
             if (!taskListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TaskList");
-                FileUtil.createIfMissing(Path.of("data\\tasklist.json"));
             }
             initialTasks = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
 
             inventoryOptional = storage.readInventory();
             if (!inventoryOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Inventory");
-                FileUtil.createIfMissing(Path.of("data\\inventory.json"));
             }
             initialInventory = inventoryOptional.orElseGet(SampleDataUtil::getSampleInventory);
         } catch (DataConversionException e) {

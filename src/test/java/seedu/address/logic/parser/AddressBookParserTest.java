@@ -17,13 +17,18 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteItemCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditStockCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAllCommand;
+import seedu.address.logic.commands.ListInventoryCommand;
 import seedu.address.logic.commands.ListSupplierCommand;
+import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.UnMarkTaskCommand;
 import seedu.address.logic.commands.UpdateTaskCommand;
@@ -88,7 +93,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_listSuppliers() throws Exception {
         assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD) instanceof ListSupplierCommand);
         assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD + " 3") instanceof ListSupplierCommand);
     }
@@ -117,7 +122,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addTask() throws Exception {
         assertTrue(parser.parseCommand(AddTaskCommand.COMMAND_WORD + " d/"
-                + "Buy fish dl/2020-12-12 t/food") instanceof AddTaskCommand);
+                + "Buy fish dl/2029-12-12 t/food") instanceof AddTaskCommand);
     }
 
     @Test
@@ -127,7 +132,33 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_updateTask() throws Exception {
-        assertTrue(parser.parseCommand(UpdateTaskCommand.COMMAND_WORD + " 1 d/Purchase oil dl/2022-10-10"
+        assertTrue(parser.parseCommand(UpdateTaskCommand.COMMAND_WORD + " 1 d/Purchase oil dl/2029-10-10"
                 + " t/Important t/Urgent") instanceof UpdateTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_editStock() throws Exception {
+        assertTrue(parser.parseCommand(EditStockCommand.COMMAND_WORD + " 1 c/50")
+                instanceof EditStockCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteItem() throws Exception {
+        assertTrue(parser.parseCommand(DeleteItemCommand.COMMAND_WORD + " 1") instanceof DeleteItemCommand);
+    }
+
+    @Test
+    public void parseCommand_listAll() throws ParseException {
+        assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD) instanceof ListAllCommand);
+    }
+
+    @Test
+    public void parseCommand_listTasks() throws ParseException {
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD) instanceof ListTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_listInventory() throws ParseException {
+        assertTrue(parser.parseCommand(ListInventoryCommand.COMMAND_WORD) instanceof ListInventoryCommand);
     }
 }

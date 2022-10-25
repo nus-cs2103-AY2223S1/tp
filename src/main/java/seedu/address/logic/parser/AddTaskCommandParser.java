@@ -31,7 +31,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
@@ -47,6 +47,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         LocalDate deadline = getLocalDate(argMultimap.getValue(PREFIX_DEADLINE).get());
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Task newTask = new Task(description, deadline, tagList);

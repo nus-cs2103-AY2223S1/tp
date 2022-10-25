@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CURRENTSTOCK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM;
@@ -47,8 +48,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_URGENT = "Urgent";
     public static final String VALID_TITLE_CHICKEN = "Stock up on chicken";
     public static final String VALID_TITLE_OIL = "Stock up on oil";
-    public static final String VALID_DEADLINE = "2020-11-12";
-    public static final String VALID_DEADLINE2 = "2020-12-25";
+    public static final String VALID_DEADLINE = "2029-11-12";
+    public static final String VALID_DEADLINE2 = "2029-12-25";
+    public static final String OVERDUE_DEADLINE = "2020-12-12";
     public static final boolean VALID_STATUS_FALSE = false;
 
     public static final String DEADLINE_DESC = " " + PREFIX_DEADLINE + VALID_DEADLINE;
@@ -75,6 +77,12 @@ public class CommandTestUtil {
     public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "1.30"; // missing '$' symbol at the start
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String VALID_CURRENT_STOCK = "10";
+    public static final String INVALID_CURRENT_STOCK = "-10";
+    public static final String VALID_CURRENT_STOCK_DESC = PREFIX_CURRENTSTOCK + VALID_CURRENT_STOCK;
+    public static final String INVALID_CURRENT_STOCK_NEGATIVE_DESC = PREFIX_CURRENTSTOCK + INVALID_CURRENT_STOCK;
+    public static final String INVALID_NO_VALUE_CURRENT_STOCK_DESC = PREFIX_CURRENTSTOCK + "";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
