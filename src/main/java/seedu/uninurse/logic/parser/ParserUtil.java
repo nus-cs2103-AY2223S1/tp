@@ -21,6 +21,8 @@ import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
+import seedu.uninurse.model.remark.Remark;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
@@ -315,6 +317,33 @@ public class ParserUtil {
             tagList.add(parseTag(tagName));
         }
         return new TagList(tagList);
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses {@code Collection<String> remarks} into a {@code RemarkList}.
+     */
+    public static RemarkList parseRemarks(Collection<String> remarks) throws ParseException {
+        requireNonNull(remarks);
+        final List<Remark> remarkList = new ArrayList<>();
+        for (String remark : remarks) {
+            remarkList.add(parseRemark(remark));
+        }
+        return new RemarkList(remarkList);
     }
 
     /**
