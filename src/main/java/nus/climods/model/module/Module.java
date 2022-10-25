@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -164,6 +165,19 @@ public class Module {
     }
 
     /**
+     * Returns the lesson types in module
+     *
+     * @param semester semester
+     * @return lesson types
+     */
+    public Set<LessonType> getLessonTypes(SemestersEnum semester) {
+        requireNonNull(lessonTypesMap);
+        assert lessonTypesMap.containsKey(semester);
+
+        return lessonTypesMap.get(semester);
+    }
+
+    /**
      * Checks if module offers a lesson type
      *
      * @param lessonType lesson type
@@ -187,6 +201,26 @@ public class Module {
     }
 
     /**
+     * Returns the lessons types that can be selected
+     * <p>
+     * Only lessons that have more than one slot (categorized by the class number) is considered selectable
+     * </p>
+     *
+     * @param semester semester
+     * @return a set of lesson types
+     */
+    public Set<LessonType> getSelectableLessonTypes(SemestersEnum semester) {
+        requireNonNull(lessonMap);
+        assert lessonMap.containsKey(semester);
+
+        Predicate<Map.Entry<LessonType, List<Lesson>>> selectableLessonPredicate =
+            lessonEntry -> lessonEntry.getValue().stream().map(Lesson::getClassNo).distinct().count() > 1;
+
+        return lessonMap.get(semester).entrySet().stream().filter(selectableLessonPredicate).map(Map.Entry::getKey)
+            .collect(Collectors.toSet());
+    }
+
+    /**
      * Returns the lessons offered by module categorized by lesson type
      *
      * @param semester semester
@@ -197,23 +231,6 @@ public class Module {
         assert lessonMap.containsKey(semester);
 
         return lessonMap.get(semester);
-    }
-
-    /**
-     * Returns the lessons types that can be selected
-     * <p>
-     * Only lessons that have more than one slot is considered selectable
-     * </p>
-     *
-     * @param semester semester
-     * @return a set of lesson types
-     */
-    public Set<LessonType> getSelectableLessonTypes(SemestersEnum semester) {
-        requireNonNull(lessonMap);
-        assert lessonMap.containsKey(semester);
-
-        return lessonMap.get(semester).entrySet().stream().filter(lessonEntry -> lessonEntry.getValue().size() > 1)
-            .map(Map.Entry::getKey).collect(Collectors.toSet());
     }
 
     /**
