@@ -3,6 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":GradeCommand" as GradeCommand LOGIC_COLOR
+participant "<<class>>\nParserStudentIndexUtil" as Util LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 participant "<<class>>\nStudent" as StudentC LOGIC_COLOR
 participant ":Student" as Student LOGIC_COLOR
@@ -20,13 +21,18 @@ activate GradeCommand
 
 GradeCommand -> Model: getFocusedClass()
 activate Model
-Model --> GradeCommand: moduleClass
+Model --> GradeCommand: focusedClass
 deactivate Model
 
 GradeCommand -> Model: getFilteredStudentList()
 activate Model
 Model --> GradeCommand: lastShownList
 deactivate Model
+
+GradeCommand -> Util: parseStudentFromIndex
+activate Util
+Util --> GradeCommand: oldStudent
+deactivate Util
 
 GradeCommand -> StudentC: getUpdatedStudent
 activate StudentC

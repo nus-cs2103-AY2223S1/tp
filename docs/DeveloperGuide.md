@@ -8,7 +8,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We'd like to thank:
+* The [CS2103/T teaching team](https://nus-cs2103-ay2223s1.github.io/website/admin/instructors.html) for guiding us throughout the development of this project.
+* [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for laying the foundations on which our (brownfield) project is built upon.
+* The [Jackson Project](https://github.com/FasterXML/jackson) for creating an awesome library for JSON parsing in Java!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,7 +69,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI component {TODO - Modify upon implementation}
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/ui/Ui.java)
 
@@ -128,13 +131,13 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (i.e. `Ui`, `Logic` and `Storage`) as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components.
 
-**UniqueList**
+#### UniqueList
 
 The `UniqueList` class is a generic class that stores a collection of unique elements. In TA Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
 
 <img src="images/TaAssistObjectDiagram.png" width="600"/>
 
-**Student, ModuleClass and Session**
+#### Student, ModuleClass and Session
 
 Each `Student` object stores all module-class-related data, such as the `ModuleClass` and session data, in a `StudentModuleData` object. 
 Session data belonging to a `Student` is stored in `SessionData` objects.
@@ -143,8 +146,6 @@ Session data belonging to a `Student` is stored in `SessionData` objects.
 a weaker notion of equality than the `equals` method.
 
 Similarly, objects that keep a reference of `Student`, `ModuleClass` or `Session` objects such as the `UniqueList` and `StudentModuleData` may also implement the `Identity` method.
-
-
 
 <img src="images/StudentAndModuleClassDiagram.png" width="600"/>
 
@@ -166,6 +167,9 @@ Classes used by multiple components are in the `seedu.taassist.commons` package.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented along with explanations
+for why certain functions are implemented in such a manner.
 
 ### Creating and deleting module classes
 
@@ -223,32 +227,59 @@ Step 1: The user input is parsed similar to other commands and a `GradeCommand` 
 student index, session name, and grade. 
 
 Step 2: The `GradeCommand` object is executed. The given index is used to retrieve the `Student` object from the current
-curated list of students in `Model`. Then a new `Student` object is created from the old `Student` object by updating the session
+curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method. 
+
+Step 3: Then a new `Student` object is created from the old `Student` object by updating the session
 grade with help of the `Student#getUpdatedStudent` method.  
 
-Step 3: The `Student#getUpdatedStudent` method creates a new `Student` object by copying all fields from the
+Step 4: The `Student#getUpdatedStudent` method creates a new `Student` object by copying all fields from the
 old `Student` object except the list of `StudentModuleData`. An updated list of `StudentModuleData` is created by calling the
 `StudentModuleData#getUpdatedModuleDataList` method. 
 
-Step 4: The `StudentModuleData#getUpdatedModuleDataList` method goes through all the `StudentModuleData` in the old list
+Step 5: The `StudentModuleData#getUpdatedModuleDataList` method goes through all the `StudentModuleData` in the old list
 and looks for a match with the current focused `ModuleClass`. It is guaranteed to exist since the program is in
 focus mode. Then it creates a new list by updating the list of `SessionData` stored inside the `StudentModuleData`.
 It is achieved using the method `SessionData#getUpdatedSessionDataList`. 
 
-Step 5: The `SessionData#getUpdatedSessionDataList` goes through the list of `SessionData` and creates a new list 
+Step 6: The `SessionData#getUpdatedSessionDataList` goes through the list of `SessionData` and creates a new list 
 removing any occurrence of the matching session the user is trying to grade. After that it adds a new `SessionData` to 
 the list with the given `Session` and the grade. 
 
-Step 6: After finishing steps 4-7, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
+Step 7: After finishing steps 4-7, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
 is used to replace the old `Student` object with the updated one in our model. 
 
-Step 7: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
+Step 8: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
 to the user. 
+
+### Viewing session-wise grades of a student in a class
+<img src="images/ViewCommandSequenceDiagram.png" width="700" />
+
+Viewing session-wise grades of a student is only possible when a `ModuleClass` is in focus. It requires going through
+the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, 
+the session-wise grade can be read from the list of `SessionData` stored inside the `StudentModuleData`.  
+
+Given bellow are the steps taken when the user wants to view a student's session-wise grades:
+
+Step 1: The user input is parsed similar to other commands and a `ViewCommand` object is created using the given student index. 
+
+Step 2: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
+curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method.  
+
+Step 3: The `StudentModuleData` of the student that matches with the current focus class is retrieved using the 
+`Student#findStudentModuleData` method. This method achieves that by searching the `UniqueList` with a new `StudentModuleData`
+that has the identity of the current focus class. This `StudentModuleData` is guaranteed to exist, since the program is in
+focus mode. 
+
+Step 4: The list of `SessionData` is retrieved from the `StudentModuleData` using the `StudentModuleData#getSessionDataList` method.
+
+Step 5: A response message is constructed from the list of `SessionData`, containing all the session-wise grades of the student. 
+
+Step 6: The execution ends and returns a `CommandResult` object containing the constructed response to be displayed by GUI to the user. 
 
 ### Tracking the state of focus mode
 
 The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)).
-When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModuleManager` returns the state of the focus mode via the following methods:
+When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModelManager` returns the state of the focus mode via the following methods:
 * `ModelManager#isInFocusMode()` - Checks whether focus mode is active.
 * `ModelManager#getFocusedClass()` - Returns the current `ModuleClass` in focus.
 
@@ -269,6 +300,95 @@ For example, the following sequence diagram shows how the `focus` command activa
 <img src="images/FocusCommandSequenceDiagram.png" width="700" />
 
 On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
+
+### Immutability of Session, ModuleClass, and Student
+
+In the implementation of the `Session`, `ModuleClass` and `Student` classes, it was decided to implement them in an immutable manner. 
+This is done mainly for three reasons:
+- Java passes its values by-reference, this can cause quite the confusion if objects returned by `Model` are mutated.
+- Simplifies loading data from `Storage` as we do not need to ensure contents of data in one object has is referencing the same object as another.
+- Reduces the possibility of an unobserved mutation as data in `Model` is commonly observed by `UI` through an `ObservableList`.
+
+As such, if the codebase is to be extended to store additional classes within `Model`, it is recommended to implement them
+in an immutable manner unless there's good reason not to do so.
+
+### Identity: A weaker notion of equality
+
+Since any modifications to an immutable object in `Model` would require constructing new objects, we'll need a method to identify
+objects with the same identities, i.e. two `ModuleClass`-s have the same identity if their module codes are equal.
+
+For instance, consider the following hypothetical scenario:
+
+Assume the current state of `TaAssist` is as follows:
+
+<img src="images/ImpleIdentityObjectDiagram.png" width="600" />
+
+Now, let's say the user wants to add a `Quiz2` session to IS1103. However, since `ModuleClass` is immutable, we'll have
+to construct a new `IS1103` ModuleClass instance instead. Call this new instance `NewIS1103`. Hence, the state of 
+`TaAssist` will now look like the one below:
+
+<img src="images/ImpleIdentityObjectDiagram2.png" width="700" />
+
+Now, notice that `AlexIS1103Data` is no longer referencing the same object. In addition, since their contents
+are different, we can't check with the `equals` method, as the `equals` method in our codebase should perform a strict
+equality check, i.e. all contents of the two objects must be equal for `equals` to return `True`. Hence, there's no way
+to identify whether `IS1103` and `NewIS1103` are *inherently* the same module or not.
+
+To handle this issue, `Session`, `ModuleClass`, and `Student` classes implement the interface `Identity<T>` which contains a method
+`isSame(T obj)` used to compare whether two objects have equivalent identities, i.e. `ModuleClass`-es have equal identity if their
+module code are then same.
+
+This `Identity` construct is similar to a `<Key, Value>` pair  in a HashMap implementation, where we use the `Key` to 
+determine the object's identity and `Value` for its satellite values.
+
+### Managing Sessions within a Class
+
+As `ModuleClass` is immutable, there exists no methods to add/delete/modify the `Session`-s associated with a `ModuleClass`. 
+The only way to do so is by constructing new `ModuleClass` instances, then replacing the new instance over the old one by
+calling `Model#setModuleClass(ModuleClass target, ModuleClass newModuleClass)`.
+
+For example, the following sequence diagram shows how the command `session s/Lab1`
+creates a `Session` named "Lab1" and adds it inside the focused class.
+
+<img src="images/SessionCommandSequenceDiagram.png" width="1000"/>
+
+:information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 
+the focused class doesn't contain a session named `Lab1` as of current.
+
+### [Proposed] UI Implementation
+**Home Screen**
+
+{Show a screenshot after completion, box the components and label class name beside it}
+
+The main screen consists of components:
+* `ResultDisplay`, showing the classes the user has added; 
+* `ResultDisplay` consists of `ClassListPanel`, each row representing a class, and `StudentListPanel`, each row representing a student;
+* `CommandBox`, the Command Line Interface (CLI) for user to key in command and
+* `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
+
+It was designed with the following considerations:
+* Users have class-oriented focus while using this application. Their actions such as grading/assigning students to a class or initiating sessions revolve around a particular class, therefore we find it suitable to put the classes users have added within the `MainWindow`.
+* Operations on students can be performed conveniently by showing the list of all students on the main window, such as deleting, adding and finding students whenever required.
+* As we are targeting users with higher preference on CLI than GUI, putting the command input box at the bottom of the window may be more instinctive for their usage, due to the high similarity with the implementation of command terminals from various operating systems.
+
+**Focus Mode**
+
+{Show a screenshot after completion, box the components and label class name beside it}
+
+The screen upon entering the focus mode consists of components:
+* `ResultDisplay`, showing the sessions and students the user has added to the class;
+* `ResultDisplay` consists of `SessionListPanel`, each row representing a session,sorted based on the time it was added with the most recently added at the top, and `StudentListPanel`, each row representing a student, with their grades related to a particular session (given by user input) shown as well;
+* `CommandBox`, the Command Line Interface (CLI) for user to key in command and
+* `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
+
+Whenever users call `session s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted to the users.
+
+{another screenshot}
+
+It was designed with the following consideration:
+* As sessions are usually time-sensitive, with those added later often being the more relevant sessions, sorting the sessions with the newest session at the front facilitate users in finding the sessions they are concerned with recently.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

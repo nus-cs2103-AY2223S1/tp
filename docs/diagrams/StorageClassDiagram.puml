@@ -20,6 +20,7 @@ Class JsonTaAssistStorage
 Class JsonSerializableTaAssist
 Class JsonAdaptedStudent
 Class JsonAdaptedModuleClass
+Class JsonAdaptedSession
 }
 }
 
@@ -38,5 +39,6 @@ JsonTaAssistStorage .up.|> TaAssistStorage
 JsonTaAssistStorage ..> JsonSerializableTaAssist
 JsonSerializableTaAssist--> "*" JsonAdaptedStudent
 JsonSerializableTaAssist--> "*" JsonAdaptedModuleClass
+JsonAdaptedModuleClass--> "*" JsonAdaptedSession
 
 @enduml

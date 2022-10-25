@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "TaAssist" <<Rectangle>>{
+@startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "TaAssist" <<Rectangle>>{
+class "<u>moduleClasses:UniqueList</u>" as ModuleClassList
+class "<u>students:UniqueList</u>" as StudentList
+class "<u>:TaAssist</u>" as TaAssist
+class "<u>Alex:Student" as Alex
+class "<u>AlexIS1103Data:StudentModuleData" as StudentModuleData
+class "<u>AlexQuiz1Data:StudentSessionData" as StudentSessionData
+class "<u>IS1103:ModuleClass" as IS1103
+class "<u>NewIS1103:ModuleClass" as NewIS1103
+class "<u>Quiz1:Session" as Quiz1
+class "<u>Quiz2:Session" as Quiz2
+}
+
+TaAssist -up-> StudentList
+TaAssist -down-> ModuleClassList
+
+StudentList -right-> Alex
+ModuleClassList -right-> NewIS1103
+
+Alex -right-> StudentModuleData
+StudentModuleData -right-> StudentSessionData
+
+StudentModuleData -down-> IS1103
+StudentSessionData -down-> Quiz1
+
+NewIS1103 -up-> Quiz1
+NewIS1103 -down-> Quiz2
+
+IS1103 -right-> Quiz1
+@enduml
+
+@enduml

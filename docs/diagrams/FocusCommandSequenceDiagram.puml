@@ -5,13 +5,13 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
 participant ":FocusCommandParser" as FocusCommandParser LOGIC_COLOR
-participant "m:ModuleClass" as ModuleClass LOGIC_COLOR
 participant "c:FocusCommand" as FocusCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "m:ModuleClass" as ModuleClass MODEL_COLOR
 end box
 
 [-> LogicManager : execute("focus CS1101S")

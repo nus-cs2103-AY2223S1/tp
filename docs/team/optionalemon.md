@@ -16,11 +16,11 @@ Given below are my contributions to the project.
 
 * **Project management**: To be added soon
 
-* **Enhancements to existing features**: To be added soon
+* **Enhancements to existing features**: Modified `addc` to allow multiple classes to be added at once.
 
-* **Documentation**: To be added soon
+* **Documentation**: Added documentation in Developer Guide regarding the User Interface (UI) details.
 
-* **Community**: To be added soon
+* **Community**: Reviewed peer PRs, with [Comment Link](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/tp-comments.html#20-xu-y-u-yi-optionalemon-34-comments) as shown on tP comments dashboard.
 
 * **Tools**: To be added soon
 

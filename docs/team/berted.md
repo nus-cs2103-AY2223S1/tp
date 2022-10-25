@@ -9,15 +9,28 @@ TA Assist is a desktop application targeted at NUS Teaching Assistants (TA). It 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 Given below are my contributions to the project.
 
-* **New Feature**: To be added soon.
+* **New Feature**:
+    * Implemented `Session`-related behaviour, including:
+        * a `Session` class to encapsulate data regarding a `Session` and its associated methods
+        * a `JsonAdaptedSession` class to handle storing `Session` data.
+        * Integration between the new `Session` class with the TA-Assist architecture.
+        * added `session` and `lists` command, allowing users to add sessions and see a list of sessions.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=berted&breakdown=true).
 
-* **Project management**: To be added soon.
+* **Project management**:
+    * Authored 38 issues to help keep track of current issues and progress.
+    * Reviewed 26 pull requests to ensure quality and consistency across the database.
 
-* **Enhancements to existing features**: To be added soon.
+* **Enhancements to existing features**:
+    * Fields such as `Address`,  `Phone Number` and `e-mail` are made optional to better support the requirements of TA-Assist.
+    * Added a date field to `Session`
 
-* **Documentation**: To be added soon.
+* **Documentation**:
+    * Updated acknowledgements page
+    * Added implementation details on immutability of certain objects
+    * Added implementation details on Identity interface
+    * Added implementation details on managing sessions within a class
 
 * **Community**: To be added soon.
 
