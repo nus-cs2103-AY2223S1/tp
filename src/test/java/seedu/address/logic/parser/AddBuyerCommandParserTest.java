@@ -38,12 +38,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
-import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.PersonBuilder;
 
@@ -56,38 +56,43 @@ public class AddBuyerCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
+                        + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
+                        + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
+                        + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
+                        + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
+                        + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
+                        + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
+                        + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
+                        + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
+                        + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
+                        + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
 
         // multiple price ranges - last price range accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRICE_RANGE_DESC_AMY + PRICE_RANGE_DESC_BOB
-                + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
+                        + PRICE_RANGE_DESC_AMY + PRICE_RANGE_DESC_BOB
+                        + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
 
         // multiple desired characteristics - last desired characteristics accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_AMY
+                        + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_AMY
                         + DESIRED_CHARACTERISTICS_DESC_BOB + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
     }
@@ -98,7 +103,7 @@ public class AddBuyerCommandParserTest {
                 .withNoDesiredCharacteristics()
                 .withNoPriceRange().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + TAG_DESC_PRIORITY_HIGH,
+                        + TAG_DESC_PRIORITY_HIGH,
                 new AddBuyerCommand(expectedBuyer));
     }
 
@@ -166,7 +171,7 @@ public class AddBuyerCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
+                        + ADDRESS_DESC_BOB + PRICE_RANGE_DESC_BOB + DESIRED_CHARACTERISTICS_DESC_BOB
                         + TAG_DESC_PRIORITY_LOW,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBuyerCommand.MESSAGE_USAGE));
     }

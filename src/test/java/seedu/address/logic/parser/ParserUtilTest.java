@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
 public class ParserUtilTest {
@@ -41,7 +41,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test

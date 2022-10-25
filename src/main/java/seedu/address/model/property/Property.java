@@ -7,9 +7,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
+import seedu.address.model.characteristics.Characteristics;
 
 /**
  * Represents a Property in the address book.
@@ -34,7 +34,7 @@ public class Property {
      * Every field must be present and not null.
      */
     public Property(PropertyName propertyName, Price price, Address address, Description description,
-            Characteristics characteristics, Owner owner) {
+                    Characteristics characteristics, Owner owner) {
         requireAllNonNull(propertyName, price, address, description, owner);
         this.propertyName = propertyName;
         this.price = price;

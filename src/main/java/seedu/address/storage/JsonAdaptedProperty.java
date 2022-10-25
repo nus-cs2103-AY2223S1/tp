@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.buyer.Name;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;

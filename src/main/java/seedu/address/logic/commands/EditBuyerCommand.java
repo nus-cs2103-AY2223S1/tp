@@ -19,12 +19,12 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
@@ -57,7 +57,7 @@ public class EditBuyerCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the buyer in the filtered buyer list to edit
+     * @param index                of the buyer in the filtered buyer list to edit
      * @param editPersonDescriptor details to edit the buyer with
      */
     public EditBuyerCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -145,7 +145,8 @@ public class EditBuyerCommand extends Command {
         private Characteristics characteristics;
         private Priority priority;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.

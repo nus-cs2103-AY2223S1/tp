@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
 /**

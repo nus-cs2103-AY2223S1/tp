@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
 import seedu.address.logic.commands.FilterPropsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.buyer.Name;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.AbstractFilterPropsPredicate;
 import seedu.address.model.property.FilterPropsByCharacteristicsPredicate;
@@ -25,6 +25,7 @@ public class FilterPropertiesCommandParser extends Parser<FilterPropsCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterPropsCommand
      * and returns a FilterPropsCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterPropsCommand parse(String args) throws ParseException {

@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
-import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
 
@@ -35,10 +35,10 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("priceRange") String priceRange,
-         @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
-            @JsonProperty("priority") String specifiedPriority) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("priceRange") String priceRange,
+                             @JsonProperty("desiredCharacteristics") String desiredCharacteristics,
+                             @JsonProperty("priority") String specifiedPriority) {
         this.name = name;
         this.phone = phone;
         this.email = email;

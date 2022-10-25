@@ -12,12 +12,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
-import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Email;
 import seedu.address.model.buyer.Name;
-import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
@@ -28,6 +28,7 @@ public class AddPersonCommandParser extends Parser<AddBuyerCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddBuyerCommand parse(String args) throws ParseException {
