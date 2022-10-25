@@ -69,7 +69,7 @@ public class EditBookCommand extends EditCommand {
         Book bookToEdit = lastShownList.get(index.getZeroBased());
         Book editedBook = createEditedBook(bookToEdit, editBookDescriptor);
 
-        if (!bookToEdit.isSameBook(editedBook) && model.hasBook(editedBook)) {
+        if (!bookToEdit.equals(editedBook) && model.hasBook(editedBook)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOK);
         }
 

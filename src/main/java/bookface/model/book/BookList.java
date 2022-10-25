@@ -26,7 +26,7 @@ public class BookList implements Iterable<Book> {
      */
     public boolean contains(Book toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameBook);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -54,7 +54,7 @@ public class BookList implements Iterable<Book> {
             throw new BookNotFoundException();
         }
 
-        if (!target.isSameBook(editedBook) && contains(editedBook)) {
+        if (!target.equals(editedBook) && contains(editedBook)) {
             throw new DuplicateBookException();
         }
 
@@ -146,7 +146,7 @@ public class BookList implements Iterable<Book> {
     private boolean booksAreUnique(List<Book> books) {
         for (int i = 0; i < books.size() - 1; i++) {
             for (int j = i + 1; j < books.size(); j++) {
-                if (books.get(i).isSameBook(books.get(j))) {
+                if (books.get(i).equals(books.get(j))) {
                     return false;
                 }
             }

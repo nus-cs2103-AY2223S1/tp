@@ -68,19 +68,6 @@ public class Book {
     }
 
     /**
-     * Returns true if both books have the same title.
-     * This defines a weaker notion of equality between two books.
-     */
-    public boolean isSameBook(Book otherBook) {
-        if (otherBook == this) {
-            return true;
-        }
-
-        return otherBook != null
-                && otherBook.getTitle().equals(getTitle());
-    }
-
-    /**
      * Returns true if both books have the same details.
      * This defines a stronger notion of equality between two books.
      */
