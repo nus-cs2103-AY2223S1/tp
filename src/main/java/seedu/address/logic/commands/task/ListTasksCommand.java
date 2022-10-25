@@ -2,9 +2,7 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AFTER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BEFORE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -41,6 +39,7 @@ public class ListTasksCommand extends TaskCommand {
             + ": Lists all tasks that satisfy the specified requirements.\n"
             + "Parameters: "
             + "[" + "KEYWORD]"
+            + "[" + PREFIX_PROJECT + "PROJECT_NAME]...\n"
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX]...\n"
             + "[" + PREFIX_BEFORE + "DATE]...\n"
             + "[" + PREFIX_AFTER + "DATE]...\n"
