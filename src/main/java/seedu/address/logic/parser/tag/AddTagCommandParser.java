@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -27,6 +28,9 @@ import seedu.address.model.tag.Tag;
  */
 public class AddTagCommandParser implements Parser<AddTagCommand> {
 
+    public static final String MESSAGE_TOO_MANY_CONTACTS_OR_TASKS = "You can only add a label to a maximum of "
+        + "one contact and one task at a time.";
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -43,6 +47,10 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         boolean addTagToContact = argMultimap.getValue(PREFIX_CONTACT).isPresent();
         boolean addTagToTask = argMultimap.getValue(PREFIX_TASK).isPresent();
 
+        if (argMultimap.getAllValues(PREFIX_CONTACT).size() > 1 || argMultimap.getAllValues(PREFIX_TASK).size() > 1) {
+            throw new ParseException(MESSAGE_TOO_MANY_CONTACTS_OR_TASKS);
+        }
+
         try {
             contactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).orElse("1"));
             taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).orElse("1"));
@@ -55,13 +63,15 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
+        List<String> tagStrings = argMultimap.getAllValues(PREFIX_TAG);
+
 
         if (!editPersonDescriptor.isAnyFieldEdited() && !editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
         }
 
         return new AddTagCommand(contactIndex, taskIndex, editPersonDescriptor, editTaskDescriptor,
-            addTagToContact, addTagToTask);
+            addTagToContact, addTagToTask, tagStrings);
     }
 
     /**
