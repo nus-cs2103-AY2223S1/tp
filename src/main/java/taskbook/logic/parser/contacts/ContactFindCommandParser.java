@@ -4,7 +4,6 @@ import java.util.stream.Stream;
 
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.contacts.ContactFindCommand;
-import taskbook.logic.commands.tasks.TaskFindCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
 import taskbook.logic.parser.CliSyntax;
@@ -28,7 +27,7 @@ public class ContactFindCommandParser implements Parser<ContactFindCommand> {
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_QUERY)
                 && !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
-                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskFindCommand.MESSAGE_USAGE));
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactFindCommand.MESSAGE_USAGE));
         }
         String query = argMultimap.getValue(CliSyntax.PREFIX_QUERY)
                 .orElseThrow(() -> new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,

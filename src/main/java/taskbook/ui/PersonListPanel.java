@@ -15,6 +15,8 @@ import taskbook.model.person.Person;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
+    private static final String emptyCellStyle = "-fx-background-color: derive(#455985, 0%);"
+            + " -fx-border-color: derive(#455985, 0%);";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
@@ -40,6 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
+                setStyle(emptyCellStyle);
             } else {
                 int index = getIndex() + 1;
                 PersonCard card = new PersonCard(person, index);
