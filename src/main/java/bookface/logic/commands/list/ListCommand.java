@@ -9,8 +9,8 @@ public abstract class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "List subcommand "
-            + "to list users or book", COMMAND_WORD + " users");
+    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Lists "
+            + "users or books", COMMAND_WORD + " users");
 
     public static final String MESSAGE_SUCCESS = "Listed all users";
 

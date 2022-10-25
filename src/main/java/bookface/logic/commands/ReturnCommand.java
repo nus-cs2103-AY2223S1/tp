@@ -17,7 +17,7 @@ public class ReturnCommand extends Command {
     public static final String COMMAND_WORD = "return";
 
     public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Return the"
-            + " book identified by the index number in book list", "BOOK INDEX (must be a positive"
+            + " book identified by the index number in book list", "BOOK_INDEX (must be a positive"
                     + " integer)", COMMAND_WORD + " 2");
 
     public static final String MESSAGE_RETURN_SUCCESS = "Book %1$s returned successfully.";

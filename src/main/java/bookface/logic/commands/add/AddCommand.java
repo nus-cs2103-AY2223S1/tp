@@ -9,7 +9,7 @@ public abstract class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    private static final String ADD_DESCRIPTION = "Adds a %s to BookFace.";
+    private static final String ADD_DESCRIPTION = "Adds a %s to BookFace";
 
     public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, String.format(ADD_DESCRIPTION,
             "user or book"), COMMAND_WORD + " book a/John Doe t/The Deep Dive");

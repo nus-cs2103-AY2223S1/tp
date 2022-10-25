@@ -17,7 +17,7 @@ public class FindUserCommand extends FindCommand {
     public static final String COMMAND_WORD = "user";
 
     public static final String MESSAGE_USAGE = FindCommand.generateMessage(COMMAND_WORD,
-            COMMAND_WORD + "alice bob");
+            COMMAND_WORD + " alice bob");
 
     private final ObjectContainsKeywordsPredicate<Person, String> predicate;
 

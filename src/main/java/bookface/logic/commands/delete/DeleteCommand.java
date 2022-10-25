@@ -9,7 +9,7 @@ public abstract class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    private static final String DELETE_DESCRIPTION = "Delete the %1$s identified "
+    private static final String DELETE_DESCRIPTION = "Deletes the %1$s identified "
             + "by the index number used in the displayed %1$s list";
 
     public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, String.format(DELETE_DESCRIPTION,

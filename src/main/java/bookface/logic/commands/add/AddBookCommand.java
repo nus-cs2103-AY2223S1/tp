@@ -15,8 +15,7 @@ import bookface.model.book.Book;
 public class AddBookCommand extends AddCommand {
     public static final String COMMAND_WORD = "book";
     public static final String MESSAGE_USAGE =
-            AddCommand.generateMessage(COMMAND_WORD, "INDEX (must be a positive integer) "
-                    + PREFIX_TITLE + "TITLE"
+            AddCommand.generateMessage(COMMAND_WORD, PREFIX_TITLE + "TITLE"
                     + PREFIX_AUTHOR + "AUTHOR" , COMMAND_WORD
                     + " book t/The Broken House a/John Doe");
 

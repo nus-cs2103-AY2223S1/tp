@@ -16,7 +16,7 @@ public class FindBookCommand extends FindCommand {
     public static final String COMMAND_WORD = "book";
 
     public static final String MESSAGE_USAGE = FindCommand.generateMessage(COMMAND_WORD,
-            COMMAND_WORD + "The Haunted House");
+            COMMAND_WORD + " The Haunted House");
 
     private final ObjectContainsKeywordsPredicate<Book, String> predicate;
 
