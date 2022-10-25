@@ -21,6 +21,8 @@ import seedu.address.model.assignmentdetails.AssignmentDetails;
  */
 public class Module {
 
+    public static final String INVALID_MODULE_MESSAGE = "Module needs a module code";
+
     // Identity fields
     private final ModuleCode moduleCode;
 
@@ -32,13 +34,14 @@ public class Module {
     private final Set<AssignmentDetails> assignmentDetails = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Module code must be present and not null.
      */
     public Module(ModuleCode moduleCode, LectureDetails lectureDetails,
                   TutorialDetails tutorialDetails, ZoomLink lectureZoomLink, ZoomLink tutorialZoomLink,
                   Set<AssignmentDetails> assignmentDetails) {
         requireAllNonNull(moduleCode, lectureDetails, tutorialDetails, lectureZoomLink, tutorialZoomLink,
                 assignmentDetails);
+        assert moduleCode.moduleCode != null; // There should be no way to reach here with module code as null
         this.moduleCode = moduleCode;
         this.lectureDetails = lectureDetails;
         this.tutorialDetails = tutorialDetails;
