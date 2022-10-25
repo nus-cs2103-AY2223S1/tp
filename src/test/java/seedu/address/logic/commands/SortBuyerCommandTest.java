@@ -31,7 +31,6 @@ public class SortBuyerCommandTest {
 
     @Test
     public void execute_noAttributes_noDifference() {
-        List<Buyer> expected = Collections.emptyList();
         CommandResult expectedResult = new CommandResult(SortBuyerCommand.MESSAGE_SUCCESS);
 
         try {
@@ -45,8 +44,7 @@ public class SortBuyerCommandTest {
     }
 
     @Test
-    public void execute_oneAttributes_noBuyersFound() {
-        List<Buyer> expected = Collections.emptyList();
+    public void execute_oneAttributes_sortedAccordingToThatAttribute() {
         CommandResult expectedResult = new CommandResult(SortBuyerCommand.MESSAGE_SUCCESS);
 
         try {
@@ -61,8 +59,7 @@ public class SortBuyerCommandTest {
     }
 
     @Test
-    public void execute_multipleAttributes_noBuyersFound() {
-        List<Buyer> expected = Collections.emptyList();
+    public void execute_multipleAttributes_sortedAccordingToThoseAttributes() {
         CommandResult expectedResult = new CommandResult(SortBuyerCommand.MESSAGE_SUCCESS);
 
         try {
