@@ -13,10 +13,15 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.testutil.Assert.assertThrows;
+import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static paymelah.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static paymelah.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import paymelah.commons.core.index.Index;
@@ -117,11 +122,24 @@ public class CommandTestUtil {
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "invalid time";
 
     public static final String VALID_DEBT_INDEX = " " + PREFIX_DEBT + "1";
-    public static final String VALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1 2 3";
-    public static final String VALID_DEBT_INDEXES_REPEAT = " " + PREFIX_DEBT + "1 3 3 1";
+    public static final String VALID_DEBT_INDICES = " " + PREFIX_DEBT + "1 2 3";
+    public static final String VALID_DEBT_INDICES_REPEAT = " " + PREFIX_DEBT + "1 3 3 1";
     public static final String INVALID_DEBT_INDEX = " " + PREFIX_DEBT + "a";
     public static final String INVALID_DEBT_INDEX_ZERO = " " + PREFIX_DEBT + "0";
-    public static final String INVALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1  2";
+    public static final String INVALID_DEBT_INDICES = " " + PREFIX_DEBT + "1 -1";
+
+    public static final Index SINGLE_VALID_INDEX = INDEX_FIRST_PERSON;
+    public static final Set<Index> SINGLE_VALID_INDEX_SET = new HashSet<>(List.of(SINGLE_VALID_INDEX));
+    public static final String SINGLE_VALID_INDEX_STRING = String.valueOf(SINGLE_VALID_INDEX.getOneBased());
+
+    public static final Index FIRST_VALID_MULTI_INDEX = INDEX_FIRST_PERSON;
+    public static final Index SECOND_VALID_MULTI_INDEX = INDEX_SECOND_PERSON;
+    public static final Index THIRD_VALID_MULTI_INDEX = INDEX_THIRD_PERSON;
+    public static final Set<Index> MULTI_VALID_INDEX_SET =
+            new HashSet<>(List.of(FIRST_VALID_MULTI_INDEX, SECOND_VALID_MULTI_INDEX, THIRD_VALID_MULTI_INDEX));
+    public static final String MULTI_VALID_INDEX_STRING = String.valueOf(FIRST_VALID_MULTI_INDEX.getOneBased())
+            + " " + String.valueOf(SECOND_VALID_MULTI_INDEX.getOneBased())
+            + " " + String.valueOf(THIRD_VALID_MULTI_INDEX.getOneBased());
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

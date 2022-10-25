@@ -58,9 +58,18 @@ public class ParserUtil {
     public static Set<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
         requireNonNull(oneBasedIndexes);
         final Set<Index> indexSet = new HashSet<>();
+        System.out.println(oneBasedIndexes);
         for (String index : oneBasedIndexes) {
-            indexSet.add(parseIndex(index));
+            System.out.println(index + (index != ""));
+            if (!index.equals("")) {
+                indexSet.add(parseIndex(index));
+            }
         }
+
+        if (indexSet.size() == 0) {
+            assert false : "Whitespace only preambles should have been pre-filtered";
+        }
+
         return indexSet;
     }
 

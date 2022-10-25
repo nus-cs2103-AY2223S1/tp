@@ -7,7 +7,9 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import paymelah.commons.core.Messages;
 import paymelah.commons.core.index.Index;
@@ -36,19 +38,19 @@ public class AddDebtCommand extends Command {
 
     public static final String MESSAGE_ADD_DEBT_SUCCESS = "Added debt %1$s to %2$s";
 
-    private final Index index;
+    private final Set<Index> indices;
     private final Debt debt;
 
     /**
      * Creates an AddDebtCommand to add a specified {@code Debt} to a specified {@code Person}.
      *
-     * @param index of the person in the filtered person list to add a debt to
-     * @param debt the debt to add to the person
+     * @param indices A set of indices of the persons in the filtered person list to add a debt to
+     * @param debt the debt to add to each person
      */
-    public AddDebtCommand(Index index, Debt debt) {
-        requireAllNonNull(index, debt);
+    public AddDebtCommand(Set<Index> indices, Debt debt) {
+        requireAllNonNull(indices, debt);
 
-        this.index = index;
+        this.indices = indices;
         this.debt = debt;
     }
 
@@ -56,25 +58,42 @@ public class AddDebtCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        ArrayList<Person> debtors = new ArrayList<>();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Index index : indices) {
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            debtors.add(lastShownList.get(index.getZeroBased()));
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getDebts().addDebt(debt));
+        StringBuilder nameList = new StringBuilder();
+        int size = debtors.size();
 
-        model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, editedPerson.getName()));
+        for (int i = 0; i < size; i++) {
+            Person personToEdit = debtors.get(i);
+            Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(),
+                    personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
+                    personToEdit.getDebts().addDebt(debt.copyDebt()));
+            model.setPerson(personToEdit, editedPerson);
+
+            if (i == 0) {
+                nameList.append(personToEdit.getName());
+            } else if (i != size - 1) {
+                nameList.append(", ").append(personToEdit.getName());
+            } else {
+                nameList.append(" and ").append(personToEdit.getName());
+            }
+        }
+
+        return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, nameList));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddDebtCommand // instanceof handles nulls
-                && index.equals(((AddDebtCommand) other).index)
+                && indices.equals(((AddDebtCommand) other).indices)
                 && debt.equals(((AddDebtCommand) other).debt));
     }
 }

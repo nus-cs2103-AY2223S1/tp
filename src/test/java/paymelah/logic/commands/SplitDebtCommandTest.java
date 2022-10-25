@@ -80,7 +80,7 @@ public class SplitDebtCommandTest {
     }
 
     @Test
-    public void execute_validIndexesFollowedByValidDebtOnUnfilteredList_success() {
+    public void execute_validIndicesFollowedByValidDebtOnUnfilteredList_success() {
         Debt validDebt = new DebtBuilder().build();
         Set<Index> personIndexSet = new HashSet<>(List.of(INDEX_SECOND_PERSON, INDEX_THIRD_PERSON,
                 INDEX_FIRST_PERSON));
@@ -115,7 +115,7 @@ public class SplitDebtCommandTest {
     }
 
     @Test
-    public void execute_validIndexesFollowedByValidDebtOnFilteredList_success() {
+    public void execute_validIndicesFollowedByValidDebtOnFilteredList_success() {
         showDebtors(model);
 
         Debt validDebt = new DebtBuilder().build();
