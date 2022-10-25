@@ -16,7 +16,13 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.ModAddCommand;
+import seedu.address.logic.commands.ModCommand;
+import seedu.address.logic.commands.ModDeleteCommand;
+import seedu.address.logic.commands.ModFindCommand;
+import seedu.address.logic.commands.ModMarkAllCommand;
+import seedu.address.logic.commands.ModMarkCommand;
+import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.ModContainsKeywordsPredicate;
@@ -148,7 +154,9 @@ public class ModCommandParser implements Parser<ModCommand> {
             try {
                 index = ParserUtil.parseIndex(indexOrAll);
             } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE), pe);
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE),
+                        pe);
             }
             return new ModMarkCommand(index, mods.get());
         }

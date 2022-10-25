@@ -17,8 +17,8 @@ public class ModMarkAllCommand extends ModCommand {
 
     public static final String COMMAND_WORD = "mark all";
     public static final String MESSAGE_SUCCESS = "Successfully marked %s of all batchmates.\n";
-    public static final String MESSAGE_INVALID_MOD = "There is no batchmate that is taking %s, hence it's not marked.\n";
-    public static final String MESSAGE_INVALID_MODS = "All mods specified are not taken by any batchmate.\n"
+    public static final String MESSAGE_INVALID_MOD = "There is no batchmate taking %s, hence it's not marked.\n";
+    public static final String MESSAGE_INVALID_MODS = "All mods specified are not being taken by any batchmate.\n"
             + "Please check the list of mods and try again.";
 
     private final ObservableList<Mod> mods;
@@ -58,7 +58,6 @@ public class ModMarkAllCommand extends ModCommand {
             if (markedModCount == 0) {
                 // No batchmate is taking the specified mod.
                 message = message + String.format(MESSAGE_INVALID_MOD, mod.getModName());
-//                throw new CommandException(String.format(MESSAGE_INVALID_MOD, mod.getModName()));
             } else {
                 message = message + String.format(MESSAGE_SUCCESS, mod.getModName());
             }
