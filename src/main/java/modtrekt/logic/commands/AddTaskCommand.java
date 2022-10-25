@@ -52,6 +52,7 @@ public class AddTaskCommand extends Command {
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
     public AddTaskCommand(Description ds, ModCode code, LocalDate deadline, Task.Priority priority) {
+        requireNonNull(priority);
         this.description = ds;
         this.modCode = code;
         this.deadline = deadline;
