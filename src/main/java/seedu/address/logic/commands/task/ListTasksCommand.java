@@ -2,7 +2,10 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AFTER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BEFORE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
 
 import java.util.HashSet;
 import java.util.List;
@@ -169,10 +172,10 @@ public class ListTasksCommand extends TaskCommand {
 
             projectNames
                     .stream()
-                    .limit(numNames-1)
+                    .limit(numNames - 1)
                     .forEach(name -> successMessage.append(" '").append(name).append("',"));
 
-            successMessage.append(" '").append(projectNames.get(numNames-1)).append("'");
+            successMessage.append(" '").append(projectNames.get(numNames - 1)).append("'");
         }
 
         if (!personIndexes.isEmpty()) {

@@ -10,7 +10,10 @@ import java.util.stream.Collectors;
 public class ContainsProjectsPredicate implements Predicate<Task> {
     private final List<String> projectNames;
 
-
+    /**
+     * Constructs an ContainsProjectsPredicate.
+     * @param projectNames the list of project names to search for
+     */
     public ContainsProjectsPredicate(List<String> projectNames) {
         this.projectNames = projectNames
                 .stream()
