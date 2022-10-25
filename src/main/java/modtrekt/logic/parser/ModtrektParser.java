@@ -24,10 +24,10 @@ import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveCommand;
 import modtrekt.logic.commands.UndoneModuleCommand;
-import modtrekt.logic.commands.tasks.ArchiveTaskCommand;
+import modtrekt.logic.commands.tasks.DoneTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
-import modtrekt.logic.commands.tasks.UnarchiveTaskCommand;
+import modtrekt.logic.commands.tasks.UndoneTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,8 +54,8 @@ public class ModtrektParser {
         //       you don't need any CommandParser classes anymore.
         JCommander jcommander = JCommander.newBuilder().programName("")
                 .addCommand(ListTasksCommand.COMMAND_WORD, new ListTasksCommand())
-                .addCommand(ArchiveTaskCommand.COMMAND_WORD, new ArchiveTaskCommand())
-                .addCommand(UnarchiveTaskCommand.COMMAND_WORD, new UnarchiveTaskCommand())
+                .addCommand(DoneTaskCommand.COMMAND_WORD, new DoneTaskCommand())
+                .addCommand(UndoneTaskCommand.COMMAND_WORD, new UndoneTaskCommand())
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(EditModuleCommand.COMMAND_WORD, new EditModuleCommand())

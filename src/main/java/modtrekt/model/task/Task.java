@@ -11,7 +11,7 @@ import modtrekt.model.util.DeadlineComparator;
  */
 public class Task implements Comparable<Task> {
     public static final Comparator<Task> PRIORITY_COMPARATOR = Comparator.comparingInt(t -> t.getPriority().ordinal());
-    public static final Comparator<Task> ARCHIVAL_COMPARATOR = Comparator.comparing(Task::isArchived);
+    public static final Comparator<Task> COMPLETION_COMPARATOR = Comparator.comparing(Task::isDone);
     public static final Comparator<Task> DESCRIPTION_COMPARATOR = Comparator.comparing(Task::getDescription);
     public static final Comparator<Task> DEADLINE_COMPARATOR = new DeadlineComparator();
 
@@ -21,20 +21,20 @@ public class Task implements Comparable<Task> {
     public final ModCode module;
     private final Description description;
     private final Priority priority;
-    private final boolean isArchived;
+    private final boolean isDone;
 
     /**
      * Constructor for an instance of Task with a priority.
      *
      * @param description description of task
      * @param module      module code of note's module
-     * @param isArchived  true if task is completed/archived
+     * @param isDone      true if task is done, false otherwise
      * @param priority    priority of task
      */
-    public Task(Description description, ModCode module, boolean isArchived, Priority priority) {
+    public Task(Description description, ModCode module, boolean isDone, Priority priority) {
         this.module = module;
         this.description = description;
-        this.isArchived = isArchived;
+        this.isDone = isDone;
         this.priority = priority;
     }
 
@@ -50,19 +50,19 @@ public class Task implements Comparable<Task> {
         return priority;
     }
 
-    public boolean isArchived() {
-        return this.isArchived;
+    public boolean isDone() {
+        return this.isDone;
     }
 
     public Task setPriority(Priority priority) {
-        return new Task(description, module, isArchived, priority);
+        return new Task(description, module, isDone, priority);
     }
 
-    public Task archive() {
+    public Task setAsDone() {
         return new Task(this.description, this.module, true, priority);
     }
 
-    public Task unarchive() {
+    public Task setAsUndone() {
         return new Task(this.description, this.module, false, priority);
     }
 
@@ -75,7 +75,7 @@ public class Task implements Comparable<Task> {
         }
 
         return o != null && o.description.equals(this.description) && o.module.equals(this.module)
-                && o.isArchived() == this.isArchived() && o.priority == this.priority;
+                && o.isDone() == this.isDone() && o.priority == this.priority;
     }
 
     @Override
@@ -88,12 +88,12 @@ public class Task implements Comparable<Task> {
 
     @Override
     public String toString() {
-        return String.format("%s %s %s %s", description, module, priority, isArchived ? "(ARCHIVED)" : "");
+        return String.format("%s %s %s %s", description, module, priority, isDone ? "(done)" : "");
     }
 
     @Override
     public int compareTo(Task that) {
-        return ARCHIVAL_COMPARATOR.thenComparing(PRIORITY_COMPARATOR.reversed())
+        return COMPLETION_COMPARATOR.thenComparing(PRIORITY_COMPARATOR.reversed())
                 .thenComparing(DEADLINE_COMPARATOR.reversed())
                 .thenComparing(DESCRIPTION_COMPARATOR)
                 .compare(this, that);

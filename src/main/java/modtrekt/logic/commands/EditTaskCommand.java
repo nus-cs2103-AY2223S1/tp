@@ -88,7 +88,7 @@ public class EditTaskCommand extends Command {
                     + "\t-ds New description for the task");
         }
 
-        boolean archived = taskToEdit.isArchived();
+        boolean isDone = taskToEdit.isDone();
         Task.Priority priority = taskToEdit.getPriority();
         ModCode code = targetModule != null ? targetModule : taskToEdit.getModule();
         if (!model.hasModuleWithModCode(code)) {
@@ -103,8 +103,8 @@ public class EditTaskCommand extends Command {
                 : null;
 
         Task newTask = deadline != null
-                ? new Deadline(description, code, deadline, archived, priority)
-                : new Task(description, code, archived, priority);
+                ? new Deadline(description, code, deadline, isDone, priority)
+                : new Task(description, code, isDone, priority);
 
         model.deleteTask(taskToEdit);
         model.addTask(newTask);

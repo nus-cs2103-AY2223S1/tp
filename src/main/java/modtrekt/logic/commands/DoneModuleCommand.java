@@ -55,14 +55,14 @@ public class DoneModuleCommand extends Command {
 
         Module target = model.parseModuleFromCode(moduleCode);
 
-        // Check that the module is not already unarchived.
+        // Check that the module is not already marked as done.
         if (target.isDone()) {
             throw new CommandException(String.format("Module %s is already marked as done.", moduleCode.toString()));
         }
 
         // Done the module.
         model.setModule(target, target.done());
-        model.archiveDoneModuleTasks(moduleCode);
+        model.setDoneModuleTasksAsDone(moduleCode);
         return new CommandResult("Marked module as done.");
     }
 }

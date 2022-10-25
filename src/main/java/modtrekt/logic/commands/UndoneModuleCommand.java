@@ -55,7 +55,7 @@ public class UndoneModuleCommand extends Command {
 
         Module target = model.parseModuleFromCode(moduleCode);
 
-        // Check that the module is not already unarchived.
+        // Check that the module is not already undone.
         if (!target.isDone()) {
             throw new CommandException(String.format("Module %s is already marked as undone.", moduleCode.toString()));
         }

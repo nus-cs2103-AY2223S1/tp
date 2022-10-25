@@ -16,7 +16,7 @@ public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "ls";
 
     @Parameter(names = "-a", description = "Show all tasks")
-    private boolean areArchivedTasksShown;
+    private boolean areDoneTasksShown;
 
     /**
      * Returns a new ListTasksCommand object, with no fields initialized, for use with JCommander.
@@ -24,18 +24,18 @@ public class ListTasksCommand extends Command {
     public ListTasksCommand() {
     }
 
-    public ListTasksCommand(boolean areArchivedTasksShown) {
-        this.areArchivedTasksShown = areArchivedTasksShown;
+    public ListTasksCommand(boolean areDoneTasksShown) {
+        this.areDoneTasksShown = areDoneTasksShown;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (areArchivedTasksShown) {
+        if (areDoneTasksShown) {
             model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult("Listed all tasks, including those archived.");
+            return new CommandResult("Listed all tasks, including those done.");
         } else {
-            model.updateFilteredTaskList(Model.PREDICATE_HIDE_ARCHIVED_TASKS);
-            return new CommandResult("Listed all unarchived tasks.");
+            model.updateFilteredTaskList(Model.PREDICATE_HIDE_DONE_TASKS);
+            return new CommandResult("Listed all undone tasks.");
         }
     }
 
@@ -43,6 +43,6 @@ public class ListTasksCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ListTasksCommand // instanceof handles nulls
-                && areArchivedTasksShown == (((ListTasksCommand) other).areArchivedTasksShown));
+                && areDoneTasksShown == (((ListTasksCommand) other).areDoneTasksShown));
     }
 }
