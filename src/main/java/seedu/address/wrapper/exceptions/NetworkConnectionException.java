@@ -10,7 +10,7 @@ public class NetworkConnectionException extends RuntimeException {
     }
 
     /**
-     * Constructs a new {@code NetworkConnectionException} with the specified detail {@code message} and {@code cause}.
+     * Constructs a new {@code RepoNotFoundException} with the specified detail {@code message} and {@code cause}.
      */
     public NetworkConnectionException(String message, Throwable cause) {
         super(message, cause);

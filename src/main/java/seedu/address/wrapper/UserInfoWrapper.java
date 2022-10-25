@@ -15,6 +15,7 @@ public class UserInfoWrapper {
     private final UserInfoRoute.UserInfoRequest getUserInfoUserInfoRequest;
     private JSONObject userJson;
     private final String NAME_KEY = "name";
+    private final String URL_KEY = "url";
     private final String USERNAME_KEY = "login";
     private final String EMAIL_KEY = "email";
     private final String LOCATION_KEY = "location";
@@ -67,5 +68,12 @@ public class UserInfoWrapper {
             getUserJson();
         }
         return userJson.getString(IMAGE_LOCATION_KEY);
+    }
+
+    public String getUrl() {
+        if (userJson == null) {
+            getUserJson();
+        }
+        return userJson.getString(URL_KEY);
     }
 }
