@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -32,7 +33,10 @@ public class ModuleCard extends UiPart<Region> {
     private static final String MAC_OPEN_LINK_COMMAND_KEY = "open ";
     private static final String OS_NAME_LOWERCASE_LINUX = "linux";
     private static final String LINUX_OPEN_LINK_COMMAND_KEY = "xdg-open";
-    private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
+    private static final String LINK_BORDER_COLOR = "-fx-border-color: #FFCC66;"; //Light Yellow
+    private static final String LINK_BORDER_RADIUS = "-fx-border-radius: 2;";
+    private static final String LINK_TEXT_COLOR = "-fx-text-fill: white";
+
 
 
     /**
@@ -76,6 +80,9 @@ public class ModuleCard extends UiPart<Region> {
         module.getLinks().stream()
                 .forEach(link -> links.getChildren()
                         .add(createHyperLinkNode(link.linkAlias, link.linkUrl)));
+        links.setPadding(new Insets(10, 10, 10, 10));
+        links.setHgap(5);
+        links.setVgap(5);
         ObservableList<Task> taskList = module.getTasks();
         taskListPanel = new TaskListPanel(taskList);
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
@@ -83,7 +90,7 @@ public class ModuleCard extends UiPart<Region> {
 
     private static Hyperlink createHyperLinkNode(String linkAlias, String linkUrl) {
         Hyperlink hyperLinkNode = new Hyperlink(linkAlias);
-        hyperLinkNode.setStyle(LINK_TEXT_COLOR);
+        hyperLinkNode.setStyle(LINK_BORDER_COLOR + LINK_BORDER_RADIUS + LINK_TEXT_COLOR);
         final Tooltip linkUrlHint = new Tooltip();
         linkUrlHint.setText(linkUrl);
         linkUrlHint.setShowDelay(Duration.seconds(0.5));
