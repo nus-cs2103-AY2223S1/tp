@@ -51,4 +51,10 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Format state as text for searching.
+     */
+    public String toSearchString() {
+        return tagName;
+    }
 }

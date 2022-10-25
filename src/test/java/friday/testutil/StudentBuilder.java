@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import friday.model.grades.Grade;
+import friday.model.grades.GradesList;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -30,6 +32,7 @@ public class StudentBuilder {
     private MasteryCheck masteryCheck;
     private Remark remark;
     private Set<Tag> tags;
+    private GradesList gradesList;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -41,6 +44,7 @@ public class StudentBuilder {
         masteryCheck = new MasteryCheck(DEFAULT_MASTERYCHECK);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        gradesList = new GradesList();
     }
 
     /**
@@ -53,6 +57,7 @@ public class StudentBuilder {
         masteryCheck = studentToCopy.getMasteryCheck();
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
+        gradesList = studentToCopy.getGradesList();
     }
 
     /**
@@ -103,8 +108,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code GradesList} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withGradesList(String examName, String score) {
+        GradesList.editGrade(this.gradesList, new Grade(examName, score));
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, telegramHandle, consultation, masteryCheck, remark, tags);
+        return new Student(name, telegramHandle, consultation, masteryCheck, remark, tags, gradesList);
     }
 
 }

@@ -16,8 +16,8 @@ import friday.model.Friday;
 import friday.model.ReadOnlyFriday;
 import friday.testutil.TypicalStudents;
 
-public class JsonMasteryCheckBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMasteryCheckBookStorageTest");
+public class JsonFridayStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFridayStorageTest");
 
     @TempDir
     public Path testFolder;

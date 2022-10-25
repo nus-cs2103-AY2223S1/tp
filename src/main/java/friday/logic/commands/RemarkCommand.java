@@ -52,7 +52,8 @@ public class RemarkCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getTelegramHandle(),
-                studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), remark, studentToEdit.getTags());
+                studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), remark, studentToEdit.getTags(),
+                studentToEdit.getGradesList());
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
