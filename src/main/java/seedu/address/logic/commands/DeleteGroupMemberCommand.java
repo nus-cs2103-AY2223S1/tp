@@ -68,7 +68,7 @@ public class DeleteGroupMemberCommand extends Command {
         }
 
         if (!groupToDeletePerson.contains(personToGroup)) {
-            throw new CommandException(String.format(MESSAGE_PERSON_NOT_IN_GROUP, this.name));
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_IN_GROUP, this.name, this.personGroup));
         }
         //change field
         ArrayList<PersonGroup> personGroupArrayList = personToGroup.getPersonGroups();
