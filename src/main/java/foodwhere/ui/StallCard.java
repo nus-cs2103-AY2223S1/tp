@@ -1,8 +1,5 @@
 package foodwhere.ui;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import foodwhere.model.stall.Stall;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

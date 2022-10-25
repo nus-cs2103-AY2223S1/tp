@@ -1,8 +1,6 @@
 package foodwhere.ui;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import foodwhere.model.review.Review;
 import javafx.fxml.FXML;
