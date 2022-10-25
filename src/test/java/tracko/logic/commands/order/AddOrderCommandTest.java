@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,6 +12,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import tracko.logic.commands.CommandTestUtil;
 import tracko.logic.commands.item.FindItemCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;

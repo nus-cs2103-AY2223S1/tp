@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.order;
 
 // import static tracko.tracko.commands.logic.CommandTestUtil.assertCommandFailure;
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;

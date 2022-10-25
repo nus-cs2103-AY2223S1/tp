@@ -9,7 +9,6 @@ import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.testutil.TypicalItems.DEFAULT_INVENTORY_ITEM;
-import static tracko.testutil.TypicalItems.INVENTORY_LIST;
 import static tracko.testutil.TypicalItems.INVENTORY_ITEM_1;
 import static tracko.testutil.TypicalItems.INVENTORY_ITEM_10;
 import static tracko.testutil.TypicalItems.INVENTORY_ITEM_11;
@@ -21,6 +20,7 @@ import static tracko.testutil.TypicalItems.INVENTORY_ITEM_6;
 import static tracko.testutil.TypicalItems.INVENTORY_ITEM_7;
 import static tracko.testutil.TypicalItems.INVENTORY_ITEM_8;
 import static tracko.testutil.TypicalItems.INVENTORY_ITEM_9;
+import static tracko.testutil.TypicalItems.INVENTORY_LIST;
 
 import java.util.ArrayList;
 import java.util.Arrays;
