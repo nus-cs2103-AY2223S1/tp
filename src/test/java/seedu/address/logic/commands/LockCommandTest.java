@@ -14,7 +14,7 @@ public class LockCommandTest {
 
     @Test
     public void execute_lock_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_LOCK_MESSAGE, false, false, true);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_LOCK_MESSAGE, false, false, true, 0);
         assertCommandSuccess(new LockCommand(), model, expectedCommandResult, expectedModel);
     }
 }

@@ -450,6 +450,10 @@
     -fx-border-radius: 7;
 }
 
+#risk, #plan, #plans .label {
+    -fx-text-fill: -contrast-background;
+}
+
 
 
 

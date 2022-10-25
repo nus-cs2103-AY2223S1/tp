@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -19,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.portfolio.Plan;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME,
-                        PREFIX_MEETING_DATE, PREFIX_TAG);
+                        PREFIX_MEETING_DATE, PREFIX_TAG, PREFIX_RISK, PREFIX_PLAN);
 
         Index index;
 
@@ -66,7 +69,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setMeetingDate(
                     ParserUtil.parseMeetingDate(argMultimap.getValue(PREFIX_MEETING_DATE).get()));
         }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
+        if (argMultimap.getValue(PREFIX_RISK).isPresent()) {
+            editPersonDescriptor.setRisk(
+                    ParserUtil.parseRisk(argMultimap.getValue(PREFIX_RISK).get()));
+        }
+
+        parsePlansForEdit(argMultimap.getAllValues(PREFIX_PLAN)).ifPresent(editPersonDescriptor::setPlans);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -88,6 +99,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> plans} into a {@code Set<Plan>} if {@code plans} is non-empty.
+     * If {@code plans} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Plan>} containing zero plans.
+     */
+    private Optional<Set<Plan>> parsePlansForEdit(Collection<String> plans) throws ParseException {
+        assert plans != null;
+
+        if (plans.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> planSet = plans.size() == 1 && plans.contains("") ? Collections.emptySet() : plans;
+        return Optional.of(ParserUtil.parsePlans(planSet));
     }
 
 }
