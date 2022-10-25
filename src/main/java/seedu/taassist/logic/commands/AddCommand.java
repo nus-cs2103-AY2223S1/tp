@@ -34,8 +34,8 @@ public class AddCommand extends Command {
             + PREFIX_MODULE_CLASS + "CS1101S "
             + PREFIX_MODULE_CLASS + "CS1231S";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in TA-Assist";
+    public static final String MESSAGE_SUCCESS = "Added new student: [%1$s]";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "[%1$s] already exists in TA-Assist";
 
     private final Student student;
 
@@ -52,7 +52,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasStudent(student)) {
-            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_STUDENT, student.getName()));
         }
 
         if (!model.hasModuleClasses(student.getModuleClasses())) {
@@ -61,7 +61,7 @@ public class AddCommand extends Command {
         }
 
         model.addStudent(student);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, student));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, student.getName()));
     }
 
     @Override
