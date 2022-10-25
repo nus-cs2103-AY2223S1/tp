@@ -71,8 +71,8 @@ public class ModuleClass implements Identity<ModuleClass> {
     }
 
     /**
-     * Returns a new {@code ModuleClass} by adding the provided {@code Session}.
-     * If the session already exists, the original {@code ModuleClass} is returned.
+     * Returns a new {@code ModuleClass} by adding the provided {@code Session} to this {@code ModuleClass}.
+     * If the session already exists, this {@code ModuleClass} is returned.
      */
     public ModuleClass addSession(Session session) {
         requireNonNull(session);

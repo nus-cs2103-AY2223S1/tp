@@ -88,7 +88,7 @@ public class Student implements Identity<Student> {
 
     /**
      * Returns a new student by adding the given {@code moduleClass} to the student's module data.
-     * If the student is already enrolled in the module class returned.
+     * If the student is already enrolled in the module class, the same student is returned.
      */
     public Student addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -113,7 +113,8 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns a new student by removing the data for the given {@code session} in {@code moduleClass}
+     * Returns a new student by removing this student's data for the given
+     * {@code session} in {@code moduleClass}.
      */
     public Student removeSession(ModuleClass moduleClass, Session session) {
         requireAllNonNull(moduleClass, session);

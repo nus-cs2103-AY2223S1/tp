@@ -122,7 +122,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void removeSession(ModuleClass moduleClass, Set<Session> sessions) {
+    public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
         throw new AssertionError("This method should not be called.");
     }
 

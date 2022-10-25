@@ -51,7 +51,7 @@ public class DeletesCommand extends Command {
             throw new CommandException(String.format(MESSAGE_SESSION_DOES_NOT_EXIST, sessions));
         }
 
-        model.removeSession(focusedClass, sessions);
+        model.removeSessions(focusedClass, sessions);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessions));
     }

@@ -149,7 +149,6 @@ public class TaAssist implements ReadOnlyTaAssist {
 
     /**
      * Removes {@code moduleClass} from this {@code TaAssist} and unassigns all students in the class.
-     * {@code moduleClass} must exist in TA-Assist.
      */
     public void removeModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -164,7 +163,6 @@ public class TaAssist implements ReadOnlyTaAssist {
     /**
      * Removes the {@code session} from the {@code moduleClass}
      * as well as all students in the {@code moduleClass}.
-     * {@code moduleClass} must exist in TA-Assist.
      */
     public void removeSession(ModuleClass moduleClass, Session session) {
         requireAllNonNull(moduleClass, session);

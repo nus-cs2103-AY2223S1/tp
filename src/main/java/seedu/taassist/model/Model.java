@@ -103,17 +103,17 @@ public interface Model {
     boolean hasModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
-     * Deletes the given class.
-     * The class must exist in TA-Assist.
-     */
-    void removeModuleClass(ModuleClass moduleClass);
-
-    /**
      * Replaces the module class {@code target} in the list with {@code editedModuleClass}.
      * {@code target} must exist in the list.
      * The identity of {@code editedModuleClass} must not be the same as another existing module class in the TaAssist.
      */
     void setModuleClass(ModuleClass target, ModuleClass editedModuleClass);
+
+    /**
+     * Deletes the given {@code moduleClass}.
+     * The class must exist in TA-Assist.
+     */
+    void removeModuleClass(ModuleClass moduleClass);
 
     /**
      * Deletes multiple classes.
@@ -129,7 +129,7 @@ public interface Model {
     /**
      * Removes the specified {@code sessions} from the specified {@code moduleClass}.
      */
-    void removeSession(ModuleClass moduleClass, Set<Session> sessions);
+    void removeSessions(ModuleClass moduleClass, Set<Session> sessions);
 
     /**
      * Adds the given class.

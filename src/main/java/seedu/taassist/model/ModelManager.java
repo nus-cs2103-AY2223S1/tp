@@ -143,7 +143,6 @@ public class ModelManager implements Model {
         requireNonNull(target);
         taAssist.removeModuleClass(target);
 
-        // TODO: Should an Exception be thrown instead?
         if (target.isSame(focusedClass)) {
             exitFocusMode();
         }
@@ -176,7 +175,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeSession(ModuleClass moduleClass, Set<Session> sessions) {
+    public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
         requireAllNonNull(moduleClass, sessions);
         sessions.forEach(session -> removeSession(moduleClass, session));
     }
