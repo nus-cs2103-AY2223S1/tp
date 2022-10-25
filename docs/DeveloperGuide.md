@@ -347,7 +347,7 @@ Step 2. The user assigns some members into the newly created team using the `ass
 Step 3. The user realises that the team has completed their work and is no longer needed, and proceeds to delete the team using the `deleteteam t/1` command (Given that the team created in Step 1 is the team in index 1).
 
 The following sequence diagram shows how the delete team operation works:
-![DeleteTeamSequenceDaigram](images/DeleteTeamSequenceDiagram.png)
+![DeleteTeamSequenceDiagram](images/DeleteTeamSequenceDiagram.png)
 
 ### Edit Team Feature
 
@@ -363,7 +363,7 @@ Step 2. The `editTeam` command is created by the parser using the given team ind
 `Model#setTeamName`to change the name of the required team.
 
 The following sequence diagram shows how the edit team operation works:
-![EditTeamSequenceDaigram](images/EditTeamSequenceDiagram.png)
+![EditTeamSequenceDiagram](images/EditTeamSequenceDiagram.png)
 
 ### Assign Member Feature
 
@@ -379,7 +379,7 @@ Step 2. The `assignMember` command is created by the parser using the given memb
 team's index. It calls `Model#addPersonToTeam` to add the person to given team.
 
 The following sequence diagram shows how the assign member operation works:
-![AssignMemberSequenceDaigram](images/AssignMemberSequenceDiagram.png)
+![AssignMemberSequenceDiagram](images/AssignMemberSequenceDiagram.png)
 
 ### unAssign Member Feature
 
@@ -395,7 +395,7 @@ Step 2. The `unassignMember` command is created by the parser using the given me
 team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
 
 The following sequence diagram shows how the unassign team operation works:
-![UnAssignMemberSequenceDaigram](images/UnAssignMemberSequenceDiagram.png)
+![UnAssignMemberSequenceDiagram](images/UnAssignMemberSequenceDiagram.png)
 
 _{more aspects and alternatives to be added}
 
