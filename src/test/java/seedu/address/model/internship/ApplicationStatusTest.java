@@ -34,5 +34,8 @@ public class ApplicationStatusTest {
         // valid application status
         assertTrue(ApplicationStatus.isValidApplicationStatus("applied"));
         assertTrue(ApplicationStatus.isValidApplicationStatus("accepted"));
+        assertTrue(ApplicationStatus.isValidApplicationStatus("shortlisted"));
+        assertTrue(ApplicationStatus.isValidApplicationStatus("interviewed"));
+        assertTrue(ApplicationStatus.isValidApplicationStatus("rejected"));
     }
 }

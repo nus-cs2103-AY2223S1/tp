@@ -47,6 +47,23 @@ public class InternshipBuilder {
     }
 
     /**
+     * Creates a {@code InternshipBuilder} with no interviewDateTime.
+     */
+    public InternshipBuilder(boolean noInterviewDateTime) {
+        company = new Company(DEFAULT_COMPANY);
+        link = new Link(DEFAULT_LINK);
+        description = new Description(DEFAULT_DESCRIPTION);
+        applicationStatus = DEFAULT_APPLICATION_STATUS;
+        appliedDate = new AppliedDate(DEFAULT_APPLIED_DATE);
+        if (noInterviewDateTime == true) {
+            interviewDateTime = null;
+        } else {
+            interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE_TIME);
+        }
+        tags = new HashSet<>();
+    }
+
+    /**
      * Initializes the InternshipBuilder with the data of {@code internshipToCopy}.
      */
     public InternshipBuilder(Internship internshipToCopy) {
@@ -86,8 +103,8 @@ public class InternshipBuilder {
     /**
      * Sets the {@code InterviewDateTime} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withInterviewDateTime(String interviewDate) {
-        this.interviewDateTime = new InterviewDateTime(interviewDate);
+    public InternshipBuilder withInterviewDateTime(String interviewDateTime) {
+        this.interviewDateTime = new InterviewDateTime(interviewDateTime);
         return this;
     }
 

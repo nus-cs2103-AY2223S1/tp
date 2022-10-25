@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_GOOGLE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternships.GOOGLE;
+import static seedu.address.testutil.TypicalInternships.GOOGLE_NO_INTERVIEW;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_GOOGLE + LINK_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
                 + APPLIED_DATE_DESC_GOOGLE;
-        Internship expectedInternship = new InternshipBuilder(GOOGLE).withTags().build();
+        Internship expectedInternship = new InternshipBuilder(GOOGLE_NO_INTERVIEW).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
