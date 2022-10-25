@@ -15,7 +15,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.EntryType;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object

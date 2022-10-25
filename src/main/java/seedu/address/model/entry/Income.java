@@ -1,7 +1,5 @@
 package seedu.address.model.entry;
 
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents an income entry.
  */

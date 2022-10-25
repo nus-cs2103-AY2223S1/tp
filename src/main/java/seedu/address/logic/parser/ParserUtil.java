@@ -15,7 +15,7 @@ import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

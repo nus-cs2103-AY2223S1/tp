@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Tag;
 
 public class TagTest {
     private EntryType expenditureType = new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE);
