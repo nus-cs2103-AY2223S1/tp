@@ -221,8 +221,7 @@ public class StorageManager implements Storage {
         // state check
         StorageManager other = (StorageManager) obj;
         return dataStorage.equals(other.dataStorage)
-                && userPrefsStorage.equals(other.userPrefsStorage)
-                && csvManager.equals(other.csvManager);
+                && userPrefsStorage.equals(other.userPrefsStorage);
     }
 
 }

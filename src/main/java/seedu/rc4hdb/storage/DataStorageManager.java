@@ -238,9 +238,7 @@ public class DataStorageManager implements DataStorage {
 
         // state check
         DataStorageManager other = (DataStorageManager) obj;
-        return folderPath.equals(other.folderPath)
-                && residentBookStorage.equals(other.residentBookStorage)
-                && venueBookStorage.equals(other.venueBookStorage);
+        return folderPath.equals(other.folderPath);
     }
 
 }
