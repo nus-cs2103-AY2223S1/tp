@@ -16,7 +16,7 @@ public class UserInfoWrapper {
     private final UserInfoRoute.UserInfoRequest getUserInfoUserInfoRequest;
     private JSONObject userJson;
     private final String NAME_KEY = "name";
-    private final String URL_KEY = "url";
+    private final String URL_KEY = "html_url";
     private final String USERNAME_KEY = "login";
     private final String EMAIL_KEY = "email";
     private final String LOCATION_KEY = "location";

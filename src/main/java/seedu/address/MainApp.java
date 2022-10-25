@@ -30,7 +30,7 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
-import seedu.address.wrapper.GithubWrapper;
+import seedu.address.wrapper.GithubApi;
 
 /**
  * Runs the application.
@@ -45,7 +45,7 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected Model model;
-    public GithubWrapper githubWrapper;
+    public GithubApi githubApi;
     protected Config config;
 
     @Override
@@ -69,7 +69,7 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        githubWrapper = new GithubWrapper(storage);
+        githubApi = new GithubApi(storage);
 
 
     }

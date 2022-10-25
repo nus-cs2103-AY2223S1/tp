@@ -30,6 +30,7 @@ public class User {
 
     private final String username;
     private final String avatarUrl;
+    private final String url;
     private final UserInfoWrapper userInfoWrapper;
     private final UserReposWrapper userReposWrapper;
 
@@ -44,6 +45,8 @@ public class User {
         this.userReposWrapper = userReposWrapper;
         this.username = userInfoWrapper.getUsername();
         this.avatarUrl = userInfoWrapper.getAvatarUrl();
+        this.url = userInfoWrapper.getUrl();
+
     }
 
     /**

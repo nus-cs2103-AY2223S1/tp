@@ -13,14 +13,14 @@ import seedu.address.wrapper.exceptions.NetworkConnectionException;
 import seedu.address.wrapper.exceptions.RepoNotFoundException;
 import seedu.address.wrapper.exceptions.UserInvalidException;
 
-public class GithubWrapper {
+public class GithubApi {
     //@@author arnav-ag
     private final static String BASE_CHECK_USER_URL = "https://api.github.com/users/";
     private final static String BASE_GITHUB_URL = "https://www.github.com/";
     final private UnirestInstance unirest;
     final private Storage storage;
 
-    public GithubWrapper(Storage storage) {
+    public GithubApi(Storage storage) {
 
         unirest = getDefaultUnirestInstance();
         this.storage = storage;
