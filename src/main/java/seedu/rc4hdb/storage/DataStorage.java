@@ -21,7 +21,7 @@ public interface DataStorage extends ResidentBookStorage, VenueBookStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getDataStorageFilePath();
+    Path getDataStorageFolderPath();
 
     /**
      * Returns the folder path wrapped by ObservableValue.
@@ -31,7 +31,7 @@ public interface DataStorage extends ResidentBookStorage, VenueBookStorage {
     /**
      * Sets the file path to the {@code folderPath}.
      */
-    void setDataStorageFilePath(Path folderPath);
+    void setDataStorageFolderPath(Path folderPath);
 
     //================= Data storage methods =========================
 

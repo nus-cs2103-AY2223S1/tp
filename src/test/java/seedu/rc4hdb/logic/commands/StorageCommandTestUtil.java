@@ -65,7 +65,7 @@ public class StorageCommandTestUtil {
     public static void assertCommandFailure(StorageCommand command, Storage actualStorage, String expectedMessage) {
         // we are unable to defensively copy the storage for comparison later, so we can
         // only do so by copying its components.
-        DataStorage expectedDataStorage = new DataStorageManager(actualStorage.getDataStorageFilePath());
+        DataStorage expectedDataStorage = new DataStorageManager(actualStorage.getDataStorageFolderPath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(actualStorage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
 

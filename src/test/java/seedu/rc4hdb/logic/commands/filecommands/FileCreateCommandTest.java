@@ -44,7 +44,7 @@ public class FileCreateCommandTest {
 
     @Test
     public void execute_fileDoesNotExist_fileCreated() {
-        DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFilePath());
+        DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFolderPath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
         String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, "DoesNotExist");
@@ -110,7 +110,7 @@ public class FileCreateCommandTest {
         }
 
         @Override
-        public Path getDataStorageFilePath() {
+        public Path getDataStorageFolderPath() {
             return null;
         }
     }

@@ -20,13 +20,13 @@ public interface Storage extends DataStorage, UserPrefsStorage {
     //================ File Path methods ==============================
 
     @Override
-    Path getDataStorageFilePath();
+    Path getDataStorageFolderPath();
 
     @Override
     ObservableValue<Path> getObservableFolderPath();
 
     @Override
-    void setDataStorageFilePath(Path folderPath);
+    void setDataStorageFolderPath(Path folderPath);
 
     //================ UserPrefs methods ==============================
 

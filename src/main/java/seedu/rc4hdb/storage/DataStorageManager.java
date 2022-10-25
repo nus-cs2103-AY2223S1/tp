@@ -43,7 +43,7 @@ public class DataStorageManager implements DataStorage {
     //================= File path methods ==========================
 
     @Override
-    public Path getDataStorageFilePath() {
+    public Path getDataStorageFolderPath() {
         return folderPath.getValue();
     }
 
@@ -53,7 +53,7 @@ public class DataStorageManager implements DataStorage {
     }
 
     @Override
-    public void setDataStorageFilePath(Path folderPath) {
+    public void setDataStorageFolderPath(Path folderPath) {
         requireNonNull(folderPath);
         logger.info(String.format("Updating current working folder to: %s", folderPath));
         this.folderPath.setValue(folderPath);

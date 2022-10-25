@@ -20,7 +20,7 @@ public class FileSwitchCommand extends FileCommand implements StorageModelComman
 
     public static final String COMMAND_WORD = "switch";
 
-    public static final String MESSAGE_SUCCESS = "Successfully switched working file to %s.";
+    public static final String MESSAGE_SUCCESS = "Successfully switched working folder to %s.";
 
     public static final String MESSAGE_FOLDER_DOES_NOT_EXIST = "%s does not exist. Please provide an existing folder.";
 
@@ -34,14 +34,14 @@ public class FileSwitchCommand extends FileCommand implements StorageModelComman
     @Override
     public CommandResult execute(Storage storage, Model model) throws CommandException {
         requireAllNonNull(storage, model);
-        if (folderPath.equals(storage.getDataStorageFilePath())) {
+        if (folderPath.equals(storage.getDataStorageFolderPath())) {
             throw new CommandException(String.format(MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, folderName));
         }
         try {
             model.setResidentBook(storage.readResidentBook(folderPath).get());
             model.setVenueBook(storage.readVenueBook(folderPath).get());
             model.setUserPrefDataFilePath(folderPath);
-            storage.setDataStorageFilePath(folderPath);
+            storage.setDataStorageFolderPath(folderPath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, folderName));
         } catch (NoSuchElementException e) {
             throw new CommandException(String.format(MESSAGE_FOLDER_DOES_NOT_EXIST, folderName), e);

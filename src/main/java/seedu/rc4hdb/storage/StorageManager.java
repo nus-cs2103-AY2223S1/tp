@@ -36,8 +36,8 @@ public class StorageManager implements Storage {
     //================ File Path methods ==============================
 
     @Override
-    public Path getDataStorageFilePath() {
-        return dataStorage.getDataStorageFilePath();
+    public Path getDataStorageFolderPath() {
+        return dataStorage.getDataStorageFolderPath();
     }
 
     @Override
@@ -46,9 +46,9 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void setDataStorageFilePath(Path folderPath) {
+    public void setDataStorageFolderPath(Path folderPath) {
         requireNonNull(folderPath);
-        dataStorage.setDataStorageFilePath(folderPath);
+        dataStorage.setDataStorageFolderPath(folderPath);
     }
 
     //================ UserPrefs methods ==============================

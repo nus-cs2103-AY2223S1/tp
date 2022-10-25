@@ -1,5 +1,6 @@
 package seedu.rc4hdb.logic;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.io.IOException;
@@ -106,6 +107,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
+        requireNonNull(guiSettings);
         model.setGuiSettings(guiSettings);
     }
 

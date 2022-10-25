@@ -44,7 +44,7 @@ public class FileDeleteCommandTest {
 
     @Test
     public void execute_fileExists_fileDeleted() throws Exception {
-        DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFilePath());
+        DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFolderPath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
         String expectedMessage = String.format(FileDeleteCommand.MESSAGE_SUCCESS, "AlreadyExists.json");
