@@ -40,7 +40,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 4. **Design and Implementation**
 
-<div class="alert alert-primary">:bulb:
+<div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams/) folder.
 Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
@@ -120,7 +120,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div class="alert alert-info">:information_source:
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -144,7 +144,7 @@ The `Model` component:
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div class="alert alert-info">:information_source:
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:** An alternative and perhaps more OOP model is given below. It has a `Class` list in the `StudentRecord`, which `Student` references.
 
 * This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
