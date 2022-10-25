@@ -13,14 +13,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
+import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.ui.MainPanelName;
 
 /**
@@ -41,7 +44,7 @@ public class DeleteAttributeCommand extends Command {
         + PREFIX_SLACK + "johndoe "
         + PREFIX_TELEGRAM + "@johndoe";
 
-    private Prefix prefixToDelete;
+    private final Prefix prefixToDelete;
 
     /**
      * Constructor for DeleteAttributeCommand
@@ -80,8 +83,8 @@ public class DeleteAttributeCommand extends Command {
 
     /**
      * Creates new Person Object after deleting specified attribute (prefixToDelete)
-     * @param toDelete
-     * @return
+     * @param toDelete The Person whose attribute will be deleted
+     * @return a Person after the deletion has been done
      */
     private Person createPersonAfterDeletion(Person toDelete) {
         Name name = toDelete.getName();
