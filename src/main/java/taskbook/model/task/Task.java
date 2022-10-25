@@ -2,12 +2,16 @@ package taskbook.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import taskbook.commons.util.CollectionUtil;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -20,6 +24,7 @@ public abstract class Task {
     private final Assignment assignment;
     private final Description description;
     private final boolean isDone;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -43,6 +48,30 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    protected Task(Person person, Assignment assignment, Description description, boolean isDone, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(person, assignment, description, isDone, tags);
+        this.name = person.getName();
+        this.assignment = assignment;
+        this.description = description;
+        this.isDone = isDone;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    protected Task(Name name, Assignment assignment, Description description, boolean isDone, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, assignment, description, isDone, tags);
+        this.name = name;
+        this.assignment = assignment;
+        this.description = description;
+        this.isDone = isDone;
+        this.tags.addAll(tags);
+    }
+
     public Name getName() {
         return name;
     }
@@ -57,6 +86,14 @@ public abstract class Task {
 
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -102,24 +139,26 @@ public abstract class Task {
         return otherTask.name.equals(name)
                 && otherTask.assignment.equals(assignment)
                 && otherTask.description.equals(description)
-                && otherTask.isDone == isDone;
+                && otherTask.isDone == isDone
+                && otherTask.getTags().equals(tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, assignment, description, isDone);
+        return Objects.hash(name, assignment, description, isDone, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(String.format("[%s]", isDone()))
+        builder.append(String.format("%s", getStatus()))
                 .append(String.format("[%s]", getAssignment()))
                 .append(String.format("[%s]", getName()))
                 .append("\n")
-                .append(getDescription());
-
+                .append(getDescription())
+                .append("\n")
+                .append(getTags().size() == 0 ? "" : getTags());
         return builder.toString();
     }
 

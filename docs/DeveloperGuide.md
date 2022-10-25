@@ -435,11 +435,6 @@ The following sequence diagram shows how the `TaskTagCommand` works:
 * **Current choice:** Empty tags are not saved.
     * Rationale: Does not unnecessarily clutter the number of tags saved to a task.
   
-**Aspect: How many tags can be saved:**
-
-* **Current choice:** A maximum of 5 tags can be saved.
-    * Rationale: Reduce clutter of tags saved to a task. Too many tags would defeat the purpose of a tag itself.
-
 ### \[Proposed\] ToDo/Deadline/Event Task types
 
 #### Proposed Implementation
@@ -456,7 +451,6 @@ The proposed Todo, Deadline and Event task types is facilitated by `TaskList`. I
 
 * **Current choice:** Implement `Task` as an abstract class.
     * Rationale: Having the specific task types extend from `Task` allows `TaskList` to store them homogeneously. `Task` is made abstract as `ToDo` Task type models a basic task without a concept of time.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
