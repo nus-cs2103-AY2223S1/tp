@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.sort.SortByAppointment;
 import seedu.address.logic.parser.sort.SortByName;
+import seedu.address.logic.util.exceptions.SortedListException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
@@ -44,12 +45,6 @@ public class SortCommandTest {
     }
 
     @Test
-    public void testGetApptThrowsRuntimeException() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> MUSAB_WITH_NO_APPT.getAppointments().get(0));
-        assertEquals("Index 0 out of bounds for length 0", exception.getMessage());
-    }
-
-    @Test
     public void equals() {
         SortByName sortByName = new SortByName("asc");
         SortCommand sortByNameCommand = new SortCommand(sortByName, "name");
@@ -60,7 +55,7 @@ public class SortCommandTest {
 
         // same object -> returns true
         assertTrue(sortByNameCommand.equals(sortByNameCommand));
-        assertTrue(sortByAppointmentCommand.equals(sortByAppointmentCommand));
+        assertTrue(sortByAppointment.equals(sortByAppointment));
 
         // null -> returns false
         assertFalse(sortByAppointment.equals(null));
