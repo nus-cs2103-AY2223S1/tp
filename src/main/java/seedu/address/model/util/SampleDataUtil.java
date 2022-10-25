@@ -130,7 +130,7 @@ public class SampleDataUtil {
         };
     }
 
-    private static UniqueRemarkList getSampleUniqueRemarkList(String... remarksText) {
+    public static UniqueRemarkList getSampleUniqueRemarkList(String... remarksText) {
         UniqueRemarkList list = new UniqueRemarkList();
         for (String text : remarksText) {
             list.add(new Remark(new Text(text), new HashSet<>()));
