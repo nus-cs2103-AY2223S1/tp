@@ -211,7 +211,11 @@ public class ParserUtil {
      * Parses a {@String date} and returns LocalDate object.
      */
     public static LocalDate parseDateToFind(String date) throws ParseException {
+        requireNonNull(date);
         String trimmedDate = date.trim();
+        if (trimmedDate.isBlank() || !trimmedDate.matches(Class.VALIDATION_DATETIME_REGEX)) {
+            throw new ParseException(Class.INVALID_FIND_COMMAND_MESSAGE);
+        }
         if (Arrays.asList(DAYS_OF_WEEK).contains(trimmedDate.toUpperCase())) {
             targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedDate.toUpperCase());
             return LocalDate.now().with(DATE_ADJUSTER);
