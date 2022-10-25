@@ -132,16 +132,15 @@ The `Model` component,
 
 </div>
 
-#### Module Class
-`CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
+#### Person Class
+Each `Person` in the AddressBook is implemented in the following way:
 
-![Module Class Diagram](images/ModuleClassDiagram.png)
+![Person Class Diagram](images/PersonClassDiagram.png)
 
-All implementations of `Module`s have a name.
+All `Person`s have a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, and `PlannedModule`.
+`Person`s can have a `Github` URL to their profile added, and as many `Modules` as desired.
 
-`CurrentModule` has additional fields, which are implementations of `Lesson`s. These are `Tutorial`, `Recitation`, `Lab`, and `Lecture`.
-
-All implementations of `Lesson`s have a `StartTime` and `EndTime`.
+`User` Class is implemented the same way.
 
 
 ### Storage component
@@ -164,6 +163,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add / Delete Module
+
+#### Proposed Implementation of Module class
+`CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
+
+![Module Class Diagram](images/ModuleClassDiagram.png)
+
+All implementations of `Module`s have a name.
+
+`CurrentModule` has additional fields, which are implementations of `Lesson`s. These are `Tutorial`, `Recitation`, `Lab`, and `Lecture`.
+
+All implementations of `Lesson`s have a `StartTime` and `EndTime`.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -255,6 +267,10 @@ Each of the class types have the class fields, `type`, `module`, `day`, `startTi
 The following class diagram illustrates the class diagram of the `Lesson` class and subclasses.
 
 ![LessonClassDiagram](images/LessonClassDiagram-0.png)
+
+Each `Lesson` has a `moduleName:String`, `day:int` (between 1-7 inclusive, where 1 is Monday and 7 is Sunday),
+`type:String` (where type is tut / rec / lab / lec), `start:LocalTime` and `end:LocalTime` to in HH:mm format.
+
 
 The command has the prefix `lesson` and has the parameters
 `user / INDEX (must be a positive integer) [l/TYPE] [m/MODULE] [d/DAY] [start/START TIME] [end/END TIME]`

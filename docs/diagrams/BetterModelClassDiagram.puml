@@ -4,23 +4,10 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Class "Name" as PersonName
-Class "Name" as UserName
-Class "Tag" as PersonTag
-Class "Email" as PersonEmail
-Class "Email" as UserEmail
-Class "Phone" as PersonPhone
-Class "Phone" as UserPhone
-Class "Address" as PersonAddress
-Class "Address" as UserAddress
-Class "Github" as PersonGithub
-Class "Github" as UserGithub
+
 Class "CurrentModule" as PersonCurrentModule
-Class "CurrentModule" as UserCurrentModule
 Class "PreviousModule" as PersonPreviousModule
-Class "PreviousModule" as UserPreviousModule
 Class "PlannedModule" as PersonPlannedModule
-Class "PlannedModule" as UserPlannedModule
 
 
 AddressBook *--> "1" UniquePersonList
@@ -37,28 +24,9 @@ UniquePersonList --> Person
 UniqueCurrentModuleList *--> "*" PersonCurrentModule
 UniquePreviousModuleList *--> "*" PersonPreviousModule
 UniquePlannedModuleList *--> "*" PersonPlannedModule
-UniqueCurrentModuleList *--> "*" UserCurrentModule
-UniquePreviousModuleList *--> "*" UserPreviousModule
-UniquePlannedModuleList *--> "*" UserPlannedModule
 
-Person --> "*" PersonTag
-Person --> "*" PersonCurrentModule
-Person --> "*" PersonPlannedModule
-Person --> "*" PersonPreviousModule
+Tag -down[hidden]-> UniqueCurrentModuleList
+Tag -down[hidden]-> UniquePreviousModuleList
+Person -down[hidden]-> UniquePlannedModuleList
 
-Person *--> PersonName
-Person *--> PersonPhone
-Person *--> PersonEmail
-Person *--> PersonAddress
-Person *--> "0..1" PersonGithub
-
-User --> "*" UserCurrentModule
-User --> "*" UserPlannedModule
-User --> "*" UserPreviousModule
-
-User *--> UserName
-User *--> UserPhone
-User *--> UserEmail
-User *--> UserAddress
-User *--> "0..1" UserGithub
 @enduml
