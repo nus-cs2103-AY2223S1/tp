@@ -15,7 +15,7 @@ public class DeleteTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     /*
-    @Test
+      @Test
     public void execute_validIndexUnfilteredList_success() {
 
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());

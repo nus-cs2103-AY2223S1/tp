@@ -22,10 +22,11 @@ public class FindModulesCommandParser implements Parser<FindModulesCommand> {
      */
     public FindModulesCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String trimmedArgsLowerCase =  trimmedArgs.toLowerCase();
+        if (trimmedArgsLowerCase.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModulesCommand.MESSAGE_USAGE));
         }
-        return new FindModulesCommand(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(trimmedArgs)));
+        return new FindModulesCommand(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(trimmedArgsLowerCase)));
     }
 }

@@ -281,4 +281,14 @@ public class ModelManager implements Model {
         examFilteredList.setPredicate(predicate);
     }
 
+    @Override
+    public boolean equals(Model model) {
+        ModelManager modelManager = (ModelManager) model;
+        return model == this ||
+                moduleFilteredList.equals(modelManager.moduleFilteredList)
+                && taskFilteredList.equals(modelManager.taskFilteredList)
+                && examFilteredList.equals(modelManager.examFilteredList);
+               // moduleFilteredList.equals(model.getFilteredModuleList()) && taskFilteredList.equals(model.getFilteredTaskList())
+                //&& examFilteredList.equals(model.getFilteredExamList());
+    }
 }

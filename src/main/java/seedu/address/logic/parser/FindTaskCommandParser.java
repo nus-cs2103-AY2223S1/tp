@@ -21,10 +21,11 @@ public class FindTaskCommandParser implements Parser<FindTasksCommand> {
      */
     public FindTasksCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        String trimmedArgsLowerCase =  trimmedArgs.toLowerCase();
+        if (trimmedArgsLowerCase.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTasksCommand.MESSAGE_USAGE));
         }
-        return new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(trimmedArgs)));
+        return new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(trimmedArgsLowerCase)));
     }
 }

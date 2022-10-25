@@ -204,4 +204,6 @@ public interface Model {
      */
     void updateFilteredExamList(Predicate<Exam>predicate);
 
+
+    boolean equals(Model model);
 }
