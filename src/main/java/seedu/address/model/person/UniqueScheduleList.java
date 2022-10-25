@@ -103,7 +103,8 @@ public class UniqueScheduleList implements Iterable<Person> {
     }
 
     /**
-     *  Returns a {@code List<Person>} which contains the filtered person list.
+     *  Updates the {@code List<Person>} to ensure they have the correct display class date
+     *  and returns a {@code List<Person>} which contains the filtered person list.
      */
     private List<Person> getScheduleList() {
         internalList.stream()

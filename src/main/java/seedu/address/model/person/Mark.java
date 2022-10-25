@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's attendance for the current day.
- * Guarantees: immutable;
  */
 public class Mark {
     public static final String MESSAGE_CONSTRAINTS = "Mark can take in a boolean value,"
@@ -14,9 +13,9 @@ public class Mark {
     public Boolean isPresent;
 
     /**
-     * Constructs an {@code Mark}.
+     * Constructs {@code Mark} to track attendance.
      *
-     * @param isPresent the attendance of the student
+     * @param isPresent the attendance of the student.
      */
     public Mark(Boolean isPresent) {
         requireNonNull(isPresent);
@@ -25,17 +24,17 @@ public class Mark {
     }
 
     /**
-     * Constructs an {@code Mark} with default attendance as false.
+     * Constructs {@code Mark} with default attendance as false.
      */
     public Mark() {
         this.isPresent = Boolean.FALSE;
     }
 
     /**
-     * Validates whether attendance is valid boolean.
+     * Validates whether attendance is a valid boolean.
      *
-     * @param subjectToTest the attendance to be validated
-     * @return true if a given attendance is a boolean
+     * @param subjectToTest the attendance to be validated.
+     * @return true if a given attendance is a boolean.
      */
     public static boolean isValidAttendance(Boolean subjectToTest) {
         if (!(subjectToTest == Boolean.FALSE || subjectToTest == Boolean.TRUE)) {
@@ -44,6 +43,9 @@ public class Mark {
         return true;
     }
 
+    /**
+     * Resets the current attendance to false.
+     */
     public void reset() {
         this.isPresent = Boolean.FALSE;
     }

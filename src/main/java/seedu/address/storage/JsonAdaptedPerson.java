@@ -95,7 +95,6 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         isPresent = source.getMarkStatus().isPresent;
         displayedClass = source.getDisplayedClass().classDateTime;
-
     }
 
     /**
@@ -217,8 +216,6 @@ class JsonAdaptedPerson {
         } else {
             modelDisplayedClass = new Class();
         }
-
-
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelNokPhone, modelEmail, modelAddress, modelClassDateTime,

@@ -9,15 +9,15 @@ import seedu.address.model.person.Class;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.ClassStorage;
 
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+/**
+ * Marks an existing person as present for his/her class.
+ */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
@@ -40,7 +40,7 @@ public class MarkCommand extends Command {
         List<Person> lastShownList = model.getFilteredScheduleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_SCHEDULE_INDEX);
         }
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
@@ -49,7 +49,6 @@ public class MarkCommand extends Command {
         if (markedPerson.equals(personToMark)) {
             throw new CommandException("Person has been marked previously");
         }
-
 
         ClassStorage.saveClass(markedPerson, this.targetIndex.getZeroBased());
         ClassStorage.removeExistingClass(personToMark);
@@ -62,6 +61,9 @@ public class MarkCommand extends Command {
         return new CommandResult(MESSAGE_USAGE);
     }
 
+    /**
+     * Creates and returns a marked {@code Person} with the details of {@code personToMark}.
+     */
     private static Person createMarkedPerson(Person personToMark) {
         assert personToMark != null;
 
@@ -69,7 +71,6 @@ public class MarkCommand extends Command {
             return personToMark;
         }
 
-        // reference to EditCommand.java
         Name currentName = personToMark.getName();
         Phone currentPhone = personToMark.getPhone();
         Phone currentNokPhone = personToMark.getNokPhone();
@@ -81,12 +82,9 @@ public class MarkCommand extends Command {
         Money currentRatesPerClass = personToMark.getRatesPerClass();
         AdditionalNotes currentNotes = personToMark.getAdditionalNotes();
         Set<Tag> currentTags = personToMark.getTags();
-        Mark currentMarkStatus = personToMark.getMarkStatus();
-
-        Money updatedMoneyOwed = currentMoneyOwed.addTo(currentRatesPerClass);
+        Money updatedMoneyOwed = currentRatesPerClass.addTo(currentMoneyOwed);
         Class displayedClass = currentClassDateTime;
         Class updatedClassDateTime = currentClassDateTime.addDays(7);
-
         Mark updatedMarkStatus = new Mark(Boolean.TRUE);
 
         return new Person(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
