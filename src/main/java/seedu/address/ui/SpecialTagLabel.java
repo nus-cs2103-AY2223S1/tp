@@ -9,14 +9,13 @@ import javafx.scene.control.Label;
  */
 public class SpecialTagLabel extends Label {
 
-
     public static final String LOW_KEYWORD = "LOW";
     public static final String MEDIUM_KEYWORD = "MEDIUM";
     public static final String HIGH_KEYWORD = "HIGH";
     private static final String LOW_COLOR = "green";
     private static final String MEDIUM_COLOR = "orange";
     private static final String HIGH_COLOR = "red";
-    private static final String DEFAULT_COLOR = "#3e7b91";
+    private static final String DEFAULT_COLOR = "#d91175";
     private static final String TEXT_FILL_COLOR = "-fx-text-fill: white;";
     private static final String BACKGROUND_COLOR = "-fx-background-color: ";
     private static final String PADDING = "-fx-padding: 1 3 1 3;";
