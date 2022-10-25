@@ -35,20 +35,23 @@ public class TypicalStudents {
             .withTags("friends").build())
             .withId("A0121212W")
             .withTelegramHandle("@good_user12")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS2030S").build();
     public static final Student BENSON = new StudentBuilder(new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build())
             .withId("A0123456W")
             .withTelegramHandle("@good_user")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS1101S").build();
     public static final Student CARL = new StudentBuilder(new PersonBuilder().withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build())
             .withId("A0126532W")
             .withTelegramHandle("@bad_user")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS2030S").build();
     public static final Student DANIEL = new StudentBuilder(new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build())
@@ -60,19 +63,22 @@ public class TypicalStudents {
             .withEmail("werner@example.com").withAddress("michegan ave").build())
             .withId("A0124223G")
             .withTelegramHandle("@good321_user")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS2030S").build();
     public static final Student FIONA = new StudentBuilder(new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build())
             .withId("A0126393U")
             .withTelegramHandle("@good_use")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS2030S").build();
     public static final Student GEORGE = new StudentBuilder(new PersonBuilder().withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build())
             .withId("A0123431A")
             .withTelegramHandle("@good_user69")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS2030S").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder(new PersonBuilder().withName("Hoon Meier")
@@ -80,13 +86,15 @@ public class TypicalStudents {
             .withEmail("stefan@example.com").withAddress("little india").build())
             .withId("A0123999G")
             .withTelegramHandle("@HOON_user69")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS2030S").build();
     public static final Student IDA = new StudentBuilder(new PersonBuilder().withName("Ida Mueller")
             .withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build())
             .withId("A0353431G")
             .withTelegramHandle("@IDA_user69")
-            .withStudentInfo("CS1101S").build();
+            .withStudentInfo("CS1101S")
+            .withTeachingInfo("CS2030S").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder(new PersonBuilder().withName(VALID_NAME_AMY)
@@ -114,6 +122,9 @@ public class TypicalStudents {
         ProfNus ab = new ProfNus();
         for (Student student : getTypicalStudents()) {
             ab.addPerson(student);
+            if (student.isTeachingAssistant()) {
+                ab.addTutor(student);
+            }
         }
         return ab;
     }

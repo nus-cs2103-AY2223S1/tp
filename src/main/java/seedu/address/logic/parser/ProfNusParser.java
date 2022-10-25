@@ -11,7 +11,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteStudentCommand;
+import seedu.address.logic.commands.DeleteTaCommand;
 import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.EditTeachingAssistantCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -82,8 +83,11 @@ public class ProfNusParser {
             logger.fine("User creates an edit schedule command ");
             return new EditScheduleCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteStudentCommand.COMMAND_WORD:
+            return new DeleteStudentCommandParser().parse(arguments);
+
+        case DeleteTaCommand.COMMAND_WORD:
+            return new DeleteTaCommandParser().parse(arguments);
 
         case DeleteModuleCommand.COMMAND_WORD:
             return new DeleteModuleCommandParser().parse(arguments);
