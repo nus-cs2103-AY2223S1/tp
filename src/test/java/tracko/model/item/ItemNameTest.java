@@ -6,7 +6,7 @@ import static tracko.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class InventoryItemNameTest {
+public class ItemNameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -27,6 +27,7 @@ public class InventoryItemNameTest {
         // invalid ItemName
         assertFalse(ItemName.isValidItemName("")); // empty string
         assertFalse(ItemName.isValidItemName(" ")); // spaces only
+        assertFalse(ItemName.isValidItemName("!@#$%^&*")); // non-alphanumeric characters
 
         // valid ItemName
         assertTrue(ItemName.isValidItemName("Golden Spoon")); // alphabets only
