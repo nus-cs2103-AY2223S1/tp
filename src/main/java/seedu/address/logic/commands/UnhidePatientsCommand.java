@@ -11,35 +11,36 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.HiddenPredicateSingleton;
+import seedu.address.model.person.HideAppointmentPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 
 /**
- * Hides all persons previously hidden whose name contains any of the argument keywords.
+ * Hides all persons and their appointments in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class HidePatientsCommand extends Command {
+public class UnhidePatientsCommand extends Command {
 
-    public static final String COMMAND_WORD = "hide";
+    public static final String COMMAND_WORD = "unhide";
     public static final String DESCRIPTOR_WORD = "patients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all persons whose names or tags contain any of\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides all persons whose names or tags contain any of\n"
             + "the specified keywords (case-insensitive) and displays them and their appointments as 2 lists with\n"
-            + "index numbers. Also able to hide by patient tags.\n"
+            + "index numbers. Also able to unhide by patient tags.\n"
             + "Parameters: [" + PREFIX_NAME + "NAME [MORE_NAMES]]\n"
             + "OR: " + "[" + PREFIX_TAG + "TAG [MORE_TAGS]]...\n"
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " alice bob charlie";
 
     private Predicate<Person> predicate;
 
-    public HidePatientsCommand(Predicate<Person> predicate) {
+    public UnhidePatientsCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Person> combinedPredicate = HiddenPredicateSingleton.combineWithHiddenPredicate(predicate);
+        Predicate<Person> combinedPredicate = HiddenPredicateSingleton.combineWithUnhiddenPredicate(predicate);
         model.updateFilteredPersonList(combinedPredicate);
         List<Person> validPersons = model.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =
@@ -62,7 +63,7 @@ public class HidePatientsCommand extends Command {
             return false;
         }
 
-        HidePatientsCommand otherCommand = (HidePatientsCommand) other;
+        UnhidePatientsCommand otherCommand = (UnhidePatientsCommand) other;
         return otherCommand.predicate.equals(this.predicate);
     }
 

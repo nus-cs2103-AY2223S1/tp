@@ -41,6 +41,22 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
     }
 
     /**
+     * Removes the person from the current list of hidden persons.
+     * @param p Person to be unhidden.
+     */
+    public static void removeFromHiddenPersonList(Person p) {
+        hiddenPersons.remove(p);
+    }
+
+    /**
+     * Removes the appointment from the current list of hidden persons.
+     * @param a Appointment to be unhidden.
+     */
+    public static void removeFromHiddenAppointmentList(Appointment a) {
+        hiddenAppts.remove(a);
+    }
+
+    /**
      * Adds to the current list of hidden appointments.
      * @param p Appointment to be hidden.
      */
@@ -59,6 +75,16 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      */
     public static Predicate<Person> combineWithHiddenPredicate(Predicate<Person> p) {
         currPersonPredicate = currPersonPredicate.and(Predicate.not(p));
+        return currPersonPredicate;
+    }
+
+    /**
+     * Combines the current predicate shown on idENTify with the new predicate to hide patients by name or tag.
+     * @param p Predicate to exclude patients by.
+     * @return The predicate result of combining the exclusion predicate with the current predicate.
+     */
+    public static Predicate<Person> combineWithUnhiddenPredicate(Predicate<Person> p) {
+        currPersonPredicate = currPersonPredicate.or(p);
         return currPersonPredicate;
     }
 

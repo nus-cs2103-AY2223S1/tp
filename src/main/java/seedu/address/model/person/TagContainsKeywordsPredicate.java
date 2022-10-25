@@ -18,7 +18,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
      * @param keywords
      */
     public TagContainsKeywordsPredicate(String keywords) {
-        System.out.println(keywords);
         this.keywords = keywords;
     }
 
