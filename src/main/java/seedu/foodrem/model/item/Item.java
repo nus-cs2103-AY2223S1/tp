@@ -1,9 +1,10 @@
 package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -59,25 +60,20 @@ public class Item {
     }
 
     /**
-     * Creates and returns a {@code Item} with the tagSet of {@code itemToUntag}
-     * edited
+     * Creates and returns an {@code Item} with {@code tags}.
      */
-    public static Item createUntaggedItem(Item itemToUntag, Tag tag) {
-        requireNonNull(itemToUntag);
-        requireNonNull(tag);
+    public static Item createItemWithTags(Item item, Set<Tag> tags) {
+        requireNonNull(item);
+        requireNonNull(tags);
 
-        checkArgument(itemToUntag.containsTag(tag));
-
-        itemToUntag.removeItemTag(tag);
-
-        return new Item(itemToUntag.getName(),
-                itemToUntag.getQuantity(),
-                itemToUntag.getUnit(),
-                itemToUntag.getBoughtDate(),
-                itemToUntag.getExpiryDate(),
-                itemToUntag.getPrice(),
-                itemToUntag.getRemarks(),
-                itemToUntag.getTagSet()
+        return new Item(item.getName(),
+                item.getQuantity(),
+                item.getUnit(),
+                item.getBoughtDate(),
+                item.getExpiryDate(),
+                item.getPrice(),
+                item.getRemarks(),
+                tags
         );
     }
 
@@ -111,27 +107,6 @@ public class Item {
 
     public ItemRemark getRemarks() {
         return remarks;
-    }
-
-    /**
-     * Returns {@code true} if item contains a certain tag.
-     */
-    public boolean containsTag(Tag tag) {
-        return tagSet.contains(tag);
-    }
-
-    /**
-     * Adds a tag to the item's tagSet
-     */
-    public void addItemTag(Tag tag) {
-        tagSet.add(tag);
-    }
-
-    /**
-     * Removes a tag from the item's tagSet
-     */
-    public void removeItemTag(Tag tag) {
-        tagSet.remove(tag);
     }
 
     /**
@@ -180,8 +155,34 @@ public class Item {
      */
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, unit, boughtDate, expiryDate, price, remarks, tagSet);
+        // Use this method for custom fields hashing instead of implementing your own
+        // Defensive programming to guard against possible null values.
+        List<Object> attributesToHash = new ArrayList<>();
+        if (name != null) {
+            attributesToHash.add(name);
+        }
+        if (quantity != null) {
+            attributesToHash.add(quantity);
+        }
+        if (unit != null) {
+            attributesToHash.add(unit);
+        }
+        if (boughtDate != null) {
+            attributesToHash.add(boughtDate);
+        }
+        if (expiryDate != null) {
+            attributesToHash.add(expiryDate);
+        }
+        if (price != null) {
+            attributesToHash.add(price);
+        }
+        if (remarks != null) {
+            attributesToHash.add(remarks);
+        }
+        if (tagSet != null) {
+            attributesToHash.add(tagSet);
+        }
+        return Objects.hash(attributesToHash.toArray());
     }
 
     /**

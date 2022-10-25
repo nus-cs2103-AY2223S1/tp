@@ -37,26 +37,6 @@ public class TagCommand extends Command {
         this.tag = new Tag(tagName);
     }
 
-    /**
-     * Creates and returns a {@code Item} with the tagSet of {@code itemToEdit}
-     * edited
-     */
-    private static Item createTaggedItem(Item itemToTag, Tag tag) {
-        assert itemToTag != null;
-
-        itemToTag.addItemTag(tag);
-        Set<Tag> newTagSet = itemToTag.getTagSet();
-
-        return new Item(itemToTag.getName(),
-                itemToTag.getQuantity(),
-                itemToTag.getUnit(),
-                itemToTag.getBoughtDate(),
-                itemToTag.getExpiryDate(),
-                itemToTag.getPrice(),
-                itemToTag.getRemarks(),
-                newTagSet);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -71,11 +51,12 @@ public class TagCommand extends Command {
         }
 
         Item itemToTag = lastShownList.get(index.getZeroBased());
-        if (itemToTag.containsTag(tag)) {
+        Set<Tag> itemTags = itemToTag.getTagSet();
+        if (itemTags.contains(tag)) {
             throw new CommandException(ERROR_DUPLICATE);
         }
-
-        Item newTagSetItem = createTaggedItem(itemToTag, tag);
+        itemTags.add(tag);
+        Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
 
         model.setItem(itemToTag, newTagSetItem);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTagSetItem));
