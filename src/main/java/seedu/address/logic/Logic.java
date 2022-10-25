@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
