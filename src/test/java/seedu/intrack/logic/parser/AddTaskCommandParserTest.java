@@ -11,12 +11,12 @@ import seedu.intrack.model.internship.Task;
 
 public class AddTaskCommandParserTest {
     private AddTaskCommandParser parser = new AddTaskCommandParser();
-    private final String VALID_TASK = "Technical Interview /at 21-10-2022 10:00";
 
     @Test
     public void parse_inputSpecified_success() {
         // task present
-        String userInput = " " +  VALID_TASK;
+        String validTask = "Technical Interview /at 21-10-2022 10:00";
+        String userInput = " " + validTask;
         AddTaskCommand expectedCommand = new AddTaskCommand(
                 new Task("Technical Interview", "21-10-2022 10:00"));
         assertParseSuccess(parser, userInput, expectedCommand);
