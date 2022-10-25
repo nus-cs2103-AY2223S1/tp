@@ -89,7 +89,7 @@ Displays a helpful list of commands and their related syntax for the user to ref
 Format: `help`
 
 
-### Adding a person to the database: `addbuyer`
+### Adding a buyer to the database: `addbuyer`
 
 Adds a user to the database, with a tag to specify whether the user is a buyer or seller, or both.<br>
 Syntax: `addbuyer [-n NAME] [-ph PHONE]] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}`

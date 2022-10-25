@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.PersonBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
 
 /**
  * A utility class to help with building PersonBook objects.
@@ -19,10 +19,10 @@ public class PersonModelBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code PersonBook} that we are building.
+     * Adds a new {@code Buyer} to the {@code PersonBook} that we are building.
      */
-    public PersonModelBuilder withPerson(Person person) {
-        personBook.addPerson(person);
+    public PersonModelBuilder withPerson(Buyer buyer) {
+        personBook.addPerson(buyer);
         return this;
     }
 

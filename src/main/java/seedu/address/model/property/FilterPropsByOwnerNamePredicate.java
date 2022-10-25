@@ -2,7 +2,7 @@ package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.buyer.Name;
 
 /**
  * Tests that a {@code Property}'s {@code Owner} matches the given owner's name.

@@ -19,14 +19,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.PersonBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Buyer} objects to be used in tests.
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder()
+    public static final Buyer ALICE = new PersonBuilder()
             .withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
@@ -34,7 +34,7 @@ public class TypicalPersons {
             .withPriceRange("200 - 500")
             .withDesiredCharacteristics("Bright")
             .withPriority("normal").build();
-    public static final Person BENSON = new PersonBuilder()
+    public static final Buyer BENSON = new PersonBuilder()
             .withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com")
@@ -42,7 +42,7 @@ public class TypicalPersons {
             .withPriceRange("300 - 600")
             .withDesiredCharacteristics("Near MRT")
             .withPriority("high").build();
-    public static final Person CARL = new PersonBuilder()
+    public static final Buyer CARL = new PersonBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
@@ -51,14 +51,14 @@ public class TypicalPersons {
             .withDesiredCharacteristics("Near School")
             .withPriority("low").build();
     // Daniel has not specified his price range nor desired characteristics
-    public static final Person DANIEL = new PersonBuilder()
+    public static final Buyer DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withPriority("low").build();
     // Elle has not specified her price range nor desired characteristics
-    public static final Person ELLE = new PersonBuilder()
+    public static final Buyer ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
@@ -66,7 +66,7 @@ public class TypicalPersons {
             .withPriority("normal")
             .build();
     // Fiona has not specified her desired characteristics
-    public static final Person FIONA = new PersonBuilder()
+    public static final Buyer FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
@@ -74,7 +74,7 @@ public class TypicalPersons {
             .withPriority("high")
             .withPriceRange("500 - 700").build();
     // George has not specified his price range
-    public static final Person GEORGE = new PersonBuilder()
+    public static final Buyer GEORGE = new PersonBuilder()
             .withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com")
@@ -83,14 +83,14 @@ public class TypicalPersons {
             .withDesiredCharacteristics("Cooling").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder()
+    public static final Buyer HOON = new PersonBuilder()
             .withName("Hoon Meier")
             .withPhone("8482424")
             .withEmail("stefan@example.com")
             .withAddress("little india")
             .withPriceRange("120000 - 650000")
             .withDesiredCharacteristics("Big").build();
-    public static final Person IDA = new PersonBuilder()
+    public static final Buyer IDA = new PersonBuilder()
             .withName("Ida Mueller")
             .withPhone("8482131")
             .withEmail("hans@example.com")
@@ -98,8 +98,8 @@ public class TypicalPersons {
             .withPriceRange("30000 - 50000")
             .withDesiredCharacteristics("Kid-Friendly").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Person AMY = new PersonBuilder()
+    // Manually added - Buyer's details found in {@code CommandTestUtil}
+    public static final Buyer AMY = new PersonBuilder()
             .withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
@@ -107,7 +107,7 @@ public class TypicalPersons {
             .withPriceRange(VALID_PRICE_RANGE_AMY)
             .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_AMY)
             .withPriority(VALID_PRIORITY_HIGH).build();
-    public static final Person BOB = new PersonBuilder()
+    public static final Buyer BOB = new PersonBuilder()
             .withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
@@ -126,13 +126,13 @@ public class TypicalPersons {
      */
     public static PersonBook getTypicalPersonsBook() {
         PersonBook ab = new PersonBook();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+        for (Buyer buyer : getTypicalPersons()) {
+            ab.addPerson(buyer);
         }
         return ab;
     }
 
-    public static List<Person> getTypicalPersons() {
+    public static List<Buyer> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

@@ -6,7 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.buyer.Name;
 import seedu.address.model.property.Price;
 
 public class PriceRangeTest {
