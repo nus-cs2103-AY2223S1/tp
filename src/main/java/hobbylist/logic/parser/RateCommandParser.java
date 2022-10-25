@@ -38,9 +38,13 @@ public class RateCommandParser implements Parser<RateCommand> {
 
         Optional<Review> review;
         if (argMultimap.getValue(CliSyntax.PREFIX_REVIEW).isPresent()) {
-            review = Optional.of(new Review(argMultimap.getValue(CliSyntax.PREFIX_REVIEW).get()));
+            if (!argMultimap.getValue(CliSyntax.PREFIX_REVIEW).get().equals("")) {
+                review = Optional.of(new Review(argMultimap.getValue(CliSyntax.PREFIX_REVIEW).get()));
+            } else {
+                review = Optional.empty();
+            }
         } else {
-            review = Optional.empty();
+            review = null;
         }
 
         Index index;
