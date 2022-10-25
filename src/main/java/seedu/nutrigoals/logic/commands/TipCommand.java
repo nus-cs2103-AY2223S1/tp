@@ -13,7 +13,7 @@ import seedu.nutrigoals.model.Tip;
 public class TipCommand extends Command {
     public static final String COMMAND_WORD = "tip";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": displays a healthy-living tip\n"
+            + ": Displays a healthy-living tip.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String TIP_GENERATED_SUCCESS = "Here's your tip:\n%1$s";

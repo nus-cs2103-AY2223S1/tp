@@ -30,6 +30,7 @@ import seedu.nutrigoals.logic.commands.ReviewCommand;
 import seedu.nutrigoals.logic.commands.SetupCommand;
 import seedu.nutrigoals.logic.commands.SuggestCommand;
 import seedu.nutrigoals.logic.commands.TargetCommand;
+import seedu.nutrigoals.logic.commands.TipCommand;
 
 /**
  * Controller for a help page
@@ -143,6 +144,7 @@ public class HelpWindow extends UiPart<Stage> {
         treeMap.put(SetupCommand.COMMAND_WORD, SetupCommand.MESSAGE_USAGE.split(regex, 2)[1]);
         treeMap.put(SuggestCommand.COMMAND_WORD, SuggestCommand.MESSAGE_USAGE.split(regex, 2)[1]);
         treeMap.put(TargetCommand.COMMAND_WORD, TargetCommand.MESSAGE_USAGE.split(regex, 2)[1]);
+        treeMap.put(TipCommand.COMMAND_WORD, TipCommand.MESSAGE_USAGE.split(regex, 2)[1]);
         return treeMap;
     }
 
