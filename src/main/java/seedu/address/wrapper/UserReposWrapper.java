@@ -5,7 +5,6 @@ import static seedu.address.wrapper.UserReposRoute.getUserReposRoute;
 
 import org.json.JSONArray;
 
-import kong.unirest.Config;
 import kong.unirest.UnirestInstance;
 
 public class UserReposWrapper {
@@ -14,12 +13,10 @@ public class UserReposWrapper {
     private final UserReposRoute.UserReposRequest getUserReposRequest;
     private JSONArray reposJson;
 
-    public UserReposWrapper(String user) {
+    public UserReposWrapper(String user, UnirestInstance unirest) {
         requireAllNonNull(user);
 
         UserReposRoute getUserInfoGetInfoRoute = getUserReposRoute(user);
-        Config config = new Config();
-        UnirestInstance unirest = new UnirestInstance(config);
         getUserReposRequest = getUserInfoGetInfoRoute.createRequest(unirest);
     }
 

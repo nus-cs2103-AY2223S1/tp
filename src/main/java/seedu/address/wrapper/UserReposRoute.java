@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import kong.unirest.UnirestInstance;
 import seedu.address.wrapper.exceptions.JsonParseException;
-import seedu.address.wrapper.exceptions.ResponseInvalidException;
+import seedu.address.wrapper.exceptions.NetworkConnectionException;
 
 public class UserReposRoute {
     //@@author arnav-ag
@@ -84,7 +84,7 @@ public class UserReposRoute {
         static void ensureSuccessful(JSONObject response) {
             // Only appears when 404 response is given, only other response is 200 OK
             if (response.toMap().containsKey("message")) {
-                throw new ResponseInvalidException(SERVER_DOWN_STATUS_MESSAGE);
+                throw new NetworkConnectionException(SERVER_DOWN_STATUS_MESSAGE);
             }
         }
     }
