@@ -39,6 +39,14 @@
           </minWidth>
         </Label>
       </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label fx:id="duration">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+      </HBox>
       <FlowPane fx:id="tags" />
     </VBox>
   </GridPane>

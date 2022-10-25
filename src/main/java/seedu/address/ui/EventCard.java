@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 
 /**
@@ -27,6 +28,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label dateTime;
     @FXML
+    private Label duration;
+    @FXML
     private Label endDateTime;
     @FXML
     private FlowPane tags;
@@ -44,6 +47,7 @@ public class EventCard extends UiPart<Region> {
                 event.getStartDateTime().toString(),
                 event.getEndDateTime().toString());
         dateTime.setText(dateString);
+        duration.setText(DateTime.getDifferenceString(event.getStartDateTime(), event.getEndDateTime()));
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
