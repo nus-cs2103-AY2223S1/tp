@@ -1,7 +1,6 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import seedu.rc4hdb.logic.commands.CommandResult;
@@ -19,7 +18,7 @@ public class ResetCommand extends ColumnManipulatorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireValidList(model, fieldsToHide);
+        requireValidSubsetOfAlreadyVisibleFields(model, fieldsToHide);
 
         requireAtLeastOneVisibleColumn(fieldsToShow);
 

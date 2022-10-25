@@ -13,8 +13,6 @@ public class TypicalColumnManipulatorInputs {
 
     public static final String VALID_LETTERS = "n p e t";
 
-    public static final String VALID_LETTERS_COMPLEMENT = "i r m g h";
-
     public static final String DUPLICATE_LETTERS = "n p e t p";
 
     public static final String MIXED_CASE_LETTERS = "n P e T";
