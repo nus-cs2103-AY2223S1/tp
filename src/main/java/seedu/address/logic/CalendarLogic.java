@@ -85,7 +85,7 @@ public class CalendarLogic {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
-                refreshButton.getRoot());
+                refreshButton.getRoot(), jumpText.getRoot());
         topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
