@@ -49,19 +49,23 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Sorts clients according to parameters provided.
+     * Sorts by ascending order for name, income, and meeting dates.
+     */
     public void sort(String sortParam) {
         switch (sortParam) {
-            case "/n":
-                internalList.sort(Comparator.comparing(person -> person.getName().fullName));
-                break;
-            case "/i":
-                internalList.sort(Comparator.comparing(person -> person.getIncome().toInt()));
-                break;
-            case "/m":
-                internalList.sort(Comparator.comparing(person -> person.getMeetingDate().value));
-                break;
-            default:
-                break;
+        case "/n":
+            internalList.sort(Comparator.comparing(person -> person.getName().fullName));
+            break;
+        case "/i":
+            internalList.sort(Comparator.comparing(person -> person.getIncome().toInt()));
+            break;
+        case "/m":
+            internalList.sort(Comparator.comparing(person -> person.getMeetingDate().value));
+            break;
+        default:
+            break;
         }
     }
 
