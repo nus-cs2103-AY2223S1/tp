@@ -21,7 +21,7 @@ import jeryl.fyp.logic.commands.DeleteStudentCommand;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.logic.commands.ExitCommand;
-import jeryl.fyp.logic.commands.FindCommand;
+import jeryl.fyp.logic.commands.FindProjectNameCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
@@ -33,6 +33,7 @@ import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 import jeryl.fyp.testutil.StudentBuilder;
 import jeryl.fyp.testutil.StudentUtil;
+
 
 public class FypManagerParserTest {
 
@@ -77,9 +78,9 @@ public class FypManagerParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining("/")));
-        assertEquals(new FindCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
+        FindProjectNameCommand command = (FindProjectNameCommand) parser.parseCommand(
+                FindProjectNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining("/")));
+        assertEquals(new FindProjectNameCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

@@ -20,9 +20,9 @@ import jeryl.fyp.model.UserPrefs;
 import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindProjectNameCommand}.
  */
-public class FindCommandTest {
+public class FindProjectNameCommandTest {
     private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
@@ -33,14 +33,14 @@ public class FindCommandTest {
         ProjectNameContainsKeywordsPredicate secondPredicate =
                 new ProjectNameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindProjectNameCommand findFirstCommand = new FindProjectNameCommand(firstPredicate);
+        FindProjectNameCommand findSecondCommand = new FindProjectNameCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindProjectNameCommand findFirstCommandCopy = new FindProjectNameCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -57,7 +57,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("abc");
-        FindCommand command = new FindCommand(predicate);
+        FindProjectNameCommand command = new FindProjectNameCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
@@ -67,7 +67,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 2);
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("de/ woRld/ de ");
-        FindCommand command = new FindCommand(predicate);
+        FindProjectNameCommand command = new FindProjectNameCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredStudentList());
