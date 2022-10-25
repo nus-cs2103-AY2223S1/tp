@@ -33,13 +33,12 @@ public class Person {
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
-     * // Todo: Note that nokPhone will be initialized with passed-in arguments in future iteration.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Phone nokPhone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, nokPhone, email, address, tags);
         this.name = name;
         this.phone = phone;
-        this.nokPhone = new Phone();
+        this.nokPhone = nokPhone;
         this.email = email;
         this.address = address;
         this.aClass = new Class();

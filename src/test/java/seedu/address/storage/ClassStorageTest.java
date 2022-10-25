@@ -47,8 +47,9 @@ public class ClassStorageTest {
 
     @Test
     public void execute_saveClassFailure() throws Exception {
-        Person person = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
-                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1200-1400").build();
+        Person person = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
+                .withEmail("cornelia@example.com").withAddress("10th street")
+                .withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
@@ -60,8 +61,9 @@ public class ClassStorageTest {
 
     @Test
     public void execute_getIndexSuccess() throws Exception {
-        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438807")
-                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
+        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438807").withNokPhone("67192213")
+                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
+                .build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
@@ -73,8 +75,9 @@ public class ClassStorageTest {
     @Test
     public void execute_getIndexZero() throws Exception {
         // phone number here intentionally be wrong
-        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438811")
-                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
+        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438811").withNokPhone("67192213")
+                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
+                .build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
