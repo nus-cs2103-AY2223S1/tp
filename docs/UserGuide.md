@@ -23,7 +23,7 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
    3. Consultation dates
    4. Dates of Mastery Checks
    6. Remarks
-4. Edit grades of students
+4. Record grades of students
 5. Find individual student details
 6. View all students
 7. Mark Mastery Checks of students
@@ -117,9 +117,9 @@ The index of the student can be seen from the student list.<br>
 The remark is optional. Not including the remark (i.e. `remark INDEX`) will remove any existing remark from the student.<br>
 </div>
 
-### Editing grades for a student: `grade`
+### Recording grades for a student: `grade`
 
-Edits the grades of the assessments and examinations for a specified student.
+Records the grades of the assessments and examinations for a specified student.
 
 Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
 
@@ -129,6 +129,8 @@ The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 
 The scores are optional, but there should be at least one parameter.
 </div>
 
+Example after entering `grade 1 ra1/90 ra2/80 pa/100 mt/85 ft/78`:
+![GradeCommand.png](images/GradeCommand.png)
 
 ### Finding individual student details: `find`
 
@@ -230,7 +232,7 @@ Format: `help`
 | **Delete a student**                         | `delete i/INDEX`                                                                                         |
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
-| **Edit the grades for a student**            | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
+| **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
 | **Find a student's details**                 | `find k/keyword`                                                                                         |
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
 | **View all students**                        | `list`                                                                                                   |
