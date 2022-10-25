@@ -18,7 +18,6 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteBuyerCommand;
 import seedu.address.logic.commands.DeletePropertyCommand;
 import seedu.address.logic.commands.EditBuyerCommand;
-import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindBuyerCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -65,7 +64,7 @@ public class BuyerBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Buyer buyer = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(buyer).build();
+        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder(buyer).build();
         EditBuyerCommand command = (EditBuyerCommand) parser.parseCommand(EditBuyerCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_ITEM.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditBuyerCommand(INDEX_FIRST_ITEM, descriptor), command);

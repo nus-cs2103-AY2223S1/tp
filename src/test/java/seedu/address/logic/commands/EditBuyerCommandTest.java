@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditBuyerCommand.EditBuyerDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PersonBook;
@@ -41,7 +41,7 @@ public class EditBuyerCommandTest {
         Buyer currentBuyer = model.getFilteredPersonList().get(0);
         Buyer editedBuyer = new PersonBuilder().withPriceRange("20 - 50").withDesiredCharacteristics("Clean").build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedBuyer).build();
+        EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder(editedBuyer).build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM, descriptor);
 
         String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
@@ -63,7 +63,7 @@ public class EditBuyerCommandTest {
         Buyer editedBuyer = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withPriority(VALID_PRIORITY_LOW).build();
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withPriority(VALID_PRIORITY_LOW).build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(indexLastPerson, descriptor);
 
@@ -78,7 +78,7 @@ public class EditBuyerCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM, new EditPersonDescriptor());
+        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM, new EditBuyerDescriptor());
         Buyer editedBuyer = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
 
         String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer);
@@ -110,7 +110,7 @@ public class EditBuyerCommandTest {
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Buyer firstBuyer = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstBuyer).build();
+        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder(firstBuyer).build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_SECOND_ITEM, descriptor);
 
         assertCommandFailure(editBuyerCommand, model, EditBuyerCommand.MESSAGE_DUPLICATE_PERSON);
@@ -131,7 +131,9 @@ public class EditBuyerCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditBuyerCommand.EditBuyerDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
+                .build();
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editBuyerCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -159,7 +161,7 @@ public class EditBuyerCommandTest {
         final EditBuyerCommand standardCommand = new EditBuyerCommand(INDEX_FIRST_ITEM, DESC_AMY);
 
         // same values -> returns true
-        EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditBuyerDescriptor copyDescriptor = new EditBuyerDescriptor(DESC_AMY);
         EditBuyerCommand commandWithSameValues = new EditBuyerCommand(INDEX_FIRST_ITEM, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

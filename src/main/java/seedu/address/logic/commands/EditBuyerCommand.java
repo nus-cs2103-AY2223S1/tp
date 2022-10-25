@@ -54,18 +54,18 @@ public class EditBuyerCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This buyer already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditBuyerDescriptor editBuyerDescriptor;
 
     /**
      * @param index                of the buyer in the filtered buyer list to edit
-     * @param editPersonDescriptor details to edit the buyer with
+     * @param editBuyerDescriptor details to edit the buyer with
      */
-    public EditBuyerCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditBuyerCommand(Index index, EditBuyerDescriptor editBuyerDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editBuyerDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editBuyerDescriptor = new EditBuyerDescriptor(editBuyerDescriptor);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class EditBuyerCommand extends Command {
         }
 
         Buyer buyerToEdit = lastShownList.get(index.getZeroBased());
-        Buyer editedBuyer = createEditedPerson(buyerToEdit, editPersonDescriptor);
+        Buyer editedBuyer = createEditedPerson(buyerToEdit, editBuyerDescriptor);
 
         if (!buyerToEdit.isSamePerson(editedBuyer) && model.hasPerson(editedBuyer)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -91,22 +91,22 @@ public class EditBuyerCommand extends Command {
 
     /**
      * Creates and returns a {@code Buyer} with the details of {@code buyerToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editBuyerDescriptor}.
      */
-    private static Buyer createEditedPerson(Buyer buyerToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Buyer createEditedPerson(Buyer buyerToEdit, EditBuyerDescriptor editBuyerDescriptor) {
         assert buyerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(buyerToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(buyerToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(buyerToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(buyerToEdit.getAddress());
-        PriceRange updatedPriceRange = editPersonDescriptor
+        Name updatedName = editBuyerDescriptor.getName().orElse(buyerToEdit.getName());
+        Phone updatedPhone = editBuyerDescriptor.getPhone().orElse(buyerToEdit.getPhone());
+        Email updatedEmail = editBuyerDescriptor.getEmail().orElse(buyerToEdit.getEmail());
+        Address updatedAddress = editBuyerDescriptor.getAddress().orElse(buyerToEdit.getAddress());
+        PriceRange updatedPriceRange = editBuyerDescriptor
                 .getPriceRange()
                 .orElse(buyerToEdit.getPriceRange().orElse(null));
-        Characteristics updatedCharacteristics = editPersonDescriptor
+        Characteristics updatedCharacteristics = editBuyerDescriptor
                 .getDesiredCharacteristics()
                 .orElse(buyerToEdit.getDesiredCharacteristics().orElse(null));
-        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(buyerToEdit.getPriority());
+        Priority updatedPriority = editBuyerDescriptor.getPriority().orElse(buyerToEdit.getPriority());
 
         Buyer newBuyer = new Buyer(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedPriceRange, updatedCharacteristics, updatedPriority);
@@ -129,14 +129,14 @@ public class EditBuyerCommand extends Command {
         // state check
         EditBuyerCommand e = (EditBuyerCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editBuyerDescriptor.equals(e.editBuyerDescriptor);
     }
 
     /**
      * Stores the details to edit the buyer with. Each non-empty field value will replace the
      * corresponding field value of the buyer.
      */
-    public static class EditPersonDescriptor {
+    public static class EditBuyerDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
@@ -145,14 +145,13 @@ public class EditBuyerCommand extends Command {
         private Characteristics characteristics;
         private Priority priority;
 
-        public EditPersonDescriptor() {
-        }
+        public EditBuyerDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditBuyerDescriptor(EditBuyerDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -242,12 +241,12 @@ public class EditBuyerCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditBuyerDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditBuyerDescriptor e = (EditBuyerDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

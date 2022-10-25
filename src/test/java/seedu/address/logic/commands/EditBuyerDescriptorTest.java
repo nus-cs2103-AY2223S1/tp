@@ -14,7 +14,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_L
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditBuyerCommand.EditBuyerDescriptor;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditBuyerDescriptorTest {
@@ -22,7 +22,8 @@ public class EditBuyerDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
+        EditBuyerDescriptor descriptorWithSameValues = new EditBuyerCommand
+                .EditBuyerDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -38,7 +39,7 @@ public class EditBuyerDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        EditBuyerDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false

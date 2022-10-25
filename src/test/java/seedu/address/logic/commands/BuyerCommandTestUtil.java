@@ -77,8 +77,8 @@ public class BuyerCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditBuyerCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditBuyerCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditBuyerCommand.EditBuyerDescriptor DESC_AMY;
+    public static final EditBuyerCommand.EditBuyerDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
