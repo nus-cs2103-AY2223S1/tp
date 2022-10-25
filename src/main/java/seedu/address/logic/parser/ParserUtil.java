@@ -9,9 +9,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -71,6 +73,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing whitespaces
+     * will be trimmed.
+     *
+     * @param oneBasedIndexes One-based Indexes.
+     * @return List of Indexes.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseIndexes(String oneBasedIndexes) throws ParseException {
+        String trimmedIndexes = oneBasedIndexes.trim();
+        String[] indexes = trimmedIndexes.split("\\s+");
+        List<Index> resultIndexes = new ArrayList<>();
+        for (int i = 0; i < indexes.length; i++) {
+            String index = indexes[i];
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            resultIndexes.add(Index.fromOneBased(Integer.parseInt(index)));
+        }
+        return resultIndexes;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -87,13 +111,13 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Any whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
-        String trimmedPhone = phone.trim();
+        String trimmedPhone = phone.replaceAll("\\s+", "");
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
