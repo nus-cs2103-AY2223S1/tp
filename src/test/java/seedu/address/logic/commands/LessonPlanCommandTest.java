@@ -107,6 +107,15 @@ class LessonPlanCommandTest {
     }
 
     @Test
+    public void execute_inDayView_failure() {
+        model.setDayView();
+        LessonPlanCommand lessonPlanCommand = new LessonPlanCommand(
+                INDEX_FIRST_PERSON, new LessonPlan(VALID_LESSON_PLAN_BOB));
+
+        assertCommandFailure(lessonPlanCommand, model, LessonPlanCommand.MESSAGE_IN_DAY_MODE);
+    }
+
+    @Test
     public void equals() {
         final LessonPlanCommand standardCommand = new LessonPlanCommand(INDEX_FIRST_PERSON,
                 new LessonPlan(VALID_LESSON_PLAN_AMY));

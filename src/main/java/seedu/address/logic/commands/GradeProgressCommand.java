@@ -34,6 +34,8 @@ public class GradeProgressCommand extends Command {
     public static final String MESSAGE_ADD_GRADEPROGRESS_SUCCESS = "Added grade progress to Person: %1$s";
     public static final String MESSAGE_DELETE_GRADEPROGRESS_SUCCESS = "Removed grade progress from Person: %1$s";
 
+    public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to add a grade progress.";
+
     private final Index index;
     private final GradeProgress gradeProgress;
 
@@ -49,6 +51,10 @@ public class GradeProgressCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (model.isDayView()) {
+            throw new CommandException(MESSAGE_IN_DAY_MODE);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

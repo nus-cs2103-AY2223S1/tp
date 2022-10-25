@@ -115,6 +115,15 @@ public class AttendanceCommandTest {
     }
 
     @Test
+    public void execute_inDayView_failure() {
+        model.setDayView();
+        AttendanceCommand attendanceCommand = new AttendanceCommand(INDEX_FIRST_PERSON,
+                new Attendance(VALID_ATTENDANCE_AMY));
+
+        assertCommandFailure(attendanceCommand, model, AttendanceCommand.MESSAGE_IN_DAY_MODE);
+    }
+
+    @Test
     public void equals() {
         final AttendanceCommand attendanceCommand = new AttendanceCommand(INDEX_FIRST_PERSON,
                 new Attendance(VALID_ATTENDANCE_AMY));

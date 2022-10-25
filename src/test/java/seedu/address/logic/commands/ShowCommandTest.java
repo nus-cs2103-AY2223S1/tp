@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -21,8 +22,16 @@ import seedu.address.model.person.DayIsKeywordPredicate;
  * Contains integration tests (interaction with the Model) for {@code ShowCommand}.
  */
 public class ShowCommandTest {
+    private static final String DAY_STUB = "Sat";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void execute_inFullView_failure() {
+        model.setFullView();
+        ShowCommand showCommand = new ShowCommand(DAY_STUB);
+        assertCommandFailure(showCommand, model, ShowCommand.MESSAGE_NOT_LIST_MODE);
+    }
 
     @Test
     public void equals() {
@@ -51,11 +60,10 @@ public class ShowCommandTest {
 
     @Test
     public void execute_zeroKeywords_noTimeSlotsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0, "Sat");
-        String keyword = "Sat";
-        ShowCommand command = new ShowCommand(keyword);
-        expectedModel.updateFilteredPersonList(new DayIsKeywordPredicate(keyword));
-        expectedModel.updateTimeSlots(keyword);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0, DAY_STUB);
+        ShowCommand command = new ShowCommand(DAY_STUB);
+        expectedModel.updateFilteredPersonList(new DayIsKeywordPredicate(DAY_STUB));
+        expectedModel.updateTimeSlots(DAY_STUB);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getTimeSlotList());
     }
