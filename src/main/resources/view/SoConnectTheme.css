@@ -255,11 +255,6 @@
     -fx-vgap: 10;
 }
 
-#todoTags {
-    -fx-hgap: 10;
-    -fx-vgap: 10;
-}
-
 /* Handles style of Todo List Card */
 .todo-heading {
     -fx-font-size: 28pt;
@@ -283,6 +278,11 @@
     -fx-font-size: 15px;
     -fx-font-weight: 600;
     -fx-text-fill: #C3E0FF;
+}
+
+#todoTags {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
 }
 
 /* This is the styling for scrolling vertical bar beside Command Result Display, Contact and Todo. */
