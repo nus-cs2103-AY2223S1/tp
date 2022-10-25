@@ -2,14 +2,14 @@ package seedu.address.wrapper;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import kong.unirest.Config;
 import kong.unirest.HttpRequestSummary;
 import kong.unirest.HttpResponse;
 import kong.unirest.Interceptor;
 import kong.unirest.UnirestInstance;
+import seedu.address.model.person.github.User;
+import seedu.address.storage.Storage;
+import seedu.address.wrapper.exceptions.NetworkConnectionException;
 import seedu.address.wrapper.exceptions.RepoNotFoundException;
 import seedu.address.wrapper.exceptions.UserInvalidException;
 
@@ -17,17 +17,22 @@ public class GithubWrapper {
     //@@author arnav-ag
     private final static String BASE_CHECK_USER_URL = "https://api.github.com/users/";
     private final static String BASE_GITHUB_URL = "https://www.github.com/";
-    final private UserInfoWrapper userInfoWrapper;
-    final private UserReposWrapper userReposWrapper;
+    final private UnirestInstance unirest;
+    final private Storage storage;
 
-    public GithubWrapper(String username) throws UserInvalidException, RepoNotFoundException {
+    public GithubWrapper(Storage storage) {
+
+        unirest = getDefaultUnirestInstance();
+        this.storage = storage;
+    }
+
+    User getUser(String username) throws UserInvalidException, NetworkConnectionException {
         requireAllNonNull(username);
-
-        UnirestInstance unirest = getDefaultUnirestInstance();
         checkUserExists(username, unirest);
+        UserInfoWrapper userInfoWrapper = new UserInfoWrapper(username, unirest, storage);
+        UserReposWrapper userReposWrapper = new UserReposWrapper(username, unirest);
 
-        userInfoWrapper = new UserInfoWrapper(username, unirest);
-        userReposWrapper = new UserReposWrapper(username, unirest);
+        return new User(username, userInfoWrapper, userReposWrapper);
     }
 
     public static UnirestInstance getDefaultUnirestInstance() {
@@ -44,50 +49,14 @@ public class GithubWrapper {
                 @Override
                 public HttpResponse<?> onFail(Exception e, HttpRequestSummary request, Config config)
                     throws RepoNotFoundException {
-                    throw new RepoNotFoundException("Error while getting request, unable to get results.");
+                    throw new NetworkConnectionException("Error while getting request, unable to get results.");
                 }
             });
         return new UnirestInstance(config);
     }
 
     private void checkUserExists(String username, UnirestInstance unirest)
-        throws UserInvalidException, RepoNotFoundException {
+        throws UserInvalidException, NetworkConnectionException {
         unirest.get(BASE_CHECK_USER_URL + username).asEmpty();
-    }
-
-    public Optional<String> getName() {
-        return userInfoWrapper.getName();
-    }
-
-    public Optional<String> getEmail() {
-        return userInfoWrapper.getEmail();
-    }
-
-    public Optional<String> getAddress() {
-        return userInfoWrapper.getLocation();
-    }
-
-    public String getUsername() {
-        return userInfoWrapper.getUsername();
-    }
-
-    public String getAvatarUrl() {
-        return userInfoWrapper.getAvatarUrl();
-    }
-
-    public String getUrl() {
-        return userInfoWrapper.getUrl();
-    }
-
-    public ArrayList<Integer> getRepoIds() {
-        return userReposWrapper.getIDs();
-    }
-
-    public String getRepoName(int id) {
-        return userReposWrapper.getRepoName(id);
-    }
-
-    public String getRepoUrl(int id) {
-        return userReposWrapper.getRepoUrl(id);
     }
 }

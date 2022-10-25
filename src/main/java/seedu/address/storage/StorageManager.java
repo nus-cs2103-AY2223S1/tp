@@ -1,7 +1,10 @@
 package seedu.address.storage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -17,8 +20,8 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final AddressBookStorage addressBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -43,6 +46,11 @@ public class StorageManager implements Storage {
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
+    }
+
+    @Override
+    public Path getUserPrefsDirectoryPath() {
+        return userPrefsStorage.getUserPrefsDirectoryPath();
     }
 
 
@@ -73,6 +81,15 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ Image methods ==============================
+
+    @Override
+    public void saveImage(BufferedImage image, String filePath) throws IOException {
+        Path savePath = Paths.get(userPrefsStorage.getUserPrefsDirectoryPath().toString(), filePath);
+        logger.fine("Attempting to write to image file: " + filePath);
+        ImageIO.write(image, "png", savePath.toFile());
     }
 
 }

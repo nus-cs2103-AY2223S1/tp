@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.json.JSONObject;
 
 import kong.unirest.UnirestInstance;
+import seedu.address.storage.Storage;
 
 public class UserInfoWrapper {
     //@@author arnav-ag
@@ -21,10 +22,10 @@ public class UserInfoWrapper {
     private final String LOCATION_KEY = "location";
     private final String IMAGE_LOCATION_KEY = "avatar_url";
 
-    public UserInfoWrapper(String user, UnirestInstance unirest) {
+    public UserInfoWrapper(String user, UnirestInstance unirest, Storage storage) {
         requireAllNonNull(user);
 
-        UserInfoRoute getUserInfoUserInfoRoute = UserInfoRoute.getUserInfoRoute(user);
+        UserInfoRoute getUserInfoUserInfoRoute = UserInfoRoute.getUserInfoRoute(user, storage);
         getUserInfoUserInfoRequest = getUserInfoUserInfoRoute.createRequest(unirest);
     }
 

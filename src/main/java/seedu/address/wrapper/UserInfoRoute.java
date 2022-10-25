@@ -2,11 +2,17 @@ package seedu.address.wrapper;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import kong.unirest.Unirest;
 import kong.unirest.UnirestInstance;
-import seedu.address.wrapper.exceptions.JsonParseException;
+import seedu.address.storage.Storage;
+import seedu.address.wrapper.exceptions.ResponseParseException;
 
 public final class UserInfoRoute {
     //@@author arnav-ag
@@ -16,21 +22,25 @@ public final class UserInfoRoute {
 
     private final static String GET_USER_BASE_PATH = "/users/";
     private final String path;
+    private final Storage storage;
+    private final String username;
 
-    private UserInfoRoute(String path) {
-        requireAllNonNull(path);
+    private UserInfoRoute(String path, String username, Storage storage) {
+        requireAllNonNull(path, username, storage);
         this.path = path;
+        this.storage = storage;
+        this.username = username;
     }
 
-    public static UserInfoRoute getUserInfoRoute(String user) {
-        requireAllNonNull(user);
-        return new UserInfoRoute(GET_USER_BASE_PATH + user);
+    public static UserInfoRoute getUserInfoRoute(String username, Storage storage) {
+        requireAllNonNull(username);
+        return new UserInfoRoute(GET_USER_BASE_PATH + username, username, storage);
     }
 
     public UserInfoRequest createRequest(UnirestInstance unirest) {
         requireAllNonNull(unirest);
 
-        return new UserInfoRequest(unirest, BASE_GITHUB_URL + this.path);
+        return new UserInfoRequest(unirest, BASE_GITHUB_URL + this.path, storage, username);
     }
 
     public String getPath() {
@@ -38,14 +48,19 @@ public final class UserInfoRoute {
     }
 
     public static class UserInfoRequest {
+        private final Storage storage;
 
         private final UnirestInstance unirest;
         private final String url;
 
-        UserInfoRequest(UnirestInstance unirest, String url) {
-            requireAllNonNull(unirest, url);
+        private final String username;
+
+        UserInfoRequest(UnirestInstance unirest, String url, Storage storage, String username) {
+            requireAllNonNull(unirest, url, storage, username);
             this.unirest = unirest;
             this.url = url;
+            this.storage = storage;
+            this.username = username;
         }
 
         public JSONObject getJSON() {
@@ -54,9 +69,22 @@ public final class UserInfoRoute {
             try {
                 return new JSONObject(response);
             } catch (JSONException e) {
-                throw new JsonParseException("Unable to parse API result.");
+                throw new ResponseParseException("Unable to parse API result.");
             }
         }
+
+        public void downloadAvatarImage(String fileUrl) {
+            Unirest.get(fileUrl).thenConsume(rawResponse -> {
+                try {
+                    BufferedImage image = ImageIO.read(rawResponse.getContent());
+                    storage.saveImage(image, username + ".png");
+                } catch (IOException e) {
+                    throw new ResponseParseException("Error saving user avatar.");
+                }
+            });
+
+        }
+
     }
 
 }

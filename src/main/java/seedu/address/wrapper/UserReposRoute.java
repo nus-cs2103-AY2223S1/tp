@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import kong.unirest.UnirestInstance;
-import seedu.address.wrapper.exceptions.JsonParseException;
+import seedu.address.wrapper.exceptions.ResponseParseException;
 
 public class UserReposRoute {
     //@@author arnav-ag
@@ -54,7 +54,7 @@ public class UserReposRoute {
             try {
                 return new JSONArray(response);
             } catch (JSONException e) {
-                throw new JsonParseException("Unable to parse API result.");
+                throw new ResponseParseException("Unable to parse API result.");
             }
         }
     }

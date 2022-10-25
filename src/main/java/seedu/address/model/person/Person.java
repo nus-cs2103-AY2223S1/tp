@@ -42,7 +42,7 @@ public class Person implements Comparable<Person> {
         this.address = address;
         // mock user
         // Todo: Add githubUser to constructor
-        this.gitHubUser = new User("");
+        this.gitHubUser = new User("arnav-ag");
         this.role = role;
         this.timezone = timezone;
         this.tags.addAll(tags);
@@ -157,7 +157,7 @@ public class Person implements Comparable<Person> {
         getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
         builder.append("; Github: ")
-                .append(getGitHubUser());
+            .append(getGitHubUser());
         return builder.toString();
     }
 
