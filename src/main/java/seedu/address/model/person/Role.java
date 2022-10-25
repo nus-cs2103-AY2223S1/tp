@@ -4,7 +4,7 @@ package seedu.address.model.person;
  * Represents a Software Engineer's role in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
-public class Role {
+public class Role implements Comparable<Role> {
     public static final String MESSAGE_CONSTRAINTS =
         "Roles should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -25,6 +25,11 @@ public class Role {
      */
     public static boolean isValidRole(String roleString) {
         return roleString.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(Role o) {
+        return role.compareToIgnoreCase(o.role);
     }
 
     @Override

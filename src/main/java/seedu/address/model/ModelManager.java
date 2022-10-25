@@ -40,8 +40,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedPersons = new SortedList<>(filteredPersons);
-        // Default comparator
-        sortedPersons.setComparator(Person::compareTo);
 
         selectedPerson = new SimpleObjectProperty<>();
     }
