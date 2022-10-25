@@ -127,7 +127,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Friday`, which `Student` references. This allows `Friday` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -142,7 +142,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both FRIDAY data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `FridayStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -159,21 +159,21 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedFriday`. It extends `Friday` with an undo/redo history, stored internally as an `FridayStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current FRIDAY state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous FRIDAY state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone FRIDAY state from its history.
+* `VersionedFriday#commit()` — Saves the current FRIDAY state in its history.
+* `VersionedFriday#undo()` — Restores the previous FRIDAY state from its history.
+* `VersionedFriday#redo()` — Restores a previously undone FRIDAY state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitFriday()`, `Model#undoFriday()` and `Model#redoFriday()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.
+Step 1. The user launches the application for the first time. The `VersionedFriday` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitFriday()`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -363,9 +363,9 @@ Step 2. The `GradeCommand` will access the `GradesList` of the specified student
   * Pros: More flexibility and freedom for user
   * Cons: Very difficult to check for valid scores due to large number of possibility, not standardised for every student and grade, less able to compare the students' strengths and weaknesses in certain assessments, and difficult to implement.
 
-### \[Proposed\] Find feature
+### Find feature
 
-#### Proposed Implementation
+#### Implementation
 The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
 logic established. However, it is unique in the sense that it will look through all the possible fields and data
 and return matches.
@@ -378,11 +378,6 @@ and their data into a list of students.
 Step 2. When user types in the find command the logic will tell the program to go through all the fields for every 
 student inside the student class and return the student if there is a successful match in any of the fields 
 
-#### Design considerations:
-
-**Aspect: How find command is implemented:**
-
-_{To add other design considerations}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
