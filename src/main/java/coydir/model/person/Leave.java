@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; name is valid as declared in {@link #isValidLeave}
  */
 public class Leave {
-    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static final String MESSAGE_CONSTRAINTS = "Input for leave period is invalid \n";
             
     public final LocalDate startDate;
@@ -21,6 +21,7 @@ public class Leave {
      * @param endDate A valid start date.
      */
     public Leave(String startDate, String endDate) {
+        
         this.startDate = LocalDate.parse(startDate, FORMAT);
         this.endDate = LocalDate.parse(endDate, FORMAT);
     }

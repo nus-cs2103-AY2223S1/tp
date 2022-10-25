@@ -1,5 +1,7 @@
 package coydir.storage;
 
+import java.time.format.DateTimeFormatter;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -30,19 +32,10 @@ class JsonAdaptedLeave {
      * Converts a given {@code Leave} into this class for Jackson use.
      */
     public JsonAdaptedLeave(Leave source) {
-        this.startDate = String.valueOf(source.startDate);
-        this.endDate = String.valueOf(source.endDate);
+        this.startDate = source.startDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        this.endDate = source.endDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
-    @JsonValue
-    public String getStartDate() {
-        return this.startDate;
-    }
-
-    @JsonValue
-    public String getEndDate() {
-        return this.endDate;
-    }
 
     /**
      * Converts this Jackson-friendly adapted Leave object into the model's {@code Leave} object.
@@ -51,7 +44,7 @@ class JsonAdaptedLeave {
      */
     public Leave toModelType() throws IllegalValueException {
         if (!Leave.isValidLeave(startDate, endDate)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException("Leave not valid");
         }
         return new Leave(startDate, endDate);
     }

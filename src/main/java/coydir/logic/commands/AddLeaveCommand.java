@@ -60,6 +60,7 @@ public class AddLeaveCommand extends Command {
                     }
                 }
                 person.addLeave(leave);
+                person.setLeavesLeft(person.getLeavesLeft() - leave.getTotalDays());
                 return new CommandResult(String.format(MESSAGE_LEAVE_ADDED_SUCCESS,person.getName()));
             }
         }
