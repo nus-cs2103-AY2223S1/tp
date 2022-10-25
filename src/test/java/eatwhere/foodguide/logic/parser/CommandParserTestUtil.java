@@ -22,7 +22,7 @@ public class CommandParserTestUtil {
             assertEquals(expectedCommand, command);
         } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid userInput.", e);
-        } catch (DisplayCommandHelpException e){
+        } catch (DisplayCommandHelpException e) {
             throw new AssertionError("A DisplayCommandHelpException was unexpectedly thrown.");
         }
     }
