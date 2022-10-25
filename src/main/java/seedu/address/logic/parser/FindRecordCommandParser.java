@@ -1,8 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,15 +24,25 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindRecordCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_RECORD, PREFIX_MEDICATION);
+
+        if (!somePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_RECORD, PREFIX_MEDICATION)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindRecordCommand(new RecordContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        Optional<String> recordDate = ParserUtil.parseDateKeyword(argMultimap.getAllValues(PREFIX_DATE));
+        List<String> recordkeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_RECORD).orElse(""));
+        List<String> medications = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
+        return new FindRecordCommand(new RecordContainsKeywordsPredicate(recordkeywords, medications, recordDate));
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean somePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 }

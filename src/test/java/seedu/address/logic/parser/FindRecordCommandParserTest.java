@@ -26,10 +26,10 @@ public class FindRecordCommandParserTest {
         // no leading and trailing whitespaces
         FindRecordCommand expectedFindRecordCommand =
                 new FindRecordCommand(new RecordContainsKeywordsPredicate(Arrays.asList("flu", "cold")));
-        assertParseSuccess(parser, "flu cold", expectedFindRecordCommand);
+        assertParseSuccess(parser, " r/flu cold", expectedFindRecordCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n flu \n \t cold  \t", expectedFindRecordCommand);
+        assertParseSuccess(parser, " r/flu \n \t cold  \t", expectedFindRecordCommand);
     }
 
 }

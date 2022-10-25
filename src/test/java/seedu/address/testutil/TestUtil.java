@@ -65,6 +65,7 @@ public class TestUtil {
      */
     public static Model prepareModel() {
         Person benson = new PersonBuilder().withName("Benson Meier")
+                .withBirthdate("08-08-1988")
                 .withAddress("311, Clementi Ave 2, #02-25")
                 .withEmail("johnd@example.com").withPhone("98765432")
                 .withTags("owesMoney", "friends").withRecordList(RECORD1, RECORD2, RECORD3).build();

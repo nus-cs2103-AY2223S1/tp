@@ -21,12 +21,14 @@ public class Person {
 
     // Default Fields
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_BIRTHDATE = "06-06-1966";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     // Identity fields
     private final Name name;
+    private final Birthdate birthdate;
     private final Phone phone;
     private final Email email;
 
@@ -39,10 +41,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Person(Name name, Birthdate birthdate, Phone phone, Email email, Address address, Set<Tag> tags,
                   RecordList records, Appointment appointment) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, birthdate, phone, email, address, tags);
         this.name = name;
+        this.birthdate = birthdate;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -53,6 +56,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public Birthdate getBirthdate() {
+        return birthdate;
     }
 
     public Phone getPhone() {
@@ -94,6 +101,24 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns the age of a Person.
+     *
+     * @return the age of a Person.
+     */
+    public int getAge() {
+        return this.birthdate.calculateAge();
+    }
+
+    /**
+     * Returns the String representation of a Person's birthdate, when displayed on the GUI.
+     *
+     * @return the String representation of a Person's birthdate, when displayed on the GUI.
+     */
+    public String displayBirthdate() {
+        return this.birthdate.toDisplayFormat();
     }
 
     //======= Record List ========================================
@@ -169,6 +194,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
+                && otherPerson.getBirthdate().equals(getBirthdate())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
@@ -178,13 +204,15 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, birthdate, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Birthdate: ")
+                .append(getBirthdate())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")

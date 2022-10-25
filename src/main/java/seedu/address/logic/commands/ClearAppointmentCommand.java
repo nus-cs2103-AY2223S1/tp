@@ -32,7 +32,8 @@ public class ClearAppointmentCommand extends Command {
         List<Person> lastShownList = CommandUtil.prepareFilteredList(model, index);
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getBirthdate(),
+                personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(),
                 personToEdit.getRecordList(), Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED));
 
@@ -41,4 +42,10 @@ public class ClearAppointmentCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ClearAppointmentCommand // instanceof handles nulls
+                && index.equals(((ClearAppointmentCommand) other).index)); // state check
+    }
 }
