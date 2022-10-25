@@ -25,8 +25,8 @@ public class DeleteTaskAllCommand extends Command {
 
     public static final String COMMAND_WORD = "deletetaskall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete task from all users in a group. "
-            + "Members who do not have this task are skipped over. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from all users in a group. "
+            + "Members without this task are ignored\n"
             + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
             + "Example: " + COMMAND_WORD + " g/Group Alpha task/Coursework 0";
 
@@ -102,6 +102,7 @@ public class DeleteTaskAllCommand extends Command {
                     personToDeleteTask.getAddress(), personToDeleteTask.getTags(),
                     assignments, personToDeleteTask.getPersonGroups());
 
+            editedPerson.setWorkloadScore();
             model.setPerson(personToDeleteTask, editedPerson);
             successfullyDeleted.add(editedPerson);
         }

@@ -24,9 +24,10 @@ public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "deletetask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete task from a user with the given name in a group"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes a task from a user with the given name in a group.\n"
             + "Parameters: NAME " + PREFIX_GROUP + "GROUP " + PREFIX_TASK + "TASK\n"
-            + "Example: " + COMMAND_WORD + " alice g/Group Alpha task/Coursework 0";
+            + "Example: " + COMMAND_WORD + " Alice g/Group Alpha task/Coursework 0";
 
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
@@ -94,6 +95,7 @@ public class DeleteTaskCommand extends Command {
                 personToDeleteTask.getAddress(), personToDeleteTask.getTags(),
                 assignments, personToDeleteTask.getPersonGroups());
 
+        editedPerson.setWorkloadScore();
         model.setPerson(personToDeleteTask, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 

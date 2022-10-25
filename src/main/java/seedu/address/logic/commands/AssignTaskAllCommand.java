@@ -29,10 +29,10 @@ public class AssignTaskAllCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntaskall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assign task to all users in a group.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to all users in a group. "
+            + "Members with the same task are ignored.\n"
             + "Workload specified must be low, medium or high.\n"
             + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format\n"
-            + "Members with a similarly named task are skipped over.\n"
             + "Parameters: "
             + PREFIX_GROUP + "GROUP "
             + PREFIX_TASK + "TASK"
@@ -109,6 +109,7 @@ public class AssignTaskAllCommand extends Command {
                     personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
                     personToAssignTask.getPersonGroups());
 
+            editedPerson.setWorkloadScore();
             model.setPerson(personToAssignTask, editedPerson);
             successfullyAdded.add(editedPerson);
         }

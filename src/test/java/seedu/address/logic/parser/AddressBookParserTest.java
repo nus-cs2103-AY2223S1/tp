@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WORKLOAD;
 import static seedu.address.model.person.testutil.Assert.assertThrows;
 import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -80,10 +81,12 @@ public class AddressBookParserTest {
         String name = "Alex";
         String group = "Group1";
         String task = "assignment 0";
+        String workload = "low";
         AssignTaskCommand command = (AssignTaskCommand) parser.parseCommand(
                 AssignTaskCommand.COMMAND_WORD + " " + name + " "
                         + PREFIX_GROUP + group + " "
-                        + PREFIX_TASK + task);
+                        + PREFIX_TASK + task + " "
+                        + PREFIX_WORKLOAD + workload);
         assertEquals(new AssignTaskCommand(new Name(name), group, new Assignment(task)), command);
     }
 
@@ -139,15 +142,6 @@ public class AddressBookParserTest {
                 DeletePersonCommand.COMMAND_WORD + " " + name);
         FullNamePredicate pred = new FullNamePredicate(name);
         assertEquals(new DeletePersonCommand(pred), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
