@@ -8,10 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.buyer.AbstractFilterBuyerPredicate;
+import seedu.address.model.buyer.FilterBuyerByCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyerByPricePredicate;
+import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.AbstractFilterBuyerPredicate;
-import seedu.address.model.person.FilterBuyerByCharacteristicsPredicate;
-import seedu.address.model.person.FilterBuyerByPricePredicate;
 import seedu.address.model.property.Price;
 
 
@@ -23,6 +25,7 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterBuyersCommand
      * and returns an FilterBuyersCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterBuyersCommand parse(String args) throws ParseException {
@@ -50,8 +53,12 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
             predicate = new FilterBuyerByCharacteristicsPredicate(characteristics);
         }
 
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            Priority priority = ParserUtil.parsePriority(
+                    argMultimap.getValue(PREFIX_PRIORITY).get());
+            predicate = new FilterBuyerByPriorityPredicate(priority);
+        }
         // TODO: Consider allowing filtering by multiple characteristics and tags at once
-        // TODO: Filter by priority
 
         return new FilterBuyersCommand(predicate);
     }

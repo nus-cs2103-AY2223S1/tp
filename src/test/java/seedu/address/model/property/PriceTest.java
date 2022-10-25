@@ -30,6 +30,7 @@ public class PriceTest {
         assertFalse(Price.isValidPrice("phone")); // non-numeric
         assertFalse(Price.isValidPrice("9011p041")); // alphabets within digits
         assertFalse(Price.isValidPrice("9312 1534")); // spaces within digits
+        assertFalse(Price.isValidPrice("-9999")); //negative price
 
         // valid price
         assertTrue(Price.isValidPrice("911")); // exactly 3 numbers

@@ -21,11 +21,11 @@ public class FilterPropsByCharacteristicsPredicate extends AbstractFilterPropsPr
 
     @Override
     public boolean test(Property p) {
-        // N.B.: Returns true if the target property does not have a Characteristics object in their attributes.
+        // N.B.: Returns false if the target property does not have a Characteristics object in their attributes.
         if (p.getCharacteristics().isEmpty()) {
-            return true;
+            return false;
         }
-        return p.getCharacteristics().get().containsAnyGivenCharacteristics(givenCharacteristics);
+        return p.getCharacteristics().get().containsAllGivenCharacteristics(givenCharacteristics);
     }
 
     @Override

@@ -96,7 +96,7 @@ public class DeletePropertyCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different buyer -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

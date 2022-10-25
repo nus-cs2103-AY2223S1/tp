@@ -57,16 +57,16 @@ public class Characteristics {
      */
     public boolean containsCharacteristic(String characteristic) {
         return Arrays.stream(characteristicsArray)
-                .anyMatch(c -> c.toLowerCase().contains(characteristic));
+                .anyMatch(c -> c.toLowerCase().contains(characteristic.toLowerCase()));
     }
 
     /**
      * Returns true if a given {@code Characteristic} contains a characteristic that
      * is also found in this {@code Characteristic}
      */
-    public boolean containsAnyGivenCharacteristics(Characteristics other) {
+    public boolean containsAllGivenCharacteristics(Characteristics other) {
         return Arrays.stream(other.getCharacteristicsArray())
-                .anyMatch(c -> containsCharacteristic(c));
+                .allMatch(c -> containsCharacteristic(c));
     }
 
     @Override
