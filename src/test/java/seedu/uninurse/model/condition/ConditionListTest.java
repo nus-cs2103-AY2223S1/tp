@@ -21,6 +21,7 @@ import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 public class ConditionListTest {
     private final ConditionList emptyConditionList = new ConditionList();
     private final ConditionList conditionListDiabetes = new ConditionList(List.of(CONDITION_DIABETES));
+    private final ConditionList conditionListOsteoporosis = new ConditionList(List.of(CONDITION_OSTEOPOROSIS));
     private final ConditionList conditionList = new ConditionList(
             Arrays.asList(CONDITION_DIABETES, CONDITION_OSTEOPOROSIS));
 
@@ -90,7 +91,7 @@ public class ConditionListTest {
     @Test
     public void edit_validArgs_success() {
         ConditionList updatedConditionList = conditionListDiabetes.edit(0, CONDITION_OSTEOPOROSIS);
-        assertEquals(updatedConditionList, emptyConditionList);
+        assertEquals(updatedConditionList, conditionListOsteoporosis);
     }
 
     @Test
