@@ -26,7 +26,7 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 
    * **`liststudent`** : Show an expanded list of all students.
 
-   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Tan` to JARVIS.
+   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` to JARVIS.
 
    * **`deletestudent 3`** : Deletes the 3rd student shown in the student list.
 
