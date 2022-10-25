@@ -118,6 +118,28 @@ Format: `project -d PROJECT_ID`
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
 
+### Finding a project : `project -f`
+
+Finds and lists all the projects matching the search criteria.
+
+Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY]…​`
+
+* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_PHONE` and `CLIENT_EMAIL`.
+* Finds all the clients such that the fields under the client contain at least one word from the keywords provided
+  after each search criteria.
+* The keywords provided must be valid arguments for their respective search criteria.
+
+Examples:
+* `client -f n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy`.
+* `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
+* `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and
+  with `CLIENT_EMAIL` amy@gmail.com.
+* `client -f n/Amy e/amy@gmail.com p/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word
+  `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_PHONE` 12345678.
+* `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com p/12345678` Finds and lists all the clients whose
+  `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with
+  `CLIENT_PHONE` 12345678.
+
 ### Adding a client : `client -a`
 
 Adds a client to the list of clients and to the specified project.
@@ -180,13 +202,13 @@ Format: `client -f [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 * The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
-* `client -e n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy`.
-* `client -e n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
-* `client -e n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and 
+* `client -f n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy`.
+* `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
+* `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and 
   with `CLIENT_EMAIL` amy@gmail.com.
-* `client -e n/Amy e/amy@gmail.com p/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
+* `client -f n/Amy e/amy@gmail.com p/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
   `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_PHONE` 12345678.
-* `client -e n/Amy Bob e/amy@gmail.com bobamy@gmail.com p/12345678` Finds and lists all the clients whose 
+* `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com p/12345678` Finds and lists all the clients whose 
   `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
   `CLIENT_PHONE` 12345678.
 
@@ -212,6 +234,28 @@ Format: `issue -e i/PROJECT_ID…​`
 
 Examples:
 *  `issue -e 1 2022-09-16` Edits the issue of project with `PROJECT_ID` to be 2022-09-16.
+
+### Finding an issue : `issue -f`
+
+Finds and lists all the issues matching the search criteria.
+
+Format: `issue -f [desc/DESCRIPTION] [pn/PROJECT_NAME] [p/PRIORITY] [s/STATUS]…​`
+
+* Finds all the issues with the specified `DESCRIPTION`, `PROJECT_NAME`, `PRIORITY` and `STATUS`.
+* Finds all the issues such that the fields under the issue contain at least one word from the keywords provided
+  after each search criteria.
+* The keywords provided must be valid arguments for their respective search criteria.
+
+Examples:
+* `issue -f pn/DevEnable` Finds and lists all the issues tied to the project whose `PROJECT_NAME` contains DevEnable.
+* `issue -f pn/DevEnable AB3` Finds and lists all the issues tied to the project whose `PROJECT_NAME` contains 
+  DevEnable or AB3.
+* `issue -f pn/DevEnable AB3 p/LOW` Finds and lists all the issues with `PRIORITY` as LOW and tied to the project whose 
+  `PROJECT_NAME` contains DevEnable or AB3.
+* `issue -f desc/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `DESCRIPTION` 
+  enhancement and `PRIORITY` HIGH or LOW and tied to project with `PROJECT_NAME` DevEnable or AB3.
+* `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete. 
+
 
 ### Deleting an issue : `issue -d`
 
