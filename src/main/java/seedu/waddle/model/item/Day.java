@@ -90,9 +90,12 @@ public class Day {
             // same start time
             boolean sameStartTime = item.getStartTime().equals(newItem.getStartTime());
             // start time of new item is within the duration of a preceding item
-            boolean startTimeConflict = newItem.getStartTime().isBefore(item.getEndTime());
+            boolean startTimeConflict = newItem.getStartTime().isAfter(item.getStartTime())
+                && newItem.getStartTime().isBefore(item.getEndTime());
             // end time of new item eats into a proceeding item
-            boolean endTimeConflict = newItem.getEndTime().isAfter(item.getStartTime());
+            boolean endTimeConflict = newItem.getEndTime().isAfter(item.getStartTime())
+                    && newItem.getEndTime().isBefore(item.getEndTime());
+
 
             if (sameStartTime || startTimeConflict || endTimeConflict) {
                 conflictingItems.add(item);

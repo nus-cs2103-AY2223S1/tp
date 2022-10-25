@@ -9,7 +9,7 @@ import java.util.List;
 public class MultiIndex {
     public static final String MESSAGE_CONSTRAINTS =
             "Index should only contain positive integers separated by a decimal point";
-    public static final String VALIDATION_REGEX = "\\d+\\.\\d+";
+    public static final String VALIDATION_REGEX = "\\d+\\.?\\d*";
     private List<Index> indices;
 
     public MultiIndex() {

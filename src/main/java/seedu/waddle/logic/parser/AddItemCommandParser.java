@@ -37,6 +37,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
 
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Priority priority;
+
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         } else {
@@ -54,7 +55,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_DURATION)) {
             duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
         } else {
-            duration = null;
+            duration = ParserUtil.parseDuration("0");
         }
 
         Item item = new Item(description, priority, cost, duration);
