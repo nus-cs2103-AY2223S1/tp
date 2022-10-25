@@ -1,14 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.DeleteRemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
-import static seedu.address.testutil.TypicalCompany.ALICE;
-import static seedu.address.testutil.TypicalCompany.AMY;
-import static seedu.address.testutil.TypicalCompany.BOB;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalRemark.LONG_REMARK;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -20,90 +18,72 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
+import seedu.address.model.remark.Remark;
 import seedu.address.testutil.ClientBuilder;
 
-class CreateCommandTest {
-
-    private final Model model = new ModelManager(getTypicalJeeqTracker(), new UserPrefs());
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteRemarkCommand}.
+ */
+public class DeleteRemarkCommandTest {
+    private static final Remark remarkToAdd = LONG_REMARK;
 
     @Test
-    public void constructor_nullCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, null));
+    public void execute_validIndex_success() throws Exception {
+        Model modelStub = new ModelStub(new ClientBuilder().build());
+
+        DeleteRemarkCommand command = new DeleteRemarkCommand(Index.fromOneBased(1));
+        CommandResult result = command.execute(modelStub);
+
+        String expectedMessage = String.format(MESSAGE_DELETE_REMARK_SUCCESS, remarkToAdd);
+
+        assertEquals(result.getFeedbackToUser(), expectedMessage);
     }
 
     @Test
-    public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(null, ALICE));
+    public void execute_invalidIndex_throwsCommandException() {
+        Model modelStub = new ModelStub(new ClientBuilder().build());
+
+        assertThrows(CommandException.class, () ->
+                new DeleteRemarkCommand(Index.fromOneBased(2)).execute(modelStub));
     }
 
     @Test
-    public void execute_nullModel_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, ALICE).execute(null));
+    public void execute_moreThanOneInFilteredList_throwsCommandException() {
+        Model modelStub = new ModelStub(new ClientBuilder().build());
+        modelStub.addClient(ALICE);
+
+        assertThrows(CommandException.class, () ->
+                new DeleteRemarkCommand(Index.fromOneBased(1)).execute(modelStub));
     }
-
-    @Test
-    public void execute_invalidClientIndex_failure() {
-        assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
-                model.getFilteredClientList().size() + 10), ALICE).execute(model));
-
-        Client validClient = new ClientBuilder().build();
-        Model modelStub = new ModelStub(validClient);
-
-        assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
-                modelStub.getFilteredClientList().size() + 10), ALICE).execute(model));
-    }
-
-    @Test
-    public void execute_duplicateCompany_failure() {
-        Client validClient = new ClientBuilder().build();
-        validClient.addCompany(AMY);
-        Model modelStub = new ModelStub(validClient);
-
-        assertThrows(CommandException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, AMY).execute(modelStub));
-    }
-
-    @Test
-    public void execute_addCompany_success() throws Exception {
-        Client validClient = new ClientBuilder().build();
-        Model modelStub = new ModelStub(validClient);
-        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_CLIENT, AMY);
-        createCommand.execute(modelStub);
-        assertTrue(modelStub.getFilteredClientList().get(0).hasCompany(AMY));
-    }
-
 
     @Test
     public void equals() {
-        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_CLIENT, ALICE);
+        DeleteRemarkCommand firstCommand = new DeleteRemarkCommand(Index.fromOneBased(1));
+        DeleteRemarkCommand secondCommand = new DeleteRemarkCommand(Index.fromOneBased(1));
 
         // same values -> returns true
-        CreateCommand createCommandCopy = new CreateCommand(INDEX_FIRST_CLIENT, ALICE);
-        assertTrue(createCommand.equals(createCommandCopy));
+        assertTrue(firstCommand.equals(secondCommand));
 
         // same object -> returns true
-        assertTrue(createCommand.equals(createCommand));
+        assertTrue(firstCommand.equals(firstCommand));
 
         // null -> returns false
-        assertFalse(createCommand.equals(null));
+        assertFalse(firstCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(createCommand.equals(new ClearCommand()));
+        assertFalse(firstCommand.equals(new ListCommand()));
 
         // different index -> returns false
-        assertFalse(createCommand.equals(new CreateCommand(INDEX_SECOND_CLIENT, ALICE)));
-
-        // different Company -> returns false
-        assertFalse(createCommand.equals(new CreateCommand(INDEX_FIRST_CLIENT, BOB)));
+        assertFalse(firstCommand.equals(new DeleteRemarkCommand(Index.fromOneBased(2))));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have some methods failing.
      */
     private class ModelStub implements Model {
         private Client client;
@@ -111,6 +91,7 @@ class CreateCommandTest {
 
         public ModelStub(Client client) {
             this.client = client;
+            this.client.addRemark(remarkToAdd);
             clientList.add(client);
         }
 
@@ -146,7 +127,7 @@ class CreateCommandTest {
 
         @Override
         public void addClient(Client client) {
-            throw new AssertionError("This method should not be called.");
+            this.clientList.add(client);
         }
 
         @Override
@@ -171,7 +152,7 @@ class CreateCommandTest {
 
         @Override
         public void setClient(Client target, Client editedClient) {
-
+            // method body is left empty intentionally
         }
 
         @Override
@@ -181,11 +162,12 @@ class CreateCommandTest {
 
         @Override
         public void updateFilteredClientList(Predicate<Client> predicate) {
-
+            // method body is left empty intentionally
         }
+
         @Override
         public double calculateTotalTransaction(ObservableList<Client> filteredClientList) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This methods should not be called.");
         }
     }
 }

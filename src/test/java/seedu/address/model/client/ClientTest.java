@@ -11,9 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BOB;
-import static seedu.address.testutil.TypicalCompany.AMY;
-import static seedu.address.testutil.TypicalCompany.BENSON;
-import static seedu.address.testutil.TypicalCompany.ELLE;
+import static seedu.address.testutil.TypicalRemark.BAD_BUYER;
+import static seedu.address.testutil.TypicalRemark.BAD_SELLER;
+import static seedu.address.testutil.TypicalRemark.GOOD_BUYER;
 import static seedu.address.testutil.TypicalTransaction.BUY_BURGERS;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 import static seedu.address.testutil.TypicalTransaction.SELL_PANTS;
@@ -25,42 +25,41 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.CreateCommand;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
+import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.remark.UniqueRemarkList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
 import seedu.address.testutil.ClientBuilder;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.RemarkBuilder;
 import seedu.address.testutil.TypicalClients;
-import seedu.address.testutil.TypicalCompany;
 
 public class ClientTest {
 
     @Test
     public void constructor_nullName_throwsNullPointerException() {
-        UniqueCompanyList companies = new UniqueCompanyList();
+        UniqueRemarkList remarks = new UniqueRemarkList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
                 new Client(null, new Address(VALID_ADDRESS_BOB), new ClientPhone(VALID_PHONE_BOB),
-                        new ClientEmail(VALID_EMAIL_BOB), tags, companies, transactions));
+                        new ClientEmail(VALID_EMAIL_BOB), tags, remarks, transactions));
     }
 
     @Test
     public void constructor_nullAddress_throwsNullPointerException() {
-        UniqueCompanyList companies = new UniqueCompanyList();
+        UniqueRemarkList remarks = new UniqueRemarkList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
                 new Client(new Name(VALID_NAME_BOB), null, new ClientPhone(VALID_PHONE_BOB),
-                        new ClientEmail(VALID_EMAIL_BOB), tags, companies, transactions));
+                        new ClientEmail(VALID_EMAIL_BOB), tags, remarks, transactions));
     }
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(null, TypicalCompany.ALICE));
+        assertThrows(NullPointerException.class, () -> new RemarkCommand(null, GOOD_BUYER));
     }
 
     @Test
@@ -97,22 +96,22 @@ public class ClientTest {
     }
 
     @Test
-    public void addCompany() {
+    public void addRemark() {
         Client aliceCopy = new ClientBuilder(ALICE).build();
-        Company elleCopy = new CompanyBuilder(ELLE).build();
-        aliceCopy.addCompany(elleCopy);
-        assertTrue(aliceCopy.getCompanies().contains(elleCopy));
+        Remark badBuyerCopy = new RemarkBuilder(BAD_BUYER).build();
+        aliceCopy.addRemark(badBuyerCopy);
+        assertTrue(aliceCopy.getRemarks().contains(badBuyerCopy));
 
-        assertFalse(aliceCopy.getCompanies().contains(AMY));
+        assertFalse(aliceCopy.getRemarks().contains(GOOD_BUYER));
     }
 
     @Test
-    public void containsCompany() {
+    public void containsRemark() {
         Client client = new ClientBuilder(TypicalClients.BENSON).build();
-        assertTrue(client.hasCompany(BENSON));
+        assertTrue(client.hasRemark(BAD_BUYER));
 
-        // Invalid Company
-        assertFalse(client.hasCompany(AMY));
+        // Invalid Remark
+        assertFalse(client.hasRemark(BAD_SELLER));
     }
 
     @Test
@@ -183,6 +182,6 @@ public class ClientTest {
 
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
                 + "#02-25; Phone: 12112121; Email: ben@gmail.com; "
-                + "Tags: [owesMoney][friends]; Companies: Benson Meier; Total transactions: -$423.0");
+                + "Tags: [owesMoney][friends]; Remarks: Bad Buyer; Total transactions: -$423.0");
     }
 }

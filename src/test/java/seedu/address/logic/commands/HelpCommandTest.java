@@ -62,10 +62,10 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_createArgument_showsCreateUsage() {
-        String expectedMessage = CreateCommand.MESSAGE_USAGE;
+    public void execute_createArgument_showsRemarkUsage() {
+        String expectedMessage = RemarkCommand.MESSAGE_USAGE;
 
-        HelpCommand command = new HelpCommand(CreateCommand.MESSAGE_USAGE);
+        HelpCommand command = new HelpCommand(RemarkCommand.MESSAGE_USAGE);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

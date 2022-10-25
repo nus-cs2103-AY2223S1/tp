@@ -49,7 +49,7 @@ public class BuyCommand extends Command {
     private final Transaction transaction;
 
     /**
-     * @param index of the client in the client list to add the Company to
+     * @param index of the client in the client list to add the Remark to
      * @param transaction to be added
      */
     public BuyCommand(Index index, Transaction transaction) {
