@@ -38,12 +38,15 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_APPLIED_DATE, PREFIX_INTERVIEW_DATE_TIME, PREFIX_TAG);
 
         Index index;
-
-        if (args.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            if (pe.getMessage().equals(MESSAGE_INVALID_COMMAND_FORMAT)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            }
+            throw pe;
         }
 
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         EditInternshipDescriptor editInternshipDescriptor = new EditInternshipDescriptor();
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
