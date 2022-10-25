@@ -15,13 +15,13 @@ activate Model
 Model -> FilteredList: setPredicate(predicate)
 activate FilteredList
 
-Model <- FilteredList
+Model <-- FilteredList
 deactivate FilteredList
 
-SuggestCommand <- Model
+SuggestCommand <-- Model
 deactivate Model
 
-[<- SuggestCommand: CommandResult
+[<-- SuggestCommand: CommandResult
 deactivate SuggestCommand
 
 @enduml
