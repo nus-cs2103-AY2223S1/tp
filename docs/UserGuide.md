@@ -151,6 +151,25 @@ Examples:
 * `findTag Finance` returns `John`, `Caroline` and `Bob`
   ![result for 'findTag Finance'](images/findTagFinance.png)
 
+### Editing loan of a person: `editLoan`
+
+Edits an existing club member's loan amount in the SectresBook.
+
+Format: `editLoan INDEX VALUE REASON`
+
+* Edits the loan value of the existing person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1,2,3 …​
+* The `VALUE` can be a positive or negative value with up to 2 decimal places.
+* The loan value will be changed by the value given i.e current loan + VALUE.
+
+Examples:
+
+* `editLoan 2 30 bought logistics`
+* `editLoan 3 -30 return money from logisitics`
+* `list` followed by `editLoan 1 -20 return money` will edit the 1st person in the SectresBook,
+reducing their loan by $20 and saving the `REASON` as `return money`.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the SectresBook.
@@ -254,13 +273,27 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**FindTag** | `findTag TAG [MORE_TAGS]`<br> e.g., `findTag Operations Outreach`
-**List** | `list`
-**Help** | `help`
+###AddressBook Commands
+
+Action | Format | Examples
+--------|-------------------------------------|--------
+**Add** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS [tag/TAG]…​` | `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 tag/friend tag/colleague`
+**Clear** | `clear` | `clear`
+**Delete** | `delete INDEX`<br>`delete NAME`     | `delete 3` <br> `delete Jane`
+**Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [tag/TAG]…​` | `edit 2 name/James Lee email/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find NUMBER` | `find James Jake` <br> `find 8651`
+**Find Tag** | `findTag TAG [MORE_TAGS]` | `findTag Operations Outreach`
+**Edit Loan** | `editLoan INDEX AMOUNT REASON` | `editLoan 1 -20 Buy Logistics`
+**List** | `list` | `list`
+**Help** | `help` | `help`
+**Exit** | `exit` | `exit`
+
+###Note Commands
+
+Action | Format | Examples
+--------|---------------------------|-------------
+**Add Note** | `addNote title/TITLE content/CONTENT [tag/TAG]...` | `addNote title/Create Excel Sheet content/Create sheet for blockchain department`
+**Edit Note** | `editNote INDEX [title/TITLE] [content/CONTENT] [tag/TAG]...` | `editNote 1 title/Check meeting availability tag/president`
+**Delete Note** | `deleteNote INDEX` | `deleteNote 1`
+**List Notes** | `listNote` | `listNote`
+**Find Note** | `findNote KEYWORD [MORE_KEYWORDS]` | `findNote meeting`
