@@ -1,12 +1,15 @@
 package seedu.address.logic.commands.task;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.model.task.TaskUntilDeadlinePredicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Lists all tasks with deadlines up to and including the given deadline
+ */
 public class ReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "remindT";
@@ -17,11 +20,11 @@ public class ReminderCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "12-09-2022";
 
-    private final TaskContainsKeywordsPredicate predicate;
-
     public static final String REMINDER_SUCCESS = "Here are your upcoming deadlines.";
 
-    public ReminderCommand(TaskContainsKeywordsPredicate predicate) {
+    private final TaskUntilDeadlinePredicate predicate;
+
+    public ReminderCommand(TaskUntilDeadlinePredicate predicate) {
         this.predicate = predicate;
     }
 

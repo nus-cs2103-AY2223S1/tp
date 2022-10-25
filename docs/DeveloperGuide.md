@@ -283,7 +283,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 #### Design considerations:
 
-**Aspect: How the paramters supplied are matched to contact fields:**
+**Aspect: How the parameters supplied are matched to contact fields:**
 
 * **Alternative 1 (current choice):** Matches individual words in the parameter to the contact fields (case insensitive)
     * Pros: Users are able to make more generic searches as only one word needs to match.
