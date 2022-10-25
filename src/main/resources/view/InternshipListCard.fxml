@@ -19,8 +19,8 @@
       <RowConstraints minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES"/>
     </rowConstraints>
     <Label fx:id="id" styleClass="cell_index" GridPane.columnIndex="0" />
-    <VBox alignment="CENTER_LEFT" spacing="2" GridPane.columnIndex="1">
-      <HBox spacing="30" alignment="BOTTOM_LEFT">
+    <VBox fx:id="contents" alignment="CENTER_LEFT" spacing="2" GridPane.columnIndex="1">
+      <HBox spacing="30" alignment="CENTER_LEFT">
         <Label fx:id="company" text="\$first" styleClass="cell_company" minWidth="50" />
         <Button fx:id="linkButton" styleClass="cell_button_link" mnemonicParsing="false"
                 minWidth="50" onAction="#copyInternshipUrl" />
@@ -28,15 +28,15 @@
         <Label fx:id="applicationStatus" styleClass="applicationStatus_label" text="\$applicationStatus" />
       </HBox>
       <Label fx:id="description" styleClass="cell_small_text" text="\$description" wrapText="true" />
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox fx:id="appliedDateLine" spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="appliedDateLabel" styleClass="cell_small_label" text="\$appliedDateLabel" />
         <Label fx:id="appliedDate" styleClass="cell_small_text" text="\$appliedDate" />
       </HBox>
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox fx:id="interviewDateTimeLine" spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="interviewDateTimeLabel" styleClass="cell_small_label" text="\$interviewDateTimeLabel" />
         <Label fx:id="interviewDateTime" styleClass="cell_small_text" text="\$interviewDateTime" />
         <Pane maxHeight="-Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
-        <VBox fx:id="tags" />
+        <HBox fx:id="tags" />
       </HBox>
     </VBox>
   </GridPane>

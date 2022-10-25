@@ -3,7 +3,8 @@
 #userGuideUrl {
     -fx-background-color: transparent;
     -fx-font-family: 'IBM Plex Sans Text';
-    -fx-text-fill: #0F8FFF;
+    -fx-text-fill: #ffffff;
+    -fx-underline: true;
     -fx-padding: 0;
 }
 

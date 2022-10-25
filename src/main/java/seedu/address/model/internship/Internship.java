@@ -123,24 +123,24 @@ public class Internship {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getCompany())
-                .append(";\nLink: ")
+                .append("\nLink: ")
                 .append(getLink())
-                .append(";\nDescription: ")
+                .append("\nDescription: ")
                 .append(getDescription())
-                .append(";\nApplication status: ")
+                .append("\nApplication status: ")
                 .append(getApplicationStatus())
-                .append(";\nApplied date: ")
+                .append("\nApplied date: ")
                 .append(getAppliedDate());
 
         InterviewDateTime interviewDateTime = getInterviewDateTime();
         if (interviewDateTime != null) {
-            builder.append(";\nInterview date: ")
+            builder.append("\nInterview date/time: ")
                     .append(getInterviewDateTime());
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append(";\nTags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
