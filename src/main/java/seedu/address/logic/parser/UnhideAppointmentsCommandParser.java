@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.commands.UnhideAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.HideAppointmentPredicate;
+import seedu.address.model.person.predicates.HideAppointmentPredicate;
 
 
 /**
