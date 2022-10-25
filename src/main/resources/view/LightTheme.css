@@ -382,6 +382,7 @@
 
 .help-panel {
     -fx-padding: 16;
+    -fx-spacing: 10;
 }
 
 .help-panel .label {
@@ -395,5 +396,9 @@
 .command-text {
     -fx-font-family: "Courier New" !important;
     -fx-font-weight: 700;
+    -fx-font-size: 14;
     -fx-padding: 0 10 0 0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-pref-width: 100;
 }
