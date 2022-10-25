@@ -2,6 +2,7 @@ package seedu.application.model.application.interview;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -29,35 +30,37 @@ public class InterviewTimeTest {
         assertFalse(InterviewTime.isValidTime(" ")); // spaces only
         assertFalse(InterviewTime.isValidTime("^")); // only non-alphanumeric characters
         assertFalse(InterviewTime.isValidTime("peter*")); // contains alphanumeric characters
-        assertFalse(InterviewTime.isValidTime("2000-13-12")); // month does not exist
-        assertFalse(InterviewTime.isValidTime("2022-02-31")); // InterviewTime does not exist in particular month
-        assertFalse(InterviewTime.isValidTime("2019-12-32")); // InterviewTime does not exist
-        assertFalse(InterviewTime.isValidTime("2000-12-00")); // InterviewTime does not exist
-        assertFalse(InterviewTime.isValidTime("1900-02-29")); // not leap year
-        assertFalse(InterviewTime.isValidTime("1700-02-29")); // not leap year
-        assertFalse(InterviewTime.isValidTime("34-12-13")); //two digit year
-        assertFalse(InterviewTime.isValidTime("2022-1-13")); //one digit month
-        assertFalse(InterviewTime.isValidTime("2022/08/24")); // slash
+        assertFalse(InterviewTime.isValidTime("235900")); // extra seconds
+        assertFalse(InterviewTime.isValidTime("23")); // without minutes
+        assertFalse(InterviewTime.isValidTime("159")); // without preamble 0
+        assertFalse(InterviewTime.isValidTime("100")); // lack of ending 0
+        assertFalse(InterviewTime.isValidTime("23:59")); // with colon
+        assertFalse(InterviewTime.isValidTime("01:59:00")); // with colon and seconds
+        assertFalse(InterviewTime.isValidTime("2401")); // invalid hour
+        assertFalse(InterviewTime.isValidTime("0760")); // invalid minute
 
-
-        /*
         // valid InterviewTime
-        assertTrue(InterviewTime.isValidTime("2022-11-12"));
-        assertTrue(InterviewTime.isValidTime("2034-12-13"));
-        assertTrue(InterviewTime.isValidTime("2065-02-12"));
-        assertTrue(InterviewTime.isValidTime("1987-09-12"));
-        assertTrue(InterviewTime.isValidTime("2004-02-29")); // leap year
-        assertTrue(InterviewTime.isValidTime("2000-02-29")); // leap year
-        assertTrue(InterviewTime.isValidTime("2400-02-29")); // leap year
+        assertTrue(InterviewTime.isValidTime("0000"));
+        assertTrue(InterviewTime.isValidTime("2359"));
+        assertTrue(InterviewTime.isValidTime("0756"));
+        assertTrue(InterviewTime.isValidTime("1600"));
+    }
 
-         */
+    @Test
+    public void isWithin() {
+        assertFalse(new InterviewTime("1100").isWithin(new InterviewTime("0900")));
+        assertFalse(new InterviewTime("2359").isWithin(new InterviewTime("2259")));
 
-
+        assertTrue(new InterviewTime("0500").isWithin(new InterviewTime("0559")));
+        assertTrue(new InterviewTime("1756").isWithin(new InterviewTime("1700")));
 
     }
     @Test
     public void interviewTime() {
         assertEquals(new InterviewTime("2359").toString(), "23:59");
         assertEquals(new InterviewTime("0900").toString(), "09:00");
+
+        assertEquals(new InterviewTime("1645").toCommandString(), "1645");
+        assertEquals(new InterviewTime("0901").toCommandString(), "0901");
     }
 }

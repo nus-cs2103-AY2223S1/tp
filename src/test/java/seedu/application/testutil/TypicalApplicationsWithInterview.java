@@ -12,6 +12,9 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FA
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_BYTEDANCE;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_GOOGLE;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_JANE_STREET;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,51 +24,52 @@ import seedu.application.model.ApplicationBook;
 import seedu.application.model.application.Application;
 
 /**
- * A utility class containing a list of {@code Application} objects to be used in tests.
+ * A utility class containing a list of {@code Application} objects with {@code Interview}to be used in tests.
  */
-public class TypicalApplications {
+public class TypicalApplicationsWithInterview {
 
     public static final Application SHOPEE = new ApplicationBuilder().withCompany("Shopee")
             .withContact("94201239").withDate("2022-12-31")
             .withEmail("shopee@example.com").withPosition("Frontend Engineer").withTags("consumerTech")
-            .build();
+            .withInterview(INTERVIEW_GOOGLE).build();
     public static final Application BYTEDANCE = new ApplicationBuilder().withCompany("ByteDance")
             .withContact("83920382").withDate("2022-08-01")
             .withEmail("bytedance@example.com").withPosition("Backend Engineer").withTags("BytePlus", "TikTok")
-            .build();
+            .withInterview(INTERVIEW_BYTEDANCE).build();
 
     // Manually added
     public static final Application JANE_STREET = new ApplicationBuilder().withCompany("Jane Street")
             .withContact("91420834").withDate("2022-01-01")
             .withEmail("janestreet@example.com").withPosition("Software Engineer").withTags("fintech")
-            .build();
+            .withInterview(INTERVIEW_JANE_STREET).build();
 
-    // Manually added - Application's details found in {@code CommandTestUtil}
+    // Manually added - Application and Interview's details found in {@code CommandTestUtil} and
+    // {@code TypicalInterviews}.
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE)
-            .withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_TECH_COMPANY).build();
+            .withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_TECH_COMPANY)
+            .withInterview(INTERVIEW_GOOGLE).build();
 
     public static final Application FACEBOOK = new ApplicationBuilder().withCompany(VALID_COMPANY_FACEBOOK)
             .withContact(VALID_CONTACT_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
             .withEmail(VALID_EMAIL_FACEBOOK).withPosition(VALID_POSITION_FACEBOOK)
-            .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
+            .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY)
+            .build();
 
-    public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches GOOGLE
-
-    private TypicalApplications() {} // prevents instantiation
+    private TypicalApplicationsWithInterview() {} // prevents instantiation
 
     /**
-     * Returns an {@code ApplicationBook} with all the typical applications.
+     * Returns an {@code ApplicationBook} with all the typical applications with interviews.
      */
-    public static ApplicationBook getTypicalApplicationBook() {
+    public static ApplicationBook getTypicalApplicationBookWithInterview() {
         ApplicationBook ab = new ApplicationBook();
-        for (Application application : getTypicalApplications()) {
+        for (Application application : getTypicalApplicationsWithInterview()) {
             ab.addApplication(application);
         }
         return ab;
     }
 
-    public static List<Application> getTypicalApplications() {
+    public static List<Application> getTypicalApplicationsWithInterview() {
         return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET));
     }
 }

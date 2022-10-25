@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New application added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICATION = "This application already exists in CinternS";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview has clashed with another interview "
-            + "exists in CinternS";
+            + "currently stored in CinternS";
 
 
     private final Application toAdd;
