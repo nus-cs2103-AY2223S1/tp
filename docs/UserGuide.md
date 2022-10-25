@@ -118,47 +118,95 @@ Format: `project -d PROJECT_ID`
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
 
-### Tagging a client : `client -t`
+### Finding a project : `project -f`
 
-Tags a client to a project.
+Finds and lists all the projects matching the search criteria.
 
-Format: `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
+Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY]…​`
 
-* Adds the client to the project with the specified `PROJECT_ID`.
+* Finds all the projects with the specified `PROJECT_NAME` and `REPOSITORY`.
+* Finds all the projects such that the fields under the project contain at least one word from the keywords provided
+  after each search criteria.
+* The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
-*  `client -t 1 n/Amy` Tags the project with `PROJECT_ID` 1 with a client with `CLIENT_NAME` Amy.
-*  `client -t 2 n/Bob p/91234567` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Bob and `CLIENT_CONTACT_NUMBER` 91234567.
-*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 3 with a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com
+* `project -f n/DevEnable` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable.
+* `project -f n/DevEnable AB3` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable or AB3.
+* `project -f r/tp/F13` Finds and lists all the projects with `REPOSITORY` tp/F13.
+* `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
+  and with `REPOSITORY` tp/F13.
+
+### Adding a client : `client -a`
+
+Adds a client to the list of clients and to the specified project.
+
+Format: `client -a n/CLIENT_NAME pid/PROJECT_ID [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+
+* Adds the client to `ClientList` and to the project with the specified `PROJECT_ID`.
+
+Examples:
+*  `client -a n/Amy pid/1` Adds a client with `CLIENT_NAME` Amy to the `ClientList` and to the project with 
+   `PROJECT_ID` 1.
+*  `client -a n/Bob pid/2 p/12345678` Adds a client with `CLIENT_NAME` Bob and `CLIENT_PHONE` 12345678 to the 
+   `ClientList` and to the project with `PROJECT_ID` 2.
+*  `client -a n/Charlie e/charlie@gmail.com pid/3` Adds a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` 
+   charlie@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 3.
+*  `client -a n/Dave p/12345678 e/dave@gmail.com pid/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_PHONE` 
+   12345678 and `CLIENT_EMAIL` dave@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 4.
 
 ### Editing a client : `client -e`
 
-Edits the client for a specific project.
+Edits the specified client.
 
-Format: `client -e i/PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
+Format: `client -e cid/CLIENT_ID [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 
-* Edits the client of the project with the specified `PROJECT_ID`.
+* Edits the client with the specified `CLIENT_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `client -e 1 n/Amy` Edits the client tagged to project with `PROJECT_ID` 1 with new `CLIENT_NAME` Amy.
-*  `client -e 2 n/Bob p/91234567` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Amy and `CLIENT_CONTACT_NUMBER` 91234567.
-*  `client -e 3 n/Charlie e/charlie@gmail.com` Edits the client tagged to project with `PROJECT_ID` 3 with new `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -e 2 n/Dave p/91111111 e/dave@gmail.com` Edits the client tagged to project with `PROJECT_ID` 2 with new `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com.
+*  `client -e cid/1 n/Amy` Edits the client tagged to project with `CLIENT_ID` 1 to have the new `CLIENT_NAME` Amy.
+*  `client -e cid/2 n/Bob p/12345678` Edits the client tagged with `CLIENT_ID` 2 to have the new `CLIENT_NAME` Bob 
+   and `CLIENT_PHONE` 91234567.
+*  `client -e cid/3 n/Charlie e/charlie@gmail.com` Edits the client with `PROJECT_ID` 3 to have the new 
+   `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
+*  `client -e cid/4 n/Dave p/12345678 e/dave@gmail.com` Edits the client with `PROJECT_ID` 4 to have the new 
+   `CLIENT_NAME` Dave, `CLIENT_PHONE` 12345678 and `CLIENT_EMAIL` dave@gmail.com.
 
 ### Deleting a client : `client -d`
 
-Removes the client from a project.
+Removes the specified client.
 
-Format: `client -d i/PROJECT_ID n/CLIENT_NAME`
+Format: `client -d CLIENT_ID`
 
-* Deletes the client with `CLIENT_NAME` tagged to the specified project with given `PROJECT_ID`.
+* Deletes the client with the specified `CLIENT_ID`.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `client -d 1 n/Amy` Deletes client with `CLIENT_NAME` Amy tagged to project with `PROJECT_ID` 1.
+* `client -d 1` Deletes client with `CLIENT_ID` 1.
+* `client -d 6` Deletes client with `CLIENT_ID` 6.
+
+### Finding a client : `client -f`
+
+Finds and lists all the clients matching the search criteria.
+
+Format: `client -f [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+
+* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_PHONE` and `CLIENT_EMAIL`.
+* Finds all the clients such that the fields under the client contain at least one word from the keywords provided 
+  after each search criteria.
+* The keywords provided must be valid arguments for their respective search criteria.
+
+Examples:
+* `client -f n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy`.
+* `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
+* `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and 
+  with `CLIENT_EMAIL` amy@gmail.com.
+* `client -f n/Amy e/amy@gmail.com p/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
+  `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_PHONE` 12345678.
+* `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com p/12345678` Finds and lists all the clients whose 
+  `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
+  `CLIENT_PHONE` 12345678.
 
 ### Adding an issue : `issue -a`
 
@@ -182,6 +230,28 @@ Format: `issue -e i/PROJECT_ID…​`
 
 Examples:
 *  `issue -e 1 2022-09-16` Edits the issue of project with `PROJECT_ID` to be 2022-09-16.
+
+### Finding an issue : `issue -f`
+
+Finds and lists all the issues matching the search criteria.
+
+Format: `issue -f [desc/DESCRIPTION] [pn/PROJECT_NAME] [p/PRIORITY] [s/STATUS]…​`
+
+* Finds all the issues with the specified `DESCRIPTION`, `PROJECT_NAME`, `PRIORITY` and `STATUS`.
+* Finds all the issues such that the fields under the issue contain at least one word from the keywords provided
+  after each search criteria.
+* The keywords provided must be valid arguments for their respective search criteria.
+
+Examples:
+* `issue -f pn/DevEnable` Finds and lists all the issues tied to the project whose `PROJECT_NAME` contains DevEnable.
+* `issue -f pn/DevEnable AB3` Finds and lists all the issues tied to the project whose `PROJECT_NAME` contains 
+  DevEnable or AB3.
+* `issue -f pn/DevEnable AB3 p/LOW` Finds and lists all the issues with `PRIORITY` as LOW and tied to the project whose 
+  `PROJECT_NAME` contains DevEnable or AB3.
+* `issue -f desc/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `DESCRIPTION` 
+  enhancement and `PRIORITY` HIGH or LOW and tied to project with `PROJECT_NAME` DevEnable or AB3.
+* `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete. 
+
 
 ### Deleting an issue : `issue -d`
 
@@ -233,12 +303,15 @@ _Details coming soon ..._
 | **Add Project**    | `project -a`     |
 | **Edit Project**   | `project -e`     |
 | **Delete Project** | `project -d`     |
-| **Tag Client**     | `client -a`      |
+| **Find Project**   | `project -f`     |
+| **Add Client**     | `client -a`      |
 | **Edit Client**    | `client -e`      |
 | **Delete Client**  | `client -d`      |
+| **Find Client**    | `client -f`      |
 | **Tag Issue**      | `issue -a`       |
 | **Edit Issue**     | `issue -e`       |
 | **Delete Issue**   | `issue -d`       |
+| **Find Issue**     | `issue -f`       |
 | **Clear**          | `clear`          |
 | **List**           | `list`           |
 | **Help**           | `help`           |
