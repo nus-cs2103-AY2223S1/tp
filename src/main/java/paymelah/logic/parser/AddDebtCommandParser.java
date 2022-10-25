@@ -24,7 +24,7 @@ import paymelah.model.debt.Money;
  * Parses input arguments and creates a new AddDebtCommand object
  */
 public class AddDebtCommandParser implements Parser<AddDebtCommand> {
-    private static final Logger logger = LogsCenter.getLogger(AddCommandParser.class);
+    private static final Logger logger = LogsCenter.getLogger(AddDebtCommandParser.class);
     /**
      * Parses the given {@code String} of arguments in the context of the AddDebtCommand
      * and returns an AddDebtCommand object for execution.
