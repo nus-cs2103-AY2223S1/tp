@@ -21,6 +21,7 @@
 #helpMessage {
     -fx-background-color: #181b24;
     -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
 }
 
 .helpPara {

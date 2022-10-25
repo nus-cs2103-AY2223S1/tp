@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 /**
@@ -17,18 +16,23 @@ import javafx.stage.Stage;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t15-4.github.io/tp/";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t15-4.github.io/tp/Userguide.html";
+    public static final String HELP_MESSAGE = USERGUIDE_URL;
 
-    public static final String HELP_PARA = "Hi there, welcome to GIM! Here is a list of supported commands and their uses.\n" +
-            "1) :a\n" +
-            "2) :d\n" +
-            "3) :sort\n" +
-            "4) :gen\n" +
-            "5) :ls\n" +
-            "6) :find\n" +
-            "Simply type the command without parameters and example usages will appear in the result box.\n " +
-            "If you have any more questions, feel free to visit our user guide below.";
+    public static final String HELP_PARA = "Hi there, welcome to GIM! Here is a list of supported commands.\n"
+            + "1) :a - Adds an exercise\n"
+            + "2) :d - Deletes an exercise\n"
+            + "3) :ls - Lists all exercise entries\n"
+            + "4) :find - Finds an exercise with a particular name\n"
+            + "5) :clear - Clears the saved exercises and resets the data in the system\n"
+            + "6) :sort - Sorts the exercises by date, if they have the same date, by name \n"
+            + "7) :range - Displays the exercises saved over a range of days\n"
+            + "8) :pr - Displays the Personal Record associated with a certain exercise\n"
+            + "9) :gen - Generates a sample workout based on your Personal Records for that exercise\n"
+            + "10) :help - displays the help menu\n"
+            + "Simply type the command without parameters and example usages will appear "
+            + "in the result box in the top right.\n"
+            + "If you have any more questions, feel free to visit our user guide below.";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
