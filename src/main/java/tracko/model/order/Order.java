@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 import tracko.commons.util.DateTimeUtil;
-import tracko.model.item.Price;
 
 /**
  * Represents an Order in the address book.
