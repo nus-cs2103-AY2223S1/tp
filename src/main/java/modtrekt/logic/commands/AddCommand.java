@@ -30,14 +30,21 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add module";
     public static final String COMMAND_WORD_SHORTHAND = "add mod";
-    public static final String COMMAND_IDENTIFIER = "-m";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. \n"
-            + "Usage 1: " + COMMAND_WORD + " " + COMMAND_IDENTIFIER + " "
+            + "Usage 1: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_MOD_NAME + "<NAME> "
             + CliSyntax.PREFIX_MOD_CODE + "<CODE> "
             + CliSyntax.PREFIX_MOD_CREDIT + "<CREDIT> "
             + "\n"
-            + "Usage 2: " + COMMAND_WORD + " " + COMMAND_IDENTIFIER + " "
+            + "Usage 2: " + COMMAND_WORD_SHORTHAND + " "
+            + CliSyntax.PREFIX_MOD_CODE + "<CODE>"
+            + "\n"
+            + "Usage 3: " + COMMAND_WORD + " "
+            + CliSyntax.PREFIX_MOD_NAME + "<NAME> "
+            + CliSyntax.PREFIX_MOD_CODE + "<CODE> "
+            + CliSyntax.PREFIX_MOD_CREDIT + "<CREDIT> "
+            + "\n"
+            + "Usage 4: " + COMMAND_WORD_SHORTHAND + " "
             + CliSyntax.PREFIX_MOD_CODE + "<CODE>";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
@@ -47,11 +54,11 @@ public class AddCommand extends Command {
             converter = ModCodeConverter.class)
     private ModCode modCode;
 
-    @Parameter(names = "-n", description = "Module name", required = false,
+    @Parameter(names = "-n", description = "Module name",
             converter = ModNameConverter.class)
     private ModName name;
 
-    @Parameter(names = "-cr", description = "Module credits", required = false,
+    @Parameter(names = "-cr", description = "Module credits",
             converter = ModCreditConverter.class)
     private ModCredit credit;
 
