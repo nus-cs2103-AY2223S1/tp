@@ -1,14 +1,11 @@
 package swift.logic.commands;
 
-import static java.util.Map.entry;
 import static java.util.Objects.requireNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,9 +24,8 @@ import swift.model.task.TaskName;
 public class EditTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_task";
-    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
-            Map.ofEntries(entry(PREFIX_NAME, "<name>"),
-                          entry(PREFIX_CONTACT, "<contact>")));
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES =
+            new ArrayList<>(List.of(PREFIX_NAME, PREFIX_CONTACT));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
         + "by the index number used in the displayed task list. "
