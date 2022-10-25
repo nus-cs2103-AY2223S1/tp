@@ -56,6 +56,13 @@ public class AddIterationCommand extends Command {
         this.toAdd = toAdd;
     }
 
+    protected static Path saveImage(Storage storage, Iteration toAdd) throws IOException {
+        Path imageCopyPath = storage.getRandomImagePath();
+        BufferedImage image = storage.getImage(toAdd.getImagePath());
+        storage.saveImage(image, imageCopyPath);
+        return imageCopyPath;
+    }
+
     @Override
     public CommandResult execute(Model model, Storage... storage) throws CommandException {
         requireNonNull(model);
@@ -72,9 +79,7 @@ public class AddIterationCommand extends Command {
         }
 
         try {
-            Path imageCopyPath = storage[0].getRandomImagePath();
-            BufferedImage image = storage[0].getImage(toAdd.getImagePath());
-            storage[0].saveImage(image, imageCopyPath);
+            Path imageCopyPath = saveImage(storage[0], toAdd);
 
             Iteration toActuallyAdd = new Iteration(
                 toAdd.getDate(),
