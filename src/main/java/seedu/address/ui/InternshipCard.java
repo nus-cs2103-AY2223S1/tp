@@ -11,7 +11,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Internship;
 
@@ -35,7 +34,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Text company;
+    private Label company;
     @FXML
     private Label id;
     @FXML

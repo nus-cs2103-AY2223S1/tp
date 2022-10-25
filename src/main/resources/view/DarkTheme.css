@@ -151,7 +151,7 @@
     -fx-background-insets: 3;
 }
 
-.corner {
+#resultDisplay .corner {
     -fx-background-color: #363636;
 }
 
@@ -220,6 +220,10 @@
 .list-view .scroll-bar .thumb {
     -fx-background-color: #373737;
     -fx-background-insets: 3;
+}
+
+.list-view .corner {
+    -fx-background-color: #222224;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
