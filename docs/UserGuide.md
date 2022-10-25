@@ -206,11 +206,21 @@ Format: `event -d INDEX`
 Example:
 * `event -v` followed by `event -d 2` deletes the 2nd event displayed.
 
+### Clearing all profiles and events: `clear`
+
+Clears all profiles and events from the NUScheduler.
+
+Format: `clear`
+
 ### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Advanced Features
+
+Lorem Ipsum
 
 --------------------------------------------------------------------------------------------------------------------
 
