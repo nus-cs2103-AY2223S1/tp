@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
@@ -154,13 +155,11 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void refreshUserListAfterOperationOnBook(Book book) {
         CollectionUtil.requireAllNonNull(book);
-        Person person = book.getLoanee();
-        //todo use Optional here
-        if (person == null) {
-            return;
-        }
-        int index = internalList.indexOf(person);
-        internalList.set(index, person);
+        Optional<Person> person = book.getLoanee();
+        person.ifPresent((p) -> {
+            int index = internalList.indexOf(p);
+            internalList.set(index, p);
+        });
     }
 
     /**

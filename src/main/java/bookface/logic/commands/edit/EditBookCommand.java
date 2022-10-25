@@ -18,7 +18,6 @@ import bookface.model.Model;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
-import bookface.model.person.Person;
 
 /**
  * Command to delete a book from the booklist using it's displayed index from the book list
@@ -89,15 +88,7 @@ public class EditBookCommand extends EditCommand {
         Author updatedAuthor = editBookDescriptor.getAuthor().orElse(bookToEdit.getAuthor());
         Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
 
-        Book editedBook = new Book(updatedTitle, updatedAuthor);
-        Person loanee = bookToEdit.getLoanee();
-        //todo shift out
-        if (loanee != null) {
-            editedBook.loanTo(bookToEdit.getLoanee());
-            loanee.returnLoanedBook(bookToEdit);
-            loanee.addLoanedBook(editedBook);
-        }
-        return editedBook;
+        return new Book(updatedTitle, updatedAuthor);
     }
 
     @Override

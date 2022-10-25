@@ -3,6 +3,8 @@ package bookface.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.book.Book;
@@ -129,11 +131,12 @@ public class BookFace implements ReadOnlyBookFace {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        updateLoanAssociationForEditedPerson(target, editedPerson);
         books.refreshBookListAfterEditingPerson(editedPerson);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedBook}.
+     * Replaces the given book {@code target} in the list with {@code editedBook}.
      * {@code target} must exist in BookFace.
      * The book identity of {@code editeBook} must not be the same as another existing book in BookFace.
      */
@@ -141,6 +144,7 @@ public class BookFace implements ReadOnlyBookFace {
         requireNonNull(editedBook);
 
         books.setBook(target, editedBook);
+        updateLoanAssociationForEditedBook(target, editedBook);
         persons.refreshUserListAfterOperationOnBook(editedBook);
     }
 
@@ -177,6 +181,32 @@ public class BookFace implements ReadOnlyBookFace {
     public void removePerson(Person key) {
         persons.remove(key);
         books.refreshBookListAfterDeletingPerson(key);
+    }
+
+    /**
+     * Updates the association between a {@code person} and a {@code book} if on loan and if the book was edited.
+     */
+    private void updateLoanAssociationForEditedBook(Book currentBook, Book newBook) {
+        CollectionUtil.requireAllNonNull(currentBook, newBook);
+        Optional<Person> loanee = currentBook.getLoanee();
+        System.out.println(loanee);
+        loanee.ifPresent((p) -> {
+            newBook.loanTo(p);
+            System.out.println(p);
+            p.returnLoanedBook(currentBook);
+            p.addLoanedBook(newBook);
+        });
+    }
+
+    /**
+     * Updates the association between a {@code person} and a {@code book} if on loan and if the person was edited.
+     */
+    private void updateLoanAssociationForEditedPerson(Person currentPerson, Person newPerson) {
+        CollectionUtil.requireAllNonNull(currentPerson, newPerson);
+        Set<Book> updatedLoanedBook = currentPerson.getLoanedBooksSet();
+        for (Book book : updatedLoanedBook) {
+            book.loanTo(newPerson);
+        }
     }
 
     //// util methods

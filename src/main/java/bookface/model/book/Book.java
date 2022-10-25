@@ -1,6 +1,7 @@
 package bookface.model.book;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import bookface.commons.util.CollectionUtil;
 import bookface.model.person.Person;
@@ -32,8 +33,8 @@ public class Book {
         return author;
     }
 
-    public Person getLoanee() {
-        return loanee;
+    public Optional<Person> getLoanee() {
+        return Optional.ofNullable(loanee);
     }
 
     public boolean isLoaned() {
@@ -106,11 +107,8 @@ public class Book {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; Author: ")
-                .append(getAuthor());
-
-        return builder.toString();
+        return getTitle()
+                + "; Author: "
+                + getAuthor();
     }
 }

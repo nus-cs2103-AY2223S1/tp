@@ -68,7 +68,7 @@ public class BookList implements Iterable<Book> {
     public void delete(Book book) {
         requireNonNull(book);
         if (book.isLoaned()) {
-            book.getLoanee().returnLoanedBook(book);
+            book.getLoanee().ifPresent((p) -> p.returnLoanedBook(book));
         }
         if (!internalList.remove(book)) {
             throw new BookNotFoundException();

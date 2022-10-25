@@ -99,12 +99,7 @@ public class EditUserCommand extends EditCommand {
         Set<Book> updatedLoanedBook = editPersonDescriptor.getLoanedBooks().orElse(personToEdit.getLoanedBooksSet());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedLoanedBook, updatedTags);
-        //todo shift out
-        for (Book book : updatedLoanedBook) {
-            book.loanTo(newPerson);
-        }
-        return newPerson;
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedLoanedBook, updatedTags);
     }
 
     @Override
