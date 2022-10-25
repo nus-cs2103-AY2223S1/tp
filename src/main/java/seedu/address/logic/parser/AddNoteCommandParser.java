@@ -3,20 +3,35 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TITLE;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.note.Content;
 import seedu.address.model.note.Note;
 import seedu.address.model.note.Title;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddNoteCommand object
  */
 public class AddNoteCommandParser {
+
+    private final Model model;
+
+    /**
+     * Constructs a {@code AddCommandParser}
+     * @param model the model of the current state
+     */
+    public AddNoteCommandParser(Model model) {
+        this.model = model;
+    }
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddNoteCommand
      * and returns an AddNoteCommand object for execution.
@@ -28,7 +43,7 @@ public class AddNoteCommandParser {
     public AddNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT, PREFIX_NOTES_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -37,9 +52,9 @@ public class AddNoteCommandParser {
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NOTES_TITLE).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_NOTES_CONTENT).get());
+        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NOTES_TAG), model);
 
-
-        Note note = new Note(title, content);
+        Note note = new Note(title, content, tagSet);
 
         return new AddNoteCommand(note);
     }

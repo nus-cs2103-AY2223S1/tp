@@ -2,8 +2,12 @@ package seedu.address.model.note;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a note in the address book.
@@ -14,20 +18,22 @@ public class Note {
     //Identity field
     private final Title title;
 
-    //Data field
+    //Data fields
     private final Content content;
-    //tags to be added
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructor for a Note object
      *
      * @param title Title of the note.
      * @param content Contents of the note.
+     * @param tags Tags of the note.
      */
-    public Note(Title title, Content content) {
-        requireAllNonNull(title, content);
+    public Note(Title title, Content content, Set<Tag> tags) {
+        requireAllNonNull(title, content, tags);
         this.title = title;
         this.content = content;
+        this.tags.addAll(tags);
     }
 
     public Title getTitle() {
@@ -36,6 +42,14 @@ public class Note {
 
     public Content getContent() {
         return this.content;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     @Override
@@ -50,14 +64,15 @@ public class Note {
 
         Note otherNote = (Note) other;
         return otherNote.getTitle().equals(getTitle())
-                && otherNote.getContent().equals(getContent());
+                && otherNote.getContent().equals(getContent())
+                && otherNote.getTags().equals(getTags());
 
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, content);
+        return Objects.hash(title, content, tags);
     }
 
     /**
@@ -83,6 +98,12 @@ public class Note {
                 .append(getTitle())
                 .append(", Content: ")
                 .append(getContent());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }

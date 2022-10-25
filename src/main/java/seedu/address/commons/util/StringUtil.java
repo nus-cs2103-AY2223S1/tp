@@ -61,7 +61,6 @@ public class StringUtil {
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence.replaceAll("[^a-zA-Z0-9]", " ");
-        System.out.println(preppedSentence);
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
