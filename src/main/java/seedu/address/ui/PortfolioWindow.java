@@ -6,12 +6,12 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.Effect;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 import seedu.address.model.portfolio.Portfolio;
-import javafx.scene.effect.BoxBlur;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
