@@ -1,8 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_MONTH_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_MONTH_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_MONTH_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -18,6 +21,7 @@ import static seedu.address.logic.commands.CommandTestUtil.REWARD_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.REWARD_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GOLD;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEMBER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_MONTH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -32,6 +36,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.person.BirthdayMonth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -49,13 +54,13 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
+            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_MEMBER, VALID_TAG_GOLD)
             .build();
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_BOB
-            + TAG_DESC_GOLD + TAG_DESC_MEMBER, new AddCommand(expectedPersonMultipleTags));
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB
+            + REWARD_DESC_BOB + TAG_DESC_GOLD + TAG_DESC_MEMBER, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -64,26 +69,31 @@ public class AddCommandParserTest {
 
         // multiple names - rejected
         assertParseFailure(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
 
         // multiple phones - rejected
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
 
         // multiple emails - rejected
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+
+        // multiple birthdayMonths - rejected
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_AMY
+            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
 
         // multiple rewards - rejected
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_AMY
-            + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
+            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, message);
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + REWARD_DESC_AMY,
+        assertParseSuccess(parser,
+            NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_MONTH_DESC_AMY + REWARD_DESC_AMY,
             new AddCommand(expectedPerson));
     }
 
@@ -92,55 +102,76 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_BOB,
+        assertParseFailure(parser,
+            VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB,
             expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + REWARD_DESC_BOB,
+        assertParseFailure(parser,
+            NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB,
             expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + REWARD_DESC_BOB,
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB,
             expectedMessage);
 
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_REWARD_BOB,
+        // missing birthdayMonth prefix
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_BIRTHDAY_MONTH_BOB + VALID_REWARD_BOB,
+            expectedMessage);
+
+        // missing reward prefix
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + VALID_REWARD_BOB,
             expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_REWARD_BOB,
+        assertParseFailure(parser,
+            VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_BIRTHDAY_MONTH_BOB + VALID_REWARD_BOB,
             expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_BOB
+        assertParseFailure(parser,
+            INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB
             + TAG_DESC_GOLD + TAG_DESC_MEMBER, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + REWARD_DESC_BOB
+        assertParseFailure(parser,
+            NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB
             + TAG_DESC_GOLD + TAG_DESC_MEMBER, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + REWARD_DESC_BOB
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB
             + TAG_DESC_GOLD + TAG_DESC_MEMBER, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_REWARD_DESC
+        // invalid birthdayMonth
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_BIRTHDAY_MONTH_DESC + REWARD_DESC_BOB
+                + TAG_DESC_GOLD + TAG_DESC_MEMBER, BirthdayMonth.MESSAGE_CONSTRAINTS);
+
+        // invalid reward
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + INVALID_REWARD_DESC
             + TAG_DESC_GOLD + TAG_DESC_MEMBER, Reward.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REWARD_DESC_BOB
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB
             + INVALID_TAG_DESC + VALID_TAG_MEMBER, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_REWARD_DESC,
+        assertParseFailure(parser,
+            INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB + INVALID_REWARD_DESC,
             Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + REWARD_DESC_BOB + TAG_DESC_GOLD + TAG_DESC_MEMBER,
+                + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_GOLD + TAG_DESC_MEMBER,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

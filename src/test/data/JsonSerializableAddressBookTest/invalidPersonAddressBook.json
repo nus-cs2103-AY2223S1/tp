@@ -3,6 +3,7 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
+    "birthdayMonth": "1",
     "reward": "4"
   } ]
 }
