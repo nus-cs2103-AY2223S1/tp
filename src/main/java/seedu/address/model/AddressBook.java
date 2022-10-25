@@ -109,7 +109,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         notebook.remove(key);
     }
 
-
+    /**
+     * Returns true if at least one Note in the NoteBook contains the given tag.
+     */
+    public boolean notebookContainsTag(Tag tag) {
+        return notebook.containsTag(tag);
+    }
 
     //// person-level operations
 
