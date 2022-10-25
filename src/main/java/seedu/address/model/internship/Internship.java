@@ -103,11 +103,13 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
+
         return otherInternship.getCompany().equals(getCompany())
                 && otherInternship.getLink().equals(getLink())
                 && otherInternship.getDescription().equals(getDescription())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
                 && otherInternship.getAppliedDate().equals(getAppliedDate())
+                && InterviewDateTime.bothNullOrEqual(getInterviewDateTime(), otherInternship.getInterviewDateTime())
                 && otherInternship.getTags().equals(getTags());
     }
 

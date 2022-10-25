@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -36,7 +38,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setLink(internship.getLink());
         descriptor.setDescription(internship.getDescription());
         descriptor.setAppliedDate(internship.getAppliedDate());
-        descriptor.setInterviewDate(internship.getInterviewDateTime());
+        descriptor.setInterviewDateTime(internship.getInterviewDateTime());
         descriptor.setTags(internship.getTags());
     }
 
@@ -69,6 +71,15 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder withAppliedDate(String appliedDate) {
         descriptor.setAppliedDate(new AppliedDate(appliedDate));
+        return this;
+    }
+
+    /**
+     * Sets the {@code InterviewDateTime} of the {@code EditInternshipDescriptor} that we are building.
+     */
+    public EditInternshipDescriptorBuilder withInterviewDateTime(String interviewDateTime) {
+        descriptor.setInterviewDateTime(new InterviewDateTime(interviewDateTime));
+        descriptor.setApplicationStatus(ApplicationStatus.Shortlisted);
         return this;
     }
 

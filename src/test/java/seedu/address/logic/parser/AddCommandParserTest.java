@@ -31,8 +31,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalInternships.GOOGLE;
-import static seedu.address.testutil.TypicalInternships.TIKTOK;
+import static seedu.address.testutil.TypicalInternships.GOOGLE_NO_INTERVIEW;
+import static seedu.address.testutil.TypicalInternships.TIKTOK_NO_INTERVIEW;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Internship expectedInternship = new InternshipBuilder(TIKTOK).withTags(VALID_TAG_FRONTEND).build();
+        Internship expectedInternship = new InternshipBuilder(TIKTOK_NO_INTERVIEW).withTags(VALID_TAG_FRONTEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
@@ -91,7 +91,7 @@ public class AddCommandParserTest {
 
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags =
-                new InternshipBuilder(TIKTOK).withTags(VALID_TAG_FRONTEND, VALID_TAG_BACKEND).build();
+                new InternshipBuilder(TIKTOK_NO_INTERVIEW).withTags(VALID_TAG_FRONTEND, VALID_TAG_BACKEND).build();
         assertParseSuccess(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
                 + DESCRIPTION_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
                 + TAG_DESC_BACKEND + TAG_DESC_FRONTEND, new AddCommand(expectedInternshipMultipleTags));
