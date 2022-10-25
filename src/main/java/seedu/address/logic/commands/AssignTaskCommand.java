@@ -12,6 +12,7 @@ import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
 
@@ -38,7 +39,7 @@ public class AssignTaskCommand extends Command {
     private Index taskIndex;
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true)
-    private Index memberName;
+    private Name memberName;
 
     public AssignTaskCommand() {
     }
