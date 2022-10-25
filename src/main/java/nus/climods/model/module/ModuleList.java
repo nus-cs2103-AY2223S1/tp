@@ -17,8 +17,6 @@ import javafx.collections.ObservableList;
  */
 public class ModuleList implements ReadOnlyModuleList {
 
-    private static final ModulesApi modulesApi = new ModulesApi();
-
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
@@ -31,7 +29,8 @@ public class ModuleList implements ReadOnlyModuleList {
     public ModuleList(String academicYear) {
         try {
             internalList.setAll(
-                modulesApi.acadYearModuleInfoJsonGet(academicYear).stream().map(Module::new)
+                ModulesApi.getInstance().acadYearModuleInfoJsonGet(academicYear).stream()
+                    .map(moduleInfo -> new Module(moduleInfo, academicYear))
                     .collect(Collectors.toList()));
         } catch (ApiException e) {
             e.printStackTrace();
@@ -55,6 +54,13 @@ public class ModuleList implements ReadOnlyModuleList {
     @Override
     public ObservableList<Module> getModules() {
         return internalUnmodifiableList;
+    }
+
+    @Override
+    public Optional<Module> getListModule(String moduleCode) {
+        return internalUnmodifiableList.stream()
+            .filter(mod -> mod.getCode().equalsIgnoreCase(moduleCode))
+                .findFirst();
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
+import nus.climods.model.module.predicate.ViewModulePredicate;
 
 /**
  * Represents the in-memory model of module list data.
@@ -38,6 +40,8 @@ public class ModelManager implements Model {
     private final FilteredList<UserModule> filteredUserModuleList;
 
     private final UserPrefs userPrefs;
+
+    private Module moduleInFocus;
 
     /**
      * Initializes a ModelManager with the given moduleList and userPrefs.
@@ -67,6 +71,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Optional<Module> getListModule(String moduleCode) {
+        return getModuleList().getListModule(moduleCode);
+    }
+
     public boolean isModuleOffered(String moduleCode) {
         return this.moduleList.hasModule(moduleCode);
     }
@@ -105,6 +113,22 @@ public class ModelManager implements Model {
 
         requireNonNull(comparator);
         this.filteredAndSortedModuleList.setComparator(comparator);
+    }
+
+    @Override
+    public void setModuleInFocus(Module module) throws ApiException {
+        module.requestFocus();
+        moduleInFocus = module;
+
+        setFilteredModuleList(new ViewModulePredicate(module.getCode()));
+    }
+
+    @Override
+    public void clearModuleInFocus() {
+        if (moduleInFocus != null) {
+            moduleInFocus.clearFocus();
+        }
+        moduleInFocus = null;
     }
 
     //=========== UserModule ==================================================================================

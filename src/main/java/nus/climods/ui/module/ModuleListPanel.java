@@ -35,7 +35,7 @@ public class ModuleListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Module} using a {@code ModuleCard}.
      */
-    class ModuleListViewCell extends ListCell<Module> {
+    static class ModuleListViewCell extends ListCell<Module> {
 
         @Override
         protected void updateItem(Module module, boolean empty) {
@@ -45,7 +45,8 @@ public class ModuleListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new ModuleCard(module).getRoot());
+                ModuleCard mc = new ModuleCard(module);
+                setGraphic(mc.getRoot());
             }
         }
     }

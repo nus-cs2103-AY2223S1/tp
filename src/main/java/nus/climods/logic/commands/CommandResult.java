@@ -66,7 +66,9 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isSave() { return isSave; }
+    public boolean isSave() {
+        return isSave;
+    }
 
     @Override
     public boolean equals(Object other) {

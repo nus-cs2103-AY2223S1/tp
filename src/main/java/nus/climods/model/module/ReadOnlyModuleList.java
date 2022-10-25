@@ -16,6 +16,8 @@ public interface ReadOnlyModuleList {
      */
     ObservableList<Module> getModules();
 
+    Optional<Module> getListModule(String moduleCode);
+
     boolean hasModule(String moduleCode);
 
     /**
