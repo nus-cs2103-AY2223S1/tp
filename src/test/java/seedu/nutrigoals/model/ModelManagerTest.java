@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
@@ -138,6 +140,15 @@ public class ModelManagerTest {
         modelManager.addFood(APPLE);
         modelManager.setCalorieTarget(new Calorie("2500"));
         assertEquals(0.8, modelManager.calculateCalorieIntakeProgress());
+    }
+
+    @Test
+    public void getCalorieIntakeProgress() {
+        DoubleProperty expectedProgress = new SimpleDoubleProperty(2.0);
+        ModelManager modelManager = new ModelManager();
+        modelManager.addFood(APPLE);
+        modelManager.setCalorieTarget(new Calorie("1000"));
+        assertEquals(expectedProgress.get(), modelManager.getCalorieIntakeProgress().get());
     }
 
     @Test
