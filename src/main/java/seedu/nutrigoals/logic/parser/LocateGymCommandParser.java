@@ -22,7 +22,7 @@ public class LocateGymCommandParser implements Parser<LocateGymCommand> {
             return new LocateGymCommand(location);
         } catch (ParseException pe) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, LocateGymCommand.MESSAGE_USSAGE), pe);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, LocateGymCommand.MESSAGE_USAGE), pe);
         }
     }
 

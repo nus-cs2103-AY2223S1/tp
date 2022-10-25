@@ -36,6 +36,4 @@ public class SampleDataUtil {
     public static Tag getTag(String string) {
         return new Tag(string);
     }
-
-
 }
