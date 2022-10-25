@@ -222,7 +222,9 @@ public class DeletecCommandTest {
         @Override
         public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
             requireAllNonNull(moduleClasses);
-            return;
+            moduleClasses.forEach(moduleClass -> {
+                student = student.removeModuleClass(moduleClass);
+            });
         }
 
         @Override

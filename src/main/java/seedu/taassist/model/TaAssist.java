@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -146,12 +147,16 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Removes {@code moduleClass} from this {@code TaAssist}.
+     * Removes {@code moduleClass} from this {@code TaAssist} and unassigns all students in the class.
      * {@code moduleClass} must exist in TA-Assist.
      */
     public void removeModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
         moduleClasses.remove(moduleClass);
+        List<Student> updatedStudents = students.asUnmodifiableObservableList().stream()
+                .map(student -> student.removeModuleClass(moduleClass))
+                .collect(Collectors.toList());
+        setStudents(updatedStudents);
     }
 
     //// util methods

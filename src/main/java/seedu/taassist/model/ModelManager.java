@@ -160,9 +160,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
         requireAllNonNull(moduleClasses);
-        for (ModuleClass moduleClass : moduleClasses) {
-            deleteModuleClass(moduleClass);
-        }
+        moduleClasses.forEach(this::deleteModuleClass);
     }
 
     @Override
