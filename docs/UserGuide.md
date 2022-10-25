@@ -176,21 +176,20 @@ Example:
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
 * `tag remove 5 potential high-priority` Removes the `potential` and `high-priority` tags from the client entry at index 5.
 
-### Deleting all occurrences of a tag : `tag delete`
+### Deleting a tag : `tag delete`
 
-Deletes all occurrences of a tag from Rapportbook.
+Deletes a tag from the address book.
 
-Format : `tag delete TAG [TAG2] ... [TAGN]`
+Format: `tag delete TAG [TAG2] [TAG3] … [TAGN]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Like assignment of tags, you can also delete multiple tags from a client at once by separating the different tag names 
-with spaces after the client index.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** Again, you can delete multiple tags.
 </div>
 
 Example:
 
-* `tag delete colleagues` Removes all occurrences of the `colleagues` tag from Rapportbook.
-* `tag delete friends family` Removes all occurrences of the `freinds` and `family` tags from Rapportbook.
+- `tag delete potential` Deletes the `potential` tag from the address book.
+- `tag delete potential high-priority` Deletes the `potential` and `high-priority` tags from address book.
 
 ### Filtering client entries : `filter`
 
@@ -351,7 +350,7 @@ Frequently used commands have aliases that are short so that you can perform act
 | **[Tag](#tagging-clients--tag)**                                     | `tag`              | t     |
 | **[Tag creation](#creating-a-tag--tag-create)**                      | `tag create`       | t c   |
 | **[Untag](#removing-tags-from-clients--tag-remove)**                 | `tag remove`       | t r   |
-| **[Tag deletion](#deleting-all-occurrences-of-a-tag--tag-delete)**   | `tag delete `      | t d   |
+| **[Tag deletion](#deleting-a-tag--tag-delete)**                      | `tag delete `      | t d   |
 | **[Filter](#filtering-client-entries--filter)**                      | `filter`           | f     |
 | **[Filter clear](#clearing-filters--filter-clear)**                  | `filter clear`     | f c   |
 | **[Filter list](#lists-the-filter-parameters--filter-list)**         | `filter list`      | f l   |
@@ -384,7 +383,7 @@ Frequently used commands have aliases that are short so that you can perform act
 | **[Tag](#tagging-clients--tag)**                                     | `tag [INDEX] TAG`                                                                                                                 |
 | **[Tag creation](#creating-a-tag--tag-create)**                      | `tag create TAG1 [TAG2] … [TAGN]`                                                                                                 |
 | **[Untag](#removing-tags-from-clients--tag-remove)**                 | `tag remove [INDEX] TAG1 [TAG2] … [TAGN]`                                                                                         |
-| **[Tag deletion](#deleting-all-occurrences-of-a-tag--tag-delete)**   | `tag delete TAG1 [TAG2] … [TAGN]`                                                                                                 |
+| **[Tag deletion](#deleting-a-tag--tag-delete)**                      | `tag delete TAG1 [TAG2] … [TAGN]`                                                                                                 |
 | **[Filter](#filtering-client-entries--filter)**                      | `filter n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]`       |
 | **[Filter clear](#clearing-filters--filter-clear)**                  | `filter clear n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]` |
 | **[Filter list](#lists-the-filter-parameters--filter-list)**         | `filter list`                                                                                                                     |
