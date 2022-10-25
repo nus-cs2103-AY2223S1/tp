@@ -27,6 +27,12 @@ public class Tag {
         this.count = 1;
     }
 
+    /**
+     * Constructs a {@code Tag}.
+     *
+     * @param tagName A valid tag name.
+     * @param tagCount Number of tags of this name retrieved from storage.
+     */
     public Tag(String tagName, int tagCount) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
