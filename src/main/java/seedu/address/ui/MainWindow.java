@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -31,6 +32,13 @@ public class MainWindow extends UiPart<Stage> {
     private static final String EXPAND_MENUITEM_TEXT = "Expanded Cards";
     private static final String LIGHT_THEME_MENUITEM_TEXT = "Light Theme";
     private static final String DARK_THEME_MENUITEM_TEXT = "Dark Theme";
+    private static final String ADD_COMMAND_SHORTCUT_TEXT = "add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/";
+    private static final String EDIT_COMMAND_SHORTCUT_TEXT = "edit ";
+    private static final String DELETE_COMMAND_SHORTCUT_TEXT = "delete ";
+    private static final String CLONE_COMMAND_SHORTCUT_TEXT = "clone ";
+    private static final String VIEW_COMMAND_SHORTCUT_TEXT = "view ";
+
+
 
     private final String lightTheme = getClass().getResource("/view/LightTheme.css").toExternalForm();
     private final String darkTheme = getClass().getResource("/view/DarkTheme.css").toExternalForm();
@@ -99,6 +107,11 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setCommandBoxText(ADD_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+A"));
+        setCommandBoxText(EDIT_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+E"));
+        setCommandBoxText(DELETE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+D"));
+        setCommandBoxText(CLONE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+C"));
+        setCommandBoxText(VIEW_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+V"));
     }
 
     /**
@@ -132,8 +145,24 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Sets the text of command box.
+     * @param text The text to be added to the command box.
+     * @param keyCombination the KeyCombination value of the accelerator.
      */
+    private void setCommandBoxText(String text, KeyCombination keyCombination) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (keyCombination.match(event)) {
+                CommandBox commandBox = new CommandBox(this::executeCommand, text);
+                commandBoxPlaceholder.getChildren().clear();
+                commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+                event.consume();
+            }
+        });
+    }
+
+        /**
+         * Fills up all the placeholders of this window.
+         */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), isExpanded);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -282,5 +311,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void setHelpMenuItem(MenuItem helpMenuItem) {
+        this.helpMenuItem = helpMenuItem;
     }
 }
