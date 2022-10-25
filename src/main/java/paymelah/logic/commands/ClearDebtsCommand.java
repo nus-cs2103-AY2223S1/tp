@@ -56,6 +56,8 @@ public class ClearDebtsCommand extends Command {
         Person debtorToClear = lastShownList.get(index.getZeroBased());
         Person clearedDebtor = createClearedDebtor(debtorToClear);
 
+        model.saveAddressBook();
+        model.saveCommandMessage(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor.getName()));
         model.setPerson(debtorToClear, clearedDebtor);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_CLEAR_DEBTS_SUCCESS, clearedDebtor.getName()));

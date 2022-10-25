@@ -43,6 +43,8 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.saveAddressBook();
+        model.saveCommandMessage(String.format(MESSAGE_SUCCESS, criteria, order));
         model.sortAddressBookPersonList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, criteria, order));
     }
