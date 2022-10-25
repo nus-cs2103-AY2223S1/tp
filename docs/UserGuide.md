@@ -157,14 +157,14 @@ Examples:
 Edits the respective details of an existing student.
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3 ...
-* Existing values will be updated to the input values.
-* Refer to the list of tags for each field under the [addstud command](#411-adding-a-new-student-record--addstud).
+* Existing values will be updated to the new input values.
+* Refer to the complete list of tags for each field under [addstud command](#411-adding-a-new-student-record--addstud).
 
 Format: `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`
 
 Examples:
 *  `edit 1 exam/CA2 70 exam/SA1 60` Adds or updates the CA2 and SA1 exam grades of the 1st student to be `70` and `60` respectively.
-*  `edit 2 nm/Jacob Teo` Edits the name of the 2nd student to be `Jacob Teo`.
+*  `edit 2 nm/Jacob Teo` Edits the name of the 2nd student to `Jacob Teo`.
 
 ## 4.2 Managing display of student records
 
