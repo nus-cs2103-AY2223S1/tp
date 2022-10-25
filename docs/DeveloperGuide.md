@@ -224,6 +224,28 @@ As a detailed overview, the `deletegroup` command operates via the following seq
 
 -----
 
+### **\[Developed\] Add/Delete member feature**
+
+#### **Implementation**
+This feature allows members to be added to and deleted from a group. It is 
+achieved by the following operation:
+
+- Model#addMember(Name, GroupName) - Adds the person with the input name to the group with input group name.
+- Model#deleteMember(Name, GroupName) - Removes the person with the input name from the group with the input group name.
+
+Given below is an example usage scenario and how groups are added/deleted at each stage.
+
+**Step 1.**
+Starting from the default persons, the user has executed `addgroup g/CS2103T` to add a group with
+`GroupName` "CS2103T". The `AddressBook` model is reflected belo:
+<!-- Add/Delete member diagram 1 -->
+
+**Step 2.**
+User executes `addmember g/CS2103T n/`
+
+
+-----
+
 ### **\[Developed\] Display Group feature**
 
 #### **Implementation**
