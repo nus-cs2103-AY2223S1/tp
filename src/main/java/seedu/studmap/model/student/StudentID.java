@@ -1,7 +1,6 @@
 package seedu.studmap.model.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.studmap.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's ID in the student map.
