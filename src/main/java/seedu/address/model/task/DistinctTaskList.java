@@ -9,8 +9,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.EditModuleCommand;
-import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;

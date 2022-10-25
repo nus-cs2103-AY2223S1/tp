@@ -1,7 +1,5 @@
 package seedu.address.commons.util;
 
-import seedu.address.model.module.exceptions.NullModuleCodeException;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
@@ -35,7 +33,7 @@ public class CollectionUtil {
         requireNonNull(items);
         if (!isAnyNonNull(items)) {
             throw new NullPointerException();
-        };
+        }
     }
 
     /**

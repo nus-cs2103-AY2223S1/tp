@@ -9,7 +9,6 @@ import java.util.List;
 import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDescription;
 
 /**
  * Exam class represents an exam which stores the module code, the
@@ -109,7 +108,7 @@ public class Exam {
      * Creates and returns a {@code Exam} with the details of {@code this}
      * edited with {@code editExamDescriptor}.
      */
-    public Exam edit(Module newModule, ExamDescription newDescription, ExamDate newExamDate ) {
+    public Exam edit(Module newModule, ExamDescription newDescription, ExamDate newExamDate) {
         requireAnyNonNull(newModule, newDescription, newExamDate);
         Module updatedModule = module;
         ExamDescription updatedDescription = examDescription;

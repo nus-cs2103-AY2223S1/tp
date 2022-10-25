@@ -249,6 +249,10 @@ public class Task {
         return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
     }
 
+    /**
+     * Creates and returns a {@code Task} with the details of {@code this}
+     * edited with {@code newModule} and {@code newTaskDescription}.
+     */
     public Task edit(Module newModule, TaskDescription newTaskDescription) {
         requireAnyNonNull(newModule, newTaskDescription);
         Module updatedModule = module;
