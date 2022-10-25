@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -76,6 +77,10 @@ public class ModuleUserCommand extends ModuleCommand {
         setPreviousModules.addAll(userToEdit.getPrevModules());
         Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
         setPlannedModules.addAll(userToEdit.getPlanModules());
+        Set<Module> setModulesToRemove = editModuleDescriptor.getModulesToRemove();
+        setCurrentModules.removeAll(setModulesToRemove);
+        setPreviousModules.removeAll(setModulesToRemove);
+        setPlannedModules.removeAll(setModulesToRemove);
 
         return new ExistingUser(name, phone, email, address, github, setCurrentModules, setPreviousModules,
                 setPlannedModules);

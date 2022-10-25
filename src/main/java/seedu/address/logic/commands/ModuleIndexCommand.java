@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -80,6 +81,10 @@ public class ModuleIndexCommand extends ModuleCommand {
         setPreviousModules.addAll(personToEdit.getPrevModules());
         Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
         setPlannedModules.addAll(personToEdit.getPlanModules());
+        Set<Module> setModulesToRemove = editModuleDescriptor.getModulesToRemove();
+        setCurrentModules.removeAll(setModulesToRemove);
+        setPreviousModules.removeAll(setModulesToRemove);
+        setPlannedModules.removeAll(setModulesToRemove);
 
         return new Person(name, phone, email, address, github, tags, setCurrentModules, setPreviousModules,
                 setPlannedModules);

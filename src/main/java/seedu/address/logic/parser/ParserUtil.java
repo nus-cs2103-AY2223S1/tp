@@ -152,6 +152,34 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String mod} into a {@code Module}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mod} is invalid.
+     */
+    public static Module parseModule(String mod) throws ParseException {
+        requireNonNull(mod);
+        String trimmedMod = mod.trim();
+        if (!Module.isValidModuleName(trimmedMod)) {
+            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        }
+        return new Module(trimmedMod);
+    }
+
+    /**
+     * Parses {@code Collection<String> mods} into a {@code Set<CurrentModule>}.
+     */
+    public static Set<Module> parseModules(Collection<String> mods) throws ParseException {
+        requireNonNull(mods);
+        final Set<Module> modSet = new HashSet<>();
+
+        for (String modCode : mods) {
+            modSet.add(parseModule(modCode));
+        }
+        return modSet;
+    }
+
+    /**
      * Parses a {@code String mod} into a {@code CurrentModule}.
      * Leading and trailing whitespaces will be trimmed.
      *

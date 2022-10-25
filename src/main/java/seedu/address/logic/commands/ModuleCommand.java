@@ -6,9 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANNEDMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREVIOUSMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVEMOD;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
@@ -42,7 +40,6 @@ public class ModuleCommand extends Command {
             + PREFIX_REMOVEMOD + "ST2334";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Modules: %1$s";
-    public static final String MESSAGE_MOD_NOT_IN_LIST = "Module to be removed is not in list!";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public ModuleCommand() {}

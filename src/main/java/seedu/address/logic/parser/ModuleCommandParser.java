@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ModuleIndexCommand;
 import seedu.address.logic.commands.ModuleUserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 
@@ -49,6 +50,8 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
                     .ifPresent(editUserDescriptor::setPrevModules);
             parsePlannedModsForEdit(argMultimap.getAllValues(PREFIX_PLANNEDMOD))
                     .ifPresent(editUserDescriptor::setPlanModules);
+            parseRemoveModsForEdit(argMultimap.getAllValues(PREFIX_REMOVEMOD))
+                    .ifPresent(editUserDescriptor::setModulesToRemove);
 
             if (!editUserDescriptor.isAnyFieldEdited()) {
                 throw new ParseException(ModuleCommand.MESSAGE_NOT_EDITED);
@@ -73,6 +76,8 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
                 .ifPresent(editPersonDescriptor::setPrevModules);
         parsePlannedModsForEdit(argMultimap.getAllValues(PREFIX_PLANNEDMOD))
                 .ifPresent(editPersonDescriptor::setPlanModules);
+        parseRemoveModsForEdit(argMultimap.getAllValues(PREFIX_REMOVEMOD))
+                .ifPresent(editPersonDescriptor::setModulesToRemove);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(ModuleCommand.MESSAGE_NOT_EDITED);
@@ -130,5 +135,22 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
                 ? Collections.emptySet()
                 : planMods;
         return Optional.of(ParserUtil.parsePlannedModules(planModSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> modsToRemove} into a {@code Set<Module>} if {@code modsToRemove} is non-empty.
+     * If {@code modsToRemove} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Module>} containing zero modules.
+     */
+    private Optional<Set<Module>> parseRemoveModsForEdit(Collection<String> modsToRemove) throws ParseException {
+        assert modsToRemove != null;
+
+        if (modsToRemove.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> modsToRemoveSet = modsToRemove.size() == 1 && modsToRemove.contains("")
+                ? Collections.emptySet()
+                : modsToRemove;
+        return Optional.of(ParserUtil.parseModules(modsToRemoveSet));
     }
 }
