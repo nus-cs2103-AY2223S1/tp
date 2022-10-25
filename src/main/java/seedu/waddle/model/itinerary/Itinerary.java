@@ -35,17 +35,8 @@ public class Itinerary {
     private final Comparator<Item> priorityComparator = new Comparator<Item>() {
         @Override
         public int compare(Item item1, Item item2) {
-            return item1.getPriority().compareTo(item2.getPriority());
+            return item2.getPriority().compareTo(item1.getPriority());
         }
-    };
-    private final Comparator<Item> timeComparator = new Comparator<Item>() {
-        @Override
-        public int compare(Item o1, Item o2) {
-            return 0;
-        }
-        /*public int compare(Item item1, Item item2) {
-            return item1.getStartTime.compareTo(item2.getStartTime());
-        }*/
     };
 
     /**
@@ -122,8 +113,13 @@ public class Itinerary {
         return this.unscheduledItemList.contains(item);
     }
 
+    /**
+     * Add item into itinerary.
+     * @param item Item to be added.
+     */
     public void addItem(Item item) {
         this.unscheduledItemList.add(item);
+        sortUnscheduledItemList();
     }
 
     /**

@@ -167,7 +167,7 @@ public class EditItemCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, priority, cost, duration);
+            return CollectionUtil.isAnyNonNull(description, priority, cost, duration, startTime);
         }
 
         public Optional<String> getDescription() {

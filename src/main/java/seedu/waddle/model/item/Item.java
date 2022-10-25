@@ -1,6 +1,5 @@
 package seedu.waddle.model.item;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
@@ -58,7 +57,6 @@ public class Item {
     }
 
     public void setStartTime(LocalTime startTime) {
-        requireNonNull(startTime);
         this.startTime = startTime;
     }
 
