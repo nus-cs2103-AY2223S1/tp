@@ -11,5 +11,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_CUISINE = new Prefix("-c");
     public static final Prefix PREFIX_LOCATION = new Prefix("-l");
     public static final Prefix PREFIX_TAG = new Prefix("-t");
+    public static final Prefix PREFIX_HELP = new Prefix("-h");
 
 }

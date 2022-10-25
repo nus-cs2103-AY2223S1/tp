@@ -1,16 +1,18 @@
 package eatwhere.foodguide.logic.parser;
 
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
+import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.logic.commands.AddCommand;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
@@ -28,11 +30,16 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
+     * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddCommand parse(String args) throws ParseException, DisplayCommandHelpException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CUISINE,
-                        PREFIX_LOCATION, PREFIX_PHONE, PREFIX_TAG);
+                        PREFIX_LOCATION, PREFIX_PHONE, PREFIX_TAG, PREFIX_HELP);
+
+        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+            throw new DisplayCommandHelpException(AddCommand.MESSAGE_USAGE);
+        }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_CUISINE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -53,14 +60,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         return new AddCommand(eatery);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

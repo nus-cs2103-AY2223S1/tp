@@ -7,6 +7,7 @@ import eatwhere.foodguide.commons.core.LogsCenter;
 import eatwhere.foodguide.logic.Logic;
 import eatwhere.foodguide.logic.commands.CommandResult;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -172,7 +173,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            DisplayCommandHelpException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -187,6 +189,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
+        } catch (DisplayCommandHelpException e) {
+            logger.info("Displaying help: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

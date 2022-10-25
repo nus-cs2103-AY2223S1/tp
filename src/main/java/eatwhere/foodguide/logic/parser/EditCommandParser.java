@@ -1,10 +1,12 @@
 package eatwhere.foodguide.logic.parser;
 
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
+import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -15,6 +17,7 @@ import java.util.Set;
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.EditCommand;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.tag.Tag;
 
@@ -27,12 +30,17 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
+     * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditCommand parse(String args) throws ParseException, DisplayCommandHelpException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_CUISINE, PREFIX_LOCATION, PREFIX_TAG);
+                        PREFIX_CUISINE, PREFIX_LOCATION, PREFIX_TAG, PREFIX_HELP);
+
+        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+            throw new DisplayCommandHelpException(EditCommand.MESSAGE_USAGE);
+        }
 
         Index index;
 

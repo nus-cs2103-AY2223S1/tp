@@ -10,6 +10,7 @@ import eatwhere.foodguide.logic.commands.Command;
 import eatwhere.foodguide.logic.commands.CommandResult;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.logic.parser.FoodGuideParser;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ReadOnlyFoodGuide;
@@ -38,7 +39,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            DisplayCommandHelpException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;

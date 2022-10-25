@@ -1,6 +1,7 @@
 package eatwhere.foodguide.logic.parser;
 
 import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.HELP_DESC;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 
 import org.junit.jupiter.api.Test;
@@ -214,5 +215,21 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_displayHelp_success() {
+        Index targetIndex = TypicalIndexes.INDEX_THIRD_EATERY;
+        String userInput = targetIndex.getOneBased() + HELP_DESC;
+
+        CommandParserTestUtil.assertParseDisplayCommandHelp(parser, userInput, EditCommand.MESSAGE_USAGE);
+
+        // help prefix overrides normal edit command behavior
+        userInput = targetIndex.getOneBased()
+                + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
+                + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
+                + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND + HELP_DESC;
+
+        CommandParserTestUtil.assertParseDisplayCommandHelp(parser, userInput, EditCommand.MESSAGE_USAGE);
     }
 }

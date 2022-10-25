@@ -3,6 +3,7 @@ package eatwhere.foodguide.ui;
 import eatwhere.foodguide.logic.Logic;
 import eatwhere.foodguide.logic.commands.CommandResult;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,6 +48,8 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        } catch (DisplayCommandHelpException e) {
+            setStyleToDefault();
         }
     }
 
@@ -80,7 +83,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, DisplayCommandHelpException;
     }
 
 }
