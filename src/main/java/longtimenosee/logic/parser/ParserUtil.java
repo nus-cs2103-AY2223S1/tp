@@ -12,7 +12,6 @@ import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.event.Date;
 import longtimenosee.model.event.Description;
 import longtimenosee.model.event.Duration;
-import longtimenosee.model.event.PersonName;
 import longtimenosee.model.person.Address;
 import longtimenosee.model.person.Birthday;
 import longtimenosee.model.person.Email;
@@ -57,8 +56,8 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!longtimenosee.model.person.Name.isValidName(trimmedName)) {
+            throw new ParseException(longtimenosee.model.person.Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -276,24 +275,12 @@ public class ParserUtil {
         if (!Date.isValidFormat(strippedDate)) {
             throw new ParseException(Date.MESSAGE_FORMAT_CONSTRAINTS);
         }
+
+        if (!Date.isValidRange(strippedDate)) {
+            throw new ParseException(Date.RANGE_FORMAT_CONSTRAINTS);
+        }
         return new Date(strippedDate);
     }
-    /**
-     * Parses a {@code String personName} into a {@code PersonName}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code personName} is invalid.
-     */
-
-    public static PersonName parsePersonName(String personName) throws ParseException {
-        requireNonNull(personName);
-        String strippedName = personName.strip();
-        if (!PersonName.isValidPersonName(strippedName)) {
-            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
-        }
-        return new PersonName(strippedName);
-    }
-
     /**
      * Parses {@code String policyDate} into a {@code PolicyDate}.
      * Leading and trailing whitespaces will be trimmed.

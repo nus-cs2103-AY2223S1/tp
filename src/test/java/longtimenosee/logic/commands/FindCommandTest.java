@@ -2,6 +2,7 @@ package longtimenosee.logic.commands;
 
 import static longtimenosee.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static longtimenosee.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static longtimenosee.testutil.TypicalPersons.ALICE;
 import static longtimenosee.testutil.TypicalPersons.CARL;
 import static longtimenosee.testutil.TypicalPersons.ELLE;
 import static longtimenosee.testutil.TypicalPersons.FIONA;
@@ -13,13 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import longtimenosee.model.Model;
 import longtimenosee.model.ModelManager;
 import longtimenosee.model.UserPrefs;
+import longtimenosee.model.person.Person;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
+import longtimenosee.model.person.predicate.RiskAppetiteMatchesInputPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -58,7 +62,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
         FindCommand command = new FindCommand(List.of(predicate));
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -68,17 +72,36 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(List.of(predicate));
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
+    @Test
+    public void execute_multiplePredicates_onePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate firstPredicate = prepareNamePredicate("Alice");
+        RiskAppetiteMatchesInputPredicate secondPredicate = prepareRiskAppetitePredicate("M");
+        FindCommand command = new FindCommand(List.of(firstPredicate, secondPredicate));
+        Predicate<Person> predicate = firstPredicate.and(secondPredicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(ALICE), model.getFilteredPersonList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private RiskAppetiteMatchesInputPredicate prepareRiskAppetitePredicate(String userInput) {
+        return new RiskAppetiteMatchesInputPredicate(userInput);
     }
 }

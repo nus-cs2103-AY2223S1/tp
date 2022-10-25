@@ -8,7 +8,7 @@ import longtimenosee.model.event.Date;
 import longtimenosee.model.event.Description;
 import longtimenosee.model.event.Duration;
 import longtimenosee.model.event.Event;
-import longtimenosee.model.event.PersonName;
+import longtimenosee.model.person.Name;
 
 /**
  * Constructs a {@code JsonAdaptedEvent} with the given person details.
@@ -38,7 +38,7 @@ public class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         description = source.getDescription().retrieveDescription();
-        personName = source.getPersonName().personName;
+        personName = source.getPersonName().fullName;
         date = source.getDate().value;
         duration = source.getDuration().value;
     }
@@ -59,12 +59,12 @@ public class JsonAdaptedEvent {
 
         if (personName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    PersonName.class.getSimpleName()));
+                    Name.class.getSimpleName()));
         }
         if (!Description.isValidDescription(personName)) {
-            throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final PersonName modelPersonName = new PersonName(personName);
+        final Name modelName = new Name(personName);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
@@ -82,7 +82,7 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(Duration.MESSAGE_CONSTRAINTS);
         }
         final Duration modelDuration = new Duration(duration);
-        return new Event(modelDescription, modelPersonName, modelDate, modelDuration);
+        return new Event(modelDescription, modelName, modelDate, modelDuration);
     }
 
 }

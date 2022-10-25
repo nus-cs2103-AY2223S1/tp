@@ -1,34 +1,34 @@
-package longtimenosee.model.person.predicate;
+package longtimenosee.model.policy.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import longtimenosee.commons.util.StringUtil;
-import longtimenosee.model.person.Person;
-import longtimenosee.model.tag.Tag;
+import longtimenosee.model.policy.Coverage;
+import longtimenosee.model.policy.Policy;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the keywords given.
+ * Tests that a {@code Policy}'s {@code Coverage} matches the input.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class CoverageMatchesInputPredicate implements Predicate<Policy> {
     private final List<String> keywords;
 
     /**
-     * Constructs a TagContainsKeywordsPredicate object, which consists of a keywords input.
+     * Constructs a CoverageMatchesInputPredicate object, which consists of a keywords input.
      *
      * @param keywords is the keywords input by the user to be compared.
      */
-    public TagContainsKeywordsPredicate(List<String> keywords) {
+    public CoverageMatchesInputPredicate(List<String> keywords) {
         assert !keywords.isEmpty();
         this.keywords = keywords;
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Policy policy) {
         boolean[] isMatch = new boolean[keywords.size()];
         for (int i = 0; i < keywords.size(); i++) {
-            for (Tag tag : person.getTags()) {
-                if (StringUtil.containsWordIgnoreCase(tag.tagName, keywords.get(i))) {
+            for (Coverage coverage : policy.getCoverages()) {
+                if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keywords.get(i))) {
                     isMatch[i] = true;
                     break;
                 }
@@ -51,8 +51,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         if (other == this) {
             return true;
         } else {
-            if (other instanceof TagContainsKeywordsPredicate) {
-                return keywords.equals(((TagContainsKeywordsPredicate) other).keywords);
+            if (other instanceof CoverageMatchesInputPredicate) {
+                return keywords.equals(((CoverageMatchesInputPredicate) other).keywords);
             } else {
                 return false;
             }

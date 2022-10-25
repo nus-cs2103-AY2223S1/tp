@@ -228,7 +228,7 @@ public class UniqueEventList implements Iterable<Event> {
     public void removeEventsUnderPerson(Person person) {
         List<Event> eventsAssociatedWithPerson = new ArrayList<>();
         for (Event event: internalList) {
-            if (event.getPersonName().personName.equals(person.getName().fullName)) {
+            if (event.getPersonName().fullName.equals(person.getName().fullName)) {
                 eventsAssociatedWithPerson.add(event);
             }
         }
