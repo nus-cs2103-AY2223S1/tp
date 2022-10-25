@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-SectresBook helps **secretaries** to maintain all the information of the members of their club by **collating a list of identifiable information, past records and future tasks.**
+SectresBook helps **secretaries** to maintain all the information of the members of their club by **collating a list of identifiable information, past records, loan amounts and future tasks.** As a **treasurer**, use SectresBook **manage the finances of your club better** by keeping track of the funds loaned to each member. This all-in-one tool eliminates the trouble of having to search through multiple notebooks/apps to find information regarding a club member, saving you time and effort, so that you can focus on other tasks at hand using the notes feature!
+
+Focusing on speed and efficiency, interact with SectresBook using the **Command Line Interface (CLI)**, while still having the benefits of a visually appealing **Graphical User Interface (GUI)**.
+
+This User Guide is an in-depth guide to help you start managing your contacts, notes and finances. It includes the **installation, features and how to use them, and FAQ for troubleshooting**, ensuring a smooth pickup of the SectresBook.
 
 * Table of Contents
 {:toc}
