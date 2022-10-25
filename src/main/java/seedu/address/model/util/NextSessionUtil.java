@@ -20,6 +20,7 @@ import seedu.address.model.person.Session;
  * Utility class containing helper methods to help with nextSessionFeedback method.
  */
 public class NextSessionUtil {
+    public static final String MESSAGE_NO_NEXT_SESSION_FOUND = "No next Session timing!";
     private final Session timeNowSession;
     private final ArrayList<Session> toSortList;
     private final HashMap<Session, Person> sessionPersonHashMap;
@@ -72,11 +73,11 @@ public class NextSessionUtil {
     public String nextSessionFeedback() {
         String preamble = "Next Session: ";
         if (personList.isEmpty()) {
-            return ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND;
+            return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
         personList.forEach(toSortListAdder);
         if (toSortList.isEmpty()) {
-            return ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND;
+            return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
         toSortList.sort(Session::compareTo);
         Predicate<Session> laterThanNowCounter = s -> timeNowSession.compareTo(s) <= 0;

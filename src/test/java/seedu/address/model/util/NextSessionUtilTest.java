@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.model.util.NextSessionUtil.MESSAGE_NO_NEXT_SESSION_FOUND;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -28,14 +29,14 @@ public class NextSessionUtilTest {
         // No Person in Pupilist.
         AddressBook addressBook = new AddressBook();
         NextSessionUtil nextSessionUtil = new NextSessionUtil(addressBook.getPersonList());
-        assertEquals(nextSessionUtil.nextSessionFeedback(), ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND);
+        assertEquals(nextSessionUtil.nextSessionFeedback(), MESSAGE_NO_NEXT_SESSION_FOUND);
 
         // Add TypicalPersons without Sessions.
         addressBook.addPerson(CARL);
         addressBook.addPerson(DANIEL);
         addressBook.addPerson(ELLE);
 
-        assertEquals(nextSessionUtil.nextSessionFeedback(), ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND);
+        assertEquals(nextSessionUtil.nextSessionFeedback(), MESSAGE_NO_NEXT_SESSION_FOUND);
     }
 
     @Test

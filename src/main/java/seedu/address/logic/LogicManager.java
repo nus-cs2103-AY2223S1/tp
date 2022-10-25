@@ -69,6 +69,8 @@ public class LogicManager implements Logic {
     public String getNextSession() {
         return model.getNextSession();
     }
+
+    @Override
     public ObservableList<TimeSlot> getTimeSlotList() {
         return model.getTimeSlotList();
     }
