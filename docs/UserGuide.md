@@ -140,9 +140,9 @@ Example:
 
 ### Adding an event: `event -a`
 
-Adds an event with a name and a start timing and end timing.
+Adds an event with a name, a start timing and end timing.
 
-Format: `event -a n/NAME s/START e/END [t/TAG]… [p/PROFILE]…`
+Format: `event -a n/TITLE s/START e/END [t/TAG]… [p/PROFILE]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An event can have 0 or more profiles.
@@ -171,7 +171,7 @@ Format: `event -v`
 
 Edits an existing event in NUScheduler.
 
-Format: `event -e INDEX [n/NAME] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
+Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
 
 * Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
@@ -179,9 +179,9 @@ Format: `event -e INDEX [n/NAME] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
 * When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it.
 
-### Finding events by date or name: `event -f KEYWORD_OR_DATE [MORE]`
+### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]`
 
-Find events whose names contain any of the given keywords or start times contain any of the given start times.
+Find events whose title contain any of the given keywords or start times contain any of the given start times.
 
 * Date search will occur when all inputs are [valid dates](#accepted-date-time-formats), otherwise, keyword search will occur.
 * The date search occurs only by date, ignoring the time, e.g. `11/10/2022 08:00` will match any events that start on `11/10/2022`.
@@ -228,9 +228,9 @@ Lorem ipsum
 | **Edit Profile**           | `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t/TAG]…` |
 | **View Profiles**          | `profile -v`                                                                    |
 | **Find Profile**           | `profile -f KEYWORD [MORE_KEYWORDS]`                                            |
-| **Add Event**              | `event -a n/NAME s/START e/END [t/TAG]… [p/PROFILE]…`                           |
+| **Add Event**              | `event -a n/TITLE s/START e/END [t/TAG]… [p/PROFILE]…`                          |
 | **Delete Event**           | `event -d INDEX`                                                                |
-| **Edit Event**             | `event -e INDEX [n/NAME] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`               |
+| **Edit Event**             | `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`              |
 | **View Events**            | `event -v`                                                                      |
 | **View Upcoming Event(s)** | `event -u DAYS`                                                                 |
 | **Find Event**             | `event -f KEYWORD_OR_DATE [MORE]`                                               |
