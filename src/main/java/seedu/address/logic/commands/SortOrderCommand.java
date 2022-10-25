@@ -37,7 +37,7 @@ public class SortOrderCommand extends SortCommand {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object object) {
         if (object == this) {
             return true;
@@ -47,5 +47,5 @@ public class SortOrderCommand extends SortCommand {
         }
 
         return comparator.equals(((SortOrderCommand) object).comparator);
-    }
+    }*/
 }

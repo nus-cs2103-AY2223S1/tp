@@ -38,7 +38,7 @@ public class SortBuyerCommand extends SortCommand {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object object) {
         if (object == this) {
             return true;
@@ -48,5 +48,5 @@ public class SortBuyerCommand extends SortCommand {
         }
 
         return comparator.equals(((SortBuyerCommand) object).comparator);
-    }
+    }*/
 }
