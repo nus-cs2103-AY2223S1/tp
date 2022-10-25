@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
+import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 //import static seedu.address.testutil.TypicalPersons.AMY;
 //import static seedu.address.testutil.TypicalEntry.LUNCH;
 
@@ -48,7 +49,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private Model model = new ModelManager(getTypicalPennyWise(), new UserPrefs());
     private Logic logic;
 
     @BeforeEach
