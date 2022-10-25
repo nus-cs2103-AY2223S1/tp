@@ -140,29 +140,27 @@ Examples:
 * `list s/n` Lists all persons sorted by their names.
 
 
-### Editing a contact : `edit`
+### Editing a contact : `editPerson`
 
 Edits an existing contact in the application.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`
+Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed (i.e. adding of tags is not cumulative).
-- You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
+*  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
    `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
+*  `editPerson 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
+*  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
 edits gender to be `Female` and edits date of birth to be `3.4.1998`.
 
 __Optional Parameter 1: Gender__
 
-Format: `edit INDEX [g/GENDER]`
+Format: `editPerson INDEX [g/GENDER]`
 
 - Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,
 `F`/`f` for female, and `NA` for empty gender (if user wants to hide gender).
@@ -170,13 +168,13 @@ Format: `edit INDEX [g/GENDER]`
 - `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
 
 Examples:
-* `edit 1 g/M`
-* `edit 2 g/f`
-* `edit 3 g/NA`
+* `editPerson 1 g/M`
+* `editPerson 2 g/f`
+* `editPerson 3 g/NA`
 
 __Optional Parameter 2: Date of Birth__
 
-Format: `edit INDEX [d/DOB]`
+Format: `editPerson INDEX [d/DOB]`
 
 - Edits the date of birth of a person in the contact list. Date format accepted is: dd/mm/yyyy.
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
@@ -184,9 +182,9 @@ Format: `edit INDEX [d/DOB]`
 
 
 Examples:
-* `edit 1 d/20/03/2000`
-* `edit 2 d/5/4/2000`
-* `edit 3 d/23/09/2000`
+* `editPerson 1 d/20/03/2000`
+* `editPerson 2 d/5/4/2000`
+* `editPerson 3 d/23/09/2000`
 
 ### Locating persons by name: `find`
 
@@ -231,6 +229,24 @@ Format: `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
 Examples:
 * `addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`
 * `addEvent n/Banana Discount 10% d/20-04-2022 t/14:00 p/10% discount on all bananas`
+
+### Editing an event : `editEvent`
+
+Edits an existing event in the application.
+
+Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
+
+- Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list.
+  The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+
+Examples:
+*  `editEvent 1 e/Toy Dinosaur Sale t/10/10/AM` Edits the event title and time of the 1st event to be
+   `Toy Dinosaur Sale` and `10:10 AM` respectively.
+*  `editEvent 2 e/Pillow Sale` Edits the event title of the 2nd event to be `Pillow Sale`.
+*  `editEvent 3 d/10/10/2022 p/Give 20% off bottles` Edits the 3rd event’s date and purpose to be `10 Oct 2022` and ,
+    `Give 20% off bottles` respectively.
 
 ### Deleting an event: `deleteEvent`
 
@@ -295,10 +311,11 @@ _Details coming soon ..._
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002` |
 | **Clear**       | `clear`                                                                                                                                                                                |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                    |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
+| **EditPerson**  | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                              |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
 | **List**        | `list  [s/FIELD]` <br> e.g., `list s/n`                                                                                                                                                |
 | **AddEvent**    | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
+| **EditEvent**   | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10% off all chocolates`                                                      |
 | **DeleteEvent** | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
 | **ListEvents**  | `listEvents`                                                                                                                                                                           |
 | **Help**        | `help`                                                                                                                                                                                 |
