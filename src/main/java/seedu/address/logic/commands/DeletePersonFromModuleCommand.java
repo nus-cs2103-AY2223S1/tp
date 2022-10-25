@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
@@ -50,6 +51,7 @@ public class DeletePersonFromModuleCommand extends Command {
      * @param targetName The person to be deleted in the module.
      */
     public DeletePersonFromModuleCommand(ModuleCode targetModuleCode, Name targetName) {
+        requireAllNonNull(targetModuleCode, targetName);
         this.targetModuleCode = targetModuleCode;
         this.targetName = targetName;
     }
