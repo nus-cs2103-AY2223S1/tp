@@ -41,7 +41,6 @@ public class NutriGoalsParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    @SuppressWarnings("checkstyle:Regexp")
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -93,7 +92,6 @@ public class NutriGoalsParser {
         case ProfileCommand.COMMAND_WORD:
             return new ProfileCommand();
 
-        //noinspection CheckStyle
         case TipCommand.COMMAND_WORD:
             return new TipCommand();
 

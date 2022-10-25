@@ -29,5 +29,5 @@ public interface ReadOnlyNutriGoals {
     /**
      * Returns a random tip from a list of tips.
      */
-    String getTip();
+    Tip getTip();
 }
