@@ -85,6 +85,7 @@ public class FoodRem implements ReadOnlyFoodRem {
      * The item must not already exist in FoodRem.
      */
     public void addItem(Item p) {
+        assert tags.asUnmodifiableObservableList().containsAll(p.getTagSet());
         items.add(p);
     }
 

@@ -15,7 +15,6 @@ import seedu.foodrem.commons.util.ConfigUtil;
 import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.LogicManager;
-import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.ReadOnlyFoodRem;
@@ -73,20 +72,20 @@ public class MainApp extends Application {
      * or an empty foodRem will be used instead if errors occur when reading {@code storage}'s foodRem.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFoodRem> foodRemOptional;
         ReadOnlyFoodRem initialData;
         try {
-            foodRemOptional = storage.readFoodRem();
+            Optional<ReadOnlyFoodRem> foodRemOptional = storage.readFoodRem();
             if (foodRemOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample FoodRem");
             }
+            // TODO: Update sample to have nicer data
             initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty FoodRem");
-            initialData = new FoodRem();
+            logger.warning("Data file not in the correct format. Will be starting with a sample FoodRem");
+            initialData = SampleDataUtil.getSampleFoodRem();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty FoodRem");
-            initialData = new FoodRem();
+            logger.warning("Problem while reading from the file. Will be starting with a sample FoodRem");
+            initialData = SampleDataUtil.getSampleFoodRem();
         }
 
         return new ModelManager(initialData, userPrefs);
