@@ -60,10 +60,6 @@ ___
 
 {% include_relative _dg/NFRs.md %}
 
-## Glossary
-
-{% include glossary.md type="dg" %}
-
 ---
 
 ## Appendix: Instructions for Manual Testing
@@ -75,3 +71,9 @@ ___
 ## Appendix: Effort
 
 {% include_relative _dg/Effort.md %}
+
+---
+
+## Glossary
+
+{% include glossary.md type="dg" %}
