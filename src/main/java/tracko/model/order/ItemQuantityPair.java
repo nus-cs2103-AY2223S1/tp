@@ -13,7 +13,7 @@ public class ItemQuantityPair {
 
     private final Item item;
     private Quantity quantity;
-    private Price itemPrice;
+    private Double itemPrice;
 
     /**
      *  * Constructs an ItemQuantityPair with the given Item and Quantity.
@@ -75,11 +75,11 @@ public class ItemQuantityPair {
 
     public void calculatePrice() {
         Price singleItemPrice = this.item.getSellPrice();
-        double itemPrice = singleItemPrice.getPrice() * quantity.getQuantity();
-        this.itemPrice = new Price(itemPrice);
+        double itemPrice = singleItemPrice.multiply(quantity.getQuantity());
+        this.itemPrice = itemPrice;
     }
 
-    public Price getPrice() {
+    public Double getPrice() {
         return this.itemPrice;
     }
 

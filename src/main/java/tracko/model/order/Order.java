@@ -134,7 +134,7 @@ public class Order {
         for (int i = 0; i < itemList.size(); i++) {
             ItemQuantityPair item = itemList.get(i);
             item.calculatePrice();
-            totalOrderPrice += item.getPrice().price;
+            totalOrderPrice += item.getPrice();
         }
         this.totalOrderPrice = new Price(totalOrderPrice);
     }

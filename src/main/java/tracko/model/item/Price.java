@@ -51,6 +51,14 @@ public class Price {
         return bigDecimalPrice.doubleValue();
     }
 
+    public Double multiply(Integer quantity) {
+        BigDecimal bigDecimalPrice = new BigDecimal(price);
+        BigDecimal bigDecimalQuantity = new BigDecimal(quantity);
+        BigDecimal multipliedValue = bigDecimalPrice.multiply(bigDecimalQuantity);
+        multipliedValue.setScale(2, RoundingMode.HALF_UP);
+        return multipliedValue.doubleValue();
+    }
+
     @Override
     public String toString() {
         return String.format("%.2f", price);
