@@ -150,6 +150,8 @@ public class AddTagCommand extends Command {
             }
         }
 
+        model.commitAddressBook();
+
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
                 editPersonDescriptor.getTags().orElse(new HashSet<>())));
     }
