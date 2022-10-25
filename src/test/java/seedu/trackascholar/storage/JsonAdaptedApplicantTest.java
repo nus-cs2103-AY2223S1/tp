@@ -64,7 +64,8 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                INVALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
+                INVALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP,
+                VALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
 
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
@@ -82,7 +83,8 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, INVALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
+                VALID_PHONE, INVALID_EMAIL, VALID_SCHOLARSHIP,
+                VALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -99,7 +101,8 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidScholarship_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, INVALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
+                VALID_PHONE, VALID_EMAIL, INVALID_SCHOLARSHIP,
+                VALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
         String expectedMessage = Scholarship.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -115,7 +118,8 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidApplicationStatus_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, INVALID_APPLICATION_STATUS, VALID_MAJORS, VALID_HAS_PINNED);
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, INVALID_APPLICATION_STATUS,
+                VALID_MAJORS, VALID_HAS_PINNED);
         String expectedMessage = ApplicationStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
