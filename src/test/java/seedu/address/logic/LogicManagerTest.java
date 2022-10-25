@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -11,11 +12,13 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ResetCommand;
@@ -88,7 +91,29 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedFilteredPersonList().remove(0));
+    }
+
+
+    @Test
+    public void getFilteredPersonList_listIsSorted() {
+        assertSorted(logic.getSortedFilteredPersonList());
+    }
+
+    private void assertSorted(ObservableList<Person> list) {
+        Iterator<Person> iterator = list.iterator();
+        Person prev = null;
+        while (iterator.hasNext()) {
+            if (prev == null) {
+                prev = iterator.next();
+                continue;
+            }
+
+            Person current = iterator.next();
+            if (current.getName().compareTo(prev.getName()) < 0) {
+                fail("List is not sorted.");
+            }
+        }
     }
 
     /**

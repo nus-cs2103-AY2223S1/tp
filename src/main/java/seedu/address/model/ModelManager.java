@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getSortedPersonList());
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         selectedPerson = new SimpleObjectProperty<>();
     }
 
@@ -137,8 +137,8 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Person> getSortedFilteredPersonList() {
+        return filteredPersons.sorted();
     }
 
     @Override
