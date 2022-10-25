@@ -229,7 +229,7 @@ _Details coming soon ..._
 
 ## FAQ
 
-Listed here are some frequently asked questions. Should you require any other assistance, feel free to contact us.
+Listed here are some frequently asked questions. Should you require any other assistance, feel free to [contact us](#contact-us).
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GuestBook home folder.
