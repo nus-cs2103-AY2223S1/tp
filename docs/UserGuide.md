@@ -36,16 +36,14 @@ title: FinBook User Guide
 
 # Introduction
 
-## What is Finbook?
+## What is FinBook?
 
 FinBook is a desktop app for Financial Assistant (FA) to manage their client details and ensure that your data is
-secured.
-
-With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well as many
+secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well as many
 other features to make your daily workflow much more efficient!
 
 FinBook is optimized for use via a Command Line Interface (CLI), which means most of our commands are done by typing.
-If you can type fast, managing your clients will be a breeze with FinBook. Cant type fast? Don't worry! Our Graphical
+If you can type fast, managing your clients will be a breeze with FinBook. Can't type fast? Don't worry! Our Graphical
 User Interface (GUI) will help you slowly adjust to using our CLI.
 
 So what are you waiting for? Start using FinBook today!
