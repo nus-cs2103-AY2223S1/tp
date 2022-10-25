@@ -23,7 +23,19 @@
                         <Region fx:constant="USE_PREF_SIZE"/>
                     </minWidth>
                 </Label>
+                <Label fx:id="status" text="\$status" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE"/>
+                    </minWidth>
+                </Label>
                 <Label fx:id="taskName" text="\$taskName" styleClass="cell_big_label"/>
+            </HBox>
+            <HBox>
+                <Label fx:id="assignee" text="\$assignee" styleClass="cell_small_label"/>
+            </HBox>
+            <HBox>
+                <Label fx:id="deadline" text="\$deadline" styleClass="cell_small_label"/>
             </HBox>
         </VBox>
     </GridPane>
