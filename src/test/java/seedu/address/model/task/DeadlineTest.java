@@ -1,24 +1,24 @@
 package seedu.address.model.task;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.DeadlineBuilder;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FORMAT_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_TITLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FORMAT_DATE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeadlines.FIRST;
 import static seedu.address.testutil.TypicalDeadlines.SECOND;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.DeadlineBuilder;
+
 public class DeadlineTest {
 
-    TaskTitle validTaskTitle = new TaskTitle(VALID_TASK_TITLE);
-    TaskDescription validTaskDescription = new TaskDescription(VALID_TASK_DESCRIPTION);
-    FormatDate validFormatDate = new FormatDate(VALID_FORMAT_DATE);
+    private final TaskTitle validTaskTitle = new TaskTitle(VALID_TASK_TITLE);
+    private final TaskDescription validTaskDescription = new TaskDescription(VALID_TASK_DESCRIPTION);
+    private final FormatDate validFormatDate = new FormatDate(VALID_FORMAT_DATE);
 
     @Test
     public void constructor_nullValues_throwsNullPointerException() {
