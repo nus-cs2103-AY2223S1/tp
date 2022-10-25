@@ -14,24 +14,21 @@ import seedu.address.wrapper.UserReposWrapper;
 public class User {
 
     private static final String GITHUB_PREFIX = "https://github.com/";
-    private static final String VALIDATION_REGEX = "^@(?=.{5,32}$)(?!.*__)[A-Za-z][A-Za-z0-9_]*[A-Za-z0-9]$";
-    private static final String SPECIAL_CHARACTERS = "+_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
+    private static final String VALIDATION_REGEX = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
+
+    public static final String MESSAGE_CONSTRAINTS = "GitHub usernames should be of the format @username "
         + "and adhere to the following constraints:\n"
-        + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-        + "the parentheses, (" + SPECIAL_CHARACTERS + "). The local-part may not start or end with any special "
-        + "characters.\n"
-        + "2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels "
-        + "separated by periods.\n"
-        + "The domain name must:\n"
-        + "    - end with a domain label at least 2 characters long\n"
-        + "    - have each domain label start and end with alphanumeric characters\n"
-        + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+        + "1. Username may only contain alphanumeric characters or hyphens\n"
+        + "2. Username cannot have multiple consecutive hyphens\n"
+        + "3. Username cannot begin or end with a hyphen\n"
+        + "4. Username can have a maximum of 39 characters";
 
     private final String username;
     private final String avatarUrl;
     private final String url;
-    private final UserInfoWrapper userInfoWrapper;
+    private final String name;
+    private final String email;
+    private final String address;
     private final UserReposWrapper userReposWrapper;
 
     /**
@@ -41,12 +38,13 @@ public class User {
      */
     public User(String username, UserInfoWrapper userInfoWrapper, UserReposWrapper userReposWrapper) {
         requireAllNonNull(username);
-        this.userInfoWrapper = userInfoWrapper;
         this.userReposWrapper = userReposWrapper;
         this.username = userInfoWrapper.getUsername();
         this.avatarUrl = userInfoWrapper.getAvatarUrl();
         this.url = userInfoWrapper.getUrl();
-
+        this.name = userInfoWrapper.getName().orElse(this.username);
+        this.email = userInfoWrapper.getEmail().orElse(null);
+        this.address = userInfoWrapper.getLocation().orElse(null);
     }
 
     /**
@@ -56,30 +54,31 @@ public class User {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public Optional<String> getName() {
-        return userInfoWrapper.getName();
-    }
-
-    public Optional<String> getEmail() {
-        return userInfoWrapper.getEmail();
-    }
-
-    public Optional<String> getAddress() {
-        return userInfoWrapper.getLocation();
+    public String getName() {
+        return this.name;
     }
 
     public String getUsername() {
-        return userInfoWrapper.getUsername();
+        return this.username;
     }
 
     public String getAvatarUrl() {
-        return userInfoWrapper.getAvatarUrl();
+        return this.avatarUrl;
     }
 
     public String getUrl() {
-        return userInfoWrapper.getUrl();
+        return this.url;
     }
 
+    public Optional<String> getEmail() {
+        return Optional.ofNullable(this.email);
+    }
+
+    public Optional<String> getAddress() {
+        return Optional.ofNullable(this.address);
+    }
+
+    //TODO/open: NEED TO UPDATE
     public ArrayList<Integer> getRepoIds() {
         return userReposWrapper.getIDs();
     }
@@ -91,6 +90,8 @@ public class User {
     public String getRepoUrl(int id) {
         return userReposWrapper.getRepoUrl(id);
     }
+
+    //TODO/close: NEED TO UPDATE
 
     @Override
     public String toString() {

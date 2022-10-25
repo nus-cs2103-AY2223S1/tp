@@ -16,7 +16,6 @@ import seedu.address.wrapper.exceptions.UserInvalidException;
 public class GithubApi {
     //@@author arnav-ag
     private final static String BASE_CHECK_USER_URL = "https://api.github.com/users/";
-    private final static String BASE_GITHUB_URL = "https://www.github.com/";
     final private UnirestInstance unirest;
     final private Storage storage;
 
