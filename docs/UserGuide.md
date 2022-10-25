@@ -226,15 +226,16 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                         |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
-| **Clear**  | `clear`                                                                                                                                                  |
-| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                                   |
-| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                        |
-| **List**   | `list`                                                                                                                                                   |
-| **Remind** | `remind` 
+| Action        | Format, Examples                                                                                                                                    |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
+| **Clear**     | `clear`                                                                                                                                             |
+| **Delete**    | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                              |
+| **Find**      | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                   |
+| **List**      | `list`                                                                                                                                              |
+| **Remind**    | `remind`                                                                                                                                            
 |
-| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`      
+| **DeleteR**   | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                                                               |
+| **Insurance** | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                           
 |
-| **Help**   | `help`                                                                                                                                                   |
+| **Help**      | `help`                                                                                                                                              |

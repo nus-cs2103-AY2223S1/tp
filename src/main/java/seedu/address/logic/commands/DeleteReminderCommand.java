@@ -14,7 +14,7 @@ import seedu.address.model.person.Reminder;
 /**
  * Deletes a reminder identified using it's displayed index from the reminder list.
  */
-public class DeleteReminderCommand extends Command{
+public class DeleteReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteR";
 
