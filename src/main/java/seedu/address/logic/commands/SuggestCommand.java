@@ -17,7 +17,8 @@ public class SuggestCommand extends Command {
     public static final String COMMAND_WORD = "suggest";
     public static final String DESCRIPTION = "Suggests a list of friends based on a given set of constraints.\n\n"
             + "Provide some DayTimeInWeek (eg. mon@1930) "
-            + "and they will be matched against the availability periods of the player.\n\n"
+            + "and they will be matched against the availability periods of the player. "
+            + "You can type \"now\" to find friends that are online currently.\n\n"
             + "Provide keywords, and they will be matched against all attributes "
             + "(Minecraft username, social handles etc.) by checking if the attributes "
             + "contain the given keywords. All keywords must be matched.";
@@ -28,6 +29,7 @@ public class SuggestCommand extends Command {
     public static final String EXAMPLE = COMMAND_WORD + " "
             + PREFIX_DAY_TIME_OF_WEEK + "mon@1755 "
             + PREFIX_DAY_TIME_OF_WEEK + "fri@2355 "
+            + PREFIX_DAY_TIME_OF_WEEK + "now "
             + PREFIX_KEYWORD + "sally tan " + PREFIX_KEYWORD + "sally.245\n"
             + COMMAND_WORD + " "
             + PREFIX_KEYWORD + "91234567 "
