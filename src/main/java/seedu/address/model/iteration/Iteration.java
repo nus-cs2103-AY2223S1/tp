@@ -61,9 +61,6 @@ public class Iteration {
             return true;
         }
 
-        // return otherIteration != null
-        //         && otherIteration.getArt().equals(getArt());
-        // TODO implement isSameIteration once the artwork/ imagePath attribute has been added
         return otherIteration != null
                 && otherIteration.getDescription().equals(getDescription());
     }
@@ -97,7 +94,7 @@ public class Iteration {
                 .append(getDate())
                 .append("; Description: ")
                 .append(getDescription())
-                .append("ImagePath: ")
+                .append("; ImagePath: ")
                 .append(getImagePath())
                 .append("; Feedback: ")
                 .append(getFeedback());

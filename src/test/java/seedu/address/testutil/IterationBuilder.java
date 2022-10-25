@@ -69,7 +69,7 @@ public class IterationBuilder {
     }
 
     /**
-     * Sets the {@code ImagePath} of the {@code Iteration} that we are building.
+     * Sets the {@code Path} of the {@code Iteration} that we are building.
      */
     public IterationBuilder withImagePath(String imagePath) {
         this.imagePath = Path.of(imagePath);
