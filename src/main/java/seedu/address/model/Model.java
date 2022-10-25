@@ -109,6 +109,8 @@ public interface Model {
      */
     void setDayView();
 
+    void unsetDayView();
+
     /**
      * Returns true if the address book is currently in day view mode.
      */

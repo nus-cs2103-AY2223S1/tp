@@ -34,6 +34,8 @@ public class HomeworkCommand extends Command {
     public static final String MESSAGE_ADD_HOMEWORK_SUCCESS = "Added homework to Person: %1$s";
     public static final String MESSAGE_DELETE_HOMEWORK_SUCCESS = "Removed homework from Person: %1$s";
 
+    public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to add a homework.";
+
     private final Index index;
     private final Homework homework;
 
@@ -50,6 +52,9 @@ public class HomeworkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (model.isDayView()) {
+            throw new CommandException(MESSAGE_IN_DAY_MODE);
+        }
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

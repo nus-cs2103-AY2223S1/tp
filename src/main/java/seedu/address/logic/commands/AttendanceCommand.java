@@ -33,6 +33,8 @@ public class AttendanceCommand extends Command {
     public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "Added attendance to Person: %1$s";
     public static final String MESSAGE_DELETE_ATTENDANCE_SUCCESS = "Removed attendance from Person: %1$s";
 
+    public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to add an attendance.";
+
     private final Index index;
     private final Attendance attendance;
 
@@ -49,6 +51,10 @@ public class AttendanceCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (model.isDayView()) {
+            throw new CommandException(MESSAGE_IN_DAY_MODE);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

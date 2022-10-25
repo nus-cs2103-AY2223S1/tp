@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -58,5 +59,14 @@ class GradeProgressCommandTest {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         assertCommandSuccess(gradeProgressCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_inDayView_failure() {
+        model.setDayView();
+        GradeProgressCommand gradeProgressCommand = new GradeProgressCommand(INDEX_FIRST_PERSON,
+                new GradeProgress(GRADE_PROGRESS_STUB));
+
+        assertCommandFailure(gradeProgressCommand, model, GradeProgressCommand.MESSAGE_IN_DAY_MODE);
     }
 }

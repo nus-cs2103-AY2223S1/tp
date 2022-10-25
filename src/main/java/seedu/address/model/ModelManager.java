@@ -170,6 +170,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void unsetDayView() {
+        isDayView = false;
+    }
+
+    @Override
     public boolean isDayView() {
         return isDayView;
     }

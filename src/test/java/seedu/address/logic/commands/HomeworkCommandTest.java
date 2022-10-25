@@ -115,6 +115,15 @@ class HomeworkCommandTest {
     }
 
     @Test
+    public void execute_inDayView_failure() {
+        model.setDayView();
+        HomeworkCommand homeworkCommand = new HomeworkCommand(
+                INDEX_FIRST_PERSON, new Homework(HOMEWORK_STUB));
+
+        assertCommandFailure(homeworkCommand, model, HomeworkCommand.MESSAGE_IN_DAY_MODE);
+    }
+
+    @Test
     public void equals() {
         final HomeworkCommand standardCommand = new HomeworkCommand(INDEX_FIRST_PERSON,
                 new Homework(VALID_HOMEWORK_AMY));

@@ -15,7 +15,7 @@ import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a lesson plan to an existing person in the address book.
+ * Updates a lesson plan for an existing person in the address book.
  */
 public class LessonPlanCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
@@ -29,8 +29,10 @@ public class LessonPlanCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LESSON_PLAN + "Data structures and algorithms.";
 
-    public static final String MESSAGE_ADD_LESSON_PLAN_SUCCESS = "Added lesson plan to Person: %1$s";
+    public static final String MESSAGE_ADD_LESSON_PLAN_SUCCESS = "Updated lesson plan for Person: %1$s";
     public static final String MESSAGE_DELETE_LESSON_PLAN_SUCCESS = "Removed lesson plan from Person: %1$s";
+
+    public static final String MESSAGE_IN_DAY_MODE = "You need to be in list or view mode to update a lesson plan.";
 
     private final Index index;
     private final LessonPlan lessonPlan;
@@ -48,6 +50,9 @@ public class LessonPlanCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (model.isDayView()) {
+            throw new CommandException(MESSAGE_IN_DAY_MODE);
+        }
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {

@@ -140,6 +140,15 @@ class SessionCommandTest {
     }
 
     @Test
+    public void execute_inDayView_failure() {
+        model.setDayView();
+        SessionCommand sessionCommand = new SessionCommand(
+                INDEX_FIRST_PERSON, new Session(SESSION_STUB));
+
+        assertCommandFailure(sessionCommand, model, SessionCommand.MESSAGE_IN_DAY_MODE);
+    }
+
+    @Test
     public void equals() {
         final SessionCommand standardCommand = new SessionCommand(INDEX_FIRST_PERSON,
                 new Session(VALID_SESSION_AMY));
