@@ -11,6 +11,7 @@ import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.DeadlineConverter;
 import modtrekt.logic.parser.converters.DescriptionConverter;
 import modtrekt.logic.parser.converters.ModCodeConverter;
+import modtrekt.logic.parser.converters.PriorityConverter;
 import modtrekt.model.Model;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Deadline;
@@ -26,30 +27,35 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add task";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 
-    @Parameter(description = "Task description", required = true,
+    @Parameter(description = "Description of the task", required = true,
             converter = DescriptionConverter.class)
     private Description description;
 
-    @Parameter(names = "-c", description = "Module code for task", required = true,
+    @Parameter(names = "-c", description = "Module code of the task", required = true,
             converter = ModCodeConverter.class)
     private ModCode modCode;
 
-    @Parameter(names = "-d", description = "Due date",
+    @Parameter(names = "-d", description = "Due date of the task",
             converter = DeadlineConverter.class)
     private LocalDate deadline;
+
+    @Parameter(names = "-p", description = "Priority level of the task", converter = PriorityConverter.class)
+    private Task.Priority priority = Task.Priority.NONE; // default priority level is no priority
 
     /**
      * Constructor with no parameters required, for use with JCommander.
      */
     public AddTaskCommand() {
     }
+
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
-    public AddTaskCommand(Description ds, ModCode code, LocalDate deadline) {
+    public AddTaskCommand(Description ds, ModCode code, LocalDate deadline, Task.Priority priority) {
         this.description = ds;
         this.modCode = code;
         this.deadline = deadline;
+        this.priority = priority;
     }
 
     @Override
@@ -61,8 +67,8 @@ public class AddTaskCommand extends Command {
 
         /* If deadline is not null, a Deadline object is created instead */
         Task newTask = deadline == null
-                ? new Task(description, modCode, false, Task.Priority.NONE)
-                : new Deadline(description, modCode, deadline, false, Task.Priority.NONE);
+                ? new Task(description, modCode, false, priority)
+                : new Deadline(description, modCode, deadline, false, priority);
         model.addTask(newTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
