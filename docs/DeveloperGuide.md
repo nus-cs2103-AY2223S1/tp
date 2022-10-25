@@ -263,18 +263,13 @@ Then, multiple processes occur to parse, validate and execute the command.
   `Model#hasPersonExcluding(Person person, Person excludedPerson)` facilitates this by first excluding the `Person` to be edited from the duplicate checks, then calling `Person#isSamePerson(Person otherPerson)` to compare the edited `Person` with all other `Person`s.
   Again, this checks if the two `Person` objects have the same `Name` or `Phone` attributes.
   ![EditCommandVerifyActivityDiagram](images/EditCommandVerifyActivityDiagram.png)
-
-- If all checks pass, `Model#setPerson(Person target, Person editedPerson)` is called to replace the old `Person` with the edited `Person` within the `ObservableList<Person>`, which is encapsulated within the `UniquePersonList` class and serves to ensure uniqueness of all of its `Person` contents.
-
-The following activity diagram summarises what happens when a user executes an edit supplier command.
-![EditCommandSummaryActivityDiagram](images/EditCommandSummaryActivityDiagram.png)
-
-#### Proposed enhancements/changes
-
-Subsequently, the `SupplyItem` class which encapsulates an item in a vendor's inventory will be implemented. Each instance of this class contains a reference to a `Person` (i.e. each item in the inventory is supplied by one supplier).
-As a result, editing a supplier's details necessitate a corresponding update to the `SupplyItem` object that has a reference to the edited `Person`.
-
+- `model#hasSupplyItemSuppliedBy(Person supplier)` checks if any `SupplyItem` in the inventory is being supplied by the supplier that is going to be edited. If yes, `EditItemSupplierCommand` is called to update that particular `SupplyItem` with the new `supplier` field: `editedPerson`.
+This is necessitated by the relationship between `Person` and `SupplyItem`, as illustrated below.
 <img src="images/SupplierAndSupplyItemClassDiagram.png" width="500" />
+
+- If all checks pass, `Model#setPerson(Person target, Person editedPerson)` is called to replace the old `Person` with the edited `Person` within the `ObservableList<Person>`, which is encapsulated within the `UniquePersonList` class and serves to ensure uniqueness of all of its `Person` contents. 
+- The following activity diagram summarises what happens when a user executes an edit supplier command.
+![EditCommandSummaryActivityDiagram](images/EditCommandSummaryActivityDiagram.png)
 
 ### \[Developed\] AddTask feature
 
