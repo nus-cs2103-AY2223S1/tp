@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_MONTH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -97,7 +98,11 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns true
+        // different birthdayMonth -> returns true
+        editedAlice = new PersonBuilder(ALICE).withBirthdayMonth(VALID_BIRTHDAY_MONTH_BOB).build();
+        assertTrue(ALICE.equals(editedAlice));
+
+        // different reward -> returns true
         editedAlice = new PersonBuilder(ALICE).withReward(VALID_REWARD_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
 

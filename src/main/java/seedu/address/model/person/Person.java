@@ -21,17 +21,19 @@ public class Person {
     private final Email email;
 
     // Data fields
+    private final BirthdayMonth birthdayMonth;
     private final Reward reward;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Reward reward, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, BirthdayMonth birthdayMonth, Reward reward, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, reward, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.birthdayMonth = birthdayMonth;
         this.reward = reward;
         this.tags.addAll(tags);
     }
@@ -46,6 +48,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public BirthdayMonth getBirthdayMonth() {
+        return birthdayMonth;
     }
 
     public Reward getReward() {
@@ -79,6 +85,7 @@ public class Person {
         builder.append(getName())
                 .append(getPhone())
                 .append(getEmail())
+                .append(getBirthdayMonth())
                 .append(getReward());
 
         Set<Tag> tags = getTags();
@@ -110,7 +117,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, reward, tags);
+        return Objects.hash(name, phone, email, birthdayMonth, reward, tags);
     }
 
     @Override
@@ -121,6 +128,8 @@ public class Person {
                 .append(getPhone())
                 .append("\nEmail: ")
                 .append(getEmail())
+                .append("\nBirthday Month: ")
+                .append(getBirthdayMonth())
                 .append("\nReward: ")
                 .append(getReward());
 
