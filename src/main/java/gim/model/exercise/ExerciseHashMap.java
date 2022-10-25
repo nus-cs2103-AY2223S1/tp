@@ -75,7 +75,7 @@ public class ExerciseHashMap {
     /**
      * Returns true if Name {@code exerciseNameToCheck} is equal to a Name in the exerciseHashMap key-set.
      */
-    public boolean contains(Name exerciseNameToCheck) {
+    public boolean containsName(Name exerciseNameToCheck) {
         requireNonNull(exerciseNameToCheck);
         return exerciseHashMap.containsKey(exerciseNameToCheck);
     }
@@ -86,7 +86,7 @@ public class ExerciseHashMap {
      * @return Exercise containing the highest weight.
      */
     public Exercise getExercisePR(Name exerciseName) {
-        if (!contains(exerciseName)) {
+        if (!containsName(exerciseName)) {
             return null;
         }
         return Collections.max(exerciseHashMap.get(exerciseName));

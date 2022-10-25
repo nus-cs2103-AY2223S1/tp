@@ -2,7 +2,6 @@ package gim.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
 import java.util.List;
 
 import gim.model.exercise.Exercise;
