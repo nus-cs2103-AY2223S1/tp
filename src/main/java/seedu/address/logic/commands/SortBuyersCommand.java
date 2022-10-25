@@ -1,14 +1,14 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.buyer.Buyer;
-
-import java.util.Comparator;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
+
+import java.util.Comparator;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.buyer.Buyer;
 
 /**
  * Sorts the buyers list.
@@ -17,8 +17,8 @@ public class SortBuyersCommand extends Command {
 
     public static final String COMMAND_WORD = "sortbuyers";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts buyers by name or budget range " +
-            "in a specified order. You can only sort by one criteria at a time."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts buyers by name or budget range "
+            + "in a specified order. You can only sort by one criteria at a time."
             + "Parameters: "
             + "[" + PREFIX_NAME + " ASC/DESC] "
             + "[" + PREFIX_PRICE_RANGE + " ASC/DESC]\n"

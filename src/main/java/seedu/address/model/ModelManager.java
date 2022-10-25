@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     private final SortedList<Buyer> sortedBuyers;
     // flag to indicate the last shown buyers list
     // set to false for filteredBuyers and true for sortedBuyers
-    public boolean isLastShownBuyersListSorted = false; 
+    private boolean isLastShownBuyersListSorted = false;
     private final FilteredList<Property> filteredProperties;
 
     /**
@@ -152,7 +152,7 @@ public class ModelManager implements Model {
     public ObservableList<Buyer> getFilteredPersonList() {
         return filteredBuyers;
     }
-    
+
     @Override
     public void updateFilteredPersonList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
@@ -185,11 +185,6 @@ public class ModelManager implements Model {
         return isLastShownBuyersListSorted
                 ? sortedBuyers
                 : filteredBuyers;
-    }
-
-    @Override
-    public void setLastShownBuyersListSorted(boolean b) {
-        isLastShownBuyersListSorted = b;
     }
 
     //=========== PropertyBook ================================================================================
@@ -263,6 +258,8 @@ public class ModelManager implements Model {
                 && personBook.equals(other.personBook)
                 && propertyBook.equals(other.propertyBook)
                 && filteredBuyers.equals(other.filteredBuyers)
-                && filteredProperties.equals(other.filteredProperties);
+                && sortedBuyers.equals(other.sortedBuyers)
+                && filteredProperties.equals(other.filteredProperties)
+                && isLastShownBuyersListSorted == other.isLastShownBuyersListSorted;
     }
 }

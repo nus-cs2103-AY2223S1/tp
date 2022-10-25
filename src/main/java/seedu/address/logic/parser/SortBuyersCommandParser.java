@@ -1,19 +1,19 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.sortcomparators.BuyerComparator;
-import seedu.address.logic.sortcomparators.NameComparator;
-import seedu.address.logic.sortcomparators.Order;
-import seedu.address.logic.commands.SortBuyersCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.Name;
-
-import java.util.Comparator;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
+
+import java.util.Comparator;
+
+import seedu.address.logic.commands.SortBuyersCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.sortcomparators.BuyerComparator;
+import seedu.address.logic.sortcomparators.NameComparator;
+import seedu.address.logic.sortcomparators.Order;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.Name;
 
 /**
  * Parses user input to create a {@code SortBuyersCommand}.
@@ -44,7 +44,7 @@ public class SortBuyersCommandParser extends Parser<SortBuyersCommand> {
             Comparator<Name> nameComparator = new NameComparator(order);
             buyerComparator = new BuyerComparator(nameComparator, null);
         }
-        
+
         return new SortBuyersCommand(buyerComparator);
     }
 }

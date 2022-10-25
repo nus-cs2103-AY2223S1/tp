@@ -3,8 +3,6 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -21,7 +19,7 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Buyer> personListView;
-    
+
     private ObservableList<Buyer> currentlyDisplayedBuyerList;
 
     /**
@@ -44,7 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setItems(newList);
         currentlyDisplayedBuyerList = newList;
     }
-    
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code PersonCard}.
      */

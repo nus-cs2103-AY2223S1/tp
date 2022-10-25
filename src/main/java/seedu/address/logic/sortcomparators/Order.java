@@ -5,8 +5,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 
+/**
+ * Represents a specified sorting order.
+ */
 public class Order {
-    
+
+    /**
+     * Enum specifying the different ordering types.
+     */
     public enum OrderType {
         ASC,
         DESC

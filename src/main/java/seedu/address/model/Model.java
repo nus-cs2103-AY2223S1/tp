@@ -10,8 +10,6 @@ import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 import seedu.address.ui.PersonListPanel;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * The API of the Model component.
  */
@@ -138,11 +136,6 @@ public interface Model {
      */
     ObservableList<Buyer> getLastShownBuyersList();
 
-    /**
-     * Sets the flag to indicate if the last shown buyers list is the sorted or filtered list.
-     */
-    void setLastShownBuyersListSorted(boolean b);
-    
     //=========== PropertyBook ================================================================================
 
     /**
