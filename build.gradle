@@ -41,8 +41,9 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    String testFxVersion = '4.0.15-alpha'
     String jUnitVersion = '5.4.0'
-    String javaFxVersion = '11'
+    String javaFxVersion = '18'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -60,8 +61,11 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
+    testImplementation group: 'org.testfx', name: 'testfx-core', version: testFxVersion
+
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
+    testRuntimeOnly group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-11+26'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
 
