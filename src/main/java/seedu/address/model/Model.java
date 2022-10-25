@@ -124,4 +124,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Takes all the Persons SessionList and finds the next Session closest to the system time now to be feedbacked
+     * to user.
+     * @return the String representation of the closest Session to the time now and name of
+     *      Person associated to the Session.
+     */
+    String getNextSession();
 }

@@ -66,6 +66,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getNextSession() {
+        return model.getNextSession();
+    }
+
+    @Override
     public ObservableList<TimeSlot> getTimeSlotList() {
         return model.getTimeSlotList();
     }
@@ -74,7 +79,6 @@ public class LogicManager implements Logic {
     public boolean isDayView() {
         return model.isDayView();
     }
-
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();

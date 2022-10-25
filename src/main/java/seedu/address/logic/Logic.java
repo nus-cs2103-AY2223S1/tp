@@ -57,4 +57,12 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets the closest next Session relative to the time now and the name of the Person associated to the Session.
+     * @return the String representation of the name of the associated Person and the Session closest to time now in
+     *      the Pupilist program.
+     */
+    String getNextSession();
+
 }

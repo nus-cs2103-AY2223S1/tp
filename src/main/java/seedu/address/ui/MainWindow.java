@@ -132,6 +132,7 @@ public class MainWindow extends UiPart<Stage> {
         timeSlotListPanelPlaceholder.getChildren().add(timeSlotListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
+        resultDisplay.setFeedbackToUser(logic.getNextSession());
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -24,6 +26,7 @@ public class Session implements Comparable<Session> {
             .parseDefaulting(ChronoField.MONTH_OF_YEAR, 1) //defaulting year to workaround class issues.
             .parseDefaulting(ChronoField.ALIGNED_WEEK_OF_MONTH, 1) //defaulting week to workaround class issues.
             .toFormatter();
+    private static final List<String> daysList = Arrays.asList("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
     public final String session;
     public final String day;
     public final LocalDateTime time;
@@ -58,8 +61,7 @@ public class Session implements Comparable<Session> {
      * Returns true if a given string is a valid day.
      */
     private static boolean isValidDay(String test) {
-        String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-        for (String day : days) {
+        for (String day : daysList) {
             if (test.equalsIgnoreCase(day)) {
                 return true;
             }
@@ -86,7 +88,17 @@ public class Session implements Comparable<Session> {
 
     @Override
     public int compareTo(Session other) {
-        return this.time.compareTo(other.time);
+        LocalDateTime thisTime = this.time;
+        LocalDateTime otherTime = other.time;
+        int dayCompareTo = this.time.getDayOfWeek().compareTo(other.time.getDayOfWeek());
+        if (dayCompareTo != 0) {
+            return dayCompareTo;
+        }
+        int hourCompareTo = thisTime.getHour() - otherTime.getHour();
+        if (hourCompareTo != 0) {
+            return hourCompareTo;
+        }
+        return thisTime.getMinute() - otherTime.getMinute();
     }
 
     @Override

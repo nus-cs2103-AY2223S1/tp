@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 import seedu.address.model.person.SessionList;
 import seedu.address.model.person.TimeSlot;
+import seedu.address.model.util.NextSessionUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -213,6 +214,12 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public String getNextSession() {
+        NextSessionUtil nextSessionUtil = new NextSessionUtil(addressBook.getPersonList());
+        return nextSessionUtil.nextSessionFeedback();
     }
 
 }
