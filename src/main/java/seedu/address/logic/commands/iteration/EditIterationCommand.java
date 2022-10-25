@@ -81,7 +81,7 @@ public class EditIterationCommand extends Command {
                 editIterationDescriptor.getDescription().orElse(iterationToEdit.getDescription());
         Feedback updatedFeedback =
                 editIterationDescriptor.getFeedback().orElse(iterationToEdit.getFeedback());
-        Path updateImagePath =
+        Path updatedImagePath =
                 editIterationDescriptor.getImagePath().orElse(iterationToEdit.getImagePath());
 
         Iteration editedIteration = new Iteration(updatedDate, updatedDescription, updatedImagePath, updatedFeedback);
