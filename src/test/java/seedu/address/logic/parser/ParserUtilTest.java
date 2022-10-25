@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_ALIAS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_ALIAS_2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_2;
@@ -13,10 +14,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -143,19 +141,22 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseLinkAliasesUnordered_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinkAliasesUnordered(null));
+    public void parseLinkAliases_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinkAliases(null));
     }
 
     @Test
-    public void parseLinkAliasesUnordered_invalidValue_throwsParseException() {
+    public void parseLinkAliases_invalidValue_throwsParseException() {
         assertThrows(ParseException.class,
-                () -> ParserUtil.parseLinkAliasesUnordered(Arrays.asList(INVALID_MODULE_LINK_ALIAS)));
+                () -> ParserUtil.parseLinkAliases(Arrays.asList(
+                        INVALID_MODULE_LINK_ALIAS, INVALID_MODULE_LINK_ALIAS_2)));
     }
 
     @Test
-    public void parseLinkAliasesUnordered_validValue() throws ParseException{
-        assertTrue(ParserUtil.parseLinkAliasesUnordered(Arrays.asList(VALID_MODULE_LINK_ALIAS)).size() == 1);
+    public void parseLinkAliases_validValue() throws ParseException{
+        List<String> expectedAliasList = Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2);
+        assertTrue(ParserUtil.parseLinkAliases(Arrays.asList(
+                VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2)).equals(expectedAliasList));
     }
 
     @Test

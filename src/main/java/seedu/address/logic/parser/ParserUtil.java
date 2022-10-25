@@ -187,11 +187,11 @@ public class ParserUtil {
 
     /**
      * Set is used to deal with duplicate aliases. (Order is not maintained)
-     * Parses {@code Collection<String> linkAliases}, returns {@code Set<String>} of validated linkAliases.
+     * Parses {@code Collection<String> linkAliases}, returns {@code List<String>} of validated linkAliases.
      */
-    public static Set<String> parseLinkAliasesUnordered(Collection<String> linkAliases) throws ParseException {
+    public static List<String> parseLinkAliases(Collection<String> linkAliases) throws ParseException {
         requireNonNull(linkAliases);
-        final Set<String> aliasSet = new HashSet<>();
+        final List<String> aliasSet = new ArrayList<>();
         for (String linkAlias : linkAliases) {
             aliasSet.add(parseLinkAlias(linkAlias));
         }

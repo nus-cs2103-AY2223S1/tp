@@ -25,6 +25,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HomeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListModuleCommand;
+import seedu.address.logic.commands.OpenLinkCommand;
 import seedu.address.logic.commands.SwapTaskNumbersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -110,6 +111,9 @@ public class AddressBookParser {
 
         case SwapTaskNumbersCommand.COMMAND_WORD:
             return new SwapTaskNumbersCommandParser().parse(arguments);
+
+        case OpenLinkCommand.COMMAND_WORD:
+            return new OpenLinkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

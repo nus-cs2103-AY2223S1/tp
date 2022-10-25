@@ -14,7 +14,8 @@ import java.util.Objects;
 public class Link implements Comparable<Link> {
 
     public static final String MESSAGE_CONSTRAINTS_ALIAS =
-            "link aliases should contain only alphanumeric or whitespace characters (1-15 characters long)";
+            "link aliases should contain only alphanumeric or whitespace characters, "
+                    + "and be 1-15 characters long with at least one alphanumeric character.";
     public static final String MESSAGE_CONSTRAINTS_URL =
             "link URLs should have no whitespaces and should have one top level domain (e.g. <.com>)";
     public static final String LINK_HEADER_PROTOCOL_HTTPS = "https://";

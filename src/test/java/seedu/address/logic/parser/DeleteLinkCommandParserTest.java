@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -67,8 +67,7 @@ public class DeleteLinkCommandParserTest {
         String userInput = moduleCodeString + moduleAliases;
 
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE);
-        Set<String> expectedLinkAliases = new HashSet<>(Arrays.asList(
-                VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2));
+        List<String> expectedLinkAliases = Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2);
         DeleteLinkCommand expectedCommand = new DeleteLinkCommand(moduleCode, expectedLinkAliases);
 
         assertParseSuccess(parser, userInput, expectedCommand);

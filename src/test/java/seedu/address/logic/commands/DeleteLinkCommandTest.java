@@ -46,8 +46,8 @@ public class DeleteLinkCommandTest {
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
-        Set<String> moduleLinksToDelete = moduleToEdit.copyLinks().stream()
-                .map(link -> link.linkAlias).collect(Collectors.toSet());
+        List<String> moduleLinksToDelete = moduleToEdit.copyLinks().stream()
+                .map(link -> link.linkAlias).collect(Collectors.toList());
         Set<Link> moduleLinksEmpty = new HashSet<Link>();
         Set<Person> modulePersons = moduleToEdit.getPersons();
 
@@ -66,7 +66,7 @@ public class DeleteLinkCommandTest {
     @Test
     public void execute_nonExistentLinkAliasFilteredList_failure() {
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(new ModuleCode(VALID_CS2106_MODULE_CODE),
-                new HashSet<>(Arrays.asList(VALID_MODULE_LINK_ALIAS_2)));
+                Arrays.asList(VALID_MODULE_LINK_ALIAS_2));
         assertCommandFailure(deleteLinkCommand, model,
                 String.format(DeleteLinkCommand.MESSAGE_MISSING_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2,
                         new ModuleCode(VALID_CS2106_MODULE_CODE).getModuleCodeAsUpperCaseString()));
@@ -74,7 +74,7 @@ public class DeleteLinkCommandTest {
 
     @Test
     public void execute_nonExistentModuleFilteredList_failure() {
-        Set<String> linkAliases = new HashSet<>(Arrays.asList(VALID_MODULE_LINK_ALIAS));
+        List<String> linkAliases = Arrays.asList(VALID_MODULE_LINK_ALIAS);
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(
                 new ModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK), linkAliases);
         assertCommandFailure(deleteLinkCommand, model,
@@ -85,10 +85,10 @@ public class DeleteLinkCommandTest {
     @Test
     public void equals() {
         final DeleteLinkCommand standardCommand = new DeleteLinkCommand(new ModuleCode(VALID_CS2106_MODULE_CODE),
-                new HashSet<String>(Arrays.asList(VALID_MODULE_LINK_ALIAS)));
+                Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2));
+        List<String> copyLinkAliases = Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2);
 
-        // same values -> returns true
-        Set<String> copyLinkAliases = new HashSet<>(Arrays.asList(VALID_MODULE_LINK_ALIAS));
+        // same values, different object -> returns true
         DeleteLinkCommand commandWithSameValues = new DeleteLinkCommand(
                 new ModuleCode(VALID_CS2106_MODULE_CODE), copyLinkAliases);
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -109,6 +109,6 @@ public class DeleteLinkCommandTest {
         // different link alias -> returns false
         assertFalse(standardCommand.equals(new DeleteLinkCommand(
                 new ModuleCode(VALID_CS2106_MODULE_CODE),
-                new HashSet<String>(Arrays.asList(VALID_MODULE_LINK_ALIAS_2)))));
+                Arrays.asList(VALID_MODULE_LINK_ALIAS_2))));
     }
 }

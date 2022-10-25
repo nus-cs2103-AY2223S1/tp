@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_URL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 
 import java.util.List;
 import java.util.Set;
@@ -20,31 +20,31 @@ import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a link to an existing module in Plannit.
+ * Delete link/s from an existing module in Plannit.
  */
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete-link";
-    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Deletes link/s from a module "
+    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Delete link/s from a module "
             + "using its module code and user-defined alias.\n"
             + "A 'm/' flag should be appended to the front the module code;\n"
-            + "A 'la/' flag should be appended to the front of each link alias).\n"
+            + "A 'la/' flag should be appended to the front of each link alias.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
-            + PREFIX_MODULE_LINK_URL + "coursemology.org";
+            + PREFIX_MODULE_LINK_ALIAS + "coursemo " + PREFIX_MODULE_LINK_ALIAS + "kattis";
 
-    public static final String MESSAGE_DELETE_LINK_SUCCESS = "Successfully deleted link/s from module code [%1$s]";
+    public static final String MESSAGE_DELETE_LINK_SUCCESS = "Successfully deleted link/s from module code [%1$s]!";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be deleted.";
-    public static final String MESSAGE_MISSING_LINK_ALIAS = "This link alias [%1$s] does not currently exist"
+    public static final String MESSAGE_MISSING_LINK_ALIAS = "The link alias [%1$s] does not currently exist"
             + " in the module with module code [%2$s]";
 
     private final ModuleCode moduleCode;
-    private final Set<String> linkAliases;
+    private final List<String> linkAliases;
 
     /**
      * Creates a DeleteLinkCommand for the deletion of links from a module
      * @param moduleCode module code of the module in which links will be deleted
      * @param linkAliases contain aliases of the links to delete from the specified module
      */
-    public DeleteLinkCommand(ModuleCode moduleCode, Set<String> linkAliases) {
+    public DeleteLinkCommand(ModuleCode moduleCode, List<String> linkAliases) {
         requireAllNonNull(moduleCode, linkAliases);
         this.moduleCode = moduleCode;
         this.linkAliases = linkAliases;
@@ -74,7 +74,7 @@ public class DeleteLinkCommand extends Command {
      * Creates and returns a {@code Module} with the details of {@code moduleToEdit}
      * without the links specified in {@code links}.
      */
-    private static Module createEditedModule(Module moduleToEdit, Set<String> linksToRemove)
+    private static Module createEditedModule(Module moduleToEdit, List<String> linksToRemove)
             throws CommandException {
         assert moduleToEdit != null;
 
@@ -91,7 +91,7 @@ public class DeleteLinkCommand extends Command {
     //Partial deletion of links is not supported
     //(where only some links identified by link aliases from linksToRemove are found in originalLinksCopy)
     private static Set<Link> removeLinksFromSet(
-            Set<Link> originalLinksCopy, Set<String> linkAliasesToRemove, ModuleCode moduleCode)
+            Set<Link> originalLinksCopy, List<String> linkAliasesToRemove, ModuleCode moduleCode)
             throws CommandException {
         for (String linkAlias : linkAliasesToRemove) {
             Link linkToRemove = originalLinksCopy.stream()

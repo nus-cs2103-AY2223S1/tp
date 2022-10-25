@@ -38,6 +38,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.OpenLinkCommand;
 import seedu.address.logic.commands.SwapTaskNumbersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -139,6 +140,13 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(SwapTaskNumbersCommand.COMMAND_WORD
                 + MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO)
                 instanceof SwapTaskNumbersCommand);
+    }
+
+    @Test
+    public void parseCommand_openLink() throws Exception {
+        assertTrue(parser.parseCommand(OpenLinkCommand.COMMAND_WORD + " "
+                + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " " + PREFIX_MODULE_LINK_ALIAS
+                + VALID_MODULE_LINK_ALIAS) instanceof OpenLinkCommand);
     }
 
     @Test

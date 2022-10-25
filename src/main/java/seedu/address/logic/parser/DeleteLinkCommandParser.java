@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
@@ -37,24 +37,24 @@ public class DeleteLinkCommandParser implements Parser<DeleteLinkCommand> {
                 .orElseThrow(() -> new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLinkCommand.MESSAGE_USAGE)));
 
-        //Throws ParseException if module code or link/s is invalid
+        //Throws ParseException if module code or link alias/es is invalid
         ModuleCode moduleCodeToEdit = ParserUtil.parseModuleCode(moduleCodeStringToEdit);
-        Optional<Set<String>> linkAliases = parseLinksToDelete(argMultimap.getAllValues(PREFIX_MODULE_LINK_ALIAS));
+        Optional<List<String>> linkAliases =
+                parseLinkAliasesToDelete(argMultimap.getAllValues(PREFIX_MODULE_LINK_ALIAS));
 
         return new DeleteLinkCommand(moduleCodeToEdit,
                 linkAliases.orElseThrow(() -> new ParseException(DeleteLinkCommand.MESSAGE_NOT_EDITED)));
     }
 
     /**
-     * Parses {@code Collection<String> links} into a {@code Set<Link>} if {@code links} is non-empty.
-     * If {@code links} contain only one element which is an empty string, {@code links} is treated as empty.
+     * Parses {@code Collection<String> linkAliases} into a {@code Set<String>} if {@code linkAliases} is non-empty.
      */
-    private Optional<Set<String>> parseLinksToDelete(Collection<String> linkAliases) throws ParseException {
+    private Optional<List<String>> parseLinkAliasesToDelete(Collection<String> linkAliases) throws ParseException {
         assert linkAliases != null;
         boolean isLinkAliasesEmpty = linkAliases.isEmpty();
         if (isLinkAliasesEmpty) {
             return Optional.empty();
         }
-        return Optional.of(ParserUtil.parseLinkAliasesUnordered(linkAliases));
+        return Optional.of(ParserUtil.parseLinkAliases(linkAliases));
     }
 }
