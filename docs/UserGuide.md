@@ -209,7 +209,7 @@ View details of list item at index
 Format: `view INDEX`
 
 * Only the index is searched.
-* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * More details about the company at the index will be displayed. 
 
 Examples:
@@ -228,6 +228,15 @@ Examples:
 * `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
 * `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
+### Copy details of internship : `copy`
+
+Copies all details of internship at index into clipboard
+
+Format: `copy INDEX`
+
+* Only the internship at index specified is copied.
+* The list uses 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* Full details of the internship will be copied into system clipboard
 
 ### Undo previous command : `undo`
 
