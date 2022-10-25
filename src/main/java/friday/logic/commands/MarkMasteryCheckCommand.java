@@ -11,7 +11,7 @@ import friday.model.Model;
 import friday.model.student.Student;
 
 /**
- * Class to handle marking mastery check as done.
+ * Marks the Mastery Check of an existing student in FRIDAY as passed.
  */
 public class MarkMasteryCheckCommand extends Command {
     public static final String COMMAND_WORD = "mark";

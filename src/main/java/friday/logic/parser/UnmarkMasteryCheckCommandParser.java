@@ -8,7 +8,7 @@ import friday.logic.commands.UnmarkMasteryCheckCommand;
 import friday.logic.parser.exceptions.ParseException;
 
 /**
- * class that parses a mark command.
+ * Parses input arguments and creates a new UnmarkMasteryCheckCommand object
  */
 public class UnmarkMasteryCheckCommandParser implements Parser<UnmarkMasteryCheckCommand> {
     /**

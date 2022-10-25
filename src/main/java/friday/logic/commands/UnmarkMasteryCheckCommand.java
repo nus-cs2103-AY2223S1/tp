@@ -11,7 +11,7 @@ import friday.model.Model;
 import friday.model.student.Student;
 
 /**
- * Class to handle unmarking mastery check
+ * Unmarks the Mastery Check of an existing student in FRIDAY.
  */
 public class UnmarkMasteryCheckCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
@@ -19,7 +19,7 @@ public class UnmarkMasteryCheckCommand extends Command {
             + " the index number.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
-    public static final String MESSAGE_NOT_MARKED = "Can't unmark as %s's Mastery Check has not marked as passed!";
+    public static final String MESSAGE_NOT_MARKED = "Can't unmark as %s's Mastery Check has not been marked as passed!";
 
     private Index index;
 
