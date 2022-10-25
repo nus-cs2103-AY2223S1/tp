@@ -269,7 +269,7 @@ For example, if `listEvents s/e` and `listEvents` are executed back-to-back, the
 
 Examples:
 * `listEvents` Lists all events without performing any sorting.
-* `listEvents s/n` Lists all events sorted by their names.
+* `listEvents s/e` Lists all events sorted by their event titles.
 
 
 ### Tag persons to an event : `tagEvent`
