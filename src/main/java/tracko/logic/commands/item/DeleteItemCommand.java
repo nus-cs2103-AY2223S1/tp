@@ -26,8 +26,8 @@ public class DeleteItemCommand extends Command {
 
     public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item:\n%1$s";
 
-    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "Item cannot be deleted, there exists uncompleted " +
-        "orders for item:\n%1$s";
+    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "Item cannot be deleted, there exists uncompleted "
+        + "orders for item:\n%1$s";
 
     private final Index targetIndex;
 
