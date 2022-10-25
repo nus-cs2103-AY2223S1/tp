@@ -108,12 +108,12 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: transparent;
+    -fx-background-color: #24b3a8;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #FFC600;
-    -fx-border-width: 3;
+    -fx-border-color: #3e7b91;
+    -fx-border-width: 1;
 }
 
 .list-cell .label {
