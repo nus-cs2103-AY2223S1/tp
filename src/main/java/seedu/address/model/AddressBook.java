@@ -2,10 +2,13 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueAppointmentList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -15,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueAppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        appointments = new UniqueAppointmentList();
     }
 
     public AddressBook() {}
@@ -48,12 +53,35 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Sorts the contents of the person list with {@code comparator}.
+     */
+    public void sortPersons(Comparator<Person> comparator) {
+        persons.sort(comparator);
+    }
+
+    /**
+     * Replaces the contents of the appointment list with {@code appointments}.
+     * {@code appointments} must not contain duplicate persons.
+     */
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
+    /**
+     * Sorts the contents of the appointment list with {@code comparator}.
+     */
+    public void sortAppointments(Comparator<Appointment> comparator) {
+        appointments.sort(comparator);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setAppointments(newData.getAppointmentList());
     }
 
     //// person-level operations
@@ -85,6 +113,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+
+    /**
+     *  Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
+     *  {@code target} must exist in the address book.
+     *  The appointment {@code editedAppointment} must not be the same as another existing
+     *  appointment in the address book.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+
+        appointments.setAppointment(target, editedAppointment);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -92,6 +133,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+
+
+    public void addAppointment(Appointment a) {
+        appointments.add(a);
+    }
+
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
+
+    public void removeAppointments(List<Appointment> keys) {
+        appointments.removeAppointments(keys);
+    }
+
 
     //// util methods
 
@@ -104,6 +159,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return appointments.asUnmodifiableObservableList();
     }
 
     @Override

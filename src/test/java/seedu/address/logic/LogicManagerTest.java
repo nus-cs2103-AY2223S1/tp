@@ -28,6 +28,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonCommandHistoryStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -46,8 +47,10 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
+        JsonCommandHistoryStorage commandHistoryStorage = new JsonCommandHistoryStorage(
+                temporaryFolder.resolve("commandHistory.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
+        logic = new LogicManager(model, storage, new CommandHistory());
     }
 
     @Test
@@ -64,8 +67,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListCommand.COMMAND_WORD + " patients";
+        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS_PATIENTS, model);
     }
 
     @Test
@@ -75,8 +78,10 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
+        JsonCommandHistoryStorage commandHistoryStorage = new JsonCommandHistoryStorage(
+                temporaryFolder.resolve("commandHistory.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
+        logic = new LogicManager(model, storage, new CommandHistory());
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
@@ -89,8 +94,13 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredAppointmentList().remove(0));
     }
 
     /**

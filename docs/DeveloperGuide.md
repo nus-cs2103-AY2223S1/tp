@@ -154,90 +154,311 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] List patients/appointments feature
 
 #### Proposed Implementation
+The proposed list patients/appointments mechanism is facilitated by the `UniquePersonList` and `UniqueAppointmentList`
+respectively. They extend `Iterable` and store lists of `Person` and `Appointment`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+An example usage scenario of list patients/appointments is given below:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**Steps:**
+1. After launching the application, user executes the command `find alex` to search for entries in both
+`UniquePersonList` and `UniqueAppointmentList` that contains "alex". This causes entries in the list which
+does not contain "alex" to be hidden from the GUI. This will set the premise of using `list patients` and
+`list appts`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+2. When user wants to view the full list of patients again, he/she can enter the command `list patients`. Note that
+this command only interacts with the `UniquePersonList` and not the `UniqueAppointmentList`, thus it will not modify
+the displayed list of appointments in any way.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+3. When user wants to view the full list of appointments again, he/she can enter the command `list appts`. Note that
+   this command only interacts with the `UniqueAppointmentList` and not the `UniquePersonList`, thus it will not modify
+   the displayed list of patients in any way.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<img src="images/ListActivityDiagram.png" width="500" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+To help you understand what is going on behind the scenes, here is a sequence diagram that demonstrates how
+`list patients` work:
 
-![UndoRedoState1](images/UndoRedoState1.png)
+<img src="images/ListPatientsSequenceDiagram.png" width="500" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+From the diagram, the `ListCommand` object passes the predicate to show all entries to the `ModelManager`, which
+will call onto a JavaFX function to modify the displayed list. For `list appts`, it follows a similar
+process as well.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+**Aspect: How the command is implemented:**
+* **Alternative 1 (current choice):** `list patients` and `list appts` as a command words.
+  * Pros: No additional parser class required
+  * Cons: `ListCommand#execute()` will have more lines of code.
+* **Alternative 2:** `list` as a command word with arguments `patients` or `appts` following it.
+  * Pros: Seems more aligned with other commands that require more than 1 word of input
+  * Cons: Require an additional `ListCommandParser` to work; more lines of code required.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+We ultimately went with Alternative 1 since we do not expect `list` to take in many different arguments.
 
-</div>
+###**Cancel feature**: <br>
+The implemented cancel feature allows users to cancel a patient's appointment based on its index in the appointment list. <br>
+It is implemented similar to other idENTify commands and it extends `SelectAppointmentCommand`, an abstract class which encapsulates <br>
+operations which require selecting appointments from an appointment list. The logical flow of using this command is shown in the
+activity diagram given below.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+![Activity Diagram](images/CancelActivityDiagram.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+The `AddressBookParser` will first check for the `cancel` command word. The cancel command
+is facilitated by the `CancelCommandParser` and `CancelCommand` classes. The `CancelCommandParser`
+parses the user input and obtains the index inputted by the user, before creating the cancel command to
+execute the deletion of the appointment from the current appointment list.
+Given below is an overview of how the cancel command executes the deletion of an appointment to delete the
+first appointment (index 1) in the appointment list:
+![Cancel Command](images/CancelSequenceDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How we decided to choose the user command:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Select an appointment index from appointment list
+  * Pros: More convenient for the end user to just choose the indexed appointment from the current appointment list.
+  * Cons: The details of a patient's appointments will not be shown under the patient's details in the patient's list.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Use both patient and appointment index to select an appointment to delete.
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Intuitive if the user just wants to delete a specified patient's appointments.
+  * Cons: Appointments will have to be shown under tha patient list which will clutter up the UI.
 
-_{more aspects and alternatives to be added}_
+Our team decided to change the user input format of the cancel command from `cancel PATIENT_INDEX APPOINTMENT_INDEX`
+to `cancel APPOINTMENT_INDEX`, so it is faster for
+the user to key in, and also more similar to the other commands with only 1 index.
 
-### \[Proposed\] Data archiving
+### \[Implemented\] Group Patient
 
-_{Explain here how the data archiving feature will be implemented}_
+The group mechanism implements the following operations:
 
+* Group patients according to their tags.
+
+The operation is exposed in the `Command` interface as `Command#GroupPatientCommand()`.
+
+Given below is an example usage scenario and how the group mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
+patient list.
+
+Step 2. The user executes `group patients` command to group patients by their tags, causing the modified list of
+patients after the `group patients` command executes to show on the screen.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("group patients")` API call.
+
+![Interactions Inside the Logic Component for the `group patients` Command](images/GroupPatientSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/GroupPatientCommand.png" width="1000" />
+
+#### Design considerations:
+
+**Aspect: How group patients executes:**
+
+* **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
+  tag group where a patient belongs.
+
+### \[Implemented\] Group Appointment
+
+The group mechanism implements the following operations:
+
+* Group appointments according to their tags or patient.
+
+The operation is exposed in the `Command` interface as `Command#GroupAppointmentCommand()`.
+
+Given below is an example usage scenario and how the group mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
+appointment list.
+
+Step 2. The user executes `group appts k/[KEY]` command to group appointments by their tags `(k/ tag)` or patient `
+(k/ patient)`, causing the modified list of appointments after the `group appts k/[KEY]` command executes to show on 
+the screen.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("group appts k/[KEY]")` API call.
+
+![Interactions Inside the Logic Component for the `group appts k/[KEY]` Command](images/GroupAppointmentSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/GroupAppointmentCommand.png" width="1000" />
+
+#### Design considerations:
+
+**Aspect: How group appointments executes:**
+
+* **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
+  tag group where a patient belongs or the patient attached to the appointment.
+
+### \[Implemented\] Ungroup
+
+The ungroup mechanism implements the following operations:
+
+* Either ungroup appointments or ungroup patients.
+
+The operation is exposed in the `Command` interface as `Command#UngroupCommand()`.
+
+Given below is an example usage scenario and how the group mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
+patient and appointment list.
+
+Step 2. The user executes `group appts k/[KEY]` command to group appointments by their tags `(k/ tag)` or patient `
+(k/ patient)`, causing the modified list of appointments after the `group appts k/[KEY]` command executes to show on
+the screen or executes `group patients` command to group patients by their tags, causing the modified list of
+patients after the `group patients` command executes to show on the screen.
+
+Step 3. The user executes `ungroup appts` command to ungroup appointments or `ungroup patients` command to ungroup 
+patients.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the use has not group patients or 
+appointments, ungroup commands will make no effect on the current addressbook list on the screen.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("ungroup")` API call.
+
+![Interactions Inside the Logic Component for the `ungroup` Command](images/UngroupSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/UngroupCommand.png" width="1000" />
+
+#### Design considerations:
+
+**Aspect: How ungroup executes:**
+
+* **Current choice:** Use the default comparator for appointments or patients so that the specified list will sort 
+  as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt 
+  list will be sorted by datetime.
+
+### \[Implemented\] Book feature
+
+#### Implementation
+
+The `AddressBookParser` class checks for the `book` command word to begin. The book mechanism is facilitated by the `BookCommandParser` and `BookCommand` classes. The `BookCommandParser` implements the `Parser` interface and takes in the user input and parses it into an index and 3 string values. The 3 string values are obtained from the `ArgumentMultimap` that checks whether the user has inputted the 3 prefixes supported by this feature.
+
+The 3 prefixes are:
+* `r/` for reason
+* `d/` for dateTime
+* `pe/` for recurring time period (optional)
+
+
+After retrieving the string values, the `BookCommandParser` uses the `ParserUtil` class to convert these values and create an `Appointment` object. A `BookCommand` object will be created with the given index and `Appointment` object. The `BookCommand` object will retrieve the specified person in the `UniquePersonList` and adds
+the `Appointment` object to the person's list of appointments.
+
+The newly added `Appointment` object will also be saved in the JSON file through the usage of a Jackson-friendly class `JsonAdaptedAppointment`.
+
+Given below are some example usage scenarios and how the book feature behaves in each scenario.
+
+Scenario 1: User inputs an empty reason in the `r/` prefix.
+
+The `ParserUtil` class will detect that the given reason is empty and throws a `CommandException`, which will feedback to the user that he has given an invalid reason.
+
+Scenario 2: User inputs an invalid dateTime in the `d/` prefix, such as `2022-15-10 14:00`.
+
+The `ParserUtil` class will detect that the given dateTime is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid dateTime.
+
+Scenario 3: User inputs an invalid recurring time period in the `pe/` prefix, such as `1S`.
+
+The `ParserUtil` class will detect that the given time period is invalid and throws a `CommandException`, which will feedback to the user that he has given an invalid time period.
+
+Scenario 4: User tries to book an appointment with the same time as other appointments of the same person.
+
+<img src="images/BookCommandObjectDiagram.png" width="450" />
+
+This object diagram illustrates the above scenario. As the specified person has already booked an appointmnet in `Dec 10 2022 12:00`, the newly created `Appointment` object will not be associated with the person. The `BookCommand` will throw a `CommandException`, which will feedback to the user that he tried to book an appointment at the same time as the other appointments.
+
+The following sequence diagram helps to provide a clearer picture to how the book operation works:
+
+![BookSequenceDiagram](images/BookSequenceDiagram.png)
+
+The following Class diagram shows how serializing `Appointment` objects into JSON format is done.
+
+<img src="images/BookCommandStorageClassDiagram.png" width="450" />
+
+`Appointment` objects are mapped to `JsonAdaptedAppointment` objects, so that they contain only relevant fields to store and works easier with Jackson.
+These objects are stored in a list field of the `JsonAdaptedPerson` and are stored together in a single JSON file, for easier retrival and assignment when starting up the application.
+
+#### Design Considerations:
+
+**Aspect: Where to assign Appointment objects:**
+
+* **Alternative 1 (current implementation):** Each person stores his own list of appointments, as well as the `UniqueAppointmentList` class storing the same objects.
+  * Pros: Easier to keep track of which appointments are associated to which person for other appointment related features.
+  * Cons: Must ensure both the person's appointments and `UniqueAppointmentList` appointments are equal, in edit/cancel/delete features.
+
+* **Alternative 2:** `Appointment` objects are stored only in the `UniqueAppointmentList` class.
+  * Pros: Easier to maintain as there's only one appointment object.
+  * Cons: Harder and more costly to track of each person's appointments, especially if the person himself is edited or deleted in the process.
+
+### Mark/Unmark feature
+
+The execution of the `mark`/`unmark` is quite similar to each other, with some minor differences.
+
+Given below is an example usage scenario, where the user enters `mark 1` as the input,
+and how the mark mechanism behaves at each step.
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+The `unmark` command functions similiarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
+classes in place of `MarkCommandParser` and `MarkCommand` respectively.
+It also lacks the logic to add recurring appointments.
+
+#### Design considerations:
+
+**Aspect: How mark & unmark executes:**
+* **Alternative 1 (current choice):** `MarkCommand` and `UnmarkCommand` takes in an `Index` denoting the appointment to
+mark/unmark.
+    * Pros: Easy to implement.
+    * Cons: Will have to compute the actual appointment to mark `MarkCommand`/`UnmarkCommand` itself.
+
+* **Alternative 2:** `MarkCommand` and `UnmarkCommand` takes in the `Appointment` to be marked as a parameter in its
+constructor directly
+    * Pros: Cohesiveness is increased, as it only needs to concern itself with marking/unmarking the appointment.
+    * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment
+  recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
+
+### Find `execute()` implementation
+
+![MarkSequenceDiagram](images/FindClassDiagram.png)
+
+The `find` command,
+* Takes in 2 predicates `CombinedPersonPredicate` and `CombinedAppointmentPredicate`.
+* `CombinedPersonPredicate` stores all person related search strings and tests for all patients that satisfies all
+the search terms.
+* `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that
+satisfies all the search terms.
+* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all 
+* the relevant patient and appointments.
+
+#### Design considerations:
+
+**Aspect: How to pass in search terms to `FindCommand`:**
+* **Alternative 1:** Store all search terms in `FindCommand` and use `Predicate#and` to combine the
+the search predicates.
+    * Pros: Easy and quick to implement. No extra classes needed.
+    * Cons: There is no way to override the `Predicate#equals()`. Testability of `FindCommand` would be low.
+
+* **Alternative 2:** Create 1 class for each search term
+(E.g `NameContainsSequencePredicate`, `AppointmentContainsReasonPredicate` etc.). Create a `CombinedPersonPredicate`
+and a `CombinedAppointmentPredicate` that takes in all these 'lesser' predicates and combine them to form the actual
+predicate to filter the list with.
+    * Pros: Testability of `FindCommand` would be very high.
+    * Cons: Large amount of classes needed. There would also be the issue of excessive duplication of code.
+It would also be time-consuming to add in potential new predicates in the future as much more test cases would be needed
+to test each individual class.
+
+* **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`,
+and store the relevant search terms into each predicate. Combine those search terms in the predicate class itself.
+    * Pros: Testability of `FindCommand` would be high. Extending the method features in the future would also be
+more efficient than alternative 2.
+    * Cons: Slightly less testable than alternative 2. However, the increased efficiency is worth the tradeoff.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -255,73 +476,375 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target User Profile:**
+* Tech savvy admin staff in Ear, Nose, Throat (ENT) department
+* Has a need to manage a significant number of contacts
+* Prefer desktop apps over other types
+* Can type fast
+* Prefer typing to mouse interactions
+* Is reasonably comfortable using Command-Line Interface (CLI) apps
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition:**
+* ENT doctors treat patients who often have chronic conditions and our product will make it easier for the staff to keep track of these patients, such as their appointment dates, the severity of their condition, their diagnosis, etc
+* ENT department offers a lot of services including head & neck surgery, voice clinic, and otology / skull base, etc; therefore, they need this app to filter different types of patients
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                      | I want to …​                                           | So that I can…​                                                               |
+|----------|------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | starting user                | view a help screen                                     | understand how this application works                                         |
+| `* * *`  | user                         | search idENTify                                        | find specific patients and information faster                                 |
+| `* * *`  | user                         | add a contact of the patient                           | keep track of the patient's contact details                                   |
+| `* * *`  | user                         | delete a contact of the patient                        | remove the patient from my contacts when no longer needed                     |
+| `* * *`  | user                         | book an appointment for the patient                    | schedule the patient to meet the doctor                                       |
+| `* * *`  | user                         | cancel an appointment for the patient                  | ensure that the appointment schedule is updated and accurate                  |
+| `* * *`  | user                         | save the data of my contacts when I exit the app       | not lose the contacts when I open the app again                               |
+| `* * *`  | user                         | mark an appointment as done                            | know that the patient has already visited                                     |
+| `* *`    | user                         | edit information about a patient                       | merge and keep his information up to date                                     |
+| `* *`    | clumsy user                  | edit an existing appointment                           | fix my error in setting their appointment details                             |
+| `* *`    | clumsy user                  | unmark an appointment as done                          | change my appointment state without deleting and adding the appointment again |
+| `*`      | user                         | have my patients sorted by their names                 | look up their information more quickly                                        |
+| `*`      | user                         | have my appointments sorted by their datetime          | arrange appintments more efficiently                                          |
+| `*`      | user                         | have my patients grouped by their tags                 | check patients' problems more easily                                          |
+| `*`      | user                         | have my appointments grouped by their patients or tags | check and arrange appointments in one go                                      |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `idENTify` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: UC01 - Add a Patient**
+
+**Guarantees**: A patient contact is added into idENTify.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User adds the patient by entering the command and the patient details.
+2. idENTify adds the patient.
+
+
+    Use case ends
+
+
+**Extensions**
+
+* 1a. idENTify detects an error in the entered data.
+  - 1a1. idENTify shows an error message.
+  - 1a2. User enters new data.
+  - Steps 1a1-1a2 are repeated until the data entered are correct.
+
+  Use case resumes at step 2.
+
+**Use Case: UC02 - Show a list of patients**
+
+**Guarantees**: A list of patients’ contact is shown.
+
+**MSS**
+
+1. User requests to list patients
+2. idENTify shows a list of patients.
+
+    Use case ends
+
+**Extensions**
+- 2a. The list is empty.
+
+
+     Use case ends
+
+**Use Case: UC03 - Show a list of appointments**
+
+**Guarantees**: A list of appointments is shown.
+
+**MSS**
+1. User requests to list appointments
+2. idENTify shows a list of appointments
+
+   Use case ends
+
+**Extensions**
+- 2a. The list is empty.
+
+    Use case ends
+
+**Use Case: UC04 - Delete a patient**
+
+**Guarantees**: The patient will be deleted from the patient list only if the data entered are correct.
+
+**MSS**
+1. User gets the <ins>list of patients(UC02)<ins>.
+2. User requests to delete a specific patient in the list.
+3. idENTify deletes the patient.
+
+    Use case ends
+
+**Use Case: UC05 - find a patient**
+
+**Guarantees:**  A list of patients that matches the given query if applicable.
+1.  User requests to find a patient.
+2.  idENTify shows a list of patients that matches the given query.
+
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+- 2a. The list is empty.
 
-  Use case ends.
 
-* 3a. The given index is invalid.
+    Use case ends.
 
-    * 3a1. AddressBook shows an error message.
+**Use Case: UC06 -  Book an appointment**
 
-      Use case resumes at step 2.
+**Guarantees:** An appointment is booked for the patient only if the data entered are correct.
 
-*{More to be added}*
+**MSS**
+
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  User requests to book an appointment for a specified patient.
+3.  idENTify shows that an appointment has been booked for that patient.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 2a.  idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+  Use case resumes at step 3.
+
+**Use Case: UC07 - cancel an appointment**
+
+
+**Guarantees:** The appointment will be deleted from the appointment list only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User requests to cancel a specific appointment in the list.
+3.  idENTify shows that the appointment has been cancelled.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+  Use case resumes at step 3.
+
+**Use Case: UC08 - mark an appointment**
+
+**Guarantees:** The appointment will be marked as done only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User requests to mark a specified appointment for a specified patient.
+3.  idENTify marks the selected appointment.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+  Use case resumes at step 3.
+
+ **Use Case: UC09 - edit an appointment**
+
+**Guarantees:** The appointment will have its fields edited only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User requests to edit a specified appointment for a specified patient.
+3.  idENTify edits the selected appointment.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+  Use case resumes at step 3.
+
+
+**Use Case: UC10 - edit a patient**
+
+**Guarantees:** The patient's contact will have its fields edited only if the data entered are correct.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  User requests to edit a specified patient details.
+3.  idENTify edits the selected patient contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+  - 2a1. idENTify shows an error message.
+  - 2a2. User enters new data.
+  - Steps 2a1-2a2 are repeated until the data entered are correct.
+
+
+  Use case resumes at step 3.
+
+**Use Case: UC11 - sort the patient list**
+
+**Guarantees:** There does not exist two patients with both the same name and the same phone number.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  idENTify displays the patient list sorted by their names.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects multiple patients with the same name.
+    - 2a1. idENTify compares their phone numbers.
+    - 2a2. idENTify sort them by their phone numebrs.
+    - 2a3. idENTify displays the sorted patient list.
+
+    
+**Use Case: UC12 - sort the appointment list**
+
+**Guarantees:** There does not exist two appointments occurring at the same time and attached with the same patient.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  idENTify displays the appointment list sorted by their datetime.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects multiple appointments with the same datetime.
+    - 2a1. idENTify compares their corresponding patients.
+    - 2a2. idENTify sort them by their patient information.
+    - 2a3. idENTify displays the sorted appointment list.
+
+
+**Use Case: UC13 - group patients**
+
+**Guarantees:** There are restricted types of tags assigned to patients.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  User enters command to group patients.
+3.  idENTify displays the patient list grouped by their tags.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. idENTify detects multiple patients with the same tags.
+    - 3a1. idENTify compares their other information.
+    - 3a2. idENTify sort them by the information mentioned above.
+    - 3a3. idENTify displays the sorted patient list.
+
+
+**Use Case: UC14 - group appointments**
+
+**Guarantees:** There are restricted types of tags assigned to appointments and every appointment is attached to one 
+and only one patient.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User enters command to group appointments either by their tags or patient or mark status.
+3.  idENTify displays the appointment list grouped by the specified key.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+    - 2a1. idENTify shows an error message.
+    - 2a2. User enters new data.
+    - Steps 2a1-2a2 are repeated until the data entered are correct. 
+  Use case resumes at step 3.
+
+* 3a. idENTify detects multiple appointments with the same keys.
+    - 3a1. idENTify compares their other information.
+    - 3a2. idENTify sort them by the information mentioned above.
+    - 3a3. idENTify displays the sorted appointment list.
+  
+
+**Use Case: UC15 - ungroup patients**
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  User enters command to ungroup patients.
+3.  idENTify displays the patient list sorted by default comparator (UC11).
+
+    Use case ends.
+
+
+**Use Case: UC16 - ungroup appointments**
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User enters command to ungroup appointments.
+3.  idENTify displays the patient list sorted by default comparator (UC12).
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on Windows, Linux, OS-X Operating System (OS) as long as it has Java 11.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text should be able to accomplish most of the tasks
+   faster using commands than using the mouse.
+4. Should not be used with offensive language.
+5. Expected to adhere to a schedule that delivers a feature set every one month.
+6. Should respond to each command at most 1 second long.
+7. Not required to make calls to contacts.
+8. Should be able to store data locally in a human editable text file.
+9. Should not use Database Management System to store data.
+10. Product should be a result of evolving the given code base.
+11. Should be for a single user.
+12. Should be able to be used at any time (even beyond this semester)
+13. Should not exceed 100MB in size.
+14. Should not require external software to run.
+
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Regular English text**: Basic text that is keyed in by a user. Not code or not system admin commands.
+
+* **Operating System (OS)**: The low-level software that supports a computer's basic functions, common ones include
+  Windows, macOS, Linux.
+* **Search string**: The text that a user uses to find a specific patient (such as a part of the patient’s name).
+* **Command-Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and
+  interact with the computer.
+* **Graphical User Interface (GUI)**: A graphics-based operating system interface that uses icons, menus and a mouse
+  (to click on the icon or pull down the menus) to manage interaction with the system.
+* **Main Success Scenario**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+* **Actor**: A role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system.
+* **Backward compatible**: Refers to a hardware or software system that can use the interface of an older version of the same product.
+* **Store data locally**: Allow the required data to be stored in a file in the user’s computer.
+* **Database Management Systems (DBMS)**: Software systems used to store, retrieve, and run queries on data. A DBMS serves as an interface between an end-user and a database, allowing users to create, read, update, and delete data in the database.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

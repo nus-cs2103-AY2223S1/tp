@@ -1,0 +1,28 @@
+@startuml
+skinparam object {
+  backgroundColor #F97181
+}
+
+object "__:Person__" as Person {
+
+}
+
+object "__:Appointment1__" as Appointment1 {
+reason = "Cough"
+dateTime = "Dec 10 2022 12:00"
+}
+
+object "__:Appointment2__" as Appointment2 {
+reason = "Sore Throat"
+dateTime = "Dec 20 2022 16:00"
+}
+
+object "__:Appointment3__" as Appointment3 {
+reason = "Ear Infection"
+dateTime = "Dec 10 2022 12:00"
+}
+
+Person --> Appointment1
+Person --> Appointment2
+
+@enduml

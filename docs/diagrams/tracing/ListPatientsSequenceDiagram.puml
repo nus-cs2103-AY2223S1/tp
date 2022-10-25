@@ -1,0 +1,21 @@
+@startuml
+!include ../style.puml
+
+box Non-JavaFX LOGIC_COLOR_T1
+Participant ":ListCommand" as lc LOGIC_COLOR
+Participant ":ModelManager" as mm LOGIC_COLOR
+end box
+
+Participant ":FilteredList" as fl LOGIC_COLOR
+
+
+[-> lc : execute
+activate lc
+lc -> mm ++: updateFilteredPersonList(Predicate)
+mm -> fl ++: setPredicate(Predicate)
+fl ->
+fl <--
+fl --> mm --
+mm --> lc --
+<-- lc --: command
+@enduml

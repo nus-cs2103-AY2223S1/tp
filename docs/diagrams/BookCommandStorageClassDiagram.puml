@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package "AddressBook Storage" {
+Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
+Class JsonAddressBookStorage
+Class JsonSerializableAddressBook
+Class JsonAdaptedPerson
+Class JsonAdaptedAppointment
+Class JsonAdaptedTag
+}
+
+JsonAddressBookStorage .up.|> AddressBookStorage
+JsonAddressBookStorage ..> JsonSerializableAddressBook
+JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "*" JsonAdaptedAppointment
+
+@enduml
