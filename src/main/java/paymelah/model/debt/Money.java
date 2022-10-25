@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.AppUtil.checkArgument;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Represents a Debt's money amount in the address book.
@@ -30,6 +31,18 @@ public class Money implements Comparable<Money> {
             money = money.substring(1);
         }
         value = new BigDecimal(money).setScale(CENTS_PRECISION);
+    }
+
+    /**
+     * Returns a {@code Money} with its value divided.
+     *
+     * @param divisor The amount the value is divided by.
+     * @return {@code Money} with divided value rounded up to the closest cent.
+     */
+    public Money splitValue(int divisor) {
+        assert divisor >= 1 : "Impossible for divisor to be non-positive";
+        BigDecimal newValue = value.divide(new BigDecimal(divisor), RoundingMode.CEILING);
+        return new Money(newValue.toString());
     }
 
     /**

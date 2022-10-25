@@ -12,15 +12,19 @@ public class Debt {
     private final Description description;
     private final Money money;
     private boolean isPaid;
+    private final DebtDate date;
+    private final DebtTime time;
 
     /**
      * Every field must be present and not null.
      *
      * @param description The description of the debt.
      * @param money The money amount of the debt.
+     * @param date The date of the debt.
+     * @param time The time of the debt.
      */
-    public Debt(Description description, Money money) {
-        requireAllNonNull(description, money);
+    public Debt(Description description, Money money, DebtDate date, DebtTime time) {
+        requireAllNonNull(description, money, date, time);
         this.description = description;
         this.money = money;
         this.isPaid = false;
@@ -38,6 +42,8 @@ public class Debt {
         this.description = description;
         this.money = money;
         this.isPaid = isPaid;
+        this.date = date;
+        this.time = time;
     }
 
     public Description getDescription() {
@@ -56,11 +62,29 @@ public class Debt {
         this.isPaid = isPaid;
     }
 
+    public DebtDate getDate() {
+        return date;
+    }
+
+    public DebtTime getTime() {
+        return time;
+    }
+
     /**
-     * Returns a Debt with the given description and money.
+     * Returns a Debt with the given description, money, date and time.
      */
-    public static Debt makeDebt(String description, String money) {
-        return new Debt(new Description(description), new Money(money));
+    public static Debt makeDebt(String description, String money, String date, String time) {
+        requireAllNonNull(description, money, date, time);
+        return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time));
+    }
+
+    /**
+     * Returns a copy of the debt.
+     *
+     * @return Debt that is a copy of this debt.
+     */
+    public Debt copyDebt() {
+        return new Debt(this.description, this.money);
     }
 
     /**
@@ -80,20 +104,26 @@ public class Debt {
         }
 
         Debt otherDebt = (Debt) other;
-        return otherDebt.getDescription().equals(getDescription())
-                && otherDebt.getMoney().equals(getMoney());
+        return otherDebt.getDescription().equals(this.getDescription())
+                && otherDebt.getMoney().equals(this.getMoney())
+                && otherDebt.getDate().equals(this.getDate())
+                && otherDebt.getTime().equals(this.getTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, money);
+        return Objects.hash(description, money, date, time);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append(": $")
+        builder.append(getDate())
+                .append(" ")
+                .append(getTime())
+                .append(": ")
+                .append(getDescription())
+                .append("; $")
                 .append(getMoney());
 
         return builder.toString();

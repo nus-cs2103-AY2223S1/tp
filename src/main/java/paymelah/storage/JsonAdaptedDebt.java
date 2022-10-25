@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import paymelah.commons.exceptions.IllegalValueException;
 import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 
@@ -18,15 +20,20 @@ class JsonAdaptedDebt {
     private final String description;
     private final String money;
     private final boolean isPaid;
+    private final String date;
+    private final String time;
 
     /**
      * Constructs a {@code JsonAdaptedDebt} with the given debt details.
      */
     @JsonCreator
-    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money, @JsonProperty("isPaid") boolean isPaid) {
+    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money, @JsonProperty("isPaid") boolean isPaid,
+                           @JsonProperty("date") String date, @JsonProperty("time") String time) {
         this.description = description;
         this.money = money;
         this.isPaid = isPaid;
+        this.date = date;
+        this.time = time;
     }
 
     /**
@@ -36,6 +43,8 @@ class JsonAdaptedDebt {
         description = source.getDescription().toString();
         money = source.getMoney().toString();
         isPaid = source.isPaid();
+        date = source.getDate().toString();
+        time = source.getTime().toString();
     }
 
     public String getDebtDescription() {
@@ -50,6 +59,14 @@ class JsonAdaptedDebt {
         return isPaid;
     }
 
+    public String getDebtDate() {
+        return date;
+    }
+
+    public String getDebtTime() {
+        return time;
+    }
+
     /**
      * Converts this Jackson-friendly adapted debt object into the model's {@code Debt} object.
      *
@@ -62,7 +79,13 @@ class JsonAdaptedDebt {
         if (!Money.isValidMoney(money)) {
             throw new IllegalValueException(Money.MESSAGE_CONSTRAINTS);
         }
-        return new Debt(new Description(description), new Money(money), isPaid);
-    }
+        if (!DebtDate.isValidDate(date)) {
+            throw new IllegalValueException(DebtDate.MESSAGE_CONSTRAINTS);
+        }
+        if (!DebtTime.isValidTime(time)) {
+            throw new IllegalValueException(DebtTime.MESSAGE_CONSTRAINTS);
+        }
 
+        return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time), isPaid);
+    }
 }

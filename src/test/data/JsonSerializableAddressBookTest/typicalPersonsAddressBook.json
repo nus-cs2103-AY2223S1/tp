@@ -8,7 +8,9 @@
     "tagged" : [ "friends" ],
     "debts" : [ {
       "description" : "McDonald's",
-      "money" : "10.80"
+      "money" : "10.80",
+      "date" : "2022-10-11",
+      "time" : "12:34"
     } ]
   }, {
     "name" : "Benson Meier",
@@ -18,7 +20,9 @@
     "tagged" : [ "owesMoney", "friends" ],
     "debts" : [ {
       "description" : "burger king",
-      "money" : "10.40"
+      "money" : "10.40",
+      "date" : "2022-09-28",
+      "time" : "00:00"
     } ]
   }, {
     "name" : "Carl Kurz",
@@ -28,7 +32,9 @@
     "tagged" : [ ],
     "debts" : [ {
       "description" : "coop textbooks",
-      "money" : "29.60"
+      "money" : "29.60",
+      "date" : "2022-10-07",
+      "time" : "17:45"
     } ]
   }, {
     "name" : "Daniel Meier",
@@ -52,7 +58,9 @@
     "tagged" : [ ],
     "debts" : [ {
       "description" : "Taobao group buy",
-      "money" : "34.52"
+      "money" : "34.52",
+      "date" : "2022-10-12",
+      "time" : "10:00"
     } ]
   }, {
     "name" : "George Best",
@@ -62,10 +70,14 @@
     "tagged" : [ ],
     "debts" : [ {
       "description" : "kfc zinger burger",
-      "money" : "4.50"
+      "money" : "4.50",
+      "date" : "2022-10-11",
+      "time" : "18:23"
     }, {
       "description" : "supper jio",
-      "money" : "4.50"
+      "money" : "4.50",
+      "date" : "2022-09-12",
+      "time" : "00:00"
     } ]
   } ]
 }

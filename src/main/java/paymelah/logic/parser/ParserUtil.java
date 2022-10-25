@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 import paymelah.commons.core.index.Index;
 import paymelah.commons.util.StringUtil;
 import paymelah.logic.parser.exceptions.ParseException;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
@@ -184,6 +186,40 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String date} into a {@code DebtDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param date The date to turn into a {@code DebtDate} object.
+     * @return The corresponding {@code DebtDate}.
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static DebtDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DebtDate.isValidDate(trimmedDate)) {
+            throw new ParseException(DebtDate.MESSAGE_CONSTRAINTS);
+        }
+        return new DebtDate(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code DebtTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param time The time to turn into a {@code DebtTime} object.
+     * @return The corresponding {@code DebtTime}.
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    public static DebtTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!DebtTime.isValidTime(trimmedTime)) {
+            throw new ParseException(DebtTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DebtTime(trimmedTime);
+    }
+
+    /**
      * Parses {@code String s} into a {@code NameContainsKeywordsPredicate}.
      */
     public static NameContainsKeywordsPredicate prepareNameContainsKeywordsPredicate(String s) throws ParseException {
@@ -208,6 +244,15 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code String s} into a {@code DebtGreaterEqualAmountPredicate}.
+     */
+    public static DebtGreaterEqualAmountPredicate prepareDebtGreaterEqualAmountPredicate(String s)
+            throws ParseException {
+        Money m = parseMoney(s);
+        return new DebtGreaterEqualAmountPredicate(m);
+    }
+
+    /**
      * Returns true if none of the prefixes contains empty {@code Optional} values
      * in the given
      * {@code ArgumentMultimap}.
@@ -217,11 +262,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String s} into a {@code DebtGreaterEqualAmountPredicate}.
+     * Returns true if exactly one of the prefixes contains non-empty {@code Optional} values
+     * in the given
+     * {@code ArgumentMultimap}.
      */
-    public static DebtGreaterEqualAmountPredicate prepareDebtGreaterEqualAmountPredicate(String s)
-            throws ParseException {
-        Money m = parseMoney(s);
-        return new DebtGreaterEqualAmountPredicate(m);
+    public static boolean isExactlyOneOfPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        int presentCount = 0;
+        for (Prefix prefix : prefixes) {
+            if (argumentMultimap.getValue(prefix).isPresent()) {
+                presentCount++;
+            }
+        }
+        return presentCount == 1;
     }
 }
