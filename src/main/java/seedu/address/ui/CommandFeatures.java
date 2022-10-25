@@ -86,6 +86,13 @@ public class CommandFeatures {
             "displaygroup CS2103T Team Project"
     );
 
+    private static final CommandFeatures LISTGROUPS_COMMAND_FEATURES = new CommandFeatures(
+            "listgroups",
+            "Lists all existing groups in TABS.",
+            "listgroups",
+            "listgroups"
+    );
+
     /**
      * TASK COMMANDS
      */
@@ -186,7 +193,8 @@ public class CommandFeatures {
                 DELETEGROUP_COMMAND_FEATURES,
                 ADDMEMBER_COMMAND_FEATURES,
                 DELETEMEMBER_COMMAND_FEATURES,
-                DISPLAYGROUP_COMMAND_FEATURES
+                DISPLAYGROUP_COMMAND_FEATURES,
+                LISTGROUPS_COMMAND_FEATURES
         );
     }
 
