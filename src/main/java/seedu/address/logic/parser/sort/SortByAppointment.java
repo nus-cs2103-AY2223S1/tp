@@ -2,7 +2,7 @@ package seedu.address.logic.parser.sort;
 
 import java.util.Comparator;
 
-import seedu.address.logic.util.exceptions.SortedListException;
+import seedu.address.model.util.exceptions.SortedListException;
 import seedu.address.model.person.Person;
 
 /**
