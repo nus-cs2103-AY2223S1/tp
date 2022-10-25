@@ -62,8 +62,8 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean matchesAddress(Person person) {
-        return findSimilarity(keywords,person.getAddress().value) > 0.5 ||
-                StringUtil.containsWordIgnoreCase(person.getAddress().value, keywords);
+        return findSimilarity(keywords,person.getAddress().toString()) > 0.5 ||
+                StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keywords);
     }
 
     private boolean matchesRole(Person person) {
