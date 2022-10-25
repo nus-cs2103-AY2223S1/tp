@@ -8,6 +8,10 @@ import java.util.Optional;
  */
 public class PersonComparators {
 
+    public static Comparator<Person> reverseComparator(Comparator<Person> comparator) {
+        return ((o1, o2) -> -comparator.compare(o1, o2));
+    }
+
     public static final Comparator<Person> NAME_COMPARATOR = (Comparator.comparing(Person::getName));
 
     public static final Comparator<Person> ADDRESS_COMPARATOR = ((o1, o2) -> {

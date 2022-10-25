@@ -2,13 +2,18 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCENDING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.model.person.PersonComparators.ADDRESS_COMPARATOR;
 import static seedu.address.model.person.PersonComparators.NAME_COMPARATOR;
 import static seedu.address.model.person.PersonComparators.ROLE_COMPARATOR;
+import static seedu.address.model.person.PersonComparators.reverseComparator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -37,8 +42,9 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String userInput) throws ParseException {
 
         // Add `/` behind userInput so that ArgumentTokenizer can tokenize
-        // `sort name` like `sort name/`.
-        userInput = userInput + "/";
+        // `sort name` like `sort name/` or `sort name/desc`.
+        userInput = userInput.contains("desc") ? userInput : userInput + "/";
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, AVAILABLE_FIELDS);
 
         if (!anyPrefixesPresent(argMultimap) || !argMultimap.getPreamble().isEmpty()) {
@@ -46,7 +52,13 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         Prefix prefix = getFirstPresentPrefix(argMultimap);
-        return new SortCommand(PREFIX_COMPARATOR_MAP.get(prefix));
+        Comparator<Person> comparator = PREFIX_COMPARATOR_MAP.get(prefix);
+
+        if (argMultimap.getValue(prefix).get().equals("desc")) {
+            comparator = reverseComparator(comparator);
+        }
+
+        return new SortCommand(comparator);
     }
 
     private static Prefix getFirstPresentPrefix(ArgumentMultimap argumentMultimap) {
