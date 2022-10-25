@@ -3,11 +3,13 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 
@@ -27,6 +29,14 @@ public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final SortedList<Event> unmodifiableSortedList = internalUnmodifiableList.sorted(
+            new Comparator<Event>() {
+                @Override
+                public int compare(Event e1, Event e2) {
+                    return e1.compareTo(e2);
+                }
+            }
+    );
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
@@ -101,7 +111,7 @@ public class UniqueEventList implements Iterable<Event> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Event> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return unmodifiableSortedList;
     }
 
     @Override
