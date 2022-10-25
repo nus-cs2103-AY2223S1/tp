@@ -55,9 +55,9 @@ public class PersonProfile extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        remark.setText(person.getRemark().value);
+        remark.setText(person.getDescription().value);
         netWorth.setText(person.getNetWorth().value);
-        meetingTime.setText(person.getMeetingTime().value);
+        meetingTime.setText(person.getMeetingTimes().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

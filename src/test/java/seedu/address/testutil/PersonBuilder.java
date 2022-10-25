@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FilePath;
 import seedu.address.model.person.MeetingTime;
@@ -11,7 +13,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,8 +25,8 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_REMARK = "";
-    public static final String DEFAULT_MEETING_TIME = "01-01-2000 12:00";
+    public static final String DEFAULT_DESCRIPTION = "Has family health history of diabetes.";
+    public static final MeetingTime DEFAULT_MEETING_TIME = new MeetingTime("01-01-2000-12:00");
     public static final String DEFAULT_NETWORTH = "$2000";
     public static final String DEFAULT_FILEPATH = "src/test/data/TestPDFs/Test_PDF.pdf";
 
@@ -33,9 +34,9 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Remark remark;
+    private Description description;
     private NetWorth netWorth;
-    private MeetingTime meetingTime;
+    private Set<MeetingTime> meetingTimes;
     private FilePath filePath;
     private Set<Tag> tags;
 
@@ -47,9 +48,9 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        remark = new Remark(DEFAULT_REMARK);
+        description = new Description(DEFAULT_DESCRIPTION);
         netWorth = new NetWorth(DEFAULT_NETWORTH);
-        meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
+        meetingTimes = new HashSet<>(Arrays.asList(DEFAULT_MEETING_TIME));
         filePath = new FilePath(DEFAULT_FILEPATH);
         tags = new HashSet<>();
     }
@@ -62,9 +63,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        remark = personToCopy.getRemark();
+        description = personToCopy.getDescription();
         netWorth = personToCopy.getNetWorth();
-        meetingTime = personToCopy.getMeetingTime();
+        meetingTimes = new HashSet<>(personToCopy.getMeetingTimes());
         filePath = personToCopy.getFilePath();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -110,10 +111,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Person} that we are building.
+     * Sets the {@code Description} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
+    public PersonBuilder withDescription(String remark) {
+        this.description = new Description(remark);
         return this;
     }
 
@@ -128,8 +129,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code meetingTime} of the {@code Person} that we are building.
      */
-    public PersonBuilder withMeetingTime(String meetingTime) {
-        this.meetingTime = new MeetingTime(meetingTime);
+    public PersonBuilder withMeetingTimes(String ... meetingTimes) {
+        this.meetingTimes = SampleDataUtil.getMeetingTimeSet(meetingTimes);
         return this;
     }
 
@@ -142,10 +143,10 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, remark, netWorth, meetingTime, filePath, tags);
+        return new Person(name, phone, email, address, description, netWorth, meetingTimes, filePath, tags);
     }
 
-    public Person buildNoRemarkAndFilePath() {
-        return new Person(name, phone, email, address, netWorth, meetingTime, tags);
+    public Person buildNoFilePath() {
+        return new Person(name, phone, email, address, description, netWorth, meetingTimes, tags);
     }
 }

@@ -242,7 +242,7 @@ It's exposed in the `OpenPersonFileCommand` as `OpenPersonFileCommand#execute(Mo
 
 Given below is an example usage scenario and how the open file mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. 
+Step 1. The user launches the application for the first time.
 
 Step 2. The user executes `file 2` command to open the file of the 2nd person in the address book.
 
@@ -252,6 +252,31 @@ newly created `OpenPersonFileCommand`.
 Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager while in turn calls 
 `FileUtil#openPdfFile(String)` and the PDF file stored in the file path will be opened on the Users default PDF viewer.
 
+### Person Enhancement
+
+The person model now contains a `Net Worth` field.
+`Net Worth` is implemented as a class where it contains a `final string` `value`, `final static string` 
+`MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
+
+#### Design Considerations
+- Net Worth accepts a Net Worth object that has an immutable value.
+- Net Worth is a compulsory field. A user will only engage with a client if they know their net worth.
+- Net Worth `VALIDATION_REGEX` ensures that clients of more than 1000 dollars is engaged and the currency is 
+  standardise to be in dollars
+
+#### Alternatives
+
+* **Alternative 1 (current choice):** Compulsory Net Worth field in person and `VALIDATION_REGEX` calculated in 
+  dollars and must be more than 4 digits.
+    * Pros: Standardisation of currency and minimum net worth.
+    * Cons: Unable to create a contact without knowing the client's net worth and net worth must be more than a 
+      minimum amount.
+
+* **Alternative 2:** Non-compulsory Net Worth field and `VALIDATION_REGEX` has no currency constraints nor minimum 
+  amount. 
+    * Pros: Flexibility in creating a contact.
+    * Cons: No means of comparison between a contact of different currency.
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

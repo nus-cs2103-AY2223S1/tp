@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FilePath;
 import seedu.address.model.person.MeetingTime;
@@ -71,15 +72,10 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static Address parseAddress(String address) {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
         return new Address(trimmedAddress);
     }
 
@@ -99,6 +95,16 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Description parseDescription(String description) {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        return new Description(trimmedDescription);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -106,7 +112,7 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
+        String trimmedTag = tag.trim().toUpperCase();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -136,7 +142,7 @@ public class ParserUtil {
      */
     public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
         requireNonNull(meetingTime);
-        String trimmedMeetingTime = meetingTime.trim();
+        String trimmedMeetingTime = meetingTime.replaceAll("\\s", "");
         if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
@@ -157,6 +163,18 @@ public class ParserUtil {
         }
         return new FilePath(trimmedFilePath);
 
+    }
+
+    /**
+     * Parses {@code Collection<String> meetingTimes} into a {@code Set<MeetingTime>}.
+     */
+    public static Set<MeetingTime> parseMeetingTimes(Collection<String> meetingTimes) throws ParseException {
+        requireNonNull(meetingTimes);
+        final Set<MeetingTime> meetingTimeSet = new HashSet<>();
+        for (String meetingTime : meetingTimes) {
+            meetingTimeSet.add(parseMeetingTime(meetingTime));
+        }
+        return meetingTimeSet;
     }
 
     /**
