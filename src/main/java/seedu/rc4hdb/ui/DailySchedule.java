@@ -55,7 +55,7 @@ public class DailySchedule {
      * Build the {@code bookedBy} array with the {@code bookings}.
      */
     private static Resident[] buildBookedByList(List<Booking> bookings) {
-        Resident[] bookedBy = new Resident[16];
+        Resident[] bookedBy = new Resident[24];
         for (Booking booking : bookings) {
             populateBookedByList(bookedBy, booking.getHourPeriod(), booking.getResident());
         }

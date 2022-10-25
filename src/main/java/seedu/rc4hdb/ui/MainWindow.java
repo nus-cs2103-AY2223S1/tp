@@ -250,7 +250,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private ListChangeListener<Booking> getBookingChangeListener() {
-        return c -> bookingTableView.setObservableFields(logic.getObservableBookings());
+        return c -> bookingTableView.updateTable(logic.getObservableBookings());
     }
 
     private void setTabLabels() {

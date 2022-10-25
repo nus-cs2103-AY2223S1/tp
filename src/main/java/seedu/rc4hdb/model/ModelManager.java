@@ -56,9 +56,10 @@ public class ModelManager implements Model {
         this.observableVenueList = venueBook.getVenueList();
 
         if (observableVenueList.isEmpty()) {
+            logger.info("No venues found in venue list.");
             this.observableBookingList = FXCollections.observableArrayList();
         } else {
-            this.observableBookingList = observableVenueList.get(1).getObservableBookings();
+            this.observableBookingList = observableVenueList.get(0).getObservableBookings();
         }
     }
 
