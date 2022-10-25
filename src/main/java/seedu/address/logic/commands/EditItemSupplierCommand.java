@@ -21,20 +21,23 @@ public class EditItemSupplierCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ITEM = "This supply item already exists in the inventory.";
     public static final String MESSAGE_ITEM_NOTFOUND = "The specified item could not be found";
 
+    private final Person initialSupplier;
     private final Person editedSupplier;
 
     /**
      * @param editedSupplier supplier details to edit the item with
      */
-    public EditItemSupplierCommand(Person editedSupplier) {
+    public EditItemSupplierCommand(Person initialSupplier, Person editedSupplier) {
+        requireNonNull(initialSupplier);
         requireNonNull(editedSupplier);
+        this.initialSupplier = initialSupplier;
         this.editedSupplier = editedSupplier;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Optional<SupplyItem> supplyItemOptional = model.supplyItemSuppliedBy(editedSupplier);
+        Optional<SupplyItem> supplyItemOptional = model.supplyItemSuppliedBy(initialSupplier);
 
         SupplyItem supplyItemToEdit =
                 supplyItemOptional.orElseThrow(() -> new CommandException(MESSAGE_ITEM_NOTFOUND));
