@@ -66,7 +66,7 @@ public class AddCommandParserTest {
 
         // multiple salaries - last salary accepted
         assertParseSuccess(parser, NAME_DESC_MSFT + POSITION_DESC_MSFT + EMAIL_DESC_MSFT + WEBSITE_DESC_MSFT
-                + SALARY_DESC_MSFT + SALARY_DESC_MSFT + TAG_DESC_REMOTE, new AddCommand(expectedInternship));
+                + SALARY_DESC_AAPL + SALARY_DESC_MSFT + TAG_DESC_REMOTE, new AddCommand(expectedInternship));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_MSFT + POSITION_DESC_MSFT + EMAIL_DESC_AAPL + EMAIL_DESC_MSFT
@@ -74,7 +74,7 @@ public class AddCommandParserTest {
 
         // multiple websites - last website accepted
         assertParseSuccess(parser, NAME_DESC_MSFT + POSITION_DESC_MSFT + EMAIL_DESC_MSFT + WEBSITE_DESC_AAPL
-                + WEBSITE_DESC_MSFT + SALARY_DESC_AAPL + TAG_DESC_REMOTE, new AddCommand(expectedInternship));
+                + WEBSITE_DESC_MSFT + SALARY_DESC_MSFT + TAG_DESC_REMOTE, new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags = new InternshipBuilder(MSFT)
