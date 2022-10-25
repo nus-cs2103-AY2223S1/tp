@@ -243,7 +243,7 @@ public class ParserUtil {
         if (Arrays.asList(DAYS_OF_WEEK).contains(trimmedDate.toUpperCase())) {
             targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedDate.toUpperCase());
             return LocalDate.now().with(DATE_ADJUSTER);
-        } else if (trimmedDate.matches(Class.VALIDATION_DATETIME_REGEX)){
+        } else if (trimmedDate.matches(Class.VALIDATION_DATETIME_REGEX)) {
             return parseDate(trimmedDate);
         } else {
             throw new ParseException(Class.INVALID_FIND_COMMAND_MESSAGE);
