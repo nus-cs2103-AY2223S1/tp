@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
@@ -38,7 +39,7 @@ public class DeletePersonFromModuleCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_FROM_MODULE_SUCCESS = "Deleted person from: %1$s";
     public static final String MESSAGE_NO_SUCH_PERSON_IN_MODULE = "The module %1$s does not have the "
-        + "person %2$s tagged to it.";
+            + "person %2$s tagged to it.";
 
     private final ModuleCode targetModuleCode;
     private final Name targetName;
@@ -75,7 +76,9 @@ public class DeletePersonFromModuleCommand extends Command {
         try {
             moduleWithPersonDeleted = createModuleWithDeletedPerson(moduleToDeletePersonFrom, personToDeleteInModule);
         } catch (PersonNotFoundException e) {
-            throw new CommandException(MESSAGE_NO_SUCH_PERSON_IN_MODULE);
+            throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON_IN_MODULE,
+                    moduleToDeletePersonFrom.getModuleCode(),
+                    personToDeleteInModule.getName()));
         }
 
         assert moduleWithPersonDeleted != null;
@@ -106,7 +109,7 @@ public class DeletePersonFromModuleCommand extends Command {
         ModuleTitle moduleTitle = moduleToDeletePersonFrom.getModuleTitle();
         List<Task> moduleTasks = moduleToDeletePersonFrom.getTasks();
         Set<Link> moduleLinks = moduleToDeletePersonFrom.getLinks();
-        Set<Person> modulePersons = moduleToDeletePersonFrom.getPersons();
+        Set<Person> modulePersons = moduleToDeletePersonFrom.copyPersons();
 
         if (!modulePersons.remove(personToDeleteInModule)) {
             throw new PersonNotFoundException();

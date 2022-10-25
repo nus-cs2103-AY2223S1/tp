@@ -13,7 +13,7 @@ public class Messages {
     public static final String MESSAGE_MODULES_LISTED_OVERVIEW = "%1$d modules listed!";
     public static final String MESSAGE_MODULE_LISTED = "Here's the module you requested!";
     public static final String MESSAGE_NO_SUCH_PERSON = "No such person in current displayed list!\nMake sure the "
-            + "person that you want to delete is listed";
+            + "person that you want to delete is listed.";
     public static final String MESSAGE_INVALID_TASK_NUMBER = "The task number must be a positive integer!";
     public static final String MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP =
             "You must provide two different task numbers to swap!";

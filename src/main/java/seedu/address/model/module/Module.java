@@ -139,6 +139,13 @@ public class Module {
     }
 
     /**
+     * Returns a copied persons set.
+     */
+    public Set<Person> copyPersons() {
+        return new HashSet<>(persons);
+    }
+
+    /**
      * Returns true if both modules have the same moduleCode.
      * This defines a weaker notion of equality between two modules.
      */
