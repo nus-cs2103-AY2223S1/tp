@@ -3,13 +3,10 @@ package paymelah.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import static paymelah.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static paymelah.logic.parser.ParserUtil.prepareNameContainsKeywordsPredicate;
-import static paymelah.testutil.TypicalPersons.CARL;
-import static paymelah.testutil.TypicalPersons.ELLE;
-import static paymelah.testutil.TypicalPersons.FIONA;
+import static paymelah.testutil.TypicalPersons.BENSON;
+import static paymelah.testutil.TypicalPersons.DANIEL;
 import static paymelah.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -17,11 +14,11 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
-import paymelah.model.person.NameContainsKeywordsPredicate;
+import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.PersonDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for
@@ -33,10 +30,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(
-                Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(
-                Collections.singletonList("second"));
+        PersonMatchesDescriptorPredicate firstPredicate = new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName("first").build());
+        PersonMatchesDescriptorPredicate secondPredicate = new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName("second").build());
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -61,28 +58,22 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        try {
-            NameContainsKeywordsPredicate predicate = prepareNameContainsKeywordsPredicate("NonExistentName");
-            FindCommand command = new FindCommand(predicate);
-            expectedModel.updateFilteredPersonList(predicate);
-            assertCommandSuccess(command, model, expectedMessage, expectedModel);
-            assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-        } catch (ParseException e) {
-            fail("Invalid predicate");
-        }
+        PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName("NonExistentName").build());
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        try {
-            NameContainsKeywordsPredicate predicate = prepareNameContainsKeywordsPredicate("Kurz Elle Kunz");
-            FindCommand command = new FindCommand(predicate);
-            expectedModel.updateFilteredPersonList(predicate);
-            assertCommandSuccess(command, model, expectedMessage, expectedModel);
-            assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-        } catch (ParseException e) {
-            fail("Invalid predicate");
-        }
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName("meier").build());
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL), model.getFilteredPersonList());
     }
 }

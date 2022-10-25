@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import paymelah.commons.core.index.Index;
+import paymelah.commons.util.CollectionUtil;
 import paymelah.commons.util.StringUtil;
 import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.debt.Description;
@@ -150,6 +153,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> descriptions} into a {@code Set<Description>}.
+     * @param descriptions the Collection of descriptions to parse
+     * @return a Set of Descriptions
+     * @throws ParseException if a description cannot be parsed
+     */
+    public static Set<Description> parseDescriptions(Collection<String> descriptions) throws ParseException {
+        requireNonNull(descriptions);
+        final Set<Description> descriptionSet = new HashSet<>();
+        for (String description : descriptions) {
+            descriptionSet.add(parseDescription(description));
+        }
+        return descriptionSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> monies} into a {@code Set<Money>}.
+     * @param monies the Collection of monies to parse
+     * @return a Set of Moneys
+     * @throws ParseException if a money cannot be parsed
+     */
+    public static Set<Money> parseMonies(Collection<String> monies) throws ParseException {
+        requireNonNull(monies);
+        final Set<Money> moneySet = new HashSet<>();
+        for (String money : monies) {
+            moneySet.add(parseMoney(money));
+        }
+        return moneySet;
+    }
+
+    /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -223,5 +256,148 @@ public class ParserUtil {
             throws ParseException {
         Money m = parseMoney(s);
         return new DebtGreaterEqualAmountPredicate(m);
+    }
+
+    /**
+     * Stores a descriptor of a {@code Person}; all fields are optional.
+     */
+    public static class PersonDescriptor {
+        private Name name;
+        private Phone phone;
+        private Email email;
+        private Address address;
+        private Set<Tag> tags;
+        private Set<Description> descriptions;
+        private Set<Money> monies;
+
+        public PersonDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public PersonDescriptor(PersonDescriptor toCopy) {
+            setName(toCopy.name);
+            setPhone(toCopy.phone);
+            setEmail(toCopy.email);
+            setAddress(toCopy.address);
+            setTags(toCopy.tags);
+            setDescriptions(toCopy.descriptions);
+            setMonies(toCopy.monies);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldSet() {
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, descriptions, monies);
+        }
+
+        public void setName(Name name) {
+            this.name = name;
+        }
+
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public void setEmail(Email email) {
+            this.email = email;
+        }
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
+        public void setAddress(Address address) {
+            this.address = address;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code descriptions} to this object's {@code descriptions}.
+         * A defensive copy of {@code descriptions} is used internally.
+         */
+        public void setDescriptions(Set<Description> descriptions) {
+            this.descriptions = (descriptions != null) ? new HashSet<>(descriptions) : null;
+        }
+
+        /**
+         * Returns an unmodifiable description set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code descriptions} is null.
+         */
+        public Optional<Set<Description>> getDescriptions() {
+            return (descriptions != null) ? Optional.of(Collections.unmodifiableSet(descriptions)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code monies} to this object's {@code monies}.
+         * A defensive copy of {@code monies} is used internally.
+         */
+        public void setMonies(Set<Money> monies) {
+            this.monies = (monies != null) ? new HashSet<>(monies) : null;
+        }
+
+        /**
+         * Returns an unmodifiable money set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code monies} is null.
+         */
+        public Optional<Set<Money>> getMonies() {
+            return (monies != null) ? Optional.of(Collections.unmodifiableSet(monies)) : Optional.empty();
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof PersonDescriptor)) {
+                return false;
+            }
+
+            // state check
+            PersonDescriptor pd = (PersonDescriptor) other;
+
+            return getName().equals(pd.getName())
+                    && getPhone().equals(pd.getPhone())
+                    && getEmail().equals(pd.getEmail())
+                    && getAddress().equals(pd.getAddress())
+                    && getTags().equals(pd.getTags())
+                    && getDescriptions().equals(pd.getDescriptions())
+                    && getMonies().equals(pd.getMonies());
+        }
     }
 }
