@@ -1,13 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.OpenLinkCommand;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.link.Link;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GE3238_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
@@ -17,6 +9,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.OpenLinkCommand;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.link.Link;
 
 public class OpenLinkCommandParserTest {
     private OpenLinkCommandParser parser = new OpenLinkCommandParser();

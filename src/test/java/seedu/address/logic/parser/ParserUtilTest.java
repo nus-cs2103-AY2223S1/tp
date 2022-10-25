@@ -147,13 +147,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseLinkAliases_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseLinkAliases(Arrays.asList(
+        assertThrows(ParseException.class, () -> ParserUtil.parseLinkAliases(Arrays.asList(
                         INVALID_MODULE_LINK_ALIAS, INVALID_MODULE_LINK_ALIAS_2)));
     }
 
     @Test
-    public void parseLinkAliases_validValue() throws ParseException{
+    public void parseLinkAliases_validValue() throws ParseException {
         List<String> expectedAliasList = Arrays.asList(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2);
         assertTrue(ParserUtil.parseLinkAliases(Arrays.asList(
                 VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2)).equals(expectedAliasList));
@@ -190,7 +189,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseLinks_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinks(null,null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLinks(null, null));
     }
 
     @Test

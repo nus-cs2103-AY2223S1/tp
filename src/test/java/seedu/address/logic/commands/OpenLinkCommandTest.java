@@ -1,23 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleTitle;
-import seedu.address.model.module.link.Link;
-import seedu.address.model.module.task.Task;
-import seedu.address.model.person.Person;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
@@ -29,6 +11,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALI
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 
 public class OpenLinkCommandTest {
     private static final String MODULE_CODE_WITH_LINK = VALID_GE3238_MODULE_CODE;

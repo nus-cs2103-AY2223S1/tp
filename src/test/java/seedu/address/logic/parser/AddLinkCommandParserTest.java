@@ -19,8 +19,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddLinkCommand;
-import seedu.address.model.module.link.Link;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.link.Link;
 
 public class AddLinkCommandParserTest {
     private AddLinkCommandParser parser = new AddLinkCommandParser();

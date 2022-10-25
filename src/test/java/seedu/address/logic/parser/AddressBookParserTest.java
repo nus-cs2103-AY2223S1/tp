@@ -7,15 +7,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_URL;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2106;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_NUMBER_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_URL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 

@@ -1,10 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.address.model.module.link.Link;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_3;
@@ -14,6 +9,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS;
+
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.module.link.Link;
 
 /**
  * A utility class containing a list of {@code Link} objects to be used in tests.

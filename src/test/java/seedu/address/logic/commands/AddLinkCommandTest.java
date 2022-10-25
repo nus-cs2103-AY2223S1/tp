@@ -2,14 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GE3238_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_3;
@@ -106,7 +105,7 @@ public class AddLinkCommandTest {
     @Test
     public void execute_duplicateModuleLinkUrlIgnoreProtocolFilteredList_failure() {
         Set<Link> links = new HashSet<Link>(Arrays.asList(
-                new Link(VALID_MODULE_LINK_ALIAS_3, VALID_MODULE_LINK_URL_WITHOUT_HTTPS )));
+                new Link(VALID_MODULE_LINK_ALIAS_3, VALID_MODULE_LINK_URL_WITHOUT_HTTPS)));
         AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(MODULE_CODE_WITH_LINK), links);
 
         assertCommandFailure(addLinkCommand, model,

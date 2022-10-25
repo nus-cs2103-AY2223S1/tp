@@ -1,16 +1,17 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.AddLinkCommandParser;
-import seedu.address.model.module.link.Link;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLinks.VALID_LINK_1;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.AddLinkCommandParser;
+import seedu.address.model.module.link.Link;
 
 public class JsonAdaptedLinkTest {
 
@@ -25,21 +26,21 @@ public class JsonAdaptedLinkTest {
     public void toModelType_invalidLinkUrl_throwsIllegalValueException() {
         JsonAdaptedLink invalidLink = new JsonAdaptedLink(VALID_MODULE_LINK_ALIAS + ";" + "a");
         String expectedMessage = Link.MESSAGE_CONSTRAINTS_URL;
-        assertThrows(IllegalValueException.class, expectedMessage,invalidLink::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, invalidLink::toModelType);
     }
 
     @Test
     public void toModelType_missingParts_throwsIllegalValueException() {
         JsonAdaptedLink invalidLink = new JsonAdaptedLink (VALID_MODULE_LINK_ALIAS + ";");
         String expectedMessage = AddLinkCommandParser.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage,invalidLink::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, invalidLink::toModelType);
     }
 
     @Test
     public void toModelType_missingDelimiter_throwsIllegalValueException() {
         JsonAdaptedLink invalidLink = new JsonAdaptedLink (VALID_MODULE_LINK_ALIAS + VALID_MODULE_LINK_URL);
         String expectedMessage = AddLinkCommandParser.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage,invalidLink::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, invalidLink::toModelType);
     }
 
     @Test
