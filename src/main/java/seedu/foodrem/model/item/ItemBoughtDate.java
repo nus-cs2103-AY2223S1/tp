@@ -16,22 +16,41 @@ public class ItemBoughtDate {
     public static final String BOUGHT_DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter BOUGHT_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(BOUGHT_DATE_PATTERN_REGEX);
+
+    private static final ItemBoughtDate NOT_SET_BOUGHT_DATE = new ItemBoughtDate(LocalDate.MIN);
+
     private final LocalDate boughtDate;
 
     /**
      * Constructs an boughtDate.
      *
-     * @param dateString a string that represents the boughtDate of the
-     *                   format in ItemBoughtDateValidator.
+     * @param date a localDate that represents the boughtDate of the
+     *             format {@link ItemBoughtDate#BOUGHT_DATE_FORMATTER}
      */
-    public ItemBoughtDate(String dateString) {
+    private ItemBoughtDate(LocalDate date) {
+        boughtDate = date;
+    }
+
+    /**
+     * Produces a boughtDate object.
+     *
+     * @param dateString a string that represents the boughtDate of the
+     *                   format {@link ItemBoughtDate#BOUGHT_DATE_FORMATTER}
+     */
+    public static ItemBoughtDate of(String dateString) {
         requireNonNull(dateString);
         if (dateString.isBlank()) {
-            boughtDate = null;
-            return;
+            return NOT_SET_BOUGHT_DATE;
         }
         ItemBoughtDateValidator.validate(dateString);
-        boughtDate = LocalDate.parse(dateString, BOUGHT_DATE_FORMATTER);
+        return new ItemBoughtDate(LocalDate.parse(dateString, BOUGHT_DATE_FORMATTER));
+    }
+
+    /**
+     * Returns true if the bought date is not set, false otherwise.
+     */
+    public boolean isNotSet() {
+        return this == NOT_SET_BOUGHT_DATE;
     }
 
     /**
@@ -40,21 +59,10 @@ public class ItemBoughtDate {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof ItemBoughtDate)) {
-            return false;
-        }
-
-        ItemBoughtDate date = (ItemBoughtDate) other;
-
-        if (date.boughtDate == null && boughtDate == null) {
-            return true;
-        }
-
-        return boughtDate.equals(((ItemBoughtDate) other).boughtDate);
+        return other == this // short circuit if same object
+                || (other != NOT_SET_BOUGHT_DATE
+                && other instanceof ItemBoughtDate // instanceof handles nulls
+                && boughtDate.equals(((ItemBoughtDate) other).boughtDate)); // state check
     }
 
     /**
@@ -82,6 +90,6 @@ public class ItemBoughtDate {
      */
     @Override
     public String toString() {
-        return boughtDate == null ? "" : boughtDate.format(BOUGHT_DATE_FORMATTER);
+        return this == NOT_SET_BOUGHT_DATE ? "" : boughtDate.format(BOUGHT_DATE_FORMATTER);
     }
 }
