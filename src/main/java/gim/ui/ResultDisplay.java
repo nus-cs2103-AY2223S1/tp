@@ -12,6 +12,8 @@ import javafx.scene.layout.Region;
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "ResultDisplay.fxml";
+    private static final String welcomeMessage = "Welcome to GIM!\nWhat are you waiting for?\n"
+            + "Start your exercise tracking right now!\nBe Fitter, Healthier, Happier with GIM!";
 
     @FXML
     private TextArea resultDisplay;
@@ -23,6 +25,10 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
+    }
+
+    public void sendWelcomeMessage() {
+        resultDisplay.setText(welcomeMessage);
     }
 
 }

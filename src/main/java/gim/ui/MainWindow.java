@@ -117,8 +117,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         exerciseListPanel = new ExerciseListPanel(logic.getFilteredExerciseList());
         exerciseListPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
-
         resultDisplay = new ResultDisplay();
+        resultDisplay.sendWelcomeMessage();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getExerciseTrackerFilePath());
