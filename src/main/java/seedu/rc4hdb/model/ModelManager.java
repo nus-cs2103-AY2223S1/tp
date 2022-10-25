@@ -250,7 +250,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setObservableBookings(VenueName venueName) {
-        this.observableBookingList = venueBook.getBookings(venueName);
+        this.observableBookingList.setAll(venueBook.getBookings(venueName));
     }
 
 }

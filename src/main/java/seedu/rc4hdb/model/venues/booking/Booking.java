@@ -96,10 +96,5 @@ public abstract class Booking {
     }
 
     //====================== Compare Days =================================
-    public int compare(Booking other) {
-        if (this.equals(other)) {
-            return 0;
-        }
-        return this.getDayOfWeek().compare(other.getDayOfWeek());
-    }
+
 }

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -40,7 +39,7 @@ public class BookingTableView extends UiPart<Region> {
      * Constructor for a VenueTableView instance. The venue list is processed to remove expired bookings.
      * @param bookingList The list of venues
      */
-    public BookingTableView(List<Booking> bookingList) {
+    public BookingTableView(ObservableList<Booking> bookingList) {
         super(FXML);
         requireNonNull(bookingList);
 
@@ -55,6 +54,9 @@ public class BookingTableView extends UiPart<Region> {
         updateTable(bookingList);
     }
 
+    /**
+     * Builds a list of daily schedules, corresponding to a week.
+     */
     public List<DailySchedule> buildWeeklySchedule(List<Booking> bookingList) {
         List<DailySchedule> weeklySchedule = new ArrayList<>();
         List<Day> days = Day.daysOfWeek.stream().map(Day::new).collect(Collectors.toList());

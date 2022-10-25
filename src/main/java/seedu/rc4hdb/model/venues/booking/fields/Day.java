@@ -2,9 +2,9 @@ package seedu.rc4hdb.model.venues.booking.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
-import seedu.rc4hdb.model.StringField;
-
 import java.util.List;
+
+import seedu.rc4hdb.model.StringField;
 
 /**
  * Represents a Booking's day in RC4HDB.
@@ -43,18 +43,6 @@ public class Day extends StringField implements BookingField {
 
     private int getIndex(Day day) {
         return this.daysOfWeek.indexOf(day.toString());
-    }
-
-    public int compare(Day other) {
-        if (this.equals(other)) {
-            return 0;
-        }
-
-        if (getIndex(this) < getIndex(other)) {
-            return -1;
-        }
-
-        return 1;
     }
 
 }
