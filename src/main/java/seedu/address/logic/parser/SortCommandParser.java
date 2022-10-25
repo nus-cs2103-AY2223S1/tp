@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -31,7 +30,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         try {
             index = ParserUtil.parseIndex(indexAndLatest[0]);
-        } catch (IllegalValueException ive) {
+        } catch (ParseException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortCommand.MESSAGE_USAGE), ive);
         }

@@ -282,13 +282,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isFilterTransactions()) {
                 handleFilterTransaction(commandResult);
-            } else if (!commandResult.isFilterTransactions() && !commandResult.isSortTransactions()) {
+            } else if (commandResult.isSortTransactions()) {
+                handleSortTransaction(commandResult);
+            } else {
                 handleClientDetailsUpdate(commandResult);
             }
 
-            if (commandResult.isSortTransactions()) {
-                handleSortTransaction(commandResult);
-            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

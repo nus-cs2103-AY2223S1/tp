@@ -46,8 +46,4 @@ public abstract class Transaction {
         return date;
     }
 
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-
 }
