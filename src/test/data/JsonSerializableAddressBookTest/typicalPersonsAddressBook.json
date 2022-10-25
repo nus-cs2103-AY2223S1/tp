@@ -7,6 +7,7 @@
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
       "studentClass": "1A",
+      "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "tagged": [
         "friends"
@@ -22,6 +23,7 @@
       "email": "johnd@example.com",
       "address": "311, Clementi Ave 2, #02-25",
       "studentClass": "1A",
+      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "tagged": [
         "owesMoney",
@@ -38,6 +40,7 @@
       "email": "heinz@example.com",
       "address": "wall street",
       "studentClass": "1A",
+      "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "subjects": [
         "English"
@@ -49,6 +52,7 @@
       "email": "cornelia@example.com",
       "address": "10th street",
       "studentClass": "1A",
+      "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [
         "friendly"
@@ -66,6 +70,7 @@
       "email": "werner@example.com",
       "address": "michegan ave",
       "studentClass": "1A",
+      "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [],
       "tagged": [],
@@ -79,6 +84,7 @@
       "email": "lydia@example.com",
       "address": "little tokyo",
       "studentClass": "1A",
+      "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [],
       "tagged": [],
@@ -92,6 +98,7 @@
       "email": "anna@example.com",
       "address": "4th street",
       "studentClass": "1A",
+      "attendance": "",
       "subjectHandler": "english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]",
       "remarks": [],
       "tagged": [],

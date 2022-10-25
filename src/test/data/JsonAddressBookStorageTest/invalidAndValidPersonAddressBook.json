@@ -6,6 +6,7 @@
       "email": "hans@example.com",
       "address": "4th street",
       "studentClass": "1A",
+      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
       "subjectsAndGrades": "english: CA1:[80.0, 100.0, 0.2], CA2:[30.0, 56.0, 0.4]%%math: CA1:[80.0, 100.0, 0.2], CA2:[30.0, 56.0, 0.4]"
     },
     {
@@ -14,6 +15,7 @@
       "email": "hans@example.com",
       "address": "4th street",
       "studentClass": "1A",
+      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
       "subjectsAndGrades": "english: CA1:[80.0, 100.0, 0.2], CA2:[30.0, 56.0, 0.4]%%math: CA1:[80.0, 100.0, 0.2], CA2:[30.0, 56.0, 0.4]"
     }
   ]

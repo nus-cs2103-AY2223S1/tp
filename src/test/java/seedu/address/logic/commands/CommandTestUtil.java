@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -43,6 +44,7 @@ public class CommandTestUtil {
 
     // New fields
     public static final String VALID_STUDENTCLASS = "1A";
+    public static final String VALID_ATTENDANCE = "date/12-02-2022 attendance/1";
     public static final String VALID_SUBJECTHANDLER = "english: CA1:[80.0, 100.0, 0.2, 1.0], "
                                                       + "CA2:[30.0, 56.0, 0.4, 2.0]";
     public static final String VALID_PERSONALITY_FUN = "fun";
@@ -50,6 +52,9 @@ public class CommandTestUtil {
 
     // StudentClass examples
     public static final String STUDENTCLASS_DUMMY = " " + PREFIX_STUDENTCLASS + VALID_STUDENTCLASS;
+
+    // Attendance examples
+    public static final String ATTENDANCE_DUMMY = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE;
 
     // Remark examples
     public static final String VALID_REMARK_ICE_CREAM = "likes ice cream";
