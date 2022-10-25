@@ -12,7 +12,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ModulesApi;
-import org.openapitools.client.model.Lesson;
 import org.openapitools.client.model.ModuleInformation;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -66,14 +65,16 @@ class ModuleTest {
     public void test_moduleGetLessons_correctNumber() throws ApiException {
         Module module = new Module(getModuleInformation("CS1101S"), TEST_ACADEMIC_YEAR);
         module.loadMoreData();
-        HashMap<LessonType, List<Lesson>> lessonsMap1 = module.getLessons(SemestersEnum.S1);
-        HashMap<LessonType, List<Lesson>> lessonsMap2 = module.getLessons(SemestersEnum.S2);
+        HashMap<LessonType, Module.ModuleLessonIdMap> lessonsMap1 = module.getLessons(SemestersEnum.S1);
+        HashMap<LessonType, Module.ModuleLessonIdMap> lessonsMap2 = module.getLessons(SemestersEnum.S2);
 
         assertEquals(106, lessonsMap1.get(LessonType.TUT).size());
         assertEquals(6, lessonsMap2.get(LessonType.TUT).size());
         assertEquals(35, lessonsMap1.get(LessonType.REC).size());
         assertEquals(3, lessonsMap2.get(LessonType.REC).size());
-        assertEquals(2, lessonsMap1.get(LessonType.LEC).size());
+        // Note: There are 2 lecture slots in S1, but they are under the same lesson id,
+        //       therefore they are considered as one lesson
+        assertEquals(1, lessonsMap1.get(LessonType.LEC).size());
         assertEquals(1, lessonsMap2.get(LessonType.LEC).size());
     }
 }

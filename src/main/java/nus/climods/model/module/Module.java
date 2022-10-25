@@ -29,13 +29,16 @@ public class Module {
     private final org.openapitools.client.model.ModuleInformation apiModuleInfo;
     private String academicYear;
     private HashMap<SemestersEnum, Set<LessonType>> lessonTypesMap;
-    private HashMap<SemestersEnum, HashMap<LessonType, List<Lesson>>> lessonMap;
+    // Semester -> LessonType -> LessonId -> [Lesson]
+    private HashMap<SemestersEnum, HashMap<LessonType, ModuleLessonIdMap>> lessonMap;
 
     /**
      * Contains detailed module information from API. Only initialised when needed
      */
     private org.openapitools.client.model.Module apiModule;
     private boolean isFocused = false;
+
+    static class ModuleLessonIdMap extends HashMap<String, List<Lesson>> {}
 
     /**
      * Constructor for Module.
@@ -81,13 +84,17 @@ public class Module {
             lessonTypesMap.put(semester, semesterLessonsType);
 
             // Set lessons for each semester
-            HashMap<LessonType, List<Lesson>> semesterLessonMap = new HashMap<>();
+            HashMap<LessonType, ModuleLessonIdMap> semesterLessonMap = new HashMap<>();
             semesterLessons.forEach(semesterLesson -> {
+                String lessonId = semesterLesson.getClassNo();
                 LessonType lessonType = LessonType.fromValue(semesterLesson.getLessonType());
                 if (!semesterLessonMap.containsKey(lessonType)) {
-                    semesterLessonMap.put(lessonType, new ArrayList<>());
+                    semesterLessonMap.put(lessonType, new ModuleLessonIdMap());
                 }
-                semesterLessonMap.get(lessonType).add(semesterLesson);
+                if (!semesterLessonMap.get(lessonType).containsKey(lessonId)) {
+                    semesterLessonMap.get(lessonType).put(lessonId, new ArrayList<>());
+                }
+                semesterLessonMap.get(lessonType).get(lessonId).add(semesterLesson);
             });
             lessonMap.put(semester, semesterLessonMap);
         }
@@ -213,11 +220,22 @@ public class Module {
         requireNonNull(lessonMap);
         assert lessonMap.containsKey(semester);
 
-        Predicate<Map.Entry<LessonType, List<Lesson>>> selectableLessonPredicate =
-            lessonEntry -> lessonEntry.getValue().stream().map(Lesson::getClassNo).distinct().count() > 1;
+        Predicate<Map.Entry<LessonType, ModuleLessonIdMap>> selectableLessonPredicate =
+            lessonEntry -> lessonEntry.getValue().size() > 1;
 
         return lessonMap.get(semester).entrySet().stream().filter(selectableLessonPredicate).map(Map.Entry::getKey)
             .collect(Collectors.toSet());
+    }
+
+    /**
+     * Checks if a lesson type is selectable in module
+     *
+     * @param lessonType lesson type
+     * @param semester   semester
+     * @return true if lesson type is selectable else false
+     */
+    public boolean isLessonTypeSelectable(LessonType lessonType, SemestersEnum semester) {
+        return getSelectableLessonTypes(semester).contains(lessonType);
     }
 
     /**
@@ -226,7 +244,7 @@ public class Module {
      * @param semester semester
      * @return lessons
      */
-    public HashMap<LessonType, List<Lesson>> getLessons(SemestersEnum semester) {
+    public HashMap<LessonType, ModuleLessonIdMap> getLessons(SemestersEnum semester) {
         requireNonNull(lessonMap);
         assert lessonMap.containsKey(semester);
 
