@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.text.Text?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints minWidth="10" prefWidth="23" />
+      <ColumnConstraints hgrow="NEVER" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
     <rowConstraints>
@@ -22,8 +21,9 @@
     <Label fx:id="id" styleClass="cell_index" GridPane.columnIndex="0" />
     <VBox alignment="CENTER_LEFT" spacing="2" GridPane.columnIndex="1">
       <HBox spacing="30" alignment="BOTTOM_LEFT">
-        <Text fx:id="company" text="\$first" styleClass="cell_company" />
-        <Button fx:id="linkButton" styleClass="cell_button_link" mnemonicParsing="false" onAction="#copyInternshipUrl" />
+        <Label fx:id="company" text="\$first" styleClass="cell_company" minWidth="50" />
+        <Button fx:id="linkButton" styleClass="cell_button_link" mnemonicParsing="false"
+                minWidth="50" onAction="#copyInternshipUrl" />
         <Pane maxHeight="-Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
         <Label fx:id="applicationStatus" styleClass="applicationStatus_label" text="\$applicationStatus" />
       </HBox>
