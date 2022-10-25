@@ -9,6 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Autocomplete feature: https://gist.github.com/floralvikings/10290131
 - This project uses the [PrettyTime NLP library](https://www.ocpsoft.org/prettytime/nlp/) to enable simple parsing and computer understanding of natural language in terms of dates.
 
 --------------------------------------------------------------------------------------------------------------------
