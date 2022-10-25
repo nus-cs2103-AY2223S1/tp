@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
@@ -135,4 +137,14 @@ public class Stall {
         return builder.toString();
     }
 
+    public String getTagString() {
+        if (!tags.isEmpty()) {
+            return this.tags
+                    .stream()
+                    .flatMap(rev -> Stream.of(rev.tag))
+                    .collect(Collectors.joining(", "));
+        } else {
+            return "";
+        }
+    }
 }

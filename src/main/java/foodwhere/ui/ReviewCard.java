@@ -1,8 +1,6 @@
 package foodwhere.ui;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import foodwhere.model.review.Review;
 import javafx.fxml.FXML;
@@ -70,12 +68,7 @@ public class ReviewCard extends UiPart<Region> {
         setRatingIcon();
 
         if (!review.getTags().isEmpty()) {
-            String assigneesNames = review.getTags()
-                    .stream()
-                    .flatMap(rev -> Stream.of(rev.tag))
-                    .collect(Collectors.joining(", "));
-
-            tags.setText(assigneesNames);
+            tags.setText(review.getTagString());
             tagsLabel.setText("Tags:");
         } else {
             removeRow(gridPane, GridPane.getRowIndex(tagsLabel));
