@@ -44,7 +44,7 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
                 PREFIX_TIMEZONE);
 
         if (prefixesToDelete.size() == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,s
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteAttributeCommand.MESSAGE_USAGE));
         }
 
