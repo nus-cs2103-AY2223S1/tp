@@ -91,7 +91,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and address.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -100,11 +100,21 @@ public class Person {
         }
 
         boolean isSameName = otherPerson != null
-                && otherPerson.getName().getLowerCaseName().equals(getName().getLowerCaseName());
+                && otherPerson.getName().equals(getName());
         boolean isSameAddress = otherPerson != null
                 && otherPerson.getAddress().equals(getAddress());
 
         return isSameName && isSameAddress;
+    }
+
+    /**
+     * Returns true if both persons have the same name in lower case.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean hasSimilarName(Person otherPerson) {
+        return otherPerson != null
+                && otherPerson.getName().getLowerCaseName()
+                .equals(getName().getLowerCaseName());
     }
 
     /**
