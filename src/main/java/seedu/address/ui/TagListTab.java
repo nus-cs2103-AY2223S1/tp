@@ -14,6 +14,6 @@ public class TagListTab extends Tab {
      * Creates a {@code TagListTab} with the given {@code ObservableList}.
      */
     public TagListTab(ObservableList<Tag> tagList) {
-        super(TAB_NAME, new TagListFlowPane(tagList).getRoot());
+        super(TAB_NAME, new TagListPanel(tagList).getRoot());
     }
 }
