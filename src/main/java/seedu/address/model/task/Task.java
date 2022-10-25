@@ -54,6 +54,11 @@ public class Task {
         return this.deadline;
     }
 
+    public String getDeadlineString() {
+        Optional<String> date = getDeadline().map(LocalDate::toString);
+        return date.orElse("");
+    }
+
     public boolean getIsDone() {
         return this.isDone;
     }

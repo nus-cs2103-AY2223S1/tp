@@ -311,7 +311,7 @@ Given below is an example usage scenario
 Step 1. The user wants to change the phone number of a person to 80779043. Said person is indexed number 4 in
 the global list. The user executes `edit 1 p/80779043`.
 
-Step 2. The parser will create a `edit` command. This `edit command` will call `Model#getFilteredList()`
+Step 2. The parser will create an `edit` command. This `edit command` will call `Model#getFilteredList()`
 to get the `person` specified by the index in the command then create a new `person` with the modified info.
 `Model#updateFiltedPersonList` is called to update all teams with the edited members.
 
