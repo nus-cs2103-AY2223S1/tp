@@ -76,14 +76,16 @@ public class TypicalInternships {
     // Manually added - Internship's details found in {@code CommandTestUtil}
     public static final Internship GOOGLE = new InternshipBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withLink(VALID_LINK_GOOGLE).withDescription(VALID_DESCRIPTION_GOOGLE)
-            .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE)
+            .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withApplicationStatus(ApplicationStatus.Shortlisted)
+            .withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE)
             .withTags(VALID_TAG_FRONTEND).build();
     public static final Internship GOOGLE_NO_INTERVIEW = new InternshipBuilder(true).withCompany(VALID_COMPANY_GOOGLE)
             .withLink(VALID_LINK_GOOGLE).withDescription(VALID_DESCRIPTION_GOOGLE)
             .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withTags(VALID_TAG_FRONTEND).build();
     public static final Internship TIKTOK = new InternshipBuilder().withCompany(VALID_COMPANY_TIKTOK)
             .withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_TIKTOK)
-            .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_TIKTOK)
+            .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withApplicationStatus(ApplicationStatus.Shortlisted)
+            .withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_TIKTOK)
             .withTags(VALID_TAG_BACKEND, VALID_TAG_AI).build();
     public static final Internship TIKTOK_NO_INTERVIEW = new InternshipBuilder(true).withCompany(VALID_COMPANY_TIKTOK)
             .withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_TIKTOK)
