@@ -300,22 +300,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sort issues according to lowest or highest priority based on key value of 0 or 1 respectively.
+     * Sort issues according to lowest or highest urgency based on key value of 0 or 1 respectively.
      *
-     * @param order zero for lowest priority and one for highest priority
+     * @param order zero for lowest urgency and one for highest urgency
      */
-    public void sortIssuesByPriority(int order) {
-        ObservableList<Issue> sortedIssuesByPriority;
+    public void sortIssuesByUrgency(int order) {
+        ObservableList<Issue> sortedIssuesByUrgency;
         if (order == 0) {
-            //sort according to the lowest priority
-            sortedIssuesByPriority =
-                    getModifiableIssueList().sorted(Comparator.comparing(Issue::getPriority));
+            //sort according to the lowest urgency
+            sortedIssuesByUrgency =
+                    getModifiableIssueList().sorted(Comparator.comparing(Issue::getUrgency));
         } else {
-            //sort according to the highest priority
-            sortedIssuesByPriority = getModifiableIssueList().sorted((i1, i2) ->
-                    i2.getPriority().compareTo(i1.getPriority()));
+            //sort according to the highest urgency
+            sortedIssuesByUrgency = getModifiableIssueList().sorted((i1, i2) ->
+                    i2.getUrgency().compareTo(i1.getUrgency()));
         }
-        setIssues(sortedIssuesByPriority);
+        setIssues(sortedIssuesByUrgency);
     }
 
     /**

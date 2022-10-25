@@ -24,7 +24,7 @@ public class ParserUtilTest {
     private static final String INVALID_REPOSITORY = "Notes";
     private static final String INVALID_DEADLINE = "3rd May 2022";
     private static final String INVALID_TITLE = " ";
-    private static final String INVALID_PRIORITY = "-1";
+    private static final String INVALID_URGENCY = "-1";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -195,13 +195,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePriority_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePriority(null));
+    public void parseUrgency_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUrgency(null));
     }
 
     @Test
-    public void parsePriority_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePriority(INVALID_PRIORITY));
+    public void parseUrgency_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUrgency(INVALID_URGENCY));
     }
 
     @Test

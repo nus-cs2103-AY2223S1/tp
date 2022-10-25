@@ -215,8 +215,8 @@ Example Use: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
 
 #### Add Issue Command
 Compulsory prefixes: p/<valid project id>, t/<valid title>
-Optional prefixes: d/<valid deadline> p/<valid priority>
-Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 p/0`
+Optional prefixes: d/<valid deadline> u/<valid urgency>
+Example Use: `issue p/1 t/To create a person class which stores all relevant person data d/2022-12-10 u/0`
 
 #### Add Client Command
 Compulsory prefixes: n/<valid name>, pid/<valid project id>
@@ -264,8 +264,8 @@ Example Use: `project -e pid/1 n/Jeff cid/1 r/Jeffrey/tp d/2022-07-05`
 
 #### Edit Issue Command
 Compulsory prefix: i/<valid issue id>
-Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, p/<valid priority>
-Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 p/1`
+Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, p/<valid urgency>
+Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 
 #### Edit Client Command
 Compulsory prefix: cid/<valid client id>
@@ -273,7 +273,7 @@ Optional prefixes (at least one to be included): n/<valid name>, p/<valid phone 
 Example Use: `client -e cid/1 n/BenTen p/12345678 e/Ben10@gmail.com pid/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
-Example: `issue -e i/1 t/To edit issue command d/2022-04-09 p/1`
+Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 ![AddSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
@@ -333,7 +333,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 |  `* * *` | student developer  |  track multiple projects spread across different websites in one place. | |
 | `* * *`         | forgetful developer  |  see all the tasks for my projects on one page  |  I will remember what needs to be an experienced developer,  |
-|  `* * *`        | developer  |  see the projects automatically sorted in accordance with the deadline  |  I can manage and clear those with a higher priority first |
+|  `* * *`        | developer  |  see the projects automatically sorted in accordance with the deadline  |  I can manage and clear those with a higher urgency first |
 |   `* * *`       | developer  |  have a quick overview of those collaborating on projects with me  |  I can contact collaborators or access information quickly |
 | `* * *`         | user  |  add projects to the application | |
 | `* * *`         | user  |  delete projects from the application  |  I can keep my data accurate if I make a mistake in entering data. |

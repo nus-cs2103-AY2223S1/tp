@@ -308,8 +308,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortIssuesByPriority(int key) {
-        addressBook.sortIssuesByPriority(key);
+    public void sortIssuesByUrgency(int key) {
+        addressBook.sortIssuesByUrgency(key);
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
     }
 

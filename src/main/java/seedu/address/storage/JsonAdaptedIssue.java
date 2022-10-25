@@ -9,7 +9,7 @@ import seedu.address.model.Deadline;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
 import seedu.address.model.list.NotFoundException;
@@ -24,7 +24,7 @@ class JsonAdaptedIssue {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Issue's %s field is missing!";
 
     private final String title;
-    private final String priority;
+    private final String urgency;
     private final String deadline;
     private final String status;
     private final String issueId;
@@ -35,13 +35,13 @@ class JsonAdaptedIssue {
      */
     @JsonCreator
     public JsonAdaptedIssue(@JsonProperty("title") String title,
-                            @JsonProperty("priority") String priority,
+                            @JsonProperty("urgency") String urgency,
                              @JsonProperty("deadline") String deadline,
                             @JsonProperty("status") String status,
                             @JsonProperty("issueId") String issueId,
                             @JsonProperty("project") String project) {
         this.title = title;
-        this.priority = priority;
+        this.urgency = urgency;
         this.deadline = deadline;
         this.status = status;
         this.project = project;
@@ -53,7 +53,7 @@ class JsonAdaptedIssue {
      */
     public JsonAdaptedIssue(Issue source) {
         title = source.getTitle().toString();
-        priority = source.getPriority().toString();
+        urgency = source.getUrgency().toString();
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
         issueId = source.getIssueId().toString();
@@ -76,16 +76,16 @@ class JsonAdaptedIssue {
         }
         final Title modelTitle = new Title(title);
 
-        if (priority == null) {
+        if (urgency == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Priority.class.getSimpleName()));
+                    Urgency.class.getSimpleName()));
         }
 
-        if (!Priority.isValidPriorityString(priority)) {
-            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        if (!Urgency.isValidUrgencyString(urgency)) {
+            throw new IllegalValueException(Urgency.MESSAGE_CONSTRAINTS);
         }
 
-        final Priority modelPriority = Priority.valueOf(priority);
+        final Urgency modelUrgency = Urgency.valueOf(urgency);
 
         Deadline modelDeadline;
 
@@ -133,7 +133,7 @@ class JsonAdaptedIssue {
 
         assert modelIssueId.getIdInt() >= 0 : "Issue ID should be positive";
 
-        return new Issue(modelTitle, modelDeadline, modelPriority, modelStatus, modelProject, modelIssueId);
+        return new Issue(modelTitle, modelDeadline, modelUrgency, modelStatus, modelProject, modelIssueId);
     }
 
 }

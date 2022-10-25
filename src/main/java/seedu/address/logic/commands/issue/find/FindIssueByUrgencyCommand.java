@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.issue.predicates.PriorityMatchesKeywordsPredicate;
+import seedu.address.model.issue.predicates.UrgencyMatchesKeywordsPredicate;
 import seedu.address.ui.Ui;
 
 /**
- * Represents a class to find and filter issue list by priority.
+ * Represents a class to find and filter issue list by urgency.
  */
-public class FindIssueByPriorityCommand extends FindIssueCommand {
-    private final PriorityMatchesKeywordsPredicate predicate;
+public class FindIssueByUrgencyCommand extends FindIssueCommand {
+    private final UrgencyMatchesKeywordsPredicate predicate;
 
-    public FindIssueByPriorityCommand(PriorityMatchesKeywordsPredicate predicate) {
+    public FindIssueByUrgencyCommand(UrgencyMatchesKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -29,7 +29,7 @@ public class FindIssueByPriorityCommand extends FindIssueCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindIssueByPriorityCommand // instanceof handles nulls
-                && predicate.equals(((FindIssueByPriorityCommand) other).predicate)); // state check
+                || (other instanceof FindIssueByUrgencyCommand // instanceof handles nulls
+                && predicate.equals(((FindIssueByUrgencyCommand) other).predicate)); // state check
     }
 }

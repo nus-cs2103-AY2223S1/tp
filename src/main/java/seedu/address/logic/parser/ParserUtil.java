@@ -15,7 +15,7 @@ import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.Title;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
@@ -159,26 +159,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String priority} into a {@code Priority}.
+     * Parses a {@code String urgency} into a {@code Urgency}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code priority} is invalid.
+     * @throws ParseException if the given {@code urgency} is invalid.
      */
-    public static Priority parsePriority(String priority) throws ParseException {
-        requireNonNull(priority);
-        String trimmedPriority = priority.trim();
-        if (!Priority.isValidPriority(trimmedPriority)) {
-            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+    public static Urgency parseUrgency(String urgency) throws ParseException {
+        requireNonNull(urgency);
+        String trimmedUrgency = urgency.trim();
+        if (!Urgency.isValidUrgency(trimmedUrgency)) {
+            throw new ParseException(Urgency.MESSAGE_CONSTRAINTS);
         }
-        switch (trimmedPriority) {
+        switch (trimmedUrgency) {
         case ("0"):
-            return Priority.LOW;
+            return Urgency.LOW;
         case ("1"):
-            return Priority.MEDIUM;
+            return Urgency.MEDIUM;
         case ("2"):
-            return Priority.HIGH;
+            return Urgency.HIGH;
         default:
-            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Urgency.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -285,14 +285,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String key} into an {@code Integer}.
      *
-     * @param key is the value entered by the user to sort by priority.
-     * @return Integer of 0 or 1 which specifies the priority order of sorting.
+     * @param key is the value entered by the user to sort by urgency.
+     * @return Integer of 0 or 1 which specifies the urgency order of sorting.
      */
-    public static Integer parsePrioritySort(String key) throws ParseException {
+    public static Integer parseUrgencySort(String key) throws ParseException {
         requireNonNull(key);
         String trimmedKey = key.trim();
-        if (!Issue.isValidPrioritySortKey(trimmedKey)) {
-            throw new ParseException(Issue.MESSAGE_INVALID_PRIORITY_SORT_KEY);
+        if (!Issue.isValidUrgencySortKey(trimmedKey)) {
+            throw new ParseException(Issue.MESSAGE_INVALID_URGENCY_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }

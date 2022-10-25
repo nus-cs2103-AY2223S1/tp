@@ -12,13 +12,13 @@ participant ":IssueCommandParser" as IssueCommandParser LOGIC_COLOR
 participant ":EditIssueCommand" as EditIssueCommand LOGIC_COLOR
 end box
 
-[-> MainWindow : executeCommand\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 p/1)
+[-> MainWindow : executeCommand\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 u/1)
 activate MainWindow
 
-MainWindow --> LogicManager : execute\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 p/1)
+MainWindow --> LogicManager : execute\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 u/1)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 p/1)
+LogicManager -> AddressBookParser : parseCommand\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 u/1)
 activate AddressBookParser
 
 create IssueCommandParser
@@ -26,7 +26,7 @@ AddressBookParser -> IssueCommandParser
 activate IssueCommandParser
 IssueCommandParser --> AddressBookParser
 deactivate IssueCommandParser
-AddressBookParser -> IssueCommandParser : parse\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 p/1)
+AddressBookParser -> IssueCommandParser : parse\n(issue -e i/1 t/To edit \n issue command d/2022-04-09 u/1)
 activate IssueCommandParser
 
 create EditIssueCommand

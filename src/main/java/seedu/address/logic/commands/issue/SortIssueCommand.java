@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
@@ -24,13 +24,13 @@ public class SortIssueCommand extends IssueCommand {
             + "Sort by deadline: "
             + PREFIX_DEADLINE + "0 (chronological) or "
             + PREFIX_DEADLINE + "1 (reverse chronological). "
-            + "Sort by priority: "
-            + PREFIX_PRIORITY + "0 (lowest) or "
-            + PREFIX_PRIORITY + "1 (highest). "
+            + "Sort by urgency: "
+            + PREFIX_URGENCY + "0 (lowest) or "
+            + PREFIX_URGENCY + "1 (highest). "
             + "Example: "
             + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
-            + PREFIX_PRIORITY + "0";
+            + PREFIX_URGENCY + "0";
 
     private final Prefix sortKey;
     private final int sortOrder;
@@ -56,8 +56,8 @@ public class SortIssueCommand extends IssueCommand {
             sortKeyString = "deadline.";
         }
 
-        if (sortKey.equals(PREFIX_PRIORITY)) {
-            model.sortIssuesByPriority(sortOrder);
+        if (sortKey.equals(PREFIX_URGENCY)) {
+            model.sortIssuesByUrgency(sortOrder);
             sortKeyString = "priority.";
         }
 

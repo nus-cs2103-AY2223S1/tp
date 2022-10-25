@@ -13,7 +13,7 @@ import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
 import seedu.address.model.project.Project;
@@ -83,37 +83,37 @@ public class SampleDataUtil {
         Issue[] sampleIssues = new Issue[] {
             new Issue(new Title("Refactor UI Classes"),
                     new Deadline("2022-01-01"),
-                    Priority.LOW,
+                    Urgency.LOW,
                     new Status(false),
                     sampleProjects[0],
                     new IssueId(1)),
             new Issue(new Title("Fix loading screen bug"),
                     new Deadline("2022-10-04"),
-                    Priority.MEDIUM,
+                    Urgency.MEDIUM,
                     new Status(true),
                     sampleProjects[1],
                     new IssueId(2)),
             new Issue(new Title("Implement filter command"),
                     new Deadline("2022-09-03"),
-                    Priority.LOW,
+                    Urgency.LOW,
                     new Status(false),
                     sampleProjects[1],
                     new IssueId(3)),
             new Issue(new Title("Update collision logic"),
                     new Deadline("2023-07-14"),
-                    Priority.HIGH,
+                    Urgency.HIGH,
                     new Status(true),
                     sampleProjects[2],
                     new IssueId(4)),
             new Issue(new Title("Create Developer Guide"),
                     new Deadline("2022-02-04"),
-                    Priority.HIGH,
+                    Urgency.HIGH,
                     new Status(true),
                     sampleProjects[3],
                     new IssueId(5)),
             new Issue(new Title("Change default behaviour"),
                     new Deadline("2022-02-19"),
-                    Priority.MEDIUM,
+                    Urgency.MEDIUM,
                     new Status(false),
                     sampleProjects[4],
                     new IssueId(6)),

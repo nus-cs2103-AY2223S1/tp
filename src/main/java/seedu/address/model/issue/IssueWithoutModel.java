@@ -18,22 +18,22 @@ public class IssueWithoutModel implements Function<Model, Issue> {
     private final Title title;
     private final Deadline deadline;
     private final Status status;
-    private final Priority priority;
+    private final Urgency urgency;
     private final ProjectId projectId;
 
     /**
      * Partially initialise an issue without access to a Model object.
      * @param title title of issue
      * @param deadline deadline of isseu
-     * @param priority priority of issue
+     * @param urgency urgency of issue
      * @param status status of issue
      * @param projectId projectId of project that issue is attached to.
      */
     public IssueWithoutModel(Title title, Deadline deadline,
-                             Priority priority, Status status, ProjectId projectId) {
+                             Urgency urgency, Status status, ProjectId projectId) {
         this.title = title;
         this.deadline = deadline;
-        this.priority = priority;
+        this.urgency = urgency;
         this.status = status;
         this.projectId = projectId;
 
@@ -43,7 +43,7 @@ public class IssueWithoutModel implements Function<Model, Issue> {
     public Issue apply(Model model) {
         return new Issue(title,
                 deadline,
-                priority,
+                urgency,
                 status,
                 model.getProjectById(projectId.getIdInt()),
                 new IssueId(model.generateIssueId())
@@ -59,7 +59,7 @@ public class IssueWithoutModel implements Function<Model, Issue> {
         return i == this || (
                 this.title.equals(i.title)
                         && this.deadline.equals(i.deadline)
-                        && this.priority.equals(i.priority)
+                        && this.urgency.equals(i.urgency)
                         && this.status.equals(i.status)
                         && this.projectId.equals(i.projectId));
     }

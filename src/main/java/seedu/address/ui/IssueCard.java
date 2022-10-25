@@ -30,7 +30,7 @@ public class IssueCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label priority;
+    private Label urgency;
     @FXML
     private Label deadline;
     @FXML
@@ -46,7 +46,7 @@ public class IssueCard extends UiPart<Region> {
         this.issue = issue;
         title.setText(issue.getTitle().uiRepresentation() + " " + issue.getIssueId().uiRepresentation());
         deadline.setText(issue.getDeadline().uiRepresentation());
-        priority.setText(issue.getPriority().uiRepresentation());
+        urgency.setText(issue.getUrgency().uiRepresentation());
         project.setText("Project: " + issue.getProject().toString());
         status.setText(issue.getStatus().uiRepresentation());
     }

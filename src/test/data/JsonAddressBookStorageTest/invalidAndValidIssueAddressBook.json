@@ -15,14 +15,14 @@
   } ],
   "issues" : [ {
     "title" : "Refactor UI Classes",
-    "priority" : "X@",
+    "urgency" : "X@",
     "deadline" : "2020a1",
     "status" : "x123",
     "issueId" : "1",
     "project" : "5"
   }, {
     "title" : "Fix loading screen bug",
-    "priority" : "MEDIUM",
+    "urgency" : "MEDIUM",
     "deadline" : "2022-10-04",
     "status" : "true",
     "issueId" : "2",

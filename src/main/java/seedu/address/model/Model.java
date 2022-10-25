@@ -138,7 +138,7 @@ public interface Model {
 
     void sortIssuesByDeadline(int sortIssuesByDeadline);
 
-    void sortIssuesByPriority(int sortIssuesByPriority);
+    void sortIssuesByUrgency(int sortIssuesByUrgency);
 
     void sortClientsByName(int sortClientsByName);
 

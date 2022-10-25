@@ -15,14 +15,14 @@
   } ],
   "issues" : [ {
     "title" : "Refactor UI Classes",
-    "priority" : "LOW",
+    "urgency" : "LOW",
     "deadline" : "2022-01-01",
     "status" : "false",
     "issueId" : "1",
     "project" : "1"
   }, {
     "title" : "Refactor UI Classes",
-    "priority" : "LOW",
+    "urgency" : "LOW",
     "deadline" : "2022-01-01",
     "status" : "false",
     "issueId" : "1",

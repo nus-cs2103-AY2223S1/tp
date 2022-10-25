@@ -3,7 +3,7 @@ package seedu.address.logic.commands.issue;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
 import seedu.address.logic.commands.CommandResult;
@@ -12,7 +12,7 @@ import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.Title;
 import seedu.address.ui.Ui;
 
@@ -30,17 +30,17 @@ public class EditIssueCommand extends IssueCommand {
             + PREFIX_ISSUE_ID + "ISSUE_ID "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_URGENCY + "URGENCY "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_ISSUE_ID + "1 "
             + PREFIX_TITLE + "To Edit Class "
             + PREFIX_DEADLINE + "2022-03-05 "
-            + PREFIX_PRIORITY + "1 ";
+            + PREFIX_URGENCY + "1 ";
 
     public static final String MESSAGE_SUCCESS = "Issue %1$s has been edited";
     private final Title newTitle;
-    private final Priority newPriority;
+    private final Urgency newUrgency;
     private final Deadline newDeadline;
     private final IssueId issueId;
 
@@ -48,11 +48,11 @@ public class EditIssueCommand extends IssueCommand {
     /**
      * Creates an EditIssueCommand to edit the specified {@code Issue}
      */
-    public EditIssueCommand(Title newTitle, Deadline newDeadline, Priority newPriority, IssueId issueId) {
+    public EditIssueCommand(Title newTitle, Deadline newDeadline, Urgency newUrgency, IssueId issueId) {
         // NULL values passed into constructor here represent absent optional inputs
         this.newTitle = newTitle;
         this.newDeadline = newDeadline;
-        this.newPriority = newPriority;
+        this.newUrgency = newUrgency;
         this.issueId = issueId;
     }
 
@@ -69,8 +69,8 @@ public class EditIssueCommand extends IssueCommand {
             toEditIssue.setDeadline(newDeadline);
         }
 
-        if (newPriority != null) {
-            toEditIssue.setPriority(newPriority);
+        if (newUrgency != null) {
+            toEditIssue.setUrgency(newUrgency);
         }
 
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);

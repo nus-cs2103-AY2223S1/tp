@@ -16,13 +16,13 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     public static final String MESSAGE_INVALID_DEADLINE_SORT_KEY =
             "Enter either a 0 to sort by chronological order or a 1 to sort by reverse chronological order";
 
-    public static final String MESSAGE_INVALID_PRIORITY_SORT_KEY =
-            "Enter either a 0 to sort by lowest priority or a 1 to sort by highest priority";
+    public static final String MESSAGE_INVALID_URGENCY_SORT_KEY =
+            "Enter either a 0 to sort by lowest urgency or a 1 to sort by highest urgency";
 
     // Components of an issue
     private Title title;
     private Deadline deadline;
-    private Priority priority;
+    private Urgency urgency;
     private Status status;
     private Project project;
     private IssueId issueId;
@@ -30,12 +30,12 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     /**
      * Title field and project field must be present and not null, but all other fields are optional.
      */
-    public Issue(Title title, Deadline deadline, Priority priority,
+    public Issue(Title title, Deadline deadline, Urgency urgency,
                  Status status, Project project, IssueId issueId) {
-        requireAllNonNull(title, deadline, priority, status, project, issueId);
+        requireAllNonNull(title, deadline, urgency, status, project, issueId);
         this.title = title;
         this.deadline = deadline;
-        this.priority = priority;
+        this.urgency = urgency;
         this.status = status;
         this.project = project;
         this.issueId = issueId;
@@ -93,8 +93,8 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.deadline;
     }
 
-    public Priority getPriority() {
-        return this.priority;
+    public Urgency getUrgency() {
+        return this.urgency;
     }
 
     public Project getProject() {
@@ -128,8 +128,8 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         this.deadline = deadline;
     }
 
-    public void setPriority(Priority priority) {
-        this.priority = priority;
+    public void setUrgency(Urgency urgency) {
+        this.urgency = urgency;
     }
 
     public void setStatus(Status status) {
@@ -172,14 +172,14 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
-     * Checks if input is a valid priority sort key.
+     * Checks if input is a valid urgency sort key.
      *
-     * 0 for lowest priority order and 1 for highest priority order
+     * 0 for lowest urgency order and 1 for highest urgency order
      *
      * @param num input param to validate
      * @return true if input is a 0 or 1
      */
-    public static boolean isValidPrioritySortKey(String num) {
+    public static boolean isValidUrgencySortKey(String num) {
         try {
             int number = Integer.parseInt(num);
             return number == 0 || number == 1;
@@ -222,7 +222,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
                 && otherIssue.getProject().equals(getProject())
                 && otherIssue.getDeadline().equals(getDeadline())
                 && otherIssue.getStatus().equals(getStatus())
-                && otherIssue.getPriority().equals(getPriority())
+                && otherIssue.getUrgency().equals(getUrgency())
                 && otherIssue.getIssueId().equals(getIssueId());
     }
 
