@@ -35,7 +35,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyFriday friday, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(friday, userPrefs);
 
-        logger.fine("Initializing with address book: " + friday + " and user prefs " + userPrefs);
+        logger.fine("Initializing with FRIDAY: " + friday + " and user prefs " + userPrefs);
 
         this.friday = new Friday(friday);
         this.userPrefs = new UserPrefs(userPrefs);

@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFridayStorage addressBookStorage = new JsonFridayStorage(getTempFilePath("ab"));
+        JsonFridayStorage fridayStorage = new JsonFridayStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(fridayStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,20 +48,20 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void fridayReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
+         * {@link JsonFridayStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonFridayStorageTest} class.
          */
-        Friday original = TypicalStudents.getTypicalAddressBook();
+        Friday original = TypicalStudents.getTypicalFriday();
         storageManager.saveFriday(original);
         ReadOnlyFriday retrieved = storageManager.readFriday().get();
         assertEquals(original, new Friday(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getFridayFilePath() {
         assertNotNull(storageManager.getFridayFilePath());
     }
 
