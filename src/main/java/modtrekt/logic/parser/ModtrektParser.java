@@ -18,6 +18,7 @@ import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.DoneModuleCommand;
+import modtrekt.logic.commands.EditModuleCommand;
 import modtrekt.logic.commands.EditTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
@@ -57,6 +58,7 @@ public class ModtrektParser {
                 .addCommand(UnarchiveTaskCommand.COMMAND_WORD, new UnarchiveTaskCommand())
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
+                .addCommand(EditModuleCommand.COMMAND_WORD, new EditModuleCommand())
                 .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
                 .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
                 .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
