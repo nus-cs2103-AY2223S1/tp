@@ -43,10 +43,10 @@ public class ItemCard extends UiPart<Region> {
             this.id.setText(displayedIndex + ". ");
         }
         this.description.setText(item.getDescription());
-        this.priority.setText("Stars: " + item.getPriority().getStars());
-        this.duration.setText("Duration: " + item.getDuration());
+        this.priority.setText("★".repeat(item.getPriority().getStars()));
+        this.duration.setText("Duration: " + item.getDuration() + " mins");
         this.time.setText("Time: " + item.getTimeString());
-        this.cost.setText("Cost: " + item.getCost().getValue());
+        this.cost.setText("Cost: $" + item.getCost().getValue());
     }
 
     @Override

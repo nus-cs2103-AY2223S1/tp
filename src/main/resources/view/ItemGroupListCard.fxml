@@ -6,7 +6,7 @@
 
 <VBox VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="id" prefHeight="60.0" text="Label" />
+      <Label fx:id="dayNumber" prefHeight="60.0" text="Label" styleClass="day-number"/>
       <StackPane fx:id="itemListPanelPlaceholder"/>
    </children>
 </VBox>
