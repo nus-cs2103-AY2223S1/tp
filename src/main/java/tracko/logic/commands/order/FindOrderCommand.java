@@ -12,7 +12,8 @@ import tracko.model.Model;
 import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
 
 /**
- * Finds and lists all orders whose name contains any of the argument keywords.
+ * Finds and lists all orders whose delivery status, payment status, name,
+ * item ordered or address matches any of the given parameters.
  * Keyword matching is case insensitive.
  */
 public class FindOrderCommand extends Command {
@@ -31,7 +32,7 @@ public class FindOrderCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " " + PREFIX_ITEM + "keychain " + PREFIX_ADDRESS + "Ang Mo Kio Clementi";
 
-    public static final String INVALID_FLAG_MESSAGE = "Please use either -d/p or -D/P";
+    public static final String INVALID_FLAG_MESSAGE = "Please use either -d / p or -D / P";
 
     private final OrderMatchesFlagsAndPrefixPredicate predicate;
 
@@ -43,7 +44,6 @@ public class FindOrderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
-        model.refreshData();
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_ORDERS_FOUND_OVERVIEW, model.getFilteredOrderList().size()));

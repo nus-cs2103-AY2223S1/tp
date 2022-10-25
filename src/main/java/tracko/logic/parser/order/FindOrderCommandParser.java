@@ -56,7 +56,7 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         String addressKeywordsString = prefixMultimap.getValue(PREFIX_ADDRESS).orElse("").trim();
         String itemKeywordsString = prefixMultimap.getValue(PREFIX_ITEM).orElse("").trim();
 
-        String [] nameKeywords = splitKeywords(nameKeywordsString);
+        String[] nameKeywords = splitKeywords(nameKeywordsString);
         String[] addressKeywords = splitKeywords(addressKeywordsString);
         String[] itemKeywords = splitKeywords(itemKeywordsString);
 
