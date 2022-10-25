@@ -144,14 +144,6 @@ The `Model` component:
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** An alternative and perhaps more OOP model is given below. It has a `Class` list in the `StudentRecord`, which `Student` references.
-
-* This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
-* This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.
-<img src="images/BetterModelClassDiagram.png" width="450" />
-</div>
-
 #### 4.1.4 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -173,9 +165,44 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-#### 4.2.1 AddStud command
+#### 4.2.1 Adding new students
 
-*To be updated*
+##### Description
+
+Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudCommand` and `AddStudCommandParser` classes.
+Before going into the sequence of executing a `addstud` command, let us take a quick look at the `Student` class.
+
+<img src="images/StudentClassDiagram.png" width="550" />
+
+The `Student` class contains a total of 6 fields:
+* 2 `Name` fields for the student and parent names 
+* 1 `Id` field 
+* 1 `Phone` number field 
+* 1 `Email` address field 
+* 1 set of `Exam`(s)
+    * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
+    * Future implementations may allow teachers to create their own examinable items.
+
+##### Implementation
+
+Adding a student record can be divided into 2 main steps: parsing the user input and executing it.
+The sequence diagram below illustrates the interactions within the `Logic` component when the user calls a `addstu` command, for example, `addstu nm/Alice id/321A class/1F exam/CA1 40`.
+
+##### Design Considerations
+
+The current approach creates multiple `Class` objects per student. It serves as a more straightforward implementation. However, it is not a very OOP solution for the following reasons:
+
+1. Multiple `Class` objects for the same class.
+2. Classes do not have students.
+   * A `Class` object has no reference to the students in that class. 
+
+An alternative and perhaps more OOP approach is given below. It has a `Class` list in the `StudentRecord`, which references to `Student`.
+
+<img src="images/BetterModelClassDiagram.png" width="550" />
+
+* `StudentRecord` only requires one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
+* `Class` has reference to `Student`, modelling the relationship in which a teacher teaches a class with some students.
+* Every `Class` has a set of `Exam`(s) which a `Student` takes and scores a certain grade.
 
 #### 4.2.2 Delete command
 
@@ -299,7 +326,7 @@ Design Considerations:
 #### 4.2.7 Toggle View command
 Implementation: 
 
-The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand.
+The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
 
 *Insert activity diagram*
 
