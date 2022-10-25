@@ -55,6 +55,8 @@ public interface Logic {
      */
     void setAllAddressBookFilePath(Path[] updatedPaths);
 
+    void resetCurrentAddressBook();
+
     /**
      * Add and create a new address book
      */
@@ -64,4 +66,9 @@ public interface Logic {
      * Swaps between the address book
      */
     void swapAddressBook();
+
+    /**
+     * Swaps to the address book
+     */
+    void swapToAddressBook(Path nextAddressBook);
 }

@@ -104,10 +104,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void renameFile(String name) throws IOException {
         Path newAddressBookFilePath = Paths.get("data" , name + ".json");
         Files.move(this.addressBookFilePath, newAddressBookFilePath);
-        Files.delete(this.addressBookFilePath);
-        this.addressBookFilePath = newAddressBookFilePath;
-        allAddressBookFilePath.set(addressBookIndex, newAddressBookFilePath);
+        this.allAddressBookFilePath.set(addressBookIndex, newAddressBookFilePath);
     }
+
 
     public Path getNextAddressBookPath() {
         incrementIndex();
@@ -125,8 +124,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     private void incrementIndex() {
-        addressBookIndex += 1;
-        addressBookIndex = addressBookIndex % allAddressBookFilePath.size();
+        addressBookIndex = (addressBookIndex + 1) % allAddressBookFilePath.size();
     }
 
     @Override

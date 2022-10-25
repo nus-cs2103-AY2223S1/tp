@@ -90,6 +90,19 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void resetCurrentAddressBook() {
+        int index = model.getUserPrefs().getStoredIndex();
+        Path newPath = model.getAllAddressBookFilePath()[index];
+        model.setAddressBookFilePath(newPath);
+        swapToAddressBook(newPath);
+    }
+
+    private void setActiveAddressBook(Path latestBook, ReadOnlyAddressBook initialData) {
+        storage.setAddressBook(new JsonAddressBookStorage(latestBook));
+        model.setAddressBook(initialData);
+    }
+
+    @Override
     public boolean addAddressBook() throws IOException, DataConversionException {
         boolean result = model.addAddressBook();
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -99,8 +112,8 @@ public class LogicManager implements Logic {
             Path latestBook = allBooks[allBooks.length - 1];
             addressBookOptional = storage.readAddressBook();
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            storage.setAddressBook(new JsonAddressBookStorage(latestBook));
-            model.setAddressBook(initialData);
+            setActiveAddressBook(latestBook, initialData);
+            model.setStoredIndex(allBooks.length - 1);
         }
         return result;
     }
@@ -122,7 +135,26 @@ public class LogicManager implements Logic {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
-        storage.setAddressBook(new JsonAddressBookStorage(nextAddressBook));
-        model.setAddressBook(initialData);
+        setActiveAddressBook(nextAddressBook, initialData);
+    }
+
+    @Override
+    public void swapToAddressBook(Path nextAddressBook) {
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialData;
+        try {
+            addressBookOptional = storage.readAddressBook(nextAddressBook);
+            if (!addressBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            }
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            initialData = new AddressBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            initialData = new AddressBook();
+        }
+        setActiveAddressBook(nextAddressBook, initialData);
     }
 }

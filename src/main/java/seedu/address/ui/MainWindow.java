@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -191,6 +192,20 @@ public class MainWindow extends UiPart<Stage> {
      * Swaps between the Books
      */
     @FXML
+    private void handleRename() {
+        try {
+            Files.delete(logic.getAddressBookFilePath());
+            logic.resetCurrentAddressBook();
+            refreshStatusBar();
+        } catch (IOException e) {
+            resultDisplay.setFeedbackToUser("Sorry! Error deleting File");
+        }
+    }
+
+    /**
+     * Swaps between the Books
+     */
+    @FXML
     private void handleSwap() {
         logic.swapAddressBook();
         refreshStatusBar();
@@ -238,7 +253,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.getFeedbackToUser().equals(RenameCommand.MESSAGE_RENAME_SUCCESS)) {
-                refreshStatusBar();
+                handleRename();
             }
 
             if (commandResult.isSwap()) {

@@ -53,6 +53,8 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
+    void setStoredIndex(int index);
+
     /** Returns all address book's paths*/
     Path[] getAllAddressBookFilePath();
 

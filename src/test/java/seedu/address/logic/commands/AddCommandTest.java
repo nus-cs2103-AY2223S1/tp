@@ -119,6 +119,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setStoredIndex(int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path[] getAllAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
