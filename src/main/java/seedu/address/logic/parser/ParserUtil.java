@@ -115,7 +115,7 @@ public class ParserUtil {
         }
         return new StudentClass(trimmedStudentClass);
     }
-  
+
     /**
      * Parses a {@code String} into an {@code Attendance}.
      * Leading and trailing whitespaces will be trimmed.

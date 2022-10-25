@@ -40,7 +40,7 @@ public class TypicalPersons {
                                                            .withTags("owesMoney", "friends")
                                                            .withStudentClass("1A")
                                                            .withAttendance("date/12-02-2022 attendance/1 "
-                                                            + "%% date/13-02-2022 attendance/0").build();
+                                                            + "%% date/13-02-2022 attendance/0")
                                                            .withSubjectHandler("english: CA1:[80.0, 100.0, 0.2, 1.0], "
                                                                    + "CA2:[30.0, 56.0, 0.4, 2.0] %%math: CA1:[80.0, "
                                                                    + "100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]")
@@ -98,6 +98,7 @@ public class TypicalPersons {
                                                         .withRemarks(VALID_REMARK_ICE_CREAM)
                                                         .withSubjectHandler(VALID_SUBJECTHANDLER)
                                                         .build();
+
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                                                         .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                                                         .withTags(VALID_TAG_FRIEND)

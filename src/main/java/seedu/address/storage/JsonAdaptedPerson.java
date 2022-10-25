@@ -35,7 +35,7 @@ class JsonAdaptedPerson {
     private final String studentClass;
     private final String attendance;
     private final String subjectHandler;
-  
+
     private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedSubject> subjects = new ArrayList<>();
@@ -141,13 +141,13 @@ class JsonAdaptedPerson {
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentClass.class.getSimpleName()));
         }
         final StudentClass modelStudentClass = new StudentClass(studentClass);
-      
+
         if (attendance == null) {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
         }
         final Attendance modelAttendance = new Attendance(Attendance.parseAttendanceFromJson(attendance));
-      
+
         if (subjectHandler == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, SubjectHandler.class.getSimpleName()));

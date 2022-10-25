@@ -136,7 +136,7 @@ public class PersonBuilder {
         this.subjectHandler = new SubjectHandler(withSubjectHandler);
         return this;
     }
-  
+
     /**
      * Sets the {@code Attendance} of the {@code Person} that we are building.
      */
