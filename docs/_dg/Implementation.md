@@ -13,3 +13,7 @@ This section describes some noteworthy details on how certain features are imple
 {% include_relative _dg/implementations/StatisticsFeaturesDescription.md %}
 
 {% include_relative _dg/implementations/StatisticsFeatures.md %}
+
+{% include_relative _dg/implementations/GeneralFeaturesDescription.md %}
+
+{% include_relative _dg/implementations/GeneralFeatures.md %}
