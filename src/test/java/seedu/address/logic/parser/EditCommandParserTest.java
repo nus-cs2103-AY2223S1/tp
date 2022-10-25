@@ -55,7 +55,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_COMPANY_GOOGLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_COMPANY_GOOGLE, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -67,16 +67,16 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + COMPANY_DESC_GOOGLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + COMPANY_DESC_GOOGLE, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + COMPANY_DESC_GOOGLE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + COMPANY_DESC_GOOGLE, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 p/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 p/ string", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
     @Test
