@@ -77,7 +77,7 @@ public class EditItemCommand extends Command {
         Duration updatedDuration = editItemDescriptor.getDuration().orElse(itemToEdit.getDuration());
 
         Item editedItem = new Item(updatedDescription, updatedPriority, updatedCost, updatedDuration);
-        editedItem.setStartTime(editItemDescriptor.getStartTime().orElse(itemToEdit.getStartTime()));
+        editedItem.setStartTime(editItemDescriptor.getStartTime().orElse(itemToEdit.getStartTime().orElse(null)));
 
         return editedItem;
     }

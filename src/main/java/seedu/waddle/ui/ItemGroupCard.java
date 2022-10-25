@@ -32,15 +32,15 @@ public class ItemGroupCard extends UiPart<Region> {
     /**
      * Creates a {@code ItineraryCode} with the given {@code Itinerary} and index to display.
      */
-    public ItemGroupCard(ObservableList<Item> itemGroup, int displayedIndex) {
+    public ItemGroupCard(ObservableList<Item> itemGroup, int dayNumber) {
         super(FXML);
         this.itemGroup = itemGroup;
-        if (displayedIndex == 0) {
+        if (dayNumber == 0) {
             this.id.setText("Wishlist");
         } else {
-            this.id.setText("Day " + displayedIndex);
+            this.id.setText("Day " + dayNumber);
         }
-        this.itemListPanelPlaceholder.getChildren().add(new ItemListPanel(itemGroup).getRoot());
+        this.itemListPanelPlaceholder.getChildren().add(new ItemListPanel(itemGroup, dayNumber).getRoot());
         this.itemListPanelPlaceholder.setMinHeight(UiSizes.ITEM_LIST_MIN_HEIGHT);
     }
 

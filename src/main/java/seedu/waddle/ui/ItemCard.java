@@ -20,21 +20,33 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label id;
     // Priority and Category have not yet been implemented
-    // @FXML
-    // private Label priority;
+    @FXML
+    private Label priority;
+    @FXML
+    private Label duration;
+    @FXML
+    private Label time;
+    @FXML
+    private Label cost;
     // @FXML
     // private Label category;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
      */
-    public ItemCard(Item item, int displayedIndex) {
+    public ItemCard(Item item, int dayNumber, int displayedIndex) {
         super(FXML);
         this.item = item;
-        id.setText(displayedIndex + ". ");
-        description.setText(item.getDescription());
-        // priority.setText(item.getPriority());
-        // category.setText(item.getCategory());
+        if (dayNumber > 0) {
+            this.id.setText(dayNumber + "." + displayedIndex + " ");
+        } else {
+            this.id.setText(displayedIndex + ". ");
+        }
+        this.description.setText(item.getDescription());
+        this.priority.setText("Stars: " + item.getPriority().getStars());
+        this.duration.setText("Duration: " + item.getDuration());
+        this.time.setText("Time: " + item.getTimeString().orElseGet(() -> "(Not planned)"));
+        this.cost.setText("Cost: " + item.getCost().getValue());
     }
 
     @Override

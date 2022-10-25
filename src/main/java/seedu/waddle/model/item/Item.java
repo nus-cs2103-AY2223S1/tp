@@ -3,21 +3,22 @@ package seedu.waddle.model.item;
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
+import java.util.Optional;
 
 /**
  * Represents an item in the itinerary.
  */
 public class Item {
-    private String description;
-    private Priority priority;
-    private Cost cost;
-    private Duration duration;
-
+    private final String description;
+    private final Priority priority;
+    private final Cost cost;
+    private final Duration duration;
     private LocalTime startTime;
     // private Category category;
 
     /**
      * Constructor for an item.
+     *
      * @param description description of the item
      */
     public Item(String description, Priority priority, Cost cost, Duration duration) {
@@ -37,27 +38,38 @@ public class Item {
     }
 
     public Cost getCost() {
-        return cost;
+        return this.cost;
     }
 
     public Duration getDuration() {
         return duration;
     }
 
-    public LocalTime getStartTime() {
-        return this.startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return this.startTime.plusMinutes(this.duration.getDuration());
-    }
-
-    public void resetStartTime() {
-        this.startTime = null;
+    public Optional<LocalTime> getStartTime() {
+        return Optional.ofNullable(this.startTime);
     }
 
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
+    }
+
+    public Optional<LocalTime> getEndTime() {
+        return Optional.ofNullable(this.startTime.plusMinutes(this.duration.getDuration()));
+    }
+
+    public Optional<String> getTimeString() {
+        if (this.startTime != null) {
+            if (this.duration != null) {
+                return Optional.of(this.startTime + " - " + getEndTime().get());
+            } else {
+                return Optional.of(this.startTime.toString());
+            }
+        }
+        return Optional.empty();
+    }
+
+    public void resetStartTime() {
+        this.startTime = null;
     }
 
     /**

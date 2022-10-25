@@ -178,10 +178,11 @@ public class ParserUtil {
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
-        if (!Priority.isValidPriority(trimmedPriority)) {
+        Integer stars = Integer.parseInt(trimmedPriority);
+        if (!Priority.isValidPriority(stars)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Priority(trimmedPriority);
+        return new Priority(stars);
     }
 
     /**
