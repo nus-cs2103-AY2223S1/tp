@@ -52,6 +52,13 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns if the ArgMultimap contains the given prefix or not.
+     */
+    public boolean hasGivenPrefix(Prefix prefix) {
+        return this.argMultimap.containsKey(prefix);
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
