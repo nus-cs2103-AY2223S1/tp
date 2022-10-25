@@ -13,24 +13,20 @@
                    StackPane.alignment="TOP_LEFT"/>
         </HBox>
         <HBox>
-            <StackPane fx:id="linkListPanel" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
-            <padding>
-                <Insets bottom="10"/>
-            </padding>
-        </HBox>
-        <HBox>
             <VBox>
+                <StackPane fx:id="linkListPanel" VBox.vgrow="NEVER" HBox.hgrow="ALWAYS"/>
+                <padding>
+                    <Insets bottom="10" right="5"/>
+                </padding>
                 <StackPane fx:id="memberListPanel" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
                 <padding>
-                    <Insets left="10" right="10"/>
+                    <Insets right="5"/>
                 </padding>
             </VBox>
-            <VBox HBox.hgrow="ALWAYS">
-                <padding>
-                    <Insets left="10" right="10"/>
-                </padding>
-                <StackPane fx:id="taskListPanel" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
-            </VBox>
+            <padding>
+                <Insets left="5"/>
+            </padding>
+            <StackPane fx:id="taskListPanel" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
         </HBox>
     </VBox>
 </StackPane>

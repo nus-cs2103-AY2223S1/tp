@@ -13,11 +13,11 @@
         <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150"/>
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="50" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="10" GridPane.columnIndex="0">
             <padding>
                 <Insets right="5" left="5" top="5" bottom="5"/>
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox spacing="0" alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
