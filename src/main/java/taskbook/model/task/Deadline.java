@@ -2,9 +2,11 @@ package taskbook.model.task;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -31,6 +33,24 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Deadline(Person person, Assignment assignment, Description description, boolean isDone,
+                    LocalDate date, Set<Tag> tags) {
+        super(person, assignment, description, isDone, tags);
+        this.date = date;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Deadline(Name name, Assignment assignment, Description description, boolean isDone,
+                    LocalDate date, Set<Tag> tags) {
+        super(name, assignment, description, isDone, tags);
+        this.date = date;
+    }
+  
     @Override
     public LocalDate getDate() {
         return date;
@@ -62,8 +82,9 @@ public class Deadline extends Task {
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
         LocalDate date = descriptor.getDate().orElse(getDate());
+        Set<Tag> tags = descriptor.getTags().orElse(getTags());
 
-        return new Deadline(name, assignment, description, isDone, date);
+        return new Deadline(name, assignment, description, isDone, date, tags);
     }
 
     @Override

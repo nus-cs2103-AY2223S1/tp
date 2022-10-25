@@ -20,17 +20,18 @@ public class ContactAddCommand extends Command {
     public static final String MESSAGE_USAGE =
             ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Adds a person to the task book.\n"
+            + "\n"
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
-            + CliSyntax.PREFIX_PHONE + "PHONE "
-            + CliSyntax.PREFIX_EMAIL + "EMAIL "
-            + CliSyntax.PREFIX_ADDRESS + "ADDRESS "
+            + "[" + CliSyntax.PREFIX_PHONE + "PHONE] "
+            + "[" + CliSyntax.PREFIX_EMAIL + "EMAIL] "
+            + "[" + CliSyntax.PREFIX_ADDRESS + "ADDRESS] "
             + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_NAME + "John Doe "
             + CliSyntax.PREFIX_PHONE + "98765432 "
             + CliSyntax.PREFIX_EMAIL + "johnd@example.com "
-            + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2 "
             + CliSyntax.PREFIX_TAG + "friends "
             + CliSyntax.PREFIX_TAG + "owesMoney";
 

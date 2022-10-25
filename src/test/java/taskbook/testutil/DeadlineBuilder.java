@@ -1,9 +1,15 @@
 package taskbook.testutil;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import taskbook.logic.parser.ParserUtil;
+import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
@@ -21,6 +27,7 @@ public class DeadlineBuilder {
     private Description description;
     private boolean isDone;
     private LocalDate deadlineDate;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Creates a {@code DeadlineBuilder} with the default details.
@@ -30,6 +37,7 @@ public class DeadlineBuilder {
         assignment = Assignment.FROM;
         description = new Description(DEFAULT_DESCRIPTION);
         isDone = false;
+        deadlineDate = LocalDate.parse("2007-07-07");
     }
 
     /**
@@ -81,9 +89,21 @@ public class DeadlineBuilder {
     }
 
     /**
+     * Sets the {@code tags} of the {@code Deadline} that we are building.
+     */
+    public DeadlineBuilder withTags(String... tags) {
+        try {
+            this.tags.addAll(ParserUtil.parseTags(Arrays.asList(tags)));
+        } catch (ParseException e) {
+            return this;
+        }
+        return this;
+    }
+
+    /**
      * Builds a {@code Deadline} based on the parameters stored in the {@code DeadlineBuilder}.
      */
     public Deadline build() {
-        return new Deadline(this.name, this.assignment, this.description, this.isDone, this.deadlineDate);
+        return new Deadline(this.name, this.assignment, this.description, this.isDone, this.deadlineDate, this.tags);
     }
 }

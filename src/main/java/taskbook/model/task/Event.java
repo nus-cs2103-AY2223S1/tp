@@ -2,9 +2,11 @@ package taskbook.model.task;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -28,6 +30,24 @@ public class Event extends Task {
      */
     public Event(Name name, Assignment assignment, Description description, boolean isDone, LocalDate date) {
         super(name, assignment, description, isDone);
+        this.date = date;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Event(Person person, Assignment assignment, Description description, boolean isDone,
+                 LocalDate date, Set<Tag> tags) {
+        super(person, assignment, description, isDone, tags);
+        this.date = date;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Event(Name name, Assignment assignment, Description description, boolean isDone,
+                 LocalDate date, Set<Tag> tags) {
+        super(name, assignment, description, isDone, tags);
         this.date = date;
     }
 
@@ -62,8 +82,9 @@ public class Event extends Task {
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
         LocalDate date = descriptor.getDate().orElse(getDate());
+        Set<Tag> tags = descriptor.getTags().orElse(getTags());
 
-        return new Event(name, assignment, description, isDone, date);
+        return new Event(name, assignment, description, isDone, date, tags);
     }
 
     @Override
@@ -101,5 +122,4 @@ public class Event extends Task {
                 + String.format("[%s]", getDate().toString())
                 + taskString.substring(newLineIndex);
     }
-
 }
