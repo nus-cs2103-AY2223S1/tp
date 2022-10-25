@@ -8,7 +8,7 @@ title: ProfNUS
 
 ![Ui](images/Ui.png)
 
-**ProfNUS is a desktop application which helps SOC Professors who have many modules with many students/TAs to manage.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**ProfNUS is a desktop application which helps you SOC Professors who have many modules and with many students/TAs to manage.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using ProfNUS, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing ProfNUS, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
