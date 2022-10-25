@@ -87,7 +87,8 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && isListContact == otherCommandResult.isListContact
-                && isListTask == otherCommandResult.isListTask;
+                && isListTask == otherCommandResult.isListTask
+                && isAddTask == otherCommandResult.isAddTask;
     }
 
     @Override
