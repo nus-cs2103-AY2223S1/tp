@@ -46,6 +46,8 @@ public class OpenPersonFileCommand extends Command {
 
         if (!personToOpenFile.hasFilePath()) {
             throw new CommandException(FilePath.MESSAGE_EMPTY_FILEPATH);
+        } else if (!FilePath.isValidPdfFilePath(personToOpenFile.getFilePath().toString())) {
+            throw new CommandException(FilePath.MESSAGE_CONSTRAINTS);
         }
 
         try {
