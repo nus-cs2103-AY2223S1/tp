@@ -150,7 +150,7 @@ public class ModelManager implements Model {
             CanHelpWithTaskPredicate taskPredicate = (CanHelpWithTaskPredicate) predicate;
             int taskIndex = taskPredicate.getTaskIndex();
             Task taskInQuestion = filteredTasks.get(taskIndex - 1);
-            taskPredicate.withTask(taskInQuestion);
+            taskPredicate.setTask(taskInQuestion);
         }
         filteredPersons.setPredicate(predicate);
     }

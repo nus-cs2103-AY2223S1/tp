@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class CanHelpWithTaskPredicateTest {
 
@@ -31,6 +34,24 @@ public class CanHelpWithTaskPredicateTest {
 
         // different index -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+    }
+
+    @Test
+    public void test_personTakesTasksModule_returnsTrue() {
+        // One keyword
+        CanHelpWithTaskPredicate predicate = CanHelpWithTaskPredicate.withTask(new TaskBuilder().withModule("CS1234").build());
+        assertTrue(predicate.test(new PersonBuilder().withModules("CS1234").build()));
+
+        // Mixed case keywords
+        predicate = CanHelpWithTaskPredicate.withTask(new TaskBuilder().withModule("cs1234").build());
+        assertTrue(predicate.test(new PersonBuilder().withModules("CS1234").build()));
+    }
+
+    @Test
+    public void test_personNotTakingTasksModule_returnsFalse() {
+        // Non-matching keyword
+        CanHelpWithTaskPredicate predicate = CanHelpWithTaskPredicate.withTask(new TaskBuilder().withModule("BIZ1101").build());
+        assertFalse(predicate.test(new PersonBuilder().withModules("CS1234").build()));
     }
 
     @Test

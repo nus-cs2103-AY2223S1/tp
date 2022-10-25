@@ -17,11 +17,17 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
         this.taskIndex = taskIndex;
     }
 
+    public static CanHelpWithTaskPredicate withTask(Task task) {
+        CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(-1);
+        predicate.setTask(task);
+        return predicate;
+    }
+
     public int getTaskIndex() {
         return taskIndex;
     }
 
-    public void withTask(Task task) {
+    public void setTask(Task task) {
         this.task = task;
     }
 
