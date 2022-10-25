@@ -74,5 +74,4 @@ ___
 
 ## Appendix: Effort
 
-
 {% include_relative _dg/Effort.md %}
