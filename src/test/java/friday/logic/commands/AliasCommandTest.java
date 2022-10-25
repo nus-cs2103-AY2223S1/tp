@@ -2,7 +2,7 @@ package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.testutil.TypicalStudents.getTypicalAddressBook;
+import static friday.testutil.TypicalStudents.getTypicalFriday;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class AliasCommandTest {
     private static final Alias INVALID_ALIAS = new Alias(AddCommand.COMMAND_WORD);
     private static final ReservedKeyword VALID_KEYWORD = new ReservedKeyword(ListCommand.COMMAND_WORD);
     private static final ReservedKeyword INVALID_KEYWORD = new ReservedKeyword("a");
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFriday(), new UserPrefs());
 
     @Test
     public void execute_aliasAcceptedByModel_addSuccessful() {

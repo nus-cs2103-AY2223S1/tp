@@ -21,7 +21,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_FINALS = new Prefix("ft/");
 
     /* Order definitions */
-    public static final Order ORDER_ASCENDING = new Order("asc");
-    public static final Order ORDER_DESCENDING = new Order("desc");
+    public static final Order ORDER_ASCENDING = new Order("a");
+    public static final Order ORDER_DESCENDING = new Order("d");
 
 }

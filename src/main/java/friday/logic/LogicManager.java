@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFriday getAddressBook() {
+    public ReadOnlyFriday getFriday() {
         return model.getFriday();
     }
 
@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFridayFilePath() {
         return model.getFridayFilePath();
     }
 

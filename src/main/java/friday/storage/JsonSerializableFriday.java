@@ -49,18 +49,18 @@ class JsonSerializableFriday {
     }
 
     /**
-     * Converts this address book into the model's {@code Friday} object.
+     * Converts this FRIDAY into the model's {@code Friday} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Friday toModelType() throws IllegalValueException {
-        Friday addressBook = new Friday();
+        Friday friday = new Friday();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
+            if (friday.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addStudent(student);
+            friday.addStudent(student);
         }
         for (JsonAdaptedAlias jsonAdaptedAlias : aliases) {
             Alias alias = jsonAdaptedAlias.toAliasModelType();
@@ -68,12 +68,12 @@ class JsonSerializableFriday {
             if (!ReservedKeyword.isValidReservedKeyword(keyword.toString())) {
                 throw new IllegalValueException(MESSAGE_INVALID_KEYWORD);
             }
-            if (addressBook.hasAlias(alias)) {
+            if (friday.hasAlias(alias)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ALIAS);
             }
-            addressBook.addAlias(alias, keyword);
+            friday.addAlias(alias, keyword);
         }
-        return addressBook;
+        return friday;
     }
 
 }

@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Reformatted Command Summary
   * Developer Guide:
     * Added Non-functional requirements
-    * Refactored names to be updated for Friday [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
+    * Refactored names to be updated for FRIDAY [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
     * Updated UML Diagrams
     * Added documentation for the `grade` feature, such as the use case of `grade`.
   * README:

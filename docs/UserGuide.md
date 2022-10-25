@@ -140,8 +140,14 @@ Format: `find k/Keywords`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
 Note: Multiple keywords can be entered.
-Note: when searching for exam grade use format `find [ra1:RA1_SCORE] [ra2:RA2_SCORE]`
+Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
 </div>
+
+Example:
+![FindCommand.png](images/FindCommand.png)
+
+Outcome:
+![FindCommandOutcome.png](images/FindCommandOutcome.png)
 
 ### Viewing all students: `list`
 
@@ -176,7 +182,7 @@ Sorts all students in FRIDAY with the given criteria, in ascending or descending
 Format: `sort CRITERIA/ORDER`
 
 * `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
-* `ORDER` can be `asc` (ascending) or `desc` (descending)
+* `ORDER` can be `a` (ascending) or `d` (descending)
 * Names and Telegram handles are sorted in alphabetical order
 * Consultations and Mastery Checks are sorted by time
 * Grades are sorted in numerical order

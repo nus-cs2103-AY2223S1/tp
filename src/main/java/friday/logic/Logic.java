@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns Friday.
      *
      * @see Model#getFriday()
      */
-    ReadOnlyFriday getAddressBook();
+    ReadOnlyFriday getFriday();
 
     /** Returns an unmodifiable view of the filtered or sorted list of students */
     ObservableList<Student> getStudentList();
@@ -37,7 +37,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFridayFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
