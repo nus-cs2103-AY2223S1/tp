@@ -10,7 +10,10 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "dateTimes" : [ "2022-11-11T12:00" ],
     "tagged" : [ "friends" ],
-    "visit status" : "false"
+    "visit status" : "false",
+    "phys name" : "john doe",
+    "phys email" : "johndoe@example.com",
+    "phys phone" : "81234567"
   }, {
     "category" : "P",
     "uid": "2",
@@ -21,7 +24,10 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "dateTimes" : [ "2022-10-23T10:00" ],
     "tagged" : [ "owesMoney", "friends" ],
-    "visit status" : "true"
+    "visit status" : "true",
+    "phys name" : "john doe",
+    "phys email" : "johndoe@example.com",
+    "phys phone" : "81234567"
   }, {
     "category" : "P",
     "uid": "3",

@@ -6,6 +6,7 @@ import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,9 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String visitStatus;
+    private final String pName;
+    private final String pPhone;
+    private final String pEmail;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -56,6 +60,9 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("phys name") String pName,
+            @JsonProperty("phys phone") String pPhone,
+            @JsonProperty("phys email") String pEmail,
             @JsonProperty("visit status") String visitStatus) {
         this.uid = uid;
         this.name = name;
@@ -64,6 +71,10 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+
+        this.pName = Objects.requireNonNullElse(pName, "NA");
+        this.pPhone = Objects.requireNonNullElse(pPhone, "NA");
+        this.pEmail = Objects.requireNonNullElse(pEmail, "NA");
 
         if (dateTime != null) {
             this.dateTimes.addAll(dateTime);
@@ -84,12 +95,26 @@ class JsonAdaptedPerson {
         boolean isPatient = category.equals(PATIENT_SYMBOL);
 
         if (isPatient) {
-            dateTimes.addAll(((Patient) source).getDatesTimes().stream()
+            Patient sourcePatient = (Patient) source;
+            dateTimes.addAll(sourcePatient.getDatesTimes().stream()
                     .map(JsonAdaptedDateTime::new)
                     .collect(Collectors.toList()));
-            visitStatus = ((Patient) source).getVisitStatus().getVisitStatusString();
+            visitStatus = (sourcePatient.getVisitStatus().getVisitStatusString());
+
+            String[] physNameArr = new String[]{"NA"};
+            sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
+            pName = physNameArr[0];
+            String[] physEmailArr = new String[]{"NA"};
+            sourcePatient.getAttendingPhysician().ifPresent(x -> physEmailArr[0] = x.getEmail().value);
+            pEmail = physEmailArr[0];
+            String[] physPhoneArr = new String[]{"NA"};
+            sourcePatient.getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
+            pPhone = physPhoneArr[0];
         } else {
             visitStatus = null;
+            pName = "NA";
+            pPhone = "NA";
+            pEmail = "NA";
         }
 
         uid = source.getUid().uid;
