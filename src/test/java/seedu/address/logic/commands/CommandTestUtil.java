@@ -211,13 +211,13 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the income at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showIncomeeAtIndex(Model model, Index targetIndex) {
+    public static void showIncomeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenditureList().size());
 
-        Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());
+        Entry entry = model.getFilteredIncomeList().get(targetIndex.getZeroBased());
         final String[] splitName = entry.toString().split("; ");
-        model.updateFilteredExpenditureList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-        assertEquals(1, model.getFilteredExpenditureList().size());
+        model.updateFilteredIncomeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredIncomeList().size());
     }
 
 }
