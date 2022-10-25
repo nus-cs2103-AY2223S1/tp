@@ -23,6 +23,7 @@ import soconnect.model.Model;
  * Customises the user experience.
  */
 public abstract class CustomiseCommand extends Command {
+
     public static final String COMMAND_WORD = "customise";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " order: Changes the order of the details.\n"
