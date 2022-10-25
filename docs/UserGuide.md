@@ -46,9 +46,10 @@ title: User Guide
 
 {% include note.html content="
 
-Redirects to the user guide page to provide help for the users.
-
+Redirects to the user guide page to provide help for the users. If attempt unsuccessful, the following help window appears.
 " %}
+
+- ![help message](images/helpMessage.png)
 
 Format: `help`
 
