@@ -95,17 +95,20 @@ public class EditItemCommand extends Command {
      * Creates and returns a {@code Item} with the details of {@code itemToEdit}
      * edited with {@code editItemDescriptor}.
      */
-    private static InventoryItem createEditedItem(InventoryItem inventoryItemToEdit, EditItemDescriptor editItemDescriptor) {
+    private static InventoryItem createEditedItem(InventoryItem inventoryItemToEdit,
+                                                  EditItemDescriptor editItemDescriptor) {
         assert inventoryItemToEdit != null;
 
         ItemName updatedItemName = editItemDescriptor.getItemName().orElse(inventoryItemToEdit.getItemName());
         Quantity updatedQuantity = editItemDescriptor.getQuantity().orElse(inventoryItemToEdit.getTotalQuantity());
-        Description updatedDescription = editItemDescriptor.getDescription().orElse(inventoryItemToEdit.getDescription());
+        Description updatedDescription = editItemDescriptor.getDescription()
+            .orElse(inventoryItemToEdit.getDescription());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(inventoryItemToEdit.getTags());
         Price sellPrice = editItemDescriptor.getSellPrice().orElse(inventoryItemToEdit.getSellPrice());
         Price costPrice = editItemDescriptor.getCostPrice().orElse(inventoryItemToEdit.getCostPrice());
 
-        return new InventoryItem(updatedItemName, updatedDescription, updatedQuantity, updatedTags, sellPrice, costPrice);
+        return new InventoryItem(updatedItemName, updatedDescription, updatedQuantity,
+            updatedTags, sellPrice, costPrice);
     }
 
     @Override
