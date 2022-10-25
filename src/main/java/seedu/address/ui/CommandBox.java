@@ -112,8 +112,8 @@ public class CommandBox extends UiPart<Region> {
      * Contains all successfully executed commands from the last application start.
      * Keeps track of the currently displayed command's index in the history.
      */
-    class CommandRetriever {
-        private ArrayList<String> commandHistory;
+    private static class CommandRetriever {
+        private final ArrayList<String> commandHistory;
         private int index;
 
         public CommandRetriever() {
