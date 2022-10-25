@@ -329,7 +329,45 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
-  
+
+
+### View feature
+
+#### Proposed Implementation
+The proposed view mechanism is implemented mainly using the help of `ExactMatchPredict`
+It implements `Predicate<Internship>` where the test method looks for the exact match of the internship requested.
+
+The predicate is used in the Model interface on the `updateViewItem` method
+
+The following sequence diagram shows how the view command works.
+
+TODO: ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+#### Design Considerations
+**How to view the Internship**:
+* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current))
+    * Pros: Simple, Better cohesion, more maintainability
+    * Cons: More code to write
+
+**How to display the internship in view panel**:
+* **Alternative 1 (current choice)**: Fully display with prefix denoting category
+    * Pros: More descriptive and easier to understand
+    * Cons: Makes UI seem wordy
+
+* **Alternative 2** Only display details with no category:
+    * Pros: Looks cleaner
+    * Cons: Difficult to understand for new users
+
+**Parameters for find command**:
+* **Alternative 1 (current choice)**: `INDEX` parameter only takes in one index
+    * Pros: Easier to implement
+    * Cons: User will have to use the `view` command multiple times to view multiple internships
+
+* **Alternative 2** `INDEX` parameter can have multiple indexes
+    * Pros: User can view multiple details at once
+    * Cons: Makes `view` UI panel large, difficult to implement
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
