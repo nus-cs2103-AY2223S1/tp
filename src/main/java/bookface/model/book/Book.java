@@ -137,8 +137,9 @@ public class Book {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
                 .append("; Author: ")
-                .append(getAuthor());
-
+                .append(getAuthor())
+                .append("; ")
+                .append(getReturnDateString());
         return builder.toString();
     }
 }
