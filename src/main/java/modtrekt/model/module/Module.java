@@ -20,27 +20,27 @@ public class Module {
      * @param name    the module name
      * @param credits the number of credits for the module
      */
-    public Module(ModCode code, ModName name, ModCredit credits, ModTaskCount taskCount, boolean isDone) {
-        this.code = code;
-        this.name = name;
-        this.credits = credits;
-        this.taskCount = taskCount;
-        this.isDone = isDone;
-    }
-
-    /**
-     * Creates a Module with the given code, name, credits and tasks.
-     *
-     * @param code    the module code
-     * @param name    the module name
-     * @param credits the number of credits for the module
-     */
     public Module(ModCode code, ModName name, ModCredit credits, ModTaskCount taskCount) {
         this.code = code;
         this.name = name;
         this.credits = credits;
         this.taskCount = taskCount;
         this.isDone = false;
+    }
+
+    /**
+     * Creates a Module with the given code, name, credits, tasks, and isDone.
+     *
+     * @param code    the module code
+     * @param name    the module name
+     * @param credits the number of credits for the module
+     */
+    public Module(ModCode code, ModName name, ModCredit credits, ModTaskCount taskCount, boolean isDone) {
+        this.code = code;
+        this.name = name;
+        this.credits = credits;
+        this.taskCount = taskCount;
+        this.isDone = isDone;
     }
 
     /**
@@ -73,6 +73,11 @@ public class Module {
     public String getTaskCountStr() {
         return taskCount.toString();
     }
+
+    public ModTaskCount getTaskCount() {
+        return taskCount;
+    }
+
     public int getTaskCountInt() {
         return Integer.parseInt(taskCount.toString());
     }

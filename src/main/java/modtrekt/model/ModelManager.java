@@ -13,6 +13,7 @@ import modtrekt.commons.core.GuiSettings;
 import modtrekt.commons.core.LogsCenter;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
+import modtrekt.model.task.Deadline;
 import modtrekt.model.task.Task;
 
 /**
@@ -109,13 +110,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
-        updateModuleTask(target);
+        updateModuleTaskCount(target);
     }
 
     @Override
     public void addTask(Task t) {
         taskBook.addTask(t);
-        updateModuleTask(t);
+        updateModuleTaskCount(t);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -123,16 +124,35 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
         taskBook.setTask(target, editedTask);
+        updateModuleTaskCount(editedTask);
     }
 
     @Override
-    public void updateModuleTask(Task t) {
-        Module toUpdate = parseModuleFromCode(t.getModule());
+    public void archiveDoneModuleTasks(ModCode code) {
         FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
-        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(code);
         tempList.setPredicate(newPredicate);
-        toUpdate.updateTaskCount(tempList.size());
-        setModule(toUpdate, toUpdate);
+        for (Task t : tempList) {
+            setTask(t, t.archive());
+        }
+    }
+
+    @Override
+    public void updateTaskModule(ModCode oldCode, ModCode newCode) {
+        FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(oldCode);
+        tempList.setPredicate(newPredicate);
+        for (Task t : tempList) {
+            Task newTask;
+            if (t instanceof Deadline) {
+                Deadline d = (Deadline) t;
+                newTask = new Deadline(d.getDescription(), newCode, d.getDueDate(), d.isArchived(), d.getPriority());
+            } else {
+                newTask = new Task(t.getDescription(), newCode, t.isArchived(), t.getPriority());
+            }
+            addTask(newTask);
+        }
+        taskBook.removeTasksWithModCode(oldCode);
     }
 
     //=========== ModuleList ================================================================================
@@ -203,6 +223,16 @@ public class ModelManager implements Model {
             updateFilteredModuleList(model -> model.getCode().equals(code));
             updateFilteredTaskList(task -> task.getModule().equals(code));
         }
+    }
+
+    @Override
+    public void updateModuleTaskCount(Task t) {
+        Module toUpdate = parseModuleFromCode(t.getModule());
+        FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode()) && !task.isArchived();
+        tempList.setPredicate(newPredicate);
+        toUpdate.updateTaskCount(tempList.size());
+        setModule(toUpdate, toUpdate);
     }
 
     //=========== Filtered Task List Accessors =============================================================
