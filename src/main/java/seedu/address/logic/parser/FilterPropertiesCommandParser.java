@@ -20,7 +20,7 @@ import seedu.address.model.property.FilterPropsByPricePredicate;
 /**
  * Parses user input to create a {@code FilterPropsCommand}.
  */
-public class FilterPropsCommandParser extends Parser<FilterPropsCommand> {
+public class FilterPropertiesCommandParser extends Parser<FilterPropsCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterPropsCommand

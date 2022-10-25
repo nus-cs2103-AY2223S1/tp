@@ -18,6 +18,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.commands.FilterPropsCommand;
 import seedu.address.logic.commands.FindBuyerCommand;
+import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
@@ -26,7 +27,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class CobbParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -68,6 +69,9 @@ public class AddressBookParser {
         case FindBuyerCommand.COMMAND_WORD:
             return new FindBuyerCommandParser().parse(arguments);
 
+        case FindPropertyCommand.COMMAND_WORD:
+            return new FindPropertyCommandParser().parse(arguments);
+
         case ListBuyersCommand.COMMAND_WORD:
             return new ListBuyersCommand();
 
@@ -90,7 +94,7 @@ public class AddressBookParser {
             return new FilterBuyersCommandParser().parse(arguments);
 
         case FilterPropsCommand.COMMAND_WORD:
-            return new FilterPropsCommandParser().parse(arguments);
+            return new FilterPropertiesCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
