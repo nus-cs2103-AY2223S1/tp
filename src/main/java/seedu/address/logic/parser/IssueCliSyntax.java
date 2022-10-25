@@ -6,7 +6,7 @@ package seedu.address.logic.parser;
 public class IssueCliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
+    public static final Prefix PREFIX_TITLE = new Prefix("t/");
     public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
     public static final Prefix PREFIX_PROJECT_ID = new Prefix("pid/");

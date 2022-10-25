@@ -40,7 +40,7 @@
     "projectId" : "3"
   } ],
   "issues" : [ {
-    "description" : "Fix UI Bugs",
+    "title" : "Fix UI Bugs",
     "priority" : "NONE",
     "deadline" : "",
     "status" : "false",

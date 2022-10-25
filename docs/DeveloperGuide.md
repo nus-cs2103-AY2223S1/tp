@@ -214,9 +214,9 @@ Optional prefixes: cid/<valid client id>, r/<valid repository>, d/<valid deadlin
 Example Use: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
 
 #### Add Issue Command
-Compulsory prefixes: pid/<valid project id>, desc/<valid description>
+Compulsory prefixes: pid/<valid project id>, t/<valid title>
 Optional prefixes: d/<valid deadline> p/<valid priority>
-Example Use: `issue pid/1 desc/To create a person class which stores all relevant person data d/2022-12-10 p/0`
+Example Use: `issue pid/1 t/To create a person class which stores all relevant person data d/2022-12-10 p/0`
 
 #### Add Client Command
 Compulsory prefixes: n/<valid name>, pid/<valid project id>
@@ -264,8 +264,8 @@ Example Use: `project -e pid/1 n/Jeff cid/1 r/Jeffrey/tp d/2022-07-05`
 
 #### Edit Issue Command
 Compulsory prefix: iid/<valid issue id>
-Optional prefixes (at least one to be included): desc/<valid description>, d/<valid deadline>, p/<valid priority>
-Example Use: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
+Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, p/<valid priority>
+Example Use: `issue -e iid/1 t/To edit issue command d/2022-04-09 p/1`
 
 #### Edit Client Command
 Compulsory prefix: cid/<valid client id>
@@ -273,7 +273,7 @@ Optional prefixes (at least one to be included): n/<valid name>, p/<valid phone 
 Example Use: `client -e cid/1 n/BenTen p/12345678 e/Ben10@gmail.com pid/1`
 
 #### The following sequence diagram shows how the edit command operation works for editing an issue entity:
-Example: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
+Example: `issue -e iid/1 t/To edit issue command d/2022-04-09 p/1`
 ![AddSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 

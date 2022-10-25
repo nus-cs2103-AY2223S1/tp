@@ -11,11 +11,11 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
-import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
+import seedu.address.model.issue.Title;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -81,37 +81,37 @@ public class SampleDataUtil {
 
     public static Issue[] getSampleIssues(Project[] sampleProjects) {
         Issue[] sampleIssues = new Issue[] {
-            new Issue(new Description("Refactor UI Classes"),
+            new Issue(new Title("Refactor UI Classes"),
                     new Deadline("2022-01-01"),
                     Priority.LOW,
                     new Status(false),
                     sampleProjects[0],
                     new IssueId(1)),
-            new Issue(new Description("Fix loading screen bug"),
+            new Issue(new Title("Fix loading screen bug"),
                     new Deadline("2022-10-04"),
                     Priority.MEDIUM,
                     new Status(true),
                     sampleProjects[1],
                     new IssueId(2)),
-            new Issue(new Description("Implement filter command"),
+            new Issue(new Title("Implement filter command"),
                     new Deadline("2022-09-03"),
                     Priority.LOW,
                     new Status(false),
                     sampleProjects[1],
                     new IssueId(3)),
-            new Issue(new Description("Update collision logic"),
+            new Issue(new Title("Update collision logic"),
                     new Deadline("2023-07-14"),
                     Priority.HIGH,
                     new Status(true),
                     sampleProjects[2],
                     new IssueId(4)),
-            new Issue(new Description("Create Developer Guide"),
+            new Issue(new Title("Create Developer Guide"),
                     new Deadline("2022-02-04"),
                     Priority.HIGH,
                     new Status(true),
                     sampleProjects[3],
                     new IssueId(5)),
-            new Issue(new Description("Change default behaviour"),
+            new Issue(new Title("Change default behaviour"),
                     new Deadline("2022-02-19"),
                     Priority.MEDIUM,
                     new Status(false),
