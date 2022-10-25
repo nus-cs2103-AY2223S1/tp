@@ -56,8 +56,8 @@ public class JsonAdaptedItem {
         itemName = source.getItemName().itemName;
         quantity = source.getTotalQuantity().getValue();
         description = source.getDescription().value;
-        sellPrice = source.getSellPrice().price;
-        costPrice = source.getCostPrice().price;
+        sellPrice = source.getSellPrice().value;
+        costPrice = source.getCostPrice().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

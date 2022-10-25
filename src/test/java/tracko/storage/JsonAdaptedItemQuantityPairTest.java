@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.item.InventoryList;
-import tracko.model.item.Price;
 import tracko.model.item.Quantity;
-import tracko.model.item.RecordedItem;
 import tracko.model.order.ItemQuantityPair;
 
 public class JsonAdaptedItemQuantityPairTest {
@@ -24,8 +22,8 @@ public class JsonAdaptedItemQuantityPairTest {
 
     private static final Integer VALID_QUANTITY = PAIR_2.getQuantityValue();
     private static final String VALID_ITEM_NAME = PAIR_2.getItemName();
-    private static final Double VALID_COST_PRICE = PAIR_2.getItem().getCostPrice().price;
-    private static final Double VALID_SELL_PRICE = PAIR_2.getItem().getSellPrice().price;
+    private static final Double VALID_COST_PRICE = PAIR_2.getItem().getCostPrice().value;
+    private static final Double VALID_SELL_PRICE = PAIR_2.getItem().getSellPrice().value;
     private static final InventoryList VALID_INVENTORY_LIST = INVENTORY_LIST;
 
     @Test

@@ -13,16 +13,16 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should be non-negative and rounded to the nearest cent.";
 
-    public final Double price;
+    public final Double value;
 
     /**
      * Constructs a {@code Price}.
-     * @param price The Price of an item.
+     * @param value The Price of an item.
      */
-    public Price(Double price) {
-        requireAllNonNull(price);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = roundToNearestCent(price);
+    public Price(Double value) {
+        requireAllNonNull(value);
+        checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
+        this.value = roundToNearestCent(value);
     }
 
     /**
@@ -37,8 +37,8 @@ public class Price {
         return isPositive && isRoundedTo2dp;
     }
 
-    public Double getPrice() {
-        return this.price;
+    public Double getValue() {
+        return this.value;
     }
 
     /**
@@ -54,7 +54,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return String.format("%.2f", price);
+        return String.format("%.2f", value);
     }
 
     @Override
@@ -68,6 +68,6 @@ public class Price {
         }
 
         Price otherPrice = (Price) other;
-        return (this.price.equals(otherPrice.getPrice()));
+        return (this.value.equals(otherPrice.getValue()));
     }
 }

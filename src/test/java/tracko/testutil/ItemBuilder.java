@@ -83,7 +83,7 @@ public class ItemBuilder {
      */
     public ItemBuilder withSellPrice(Double sellPrice) {
         this.sellPrice = new Price(sellPrice);
-        this.sellPrice.getPrice();
+        this.sellPrice.getValue();
         return this;
     }
 

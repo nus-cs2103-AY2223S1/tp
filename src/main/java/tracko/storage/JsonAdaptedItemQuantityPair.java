@@ -44,8 +44,8 @@ public class JsonAdaptedItemQuantityPair {
      */
     public JsonAdaptedItemQuantityPair(ItemQuantityPair itemQuantityPair) {
         this.itemName = itemQuantityPair.getItemName();
-        this.costPrice = itemQuantityPair.getItem().getCostPrice().price;
-        this.sellPrice = itemQuantityPair.getItem().getSellPrice().price;
+        this.costPrice = itemQuantityPair.getItem().getCostPrice().value;
+        this.sellPrice = itemQuantityPair.getItem().getSellPrice().value;
         this.quantity = itemQuantityPair.getQuantity().getValue();
     }
 
@@ -88,8 +88,8 @@ public class JsonAdaptedItemQuantityPair {
         try {
             InventoryItem modelInventoryItem = inventoryList.get(itemName);
             // Aside from item name, we want to check that prices are consistent with inventory item
-            boolean arePricesConsistent = modelInventoryItem.getCostPrice().price.equals(costPrice)
-                    && modelInventoryItem.getSellPrice().price.equals(sellPrice);
+            boolean arePricesConsistent = modelInventoryItem.getCostPrice().value.equals(costPrice)
+                    && modelInventoryItem.getSellPrice().value.equals(sellPrice);
             if (!arePricesConsistent) {
                 throw new IllegalValueException(String.format(MESSAGE_ITEM_NOT_FOUND, itemName));
             }
