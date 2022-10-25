@@ -39,11 +39,11 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (args.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         EditInternshipDescriptor editInternshipDescriptor = new EditInternshipDescriptor();
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {

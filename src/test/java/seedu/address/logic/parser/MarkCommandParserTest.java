@@ -52,16 +52,16 @@ public class MarkCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + APPLICATION_STATUS_ACCEPTED, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + APPLICATION_STATUS_ACCEPTED, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + APPLICATION_STATUS_ACCEPTED, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + APPLICATION_STATUS_ACCEPTED, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string", ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
 

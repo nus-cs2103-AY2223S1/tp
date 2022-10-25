@@ -25,12 +25,11 @@ public class MarkCommandParser implements Parser<MarkCommand> {
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+        if (args.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
+
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         if (argMultimap.getValue(PREFIX_APPLICATION_STATUS).isPresent()) {
             ApplicationStatus applicationStatus = ParserUtil.parseApplicationStatus(
