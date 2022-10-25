@@ -20,4 +20,5 @@ This term describes an operation whose result is not affected by current conditi
 
 For example:
 
-- disconnecting a power plug from the wall is *state-independent*, as it will cause the appliance to be inactive regardless of whether it was active in the first place
+- disconnecting a power plug from the wall can be considered *state-independent*, as it will force the appliance to be inactive regardless of whether it was active in the first place
+- filling a (hole-free) bucket with a hose over a long period of time can also be considered *state-independent*, as the bucket will be ultimately filled regardless of the initial water level in the bucket
