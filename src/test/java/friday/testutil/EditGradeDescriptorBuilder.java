@@ -26,7 +26,7 @@ public class EditGradeDescriptorBuilder {
         descriptor = new EditGradeDescriptor();
         descriptor.setRa1(gradesList.getGrade("RA1"));
         descriptor.setRa2(gradesList.getGrade("RA2"));
-        descriptor.setMt(gradesList.getGrade("Mid-Term"));
+        descriptor.setMt(gradesList.getGrade("Midterm"));
         descriptor.setFt(gradesList.getGrade("Finals"));
         descriptor.setPa(gradesList.getGrade("Practical"));
     }
@@ -51,7 +51,7 @@ public class EditGradeDescriptorBuilder {
         case "Practical":
             descriptor.setPa(newGrade);
             break;
-        case "Mid-Term":
+        case "Midterm":
             descriptor.setMt(newGrade);
             break;
         case "Finals":

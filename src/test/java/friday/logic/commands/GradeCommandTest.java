@@ -47,10 +47,10 @@ public class GradeCommandTest {
     @Test
     public void execute_someGradesSpecifiedUnfilteredList_success() {
         Student firstStudent = model.getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder(firstStudent).withGradesList("Mid-Term", GRADE_STUB)
+        Student editedStudent = new StudentBuilder(firstStudent).withGradesList("Midterm", GRADE_STUB)
                 .build();
         EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder()
-                .withGrade("Mid-Term", GRADE_STUB).build();
+                .withGrade("Midterm", GRADE_STUB).build();
         GradeCommand gradeCommand = new GradeCommand(INDEX_FIRST_STUDENT, descriptor);
 
         String expectedMessage = String.format(GradeCommand.MESSAGE_EDIT_GRADE_SUCCESS, editedStudent);

@@ -71,7 +71,7 @@ public class StudentCard extends UiPart<Region> {
         ra1.setText(student.getGradesList().getGrade("RA1").score + " %");
         ra2.setText(student.getGradesList().getGrade("RA2").score + " %");
         pa.setText(student.getGradesList().getGrade("Practical").score + " %");
-        mt.setText(student.getGradesList().getGrade("Mid-Term").score + " %");
+        mt.setText(student.getGradesList().getGrade("Midterm").score + " %");
         ft.setText(student.getGradesList().getGrade("Finals").score + " %");
     }
 

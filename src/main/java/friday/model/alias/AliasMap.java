@@ -15,12 +15,12 @@ import friday.model.alias.exceptions.DuplicateAliasException;
  */
 public class AliasMap {
 
-    private final Map<String, String> internalMap = new HashMap<>();
+    private final Map<Alias, ReservedKeyword> internalMap = new HashMap<>();
 
     /**
      * Returns true if the hashmap contains an alias with value {@code key}.
      */
-    public boolean contains(String key) {
+    public boolean contains(Alias key) {
         requireNonNull(key);
         return internalMap.containsKey(key);
     }
@@ -34,10 +34,10 @@ public class AliasMap {
         requireNonNull(toAdd);
         requireNonNull(keyword);
         assert ReservedKeyword.isValidReservedKeyword(keyword.toString());
-        if (contains(toAdd.toString())) {
+        if (contains(toAdd)) {
             throw new DuplicateAliasException();
         }
-        internalMap.put(toAdd.toString(), keyword.toString());
+        internalMap.put(toAdd, keyword);
     }
 
     /**
@@ -46,10 +46,10 @@ public class AliasMap {
      */
     public void remove(Alias toRemove) {
         requireNonNull(toRemove);
-        if (!contains(toRemove.toString())) {
+        if (!contains(toRemove)) {
             throw new AliasNotFoundException();
         }
-        internalMap.remove(toRemove.toString());
+        internalMap.remove(toRemove);
     }
 
     /**
@@ -58,8 +58,9 @@ public class AliasMap {
      */
     public String getKeyword(String toFind) {
         requireNonNull(toFind);
-        if (contains(toFind)) {
-            return internalMap.get(toFind);
+        Alias temp = new Alias(toFind);
+        if (contains(temp)) {
+            return internalMap.get(temp).toString();
         }
         return toFind;
     }
@@ -68,18 +69,18 @@ public class AliasMap {
      * Returns a Set view of the mappings contained in alias map.
      * This set will not contain any duplicate aliases.
      */
-    public Set<Map.Entry<String, String>> entrySet() {
+    public Set<Map.Entry<Alias, ReservedKeyword>> entrySet() {
         return internalMap.entrySet();
     }
 
     /**
      * Replaces the contents of this map with alias, keyword pair.
      */
-    public void setAliases(Set<Map.Entry<String, String>> aliases) {
+    public void setAliases(Set<Map.Entry<Alias, ReservedKeyword>> aliases) {
         requireAllNonNull(aliases);
-        for (Map.Entry<String, String> aliasKeywordPair : aliases) {
-            Alias alias = new Alias(aliasKeywordPair.getKey());
-            ReservedKeyword keyword = new ReservedKeyword(aliasKeywordPair.getValue());
+        for (Map.Entry<Alias, ReservedKeyword> aliasKeywordPair : aliases) {
+            Alias alias = aliasKeywordPair.getKey();
+            ReservedKeyword keyword = aliasKeywordPair.getValue();
             add(alias, keyword);
         }
     }
@@ -89,10 +90,10 @@ public class AliasMap {
      */
     public String displayAliases() {
         String result = "";
-        Set<Map.Entry<String, String>> keyValuePairs = entrySet();
-        for (Map.Entry<String, String> keyValuePair : keyValuePairs) {
-            String key = keyValuePair.getKey();
-            String value = keyValuePair.getValue();
+        Set<Map.Entry<Alias, ReservedKeyword>> keyValuePairs = entrySet();
+        for (Map.Entry<Alias, ReservedKeyword> keyValuePair : keyValuePairs) {
+            String key = keyValuePair.getKey().toString();
+            String value = keyValuePair.getValue().toString();
             result = result + "\n" + key + " : " + value;
         }
         return result;

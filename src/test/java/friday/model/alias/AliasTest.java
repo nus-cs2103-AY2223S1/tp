@@ -25,12 +25,12 @@ public class AliasTest {
         assertThrows(NullPointerException.class, () -> Alias.isValidAlias(null));
 
         // invalid alias
-        assertFalse(Alias.isValidAlias(new Alias(AddCommand.COMMAND_WORD))); // alias in reserved keyword
-        assertFalse(Alias.isValidAlias(new Alias(DeleteCommand.COMMAND_WORD))); // alias in reserved keyword
+        assertFalse(Alias.isValidAlias(AddCommand.COMMAND_WORD)); // alias in reserved keyword
+        assertFalse(Alias.isValidAlias(DeleteCommand.COMMAND_WORD)); // alias in reserved keyword
 
         // valid name
-        assertTrue(Alias.isValidAlias(new Alias(VALID_ALIAS_1))); // valid alias
-        assertTrue(Alias.isValidAlias(new Alias(VALID_ALIAS_2))); // valid alias
+        assertTrue(Alias.isValidAlias(VALID_ALIAS_1)); // valid alias
+        assertTrue(Alias.isValidAlias(VALID_ALIAS_2)); // valid alias
     }
 }
 

@@ -49,7 +49,7 @@ public class GradeCommandParser implements Parser<GradeCommand> {
                     argMultimap.getValue(PREFIX_PRACTICAL).get()));
         }
         if (argMultimap.getValue(PREFIX_MIDTERM).isPresent()) {
-            editGradeDescriptor.setMt(ParserUtil.parseGrade("Mid-Term",
+            editGradeDescriptor.setMt(ParserUtil.parseGrade("Midterm",
                     argMultimap.getValue(PREFIX_MIDTERM).get()));
         }
         if (argMultimap.getValue(PREFIX_FINALS).isPresent()) {

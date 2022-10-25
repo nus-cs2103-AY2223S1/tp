@@ -44,28 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-        TelegramHandle telegramHandle;
-        Consultation consultation;
-        MasteryCheck masteryCheck;
-
-        if (argMultimap.getValue(PREFIX_TELEGRAMHANDLE).isPresent()) {
-            telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
-                    .getValue(PREFIX_TELEGRAMHANDLE).get());
-        } else {
-            telegramHandle = TelegramHandle.EMPTY_TELEGRAMHANDLE;
-        }
-
-        if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            consultation = ParserUtil.parseConsultation(argMultimap.getValue(PREFIX_CONSULTATION).get());
-        } else {
-            consultation = Consultation.EMPTY_CONSULTATION;
-        }
-
-        if (argMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
-            masteryCheck = ParserUtil.parseMasteryCheck(argMultimap.getValue(PREFIX_MASTERYCHECK).get());
-        } else {
-            masteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
-        }
+        TelegramHandle telegramHandle = getTelegramHandle(argMultimap);
+        Consultation consultation = getConsultation(argMultimap);
+        MasteryCheck masteryCheck = getMasteryCheck(argMultimap);
 
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
 
@@ -86,4 +67,28 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    private static TelegramHandle getTelegramHandle(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getValue(PREFIX_TELEGRAMHANDLE).isPresent()) {
+            return ParserUtil.parseTelegramHandle(argumentMultimap
+                    .getValue(PREFIX_TELEGRAMHANDLE).get());
+        } else {
+            return TelegramHandle.EMPTY_TELEGRAMHANDLE;
+        }
+    }
+
+    private static Consultation getConsultation(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            return ParserUtil.parseConsultation(argumentMultimap.getValue(PREFIX_CONSULTATION).get());
+        } else {
+            return Consultation.EMPTY_CONSULTATION;
+        }
+    }
+
+    private static MasteryCheck getMasteryCheck(ArgumentMultimap argumentMultimap) throws ParseException {
+        if (argumentMultimap.getValue(PREFIX_MASTERYCHECK).isPresent()) {
+            return ParserUtil.parseMasteryCheck(argumentMultimap.getValue(PREFIX_MASTERYCHECK).get());
+        } else {
+            return MasteryCheck.EMPTY_MASTERYCHECK;
+        }
+    }
 }

@@ -3,6 +3,8 @@ package friday.model;
 import java.util.Map;
 import java.util.Set;
 
+import friday.model.alias.Alias;
+import friday.model.alias.ReservedKeyword;
 import friday.model.student.Student;
 import javafx.collections.ObservableList;
 
@@ -21,6 +23,6 @@ public interface ReadOnlyFriday {
      * Returns a Set view of the mappings contained in alias map.
      * This set will not contain any duplicate aliases.
      */
-    Set<Map.Entry<String, String>> getAliasMap();
+    Set<Map.Entry<Alias, ReservedKeyword>> getAliasMap();
 
 }

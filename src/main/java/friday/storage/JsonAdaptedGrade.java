@@ -52,7 +52,7 @@ public class JsonAdaptedGrade {
             return new Grade("RA2", score);
 
         case 2:
-            return new Grade("Mid-Term", score);
+            return new Grade("Midterm", score);
 
         case 3:
             return new Grade("Practical", score);

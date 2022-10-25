@@ -149,11 +149,6 @@ public class SortCommandTest {
         }
 
         @Override
-        public boolean hasAlias(String key) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addAlias(Alias alias, ReservedKeyword keyword) {
             throw new AssertionError("This method should not be called.");
         }
