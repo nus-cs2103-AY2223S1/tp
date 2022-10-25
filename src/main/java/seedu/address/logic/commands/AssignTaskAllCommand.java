@@ -29,7 +29,7 @@ public class AssignTaskAllCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntaskall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to all users in a group. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to all members in a group. "
             + "Members with the same task are ignored.\n"
             + "Workload specified must be low, medium or high.\n"
             + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format\n"

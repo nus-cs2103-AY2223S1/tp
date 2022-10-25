@@ -26,7 +26,7 @@ public class DeleteGroupMemberCommand extends Command {
     public static final String COMMAND_WORD = "deletemember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a member from the specified group.\n"
-            + " Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
+            + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " g/Group 1 n/Bobby Chua";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
