@@ -168,6 +168,11 @@ public class ModelManager implements Model {
         return true;
     }
 
+    @Override
+    public void nextSem() throws CommandException {
+        getFilteredPersonList().forEach(person -> person.updatePrevMods());
+        getUser().updatePrevMods();
+    }
 
 
     //=========== Filtered Person List Accessors =============================================================

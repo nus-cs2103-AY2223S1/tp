@@ -57,4 +57,10 @@ public abstract class User {
      * @throws CommandException No user or no such lesson.
      */
     public abstract void removeLesson(Lesson lesson) throws CommandException;
+
+    /**
+     * Shifts all Current Modules {@code Set<CurrentModules>} into {@code Set<PreviousModules>}.
+     */
+    public abstract void updatePrevMods() throws CommandException;
+
 }

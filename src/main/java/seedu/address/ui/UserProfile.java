@@ -86,7 +86,7 @@ public class UserProfile extends UiPart<Region> {
     }
 
     /**
-     * Updates the current user
+     * Updates the current user.
      *
      * @param user new current user
      */
@@ -125,6 +125,36 @@ public class UserProfile extends UiPart<Region> {
             planModulesTags.getChildren().clear();
             prevModulesTags.getChildren().clear();
         }
+    }
+
+    /**
+     * Updates the current user when a new semester begins.
+     *
+     * @param user new current user
+     */
+    public void updatePrevMods(User user) {
+        this.user = user;
+        userLabel.setText("User: ");
+        name.setText(user.getName().fullName);
+        phone.setText(user.getPhone().value);
+        address.setText(user.getAddress().value);
+        email.setText(user.getEmail().value);
+        github.setText("Github: " + user.getGithub().value);
+        currModuleDescription.setText("Current Modules: ");
+        prevModuleDescription.setText("Previous Modules: ");
+        planModuleDescription.setText("Planned Modules: ");
+        currModulesTags.getChildren().clear();
+        prevModulesTags.getChildren().clear();
+        planModulesTags.getChildren().clear();
+        user.getCurrModules().stream()
+                .sorted(Comparator.comparing(mod -> mod.moduleName))
+                .forEach(mod -> currModulesTags.getChildren().add(new Label(mod.moduleName)));
+        user.getPrevModules().stream()
+                .sorted(Comparator.comparing(mod -> mod.moduleName))
+                .forEach(mod -> prevModulesTags.getChildren().add(new Label(mod.moduleName)));
+        user.getPlanModules().stream()
+                .sorted(Comparator.comparing(mod -> mod.moduleName))
+                .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
     }
 
     /**

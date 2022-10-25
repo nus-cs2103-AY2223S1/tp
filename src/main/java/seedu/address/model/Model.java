@@ -128,5 +128,9 @@ public interface Model {
      */
     boolean setTimetable(Set<Lesson> lessons);
 
+    /**
+     * Updates the User's and all Persons in contacts list by shifting all current mods into previous mods.
+     */
+    void nextSem() throws CommandException;
 
 }

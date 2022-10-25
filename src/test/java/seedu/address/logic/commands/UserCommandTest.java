@@ -193,6 +193,11 @@ public class UserCommandTest {
         public Set<Lesson> getTimetable() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void nextSem() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

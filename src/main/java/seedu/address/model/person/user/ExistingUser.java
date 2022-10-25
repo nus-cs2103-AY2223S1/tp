@@ -121,6 +121,17 @@ public class ExistingUser extends User {
     }
 
     /**
+     * Shifts all Current Modules {@code Set<CurrentModules>} into {@code Set<PreviousModules>}.
+     */
+    @Override
+    public void updatePrevMods() {
+        Set<PreviousModule> temporary = new HashSet<>();
+        currModules.stream().forEach(currMod -> temporary.add(new PreviousModule(currMod.moduleName)));
+        prevModules.addAll(temporary);
+        currModules.clear();
+    }
+
+    /**
      * Returns true if both users have the same identity and data fields.
      * This defines a stronger notion of equality between two users.
      */

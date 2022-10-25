@@ -213,6 +213,10 @@ public class MainWindow extends UiPart<Stage> {
                 userProfile.update(logic.getUser());
             }
 
+            if (commandText.startsWith("nextsem")) {
+                userProfile.updatePrevMods(logic.getUser());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
