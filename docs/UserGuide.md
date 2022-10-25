@@ -154,12 +154,12 @@ Sorts all students in FRIDAY with the given criteria, in ascending or descending
 
 Format: `sort CRITERIA/ORDER`
 
-`CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (Consultation), or `m` (Mastery Check).
+`CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`.
 `ORDER` can be `asc` (ascending) or `desc` (descending). 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The names and Telegram handles are sorted in alphabetical order, while the consultations and Mastery Checks are sorted
-by time. 
+by time. The grades are sorted in numerical order. 
 </div>
 
 ### Getting User Guide link: `guide`

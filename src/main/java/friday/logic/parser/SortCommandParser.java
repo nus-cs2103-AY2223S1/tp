@@ -51,6 +51,11 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private SortCommand parseMain(ArgumentMultimap argMultimap) throws ParseException {
         Comparator<Student> comparator = null;
+
+        assert argMultimap.size() < 1;
+
+        // Since there is only one prefix in argMultimap, only one of the following getComparator methods will
+        // return a proper comparator
         comparator = getNameComparator(argMultimap, comparator);
         comparator = getTelegramHandleComparator(argMultimap, comparator);
         comparator = getConsultationComparator(argMultimap, comparator);
