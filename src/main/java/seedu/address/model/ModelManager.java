@@ -195,6 +195,16 @@ public class ModelManager implements Model {
         return targetTask;
     }
 
+    @Override
+    public void filterTask() {
+        addressBook.filterTask();
+    }
+
+    @Override
+    public void sortTasks() {
+        addressBook.sortTasks();
+    }
+
     //=========== Filtered Project List Accessors =============================================================
 
     /**

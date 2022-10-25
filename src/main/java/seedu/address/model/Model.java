@@ -198,4 +198,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    void filterTask();
+
+    /**
+     * Sorts the task list.
+     */
+    void sortTasks();
 }
