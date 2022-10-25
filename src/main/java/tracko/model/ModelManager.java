@@ -115,34 +115,13 @@ public class ModelManager implements Model {
     @Override
     public void setOrder(Order orderToEdit, Order editedOrder) {
         requireAllNonNull(orderToEdit, editedOrder);
-
         trackO.setOrder(orderToEdit, editedOrder);
     }
 
     @Override
     public void markOrder(Order orderToMark, boolean isPaid, boolean isDelivered) {
         requireNonNull(orderToMark);
-
         trackO.markOrder(orderToMark, isPaid, isDelivered);
-
-        if (isPaid) {
-            orderToMark.setPaid();
-        }
-
-        // decreases the quantity of each item delivered in the inventory list according to the quantity delivered
-        if (isDelivered) {
-            getInventoryList().forEach(item -> orderToMark.getItemList().forEach(orderItem -> {
-                if (item.isSameItem(orderItem.getItem())) {
-                    item.reduceItem(orderItem.getQuantityValue());
-                }
-            }));
-
-            orderToMark.setDelivered();
-        }
-
-        if (orderToMark.isCompleted()) {
-            setOrder(orderToMark, orderToMark.getImmutableItemsCopy());
-        }
     }
 
     // FILTERED ORDER LIST ACCESSORS ========================================================================

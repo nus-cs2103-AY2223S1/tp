@@ -86,7 +86,7 @@ public class InventoryItem implements Item {
      * @param deliveredQuantity quantity of the item that has been delivered
      */
     public void reduceItem(Integer deliveredQuantity) {
-        Quantity newQuantity = new Quantity(this.totalQuantity.getValue() - deliveredQuantity);
+        Quantity newQuantity = new Quantity(this.totalQuantity.value - deliveredQuantity);
         this.totalQuantity = newQuantity;
     }
 

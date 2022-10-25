@@ -65,6 +65,12 @@ public class TrackO implements ReadOnlyTrackO {
         orders.delete(order);
     }
 
+    public void setOrder(Order orderToEdit, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(orderToEdit, editedOrder);
+    }
+
     /**
      * Marks an order as paid and/or delivered
      * @param order order to be marked
@@ -79,9 +85,10 @@ public class TrackO implements ReadOnlyTrackO {
         // decreases the quantity of each item delivered in the inventory list according to the quantity delivered
         if (isDelivered) {
             items.reduceItems(order);
-
             order.setDelivered();
         }
+
+        setOrder(order, order.getImmutableItemsCopy());
     }
 
     @Override
@@ -170,16 +177,9 @@ public class TrackO implements ReadOnlyTrackO {
         return orders.hashCode();
     }
 
-    public void setOrder(Order orderToEdit, Order editedOrder) {
-        requireNonNull(editedOrder);
-
-        orders.setOrder(orderToEdit, editedOrder);
-    }
-
     public void refreshInventoryData() {
         items.refreshData();
     }
-
 
     public void refreshOrderData() {
         orders.refreshData();

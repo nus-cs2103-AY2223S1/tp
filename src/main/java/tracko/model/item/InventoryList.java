@@ -66,7 +66,7 @@ public class InventoryList implements Iterable<InventoryItem> {
      */
     public void reduceItems(Order deliveredOrder) {
         // decreases the quantity of each item delivered in the inventory list according to the quantity delivered
-        internalList.stream().forEach(item -> deliveredOrder.getItemList().stream().forEach(orderItem -> {
+        internalList.forEach(item -> deliveredOrder.getItemList().forEach(orderItem -> {
             if (item.isSameItem(orderItem.getItem())) {
                 item.reduceItem(orderItem.getQuantityValue());
             }
