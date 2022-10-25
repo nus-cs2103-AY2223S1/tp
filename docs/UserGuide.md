@@ -165,7 +165,7 @@ Sorts all students in FRIDAY with the given criteria, in ascending or descending
 Format: `sort CRITERIA/ORDER`
 
 * `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
-* `ORDER` can be `asc` (ascending) or `desc` (descending)
+* `ORDER` can be `a` (ascending) or `d` (descending)
 * Names and Telegram handles are sorted in alphabetical order
 * Consultations and Mastery Checks are sorted by time
 * Grades are sorted in numerical order

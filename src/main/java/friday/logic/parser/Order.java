@@ -6,8 +6,8 @@ import static friday.commons.util.AppUtil.checkArgument;
  * The order for sorting students. Can be ascending or descending.
  */
 public class Order {
-    public static final String ASCENDING_WORD = "asc";
-    public static final String DESCENDING_WORD = "desc";
+    public static final String ASCENDING_WORD = "a";
+    public static final String DESCENDING_WORD = "d";
 
     public static final String MESSAGE_CONSTRAINTS = "Order should only be '" + ASCENDING_WORD + "' or '"
             + DESCENDING_WORD + "', and it should not be blank";
