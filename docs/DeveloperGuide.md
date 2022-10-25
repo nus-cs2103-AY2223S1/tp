@@ -134,6 +134,7 @@ The `Model` component,
 **Person** : [`Person.java`](https://github.com/Tan-Jin-Waye/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
 
 The `Person` component in relation to `Addressbook` and `UniquePersonList` is given in further detail here.
+
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 The `Person` component,
@@ -144,6 +145,7 @@ The `Person` component,
 **Group** : [`Group.java`](https://github.com/Tan-Jin-Waye/tp/blob/master/src/main/java/seedu/address/model/group/Group.java)
 
 The `Group` component in relation to `Addressbook` and `UniqueGroupList` is given in further detail here.
+
 <img src="images/GroupClassDiagram.png" width="450" />
 
 The `Group` component,
@@ -198,11 +200,7 @@ added to the `AddressBook` model, reflected below:
 
 **Note:** The associated parser `AddGroupCommandParser` checks that the entered group name is valid, following same
 conventions as naming a `Person`, and the command itself `AddGroupCommand` checks that a group of the same name does
-not already exist in the app. Below is an activity diagram reflecting this:
-<!-- Add Group Activity Diagram -->
-
-As a detailed overview, the `addgroup` command operates via the following sequence diagram: 
-<!-- Add Group Sequence Diagram -->
+not already exist in the app.
 
 **Step 3.**
 Suppose now the user adds `Alice` and `Bob` as members of the CS2103T, and assigns `Alice` a task under the group.
@@ -221,9 +219,11 @@ The `AddressBook` model now looks like this:
 **Note:** The associated parser `DeleteGroupCommandParser` checks that the entered group name is valid, following same
 conventions as naming a `Person`, and the command itself `DeleteGroupCommand` checks that a group with this name exists
 in the app. Below is an activity diagram reflecting this:
+
 <img src="images/DeleteGroupActivityDiagram.png" width="550" />
 
 As a detailed overview, the `deletegroup` command operates via the following sequence diagram:
+
 <img src="images/DeleteGroupSequenceDiagram.png" width="700" />
 
 -----
