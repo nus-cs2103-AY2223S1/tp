@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.workbook.commons.core.GuiSettings;
 import seedu.workbook.model.internship.Internship;
 
+
 /**
  * The API of the Model component.
  */
