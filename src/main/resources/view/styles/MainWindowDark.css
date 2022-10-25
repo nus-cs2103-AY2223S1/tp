@@ -82,7 +82,7 @@
 
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: transparent;
-    -fx-border-color: transparent transparent transparent #13315C;
+    -fx-border-color: transparent transparent transparent;
 }
 
 .split-pane {
@@ -341,7 +341,7 @@
 }
 
 #cardPanePortfolio {
-    -fx-background-color: -second-background;
+    -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
@@ -448,8 +448,7 @@
 }
 
 #scroller {
-    -fx-background-color: -second-background;
-
+    -fx-background-color: transparent;
 }
 
 #portfolio {
@@ -460,6 +459,9 @@
     -fx-background-color: -main-background;
 }
 
+#personDetailsSplitPane {
+    -fx-background-color: -white-background;
+}
 
 
 
