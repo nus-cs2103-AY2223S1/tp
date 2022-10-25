@@ -60,7 +60,7 @@ public class Debt {
      * @return Debt that is a copy of this debt.
      */
     public Debt copyDebt() {
-        return new Debt(this.description, this.money);
+        return new Debt(description, money, date, time);
     }
 
     /**
