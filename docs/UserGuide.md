@@ -364,7 +364,7 @@ This command will require two flags:
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS`
 * You cannot open a link from a non-existent module code.
-* You cannot open a link using a non-existent link alias from a valid module code.
+* You cannot open a link using a non-existent link alias from an existing module.
 
 Example:
 ```
