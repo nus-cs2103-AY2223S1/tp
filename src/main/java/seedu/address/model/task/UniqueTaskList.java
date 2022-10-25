@@ -50,6 +50,13 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Sorts the tasks according to deadline.
+     */
+    public void sortTasks() {
+        internalList.sort((a, b) -> a.compareTo(b));
+    }
+
+    /**
      * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
      * The task identity of {@code editedTask} must not be the same as another existing task in the list.

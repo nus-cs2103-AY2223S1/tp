@@ -206,6 +206,7 @@ public interface Model {
     void filterTask();
 
     /**
+<<<<<<< HEAD
      * Update the task of the filtered task list to set it to be a completed task.
      *
      * @param targetIndex The index of the task in the filtered task list.
@@ -218,4 +219,10 @@ public interface Model {
      * @param targetIndex The index of the task in the filtered task list.
      */
     void unmarkTask(Index targetIndex);
+
+    /**
+     * Sorts the task list.
+     */
+    void sortTasks();
+
 }

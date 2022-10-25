@@ -244,6 +244,10 @@ public class AddCommandTest {
         public void unmarkTask(Index index) {
             throw new AssertionError("this mehtod should not be called.");
         }
+
+        public void sortTasks() {
+            throw new AssertionError(("This method should not be called."));
+        }
     }
 
     /**

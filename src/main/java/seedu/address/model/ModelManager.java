@@ -222,7 +222,10 @@ public class ModelManager implements Model {
         TaskMark newTaskMark = new TaskMark("false");
         Task newTask = new Task(deadline, taskDescription, newTaskMark);
         setTask(task, newTask);
+    }
 
+    public void sortTasks() {
+        addressBook.sortTasks();
     }
 
     //=========== Filtered Project List Accessors =============================================================
