@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
@@ -37,6 +38,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
@@ -117,6 +119,34 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
+
+    @Override
+    public void commitAddressBook() {
+        versionedAddressBook.commit(addressBook);
+    }
+
+    @Override
+    public void undoAddressBook() {
+        versionedAddressBook.undo();
+        setAddressBook(versionedAddressBook.getCurrentState());
+    }
+
+    @Override
+    public void redoAddressBook() {
+        versionedAddressBook.redo();
+        setAddressBook(versionedAddressBook.getCurrentState());
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddressBook.canRedo();
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -208,12 +238,51 @@ public class ModelManager implements Model {
     }
 
     //=========== Tag List Accessors =============================================================
+    @Override
+    public void addTag(Tag tag) {
+        addressBook.addTag(tag);
+    }
+
+    @Override
+    public void addTagCount(Tag tag) {
+        addressBook.addTagCount(tag);
+    }
+
+    @Override
+    public void decreaseTagCount(Tag toDelete) {
+        addressBook.decreaseTagCount(toDelete);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        addressBook.removeTag(target);
+    }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasTag(tag);
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        addressBook.setTag(target, editedTag);
+    }
+
+    @Override
+    public void updateFilteredTagList(Predicate<Tag> predicate) {
+        requireNonNull(predicate);
+        filteredTags.setPredicate(predicate);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Tag> getTagList() {
-        return addressBook.getTagList();
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
     }
 }

@@ -79,11 +79,11 @@ public class Task {
     }
 
     /**
-     * Returns an icon representing if the task is done.
-     * @return String representation of an icon.
+     * Returns a string representing if the task is done.
+     * @return String representation of a task completion.
      */
-    public String getStatusIcon() {
-        return (isDone ? "[X]" : "[ ]");
+    public String getStatusForDisplay() {
+        return (isDone ? "completed" : "incomplete");
     }
 
     /**

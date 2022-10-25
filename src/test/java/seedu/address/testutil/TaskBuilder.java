@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,11 +17,13 @@ public class TaskBuilder {
     public static final String DEFAULT_DESCRIPTION = "read book";
     public static final String DEFAULT_DEADLINE = "12-09-2022";
     public static final Boolean DEFAULT_STATUS = false;
+    public static final int DEFAULT_ID = 1;
 
     private Description description;
     private Deadline deadline;
     private Boolean isDone;
     private Set<Tag> tags;
+    private Id id;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -30,6 +33,7 @@ public class TaskBuilder {
         deadline = new Deadline(DEFAULT_DEADLINE);
         isDone = DEFAULT_STATUS;
         tags = new HashSet<>();
+        id = new Id(DEFAULT_ID);
     }
 
     /**
@@ -40,6 +44,7 @@ public class TaskBuilder {
         deadline = taskToCopy.getDeadline();
         isDone = taskToCopy.getStatus();
         tags = new HashSet<>(taskToCopy.getTags());
+        id = taskToCopy.getId();
     }
 
     /**
@@ -74,7 +79,15 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Id} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withId(int id) {
+        this.id = new Id(id);
+        return this;
+    }
+
     public Task build() {
-        return new Task(description, deadline, isDone, tags);
+        return new Task(description, deadline, isDone, tags, id);
     }
 }

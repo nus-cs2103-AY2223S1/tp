@@ -44,6 +44,7 @@ public class AddTaskCommand extends Command {
         requireNonNull(model);
 
         model.addTask(newTask);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, newTask));
     }
 

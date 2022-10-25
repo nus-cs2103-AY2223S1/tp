@@ -1,6 +1,7 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "id": "ce8e09f9-a330-4387-b862-2c5523264142",
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -8,6 +9,7 @@
     "remark" : "free on monday",
     "tagged" : [ "friends" ]
   }, {
+    "id": "1b75e80a-7f43-40b1-b576-f8e2b26a873c",
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
@@ -15,6 +17,7 @@
     "remark" : "free on tuesday",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
+    "id": "d6c74f5b-c510-4838-a86f-d4bb22a7424",
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
@@ -22,6 +25,7 @@
     "remark" : "free on wednesday",
     "tagged" : [ ]
   }, {
+    "id": "1a442dad-8807-4ad6-a256-b63aff2c9175",
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
@@ -29,6 +33,7 @@
     "remark" : "",
     "tagged" : [ "friends" ]
   }, {
+    "id": "bab841db-58a7-4db7-9271-45b3b641883e",
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
@@ -36,6 +41,7 @@
     "remark" : "",
     "tagged" : [ ]
   }, {
+    "id": "f5a4c27e-3aa0-410f-8e4c-f8120630006b",
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
@@ -43,6 +49,7 @@
     "remark": "",
     "tagged" : [ ]
   }, {
+    "id": "b8a3a593-2d0f-4a55-8345-a08f5ef14d5f",
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",

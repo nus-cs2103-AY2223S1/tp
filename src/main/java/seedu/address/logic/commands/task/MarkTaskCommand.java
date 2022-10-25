@@ -68,6 +68,7 @@ public class MarkTaskCommand extends Command {
 
         model.setTask(taskToMark, markedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
     }
 
