@@ -21,14 +21,11 @@ public class GetPastAppointmentCommand extends GetCommand {
 
     public static final String PAST_APPOINTMENT_PREFIX = "/appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all past appointments of patient identified by "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PAST_APPOINTMENT_PREFIX
+            + ": Gets all past appointments of patient identified by "
             + "the index number and displays them from most recent to oldest.\n"
-            + "Parameters: "
-            + PAST_APPOINTMENT_PREFIX + " INDEX (must be a positive integer)\n"
-            + "Example: "
-            + COMMAND_WORD + " "
-            + PAST_APPOINTMENT_PREFIX
-            + " 3";
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + PAST_APPOINTMENT_PREFIX + " 3";
 
     public static final String MESSAGE_OBTAIN_PAST_APPOINTMENTS_SUCCESS =
             "Obtained Past Appointments of Patient:\n%1$s";
@@ -56,7 +53,6 @@ public class GetPastAppointmentCommand extends GetCommand {
             output.append(appointment.toString()).append("\n");
         }
 
-        //return new CommandResult(output.toString());
         return new CommandResult(String.format(MESSAGE_OBTAIN_PAST_APPOINTMENTS_SUCCESS, output));
     }
 }
