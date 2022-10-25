@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.uninurse.logic.commands.AddConditionCommand;
 import seedu.uninurse.logic.commands.AddGenericCommand;
 import seedu.uninurse.logic.commands.AddMedicationCommand;
+import seedu.uninurse.logic.commands.AddRemarkCommand;
 import seedu.uninurse.logic.commands.AddTagCommand;
 import seedu.uninurse.logic.commands.ClearCommand;
 import seedu.uninurse.logic.commands.Command;
@@ -86,6 +87,9 @@ public class UninurseBookParser {
 
         case DeleteMedicationCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
             return new DeleteMedicationCommandParser().parse(arguments);
+
+        case AddRemarkCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
+            return new AddRemarkCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
