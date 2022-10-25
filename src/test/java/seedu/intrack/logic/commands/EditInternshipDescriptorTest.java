@@ -6,8 +6,8 @@ import static seedu.intrack.logic.commands.CommandTestUtil.DESC_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_SALARY_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 
@@ -45,8 +45,8 @@ public class EditInternshipDescriptorTest {
         editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withPosition(VALID_POSITION_MSFT).build();
         assertFalse(DESC_AAPL.equals(editedAapl));
 
-        // different phone -> returns false
-        editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withPhone(VALID_PHONE_MSFT).build();
+        // different salary -> returns false
+        editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withSalary(VALID_SALARY_MSFT).build();
         assertFalse(DESC_AAPL.equals(editedAapl));
 
         // different email -> returns false

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_SALARY_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
@@ -34,7 +34,7 @@ public class InternshipTest {
         assertFalse(ALICE.isSameInternship(null));
 
         // same name, all other attributes different -> returns true
-        Internship editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_MSFT)
+        Internship editedAlice = new InternshipBuilder(ALICE).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
                 .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
 
@@ -47,7 +47,7 @@ public class InternshipTest {
         assertFalse(ALICE.isSameInternship(editedAlice));
 
         // same name, same position, all other attributes different -> returns true
-        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_MSFT)
+        editedAlice = new InternshipBuilder(ALICE).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
                 .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
 
@@ -91,8 +91,8 @@ public class InternshipTest {
         editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_MSFT).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_MSFT).build();
+        // different salary -> returns false
+        editedAlice = new InternshipBuilder(ALICE).withSalary(VALID_SALARY_MSFT).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false

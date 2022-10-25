@@ -33,11 +33,11 @@
 
             <FlowPane fx:id="tags" />
             <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
             <TextFlow fx:id="website" />
+            <FlowPane fx:id="tasks" styleClass="cell_small_label"/>
             <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
-            <FlowPane fx:id="tasks"/>
         </VBox>
     </GridPane>
 </HBox>

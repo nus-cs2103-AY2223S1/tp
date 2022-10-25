@@ -3,8 +3,8 @@ package seedu.intrack.logic.parser;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
@@ -18,9 +18,9 @@ import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
-import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
+import seedu.intrack.model.internship.Salary;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.internship.Website;
@@ -38,10 +38,10 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSITION, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_WEBSITE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSITION, PREFIX_EMAIL,
+                        PREFIX_WEBSITE, PREFIX_SALARY, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_POSITION, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_WEBSITE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_POSITION, PREFIX_EMAIL, PREFIX_WEBSITE, PREFIX_SALARY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -49,15 +49,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
         Status status = new Status("Progress"); // add command will add an in-progress status by default
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Website website = ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get());
         List<Task> taskList = new ArrayList<>();
         taskList.add(new Task());
+        Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
 
-        Internship internship = new Internship(name, position, status, phone, email, website, taskList, tagList,
+        Internship internship = new Internship(name, position, status, email, website, taskList, salary, tagList,
                 remark);
 
         return new AddCommand(internship);

@@ -3,15 +3,15 @@
     "name": "Valid Internship",
     "position": "Valid Position",
     "status": "Progress",
-    "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "website": "www.google.com",
+    "salary": "200000"
   }, {
-    "name": "Internship With Invalid Phone Field",
+    "name": "Internship With Invalid Salary Field",
     "position": "Valid Position",
     "status": "Progress",
-    "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "website": "www.google.com",
+    "salary": "hello"
   } ]
 }
