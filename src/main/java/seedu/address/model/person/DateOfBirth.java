@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -65,6 +66,14 @@ public class DateOfBirth implements Comparable<DateOfBirth> {
      */
     public String toLogFormat() {
         return this.date.format(logFormatter);
+    }
+
+    /**
+     * Returns the integer age in years of a person with this date of birth
+     */
+    public int toAge() {
+        LocalDate currDate = LocalDate.now();
+        return Period.between(this.date, currDate).getYears();
     }
 
     @Override

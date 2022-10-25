@@ -15,6 +15,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static final int AGE_GROUP_SIZE = 5;
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -84,6 +86,12 @@ public class Person {
     }
     public Uid getUid() {
         return uid;
+    }
+
+    public String getAgeGroup() {
+        int age = dob.toAge();
+        age = (int) (Math.ceil(age / AGE_GROUP_SIZE) * AGE_GROUP_SIZE);
+        return String.format("%d-%dyo", age - AGE_GROUP_SIZE, age);
     }
 
     /**

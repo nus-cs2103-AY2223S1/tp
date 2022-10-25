@@ -48,4 +48,12 @@ public class StatisticData {
     public Data getData() {
         return this.chartData;
     }
+
+    /**
+     * Increments {@code value} by 1, to facillitate generating of statistics.
+     */
+    public void updateValueByOne() {
+        double initialValue = this.getValue();
+        this.chartData.setPieValue(initialValue + 1);
+    }
 }

@@ -19,21 +19,30 @@ public class StatisticDataList {
     //ObservableList of StatisticData points.
     private final ObservableList<StatisticData> chartDataList = FXCollections.observableArrayList();
 
-    //unmodifiable ObservableList<PieChart.Data> that is outputted to set the statistics
-    private final ObservableList<Data> unmodifiableChartDataList =
-            FXCollections.unmodifiableObservableList(this.toPieChartData());
-
-
     /**
      * Adds {@code toAdd} into the ObservableList of StatisticData points.
      * {@code toAdd} cannot be null and cannot have the same name as an existing StatisticData point.
      */
-    public void add(StatisticData toAdd) {
+    public void addStatistic(StatisticData toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateDataException();
         }
         this.chartDataList.add(toAdd);
+    }
+
+    /**
+     * Increments {@code value} of StatisticData point by 1 with the same name as specified, else add
+     *  a new StatisticData point with the specified name.
+     */
+    public void addToStatistic(String name) {
+        for (StatisticData data : chartDataList) {
+            if (data.getName().equals(name)) {
+                data.updateValueByOne();
+                return;
+            }
+        }
+        this.addStatistic(new StatisticData(name, 1));
     }
 
     /**
@@ -46,11 +55,18 @@ public class StatisticDataList {
     }
 
     public ObservableList<Data> asUnmodifiableObservableList() {
-        return unmodifiableChartDataList;
+        return FXCollections.unmodifiableObservableList(this.toPieChartData());
     }
 
     public ObservableList<StatisticData> getChartDataList() {
         return this.chartDataList;
+    }
+
+    /**
+     * Returns true if the StatisticDataList is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return this.chartDataList.size() == 0;
     }
 
     /**

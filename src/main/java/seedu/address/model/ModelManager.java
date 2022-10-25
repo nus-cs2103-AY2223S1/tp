@@ -27,12 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
-    private final ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-        new PieChart.Data("Grapefruit", 13),
-        new PieChart.Data("Oranges", 25),
-        new PieChart.Data("Plums", 10),
-        new PieChart.Data("Pears", 22),
-        new PieChart.Data("Apples", 30));
+    private final ObservableList<PieChart.Data> data;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        data = FXCollections.observableArrayList();
     }
 
     public ModelManager() {

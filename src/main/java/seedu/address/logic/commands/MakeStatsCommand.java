@@ -3,13 +3,14 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
+import seedu.address.model.statistics.StatisticDataList;
 
 /**
 * Generates statistics for the event specified
@@ -24,6 +25,7 @@ public class MakeStatsCommand extends Command {
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TYPE + "g";
 
     public static final String SHOWING_STATS_MESSAGE = "Opened statistics window.";
+    public static final String NO_STATS_MESSAGE = "No person is tagged to event, no statistics to generate.";
 
     public final Index index;
     public final boolean isGenderStatistic;
@@ -39,19 +41,46 @@ public class MakeStatsCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         //todo: add UID list integration
         ObservableList<Event> eventList = model.getFilteredEventList();
         Event targetEvent = eventList.get(index.getZeroBased());
-        ObservableList<Person> personList = model.getFilteredPersonList();
-        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-            new PieChart.Data("Grapefruit", 13),
-            new PieChart.Data("Oranges", 25),
-            new PieChart.Data("Plums", 10),
-            new PieChart.Data("Pears", 22),
-            new PieChart.Data("Apples", 30));
-        model.setData(data);
+        ObservableList<Person> personList = targetEvent.getUids().getPersons(model);
+        StatisticDataList generatedStats;
+        if (this.isGenderStatistic) {
+            generatedStats = getGenderStatistic(personList);
+        } else {
+            generatedStats = getAgeStatistic(personList);
+        }
+        if (generatedStats.isEmpty()) {
+            throw new CommandException(NO_STATS_MESSAGE);
+        }
+        model.setData(generatedStats.asUnmodifiableObservableList());
         return new CommandResult(SHOWING_STATS_MESSAGE,
         false, true, false);
     }
+
+    /**
+     * Returns a {@code StatisticDataList} with the data populated with the gender statistics
+     */
+    public StatisticDataList getGenderStatistic(ObservableList<Person> personList) {
+        StatisticDataList newDataList = new StatisticDataList();
+        for (Person person : personList) {
+            Gender gender = person.getGender();
+            newDataList.addToStatistic(gender.toString());
+        }
+        return newDataList;
+    }
+
+    /**
+     * Returns a {@code StatisticDataList} with the data populated with the age statistics
+     */
+    public StatisticDataList getAgeStatistic(ObservableList<Person> personList) {
+        StatisticDataList newDataList = new StatisticDataList();
+        for (Person person : personList) {
+            newDataList.addToStatistic(person.getAgeGroup());
+        }
+        return newDataList;
+    }
+
 }

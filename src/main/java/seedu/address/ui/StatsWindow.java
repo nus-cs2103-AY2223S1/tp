@@ -27,14 +27,9 @@ public class StatsWindow extends UiPart<Stage> {
      */
     public StatsWindow(Stage root) {
         super(FXML, root);
-        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
-                new PieChart.Data("Grapefruit", 13),
-                new PieChart.Data("Oranges", 25),
-                new PieChart.Data("Plums", 10),
-                new PieChart.Data("Pears", 22),
-                new PieChart.Data("Apples", 30));
+        ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
         chart.setData(data);
-        chart.setTitle("Fruits");
+        chart.setTitle("Statistics");
     }
 
     /**

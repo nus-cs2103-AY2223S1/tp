@@ -44,9 +44,9 @@ public class MakeStatsCommandParser {
 
         //check which type of statistics is requested
         boolean isGenderStatistic;
-        if (this.TYPE_GENDER.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
+        if (TYPE_GENDER.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
             isGenderStatistic = true;
-        } else if (this.TYPE_AGE.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
+        } else if (TYPE_AGE.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
             isGenderStatistic = false;
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE));
