@@ -10,10 +10,12 @@ import modtrekt.model.task.Task;
 public class TaskBuilder {
     public static final String DEFAULT_DESC = "Complete Assignment";
     public static final String DEFAULT_MOD_CODE = "CS2103T";
+    public static final Task.Priority DEFAULT_PRIORITY = Task.Priority.NONE;
 
     private Description description;
     private ModCode modCode;
     private boolean isArchived;
+    private Task.Priority priority;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -21,6 +23,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         description = new Description(DEFAULT_DESC);
         modCode = new ModCode(DEFAULT_MOD_CODE);
+        priority = DEFAULT_PRIORITY;
     }
 
     /**
@@ -54,7 +57,15 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code priority} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withPriority(Task.Priority priority) {
+        this.priority = priority;
+        return this;
+    }
+
     public Task build() {
-        return new Task(description, modCode, isArchived, Task.Priority.NONE);
+        return new Task(description, modCode, isArchived, priority);
     }
 }

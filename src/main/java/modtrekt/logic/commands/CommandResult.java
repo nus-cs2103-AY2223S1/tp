@@ -18,7 +18,8 @@ public class CommandResult {
     private final boolean exit;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields,
+     * other fields set to default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
@@ -41,7 +42,6 @@ public class CommandResult {
     public boolean isShowHelp() {
         return showHelp;
     }
-
     public boolean isExit() {
         return exit;
     }

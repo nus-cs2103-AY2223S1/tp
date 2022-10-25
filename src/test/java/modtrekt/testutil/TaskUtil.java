@@ -1,7 +1,5 @@
 package modtrekt.testutil;
 
-import static modtrekt.logic.parser.CliSyntax.PREFIX_TASK;
-
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.model.task.Task;
 
@@ -21,7 +19,7 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code task}'s details.
      */
     public static String getTaskDetails(Task t) {
-        return PREFIX_TASK + t.getDescription().description + " -c " + t.getModule()
+        return "'" + t.getDescription().description + "'" + " -c " + t.getModule()
                 .toString();
     }
 }

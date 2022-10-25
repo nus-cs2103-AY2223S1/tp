@@ -23,7 +23,7 @@ public class ModCode {
     public ModCode(String code) {
         requireNonNull(code);
         checkArgument(isValidCode(code), MESSAGE_CONSTRAINTS);
-        value = code;
+        value = code.toUpperCase();
     }
 
     /**
