@@ -25,14 +25,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.*;
 import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.ClassStorage;
 
@@ -133,19 +127,14 @@ public class EditCommand extends Command {
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Class updatedDisplayedClass;
 
-        if (personToEdit.getMarkStatus().isPresent) {
-            updatedDisplayedClass = personToEdit.getDisplayedClass();
-        } else {
-            updatedDisplayedClass = updatedClassDateTime;
-        }
-
+        // Unmodifiable states by the user
+        Mark markStatus = personToEdit.getMarkStatus();
+        Class displayedClass = personToEdit.getDisplayedClass();;
 
         return new Person(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
                 updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes,
-                updatedTags, personToEdit.getMarkStatus(), updatedDisplayedClass);
-
+                updatedTags, markStatus, displayedClass);
     }
 
     @Override

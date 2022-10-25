@@ -110,6 +110,11 @@ public class Person {
         this.aClass = aClass;
     }
 
+    /**
+     * Updates the class to be displayed according to the Person's attendance status.
+     *
+     * @param displayedClass class that should be displayed on the schedule if present.
+     */
     public void setDisplayClass(Class displayedClass) {
         if (mark.isPresent) {
             this.displayedClass = displayedClass;
@@ -250,8 +255,13 @@ public class Person {
         return this.displayedClass.startTime.compareTo(person.displayedClass.startTime);
     }
 
+    /**
+     * Updates the class to be displayed if the dates match.
+     *
+     * @param date to be checked with.
+     */
     public void updateDisplayClass(LocalDate date) {
-        if (aClass.date != null && aClass.date.equals(date)) {
+        if (aClass.date != null && aClass.isSameDateAs(date)) {
             this.displayedClass = aClass;
             mark.reset();
         }

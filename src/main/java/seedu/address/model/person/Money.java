@@ -41,6 +41,12 @@ public class Money {
         return amount >= 0;
     }
 
+    /**
+     * Computes the sum of a predefined value and the current value.
+     *
+     * @param AmountToAdd the money to be added.
+     * @return Money that consists of the sum of the 2 amounts.
+     */
     public Money addTo(Money AmountToAdd) {
         Integer amountSum = this.value + AmountToAdd.value;
         return new Money(amountSum);
