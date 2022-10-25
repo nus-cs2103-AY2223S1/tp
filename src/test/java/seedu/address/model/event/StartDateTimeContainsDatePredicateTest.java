@@ -68,7 +68,7 @@ public class StartDateTimeContainsDatePredicateTest {
 
         // Dates match end date, email but does not match name
         predicate = new StartDateTimeContainsDatePredicate(Arrays.asList(date, dateTime));
-        assertFalse(predicate.test(new EventBuilder().withStartDateTime("8/10/2022").withEndDateTime("10/10 2021")
+        assertFalse(predicate.test(new EventBuilder().withStartDateTime("8/10/2022").withEndDateTime("10/10/2022")
                 .build()));
     }
 
