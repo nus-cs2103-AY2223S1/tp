@@ -28,6 +28,13 @@ public class ArgumentTokenizer {
         return extractArguments(argsString, positions);
     }
 
+    /**
+     * Returns the number of prefixes that the user has input in argsString .
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixes   Prefixes to find in the arguments string
+     * @return           Returns the number of prefixes
+     */
     public static int numberOfPrefixes(String argsString, Prefix... prefixes) {
         return findAllPrefixPositions(argsString, prefixes).size();
     }
