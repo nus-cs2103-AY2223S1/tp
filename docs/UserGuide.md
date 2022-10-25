@@ -16,6 +16,9 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
   * Deleting a contact
   * Clearing all contacts
   * Adding a meeting
+  * Add contact to meeting
+  * Delete contact from meeting
+  * Edit meeting details
   * Listing all meetings
   * Searching meetings
   * Filtering meetings
@@ -148,9 +151,9 @@ Examples:
 
 Find persons whose tags contain the corresponding tag.
 
-Format: `find TAG [MORE_TAG]`
+Format: `findtag [MORE_TAG]`
 
-* The search is case-insensitive. e.g `friend` will match `friends`
+* The search is case-insensitive. e.g `Friend` will match `friend`
 * Only the Tag is searched.
 * Only full words will be matched e.g. `Friend` will not match `Friends`
 
@@ -181,6 +184,37 @@ Adds a meeting to the meeting list.
 Format: `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]`
 
 * `index` must be a positive integer corresponding to a contact
+
+### Add contacts to meeting: `addpersontomeeting`
+Adds the list of contacts to the specified meeting.
+
+Format: `addpersontomeeting MEETING_INDEX; [NAMES]`
+
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Delete contacts from meeting: `deletepersonfrommeeting`
+Deletes the list of contacts from the specified meeting.
+
+Format: `deletepersonfrommeeting MEETING_INDEX; [NAMES]`
+
+* Will not be able to delete person from meeting if only 1 person left in the meeting.
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Editing a meeting : `editmeeting`
+
+Edits an existing meeting in the address book.
+
+Format: `editmeeting INDEX [d/DESCRIPTION] [dd/DATE] [l/LOCATION]`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `editmeeting 1 d/test 1 l/nus` Edits the description and location of the 1st meeting to be `test 1` and `nus` respectively.
+*  `editmeeting 2 dd/23-09-2022 2359` Edits the date of the 2nd meeting to be `23-09-2022 2359`.
 
 ### Listing all meetings : `listmeeting`
 
