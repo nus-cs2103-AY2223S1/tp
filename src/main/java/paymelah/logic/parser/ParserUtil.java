@@ -59,7 +59,8 @@ public class ParserUtil {
      */
     public static Set<Index> parseIndices(String indices) throws ParseException {
         requireNonNull(indices);
-        List<String> oneBasedIndices = Arrays.stream(indices.replaceAll("\\s+", " ")
+        String trimmedIndices = indices.trim();
+        List<String> oneBasedIndices = Arrays.stream(trimmedIndices.replaceAll("\\s+", " ")
                 .split(" ")).collect(Collectors.toList());
 
         final Set<Index> indexSet = new HashSet<>();

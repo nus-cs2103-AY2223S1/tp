@@ -66,7 +66,6 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
         Set<Index> nonSelfIndexList;
 
         try {
-            System.out.println(preamble);
             nonSelfIndexList = ParserUtil.parseIndices(preamble);
         } catch (ParseException pe) {
             logger.warning("Split Debt command Person index list has items that cannot be parsed to an Index");
