@@ -132,7 +132,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            Predicate<Set<Tag>> tagPredicate = (setOfTags -> setOfTags.containsAll(tagSet));
+            Predicate<Set<Tag>> tagPredicate = setOfTags -> setOfTags.containsAll(tagSet);
 
             this.tagPredicate = tagPredicate;
         }
