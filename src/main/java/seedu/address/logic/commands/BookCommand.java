@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AppointmentList;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
@@ -59,23 +60,8 @@ public class BookCommand extends Command {
         }
 
         Person personToBookFor = lastShownList.get(targetIndex.getZeroBased());
-        List<Appointment> appointments = personToBookFor.getAppointments();
-        bookAppointment(appointments, appointment);
-        appointment.setPatient(personToBookFor);
-
-        model.addAppointment(appointment);
+        AppointmentList.addAppointment(model, personToBookFor, appointment);
         return new CommandResult(String.format(MESSAGE_BOOK_APPOINTMENT_SUCCESS, personToBookFor));
-    }
-
-    private boolean hasSameAppointment(List<Appointment> appointments, Appointment appointment) {
-        return appointments.stream().anyMatch(x -> x.isSameTime(appointment));
-    }
-
-    private void bookAppointment(List<Appointment> appointments, Appointment appointment) throws CommandException {
-        if (hasSameAppointment(appointments, appointment)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-        }
-        appointments.add(appointment);
     }
 
     @Override

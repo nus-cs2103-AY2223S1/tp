@@ -18,6 +18,7 @@ import static seedu.address.testutil.TypicalPersons.GEORGE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Key;
+import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentTest {
     @Test
@@ -46,6 +47,9 @@ public class AppointmentTest {
 
     @Test
     public void isYearCompareToCorrect() {
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        APPOINTMENT_CARL.setPatient(CARL);
+
         // 2010-12-31 23:45 < 2019-12-10 16:30
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
@@ -61,6 +65,9 @@ public class AppointmentTest {
 
     @Test
     public void isSecondCompareToCorrect() {
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        APPOINTMENT_CARL.setPatient(CARL);
+
         // 2010-12-31 23:45 < 2019-12-10 16:30
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
@@ -79,6 +86,9 @@ public class AppointmentTest {
 
     @Test
     public void isCompareToCorrect() {
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        APPOINTMENT_CARL.setPatient(CARL);
+
         // APPOINTMENT_CARL < APPOINTMENT_BENSON
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
@@ -88,6 +98,12 @@ public class AppointmentTest {
 
         // APPOINTMENT_BENSON > APPOINTMENT_DAVID
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_DANIEL), 1);
+
+        Appointment appointmentWithLowerPatient =
+                new AppointmentBuilder(APPOINTMENT_BENSON).withPatient(BENSON).build();
+        Appointment appointmentWithHigherPatient =
+                new AppointmentBuilder(SECOND_APPOINTMENT_CARL).withPatient(CARL).build();
+        assertEquals(appointmentWithLowerPatient.compareTo(appointmentWithHigherPatient), -1);
     }
 
     @Test

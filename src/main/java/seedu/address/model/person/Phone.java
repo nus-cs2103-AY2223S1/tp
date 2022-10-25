@@ -33,6 +33,21 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns -1 if this phone appears before the other phone, and
+     * returns 0 if this phone has the same order as the other phone, and
+     * returns 1 if this phone appears after the other phone.
+     *
+     * @param phone The other person to compare with.
+     */
+    public int compareTo(Phone phone) {
+        return this.value.compareTo(phone.value) < 0
+                ? -1
+                : this.value.compareTo(phone.value) > 0
+                ? 1
+                : 0;
+    }
+
     @Override
     public String toString() {
         return value;

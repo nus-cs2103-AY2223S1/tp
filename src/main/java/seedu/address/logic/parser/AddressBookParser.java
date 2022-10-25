@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.INCOMPLETE_COMMAND;
+import static seedu.address.commons.core.Messages.INCOMPLETE_LIST_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -27,6 +28,8 @@ import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UngroupCommand;
+import seedu.address.logic.commands.UnhideAppointmentsCommand;
+import seedu.address.logic.commands.UnhidePatientsCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -38,7 +41,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)"
-            + "(?<descriptor>(?i:\\s+appts|\\s+patients)?)(?<arguments>.*)");
+            + "(?<descriptor>(?i:\\s+appts|\\s+patients|\\s+all)?)(?<arguments>.*)");
 
     private final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
@@ -109,6 +112,14 @@ public class AddressBookParser {
                 throw new ParseException(INCOMPLETE_COMMAND);
             }
 
+        case UnhidePatientsCommand.COMMAND_WORD:
+            if (descriptor.equals(UnhidePatientsCommand.DESCRIPTOR_WORD)) {
+                return new UnhidePatientsCommandParser().parse(arguments);
+            } else if (descriptor.equals(UnhideAppointmentsCommand.DESCRIPTOR_WORD)) {
+                return new UnhideAppointmentsCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
         case BookCommand.COMMAND_WORD:
             return new BookCommandParser().parse(arguments);
 
@@ -127,7 +138,7 @@ public class AddressBookParser {
             } else if (!arguments.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
+                throw new ParseException(INCOMPLETE_LIST_COMMAND);
             }
 
         case ExitCommand.COMMAND_WORD:
