@@ -30,7 +30,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book.\n" + "Parameters: "
             + PREFIX_NAME + "NAME " + PREFIX_PHONE + "PHONE " + PREFIX_EMAIL + "EMAIL " + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_GENDER + "GENDER " + PREFIX_BIRTHDATE + "BIRTHDATE " + PREFIX_RACE + "RACE " + PREFIX_RELIGION
-            + "RELIGION " + "[" + PREFIX_SURVEY + "SURVEY]... "  + "[" + PREFIX_TAG + "TAG]...\n"
+            + "RELIGION " + "[" + PREFIX_SURVEY + "SURVEY]... " + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com " + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GENDER + "male " + PREFIX_BIRTHDATE + "1998-11-28 " + PREFIX_RACE + "Chinese " + PREFIX_RELIGION
