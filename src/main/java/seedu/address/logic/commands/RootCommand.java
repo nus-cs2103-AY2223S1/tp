@@ -6,7 +6,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 /**
- * Main command which contains all commands used in TruthTable.
+ * An empty command which instantiates all possible first-level commands.
  */
 @Command(name = "", subcommands = {
     AddCommand.class,
@@ -23,7 +23,7 @@ import picocli.CommandLine.Command;
     UnmarkCommand.class,
     HelpCommand.class
 })
-public class MainCommand implements Runnable {
+public class RootCommand implements Runnable {
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec spec;
 

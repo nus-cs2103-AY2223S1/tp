@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.MainCommand;
+import seedu.address.logic.commands.RootCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -20,7 +20,7 @@ import seedu.address.model.team.Url;
  * Parses user input.
  */
 public class AddressBookParser {
-    private final CommandLine commandLine = new CommandLine(new MainCommand())
+    private final CommandLine commandLine = new CommandLine(new RootCommand())
             .registerConverter(Name.class, new NameConverter())
             .registerConverter(Email.class, new EmailConverter())
             .registerConverter(Phone.class, new PhoneConverter())
@@ -44,7 +44,7 @@ public class AddressBookParser {
             CommandLine.ParseResult parseResult = commandLine.parseArgs(args);
             CommandLine.ParseResult commandExecuted = parseResult.subcommand();
 
-            // Since all commands are defined to be subcommands of MainCommand, there will always be a non-null
+            // Since all commands are defined to be subcommands of RootCommand, there will always be a non-null
             // subcommand inside the parsed result
             assert commandExecuted != null;
 
