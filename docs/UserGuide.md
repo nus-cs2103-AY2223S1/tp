@@ -72,23 +72,23 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a person to the app.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION s/SURVEY [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE ra/RACE re/RELIGION [s/SURVEY]… [t/TAG]…`
 
 - Adds a surveyee with the all the descriptions listed.
 - All descriptors have to be specified and follow their own specified format.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of surveys and tags (including 0)
 </div>
 
 Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/male b/1989-10-1 ra/White American re/Christian s/Environment Survey` Adds a person with the descriptions as stated.
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal g/female b/1991-11-31 ra/Chinese re/Buddhist s/Prison Survey` 
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal g/female b/1991-11-31 ra/Chinese re/Buddhist` 
 
 ### Listing all persons : `list`
 
@@ -100,7 +100,7 @@ Format: `list`
 
 Edits an existing person in Survin.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY] [t/TAG]…`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY]… [t/TAG]…`
 
 - Edits the surveyee at the specified INDEX. The index refers to the index number of the surveyee you wish to edit, as shown in the display list. The index must be a **positive integer**.
 - At least one of the optional fields has to be provided.
@@ -113,7 +113,7 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -169,11 +169,20 @@ Examples:
 - `clone 1 p/91234567 e/johndoe@example.com` Add a new person with all details of the 1st person except the phone number and email will be updated to `91234567` and `johndoe@example.com` respectively.
 - `clone 2 n/Betsy Crower t/` Add a new person with all details of the 2nd person except the name will be updated to `Betsy Crower` and all tags are removed.
 
-### Viewing a person: `view`
+### Viewing a person : `view`
 
 Views the attributes of all surveyees with some specified attributes.
 
 Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
+
+- The search is case-insensitive. e.g `alex` will match `Alex`
+- The order of the keywords does not matter. e.g. `Alex Tan` will match `Tan Alex`
+- For all attributes except `email` and `birthdate`, only full words will be matched e.g. `Ale` will not match `Alex`
+- Use quotes (") to `view` persons whose attributes contain an exact phrase.
+- For phrases not in quotes, `view` lists all persons whose attributes contain any of the words specified.
+    e.g. `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
+- When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each object.
+- When using `view` on any attribute, only the last prefix is parsed. e.g. `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Fields must be non-empty.
@@ -183,11 +192,33 @@ Examples:
 
 ```
 view g/female ra/chinese re/christian
-> Index: 15 Jane Doe 91234567 jane_doe@example.com, …
-> Index: 19 Jenette Doe 81234567 jenette_doe@example.com, …
+> 2 persons listed!
+> Jane Doe 91234567 jane_doe@example.com, …
+> Jenette Doe 81234567 jenette_doe@example.com, …
 ```
 
+### Change theme : `theme`
 
+Changes the theme of the app. Only "light" or "dark".
+
+Format: `THEME ("light" or "dark")`
+
+Examples:
+
+- `theme light`
+- `theme dark`
+
+### Toggle mode of list : `toggle-list-mode`
+
+Toggle the mode of the list between a compacted or an expanded mode.
+
+Expanded Mode:<br>
+![ExpandedMode](images/ExpandedMode.png)
+
+Compacted Mode:<br>
+![CompactedMode](images/CompactedMode.png)
+
+Format: `toggle-list-mode`
 
 ### Clearing all entries : `clear`
 

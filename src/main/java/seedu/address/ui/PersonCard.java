@@ -19,6 +19,9 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String DATE_FORMAT = "y-M-d";
 
+    private static final String ID_DONE = "done";
+    private static final String ID_NOT_DONE = "notDone";
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -73,7 +76,11 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         person.getSurveys().stream()
                 .sorted(Comparator.comparing(survey -> survey.survey))
-                .forEach(survey -> surveys.getChildren().add(new Label(survey.survey)));
+                .forEach(survey -> {
+                    Label label = new Label(survey.survey);
+                    label.setId(survey.isDone ? ID_DONE : ID_NOT_DONE);
+                    surveys.getChildren().add(label);
+                });
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);

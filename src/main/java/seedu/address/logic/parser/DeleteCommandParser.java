@@ -39,6 +39,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(args.trim());
         if (!matcher.matches()) {
+            if (Character.isDigit(args.trim().charAt(0))) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
             if (argMultimap.getValue(PREFIX_RACE).isPresent()) {
                 race = Optional.of(ParserUtil.parseRace(argMultimap.getValue(PREFIX_RACE).get()));
             }

@@ -36,7 +36,7 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     /**
-     * Restores address book to a previous state.
+     * Restores address book to a previous state if address book is undoable.
      */
     public void undo() {
         assert canUndo() : "should be undoable";

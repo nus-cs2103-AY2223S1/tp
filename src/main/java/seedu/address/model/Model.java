@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -57,6 +58,8 @@ public interface Model {
      * the address book.
      */
     boolean hasPerson(Person person);
+
+    Optional<Person> getPerson(Person person);
 
     /**
      * Deletes the given person. The person must exist in the address book.
