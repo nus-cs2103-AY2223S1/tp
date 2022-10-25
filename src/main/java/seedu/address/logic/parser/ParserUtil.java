@@ -29,7 +29,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    //public static final String MESSAGE_INVALID_DATE_TIME_INDEX = "Date time index is not a
+    // public static final String MESSAGE_INVALID_DATE_TIME_INDEX = "Date time index
+    // is not a
     // non-zero unsigned integer.";
 
     /**
@@ -90,7 +91,6 @@ public class ParserUtil {
         }
         return dateTimeIndexList;
     }
-
 
     /**
      * Parses a {@code String dateTime} into a {@code DateTime}.
@@ -201,6 +201,7 @@ public class ParserUtil {
     public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
         String trimmedGender = gender.trim();
+        trimmedGender = Gender.formatMisspelling(trimmedGender);
         if (!Gender.isValidGender(trimmedGender)) {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
@@ -216,6 +217,7 @@ public class ParserUtil {
     public static Category parseCategory(String category) throws ParseException {
         requireNonNull(category);
         String trimmedCategory = category.trim();
+        trimmedCategory = Category.formatMisspelling(trimmedCategory);
         if (!Category.isValidCategoryName(trimmedCategory)) {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
