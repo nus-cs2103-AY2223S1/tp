@@ -31,14 +31,16 @@ import seedu.address.storage.UserPrefsStorage;
  * Switches between different address books.
  */
 public class CheckoutCommand extends Command {
+
     public static final String COMMAND_WORD = "checkout";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches between different address books. "
-        + "Parameters: BOOK_NAME\n"
-        + "Example: " + COMMAND_WORD + " june-2022";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Switches between different address books.\n"
+            + "Parameters: BOOK_NAME\n"
+            + "Example: " + COMMAND_WORD + " june-2022";
 
     public static final String MESSAGE_SUCCESS = "Switched address book";
-    public static final String MESSAGE_SAME_BOOK = "This book is already checked out";
+    public static final String MESSAGE_SAME_BOOK = "Currently already in this address book";
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     private final Path addressBookFilePath;

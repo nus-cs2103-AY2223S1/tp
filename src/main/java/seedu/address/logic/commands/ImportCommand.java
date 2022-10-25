@@ -14,6 +14,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.Storage;
 
 /**
  * Adds one or more persons to the address book from an external json source.
@@ -73,7 +74,7 @@ public class ImportCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         checkValidFilePath();
         AddressBook toAppend = createAppendableAddressBook();

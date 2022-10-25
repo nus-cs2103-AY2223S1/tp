@@ -12,13 +12,18 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.Storage;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ImportCommand.
@@ -43,46 +48,56 @@ public class ImportCommandTest {
 
     @Test
     public void execute_pathIsDirectory_throwsCommandException() {
+        StorageStub storageStub = new StorageStub();
         assertThrows(CommandException.class,
-                ImportCommand.MESSAGE_PATH_IS_DIRECTORY, () -> new ImportCommand(TEST_DATA_FOLDER).execute(model));
+                ImportCommand.MESSAGE_PATH_IS_DIRECTORY, () ->
+                new ImportCommand(TEST_DATA_FOLDER).execute(model, storageStub));
     }
 
     @Test
     public void execute_fileDoesNotExist_throwsCommandException() {
+        StorageStub storageStub = new StorageStub();
         assertThrows(CommandException.class,
-                ImportCommand.MESSAGE_FILE_DOES_NOT_EXIST, () -> new ImportCommand(NON_EXISTENT_FILE).execute(model));
+                ImportCommand.MESSAGE_FILE_DOES_NOT_EXIST, () ->
+                new ImportCommand(NON_EXISTENT_FILE).execute(model, storageStub));
     }
 
     @Test
     public void execute_notJsonFormatFile_throwsCommandException() {
+        StorageStub storageStub = new StorageStub();
         assertThrows(CommandException.class,
                 ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE, () ->
-                        new ImportCommand(NOT_JSON_FORMAT_FILE).execute(model));
+                        new ImportCommand(NOT_JSON_FORMAT_FILE).execute(model, storageStub));
     }
 
     @Test
     public void execute_duplicatePersonsInFile_throwsCommandException() {
+        StorageStub storageStub = new StorageStub();
         assertThrows(CommandException.class,
                 ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE, () ->
-                        new ImportCommand(DUPLICATE_PERSON_FILE).execute(model));
+                        new ImportCommand(DUPLICATE_PERSON_FILE).execute(model, storageStub));
     }
 
     @Test
     public void execute_invalidPersonInFile_throwsCommandException() {
+        StorageStub storageStub = new StorageStub();
         assertThrows(CommandException.class,
                 ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE, () ->
-                        new ImportCommand(INVALID_PERSON_FILE).execute(model));
+                        new ImportCommand(INVALID_PERSON_FILE).execute(model, storageStub));
     }
 
     @Test
     public void execute_personInAddressBookAlsoInFile_throwsCommandException() {
+        StorageStub storageStub = new StorageStub();
         assertThrows(CommandException.class,
-                ImportCommand.MESSAGE_DUPLICATE_PERSON, () -> new ImportCommand(TYPICAL_PERSONS_FILE).execute(model));
+                ImportCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                new ImportCommand(TYPICAL_PERSONS_FILE).execute(model, storageStub));
     }
 
     @Test
     public void execute_fileWithNewPersons_importSuccessful() throws Exception {
-        CommandResult commandResult = new ImportCommand(VALID_PERSON_FILE).execute(model);
+        StorageStub storageStub = new StorageStub();
+        CommandResult commandResult = new ImportCommand(VALID_PERSON_FILE).execute(model, storageStub);
 
         assertEquals(String.format(ImportCommand.MESSAGE_SUCCESS), commandResult.getFeedbackToUser());
         assertTrue(model.hasPerson(HOON));
@@ -111,6 +126,57 @@ public class ImportCommandTest {
         assertFalse(importJerryCommand.equals(importTomCommand));
     }
 
+    /**
+     * A default storage stub that have all of the methods failing.
+     */
+    private class StorageStub implements Storage {
+
+        @Override
+        public Optional<ReadOnlyAddressBook> readAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveAddressBook(ReadOnlyAddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getUserPrefsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAddressBookStorage(AddressBookStorage addressBookStorage) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<UserPrefs> readUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+    }
 
 }
 
