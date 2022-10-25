@@ -21,6 +21,8 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static HelpWindow helpWindow;
+
     private static final String FXML = "MainWindow.fxml";
 
     private static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t12-1.github.io/tp/UserGuide.html";
@@ -33,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
-    private static HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
