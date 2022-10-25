@@ -2,12 +2,13 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.SortByDeadlineComparator;
+import seedu.address.model.task.DeadlineComparator;
+import seedu.address.model.task.DefaultComparator;
 
 /**
  * Parses input arguments and creates a new ListTaskCommand object
  */
-public class ListTaskCommandParser implements Parser<ListTaskCommand>{
+public class ListTaskCommandParser implements Parser<ListTaskCommand> {
 
     private static final String LIST_BY_DEADLINE_KEYWORD = "time";
 
@@ -18,9 +19,9 @@ public class ListTaskCommandParser implements Parser<ListTaskCommand>{
      */
     public ListTaskCommand parse(String args) throws ParseException {
         if (args.trim().equals(LIST_BY_DEADLINE_KEYWORD)) {
-            return new ListTaskCommand(new SortByDeadlineComparator());
+            return new ListTaskCommand(new DeadlineComparator());
         } else {
-            return new ListTaskCommand(null);
+            return new ListTaskCommand(new DefaultComparator());
         }
     }
 }

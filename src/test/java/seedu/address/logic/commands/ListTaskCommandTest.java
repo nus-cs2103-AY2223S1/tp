@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.DeadlineComparator;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListTaskCommand.
@@ -27,7 +28,8 @@ public class ListTaskCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListTaskCommand(null), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListTaskCommand(
+                new DeadlineComparator()), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

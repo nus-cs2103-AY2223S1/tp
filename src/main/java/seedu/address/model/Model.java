@@ -130,6 +130,11 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
+    /**
+     * Returns index of specified task in the task list.
+     */
+    int indexOf(Task task);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 

@@ -2,7 +2,10 @@ package seedu.address.model.task;
 
 import java.util.Comparator;
 
-public class SortByDeadlineComparator implements Comparator<Task> {
+/**
+ * Compares two tasks on the basis of the task with an earlier deadline ordered in frnnt of the other task.
+ */
+public class DeadlineComparator implements Comparator<Task> {
 
     @Override
     public int compare(Task a, Task b) {

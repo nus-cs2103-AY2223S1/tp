@@ -34,7 +34,7 @@ public class UnmarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = model.getSortedTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -42,7 +42,7 @@ public class UnmarkTaskCommand extends Command {
 
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!taskToUnmark.getStatus().getIsComplete()) {
+        if (!taskToUnmark.isTaskComplete()) {
             throw new CommandException(MESSAGE_TASK_ALREADY_NOT_COMPLETED);
         }
 
