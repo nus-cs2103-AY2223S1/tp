@@ -461,17 +461,19 @@ Step 1. The user executes `tag add 1 t/friend` command to add the tag, `friend`,
 
 Step 2. The `tag add` command collects the list of contacts shown, containing them in `Model#getFilteredPersonList()`.
 
-Step 3. The `tag add` command checks if the index is valid, calling `Index#getZeroBased()`.
+Step 3. The `tag add` command recreates the same contact and adds the new tag, containing this new contact in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
 
-Step 4. The `tag add` command receives the contact indicated by the index, containing it in `List#get(int index)`.
-
-Step 5. The `tag add` command creates the same contact with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
-
-Step 6. The `tag add` command replaces the old contact with the new, updated contact, calling `Model#setPerson(Person target, Person editedPerson)`.
+Step 4. The `tag add` command replaces the old contact with the new, updated contact, calling `Model#setPerson(Person target, Person editedPerson)`.
 
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
-(insert activity diagram here)
+![TagAddSequenceDiagram](images/TagAddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagAddCommandParser` and `TagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 5. The contact indicated by `INDEX` now has the `friend` tag.
 
 #### Design consideration
 
@@ -503,11 +505,15 @@ Step 1. The user executes `tag edit t/friend t/bestFriend` command to edit the o
 
 Step 2. The `tag edit` command edits the old tag with the new tag, calling `Model#editTag(oldTag, newTag)`.
 
-Step 3. The old tag on every contact and every task is now replaced with the new tag for display.
-
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
-(insert activity diagram here)
+![TagEditSequenceDiagram](images/TagEditSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagEditCommandParser` and `TagCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Step 3. The old tag on every contact and every task is now replaced with the new tag for display.
 
 #### Design consideration
 
@@ -536,9 +542,9 @@ Given below is an example usage scenario and how this feature behaves at each pa
 
 Step 1. The user launches the application. The user sees a list of contacts, each contact contains a name, a phone number, an email, an address and possibly some tags. Under each contacts' name, the current order the user sees is: `TAGS`, `PHONE`, `EMAIL` and `ADDRESS` (this is also the default order).
 
-Note:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The name will always be at the top of each contact as it is the most crucial information of each contact.
 
-* The name will always be at the top of each contact as it is the most crucial information of each contact.
+</div>
 
 Step 2. The user executes `customise order e/` as the user wants the emails appear right below the name.
 
@@ -560,15 +566,15 @@ The following sequence diagram illustrates Steps 3 to 9:
 
 ![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
 
-Note:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CustomiseOrderCommandParser` and `CustomiseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-* The lifeline for `CustomiseOrderCommandParser` and `CustomiseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 Step 10. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
 
-Note:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user closes the application and relaunches the application, the attributes are still in the same order that the user set previously.
 
-* If the user closes the application and relaunches the application, the attributes are still in the same order that the user set previously.
+</div>
 
 #### Design consideration
 * **Alternative 1 (current choice):** Sets the order by using 4 placeholder JavaFX `FlowPane`.
