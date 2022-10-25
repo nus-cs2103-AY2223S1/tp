@@ -1,12 +1,7 @@
 package friday.logic.commands;
 
 
-import static friday.logic.parser.CliSyntax.ORDER_ASCENDING;
-import static friday.logic.parser.CliSyntax.ORDER_DESCENDING;
-import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
-import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
-import static friday.logic.parser.CliSyntax.PREFIX_NAME;
-import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
+import static friday.logic.parser.CliSyntax.*;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
@@ -25,8 +20,14 @@ public class SortCommand extends Command {
             + "Parameters: CONDITION/ORDER, where CONDITION is "
             + PREFIX_NAME.toString().replace("/", "") + ", "
             + PREFIX_TELEGRAMHANDLE.toString().replace("/", "") + ", "
-            + PREFIX_CONSULTATION.toString().replace("/", "") + ", or "
-            + PREFIX_MASTERYCHECK.toString().replace("/", "") + ", and ORDER is "
+            + PREFIX_CONSULTATION.toString().replace("/", "") + ", "
+            + PREFIX_MASTERYCHECK.toString().replace("/", "") + ", "
+            + PREFIX_RA1.toString().replace("/", "") + ", "
+            + PREFIX_RA2.toString().replace("/", "") + ", "
+            + PREFIX_MIDTERM.toString().replace("/", "") + ", "
+            + PREFIX_PRACTICAL.toString().replace("/", "") + ", or "
+            + PREFIX_FINALS.toString().replace("/", "")
+            + ", and ORDER is "
             + ORDER_ASCENDING + " or "
             + ORDER_DESCENDING + "...\n"
             + "Example: " + COMMAND_WORD + " "

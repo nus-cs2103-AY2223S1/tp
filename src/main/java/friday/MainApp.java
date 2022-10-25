@@ -79,14 +79,14 @@ public class MainApp extends Application {
         try {
             fridayOptional = storage.readFriday();
             if (!fridayOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with sample Friday data");
+                logger.info("Data file not found. Will be starting with sample FRIDAY data");
             }
             initialData = fridayOptional.orElseGet(SampleDataUtil::getSampleFriday);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Friday");
+            logger.warning("Data file not in the correct format. Will be starting with an empty FRIDAY");
             initialData = new Friday();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Friday");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FRIDAY");
             initialData = new Friday();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Friday");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FRIDAY");
             initializedPrefs = new UserPrefs();
         }
 

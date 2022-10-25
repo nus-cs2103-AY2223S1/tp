@@ -19,7 +19,7 @@ public class FindCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie\n"
-            + "Note: when searching for exam grade use format `find [ra1:RA1_SCORE] [ra2:RA2_SCORE]`";
+            + "Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`";
 
     private final NameContainsKeywordsPredicate predicate;
 
