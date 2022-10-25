@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.predicate.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.ClassContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 
@@ -61,10 +62,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("e/ search not implemented yet.");
 
         } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-
-            // TODO: Implement address search here, remove the exception below
-            throw new ParseException("a/ search not implemented yet.");
-
+            String addressToFind = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).toString();
+            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressToFind)));
         } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
             String dateToFind = ParserUtil.parseDate(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
             return new FindCommand(new ClassContainsKeywordsPredicate(Arrays.asList(dateToFind)));
