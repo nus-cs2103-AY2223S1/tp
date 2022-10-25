@@ -138,8 +138,8 @@
 
 .pane-with-border {
      -fx-background-color: #070F37;
-     -fx-border-top-width: 0px;
-     -fx-border-radius: 0;
+     -fx-border-top-width: 5px;
+     -fx-border-radius: 5;
 }
 
 .status-bar {
@@ -210,7 +210,7 @@
     -fx-padding: 5;
     -fx-background-color: transparent;
 }
-#helpBtn:pressed {
+#helpBtn:hover {
     -fx-background-color: #fe7f9c;
     -fx-opacity: 0.5;
 }

@@ -22,7 +22,7 @@
       <VBox>
         <ButtonBar fx:id="buttonBar" VBox.vgrow="NEVER">
           <buttons>
-            <Button fx:id="helpButton" mnemonicParsing="false" text="Help" ButtonBar.buttonData="RIGHT" onAction="#handleHelp">
+            <Button fx:id="helpButton" mnemonicParsing="false" text="Help" onAction="#handleHelp">
               <graphic>
                 <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -34,13 +34,7 @@
 
           </buttons>
         </ButtonBar>
-        <!--
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-        -->
+
         <VBox fx:id="studentList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
