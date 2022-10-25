@@ -28,28 +28,35 @@ public class Attendees {
      */
     public Attendees(List<Profile> attendees) {
         requireNonNull(attendees);
-        this.attendees = attendees;
+        this.attendees = new ArrayList<>();
+        this.attendees.addAll(attendees);
     }
 
     /**
      * Returns an immutable profile set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Profile> getAttendees() {
+    public List<Profile> getAttendeesList() {
         Collections.sort(attendees);
         return Collections.unmodifiableList(attendees);
     }
 
-    public boolean add(Profile profile) {
-        return this.attendees.add(profile);
+    public void add(Profile profile) {
+        if (!hasAttendee(profile)) {
+            this.attendees.add(profile);
+        }
     }
 
-    public boolean remove(Profile profile) {
-        return this.attendees.remove(profile);
+    public void remove(Profile profile) {
+        this.attendees.remove(profile);
     }
 
     public boolean hasAttendee(Profile profile) {
         return this.attendees.contains(profile);
+    }
+
+    public boolean isEmpty() {
+        return this.attendees.isEmpty();
     }
 
     @Override
@@ -74,7 +81,7 @@ public class Attendees {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder("Attendees: ");
-        List<Profile> sortedAttendees = this.getAttendees();
+        List<Profile> sortedAttendees = this.getAttendeesList();
 
         for (int i = 0; i < sortedAttendees.size() - 1; i++) {
             Profile attendee = sortedAttendees.get(i);

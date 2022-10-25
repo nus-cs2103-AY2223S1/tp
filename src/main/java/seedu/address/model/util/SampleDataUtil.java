@@ -1,11 +1,14 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
@@ -20,33 +23,38 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    private static Profile ALEX = new Profile(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
+            new Telegram("lexyeoh"), getTagSet("friends"));
+    private static Profile BERNICE = new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.duke.nus.edu"),
+            Telegram.EMPTY_TELEGRAM, getTagSet("colleagues", "friends"));
+    private static Profile ROY = new Profile(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@u.nus.edu"),
+            Telegram.EMPTY_TELEGRAM, getTagSet("colleagues"));
+
     public static Profile[] getSampleProfiles() {
         return new Profile[] {
-            new Profile(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
-                new Telegram("lexyeoh"), getTagSet("friends")),
-            new Profile(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.duke.nus.edu"),
-                Telegram.EMPTY_TELEGRAM, getTagSet("colleagues", "friends")),
+            ALEX, BERNICE,
             new Profile(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@nus.edu.sg"),
                 new Telegram("charlotte_ol1"), getTagSet("neighbours")),
             new Profile(new Name("David Li"), new Phone("91031282"), new Email("lidavid@comp.nus.edu.sg"),
                 Telegram.EMPTY_TELEGRAM, getTagSet("family")),
             new Profile(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@u.yale-nus.edu.sg"),
-                Telegram.EMPTY_TELEGRAM, getTagSet("classmates")),
-            new Profile(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@u.nus.edu"),
-                Telegram.EMPTY_TELEGRAM, getTagSet("colleagues"))
+                    Telegram.EMPTY_TELEGRAM, getTagSet("classmates")),
+            ROY
         };
     }
 
     public static Event[] getSampleEvents() {
         return new Event[] {
             new Event(new Title("Discuss presentation"), new DateTime("11/10/2022 09:00"),
-                    new DateTime("11/10/2022 10:00"), getTagSet("CS2103T")),
+                    new DateTime("11/10/2022 10:00"), getTagSet("CS2103T"),
+                    new Attendees(List.of(BERNICE, ROY))),
             new Event(new Title("Practice"), new DateTime("11/10/2022 13:00"),
                     new DateTime("11/10/2022 14:00"), getTagSet("CCA")),
             new Event(new Title("Finish problem set"), new DateTime("12/10/2022 16:00"),
                     new DateTime("12/10/2022 17:00"), getTagSet("CS2109S")),
             new Event(new Title("Formal dinner"), new DateTime("12/10/2022 19:00"),
-                    new DateTime("12/10/2022 23:00"), getTagSet("RC"))
+                    new DateTime("12/10/2022 23:00"), getTagSet("RC"),
+                    new Attendees(List.of(ALEX)))
         };
     }
 

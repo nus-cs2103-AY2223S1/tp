@@ -25,6 +25,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private FlowPane attendees;
+    @FXML
     private Label startDateTime;
     @FXML
     private Label endDateTime;
@@ -45,6 +47,8 @@ public class EventCard extends UiPart<Region> {
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        event.getAttendees().getAttendeesList().stream()
+                .forEach(attendee -> attendees.getChildren().add(new Label(attendee.getName().toString())));
     }
 
     @Override

@@ -39,6 +39,18 @@ public class Event {
         attendees = new Attendees();
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Event(Title title, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags, Attendees attendees) {
+        requireAllNonNull(title, startDateTime, endDateTime, tags, attendees);
+        this.title = title;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.tags.addAll(tags);
+        this.attendees = attendees;
+    }
+
     public Title getTitle() {
         return title;
     }
@@ -140,8 +152,10 @@ public class Event {
             tags.forEach(builder::append);
         }
 
-        builder.append(System.lineSeparator())
-                .append(attendees);
+        if(!attendees.isEmpty()) {
+            builder.append(System.lineSeparator())
+                    .append(attendees);
+        }
 
         return builder.toString();
     }

@@ -31,6 +31,7 @@
         </Label>
         <Label fx:id="title" text="\$first" styleClass="name_label" />
       </HBox>
+      <FlowPane fx:id="attendees"/>
       <HBox alignment="CENTER_LEFT" spacing="10">
         <Label fx:id="startDateTime">
           <minWidth>
