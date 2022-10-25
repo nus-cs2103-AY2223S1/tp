@@ -8,12 +8,8 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.model.debt.DebtTime.DEFAULT_TIME;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import paymelah.commons.core.LogsCenter;
 import paymelah.commons.core.index.Index;
@@ -49,15 +45,26 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
                     SplitDebtCommand.MESSAGE_USAGE));
         }
 
-        boolean isSelfPresent;
+        String preamble = argMultimap.getPreamble();
+        boolean isSelfAtStart = preamble.startsWith("0 ");
+        boolean isSelfAtMiddle = preamble.contains(" 0 ");
+        boolean isSelfAtEnd = preamble.endsWith(" 0");
+        boolean isSelfPresent = isSelfAtStart || isSelfAtMiddle || isSelfAtEnd;
+
+        if (isSelfAtMiddle) {
+            preamble = preamble.replaceAll(" 0 ", " ");
+        }
+        if (isSelfAtStart) {
+            preamble = preamble.substring(2);
+        }
+        if (isSelfAtEnd) {
+            preamble = preamble.substring(0, preamble.length() - 2);
+        }
+
         Set<Index> nonSelfIndexList;
 
         try {
-            List<String> indexList = Arrays.stream(argMultimap.getPreamble().replaceAll("\\s+", " ")
-                            .split(" ")).collect(Collectors.toList());
-            logger.info("Split Debt command Person index list: " + indexList);
-            isSelfPresent = indexList.removeAll(Collections.singleton(SELF_INDEX));
-            nonSelfIndexList = ParserUtil.parseIndexes(indexList);
+            nonSelfIndexList = ParserUtil.parseIndices(preamble);
         } catch (ParseException pe) {
             logger.warning("Split Debt command Person index list has items that cannot be parsed to an Index");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

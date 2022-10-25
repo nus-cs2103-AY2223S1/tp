@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import paymelah.commons.core.index.Index;
@@ -52,15 +53,17 @@ public class ParserUtil {
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>} and returns it. Leading and
      * trailing whitespaces will be trimmed.
      *
-     * @param oneBasedIndexes Collection of String representing valid indexes (non-zero unsigned integer).
+     * @param indices Collection of String representing valid indexes (non-zero unsigned integer).
      * @return {@code Set<Index>} of indexes parsed from given String.
      * @throws ParseException if an index is invalid (not non-zero unsigned integer).
      */
-    public static Set<Index> parseIndexes(List<String> oneBasedIndexes) throws ParseException {
-        requireNonNull(oneBasedIndexes);
-        final Set<Index> indexSet = new HashSet<>();
+    public static Set<Index> parseIndices(String indices) throws ParseException {
+        requireNonNull(indices);
+        List<String> oneBasedIndices = Arrays.stream(indices.replaceAll("\\s+", " ")
+                .split(" ")).collect(Collectors.toList());
 
-        for (String index : oneBasedIndexes) {
+        final Set<Index> indexSet = new HashSet<>();
+        for (String index : oneBasedIndices) {
             indexSet.add(parseIndex(index));
         }
 
