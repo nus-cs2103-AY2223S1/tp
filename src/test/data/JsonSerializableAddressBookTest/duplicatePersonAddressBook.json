@@ -6,7 +6,10 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "remark": "free on monday",
-    "tagged": [ "friends" ]
+    "tagged": [ {
+      "tagName" : "friends",
+      "tagCount" :  1
+    } ]
   }, {
     "id": "ce8e09f9-a330-4387-b862-2c5523264142",
     "name": "Alice Pauline",
@@ -18,5 +21,10 @@
   "tasks" : [ ],
   "taskList" : {
     "isSortedByDeadline" : false
-  }
+  },
+  "tags" : [
+    {
+      "tagName" : "friends",
+      "tagCount" : 1
+    } ]
 }

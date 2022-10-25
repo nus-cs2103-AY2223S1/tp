@@ -10,5 +10,6 @@
   "tasks" : [ ],
   "taskList" : {
     "isSortedByDeadline" : false
-  }
+  },
+  "tags" : [ ]
 }
