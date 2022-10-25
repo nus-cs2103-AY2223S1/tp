@@ -90,30 +90,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getSortedFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getSortedFilteredPersonList().remove(0));
-    }
-
-
-    @Test
-    public void getFilteredPersonList_listIsSorted() {
-        assertSorted(logic.getSortedFilteredPersonList());
-    }
-
-    private void assertSorted(ObservableList<Person> list) {
-        Iterator<Person> iterator = list.iterator();
-        Person prev = null;
-        while (iterator.hasNext()) {
-            if (prev == null) {
-                prev = iterator.next();
-                continue;
-            }
-
-            Person current = iterator.next();
-            if (current.getName().compareTo(prev.getName()) < 0) {
-                fail("List is not sorted.");
-            }
-        }
     }
 
     /**
