@@ -25,7 +25,7 @@ import seedu.address.model.person.Person;
  */
 public class EditListingCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit listing";
+    public static final String COMMAND_WORD = "editL";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the listing identified "
             + "by the id used in the displayed listing list. "

@@ -31,7 +31,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "editClients";
+    public static final String COMMAND_WORD = "editC";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
