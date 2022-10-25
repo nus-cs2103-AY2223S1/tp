@@ -35,9 +35,9 @@ public class ViewStatsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.sortStudentRecord(new GradeComparator(exam));
         model.updateFilteredStudentList(predicate);
         double mean = model.calculateExamMean(exam);
-        model.sortFilteredStudentList(new GradeComparator(exam));
         if (isFilterOn) {
             model.updateFilteredStudentList(new GradeLessThanMeanPredicate(className, mean, exam));
         }

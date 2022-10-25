@@ -2,6 +2,7 @@ package seedu.classify.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -53,6 +54,10 @@ public class StudentRecord implements ReadOnlyStudentRecord {
     public void resetData(ReadOnlyStudentRecord newData) {
         requireNonNull(newData);
         setPersons(newData.getStudentList());
+    }
+
+    public void sortList(Comparator<Student> studentComparator) {
+        this.students.sortList(studentComparator);
     }
 
     //// student-level operations

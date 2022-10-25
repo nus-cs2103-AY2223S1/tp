@@ -53,6 +53,9 @@ public interface Model {
     /** Returns the StudentRecord */
     ReadOnlyStudentRecord getStudentRecord();
 
+    /** Sorts the StudentRecord. */
+    void sortStudentRecord(Comparator<Student> studentComparator);
+
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student record.
      */

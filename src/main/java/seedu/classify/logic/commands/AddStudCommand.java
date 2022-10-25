@@ -11,6 +11,7 @@ import static seedu.classify.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 
 import seedu.classify.logic.commands.exceptions.CommandException;
 import seedu.classify.model.Model;
+import seedu.classify.model.student.NameComparator;
 import seedu.classify.model.student.Student;
 
 
@@ -60,6 +61,7 @@ public class AddStudCommand extends Command {
         }
 
         model.addStudent(toAdd);
+        model.sortStudentRecord(NameComparator.getNameComparator());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

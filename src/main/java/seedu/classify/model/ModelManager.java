@@ -89,6 +89,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortStudentRecord(Comparator<Student> studentComparator) {
+        this.studentRecord.sortList(studentComparator);
+    }
+
+    @Override
     public boolean hasStudent(Student person) {
         requireNonNull(person);
         return studentRecord.hasStudent(person);

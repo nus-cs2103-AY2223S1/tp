@@ -2,6 +2,7 @@ package seedu.classify.model.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public class UniqueStudentList implements Iterable<Student> {
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::hasSameNameOrId);
+    }
+
+    public void sortList(Comparator<Student> studentComparator) {
+        internalList.sort(studentComparator);
     }
 
     /**

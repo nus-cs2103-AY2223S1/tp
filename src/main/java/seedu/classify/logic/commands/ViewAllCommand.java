@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.classify.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import seedu.classify.model.Model;
+import seedu.classify.model.student.NameComparator;
 
 /**
  * Lists all the students' name and ID to the user.
@@ -19,6 +20,7 @@ public class ViewAllCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.sortStudentRecord(NameComparator.getNameComparator());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
