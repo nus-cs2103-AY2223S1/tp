@@ -53,6 +53,12 @@ class CommissionStubWithIteration extends CommissionStub {
         return FXCollections.observableArrayList(iterationsAdded);
     }
 
+    @Override
+    public void setIteration(Iteration target, Iteration editedIteration) {
+        int targetIndex = iterationsAdded.indexOf(target);
+        iterationsAdded.set(targetIndex, editedIteration);
+    }
+
     List<Iteration> getIterationsAsList() {
         return iterationsAdded;
     }
