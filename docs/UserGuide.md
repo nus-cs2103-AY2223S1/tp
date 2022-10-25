@@ -198,7 +198,7 @@ Format: `retrieve INDEX`
 * The index must be within the range of available internships in the shown application list.
 
 Examples:
-* `list-archive` followed by `retrieve 1` retrieves the 2nd internship application in the list.
+* `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list.
 
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
