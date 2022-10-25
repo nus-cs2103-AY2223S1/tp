@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Software Engineer's role in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
-public class Role {
+public class Role implements Comparable<Role> {
     public static final String MESSAGE_CONSTRAINTS =
         "Roles should \n"
         + "1. contain only alphanumeric characters and spaces\n"
@@ -33,6 +33,11 @@ public class Role {
      */
     public static boolean isValidRole(String roleString) {
         return roleString.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(Role o) {
+        return role.compareToIgnoreCase(o.role);
     }
 
     @Override
