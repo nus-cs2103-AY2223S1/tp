@@ -87,7 +87,7 @@ public class AddBuyerCommandTest {
         public void setPersonListPanel(PersonListPanel personListPanel) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
