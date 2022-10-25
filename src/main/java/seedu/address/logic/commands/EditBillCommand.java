@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AddBillCommand.MESSAGE_APPOINTMENT_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BILL_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BILLS;
@@ -14,12 +13,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.bill.Amount;
 import seedu.address.model.bill.Bill;
 import seedu.address.model.bill.BillDate;
-import seedu.address.model.bill.exceptions.BillNotFoundException;
 
 /**
  * Edits the details of an existing bill in the address book.
