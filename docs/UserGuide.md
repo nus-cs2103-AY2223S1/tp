@@ -74,6 +74,12 @@ Ensure that no two persons have the same phone number!
        + have each domain label start and end with alphanumeric characters
        + have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
+#### Address
+  - The residing address of the person.
+  - Identified by the prefix `home`.
+  - Serves mainly as a point of information relating to the person.
+  - There is no constraint on how the home address of a person should be written, as long as it is sufficiently understandable.
+
 #### Loan
   - The amount of money that is owed by a person, or is to be paid to that person.
   - Identified by the prefix `loan`.
@@ -94,6 +100,12 @@ Ensure that no two persons have the same phone number!
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Including a reason for every change to a person's loan value reduces the risk of accidentally adding an incorrect amount to someone. It keeps a detail tab of every increment and decrement in value.
 </div>
+
+#### Birthday
+  - The birthday date of the person.
+  - Identified by the prefix `bday`.
+  - Serves as a point of information for a person.
+  - This must be a valid date form `DD/MM/YYYY`.
        
 #### Tags
   - Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
