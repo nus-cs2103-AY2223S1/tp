@@ -139,6 +139,10 @@ public class SampleDataUtil {
             sampleAb.addConsultation(sampleConsultation);
         }
 
+        for (Reminder sampleReminder: getSampleReminders()) {
+            sampleAb.addReminder(sampleReminder);
+        }
+
         return sampleAb;
     }
 
