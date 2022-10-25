@@ -40,12 +40,12 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends").withGithub("bensonnn")
             .withTelegram("bensonnn").withGithub("benson").withTelegram("bensonmeier").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withGithub("Carl Kurz").withTelegram("KarlCurz")
+            .withEmail("heinz@example.com").withAddress("wall street").withGithub("CarlKurz").withTelegram("KarlCurz")
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
             .withModules("CS1101", "CS1231S", "ES2660", "MA1521", "IS1103")
-            .withGithub("Danee ale").withTelegram("danielmei").build();
+            .withGithub("Daneeale").withTelegram("danielmei").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withModules("CS2030S", "CS2040S", "ES2660", "MA2001", "IS1103")

@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Github {
 
     public static final String MESSAGE_CONSTRAINTS = "Github profiles can take any values "
-            + "(whether name or link to Github profile page, and it should not be blank)";
+            + "(whether name or link to Github profile page, and it should only have one word)";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s]+";
 
     public final String value;
 
