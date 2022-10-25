@@ -6,20 +6,23 @@ import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 public abstract class ColumnManipulatorCommand implements ModelCommand {
 
-    public static final String MESSAGE_SUCCESS_FORMAT = "Successfully %s the specified columns. Use the"
-            + " list command to restore the full table view.";
+    public static final String RESTORE_FULL_VIEW = "Use the reset command to restore the full table view.";
+
+    public static final String MESSAGE_SUCCESS_FORMAT = "Successfully %s the specified columns. ";
+
+    public static final String MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW = MESSAGE_SUCCESS_FORMAT + RESTORE_FULL_VIEW;
 
     public static final String AT_LEAST_ONE_VISIBLE_COLUMN = "You must have at least one column visible at all times!";
 
-    public static final String INVALID_SUBSET = "Please enter columns to show or hide that are currently in the"
-            + " table view.\n To display columns outside of the current view, use the list /i command instead.";
+    public static final String INVALID_SUBSET = "Please enter columns to show or hide "
+            + "that are currently in the table view.\n"
+            + "To display columns outside of the current view, use the reset command.\n";
 
     public static final List<String> ALL_FIELDS = ResidentField.LOWERCASE_FIELDS;
     protected final List<String> fieldsToShow;
@@ -30,8 +33,6 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         this.fieldsToShow = fieldsToShow;
         this.fieldsToHide = fieldsToHide;
     }
-
-    public abstract String getCommandVerbs();
 
     public static List<String> generateComplementListFrom(List<String> inputList) {
         requireNonNull(inputList);

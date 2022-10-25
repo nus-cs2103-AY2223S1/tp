@@ -10,7 +10,8 @@ import seedu.rc4hdb.model.Model;
 
 public class ShowOnlyCommand extends ColumnManipulatorCommand {
     public static final String COMMAND_WORD = "showonly";
-    public static final String COMMAND_VERBS = "shown only";
+    public static final String COMMAND_PAST_TENSE = "shown only";
+    public static final String COMMAND_PRESENT_TENSE = "show";
 
     public ShowOnlyCommand() {
         super(ColumnManipulatorCommand.ALL_FIELDS, new ArrayList<>()); // very sus
@@ -29,11 +30,6 @@ public class ShowOnlyCommand extends ColumnManipulatorCommand {
         model.setVisibleFields(fieldsToShow);
         model.setHiddenFields(fieldsToHide);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, getCommandVerbs()));
-    }
-
-    @Override
-    public String getCommandVerbs() {
-        return COMMAND_VERBS;
+        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE));
     }
 }

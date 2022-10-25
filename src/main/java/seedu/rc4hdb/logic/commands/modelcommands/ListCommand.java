@@ -10,7 +10,8 @@ import seedu.rc4hdb.model.Model;
 
 public class ListCommand extends ColumnManipulatorCommand {
     public static final String COMMAND_WORD = "list";
-    public static final String COMMAND_VERBS = "listed only";
+    public static final String COMMAND_PAST_TENSE = "listed only";
+    public static final String COMMAND_PRESENT_TENSE = COMMAND_WORD;
     public static final String INCLUDE_SPECIFIER = "/i";
     public static final String EXCLUDE_SPECIFIER = "/e";
 
@@ -30,11 +31,6 @@ public class ListCommand extends ColumnManipulatorCommand {
         model.setVisibleFields(fieldsToShow);
         model.setHiddenFields(fieldsToHide);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, getCommandVerbs()));
-    }
-
-    @Override
-    public String getCommandVerbs() {
-        return COMMAND_VERBS;
+        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE));
     }
 }

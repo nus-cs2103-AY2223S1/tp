@@ -9,7 +9,8 @@ import seedu.rc4hdb.model.Model;
 
 public class HideOnlyCommand extends ColumnManipulatorCommand {
     public static final String COMMAND_WORD = "hideonly";
-    public static final String COMMAND_VERBS = "hidden only";
+    public static final String COMMAND_PAST_TENSE = "hidden only";
+    public static final String COMMAND_PRESENT_TENSE = "hide";
 
     public HideOnlyCommand(List<String> fieldsToShow, List<String> fieldsToHide) {
         super(fieldsToShow, fieldsToHide);
@@ -28,11 +29,6 @@ public class HideOnlyCommand extends ColumnManipulatorCommand {
         model.setVisibleFields(updatedFieldsToShow);
         model.setHiddenFields(updatedFieldsToHide);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, getCommandVerbs()));
-    }
-
-    @Override
-    public String getCommandVerbs() {
-        return COMMAND_VERBS;
+        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT_RESTORE_FULL_VIEW, COMMAND_PAST_TENSE));
     }
 }

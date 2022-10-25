@@ -9,15 +9,7 @@ import java.util.regex.Pattern;
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ClearCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ShowOnlyCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.*;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
@@ -92,6 +84,9 @@ public class ResidentBookParser {
 
         case ShowOnlyCommand.COMMAND_WORD:
             return new ShowOnlyCommandParser().parse(arguments);
+
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
