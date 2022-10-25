@@ -5,14 +5,14 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   } ]
 }

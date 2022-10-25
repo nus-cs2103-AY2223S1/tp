@@ -56,6 +56,9 @@ public class CommandTestUtil {
 
     public static final String VALID_QUANTITY_SELL_PAPAYA = "11";
 
+    public static final String VALID_TEXT_GOOD_BUYER = "Good Buyer";
+
+    public static final String VALID_TEXT_BAD_BUYER = "Bad Buyer";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -77,6 +80,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_GOODS_EMPTY = " " + PREFIX_GOODS; // empty string not allowed for goods.
 
+    public static final String INVALID_TEXT = " ";
     public static final String INVALID_DATE = "00/09/20000";
     public static final String INVALID_DATE_NUMBERFORMAT = "1/0f/20000";
     public static final String INVALID_DATE_NEGATIVE = "-1/09/2000";
