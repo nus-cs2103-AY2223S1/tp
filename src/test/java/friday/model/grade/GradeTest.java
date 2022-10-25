@@ -1,5 +1,6 @@
 package friday.model.grade;
 
+import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -8,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import friday.model.grades.Grade;
 
 public class GradeTest {
+
+    private static final String VALID_SCORE_1 = "0";
+    private static final String VALID_SCORE_2 = "100";
 
     @Test
     public void equals() {
@@ -37,5 +41,21 @@ public class GradeTest {
         // grade with different grade -> returns false
         Grade differentGrade = new Grade("Practical", "54.65");
         assertFalse(grade.equals(differentGrade));
+    }
+
+    @Test
+    public void isValidScore() {
+        // null score
+        assertThrows(NullPointerException.class, () -> Grade.isValidScore(null));
+
+        // invalid score
+        assertFalse(Grade.isValidScore("a"));
+        assertFalse(Grade.isValidScore("-1"));
+        assertFalse(Grade.isValidScore("100.0"));
+
+        // valid score
+        assertTrue(Grade.isValidScore(VALID_SCORE_1));
+        assertTrue(Grade.isValidScore(VALID_SCORE_2));
+        assertTrue(Grade.isValidScore("69.420"));
     }
 }
