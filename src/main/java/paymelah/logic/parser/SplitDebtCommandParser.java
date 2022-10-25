@@ -26,7 +26,6 @@ import paymelah.model.debt.Money;
  */
 public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
     private static final Logger logger = LogsCenter.getLogger(SplitDebtCommandParser.class);
-    private static final String SELF_INDEX = "0";
 
     /**
      * Parses the given {@code String} of arguments in the context of the SplitDebtCommand
