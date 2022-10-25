@@ -297,7 +297,7 @@ Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 * `DATE` should be of the format dd-MM-yyyy (e.g. 24-03-2022).
 * `PRIORITY` can only be `low`, `medium`, `high`.
-* The todo list will always be sorted by date from earliest to latest, then follow by decreasing priority.
+* The todo list will always be sorted by date from earliest to latest (for todos with the same date, they will be sorted in decreasing priority order).
 
 Examples:
 * `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
@@ -347,14 +347,14 @@ Format: `todo show`, `todo show today`, `todo show date/DATE`, `todo show date/D
 * `todo show today`: Shows all todos with the date same as the current date.
 * `todo show date/DATE`: show all todos with the specified date.
 * `todo show date/DATE1 to DATE2`: shows all todos with the date from `DATE1` to `DATE2`.
-* `pr/PRIORITY`: Shows all todos with the specified priority.
-* `t/TAG`: Shows all todos with the specified tag.
+* `todo show pr/PRIORITY`: Shows all todos with the specified priority.
+* `todo show t/TAG`: Shows all todos with the specified tag.
 
 Examples:
 * `todo show date/25-10-2022`: show all todos with the date `25-10-2022`.
 * `todo show date/24-10-2022 to 26-10-2022`: shows all todos with the date from `24-10-2022` to `26-10-2022`.
-* `pr/high`: Shows all todos with the priority `high`.
-* `t/friends`: Shows all todos with the tag `friends`.
+* `todo show pr/high`: Shows all todos with the priority `high`.
+* `todo show t/friends`: Shows all todos with the tag `friends`.
 
 ### Exiting the program : `exit`
 
