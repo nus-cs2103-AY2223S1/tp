@@ -62,6 +62,7 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
         email.setText(student.getEmail().value);
+        module.setText(student.getModule().value);
         studentId.setText(student.getId().value);
         gitName.setText(student.getGitName().value);
         handle.setText(student.getTeleHandle().value);
