@@ -45,7 +45,7 @@ public class SimpleImageStorage implements ImageStorage {
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
             randomPath = Paths.get(baseDirectoryPath.toString(),
-                randomName + ".png");
+                    randomName + ".png");
         } while (new File(randomPath.toUri()).exists());
         return randomPath;
     }
