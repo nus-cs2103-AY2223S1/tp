@@ -84,5 +84,9 @@ public class UiManager implements Ui {
         Platform.exit();
         System.exit(1);
     }
-
+    
+    @Override
+    public MainWindow getMainWindow() {
+        return mainWindow;
+    }
 }

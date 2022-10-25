@@ -130,6 +130,16 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedPersonList(Comparator<Buyer> comparator);
+
+    /**
+     * Returns the last shown buyers list; either the sorted or filtered list.
+     */
+    ObservableList<Buyer> getLastShownBuyersList();
+
+    /**
+     * Sets the flag to indicate if the last shown buyers list is the sorted or filtered list.
+     */
+    void setLastShownBuyersListFlag(boolean b);
     
     //=========== PropertyBook ================================================================================
 
@@ -181,5 +191,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
-
 }

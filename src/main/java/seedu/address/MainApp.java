@@ -1,7 +1,5 @@
 package seedu.address;
 
-import static seedu.address.model.util.SampleDataUtil.getSamplePropertyModel;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -34,6 +32,7 @@ import seedu.address.storage.PropertyBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.ui.PersonListPanel;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -68,11 +67,11 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        ui = new UiManager(logic);
+
+        model = initModelManager(storage, userPrefs, ui.getMainWindow().getPersonListPanel());
 
         logic = new LogicManager(model, storage);
-
-        ui = new UiManager(logic);
     }
 
     /**
@@ -80,7 +79,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs, PersonListPanel personListPanel) {
         Optional<ReadOnlyPersonBook> personModelOptional;
         ReadOnlyPersonBook personModel;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
@@ -114,7 +113,7 @@ public class MainApp extends Application {
             propertyBook = new PropertyBook();
         }
 
-        return new ModelManager(personModel, propertyBook, userPrefs);
+        return new ModelManager(personModel, propertyBook, userPrefs, personListPanel);
     }
 
     private void initLogging(Config config) {

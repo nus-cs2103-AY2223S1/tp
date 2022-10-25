@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -15,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
+import seedu.address.ui.PersonListPanel;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,16 +27,19 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final PersonBook personBook;
     private final PropertyBook propertyBook;
+    private final PersonListPanel personListPanel;
     private final FilteredList<Buyer> filteredBuyers;
     private final SortedList<Buyer> sortedBuyers;
+    // lastShownListFlag set to false for filteredBuyers and true for sortedBuyers
+    public boolean lastShownBuyersListFlag = false; 
     private final FilteredList<Property> filteredProperties;
 
     /**
      * Initializes a ModelManager with the given personBook and userPrefs.
      */
     public ModelManager(ReadOnlyPersonBook personModel, ReadOnlyPropertyBook propertyModel,
-                        ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(personModel, propertyModel, userPrefs);
+                        ReadOnlyUserPrefs userPrefs, PersonListPanel personListPanel) {
+        requireAllNonNull(personModel, propertyModel, userPrefs, personListPanel);
 
         logger.fine("Initializing with buyer model: " + personModel + " and property model: " + propertyModel
                 + " and user prefs " + userPrefs);
@@ -42,13 +47,14 @@ public class ModelManager implements Model {
         this.personBook = new PersonBook(personModel);
         this.propertyBook = new PropertyBook(propertyModel);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.personListPanel = personListPanel;
         filteredBuyers = new FilteredList<>(this.personBook.getPersonList());
         sortedBuyers = new SortedList<>(this.personBook.getPersonList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new PersonBook(), new PropertyBook(), new UserPrefs());
+        this(new PersonBook(), new PropertyBook(), new UserPrefs(), new PersonListPanel(FXCollections.observableArrayList()));
     }
 
     //=========== UserPrefs ==================================================================================
@@ -147,6 +153,8 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
         filteredBuyers.setPredicate(predicate);
+        lastShownBuyersListFlag = false;
+        personListPanel.setNewList(filteredBuyers);
     }
 
     //=========== Sorted Buyer List Accessors =============================================================
@@ -164,6 +172,20 @@ public class ModelManager implements Model {
     public void updateSortedPersonList(Comparator<Buyer> comparator) {
         requireNonNull(comparator);
         sortedBuyers.setComparator(comparator);
+        lastShownBuyersListFlag = true;
+        personListPanel.setNewList(sortedBuyers);
+    }
+
+    @Override
+    public ObservableList<Buyer> getLastShownBuyersList() {
+        return lastShownBuyersListFlag
+                ? sortedBuyers
+                : filteredBuyers;
+    }
+
+    @Override
+    public void setLastShownBuyersListFlag(boolean b) {
+        lastShownBuyersListFlag = b;
     }
 
     //=========== PropertyBook ================================================================================
@@ -239,5 +261,4 @@ public class ModelManager implements Model {
                 && filteredBuyers.equals(other.filteredBuyers)
                 && filteredProperties.equals(other.filteredProperties);
     }
-
 }
