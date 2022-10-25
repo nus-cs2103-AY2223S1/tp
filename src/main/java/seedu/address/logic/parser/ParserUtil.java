@@ -2,8 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.IOException;
-import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -27,7 +26,6 @@ import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.iteration.Date;
 import seedu.address.model.iteration.Feedback;
-import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.IterationDescription;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SortDirection;
@@ -247,21 +245,14 @@ public class ParserUtil {
      * Parses a {@code String imagePath} into a {@code ImagePath}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static ImagePath parseImagePath(String imagePath) throws ParseException {
+    public static Path parseImagePath(String imagePath) throws ParseException {
         requireNonNull(imagePath);
         String trimmedImagePath = imagePath.trim();
-        Path srcPath = Path.of(trimmedImagePath);
-        if (Files.exists(srcPath)) {
-            try {
-                if (Files.probeContentType(srcPath).split("/")[0].equals("image")) {
-                    return new ImagePath(trimmedImagePath);
-                }
-                throw new ParseException(Messages.MESSAGE_NOT_AN_IMAGE);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            return Path.of(trimmedImagePath);
+        } catch (InvalidPathException e) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_PATH, e.getReason()), e);
         }
-        throw new ParseException(Messages.MESSAGE_NONEXISTENT_IMAGE_PATH);
     }
 
 

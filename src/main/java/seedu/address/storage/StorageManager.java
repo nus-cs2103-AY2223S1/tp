@@ -1,11 +1,9 @@
 package seedu.address.storage;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
-import java.util.Random;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -17,18 +15,21 @@ import seedu.address.model.UserPrefs;
 /**
  * Manages storage of AddressBook data in local storage.
  */
-public class StorageManager implements Storage, ImageStorage {
+public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ImageStorage imageStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          ImageStorage imageStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.imageStorage = imageStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -79,22 +80,32 @@ public class StorageManager implements Storage, ImageStorage {
     }
 
     @Override
-    public String saveIterationImage(String src) throws IOException {
-        int leftLimit = 48; // numeral '0'
-        int rightLimit = 122; // letter 'z'
-        int targetStringLength = 10;
-        Random random = new Random();
+    public Path getBaseDirectoryPath() {
+        return imageStorage.getBaseDirectoryPath();
+    }
 
-        String randomName = random.ints(leftLimit, rightLimit + 1)
-                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                .limit(targetStringLength)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
+    @Override
+    public Path getRandomImagePath() {
+        return imageStorage.getRandomImagePath();
+    }
 
-        String dst = ImageStorage.IMAGE_STORAGE_PATH + randomName + ".png";
-        Files.createDirectories(Path.of(System.getProperty("user.dir") + ImageStorage.IMAGE_STORAGE_PATH));
-        Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
+    @Override
+    public boolean isPathInBaseDirectory(Path path) {
+        return imageStorage.isPathInBaseDirectory(path);
+    }
 
-        return dst;
+    @Override
+    public boolean isValidImage(Path path) {
+        return imageStorage.isValidImage(path);
+    }
+
+    @Override
+    public BufferedImage getImage(Path path) throws IOException {
+        return imageStorage.getImage(path);
+    }
+
+    @Override
+    public void saveImage(BufferedImage image, Path path) throws IOException {
+        imageStorage.saveImage(image, path);
     }
 }
