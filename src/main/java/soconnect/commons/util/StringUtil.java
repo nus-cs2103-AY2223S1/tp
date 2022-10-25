@@ -87,10 +87,11 @@ public class StringUtil {
      */
     public static boolean containsSomeKeywordsIgnoreCase(String sentence, String keywords) {
         requireAllNonNull(sentence, keywords);
+        // Removes invalid non-letters and non-integers characters
+        String preppedWord = keywords.replaceAll("[^a-zA-Z0-9]", "").trim();
 
-        String preppedWord = keywords.trim();
         List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().split("(?!^\\s+)"));
-        checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
+        checkArgument(preppedKeywords.size() > 0, "Word parameter is empty or invalid");
 
         List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("(?!^\\s+)"));
 

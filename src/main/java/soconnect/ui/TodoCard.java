@@ -2,7 +2,6 @@ package soconnect.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import soconnect.model.todo.Description;
@@ -26,7 +25,7 @@ public class TodoCard extends UiPart<Region> {
     @FXML
     private Label datetime;
     @FXML
-    private FlowPane priority;
+    private Label priority;
 
     /**
      * Creates a {@code TodoCard} with the given {@code Todo} and index to display.
@@ -54,7 +53,7 @@ public class TodoCard extends UiPart<Region> {
     }
 
     private void setPriority(Priority newPriority) {
-        priority.getChildren().add(new Label(newPriority.priority));
+        priority.setText(newPriority.priority);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package soconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.function.Predicate;
@@ -44,7 +45,11 @@ public class SearchCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        try {
+            model.updateFilteredPersonList(predicate);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+        }
         if (model.isFilteredPersonListEmpty()) {
             model.updateFilteredPersonList(alternativePredicate);
         }

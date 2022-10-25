@@ -35,7 +35,7 @@ public class SearchCommandParserTest {
         ContactContainsAllKeywordsPredicate firstPredicate =
                 new ContactContainsAllKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
+                new ContactMightBeRelevantPredicate(argMultimap);
 
         assertParseSuccess(parser, "and n/name a/address p/phone",
                 new SearchCommand(firstPredicate, alternativePredicate));
@@ -48,7 +48,7 @@ public class SearchCommandParserTest {
         ContactContainsAnyKeywordsPredicate secondPredicate =
                 new ContactContainsAnyKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
+                new ContactMightBeRelevantPredicate(argMultimap);
 
         assertParseSuccess(parser, "or n/name a/address p/phone",
                 new SearchCommand(secondPredicate, alternativePredicate));
@@ -61,7 +61,7 @@ public class SearchCommandParserTest {
         ContactContainsAllKeywordsPredicate firstPredicate =
                 new ContactContainsAllKeywordsPredicate(argMultimap);
         ContactMightBeRelevantPredicate alternativePredicate =
-                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
+                new ContactMightBeRelevantPredicate(argMultimap);
 
         assertParseSuccess(parser, " n/name a/address p/phone",
                 new SearchCommand(firstPredicate, alternativePredicate));
