@@ -37,11 +37,10 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         try {
             indices = ParserUtil.parseIndices(argMultimap.getPreamble());
             session = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get());
-            grade = Double.parseDouble(argMultimap.getValue(PREFIX_GRADE).get());
+            grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
+            throw new ParseException(pe.getMessage());
         }
-
         return new GradeCommand(indices, session, grade);
     }
 }

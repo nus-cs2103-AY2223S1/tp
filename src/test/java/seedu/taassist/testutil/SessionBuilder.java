@@ -10,7 +10,7 @@ import seedu.taassist.model.session.Session;
  */
 public class SessionBuilder {
     public static final String DEFAULT_NAME = "tutorial0";
-    public static final LocalDate DEFAULT_LOCAL_DATE = LocalDate.EPOCH;
+    public static final LocalDate DEFAULT_LOCAL_DATE = LocalDate.now();
 
     private String name;
     private Date date;

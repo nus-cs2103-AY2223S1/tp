@@ -30,7 +30,7 @@ public class AssignCommandParser implements Parser<AssignCommand> {
         try {
             indices = ParserUtil.parseIndices(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE));
+            throw new ParseException(pe.getMessage());
         }
 
         return new AssignCommand(indices, moduleClass);
