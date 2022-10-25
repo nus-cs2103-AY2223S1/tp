@@ -22,7 +22,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -36,7 +36,7 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="white-pane">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
@@ -44,21 +44,21 @@
 
         <GridPane VBox.vgrow="ALWAYS">
           <children>
-            <VBox fx:id="foodList" styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <VBox fx:id="foodList" styleClass="white-pane" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <padding>
                 <Insets topRightBottomLeft="10" />
               </padding>
               <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
             </VBox>
 
-            <VBox minWidth="340" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="right-side">
-              <StackPane fx:id="progressBarPlaceholder">
+            <VBox minWidth="340" GridPane.columnIndex="1" GridPane.rowIndex="0">
+              <StackPane fx:id="progressBarPlaceholder" styleClass="white-pane">
                 <padding>
                   <Insets topRightBottomLeft="10" />
                 </padding>
               </StackPane>
 
-              <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS">
+              <StackPane fx:id="resultDisplayPlaceholder" styleClass="white-pane" VBox.vgrow="ALWAYS">
                 <padding>
                   <Insets topRightBottomLeft="10" />
                 </padding>
