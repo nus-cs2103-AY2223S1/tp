@@ -768,7 +768,7 @@ and only one patient.
 
 **MSS**
 1.  User gets the <ins>list of appointments(UC03)<ins>.
-2.  User enters command to group appointments either by their tags or patient.
+2.  User enters command to group appointments either by their tags or patient or mark status.
 3.  idENTify displays the appointment list grouped by the specified key.
 
     Use case ends.
