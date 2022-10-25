@@ -21,7 +21,7 @@ public class NameStartsWithKeywordPredicateTest {
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
-        // same values -> returns true
+        // same keyword -> returns true
         NameStartsWithKeywordPredicate firstPredicateCopy =
                 new NameStartsWithKeywordPredicate(VALID_NAME_AMY);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
@@ -32,7 +32,7 @@ public class NameStartsWithKeywordPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different keyword -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -42,7 +42,7 @@ public class NameStartsWithKeywordPredicateTest {
         NameStartsWithKeywordPredicate predicate = new NameStartsWithKeywordPredicate("Amy");
         assertTrue(predicate.test(new PersonBuilder().withName(VALID_NAME_AMY).build()));
 
-        // Mixed-case keywords
+        // Mixed-case keyword
         predicate = new NameStartsWithKeywordPredicate("aMy");
         assertTrue(predicate.test(new PersonBuilder().withName(VALID_NAME_AMY).build()));
     }

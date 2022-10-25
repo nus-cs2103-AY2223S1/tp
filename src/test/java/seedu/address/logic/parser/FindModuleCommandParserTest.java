@@ -28,7 +28,7 @@ public class FindModuleCommandParserTest {
         assertParseSuccess(parser, "CS", expectedFindModuleCommand);
 
         // leading and trailing whitespaces
-        assertParseSuccess(parser, "  CS   ", expectedFindModuleCommand);
+        assertParseSuccess(parser, "  CS  ", expectedFindModuleCommand);
     }
 
 }

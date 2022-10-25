@@ -40,7 +40,7 @@ public class FindPersonCommandTest {
         // same object -> returns true
         assertTrue(findPersonFirstCommand.equals(findPersonFirstCommand));
 
-        // same values -> returns true
+        // same keyword -> returns true
         FindPersonCommand findPersonFirstCommandCopy = new FindPersonCommand(firstPredicate);
         assertTrue(findPersonFirstCommand.equals(findPersonFirstCommandCopy));
 
@@ -50,7 +50,7 @@ public class FindPersonCommandTest {
         // null -> returns false
         assertFalse(findPersonFirstCommand.equals(null));
 
-        // different module -> returns false
+        // different keyword -> returns false
         assertFalse(findPersonFirstCommand.equals(findPersonSecondCommand));
     }
 

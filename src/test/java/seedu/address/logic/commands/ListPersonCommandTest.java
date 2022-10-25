@@ -29,12 +29,12 @@ public class ListPersonCommandTest {
     }
 
     @Test
-    public void execute_moduleListIsNotFiltered_showsSameList() {
+    public void execute_personListIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListPersonCommand(), model, ListPersonCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_moduleListIsFiltered_showsEverything() {
+    public void execute_personListIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListPersonCommand(), model, ListPersonCommand.MESSAGE_SUCCESS, expectedModel);
     }

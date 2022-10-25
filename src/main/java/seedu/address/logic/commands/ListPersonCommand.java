@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_AT_HOMEPAGE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -24,7 +24,7 @@ public class ListPersonCommand extends Command {
         boolean isNotAtHome = !model.getHomeStatus();
 
         if (isNotAtHome) {
-            throw new CommandException(MESSAGE_NOT_AT_HOMEPAGE);
+            throw new CommandException(Messages.MESSAGE_NOT_AT_HOMEPAGE);
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

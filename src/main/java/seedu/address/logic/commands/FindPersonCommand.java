@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_AT_HOMEPAGE;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameStartsWithKeywordPredicate;
@@ -33,11 +32,11 @@ public class FindPersonCommand extends Command {
         boolean isNotAtHome = !model.getHomeStatus();
 
         if (isNotAtHome) {
-            throw new CommandException(MESSAGE_NOT_AT_HOMEPAGE);
+            throw new CommandException(Messages.MESSAGE_NOT_AT_HOMEPAGE);
         }
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

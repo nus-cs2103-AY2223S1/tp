@@ -27,7 +27,7 @@ public class FindPersonCommandParserTest {
         assertParseSuccess(parser, "A", expectedFindPersonCommand);
 
         // leading and trailing whitespaces
-        assertParseSuccess(parser, "  A   ", expectedFindPersonCommand);
+        assertParseSuccess(parser, "  A  ", expectedFindPersonCommand);
     }
 
 }
