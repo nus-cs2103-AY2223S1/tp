@@ -35,6 +35,8 @@ import seedu.address.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_KEYWORDS = "The keywords for tag delete must be priority"
+            + " or deadline or both.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -188,6 +190,28 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses delete tag keywords from a String into a Set containing each keyword.
+     *
+     * @param keywords The keywords used to specify which tag to delete
+     * @return The set of string containing the keywords specifying the tags to delete.
+     * @throws ParseException if the keywords given are invalid or are duplicated.
+     */
+    public static Set<String> parseDeleteTagKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.strip();
+        String[] keywordsList = trimmedKeywords.split(" ");
+        final Set<String> keywordSet = new HashSet<>();
+        for (String keyword : keywordsList) {
+            if (!(keyword.equalsIgnoreCase("priority")
+                    || keyword.equalsIgnoreCase("deadline"))) {
+                throw new ParseException(MESSAGE_INVALID_KEYWORDS);
+            }
+            keywordSet.add(keyword.toLowerCase());
+        }
+        return keywordSet;
     }
 
     /**
