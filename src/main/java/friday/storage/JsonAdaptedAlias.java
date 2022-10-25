@@ -23,9 +23,7 @@ class JsonAdaptedAlias {
      * Constructs a {@code JsonAdaptedAlias} with the given alias details.
      */
     @JsonCreator
-
     public JsonAdaptedAlias(@JsonProperty("alias") String alias, @JsonProperty("reservedKeyword") String keyword) {
-
         this.alias = alias;
         this.keyword = keyword;
     }
@@ -33,9 +31,9 @@ class JsonAdaptedAlias {
     /**
      * Converts a given {@code Map.Entry} into this class for Jackson use.
      */
-    public JsonAdaptedAlias(Map.Entry<String, String> source) {
-        alias = source.getKey();
-        keyword = source.getValue();
+    public JsonAdaptedAlias(Map.Entry<Alias, ReservedKeyword> source) {
+        alias = source.getKey().toString();
+        keyword = source.getValue().toString();
     }
 
     /**

@@ -14,48 +14,42 @@ import friday.model.alias.ReservedKeyword;
 
 public class AliasCommandTest {
 
-    private static final String VALID_ALIAS = "ls";
-    private static final String INVALID_KEYWORD = "a";
+    private static final Alias VALID_ALIAS = new Alias("ls");
+    private static final Alias INVALID_ALIAS = new Alias(AddCommand.COMMAND_WORD);
+    private static final ReservedKeyword VALID_KEYWORD = new ReservedKeyword(ListCommand.COMMAND_WORD);
+    private static final ReservedKeyword INVALID_KEYWORD = new ReservedKeyword("a");
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_aliasAcceptedByModel_addSuccessful() {
-        Alias alias = new Alias(VALID_ALIAS);
-        ReservedKeyword keyword = new ReservedKeyword(ListCommand.COMMAND_WORD);
-        AliasCommand aliasCommand = new AliasCommand(alias, keyword);
+        AliasCommand aliasCommand = new AliasCommand(VALID_ALIAS, VALID_KEYWORD);
 
-        String expectedMessage = String.format(AliasCommand.MESSAGE_SUCCESS, alias);
+        String expectedMessage = String.format(AliasCommand.MESSAGE_SUCCESS, VALID_ALIAS);
 
         ModelManager expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
-        expectedModel.addAlias(alias, keyword);
+        expectedModel.addAlias(VALID_ALIAS, VALID_KEYWORD);
 
         assertCommandSuccess(aliasCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateAlias_throwsCommandException() {
-        Alias alias = new Alias(VALID_ALIAS);
-        ReservedKeyword keyword = new ReservedKeyword(ListCommand.COMMAND_WORD);
-        AliasCommand aliasCommand = new AliasCommand(alias, keyword);
-        model.addAlias(alias, keyword);
+        AliasCommand aliasCommand = new AliasCommand(VALID_ALIAS, VALID_KEYWORD);
+        model.addAlias(VALID_ALIAS, VALID_KEYWORD);
 
         assertCommandFailure(aliasCommand, model, AliasCommand.MESSAGE_DUPLICATE_ALIAS);
     }
 
     @Test
     public void execute_invalidAlias_throwsCommandException() {
-        Alias alias = new Alias(AddCommand.COMMAND_WORD);
-        ReservedKeyword keyword = new ReservedKeyword(ListCommand.COMMAND_WORD);
-        AliasCommand aliasCommand = new AliasCommand(alias, keyword);
+        AliasCommand aliasCommand = new AliasCommand(INVALID_ALIAS, VALID_KEYWORD);
 
         assertCommandFailure(aliasCommand, model, AliasCommand.MESSAGE_INVALID_ALIAS);
     }
 
     @Test
     public void execute_invalidKeyword_throwsCommandException() {
-        Alias alias = new Alias(VALID_ALIAS);
-        ReservedKeyword keyword = new ReservedKeyword(INVALID_KEYWORD);
-        AliasCommand aliasCommand = new AliasCommand(alias, keyword);
+        AliasCommand aliasCommand = new AliasCommand(VALID_ALIAS, INVALID_KEYWORD);
 
         assertCommandFailure(aliasCommand, model, AliasCommand.MESSAGE_INVALID_KEYWORD);
     }

@@ -12,13 +12,13 @@ import friday.model.alias.Alias;
 
 public class UnaliasCommandParserTest {
 
-    private static final String VALID_ALIAS = "ls";
+    private static final Alias VALID_ALIAS = new Alias("ls");
     private static final String INVALID_PREFIX = "g/";
     private static final String VALID_ARGS = " " + PREFIX_ALIAS + VALID_ALIAS;
     private static final String INVALID_ARGS = " " + INVALID_PREFIX + VALID_ALIAS;
 
     private UnaliasCommandParser parser = new UnaliasCommandParser();
-    private UnaliasCommand expectedCommand = new UnaliasCommand(new Alias(VALID_ALIAS));
+    private UnaliasCommand expectedCommand = new UnaliasCommand(VALID_ALIAS);
 
     @Test
     public void parse_validArgs_returnsUnaliasCommand() {

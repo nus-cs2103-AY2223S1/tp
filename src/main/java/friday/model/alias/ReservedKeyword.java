@@ -12,6 +12,7 @@ import friday.logic.commands.DeleteCommand;
 import friday.logic.commands.EditCommand;
 import friday.logic.commands.ExitCommand;
 import friday.logic.commands.FindCommand;
+import friday.logic.commands.GradeCommand;
 import friday.logic.commands.HelpCommand;
 import friday.logic.commands.ListCommand;
 import friday.logic.commands.MarkMasteryCheckCommand;
@@ -22,15 +23,15 @@ import friday.logic.commands.UnaliasCommand;
 
 /**
  * Represents a ReservedKeyword in friday.
- * Guarantees: immutable; is always valid
  */
 public class ReservedKeyword {
 
     public static final List<String> LIST_RESERVED_KEYWORDS = List.of(AddCommand.COMMAND_WORD,
-            AliasCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, EditCommand.COMMAND_WORD,
-            ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
+            AliasCommand.COMMAND_WORD, AliasListCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
+            GradeCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
             MarkMasteryCheckCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD, SortCommand.COMMAND_WORD,
-            UgCommand.COMMAND_WORD, UnaliasCommand.COMMAND_WORD, AliasListCommand.COMMAND_WORD);
+            UgCommand.COMMAND_WORD, UnaliasCommand.COMMAND_WORD);
 
     public static final String MESSAGE_CONSTRAINTS = "Reserved keyword given is not in the list of reserved keywords";
 
@@ -46,6 +47,9 @@ public class ReservedKeyword {
         value = reservedKeyword;
     }
 
+    /**
+     * Returns if a given string is a valid reserved keyword.
+     */
     public static boolean isValidReservedKeyword(String test) {
         return LIST_RESERVED_KEYWORDS.contains(test);
     }

@@ -117,12 +117,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAlias(String alias) {
-        requireNonNull(alias);
-        return friday.hasAlias(alias);
-    }
-
-    @Override
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
         return friday.hasAlias(alias);

@@ -50,7 +50,7 @@ public class AliasCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_KEYWORD);
         }
 
-        if (!Alias.isValidAlias(toAdd)) {
+        if (!Alias.isValidAlias(toAdd.toString())) {
             throw new CommandException(MESSAGE_INVALID_ALIAS);
         }
 
