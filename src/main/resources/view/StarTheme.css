@@ -90,7 +90,7 @@
 .list-view {
     -fx-background-insets: 10;
     -fx-padding: 10;
-    -fx-background-color: rgb(192,192,192,0);
+    -fx-background-color: rgb(225,225,192,0);
 }
 
 .list-cell {
@@ -101,11 +101,11 @@
 }
 
 .list-cell:filled:odd #cardPane {
-    -fx-background-color:  rgb(192,192,192,0.1);
+    -fx-background-color:  rgb(225,225,225,0.3);
     -fx-background-radius :20;
 }
 .list-cell:filled:even #cardPane {
-    -fx-background-color:  rgb(192,192,192,0.4);
+    -fx-background-color:  rgb(225,225,225,0.7);
     -fx-background-radius :20;
 }
 
@@ -189,7 +189,7 @@
 }
 
 .context-menu {
-    -fx-background-color:  rgb(192,192,192,0.6);
+    -fx-background-color:  rgb(225,225,225,0.6);
     -fx-background-radius:20;
 }
 
@@ -198,7 +198,7 @@
 }
 
 .menu-bar {
-    -fx-background-color:  rgb(192,192,192,0.4);
+    -fx-background-color:  rgb(225,225,225,0.6);
     -fx-background-radius:10;
 }
 
@@ -214,12 +214,12 @@
 }
 
 .scroll-bar {
-    -fx-background-color:  rgb(192,192,192,0.3);
+    -fx-background-color:  rgb(225,225,225,0.3);
     -fx-background-radius:10;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color:  rgb(192,192,192,0.6);
+    -fx-background-color:  rgb(225,225,225,0.7);
     -fx-background-radius:10;
     -fx-background-insets: 3;
 }
@@ -253,7 +253,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: rgb(192,192,192,0.4);
+    -fx-background-color: rgb(225,225,225,0.7);
     -fx-background-radius:20;
     -fx-background-insets: 0;
 
@@ -289,7 +289,7 @@
 }
 
 .text-input{
-    -fx-background-color:rgb(192,192,192,0.4);
+    -fx-background-color:rgb(225,225,225,0.7);
     -fx-background-radius:10;
     -fx-text-fill: black;
 }
