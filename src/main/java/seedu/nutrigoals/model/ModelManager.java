@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final NutriGoals nutriGoals;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
+    private final FilteredList<Food> unFilteredFoods;
 
     private IsFoodAddedOnThisDatePredicate currentDatePredicate;
 
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         this.nutriGoals = new NutriGoals(nutriGoals);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFoods = new FilteredList<>(this.nutriGoals.getFoodList());
+        unFilteredFoods = new FilteredList<>(this.nutriGoals.getFoodList());
         currentDatePredicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
         updateFilteredFoodList(currentDatePredicate);
     }
@@ -219,6 +221,12 @@ public class ModelManager implements Model {
         return filteredFoods.stream()
                 .map(Food::getCalorie)
                 .reduce(new Calorie("0"), Calorie::addCalorie);
+    }
+
+    @Override
+    public ObservableList<Food> getUnFilteredFoodList() {
+        unFilteredFoods.setPredicate(PREDICATE_SHOW_ALL_FOODS);
+        return unFilteredFoods;
     }
 
     @Override

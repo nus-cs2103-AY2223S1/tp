@@ -123,6 +123,8 @@ public interface Model {
 
     Calorie getTotalCalorie();
 
+    ObservableList<Food> getUnFilteredFoodList();
+
     /** Returns the {@code Map} of food items and their calorie content */
     Map<Name, Calorie> getFoodCalorieList();
 }

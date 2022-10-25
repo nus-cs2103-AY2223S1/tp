@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Map;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.nutrigoals.logic.commands.exceptions.CommandException;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Model;
+import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.meal.IsFoodInPredicate;
 import seedu.nutrigoals.model.meal.Name;
 
 /**
@@ -26,6 +29,8 @@ public class FindCommand extends Command {
     public static final String MESSAGE_FOOD_CALORIES_NOT_FOUND = "No calorie content information for %1$s";
 
     private final Name foodName;
+    private FilteredList<Food> filteredList;
+    private final IsFoodInPredicate predicate;
 
     /**
      * Creates a FindCommand to find the calorie content of the given food.
@@ -33,15 +38,31 @@ public class FindCommand extends Command {
      */
     public FindCommand(Name foodName) {
         this.foodName = foodName;
+        predicate = new IsFoodInPredicate(foodName);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Map<Name, Calorie> foodCalorieList = model.getFoodCalorieList();
+        filteredList = new FilteredList<>(model.getUnFilteredFoodList());
+        filteredList.setPredicate(predicate);
+
+        // if food is in filtered list return average of calories in list
+        if (filteredList.size() != 0) {
+            Integer sum = 0;
+            for (Food food : filteredList) {
+                sum += food.getCalorie().getCalorieValue();
+            }
+            sum /= filteredList.size();
+            Calorie average = new Calorie(sum.toString());
+            return new CommandResult(String.format(MESSAGE_FIND_FOOD_CALORIE_SUCCESS, foodName, average));
+        }
+
         if (!foodCalorieList.containsKey(foodName)) {
             throw new CommandException(String.format(MESSAGE_FOOD_CALORIES_NOT_FOUND, foodName));
         }
+
         Calorie calorie = foodCalorieList.get(foodName);
         return new CommandResult(String.format(MESSAGE_FIND_FOOD_CALORIE_SUCCESS, foodName, calorie));
     }
