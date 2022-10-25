@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * Represents a Task in the address book.
  */
-public abstract class Task {
+public class Task {
     private final UUID id;
 
     private final TaskName name;
