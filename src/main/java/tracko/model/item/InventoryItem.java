@@ -13,7 +13,7 @@ import tracko.model.tag.Tag;
  * Represents an item in the inventory list.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class InventoryItem {
+public class InventoryItem implements Item {
     private ItemName itemName;
     private Description description;
     private Quantity totalQuantity;
@@ -41,8 +41,19 @@ public class InventoryItem {
         this.costPrice = costPrice;
     }
 
+    @Override
     public ItemName getItemName() {
         return itemName;
+    }
+
+    @Override
+    public Price getSellPrice() {
+        return sellPrice;
+    }
+
+    @Override
+    public Price getCostPrice() {
+        return costPrice;
     }
 
     public Description getDescription() {
@@ -59,14 +70,6 @@ public class InventoryItem {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    public Price getSellPrice() {
-        return sellPrice;
-    }
-
-    public Price getCostPrice() {
-        return costPrice;
     }
 
     /**
