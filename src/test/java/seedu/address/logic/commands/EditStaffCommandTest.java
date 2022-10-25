@@ -6,13 +6,15 @@ import static seedu.address.logic.commands.CommandTestUtil.STAFF_DESC_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.STAFF_DESC_JAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_ANDY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,57 +37,12 @@ import seedu.address.testutil.StaffBuilder;
  */
 public class EditStaffCommandTest {
 
-
-    @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Project project = new ProjectBuilder().build();
-        Staff editedStaff = new StaffBuilder().build();
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(editedStaff).build();
-        project.getStaffList().add(editedStaff);
-        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS, editedStaff);
-        EditStaffCommand editStaffCommand = new EditStaffCommand(
-                project.getProjectName(), INDEX_FIRST_PROJECT, descriptor);
-        model.setProject(model.getFilteredProjectList().get(0), project);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        assertCommandSuccess(editStaffCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Project project = new ProjectBuilder().build();
-        Staff editedStaff = new StaffBuilder().withStaffName(VALID_STAFFNAME_ANDY)
-                .withStaffContact(VALID_STAFFCONTACT_ANDY).withStaffDepartment(VALID_STAFFDEPARTMENT_ANDY).build();
-        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withName(VALID_STAFFNAME_ANDY)
-                .withContact(VALID_STAFFCONTACT_ANDY).withDepartment(VALID_STAFFDEPARTMENT_ANDY).build();
-        project.getStaffList().add(editedStaff);
-        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS, editedStaff);
-        EditStaffCommand editStaffCommand = new EditStaffCommand(
-                project.getProjectName(), INDEX_FIRST_PROJECT, descriptor);
-        model.setProject(model.getFilteredProjectList().get(0), project);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        assertCommandSuccess(editStaffCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Project project = new ProjectBuilder().build();
-        Staff staff = new StaffBuilder().build();
-        project.getStaffList().add(staff);
-        model.setProject(model.getFilteredProjectList().get(0), project);
-        EditStaffCommand editStaffCommand = new EditStaffCommand(project.getProjectName(), INDEX_FIRST_PROJECT,
-                new EditStaffDescriptor());
-        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS, staff);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        assertCommandSuccess(editStaffCommand, model, expectedMessage, expectedModel);
-
-    }
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_invalidProjectName_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        cleanUpModel();
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         Project emptyProject = new ProjectBuilder().withName("DoesNotExist").build();
         EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptorBuilder().build();
@@ -97,21 +54,130 @@ public class EditStaffCommandTest {
 
     @Test
     public void execute_invalidStaffIndex_failure() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Project blankProject = new ProjectBuilder().withName("Nothing").build();
-        expectedModel.addProject(blankProject);
+        cleanUpModel();
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().get(0)
+                .getStaffList().size() + 1);
+        ProjectName invalidProjectName = model.getFilteredProjectList().get(0).getProjectName();
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withName(invalidProjectName.fullName)
+                .build();
+        EditStaffCommand command = new EditStaffCommand(invalidProjectName, outOfBoundIndex, descriptor);
 
-        Index outOfBoundIndex = INDEX_SECOND_PROJECT;
-        EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptorBuilder().build();
-        assertTrue(outOfBoundIndex.getZeroBased() >= blankProject.getStaffList().size());
-        EditStaffCommand editStaffCommand = new EditStaffCommand(blankProject.getProjectName(), outOfBoundIndex,
-                editStaffDescriptor);
-        assertCommandFailure(editStaffCommand, expectedModel, EditStaffCommand.MESSAGE_INVALID_STAFF_INDEX);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
+    }
+    @Test
+    public void execute_duplicateProject_failure() {
+        cleanUpModel();
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Staff dummyStaff = new StaffBuilder().withStaffName(VALID_STAFFNAME_ANDY).build();
+
+        // add two more dummy staff to ensure the total number of staff in the project >= 2
+        Staff dummyStaffTwo = new StaffBuilder().withStaffName("Marcus").build();
+        Staff dummyStaffThree = new StaffBuilder().withStaffName("Beethoven Mozart").build();
+        model.getFilteredProjectList().get(0).getStaffList().add(dummyStaff);
+        model.getFilteredProjectList().get(0).getStaffList().add(dummyStaffTwo);
+        model.getFilteredProjectList().get(0).getStaffList().add(dummyStaffThree);
+
+        Index outOfBoundsIndex = INDEX_SECOND_PROJECT;
+        assertTrue(outOfBoundsIndex.getZeroBased()
+                < model.getFilteredProjectList().get(0).getStaffList().size());
+
+        EditStaffCommand command = new EditStaffCommand(model.getFilteredProjectList().get(0).getProjectName(),
+                outOfBoundsIndex,
+                new EditStaffDescriptor(new EditStaffDescriptorBuilder().withName(VALID_STAFFNAME_ANDY).build()));
+
+        assertCommandFailure(command, model, EditStaffCommand.MESSAGE_DUPLICATE_STAFF);
+
     }
 
     @Test
+    public void execute_allFieldsSpecified_success() {
+        cleanUpModel();
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project validProject = new ProjectBuilder().build();
+
+        Staff validStaff = new StaffBuilder().build();
+        Staff validStaffTwo = new StaffBuilder().withStaffName("Carlos").build();
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(validStaffTwo).build();
+
+        validProject.getStaffList().add(validStaff);
+        model.addProject(validProject);
+
+        EditStaffCommand command = new EditStaffCommand(validProject.getProjectName(),
+                INDEX_FIRST_PROJECT, descriptor);
+
+        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
+                validStaffTwo);
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project expectedProject = new ProjectBuilder(validProject).build();
+        expectedProject.getStaffList().setStaff(validStaff, validStaffTwo);
+        expectedModel.addProject(expectedProject);
+        expectedModel.setFilteredStaffList(expectedProject);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+    }
+
+    @Test
+    public void execute_someFieldsSpecified_success() {
+        cleanUpModel();
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project validProject = new ProjectBuilder().build();
+
+        Staff validStaff = new StaffBuilder().build();
+        Staff validStaffTwo = new StaffBuilder().withStaffName("Carlos")
+                .withStaffContact(VALID_STAFFCONTACT_ANDY).withStaffTitle(VALID_STAFFTITLE_ANDY).build();
+
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder(validStaffTwo).build();
+
+        validProject.getStaffList().add(validStaff);
+        model.addProject(validProject);
+
+        EditStaffCommand command = new EditStaffCommand(validProject.getProjectName(),
+                INDEX_FIRST_PROJECT, descriptor);
+
+        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
+                validStaffTwo);
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project expectedProject = new ProjectBuilder(validProject).build();
+        expectedProject.getStaffList().setStaff(validStaff, validStaffTwo);
+        expectedModel.addProject(expectedProject);
+        expectedModel.setFilteredStaffList(expectedProject);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_noFieldSpecified_success() {
+        cleanUpModel();
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project validProject = new ProjectBuilder().build();
+
+        Staff validStaff = new StaffBuilder().build();
+
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().build();
+
+        validProject.getStaffList().add(validStaff);
+        model.addProject(validProject);
+
+        EditStaffCommand command = new EditStaffCommand(validProject.getProjectName(),
+                INDEX_FIRST_PROJECT, descriptor);
+
+        String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
+                validStaff);
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Project expectedProject = new ProjectBuilder(validProject).build();
+        expectedProject.getStaffList().setStaff(validStaff, validStaff);
+        expectedModel.addProject(expectedProject);
+        expectedModel.setFilteredStaffList(expectedProject);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+
+    @Test
     public void equals() {
+        cleanUpModel();
         final ProjectName standardProjectName = new ProjectName(VALID_NAME_AMY);
         final EditStaffCommand standardCommand = new EditStaffCommand(standardProjectName, INDEX_FIRST_PROJECT,
                 STAFF_DESC_ANDY);
@@ -138,6 +204,15 @@ public class EditStaffCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditStaffCommand(standardProjectName, INDEX_FIRST_PROJECT,
                 STAFF_DESC_JAY)));
+    }
+
+    private void cleanUpModel() {
+        Project project = new ProjectBuilder().build();
+        model.getFilteredProjectList().remove(project);
+
+        Project projectTwo = model.getFilteredProjectList().get(0);
+        projectTwo.getStaffList().setStaffs(new ArrayList<>());
+
     }
 
 }

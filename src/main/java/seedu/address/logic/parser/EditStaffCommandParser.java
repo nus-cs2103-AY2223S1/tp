@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditStaffCommand;
@@ -38,8 +39,6 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_STAFF_NAME, PREFIX_STAFF_CONTACT,
                         PREFIX_STAFF_DEPARTMENT, PREFIX_STAFF_LEAVE, PREFIX_STAFF_TITLE, PREFIX_TAG);
 
-        ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
-
         Index index;
 
         try {
@@ -49,6 +48,7 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
                 EditStaffCommand.MESSAGE_USAGE), pe);
         }
 
+        ProjectName projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
 
         EditStaffDescriptor editStaffDescriptor = new EditStaffDescriptor();
 
@@ -84,6 +84,14 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
 
         return new EditStaffCommand(projectName, index, editStaffDescriptor);
 
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

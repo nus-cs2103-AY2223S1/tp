@@ -29,11 +29,8 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
-<<<<<<< HEAD
 import seedu.address.testutil.EditStaffDescriptorBuilder;
-=======
 import seedu.address.testutil.EditTaskDescriptorBuilder;
->>>>>>> master
 
 /**
  * Contains helper methods for testing commands.

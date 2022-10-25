@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -23,11 +24,14 @@ import seedu.address.logic.commands.DeleteStaffCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.EditStaffCommand;
+import seedu.address.logic.commands.EditStaffCommand.EditStaffDescriptor;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindStaffCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -42,9 +46,11 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
+import seedu.address.model.staff.StaffNameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.EditStaffDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
@@ -141,6 +147,22 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_editStaffTask() throws Exception {
+        Project dummyProject = new ProjectBuilder().withName("dummy").build();
+        dummyProject.getStaffList().add(new StaffBuilder().withStaffName("Andy").build());
+        EditStaffDescriptor descriptor = new EditStaffDescriptorBuilder().withName("Andy Lau")
+                .build();
+
+        EditStaffCommand command = (EditStaffCommand) parser.parseCommand(
+                EditStaffCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TASK.getOneBased() + " "
+                + PREFIX_PROJECT_NAME + dummyProject.getProjectName()
+                + " " + StaffUtil.getEditStaffDescriptorDetails(descriptor));
+        assertEquals(new EditStaffCommand(dummyProject.getProjectName(), INDEX_FIRST_TASK, descriptor),
+                command);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -159,6 +181,14 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findStaff() throws Exception {
+        String keyword = "Andy";
+        FindStaffCommand command = new FindStaffCommand(new StaffNameContainsKeywordsPredicate(keyword));
+        assertEquals(new FindStaffCommand(new StaffNameContainsKeywordsPredicate(keyword)),
+                command);
     }
 
     @Test

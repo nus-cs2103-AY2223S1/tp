@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_LEAVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -41,24 +42,24 @@ public class EditStaffCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the staff in the specified "
             + "project identified by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: " + PREFIX_PROJECT_NAME + "PROJECT NAME "
+            + "Parameters: "
             + "STAFF_INDEX (must be a positive integer) "
-            + "[" + PREFIX_STAFF_NAME + "STAFF NAME] "
-            + "[" + PREFIX_STAFF_CONTACT + "STAFF CONTACT] "
-            + "[" + PREFIX_STAFF_DEPARTMENT + "STAFF DEPARTMENT] "
-            + "[" + PREFIX_STAFF_LEAVE + "STAFF LEAVE] "
-            + "[" + PREFIX_STAFF_TITLE + "STAFF TITLE] "
+            + PREFIX_PROJECT_NAME + "PROJECT_NAME "
+            + "[" + PREFIX_STAFF_NAME + "STAFF_NAME] "
+            + "[" + PREFIX_STAFF_CONTACT + "STAFF_CONTACT] "
+            + "[" + PREFIX_STAFF_DEPARTMENT + "STAFF_DEPARTMENT] "
+            + "[" + PREFIX_STAFF_LEAVE + "STAFF_LEAVE] "
+            + "[" + PREFIX_STAFF_TITLE + "STAFF_TITLE] "
             + "[" + PREFIX_TAG + "TAG] ...\n"
-            + "Example: " + COMMAND_WORD + " 1 " + " 2 "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_PROJECT_NAME + "CS2103T TP "
             + PREFIX_STAFF_NAME + "John Doe "
             + PREFIX_STAFF_CONTACT + "98765432 ";
 
     public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field must be provided.";
-
-    public static final String MESSAGE_INVALID_STAFF_INDEX = "Invalid staff index provided.";
-
+    public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project.";
     private final ProjectName projectName;
     private final Index staffIndex;
     private final EditStaffDescriptor editStaffDescriptor;
@@ -72,7 +73,6 @@ public class EditStaffCommand extends Command {
         requireNonNull(projectName);
         requireNonNull(staffIndex);
         requireNonNull(editStaffDescriptor);
-
         this.projectName = projectName;
         this.staffIndex = staffIndex;
         this.editStaffDescriptor = new EditStaffDescriptor(editStaffDescriptor);
@@ -81,6 +81,7 @@ public class EditStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Project> lastShownList = model.getFilteredProjectList();
         int projectIndex = 0;
 
@@ -100,15 +101,21 @@ public class EditStaffCommand extends Command {
         Project toFindIn = lastShownList.get(index.getZeroBased());
 
         if (staffIndex.getZeroBased() >= toFindIn.getStaffList().size()) {
-            throw new CommandException(MESSAGE_INVALID_STAFF_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
         }
 
         Staff toEdit = toFindIn.getStaffList().getStaff(staffIndex);
         Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
 
+        if (!toEdit.isSameStaff(editedStaff) && toFindIn.getStaffList().contains(editedStaff)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STAFF);
+        }
+
         toFindIn.getStaffList().setStaff(toEdit, editedStaff);
 
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        model.setFilteredStaffList(lastShownList.get(projectIndex));
+        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
+
         return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff));
     }
 
