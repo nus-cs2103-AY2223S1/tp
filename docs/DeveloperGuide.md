@@ -55,9 +55,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/MainApp.java). It is responsible for:
+* application launch: Initialises the components in the correct sequence, and connects them up with each other.
+* application shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#415-common-classes) represents a collection of classes used by multiple other components.
 
@@ -66,11 +66,11 @@ The rest of the App consists of four components.
 * [**`UI`**](#411-ui-component): The UI of the App.
 * [**`Logic`**](#412-logic-component): The command executor.
 * [**`Model`**](#413-model-component): Holds the data of the App in memory.
-* [**`Storage`**](#414-storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#414-storage-component): Reads data from, and writes data to the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete id/123A`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -87,13 +87,13 @@ The sections below give more details of each component.
 
 #### 4.1.1 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -104,19 +104,19 @@ The `UI` component,
 
 #### 4.1.2 Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `StudentRecordParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete id/123A")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -133,7 +133,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 #### 4.1.3 Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -146,22 +146,22 @@ The `Model` component:
 
 #### 4.1.4 Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/classify/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both student record data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `StudentRecordStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 #### 4.1.5 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.classify.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 4.2 **Implementation**
+### 4.2 Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -237,6 +237,9 @@ Deleting a student record can be divided into 2 main steps: parsing the command 
 The sequence diagram below illustrates the interactions within the `Logic` component when the user calls a delete command, for example, `delete id/123A`.
 
 <img src="images/DeleteCommandSequenceDiagram.png" />
+
+<div class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 Step 1: Parsing the command
 

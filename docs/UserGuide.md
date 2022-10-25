@@ -160,6 +160,11 @@ Examples:
 *  `edit 2 nm/Jacob Teo` Edits the name of the 2nd student to `Jacob Teo`.
 
 ## 4.2 Managing display of student records
+<div markdown="span" class="alert alert-info">:information_source:
+   **Note:**
+   The default display, when starting the application, shows all student records in Classify.
+   Commands related to managing display are not saved upon exiting the application.
+</div>
 
 ### 4.2.1 Finding a student record : `find`
 
@@ -178,17 +183,19 @@ Examples:
 
 ### 4.2.2 Toggling view : `toggleView`
 
-*To be updated*
+Toggles the display between showing and hiding the students' parent details. 
+
+Format: `toggleView`
+
+*To be updated: insert screenshots*
+
+<div markdown="span" class="alert alert-primary">:bulb:
+   **Tip:** The default display renders the students' parent details as a reminder that these optional fields exists.    
+</div>
 
 ### 4.2.3 Viewing all student records : `viewAll`
 
-Shows a list of all students in the class.
-For each student in the list, only the Student's Name and Student's ID are displayed.
-
-<div markdown="span" class="alert alert-info">:information_source:
-   **Note:** The other details of a student are hidden to reduce cluttering.
-To view the full record of a student, use the `view` command instead.
-</div><br>
+Shows a list of all student records in Classify.
 
 Format: `viewAll`
 
