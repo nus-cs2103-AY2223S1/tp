@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+
+
+<TextField fx:id="jumpText" onAction="#handleOnAction" promptText="Enter... (e.g. 22-Oct-2022)" style="-fx-border-radius: 5; -fx-border-color: grey; -fx-background-color: #1d1d1d; -fx-text-fill: white; -fx-font-size: 15;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
