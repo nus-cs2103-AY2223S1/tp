@@ -24,11 +24,29 @@ public class Applicant {
     // Data fields
     private final ApplicationStatus applicationStatus;
     private final Scholarship scholarship;
+    private final Pin pin;
+
     private final Set<Major> majors = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
+    public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
+                     ApplicationStatus applicationStatus, Set<Major> tags, Pin pin) {
+        requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.scholarship = scholarship;
+        this.applicationStatus = applicationStatus;
+        this.pin = pin;
+        this.majors.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+
     public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
                      ApplicationStatus applicationStatus, Set<Major> majors) {
         requireAllNonNull(name, phone, email, scholarship, applicationStatus, majors);
@@ -37,6 +55,7 @@ public class Applicant {
         this.email = email;
         this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
+        this.pin = new Pin(false);
         this.majors.addAll(majors);
     }
 
@@ -58,6 +77,14 @@ public class Applicant {
 
     public ApplicationStatus getApplicationStatus() {
         return applicationStatus;
+    }
+
+    public Pin getPin() {
+        return pin;
+    }
+
+    public void setHasPinnedInPin(boolean hasPinned) {
+        this.pin.setHasPinned(hasPinned);
     }
 
     /**
@@ -161,13 +188,14 @@ public class Applicant {
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getScholarship().equals(getScholarship())
                 && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
+                && otherApplicant.getPin().equals(getPin())
                 && otherApplicant.getMajors().equals(getMajors());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, scholarship, applicationStatus, majors);
+        return Objects.hash(name, phone, email, scholarship, applicationStatus, majors, pin);
     }
 
     @Override
@@ -181,13 +209,16 @@ public class Applicant {
                 .append("; Scholarship: ")
                 .append(getScholarship())
                 .append("; Application Status: ")
-                .append(getApplicationStatus());
+                .append(getApplicationStatus())
+                .append("; hasPinned: ")
+                .append(getPin().getHasPinned());
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {
             builder.append("; Majors: ");
             majors.forEach(builder::append);
         }
+
         return builder.toString();
     }
 

@@ -124,6 +124,7 @@ public class ModelManager implements Model {
         trackAScholar.sortApplicants(comparator);
     }
 
+
     //=========== Filtered Applicant List Accessors =============================================================
 
     /**
@@ -133,6 +134,13 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Applicant> getFilteredApplicantList() {
         return filteredApplicants;
+    }
+
+    @Override
+    public ObservableList<Applicant> getPinnedApplicantList() {
+        FilteredList<Applicant> pinnedList = new FilteredList<>(this.trackAScholar.getApplicantList());
+        pinnedList.setPredicate(PREDICATE_SHOW_PINNED_APPLICANTS);
+        return pinnedList;
     }
 
     @Override
