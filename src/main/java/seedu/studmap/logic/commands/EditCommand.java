@@ -2,6 +2,9 @@ package seedu.studmap.logic.commands;
 
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,6 +43,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_GIT + "GITUSER] "
+            + "[" + PREFIX_HANDLE + "TELEHANDLE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "

@@ -2,6 +2,9 @@ package seedu.studmap.logic.parser;
 
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -47,6 +50,9 @@ public class EditCommandParser extends EditStudentCommandParser<EditCommandStude
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_ID).isPresent()) {
+            editor.set
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
