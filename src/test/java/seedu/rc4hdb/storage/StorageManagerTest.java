@@ -21,6 +21,7 @@ import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 
 /**
@@ -87,7 +88,7 @@ public class StorageManagerTest {
 
     @Test
     public void setDataStoragePath_validFilePath_filePathSet() {
-        Path expectedPath = Path.of("SomeFile.json");
+        Path expectedPath = Path.of("SomeFile");
         storageManager.setDataStorageFolderPath(expectedPath);
         assertEquals(expectedPath, storageManager.getDataStorageFolderPath());
     }
@@ -99,15 +100,16 @@ public class StorageManagerTest {
 
     @Test
     public void deleteResidentBook_existingFile_fileDeleted() throws Exception {
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted.json");
+        Path folderPath = testFolder.resolve("ToBeDeleted");
+        Path toBeDeleted = folderPath.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
         FileUtil.createIfMissing(toBeDeleted);
-        storageManager.deleteResidentBookFile(toBeDeleted);
+        storageManager.deleteResidentBookFile(folderPath);
         assertFalse(FileUtil.isFileExists(toBeDeleted));
     }
 
     @Test
     public void deleteResidentBook_fileDoesNotExist_throwsNoSuchFileException() {
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted.json");
+        Path toBeDeleted = testFolder.resolve("ToBeDeleted");
         assertThrows(NoSuchFileException.class, () -> storageManager.deleteResidentBookFile(toBeDeleted));
     }
 
@@ -118,15 +120,16 @@ public class StorageManagerTest {
 
     @Test
     public void createResidentBookFile_fileDoesNotExist_fileCreated() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated.json");
+        Path toBeCreated = testFolder.resolve("ToBeCreated");
         storageManager.createResidentBookFile(toBeCreated);
-        assertTrue(FileUtil.isFileExists(toBeCreated));
+        assertTrue(FileUtil.isFolderExists(toBeCreated));
+        assertTrue(FileUtil.isFileExists(toBeCreated.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH)));
     }
 
     @Test
     public void createResidentBookFile_fileAlreadyExist_throwsFileAlreadyExistException() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated.json");
-        storageManager.createResidentBookFile(toBeCreated);
+        Path toBeCreated = testFolder.resolve("ToBeCreated").resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
+        FileUtil.createIfMissing(toBeCreated);
         assertThrows(FileAlreadyExistsException.class, () -> storageManager.createResidentBookFile(toBeCreated));
     }
 
