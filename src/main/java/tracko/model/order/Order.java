@@ -129,6 +129,9 @@ public class Order {
         this.isDelivered = true;
     }
 
+    /**
+     * Calculates the total price of a customer's ordered items.
+     */
     public void calculateTotalOrder() {
         double totalOrderPrice = 0;
         for (int i = 0; i < itemList.size(); i++) {

@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tracko.model.item.InventoryList;
 import tracko.model.item.exceptions.ItemNotFoundException;
 
 /**

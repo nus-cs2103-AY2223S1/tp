@@ -73,6 +73,9 @@ public class ItemQuantityPair {
         return quantity.getQuantity();
     }
 
+    /**
+     * Calculates the selling price of an ItemQuantityPair.
+     */
     public void calculatePrice() {
         Price singleItemPrice = this.item.getSellPrice();
         double itemPrice = singleItemPrice.multiply(quantity.getQuantity());
