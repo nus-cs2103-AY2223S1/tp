@@ -58,7 +58,7 @@ public class UnhidePatientsCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof HidePatientsCommand)) {
+        if (!(other instanceof UnhidePatientsCommand)) {
             return false;
         }
 
