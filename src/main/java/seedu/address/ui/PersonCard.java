@@ -83,7 +83,7 @@ public class PersonCard extends UiPart<Region> {
                 setText(null);
                 setStyle(TRANSPARENT_BACKGROUND);
             } else {
-                setGraphic(new AppointmentHBox(getIndex() + 1, appointment).getRoot());
+                setGraphic(new AppointmentHBox(getIndex() + 1, appointment));
                 setStyle(TRANSPARENT_BACKGROUND);
             }
         }

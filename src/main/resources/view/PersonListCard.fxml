@@ -14,92 +14,92 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-            <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5.0">
-                <Label fx:id="id" styleClass="cell_big_label" textFill="WHITE">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5.0">
+        <Label fx:id="id" styleClass="cell_big_label" textFill="WHITE">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
+      </HBox>
+        <FlowPane fx:id="specialTags" />
+      <FlowPane fx:id="tags" />
+      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/phone.png" />
+                  </image>
+               </ImageView>
+            </graphic></Label>
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/home.png" />
+                  </image>
+               </ImageView>
+            </graphic></Label>
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/email.png" />
+                  </image>
+               </ImageView>
+            </graphic></Label>
+        <Label fx:id="income" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/dollar.png" />
+                    </image>
+                </ImageView>
+            </graphic></Label>
+    <Label fx:id="monthly" styleClass="cell_small_label" text="\$monthly" textFill="WHITE">
+        <graphic>
+            <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/monthly.png" />
+                </image>
+            </ImageView>
+        </graphic></Label>
+    </VBox>
+      <VBox minHeight="105.0" GridPane.columnIndex="1">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="129.0" spacing="5">
+               <children>
+                  <Label fx:id="id1" alignment="BOTTOM_LEFT" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
+                     <minWidth>
                         <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
+                     </minWidth>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
             </HBox>
-            <FlowPane fx:id="specialTags" />
-            <FlowPane fx:id="tags" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
-                <graphic>
-                    <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/phone.png" />
-                        </image>
-                    </ImageView>
-                </graphic></Label>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE">
-                <graphic>
-                    <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/home.png" />
-                        </image>
-                    </ImageView>
-                </graphic></Label>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE">
-                <graphic>
-                    <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/email.png" />
-                        </image>
-                    </ImageView>
-                </graphic></Label>
-            <Label fx:id="income" styleClass="cell_small_label" text="\$address" textFill="WHITE">
-                <graphic>
-                    <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/dollar.png" />
-                        </image>
-                    </ImageView>
-                </graphic></Label>
-            <Label fx:id="monthly" styleClass="cell_small_label" text="\$monthly" textFill="WHITE">
-                <graphic>
-                    <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/monthly.png" />
-                        </image>
-                    </ImageView>
-                </graphic></Label>
-        </VBox>
-        <VBox minHeight="105.0" GridPane.columnIndex="1">
-            <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="129.0" spacing="5">
-                    <children>
-                        <Label fx:id="id1" alignment="BOTTOM_LEFT" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
-                            <minWidth>
-                                <Region fx:constant="USE_PREF_SIZE" />
-                            </minWidth>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <padding>
-                        <Insets bottom="10.0" />
-                    </padding>
-                </HBox>
-                <ListView fx:id="appointments" prefHeight="127.0" prefWidth="129.0" />
-            </children>
-            <padding>
-                <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
-            </padding>
-        </VBox>
-        <rowConstraints>
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
+           <ListView fx:id="appointments" prefHeight="127.0" prefWidth="129.0" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
 </HBox>
