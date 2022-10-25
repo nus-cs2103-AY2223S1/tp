@@ -77,6 +77,19 @@
                         <StackPane fx:id="expandedStudentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
+                  <VBox fx:id="expandedLessonList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="85.0" style="-fx-font-size: 17; -fx-text-fill: goldenrod; -fx-padding: 5;" text="Lessons" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <StackPane fx:id="expandedLessonListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
                   <SplitPane fx:id="defaultList" dividerPositions="0.5, 0.5">
                     <items>
                                                <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border">

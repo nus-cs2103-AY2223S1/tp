@@ -1,7 +1,6 @@
 package jarvis.model;
 
-import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
-
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -14,11 +13,9 @@ public class Studio extends Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Studio(LessonDesc lessonDesc, TimePeriod timePeriod, LessonAttendance attendance,
-                  StudioParticipation participation, LessonNotes notes) {
-        super(lessonDesc, timePeriod, attendance, notes);
-        requireAllNonNull(participation);
-        this.participation = participation;
+    public Studio(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students) {
+        super(lessonDesc, timePeriod, students);
+        this.participation = new StudioParticipation(students);
     }
 
     public void setParticipationForStudent(Student student, int i) {
@@ -33,6 +30,11 @@ public class Studio extends Lesson {
         return participation;
     }
 
+    @Override
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        super.setStudent(targetStudent, editedStudent);
+        participation.setStudent(targetStudent, editedStudent);
+    }
     /**
      * Returns true if both Studios have the same description,
      * occur at the same time, are attended by the same students,
@@ -58,8 +60,8 @@ public class Studio extends Lesson {
         }
 
         return studioDescEquality
-                && otherStudio.startTime().equals(startTime())
-                && otherStudio.endTime().equals(endTime())
+                && otherStudio.startDateTime().equals(startDateTime())
+                && otherStudio.endDateTime().equals(endDateTime())
                 && otherStudio.getAttendance().equals(getAttendance())
                 && otherStudio.getParticipation().equals(getParticipation());
     }

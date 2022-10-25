@@ -1,20 +1,19 @@
 package jarvis.logic.commands;
 
-import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
-import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
-import jarvis.model.LessonNotes;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.Studio;
-import jarvis.model.StudioParticipation;
 import jarvis.model.TimePeriod;
 
 /**
@@ -27,12 +26,15 @@ public class AddStudioCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a studio lesson to JARVIS.\n"
             + "Parameters: "
             + "[" + PREFIX_LESSON + "LESSON_DESC] "
-            + PREFIX_START_DATE_TIME + "START_DATE_TIME "
-            + PREFIX_END_DATE_TIME + "END_DATE_TIME\n"
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_START_DATE + "START_DATE "
+            + PREFIX_START_TIME + "START_TIME ["
+            + PREFIX_END_DATE + "END_DATE] "
+            + PREFIX_END_TIME + "END_TIME"
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_LESSON + "Studio 3 "
-            + PREFIX_START_DATE_TIME + "2022-10-12T14:00 "
-            + PREFIX_END_DATE_TIME + "2022-10-12T16:00 ";
+            + PREFIX_START_DATE + "2022-10-12 "
+            + PREFIX_START_TIME + "14:00 "
+            + PREFIX_END_TIME + "16:00 ";
 
     public static final String MESSAGE_SUCCESS = "New studio added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDIO = "This studio already exists in JARVIS";
@@ -59,12 +61,7 @@ public class AddStudioCommand extends Command {
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         List<Student> allStudentList = model.getFilteredStudentList();
 
-        LessonAttendance studioAttendance = new LessonAttendance(allStudentList);
-        LessonNotes studioNotes = new LessonNotes(allStudentList);
-        StudioParticipation studioParticipation = new StudioParticipation(allStudentList);
-
-        Studio studioToAdd = new Studio(studioDesc, studioPeriod,
-                studioAttendance, studioParticipation, studioNotes);
+        Studio studioToAdd = new Studio(studioDesc, studioPeriod, allStudentList);
 
         if (model.hasLesson(studioToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDIO);

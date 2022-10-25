@@ -1,5 +1,6 @@
 package jarvis.model;
 
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -10,8 +11,8 @@ public class MasteryCheck extends Lesson {
     /**
      * Every field must be present and not null.
      */
-    public MasteryCheck(LessonDesc lessonDesc, TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes) {
-        super(lessonDesc, timePeriod, attendance, notes);
+    public MasteryCheck(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students) {
+        super(lessonDesc, timePeriod, students);
     }
 
     /**
@@ -38,8 +39,8 @@ public class MasteryCheck extends Lesson {
         }
 
         return masteryCheckDescEquality
-                && otherMasteryCheck.startTime().equals(startTime())
-                && otherMasteryCheck.endTime().equals(endTime())
+                && otherMasteryCheck.startDateTime().equals(startDateTime())
+                && otherMasteryCheck.endDateTime().equals(endDateTime())
                 && otherMasteryCheck.getAttendance().equals(getAttendance());
     }
 

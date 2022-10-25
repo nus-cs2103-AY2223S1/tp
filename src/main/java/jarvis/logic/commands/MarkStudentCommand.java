@@ -55,14 +55,9 @@ public class MarkStudentCommand extends Command {
         if (lessonIndex.getZeroBased() >= lastShownLessonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
         }
-
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
-        if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-
         Lesson lessonToMark = lastShownLessonList.get(lessonIndex.getZeroBased());
-        Student studentToMark = lastShownStudentList.get(studentIndex.getZeroBased());
+        Student studentToMark = lessonToMark.getStudent(studentIndex);
+
         try {
             lessonToMark.markAsPresent(studentToMark);
         } catch (StudentNotFoundException snfe) {

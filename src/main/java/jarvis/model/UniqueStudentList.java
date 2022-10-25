@@ -3,6 +3,7 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,6 +26,7 @@ import javafx.collections.ObservableList;
  */
 public class UniqueStudentList implements Iterable<Student> {
 
+    private static final Comparator<Student> STUDENT_COMPARATOR = Comparator.comparing(s -> s.getName().toString());
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -47,6 +49,7 @@ public class UniqueStudentList implements Iterable<Student> {
             throw new DuplicateStudentException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList, STUDENT_COMPARATOR);
     }
 
     /**
@@ -81,6 +84,7 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.set(index, editedStudent);
+        FXCollections.sort(internalList, STUDENT_COMPARATOR);
     }
 
     /**
@@ -92,11 +96,13 @@ public class UniqueStudentList implements Iterable<Student> {
         if (!internalList.remove(toRemove)) {
             throw new StudentNotFoundException();
         }
+        FXCollections.sort(internalList, STUDENT_COMPARATOR);
     }
 
     public void setStudents(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList, STUDENT_COMPARATOR);
     }
 
     /**
@@ -110,6 +116,7 @@ public class UniqueStudentList implements Iterable<Student> {
         }
 
         internalList.setAll(students);
+        FXCollections.sort(internalList, STUDENT_COMPARATOR);
     }
 
     /**

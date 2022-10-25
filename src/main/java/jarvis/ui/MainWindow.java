@@ -44,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private UiPart<Region> lessonListPanel;
     private ExpandedStudentListPanel expStudentListPanel;
     private ExpandedTaskListPanel expTaskListPanel;
+    private ExpandedLessonListPanel expLessonListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -75,10 +76,16 @@ public class MainWindow extends UiPart<Stage> {
     private VBox expandedTaskList;
 
     @FXML
+    private VBox expandedLessonList;
+
+    @FXML
     private StackPane expandedStudentListPanelPlaceholder;
 
     @FXML
     private StackPane expandedTaskListPanelPlaceholder;
+
+    @FXML
+    private StackPane expandedLessonListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -146,6 +153,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         expandedStudentList.setVisible(false);
         expandedTaskList.setVisible(false);
+        expandedLessonList.setVisible(false);
 
         ObservableList<Student> filteredStudentList = logic.getFilteredStudentList();
         ObservableList<Task> filteredTaskList = logic.getFilteredTaskList();
@@ -156,12 +164,14 @@ public class MainWindow extends UiPart<Stage> {
         lessonListPanel = new LessonListPanel(filteredLessonList);
         expStudentListPanel = new ExpandedStudentListPanel(filteredStudentList);
         expTaskListPanel = new ExpandedTaskListPanel(filteredTaskList);
+        expLessonListPanel = new ExpandedLessonListPanel(filteredLessonList);
 
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
         lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
         expandedStudentListPanelPlaceholder.getChildren().add(expStudentListPanel.getRoot());
         expandedTaskListPanelPlaceholder.getChildren().add(expTaskListPanel.getRoot());
+        expandedLessonListPanelPlaceholder.getChildren().add(expLessonListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -217,6 +227,8 @@ public class MainWindow extends UiPart<Stage> {
             expandedStudentList.setVisible(true);
         } else if (displayedList == DisplayedList.EXP_TASK_LIST) {
             expandedTaskList.setVisible(true);
+        } else if (displayedList == DisplayedList.EXP_LESSON_LIST) {
+            expandedLessonList.setVisible(true);
         }
     }
 
@@ -227,6 +239,7 @@ public class MainWindow extends UiPart<Stage> {
         defaultList.setVisible(false);
         expandedStudentList.setVisible(false);
         expandedTaskList.setVisible(false);
+        expandedLessonList.setVisible(false);
     }
 
     /**

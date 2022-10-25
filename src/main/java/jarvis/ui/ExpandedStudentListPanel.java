@@ -31,7 +31,7 @@ public class ExpandedStudentListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using an {@code ExpandedStudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {
         @Override
