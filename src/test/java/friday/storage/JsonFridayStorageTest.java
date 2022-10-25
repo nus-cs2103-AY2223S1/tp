@@ -23,11 +23,11 @@ public class JsonFridayStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readFriday_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readFriday(null));
     }
 
-    private java.util.Optional<ReadOnlyFriday> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyFriday> readFriday(String filePath) throws Exception {
         return new JsonFridayStorage(Paths.get(filePath)).readFriday(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -39,30 +39,30 @@ public class JsonFridayStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readFriday("NonExistentFile.json").isPresent());
     }
 
     /*
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readFriday("notJsonFormatFriday.json"));
     }
 
     @Test
-    public void readAddressBook_invalidStudentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudentAddressBook.json"));
+    public void readFriday_invalidStudentFriday_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFriday("invalidStudentFriday.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidStudentAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudentAddressBook.json"));
+    public void readFriday_invalidAndValidStudentFriday_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFriday("invalidAndValidStudentFriday.json"));
     }
     */
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveFriday_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        Friday original = TypicalStudents.getTypicalAddressBook();
+        Friday original = TypicalStudents.getTypicalFriday();
         JsonFridayStorage jsonFridayStorage = new JsonFridayStorage(filePath);
 
         // Save in new file and read back
@@ -86,24 +86,24 @@ public class JsonFridayStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveFriday_nullFriday_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFriday(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code Friday} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyFriday addressBook, String filePath) {
+    private void saveFriday(ReadOnlyFriday friday, String filePath) {
         try {
             new JsonFridayStorage(Paths.get(filePath))
-                    .saveFriday(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveFriday(friday, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new Friday(), null));
+    public void saveFriday_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFriday(new Friday(), null));
     }
 }

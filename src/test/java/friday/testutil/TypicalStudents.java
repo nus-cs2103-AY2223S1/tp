@@ -72,7 +72,7 @@ public class TypicalStudents {
     /**
      * Returns an {@code AddressBook} with all the typical students.
      */
-    public static Friday getTypicalAddressBook() {
+    public static Friday getTypicalFriday() {
         Friday ab = new Friday();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
