@@ -31,7 +31,7 @@ public class TypicalModules {
             .build();
 
 
-    // Not inside typical modules
+    // Not inside typical modules list
     public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE)
             .withModuleTitle(VALID_CS2106_MODULE_TITLE).build();
     public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA2001_MODULE_CODE)

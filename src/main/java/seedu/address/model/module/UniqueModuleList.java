@@ -140,6 +140,20 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Removes the provided person object from every module's set of persons if it exists.
+     *
+     * @param person The person to be removed from every module's set of persons.
+     */
+    public void removePersonFromModules(Person person) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Module module = internalList.get(i);
+            if (module.containsPerson(person)) {
+                module.removePerson(person);
+            }
+        }
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Module> asUnmodifiableObservableList() {
