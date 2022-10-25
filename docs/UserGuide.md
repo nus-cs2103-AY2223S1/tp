@@ -18,12 +18,8 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
   - [Listing contacts](#listing-contacts)
   - [Editing contacts](#editing-contacts)
   - [Deleting contacts](#deleting-contacts)
-  - [Adding current modules](#adding-current-modules)
-  - [Adding previous modules](#adding-previous-modules)
-  - [Adding future modules](#adding-future-modules)
-  - [Listing modules](#listing-modules)
-  - [Deleting modules](#deleting-modules)
-  - [Deleting plans](#deleting-plans)
+  - [Editing user's modules](#edit-users-modules)
+  - [Editing contact's modules](#edit-contacts-modules)
   - [Adding lessons](#adding-lessons)
   - [Listing lessons / Viewing timetable](#listing-lessons--viewing-timetable)
   - [Deleting lessons](#deleting-lessons)
@@ -184,107 +180,52 @@ Examples:
 * `list `followed by  `delete 1` deletes the first contact in the list of all contacts the user has added.
 
 
-### Adding current modules
+### Edit user's modules
 
-Add a specified module that you are currently taking to your work plan.
+Directly edit your own module list by adding or deleting modules from the list.
 
-Format: `add curr mod [module code]`
+Format: `module user [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]`
 
 
-
-* Add a module with module code [module code] to the list of mods you are taking this semester.
+* You need to edit at least one list
+* You may edit multiple lists at once
+* Add a module with module code [module code] to the list of mods.
+* You are able to specify the modules you are taking currently, taken in the past, and is planning to take in the future.
 * The module code refers to the module code of the module the user is planning to take (E.g. CS2103T)
 * The module code must be a registered module in NUS.
-
-
-### Adding previous modules
-
-Add a module to the list of modules that you have taken previously in earlier semesters.
-
-Format: `add prev mod [module code]`
-
-
-
-* Add a module with module code [module code] to the list of mods you have taken in previous semesters.
-* The module code refers to the module code of the module the user has taken (E.g. CS2103T)
-* The module code must be a registered module in NUS or was registered in the semester the user was enrolled in the module.
-
-
-### Adding future modules
-
-Add a module to the list of modules you are thinking of taking next semester.
-
-Format: `add plan mod [module code]`
-
-
-
-* Adds module with module code `[module code]` to list of modules you are planning to take.
-* The module code refers to the module code of the module the user is planning to take (E.g. CS2103T)
-* The module code must be a registered module in NUS.
+* Using `rm/module to remove` feature will remove the module from all 3 module lists.
 
 Examples:
 
 
 
-* `add planning module CS2103T `adds module CS2103T to list of modules you are planning to take.
+* `module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334` adds the first 3 modules into your respective lists and removes ST2334 from all module lists
 
 
-### Listing modules
+### Edit contact's modules
 
-Shows the list of modules your friends or yourself have taken, are taking and are planning on taking
+Directly edit your contact's module list by adding or deleting modules from their list.
 
-Format: `list all mod [INDEX]/list all mod/list prev mod [INDEX]/list prev mod/list curr mod [INDEX]/list curr mod/list plan mod [INDEX]/list plan mod`
-
-
-
-* Can list all the modules you/your friend have taken or will ever take
-* The index refers to the index number shown in the displayed friend list.
-* If no index is provided after the command then it will list your modules
-* The index **must be a positive integer** 1, 2, 3, …​
-* `list all mod` lists all the modules the user/their friend has previously taken, are currently taking and are planning to take
-* `list prev mod` lists all the modules the user/their friend has previously taken
-* `list curr mod` lists all the modules the user/their friend are currently taking
-* `list plan mod` lists all the modules the user/their friend are planning to take
-
-
-### Deleting modules
-
-Deletes a specified module user is taking currently or has taken previously.
-
-Format: `delete mod [INDEX]/delete prev mod [INDEX]/delete curr mod [INDEX]`
+Format: `module INDEX [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]`
 
 
 
-* Deletes the module at the specified `INDEX`.
+* Edits the module list of the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* You need to edit at least one list
+* You may edit multiple lists at once
+* Add a module with module code [module code] to the list of mods.
+* You are able to specify the modules you are taking currently, taken in the past, and is planning to take in the future.
+* The module code refers to the module code of the module the user is planning to take (E.g. CS2103T)
+* The module code must be a registered module in NUS.
+* Using `rm/module to remove` feature will remove the module from all 3 module lists.
 
 Examples:
 
 
 
-* `list all mod `followed by  `delete mod 1` deletes the first module in the list of all modules the user has taken and is currently taking.
-* `list prev mod `followed by  `delete prev mod 2` deletes the 2nd module in the list of modules have previously taken.
-* `list curr mod followed by delete curr mod 3 `deletes the 3rd module in the list of modules the user is currently taking.
-
-
-### Deleting plans
-
-Deletes a specified plan of modules the user is intending to take.
-
-Format: `delete plan INDEX`
-
-
-
-* Deletes the plan at the specified `INDEX`.
-* The index refers to the index number shown in the displayed plan list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-
-
-* `list mod plan `followed by  `delete plan 1` deletes the first plan in the list of all plans the user has added.
+* `module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000` adds the first 3 modules into the first contact's respective lists and removes GEA1000 from all module lists
 
 
 ### Adding lessons
@@ -294,6 +235,8 @@ Add lessons to the user profile or contacts.
 Format for user: `lesson user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
 
 Format for contact: `lesson INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+
 
 * Adds the lesson to the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
@@ -305,9 +248,12 @@ Format for contact: `lesson INDEX l/[type] m/[module] day/[day number] start/[st
 
 Examples:
 
+
+
 `lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00`
 
 `lesson 2 l/lec m/CS2101 d/5 start/09:00 end/11:00`
+
 
 ### Listing lessons / Viewing timetable
 
@@ -317,10 +263,13 @@ Format for user: `timetable user`
 
 Format for contact: `timetable INDEX`
 
+
+
 * Shows the timetable of the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
   * The index **must be a positive integer** 1, 2, 3, …​
 * Must have at least one lesson added for the week.
+
 
 ### Deleting lessons
 
@@ -329,6 +278,8 @@ Deletes a lesson from the user or a contact.
 Format for user: `remove user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
 
 Format for contact: `remove INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+
 
 * Deletes the lesson from the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
@@ -407,54 +358,22 @@ Format: `exit`
    </td>
   </tr>
 <tr>
-   <td><strong>Add Current Module</strong>
+   <td><strong>Editing User's Modules</strong>
    </td>
-   <td><code>add curr mod [module code]</code>
+   <td><code>module user [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
 <p>
-<code>Eg. add curr mod CS2103t</code>
+<code>Eg. module user curr/CS2100 prev/CS1231S plan/CS2106 rm/ST2334</code>
    </td>
   </tr>
   <tr>
-   <td><strong>Add Previous Module</strong>
+   <td><strong>Editing Contact's Modules</strong>
    </td>
-   <td><code>add prev mod [module code]</code>
+   <td><code>module INDEX [curr/current module] [prev/previous module] [plan/future module] [rm/module to remove]</code>
 <p>
-<code>Eg. add prev mod CS2103t</code>
+<code>Eg. module 1 curr/CS2101 prev/CS2030S plan/CS2102 rm/GEA1000</code>
    </td>
   </tr>
-  <tr>
-   <td><strong>Adding Future Module</strong>
-   </td>
-   <td><code>add plan mod [module code]</code>
-<p>
-<code>Eg. add plan mod CS2103t</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>List Modules</strong>
-   </td>
-   <td><code>list all mod [INDEX]/list all mod/list prev mod [INDEX]/list prev mod/list curr mod [INDEX]/list curr mod/list plan mod [INDEX]/list plan mod</code>
-<p>
-<code>Eg. list all mod 1</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Delete Module</strong>
-   </td>
-   <td><code>delete mod [INDEX]/delete prev mod [INDEX]/delete curr mod [INDEX]</code>
-<p>
-<code>Eg. delete mod 1</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Delete Plan</strong>
-   </td>
-   <td><code>delete plan INDEX</code>
-<p>
-<code>Eg. delete plan 2</code>
-   </td>
-  </tr>
-
+  
   <tr>
     <td><strong>Add Lesson</strong>
     </td>
