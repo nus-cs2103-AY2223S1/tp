@@ -19,7 +19,7 @@ public class MarkCommand extends SelectAppointmentCommand {
                     + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and a positive integer)\n"
                     + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_PERSON_SUCCESS = "Marked appointment %1$s for: %2$s";
+    public static final String MESSAGE_MARK_PERSON_SUCCESS = "Marked appointment %1$s.";
     public static final String MESSAGE_ALREADY_MARKED = "This appointment is already marked.";
 
     /**
@@ -39,11 +39,10 @@ public class MarkCommand extends SelectAppointmentCommand {
         if (appointmentToMark.isMarked()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
-        int index = person.getAppointments().indexOf(appointmentToMark) + 1;
         appointmentToMark.mark();
         String addRecurringSuccessMsg = addRecurringAppointment(model, person, appointmentToMark);
         String markSuccessMsg = String.format(MESSAGE_MARK_PERSON_SUCCESS,
-                index, person.getName());
+                indexOfAppointment.getOneBased());
         return new CommandResult(markSuccessMsg + addRecurringSuccessMsg);
     }
 
