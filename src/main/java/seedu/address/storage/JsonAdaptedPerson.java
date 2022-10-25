@@ -62,8 +62,8 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        address = source.getAddress().value;
 
+        address = source.getAddress().map(r -> r.value).orElse(null);
         role = source.getRole().map(r -> r.role).orElse(null);
         timezone = source.getTimezone().map(t -> t.timezone).orElse(null);
 
@@ -94,14 +94,6 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Map<ContactType, Contact> modelContacts = new HashMap<>();
@@ -110,17 +102,20 @@ class JsonAdaptedPerson {
             modelContacts.put(contactModel.getContactType(), contactModel);
         }
 
+        if (address != null && !Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Address modelAddress = address != null ? new Address(address) : null;
+
         if (role != null && !Role.isValidRole(role)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
         }
-
         final Role modelRole = role != null ? new Role(role) : null;
 
         if (timezone != null && !Timezone.isValidTimezone(timezone)) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Timezone.class.getSimpleName()));
         }
-
         final Timezone modelTimezone = timezone != null ? new Timezone(timezone) : null;
 
         return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole, modelTimezone);
