@@ -164,7 +164,7 @@ Examples:
 
 You can use the `task list` command to focus only on tasks that match your specified filter requirements.
 
-Format: `task list [KEYWORD] [#PROJECT]... [c/PERSON_INDEX]... [before DATE] [after DATE]`
+Format: `task list [KEYWORD] [#PROJECT]... [@PERSON_INDEX]... [before/ DATE] [after/ DATE]`
 - The `task list` command accepts **optional** parameters that can filter tasks by their description, project, due date or assigned contacts.
 - If you do not specify any filters (i.e. `task list`), the command returns **all** tasks. You may find this useful to reset the task list after performing some filtering.
 
@@ -177,12 +177,12 @@ Format: `task list [KEYWORD] [#PROJECT]... [c/PERSON_INDEX]... [before DATE] [af
   - For example, `task list #CS2101 #CS2103T` returns all **incomplete** tasks that are **either** under the project `CS2101` **or** `CS2103T`
 
 #### Filtering by Assigned Contact(s)
-- The `c/` parameter allows you to search for tasks that are assigned to **all** of the contact(s) you specify.
-    - For example, `task list c/1 c/2` returns all **incomplete** tasks that are assigned to **both** the 1st and 2nd persons from the address book.
+- The `@` parameter allows you to search for tasks that are assigned to **all** of the contact(s) you specify.
+    - For example, `task list @1 @2` returns all **incomplete** tasks that are assigned to **both** the 1st and 2nd persons from the address book.
 
 #### Filtering by Deadline
-- The `before` and `after` parameters allow you to specify a date range to filter the tasks by, according to their deadline
-  - For example, `task list before next Monday after tomorrow` returns all **incomplete** tasks whose deadline is, well, after tomorrow but before next Monday.
+- The `before/` and `after/` parameters allow you to specify a date range to filter the tasks by, according to their deadline
+  - For example, `task list before/ next Monday after/ tomorrow` returns all **incomplete** tasks whose deadline is, well, after tomorrow but before next Monday.
 
 #### Filtering by Completion Status
 - Notice that the command seems to always return **incomplete** tasks. You can choose to opt out of this default behaviour with the `-a` parameter.
