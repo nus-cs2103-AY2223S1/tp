@@ -3,9 +3,13 @@ package seedu.address.model.category;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a Category in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidCategoryName(String)}
+ * Guarantees: immutable; name is valid as declared in
+ * {@link #isValidCategoryName(String)}
  */
 public class Category {
 
@@ -17,6 +21,10 @@ public class Category {
     public static final String NEXTOFKIN_SYMBOL = "K";
     public static final String VALIDATION_REGEX = "[" + NURSE_SYMBOL + "|" + PATIENT_SYMBOL + "|"
             + PHYSICIAN_SYMBOL + "|" + NEXTOFKIN_SYMBOL + "]";
+    public static final ArrayList<String> COMMON_NURSE_MISSPELLINGS = new ArrayList<>(
+            List.of("nurse", "nurses", "n"));
+    public static final ArrayList<String> COMMON_PATIENT_MISSPELLINGS = new ArrayList<>(
+            List.of("patient", "patients", "p"));
 
     public final String categoryName;
 
@@ -29,6 +37,24 @@ public class Category {
         requireNonNull(categoryName);
         checkArgument(isValidCategoryName(categoryName), MESSAGE_CONSTRAINTS);
         this.categoryName = categoryName;
+    }
+
+    /**
+     * Catches and formats any common misspellings as defined in the common
+     * misspelling constant of nurses and patients
+     *
+     * @param test The String to be tested
+     * @return THe nurse or patient symbol if it is a misspelling and the original
+     *         text otherwise
+     */
+    public static String formatMisspelling(String test) {
+        if (COMMON_NURSE_MISSPELLINGS.contains(test.trim().toLowerCase())) {
+            return NURSE_SYMBOL;
+        }
+        if (COMMON_PATIENT_MISSPELLINGS.contains(test.trim().toLowerCase())) {
+            return PATIENT_SYMBOL;
+        }
+        return test;
     }
 
     /**
@@ -50,19 +76,19 @@ public class Category {
         return categoryName.hashCode();
     }
 
-
     public String toString() {
         return categoryName;
     }
 
     /**
      * Checks if the two category objects are equal, ignoring case.
+     *
      * @param other other object to be checked against
      * @return true if both categories are the same, false otherwise
      */
     public boolean equalsIgnoreCase(Object other) {
         return other == this
                 || (other instanceof Category)
-                && categoryName.equalsIgnoreCase(((Category) other).categoryName);
+                        && categoryName.equalsIgnoreCase(((Category) other).categoryName);
     }
 }
