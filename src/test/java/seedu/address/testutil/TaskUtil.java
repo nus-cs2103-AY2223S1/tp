@@ -1,10 +1,19 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BUDGET;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
+
+import java.util.Set;
 
 /**
  * Utility class for task test cases.
@@ -31,8 +40,12 @@ public class TaskUtil {
     /**
      * Returns the part of command string for the given {@code EditTaskDescriptor}'s details.
      */
-    public static String getEditStaffDescriptorDetails() {
-        //todo
-        return new String();
+    public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getTaskDescription().ifPresent(taskDescription -> sb.append(PREFIX_TASK_DESCRIPTION)
+                .append(taskDescription).append(" "));
+        descriptor.getTaskDeadline().ifPresent(deadline -> sb.append(PREFIX_TASK_DEADLINE).append(
+                deadline).append(" "));
+        return sb.toString();
     }
 }
