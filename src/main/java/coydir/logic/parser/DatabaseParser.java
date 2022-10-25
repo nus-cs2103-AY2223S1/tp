@@ -77,10 +77,10 @@ public class DatabaseParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
-        
+
         case AddLeaveCommand.COMMAND_WORD:
             return new AddLeaveCommandParser().parse(arguments);
-        
+
         case DeleteLeaveCommand.COMMAND_WORD:
             return new DeleteLeaveCommandParser().parse(arguments);
 

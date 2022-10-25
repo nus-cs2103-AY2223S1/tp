@@ -1,9 +1,9 @@
 package coydir.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
+import static coydir.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static coydir.logic.parser.CliSyntax.PREFIX_ID;
 import static coydir.logic.parser.CliSyntax.PREFIX_STARTDATE;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
@@ -14,12 +14,13 @@ import coydir.model.person.EmployeeId;
 import coydir.model.person.Leave;
 import coydir.model.person.Person;
 
-import static coydir.logic.parser.CliSyntax.PREFIX_ENDDATE;
 
+/**
+ * Add leave for employee
+ */
 public class AddLeaveCommand extends Command {
-    
-    public static final String COMMAND_WORD = "addleave";
 
+    public static final String COMMAND_WORD = "addleave";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a leave period to an employee.\n"
             + "Parameters: "
@@ -30,14 +31,19 @@ public class AddLeaveCommand extends Command {
             + PREFIX_ID + "1 "
             + PREFIX_STARTDATE + "01-01-22 "
             + PREFIX_ENDDATE + "06-01-22 ";
-    
+
     public static final String MESSAGE_LEAVE_ADDED_SUCCESS = "Leave added successfully for %1$s";
     public static final String MESSAGE_DUPLICATE_LEAVE = "This leave period already exists";
     public static final String MESSAGE_OVERLAPPING_LEAVE = "You cannot have overlapping leaves";
-    EmployeeId targetId;
+    private EmployeeId targetId;
     private Leave leave;
 
-    public AddLeaveCommand(EmployeeId targetid, Leave leave ) {
+    /**
+     * Constructor for AddLeaveCommand object.
+     * @param targetid of the employee.
+     * @param leave Leave object to add.
+     */
+    public AddLeaveCommand(EmployeeId targetid, Leave leave) {
         this.targetId = targetid;
         this.leave = leave;
     }
@@ -50,18 +56,17 @@ public class AddLeaveCommand extends Command {
             if (person.getEmployeeId().equals(targetId)) {
                 if (person.getLeavesLeft() < leave.getTotalDays()) {
                     throw new CommandException(Messages.MESSAGE_INSUFFICIENT_LEAVES);
-                }
-                else if (person.getLeaves().contains(leave)) {
+                } else if (person.getLeaves().contains(leave)) {
                     throw new CommandException(MESSAGE_DUPLICATE_LEAVE);
                 }
                 for (Leave otherLeave: person.getLeaves()) {
                     if (leave.isOverlapping(otherLeave)) {
-                        throw new CommandException(MESSAGE_OVERLAPPING_LEAVE); 
+                        throw new CommandException(MESSAGE_OVERLAPPING_LEAVE);
                     }
                 }
                 person.addLeave(leave);
                 person.setLeavesLeft(person.getLeavesLeft() - leave.getTotalDays());
-                return new CommandResult(String.format(MESSAGE_LEAVE_ADDED_SUCCESS,person.getName()));
+                return new CommandResult(String.format(MESSAGE_LEAVE_ADDED_SUCCESS, person.getName()));
             }
         }
         throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -73,5 +78,5 @@ public class AddLeaveCommand extends Command {
                 || (other instanceof AddLeaveCommand // instanceof handles nulls
                 && targetId.equals(((AddLeaveCommand) other).targetId)
                 && leave.equals(((AddLeaveCommand) other).leave)); // state check
-    }    
+    }
 }

@@ -152,8 +152,8 @@ public class ParserUtil {
         requireNonNull(leaveStart);
         requireNonNull(leaveEnd);
         String start = leaveStart.trim();
-        String end = leaveEnd.trim();     
-        if (! Leave.isValidLeave(start, end)) {
+        String end = leaveEnd.trim();
+        if (!Leave.isValidLeave(start, end)) {
             throw new ParseException(Leave.MESSAGE_CONSTRAINTS);
         }
         return new Leave(start, end);

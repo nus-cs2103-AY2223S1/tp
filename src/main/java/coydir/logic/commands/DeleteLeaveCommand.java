@@ -1,9 +1,8 @@
 package coydir.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import static coydir.logic.parser.CliSyntax.PREFIX_ID;
 import static coydir.logic.parser.CliSyntax.PREFIX_STARTDATE;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.PriorityQueue;
@@ -16,8 +15,11 @@ import coydir.model.person.EmployeeId;
 import coydir.model.person.Leave;
 import coydir.model.person.Person;
 
+/**
+ * Deletes a leave from the person.
+ */
 public class DeleteLeaveCommand extends Command {
-    
+
     public static final String COMMAND_WORD = "deleteleave";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -33,11 +35,16 @@ public class DeleteLeaveCommand extends Command {
     public static final String MESSAGE_NO_SUCH_LEAVE = "There is no such leave";
     public static final String MESSAGE_INVALID_INDEX = "Invalid index given";
     private EmployeeId targetId;
-    private int index;    
+    private int index;
 
-    public DeleteLeaveCommand(EmployeeId targetid, int index ) {
+    /**
+     * Creates a DeleteCommand object.
+     * @param targetid of the employee to operate on.
+     * @param index index of leave in queue to remove.
+     */
+    public DeleteLeaveCommand(EmployeeId targetid, int index) {
         this.targetId = targetid;
-        this.index = index;        
+        this.index = index;
     }
 
     @Override
@@ -58,22 +65,23 @@ public class DeleteLeaveCommand extends Command {
                 Queue<Leave> newLeaves = new PriorityQueue<>(oldLeaves);
                 int counter = 1;
                 while (counter++ < index) {
-                    newLeaves.remove();                    
+                    newLeaves.remove();
                 }
                 removedLeave = newLeaves.remove();
                 oldLeaves.remove(removedLeave);
                 person.setLeavesLeft(person.getLeavesLeft() + removedLeave.getTotalDays());
-                return new CommandResult(String.format(MESSAGE_LEAVE_REMOVE_SUCCESS,person.getName()));                   
+                return new CommandResult(String.format(
+                    MESSAGE_LEAVE_REMOVE_SUCCESS, person.getName()));
             }
         }
         throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-                    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteLeaveCommand // instanceof handles nulls
                 && targetId.equals(((DeleteLeaveCommand) other).targetId)
                 && index == ((DeleteLeaveCommand) other).index); // state check
-    }    
+    }
 }

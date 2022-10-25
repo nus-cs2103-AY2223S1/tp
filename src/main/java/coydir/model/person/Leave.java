@@ -22,7 +22,7 @@ public class Leave {
      * @param endDate A valid start date.
      */
     public Leave(String startDate, String endDate) {
-        
+
         this.startDate = LocalDate.parse(startDate, FORMAT);
         this.endDate = LocalDate.parse(endDate, FORMAT);
     }
@@ -39,16 +39,21 @@ public class Leave {
      * Returns true if a leave overlaps with another.
      */
     public boolean isOverlapping(Leave otherLeave) {
-        return (this.startDate.compareTo(otherLeave.startDate) >= 0  && this.startDate.compareTo(otherLeave.endDate) <= 0)
-        || (this.endDate.compareTo(otherLeave.startDate) >= 0  && this.endDate.compareTo(otherLeave.endDate) <= 0);
-    
+        return (this.startDate.compareTo(otherLeave.startDate) >= 0
+            && this.startDate.compareTo(otherLeave.endDate) <= 0)
+                || (this.endDate.compareTo(otherLeave.startDate) >= 0
+                    && this.endDate.compareTo(otherLeave.endDate) <= 0);
+
     }
 
+    /**
+     * Returns a comparator for two Leave objects in a queue.
+     */
     public static class CustomLeaveComparator implements Comparator<Leave> {
         @Override
         public int compare(Leave o1, Leave o2) {
             return o2.startDate.compareTo(o1.startDate);
-            
+
         }
     }
 
