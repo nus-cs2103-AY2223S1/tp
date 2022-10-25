@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root title="Upcoming interviews" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/alarm.png" />
+  </icons>
+  <scene>
+    <Scene>
+      <stylesheets>
+        <URL value="@ReminderWindow.css" />
+      </stylesheets>
+
+      <VBox fx:id="reminderContainer" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <ListView fx:id="upcomingInterviewListView" VBox.vgrow="ALWAYS" />
+      </VBox>
+    </Scene>
+  </scene>
+</fx:root>
