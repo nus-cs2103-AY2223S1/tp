@@ -1,10 +1,7 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.taassist.logic.parser.CliSyntax.*;
 import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -36,7 +33,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -51,8 +48,8 @@ public class EditCommand extends Command {
     /**
      * Creates an EditCommand to edit the details of the student at the given index.
      *
-     * @param index of the student in the filtered student list to edit.
-     * @param editStudentDescriptor details to edit the student with.
+     * @param index Index of the student in the filtered student list to edit.
+     * @param editStudentDescriptor Details to edit the student with.
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
