@@ -1,17 +1,28 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithAssociations;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TypicalModules;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddPersonToModuleCommand}.
@@ -22,36 +33,82 @@ public class AddPersonToModuleCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBookWithAssociations(), new UserPrefs());
     }
 
     @Test
-    public void execute_newModuleAtHome_success() {
-        Module validModule = new ModuleBuilder().build();
+    public void execute_addPersonToModuleAtHome_success() {
+        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Person validPerson = TypicalPersons.ELLE;
+
+        ModuleCode validModuleCode = validModule.getModuleCode();
+        Name validName = validPerson.getName();
+
+        Set<Person> expectedPersons = new HashSet<>(TypicalModules.CS2106_WITH_TYPICAL_PERSONS.getPersons());
+        expectedPersons.add(validPerson);
+        Module expectedModule = new ModuleBuilder(validModule).withPersons(expectedPersons).build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addModule(validModule);
+        expectedModel.setModule(validModule, expectedModule);
 
-        assertCommandSuccess(new AddModuleCommand(validModule), model,
-                String.format(AddModuleCommand.MESSAGE_ADD_MODULE_SUCCESS, validModule), expectedModel);
+        assertCommandSuccess(new AddPersonToModuleCommand(validModuleCode, validName), model,
+                String.format(AddPersonToModuleCommand.MESSAGE_ADD_PERSON_TO_MODULE_SUCCESS,
+                        validModuleCode, validName),
+                expectedModel);
     }
 
     @Test
-    public void execute_newModuleNotAtHome_success() {
-        Module validModule = new ModuleBuilder().build();
+    public void execute_addPersonToModuleNotAtHome_throwsCommandException() {
+        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Person validPerson = TypicalPersons.ELLE;
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setHomeStatus(false);
-        expectedModel.addModule(validModule);
+        ModuleCode validModuleCode = validModule.getModuleCode();
+        Name validName = validPerson.getName();
 
-        assertCommandSuccess(new AddModuleCommand(validModule), model,
-                String.format(AddModuleCommand.MESSAGE_ADD_MODULE_SUCCESS, validModule), expectedModel);
+        model.setHomeStatus(false);
+
+        assertCommandFailure(new AddPersonToModuleCommand(validModuleCode, validName), model,
+                Messages.MESSAGE_NOT_AT_HOMEPAGE);
     }
 
     @Test
-    public void execute_duplicateModule_throwsCommandException() {
-        Module moduleInList = model.getAddressBook().getModuleList().get(0);
-        assertCommandFailure(new AddModuleCommand(moduleInList), model, AddModuleCommand.MESSAGE_DUPLICATE_MODULE);
+    public void execute_personAlreadyAddedToModule_throwsCommandException() {
+        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Person personAlreadyAddedToModule = validModule.getPersons().stream().findFirst().get();
+
+        ModuleCode validModuleCode = validModule.getModuleCode();
+        Name nameOfPersonAlreadyAdded = personAlreadyAddedToModule.getName();
+
+        assertCommandFailure(new AddPersonToModuleCommand(validModuleCode, nameOfPersonAlreadyAdded), model,
+                String.format(AddPersonToModuleCommand.MESSAGE_PERSON_ALREADY_EXISTS_IN_MODULE,
+                        validModuleCode, nameOfPersonAlreadyAdded));
+    }
+
+    @Test
+    public void execute_nonexistentPerson_throwsCommandException() {
+        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Person nonexistentPerson = TypicalPersons.AMY;
+
+        ModuleCode validModuleCode = validModule.getModuleCode();
+        Name nameOfNonexistentPerson = nonexistentPerson.getName();
+
+        assertCommandFailure(new AddPersonToModuleCommand(validModuleCode, nameOfNonexistentPerson), model,
+                Messages.MESSAGE_NO_SUCH_PERSON);
+    }
+
+    @Test
+    public void execute_nonexistentModule_throwsCommandException() {
+        Person validPerson = TypicalPersons.ELLE;
+        Module nonexistentModule = new ModuleBuilder()
+                .withModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK)
+                .withPersons(new HashSet<>(Arrays.asList(validPerson)))
+                .build();
+
+        ModuleCode nonexistentModuleCode = nonexistentModule.getModuleCode();
+        Name validName = validPerson.getName();
+
+        assertCommandFailure(new AddPersonToModuleCommand(nonexistentModuleCode, validName), model,
+                Messages.MESSAGE_NO_SUCH_MODULE);
     }
 
 }

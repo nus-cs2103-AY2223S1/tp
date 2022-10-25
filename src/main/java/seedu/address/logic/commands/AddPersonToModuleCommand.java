@@ -62,6 +62,12 @@ public class AddPersonToModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        boolean isNotAtHome = !model.getHomeStatus();
+
+        if (isNotAtHome) {
+            throw new CommandException(Messages.MESSAGE_NOT_AT_HOMEPAGE);
+        }
+
         Module moduleToAddPersonTo = null;
         Person personToAddToModule = null;
         try {

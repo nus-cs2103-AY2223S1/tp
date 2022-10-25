@@ -4,6 +4,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
 import java.util.ArrayList;
@@ -30,22 +34,31 @@ public class TypicalModules {
                     new Link("qgis.org"), new Link("www.arcgis.com"))))
             .build();
 
-
-    // Not inside typical modules list
     public static final Module CS2106 = new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE)
             .withModuleTitle(VALID_CS2106_MODULE_TITLE).build();
     public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA2001_MODULE_CODE)
             .withModuleTitle(VALID_MA2001_MODULE_TITLE).build();
+
+    // Not inside typical modules list
     public static final Module CS2103T_WITH_TASK_A =
             new ModuleBuilder(CS2103T).withTasks(VALID_TASKS.subList(0, 1)).build();
     public static final Module CS2106_WITH_TYPICAL_TASKS =
             new ModuleBuilder(CS2106).withTasks(VALID_TASKS).build();
+    public static final Module CS2106_WITH_TYPICAL_PERSONS =
+            new ModuleBuilder(CS2106).withTasks(VALID_TASKS)
+                    .withPersons(new HashSet<>(Arrays.asList(ALICE, BENSON))).build();
     public static final Module MA2001_WITH_TYPICAL_PERSONS =
-            new ModuleBuilder(MA2001).withTasks(VALID_TASKS).build();
+            new ModuleBuilder(MA2001).withTasks(VALID_TASKS)
+                    .withPersons(new HashSet<>(Arrays.asList(BENSON, CARL, DANIEL))).build();
 
     private TypicalModules() {} // prevents instantiation
 
     public static List<Module> getTypicalModules() {
         return new ArrayList<>(Arrays.asList(CS2103T, CS2106, MA2001, GE3238));
+    }
+
+    public static List<Module> getTypicalModulesWithAssociations() {
+        return new ArrayList<>(Arrays.asList(CS2103T, CS2106_WITH_TYPICAL_PERSONS,
+                MA2001_WITH_TYPICAL_PERSONS, GE3238));
     }
 }

@@ -202,6 +202,11 @@ public class AddPersonToModuleCommandTest {
             assertTrue(module.isSameModule(target));
             module = editedModule;
         }
+
+        @Override
+        public boolean getHomeStatus() {
+            return true;
+        }
     }
 
 }
