@@ -35,7 +35,7 @@ public class MarkCommand extends Command {
             + "of the debt displayed in the person's debt field. Multiple debts may be specified.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
             + PREFIX_DEBT + "DEBT_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 " + PREFIX_DEBT + "3";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 3";
 
     public static final String MESSAGE_MARK_DEBT_SUCCESS = "Marked Debt(s) as Paid from: %1$s:\n";
 
