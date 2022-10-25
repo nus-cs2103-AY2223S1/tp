@@ -104,7 +104,8 @@ public class ClassStorageTest {
         ClassStorage classStorage = new ClassStorage(modelManager);
         ClassStorage.updatePerson(personToEdit, editedPerson);
         List<Person> listOfPerson = ClassStorage.getListOfPerson(LocalDate.of(2022, 5, 5));
-        assert listOfPerson.size() == 3;
-        assertEquals(editedPerson, listOfPerson.get(2));
+        assert listOfPerson.size() == 4;
+        int lastIndex = listOfPerson.size() - 1;
+        assertEquals(editedPerson, listOfPerson.get(lastIndex));
     }
 }
