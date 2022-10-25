@@ -79,6 +79,7 @@ public class AddTaskCommand extends Command {
                 || (other instanceof AddTaskCommand // instanceof handles nulls
                 && this.description.equals(((AddTaskCommand) other).description)
                 && this.modCode.equals(((AddTaskCommand) other).modCode)
+                && this.priority.equals(((AddTaskCommand) other).priority)
                 && (this.deadline == null || this.deadline.equals(((AddTaskCommand) other).deadline)));
     }
 }
