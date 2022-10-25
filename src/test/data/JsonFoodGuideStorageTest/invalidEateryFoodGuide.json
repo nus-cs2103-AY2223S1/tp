@@ -1,6 +1,6 @@
 {
   "eateries": [ {
-    "name": "Eatery with invalid name field: Ha!ns Mu@ster",
+    "name": "",
     "phone": "9482424",
     "email": "hansexamplecom",
     "address": "4th street"

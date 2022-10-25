@@ -72,8 +72,7 @@ public class Eatery {
     }
 
     /**
-     * TODO: change this to better reflect a weaker notation of equality between eateries.
-     * Returns true if both eateries have the same name.
+     * Returns true if both eateries have the same name & location.
      * This defines a weaker notion of equality between two eateries.
      */
     public boolean isSameEatery(Eatery otherEatery) {
@@ -82,7 +81,8 @@ public class Eatery {
         }
 
         return otherEatery != null
-                && otherEatery.getName().equals(getName());
+                && otherEatery.getName().equals(getName())
+                && otherEatery.getLocation().equals(getLocation());
     }
 
     /**

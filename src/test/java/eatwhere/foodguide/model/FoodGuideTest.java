@@ -1,6 +1,5 @@
 package eatwhere.foodguide.model;
 
-import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static eatwhere.foodguide.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -46,7 +45,6 @@ public class FoodGuideTest {
     public void resetData_withDuplicateEateries_throwsDuplicateEateryException() {
         // Two eateries with the same identity fields
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withLocation(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Eatery> newEateries = Arrays.asList(TypicalEateries.ALICE, editedAlice);
@@ -75,7 +73,6 @@ public class FoodGuideTest {
     public void hasEatery_eateryWithSameIdentityFieldsInFoodGuide_returnsTrue() {
         foodGuide.addEatery(TypicalEateries.ALICE);
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withLocation(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(foodGuide.hasEatery(editedAlice));
