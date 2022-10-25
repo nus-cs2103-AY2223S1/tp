@@ -279,6 +279,37 @@ The following activity diagram outlines the process when the user executes the `
 
 ![ProfileCommandActivityDiagram](./images/ProfileCommandActivityDiagram.png)
 
+### List feature
+
+#### Implementation
+
+The list mechanism is facilitated by `ListCommand`, which extends `Command`. It overrides the following operation:
+
+* `ListCommand#execute()`: Shows a list of all food items and their respective calories for the specified day (if any).
+
+Given below is an example usage scenario and how the list mechanism behaves at each step.
+
+Step 1. The user launches the application on 19 October 2022. `NutriGoals` initially displays all foods added on the 
+current day, 19 October 2022.
+
+Step 2. The user executes `list 2022-07-29` command, which calls `LogicManager#execute()`.
+`NutriGoals#parseCommand()` is called subsequently, which then creates a `ListCommandParser` object.
+`ListCommandParser#parse()` is then called to make sense of the date argument supplied by the user.
+
+Step 3. A `ListCommand` object is created with an `IsFoodAddedOnThisDatePredicate` object. The predicate is initialised with 29 July 2022 as the date.
+
+Step 4. `ListCommand` is then executed by `ListCommand#execute()`, which calls the following methods from `Model`:
+
+* `Model#updateFilteredFoodList(IsFoodAddedOnThisDatePredicate)` filters the food list for foods added on 29 July 2022
+* `Model#isFilteredFoodListEmpty()`
+
+Step 5. The filtered food list is shown to the user and `ListCommand#execute()` returns a `CommandResult` with a message 
+indicating the successful execution of the `list` command. 
+
+The following activity diagram summarizes what happens when a user executes the `list` command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
 ### Review feature
 
 #### Implementation
@@ -290,25 +321,26 @@ The review mechanism is facilitated by `ReviewCommand`, which extends `Command`.
 
 Given below is an example usage scenario and how the review mechanism behaves at each step.
 
-Step 1. The user launches the application on 19 October 2022. Suppose the user has set a calorie target of 2000 kcal and
-the foods added for the day are:
+Step 1. The user launches the application on 19 October 2022. Suppose the foods added for the day are:
 
 1. bubble tea: 232 kcal
 2. chicken rice: 702 kcal
 3. wanton noodles: 409 kcal
 
-Step 2. The user executes `review` command, which calls `ReviewCommand#execute()`. This first creates
-a `IsFoodAddedOnThisDatePredicate` with 19 October 2022 as the date.
-`Model#updateFilteredFoodList()` is then called with this predicate, causing the food list to be filtered for foods that
-were added on 19 October 2022.
+Step 2. The user executes `review` command, which creates a `ReviewCommand` object. 
 
-Step 3. `ReviewCommand#execute()` calls the following methods from `Model`:
+Step 3. The `ReviewCommand` created is executed by `ReviewCommand#execute()`. 
 
-* `Model#getTotalCalorie()` calculates the total calories of all foods in the food list
-* `Model#getCalorieDifference()` calculates the difference in total calories with respect to the calorie target
-* `Model#getCalorieTarget()` returns the calorie target
+Step 4. `ReviewCommand#execute()` creates an `IsFoodAddedOnThisDatePredicate` object with 19 October 2022 as the date.
 
-Step 4. `ReviewCommand#execute()` returns a `CommandResult` with the following information to be displayed to the user:
+Step 5. `ReviewCommand#execute()` then calls the following methods from `Model`:
+
+* `Model#updateFilteredFoodList(IsFoodAddedOnThisDatePredicate)` filters the food list for foods added on 19 October 2022
+* `Model#getTotalCalorie()`
+* `Model#getCalorieTarget()`
+* `Model#getCalorieDifference()`
+
+Step 6. `ReviewCommand#execute()` returns a `CommandResult` with the following information to be displayed to the user:
 
 * total calories: 1343 kcal
 * calorie target: 2000 kcal
@@ -460,6 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | sedentary user  | get information on healthy lifestyle habits                       | adopt a more active lifestyle                                         |
 | `* *`    | nus student     | find the nearest gym in school based on where I am at             | know where to go if I want to exercise                                |
 | `* *`    | user            | get a suggested daily calorie intake based on my body composition | know what would be a reasonable calorie target                        |
+| `* *`    | user            | find the calorie content of a food item                           | know how many calories I am consuming for a particular food           |
 | `*`      | forgetful user  | receive reminders about my calorie deficiency / excess            | know if I should consume more / less calories                         |
 
 *{More to be added}*
@@ -473,14 +506,15 @@ specified otherwise)
 
 **MSS**
 
-1. User requests to list the food items consumed.
-2. NutriGoals shows the list of food items consumed.
+1. User requests to list the food items consumed on a particular date.
+2. NutriGoals shows the list of food items consumed on the specified date.
 
    Use case ends.
 
 **Extension**
 
-* 1a. No food item recorded.
+* 1a. No food item recorded on the specified date.
+
     * 1a1. NutriGoals displays a default message.
 
       Use case ends.
@@ -497,6 +531,7 @@ specified otherwise)
 **Extension**
 
 * 1a. The information provided is invalid.
+
     * 1a1. NutriGoals shows an error message.
 
       Use case ends.
@@ -593,6 +628,29 @@ specified otherwise)
 
    Use case ends.
 
+**Use case: UC-8 Find the calorie content of a food item**
+
+**MSS**
+
+1. User requests to find the calorie content of a food item.
+2. NutriGoals shows the calorie content of the specified food item.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The specified food item is invalid.
+
+    * 1a1. NutriGoals shows an error message.
+
+      Use case ends.
+
+* 1b. There is no calorie content information for the specified food item.
+
+    * 1b1. NutriGoals displays a default message.
+
+      Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -638,7 +696,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample food items. The window size may not be
        optimum.
 
 1. Saving window preferences
@@ -652,12 +710,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a food
 
-1. Deleting a food while all foods are being shown
+1. Deleting a food while all foods on a particular day are being shown
 
-    1. Prerequisites: List all foods using the `list` command. Multiple foods in the list.
+    1. Prerequisites: List all foods on a particular day using the `list` command. Multiple foods in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: First food item is deleted from the list. Details of the deleted food shown in the status message.
        Timestamp in the status bar is updated.
 
     1. Test case: `delete 0`<br>

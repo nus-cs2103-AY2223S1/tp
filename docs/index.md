@@ -16,7 +16,7 @@ title: NutriGoals
 * For the detailed documentation of this project, see the [NutriGoals Product Website](https://ay2223s1-cs2103t-t17-2.github.io/tp/).
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * If you are interested in using NutriGoals, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested about developing NutriGoals, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**

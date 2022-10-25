@@ -245,4 +245,9 @@ public class ModelManager implements Model {
             && filteredFoods.equals(other.filteredFoods)
             && currentDatePredicate.equals(other.currentDatePredicate);
     }
+
+    @Override
+    public Tip getTip() {
+        return nutriGoals.getTip();
+    }
 }

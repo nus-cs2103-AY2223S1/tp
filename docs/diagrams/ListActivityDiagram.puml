@@ -1,0 +1,25 @@
+@startuml
+
+start
+:User executes list command;
+
+: NutriGoalsParser parses the input;
+
+if () then ([isInputValid])
+    if () then ([isDateSupplied])
+        : Creates a ListCommand with the given date;
+    else ([else])
+        : Creates a ListCommand with the current date;
+    endif
+    : ListCommand is executed;
+    if () then ([isFilteredFoodListEmpty])
+        : Display the filtered food list;
+    else ([else])
+        : Display message indicating empty food list;
+    endif
+else ([else])
+    : Display error message;
+endif
+stop
+
+@enduml
