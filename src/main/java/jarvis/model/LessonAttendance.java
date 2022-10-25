@@ -48,7 +48,7 @@ public class LessonAttendance {
     }
 
     public boolean isPresent(Student student) {
-        return attendance.getOrDefault(student, true);
+        return attendance.getOrDefault(student, false);
     }
 
     public Set<Student> getAllStudents() {
@@ -66,6 +66,12 @@ public class LessonAttendance {
         }
         studentsNameBuilder.deleteCharAt(studentsNameBuilder.length() - 2); //remove the last ','
         return studentsNameBuilder.toString();
+    }
+
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        boolean b = attendance.get(targetStudent);
+        attendance.remove(targetStudent);
+        attendance.put(editedStudent, b);
     }
 
     @Override

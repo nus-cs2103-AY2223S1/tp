@@ -16,9 +16,7 @@ import java.util.Set;
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
-import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
 import jarvis.model.Model;
 import jarvis.model.Student;
@@ -82,10 +80,7 @@ public class AddMasteryCheckCommand extends Command {
             Student studentToAdd = lastShownList.get(studentIndex.getZeroBased());
             studentSet.add(studentToAdd);
         }
-        LessonAttendance masteryCheckAttendance = new LessonAttendance(studentSet);
-        LessonNotes masteryCheckNotes = new LessonNotes(studentSet);
-        MasteryCheck masteryCheckToAdd = new MasteryCheck(masteryCheckDesc, masteryCheckPeriod,
-                masteryCheckAttendance, masteryCheckNotes);
+        MasteryCheck masteryCheckToAdd = new MasteryCheck(masteryCheckDesc, masteryCheckPeriod, studentSet);
 
         if (model.hasLesson(masteryCheckToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MASTERY_CHECK);

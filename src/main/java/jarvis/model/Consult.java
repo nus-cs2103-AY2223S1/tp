@@ -1,5 +1,6 @@
 package jarvis.model;
 
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -10,8 +11,8 @@ public class Consult extends Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Consult(LessonDesc lessonDesc, TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes) {
-        super(lessonDesc, timePeriod, attendance, notes);
+    public Consult(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students) {
+        super(lessonDesc, timePeriod, students);
     }
 
     /**

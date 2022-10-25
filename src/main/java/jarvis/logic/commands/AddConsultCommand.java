@@ -17,9 +17,7 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Consult;
-import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
-import jarvis.model.LessonNotes;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.TimePeriod;
@@ -82,9 +80,8 @@ public class AddConsultCommand extends Command {
             Student studentToAdd = lastShownList.get(studentIndex.getZeroBased());
             studentSet.add(studentToAdd);
         }
-        LessonAttendance consultAttendance = new LessonAttendance(studentSet);
-        LessonNotes consultNotes = new LessonNotes(studentSet);
-        Consult consultToAdd = new Consult(consultDesc, consultPeriod, consultAttendance, consultNotes);
+
+        Consult consultToAdd = new Consult(consultDesc, consultPeriod, studentSet);
 
         if (model.hasLesson(consultToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULT);

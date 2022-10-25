@@ -115,6 +115,12 @@ public class LessonNotes {
         return formattedAllNotes.toString();
     }
 
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        ArrayList<String> tempNotes = studentNotes.get(targetStudent);
+        studentNotes.remove(targetStudent);
+        studentNotes.put(editedStudent, tempNotes);
+    }
+
     @Override
     public String toString() {
         return getAllNotes();

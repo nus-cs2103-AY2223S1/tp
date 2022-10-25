@@ -3,9 +3,14 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.Set;
 
 import jarvis.commons.core.index.Index;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Lesson in JARVIS.
@@ -16,6 +21,8 @@ public abstract class Lesson {
     // Identity fields
     private final LessonDesc lessonDesc;
     private final TimePeriod timePeriod;
+    private final ArrayList<Student> studentList;
+    private final ObservableList<Student> observableStudentList;
 
     // Data fields
     private final LessonAttendance attendance;
@@ -25,12 +32,14 @@ public abstract class Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes) {
-        requireAllNonNull(timePeriod, attendance, notes);
+    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students) {
+        requireAllNonNull(timePeriod, students);
         this.lessonDesc = lessonDesc;
         this.timePeriod = timePeriod;
-        this.attendance = attendance;
-        this.notes = notes;
+        this.studentList = new ArrayList<>(students);
+        this.observableStudentList = FXCollections.observableArrayList(studentList);
+        this.attendance = new LessonAttendance(students);
+        this.notes = new LessonNotes(students);
     }
 
     public LocalDateTime startDateTime() {
@@ -47,6 +56,19 @@ public abstract class Lesson {
 
     public Set<Student> getStudents() {
         return attendance.getAllStudents();
+    }
+
+    public ObservableList<Student> getObservableStudentList() {
+        return observableStudentList;
+    }
+
+    public void setStudent(Student targetStudent, Student editedStudent) {
+        attendance.setStudent(targetStudent, editedStudent);
+        notes.setStudent(targetStudent, editedStudent);
+        studentList.remove(targetStudent);
+        studentList.add(editedStudent);
+        studentList.sort(Comparator.comparing(s -> s.getName().toString()));
+        observableStudentList.setAll(studentList);
     }
 
     public String getStudentsName() {

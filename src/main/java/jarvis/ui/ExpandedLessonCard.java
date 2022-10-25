@@ -6,7 +6,6 @@ import jarvis.model.Student;
 import jarvis.model.Studio;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -112,7 +111,7 @@ public class ExpandedLessonCard extends UiPart<Region> {
     }
 
     private void setTableUi() {
-        ObservableList<Student> list = FXCollections.observableArrayList(lesson.getAttendance().getAllStudents());
+        ObservableList<Student> list = lesson.getObservableStudentList();
         tableView.setPrefHeight(LESSON_CARD_BASE_HEIGHT + list.size() * TABLE_VIEW_ROW_HEIGHT);
         // Set participation column for studio
         if (lesson.getLessonType() == LessonType.STUDIO) {

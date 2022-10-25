@@ -10,13 +10,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
-import jarvis.model.LessonNotes;
 import jarvis.model.Model;
 import jarvis.model.Student;
 import jarvis.model.Studio;
-import jarvis.model.StudioParticipation;
 import jarvis.model.TimePeriod;
 
 /**
@@ -64,12 +61,7 @@ public class AddStudioCommand extends Command {
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
         List<Student> allStudentList = model.getFilteredStudentList();
 
-        LessonAttendance studioAttendance = new LessonAttendance(allStudentList);
-        LessonNotes studioNotes = new LessonNotes(allStudentList);
-        StudioParticipation studioParticipation = new StudioParticipation(allStudentList);
-
-        Studio studioToAdd = new Studio(studioDesc, studioPeriod,
-                studioAttendance, studioParticipation, studioNotes);
+        Studio studioToAdd = new Studio(studioDesc, studioPeriod, allStudentList);
 
         if (model.hasLesson(studioToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDIO);
