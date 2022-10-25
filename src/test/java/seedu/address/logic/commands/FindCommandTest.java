@@ -112,7 +112,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroAddressKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate("    ");
+        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -123,6 +123,16 @@ public class FindCommandTest {
     public void execute_zeroClassKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ClassContainsKeywordsPredicate predicate = prepareClassPredicate("2022-01-01");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_zeroEmailKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        EmailContainsKeywordsPredicate predicate = prepareEmailPredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -147,7 +157,7 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code AddressContainsKeywordsPredicate}.
+     * Parses {@code userInput} into an {@code AddressContainsKeywordsPredicate}.
      */
     private AddressContainsKeywordsPredicate prepareAddressPredicate(String userInput) {
         return new AddressContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
@@ -158,5 +168,12 @@ public class FindCommandTest {
      */
     private ClassContainsKeywordsPredicate prepareClassPredicate(String userInput) {
         return new ClassContainsKeywordsPredicate(Arrays.asList(userInput));
+    }
+
+    /**
+     * Parses {@code userInput} into an {@code EmailContainsKeywordsPredicate}.
+     */
+    private EmailContainsKeywordsPredicate prepareEmailPredicate(String userInput) {
+        return new EmailContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
