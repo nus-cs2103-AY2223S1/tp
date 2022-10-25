@@ -157,7 +157,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * @param toDelete chosen tag
      */
     public void decreaseTagCount(Tag toDelete) {
-        for (int i=0;i<internalList.size(); i++) {
+        for (int i = 0; i < internalList.size(); i++) {
             Tag currTag = internalList.get(i);
             if (toDelete.equals(currTag)) {
                 currTag.removeFromCount();
