@@ -72,7 +72,7 @@ public class FindCommandTest {
         FindCommand findClassOneCommandCopy = new FindCommand(classOnePredicate);
         assertTrue(findClassOneCommand.equals(findClassOneCommandCopy));
         FindCommand findEmailFirstCommandCopy = new FindCommand(emailFirstPredicate);
-        assertTrue(findEmailSecondCommand.equals(findEmailFirstCommandCopy));
+        assertTrue(findEmailFirstCommand.equals(findEmailFirstCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
