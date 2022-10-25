@@ -25,13 +25,11 @@ REal-Time is a **desktop app for real estate agents to manage client contacts, o
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`addO`**`l/John street, block 123, #01-01 n/John Doe o/700000` : Adds an offer by `John Doe` to the list of offers.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`deleteC`**`3` : Deletes the 3rd contact shown in the current list of clients.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all clients, meetings, listings and offers.
 
    * **`exit`** : Exits the app.
 
@@ -46,7 +44,7 @@ REal-Time is a **desktop app for real estate agents to manage client contacts, o
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -143,7 +141,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Adding an offer: `addoffer`
+### Adding an offer: `addO`
 
 Adds an offer to the address book.
 
@@ -152,6 +150,37 @@ Format: `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE`
 
 Examples:
 * `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`
+
+### Editing an offer : `editO`
+
+Edits an existing offer in the address book.
+
+Format: `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
+
+* Edits the offer at the specified `INDEX`. The index refers to the index number shown in the displayed offer list. 
+The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editO 1 o/600000` Edits the offer price of the 1st offer to be `600000`.
+* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456` 
+respectively.
+
+### Deleting an offer : `deleteO`
+
+Deletes the specified offer from the address book.
+
+Format: `deleteO INDEX`
+
+* Deletes the offer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `deleteO 2` deletes the 2nd person in the address book.
+
+### Finding an offer : `[Coming soon]`
 
 ### Clearing all entries : `clear`
 
@@ -198,7 +227,9 @@ Action | Format, Examples
 **Add offer** | `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE` <br> e.g., `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete offer** | `deleteO INDEX` <br> e.g., `deleteO 2`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit offer** | `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]` <br> e.g., `editO 2 n/Betsy Crower o/123456`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
