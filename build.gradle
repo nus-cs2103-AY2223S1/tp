@@ -82,7 +82,7 @@ run {
 }
 
 dependencies {
-    String jUnitVersion = '5.4.0'
+    String jUnitVersion = '5.9.0'
     String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
