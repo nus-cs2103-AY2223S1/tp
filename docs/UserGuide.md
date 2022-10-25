@@ -138,7 +138,7 @@ respectively. Existing time period will not be edited.
 
 ### Hiding patients by name or tag: `hide patients`
 
-####By name:
+By name:
 Filters out (hides) patients whose names contain any of the given keywords.
 
 Format: `hide patients n/NAME [MORE_NAMES]`
@@ -147,7 +147,7 @@ Examples:
 * `hide patients n/John` hides `john` and `John Doe`
 * `hide patients n/alex david` hides `Alex Yeoh`, `David Li`<br>
 
-####By tag:
+By tag:
 
 Hides patients whose names contain any of the given tags.
 
@@ -161,7 +161,7 @@ Examples:
 
 ### Unhiding patients by name or tag: `unhide patients`
 
-####By name:
+By name:
 Shows (unhides) patients that were previously hidden whose names contain any of the given keywords.
 
 Format: `unhide patients n/NAME [MORE_NAMES]`
@@ -170,7 +170,7 @@ Examples:
 * `unhide patients n/John` unhides `john` and `John Doe`
 * `unhide patients n/alex david` unhides `Alex Yeoh`, `David Li`<br>
 
-####By tag:
+By tag:
 
 Unhides patients that were previously hidden whose names contain any of the given tags.
 
@@ -184,7 +184,7 @@ Examples:
 
 ### Hiding appointments by reason, tag, or marked status: `hide appts`
 
-####By reason:
+By reason:
 Filters out (hides) appointments that has a reason that matches the given keyword.
 
 Format: `hide appts r/REASON [MORE_REASONS]`
@@ -193,7 +193,7 @@ Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
 * `hide appts s/marked` hides all marked appointments.<br>
 
-####By tag:
+By tag:
 
 Hides appointments which contain any of the given tags.
 
@@ -205,7 +205,7 @@ Format: `hide appts t/TAG [MORE_TAGS]`
 Examples:
 * `hide appts t/ear nose` hides all appointments with a ear OR nose tag.
 
-####By marked/unmarked status:
+By marked/unmarked status:
 Hides appointments which are marked/unmarked.
 
 Format: `hide appts s/marked` or `hide appts s/m` <br>
@@ -217,7 +217,7 @@ Examples:
 
 ### Unhiding appointments by reason, tag or status: `unhide appts`
 
-####By reason:
+By reason:
 Shows (unhides) appointments that were previously hidden whose reason contain any of the given keywords.
 
 Format: `unhide appts r/reason [MORE_REASONS]`
@@ -225,7 +225,7 @@ Format: `unhide appts r/reason [MORE_REASONS]`
 Examples:
 * `unhide appts r/pain` unhides all appointments with "pain" as part of the reason.
 
-####By tag:
+By tag:
 
 Unhides appointments that were previously hidden which contain any of the given tags.
 
@@ -237,7 +237,7 @@ Format: `unhide appts t/TAG [MORE_TAGS]`
 Examples:
 * `unhide appts t/nose ear` unhides all appointments with a nose OR ear tag.
 
-####By marked/unmarked status:
+By marked/unmarked status:
 Unhides appointments that were previously hidden which are marked/unmarked.
 
 Format: `unhide appts s/marked` or `unhide appts s/m` <br>
@@ -253,11 +253,6 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 
 * At least 1 of the optional fields must be provided.
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Patients matching at least one keyword will be hidden (i.e. `OR` search).
-  e.g. `Hans Bo` will hide `Hans Gruber`, `Bo Yang`
 * `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
   * `[n/NAME]` searches for the name of the patients.
   * `[p/PHONE]` searches for the phone number of the patients.
@@ -266,8 +261,8 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
   * `[t/TAG]` searches for matching tags of the patients.
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
   * `[r/REASON]` searches for appointments with the given reason.
-  * `[ds/DATE_START]` searches for appointments occuring at or after `DATE_START`.
-  * `[ds/DATE_END]` searches for appointments occuring at or before `DATE_END`.
+  * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
+  * `[ds/DATE_END]` searches for appointments occurring at or before `DATE_END`.
   * `[ta/APPOINTMENT_TAG]` searches for matching tags of the appointments.
 * Only patients and appointments that satisifies all criteria will be displayed.
   * A patient must satisify all patient criteria and have at least 1 appointment that satisifies all the appointment criteria to be displayed.
@@ -290,7 +285,7 @@ Examples:
 
 Deletes a patient or a range of patients from idENTify.
 
-Format: `delete INDEX [endIndex]`
+Format: `delete INDEX [ENDINDEX]`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
@@ -324,12 +319,12 @@ Examples:
 
 Marks a specified appointment in the appointment list as complete.
 
-If the specified appointment was set to be recurring, automatically books a new appointment that will occur after the time period specified.
+If the specified appointment was set to be recurring, automatically books a new appointment in the future as given by the recurring time period of the appointment.
 
 Format: `mark APPOINTMENT_INDEX`
 
 * `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked, as shown in the appointment list.
-* Value of `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `mark 3`
@@ -341,7 +336,7 @@ Unmarks a specified appointment in the appointment list as incomplete.
 Format: `unmark APPOINTMENT_INDEX`
 
 * `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked, as shown in the appointment list.
-* Value of `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `unmark 1`
