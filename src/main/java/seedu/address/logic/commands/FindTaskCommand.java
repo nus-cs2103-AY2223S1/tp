@@ -34,4 +34,11 @@ public class FindTaskCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindTaskCommand // instanceof handles nulls
+                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
+    }
 }

@@ -36,4 +36,11 @@ public class FindMemberCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMemberList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindMemberCommand // instanceof handles nulls
+                && predicate.equals(((FindMemberCommand) other).predicate)); // state check
+    }
 }

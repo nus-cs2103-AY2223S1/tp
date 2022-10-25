@@ -23,8 +23,6 @@ public class ListMembersCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-//        TeamPredicate predicate = new TeamPredicate(model.getTeam());
-
         model.updateFilteredMembersList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(
             String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredMemberList().size()));

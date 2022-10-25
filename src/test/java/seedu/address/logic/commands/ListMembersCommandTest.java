@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -28,10 +29,10 @@ public class ListMembersCommandTest {
 
     @Test
     public void execute_listMembers_success() {
-        expectedModel.updateFilteredPersonList(new TeamPredicate(expectedModel.getTeam()));
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-            model.getTeam().getTeamMembers().size());
+            model.getFilteredMemberList().size());
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
 
         assertCommandSuccess(new ListMembersCommand(), model, expectedCommandResult, expectedModel);
