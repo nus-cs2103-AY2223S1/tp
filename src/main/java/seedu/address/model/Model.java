@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -62,6 +63,9 @@ public interface Model {
 
     /** Returns the next AddressBook */
     Path getNextAddressBookPath();
+
+    /** Renames the current AddressBook */
+    void renameAddressBook(String newName) throws IOException;
 
     /**
      * Creates a new Address Book

@@ -5,6 +5,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -57,7 +58,7 @@ public interface Logic {
     /**
      * Add and create a new address book
      */
-    boolean addAddressBook() throws IOException;
+    boolean addAddressBook() throws IOException, DataConversionException;
 
     /**
      * Swaps between the address book

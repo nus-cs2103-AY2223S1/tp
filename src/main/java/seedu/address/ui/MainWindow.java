@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -43,6 +44,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem swapBook;
+
+    @FXML
+    private MenuItem newBook;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -78,6 +85,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(swapBook, KeyCombination.valueOf("Shift+Tab"));
+        setAccelerator(swapBook, KeyCombination.valueOf("Ctrl+Shift+N"));
     }
 
     /**
@@ -164,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
             if (!logic.addAddressBook()) {
                 resultDisplay.setFeedbackToUser("Maximum amount of address book created");
             }
-        } catch (IOException e) {
+        } catch (IOException | DataConversionException e) {
             resultDisplay.setFeedbackToUser("Sorry! Error creating File");
         }
     }
@@ -173,8 +182,11 @@ public class MainWindow extends UiPart<Stage> {
      * Swaps between the Books
      */
     @FXML
-    private void handleSwap() throws CommandException {
+    private void handleSwap() {
         logic.swapAddressBook();
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().set(0, statusBarFooter.getRoot());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**

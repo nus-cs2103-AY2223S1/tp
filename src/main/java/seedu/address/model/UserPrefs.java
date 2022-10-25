@@ -2,6 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -9,6 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.ui.ResultDisplay;
 
 /**
  * Represents User's preferences.
@@ -94,6 +98,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
             allAddressBookFilePath.add(newBook);
             return true;
         }
+    }
+
+    /**
+     * Renames the current address book
+     */
+    public void renameFile(String name) throws IOException {
+        Path newAddressBookFilePath = Paths.get("data" , name + ".json");
+        Files.move(this.addressBookFilePath, newAddressBookFilePath);
+        Files.delete(this.addressBookFilePath);
+        this.addressBookFilePath = newAddressBookFilePath;
+        allAddressBookFilePath.set(addressBookIndex, newAddressBookFilePath);
     }
 
     public Path getNextAddressBookPath() {

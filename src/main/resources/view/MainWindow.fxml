@@ -26,8 +26,8 @@
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleNewBook" text="New Book" />
-            <MenuItem mnemonicParsing="false" onAction="#handleSwap" text="Swap Book" />
+            <MenuItem fx:id="newBook" mnemonicParsing="false" onAction="#handleNewBook" text="New Book" />
+            <MenuItem fx:id="swapBook" mnemonicParsing="false" onAction="#handleSwap" text="Swap Book" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -91,6 +92,11 @@ public class ModelManager implements Model {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void renameAddressBook(String name) throws IOException {
+        userPrefs.renameFile(name);
     }
 
     @Override

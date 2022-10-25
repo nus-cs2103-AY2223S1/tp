@@ -136,4 +136,19 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses and checks the validity of file name.
+     */
+    public static String parseRename(String newName) throws ParseException {
+        requireNonNull(newName);
+        String REGEX_PATTERN = "^[A-za-z0-9-_]{1,255}$";
+        String MESSAGE_CONSTRAINTS = "File name is limited to alphanumeric characters, '-' and '_'";
+        String trimmedTag = newName.trim();
+        if (!trimmedTag.matches(REGEX_PATTERN)) {
+            throw new ParseException(MESSAGE_CONSTRAINTS);
+        }
+        return trimmedTag;
+    }
+
 }

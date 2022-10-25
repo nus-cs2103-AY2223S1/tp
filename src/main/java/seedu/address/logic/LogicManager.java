@@ -20,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.Storage;
 
@@ -92,19 +91,17 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean addAddressBook() throws IOException {
+    public boolean addAddressBook() throws IOException, DataConversionException {
         boolean result = model.addAddressBook();
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialData;
         if (result) {
             Path[] allBooks = model.getAllAddressBookFilePath();
             Path latestBook = allBooks[allBooks.length - 1];
-            try {
-                FileWriter file = new FileWriter(latestBook.toFile());
-                file.close();
-            } catch (IOException e) {
-                logger.warning("Error creating file" + latestBook);
-                throw e;
-            }
-
+            addressBookOptional = storage.readAddressBook();
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            storage.setAddressBook(new JsonAddressBookStorage(latestBook));
+            model.setAddressBook(initialData);
         }
         return result;
     }
@@ -126,8 +123,7 @@ public class LogicManager implements Logic {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
-        AddressBookStorage newAddressBookStorage = new JsonAddressBookStorage(nextAddressBook);
-        storage.setAddressBook(newAddressBookStorage);
+        storage.setAddressBook(new JsonAddressBookStorage(nextAddressBook));
         model.setAddressBook(initialData);
     }
 }
