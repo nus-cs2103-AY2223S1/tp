@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t15-4.github.io/tp/Userguide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t15-4.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = USERGUIDE_URL;
 
     public static final String HELP_PARA = "Hi there, welcome to GIM! Here is a list of supported commands.\n"
