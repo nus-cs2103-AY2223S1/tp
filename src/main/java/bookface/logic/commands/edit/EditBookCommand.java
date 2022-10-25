@@ -1,9 +1,7 @@
 package bookface.logic.commands.edit;
 
-import static bookface.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
-import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
-import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
+import static bookface.logic.parser.CliSyntax.PREFIX_AUTHOR;
+import static bookface.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -20,24 +18,14 @@ import bookface.model.book.Book;
 import bookface.model.book.Title;
 
 /**
- * Command to delete a book from the booklist using it's displayed index from the book list
+ * Command to edit a book from the book list using its displayed index from the book list
  */
 public class EditBookCommand extends EditCommand {
     public static final String COMMAND_WORD = "book";
     public static final String MESSAGE_USAGE =
-            EditCommand.COMMAND_WORD + " " + COMMAND_WORD
-                    + ": Edits the details "
-                    + "of the user identified "
-                    + "by the index number used in the displayed user list. "
-                    + "Existing values will be overwritten by the input values.\n"
-                    + "Parameters: INDEX (must be a positive integer) "
-                    + "[" + PREFIX_NAME + "NAME] "
-                    + "[" + PREFIX_PHONE + "PHONE] "
-                    + "[" + PREFIX_EMAIL + "EMAIL] "
-                    + "[" + PREFIX_TAG + "TAG]...\n"
-                    + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_PHONE + "91234567 "
-                    + PREFIX_EMAIL + "johndoe@example.com";
+            EditCommand.generateMessage(COMMAND_WORD, "INDEX (must be a positive integer) "
+                    + "[" + PREFIX_AUTHOR + "AUTHOR] [" + PREFIX_TITLE + "TITLE]...", COMMAND_WORD
+                    + " book t/The Broken House");
 
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited User: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists.";

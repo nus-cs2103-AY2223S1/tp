@@ -9,9 +9,20 @@ public abstract class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes an entity from BookFace.\n"
-            + "Parameters: INDEX (must be a positive integer)"
-            + " Suitable subcommands: \n"
-            + "Example: " + COMMAND_WORD + " user" + " 1";
+    private static final String DELETE_DESCRIPTION = "Delete the %1$s identified "
+            + "by the index number used in the displayed %1$s list";
+
+    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, String.format(DELETE_DESCRIPTION,
+            "user or book"), COMMAND_WORD + " user 2");
+
+    /**
+     * Generates an usage message.
+     * @param commandName the name of the command
+     * @return The generated usage message
+     */
+    public static String generateMessage(String commandName) {
+        return Command.generateMessage(COMMAND_WORD + " " + commandName,
+                String.format(DELETE_DESCRIPTION, commandName), "INDEX (must be a positive integer)",
+                COMMAND_WORD + " " + commandName + " 1");
+    }
 }

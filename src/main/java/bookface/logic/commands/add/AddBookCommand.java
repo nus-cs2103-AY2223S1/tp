@@ -14,16 +14,12 @@ import bookface.model.book.Book;
  */
 public class AddBookCommand extends AddCommand {
     public static final String COMMAND_WORD = "book";
-    public static final String MESSAGE_USAGE = AddCommand.COMMAND_WORD
-            + " " + COMMAND_WORD
-            + ": Adds a book to the book list."
-            + "Parameters: "
-            + PREFIX_TITLE + "TITLE "
-            + PREFIX_AUTHOR + "AUTHOR\n"
-            + "Example: " + AddCommand.COMMAND_WORD
-            + " " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "The Hobbit "
-            + PREFIX_AUTHOR + "JRR Tolkien";
+    public static final String MESSAGE_USAGE =
+            AddCommand.generateMessage(COMMAND_WORD, "INDEX (must be a positive integer) "
+                    + PREFIX_TITLE + "TITLE"
+                    + PREFIX_AUTHOR + "AUTHOR" , COMMAND_WORD
+                    + " book t/The Broken House a/John Doe");
+
     public static final String MESSAGE_SUCCESS = "New book added: %s by %s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book is already in our records.";
     private final Book bookToAdd;

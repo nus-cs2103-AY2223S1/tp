@@ -9,12 +9,21 @@ public abstract class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    //todo so we want a way to configure the help message for all levels of commands as well
-    // so this variable needs to be used
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an entity to BookFace. "
-            + "Suitable subcommands: \n"
-            + "Example: " + COMMAND_WORD
-            + " user "
-            + "...";
+    private static final String ADD_DESCRIPTION = "Adds a %s to BookFace.";
+
+    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, String.format(ADD_DESCRIPTION,
+            "user or book"), COMMAND_WORD + " book a/John Doe t/The Deep Dive");
+
+    /**
+     * Generates an usage message.
+     * @param commandName the name of the command
+     * @param commandArguments the arguments of the command
+     * @param commandExample the example usage of the command
+     * @return The generated usage message
+     */
+    public static String generateMessage(String commandName, String commandArguments, String commandExample) {
+        return Command.generateMessage(COMMAND_WORD + " " + commandName,
+                String.format(ADD_DESCRIPTION, commandName), commandArguments,
+                COMMAND_WORD + " " + commandExample);
+    }
 }

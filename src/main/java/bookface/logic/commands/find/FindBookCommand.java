@@ -14,10 +14,9 @@ import bookface.model.book.Book;
  */
 public class FindBookCommand extends FindCommand {
     public static final String COMMAND_WORD = "book";
-    public static final String MESSAGE_USAGE = FindCommand.COMMAND_WORD + " " + COMMAND_WORD
-        + ": Deletes the book identified by the index number used in the displayed book list.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + FindCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+
+    public static final String MESSAGE_USAGE = FindCommand.generateMessage(COMMAND_WORD,
+            COMMAND_WORD + "The Haunted House");
 
     private final ObjectContainsKeywordsPredicate<Book, String> predicate;
 

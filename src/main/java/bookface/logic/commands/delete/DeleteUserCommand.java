@@ -18,10 +18,7 @@ public class DeleteUserCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "user";
 
-    public static final String MESSAGE_USAGE = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": Deletes the user identified by the index number used in the displayed user list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = DeleteCommand.generateMessage(COMMAND_WORD);
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted User: %1$s";
 

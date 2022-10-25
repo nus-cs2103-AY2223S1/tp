@@ -2,7 +2,6 @@ package bookface.logic.parser.primary;
 
 import bookface.commons.core.Messages;
 import bookface.logic.commands.Command;
-import bookface.logic.commands.HelpCommand;
 import bookface.logic.parser.CommandParser;
 import bookface.logic.parser.exceptions.ParseException;
 
@@ -11,7 +10,7 @@ import bookface.logic.parser.exceptions.ParseException;
  */
 public class PrimaryParser extends CommandParser<Command> {
     public PrimaryParser() {
-        super(HelpCommand.MESSAGE_USAGE);
+        super(Command.MESSAGE_USAGE);
     }
 
     @Override

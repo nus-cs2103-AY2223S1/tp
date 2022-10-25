@@ -10,8 +10,22 @@ public abstract class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all users whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    private static final String FIND_DESCRIPTION = "Finds %s which contain any of the specified keywords "
+            + "(case-insensitive) and displays them as a "
+            + "list with index numbers";
+
+    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, String.format(FIND_DESCRIPTION,
+                    "users or books"), COMMAND_WORD + " user john");
+
+    /**
+     * Generates an usage message.
+     * @param commandName the name of the command
+     * @param commandExample the example usage of the command
+     * @return The generated usage message
+     */
+    public static String generateMessage(String commandName, String commandExample) {
+        return Command.generateMessage(COMMAND_WORD + " " + commandName,
+                String.format(FIND_DESCRIPTION, commandName), "[KEYWORD]...",
+                COMMAND_WORD + " " + commandExample);
+    }
 }

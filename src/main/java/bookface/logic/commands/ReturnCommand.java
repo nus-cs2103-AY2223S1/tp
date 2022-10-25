@@ -16,15 +16,13 @@ import bookface.model.book.Book;
 public class ReturnCommand extends Command {
     public static final String COMMAND_WORD = "return";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Return the book identified by the index"
-            + " number in book list. \n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 2";
+    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Return the"
+            + " book identified by the index number in book list", "BOOK INDEX (must be a positive"
+                    + " integer)", COMMAND_WORD + " 2");
 
     public static final String MESSAGE_RETURN_SUCCESS = "Book %1$s returned successfully.";
 
-    public static final String NOT_ON_LOAN = "Book is already loaned out.";
+    public static final String NOT_ON_LOAN = "Book is not on loan.";
 
     private final Index targetBookIndex;
 

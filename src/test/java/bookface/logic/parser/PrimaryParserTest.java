@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
+import bookface.logic.commands.Command;
+
 import org.junit.jupiter.api.Test;
 
 import bookface.logic.commands.ClearCommand;
@@ -106,7 +108,7 @@ public class PrimaryParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, Command.MESSAGE_USAGE), ()
             -> parser.parse(""));
     }
 

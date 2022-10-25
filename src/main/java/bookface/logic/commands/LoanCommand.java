@@ -17,11 +17,10 @@ import bookface.model.person.Person;
 public class LoanCommand extends Command {
     public static final String COMMAND_WORD = "loan";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Loans to the user identified by the index number in user list from the book identified by the index"
-            + " number in book list. \n"
-            + "Parameters: INDEX (must be a positive integer), INDEX (must be a positive integer) \n"
-            + "Example: " + COMMAND_WORD + " 3" + " 2";
+    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Loans to the"
+            + " user identified by the index number in user list from the book identified by the index number in book"
+            + " list", "USER_INDEX (must be a positive integer), BOOK_INDEX (must be a "
+            + "positive integer)", COMMAND_WORD + " 3 2");
 
     public static final String MESSAGE_LOAN_SUCCESS = "User %1$s loaned book %2$s.";
 
