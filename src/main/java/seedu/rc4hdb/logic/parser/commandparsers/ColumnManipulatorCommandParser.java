@@ -1,11 +1,13 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.model.resident.fields.ResidentField.LETTER_TO_FIELD_NAME_MAPPINGS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand;
 import seedu.rc4hdb.logic.parser.Parser;
@@ -14,7 +16,8 @@ import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 public abstract class ColumnManipulatorCommandParser implements Parser<ColumnManipulatorCommand> {
 
     public static final String INTENDED_USAGE_FORMAT = "Please enter the %s command followed by"
-            + " at least one column to %s\n"
+            + " at least one column to %s.\n"
+            + "Each column can be specified by entering the first letter of the column header.\n"
             + "Example: %s n p e\n";
 
     public static final String INVALID_FIELDS_ENTERED = "Please check that you have entered"
@@ -61,11 +64,15 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
     private static HashMap<String, List<String>> validateAndGenerateFieldLists(String args) throws ParseException {
         requireNonNull(args);
 
-        List<String> listOfColumnsToShowOrHide = parseColumnsToShowOrHide(args);
+        List<String> lettersOfColumnsToShowOrHide = parseColumnsToShowOrHide(args);
+        List<String> fullNamesOfColumnsToShowOrHide = lettersOfColumnsToShowOrHide.stream()
+                .map(LETTER_TO_FIELD_NAME_MAPPINGS::get)
+                .collect(Collectors.toList());
+
         List<String> baseList = new ArrayList<>();
         List<String> complementList = new ArrayList<>(ColumnManipulatorCommand.ALL_FIELDS);
 
-        for (String column : listOfColumnsToShowOrHide) {
+        for (String column : fullNamesOfColumnsToShowOrHide) {
             if (!ColumnManipulatorCommand.ALL_FIELDS.contains(column)) {
                 throw new ParseException(INVALID_FIELDS_ENTERED);
             }
@@ -95,7 +102,7 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
             throw new ParseException(String.format(INTENDED_USAGE_FORMAT,
                     getCommandWord(),
                     getCommandPresentTense(),
-                    getCommandPresentTense()));
+                    getCommandWord()));
         }
     }
 

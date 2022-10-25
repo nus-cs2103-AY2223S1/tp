@@ -1,5 +1,6 @@
 package seedu.rc4hdb.model.resident.fields;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,16 @@ public abstract class ResidentField extends Field {
     public static final List<String> LOWERCASE_FIELDS = FIELDS.stream()
             .map(String::toLowerCase)
             .collect(Collectors.toList());
+
+    public static final HashMap<String, String> LETTER_TO_FIELD_NAME_MAPPINGS = getHashMapOfLetterToFieldName();
+
+    private static HashMap<String, String> getHashMapOfLetterToFieldName() {
+        HashMap<String, String> letterToFieldNameMappings = new HashMap<>();
+        for (String field : LOWERCASE_FIELDS) {
+            letterToFieldNameMappings.put(String.valueOf(field.charAt(0)), field);
+        }
+        return letterToFieldNameMappings;
+    }
 
     protected ResidentField(String value) {
         super(value);
