@@ -105,8 +105,7 @@ public class Order {
 
     public boolean isDeliverable() {
         return itemList.stream()
-                        .map(pair -> pair.getQuantityValue() < pair.getItem().getTotalQuantityValue())
-                        .anyMatch(x -> x == true);
+                        .allMatch(ItemQuantityPair::isDeliverable);
     }
 
     public boolean isCompleted() {

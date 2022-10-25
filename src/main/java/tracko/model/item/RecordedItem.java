@@ -68,6 +68,11 @@ public class RecordedItem implements Item {
     }
 
     @Override
+    public RecordedItem freeze() {
+        return this;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

@@ -8,4 +8,5 @@ public interface Item {
     Price getCostPrice();
     Price getSellPrice();
     boolean isSameItem(Item otherItem);
+    RecordedItem freeze();
 }

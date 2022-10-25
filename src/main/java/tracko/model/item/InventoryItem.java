@@ -65,7 +65,7 @@ public class InventoryItem implements Item {
     }
 
     public Integer getTotalQuantityValue() {
-        return totalQuantity.getQuantity();
+        return totalQuantity.getValue();
     }
 
     public Set<Tag> getTags() {
@@ -73,11 +73,20 @@ public class InventoryItem implements Item {
     }
 
     /**
+     * Returns true if the invoked {@code InventoryItem} has equal to or more than input quantity
+     * @param quantity The input quantity
+     * @return True if the invoked {@code InventoryItem} has equal to or more than input quantity.
+     */
+    public boolean hasMoreThan(Quantity quantity) {
+        return totalQuantity.value >= quantity.value;
+    }
+
+    /**
      * Decreases the stock quantity of the item by the delivered amount.
      * @param deliveredQuantity quantity of the item that has been delivered
      */
     public void reduceItem(Integer deliveredQuantity) {
-        Quantity newQuantity = new Quantity(this.totalQuantity.getQuantity() - deliveredQuantity);
+        Quantity newQuantity = new Quantity(this.totalQuantity.getValue() - deliveredQuantity);
         this.totalQuantity = newQuantity;
     }
 
@@ -112,6 +121,16 @@ public class InventoryItem implements Item {
 
         return (otherItem instanceof InventoryItem)
             && otherItem.getItemName().equals(getItemName());
+    }
+
+    /**
+     * Returns a {@code RecordedItem} object that represents a copy of this {@code InventoryItem} at the point of
+     * invocation.
+     * @return A {@code RecordedItem} object that represents a copy of this {@code InventoryItem}.
+     */
+    @Override
+    public RecordedItem freeze() {
+        return RecordedItem.getRecordedItemCopy(this);
     }
 
     /**

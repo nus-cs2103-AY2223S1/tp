@@ -54,7 +54,7 @@ public class JsonAdaptedItem {
      */
     public JsonAdaptedItem(InventoryItem source) {
         itemName = source.getItemName().itemName;
-        quantity = source.getTotalQuantity().getQuantity();
+        quantity = source.getTotalQuantity().getValue();
         description = source.getDescription().value;
         sellPrice = source.getSellPrice().price;
         costPrice = source.getCostPrice().price;

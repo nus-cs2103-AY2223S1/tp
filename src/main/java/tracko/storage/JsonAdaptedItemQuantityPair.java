@@ -35,7 +35,7 @@ public class JsonAdaptedItemQuantityPair {
      */
     public JsonAdaptedItemQuantityPair(ItemQuantityPair itemQuantityPair) {
         this.itemName = itemQuantityPair.getItemName();
-        this.quantity = itemQuantityPair.getQuantity().getQuantity();
+        this.quantity = itemQuantityPair.getQuantity().getValue();
     }
 
     /**
