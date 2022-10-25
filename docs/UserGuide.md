@@ -8,7 +8,7 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
 * Table of Contents
 {:toc}
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -36,7 +36,7 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
 
 </div>
 
-### Viewing help : `help`
+## Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -59,7 +59,7 @@ Examples:
 * `add n/John Doe p/98765432 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe p/88888888 a/Newgate Prison t/ear`
 
-### Listing all patients/appointments : `list`
+#### Listing all patients/appointments : `list`
 
 Shows a list of all patients or appointments, depending on the parameter given. \
 If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
