@@ -17,6 +17,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +36,8 @@ class JsonAdaptedPerson {
 
     private final String gender;
 
+    private final String uid;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -42,7 +45,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("dob") String dob, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("gender") String gender) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("gender") String gender,
+                             @JsonProperty("uid") String uid) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,6 +56,8 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.gender = gender;
+        this.uid = uid;
+
     }
 
     /**
@@ -67,6 +73,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         gender = source.getGender().value.toString();
+        uid = source.getUid().value;
     }
 
     /**
@@ -132,9 +139,16 @@ class JsonAdaptedPerson {
         } else {
             modelGender = new Gender(gender);
         }
+        if (uid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Uid.class.getSimpleName()));
+        }
+        if (!Uid.isValidUid(uid)) {
+            throw new IllegalValueException(Uid.MESSAGE_CONSTRAINTS);
+        }
+        Uid modelUid = new Uid(uid);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags, modelGender);
+        return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags, modelGender, modelUid);
     }
 
 }

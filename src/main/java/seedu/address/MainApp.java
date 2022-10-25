@@ -89,8 +89,9 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
-
-        return new ModelManager(initialData, userPrefs);
+        Model model = new ModelManager(initialData, userPrefs);
+        model.updateEventPersonReference();
+        return model;
     }
 
     private void initLogging(Config config) {
