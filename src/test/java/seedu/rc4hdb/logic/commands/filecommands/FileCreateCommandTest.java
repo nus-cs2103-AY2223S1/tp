@@ -2,7 +2,7 @@ package seedu.rc4hdb.logic.commands.filecommands;
 
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandFailure;
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertFileExists;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertDirExists;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -43,40 +43,41 @@ public class FileCreateCommandTest {
     }
 
     @Test
-    public void execute_fileDoesNotExist_fileCreated() {
+    public void execute_folderDoesNotExist_fileCreated() {
         DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFolderPath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, "DoesNotExist");
 
-        Path targetFilePath = getTempFilePath("DoesNotExist");
         String targetFileName = "DoesNotExist";
+        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, targetFileName);
+        Path targetFilePath = getTempFilePath(targetFileName);
+
         FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
 
         assertCommandSuccess(fileCreateCommand, storage, expectedMessage, expectedStorage);
-        assertFileExists(targetFilePath);
+        assertDirExists(targetFilePath);
     }
 
     @Test
-    public void execute_currentFile_throwsCommandException() throws Exception {
-        Path target = getTempFilePath("test.json");
+    public void execute_currentFolder_throwsCommandException() throws Exception {
+        Path target = getTempFilePath("test");
         String targetFileName = "test";
 
-        String expectedMessage = String.format(FileCommand.MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, "test.json");
+        String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_ALREADY_EXIST, "test");
         FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
-        FileUtil.createIfMissing(target);
+        FileUtil.createDirIfMissing(target);
 
         assertCommandFailure(fileCreateCommand, storage, expectedMessage);
     }
 
     @Test
-    public void execute_fileAlreadyExists_throwsCommandException() throws IOException {
-        String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_ALREADY_EXIST, "AlreadyExists.json");
+    public void execute_folderAlreadyExists_throwsCommandException() throws IOException {
+        String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_ALREADY_EXIST, "AlreadyExists");
 
-        Path filePath = getTempFilePath("AlreadyExists.json");
+        Path filePath = getTempFilePath("AlreadyExists");
         String targetFileName = "AlreadyExists";
         FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
-        FileUtil.createFile(filePath);
+        FileUtil.createDirIfMissing(filePath);
 
         assertCommandFailure(fileCreateCommand, storage, expectedMessage);
     }

@@ -43,7 +43,7 @@ public class FileDeleteCommandTest {
     }
 
     @Test
-    public void execute_fileExists_fileDeleted() throws Exception {
+    public void execute_folderExists_fileDeleted() throws Exception {
         DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFolderPath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
@@ -60,7 +60,7 @@ public class FileDeleteCommandTest {
     }
 
     @Test
-    public void execute_currentFile_throwsCommandException() throws Exception {
+    public void execute_currentFolder_throwsCommandException() throws Exception {
         String targetFileName = "test";
         Path target = getTempFilePath(targetFileName);
 
@@ -72,7 +72,7 @@ public class FileDeleteCommandTest {
     }
 
     @Test
-    public void execute_fileDoesNotExist_throwsCommandException() {
+    public void execute_folderDoesNotExist_throwsCommandException() {
         String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_DOES_NOT_EXIST, "DoesNotExist");
 
         String targetFileName = "DoesNotExist";
