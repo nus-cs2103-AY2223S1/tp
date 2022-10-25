@@ -44,8 +44,9 @@ contains some sample data.<br>
 | [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
 | [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
 | [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
-| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
+| [`add-link`](#231-add-link)             | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its module code                       |
+| [`delete-link`](#232-delete-link)       | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its module code and alias                      |
+| [`open-link`](#233-open-link)           | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its module code and alias                        |
 | [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
 | [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
 | [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
@@ -234,54 +235,111 @@ task within the task list of the module with the module code `CS2103T`.
 
 <br>
 
-### 2.3. Adding and deleting links
+### 2.3. Links
+All links in Plannit are represented by a unique alias. 
+
+Alias:
+* Alphanumeric and whitespace characters
+* Character limit of 15
+* At least 1 alphanumeric character
+
+Link URL (Plannit provides no guarantee of the link's existence):
+* At least one top-level domain (e.g. com)
+* Domain length of 1 to 256 characters (e.g. for 'www.google.com', the domain is 'google')
+* Supported by 'https' or 'http'
+
 #### 2.3.1. Add link
-You may add a link to a specific module using the `add-link` command.
+You may add link/s to a specific module using the `add-link` command. 
+Each link URL is to be paired with a link alias, both of which are unique within a module.
 
-This command will require one flag:
-* `l/`: To be followed by the link URL.
+Multiple links can be added at once. Link aliases will be paired with link URLs according to their respective
+order of input (left-to-right).
+Shall a link URL or alias from a chained command be detected as invalid,
+none of the links in the command will be added.
 
-Format: `add-link INDEX l/LINK_URL`
-* `INDEX`: To be replaced with the displayed index of the module which is associated with the link
-* You cannot add a link URL to a non-existent module code.
-* You cannot add a duplicate link URL for a single module code.
+This command will require three flags:
+* `m/`: To be followed by the module code of the module which is associated with the link
+* `l/`: To be followed by the link URL which is associated with the link
+* `la/`: To be followed by the link alias which is associated with the link
+
+Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`
+* You cannot add a link to a non-existent module code.
+* You cannot add a link using a link alias that already exists in the module represented by the module code.
+* You cannot add a link using a link URL that already exists in the module represented by the module code.
 
 Example:
 ```
-add-link 1 l/visualgo.net/en
+add-link m/CS2040 l/visualgo.net/en la/visualgo
 ```
 In the above example, we are adding the link with the URL `visualgo.net/en`
-to the module with the displayed index of `1`.
+to the module with module code `CS2040`, represented by the link alias `visualgo`.
 
 ```
-add-link 2 l/https://www.nusmods.com l/kattis.com
+add-link m/CS2040 l/https://www.nusmods.com l/open.kattis.com la/nus mods la/kattis
 ```
-In the above example, we are adding the links with the URL `https://www.nusmods.com` and `l/kattis.com`
-to the module with the displayed index of `2`.
+In the above example, we are adding the links with the URL `https://www.nusmods.com` and `open.kattis.com`
+to the module with module code `CS2040`, represented by the link alias `nus mods` and `kattis` respectively.
 
 #### 2.3.2. Delete link
-You may delete a link from a specific module using the `delete-link` command.
+You may delete link/s from a specific module using the `delete-link` command. 
+Links will be deleted by means of their corresponding alias.
 
-This command will require one flag:
-* `l/`: To be followed by the link URL.
+Multiple links can be deleted at once using their corresponding alias. 
+Shall a link alias from a chained command be detected as invalid,
+none of the links in the command will be deleted.
 
-Format: `delete-link INDEX l/LINK_URL`
-* `INDEX`: To be replaced with the displayed index of the module which is associated with the link
-* You cannot delete a link URL from a non-existent module code.
-* You cannot delete a non-existent link URL from a valid module code.
+This command will require two flags:
+* `m/`: To be followed by the module code of the module which is associated with the link
+* `la/`: To be followed by the link alias which is associated with the link
+
+Format: `delete-link m/MODULE_CODE la/LINK_ALIAS`
+* You cannot delete a link from a non-existent module code.
+* You cannot delete a link using a non-existent link alias from an existing module.
 
 Example:
 ```
-delete-link 1 l/visualgo.net/en
+delete-link m/CS2040 la/visualgo
 ```
 In the above example, we are deleting the link with the URL `visualgo.net/en`
-from the module with the displayed index of `1`.
+from the module with module code `CS2040`, using its corresponding link alias `visualgo`.
 
 ```
-delete-link 2 l/https://www.nusmods.com l/kattis.com
+delete-link m/CS2040 la/nus mods la/kattis
 ```
-In the above example, we are deleting the links with the URL `https://www.nusmods.com` and `l/kattis.com`
-from the module with the displayed index of `2`.
+In the above example, we are deleting the links with the URL `https://www.nusmods.com` and `open.kattis.com`
+from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
+
+#### 2.3.3. Open link
+You may open link/s from a specific module to your default browser using the `open-link` command.
+Links will be opened by means of their corresponding alias.
+
+An alternative way to open links is by means of clicking on their aliases on the application window.
+Permissions from your operating system may be required for some users to use this feature.
+
+Multiple links can be opened at once using its corresponding alias according to their order of input
+(left to right). Shall a link alias from a chained command be detected as invalid,
+the links to its left will be opened while the links to its right will not be opened.
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module which is associated with the link
+* `la/`: To be followed by the link alias which is associated with the link
+
+Format: `open-link m/MODULE_CODE la/LINK_ALIAS`
+* You cannot open a link from a non-existent module code.
+* You cannot open a link using a non-existent link alias from a valid module code.
+
+Example:
+```
+open-link m/CS2040 la/visualgo
+```
+In the above example, we are opening the link with the URL `visualgo.net/en`
+from the module with module code `CS2040`, using its corresponding link alias `visualgo`.
+
+```
+open-link m/CS2040 la/nus mods la/kattis
+```
+In the above example, we are opening the links with the URL `https://www.nusmods.com` and `open.kattis.com`
+from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
 <br>
 
 ### 2.4. Contacts

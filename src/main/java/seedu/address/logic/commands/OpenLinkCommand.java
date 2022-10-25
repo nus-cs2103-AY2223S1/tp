@@ -36,7 +36,8 @@ public class OpenLinkCommand extends Command {
     public static final String MESSAGE_MISSING_LINK_ALIAS = "The link alias [%1$s] does not currently exist"
             + " in the module with module code [%2$s]";
     private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Your desktop prevents" +
-            " link URLs to be opened from Plannit";
+            " link URLs to be opened from Plannit. "
+            + "Please enable system security permissions for Plannit to use this feature.";
     private static final String OS_NAME_LOWERCASE_WINDOWS = "windows";
     private static final String WINDOWS_OPEN_LINK_COMMAND_KEY = "rundll32 url.dll,FileProtocolHandler ";
     private static final String OS_NAME_LOWERCASE_MAC = "mac";
