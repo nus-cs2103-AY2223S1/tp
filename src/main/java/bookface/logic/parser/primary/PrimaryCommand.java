@@ -1,9 +1,9 @@
 package bookface.logic.parser.primary;
 
-import bookface.logic.commands.ClearCommand;
 import bookface.logic.commands.Command;
 import bookface.logic.commands.ExitCommand;
 import bookface.logic.commands.HelpCommand;
+import bookface.logic.parser.ClearCommandParser;
 import bookface.logic.parser.CommandReturnable;
 import bookface.logic.parser.LoanCommandParser;
 import bookface.logic.parser.ParserFunction;
@@ -22,7 +22,7 @@ public enum PrimaryCommand implements CommandReturnable {
     ADD((args) -> new AddCommandParser().parse(args)),
     EDIT((args) -> new EditCommandParser().parse(args)),
     DELETE((args) -> new DeleteCommandParser().parse(args)),
-    CLEAR((args) -> new ClearCommand()),
+    CLEAR((args) -> new ClearCommandParser().parse(args)),
     FIND((args) -> new FindCommandParser().parse(args)),
     LIST((args) -> new ListCommandParser().parse(args)),
     EXIT((args) -> new ExitCommand()),

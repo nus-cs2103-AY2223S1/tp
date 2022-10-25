@@ -10,11 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 
-import bookface.logic.commands.Command;
-
 import org.junit.jupiter.api.Test;
 
 import bookface.logic.commands.ClearCommand;
+import bookface.logic.commands.Command;
 import bookface.logic.commands.ExitCommand;
 import bookface.logic.commands.HelpCommand;
 import bookface.logic.commands.add.AddCommand;
@@ -51,7 +50,6 @@ public class PrimaryParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parse(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parse(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
