@@ -11,9 +11,9 @@ import java.util.Objects;
 public class Debt {
     private final Description description;
     private final Money money;
-    private boolean isPaid;
     private final DebtDate date;
     private final DebtTime time;
+    private boolean isPaid;
 
     /**
      * Every field must be present and not null.
@@ -27,6 +27,8 @@ public class Debt {
         requireAllNonNull(description, money, date, time);
         this.description = description;
         this.money = money;
+        this.date = date;
+        this.time = time;
         this.isPaid = false;
     }
 
@@ -37,13 +39,13 @@ public class Debt {
      * @param money The money amount of the debt.
      * @param isPaid Whether the debt has been paid.
      */
-    public Debt(Description description, Money money, boolean isPaid) {
+    public Debt(Description description, Money money, DebtDate date, DebtTime time, boolean isPaid) {
         requireAllNonNull(description, money, isPaid);
         this.description = description;
         this.money = money;
-        this.isPaid = isPaid;
         this.date = date;
         this.time = time;
+        this.isPaid = isPaid;
     }
 
     public Description getDescription() {
@@ -54,20 +56,20 @@ public class Debt {
         return money;
     }
 
-    public boolean isPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
-
     public DebtDate getDate() {
         return date;
     }
 
     public DebtTime getTime() {
         return time;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean isPaid) {
+        this.isPaid = isPaid;
     }
 
     /**
@@ -84,7 +86,7 @@ public class Debt {
      * @return Debt that is a copy of this debt.
      */
     public Debt copyDebt() {
-        return new Debt(this.description, this.money);
+        return new Debt(description, money, date, time, isPaid);
     }
 
     /**

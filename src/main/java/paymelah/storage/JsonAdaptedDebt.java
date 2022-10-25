@@ -27,13 +27,13 @@ class JsonAdaptedDebt {
      * Constructs a {@code JsonAdaptedDebt} with the given debt details.
      */
     @JsonCreator
-    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money, @JsonProperty("isPaid") boolean isPaid,
-                           @JsonProperty("date") String date, @JsonProperty("time") String time) {
+    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money, @JsonProperty("date") String date,
+                           @JsonProperty("time") String time, @JsonProperty("isPaid") boolean isPaid) {
         this.description = description;
         this.money = money;
-        this.isPaid = isPaid;
         this.date = date;
         this.time = time;
+        this.isPaid = isPaid;
     }
 
     /**
@@ -42,9 +42,9 @@ class JsonAdaptedDebt {
     public JsonAdaptedDebt(Debt source) {
         description = source.getDescription().toString();
         money = source.getMoney().toString();
-        isPaid = source.isPaid();
         date = source.getDate().toString();
         time = source.getTime().toString();
+        isPaid = source.isPaid();
     }
 
     public String getDebtDescription() {
@@ -55,16 +55,16 @@ class JsonAdaptedDebt {
         return money;
     }
 
-    public boolean isPaid() {
-        return isPaid;
-    }
-
     public String getDebtDate() {
         return date;
     }
 
     public String getDebtTime() {
         return time;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
     }
 
     /**
