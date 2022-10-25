@@ -48,6 +48,22 @@ guest management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+| Term             | Definition                                                                                                                                            |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | `Refers to characters that are numbers 0-9 and alphabets A-Z, both uppercase and lowercase.`                                                          |
+| **dd/MM/yy**     | `Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year and they must be separated by a "/".` |
+| **CLI**          | `Stands for Command Line Interface, it refers to a text-based interface used to execute opertaions of the system.`                                    |
+| **Guest**        | `A guest staying at the hotel`                                                                                                                        |
+| **GUI**          | `Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.`              |
+| **Hard disk**    | `A data storage device used to store and retrieve data.`                                                                                              |
+| **Index**        | `The number that corresponds to the position of the Guest in the list.`                                                                               |
+| **Java**         | `A programming language used to run Guest Book.`                                                                                                      |
+| **JSON file**    | `Stands for JavaScript Object Notation, it refers to a file format to store data.`                                                                    |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -68,10 +84,12 @@ guest management tasks done faster than traditional GUI apps.
 [//]: # (  e.g. `[t/TAG]…​` can be used as ` ` &#40;i.e. 0 times&#41;, `t/friend`, `t/friend t/family` etc.)
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -89,7 +107,8 @@ Format: `help`
 
 ### Adding a guest: `add`
 
-Adds a guest to the guest book. This is akin to checking a guest in with their personal and room details.
+This command adds a guest to the guest book. This is akin to checking in a guest with their personal 
+and room details.
 
 Format: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
@@ -110,15 +129,15 @@ Examples:
 
 ### Listing all guests : `list`
 
-Shows a list of all guests in the guest book.
+This command displays a list of all guests in the guest book.
 
 Format: `list`
 
 ### Editing a guest : `edit`
 
-Edits an existing guest in the guest book.
+This command edits an existing guest in the guest book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rq/REQUEST]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 
@@ -130,13 +149,11 @@ Examples:
 
 ### Billing a guest : `bill`
 
-Updates the bill of a guest in the guest book.
+This command updates the bill of a guest in the guest book.
 
 Format: `bill INDEX b/BILL`
 
 * Updates the bill of the guest at the specified `INDEX`.
-
-* The index refers to the index number shown in the displayed guest list.
 
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -145,12 +162,18 @@ Format: `bill INDEX b/BILL`
 * The bill value **must be either an integer or a double with up to 2 decimal places**
 
 Examples:
-*  `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
-*  `bill 2 n/-10` Subtracts 10 from the bill of the 2nd guest.
+* `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
+* `bill 2 n/-10` Subtracts 10 from the bill of the 2nd guest.
+
+Common mistakes:
+* Missing out the b/ prefix in the bill command
+* Editing the bill using the edit command instead of the bill command
 
 ### Locating guests: `find`
 
-Find guests whose details contain any of the given keywords.
+This command locates guests whose details contain any of the given keywords.
+
+This command is typically used when searching for a guest of a specific characteristic.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -163,16 +186,21 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro`<br>
+
+
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
 
 ### Deleting a guest : `delete`
 
-Deletes the specified guest from the guest book.
+This command deletes the specified guest from the guest book. 
+
+This command is typically used when a guest has checked out of the hotel. Do note that this command 
+is irreversible. Once deleted, the specific guest's data cannot be retrieved. Please use this 
+command with caution.
 
 Format: `delete INDEX`
 
 * Deletes the guest at the specified `INDEX`.
-* The index refers to the index number shown in the displayed guest list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -182,19 +210,31 @@ Examples:
 
 ### Marking all rooms as unclean: `markRoomsUnclean`
 
-Marks all room clean statuses of all guests as "no".
+This command functions to mark the room clean statuses of all guests as "no".
+
+This command is typically used at the end or the start of the day when the hotel manager wishes to 
+update all the room clean statuses to "no" efficiently. This clean slate would allow the hotel 
+managers to keep abreast of the rooms that are cleaned or uncleaned for the day.
 
 Format: `markRoomsUnclean`
 
+Common mistakes: 
+* Missing out the "s" after the "Rooms"
+* Capitalising the "m" in "mark"
+
 ### Clearing all entries : `clear`
 
-Clears all entries from the guest book.
+This command clears all entries from the guest book. 
+
+This command is typically used as a hard reset of the entire guest book. Do note that this command 
+is irreversible. Once cleared, all the guest data cannot be retrieved. Please use this command 
+with utmost caution.
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+This command exits the program.
 
 Format: `exit`
 
@@ -225,14 +265,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                               |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/ 05-73 dr/19/05/20 - 24/05/22 ng/3`           |
-| **Clear**            | `clear`                                                                                                                                                                                        |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5` |
-| **Bill**             | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
-| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
-| **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                             |
-| **List**             | `list`                                                                                                                                                                                         |
-| **Help**             | `help`                                                                                                                                                                                         |
+| Action                 | Format, Examples                                                                                                                                                                               |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/ 05-73 dr/19/05/20 - 24/05/22 ng/3`           |
+| **Clear**              | `clear`                                                                                                                                                                                        |
+| **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5` |
+| **Bill**               | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
+| **Mark rooms unclean** | `markRoomsUnclean`                                                                                                                                                                             |
+| **List**               | `list`                                                                                                                                                                                         |
+| **Help**               | `help`                                                                                                                                                                                         |
+
+
