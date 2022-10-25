@@ -36,10 +36,6 @@ public class JumpText extends UiPart<Region> {
         return jumpText.getText();
     }
 
-    public void setText(String invalid_date_format) {
-        jumpText.setText(invalid_date_format);
-    }
-
     public void clear() {
         jumpText.clear();
     }

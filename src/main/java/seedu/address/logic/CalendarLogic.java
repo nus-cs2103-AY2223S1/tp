@@ -8,9 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.spi.CalendarNameProvider;
-
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -196,7 +193,7 @@ public class CalendarLogic {
             int newYear = jumpDate.getYear();
             textValidation.setTextValidation(SUCCESS_MESSAGE);
             return new GregorianCalendar(newYear, newMonth, 1);
-        } catch(DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             textValidation.setTextValidation(FAILURE_MESSAGE);
         }
         return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
