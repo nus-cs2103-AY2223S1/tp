@@ -50,9 +50,9 @@ class DateTest {
     @Test
     public void toString_returnsValueInName() {
         String value = "22/09/2000";
-        String formatedValue = "2000-09-22";
+        String formattedValue = "22 Sep 2000";
         Date date = new Date(value);
-        assertEquals(date.toString(), formatedValue);
+        assertEquals(date.toString(), formattedValue);
     }
 
     @Test

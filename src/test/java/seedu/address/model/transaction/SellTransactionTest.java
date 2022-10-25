@@ -34,7 +34,7 @@ class SellTransactionTest {
         Date date = new Date("17/05/2000");
 
         Transaction transaction = new SellTransaction(goods, price, quantity, date);
-        assertTrue(transaction.toString().equals("You sold 10 quantity of Apple at $0.8 each on 2000-05-17"));
+        assertTrue(transaction.toString().equals("You sold 10 quantity of Apple at $0.80 each on 17 May 2000"));
     }
 
     @Test
