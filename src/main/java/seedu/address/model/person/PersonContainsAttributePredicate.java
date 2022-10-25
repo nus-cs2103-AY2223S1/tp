@@ -89,7 +89,8 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
      */
     public static Predicate<String> containsIgnoreCase(String targetString) {
         return keyword -> Arrays.stream(targetString.split("\\s+"))
-                .anyMatch(targetWord -> targetWord.equalsIgnoreCase(keyword));
+                .anyMatch(targetWord -> targetWord.equalsIgnoreCase(keyword)
+                        || (keyword.contains(" ") && targetString.contains(keyword)));
     }
 
     @Override

@@ -358,9 +358,16 @@
 
 #surveys .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e9144;
     -fx-padding: 2 5 2 5;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 12;
+}
+
+#surveys #done {
+    -fx-background-color: #3e9144;
+}
+
+#surveys #notDone {
+    -fx-background-color: #eb4034;
 }
