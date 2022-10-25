@@ -26,19 +26,19 @@ import javafx.collections.ObservableList;
 public class UniqueTaskList implements Iterable<Task> {
 
     private static final Comparator<Task> TASK_COMPARATOR = (t1, t2) -> {
-        if (t1.isDone() == t2.isDone()) {
-            if (t1.hasDeadline() && t2.hasDeadline()) {
-                return t1.isDone() ? t2.getDeadline().compareTo(t1.getDeadline())
-                                   : t1.getDeadline().compareTo(t2.getDeadline());
-            } else if (t1.hasDeadline()) {
-                return -1;
-            } else if (t2.hasDeadline()) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } else {
+        if (t1.isDone() != t2.isDone()) {
             return t1.isDone() ? 1 : -1;
+        }
+        if (t1.hasDeadline() != t2.hasDeadline()) {
+            return t1.hasDeadline() ? -1 : 1;
+        }
+        if (!(t1.hasDeadline() || t2.hasDeadline())) {
+            return 0;
+        }
+        if (t1.isDone()) {
+            return t2.getDeadline().compareTo(t1.getDeadline());
+        } else {
+            return t1.getDeadline().compareTo(t2.getDeadline());
         }
     };
 

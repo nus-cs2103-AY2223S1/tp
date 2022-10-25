@@ -81,11 +81,7 @@ public class AddNoteCommand extends Command {
     }
 
     private String executeAddStudentNote(Lesson lessonToAdd) throws CommandException {
-        Student[] studentsInLesson = lessonToAdd.getStudents().toArray(new Student[0]);
-        if (studentIndex.getZeroBased() >= studentsInLesson.length) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-        Student studentToAdd = studentsInLesson[studentIndex.getZeroBased()];
+        Student studentToAdd = lessonToAdd.getStudent(studentIndex);
         try {
             lessonToAdd.addStudentNote(note, studentToAdd);
         } catch (StudentNotFoundException snfe) {

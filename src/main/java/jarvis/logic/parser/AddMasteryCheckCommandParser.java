@@ -35,7 +35,7 @@ public class AddMasteryCheckCommandParser implements Parser<AddMasteryCheckComma
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LESSON, PREFIX_START_DATE,
                 PREFIX_START_TIME, PREFIX_END_DATE, PREFIX_END_TIME, PREFIX_STUDENT_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_TIME,
+        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
                 PREFIX_STUDENT_INDEX) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddMasteryCheckCommand.MESSAGE_USAGE));

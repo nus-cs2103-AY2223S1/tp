@@ -28,11 +28,13 @@ import javafx.collections.ObservableList;
 public class UniqueLessonList implements Iterable<Lesson> {
 
     private static final Comparator<Lesson> LESSON_COMPARATOR = (l1, l2) -> {
-        if (l1.isCompleted() == l2.isCompleted()) {
-            return l1.isCompleted() ? l2.startDateTime().compareTo(l1.startDateTime())
-                                    : l1.startDateTime().compareTo(l2.startDateTime());
-        } else {
+        if (l1.isCompleted() != l2.isCompleted()) {
             return l1.isCompleted() ? 1 : -1;
+        }
+        if (l1.isCompleted()) {
+            return l2.startDateTime().compareTo(l1.startDateTime());
+        } else {
+            return l1.startDateTime().compareTo(l2.startDateTime());
         }
     };
 

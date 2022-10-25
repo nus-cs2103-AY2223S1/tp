@@ -81,9 +81,9 @@ public class LessonNotes {
     public String getGeneralNotes() {
         StringBuilder formattedGeneralNotes = new StringBuilder("Lesson Notes:\n");
         int index = 0;
-        for (String overallNote: generalNotes) {
+        for (String generalNote: generalNotes) {
             formattedGeneralNotes.append(++index + ". ");
-            formattedGeneralNotes.append(overallNote);
+            formattedGeneralNotes.append(generalNote);
             formattedGeneralNotes.append("\n");
         }
         return formattedGeneralNotes.toString();

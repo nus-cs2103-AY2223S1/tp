@@ -89,11 +89,7 @@ public class DeleteNoteCommand extends Command {
     }
 
     private String executeDeleteStudentNote(Lesson lessonToDelete) throws CommandException {
-        Student[] studentsInLesson = lessonToDelete.getStudents().toArray(new Student[0]);
-        if (studentIndex.getZeroBased() >= studentsInLesson.length) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-        Student studentToDelete = studentsInLesson[studentIndex.getZeroBased()];
+        Student studentToDelete = lessonToDelete.getStudent(studentIndex);
         try {
             String deletedNote = lessonToDelete.deleteStudentNote(studentToDelete, noteIndex);
             return String.format(MESSAGE_DELETE_STUDENT_NOTE_SUCCESS, studentToDelete, lessonToDelete, deletedNote);

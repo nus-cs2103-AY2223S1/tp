@@ -8,7 +8,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Set;
 
+import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
+import jarvis.logic.commands.exceptions.CommandException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -52,6 +54,14 @@ public abstract class Lesson {
 
     public boolean hasTimingConflict(Lesson other) {
         return timePeriod.hasOverlap(other.timePeriod);
+    }
+
+    public Student getStudent(Index studentIndex) throws CommandException {
+        int index = studentIndex.getZeroBased();
+        if (index >= studentList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
+        }
+        return studentList.get(index);
     }
 
     public Set<Student> getStudents() {

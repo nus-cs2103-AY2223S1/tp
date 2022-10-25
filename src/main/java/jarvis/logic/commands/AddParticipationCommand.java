@@ -67,13 +67,9 @@ public class AddParticipationCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDIO_DISPLAYED_INDEX);
         }
 
-        Student[] studentsInLesson = lessonToMark.getStudents().toArray(new Student[0]);
-        if (studentIndex.getZeroBased() >= studentsInLesson.length) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-
         Studio studioToMark = (Studio) lessonToMark;
-        Student studentToMark = studentsInLesson[studentIndex.getZeroBased()];
+        Student studentToMark = lessonToMark.getStudent(studentIndex);
+
         try {
             studioToMark.setParticipationForStudent(studentToMark, participation);
         } catch (StudentNotFoundException snfe) {

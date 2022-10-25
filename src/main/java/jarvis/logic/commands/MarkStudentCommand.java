@@ -56,12 +56,7 @@ public class MarkStudentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
         }
         Lesson lessonToMark = lastShownLessonList.get(lessonIndex.getZeroBased());
-
-        Student[] studentsInLesson = lessonToMark.getStudents().toArray(new Student[0]);
-        if (studentIndex.getZeroBased() >= studentsInLesson.length) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-        Student studentToMark = studentsInLesson[studentIndex.getZeroBased()];
+        Student studentToMark = lessonToMark.getStudent(studentIndex);
 
         try {
             lessonToMark.markAsPresent(studentToMark);
