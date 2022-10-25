@@ -176,10 +176,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Student> getMidtermComparator(Order order) {
         return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getGradesList().getGrade("Mid-Term").score
-                .compareTo(y.getGradesList().getGrade("Mid-Term").score)
-                : y.getGradesList().getGrade("Mid-Term").score
-                .compareTo(x.getGradesList().getGrade("Mid-Term").score);
+                ? x.getGradesList().getGrade("Midterm").score
+                .compareTo(y.getGradesList().getGrade("Midterm").score)
+                : y.getGradesList().getGrade("Midterm").score
+                .compareTo(x.getGradesList().getGrade("Midterm").score);
     }
 
     private Comparator<Student> getPracticalComparator(ArgumentMultimap argMultimap,
