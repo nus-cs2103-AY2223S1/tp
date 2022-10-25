@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the FinBook. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the FinBook. "
         + "Parameters: "
         + PREFIX_NAME + "NAME "
         + PREFIX_PHONE + "PHONE "
@@ -38,8 +38,8 @@ public class AddCommand extends Command {
         + PREFIX_MEETING_DATE + "20 Nov 2022 "
         + PREFIX_TAG + "VIPClient";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the FinBook";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FinBook";
 
     private final Person toAdd;
 

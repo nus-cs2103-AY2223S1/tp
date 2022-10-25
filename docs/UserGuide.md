@@ -7,16 +7,13 @@ FinBook is a desktop app for managing clients, optimized for use via a Command L
 the benefits of a Graphical User Interface (GUI). If you can type fast, FinBook can get your contact management tasks
 done faster and more securely than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
+## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
     * [Adding a client: `add`](#adding-a-client-add)
     * [Editing a client: `edit`](#editing-a-client--edit)
     * [Deleting a client: `delete`](#deleting-a-client--delete)
+    * [Copying a client's data: `copy`](#copying-a-clients-data--copy)
     * [Listing all clients: `list`](#listing-all-clients-list)
     * [Exiting the application: `exit`](#exiting-the-application--exit)
     * [Saving the data](#saving-the-data)
@@ -28,6 +25,8 @@ done faster and more securely than traditional GUI apps.
 
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -196,6 +195,26 @@ Examples:
 
 ---
 
+### Copying a client's data : `copy`
+
+Copies the data of an existing client in the FinBook into your Computer's clipboard.
+
+Format: `copy INDEX`
+
+Example: `copy 1` with the sample data will result a copied output of:
+```
+Name: Alex Yeoh
+Phone: 87438807
+Email: alexyeoh@example.com
+Address: Blk 30 Geylang Street 29, #06-40
+Income: $1000
+Meeting date: 12 Nov 2022
+Tags: friends
+```
+* Press `Ctrl-V` to paste the copied text.
+
+---
+
 ### Listing all clients: `list`
 
 Show a list of all clients in the FinBook
@@ -328,6 +347,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient r/high pl/Prudential Health` |
 | **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                 |
+| **Copy**             | `copy INDEX`   <br> e.g., `copy 1`                                                                                                                                                                                                                                                        |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                              |
 | **List**             | `list`                                                                                                                                                                                                                                                                                    |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                    |
