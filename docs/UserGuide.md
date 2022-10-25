@@ -26,7 +26,13 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 3. Edit grades of students
 4. Find individual student details
 5. View all students
-6. Sort students
+6. Mark Mastery Checks of students
+7. Sort students
+8. Add aliases
+9. Delete aliases
+10. View all aliases
+11. Get user guide link
+12. Get help
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -162,6 +168,28 @@ The names and Telegram handles are sorted in alphabetical order, while the consu
 by time. The grades are sorted in numerical order. 
 </div>
 
+### Adding aliases: `alias`
+
+Adds an alias for a command into FRIDAY.
+
+Format: `alias a/ALIAS k/KEYWORD`
+
+`KEYWORD` must be the default command keyword (e.g `add` in Adding students)
+`ALIAS` must not be a default command keyword
+
+
+### Deleting aliases: `unalias`
+
+Deletes an existing alias in FRIDAY.
+
+Format: `unalias a/ALIAS`
+
+### View all aliases: `aliaslist`
+
+View all aliases in FRIDAY.
+
+Format: `aliaslist`
+
 ### Getting User Guide link: `guide`
 
 Returns a link to FRIDAY's User Guide.
@@ -193,5 +221,8 @@ Format: `help`
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
 | **View all students**                        | `list`                                                                                                   |
 | **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
+| **Add Alias**                                | `alias a/ALIAS k/KEYWORD`                                                                                |
+| **Delete Alias**                             | `unalias a/ALIAS`                                                                                        |
+| **View all alias**                           | `aliaslist`                                                                                              |
 | **Get a link to the User Guide**             | `guide`                                                                                                  |
 | **Getting Help**                             | `help`                                                                                                   |
