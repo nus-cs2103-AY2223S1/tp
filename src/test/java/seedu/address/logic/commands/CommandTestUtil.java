@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -44,6 +45,8 @@ public class CommandTestUtil {
     // New fields
     public static final String VALID_STUDENTCLASS = "1A";
     public static final String VALID_ATTENDANCE = "date/12-02-2022 attendance/1";
+    public static final String VALID_SUBJECTHANDLER = "english: CA1:[80.0, 100.0, 0.2, 1.0], "
+                                                      + "CA2:[30.0, 56.0, 0.4, 2.0]";
     public static final String VALID_PERSONALITY_FUN = "fun";
     public static final String VALID_PERSONALITY_LAZY = "lazy";
 
@@ -56,6 +59,9 @@ public class CommandTestUtil {
     // Remark examples
     public static final String VALID_REMARK_ICE_CREAM = "likes ice cream";
     public static final String REMARK_ICE_CREAM = " " + PREFIX_REMARK + VALID_REMARK_ICE_CREAM;
+
+    // SubjectHandler examples
+    public static final String SUBJECTHANDLER_DUMMY = " " + PREFIX_SUBJECT + VALID_SUBJECTHANDLER;
 
     public static final String VALID_GRADE_40 = "40%";
     public static final String VALID_GRADE_60 = "60%";
