@@ -22,13 +22,13 @@ public class ItemQuantityPairBuilder {
         quantity = new Quantity(DEFAULT_QUANTITY);
     }
 
-    /**
-     * Initializes the {@code ItemBuilder} with the data of {@code pairToCopy}.
-     */
-    public ItemQuantityPairBuilder(ItemQuantityPair pairToCopy) {
-        inventoryItem = pairToCopy.getItem();
-        quantity = pairToCopy.getQuantity();
-    }
+    // /**
+    //  * Initializes the {@code ItemBuilder} with the data of {@code pairToCopy}.
+    //  */
+    // public ItemQuantityPairBuilder(ItemQuantityPair pairToCopy) {
+    //     inventoryItem = pairToCopy.getItem();
+    //     quantity = pairToCopy.getQuantity();
+    // }
 
     /**
      * Sets the {@code Item} of the {@code ItemQuantityPair} that we are building.

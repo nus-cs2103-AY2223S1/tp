@@ -129,7 +129,7 @@ public class InventoryItem implements Item {
      * @return A {@code RecordedItem} object that represents a copy of this {@code InventoryItem}.
      */
     @Override
-    public RecordedItem freeze() {
+    public RecordedItem getRecordedItem() {
         return RecordedItem.getRecordedItemCopy(this);
     }
 

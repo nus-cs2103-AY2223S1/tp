@@ -137,6 +137,10 @@ public class ModelManager implements Model {
 
             orderToMark.setDelivered();
         }
+
+        if (orderToMark.isCompleted()) {
+            setOrder(orderToMark, orderToMark.getImmutableItemsCopy());
+        }
     }
 
     // FILTERED ORDER LIST ACCESSORS ========================================================================

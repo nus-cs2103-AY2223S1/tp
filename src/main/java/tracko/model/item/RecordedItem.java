@@ -68,7 +68,7 @@ public class RecordedItem implements Item {
     }
 
     @Override
-    public RecordedItem freeze() {
+    public RecordedItem getRecordedItem() {
         return this;
     }
 

@@ -5,14 +5,13 @@ import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 import tracko.model.item.InventoryItem;
 import tracko.model.item.Item;
 import tracko.model.item.Quantity;
-import tracko.model.item.RecordedItem;
 
 /**
  * Represents an item and quantity pair to be added to an {@code Order's} item list.
  * */
-public class ItemQuantityPair<T extends Item> {
+public class ItemQuantityPair {
 
-    private final T item;
+    private final Item item;
     private Quantity quantity;
 
     /**
@@ -20,7 +19,7 @@ public class ItemQuantityPair<T extends Item> {
      * @param item The given item
      * @param quantity The given quantity
      */
-    public ItemQuantityPair(T item, Quantity quantity) {
+    public ItemQuantityPair(Item item, Quantity quantity) {
         requireAllNonNull(item, quantity);
         this.item = item;
         this.quantity = quantity;
@@ -29,7 +28,7 @@ public class ItemQuantityPair<T extends Item> {
     /**
      * Returns the referenced {@code Item} object of this ItemQuantityPair.
      */
-    public T getItem() {
+    public Item getItem() {
         return item;
     }
 
@@ -57,7 +56,7 @@ public class ItemQuantityPair<T extends Item> {
     /**
      * Returns true if the given {@code ItemQuantityPair} has the same item.
      */
-    public boolean hasSameItem(ItemQuantityPair<T> otherPair) {
+    public boolean hasSameItem(ItemQuantityPair otherPair) {
         return item.isSameItem(otherPair.item);
     }
 
@@ -69,11 +68,11 @@ public class ItemQuantityPair<T extends Item> {
     }
 
     /**
-     * Returns a new {@code ItemQuantityPair} that holds an immutable copy of this {@code ItemQuantityPair}'s item
-     * @return A new {@code ItemQuantityPair} that holds an immutable copy of this {@code ItemQuantityPair}'s item
+     * Returns a new {@code ItemQuantityPair} with an immutable copy of this {@code ItemQuantityPair}'s {@code Item}.
+     * @return A new {@code ItemQuantityPair} with an immutable copy of this {@code ItemQuantityPair}'s {@code Item}
      */
-    public ItemQuantityPair<RecordedItem> freeze() {
-        return new ItemQuantityPair<>(item.freeze(), quantity);
+    public ItemQuantityPair getImmutableItemCopy() {
+        return new ItemQuantityPair(item.getRecordedItem(), quantity);
     }
 
     /**
