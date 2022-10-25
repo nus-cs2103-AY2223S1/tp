@@ -200,6 +200,11 @@ public class ModelManager implements Model {
         addressBook.filterTask();
     }
 
+    @Override
+    public void sortTasks() {
+        addressBook.sortTasks();
+    }
+
     //=========== Filtered Project List Accessors =============================================================
 
     /**
