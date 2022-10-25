@@ -32,6 +32,7 @@
       <Label fx:id="StudentId" styleClass="cell_small_label" text="\$StudentId" />
       <Label fx:id="gitName" styleClass="cell_small_label" text="\$gitName" />
       <Label fx:id="handle" styleClass="cell_small_label" text="\$handle" />
+      <FlowPane fx:id="assignments" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />

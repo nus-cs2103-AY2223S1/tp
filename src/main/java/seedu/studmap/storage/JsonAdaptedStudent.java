@@ -10,7 +10,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.studmap.commons.exceptions.IllegalValueException;
-import seedu.studmap.model.student.*;
+
+import seedu.studmap.model.student.Address;
+import seedu.studmap.model.student.Assignment;
+import seedu.studmap.model.student.Attendance;
+import seedu.studmap.model.student.Email;
+import seedu.studmap.model.student.GitName;
+import seedu.studmap.model.student.Name;
+import seedu.studmap.model.student.Phone;
+import seedu.studmap.model.student.Student;
+import seedu.studmap.model.student.StudentID;
+import seedu.studmap.model.student.StudentData;
+import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 
 /**
@@ -29,6 +40,7 @@ class JsonAdaptedStudent {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attended = new ArrayList<>();
+    private final List<JsonAdaptedAssignment> assigned = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -39,7 +51,8 @@ class JsonAdaptedStudent {
                               @JsonProperty("gitName") String gitName, @JsonProperty("handle") String handle,
                               @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("attended") List<JsonAdaptedAttendance> attended) {
+                              @JsonProperty("attended") List<JsonAdaptedAttendance> attended,
+                              @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,6 +65,9 @@ class JsonAdaptedStudent {
         }
         if (attended != null) {
             this.attended.addAll(attended);
+        }
+        if (assignments != null) {
+            this.assigned.addAll(assignments);
         }
     }
 
@@ -72,6 +88,9 @@ class JsonAdaptedStudent {
         attended.addAll(source.getAttendances().stream()
                 .map(attendance -> new JsonAdaptedAttendance(attendance.getString()))
                 .collect(Collectors.toList()));
+        assigned.addAll(source.getAssignments().stream()
+                .map(assignment -> new JsonAdaptedAssignment(assignment.getString()))
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -80,14 +99,19 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> studentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            studentTags.add(tag.toModelType());
         }
 
-        final List<Attendance> personAttendances = new ArrayList<>();
+        final List<Attendance> studentAttendances = new ArrayList<>();
         for (JsonAdaptedAttendance attendance : attended) {
-            personAttendances.add(attendance.toModelType());
+            studentAttendances.add(attendance.toModelType());
+        }
+
+        final List<Assignment> studentAssignments = new ArrayList<>();
+        for (JsonAdaptedAssignment assignment : assigned) {
+            studentAssignments.add(assignment.toModelType());
         }
 
         if (name == null) {
@@ -148,9 +172,10 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+        final Set<Tag> modelTags = new HashSet<>(studentTags);
+        final Set<Attendance> modelAttendances = new HashSet<>(studentAttendances);
+        final Set<Assignment> modelAssignments = new HashSet<>(studentAssignments);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Set<Attendance> modelAttendances = new HashSet<>(personAttendances);
 
         StudentData studentData = new StudentData();
         studentData.setName(modelName);
@@ -162,6 +187,7 @@ class JsonAdaptedStudent {
         studentData.setAddress(modelAddress);
         studentData.setTags(modelTags);
         studentData.setAttendances(modelAttendances);
+        studentData.setAssignments(modelAssignments);
         return new Student(studentData);
     }
 

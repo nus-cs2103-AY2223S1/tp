@@ -27,10 +27,12 @@ public class Student {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
+    private final Set<Assignment> assignments = new HashSet<>();
 
     /**
      * Constructor using a StudentData parameter object.
-     * Requires name, phone, email, address, tags to be non-null.
+     * Requires name, phone, email, id, gitName, teleHanlde,
+     * studmap, tags, attendances and assignments to be non-null.
      *
      * @param studentData StudentData parameter object.
      */
@@ -38,7 +40,8 @@ public class Student {
         requireAllNonNull(studentData.getId(), studentData.getGitUser(),
                 studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
                 studentData.getEmail(), studentData.getAddress(),
-                studentData.getTags(), studentData.getAttendances());
+                studentData.getTags(), studentData.getAttendances(),
+                studentData.getAssignments());
 
         this.id = studentData.getId();
         this.teleHandle = studentData.getTeleHandle();
@@ -49,6 +52,7 @@ public class Student {
         this.address = studentData.getAddress();
         this.tags.addAll(studentData.getTags());
         this.attendances.addAll(studentData.getAttendances());
+        this.assignments.addAll(studentData.getAssignments());
     }
 
     public StudentID getId() {
@@ -123,6 +127,14 @@ public class Student {
         return Collections.unmodifiableSet(attendances);
     }
 
+    /**
+     * Returns an immutable Assignment set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Assignment> getAssignments() {
+        return Collections.unmodifiableSet(assignments);
+    }
+
     public StudentData getStudentData() {
 
         StudentData studentData = new StudentData();
@@ -137,6 +149,7 @@ public class Student {
 
         studentData.setTags(new HashSet<>(this.getTags()));
         studentData.setAttendances(new HashSet<>(this.getAttendances()));
+        studentData.setAssignments(new HashSet<>(this.getAssignments()));
 
         return studentData;
     }
@@ -186,13 +199,16 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags())
-                && otherStudent.getAttendances().equals(getAttendances());
+                && otherStudent.getAttendances().equals(getAttendances())
+                && otherStudent.getAssignments().equals(getAssignments());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, id, gitName, teleHandle, address, tags, attendances);
+
+        return Objects.hash(name, phone, email, id, gitName, teleHandle, address, tags, attendances, assignments);
+
     }
 
     @Override
@@ -214,6 +230,12 @@ public class Student {
         if (!attendances.isEmpty()) {
             builder.append("; Attendance: ");
             attendances.forEach(builder::append);
+        }
+
+        Set<Assignment> assignments = getAssignments();
+        if (!assignments.isEmpty()) {
+            builder.append("; Assignment: ");
+            assignments.forEach(builder::append);
         }
         return builder.toString();
     }

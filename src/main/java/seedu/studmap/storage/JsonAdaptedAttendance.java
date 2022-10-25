@@ -14,7 +14,7 @@ class JsonAdaptedAttendance {
     private final String className;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedAttendance} with the given {@code className}.
      */
     @JsonCreator
     public JsonAdaptedAttendance(String className) {
@@ -22,7 +22,7 @@ class JsonAdaptedAttendance {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Attendance} into this class for Jackson use.
      */
     public JsonAdaptedAttendance(Attendance source) {
         className = source.getString();

@@ -27,7 +27,8 @@
     "gitName" : "user3",
     "handle" : "@user3",
     "address" : "wall street",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "assigned" : [ "A01:marked", "A02:marked", "A03:received", "A04:new" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",

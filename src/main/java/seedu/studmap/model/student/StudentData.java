@@ -1,6 +1,7 @@
 package seedu.studmap.model.student;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.studmap.model.tag.Tag;
@@ -18,6 +19,7 @@ public class StudentData {
     private Address address;
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
+    private Set<Assignment> assignments = new HashSet<>();
 
     public StudentID getId() {
         return id;
@@ -91,7 +93,46 @@ public class StudentData {
         this.attendances.addAll(attendances);
     }
 
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
+    public void addAssignments(Set<Assignment> assignments) {
+        this.assignments.addAll(assignments);
+    }
+
     public Set<Attendance> getAttendances() {
         return attendances;
     }
+
+    public Set<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        StudentData that = (StudentData) o;
+        return Objects.equals(name, that.name)
+                && Objects.equals(phone, that.phone)
+                && Objects.equals(email, that.email)
+                && Objects.equals(id, that.id)
+                && Objects.equals(gitUser, that.gitUser)
+                && Objects.equals(teleHandle, that.teleHandle)
+                && Objects.equals(address, that.address)
+                && Objects.equals(tags, that.tags)
+                && Objects.equals(attendances, that.attendances)
+                && Objects.equals(assignments, that.assignments);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, email, id, gitUser, teleHandle, address, tags, attendances, assignments);
+    }
+
 }
