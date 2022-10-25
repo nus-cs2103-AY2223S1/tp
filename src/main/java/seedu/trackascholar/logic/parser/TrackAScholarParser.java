@@ -79,8 +79,8 @@ public class TrackAScholarParser {
         case PinCommand.COMMAND_WORD:
             return new PinCommandParser().parse(arguments);
 
-            case UnPinCommand.COMMAND_WORD:
-                return new UnPinCommandParser().parse(arguments);
+        case UnPinCommand.COMMAND_WORD:
+            return new UnPinCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
