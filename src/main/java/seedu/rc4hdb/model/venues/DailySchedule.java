@@ -1,11 +1,14 @@
-package seedu.rc4hdb.ui;
+package seedu.rc4hdb.model.venues;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
+import seedu.rc4hdb.ui.BookingTableView;
 
 /**
  * Encapsulates the data required to populate a row in the {@link BookingTableView}.
@@ -20,13 +23,7 @@ public class DailySchedule {
         this.bookedBy = bookedBy;
     }
 
-    /**
-     * Checks if all bookings are on {@code day}.
-     */
-    private static boolean checkBookingDay(List<Booking> bookings, Day day) {
-        return bookings.stream().map(Booking::getDayOfWeek)
-                .allMatch(day::equals);
-    }
+    //====================== Getters required to populate Booking Table ===============================
 
     public Day getDay() {
         return day;
@@ -36,16 +33,19 @@ public class DailySchedule {
         return bookedBy;
     }
 
+    //====================== End of getters ===========================================================
+
     /**
      * Populates the {@code bookedBy} array with their respective residents.
      */
-    private static void populateBookedByList(Resident[] bookedBy, HourPeriod hourPeriod, Resident resident) {
+    private static void populateBookedByList(Resident[] bookedBy, HourPeriod hourPeriod, Resident resident)
+            throws BookingClashesException {
         int start = hourPeriod.getStart().asInt();
         int end = hourPeriod.getEnd().asInt();
 
         for (int curr = start; curr < end; curr++) {
             if (bookedBy[curr] != null) {
-                // to throw error for overlapping booking hour
+                throw new BookingClashesException();
             }
             bookedBy[curr] = resident;
         }
@@ -54,7 +54,7 @@ public class DailySchedule {
     /**
      * Build the {@code bookedBy} array with the {@code bookings}.
      */
-    private static Resident[] buildBookedByList(List<Booking> bookings) {
+    private static Resident[] buildBookedByList(List<Booking> bookings) throws BookingClashesException {
         Resident[] bookedBy = new Resident[24];
         for (Booking booking : bookings) {
             populateBookedByList(bookedBy, booking.getHourPeriod(), booking.getResident());
@@ -63,13 +63,13 @@ public class DailySchedule {
     }
 
     /**
-     * Factory method for producing {@code DailySchedule} instances of a certain {@code day} using {@code bookings}.
+     * Factory method for producing a list of {@code DailySchedule} instances which represent a weekly schedule.
      */
-    public static DailySchedule of(List<Booking> bookings, Day day) {
-        if (!checkBookingDay(bookings, day)) {
-            // to throw error for bookings not on same day
-        }
-        return new DailySchedule(buildBookedByList(bookings), day);
+    public static List<DailySchedule> generateWeeklySchedule(List<Booking> bookings) throws BookingClashesException {
+        return Day.DAYS_OF_WEEK.stream().map(Day::new).map(day ->
+                new DailySchedule(buildBookedByList(bookings.stream()
+                        .filter(booking -> booking.isSameDay(day))
+                        .collect(Collectors.toList())), day)).collect(Collectors.toList());
     }
 
 }

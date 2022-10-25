@@ -32,12 +32,12 @@ public class BookCommand extends VenueCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "book";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to RC4HDB. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to RC4HDB. \n"
+            + "Parameters: INDEX "
             + PREFIX_VENUE_NAME + "VENUE_NAME "
             + PREFIX_TIME_PERIOD + "START_TIME-END_TIME "
-            + PREFIX_DAY + "DAY "
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DAY + "DAY \n"
+            + "Example: " + COMMAND_WORD + " 3"
             + PREFIX_VENUE_NAME + "meeting "
             + PREFIX_TIME_PERIOD + "10-14 "
             + PREFIX_DAY + "TUE ";
@@ -59,7 +59,6 @@ public class BookCommand extends VenueCommand implements ModelCommand {
         this.bookingDescriptor = new BookingDescriptor(bookingDescriptor);
     }
 
-    //todo handle venue booking
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
