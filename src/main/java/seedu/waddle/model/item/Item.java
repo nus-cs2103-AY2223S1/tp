@@ -39,7 +39,7 @@ public class Item {
     }
 
     public Cost getCost() {
-        return cost;
+        return this.cost;
     }
 
     public Duration getDuration() {
@@ -55,8 +55,12 @@ public class Item {
     }
 
     public Optional<String> getTimeString() {
-        if (this.startTime != null && this.duration != null) {
-            return Optional.of(this.startTime + " - " + getEndTime().get());
+        if (this.startTime != null) {
+            if (this.duration != null) {
+                return Optional.of(this.startTime + " - " + getEndTime().get());
+            } else {
+                return Optional.of(this.startTime.toString());
+            }
         }
         return Optional.empty();
     }

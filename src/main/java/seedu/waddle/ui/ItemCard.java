@@ -23,7 +23,11 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label priority;
     @FXML
+    private Label duration;
+    @FXML
     private Label time;
+    @FXML
+    private Label cost;
     // @FXML
     // private Label category;
 
@@ -39,8 +43,10 @@ public class ItemCard extends UiPart<Region> {
             this.id.setText(displayedIndex + ". ");
         }
         this.description.setText(item.getDescription());
-        this.priority.setText(Integer.toString(item.getPriority().getStars()));
-        this.time.setText(item.getTimeString().orElseGet(() -> ""));
+        this.priority.setText("Stars: " + item.getPriority().getStars());
+        this.duration.setText("Duration: " + item.getDuration());
+        this.time.setText("Time: " + item.getTimeString().orElseGet(() -> ""));
+        this.cost.setText("Cost: " + item.getCost().getValue());
     }
 
     @Override
