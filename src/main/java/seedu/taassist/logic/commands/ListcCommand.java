@@ -13,13 +13,13 @@ public class ListcCommand extends Command {
 
     public static final String COMMAND_WORD = "listc";
 
-    public static final String MESSAGE_ALL_MODULE_CLASSES_SUCCESS = "Listed all classes";
+    public static final String MESSAGE_SUCCESS = "All classes:\n%1$s";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         ObservableList<ModuleClass> moduleClasses = model.getModuleClassList();
-        return new CommandResult(moduleClasses + "\n" + MESSAGE_ALL_MODULE_CLASSES_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleClasses));
     }
 
 

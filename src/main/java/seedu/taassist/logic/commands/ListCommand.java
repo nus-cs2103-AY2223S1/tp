@@ -14,8 +14,8 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_ALL_STUDENTS_SUCCESS = "Listed all students";
-    public static final String MESSAGE_CLASS_STUDENTS_SUCCESS = "Listed all students in %s";
+    public static final String MESSAGE_ALL_SUCCESS = "Listed all students.";
+    public static final String MESSAGE_CLASS_SUCCESS = "Listed all students in [ %1$s ].";
 
     @Override
     public CommandResult execute(Model model) {
@@ -24,9 +24,9 @@ public class ListCommand extends Command {
             ModuleClass focusedClass = model.getFocusedClass();
             IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
             model.updateFilteredStudentList(predicate);
-            return new CommandResult(String.format(MESSAGE_CLASS_STUDENTS_SUCCESS, focusedClass));
+            return new CommandResult(String.format(MESSAGE_CLASS_SUCCESS, focusedClass));
         }
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(MESSAGE_ALL_STUDENTS_SUCCESS);
+        return new CommandResult(MESSAGE_ALL_SUCCESS);
     }
 }
