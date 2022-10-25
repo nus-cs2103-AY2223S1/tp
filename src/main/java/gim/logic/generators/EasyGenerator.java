@@ -15,6 +15,9 @@ public class EasyGenerator implements Generator {
 
     @Override
     public String suggest() {
-        return "easy workout for " + exercisePR;
+        String setsAndReps = "3sets x 8reps";
+        double factor = 0.5;
+        double suggestedWeight = factor * Double.parseDouble(exercisePR.getWeight().value);
+        return String.format("%s: %.2fkg %s", exercisePR.getName(), suggestedWeight, setsAndReps);
     }
 }

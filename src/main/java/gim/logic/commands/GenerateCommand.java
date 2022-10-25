@@ -37,7 +37,7 @@ public class GenerateCommand extends Command {
             + PREFIX_LEVEL + "LEVEL (must be one of " + DIFFICULTY_LEVELS + ") " + "\n"
             + "Example: " + COMMAND_WORD + " 2,3 " + PREFIX_LEVEL + "easy";
 
-    public static final String MESSAGE_GENERATE_SUCCESS = "workout generated: \n";
+    public static final String MESSAGE_GENERATE_SUCCESS = " workout session generated: \n";
 
 
     private final ArrayList<Index> indices;

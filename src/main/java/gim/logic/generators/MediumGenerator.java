@@ -14,6 +14,9 @@ public class MediumGenerator implements Generator {
 
     @Override
     public String suggest() {
-        return "medium workout for " + exercisePR;
+        String setsAndReps = "3sets x 8reps";
+        double factor = 0.7;
+        double suggestedWeight = factor * Double.parseDouble(exercisePR.getWeight().value);
+        return String.format("%s: %.2fkg %s", exercisePR.getName(), suggestedWeight, setsAndReps);
     }
 }
