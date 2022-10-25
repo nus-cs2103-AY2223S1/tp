@@ -248,6 +248,21 @@ The following activity diagram summarizes the flow of when a user enters an edit
 
 * **Future Extension:** bobaBot can support multiple editing so user do not have to edit customers one by one.
 
+### \[Insert Numbering\] Increase/ Decrease feature
+The Increase/ Decrease feature is facilitated by `LogicManager`. The `IncreaseCommandParser` or `DecreaseCommandParser` parses the command arguments, and returns
+an `IncreaseCommand` or `DecreaseCommand` that is executed by the `LogicManager`.
+
+This feature is an extension to the above Edit feature to ease the process of editing Reward points of a Customer.
+
+**Below is a sample usage and how the increase/ decrease sequence behaves at each step.**
+
+1. User chooses the Customer he/ she wants to increase or decrease the Reward points for and enters the command `incr 100 e/test@gmail/com` or `decr 100 e/test@gmail/com`
+2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `IncreaseCommandParser` or `DecreaseCommandParser` and
+   returns the `IncreaseCommand` or `DecreaseCommand` containing how much to increment or decrement the existing Reward points by
+3. The `LogicManager` executes the `IncreaseCommand` or `DecreaseCommand` which implicitly creates and executes the equivalent `EditCommand` for the new Reward value
+4. The `CommandResult` reflects the changes made to this Customer
+
+**Pros and Cons are the same as the above Edit Feature.**
 
 ### \[Insert Numbering\] Delete feature
 The Delete feature is facilitated by `LogicManager`. The `DeleteCommandParser` parses the command arguments, and returns
