@@ -61,6 +61,11 @@ public class Person {
         return loanedBooks.toString();
     }
 
+    /**
+     * Sets return date of book, and add it to list of books loaned by person.
+     * @param book book to be loaned
+     * @param returnDate return date to be set for book
+     */
     public void addLoanedBook(Book book, Date returnDate) {
         book.setReturnDate(returnDate);
         loanedBooks.add(book);

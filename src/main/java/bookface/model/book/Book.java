@@ -21,7 +21,8 @@ public class Book {
     private Date returnDate = null;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. This is an overloaded constructor used in JsonAdaptedBook
+     * if book does not have return date.
      */
     public Book(Title title, Author author) {
         CollectionUtil.requireAllNonNull(title, author);
@@ -29,6 +30,10 @@ public class Book {
         this.author = author;
     }
 
+    /**
+     * Every field must be present and not null. This is an overloaded constructor used in JsonAdaptedBook
+     * if book has a return date.
+     */
     public Book(Title title, Author author, Date returnDate) {
         CollectionUtil.requireAllNonNull(title, author, returnDate);
         this.title = title;
