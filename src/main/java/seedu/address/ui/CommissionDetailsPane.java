@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.function.Consumer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,9 +15,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.iteration.Iteration;
+import seedu.address.ui.command.window.AddIterationWindow;
 
 /**
  * An UI component that displays information about a {@code Commission}.
@@ -34,6 +37,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private static final Paint STATE_DEFAULT_TEXT_FILL = Paint.valueOf("#E8E8E8");
 
     private final ObservableObject<Commission> commission;
+    private AddIterationWindow addIterationWindow;
 
     @FXML
     private HBox detailsPane;
@@ -65,9 +69,12 @@ public class CommissionDetailsPane extends UiPart<Region> {
     /**
      * Creates a {@code CommissionDetailsPane} with the given {@code Commission} and index to display.
      */
-    public CommissionDetailsPane(ObservableObject<Commission> commission) {
+    public CommissionDetailsPane(ObservableObject<Commission> commission,
+                                 Consumer<UiPart<Stage>> addChildWindow,
+                                 CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.commission = commission;
+        addIterationWindow = new AddIterationWindow(addChildWindow, commandExecutor, new Stage());
         updateUI(commission.getValue());
         commission.addListener((observable, oldValue, newValue) -> updateUI(newValue));
         iterationListView.setCellFactory(listView -> new IterationListViewCell());
@@ -159,6 +166,18 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
     private void updateIterationList(Commission commission) {
         iterationListView.setItems(commission.getIterationList());
+    }
+
+    /**
+     * Opens the add iteration window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void showAddIterationWindow() {
+        if (!addIterationWindow.isShowing()) {
+            addIterationWindow.show();
+        } else {
+            addIterationWindow.focus();
+        }
     }
 
     /**
