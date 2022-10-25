@@ -21,7 +21,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox styleClass="pane-with-border">
         <ButtonBar fx:id="buttonBar" VBox.vgrow="NEVER">
           <buttons>
             <Button fx:id="helpButton" mnemonicParsing="false" text="Help" onAction="#handleHelp" translateX="-25">
@@ -36,7 +36,7 @@
           </buttons>
         </ButtonBar>
 
-        <HBox fx:id="studentList" styleClass="pane-with-border" minHeight="435" prefHeight="435" HBox.hgrow="ALWAYS">
+        <HBox fx:id="studentList" minHeight="435" prefHeight="435" HBox.hgrow="ALWAYS">
           <padding>
             <Insets top="10" right="25" bottom="10" left="475" />
           </padding>
@@ -47,7 +47,7 @@
 
         </HBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder"
                    minHeight="100" prefHeight="100" maxHeight="100">
           <padding>
             <Insets top="5" right="25" left="25" />
@@ -55,7 +55,7 @@
         </StackPane>
 
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder">
           <padding>
             <Insets right="25" bottom="5" left="25" />
           </padding>

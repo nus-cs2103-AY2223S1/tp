@@ -132,29 +132,29 @@
     -fx-text-fill: #010504;
 }
 
-.stack-pane {
-     -fx-background-color: #070F37;
-}
-
 .pane-with-border {
-     -fx-background-color: #070F37;
-     -fx-border-top-width: 5px;
-     -fx-border-radius: 20;
+     -fx-background-color: #070f36;
 }
 
-.pane-with-border .content {
-    -fx-background-radius: 20 20 0 0;
+.transparent-bg {
+    -fx-background-color: transparent;
 }
 
 .text-title {
     -fx-font-family: "Impact";
     -fx-text-fill: black;
     -fx-font-size: 15;
+    -fx-background-insets: 10;
+    -fx-text-box-border: transparent;
 }
 
 .text-title .content{
     -fx-background-color: #90C7F0;
     -fx-background-radius: 30 30 0 0;
+}
+
+.text-title .scroll-pane .viewport{
+    -fx-background-color: transparent;
 }
 
 .text-title .content .text{
@@ -165,17 +165,25 @@
     -fx-background-color: derive(#070F37, 30%);
 }
 
-.result-display {
-    -fx-font-family: "Impact";
-    -fx-font-style: normal;
-    -fx-text-fill: black;
-    -fx-font-weight: 300;
-    -fx-font-size: 13pt;
-    -fx-background: transparent;
-}
-
 .result-display .label {
     -fx-text-fill: black !important;
+}
+
+.result-display {
+    -fx-font-family: "Impact";
+    -fx-text-fill: black;
+    -fx-font-size: 20;
+    -fx-background-insets: 10;
+    -fx-text-box-border: transparent;
+}
+
+.result-display .content{
+    -fx-background-color: #dcfffb;
+    -fx-background-radius: 20 20 0 0;
+}
+
+.result-display .scroll-pane .viewport{
+    -fx-background-color: transparent;
 }
 
 .status-bar .label {
@@ -205,7 +213,7 @@
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#070f36, 30%);
 }
 
 .context-menu {
@@ -358,10 +366,6 @@
 
 #filterField, #studentListPanel, #studentWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
-#resultDisplay .content {
-    -fx-background-color: #a1a4b0;
 }
 
 #classes {
