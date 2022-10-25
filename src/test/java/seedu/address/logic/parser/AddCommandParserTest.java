@@ -24,20 +24,19 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRONTEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalInternships.GOOGLE;
 import static seedu.address.testutil.TypicalInternships.GOOGLE_NO_INTERVIEW;
+import static seedu.address.testutil.TypicalInternships.TIKTOK;
 import static seedu.address.testutil.TypicalInternships.TIKTOK_NO_INTERVIEW;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
@@ -81,8 +80,6 @@ public class AddCommandParserTest {
 
         // multiple interview dates - last applied date accepted
         Internship expectedInternshipInterviewDateTime = new InternshipBuilder(TIKTOK)
-                .withApplicationStatus(ApplicationStatus.Shortlisted)
-                .withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_TIKTOK)
                 .withTags(VALID_TAG_FRONTEND).build();
         assertParseSuccess(parser, COMPANY_DESC_TIKTOK + LINK_DESC_TIKTOK
                 + DESCRIPTION_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
@@ -100,22 +97,21 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // no tags, with interview date time
-        Internship expectedInternshipNoTags = new InternshipBuilder(GOOGLE).withTags()
-                .withApplicationStatus(ApplicationStatus.Shortlisted)
-                .withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE).build();
+        Internship expectedInternshipNoTags = new InternshipBuilder(GOOGLE).withTags().build();
         assertParseSuccess(parser, COMPANY_DESC_GOOGLE + LINK_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
                         + APPLIED_DATE_DESC_GOOGLE + INTERVIEW_DATE_TIME_DESC_GOOGLE,
                 new AddCommand(expectedInternshipNoTags));
 
         // with tag, no interview date time
-        Internship expectedInternshipNoInterviewDateTime = new InternshipBuilder(GOOGLE)
+        Internship expectedInternshipNoInterviewDateTime = new InternshipBuilder(GOOGLE_NO_INTERVIEW)
                 .withTags(VALID_TAG_BACKEND).build();
         assertParseSuccess(parser, COMPANY_DESC_GOOGLE + LINK_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
                         + APPLIED_DATE_DESC_GOOGLE + TAG_DESC_BACKEND,
                 new AddCommand(expectedInternshipNoInterviewDateTime));
 
         // no tags, no interview date time
-        Internship expectedInternshipNoTagsNoInterviewDateTime = new InternshipBuilder(GOOGLE).withTags().build();
+        Internship expectedInternshipNoTagsNoInterviewDateTime = new InternshipBuilder(GOOGLE_NO_INTERVIEW)
+                .withTags().build();
         assertParseSuccess(parser, COMPANY_DESC_GOOGLE + LINK_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE
                         + APPLIED_DATE_DESC_GOOGLE, new AddCommand(expectedInternshipNoTagsNoInterviewDateTime));
     }

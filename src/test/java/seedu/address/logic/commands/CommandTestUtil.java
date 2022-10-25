@@ -62,7 +62,7 @@ public class CommandTestUtil {
     public static final String INTERVIEW_DATE_TIME_DESC_GOOGLE = " " + PREFIX_INTERVIEW_DATE_TIME
             + VALID_INTERVIEW_DATE_TIME_GOOGLE;
     public static final String INTERVIEW_DATE_TIME_DESC_TIKTOK = " " + PREFIX_INTERVIEW_DATE_TIME
-            + VALID_INTERVIEW_DATE_TIME_GOOGLE;
+            + VALID_INTERVIEW_DATE_TIME_TIKTOK;
     public static final String TAG_DESC_FRONTEND = " " + PREFIX_TAG + VALID_TAG_FRONTEND;
     public static final String TAG_DESC_BACKEND = " " + PREFIX_TAG + VALID_TAG_BACKEND;
     public static final String TAG_DESC_AI = " " + PREFIX_TAG + VALID_TAG_AI;
@@ -82,8 +82,6 @@ public class CommandTestUtil {
     public static final String INVALID_LINK_DESC = " " + PREFIX_LINK + "abc.."; // invalid format
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + ""; // empty string not allowed
     public static final String INVALID_APPLIED_DATE_DESC = " " + PREFIX_APPLIED_DATE + "03 Oct 22"; // invalid format
-    public static final String INVALID_INTERVIEW_DATE_TIME_DESC = " " + PREFIX_INTERVIEW_DATE_TIME
-            + "03 Oct 2022"; // missing time
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Frontend*"; // '*' not allowed in tags
     public static final String INVALID_INTERVIEW_DATE_TIME_DESC = " " + PREFIX_INTERVIEW_DATE_TIME
             + "03 Nov 2022 5:00 pm"; // no comma after date
