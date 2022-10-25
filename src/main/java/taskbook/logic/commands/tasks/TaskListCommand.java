@@ -1,5 +1,7 @@
 package taskbook.logic.commands.tasks;
 
+import static java.util.Objects.requireNonNull;
+
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
@@ -19,6 +21,8 @@ public class TaskListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException("Task list command not implemented yet.");
+        requireNonNull(model);
+        model.updateFilteredTaskListPredicate(Model.PREDICATE_SHOW_ALL_TASKS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
