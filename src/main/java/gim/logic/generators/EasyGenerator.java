@@ -1,19 +1,20 @@
 package gim.logic.generators;
 
-import gim.model.exercise.Name;
+import gim.model.exercise.Exercise;
+
 
 /**
  * Generator for easy workout session.
  */
 public class EasyGenerator implements Generator {
-    private Name name;
+    private Exercise exercisePR;
 
-    public EasyGenerator(Name name) {
-        this.name = name;
+    public EasyGenerator(Exercise exercisePR) {
+        this.exercisePR = exercisePR;
     }
 
     @Override
     public String suggest() {
-        return "easy workout for " + name;
+        return "easy workout for " + exercisePR;
     }
 }

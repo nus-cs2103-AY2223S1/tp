@@ -1,19 +1,21 @@
 package gim.logic.generators;
 
-import gim.model.exercise.Name;
+import gim.model.exercise.Exercise;
 
 /**
  * Generator for easy workout session.
  */
 public class HardGenerator implements Generator {
-    private Name name;
+    private Exercise exercisePR;
 
-    public HardGenerator(Name name) {
-        this.name = name;
+    public HardGenerator(Exercise exercisePR) {
+        this.exercisePR = exercisePR;
     }
 
     @Override
     public String suggest() {
-        return "hard workout for " + name;
+        double factor = 0.8;
+        double suggestedWeight = factor * Double.parseDouble(exercisePR.getWeight().value);
+        return "hard workout for " + exercisePR.getName() + ": " + suggestedWeight;
     }
 }

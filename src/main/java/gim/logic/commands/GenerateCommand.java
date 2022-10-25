@@ -37,8 +37,7 @@ public class GenerateCommand extends Command {
             + PREFIX_LEVEL + "LEVEL (must be one of " + DIFFICULTY_LEVELS + ") " + "\n"
             + "Example: " + COMMAND_WORD + " 2,3 " + PREFIX_LEVEL + "easy";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Generate command not implemented yet";
+    public static final String MESSAGE_GENERATE_SUCCESS = "workout generated: \n";
 
 
     private final ArrayList<Index> indices;
@@ -70,11 +69,12 @@ public class GenerateCommand extends Command {
                 continue;
             }
             nameSet.add(exerciseName);
-            Generator generator = GeneratorFactory.getGenerator(exerciseName, level);
+            Exercise exercisePR = model.getExercisePR(exerciseName);
+            Generator generator = GeneratorFactory.getGenerator(exercisePR, level);
             String suggestion = requireNonNull(generator).suggest();
             fullSuggestion.append(suggestion).append("\n");
         }
-        return new CommandResult(fullSuggestion.toString());
+        return new CommandResult(level + MESSAGE_GENERATE_SUCCESS + fullSuggestion);
     }
 
     @Override
