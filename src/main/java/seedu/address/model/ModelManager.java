@@ -131,6 +131,20 @@ public class ModelManager implements Model {
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
 
+        getAddressBook().getAppointmentList().stream()
+                .filter(appointment -> appointment.getName().equals(target.getName()))
+                .forEach(appointment -> setAppointment(appointment,
+                        new Appointment(editedPatient.getName(), appointment.getMedicalTest(),
+                                appointment.getSlot(), appointment.getDoctor())));
+        getAddressBook().getBillList().stream()
+                .filter(bill -> bill.getAppointment().getName().equals(target.getName()))
+                .forEach(bill -> setBill(bill, new Bill(
+                        new Appointment(editedPatient.getName(), bill.getAppointment().getMedicalTest(),
+                        bill.getAppointment().getSlot(), bill.getAppointment().getDoctor()),
+                        bill.getAmount(),
+                        bill.getBillDate(),
+                        bill.getPaymentStatus())));
+
         addressBook.setPatient(target, editedPatient);
     }
 
@@ -166,6 +180,14 @@ public class ModelManager implements Model {
     @Override
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
+        getAddressBook().getBillList().stream()
+                .filter(bill -> bill.getAppointment().getName().equals(target.getName()))
+                .forEach(bill -> setBill(bill, new Bill(
+                        new Appointment(editedAppointment.getName(), bill.getAppointment().getMedicalTest(),
+                                bill.getAppointment().getSlot(), bill.getAppointment().getDoctor()),
+                        bill.getAmount(),
+                        bill.getBillDate(),
+                        bill.getPaymentStatus())));
         addressBook.setAppointment(target, editedAppointment);
     }
 
@@ -229,7 +251,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPatientList(Predicate<Patient> predicate) {
+    public void updateFilteredPatientList(Predicate<? super Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
     }
@@ -242,7 +264,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+    public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
     }
@@ -262,7 +284,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredBillList(Predicate<Bill> predicate) {
+    public void updateFilteredBillList(Predicate<? super Bill> predicate) {
         requireNonNull(predicate);
         filteredBills.setPredicate(predicate);
     }
@@ -361,5 +383,4 @@ public class ModelManager implements Model {
     public void setBillAsPaid(Bill bill) {
         this.addressBook.setBillAsPaid(bill);
     }
-
 }

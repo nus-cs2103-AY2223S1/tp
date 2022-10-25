@@ -119,8 +119,7 @@ public class Patient {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Remark: ")
-                .append(getRemark())
-                .append("; Tags: ");
+                .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
