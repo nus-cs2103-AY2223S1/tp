@@ -145,6 +145,11 @@ public class Professor extends Person {
     }
 
     @Override
+    public String getFullTypeString() {
+        return "Professor";
+    }
+
+    @Override
     public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
         if (modulesSet.size() > 1 && needsAllModules) {
             return false;
