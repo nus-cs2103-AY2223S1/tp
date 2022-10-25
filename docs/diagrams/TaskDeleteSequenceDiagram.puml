@@ -48,7 +48,7 @@ deactivate AddressBookParser
 LogicManager -> TaskDeleteCommand : execute()
 activate TaskDeleteCommand
 
-TaskDeleteCommand -> Model : deleteTask(1, 1)
+TaskDeleteCommand -> Model : deleteTask(teamIndex, taskIndex)
 activate Model
 
 Model --> TaskDeleteCommand
