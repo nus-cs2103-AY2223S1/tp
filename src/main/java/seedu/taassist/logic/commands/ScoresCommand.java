@@ -47,4 +47,11 @@ public class ScoresCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, session.getSessionName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ScoresCommand // instanceof handles nulls
+                && session.equals(((ScoresCommand) other).session));
+    }
 }
