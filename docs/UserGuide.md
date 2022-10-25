@@ -1,16 +1,34 @@
----
-layout: page title: User Guide
----
-
 # SOCompiler - User Guide
+
+* Table of Contents
+  - [Overview](#welcome-to-socompliers-user-guide)
+  - [Quick Start](#quick-start)
+  - [Things to note](#things-to-note)
+  - [Commands](#commands)
+    - [General Commands](#For-both-modules-and-contacts)
+      - [List](#listing-all-modules-and-contacts--list)
+      - [Find](#finding-keywords-in-a-contact-andor-module--find)
+      - [Clear](#clearing-all-contacts-and-modules--clear)
+      - [Help](#looking-for-help--help)
+      - [Exit](#exiting-the-program--exit)
+    - [Contacts](#Contacts)
+      - [Add](#adding-a-contact-addp)
+      - [Edit](#editing-a-contact--editp)
+      - [Delete](#deleting-a-contact--deletep)
+    - [Modules](#Modules)
+      - [Add](#adding-a-module-addm)
+      - [Edit](#editing-a-module--editm)
+      - [Delete](#deleting-a-module--deletem)
+  - [FAQ](#faq)
+  - [Command Summary](#command-summary)
+
+# Welcome to SOComplier's User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
 
 SOCompiler is a **desktop app for managing contacts and module details, optimized for use via a Command Line
 Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCompiler
 can get your contact and module management tasks done faster than traditional GUI apps.
-
-* Table of Contents
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -32,7 +50,7 @@ can get your contact and module management tasks done faster than traditional GU
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Things to note
 
 <div markdown="block" class="alert alert-info">
 
@@ -55,34 +73,83 @@ can get your contact and module management tasks done faster than traditional GU
 
 --------------------------------------------------------------------------------------------------------------------
 
+# Commands
+
+## For both modules and contacts
+
+### Listing all modules and contacts : `list`
+
+Shows a list of all modules and contacts in the list.
+
+Format: `list`
+
+### Finding keywords in a contact and/or module : `find`
+
+Finds modules and contacts whose fields contain any of the given keywords.
+
+Format: find `KEYWORD [ANOTHER_KEYWORD]`
+
+* The search is case-insensitive; e.g `cs2030s` will match `CS2030S`, or `Cs2030s`.
+* The order of the keywords does not matter; e.g `Bob McGhee` will match `mcghee bob`.
+* Any field associated with the contact or module can be found using this command.
+* Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
+* Modules or contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will return `Bob McGhee` and `Seaward Broad`.
+
+Examples:
+
+* `find CS2030S` returns `cs2030s`
+* `find bob jessica` returns `Bob McGhee` and `Jessica Lim`
+// Put screenshot here
+
+### Clearing all contacts and modules : `clear`
+
+Clears all entries from the contact list.
+
+Format: `clear`
+
+### Looking for help : `help`
+
+Opens a window which provides a link to the user guide.
+
+Format: `help`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+SOCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Contacts
 
-### Listing all contacts : `list c`
-
-Shows a list of all contacts in the contact list.
-
-Format: `list c`
-
-### Adding a contact: `add c`
+### Adding a contact: `addp`
 
 Adds a contact to the contact list.
 
-Format: `add c n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
 </div>
 
+* A `Tag` can only accept alphanumerical characters with **no spaces**.
+
 Examples:
 
-* `add c n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add c n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addp n/John Doe p/98765432 e/johnd@example.com m/CS2040S t/Labmate t/Friend`
+* `addp t/Family p/95647581 e/jessie@example.com n/Jessica Lim`
+* `addp n/BobMcGhee`
 
-### Editing a contact : `edit`
+### Editing a contact : `editp`
 
 Edits an existing contact in the contact list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -97,30 +164,11 @@ Examples:
   and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-### Locating contact by name: `find`
-
-Finds contacts whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`
-
-Examples:
-
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a contact : `delete c`
+### Deleting a contact : `deletep`
 
 Deletes the specified contact from the contact list.
 
-Format: `delete c CONTACT_INDEX`
+Format: `deletep CONTACT_INDEX`
 
 * Deletes the contact at the specified `CONTACT_INDEX`.
 * The contact index refers to the index number shown in the displayed contact list.
@@ -128,44 +176,56 @@ Format: `delete c CONTACT_INDEX`
 
 Examples:
 
-* `list` followed by `delete c 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `delete c 1` deletes the 1st contact in the results of the `find` command.
-
-### Clearing all contacts : `clear`
-
-Clears all entries from the contact list.
-
-Format: `clear`
+* `list` followed by `deletep 2` deletes the 2nd contact in the address book.
+* `find Betsy` followed by `deletep 1` deletes the 1st contact in the results of the `find` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Modules
 
-### Listing all modules : `list m`
-
-Shows a list of all modules in the module list.
-
-Format: `list m`
-
-### Adding a module: `add m`
+### Adding a module: `addm`
 
 Adds a contact to the module list.
 
-Format: `add m m/MODULE_CODE l/LECTURE_VENUE_AND_TIMING t/TUTORIAL_VENUE_AND_TIMING a/ASSIGNMENT_NAME_AND_DEADLINE z/ZOOM_LINK [t/TAG]`
+Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A module can have any number of tags (including 0)
+A module can have any number of assignments (including 0)
 </div>
+
+* The `AssignmentDetails` can take in alphanumerical characters **along with spaces**.
 
 Examples:
 
-* `add m/CS1101S l/I3-AUDI Monday 12:00 t/COM1 B1-103 Tuesday 14:00 a/Functional Expressionism ONLY ONE WEEK z/https://www.zoom.sg/12891`
+* `addm m/CS2103T l/I3-AUDI Friday 16:00 - 18:00 lz/https://nus-sg.zoom.us/CS2103T_lecture t/COM1 B1-103 Wednesday 12:00 - 13:00 tz/https://nus-sg.zoom.us/CS2103T_tutorial a/Independent Project a/Team Project`
+* `addm l/Every Monday t/Every Tuesday m/CS1231S`
+* `addm m/CS2030S`
 
-### Deleting a module : `delete m`
+### Editing a module : `editm`
+
+Edits an existing module in the module list.
+
+Format: `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`
+
+* Edits the module at the specified `INDEX`. The index refers to the index number shown in the displayed module list.
+  The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing assignment details, the existing assignment details of the module will be removed 
+  i.e adding of assignment details are not cumulative.
+* You can remove all the module’s assignment details by typing `a/` without specifying any assignment details after it.
+
+Examples:
+
+* `editm 1 l/Every Friday a/Functional Expressionism` Edits the lecture details and assignment details of the 1st module to be `Every Friday`
+  and `Functional Expressionism` respectively.
+* `editm 2 n/MA1521 t/` Edits the module code of the 2nd module to be `MA1521` and clears all existing assignment details.
+
+### Deleting a module : `deletem`
 
 Deletes the specified module from the module list.
 
-Format: `delete m MODULE_INDEX`
+Format: `deletem MODULE_INDEX`
 
 * Deletes the contact at the specified `MODULE_INDEX`.
 * The module index refers to the index number shown in the displayed module list.
@@ -173,20 +233,8 @@ Format: `delete m MODULE_INDEX`
 
 Examples:
 
-* `delete m 1`
-
---------------------------------------------------------------------------------------------------------------------
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-SOCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+* `list` followed by `deletem 2` deletes the 2nd module in the address book.
+* `find CS2030S` followed by `deletep=m 1` deletes the 1st module in the results of the `find` command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -200,25 +248,16 @@ the data of your previous SOCompiler home folder.
 
 ## Command summary
 
-| Action     | Format                                                                                                                          |
-|------------|---------------------------------------------------------------------------------------------------------------------------------|
-| **Add      |                                                                                                                                 |
-| Contacts** | `add c n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`                                                                       |
-| **Add      |                                                                                                                                 |
-| Modules**  | `add m m/MODULE_CODE l/LECTURE_VENUE_AND_TIMING t/TUTORIAL_VENUE_AND_TIMING a/ASSIGNMENT_NAME_AND_DEADLINE z/ZOOM_LINK [t/TAG]` |
-| **Delete   |                                                                                                                                 |
-| Contacts** | `delete c INDEX`                                                                                                                |
-| **Delete   |                                                                                                                                 |
-| Modules**  | `delete m INDEX`                                                                                                                |
-| **List     |                                                                                                                                 |
-| Contacts** | `list c`                                                                                                                        |
-| **List     |                                                                                                                                 |
-| Modules**  | `list m`                                                                                                                        |
-| **         |                                                                                                                                 |
-| Clear**    | `clear`                                                                                                                         |
-| **         |                                                                                                                                 |
-| Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`                                                          |
-| **         |                                                                                                                                 |
-| Find**     | `find KEYWORD [MORE_KEYWORDS]`                                                                                                  |
-| **         |                                                                                                                                 |
-| Help**     | `help`                                                                                                                          |
+| Action | Module/Contact | Format                                                                                                                                         |
+|--------|----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | Module         | `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​`          |
+| Add    | Contact        | `addp n/NAME [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                             |
+| Edit   | Module         | `editm INDEX [m/MODULE_CODE] [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE_ZOOM_LINK] [tz/TUTORIAL_ZOOM_LINK] [a/ASSIGNMENT_DETAILS]…​` |
+| Edit   | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`                                                                               |
+| Delete | Module         | `deletem INDEX`                                                                                                                                |
+| Delete | Contact        | `deletec INDEX`                                                                                                                                |                                                                                                                                           |
+| Clear  | Both           | `clear`                                                                                                                                        |
+| List   | Both           | `list`                                                                                                                                         |
+| Find   | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
+| Exit   | Both           | `exit`                                                                                                                                         |
+| Help   | Both           | `help`                                                                                                                                         |
