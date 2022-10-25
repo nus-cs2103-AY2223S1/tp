@@ -36,7 +36,7 @@
                     <children>
                         <VBox HBox.hgrow="SOMETIMES">
                             <children>
-                                <VBox fx:id="teamList" minWidth="125.0" prefWidth="150" styleClass="pane-with-border"
+                                <VBox fx:id="teamList" minWidth="150.0" prefWidth="200" styleClass="pane-with-border"
                                       VBox.vgrow="ALWAYS">
                                     <padding>
                                         <Insets bottom="10" left="10" right="10" top="10"/>
@@ -48,7 +48,7 @@
                             </children>
                         </VBox>
 
-                        <VBox HBox.hgrow="SOMETIMES">
+                        <VBox HBox.hgrow="ALWAYS">
                             <children>
                                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
                                 <StackPane fx:id="teamDetailsCardPlaceHolder" minWidth="145.0" prefWidth="200.0"
@@ -72,7 +72,7 @@
                             </children>
                         </VBox>
 
-                        <VBox fx:id="personList" minWidth="145.0" prefWidth="200" styleClass="pane-with-border"
+                        <VBox fx:id="personList" minWidth="150.0" prefWidth="200" styleClass="pane-with-border"
                               VBox.vgrow="ALWAYS" HBox.hgrow="SOMETIMES">
                             <padding>
                                 <Insets bottom="10" left="10" right="10" top="10"/>

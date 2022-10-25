@@ -30,6 +30,7 @@ public class TeamCard extends UiPart<Region> {
         this.team = team;
         id.setText(displayedIndex + ". ");
         teamName.setText(team.getTeamName());
+        teamName.setWrapText(true);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class TeamCard extends UiPart<Region> {
         // state check
         TeamCard card = (TeamCard) other;
         return id.getText().equals(card.id.getText())
-                && team.equals(card.team);
+            && team.equals(card.team);
     }
 
 }
