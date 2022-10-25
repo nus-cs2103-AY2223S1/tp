@@ -200,19 +200,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code int Day Number}.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static DayNumber parseDayNumber(String dayNumber) throws ParseException {
-        requireNonNull(dayNumber);
-        String trimmedDayNumber = dayNumber.trim();
-        if (!DayNumber.isValidDayNumber(trimmedDayNumber)) {
-            throw new ParseException(DayNumber.MESSAGE_CONSTRAINTS);
-        }
-        return new DayNumber(trimmedDayNumber);
-    }
-
-    /**
      * Parses a {@code String duration} into a {@code Duration}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -225,6 +212,19 @@ public class ParserUtil {
             throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
         }
         return new Duration(trimmedDuration);
+    }
+
+    /**
+     * Parses a {@code int Day Number}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static DayNumber parseDayNumber(String dayNumber) throws ParseException {
+        requireNonNull(dayNumber);
+        String trimmedDayNumber = dayNumber.trim();
+        if (!DayNumber.isValidDayNumber(trimmedDayNumber)) {
+            throw new ParseException(DayNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new DayNumber(trimmedDayNumber);
     }
 
     /**
