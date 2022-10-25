@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCredit;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 
 /**
@@ -24,17 +28,23 @@ public class EditModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "editmodule";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the module code of the module identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the module code, module name and module credit of the module identified "
             + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_MOD_CODE + "MODULE CODE] "
+            + "[" + PREFIX_MOD_NAME + "MODULE NAME] "
+            + "[" + PREFIX_MOD_CREDIT + "MODULE CREDIT] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_MOD_CODE + "cs2040 ";
+            + PREFIX_MOD_CODE + "cs2040 "
+            + PREFIX_MOD_NAME + "Data Structures and Algorithms "
+            + PREFIX_MOD_CREDIT + "4";
 
-    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
+    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s, Edited Name: %2$s, "
+            + "Edited Credit: %3$s";
     public static final String MESSAGE_MODULE_NOT_EDITED = "The provided fields are the same as the current module";
-    public static final String MESSAGE_NO_FIELDS_PROVIDED = "At module name to edit must be provided.";
+    public static final String MESSAGE_NO_FIELDS_PROVIDED = "The module name to edit must be provided.";
 
     private final Index index;
     private final EditModuleDescriptor editModuleDescriptor;
@@ -62,7 +72,7 @@ public class EditModuleCommand extends Command {
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
         Module editedModule = moduleToEdit.edit(editModuleDescriptor);
 
-        if (moduleToEdit.isSameModule(editedModule)) {
+        if (moduleToEdit.hasAllSameFields(editedModule)) {
             throw new CommandException(MESSAGE_MODULE_NOT_EDITED);
         }
 
@@ -77,7 +87,8 @@ public class EditModuleCommand extends Command {
         }
 
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule,
+                editedModule.getModuleName(), editedModule.getModuleCredit()));
     }
 
     @Override
@@ -99,25 +110,43 @@ public class EditModuleCommand extends Command {
     }
 
     /**
-     * Stores the name to edit the module with. Each non-empty field value will replace the
-     * corresponding field value of the task.
+     * Stores the module code, module name and module credit to edit the target module with.
+     * Each non-empty field value will replace the corresponding field value of the target module.
      */
     public static class EditModuleDescriptor {
         private ModuleCode moduleCode;
+        private ModuleName moduleName;
+        private ModuleCredit moduleCredit;
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleCode);
+            return CollectionUtil.isAnyNonNull(moduleCode, moduleName, moduleCredit);
         }
 
         public void setModuleCode(ModuleCode moduleCode) {
             this.moduleCode = moduleCode;
         }
 
+        public void setModuleName(ModuleName moduleName) {
+            this.moduleName = moduleName;
+        }
+
+        public void setModuleCredit(ModuleCredit moduleCredit) {
+            this.moduleCredit = moduleCredit;
+        }
+
         public Optional<ModuleCode> getModuleCode() {
             return Optional.ofNullable(moduleCode);
+        }
+
+        public Optional<ModuleName> getModuleName() {
+            return Optional.ofNullable(moduleName);
+        }
+
+        public Optional<ModuleCredit> getModuleCredit() {
+            return Optional.ofNullable(moduleCredit);
         }
 
         @Override
@@ -135,7 +164,9 @@ public class EditModuleCommand extends Command {
             // state check
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            return moduleCode.equals(e.moduleCode);
+            return moduleCode.equals(e.moduleCode)
+                    && moduleName.equals(e.moduleName)
+                    && moduleCredit.equals(e.moduleCredit);
         }
     }
 }

@@ -10,7 +10,11 @@ import seedu.address.model.module.Module;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExist;
+import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
 import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.PriorityTagDoesNotExist;
+import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
 
 /**
  * Task class represents a task which stores the module code and the
@@ -141,6 +145,32 @@ public class Task {
         return new Task(module, description, status, tag, deadlineTag, linkedExam);
     }
 
+    /**
+     * Replaces the priority tag stored in the task.
+     *
+     * @param tag The new priority tag.
+     * @return The task which contains the new priority tag.
+     */
+    public Task replacePriorityTag(PriorityTag tag) {
+        requireNonNull(tag);
+        if (priorityTag != null && priorityTag.compareTo(tag) == 0) {
+            throw new PriorityTagUnchangedException();
+        }
+        return new Task(module, description, status, tag, deadlineTag, linkedExam);
+    }
+
+    /**
+     * Deletes the deadline tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deletePriorityTag() {
+        if (priorityTag == null) {
+            throw new PriorityTagDoesNotExist();
+        }
+        return new Task(module, description, status, null, deadlineTag, linkedExam);
+    }
+
     public boolean hasPriorityTag() {
         return priorityTag != null;
     }
@@ -163,6 +193,32 @@ public class Task {
             throw new DeadlineTagAlreadyExistsException();
         }
         return new Task(module, description, status, priorityTag, tag, linkedExam);
+    }
+
+    /**
+     * Replaces the deadline tag stored in the task.
+     *
+     * @param tag The new deadline tag.
+     * @return The task which contains the new deadline tag.
+     */
+    public Task replaceDeadlineTag(DeadlineTag tag) {
+        requireNonNull(tag);
+        if (deadlineTag != null && deadlineTag.compareTo(tag) == 0) {
+            throw new DeadlineTagUnchangedException();
+        }
+        return new Task(module, description, status, priorityTag, tag, linkedExam);
+    }
+
+    /**
+     * Deletes the priority tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deleteDeadlineTag() {
+        if (deadlineTag == null) {
+            throw new DeadlineTagDoesNotExist();
+        }
+        return new Task(module, description, status, priorityTag, null, linkedExam);
     }
 
     public boolean isLinked() {

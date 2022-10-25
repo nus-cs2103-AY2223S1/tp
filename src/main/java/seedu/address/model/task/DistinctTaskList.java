@@ -90,6 +90,20 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
+        taskList.forEach(task -> {
+            if (task.isLinked() && task.getExam().equals(exam)) {
+                Task unlinkedTask = task.unlinkTask();
+                replaceTask(task, unlinkedTask, true);
+            }
+        });
+    }
+
+    /**
      * Removes the equivalent task from the tasklist.
      * The task must exist in the list.
      */

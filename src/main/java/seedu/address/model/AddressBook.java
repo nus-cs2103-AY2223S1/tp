@@ -318,6 +318,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return exams.getUnmodifiableExamList();
     }
 
+    /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam The exam to unlink all tasks from.
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        tasks.unlinkTasksFromExam(exam);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
