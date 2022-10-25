@@ -89,5 +89,4 @@ public class Deadline {
     public int hashCode() {
         return deadline.hashCode();
     }
-
 }
