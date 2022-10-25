@@ -133,7 +133,7 @@
 /*}*/
 
 .list-cell .label {
-    -fx-text-fill: rainbow; /* text color */
+    -fx-text-fill: black; /* text color */
 }
 
 .cell_big_label {
