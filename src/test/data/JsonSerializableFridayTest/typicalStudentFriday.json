@@ -1,5 +1,5 @@
 {
-  "_comment": "Friday save file which contains the same Student values as in TypicalStudents#getTypicalFriday()",
+  "_comment": "FRIDAY save file which contains the same Student values as in TypicalStudents#getTypicalFriday()",
   "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
