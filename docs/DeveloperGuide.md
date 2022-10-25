@@ -420,7 +420,7 @@ The following sequence diagram shows how the findTag command works:
 * **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
     * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
     * Cons: Implementation would be more complicated.
->>>>>>> ccd6c8571657773021df9de2ac1c6aa8c8dadf7a
+
 
 ### \[Proposed\] Undo/redo feature
 
