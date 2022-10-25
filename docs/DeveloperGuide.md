@@ -237,17 +237,13 @@ Step 3. The `search` command then updates _filtered_ person list to contains the
 
 The following sequence diagram shows how the search operation works:
 
-(insert sequence diagram here)
+![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SearchCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SearchCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 Step 4. The user is shown the _filtered_ list. The _filtered_ list contains all contacts that are relevant to the user's search query.
-
-The following activity diagram summarizes what happens when a user executes a search command:
-
-(insert activity diagram here)
 
 #### Design consideration
 
