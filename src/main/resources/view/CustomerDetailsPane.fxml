@@ -9,8 +9,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 
 <HBox id="detailsPane" fx:id="detailsPane" prefHeight="271.0" prefWidth="278.0" xmlns="http://javafx.com/javafx/11"
       xmlns:fx="http://javafx.com/fxml/1">
@@ -31,13 +29,6 @@
                         <Region fx:constant="USE_PREF_SIZE"/>
                     </minHeight>
                 </Label>
-                <MenuButton fx:id="optionsIcon" styleClass="optionsIconMenuButton" maxWidth="4"
-                            style="-fx-padding: 0 4 0 4">
-                    <items>
-                        <MenuItem text="Edit"/>
-                        <MenuItem text="Delete"/>
-                    </items>
-                </MenuButton>
                 <VBox.margin>
                     <Insets bottom="8.0" />
                 </VBox.margin>

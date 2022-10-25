@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -30,7 +29,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private static final String FXML = "CommissionDetailsPane.fxml";
     private static final Image ICON_MONEY_BAG = new Image("/images/money bag.png");
     private static final Image ICON_CALENDAR = new Image("/images/calendar dark.png");
-    private static final Image ICON_OPTIONS_MENU = new Image("/images/options button.png");
     private static final Color COLOR_COMPLETED = Color.rgb(50, 174, 70);
     private static final Color COLOR_IN_PROGRESS = Color.rgb(84, 141, 225);
     private static final Color COLOR_NOT_STARTED = Color.rgb(184, 184, 184);
@@ -62,8 +60,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ListView<Iteration> iterationListView;
-    @FXML
-    private MenuButton optionsIcon;
 
     /**
      * Creates a {@code CommissionDetailsPane} with the given {@code Commission} and index to display.
@@ -77,10 +73,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
         updateUI(commission.getValue());
         commission.addListener((observable, oldValue, newValue) -> updateUI(newValue));
         iterationListView.setCellFactory(listView -> new IterationListViewCell());
-        ImageView optionsIconPlaceHolder = new ImageView(ICON_OPTIONS_MENU);
-        optionsIconPlaceHolder.setFitWidth(5);
-        optionsIconPlaceHolder.setFitHeight(22.5);
-        optionsIcon.setGraphic(optionsIconPlaceHolder);
     }
 
     private void updateUI(Commission commission) {

@@ -4,7 +4,6 @@ import java.io.File;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
@@ -17,7 +16,6 @@ import seedu.address.model.iteration.Iteration;
 public class IterationListItem extends UiPart<Region> {
 
     private static final String FXML = "IterationListItem.fxml";
-    private static final Image ICON_OPTIONS_MENU = new Image("/images/options button.png");
 
     public final Iteration iteration;
 
@@ -33,8 +31,6 @@ public class IterationListItem extends UiPart<Region> {
     private Label feedback;
     @FXML
     private ImageView artImage;
-    @FXML
-    private MenuButton optionsIcon;
 
     private boolean imageCopyCompleted;
 
@@ -50,10 +46,6 @@ public class IterationListItem extends UiPart<Region> {
         feedback.setText(iteration.getFeedback().feedback);
         String fxImagePath = iteration.getImagePath().toAbsolutePath().toString();
         artImage.setImage(new Image(new File(fxImagePath).toURI().toString()));
-        ImageView optionsIconPlaceHolder = new ImageView(ICON_OPTIONS_MENU);
-        optionsIconPlaceHolder.setFitWidth(4);
-        optionsIconPlaceHolder.setFitHeight(18);
-        optionsIcon.setGraphic(optionsIconPlaceHolder);
     }
 
     @Override
