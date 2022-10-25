@@ -46,7 +46,11 @@ public class CommandTestUtil {
     public static final String VALID_MEETING_TIME_BOB = "18-12-2022-13:30";
     public static final String VALID_FILEPATH_AMY = "src/test/data/TestPDFs/Test_PDF.pdf";
     public static final String VALID_FILEPATH_BOB = "src/test/data/TestPDFs/Test_PDF2.pdf";
+    public static final String EMPTY_ADDRESS = "";
+    public static final String EMPTY_DESCRIPTION = "";
+    public static final String EMPTY_EMAIL = "";
     public static final String EMPTY_FILEPATH = "";
+    public static final String EMPTY_NETWORTH = "";
     public static final String VALID_TAG_POTENTIAL = "POTENTIAL";
     public static final String VALID_TAG_SECURED = "SECURED";
 
@@ -72,7 +76,6 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_NETWORTH_DESC = " " + PREFIX_NETWORTH + "1222"; // missing '$' symbol
     public static final String INVALID_FILEPATH_DESC = " " + PREFIX_FILEPATH + "misc/Test_PDF2"; // missing '.pdf' label
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby"; // not SECURED or POTENTIAL
