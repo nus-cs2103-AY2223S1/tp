@@ -114,7 +114,7 @@ public class GuestContainsKeywordsPredicateTest {
 
         // Mixed-case keyword
         predicate = new GuestContainsKeywordsPredicate(Arrays.asList("AlIcE@examplE.cOm"));
-        assertTrue(predicate.test(new GuestBuilder().withRequest("alice@example.com").build()));
+        assertTrue(predicate.test(new GuestBuilder().withEmail("alice@example.com").build()));
     }
 
     @Test
@@ -145,7 +145,7 @@ public class GuestContainsKeywordsPredicateTest {
 
         // Mixed-case keyword
         predicate = new GuestContainsKeywordsPredicate(Arrays.asList("alOHA"));
-        assertTrue(predicate.test(new GuestBuilder().withRequest("Aloha").build()));
+        assertTrue(predicate.test(new GuestBuilder().withRoom("Aloha").build()));
     }
 
     @Test
