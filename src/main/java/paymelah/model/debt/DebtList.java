@@ -83,6 +83,42 @@ public class DebtList {
     }
 
     /**
+     * Marks a debt from the list as paid.
+     *
+     * @param toMark The debt to mark as paid from the list.
+     * @return The modified {@code DebtList}.
+     */
+    public DebtList markDebt(Debt toMark) {
+        requireNonNull(toMark);
+        if (!contains(toMark)) {
+            throw new DebtNotFoundException();
+        }
+        DebtList edited = new DebtList(this);
+        edited.debts.remove(toMark);
+        edited.debts.add(toMark.markAsPaid());
+        edited.totalDebt = totalDebt.subtract(toMark.getMoney().getValue());
+        return edited;
+    }
+
+    /**
+     * Marks a debt from the list as unpaid.
+     *
+     * @param toUnmark The debt to mark as unpaid from the list.
+     * @return The modified {@code DebtList}.
+     */
+    public DebtList UnmarkDebt(Debt toUnmark) {
+        requireNonNull(toUnmark);
+        if (!contains(toUnmark)) {
+            throw new DebtNotFoundException();
+        }
+        DebtList edited = new DebtList(this);
+        edited.debts.remove(toUnmark);
+        edited.debts.add(toUnmark.markAsUnpaid());
+        edited.totalDebt = totalDebt.subtract(toUnmark.getMoney().getValue());
+        return edited;
+    }
+
+    /**
      * Returns an immutable debt list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      *
