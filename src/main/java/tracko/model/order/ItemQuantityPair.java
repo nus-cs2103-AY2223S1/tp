@@ -13,7 +13,6 @@ public class ItemQuantityPair {
 
     private final Item item;
     private Quantity quantity;
-    private Double itemPrice;
 
     /**
      *  * Constructs an ItemQuantityPair with the given Item and Quantity.
@@ -24,11 +23,6 @@ public class ItemQuantityPair {
         requireAllNonNull(item, quantity);
         this.item = item;
         this.quantity = quantity;
-        calculatePrice();
-    }
-
-    public void updatePrice() {
-        calculatePrice();
     }
 
     /**
@@ -76,14 +70,10 @@ public class ItemQuantityPair {
     /**
      * Calculates the selling price of an ItemQuantityPair.
      */
-    public void calculatePrice() {
+    public Double calculatePrice() {
         Price singleItemPrice = this.item.getSellPrice();
         double itemPrice = singleItemPrice.multiply(quantity.getQuantity());
-        this.itemPrice = itemPrice;
-    }
-
-    public Double getPrice() {
-        return this.itemPrice;
+        return itemPrice;
     }
 
     @Override

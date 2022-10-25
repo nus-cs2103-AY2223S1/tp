@@ -22,7 +22,6 @@ public class Order {
     private final List<ItemQuantityPair> itemList;
     private boolean isPaid;
     private boolean isDelivered;
-    private Price totalOrderPrice;
 
     /**
      * Every field must be present and not null.
@@ -38,7 +37,6 @@ public class Order {
         this.timeCreated = LocalDateTime.now();
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
-        calculateTotalOrderPrice();
     }
 
     /**
@@ -108,10 +106,6 @@ public class Order {
         return timeCreated;
     }
 
-    public Price getTotalOrderPrice() {
-        return this.totalOrderPrice;
-    }
-
     public boolean isDeliverable() {
         return itemList.stream()
                         .map(pair -> pair.getQuantityValue() < pair.getItem().getTotalQuantityValue())
@@ -133,14 +127,13 @@ public class Order {
     /**
      * Calculates the total price of a customer's ordered items.
      */
-    public void calculateTotalOrderPrice() {
+    public Double calculateTotalOrderPrice() {
         double totalOrderPrice = 0;
         for (int i = 0; i < itemList.size(); i++) {
-            ItemQuantityPair item = itemList.get(i);
-            item.calculatePrice();
-            totalOrderPrice += item.getPrice();
+            ItemQuantityPair pair = itemList.get(i);
+            totalOrderPrice += pair.calculatePrice();
         }
-        this.totalOrderPrice = new Price(totalOrderPrice);
+        return totalOrderPrice;
     }
 
     @Override
@@ -180,7 +173,7 @@ public class Order {
         for (ItemQuantityPair itemQuantityPair : getItemList()) {
             sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
         }
-        sb.append("Total Order Price: $" + getTotalOrderPrice().toString() + "\n");
+        sb.append("Total Order Price: $" + String.format("%.2f", calculateTotalOrderPrice()) + "\n");
         sb.append("Paid status: " + getPaidStatus() + "\n");
         sb.append("Delivery status: " + getDeliveryStatus() + "\n");
         return sb.toString();

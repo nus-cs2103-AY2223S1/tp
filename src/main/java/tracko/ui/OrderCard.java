@@ -83,7 +83,7 @@ public class OrderCard extends UiPart<Region> {
         email.setWrapText(true);
         email.setPadding(new Insets(0, 10, 0, 0));
 
-        totalOrderPrice.setText("$" + order.getTotalOrderPrice().toString());
+        totalOrderPrice.setText("$" + String.format("%.2f",order.calculateTotalOrderPrice()));
         totalOrderPrice.setWrapText(true);
         totalOrderPrice.setPadding(new Insets(0, 10, 0, 0));
 

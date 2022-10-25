@@ -63,10 +63,6 @@ public class OrderList implements Iterable<Order> {
     public void refreshData() {
         for (int i = 0; i < internalList.size(); i++) {
             Order order = internalList.get(i);
-            List<ItemQuantityPair> itemList = order.getItemList();
-            for (int j = 0; j < itemList.size(); j++) {
-                itemList.get(j).calculatePrice();
-            }
             order.calculateTotalOrderPrice();
             internalList.set(i, order);
         }
