@@ -5,12 +5,12 @@ import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.Model;
 
 /**
- * Sorts the task list descriptions in alphabetical order.
+ * Sorts the task list descriptions in reverse alphabetical order.
  */
-public class TaskSortDescriptionAlphabeticalCommand extends TaskSortCommand {
-    public static final String MESSAGE_SORT_TYPE = " by their descriptions in alphabetical order.";
-    public TaskSortDescriptionAlphabeticalCommand() {
-        super((t1, t2) -> t1.compareByDescriptionAlphabeticalTo(t2), MESSAGE_SORT_TYPE);
+public class TaskSortDescriptionReverseAlphabeticalCommand extends TaskSortCommand {
+    public static final String MESSAGE_SORT_TYPE = " by their descriptions in reverse alphabetical order.";
+    public TaskSortDescriptionReverseAlphabeticalCommand() {
+        super((t1, t2) -> t1.compareByDescriptionReverseAlphabeticalTo(t2), MESSAGE_SORT_TYPE);
     }
 
     @Override
@@ -22,6 +22,6 @@ public class TaskSortDescriptionAlphabeticalCommand extends TaskSortCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TaskSortDescriptionAlphabeticalCommand); // instanceof handles nulls
+                || (other instanceof TaskSortDescriptionReverseAlphabeticalCommand); // instanceof handles nulls
     }
 }

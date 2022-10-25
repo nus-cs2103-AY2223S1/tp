@@ -51,8 +51,14 @@ public class Event extends Task {
         this.date = date;
     }
 
+    @Override
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public boolean hasDate() {
+        return true;
     }
 
     @Override
@@ -98,6 +104,14 @@ public class Event extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), date);
+    }
+
+    @Override
+    public String toUiString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+               .append(String.format(" [at %s]", getDate().toString()));;
+        return builder.toString();
     }
 
     @Override

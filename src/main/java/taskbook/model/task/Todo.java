@@ -3,6 +3,7 @@ package taskbook.model.task;
 import static taskbook.logic.commands.tasks.TaskEditCommand.MESSAGE_INVALID_PARAMETER;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DATE;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import taskbook.logic.commands.exceptions.CommandException;
@@ -45,6 +46,16 @@ public class Todo extends Task {
      */
     public Todo(Name name, Assignment assignment, Description description, boolean isDone, Set<Tag> tags) {
         super(name, assignment, description, isDone, tags);
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return null;
+    }
+
+    @Override
+    public boolean hasDate() {
+        return false;
     }
 
     @Override
