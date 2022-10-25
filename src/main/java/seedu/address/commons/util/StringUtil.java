@@ -65,4 +65,7 @@ public class StringUtil {
             return false;
         }
     }
+    public static String[] splitByWhitespace(String s) {
+        return s.split("\\s+");
+    }
 }
