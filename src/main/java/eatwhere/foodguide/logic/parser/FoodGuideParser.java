@@ -34,6 +34,7 @@ public class FoodGuideParser {
      * @param userInput full user input string
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
+     * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public Command parseCommand(String userInput) throws ParseException, DisplayCommandHelpException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());

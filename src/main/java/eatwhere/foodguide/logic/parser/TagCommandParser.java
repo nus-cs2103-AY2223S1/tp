@@ -25,6 +25,7 @@ public class TagCommandParser implements Parser<TagCommand> {
      * Parses the given {@code String} of arguments in the context of the TagCommand
      * and returns an TagCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
+     * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public TagCommand parse(String args) throws ParseException, DisplayCommandHelpException {
         requireNonNull(args);

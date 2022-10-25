@@ -158,4 +158,20 @@ public class AddCommandParserTest {
                         + CommandTestUtil.TAG_DESC_FRIEND,
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_displayHelp_success() {
+        // only preamble and help prefix
+        CommandParserTestUtil.assertParseDisplayCommandHelp(parser,
+                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.HELP_DESC,
+                AddCommand.MESSAGE_USAGE);
+
+        // fields present and help prefix also present
+        CommandParserTestUtil.assertParseDisplayCommandHelp(parser,
+                CommandTestUtil.NAME_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB
+                        + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.ADDRESS_DESC_BOB
+                        + CommandTestUtil.TAG_DESC_HUSBAND + CommandTestUtil.TAG_DESC_FRIEND
+                        + CommandTestUtil.HELP_DESC,
+                        AddCommand.MESSAGE_USAGE);
+    }
 }

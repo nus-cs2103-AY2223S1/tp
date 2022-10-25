@@ -1,6 +1,7 @@
 package eatwhere.foodguide.logic.parser;
 
 import static eatwhere.foodguide.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static eatwhere.foodguide.logic.commands.CommandTestUtil.HELP_DESC;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
 
 import org.junit.jupiter.api.Test;
@@ -214,5 +215,13 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_displayHelp_success() {
+        Index targetIndex = TypicalIndexes.INDEX_THIRD_EATERY;
+        String userInput = targetIndex.getOneBased() + HELP_DESC;
+
+        CommandParserTestUtil.assertParseDisplayCommandHelp(parser, userInput, EditCommand.MESSAGE_USAGE);
     }
 }

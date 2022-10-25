@@ -25,6 +25,7 @@ public class UntagCommandParser implements Parser<UntagCommand> {
      * Parses the given {@code String} of arguments in the context of the UntagCommand
      * and returns an UntagCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
+     * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public UntagCommand parse(String args) throws ParseException, DisplayCommandHelpException {
         requireNonNull(args);
