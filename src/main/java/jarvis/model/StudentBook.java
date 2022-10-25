@@ -70,6 +70,7 @@ public class StudentBook implements ReadOnlyStudentBook {
     /**
      * Adds a student to the student book.
      * The student must not already exist in the student book.
+     * Number of students in student book must be less than MAX_STUDENTS.
      */
     public void addStudent(Student p) {
         if (numStudents() > MAX_STUDENTS) {
