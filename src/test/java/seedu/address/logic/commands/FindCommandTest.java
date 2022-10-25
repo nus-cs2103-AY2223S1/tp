@@ -41,8 +41,8 @@ public class FindCommandTest {
                 new AddressContainsKeywordsPredicate(Collections.singletonList("(00 - 12379623) Prinsep :1 Lane"));
         ClassContainsKeywordsPredicate classOnePredicate =
                 new ClassContainsKeywordsPredicate(Collections.singletonList("2022-10-10"));
-        NameContainsKeywordsPredicate classTwoPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("2022-10-11"));
+        ClassContainsKeywordsPredicate classTwoPredicate =
+                new ClassContainsKeywordsPredicate(Collections.singletonList("2022-10-11"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
