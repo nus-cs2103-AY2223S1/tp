@@ -140,6 +140,10 @@ public class AddCommandTest {
         public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void deleteEvent(Event event) {
@@ -185,6 +189,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateEventPersonReference() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
