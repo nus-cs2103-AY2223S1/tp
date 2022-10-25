@@ -48,11 +48,11 @@ public class ProjectUtil {
     public static String getEditProjectDescriptorDetails(EditProjectDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getProjectName().ifPresent(projectName -> sb.append(PREFIX_PROJECT_NAME)
-                .append(projectName.fullName).append(" "));
+                .append(projectName).append(" "));
         descriptor.getBudget().ifPresent(budget -> sb.append(PREFIX_BUDGET)
-                .append(budget.value).append(" "));
+                .append(budget).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(
-                deadline.deadline.toString()).append(" "));
+                deadline).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -29,6 +29,7 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -48,7 +49,7 @@ public class CommandTestUtil {
             " " + PREFIX_TASK_DESCRIPTION + VALID_TASKDESCRIPTION_BRAVO;
     public static final String TASKDEADLINE_DESC_ALPHA =
             " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_ALPHA;
-    public static final String TASKDEALINE_DESC_BRAVO =
+    public static final String TASKDEADLINE_DESC_BRAVO =
             " " + PREFIX_TASK_DEADLINE + VALID_TASKDEADLINE_BRAVO;
     public static final String TASKMARK_DESC_ALPHA =
             " " + PREFIX_TASK_MARK + VALID_TASKMARK_ALPHA;
@@ -119,6 +120,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditProjectDescriptor DESC_AMY;
     public static final EditCommand.EditProjectDescriptor DESC_BOB;
 
+    public static final EditTaskCommand.EditTaskDescriptor DESC_ALPHA;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_BRAVO;
+
     static {
         DESC_AMY = new EditProjectDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withBudget(VALID_BUDGET_AMY).withDeadline(VALID_DEADLINE_AMY)
@@ -126,6 +130,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withBudget(VALID_BUDGET_BOB).withDeadline(VALID_DEADLINE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_ALPHA = new EditTaskDescriptorBuilder()
+                .withDescription(VALID_TASKDESCRIPTION_ALPHA)
+                .withDeadline(VALID_TASKDEADLINE_ALPHA).build();
+        DESC_BRAVO = new EditTaskDescriptorBuilder()
+                .withDescription(VALID_TASKDESCRIPTION_BRAVO)
+                .withDeadline(VALID_TASKDEADLINE_BRAVO).build();
     }
 
     /**
