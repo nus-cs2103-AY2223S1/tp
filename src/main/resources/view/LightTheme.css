@@ -153,6 +153,10 @@
     -fx-text-fill: black !important;
 }
 
+.result-display .scroll-bar {
+    -fx-background-color: white;
+}
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
@@ -296,7 +300,7 @@
 /** Scroll bar css adapted from: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/ **/
 
 .scroll-bar {
-    -fx-background-color: white;
+    -fx-background-color: #F9F9F9;
     -fx-background-radius : 0.0em;
     -fx-border-radius: 5px;
 }
@@ -344,6 +348,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-prompt-text-fill: #5A5A5A;
 }
 
 #filterField, #foodListPanel, #foodWebpage {

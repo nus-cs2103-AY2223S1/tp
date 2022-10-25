@@ -267,4 +267,9 @@ public class ModelManager implements Model {
             && calorieIntakeProgress.getValue().equals(other.calorieIntakeProgress.getValue())
             && currentDatePredicate.equals(other.currentDatePredicate);
     }
+
+    @Override
+    public Tip getTip() {
+        return nutriGoals.getTip();
+    }
 }

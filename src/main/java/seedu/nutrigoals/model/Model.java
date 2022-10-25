@@ -127,6 +127,9 @@ public interface Model {
     /** Returns the {@code Map} of food items and their calorie content */
     Map<Name, Calorie> getFoodCalorieList();
 
+    /** Retrieves and returns a random tip from TipList */
+    Tip getTip();
+
     double calculateCalorieIntakeProgress();
 
     DoubleProperty getCalorieIntakeProgress();
