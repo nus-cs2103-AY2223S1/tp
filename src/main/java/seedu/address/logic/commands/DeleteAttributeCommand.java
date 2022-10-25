@@ -1,8 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.Prefix;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,29 +19,34 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.ui.MainPanelName;
 
-public class DeleteAttributeCommand extends Command{
+/**
+ * Deletes the specified contact of a given Person.
+ */
+public class DeleteAttributeCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_DELETE_SUCCESS = "Contact Attribute successfully deleted";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a person's specified contact. "
-    + "Parameters: "
-    + PREFIX_EMAIL + "EMAIL "
-    + PREFIX_PHONE + "PHONE "
-    + PREFIX_SLACK + "SLACK"
-    + PREFIX_TELEGRAM + "TELEGRAM"
-    + "Example: " + COMMAND_WORD + " "
-    + PREFIX_EMAIL + "e0123456@u.nus.edu "
-    + PREFIX_PHONE + "87654321"
-    + PREFIX_SLACK + "johndoe "
-    + PREFIX_TELEGRAM + "@johndoe";
+        + "Parameters: "
+        + PREFIX_EMAIL + "EMAIL "
+        + PREFIX_PHONE + "PHONE "
+        + PREFIX_SLACK + "SLACK"
+        + PREFIX_TELEGRAM + "TELEGRAM"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_EMAIL + "e0123456@u.nus.edu "
+        + PREFIX_PHONE + "87654321"
+        + PREFIX_SLACK + "johndoe "
+        + PREFIX_TELEGRAM + "@johndoe";
 
     private Prefix prefixToDelete;
 
     /**
      * Constructor for DeleteAttributeCommand
      */
-    public DeleteAttributeCommand (Prefix prefixToDelete) {
+    public DeleteAttributeCommand(Prefix prefixToDelete) {
         this.prefixToDelete = prefixToDelete;
     }
 
@@ -84,20 +86,20 @@ public class DeleteAttributeCommand extends Command{
     private Person createPersonAfterDeletion(Person toDelete) {
         Name name = toDelete.getName();
         Role role = prefixToDelete.equals(PREFIX_ROLE) ? null : toDelete.getRole().orElse(null);
-        Address address = prefixToDelete.equals(PREFIX_ADDRESS) ? null :
-                                toDelete.getAddress().orElse(null);
+        Address address = prefixToDelete.equals(PREFIX_ADDRESS) ? null
+                                : toDelete.getAddress().orElse(null);
         Set<Tag> tags = prefixToDelete.equals(PREFIX_TAG) ? null : toDelete.getTags();
-        Timezone timezone = prefixToDelete.equals(PREFIX_TIMEZONE) ? null :
-                                toDelete.getTimezone().orElse(null);
+        Timezone timezone = prefixToDelete.equals(PREFIX_TIMEZONE) ? null
+                                : toDelete.getTimezone().orElse(null);
         Map<ContactType, Contact> contacts = toDelete.getContacts();
-        Contact email = prefixToDelete.equals(PREFIX_EMAIL) ? null :
-                                        contacts.get(ContactType.EMAIL);
-        Contact phone = prefixToDelete.equals(PREFIX_PHONE) ? null :
-                                        contacts.get(ContactType.PHONE);
-        Contact slack = prefixToDelete.equals(PREFIX_SLACK) ? null :
-                                        contacts.get(ContactType.SLACK);
-        Contact telegram = prefixToDelete.equals(PREFIX_TELEGRAM) ? null :
-                                        contacts.get(ContactType.TELEGRAM);
+        Contact email = prefixToDelete.equals(PREFIX_EMAIL) ? null
+                                        : contacts.get(ContactType.EMAIL);
+        Contact phone = prefixToDelete.equals(PREFIX_PHONE) ? null
+                                        : contacts.get(ContactType.PHONE);
+        Contact slack = prefixToDelete.equals(PREFIX_SLACK) ? null
+                                        : contacts.get(ContactType.SLACK);
+        Contact telegram = prefixToDelete.equals(PREFIX_TELEGRAM) ? null
+                                        : contacts.get(ContactType.TELEGRAM);
 
         Map<ContactType, Contact> updatedContacts = new HashMap<>();
 
