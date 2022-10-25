@@ -20,7 +20,6 @@ import seedu.address.model.task.TaskName;
  * Jackson-friendly version of {@link Task}.
  */
 public class JsonAdaptedTask {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String name;
@@ -114,7 +113,7 @@ public class JsonAdaptedTask {
                     Priority.class.getSimpleName()));
         }
         if (!Priority.isValidTaskPriority(priority)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
         final Priority modelPriority = new Priority(PriorityEnum.getFromString(priority).get());
 
