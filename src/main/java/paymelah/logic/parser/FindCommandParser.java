@@ -1,12 +1,14 @@
 package paymelah.logic.parser;
 
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -15,6 +17,8 @@ import java.util.Set;
 import paymelah.logic.commands.FindCommand;
 import paymelah.logic.parser.ParserUtil.PersonDescriptor;
 import paymelah.logic.parser.exceptions.ParseException;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.PersonMatchesDescriptorPredicate;
@@ -34,7 +38,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_MONEY);
+                        PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_MONEY, PREFIX_DATE, PREFIX_TIME);
 
         PersonDescriptor personDescriptor = new PersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -53,6 +57,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         parseDescriptionsForFind(argMultimap.getAllValues(PREFIX_DESCRIPTION))
                 .ifPresent(personDescriptor::setDescriptions);
         parseMoniesForFind(argMultimap.getAllValues(PREFIX_MONEY)).ifPresent(personDescriptor::setMonies);
+        parseDatesForFind(argMultimap.getAllValues(PREFIX_DATE)).ifPresent(personDescriptor::setDates);
+        parseTimesForFind(argMultimap.getAllValues(PREFIX_TIME)).ifPresent(personDescriptor::setTimes);
 
         if (!personDescriptor.isAnyFieldSet()) {
             throw new ParseException(FindCommand.MESSAGE_NO_KEYWORDS);
@@ -96,6 +102,30 @@ public class FindCommandParser implements Parser<FindCommand> {
             return Optional.empty();
         }
         return Optional.of(ParserUtil.parseMonies(monies));
+    }
+
+    /**
+     * Parses {@code Collection<String> dates} into a {@code Set<DebtDate>} if {@code dates} is non-empty.
+     */
+    private Optional<Set<DebtDate>> parseDatesForFind(Collection<String> dates) throws ParseException {
+        assert dates != null;
+
+        if (dates.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseDates(dates));
+    }
+
+    /**
+     * Parses {@code Collection<String> times} into a {@code Set<DebtTime>} if {@code times} is non-empty.
+     */
+    private Optional<Set<DebtTime>> parseTimesForFind(Collection<String> times) throws ParseException {
+        assert times != null;
+
+        if (times.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseTimes(times));
     }
 
 }

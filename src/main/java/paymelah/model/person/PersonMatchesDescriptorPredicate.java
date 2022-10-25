@@ -70,6 +70,22 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
         return true;
     }
 
+    private boolean matchesDates(Person person) {
+        if (descriptor.getDates().isPresent()) {
+            return descriptor.getDates().get().stream().allMatch(date ->
+                    person.getDebts().asList().stream().anyMatch(debt -> debt.getDate().equals(date)));
+        }
+        return true;
+    }
+
+    private boolean matchesTimes(Person person) {
+        if (descriptor.getTimes().isPresent()) {
+            return descriptor.getTimes().get().stream().allMatch(time ->
+                    person.getDebts().asList().stream().anyMatch(debt -> debt.getTime().equals(time)));
+        }
+        return true;
+    }
+
     @Override
     public boolean test(Person person) {
         return matchesName(person)
@@ -78,7 +94,9 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
                 && matchesAddress(person)
                 && matchesTags(person)
                 && matchesDescriptions(person)
-                && matchesMonies(person);
+                && matchesMonies(person)
+                && matchesDates(person)
+                && matchesTimes(person);
     }
 
     @Override

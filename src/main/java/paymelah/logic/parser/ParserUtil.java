@@ -154,36 +154,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> descriptions} into a {@code Set<Description>}.
-     * @param descriptions the Collection of descriptions to parse
-     * @return a Set of Descriptions
-     * @throws ParseException if a description cannot be parsed
-     */
-    public static Set<Description> parseDescriptions(Collection<String> descriptions) throws ParseException {
-        requireNonNull(descriptions);
-        final Set<Description> descriptionSet = new HashSet<>();
-        for (String description : descriptions) {
-            descriptionSet.add(parseDescription(description));
-        }
-        return descriptionSet;
-    }
-
-    /**
-     * Parses {@code Collection<String> monies} into a {@code Set<Money>}.
-     * @param monies the Collection of monies to parse
-     * @return a Set of Moneys
-     * @throws ParseException if a money cannot be parsed
-     */
-    public static Set<Money> parseMonies(Collection<String> monies) throws ParseException {
-        requireNonNull(monies);
-        final Set<Money> moneySet = new HashSet<>();
-        for (String money : monies) {
-            moneySet.add(parseMoney(money));
-        }
-        return moneySet;
-    }
-
-    /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -198,6 +168,21 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses {@code Collection<String> descriptions} into a {@code Set<Description>}.
+     * @param descriptions the Collection of descriptions to parse
+     * @return a Set of Descriptions
+     * @throws ParseException if a description cannot be parsed
+     */
+    public static Set<Description> parseDescriptions(Collection<String> descriptions) throws ParseException {
+        requireNonNull(descriptions);
+        final Set<Description> descriptionSet = new HashSet<>();
+        for (String description : descriptions) {
+            descriptionSet.add(parseDescription(description));
+        }
+        return descriptionSet;
     }
 
     /**
@@ -218,6 +203,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> monies} into a {@code Set<Money>}.
+     * @param monies the Collection of monies to parse
+     * @return a Set of Moneys
+     * @throws ParseException if a money cannot be parsed
+     */
+    public static Set<Money> parseMonies(Collection<String> monies) throws ParseException {
+        requireNonNull(monies);
+        final Set<Money> moneySet = new HashSet<>();
+        for (String money : monies) {
+            moneySet.add(parseMoney(money));
+        }
+        return moneySet;
+    }
+
+    /**
      * Parses a {@code String date} into a {@code DebtDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -235,6 +235,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> dates} into a {@code Set<DebtDate>}.
+     * @param dates the Collection of dates to parse
+     * @return a Set of DebtDates
+     * @throws ParseException if a date cannot be parsed
+     */
+    public static Set<DebtDate> parseDates(Collection<String> dates) throws ParseException {
+        requireNonNull(dates);
+        final Set<DebtDate> dateSet = new HashSet<>();
+        for (String date : dates) {
+            dateSet.add(parseDate(date));
+        }
+        return dateSet;
+    }
+
+    /**
      * Parses a {@code String time} into a {@code DebtTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -249,6 +264,21 @@ public class ParserUtil {
             throw new ParseException(DebtTime.MESSAGE_CONSTRAINTS);
         }
         return new DebtTime(trimmedTime);
+    }
+
+    /**
+     * Parses {@code Collection<String> times} into a {@code Set<DebtTime>}.
+     * @param times the Collection of times to parse
+     * @return a Set of DebtTimes
+     * @throws ParseException if a time cannot be parsed
+     */
+    public static Set<DebtTime> parseTimes(Collection<String> times) throws ParseException {
+        requireNonNull(times);
+        final Set<DebtTime> timeSet = new HashSet<>();
+        for (String time : times) {
+            timeSet.add(parseTime(time));
+        }
+        return timeSet;
     }
 
     /**
@@ -307,6 +337,8 @@ public class ParserUtil {
         private Set<Tag> tags;
         private Set<Description> descriptions;
         private Set<Money> monies;
+        private Set<DebtDate> dates;
+        private Set<DebtTime> times;
 
         public PersonDescriptor() {}
 
@@ -322,13 +354,15 @@ public class ParserUtil {
             setTags(toCopy.tags);
             setDescriptions(toCopy.descriptions);
             setMonies(toCopy.monies);
+            setDates(toCopy.dates);
+            setTimes(toCopy.times);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldSet() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, descriptions, monies);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, descriptions, monies, dates, times);
         }
 
         public void setName(Name name) {
@@ -414,6 +448,40 @@ public class ParserUtil {
             return (monies != null) ? Optional.of(Collections.unmodifiableSet(monies)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code dates} to this object's {@code dates}.
+         * A defensive copy of {@code dates} is used internally.
+         */
+        public void setDates(Set<DebtDate> dates) {
+            this.dates = (dates != null) ? new HashSet<>(dates) : null;
+        }
+
+        /**
+         * Returns an unmodifiable date set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code dates} is null.
+         */
+        public Optional<Set<DebtDate>> getDates() {
+            return (dates != null) ? Optional.of(Collections.unmodifiableSet(dates)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code times} to this object's {@code times}.
+         * A defensive copy of {@code times} is used internally.
+         */
+        public void setTimes(Set<DebtTime> times) {
+            this.times = (times != null) ? new HashSet<>(times) : null;
+        }
+
+        /**
+         * Returns an unmodifiable time set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code times} is null.
+         */
+        public Optional<Set<DebtTime>> getTimes() {
+            return (times != null) ? Optional.of(Collections.unmodifiableSet(times)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -435,7 +503,9 @@ public class ParserUtil {
                     && getAddress().equals(pd.getAddress())
                     && getTags().equals(pd.getTags())
                     && getDescriptions().equals(pd.getDescriptions())
-                    && getMonies().equals(pd.getMonies());
+                    && getMonies().equals(pd.getMonies())
+                    && getDates().equals(pd.getDates())
+                    && getTimes().equals(pd.getTimes());
         }
     }
 }
