@@ -5,11 +5,8 @@ import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.logic.parser.Prefix;
-import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
-import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.person.exceptions.TagTypeNotFoundException;
 import seedu.clinkedin.model.tag.TagType;
 
 /**
@@ -48,7 +45,7 @@ public class EditTagTypeCommand extends Command {
         try {
             UniqueTagTypeMap.setExistingTagType(toEditPrefix, editToPrefix, editToTagType);
             model.editTagTypeForAllPerson(toEditTagType, editToTagType);
-        } catch (PrefixNotFoundException | TagTypeNotFoundException | DuplicatePrefixException e) {
+        } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }
         return new CommandResult(String.format(MESSAGE_EDIT_TAG_TYPE_SUCCESS, editToTagType));

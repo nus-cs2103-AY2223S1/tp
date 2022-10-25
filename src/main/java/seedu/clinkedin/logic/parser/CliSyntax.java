@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
@@ -47,6 +48,16 @@ public class CliSyntax {
         }
         prefixTags.add(pref);
         prefixes.add(pref);
+    }
+
+    /**
+     * Adds a tag prefix to the list of prefixes if it does not already exist in the prefixes list.
+     * @param pref List of prefixes to be added.
+     */
+    public static void setTagPrefix(List<Prefix> pref) {
+        prefixes.removeAll(prefixTags);
+        prefixTags = new ArrayList<>(pref);
+        prefixes.addAll(prefixTags);
     }
 
     /**

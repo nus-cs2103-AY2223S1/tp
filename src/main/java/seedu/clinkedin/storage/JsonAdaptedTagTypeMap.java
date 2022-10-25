@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
