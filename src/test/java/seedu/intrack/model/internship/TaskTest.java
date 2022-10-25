@@ -7,15 +7,26 @@ import org.junit.jupiter.api.Test;
 
 public class TaskTest {
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Task(null, null));
+    public void constructor_nullTaskName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Task(null, "15-12-2022 10:00"));
     }
 
     @Test
-    public void constructor_invalidTask_throwsIllegalArgumentException() {
+    public void constructor_nullTaskTime_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Task("Technical Interview", null));
+    }
+
+    @Test
+    public void constructor_invalidTaskName_throwsIllegalArgumentException() {
         String invalidTaskName = "";
         String invalidTaskTime = "TODAY";
-        assertThrows(IllegalArgumentException.class, () -> new Task(invalidTaskName, invalidTaskTime));
+        assertThrows(IllegalArgumentException.class, () -> new Task(invalidTaskName, "15-12-2022 10:00"));
+    }
+
+    @Test
+    public void constructor_invalidTaskTime_throwsIllegalArgumentException() {
+        String invalidTaskTime = "TODAY";
+        assertThrows(IllegalArgumentException.class, () -> new Task("HR Interview", invalidTaskTime));
     }
 
     @Test
