@@ -47,7 +47,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.sortFilteredPersonList(this.comparator);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

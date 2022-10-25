@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -22,7 +24,7 @@ public class ModelManager implements Model {
 
     private final TeachersPet teachersPet;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private final FilteredList<Person> filteredSchedule;
 
     /**
@@ -132,9 +134,32 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
     public void sortFilteredPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
-        filteredPersons.sort(comparator);
+        ArrayList<Person> sortedList = replaceSelectionSort(filteredPersons, comparator);
+        ObservableList<Person> observableList = FXCollections.observableList(sortedList);
+        this.filteredPersons = new FilteredList<>(observableList);
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    private static ArrayList<Person> replaceSelectionSort(FilteredList<Person> filteredList, Comparator<Person> comparator) {
+        ArrayList<Person> duplicatedList = new ArrayList<>();
+        for (int i = 0; i < filteredList.size(); i++) {
+            duplicatedList.add(filteredList.get(i));
+        }
+        int n = duplicatedList.size();
+        for (int i = 1; i < n; ++i) {
+            Person curr = duplicatedList.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && comparator.compare(duplicatedList.get(j), curr) == 1) {
+                duplicatedList.set(j + 1, duplicatedList.get(j));
+                j = j - 1;
+            }
+            duplicatedList.set(j + 1, curr);
+        }
+        return duplicatedList;
     }
 
     //=========== Filtered Schedule List Accessors =============================================================

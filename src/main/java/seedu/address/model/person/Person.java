@@ -230,7 +230,7 @@ public class Person {
 
     public int compareToByNameDesc(Person person) {
         // return opposite result as this::compareToByNameAsc
-        return -1 * this.compareToByNameDesc(person);
+        return -1 * this.compareToByNameAsc(person);
     }
 
     public int compareToByClass(Person person) {
