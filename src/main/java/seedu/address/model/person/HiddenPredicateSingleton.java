@@ -79,9 +79,9 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
     }
 
     /**
-     * Combines the current predicate shown on idENTify with the new predicate to hide patients by name or tag.
-     * @param p Predicate to exclude patients by.
-     * @return The predicate result of combining the exclusion predicate with the current predicate.
+     * Combines the current predicate shown on idENTify with the new predicate to unhide patients by name or tag.
+     * @param p Predicate to show patients by.
+     * @return The predicate result of combining the non-exclusion predicate with the current predicate.
      */
     public static Predicate<Person> combineWithUnhiddenPredicate(Predicate<Person> p) {
         currPersonPredicate = currPersonPredicate.or(p);
@@ -95,6 +95,17 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
      */
     public static Predicate<Appointment> combineWithApptPredicate(Predicate<Appointment> a) {
         currApptPredicate = currApptPredicate.and(Predicate.not(a));
+        return currApptPredicate;
+    }
+
+    /**
+     * Combines current predicate with the new appointment predicate.
+     * @param a Predicate to include the appointment.
+     * @return The predicate result of combining the appointment predicate with the current predicate.
+     */
+    public static Predicate<Appointment> combineWithUnhiddenApptPredicate(Predicate<Appointment> a) {
+
+        currApptPredicate = currApptPredicate.or(a);
         return currApptPredicate;
     }
 

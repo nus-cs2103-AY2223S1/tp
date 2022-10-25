@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -17,12 +16,12 @@ import seedu.address.model.person.HiddenPredicateSingleton;
  * Hides all persons and their appointments in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class HideAppointmentsCommand extends Command {
+public class UnhideAppointmentsCommand extends Command {
 
-    public static final String COMMAND_WORD = "hide";
+    public static final String COMMAND_WORD = "unhide";
     public static final String DESCRIPTOR_WORD = "appts";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all appointments which reason or tags"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unhides all appointments which reason or tags"
             + " contain any of the specified keywords (case-insensitive) and displays\n"
             + "the appointments which are not hidden. Also able to hide by marked/unmarked appointments\n"
             + "Parameters: [" + PREFIX_REASON + "REASON [MORE_REASONS]]\n"
@@ -31,7 +30,7 @@ public class HideAppointmentsCommand extends Command {
 
     private Predicate<Appointment> predicate;
 
-    public HideAppointmentsCommand(Predicate<Appointment> predicate) {
+    public UnhideAppointmentsCommand(Predicate<Appointment> predicate) {
         this.predicate = predicate;
     }
 
@@ -39,7 +38,8 @@ public class HideAppointmentsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Appointment> combinedPredicate = HiddenPredicateSingleton.combineWithApptPredicate(predicate);
+        Predicate<Appointment> combinedPredicate =
+                HiddenPredicateSingleton.combineWithUnhiddenApptPredicate(predicate);
         model.updateFilteredAppointmentList(combinedPredicate);
 
         return new CommandResult(
@@ -54,11 +54,11 @@ public class HideAppointmentsCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof HideAppointmentsCommand)) {
+        if (!(other instanceof UnhideAppointmentsCommand)) {
             return false;
         }
 
-        HideAppointmentsCommand otherCommand = (HideAppointmentsCommand) other;
+        UnhideAppointmentsCommand otherCommand = (UnhideAppointmentsCommand) other;
         return otherCommand.predicate.equals(this.predicate);
     }
 
