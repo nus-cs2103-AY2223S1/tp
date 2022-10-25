@@ -16,5 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_MODULE_LINK = new Prefix("l/");
     public static final Prefix PREFIX_TASK_DESCRIPTION = new Prefix("td/");
-    public static final Prefix PREFIX_TASK_NUMBER = new Prefix("tn/");
+    public static final Prefix PREFIX_TASK_NUMBER_TO_DELETE = new Prefix("tn/");
+    public static final Prefix PREFIX_TASK_NUMBERS_TO_SWAP = new Prefix("ts/");
 }

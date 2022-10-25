@@ -2,7 +2,6 @@ package seedu.address.model.module;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -30,14 +29,13 @@ public class Module {
     // Data fields
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
-    private final Set<Link> links = new HashSet<>();
+    private final Set<Link> links;
     private final Set<Person> persons;
 
     /**
-     * Constructs a {@code Module} with module code, title, tasks, links, and persons.
+     * Every field must be present and not null.
      */
-    public Module(ModuleCode moduleCode,
-                  ModuleTitle moduleTitle,
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
                   List<Task> tasks,
                   Set<Link> links,
                   Set<Person> persons) {
@@ -45,45 +43,39 @@ public class Module {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
-        this.links.addAll(links);
-        this.persons = persons;
+        this.links = new HashSet<>(links);
+        this.persons = new HashSet<>(persons);
     }
 
     /**
-     * Constructs a {@code Module} with module code, title, tasks and links, but without
-     * persons.
-     */
-    public Module(ModuleCode moduleCode,
-                  ModuleTitle moduleTitle,
-                  List<Task> tasks,
-                  Set<Link> links) {
-        this(moduleCode, moduleTitle, tasks, links, new HashSet<>());
-    }
-
-    /**
-     * Constructs a {@code Module} with module code, title and links but without
+     * Adds a {@code Module} with module code, title and links but without
      * any tasks and persons.
      */
-    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle, Set<Link> links) {
-        this(moduleCode, moduleTitle, new ArrayList<>(), links, new HashSet<>());
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
+                  Set<Link> links) {
+        requireAllNonNull(moduleCode, moduleTitle, links);
+        this.moduleCode = moduleCode;
+        this.moduleTitle = moduleTitle;
+        this.tasks = new TaskList();
+        this.links = new HashSet<>(links);
+        this.persons = new HashSet<>();
     }
 
     /**
-     * Constructs a {@code Module} with module code, but without
-     * module title, tasks, links, and persons.
+     * Adds a {@code Module} with module code, without module title and without any
+     * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode) {
         this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>());
     }
 
     /**
-     * Constructs a {@code Module} with module code and module title, but without
-     * tasks, links, and persons.
+     * Adds a {@code Module} with module code and module title but without any
+     * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
         this(moduleCode, moduleTitle, new HashSet<>());
     }
-
     public ModuleCode getModuleCode() {
         return moduleCode;
     }
@@ -156,6 +148,25 @@ public class Module {
 
         return otherModule != null
                 && otherModule.getModuleCode().equals(getModuleCode());
+    }
+
+    /**
+     * Returns a boolean indicating if the specified person is contained in the module.
+     *
+     * @param person The person that is being checked for.
+     * @return Boolean indicating if the specified person is contained in the module.
+     */
+    public boolean containsPerson(Person person) {
+        return persons.contains(person);
+    }
+
+    /**
+     * Removes the specified person from the module's set of persons.
+     *
+     * @param person The person to be removed from the module's set of persons.
+     */
+    public void removePerson(Person person) {
+        persons.remove(person);
     }
 
     /**

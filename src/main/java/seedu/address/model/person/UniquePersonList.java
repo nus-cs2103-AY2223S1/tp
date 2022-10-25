@@ -69,6 +69,27 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns the {@code Person} with the same {@code Name} as the
+     * {@code person} supplied as the argument.
+     * @param person {@code person} with the {@code Name} of the
+     *               {@code Person} we would like to retrieve.
+     * @throws PersonNotFoundException when there does not exist a {@code Person}
+     *                                 with the same {@code Name} as the
+     *                                 supplied argument.
+     */
+    public Person getPerson(Person person) throws PersonNotFoundException {
+        if (contains(person)) {
+            // There should only be one existing person with the same name.
+            assert internalList.stream().filter(person::isSamePerson).count() == 1;
+            return internalUnmodifiableList.stream()
+                    .filter(person::isSamePerson)
+                    .findFirst().get();
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+
+    /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */

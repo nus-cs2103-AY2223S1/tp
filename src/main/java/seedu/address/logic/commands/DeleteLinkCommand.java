@@ -17,6 +17,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes a link to an existing module in Plannit.
@@ -78,8 +79,10 @@ public class DeleteLinkCommand extends Command {
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<Link> originalLinksCopy = moduleToEdit.copyLinks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
+
         Set<Link> updatedLinks = removeLinksFromSet(originalLinksCopy, linksToRemove, index);
-        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks);
+        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks, modulePersons);
     }
 
     //Partial deletion of links is not supported
