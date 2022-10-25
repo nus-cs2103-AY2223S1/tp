@@ -1,5 +1,7 @@
 package tracko.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.commands.CommandTestUtil.DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -7,8 +9,6 @@ import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;

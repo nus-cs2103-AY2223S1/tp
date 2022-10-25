@@ -1,5 +1,7 @@
 package tracko.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -24,8 +26,6 @@ import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.testutil.TypicalOrders.ORDER_11;
 
 import org.junit.jupiter.api.Test;
