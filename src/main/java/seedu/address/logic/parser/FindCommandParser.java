@@ -62,8 +62,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("e/ search not implemented yet.");
 
         } else if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            String addressToFind = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).toString();
-            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressToFind)));
+            String addressToFind = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).value.trim();
+            String[] addressKeywords = addressToFind.split("\\s+");
+            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
         } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
             String dateToFind = ParserUtil.parseDate(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
             return new FindCommand(new ClassContainsKeywordsPredicate(Arrays.asList(dateToFind)));
