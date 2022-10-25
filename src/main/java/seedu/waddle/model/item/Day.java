@@ -58,7 +58,7 @@ public class Day {
      */
     public Item removeItem(Index index) {
         Item removedItem = this.itemList.remove(index.getZeroBased());
-        removedItem.resetStartTime();
+        //removedItem.resetStartTime();
         return removedItem;
     }
 
