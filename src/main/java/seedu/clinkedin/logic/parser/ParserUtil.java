@@ -163,6 +163,7 @@ public class ParserUtil {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
         return new Rating(trimmedRating);
+    }
 
     /**  
      * Parses a {@code String link} into a {@code Link}.

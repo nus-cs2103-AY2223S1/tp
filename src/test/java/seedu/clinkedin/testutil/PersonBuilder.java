@@ -134,6 +134,8 @@ public class PersonBuilder {
      */
     public PersonBuilder withRating(String rating) {
         this.rating = new Rating(rating);
+        return this;
+    }
 
     /**  
      * Parses the {@code links} into a {@code Set<Link>} and set it to the {@code Person} that we are building.

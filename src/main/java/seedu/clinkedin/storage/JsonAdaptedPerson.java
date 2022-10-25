@@ -172,8 +172,6 @@ class JsonAdaptedPerson {
         }
         final Rating modelRating = new Rating(rating);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote,
-                modelRating);
         final Set<Link> modelLinks = new HashSet<>(personLinks);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote,

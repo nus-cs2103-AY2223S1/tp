@@ -15,7 +15,7 @@ import seedu.clinkedin.model.tag.UniqueTagList;
 
 
 /**
- * Represents a Person in the clinkedin book.
+ * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -86,7 +86,7 @@ public class Person {
      * Overloaded constructor for Person when note and rating is provided.
      */
     public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap,
-                  Status status, Note note, Rating rating) {
+                  Status status, Note note, Rating rating, Set<Link> links) {
         requireAllNonNull(name, phone, email, address, tagTypeMap, status, note, rating);
         this.name = name;
         this.phone = phone;
@@ -96,6 +96,7 @@ public class Person {
         this.status = status;
         this.note = note;
         this.rating = rating;
+        this.links.addAll(links);
     }
     public Name getName() {
         return name;
@@ -131,6 +132,7 @@ public class Person {
 
     public Rating getRating() {
         return rating;
+    }
 
     public int getTagCount() {
         return tagTypeMap.getTagCount();
@@ -179,7 +181,7 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getNote().equals(getNote())
                 && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.getRating().equals(getRating());
+                && otherPerson.getRating().equals(getRating())
                 && otherPerson.getLinks().equals(getLinks());
     }
 

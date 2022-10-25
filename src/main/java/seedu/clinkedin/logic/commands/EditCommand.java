@@ -139,7 +139,7 @@ public class EditCommand extends Command {
         Set<Link> updatedLinks = editPersonDescriptor.getLinks().orElse(personToEdit.getLinks());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedStatus,
-                updatednote, updatedRating, updatedLinks);
+                updatedNote, updatedRating, updatedLinks);
     }
 
     @Override
@@ -294,7 +294,8 @@ public class EditCommand extends Command {
 
         public void setRating(Rating rating) {
             this.rating = rating;
-          
+        }
+
         public void setLinks(Set<Link> links) {
             this.links = links;
         }
@@ -326,7 +327,7 @@ public class EditCommand extends Command {
                     && getNewTagTypeMap().equals(e.getNewTagTypeMap())
                     && getStatus().equals(e.getStatus())
                     && getNote().equals(e.getNote())
-                    && getRating().equals(e.getRating());
+                    && getRating().equals(e.getRating())
                     && getLinks().equals(e.getLinks());
         }
 

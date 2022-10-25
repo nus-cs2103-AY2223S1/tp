@@ -59,7 +59,8 @@ public class RateCommand extends Command {
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), personToEdit.getNote(), rating);
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), personToEdit.getNote(), rating,
+                personToEdit.getLinks());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
