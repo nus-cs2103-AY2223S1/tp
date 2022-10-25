@@ -14,6 +14,17 @@ guest management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Components of the UI
+
+![UiComponentLabels](images/UiComponentLabels.png)
+
+* Command Box: This is where you enter your commands.
+* Result Display: This is where the detailed results of your command will be shown.
+* Guest Card: This is where all your guest information will be shown.
+* Status Bar: This is where your saved file is stored.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -87,7 +98,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a guest: `add`
+### Adding a guest : `add`
 
 Adds a guest to the guest book. This is akin to checking a guest in with their personal and room details.
 
@@ -148,7 +159,7 @@ Examples:
 *  `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
 *  `bill 2 n/-10` Subtracts 10 from the bill of the 2nd guest.
 
-### Locating guests: `find`
+### Locating guests : `find`
 
 Find guests whose details contain any of the given keywords.
 
@@ -218,8 +229,22 @@ _Details coming soon ..._
 
 ## FAQ
 
+Listed here are some frequently asked questions. Should you require any other assistance, feel free to contact us.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GuestBook home folder.
+
+**Q**: Will my data be automatically saved?<br>
+**A**: Yes, Guest Book automatically saves your data after every command entered.
+
+**Q**: Where is my data saved?<br>
+**A**: Go to where you have downloaded your `guestbook.jar` file, there a `/data` folder will be created and the data will be saved under `guestbook.json`.
+
+**Q**: Can I rename my saved data file?<br>
+**A**: No, Guest Book currently only supports the use of `guestbook.json` as the name of the saved data file.
+
+**Q**: Why are there no guests in my Guest Book?<br>
+**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing Guest Book to reset it to prevent any malicious files from being used.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -236,3 +261,6 @@ _Details coming soon ..._
 | **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                             |
 | **List**             | `list`                                                                                                                                                                                         |
 | **Help**             | `help`                                                                                                                                                                                         |
+
+
+## Contact Us
