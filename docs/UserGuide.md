@@ -358,7 +358,7 @@ Word | Definition
 **Prefix** | A signposting word that indicates the kind of property (i.e. name, email, address, etc), which typically follows immediately after the prefix, that is to be passed as a parameter.
 **Property** | An identifiable feature a person or object has that sufficiently distinguishes it from other objects of the same kind.
 **Secretary** | A person that manages the tasks and events related to the operations of an organisation.
-**Tag** | A label that connects two or more related people together, such that they can be referred to as a group specified by the tag.
+**Tag** | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
 **Treasurer** | A person that manages the finances and monetary transactions related to the operations of an organisation.
 
 --------------------------------------------------------------------------------------------------------------------
