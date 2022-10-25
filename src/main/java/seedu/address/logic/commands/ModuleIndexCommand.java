@@ -74,12 +74,12 @@ public class ModuleIndexCommand extends ModuleCommand {
         Address address = personToEdit.getAddress();
         Github github = personToEdit.getGithub();
         Set<Tag> tags = personToEdit.getTags();
-        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules()
-                .orElse(personToEdit.getCurrModules());
-        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules()
-                .orElse(personToEdit.getPrevModules());
-        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules()
-                .orElse(personToEdit.getPlanModules());
+        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules();
+        setCurrentModules.addAll(personToEdit.getCurrModules());
+        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules();
+        setPreviousModules.addAll(personToEdit.getPrevModules());
+        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
+        setPlannedModules.addAll(personToEdit.getPlanModules());
 
         return new Person(name, phone, email, address, github, tags, setCurrentModules, setPreviousModules,
                 setPlannedModules);

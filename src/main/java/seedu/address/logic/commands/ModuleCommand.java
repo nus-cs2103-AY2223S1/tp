@@ -15,6 +15,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 
@@ -60,50 +61,59 @@ public class ModuleCommand extends Command {
         private Set<CurrentModule> currModules;
         private Set<PreviousModule> prevModules;
         private Set<PlannedModule> planModules;
+        private Set<Module> modulesToRemove;
 
         public EditModuleDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code currModules, prevModules, planModules} is used internally.
+         * A defensive copy of {@code currModules, prevModules, planModules, modsToremove} is used internally.
          */
         public EditModuleDescriptor(EditModuleDescriptor toCopy) {
             setCurrModules(toCopy.currModules);
             setPrevModules(toCopy.prevModules);
             setPlanModules(toCopy.planModules);
+            setModulesToRemove(toCopy.modulesToRemove);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(currModules, prevModules, planModules);
+            return CollectionUtil.isAnyNonNull(currModules, prevModules, planModules, modulesToRemove);
         }
 
         public void setCurrModules(Set<CurrentModule> currModules) {
             this.currModules = (currModules != null) ? new HashSet<>(currModules) : null;
         }
 
-        public Optional<Set<CurrentModule>> getCurrModules() {
-            return (currModules != null) ? Optional.of(Collections.unmodifiableSet(currModules)) : Optional.empty();
+        public Set<CurrentModule> getCurrModules() {
+            return (currModules != null) ? this.currModules : new HashSet<>();
         }
 
         public void setPrevModules(Set<PreviousModule> prevModules) {
             this.prevModules = (prevModules != null) ? new HashSet<>(prevModules) : null;
         }
 
-        public Optional<Set<PreviousModule>> getPrevModules() {
-            return (prevModules != null) ? Optional.of(Collections.unmodifiableSet(prevModules)) : Optional.empty();
+        public Set<PreviousModule> getPrevModules() {
+            return (prevModules != null) ? this.prevModules : new HashSet<>();
         }
 
         public void setPlanModules(Set<PlannedModule> planModules) {
             this.planModules = (planModules != null) ? new HashSet<>(planModules) : null;
         }
 
-        public Optional<Set<PlannedModule>> getPlanModules() {
-            return (planModules != null) ? Optional.of(Collections.unmodifiableSet(planModules)) : Optional.empty();
+        public Set<PlannedModule> getPlanModules() {
+            return (planModules != null) ? this.planModules : new HashSet<>();
         }
 
+        public void setModulesToRemove(Set<Module> modulesToRemove) {
+            this.modulesToRemove = (modulesToRemove != null) ? new HashSet<>(modulesToRemove) : null;
+        }
+
+        public Set<Module> getModulesToRemove() {
+            return (modulesToRemove != null) ? this.modulesToRemove : new HashSet<>();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -122,7 +132,8 @@ public class ModuleCommand extends Command {
 
             return getCurrModules().equals(e.getCurrModules())
                     && getPrevModules().equals(e.getPrevModules())
-                    && getPlanModules().equals(e.getPlanModules());
+                    && getPlanModules().equals(e.getPlanModules())
+                    && getModulesToRemove().equals(e.getModulesToRemove());
         }
     }
 }

@@ -70,12 +70,12 @@ public class ModuleUserCommand extends ModuleCommand {
         Email email = userToEdit.getEmail();
         Address address = userToEdit.getAddress();
         Github github = userToEdit.getGithub();
-        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules()
-                .orElse(userToEdit.getCurrModules());
-        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules()
-                .orElse(userToEdit.getPrevModules());
-        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules()
-                .orElse(userToEdit.getPlanModules());
+        Set<CurrentModule> setCurrentModules = editModuleDescriptor.getCurrModules();
+        setCurrentModules.addAll(userToEdit.getCurrModules());
+        Set<PreviousModule> setPreviousModules = editModuleDescriptor.getPrevModules();
+        setPreviousModules.addAll(userToEdit.getPrevModules());
+        Set<PlannedModule> setPlannedModules = editModuleDescriptor.getPlanModules();
+        setPlannedModules.addAll(userToEdit.getPlanModules());
 
         return new ExistingUser(name, phone, email, address, github, setCurrentModules, setPreviousModules,
                 setPlannedModules);
