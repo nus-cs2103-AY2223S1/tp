@@ -129,7 +129,7 @@ public class ModelManager implements Model {
 
     @Override
     public int getHistoriesSize() {
-        assert addressBookHistories.size() == commandMessageHistories.size(): "Undo histories sizes do not match";
+        assert addressBookHistories.size() == commandMessageHistories.size() : "Undo histories sizes do not match";
         return addressBookHistories.size();
     }
 
