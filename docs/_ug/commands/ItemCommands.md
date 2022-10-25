@@ -298,7 +298,7 @@ rmk 1 r/For Party
 
 Command Output Box:
 ```text
-Deleted Item:
+Remark Added:
 Name: Onions
 Quantity: 100 kg
 Bought Date: 10-10-2022
