@@ -24,9 +24,8 @@ public class CommandSuggestorTest {
 
     @Test
     public void suggestCommand_validCommand_success() {
-        String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
-                                        + PREFIX_CONTACT + "<contact_index>" + " "
-                                        + PREFIX_NAME + "<name>";
+        String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " " + PREFIX_NAME + "<name>" + " "
+                + PREFIX_CONTACT + "<contact_index>";
         try {
             System.out.println(expectedSuggestion);
             System.out.println(commandSuggestor.suggestCommand("add_t"));
@@ -83,7 +82,7 @@ public class CommandSuggestorTest {
 
     @Test
     public void autocomplete_validCommandWithPrefix_success() {
-        String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " " + PREFIX_CONTACT;
+        String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " " + PREFIX_NAME;
         try {
             assertEquals(expectedSuggestion, commandSuggestor.autocompleteCommand("add_task ",
                     commandSuggestor.suggestCommand("add_task ")));
