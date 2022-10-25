@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.hash;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -140,6 +141,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Adds profiles in {@code profilesToAdd} to the given event.
+     * {@code event} must exist in the address book.
+     * Profiles in {@profilesToAdd} must also exist in the address book.
+     */
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+        events.addEventAttendees(event, profilesToAdd);
     }
 
     //// util methods

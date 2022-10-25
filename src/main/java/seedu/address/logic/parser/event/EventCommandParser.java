@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.AddProfilesToEventCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
@@ -63,6 +64,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return new ViewUpcomingEventsCommandParser().parse(args);
         case ViewEventsCommand.COMMAND_OPTION:
             return new ViewEventsCommandParser().parse(args);
+        case AddProfilesToEventCommand.COMMAND_OPTION:
+            return new AddProfilesToEventCommandParser().parse(args);
         default:
             throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
@@ -84,6 +87,8 @@ public class EventCommandParser implements Parser<EventCommand> {
                         ViewEventsCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
                         + ViewUpcomingEventsCommand.COMMAND_OPTION, ViewUpcomingEventsCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
+                        + AddProfilesToEventCommand.COMMAND_OPTION, AddProfilesToEventCommand.MESSAGE_HELP);
             }
         };
     }

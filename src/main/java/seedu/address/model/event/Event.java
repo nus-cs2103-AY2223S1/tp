@@ -1,12 +1,15 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +25,7 @@ public class Event {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private final Attendees attendees;
 
     /**
      * Every field must be present and not null.
@@ -32,6 +36,7 @@ public class Event {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.tags.addAll(tags);
+        attendees = new Attendees();
     }
 
     public Title getTitle() {
@@ -52,6 +57,31 @@ public class Event {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Attendees getAttendees() {
+        return attendees;
+    }
+
+    /**
+     * Adds the profiles in {@code profilesToAdd} to the event's list of attendees if
+     * they have not already been added.
+     */
+    public void addAttendees(List<Profile> profilesToAdd) {
+        requireNonNull(profilesToAdd);
+
+        profilesToAdd.forEach(profile -> {
+            if (!attendees.hasAttendee(profile)) {
+                attendees.add(profile);
+            }
+        });
+    }
+
+    /**
+     * Returns true if the specified profile is in the event's list of attendees.
+     */
+    public boolean hasAttendee(Profile profile) {
+        return attendees.hasAttendee(profile);
     }
 
     /**
@@ -109,7 +139,10 @@ public class Event {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append(System.lineSeparator())
+                .append(attendees);
+
         return builder.toString();
     }
-
 }

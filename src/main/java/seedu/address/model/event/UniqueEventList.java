@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.profile.Profile;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
@@ -77,6 +78,21 @@ public class UniqueEventList implements Iterable<Event> {
         if (!internalList.remove(toRemove)) {
             throw new EventNotFoundException();
         }
+    }
+
+    /**
+     * Adds profiles in {@code profilesToAdd} to the given event.
+     * The event must exist in the list.
+     */
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+
+        int index = internalList.indexOf(event);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).addAttendees(profilesToAdd);
     }
 
     public void setEvents(UniqueEventList replacement) {

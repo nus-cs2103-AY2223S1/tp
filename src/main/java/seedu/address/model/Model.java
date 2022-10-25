@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -114,6 +115,13 @@ public interface Model {
      * event in the address book.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Adds the given list of profiles {@code profilesToAdd} to the given event's list of attendees.
+     * {@code event} must exist in the address book .
+     * Profiles in {@profilesToAdd} must also exist in the address book.
+     */
+    void addEventAttendees(Event event, List<Profile> profilesToAdd);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
