@@ -34,15 +34,15 @@ public class DeleteAttributeCommand extends Command {
     public static final String MESSAGE_DELETE_SUCCESS = "Contact Attribute successfully deleted";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a person's specified contact. "
         + "Allowed Parameters are: "
-        + PREFIX_EMAIL + "EMAIL "
-        + PREFIX_PHONE + "PHONE "
+        + PREFIX_EMAIL
+        + PREFIX_PHONE
         + PREFIX_SLACK + "SLACK"
-        + PREFIX_TELEGRAM + "TELEGRAM"
+        + PREFIX_TELEGRAM
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_EMAIL + "e0123456@u.nus.edu "
-        + PREFIX_PHONE + "87654321"
-        + PREFIX_SLACK + "johndoe "
-        + PREFIX_TELEGRAM + "@johndoe";
+        + PREFIX_EMAIL
+        + PREFIX_PHONE
+        + PREFIX_SLACK
+        + PREFIX_TELEGRAM;
 
     private final Prefix prefixToDelete;
 
