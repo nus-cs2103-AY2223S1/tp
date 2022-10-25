@@ -32,7 +32,7 @@ There are two ways to show person details
    2. Press `<ENTER>` to show person details.
 2. General usage
    1. Double-click on the person card in persons' list.
-   
+
 ### Edit Person Details : `set`
 
 Set attribute of a person.

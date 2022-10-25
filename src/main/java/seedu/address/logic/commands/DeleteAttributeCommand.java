@@ -69,7 +69,7 @@ public class DeleteAttributeCommand extends Command{
 
     /**
      * Returns if DeleteAttributeCommand can execute at given Panel name.
-     * @return true if Detail Page, false otherwise. 
+     * @return true if Detail Page, false otherwise.
      */
     @Override
     public boolean canExecuteAt(MainPanelName name) {
@@ -100,7 +100,7 @@ public class DeleteAttributeCommand extends Command{
                                         contacts.get(ContactType.TELEGRAM);
 
         Map<ContactType, Contact> updatedContacts = new HashMap<>();
-       
+
         updatedContacts.put(ContactType.EMAIL, email);
         updatedContacts.put(ContactType.TELEGRAM, telegram);
         updatedContacts.put(ContactType.PHONE, phone);

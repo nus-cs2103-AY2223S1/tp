@@ -26,14 +26,14 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
      */
     @Override
     public DeleteAttributeCommand parse(String userInput) throws ParseException {
-        
+
         // Allows user to not specify '/' when deleting attribute
         userInput = userInput + "/";
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(userInput, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
                                             PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE,
                                             PREFIX_TIMEZONE);
-        
+
         List<Prefix> prefixesToDelete = findPrefixesToDelete(argMultimap, PREFIX_EMAIL,
                 PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
                 PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE,
@@ -44,7 +44,7 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
         }
 
         return new DeleteAttributeCommand(prefixesToDelete.get(0));
-            
+
     }
 
     /**
@@ -54,5 +54,5 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
     private static List<Prefix> findPrefixesToDelete(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.containsPrefix(prefix)).collect(Collectors.toList());
     }
-    
+
 }
