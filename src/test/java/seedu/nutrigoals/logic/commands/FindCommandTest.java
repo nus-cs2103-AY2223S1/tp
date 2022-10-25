@@ -1,6 +1,13 @@
 package seedu.nutrigoals.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.ModelManager;
@@ -8,12 +15,6 @@ import seedu.nutrigoals.model.UserPrefs;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.testutil.FoodBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -63,7 +64,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_foodInModelList_calorieContentFound() throws Exception{
+    public void execute_foodInModelList_calorieContentFound() {
         Food foodItem = new FoodBuilder().withName("Bread").build();
         FindCommand findCommand = new FindCommand(foodItem.getName());
         String expectedMessage =
