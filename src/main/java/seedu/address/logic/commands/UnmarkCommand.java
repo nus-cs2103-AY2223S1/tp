@@ -17,7 +17,7 @@ public class UnmarkCommand extends SelectAppointmentCommand {
                     + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and a positive integer)\n"
                     + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Unmarked appointment %1$s for: %2$s";
+    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Unmarked appointment %1$s.";
     public static final String MESSAGE_ALREADY_UNMARKED = "This appointment is already unmarked.";
 
     /**
@@ -38,10 +38,9 @@ public class UnmarkCommand extends SelectAppointmentCommand {
             throw new CommandException(MESSAGE_ALREADY_UNMARKED);
         }
 
-        int index = person.getAppointments().indexOf(appointmentToUnmark) + 1;
         appointmentToUnmark.unmark();
         return new CommandResult(String.format(MESSAGE_UNMARK_PERSON_SUCCESS,
-                index, person.getName()));
+                indexOfAppointment.getOneBased()));
     }
 
     @Override
