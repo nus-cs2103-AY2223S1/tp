@@ -10,8 +10,8 @@ import static swift.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Descriptions should only contain alphanumeric characters, spaces, and special " +
-                    "characters ($&+,:;=?@#|'<>.\\-^*()%!)";
+            "Descriptions should only contain alphanumeric characters, spaces, and special "
+                    + "characters ($&+,:;=?@#|'<>.\\-^*()%!)";
 
     /*
      * Only alphanumeric characters, spaces, and special characters ($&+,:;=?@#|'<>.\-^*()%!)

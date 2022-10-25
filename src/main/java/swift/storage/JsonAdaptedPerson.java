@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import swift.commons.exceptions.IllegalValueException;
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.PersonName;
 import swift.model.person.Person;
+import swift.model.person.PersonName;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
 
@@ -88,7 +88,8 @@ class JsonAdaptedPerson {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonName.class.getSimpleName()));
         }
         if (!PersonName.isValidName(name)) {
             throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);

@@ -1,11 +1,10 @@
 package swift.model.task;
 
+import static swift.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Optional;
-
-import static swift.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's deadline in the address book.

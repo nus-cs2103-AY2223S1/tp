@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.PersonName;
 import swift.model.person.Person;
+import swift.model.person.PersonName;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
 import swift.model.util.SampleDataUtil;

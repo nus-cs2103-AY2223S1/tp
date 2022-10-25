@@ -22,7 +22,7 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + task.name.fullName);
+        sb.append(PREFIX_NAME + task.getName().fullName);
         return sb.toString();
     }
 }
