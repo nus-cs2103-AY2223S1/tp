@@ -87,7 +87,25 @@ public interface Model {
      */
     void updateFilteredResidentList(Predicate<Resident> predicate);
 
-    ObservableList<String> getObservableFields();
+    /**
+     * Returns an observable list of the fields to be shown when invoking {@code show}.
+     */
+    ObservableList<String> getVisibleFields();
 
-    void setObservableFields(List<String> modifiableList);
+    /**
+     * Updates the list of fields to be shown when invoking {@code show}.
+     * @param fieldsToShow The list of fields to be shown
+     */
+    void setVisibleFields(List<String> fieldsToShow);
+
+    /**
+     * Returns an observable list of the fields to be hidden when invoking {@code hide}.
+     */
+    ObservableList<String> getHiddenFields();
+
+    /**
+     * Updates the list of fields to be hidden when invoking {@code hide}.
+     * @param fieldsToHide The list of fields to be hidden
+     */
+    void setHiddenFields(List<String> fieldsToHide);
 }

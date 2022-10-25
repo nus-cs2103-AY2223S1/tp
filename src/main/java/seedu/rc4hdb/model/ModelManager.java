@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 /**
  * Represents the in-memory model of the resident book data.
@@ -24,7 +25,9 @@ public class ModelManager implements Model {
     private final ResidentBook residentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
-    private final ObservableList<String> observableFieldList;
+
+    private final ObservableList<String> visibleFields;
+    private final ObservableList<String> hiddenFields;
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -36,7 +39,9 @@ public class ModelManager implements Model {
         this.residentBook = new ResidentBook(residentBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
-        this.observableFieldList = FXCollections.observableArrayList();
+
+        this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
+        this.hiddenFields = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -152,12 +157,22 @@ public class ModelManager implements Model {
     //=========== Observable Field List Accessors =============================================================
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return this.observableFieldList;
+    public ObservableList<String> getVisibleFields() {
+        return this.visibleFields;
     }
 
     @Override
-    public void setObservableFields(List<String> modifiableFields) {
-        this.observableFieldList.setAll(modifiableFields);
+    public void setVisibleFields(List<String> fieldsToShow) {
+        this.visibleFields.setAll(fieldsToShow);
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return this.hiddenFields;
+    }
+
+    @Override
+    public void setHiddenFields(List<String> fieldsToHide) {
+        this.hiddenFields.setAll(fieldsToHide);
     }
 }

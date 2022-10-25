@@ -87,12 +87,22 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<String> getObservableFields() {
+    public ObservableList<String> getVisibleFields() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setObservableFields(List<String> observableFields) {
+    public void setVisibleFields(List<String> fieldsToShow) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setHiddenFields(List<String> fieldsToHide) {
         throw new AssertionError("This method should not be called.");
     }
 }
