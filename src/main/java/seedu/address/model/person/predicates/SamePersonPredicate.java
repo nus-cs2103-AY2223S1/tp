@@ -1,8 +1,8 @@
 package seedu.address.model.person.predicates;
 
-import seedu.address.model.person.Person;
-
 import java.util.function.Predicate;
+
+import seedu.address.model.person.Person;
 
 /**
  * Verifies that {@code Person} is the same Person as the Person to check.
