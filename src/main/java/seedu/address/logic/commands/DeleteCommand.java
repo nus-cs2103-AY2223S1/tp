@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Command that contains all subcommands starting with delete.
+ * Command that contains all subcommands starting with {@code delete}.
  */
 @CommandLine.Command(name = "delete", subcommands = {
     DeleteLinkCommand.class,

@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.team.Task;
 
 /**
- * Deletes a task identified using it's displayed index from the task list.
+ * Deletes a task identified using its displayed index from the task list.
  */
 @CommandLine.Command(name = "task")
 public class DeleteTaskCommand extends Command {

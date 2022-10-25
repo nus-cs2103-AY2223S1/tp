@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Command that contains all subcommands starting with edit.
+ * Command that contains all subcommands starting with {@code edit}.
  */
 @CommandLine.Command(name = "edit", subcommands = {
     EditLinkCommand.class,

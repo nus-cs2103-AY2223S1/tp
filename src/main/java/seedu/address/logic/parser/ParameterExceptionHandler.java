@@ -11,7 +11,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ParameterExceptionHandler implements CommandLine.IParameterExceptionHandler {
     @Override
     public int handleParseException(CommandLine.ParameterException ex, String[] args) throws Exception {
-        System.out.println("here");
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ex.getMessage()));
     }
 }

@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Command that contains all subcommands starting with assign.
+ * Command that contains all subcommands starting with {@code assign}.
  */
 @CommandLine.Command(name = "assign", subcommands = {
     AssignTaskCommand.class,

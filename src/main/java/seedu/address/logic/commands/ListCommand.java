@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Command that contains all subcommands starting with list.
+ * Command that contains all subcommands starting with {@code list}.
  */
 @CommandLine.Command(name = "list", subcommands = {
     ListPersonsCommand.class,
