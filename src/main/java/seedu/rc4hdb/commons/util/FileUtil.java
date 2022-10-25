@@ -83,6 +83,7 @@ public class FileUtil {
      * Will create the file if it does not exist yet.
      */
     public static void writeToFile(Path file, String content) throws IOException {
+        createParentDirsOfFile(file);
         Files.write(file, content.getBytes(CHARSET));
     }
 
