@@ -40,10 +40,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 4. **Design and Implementation**
 
-<div class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T15-2/tp/tree/master/docs/diagrams/) folder.
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### 4.1 Architecture
@@ -121,7 +120,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -137,20 +137,12 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The `Model` component,
+The `Model` component:
 
 * stores the student record data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div class="alert alert-info">
-:information_source: **Note:** An alternative and perhaps more OOP model is given below.<br>
-It has a `Class` list in the `StudentRecord`, which `Student` references.<br>
-- This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.<br>
-- This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.
-<img src="images/BetterModelClassDiagram.png" width="450" />
-</div>
 
 #### 4.1.4 Storage component
 
@@ -173,9 +165,64 @@ Classes used by multiple components are in the `seedu.classify.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-#### 4.2.1 AddStud command
+#### 4.2.1 Adding new students
 
-*To be updated*
+**Description**
+
+Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudCommand` and `AddStudCommandParser` classes.
+Before going into the sequence of executing a `addstud` command, let us take a quick look at the `Student` class.
+
+<img src="images/StudentClassDiagram.png" width="550" />
+
+The `Student` class contains a total of 6 fields:
+* 2 `Name` fields for the student and parent names 
+* 1 `Id` field 
+* 1 `Phone` number field 
+* 1 `Email` address field 
+* 1 set of `Exam`(s)
+    * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
+    * Future implementations may allow teachers to create their own examinable items.
+
+**Implementation**
+
+Adding a student record can be divided into 2 main steps: parsing the user input and executing it.
+
+Step 1: Parsing the command
+
+The delete command is first parsed.
+
+1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a addstud command and creates a new `AddStudCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `AddStudCommandParser` creates a new `AddStudCommand` instance which will be executed by the `LogicManager`.
+
+Step 2: Executing the command
+
+The `AddStudCommand` instance now interacts with the `ModelManager` to execute the command.
+1. The `hasStudent` method is called to check if the `Model` contains the student to be added.
+2. Assuming there are no duplicates, the `addStudent` method is then called to add the student into the student record.
+3. The `updateFilteredStudentList` method is called to show the updated list of students in the student record.
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
+5. The control is then passed back to `MainWindow` where the `CommandResult` is displayed to the UI as feedback to the user.
+
+The following activity diagram below summarizes what happens when a user executes an `addstud` command.
+
+<img src="images/AddStudentCommandActivityDiagram.png" width="550" />
+
+**Design Considerations**
+
+The current approach creates multiple `Class` objects per student. It serves as a more straightforward implementation. However, it is not a very OOP solution for the following reasons:
+
+1. Multiple `Class` objects for the same class.
+2. Classes do not have students.
+   * A `Class` object has no reference to the students in that class. 
+
+An alternative and perhaps more OOP approach is given below. It has a `Class` list in the `StudentRecord`, which references to `Student`.
+
+<img src="images/BetterModelClassDiagram.png" width="550" />
+
+* `StudentRecord` only requires one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
+* `Class` has reference to `Student`, modelling the relationship in which a teacher teaches a class with some students.
+* Every `Class` has a set of `Exam`(s) which a `Student` takes and scores a certain grade.
 
 #### 4.2.2 Delete command
 
@@ -204,7 +251,7 @@ The delete command is first parsed.
 
 Step 2: Executing the command
 
-The ‘DeleteCommand’ instance now communicates with the `ModelManager` to execute the command.
+The `DeleteCommand` instance now communicates with the `ModelManager` to execute the command.
 
 1. The `updateFilteredStudentList` method is called to isolate the student record to be deleted.
 2. The `deleteStudent` method is called to delete the student record.
@@ -302,7 +349,7 @@ Design Considerations:
 #### 4.2.7 Toggle View command
 Implementation: 
 
-The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand.
+The `ToggleViewCommand` toggles the application to display or hide all students' parent details. The following activity diagram shows the events that occur when the user executes the `ToggleViewCommand`.
 
 *Insert activity diagram*
 
