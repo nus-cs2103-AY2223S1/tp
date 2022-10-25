@@ -71,8 +71,9 @@ public class TodoCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> todoTags.getChildren().add(new Label(tag.tagName)));
         todoTags.getChildren().forEach(label -> label.setStyle("-fx-background-color: #9867C5;"
-                + "-fx-font-size: 12;-fx-background-radius: 2;-fx-font-family: \"Karla\";"
-                + "-fx-border-radius: 2;-fx-padding: 1 3 1 3;"));
+                + "-fx-font-size: 12;-fx-background-radius: 15;-fx-font-family: \"Karla\";"
+                + "-fx-border-radius: 2;-fx-padding: 1 3 1 3; -fx-label-padding: 3 7 3 7;"
+                + "-fx-text-fill: #CAEFFF;"));
     }
 
     @Override

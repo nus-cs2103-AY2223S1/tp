@@ -42,7 +42,6 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
     public TodoShowCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        String trimmedArgs = args.trim();
         List<PrefixArgument> argList = tokenizeToList(args, PREFIX_DATE, PREFIX_PRIORITY,
             PREFIX_TAG);
 
@@ -104,12 +103,12 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         case INDICATOR_PRIORITY:
             Priority priority = ParserUtil.parsePriority(arg);
             TodoContainsPriorityPredicate priorityPredicate = new TodoContainsPriorityPredicate(priority);
-            return new TodoShowCommand(priorityPredicate, priority.toString().toUpperCase());
+            return new TodoShowCommand(priorityPredicate, priority.toString());
 
         case INDICATOR_TAG:
             Tag tag = ParserUtil.parseTag(arg);
             TodoContainsTagPredicate tagPredicate = new TodoContainsTagPredicate(tag);
-            return new TodoShowCommand(tagPredicate, tag.toString().toUpperCase());
+            return new TodoShowCommand(tagPredicate, tag.tagName);
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));

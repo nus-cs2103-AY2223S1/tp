@@ -15,6 +15,7 @@ import soconnect.commons.core.LogsCenter;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
 import soconnect.model.todo.Todo;
+import soconnect.ui.TodoListPanel;
 
 /**
  * Represents the in-memory model of the SoConnect data.
@@ -27,7 +28,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Todo> filteredTodos;
-    private final ObservableList<Tag> tags;
     private final SimpleStringProperty todoListHeader;
 
     /**
@@ -43,7 +43,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.soConnect.getPersonList());
         filteredTodos = new FilteredList<>(this.todoList.getTodoList());
-        this.tags = this.soConnect.getTagList();
         this.todoListHeader = new SimpleStringProperty("");
     }
 
@@ -290,7 +289,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateTodoListHeader(String header) {
-        this.todoListHeader.set(header);
+        this.todoListHeader.set(TodoListPanel.formatTodoHeader(header));
     }
 
     @Override

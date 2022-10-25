@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 
 .root {
-    -fx-base: derive(#3b2c72, 20%);
+    -fx-base: transparent;
 }
 
 .background {
@@ -9,6 +9,194 @@
     background-color: #3b2c72;
 }
 
+/* This is the styling of the main deep blue background behind all the containers. */
+.pane-with-border {
+    -fx-background-color: #060959;
+}
+
+/* This is the styling for light purple box that appears after hovering on "File" or "Help". */
+.menu-bar {
+    -fx-background-color: #3b2c72;
+    -fx-selection-bar: #707BE3;
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: #FFF2E7;
+}
+
+/* This is the styling for popup container that appears after clicking "File" or "Help". */
+.context-menu {
+    -fx-background-color: derive(#3b2c72, 50%);
+}
+
+.context-menu .label {
+    -fx-text-fill: white;
+}
+
+/* This is the styling of "Enter command here..." box. */
+.stack-pane {
+    -fx-background-color: #250081;
+    -fx-background-radius: 10px;
+    -fx-border-color: #94A6FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+/* This is the styling of text inside "Enter command here..." box. */
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #F70D1A;
+}
+
+#commandTextField {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1;
+    -fx-font-family: "Karla";
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: derive(#94A6FF, 30%);
+}
+
+/*
+ * This is the styling for the result description after entering command.
+ * It is a placeholder for texts like "Unknown command." #3519D3
+ */
+.result-display {
+    -fx-background-color: #3519D3;
+    -fx-background-radius: 10px;
+    -fx-border-color: #94A6FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
+#resultDisplay .content {
+    -fx-background-color: transparent;
+    -fx-wrap-text: true;
+}
+
+.result-display .label {
+    -fx-text-fill: #060959 !important;
+    -fx-background-radius: 10px;
+}
+
+/* This is the styling for two equally split containers for Contact and Todo. */
+.split-pane:horizontal .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent transparent transparent;
+}
+
+.split-pane {
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
+    -fx-background-color: transparent;
+}
+
+/**
+ * This is the styling for each list group in Contact and Todo.
+ * Contrast this with table-view. One list-view (contact) consists of 5 rows in table-view.
+ * Equivalent to grouping several table-views into one list-view.
+ */
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+}
+
+/* Handles styling of even, odd and selected block in Contact. */
+.list-cell:filled:even #cardPane {
+    -fx-background-color: #341671;
+}
+
+.list-cell:filled:odd #cardPane {
+    -fx-background-color: #422680;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-background-color: #853ffd;
+    -fx-border-color: #fcf7ff;
+    -fx-border-width: 1;
+}
+
+/* Handles styling of even, odd and selected block in Today. */
+.list-cell:filled:even #todoCardPane {
+    -fx-background-color: #161C71;
+}
+
+.list-cell:filled:odd #todoCardPane {
+    -fx-background-color: #264C80;
+}
+
+.list-cell:filled:selected #todoCardPane {
+    -fx-background-color: #3F8AFD;
+    -fx-border-color: #fcf7ff;
+    -fx-border-width: 1;
+}
+
+/**
+ * This is default styling for table, used in listing contacts and todo information, row by row.
+ * For example, one contact consists of 5 rows, since there are name, phone, tag, etc.
+*/
+.table-view {
+    -fx-base: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 0 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+            transparent
+            transparent
+            transparent
+            transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+/**
+ * Any instance of label will get this default styling, unless overridden by specific styling in each instance.
+ * For example, attribute phone number, tag, priority, etc. get this default styling if not specified.
+ */
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Karla";
@@ -30,11 +218,150 @@
     -fx-opacity: 1;
 }
 
+/* Handles style of Person List Card */
+.people-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #FFDFF6;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.cell_big_label_person {
+    -fx-font-family: "Karla";
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFDFEA;
+}
+
+#attributeA {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#attributeB {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#attributeC {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#attributeD {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#todoTags {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+/* Handles style of Todo List Card */
+.todo-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #CAEFFF;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.cell_big_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #C3E0FF;
+    -fx-wrap-text: true;
+}
+
+.cell_small_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #C3E0FF;
+}
+
+/* This is the styling for scrolling vertical bar beside Command Result Display, Contact and Todo. */
+.scroll-bar {
+    -fx-background-color: #060959;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #3b2c72;
+    -fx-background-insets: 5px;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+
+/* Handles style of icons */
+.icon-button {
+    -icon-paint: #D9DCFF;
+    -fx-background-color: -icon-paint;
+    -size: 18;
+    -fx-min-width: -size;
+    -fx-min-height: -size;
+    -fx-max-width: -size;
+    -fx-max-height: -size;
+}
+
+#calendarIcon {
+    -fx-shape: "M 299.902344 40.648438 L 320.675781 40.648438 L 320.675781 51.0625 L 299.902344 51.0625 Z M 299.902344 40.648438 M 20.859375 123.96875 L 20.859375 332.269531 C 20.859375 355.277344 39.496094 373.929688 62.484375 373.929688 L 312.234375 373.929688 C 335.222656 373.929688 353.859375 355.277344 353.859375 332.269531 L 353.859375 123.96875 Z M 20.859375 123.96875 M 312.234375 40.648438 L 62.484375 40.648438 C 39.496094 40.648438 20.859375 59.300781 20.859375 82.308594 L 20.859375 134.382812 L 353.859375 134.382812 L 353.859375 82.308594 C 353.859375 59.300781 335.222656 40.648438 312.234375 40.648438 Z M 312.234375 40.648438 M 91.996094 89.921875 C 84.691406 89.921875 78.769531 82.984375 78.769531 74.414062 C 78.769531 65.851562 84.691406 58.90625 91.996094 58.90625 C 99.292969 58.90625 105.210938 65.851562 105.210938 74.414062 C 105.210938 82.976562 99.292969 89.921875 91.996094 89.921875 Z M 154.433594 89.921875 C 147.128906 89.921875 141.207031 82.984375 141.207031 74.414062 C 141.207031 65.851562 147.128906 58.90625 154.433594 58.90625 C 161.730469 58.90625 167.648438 65.851562 167.648438 74.414062 C 167.648438 82.976562 161.730469 89.921875 154.433594 89.921875 Z M 216.871094 89.921875 C 209.566406 89.921875 203.644531 82.984375 203.644531 74.414062 C 203.644531 65.851562 209.566406 58.90625 216.871094 58.90625 C 224.167969 58.90625 230.097656 65.851562 230.097656 74.414062 C 230.085938 82.976562 224.167969 89.921875 216.871094 89.921875 Z M 279.308594 89.921875 C 272.003906 89.921875 266.082031 82.984375 266.082031 74.414062 C 266.082031 65.851562 272.003906 58.90625 279.308594 58.90625 C 286.605469 58.90625 292.535156 65.851562 292.535156 74.414062 C 292.523438 82.976562 286.605469 89.921875 279.308594 89.921875 Z M 279.308594 89.921875 M 284.292969 0.851562 C 271.003906 0.851562 259.496094 9.203125 253.136719 21.371094 C 246.832031 9.464844 235.269531 0.851562 221.855469 0.851562 C 208.566406 0.851562 197.058594 9.203125 190.699219 21.371094 C 184.394531 9.464844 172.832031 0.851562 159.417969 0.851562 C 146.128906 0.851562 134.621094 9.203125 128.261719 21.371094 C 121.957031 9.464844 110.394531 0.851562 96.980469 0.851562 C 76.855469 0.851562 60.558594 19.796875 60.558594 42.5625 C 60.558594 61.875 71.433594 77.671875 87.292969 83.453125 C 95.191406 86.316406 100.03125 78.796875 99.355469 72.769531 C 98.78125 67.769531 95.460938 64.507812 91.765625 62.164062 C 86.71875 58.96875 81.359375 51.667969 81.359375 42.617188 C 81.359375 31.117188 88.34375 20.796875 96.96875 20.796875 C 105.597656 20.796875 112.578125 30.222656 112.578125 40.636719 L 123.152344 40.636719 C 123.121094 41.285156 122.984375 41.898438 122.984375 42.554688 C 122.984375 61.863281 133.859375 77.664062 149.71875 83.441406 C 157.617188 86.308594 162.457031 78.789062 161.78125 72.757812 C 161.207031 67.769531 157.890625 64.507812 154.195312 62.164062 C 149.148438 58.96875 143.789062 51.667969 143.789062 42.617188 C 143.789062 31.117188 150.769531 20.796875 159.398438 20.796875 C 168.023438 20.796875 175.027344 30.234375 175.027344 40.648438 L 185.601562 40.648438 C 185.570312 41.292969 185.433594 41.90625 185.433594 42.5625 C 185.433594 61.875 196.308594 77.671875 212.167969 83.453125 C 220.066406 86.316406 224.90625 78.796875 224.230469 72.769531 C 223.65625 67.777344 220.335938 64.519531 216.640625 62.175781 C 211.59375 58.976562 206.234375 51.675781 206.234375 42.625 C 206.234375 31.128906 213.21875 20.808594 221.84375 20.808594 C 230.472656 20.808594 237.464844 30.234375 237.464844 40.648438 L 248.039062 40.648438 C 248.007812 41.292969 247.871094 41.90625 247.871094 42.5625 C 247.871094 61.875 258.746094 77.671875 274.605469 83.453125 C 282.503906 86.316406 287.34375 78.796875 286.667969 72.769531 C 286.09375 67.777344 282.773438 64.519531 279.078125 62.175781 C 274.03125 58.976562 268.671875 51.675781 268.671875 42.625 C 268.671875 31.128906 275.65625 20.808594 284.28125 20.808594 C 292.910156 20.808594 299.902344 30.234375 299.902344 40.648438 L 320.675781 40.648438 C 320.457031 19.816406 304.273438 0.851562 284.292969 0.851562 Z M 284.292969 0.851562 M 114.515625 155.214844 L 156.140625 155.214844 L 156.140625 196.875 L 114.515625 196.875 Z M 166.546875 155.214844 L 208.171875 155.214844 L 208.171875 196.875 L 166.546875 196.875 Z M 218.578125 155.214844 L 260.203125 155.214844 L 260.203125 196.875 L 218.578125 196.875 Z M 270.609375 155.214844 L 312.234375 155.214844 L 312.234375 196.875 L 270.609375 196.875 Z M 62.484375 207.289062 L 104.109375 207.289062 L 104.109375 248.949219 L 62.484375 248.949219 Z M 114.515625 207.289062 L 156.140625 207.289062 L 156.140625 248.949219 L 114.515625 248.949219 Z M 166.546875 207.289062 L 208.171875 207.289062 L 208.171875 248.949219 L 166.546875 248.949219 Z M 218.578125 207.289062 L 260.203125 207.289062 L 260.203125 248.949219 L 218.578125 248.949219 Z M 270.609375 207.289062 L 312.234375 207.289062 L 312.234375 248.949219 L 270.609375 248.949219 Z M 62.484375 259.363281 L 104.109375 259.363281 L 104.109375 301.023438 L 62.484375 301.023438 Z M 114.515625 259.363281 L 156.140625 259.363281 L 156.140625 301.023438 L 114.515625 301.023438 Z M 166.546875 259.363281 L 208.171875 259.363281 L 208.171875 301.023438 L 166.546875 301.023438 Z M 218.578125 259.363281 L 260.203125 259.363281 L 260.203125 301.023438 L 218.578125 301.023438 Z M 270.609375 259.363281 L 312.234375 259.363281 L 312.234375 301.023438 L 270.609375 301.023438 Z M 62.484375 311.4375 L 104.109375 311.4375 L 104.109375 353.097656 L 62.484375 353.097656 Z M 114.515625 311.4375 L 156.140625 311.4375 L 156.140625 353.097656 L 114.515625 353.097656 Z M 166.546875 311.4375 L 208.171875 311.4375 L 208.171875 353.097656 L 166.546875 353.097656 Z M 166.546875 311.4375 ";
+}
+
+.calendar-icon {
+    -icon-paint: #FBFFD9;
+    -fx-background-color: -icon-paint !important;
+    -size: 15;
+    -fx-min-width: -size;
+    -fx-min-height: -size;
+    -fx-max-width: -size;
+    -fx-max-height: -size;
+}
+
+#priorityIcon {
+    -fx-shape: "M 165.335938 156.296875 C 160.453125 156.296875 157.84375 159.878906 157.84375 167.582031 L 157.84375 208.703125 C 157.84375 215.433594 160.882812 219.007812 165.335938 219.007812 C 169.898438 219.007812 172.933594 215.425781 172.933594 208.703125 L 172.933594 167.582031 C 172.933594 159.878906 170.332031 156.296875 165.335938 156.296875 Z M 165.335938 156.296875 M 94.238281 157.601562 L 89.023438 157.601562 L 89.023438 183.636719 L 91.84375 183.636719 C 100.425781 183.636719 101.617188 182.011719 101.617188 170.289062 C 101.625 158.679688 100.972656 157.601562 94.238281 157.601562 Z M 94.238281 157.601562 M 211.90625 157.601562 L 206.691406 157.601562 L 206.691406 183.636719 L 209.511719 183.636719 C 218.09375 183.636719 219.285156 182.011719 219.285156 170.289062 C 219.285156 158.679688 218.640625 157.601562 211.90625 157.601562 Z M 211.90625 157.601562 M 355.328125 117.039062 L 19.671875 117.039062 C 8.828125 117.039062 0 125.859375 0 136.695312 L 0 238.179688 C 0 249.015625 8.828125 257.839844 19.671875 257.839844 L 355.328125 257.839844 C 366.171875 257.839844 375 249.015625 375 238.179688 L 375 136.695312 C 375 125.859375 366.171875 117.039062 355.328125 117.039062 Z M 368.210938 238.179688 C 368.210938 245.285156 362.429688 251.0625 355.328125 251.0625 L 19.671875 251.0625 C 12.5625 251.0625 6.789062 245.285156 6.789062 238.179688 L 6.789062 136.695312 C 6.789062 129.589844 12.570312 123.8125 19.671875 123.8125 L 355.328125 123.8125 C 362.4375 123.8125 368.210938 129.589844 368.210938 136.695312 Z M 368.210938 238.179688 M 48.105469 157.601562 L 42.457031 157.601562 L 42.457031 183.636719 L 48.105469 183.636719 C 55.484375 183.636719 56.25 182.445312 56.25 170.621094 C 56.25 158.792969 55.492188 157.601562 48.105469 157.601562 Z M 48.105469 157.601562 M 353.511719 129.464844 L 21.488281 129.464844 C 16.515625 129.464844 12.441406 133.535156 12.441406 138.503906 L 12.441406 236.375 C 12.441406 241.34375 16.515625 245.410156 21.488281 245.410156 L 353.519531 245.410156 C 358.492188 245.410156 362.566406 241.34375 362.566406 236.375 L 362.566406 138.511719 C 362.558594 133.535156 358.492188 129.464844 353.511719 129.464844 Z M 49.515625 192.753906 L 42.457031 192.753906 L 42.457031 226.816406 L 31.605469 226.816406 L 31.605469 148.488281 L 49.523438 148.488281 C 64.289062 148.488281 67.109375 152.503906 67.109375 170.621094 C 67.109375 188.734375 64.28125 192.753906 49.515625 192.753906 Z M 102.488281 226.816406 C 101.398438 224.859375 101.183594 222.910156 101.183594 219.765625 L 101.183594 202.074219 C 101.183594 194.699219 99.878906 192.746094 92.714844 192.746094 L 89.023438 192.746094 L 89.023438 226.808594 L 78.164062 226.808594 L 78.164062 148.488281 L 94.996094 148.488281 C 110.84375 148.488281 112.476562 152.722656 112.476562 169.863281 C 112.476562 180.386719 111.066406 184.941406 102.164062 187.65625 L 102.164062 187.871094 C 109.546875 188.628906 112.042969 192.429688 112.042969 199.8125 L 112.042969 216.847656 C 112.042969 219.667969 112.042969 223.570312 112.695312 226.832031 L 102.488281 226.832031 Z M 135.269531 226.816406 L 124.410156 226.816406 L 124.410156 148.488281 L 135.269531 148.488281 Z M 183.796875 206.859375 C 183.796875 217.816406 180.210938 227.476562 165.335938 227.476562 C 151.441406 227.476562 146.992188 220.207031 146.992188 208.058594 L 146.992188 168.445312 C 146.992188 157.488281 150.578125 147.828125 165.335938 147.828125 C 179.339844 147.828125 183.796875 155.097656 183.796875 167.246094 Z M 220.15625 226.816406 C 219.066406 224.859375 218.851562 222.910156 218.851562 219.765625 L 218.851562 202.074219 C 218.851562 194.699219 217.546875 192.746094 210.382812 192.746094 L 206.691406 192.746094 L 206.691406 226.808594 L 195.832031 226.808594 L 195.832031 148.488281 L 212.664062 148.488281 C 228.515625 148.488281 230.144531 152.722656 230.144531 169.863281 C 230.144531 180.386719 228.734375 184.941406 219.832031 187.65625 L 219.832031 187.871094 C 227.21875 188.628906 229.710938 192.429688 229.710938 199.8125 L 229.710938 216.847656 C 229.710938 219.667969 229.710938 223.570312 230.363281 226.832031 L 220.15625 226.832031 Z M 252.9375 226.816406 L 242.078125 226.816406 L 242.078125 148.488281 L 252.9375 148.488281 Z M 298.53125 157.601562 L 285.503906 157.601562 L 285.503906 226.824219 L 274.648438 226.824219 L 274.648438 157.601562 L 261.621094 157.601562 L 261.621094 148.488281 L 298.539062 148.488281 L 298.539062 157.601562 Z M 330.984375 194.707031 L 330.984375 226.824219 L 320.121094 226.824219 L 320.121094 194.707031 L 305.136719 148.488281 L 315.996094 148.488281 L 325.441406 181.472656 L 325.65625 181.472656 L 336.515625 148.488281 L 346.074219 148.488281 Z M 330.984375 194.707031 ";
+}
+
+.priority-icon {
+    -icon-paint: #FFE4C7;
+    -fx-background-color: -icon-paint !important;
+    -size: 15;
+    -fx-min-width: 35;
+    -fx-min-height: -size;
+    -fx-max-width: 35;
+    -fx-max-height: -size;
+}
+
+/* ADDITION */
+
+/* This is the default styling for all text fields, unless specifically specified. */
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Karla";
 }
 
+/* This is styling for tab in switch tab mode. For example, when opening new tab in Chrome. */
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
@@ -45,126 +372,13 @@
     -fx-max-height: 0;
 }
 
-.table-view {
-    -fx-base: transparent;
-    -fx-control-inner-background: transparent;
-    -fx-background-color: transparent;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 0 0;
-    -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        transparent
-        transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Karla";
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#3b2c72, 20%);
-    -fx-border-color: transparent transparent transparent transparent;
-}
-
-.split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#3b2c72, 20%);
-}
-
-.list-view {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: #3b2c72;
-}
-
-.list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
-}
-
-.list-cell:filled:even #cardPane {
-    -fx-background-color: #341671;
-}
-
-.list-cell:filled:odd #cardPane {
-    -fx-background-color: #422680;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-background-color: #853ffd;
-    -fx-border-color: #fcf7ff;
-    -fx-border-width: 1;
-}
-
-.list-cell:filled:even #todoCardPane {
-    -fx-background-color: #161C71;
-}
-
-.list-cell:filled:odd #todoCardPane {
-    -fx-background-color: #264C80;
-}
-
-.list-cell:filled:selected #todoCardPane {
-    -fx-background-color: #3F8AFD;
-    -fx-border-color: #fcf7ff;
-    -fx-border-width: 1;
-}
-
-.stack-pane {
-    -fx-background-color: #250081;
-    -fx-background-radius: 10px;
-    -fx-border-color: #94A6FF;
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-}
-
-.pane-with-border {
-    -fx-background-color: #060959;
-}
-
+/* This is the styling of status bar. For example, the loading bar. */
 .status-bar {
     -fx-background-color: #3b2c72;
 }
 
-.result-display {
-    -fx-background-color: #000181;
-    -fx-background-radius: 10px;
-    -fx-border-color: #94A6FF;
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: #060959 !important;
-}
-
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Karla";
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -180,6 +394,7 @@
     -fx-text-fill: white;
 }
 
+/* This is the styling of grid containers. For example, sudoku. */
 .grid-pane {
     -fx-background-color: derive(#3b2c72, 30%);
     -fx-border-color: transparent;
@@ -190,34 +405,11 @@
     -fx-background-color: #000181;
 }
 
-.context-menu {
-    -fx-background-color: derive(#3b2c72, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
-.menu-bar {
-    -fx-background-color: #3b2c72;
-    -fx-selection-bar: #707BE3;
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Karla";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: #FFF2E7;
-}
-
 /*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ * Metro style Push Button.
+ * Author: Pedro Duque Vieira.
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/.
+ * Used in Copy URL button in Help Window.
  */
 .button {
     -fx-padding: 5 22 5 22;
@@ -225,7 +417,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #060959;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Karla", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -237,7 +429,7 @@
 
 .button:pressed, .button:default:hover:pressed {
     -fx-background-color: white;
-    -fx-text-fill: #060959;
+    -fx-text-fill: white;
 }
 
 .button:focused {
@@ -263,6 +455,7 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+/* This is the styling for containers like popup alert dialog box. */
 .dialog-pane {
     -fx-background-color: #060959;
 }
@@ -288,138 +481,11 @@
     -fx-text-fill: white;
 }
 
-.scroll-bar {
-    -fx-background-color: #060959;
-}
-
-.scroll-bar .thumb {
-    -fx-background-color: #3b2c72;
-    -fx-background-insets: 5px;
-}
-
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
-}
-
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-}
-
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
-}
-
-.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
-}
-
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
-#commandTypeLabel {
-    -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
-}
-
-#commandTextField {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-background-radius: 10px;
-    -fx-border-color: transparent;
-    -fx-border-insets: 0;
-    -fx-border-radius: 10px;
-    -fx-border-width: 1;
-    -fx-font-family: "Karla";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
 #filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, #060959, 10, 0, 0, 0);
-}
-
-#resultDisplay .content {
-    -fx-background-color: #3519D3;
-    -fx-wrap-text: true;
-}
-
-#attributeA {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#attributeB {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#attributeC {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#attributeD {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-/* Handles style of Person List Card */
-.people-heading {
-    -fx-font-size: 28pt;
-    -fx-font-family: "Karla";
-    -fx-text-fill: #FFDFF6;
-    -fx-font-weight: 900;
-    -fx-opacity: 1;
-    -fx-padding: 2px;
-}
-
-.cell_big_label_person {
-    -fx-font-family: "Karla";
-    -fx-font-size: 22px;
-    -fx-font-weight: 700;
-    -fx-text-fill: #FFDFEA;
-}
-
-/* Handles style of Todo List Card */
-.todo-heading {
-    -fx-font-size: 28pt;
-    -fx-font-family: "Karla";
-    -fx-text-fill: #CAEFFF;
-    -fx-font-weight: 900;
-    -fx-opacity: 1;
-    -fx-padding: 2px;
-}
-
-.cell_big_label_todo {
-    -fx-font-family: "Karla";
-    -fx-font-size: 22px;
-    -fx-font-weight: 700;
-    -fx-text-fill: #C3E0FF;
-}
-
-.cell_small_label_todo {
-    -fx-font-family: "Karla";
-    -fx-font-size: 18px;
-    -fx-font-weight: 600;
-    -fx-text-fill: #C3E0FF;
-}
-
-
-#todoTags {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-/* Handles style of icons */
-.icon-button {
-    -icon-paint: #D9DCFF;
-    -fx-background-color: -icon-paint;
-    -size: 18;
-    -fx-min-width: -size;
-    -fx-min-height: -size;
-    -fx-max-width: -size;
-    -fx-max-height: -size;
 }

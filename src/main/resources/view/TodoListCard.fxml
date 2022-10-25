@@ -47,7 +47,7 @@
                         <ImageView>
                             <Image url="@/images/priority_icon.png" requestedWidth="23" requestedHeight="24" />
                         </ImageView>
-                        <Label fx:id="priority" />
+                        <Label fx:id="priority" styleClass="cell_small_label_todo" />
                     </HBox>
                     <FlowPane fx:id="todoTags"/>
                 </VBox>
