@@ -58,7 +58,7 @@ public class Friday implements ReadOnlyFriday {
     /**
      * Replaces the contents of the alias map with alias, keyword pair.
      */
-    public void setAliases(Set<Map.Entry<String, String>> aliases) {
+    public void setAliases(Set<Map.Entry<Alias, ReservedKeyword>> aliases) {
         this.aliases.setAliases(aliases);
     }
 
@@ -114,17 +114,9 @@ public class Friday implements ReadOnlyFriday {
     /**
      * Returns true if an alias with the same identity as {@code alias} exists in FRIDAY.
      */
-    public boolean hasAlias(String alias) {
-        requireNonNull(alias);
-        return aliases.contains(alias);
-    }
-
-    /**
-     * Returns true if an alias with the same identity as {@code alias} exists in FRIDAY.
-     */
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
-        return aliases.contains(alias.toString());
+        return aliases.contains(alias);
     }
 
     /**
@@ -173,7 +165,7 @@ public class Friday implements ReadOnlyFriday {
     }
 
     @Override
-    public Set<Map.Entry<String, String>> getAliasMap() {
+    public Set<Map.Entry<Alias, ReservedKeyword>> getAliasMap() {
         return aliases.entrySet();
     }
 

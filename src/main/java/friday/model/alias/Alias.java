@@ -20,8 +20,8 @@ public class Alias {
         value = alias;
     }
 
-    public static boolean isValidAlias(Alias test) {
-        return !ReservedKeyword.LIST_RESERVED_KEYWORDS.contains(test.toString());
+    public static boolean isValidAlias(String test) {
+        return !ReservedKeyword.LIST_RESERVED_KEYWORDS.contains(test);
     }
 
     @Override

@@ -15,6 +15,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.CommandTestUtil;
+import friday.model.alias.Alias;
+import friday.model.alias.ReservedKeyword;
 import friday.model.student.Student;
 import friday.model.student.exceptions.DuplicateStudentException;
 import friday.testutil.StudentBuilder;
@@ -103,7 +105,7 @@ public class MasteryCheckBookTest {
         }
 
         @Override
-        public Set<Map.Entry<String, String>> getAliasMap() {
+        public Set<Map.Entry<Alias, ReservedKeyword>> getAliasMap() {
             throw new AssertionError("This method should not be called.");
         }
     }

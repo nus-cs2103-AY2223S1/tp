@@ -100,11 +100,6 @@ public interface Model {
     boolean hasAlias(Alias alias);
 
     /**
-     * Returns true if an alias with the same value as {@code key} exists in FRIDAY.
-     */
-    boolean hasAlias(String key);
-
-    /**
      * Adds an alias that maps to keyword to FRIDAY.
      * The alias must not already exist in FRIDAY.
      * The keyword must be a valid reserved keyword.
