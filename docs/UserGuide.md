@@ -55,7 +55,7 @@ Test
     * [Accessing command history](ug-pages/quality-of-life.md#accessing-command-history)
   * [Exiting RC4HDB `exit`](ug-pages/exiting-the-program.md#exiting-the-program--exit)
 * [FAQ](ug-pages/faq.md#faq)
-* [Glossary]()
+* [Glossary](ug-pages/glossary.md)
 * [Authors]()
 * [Command Summary](ug-pages/command-summary.md#command-summary)
 
