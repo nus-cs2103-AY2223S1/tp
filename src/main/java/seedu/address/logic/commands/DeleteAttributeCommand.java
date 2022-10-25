@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
 
@@ -80,28 +79,24 @@ public class DeleteAttributeCommand extends Command {
      */
     private Person createPersonAfterDeletion(Person toDelete) {
         Name name = toDelete.getName();
+        Set<Tag> tags = toDelete.getTags();
         Role role = prefixToDelete.equals(PREFIX_ROLE) ? null : toDelete.getRole().orElse(null);
         Address address = prefixToDelete.equals(PREFIX_ADDRESS) ? null
                                 : toDelete.getAddress().orElse(null);
-        Set<Tag> tags = prefixToDelete.equals(PREFIX_TAG) ? null : toDelete.getTags();
         Timezone timezone = prefixToDelete.equals(PREFIX_TIMEZONE) ? null
                                 : toDelete.getTimezone().orElse(null);
-        Map<ContactType, Contact> contacts = toDelete.getContacts();
-        Contact email = prefixToDelete.equals(PREFIX_EMAIL) ? null
-                                        : contacts.get(ContactType.EMAIL);
-        Contact phone = prefixToDelete.equals(PREFIX_PHONE) ? null
-                                        : contacts.get(ContactType.PHONE);
-        Contact slack = prefixToDelete.equals(PREFIX_SLACK) ? null
-                                        : contacts.get(ContactType.SLACK);
-        Contact telegram = prefixToDelete.equals(PREFIX_TELEGRAM) ? null
-                                        : contacts.get(ContactType.TELEGRAM);
 
-        Map<ContactType, Contact> updatedContacts = new HashMap<>();
+        Map<ContactType, Contact> updatedContacts = new HashMap<>(toDelete.getContacts());
 
-        updatedContacts.put(ContactType.EMAIL, email);
-        updatedContacts.put(ContactType.TELEGRAM, telegram);
-        updatedContacts.put(ContactType.PHONE, phone);
-        updatedContacts.put(ContactType.SLACK, slack);
+        if (prefixToDelete.equals(PREFIX_EMAIL)) {
+            updatedContacts.remove(ContactType.EMAIL);
+        } else if (prefixToDelete.equals(PREFIX_PHONE)) {
+            updatedContacts.remove(ContactType.PHONE);
+        } else if (prefixToDelete.equals(PREFIX_SLACK)) {
+            updatedContacts.remove(ContactType.SLACK);
+        } else if (prefixToDelete.equals(PREFIX_TELEGRAM)) {
+            updatedContacts.remove(ContactType.TELEGRAM);
+        }
 
         return new Person(name, address, tags, updatedContacts, role, timezone);
     }
