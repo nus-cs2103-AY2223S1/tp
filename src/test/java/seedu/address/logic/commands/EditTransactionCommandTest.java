@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
@@ -14,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyJeeqTracker;
@@ -75,6 +78,30 @@ public class EditTransactionCommandTest {
 
         assertThrows(CommandException.class, () ->
                 new EditTransactionCommand(INDEX_SECOND_CLIENT, descriptor).execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        EditTransactionCommand.EditTransactionDescriptor descriptor =
+                new EditTransactionDescriptorBuilder(editedTransaction).build();
+
+        EditTransactionCommand firstCommand = new EditTransactionCommand(Index.fromOneBased(1), descriptor);
+        EditTransactionCommand secondCommand = new EditTransactionCommand(Index.fromOneBased(1), descriptor);
+
+        // same values -> returns true
+        assertTrue(firstCommand.equals(secondCommand));
+
+        // same object -> returns true
+        assertTrue(firstCommand.equals(firstCommand));
+
+        // null -> returns false
+        assertFalse(firstCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(firstCommand.equals(new ListCommand()));
+
+        // different index -> returns false
+        assertFalse(firstCommand.equals(new EditTransactionCommand(Index.fromOneBased(3), descriptor)));
     }
 
     /**

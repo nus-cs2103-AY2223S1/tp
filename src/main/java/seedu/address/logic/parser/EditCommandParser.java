@@ -57,8 +57,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             return parseClientEditCommand(argMultimap, index);
         case "transaction":
             return parseTransactionEditCommand(argMultimap, index);
-        case "company":
-        //return new EditCompany(args, index);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
