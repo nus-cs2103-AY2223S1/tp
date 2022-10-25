@@ -15,7 +15,7 @@ import seedu.address.model.buyer.FilterBuyerByPricePredicate;
 import seedu.address.model.property.Property;
 
 /**
- * Deletes a buyer identified using it's displayed index from the address book.
+ * Matches a {@code property} to all {@code buyers} that match its attributes.
  */
 public class MatchPropertyCommand extends Command {
 
