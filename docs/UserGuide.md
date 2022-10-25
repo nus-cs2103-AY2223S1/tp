@@ -18,7 +18,7 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/nose` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/ear`, `t/nose t/throat` etc.
@@ -191,7 +191,6 @@ Format: `hide appts r/REASON [MORE_REASONS]`
 
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
-* `hide appts s/marked` hides all marked appointments.<br>
 
 By tag:
 
@@ -208,8 +207,8 @@ Examples:
 By marked/unmarked status:
 Hides appointments which are marked/unmarked.
 
-Format: `hide appts s/marked` or `hide appts s/m` <br>
-Alternative: `hide appts s/unmarked` or `hide appts s/um`
+Format: `hide appts s/STATUS` <br>
+Shortform: `marked` status can be shortened to `m`, `unmarked` can be shortened to `um`.
 
 Examples:
 * `hide appts s/marked` hides all appointments that has been marked.
@@ -253,22 +252,10 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 
 * At least 1 of the optional fields must be provided.
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Patients matching at least one keyword will be hidden (i.e. `OR` search).
-  e.g. `Hans Bo` will hide `Hans Gruber`, `Bo Yang`
 * `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
-  * `[n/NAME]` searches for the name of the patients.
-  * `[p/PHONE]` searches for the phone number of the patients.
-  * `[e/EMAIL]` searches for the email of the patients.
-  * `[a/ADDRESS]` searches for the address of the patients.
-  * `[t/TAG]` searches for matching tags of the patients.
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
-  * `[r/REASON]` searches for appointments with the given reason.
-  * `[ds/DATE_START]` searches for appointments occuring at or after `DATE_START`.
-  * `[ds/DATE_END]` searches for appointments occuring at or before `DATE_END`.
-  * `[ta/APPOINTMENT_TAG]` searches for matching tags of the appointments.
+  * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
+  * `[ds/DATE_END]` searches for appointments occurring at or before `DATE_END`.
 * Only patients and appointments that satisifies all criteria will be displayed.
   * A patient must satisify all patient criteria and have at least 1 appointment that satisifies all the appointment criteria to be displayed.
   * An appointment must satisify all appointment criteria and belong to a patient that satisifes all the patient criteria to be displayed.
@@ -290,7 +277,7 @@ Examples:
 
 Deletes a patient or a range of patients from idENTify.
 
-Format: `delete INDEX [ENDINDEX]`
+Format: `delete INDEX [END_INDEX]`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
@@ -324,12 +311,12 @@ Examples:
 
 Marks a specified appointment in the appointment list as complete.
 
-If the specified appointment was set to be recurring, automatically books a new appointment that will occur after the time period specified.
+If the specified appointment was set to be recurring, automatically books a new appointment in the future as given by the recurring time period of the appointment.
 
 Format: `mark APPOINTMENT_INDEX`
 
 * `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked, as shown in the appointment list.
-* Value of `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `mark 3`
@@ -341,7 +328,7 @@ Unmarks a specified appointment in the appointment list as incomplete.
 Format: `unmark APPOINTMENT_INDEX`
 
 * `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked, as shown in the appointment list.
-* Value of `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `unmark 1`
@@ -385,7 +372,7 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-IdENTify data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+idENTify data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, idENTify will discard all data and start with an empty data file at the next run.
@@ -399,7 +386,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX [END_INDEX]`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Group Patients** | `group patients`
