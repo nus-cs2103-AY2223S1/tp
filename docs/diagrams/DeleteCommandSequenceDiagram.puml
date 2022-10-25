@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudentRecordParser" as StudentRecordParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete id/123A")
+activate LogicManager
+
+LogicManager -> StudentRecordParser : parseCommand("delete id/123A")
+activate StudentRecordParser
+
+create DeleteCommandParser
+StudentRecordParser -> DeleteCommandParser
+activate DeleteCommandParser
+
+DeleteCommandParser --> StudentRecordParser
+deactivate DeleteCommandParser
+
+StudentRecordParser -> DeleteCommandParser : parse(" id/123A")
+activate DeleteCommandParser
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandParser : d
+deactivate DeleteCommand
+
+DeleteCommandParser --> StudentRecordParser : d
+deactivate DeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommandParser -[hidden]-> StudentRecordParser
+destroy DeleteCommandParser
+
+StudentRecordParser --> LogicManager : d
+deactivate StudentRecordParser
+
+LogicManager -> DeleteCommand : execute(Model)
+activate DeleteCommand
+
+DeleteCommand -> Model : updateFilteredStudentList(Predicate)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : deleteStudent(Student)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : updateFilteredStudentList(Predicate)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+create CommandResult
+DeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteCommand : commandResult
+deactivate CommandResult
+
+DeleteCommand --> LogicManager : commandResult
+deactivate DeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
