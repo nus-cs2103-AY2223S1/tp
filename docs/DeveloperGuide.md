@@ -224,10 +224,11 @@ the given grade.
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
 Step 1: The user input is parsed similar to other commands and a `GradeCommand` object is created using the given 
-student index, session name, and grade. 
+student indices, session name, and grade. 
 
-Step 2: The `GradeCommand` object is executed. The given index is used to retrieve the `Student` object from the current
-curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method. 
+Step 2: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
+current curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndices` method. For each 
+student, steps 3 to 7 are repeated.
 
 Step 3: Then a new `Student` object is created from the old `Student` object by updating the session
 grade with help of the `Student#getUpdatedStudent` method.  

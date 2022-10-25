@@ -29,43 +29,45 @@ activate Model
 Model --> GradeCommand: lastShownList
 deactivate Model
 
-GradeCommand -> Util: parseStudentFromIndex
+GradeCommand -> Util: parseStudentFromIndices
 activate Util
-Util --> GradeCommand: oldStudent
+Util --> GradeCommand: oldStudents
 deactivate Util
 
-GradeCommand -> StudentC: getUpdatedStudent
-activate StudentC
+loop for each oldStudent in oldStudents
+    GradeCommand -> StudentC: getUpdatedStudent
+    activate StudentC
 
-StudentC -> SMD: getUpdatedModuleDataList
-activate SMD
+    StudentC -> SMD: getUpdatedModuleDataList
+    activate SMD
 
-SMD -> SD: getUpdatedSessionDataList
-activate SD
-create Session
-SD -> Session
-activate Session
-Session --> SD
-deactivate Session
-SD --> SMD
-deactivate SD
+    SMD -> SD: getUpdatedSessionDataList
+    activate SD
+    create Session
+    SD -> Session
+    activate Session
+    Session --> SD
+    deactivate Session
+    SD --> SMD
+    deactivate SD
 
 
-SMD --> StudentC: newModuleDataList
-deactivate SMD
+    SMD --> StudentC: newModuleDataList
+    deactivate SMD
 
-create Student
-StudentC -> Student
-activate Student
-Student --> StudentC: newStudent
-deactivate Student
+    create Student
+    StudentC -> Student
+    activate Student
+    Student --> StudentC: newStudent
+    deactivate Student
 
-StudentC --> GradeCommand: newStudent
-deactivate StudentC
+    StudentC --> GradeCommand: newStudent
+    deactivate StudentC
 
-GradeCommand -> Model: setStudent
-activate Model
-deactivate Model
+    GradeCommand -> Model: setStudent
+    activate Model
+    deactivate Model
+end
 
 create CommandResult
 GradeCommand -> CommandResult
