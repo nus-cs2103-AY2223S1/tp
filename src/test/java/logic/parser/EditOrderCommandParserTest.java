@@ -1,4 +1,4 @@
-package tracko.logic.parser;
+package logic.parser;
 
 //import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 //import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;

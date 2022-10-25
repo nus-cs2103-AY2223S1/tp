@@ -1,10 +1,7 @@
-package tracko.logic.commands;
+package logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
-import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tracko.logic.commands.CommandTestUtil.showItemAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalItems.getTrackOWithTypicalItems;
@@ -37,7 +34,7 @@ public class DeleteItemCommandTest {
         ModelManager expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
 
-        assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -45,12 +42,12 @@ public class DeleteItemCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getInventoryList().size() + 1);
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showItemAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.showItemAtIndex(model, INDEX_FIRST);
 
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
@@ -61,12 +58,12 @@ public class DeleteItemCommandTest {
         expectedModel.deleteItem(itemToDelete);
         showNoItem(expectedModel);
 
-        assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showItemAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.showItemAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
 
@@ -75,7 +72,7 @@ public class DeleteItemCommandTest {
 
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test

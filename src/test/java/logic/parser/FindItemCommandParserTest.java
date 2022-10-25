@@ -1,15 +1,16 @@
-package tracko.logic.parser;
+package logic.parser;
 
-import org.junit.jupiter.api.Test;
-import tracko.logic.commands.item.FindItemCommand;
-import tracko.logic.parser.item.FindItemCommandParser;
-import tracko.model.item.ItemContainsKeywordsPredicate;
+import static logic.parser.CommandParserTestUtil.assertParseFailure;
+import static logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import org.junit.jupiter.api.Test;
+
+import tracko.logic.commands.item.FindItemCommand;
+import tracko.logic.parser.item.FindItemCommandParser;
+import tracko.model.item.ItemContainsKeywordsPredicate;
 
 public class FindItemCommandParserTest {
     private FindItemCommandParser parser = new FindItemCommandParser();

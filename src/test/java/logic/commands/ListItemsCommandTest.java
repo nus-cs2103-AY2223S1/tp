@@ -1,16 +1,15 @@
-package tracko.logic.commands;
+package logic.commands;
+
+import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
+import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
-
-import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
-import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
-import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
 public class ListItemsCommandTest {
 
@@ -25,12 +24,14 @@ public class ListItemsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.assertCommandSuccess(
+                new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showOrderAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.assertCommandSuccess(
+                new ListOrdersCommand(), model, ListOrdersCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
