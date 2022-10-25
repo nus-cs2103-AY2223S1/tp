@@ -1,7 +1,6 @@
 package seedu.studmap.model.student;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import seedu.studmap.model.tag.Tag;
@@ -10,12 +9,39 @@ import seedu.studmap.model.tag.Tag;
  * A parameter object for Student constructor.
  */
 public class StudentData {
+    private StudentID id;
+    private GitName gitUser;
+    private TeleHandle teleHandle;
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
+
+    public StudentID getId() {
+        return id;
+    }
+
+    public void setId(StudentID id) {
+        this.id = id;
+    }
+
+    public GitName getGitUser() {
+        return gitUser;
+    }
+
+    public void setGitUser(GitName gitName) {
+        this.gitUser = gitName;
+    }
+
+    public TeleHandle getTeleHandle() {
+        return teleHandle;
+    }
+
+    public void setTeleHandle(TeleHandle teleHandle) {
+        this.teleHandle = teleHandle;
+    }
 
     public Name getName() {
         return name;
@@ -67,27 +93,5 @@ public class StudentData {
 
     public Set<Attendance> getAttendances() {
         return attendances;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        StudentData that = (StudentData) o;
-        return Objects.equals(name, that.name)
-                && Objects.equals(phone, that.phone)
-                && Objects.equals(email, that.email)
-                && Objects.equals(address, that.address)
-                && Objects.equals(tags, that.tags)
-                && Objects.equals(attendances, that.attendances);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, phone, email, address, tags, attendances);
     }
 }

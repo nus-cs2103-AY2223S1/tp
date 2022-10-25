@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Represents a Student in the student map.
+ * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -21,27 +21,46 @@ public class Student {
     private final Email email;
 
     // Data fields
+    private final StudentID id;
+    private final TeleHandle teleHandle;
+    private final GitName gitName;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
 
     /**
      * Constructor using a StudentData parameter object.
-     * Requires name, phone, email, studmap, tags to be non-null.
+     * Requires name, phone, email, address, tags to be non-null.
      *
      * @param studentData StudentData parameter object.
      */
     public Student(StudentData studentData) {
-        requireAllNonNull(studentData.getName(), studentData.getPhone(),
+        requireAllNonNull(studentData.getId(), studentData.getGitUser(),
+                studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
                 studentData.getEmail(), studentData.getAddress(),
                 studentData.getTags(), studentData.getAttendances());
 
+        this.id = studentData.getId();
+        this.teleHandle = studentData.getTeleHandle();
+        this.gitName = studentData.getGitUser();
         this.name = studentData.getName();
         this.phone = studentData.getPhone();
         this.email = studentData.getEmail();
         this.address = studentData.getAddress();
         this.tags.addAll(studentData.getTags());
         this.attendances.addAll(studentData.getAttendances());
+    }
+
+    public StudentID getId() {
+        return id;
+    }
+
+    public GitName getGitName() {
+        return gitName;
+    }
+
+    public TeleHandle getTeleHandle() {
+        return teleHandle;
     }
 
     public Name getName() {
@@ -56,24 +75,12 @@ public class Student {
         return phone;
     }
 
-    public String getPhoneString() {
-        return phone.toString();
-    }
-
     public Email getEmail() {
         return email;
     }
 
-    public String getEmailString() {
-        return email.toString();
-    }
-
     public Address getAddress() {
         return address;
-    }
-
-    public String getAddressString() {
-        return address.toString();
     }
 
     /**
@@ -92,35 +99,11 @@ public class Student {
         return Collections.unmodifiableSet(attendances);
     }
 
-    public StudentData getStudentData() {
-
-        StudentData studentData = new StudentData();
-
-        studentData.setName(this.getName());
-        studentData.setPhone(this.getPhone());
-        studentData.setEmail(this.getEmail());
-        studentData.setAddress(this.getAddress());
-
-        studentData.setTags(new HashSet<>(this.getTags()));
-        studentData.setAttendances(new HashSet<>(this.getAttendances()));
-
-        return studentData;
-    }
-
     /**
-     * Returns attendance in percentage.
+     * Returns true if both persons have the same name.
+     * This defines a weaker notion of equality between two persons.
      */
-    public float getAttendancePercentage() {
-        float numOfClasses = getAttendances().size();
-        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
-        return presentFor / numOfClasses * 100;
-    }
-
-    /**
-     * Returns true if both students have the same name.
-     * This defines a weaker notion of equality between two students.
-     */
-    public boolean isSameStudent(Student otherStudent) {
+    public boolean isSamePerson(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
@@ -129,8 +112,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same identity and data fields.
-     * This defines a stronger notion of equality between two students.
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -144,6 +127,9 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
+                && otherStudent.getId().equals(getId())
+                && otherStudent.getGitName().equals(getGitName())
+                && otherStudent.getTeleHandle().equals(getTeleHandle())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
@@ -154,14 +140,17 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, attendances);
+        return Objects.hash(id, gitName, teleHandle, name, phone, email, address, tags, attendances);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName()).append("; Phone: ").append(getPhone()).append("; Email: ")
-                .append(getEmail()).append("; Address: ").append(getAddress());
+                .append(getEmail()).append("; StudentID: ")
+                .append(getId()).append("; GitHub Username: ")
+                .append(getGitName()).append("; TeleHandle: ").append(getTeleHandle())
+                .append("; Address: ").append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
