@@ -81,6 +81,11 @@ public class SortCommand extends Command {
             return false;
         }
 
+        // same index
+        if (!index.equals(((SortCommand) other).index)) {
+            return false;
+        }
+
         // state check
         SortCommand e = (SortCommand) other;
         return isLatest == e.isLatest;

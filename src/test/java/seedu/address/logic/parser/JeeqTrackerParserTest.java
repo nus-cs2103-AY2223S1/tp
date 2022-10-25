@@ -31,6 +31,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SellCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -182,5 +183,12 @@ public class JeeqTrackerParserTest {
                 + PREFIX_DATE
                 + "09/11/2000 ");
         assertEquals(new SellCommand(INDEX_FIRST_CLIENT, transaction), command);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased() + " " + "latest");
+        assertEquals(new SortCommand((INDEX_FIRST_CLIENT), true), command);
     }
 }
