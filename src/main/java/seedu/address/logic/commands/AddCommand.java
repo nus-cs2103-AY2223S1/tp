@@ -58,6 +58,10 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+
+        assert toAdd.getReminders().size() == 1 : "Person should be instantiated with a default birthday reminder!";
+        model.addReminder(toAdd, toAdd.getReminders().iterator().next());
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

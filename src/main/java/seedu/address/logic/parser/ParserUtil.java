@@ -141,7 +141,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String reminder} into an {@code Reminder}.
+     * Parses a {@code String reminder} into an {@code Set<Reminder>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is invalid.
