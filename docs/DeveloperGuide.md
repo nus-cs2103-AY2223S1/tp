@@ -325,9 +325,9 @@ _{To add activity diagram}_
 
 _{To add other design considerations}_
 
-### \[Proposed\] Find feature
+### Find feature
 
-#### Proposed Implementation
+#### Implementation
 The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
 logic established. However, it is unique in the sense that it will look through all the possible fields and data
 and return matches.
@@ -340,11 +340,6 @@ and their data into a list of students.
 Step 2. When user types in the find command the logic will tell the program to go through all the fields for every 
 student inside the student class and return the student if there is a successful match in any of the fields 
 
-#### Design considerations:
-
-**Aspect: How find command is implemented:**
-
-_{To add other design considerations}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
