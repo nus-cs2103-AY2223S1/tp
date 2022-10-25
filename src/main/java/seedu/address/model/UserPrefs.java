@@ -2,9 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.ui.ResultDisplay;
 
 /**
  * Represents User's preferences.

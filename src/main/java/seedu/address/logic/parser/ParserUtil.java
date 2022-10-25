@@ -142,11 +142,11 @@ public class ParserUtil {
      */
     public static String parseRename(String newName) throws ParseException {
         requireNonNull(newName);
-        String REGEX_PATTERN = "^[A-za-z0-9-_]{1,255}$";
-        String MESSAGE_CONSTRAINTS = "File name is limited to alphanumeric characters, '-' and '_'";
+        String regexPattern = "^[A-za-z0-9-_]{1,255}$";
+        String messageConstraints = "File name is limited to alphanumeric characters, '-' and '_'";
         String trimmedTag = newName.trim();
-        if (!trimmedTag.matches(REGEX_PATTERN)) {
-            throw new ParseException(MESSAGE_CONSTRAINTS);
+        if (!trimmedTag.matches(regexPattern)) {
+            throw new ParseException(messageConstraints);
         }
         return trimmedTag;
     }

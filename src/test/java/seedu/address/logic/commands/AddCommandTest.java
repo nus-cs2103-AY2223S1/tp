@@ -134,6 +134,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void renameAddressBook(String newName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean addAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
