@@ -138,7 +138,6 @@ Deletes the specified person from Friendnancial.
 
 Format: `delete INDEX` or `delete n/NAME`
 
-* Before deleting the contact permanently, confirms with the user with a message.
 * Deletes the person at the specified `INDEX` or with the specified `NAME`.
     * Only full name will be matched e.g. `Han` will not match `Hans`.
 * If multiple entries with the same `NAME` are found, sends a message to user to tell the user to delete by `INDEX` instead.
@@ -160,15 +159,21 @@ Format: `clear`
 * Before clearing all entries permanently, confirms with the user with a message.
 
 
-### Getting reminders : `remind`
+### Adding a reminder : `remind`
 
-Reminds the user of the upcoming birthdays of all the users contacts stored in Friendnancial.
+Adds a reminder to the specified contact.
 
-Format: `remind`
+Format: `remind INDEX r/REMINDER d/DATE`
+
+* Adds a reminder to the person at the specified `INDEX` with the reminder `REMINDER` and date `DATE`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* The date **must be in the format of** `D-MM-YYYY`.
+
 
 Examples:
-* `remind` displays a popup listing all the users contacts names and birthdays as
-as reminder to the user.
+* `remind 2 r/update client information d/20-10-2022` adds a reminder to the 2nd person in the address book.
+* `find Betsy` followed by `remind 1 r/buy gift d/25-10-2022` adds a reminder linked to the 1st person in the result of the `find` command.
 
 ### Updating insurance information about a contact : `insurance`
 
