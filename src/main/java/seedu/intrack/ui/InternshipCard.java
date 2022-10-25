@@ -65,7 +65,7 @@ public class InternshipCard extends UiPart<Region> {
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         status.getChildren().add(lab);
-        salary.setText(internship.getSalary().value);
+        salary.setText("$" + internship.getSalary().value);
         Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
         website.getChildren().add(hyperlink);
         hyperlink.setOnAction(e -> {

@@ -72,7 +72,7 @@ public class SelectedInternshipCard extends UiPart<Region> {
         status.getChildren().add(lab);
 
         email.setText(internship.getEmail().value);
-        salary.setText(internship.getSalary().value);
+        salary.setText("$" + internship.getSalary().value);
 
         Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
         website.getChildren().add(hyperlink);
