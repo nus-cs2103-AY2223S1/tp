@@ -8,6 +8,8 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Viewing events list: `list-e`](#viewing-events-list-list-e)
   * [Adding trips: `add n/TITLE d/DESCRIPTION`](#adding-trips-add-ntitle-ddescription)
   * [Viewing trips list: `list`](#viewing-trips-list-list)
+  * [Marking trips as done: `mark`](#marking-trips-as-done-mark)
+  * [Marking trips as not done: `unmark`](#marking-trips-as-not-done-unmark)
   * [Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`](#adding-events-to-trips-add-et-nevent-name-ttrip-name)
   * [Saving data](#saving-data)
   * [Exiting the program: `bye`](#exiting-the-program-bye)
@@ -86,6 +88,28 @@ Examples:
 Shows a list of all trips added.
 
 Format: `list`
+
+### Marking trips as done: `mark`
+Mark the trip in the specified INDEX as done
+
+Format: `mark INDEX`
+- Marks the trip at the specified INDEX as done.
+- The index refers to the index number shown in the trip list.
+- The index must be a positive integer 1, 2, 3, …
+
+Examples:
+- `mark 1`
+
+### Marking trips as not done: `unmark`
+Mark the trip in the specified INDEX as not done
+
+Format: `mark INDEX`
+- Marks the trip at the specified INDEX as not done.
+- The index refers to the index number shown in the trip list.
+- The index must be a positive integer 1, 2, 3, …
+- 
+Examples:
+- `mark 1`
 
 ### Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`
 Adds the specified event to the specified trip.
