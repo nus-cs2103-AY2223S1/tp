@@ -12,25 +12,25 @@
     </Label>
     <GridPane fx:id="stackedBar" VBox.vgrow="ALWAYS" style="-fx-border-radius: 25px;" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity">
         <VBox alignment="CENTER" GridPane.columnIndex="0" VBox.vgrow="ALWAYS" style="-fx-background-color: #fa9960" minHeight="50">
-            <Label fx:id="appliedLabel" />
+            <Label fx:id="appliedLabel" style="-fx-text-fill: #1c1c1c;"/>
         </VBox>
         <VBox alignment="CENTER" GridPane.columnIndex="1" VBox.vgrow="ALWAYS" style="-fx-background-color: #33c2ff">
-            <Label fx:id="assessmentLabel" />
+            <Label fx:id="assessmentLabel" style="-fx-text-fill: #1c1c1c;"/>
         </VBox>
         <VBox alignment="CENTER" GridPane.columnIndex="2" VBox.vgrow="ALWAYS" style="-fx-background-color: #ffe74e">
-            <Label fx:id="interviewLabel" />
+            <Label fx:id="interviewLabel" style="-fx-text-fill: #1c1c1c;"/>
         </VBox>
         <VBox alignment="CENTER" GridPane.columnIndex="3" VBox.vgrow="ALWAYS" style="-fx-background-color: #f487fc">
-            <Label fx:id="offerLabel" />
+            <Label fx:id="offerLabel" style="-fx-text-fill: #1c1c1c;"/>
         </VBox>
         <VBox alignment="CENTER" GridPane.columnIndex="4" VBox.vgrow="ALWAYS" style="-fx-background-color: #8df863">
-            <Label fx:id="acceptedLabel" />
+            <Label fx:id="acceptedLabel" style="-fx-text-fill: #1c1c1c;"/>
         </VBox>
         <VBox alignment="CENTER" GridPane.columnIndex="5" VBox.vgrow="ALWAYS" style="-fx-background-color: #fc5f5f">
-            <Label fx:id="rejectedLabel" />
+            <Label fx:id="rejectedLabel" style="-fx-text-fill: #1c1c1c;"/>
         </VBox>
         <VBox alignment="CENTER" GridPane.columnIndex="6" VBox.vgrow="ALWAYS" style="-fx-background-color: gray">
-            <Label fx:id="noDataLabel" />
+            <Label fx:id="noDataLabel" style="-fx-text-fill: #1c1c1c;"/>
         </VBox>
 
         <columnConstraints>

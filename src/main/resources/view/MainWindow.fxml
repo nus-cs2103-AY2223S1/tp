@@ -107,7 +107,7 @@
                   <Insets right="10" left="10" />
                 </padding>
                 <VBox alignment="CENTER" style="-fx-background-color: #ffe74e;-fx-background-radius:20px;">
-                  <Label style="-fx-text-fill: #bd7200;">
+                  <Label style="-fx-text-fill: #9f6100;">
                     Interview
                   </Label>
                 </VBox>
