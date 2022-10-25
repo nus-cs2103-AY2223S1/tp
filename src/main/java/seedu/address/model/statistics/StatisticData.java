@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import javafx.scene.chart.PieChart.Data;
 
 /**
- * Represents a data point in the Statistical Data.
+ * Represents a data point in the Statistical Data for a PieChart.
  * Has a String {@code name} and double {@code value} as it is a piechart datapoint.
  * Guarrantees: Immutable, data points are not null.
  */

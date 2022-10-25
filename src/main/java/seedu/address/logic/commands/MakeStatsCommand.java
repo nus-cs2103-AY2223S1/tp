@@ -19,9 +19,9 @@ public class MakeStatsCommand extends Command {
 
     public static final String COMMAND_WORD = "makeStats";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates the Statistics of the Event at the user"
-        + "specified index. Type of statistics shown is based off a user input parameter.\n"
-        + "Parameters INDEX " + PREFIX_TYPE + "TYPE. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Generates the Statistics of the Event at the index"
+        + "specified by user. Type of statistics shown is based off a user input parameter.\n"
+        + "Parameters INDEX " + PREFIX_TYPE + "TYPE \n"
         + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TYPE + "g";
 
     public static final String SHOWING_STATS_MESSAGE = "Opened statistics window.";
@@ -32,7 +32,7 @@ public class MakeStatsCommand extends Command {
 
     /**
      * Constructs a {@code MakeStatsCommand} to create statistics
-     *  for the event at the specified {@code index}
+     * for the event at the specified {@code index} of the events list.
      */
     public MakeStatsCommand(Index index, boolean isGenderStatistic) {
         requireAllNonNull(index, isGenderStatistic);

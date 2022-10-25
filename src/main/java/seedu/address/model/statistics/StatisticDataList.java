@@ -9,7 +9,7 @@ import seedu.address.model.statistics.exceptions.DuplicateDataException;
 
 /**
  * A list of {@code StatisticData} that enforces that no 2 StatisticData points have the same name
- * to avoid confusing charts. As such, adding uses StatisticData#isSameName(StatisticData) in order
+ * as the charts require unique data points. As such, adding uses StatisticData#isSameName(StatisticData) in order
  * to ensure the StatisticData being added is unique in terms of name.
  *
  * Supports a minimal set of list operations.
@@ -70,7 +70,7 @@ public class StatisticDataList {
     }
 
     /**
-     * Converts the ObservableList of StatisticData to an ObservableList of PieChart.data.
+     * Converts the ObservableList of StatisticData to an ObservableList of PieChart.Data.
      */
     public ObservableList<Data> toPieChartData() {
         ObservableList<Data> pieChartData = FXCollections.observableArrayList();

@@ -53,5 +53,8 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     * Returns the data needed to generate the PieChart Statistics
+     */
     ObservableList<PieChart.Data> getPieChartData();
 }

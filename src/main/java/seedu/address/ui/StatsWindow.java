@@ -39,6 +39,9 @@ public class StatsWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    /**
+     * Replaces the current data used to generate the {@code PieChart} with the new data specified.
+     */
     public void setPieChart(ObservableList<PieChart.Data> newData) {
         chart.setData(newData);
     }

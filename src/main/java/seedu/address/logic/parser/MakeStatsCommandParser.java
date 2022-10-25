@@ -17,6 +17,7 @@ public class MakeStatsCommandParser {
 
     private static final String TYPE_GENDER = "g";
     private static final String TYPE_AGE = "a";
+
     /**
      * Parses the given {@code String} of arguments in the context of the MakeStatsCommand
      * and returns an MakeStatsCommand object for execution.
