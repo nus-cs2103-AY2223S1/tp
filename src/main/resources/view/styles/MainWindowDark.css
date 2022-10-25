@@ -456,6 +456,10 @@
     -fx-background-color: -second-background;
 }
 
+#vBoxMainWindow {
+    -fx-background-color: -main-background;
+}
+
 
 
 

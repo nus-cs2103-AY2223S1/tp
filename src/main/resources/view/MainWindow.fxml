@@ -21,7 +21,7 @@
         <URL value="@styles/Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox fx:id="vBoxMainWindow">
             <HBox fx:id="hbox">
                <children>
               <MenuBar fx:id="menuBar">
