@@ -105,6 +105,11 @@ public interface Model {
      */
     ObservableMap<String, Tag> getTagMapping();
 
+    /**
+     * Returns true if at least one Note in the NoteBook contains the given tag.
+     */
+    boolean notebookContainsTag(Tag tag);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
