@@ -1,5 +1,6 @@
 package seedu.trackascholar.logic.commands;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
@@ -28,8 +29,11 @@ public class ImportCommand extends Command {
             + "Example: " + COMMAND_WORD + " r";
     public static final String NO_FILE_ERROR = "No File Found"
             + ": Please insert file to be imported into data/trackAScholarImport.json with the exact name.\n";
-    private Path importedFilePath = Paths.get("data", "trackAScholarImport.json");
-    private String str;
+
+    public static final String FILE_FORMAT_ERROR = "File data format is invalid";
+
+    private final Path importedFilePath = Paths.get("data", "trackAScholarImport.json");
+    private final String str;
 
     public ImportCommand(String str) {
         this.str = str;
@@ -39,15 +43,14 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
+        if (Files.notExists(importedFilePath)) {
+            throw new CommandException(NO_FILE_ERROR);
+        }
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
         try {
-
             Optional<ReadOnlyTrackAScholar> trackAScholar =
                     jsonTrackAScholarStorage.readTrackAScholar(importedFilePath);
-            if (trackAScholar.isEmpty()) {
-                throw new CommandException(NO_FILE_ERROR);
-            }
             ObservableList<Applicant> applicantList = trackAScholar.get().getApplicantList();
             if (str.equals(REPLACE)) {
                 model.importWithReplace(applicantList);
@@ -55,7 +58,7 @@ public class ImportCommand extends Command {
                 model.importWithoutReplace(applicantList);
             }
         } catch (DataConversionException e) {
-            throw new CommandException(NO_FILE_ERROR);
+            throw new CommandException(FILE_FORMAT_ERROR);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
 
