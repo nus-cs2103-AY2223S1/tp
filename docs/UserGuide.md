@@ -76,14 +76,10 @@ Format: `help`
 
 Adds a person to the address book. This command can only be used in list mode.
 
-Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [h/HOMEWORK a/ATTENDANCE g/GRADE s/SESSION]`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person must minimally have 3 tags, NAME, PHONE_NUMBER, and LESSON_PLAN.
-</div>
+Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN`
 
 Examples:
-* `add n/Farisa p/87159999 h/math done a/12/08/2022 g/D+ lp/tutorial 2 s/Mon 08:00`
+* `add n/Farisa p/87159999 lp/Sec 4 Chemistry`
 
 ### Listing all persons : `list`
 
@@ -216,20 +212,20 @@ Format: `session INDEX s/TUITION_TIME`
 Examples:
 *`session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
 
-### Editing Lesson Plan for student: `lessonplan`
+### Update Lesson Plan for student: `lessonplan`
 
-Changes students lesson plan.
+Updates a student's lesson plan by overwriting the current one. Can only be used in view or list mode.
 
-Format: `lessonplan INDEX lp/LESSON_PLAN`
+Format: `lesson INDEX lp/LESSON_PLAN`
 
-*Edits lesson plan of student with the specified `INDEX`.</br>
+*Updates lesson plan of student with the specified `INDEX`.</br>
 
 Examples:
-*`lessonplan 1 lp/science` changes lesson plan of first student to science.
+*`lesson 1 lp/science` changes lesson plan of first student to science.
 
-### Seeing daily schedule: `show`
+### Viewing daily schedule: `show`
 
-See all classes to be had on a certain day of the week
+Displays all sessions scheduled on a certain day of the week. Changes address book to day mode.
 
 Format: `show [DDD]`
 
@@ -275,13 +271,17 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN[h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS s/SESSION]…​` <br> e.g., `add n/James Ho p/22224444  lp/english h/math a/12/09/2022 g/A+`
+**Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN` <br> e.g., `add n/James Ho p/96775567 lp/english`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 1`
 **Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit 2 n/James Lee h/1 math`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**View** | `view NAME`<br> e.g., `view James Ho`
-**Remove** | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`
-**List** | `list`
 **Exit** | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Help** | `help`
+**Lesson** | `lesson INDEX lp/LESSON_PLAN`<br> e.g., `lesson 1 lp/Biology`
+**List** | `list`
+**Remove** | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`
+**Show** | `show [DDD]`<br> e.g., `show MON`
+**View** | `view NAME`<br> e.g., `view James Ho`
+
+
