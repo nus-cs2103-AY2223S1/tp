@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
-import friday.logic.commands.EditCommand;
 import friday.logic.commands.MarkMasteryCheckCommand;
 import friday.logic.parser.exceptions.ParseException;
 
