@@ -17,6 +17,12 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Builds a {@code CanHelpWithTaskPredicate} using a given task instead of its index.
+     *
+     * @param task {@code Task} to test against a {@code Person} to determine if modules match.
+     * @return {@code Predicate} to execute on the person.
+     */
     public static CanHelpWithTaskPredicate withTask(Task task) {
         CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(-1);
         predicate.setTask(task);
