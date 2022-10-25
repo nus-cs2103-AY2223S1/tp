@@ -42,10 +42,7 @@ public class DeleteAttributeCommand extends Command {
         + "timezone"
         + "address"
         + "Example: " + COMMAND_WORD + " "
-        + "email"
-        + "phone"
-        + "slack"
-        + "telegram";
+        + "email";
 
     private final Prefix prefixToDelete;
 
