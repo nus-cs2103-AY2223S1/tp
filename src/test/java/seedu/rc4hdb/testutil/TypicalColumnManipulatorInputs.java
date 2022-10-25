@@ -20,4 +20,6 @@ public class TypicalColumnManipulatorInputs {
     public static final String MIXED_CASE_LETTERS = "n P e T";
 
     public static final String INVALID_LETTERS = "w x y z";
+
+    public static final String EMPTY_STRING = "";
 }

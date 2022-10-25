@@ -21,7 +21,6 @@ public class ListCommandParserTest {
     private final ListCommandParser parser = new ListCommandParser();
     public static final String INCLUDE_SPECIFIER_PREFIX = INCLUDE_SPECIFIER + WHITESPACE;
     public static final String EXCLUDE_SPECIFIER_PREFIX = EXCLUDE_SPECIFIER + WHITESPACE;
-    public static final String EMPTY_STRING = "";
 
     // Note that the inputs now are letters representing column names, rather than
     // verbose column names which was used when testing the command classes.
@@ -81,7 +80,7 @@ public class ListCommandParserTest {
         assertParseSuccess(parser, EXCLUDE_SPECIFIER_PREFIX + MIXED_CASE_LETTERS, expectedCommand);
     }
 
-    // Include all letters returns ListCommand
+    // Include all letters returns ListCommand (but should throw CommandException during execution)
     @Test
     public void parse_includeAllPossibleLetters_returnsListCommand() {
         List<String> fieldsToHide = generateComplementListFrom(ALL_VALID_FIELDS);
@@ -112,13 +111,15 @@ public class ListCommandParserTest {
     // Include verbose column names in argument string throws exception
     @Test
     public void parse_includeVerboseColumnNames_throwsParseException() {
-        assertParseFailure(parser, INCLUDE_SPECIFIER_PREFIX + VALID_FIELDS, INVALID_FIELDS_ENTERED);
+        String validColumns = new ArrayList<>(VALID_FIELDS).stream().reduce(EMPTY_STRING, (x, y) -> x + WHITESPACE + y);
+        assertParseFailure(parser, INCLUDE_SPECIFIER_PREFIX + validColumns, INVALID_FIELDS_ENTERED);
     }
 
     // Exclude verbose column names in argument string throws exception
     @Test
     public void parse_excludeVerboseColumnNames_throwsParseException() {
-        assertParseFailure(parser, EXCLUDE_SPECIFIER_PREFIX + VALID_FIELDS, INVALID_FIELDS_ENTERED);
+        String validColumns = new ArrayList<>(VALID_FIELDS).stream().reduce(EMPTY_STRING, (x, y) -> x + WHITESPACE + y);
+        assertParseFailure(parser, EXCLUDE_SPECIFIER_PREFIX + validColumns, INVALID_FIELDS_ENTERED);
     }
 
     // Include invalid letters in argument string throws exception
