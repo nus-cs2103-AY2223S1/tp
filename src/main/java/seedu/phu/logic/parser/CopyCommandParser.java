@@ -20,6 +20,9 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         try {
             String trimmedArgs = args.trim();
             String[] selectedIndex = trimmedArgs.split("\\s+");
+            if (selectedIndex.length > 1) {
+                throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+            }
             Indexes index = new Indexes(selectedIndex);
 
             return new CopyCommand(index);

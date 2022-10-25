@@ -11,12 +11,19 @@ import seedu.phu.logic.commands.CopyCommand;
 
 public class CopyCommandParserTest {
 
+    private final String extraArgs = "1 2 3";
     private CopyCommandParser parser = new CopyCommandParser();
 
     @Test
     public void parse_validOneArg_returnsCopyCommand() {
         assertParseSuccess(parser, "1",
                 new CopyCommand(INDEXES_FIRST_INTERNSHIP));
+    }
+
+    @Test
+    public void parse_tooManyArgs_throwsParseException() {
+        assertParseFailure(parser, extraArgs,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
     }
 
     @Test
