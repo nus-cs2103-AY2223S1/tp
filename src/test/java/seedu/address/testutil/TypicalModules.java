@@ -16,8 +16,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.module.Module;
-import seedu.address.model.module.task.Task;
 import seedu.address.model.module.link.Link;
+import seedu.address.model.module.task.Task;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.

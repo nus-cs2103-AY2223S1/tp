@@ -31,14 +31,14 @@ public class JsonAdaptedLinkTest {
 
     @Test
     public void toModelType_missingParts_throwsIllegalValueException() {
-        JsonAdaptedLink invalidLink = new JsonAdaptedLink (VALID_MODULE_LINK_ALIAS + ";");
+        JsonAdaptedLink invalidLink = new JsonAdaptedLink(VALID_MODULE_LINK_ALIAS + ";");
         String expectedMessage = AddLinkCommandParser.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, invalidLink::toModelType);
     }
 
     @Test
     public void toModelType_missingDelimiter_throwsIllegalValueException() {
-        JsonAdaptedLink invalidLink = new JsonAdaptedLink (VALID_MODULE_LINK_ALIAS + VALID_MODULE_LINK_URL);
+        JsonAdaptedLink invalidLink = new JsonAdaptedLink(VALID_MODULE_LINK_ALIAS + VALID_MODULE_LINK_URL);
         String expectedMessage = AddLinkCommandParser.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, invalidLink::toModelType);
     }
