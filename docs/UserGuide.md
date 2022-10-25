@@ -31,7 +31,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
    * **`list`** : Lists all itineraries.
 
-   * **`new`**`new n/My Japan Trip` : Adds an itinerary named "My Japan Trip".
+   * **`add`**`add n/My Japan Trip` : Adds an itinerary named "My Japan Trip".
 
    * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
 
@@ -67,6 +67,8 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
 </div>
 
+### Commands on main page
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -74,7 +76,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Creating a new itinerary: `add`
 
@@ -91,15 +92,6 @@ Examples:
 Shows a list of all itineraries in Waddle.
 
 Format: `list`
-
-### Selecting an itinerary: `select`
-
-Enters the planning page for the selected itinerary.
-
-Format: `select INDEX`
-
-Examples:
-* `select 1`
 
 ### Editing the details of an itinerary: `edit`
 
@@ -153,11 +145,58 @@ Deletes all itineraries in Waddle.
 
 Format: `clear`
 
+### Selecting an itinerary: `select`
+
+Enters the planning page (link here to plan stage commands?) for the selected itinerary.
+
+Format: `select INDEX`
+
+Examples:
+* `select 1`
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Commands on planning page
+
+### Adding an item: `add`
+
+Adds an item to the list of items.
+
+Format: `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
+
+### Listing all items: `list`
+
+Shows a list of all items (both scheduled and unscheduled) related to the itinerary.
+
+Format: `list`
+
+### Editing the details of an item: `edit`
+
+Edits an existing item in the item list.
+
+Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
+
+* Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+### Deleting an item: `delete`
+
+Deletes an existing item in the item list.
+
+Format: `delete INDEX`
+
+### Scheduling an item: `plan`
+
+Schedules an item identified by the index number used in the item list.
+
+Format: `plan INDEX [d/DAY NUMBER] [s/START TIME]
+
+* The item to be scheduled must have a duration.
 
 ### Saving the data
 
@@ -195,3 +234,8 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`
 **List** | `list`
 **Help** | `help`
+--------|------------------
+**Add** | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
+**Delete** | `delete INDEX`
+**Edit** | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
+**List** | `list`
