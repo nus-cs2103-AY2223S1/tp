@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -188,7 +189,8 @@ public class CalendarLogic {
         String date = jumpText.getText();
         jumpText.clear();
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-uuuu");
+            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
             Date jumpDate = new Date(LocalDate.parse(date, formatter));
             int newMonth = jumpDate.getMonth() - 1;
             int newYear = jumpDate.getYear();

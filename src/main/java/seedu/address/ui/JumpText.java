@@ -30,6 +30,7 @@ public class JumpText extends UiPart<Region> {
     public JumpText(CalendarLogic calendarLogic) {
         super(FXML);
         this.calendarLogic = calendarLogic;
+        jumpText.setStyle(JUMP_TEXT_STYLE + GREY_BORDER);
         jumpText.focusedProperty().addListener(this::handleFocusedEvent);
     }
 
