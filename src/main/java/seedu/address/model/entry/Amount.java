@@ -53,7 +53,7 @@ public class Amount {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Amount // instanceof handles nulls
-                && amountString.equals(((Amount) other).amountString)); // state check
+                && this.amount == (((Amount) other).amount)); // state check
     }
 
     @Override

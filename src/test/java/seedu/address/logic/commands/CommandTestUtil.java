@@ -36,30 +36,37 @@ public class CommandTestUtil {
     public static final String VALID_MONTH_APRIL = "2022-04";
 
     public static final String VALID_DESC_LUNCH = "Lunch";
-    public static final String VALID_DESC_MOVIE = "Movie";
-    public static final String VALID_DESC_DINNER = "Dinner";
-    public static final String VALID_DESC_TUITION = "Tuition";
-    public static final String VALID_DESC_ALLOWANCE = "Allowance";
-
     public static final String VALID_AMT_LUNCH = "5.20";
-    public static final String VALID_AMT_MOVIE = "8.00";
-    public static final String VALID_AMT_DINNER = "4.80";
-    public static final String VALID_AMT_TUITION = "40.00";
-    public static final String VALID_AMT_ALLOWANCE = "300";
-
     public static final String VALID_DATE_LUNCH = "20-08-2022";
+    public static final String VALID_TAG_LUNCH = "Food";
+
+    public static final String VALID_DESC_MOVIE = "Movie";
+    public static final String VALID_AMT_MOVIE = "8.00";
     public static final String VALID_DATE_MOVIE = "21-08-2022";
+    public static final String VALID_TAG_MOVIE = "Entertainment";
+
+    public static final String VALID_DESC_DINNER = "Dinner";
+    public static final String VALID_AMT_DINNER = "4.80";
     public static final String VALID_DATE_DINNER = "24-08-2022";
+    public static final String VALID_TAG_DINNER = "Food";
+
+    public static final String VALID_DESC_TUITION = "Tuition";
+    public static final String VALID_AMT_TUITION = "40.00";
     public static final String VALID_DATE_TUITION = "18-08-2022";
+    public static final String VALID_TAG_TUITION = "Education";
+
+    public static final String VALID_DESC_ALLOWANCE = "Allowance";
+    public static final String VALID_AMT_ALLOWANCE = "300";
     public static final String VALID_DATE_ALLOWANCE = "01-10-2022";
+    public static final String VALID_TAG_ALLOWANCE = "Allowance";
+
+    public static final String VALID_DESC_INVESTMENT = "Investment";
+    public static final String VALID_AMT_INVESTMENT = "40.80";
+    public static final String VALID_DATE_INVESTMENT = "10-10-2022";
+    public static final String VALID_TAG_INVESTMENT = "Investment";
 
     public static final String VALID_TAG_MEAL = "Food";
     public static final String VALID_TAG_PERSONAL = "Others";
-    public static final String VALID_TAG_LUNCH = "Food";
-    public static final String VALID_TAG_DINNER = "Food";
-    public static final String VALID_TAG_MOVIE = "Entertainment";
-    public static final String VALID_TAG_TUITION = "Education";
-    public static final String VALID_TAG_ALLOWANCE = "Allowance";
 
     public static final String VALID_GRAPH_MONTH = "m";
     public static final String VALID_GRAPH_CATEGORY = "c";
@@ -71,29 +78,38 @@ public class CommandTestUtil {
     public static final String TYPE_GRAPH_MONTH = " " + PREFIX_GRAPH + VALID_GRAPH_MONTH;
 
     public static final String DESC_LUNCH = " " + PREFIX_DESCRIPTION + VALID_DESC_LUNCH;
-    public static final String DESC_MOVIE = " " + PREFIX_DESCRIPTION + VALID_DESC_MOVIE;
-    public static final String DESC_DINNER = " " + PREFIX_DESCRIPTION + VALID_DESC_DINNER;
-    public static final String DESC_TUITION = " " + PREFIX_DESCRIPTION + VALID_DESC_TUITION;
-
-    public static final String AMT_ALLOWANCE = " " + PREFIX_AMOUNT + VALID_AMT_ALLOWANCE;
     public static final String AMT_LUNCH = " " + PREFIX_AMOUNT + VALID_AMT_LUNCH;
-    public static final String AMT_MOVIE = " " + PREFIX_AMOUNT + VALID_AMT_MOVIE;
-    public static final String AMT_DINNER = " " + PREFIX_AMOUNT + VALID_AMT_DINNER;
-    public static final String AMT_TUITION = " " + PREFIX_AMOUNT + VALID_AMT_TUITION;
-
-    public static final String DATE_ALLOWANCE = " " + PREFIX_DATE + VALID_DATE_ALLOWANCE;
     public static final String DATE_LUNCH = " " + PREFIX_DATE + VALID_DATE_LUNCH;
+    public static final String TAG_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
+
+    public static final String DESC_MOVIE = " " + PREFIX_DESCRIPTION + VALID_DESC_MOVIE;
+    public static final String AMT_MOVIE = " " + PREFIX_AMOUNT + VALID_AMT_MOVIE;
     public static final String DATE_MOVIE = " " + PREFIX_DATE + VALID_DATE_MOVIE;
+    public static final String TAG_MOVIE = " " + PREFIX_TAG + VALID_TAG_MOVIE;
+
+    public static final String DESC_DINNER = " " + PREFIX_DESCRIPTION + VALID_DESC_DINNER;
+    public static final String AMT_DINNER = " " + PREFIX_AMOUNT + VALID_AMT_DINNER;
     public static final String DATE_DINNER = " " + PREFIX_DATE + VALID_DATE_DINNER;
+    public static final String TAG_DINNER = " " + PREFIX_TAG + VALID_TAG_DINNER;
+
+    public static final String DESC_TUITION = " " + PREFIX_DESCRIPTION + VALID_DESC_TUITION;
+    public static final String AMT_TUITION = " " + PREFIX_AMOUNT + VALID_AMT_TUITION;
     public static final String DATE_TUITION = " " + PREFIX_DATE + VALID_DATE_TUITION;
+    public static final String TAG_TUITION = " " + PREFIX_TAG + VALID_TAG_TUITION;
+
+    public static final String DESC_ALLOWANCE = " " + PREFIX_DESCRIPTION + VALID_DESC_ALLOWANCE;
+    public static final String AMT_ALLOWANCE = " " + PREFIX_AMOUNT + VALID_AMT_ALLOWANCE;
+    public static final String DATE_ALLOWANCE = " " + PREFIX_DATE + VALID_DATE_ALLOWANCE;
     public static final String TAG_ALLOWANCE = " " + PREFIX_TAG + VALID_TAG_ALLOWANCE;
 
-    public static final String TAG_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
-    public static final String TAG_MOVIE = " " + PREFIX_TAG + VALID_TAG_MOVIE;
-    public static final String TAG_DINNER = " " + PREFIX_TAG + VALID_TAG_DINNER;
+
+    public static final String DESC_INVESTMENT = " " + PREFIX_DESCRIPTION + VALID_DESC_INVESTMENT;
+    public static final String AMT_INVESTMENT = " " + PREFIX_AMOUNT + VALID_AMT_INVESTMENT;
+    public static final String DATE_INVESTMENT = " " + PREFIX_DATE + VALID_DATE_INVESTMENT;
+    public static final String TAG_INVESTMENT = " " + PREFIX_TAG + VALID_TAG_INVESTMENT;
+
     public static final String TAG_DESC_MEAL = " " + PREFIX_TAG + VALID_TAG_MEAL;
     public static final String TAG_DESC_PERSONAL = " " + PREFIX_TAG + VALID_TAG_PERSONAL;
-    public static final String TAG_TUITION = " " + PREFIX_TAG + VALID_TAG_TUITION;
 
     public static final String INVALID_DESC = " " + PREFIX_DESCRIPTION + "Bre&kfast "; // '&' not allowed in description
     public static final String INVALID_TYPE = " " + PREFIX_TYPE + "g "; // only 'e' and 'i' types allowed
@@ -169,11 +185,12 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         PennyWise expectedPennyWise = new PennyWise(actualModel.getPennyWise());
-        List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredExpenditureList());
-
+        List<Entry> expectedFilteredExpenditureList = new ArrayList<>(actualModel.getFilteredExpenditureList());
+        List<Entry> expectedFilteredIncomeList = new ArrayList<>(actualModel.getFilteredIncomeList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedPennyWise, actualModel.getPennyWise());
-        assertEquals(expectedFilteredList, actualModel.getFilteredExpenditureList());
+        assertEquals(expectedFilteredExpenditureList, actualModel.getFilteredExpenditureList());
+        assertEquals(expectedFilteredIncomeList, actualModel.getFilteredIncomeList());
     }
 
     /**

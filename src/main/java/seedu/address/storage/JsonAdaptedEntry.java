@@ -13,13 +13,12 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Entry}.
  */
-public class JsonAdaptedEntry {
+public abstract class JsonAdaptedEntry {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     protected final String description;
     protected final String amount;
     protected final String date;
     protected final String tagged;
-
 
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given person details.
@@ -67,22 +66,14 @@ public class JsonAdaptedEntry {
         if (!Date.isValidDate(date)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
+        if (tagged == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
+        }
     }
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Entry} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted entry.
      */
-    public Entry toModelType() throws IllegalValueException {
-        checkIsValidJsonEntry();
-        // final List<Tag> personTags = new ArrayList<>();
-        // for (JsonAdaptedTag tag : tagged) {
-        //     personTags.add(tag.toModelType());
-        // }
-        final Description modelDescription = new Description(description);
-        final Amount modelAmount = new Amount(amount);
-        final Date modelDate = new Date(date);
-        final Tag modelTag = new Tag(null, tagged);
-        return new Entry(modelDescription, modelDate, modelAmount, modelTag);
-    }
+    public abstract Entry toModelType() throws IllegalValueException;
 }

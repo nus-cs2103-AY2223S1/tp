@@ -226,7 +226,7 @@ public class ModelManager implements Model {
             new PieChart.Data("Gifts", incomePieChartArr[4]), new PieChart.Data("Others", incomePieChartArr[5]));
 
 
-        return incomePieChartData;
+        return FXCollections.unmodifiableObservableList(incomePieChartData);
     }
 
 
@@ -270,7 +270,7 @@ public class ModelManager implements Model {
             new PieChart.Data("Education", expensePieChartArr[3]), new PieChart.Data("Housing", expensePieChartArr[4]),
             new PieChart.Data("Others", expensePieChartArr[5]));
 
-        return expensePieChartData;
+        return FXCollections.unmodifiableObservableList(expensePieChartData);
     }
 
     @Override
