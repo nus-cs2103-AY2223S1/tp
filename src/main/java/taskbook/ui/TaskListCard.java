@@ -1,7 +1,10 @@
 package taskbook.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import taskbook.model.task.Deadline;
@@ -40,6 +43,8 @@ public class TaskListCard extends UiPart<Region> {
     private Label isDone;
     @FXML
     private Label id;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code TaskListCode} with the given {@code TaskList} and index to display.
@@ -52,6 +57,9 @@ public class TaskListCard extends UiPart<Region> {
         this.assignment.setText(task.getAssignment().toString());
         this.isDone.setText(task.getStatus());
         this.id.setText(displayedIndex + ". ");
+        task.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
