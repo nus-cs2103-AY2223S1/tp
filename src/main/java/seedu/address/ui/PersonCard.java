@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -66,6 +67,18 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+    }
+
+    /**
+     * Blurs sensitive data.
+     */
+    public void hide() {
+        BoxBlur boxBlur = new BoxBlur(10, 0, 10);
+        phone.setEffect(boxBlur);
+        address.setEffect(boxBlur);
+        email.setEffect(boxBlur);
+        income.setEffect(boxBlur);
+        meetingDate.setEffect(boxBlur);
     }
 
     @Override

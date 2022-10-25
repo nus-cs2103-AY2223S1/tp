@@ -184,6 +184,8 @@ public class MainWindow extends UiPart<Stage> {
         pref.putInt("hidden", 1);
         imageHide.setImage(new Image("images/close_eye.png"));
         portfolioWindow.hide();
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     /**
@@ -194,6 +196,8 @@ public class MainWindow extends UiPart<Stage> {
         pref.putInt("hidden", 0);
         imageHide.setImage(new Image("images/open_eye.png"));
         portfolioWindow.show();
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
     public Stage getPrimaryStage() {

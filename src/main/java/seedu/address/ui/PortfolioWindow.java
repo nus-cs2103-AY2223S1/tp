@@ -58,12 +58,18 @@ public class PortfolioWindow extends UiPart<Region> {
                 .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
     }
 
+    /**
+     * Blurs plans and risk data.
+     */
     public void hide() {
-        BoxBlur boxBlur = new BoxBlur(10, 0, 5);
+        BoxBlur boxBlur = new BoxBlur(10, 0, 10);
         plans.setEffect(boxBlur);
         risk.setEffect(boxBlur);
     }
 
+    /**
+     * Removes blur from plans and risk data.
+     */
     public void show() {
         BoxBlur boxBlur = new BoxBlur(0, 0, 0);
         plans.setEffect(boxBlur);
