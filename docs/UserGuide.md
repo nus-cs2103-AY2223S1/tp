@@ -115,26 +115,19 @@ Creates a new student record with the following details:
 
 Format: `addstud nm/[STUDENT-NAME] id/[ID] class/[CLASS] exam/[NAME SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip #1:**
-All bolded fields are compulsory. Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip #1:** All **bolded** fields are compulsory. Optional fields can be added later using the [edit command](#414-editing-a-student-record--edit).
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip #2:**
-To add exam grades, specify the tag `exam/` followed by an exam name (CA1, CA2, SA1, or SA2) and score (a number from 0 to 100). Multiple exams can be added in a single line.
-
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip #2:** To add exam grades, specify the tag `exam/` followed by an exam name (CA1, CA2, SA1, or SA2) and score (a number from 0 to 100). Multiple exams can be added in a single line.<br>
 Example: `exam/CA1 50 exam/SA1 60 exam/CA1 80` will add grades 80 for CA1 and 60 for SA1. Notice the first score for CA1 is overridden by the second score for CA1.
 </div>
 
 Examples:
-* ```
-   addstud nm/Peter Tan id/452B class/1F
-  ```
-* ```
-   addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70
-  ```
-* ```
-   addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50
-  ```
+* `addstud nm/Peter Tan id/452B class/1F`
+* `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+* `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
 ### 4.1.2 Clearing all student records : `clear`
 
