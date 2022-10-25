@@ -13,7 +13,7 @@ import com.beust.jcommander.UnixStyleUsageFormatter;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.util.StringUtil;
-import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.AddModuleCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
@@ -60,8 +60,8 @@ public class ModtrektParser {
                 .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
                 .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
                 .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
-                .addCommand(AddCommand.COMMAND_WORD, new AddCommand())
-                .addCommand(AddCommand.COMMAND_WORD_SHORTHAND, new AddCommand())
+                .addCommand(AddModuleCommand.COMMAND_WORD, new AddModuleCommand())
+                .addCommand(AddModuleCommand.COMMAND_WORD_SHORTHAND, new AddModuleCommand())
                 .build();
         try {
             // Get the tokens from the user input.
@@ -74,14 +74,8 @@ public class ModtrektParser {
             String mainCommandWord = tokens.size() >= 1 ? tokens.get(0) : null;
             // support shorthand for module, no extra -m or module flag needed, hence we remove
             // it from the token list.
-            if ("module".equals(scope) || (mainCommandWord.equals("add") && "mod".equals(scope))) {
+            if ("module".equals(scope) || "mod".equals(scope) || "task".equals(scope)) {
                 tokens.remove(1);
-                tokens.set(0, tokens.get(0) + " " + scope);
-            }
-
-            // no shorthand for adding tasks, we reuse the task word as a flag for our description, so
-            // it is not deleted from the list.
-            if ("task".equals(scope)) {
                 tokens.set(0, tokens.get(0) + " " + scope);
             }
 

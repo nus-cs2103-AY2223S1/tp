@@ -8,7 +8,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
 import modtrekt.logic.commands.exceptions.CommandException;
-import modtrekt.logic.parser.CliSyntax;
 import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.logic.parser.converters.ModCreditConverter;
 import modtrekt.logic.parser.converters.ModNameConverter;
@@ -24,33 +23,16 @@ import modtrekt.model.module.Module;
 /**
  * Adds a module to the module list.
  */
-
 @Parameters(commandDescription = "Add module to the module list")
-public class AddCommand extends Command {
+public class AddModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "add module";
     public static final String COMMAND_WORD_SHORTHAND = "add mod";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. \n"
-            + "Usage 1: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_MOD_NAME + "<NAME> "
-            + CliSyntax.PREFIX_MOD_CODE + "<CODE> "
-            + CliSyntax.PREFIX_MOD_CREDIT + "<CREDIT> "
-            + "\n"
-            + "Usage 2: " + COMMAND_WORD_SHORTHAND + " "
-            + CliSyntax.PREFIX_MOD_CODE + "<CODE>"
-            + "\n"
-            + "Usage 3: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_MOD_NAME + "<NAME> "
-            + CliSyntax.PREFIX_MOD_CODE + "<CODE> "
-            + CliSyntax.PREFIX_MOD_CREDIT + "<CREDIT> "
-            + "\n"
-            + "Usage 4: " + COMMAND_WORD_SHORTHAND + " "
-            + CliSyntax.PREFIX_MOD_CODE + "<CODE>";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
 
-    @Parameter(names = "-c", description = "ModCode", required = true,
+    @Parameter(description = "code", required = true,
             converter = ModCodeConverter.class)
     private ModCode modCode;
 
@@ -65,22 +47,22 @@ public class AddCommand extends Command {
     /**
      * Constructor with no parameters, for JCommander usage.
      */
-    public AddCommand() {
+    public AddModuleCommand() {
 
     }
 
     /**
      * Constructor taking in ModCode only, for modules fetched via NUSMods API.
      */
-    public AddCommand(ModCode code) {
+    public AddModuleCommand(ModCode code) {
         requireNonNull(code);
         this.modCode = code;
     }
 
     /**
-     * Creates an AddCommand to add the specified {@code Module}
+     * Creates an AddModuleCommand to add the specified {@code Module}
      */
-    public AddCommand(ModCode code, ModName name, ModCredit credit) {
+    public AddModuleCommand(ModCode code, ModName name, ModCredit credit) {
         requireNonNull(code);
         requireNonNull(name);
         requireNonNull(credit);
@@ -121,7 +103,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && modCode.equals(((AddCommand) other).modCode));
+                || (other instanceof AddModuleCommand // instanceof handles nulls
+                && modCode.equals(((AddModuleCommand) other).modCode));
     }
 }

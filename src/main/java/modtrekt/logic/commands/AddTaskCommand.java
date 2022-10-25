@@ -8,7 +8,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
 import modtrekt.logic.commands.exceptions.CommandException;
-import modtrekt.logic.parser.CliSyntax;
 import modtrekt.logic.parser.converters.DeadlineConverter;
 import modtrekt.logic.parser.converters.DescriptionConverter;
 import modtrekt.logic.parser.converters.ModCodeConverter;
@@ -25,14 +24,9 @@ import modtrekt.model.task.Task;
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add task";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. \n"
-            + "Usage: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_TASK + " <DESCRIPTION> "
-            + "[" + CliSyntax.PREFIX_DEADLINE + "<YYYY-MM-DD> ] "
-            + CliSyntax.PREFIX_MOD_CODE + " <MODULE CODE> ";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 
-    @Parameter(names = "task", description = "Task description", required = true,
+    @Parameter(description = "Task description", required = true,
             converter = DescriptionConverter.class)
     private Description description;
 

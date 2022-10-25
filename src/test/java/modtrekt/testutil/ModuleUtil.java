@@ -4,7 +4,7 @@ import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
 import static modtrekt.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 
-import modtrekt.logic.commands.AddCommand;
+import modtrekt.logic.commands.AddModuleCommand;
 import modtrekt.model.module.Module;
 
 /**
@@ -16,7 +16,7 @@ public class ModuleUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Module person) {
-        return AddCommand.COMMAND_WORD + " " + getModuleDetails(person);
+        return AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(person);
     }
 
     /**
