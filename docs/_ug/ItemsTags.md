@@ -14,7 +14,7 @@ The following are the attributes stored for each item:
 * Item remark
 * Item tags
 
-FoodRem items are unique by name and case-insensitive. 
+FoodRem items are unique by name and case-sensitive. 
 
 This means you cannot add two items on the same name.
 
@@ -22,7 +22,7 @@ Restrictions for all attributes can be found in the [Placeholders](#placeholders
 
 #### Tag
 
-A Tag in FoodRem serves as a means to categorise items. These tags are also unique and case-insensitive.
+A Tag in FoodRem serves as a means to categorise items. These tags are also unique and case-sensitive.
 
 We can tag multiple items with the same tag and each item can have multiple tags. These Tags are optional.
 
