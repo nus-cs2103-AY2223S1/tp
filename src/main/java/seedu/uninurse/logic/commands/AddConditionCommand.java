@@ -89,7 +89,7 @@ public class AddConditionCommand extends AddGenericCommand {
         }
 
         // state check
-        AddConditionCommand e = (AddConditionCommand) other;
-        return index.equals(e.index) && condition.equals((e.condition));
+        AddConditionCommand command = (AddConditionCommand) other;
+        return index.equals(command.index) && condition.equals((command.condition));
     }
 }

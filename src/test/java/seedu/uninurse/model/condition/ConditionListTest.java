@@ -67,8 +67,30 @@ public class ConditionListTest {
     }
 
     @Test
-    public void edit_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> emptyConditionList.edit(0, CONDITION_DIABETES));
+    public void edit_emptyList_throwsConditionNotFoundException() {
+        assertThrows(ConditionNotFoundException.class, () -> emptyConditionList.edit(0, CONDITION_DIABETES));
+    }
+
+    @Test
+    public void edit_invalidIndex_throwsConditionNotFoundException() {
+        assertThrows(ConditionNotFoundException.class, () -> emptyConditionList.edit(-1, CONDITION_DIABETES));
+    }
+
+    @Test
+    public void edit_indexOutOfBounds_throwsConditionNotFoundException() {
+        assertThrows(ConditionNotFoundException.class, () ->
+                conditionListDiabetes.edit(1, CONDITION_OSTEOPOROSIS));
+    }
+
+    @Test
+    public void edit_duplicateCondition_throwsDuplicateConditionException() {
+        assertThrows(DuplicateConditionException.class, () -> conditionListDiabetes.edit(0, CONDITION_DIABETES));
+    }
+
+    @Test
+    public void edit_validArgs_success() {
+        ConditionList updatedConditionList = conditionListDiabetes.edit(0, CONDITION_OSTEOPOROSIS);
+        assertEquals(updatedConditionList, emptyConditionList);
     }
 
     @Test

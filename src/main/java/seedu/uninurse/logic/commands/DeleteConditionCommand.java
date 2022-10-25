@@ -35,9 +35,9 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
     private final Index conditionIndex;
 
     /**
-     * Creates an DeleteConditionCommand to delete a {@code Condition} from the specified patient.
+     * Creates a DeleteConditionCommand to delete a {@code Condition} from the specified patient.
      *
-     * @param patientIndex The index of the patient in the filtered person list to delete the condition.
+     * @param patientIndex The index of the patient in the filtered patient list to delete the condition.
      * @param conditionIndex The index of the condition in the patient's condition list.
      */
     public DeleteConditionCommand(Index patientIndex, Index conditionIndex) {
@@ -90,7 +90,7 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
         }
 
         // state check
-        DeleteConditionCommand e = (DeleteConditionCommand) other;
-        return patientIndex.equals(e.patientIndex) && conditionIndex.equals((e.conditionIndex));
+        DeleteConditionCommand command = (DeleteConditionCommand) other;
+        return patientIndex.equals(command.patientIndex) && conditionIndex.equals((command.conditionIndex));
     }
 }
