@@ -2,7 +2,6 @@ package seedu.rc4hdb.logic.commands.filecommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.commons.core.FilePostfixes.CSV_POSTFIX;
-import static seedu.rc4hdb.commons.core.FilePostfixes.JSON_POSTFIX;
 import static seedu.rc4hdb.logic.commands.filecommands.FileCommand.MESSAGE_FAILED;
 import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_FILE_DOES_NOT_EXIST;
 import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_FILE_EXISTS;
@@ -61,9 +60,9 @@ public class ImportCommandTest {
     }
 
     @Test
-    public void execute_jsonFileAlreadyExists_throwCommandException() {
+    public void execute_folderAlreadyExists_throwCommandException() {
         assertCommandFailure(importCommand, new StorageStubCreateFileThrowFileAlreadyExistsException(),
-                String.format(String.format(MESSAGE_FILE_EXISTS, DUMMY_PATH_STRING + JSON_POSTFIX)));
+                String.format(String.format(MESSAGE_FILE_EXISTS, DUMMY_PATH_STRING)));
     }
 
     //===================== Start of helper functions =============================
@@ -97,12 +96,12 @@ public class ImportCommandTest {
         }
 
         @Override
-        public void createResidentBookFile(Path filePath) throws IOException {
+        public void createDataFolder(Path folderPath) throws IOException {
             // does nothing
         }
 
         @Override
-        public void saveResidentBook(ReadOnlyResidentBook residentBook, Path filePath) {
+        public void saveResidentBook(ReadOnlyResidentBook residentBook, Path folderPath) {
             // does nothing
         }
     }
@@ -130,7 +129,7 @@ public class ImportCommandTest {
 
     private static class StorageStubCreateFileThrowFileAlreadyExistsException extends StorageStubForImportCommand {
         @Override
-        public void createResidentBookFile(Path filePath) throws FileAlreadyExistsException {
+        public void createDataFolder(Path filePath) throws FileAlreadyExistsException {
             throw new FileAlreadyExistsException(filePath.toString());
         }
     }

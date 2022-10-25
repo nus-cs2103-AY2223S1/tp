@@ -72,19 +72,19 @@ public class StorageManager implements Storage {
     //================ DataStorage methods ==============================
 
     /**
-     * @see DataStorage#deleteDataFile(Path)
+     * @see DataStorage#deleteDataFolder(Path)
      */
-    public void deleteDataFile(Path folderPath) throws IOException {
+    public void deleteDataFolder(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        dataStorage.deleteDataFile(folderPath);
+        dataStorage.deleteDataFolder(folderPath);
     }
 
     /**
-     * @see DataStorage#createDataFile(Path)
+     * @see DataStorage#createDataFolder(Path)
      */
-    public void createDataFile(Path folderPath) throws IOException {
+    public void createDataFolder(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        dataStorage.createDataFile(folderPath);
+        dataStorage.createDataFolder(folderPath);
     }
 
     //================ ResidentBook methods =============================
@@ -221,8 +221,7 @@ public class StorageManager implements Storage {
         // state check
         StorageManager other = (StorageManager) obj;
         return dataStorage.equals(other.dataStorage)
-                && userPrefsStorage.equals(other.userPrefsStorage)
-                && csvManager.equals(other.csvManager);
+                && userPrefsStorage.equals(other.userPrefsStorage);
     }
 
 }

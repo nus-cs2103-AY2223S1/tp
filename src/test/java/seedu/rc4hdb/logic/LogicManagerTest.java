@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
@@ -297,7 +296,7 @@ public class LogicManagerTest {
      */
     private static class StorageStubForFileCreate extends StorageStubForLogicManagerTest {
         @Override
-        public void createDataFile(Path folderPath) {
+        public void createDataFolder(Path folderPath) {
             // does nothing
         }
 

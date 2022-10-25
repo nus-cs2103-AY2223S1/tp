@@ -81,6 +81,13 @@ public class StorageCommandTestUtil {
     }
 
     /**
+     * Confirms that the directory exists.
+     */
+    public static void assertDirExists(Path folderPath) {
+        assertTrue(FileUtil.isFolderExists(folderPath));
+    }
+
+    /**
      * Confirms that the file does not exist.
      */
     public static void assertFileDoesNotExist(Path filePath) {

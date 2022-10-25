@@ -53,12 +53,12 @@ public class StorageStub implements Storage {
     //================ Data Storage Methods ================================
 
     @Override
-    public void deleteDataFile(Path folderPath) throws IOException {
+    public void deleteDataFolder(Path folderPath) throws IOException {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void createDataFile(Path folderPath) throws IOException {
+    public void createDataFolder(Path folderPath) throws IOException {
         throw new AssertionError("This method should not be called.");
     }
 

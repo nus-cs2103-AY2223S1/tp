@@ -1,6 +1,7 @@
 package seedu.rc4hdb.logic.commands.filecommands;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.rc4hdb.storage.DataStorageManager.MESSAGE_FOLDER_DOES_NOT_EXIST;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -21,8 +22,6 @@ public class FileSwitchCommand extends FileCommand implements StorageModelComman
     public static final String COMMAND_WORD = "switch";
 
     public static final String MESSAGE_SUCCESS = "Successfully switched working folder to %s.";
-
-    public static final String MESSAGE_FOLDER_DOES_NOT_EXIST = "%s does not exist. Please provide an existing folder.";
 
     public static final String MESSAGE_INVALID_FILE_DATA = "%s contains invalid data."
             + " Please make sure it is in the proper format.";
