@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTaskDescription(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidTaskDescription(String)}.
  */
 public class Task {
 

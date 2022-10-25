@@ -44,7 +44,7 @@ public class GoToCommandParserTest {
         // null -> returns false
         assertFalse(firstGoToCommand.equals(null));
 
-        // different module -> returns false
+        // different values -> returns false
         assertFalse(firstGoToCommand.equals(secondGoToCommand));
     }
 

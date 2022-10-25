@@ -59,7 +59,7 @@ public class GoToCommandTest {
         // null -> returns false
         assertFalse(gotoFirstCommand.equals(null));
 
-        // different module -> returns false
+        // different values -> returns false
         assertFalse(gotoFirstCommand.equals(gotoSecondCommand));
 
         // different predicate -> returns false
