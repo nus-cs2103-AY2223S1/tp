@@ -474,7 +474,6 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 * To know when the guests check in and check out
 * To keep track of the guests' bills
-* To know where the guests book the hotel from
 * To note down all the requirements/requests that the guests asked for
 * To note down the status of the room, if the room is cleaned or not cleaned
 
