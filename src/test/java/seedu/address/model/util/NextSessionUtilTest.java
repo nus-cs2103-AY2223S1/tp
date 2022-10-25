@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
-import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 import seedu.address.testutil.AddressBookBuilder;
