@@ -60,7 +60,7 @@ public class Deadline implements Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description);
+        return Objects.hash(title, description, date);
     }
 
     @Override
