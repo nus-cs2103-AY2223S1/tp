@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IS_COMPLETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IS_LINKED;
@@ -18,6 +19,8 @@ import seedu.address.model.task.FilterPredicate;
  * Parses input arguments and creates a new FilterTasksCommand object
  */
 public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
+    private static final String RESPONSE_CONSTRAINTS = "Response for filter criteria should be indicated as y or n";
+
     /**
      * Parses the given {@code String} of arguments in the context of the FilterTasksCommand
      * and returns a FilterTasksCommand object for execution.
@@ -25,7 +28,7 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
      */
     public FilterTasksCommand parse(String args) throws ParseException {
         Optional<Module> module = Optional.empty();
-        Optional<Boolean> isComplete = Optional.empty();
+        Optional<Boolean> isCompleted = Optional.empty();
         Optional<Boolean> isLinked = Optional.empty();
 
         ArgumentMultimap argMultimap =
@@ -42,14 +45,14 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
         }
 
         if (hasPrefix(argMultimap, PREFIX_IS_COMPLETE)) {
-            isComplete = Optional.of(ParserUtil.parseYesNoResponse(argMultimap.getValue(PREFIX_IS_COMPLETE).get()));
+            isCompleted = Optional.of(parseYesNoResponse(argMultimap.getValue(PREFIX_IS_COMPLETE).get()));
         }
 
         if (hasPrefix(argMultimap, PREFIX_IS_LINKED)) {
-            isLinked = Optional.of(ParserUtil.parseYesNoResponse(argMultimap.getValue(PREFIX_IS_LINKED).get()));
+            isLinked = Optional.of(parseYesNoResponse(argMultimap.getValue(PREFIX_IS_LINKED).get()));
         }
 
-        return new FilterTasksCommand(new FilterPredicate(module, isComplete, isLinked));
+        return new FilterTasksCommand(new FilterPredicate(module, isCompleted, isLinked));
     }
 
     /**
@@ -66,5 +69,28 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
      */
     private static boolean hasPrefix(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
+    }
+
+    private static boolean isValidYesNoResponse(String response) {
+        return response.equals("y") || response.equals("n");
+    }
+
+    /**
+     * Parses a {@code String response} into a boolean.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    private static boolean parseYesNoResponse(String response) throws ParseException {
+        requireNonNull(response);
+        String lowerCaseTrimmedResponse = response.trim().toLowerCase();
+        if (!isValidYesNoResponse(lowerCaseTrimmedResponse)) {
+            throw new ParseException(RESPONSE_CONSTRAINTS);
+        }
+        if (lowerCaseTrimmedResponse.equals("y")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

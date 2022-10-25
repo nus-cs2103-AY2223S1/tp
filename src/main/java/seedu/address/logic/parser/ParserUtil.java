@@ -33,11 +33,6 @@ import seedu.address.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final String RESPONSE_CONSTRAINTS = "Response for criteria should be indicated as y or n";
-
-    private static boolean isValidYesNoResponse(String response) {
-        return response.equals("y") || response.equals("n");
-    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -242,25 +237,6 @@ public class ParserUtil {
             throw new ParseException(TaskStatus.STATUS_CONSTRAINTS);
         }
         return TaskStatus.of(trimmedStatus);
-    }
-
-    /**
-     * Parses a {@code String response} into a boolean.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static boolean parseYesNoResponse(String response) throws ParseException {
-        requireNonNull(response);
-        String lowerCaseTrimmedResponse = response.trim().toLowerCase();
-        if (!isValidYesNoResponse(lowerCaseTrimmedResponse)) {
-            throw new ParseException(RESPONSE_CONSTRAINTS);
-        }
-        if (lowerCaseTrimmedResponse.equals("y")) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
