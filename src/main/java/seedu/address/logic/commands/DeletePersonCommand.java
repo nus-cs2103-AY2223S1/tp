@@ -18,9 +18,9 @@ public class DeletePersonCommand extends Command {
     public static final String COMMAND_WORD = "deleteperson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the person identified by name of the person in the displayed person list.\n"
+        + ": Deletes the specified person from the address book.\n"
         + "Parameters: NAME (must be exactly the same as person's name)\n"
-        + "Example: " + COMMAND_WORD + " UserName ";
+        + "Example: " + COMMAND_WORD + " John Doe";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 

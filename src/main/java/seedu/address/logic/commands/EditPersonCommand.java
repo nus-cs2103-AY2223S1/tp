@@ -28,8 +28,7 @@ public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "editperson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by their full name. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an existing person in the address book.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NAME (must be exactly the same as person's name) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -40,7 +39,7 @@ public class EditPersonCommand extends Command {
             + "Example: " + COMMAND_WORD + " John "
             + PREFIX_NAME + "Alice "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "alice@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

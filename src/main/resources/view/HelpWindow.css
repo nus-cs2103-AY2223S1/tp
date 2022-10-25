@@ -23,6 +23,11 @@
     -fx-padding: 0.0em;
 }
 
+.help-title-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #999999;
+}
+
 #copyButton, #openButton, #helpMessage {
     -fx-font-size: 12px;
     -fx-text-fill: white;
