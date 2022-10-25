@@ -15,8 +15,8 @@ public class ListEventsCommand extends Command {
     public static final String COMMAND_WORD = "listEvents";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all events in the address book. "
-            + "Parameters: " + "[" + PREFIX_SORT + "FIELD] (must be n, N, d or D)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_SORT + "n";
+            + "Parameters: " + "[" + PREFIX_SORT + "FIELD] (must be e, E, d or D)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_SORT + "e";
 
     public static final String MESSAGE_SUCCESS = "Listed all events sorted by %s";
 

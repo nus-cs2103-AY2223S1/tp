@@ -347,7 +347,7 @@ _Details coming soon ..._
 | **ListPersons**        | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
 | **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
-| **ListEvents**  | `listEvents [s/FIELD]`<br> e.g., `listEvents s/n`                                                                                                                                                                           |
+| **ListEvents**  | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                                                           |
 | **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
 | **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
 | **Help**         | `help`                                                                                                                                                                                 |
