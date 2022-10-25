@@ -110,8 +110,8 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB +
-                        ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB,
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
+                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
         // missing studmap prefix
