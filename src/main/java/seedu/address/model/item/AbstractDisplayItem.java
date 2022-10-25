@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.attribute.Attribute;
@@ -56,6 +57,14 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     }
 
     @Override
+    public Optional<Attribute<?>> getAttribute(String type) {
+        return getAttributes().stream()
+                .filter(attr -> attr.getAttributeType()
+                        .equals(type))
+                .findFirst();
+    }
+
+    @Override
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
@@ -64,7 +73,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         return (parentTypeFlag & o.typeFlag) > 0;
     }
 
-    abstract protected String getTitle(List<String> sb, AbstractDisplayItem o);
+    protected abstract String getTitle(List<String> sb, AbstractDisplayItem o);
 
     @Override
     public void addAttribute(Attribute<?> attribute) {

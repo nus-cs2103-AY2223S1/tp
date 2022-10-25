@@ -1,6 +1,7 @@
 package seedu.address.model.item;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.attribute.Attribute;
@@ -52,6 +53,8 @@ public interface DisplayItem {
      * Gets a list of attributes applied to DisplayItem
      */
     List<Attribute<?>> getAttributes();
+
+    Optional<Attribute<?>> getAttribute(String type);
 
     /**
      * Gets the name of the display item.

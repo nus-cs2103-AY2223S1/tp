@@ -4,8 +4,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Map;
 
-import javafx.scene.control.Label;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 
 /**
  * Represents a Person's address in the address book.
@@ -14,6 +14,7 @@ import javafx.scene.Node;
  */
 public class Address extends AbstractAttribute<String> {
 
+    public static final String TYPE = "Address";
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
@@ -28,7 +29,7 @@ public class Address extends AbstractAttribute<String> {
      * @param address A valid address.
      */
     public Address(String address) {
-        super("Address", address);
+        super(TYPE, address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }

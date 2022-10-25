@@ -19,12 +19,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Name;
-import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Phone;
 import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

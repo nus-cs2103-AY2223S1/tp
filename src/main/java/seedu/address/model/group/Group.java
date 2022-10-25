@@ -13,6 +13,9 @@ public class Group extends AbstractSingleItem {
     public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
             + "of alphanumeric characters, underscores and hyphens only.\n";
 
+    /**
+     * Constructor to create a group object
+     */
     public Group(String groupName) {
         super(groupName, GROUP, GROUP);
         assert isValidGroupName(groupName);

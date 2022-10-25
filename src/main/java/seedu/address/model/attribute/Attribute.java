@@ -4,6 +4,11 @@ import java.util.Map;
 
 import javafx.scene.Node;
 
+/**
+ * Interface to represent the information required to represent one attribute as
+ * well as methods to handle conversion of data and represenation of data in the
+ * GUI.
+ */
 public interface Attribute<T> {
     /**
      * Get the type label of this attribute.
@@ -39,7 +44,7 @@ public interface Attribute<T> {
     /**
      * Returns true if any bit of the flag is true
      */
-    boolean IsAnyFlagMatch(int flag);
+    boolean isAnyFlagMatch(int flag);
 
     /**
      * Returns the UI representation of the attribute to be added into the Javafx
@@ -56,7 +61,7 @@ public interface Attribute<T> {
 
     /**
      * Returns a map representation of attribute that is saveable by Storage.
-     * 
+     *
      * @return
      */
     Map<String, Object> toSaveableData();

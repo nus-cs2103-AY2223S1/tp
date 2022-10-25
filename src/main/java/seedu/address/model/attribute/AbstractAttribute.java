@@ -9,11 +9,18 @@ import static seedu.address.model.AccessDisplayFlags.MENU_OK;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 
+/**
+ * Creates an Abstract class to handle repeated and overused methods when making
+ * Attributes.
+ */
 public abstract class AbstractAttribute<T> implements Attribute<T> {
     protected T value;
     protected String typeName;
     private int accessCtrl;
 
+    /**
+     * Creates an instance of an abstract attribute class
+     */
     public AbstractAttribute(String typeName, T value, int accessCtrl) {
         requireNonNull(typeName);
         requireNonNull(value);
@@ -33,7 +40,7 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
     }
 
     @Override
-    public boolean IsAnyFlagMatch(int flag) {
+    public boolean isAnyFlagMatch(int flag) {
         return (accessCtrl & flag) > 0;
     }
 

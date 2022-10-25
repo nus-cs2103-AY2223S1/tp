@@ -10,7 +10,9 @@ import java.util.Map;
  */
 public class Name extends AbstractAttribute<String> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String TYPE = "Name";
+    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric "
+            + "characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -26,7 +28,7 @@ public class Name extends AbstractAttribute<String> {
      * @param name A valid name.
      */
     public Name(String name) {
-        super("Name", name);
+        super(TYPE, name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
     }

@@ -1,8 +1,8 @@
 package seedu.address.model.task;
 
-import static seedu.address.model.AccessDisplayFlags.TASK;
 import static seedu.address.model.AccessDisplayFlags.GROUP;
 import static seedu.address.model.AccessDisplayFlags.PERSON;
+import static seedu.address.model.AccessDisplayFlags.TASK;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

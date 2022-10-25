@@ -1,16 +1,16 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.AccessDisplayFlags.PERSON;
 import static seedu.address.model.AccessDisplayFlags.GROUP;
+import static seedu.address.model.AccessDisplayFlags.PERSON;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.attribute.Name;
-import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.AbstractDisplayItem;
+import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 
