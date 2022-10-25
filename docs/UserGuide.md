@@ -401,7 +401,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
-**Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD] [t/TAG]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
+**Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD] [t/TAG]…​` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Group Patients** | `group patients`
 **Group Appointents** | `group appts [k/KEY]` <br> e.g., `group appts k/mark`
 **Ungroup** | `ungroup patients` <br> `ungroup appts`
@@ -409,7 +409,7 @@ Action | Format, Examples
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
-**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD] [t/TAG]` <br> e.g., `edit appts 1 r/Cough`
+**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD] [t/TAG]…​` <br> e.g., `edit appts 1 r/Cough`
 **List** | `list patients` <br> `list appointments` <br> `list all`
 **Help** | `help`
 **Exit** | `exit`
