@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.Project;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Project;
 import seedu.address.model.task.Title;
 
 public class JsonAdaptedTaskTest {

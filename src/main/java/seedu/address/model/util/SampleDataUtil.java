@@ -13,10 +13,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.project.Project;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 

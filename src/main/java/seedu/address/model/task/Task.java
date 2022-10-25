@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.project.Project;
-
 /**
  * Represents a Task in the task list.
  * Guarantees: details are present and not null, field values are validated, immutable.

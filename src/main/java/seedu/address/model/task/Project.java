@@ -1,7 +1,9 @@
-package seedu.address.model.project;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Locale;
 
 /**
  * Represents a Project in the task panel.
@@ -14,7 +16,12 @@ public class Project {
     public static final String UNSPECIFIED_PROJECT_IDENTIFIER = "";
 
     public static final String MESSAGE_CONSTRAINTS = "Project names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String projectName;
 
@@ -53,8 +60,9 @@ public class Project {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.project.Project // instanceof handles nulls
-                && projectName.equals(((seedu.address.model.project.Project) other).projectName)); // state check
+                || (other instanceof Project // instanceof handles nulls
+                && projectName.toLowerCase(Locale.ROOT).equals(((Project) other)
+                .projectName.toLowerCase(Locale.ROOT))); // state check
     }
 
     @Override

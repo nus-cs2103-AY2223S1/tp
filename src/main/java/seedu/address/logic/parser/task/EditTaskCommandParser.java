@@ -13,7 +13,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Project;
+import seedu.address.model.task.Project;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object

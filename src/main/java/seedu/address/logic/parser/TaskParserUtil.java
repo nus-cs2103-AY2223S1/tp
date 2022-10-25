@@ -15,9 +15,9 @@ import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.project.Project;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Project;
 import seedu.address.model.task.Title;
 
 /**
