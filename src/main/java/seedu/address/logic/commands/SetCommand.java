@@ -100,10 +100,10 @@ public class SetCommand extends Command {
                                        SetPersonDescriptor setPersonDescriptor) {
         assert personToEdit != null;
         Name name = setPersonDescriptor.getName().orElse(personToEdit.getName());
-        Address addr = setPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> tags = setPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Role role = setPersonDescriptor.getRole().orElse(personToEdit.getRole().get());
-        Timezone timezone = setPersonDescriptor.getTimezone().orElse(personToEdit.getTimezone().get());
+        Address address = setPersonDescriptor.getAddress().orElse(personToEdit.getAddress().orElse(null));
+        Role role = setPersonDescriptor.getRole().orElse(personToEdit.getRole().orElse(null));
+        Timezone timezone = setPersonDescriptor.getTimezone().orElse(personToEdit.getTimezone().orElse(null));
 
         //TODO: add functionality to update user once the Person class is updated
 
@@ -116,7 +116,7 @@ public class SetCommand extends Command {
             }
         }
 
-        return new Person(name, addr, tags, newContacts, role, timezone);
+        return new Person(name, address, tags, newContacts, role, timezone);
     }
 
     @Override
@@ -253,8 +253,8 @@ public class SetCommand extends Command {
             SetPersonDescriptor s = (SetPersonDescriptor) other;
             return this.contacts.equals(s.contacts)
                    && this.name.equals(s.name)
-                   && this.address.equals(s.address)
                    && this.tags.equals(s.tags)
+                   && getAddress().equals(s.getAddress())
                    && getRole().equals(s.getRole())
                    && getTimezone().equals(s.getTimezone());
         }
