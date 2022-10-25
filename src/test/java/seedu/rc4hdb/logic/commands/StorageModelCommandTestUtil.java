@@ -10,12 +10,11 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.DataStorageManager;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
-import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
-import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 
 /**
  * Contains helper methods for testing storage model commands.
@@ -63,10 +62,9 @@ public class StorageModelCommandTestUtil {
             String expectedMessage) {
         // we are unable to defensively copy the storage and model for comparison later, so we can
         // only do so by copying its components.
-        ResidentBookStorage expectedResidentBookStorage =
-                new JsonResidentBookStorage(actualStorage.getResidentBookFilePath());
+        DataStorageManager expectedDataStorage = new DataStorageManager(actualStorage.getDataStorageFolderPath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(actualStorage.getUserPrefsFilePath());
-        Storage expectedStorage = new StorageManager(expectedResidentBookStorage, expectedUserPrefsStorage);
+        Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
 
         ResidentBook expectedResidentBook = new ResidentBook(actualModel.getResidentBook());
         List<Resident> expectedFilteredList = new ArrayList<>(actualModel.getFilteredResidentList());

@@ -43,7 +43,7 @@ public class DataStorageManager implements DataStorage {
     //================= File path methods ==========================
 
     @Override
-    public Path getDataStorageFilePath() {
+    public Path getDataStorageFolderPath() {
         return folderPath.getValue();
     }
 
@@ -53,7 +53,7 @@ public class DataStorageManager implements DataStorage {
     }
 
     @Override
-    public void setDataStorageFilePath(Path folderPath) {
+    public void setDataStorageFolderPath(Path folderPath) {
         requireNonNull(folderPath);
         logger.info(String.format("Updating current working folder to: %s", folderPath));
         this.folderPath.setValue(folderPath);
@@ -68,7 +68,7 @@ public class DataStorageManager implements DataStorage {
      * @throws IOException if there was any problem deleting the directory.
      */
     @Override
-    public void deleteDataFile(Path folderPath) throws IOException {
+    public void deleteDataFolder(Path folderPath) throws IOException {
         requireNonNull(folderPath);
         logger.info(String.format("Attempting to delete folder: %s", folderPath));
         if (!FileUtil.isFolderExists(folderPath)) {
@@ -95,7 +95,7 @@ public class DataStorageManager implements DataStorage {
      * @throws IOException if there was any problem creating the files.
      */
     @Override
-    public void createDataFile(Path folderPath) throws IOException {
+    public void createDataFolder(Path folderPath) throws IOException {
         requireNonNull(folderPath);
         logger.info(String.format("Attempting to create folder: %s", folderPath));
         if (FileUtil.isFolderExists(folderPath)) {
@@ -238,9 +238,7 @@ public class DataStorageManager implements DataStorage {
 
         // state check
         DataStorageManager other = (DataStorageManager) obj;
-        return folderPath.equals(other.folderPath)
-                && residentBookStorage.equals(other.residentBookStorage)
-                && venueBookStorage.equals(other.venueBookStorage);
+        return folderPath.equals(other.folderPath);
     }
 
 }

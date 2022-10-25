@@ -24,11 +24,11 @@ public class FileCreateCommand extends FileCommand implements StorageCommand {
 
     @Override
     public CommandResult execute(Storage storage) throws CommandException {
-        if (folderPath.equals(storage.getDataStorageFilePath())) {
+        if (folderPath.equals(storage.getDataStorageFolderPath())) {
             throw new CommandException(String.format(MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, folderName));
         }
         try {
-            storage.createDataFile(folderPath);
+            storage.createDataFolder(folderPath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, folderName));
         } catch (FileAlreadyExistsException e) {
             throw new CommandException(e.getMessage(), e);

@@ -72,6 +72,15 @@ public class FileUtil {
     }
 
     /**
+     * Creates a file directory if it does not exist
+     */
+    public static void createDirIfMissing(Path folder) throws IOException {
+        if (!isFolderExists(folder)) {
+            Files.createDirectory(folder);
+        }
+    }
+
+    /**
      * Assumes file exists
      */
     public static String readFromFile(Path file) throws IOException {

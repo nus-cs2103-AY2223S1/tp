@@ -20,13 +20,13 @@ public interface Storage extends DataStorage, UserPrefsStorage {
     //================ File Path methods ==============================
 
     @Override
-    Path getDataStorageFilePath();
+    Path getDataStorageFolderPath();
 
     @Override
     ObservableValue<Path> getObservableFolderPath();
 
     @Override
-    void setDataStorageFilePath(Path folderPath);
+    void setDataStorageFolderPath(Path folderPath);
 
     //================ UserPrefs methods ==============================
 
@@ -38,17 +38,6 @@ public interface Storage extends DataStorage, UserPrefsStorage {
 
     //================ ResidentBook methods ===========================
 
-    @Override
-    Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException, IOException;
-
-    @Override
-    void saveResidentBook(ReadOnlyResidentBook residentBook) throws IOException;
-
-    @Override
-    void deleteResidentBookFile(Path folderPath) throws IOException;
-
-    @Override
-    void createResidentBookFile(Path folderPath) throws IOException;
 
     //================ VenueBook methods ===============================
 
