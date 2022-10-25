@@ -158,7 +158,7 @@
 .card-pane {
      -fx-background-color: #1E2128;
      -fx-background-radius: 0 12 12 12;
-     -fx-border-color: #1E2128;
+     -fx-border-color: transparent;
 }
 
 .split-pane {
@@ -166,7 +166,8 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #1E2128;
+    -fx-padding: 0 0 0 16;
 }
 
 .result-display {
