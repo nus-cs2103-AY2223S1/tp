@@ -29,6 +29,7 @@ import nus.climods.storage.UserPrefsStorage;
 import nus.climods.storage.module.JsonModuleListStorage;
 import nus.climods.storage.module.ModuleListStorage;
 import nus.climods.storage.module.user.JsonUserModuleListStorage;
+import nus.climods.storage.module.user.UserModuleListStorage;
 import nus.climods.ui.Ui;
 import nus.climods.ui.UiManager;
 
@@ -58,10 +59,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
-        JsonUserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs
-                    .getUserModuleListFilePath());
-
-        // TODO: Update path to Module Model's path
+        // TODO Change userPref file path getters
+        UserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs.getAddressBookFilePath());
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(moduleListStorage, userModuleListStorage, userPrefsStorage);
 
@@ -77,36 +76,26 @@ public class MainApp extends Application {
      * data from the sample address book will be used instead if {@code storage}'s address book is not found, or an
      * empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs)
-            throws IOException {
-        Optional<ReadOnlyModuleList> moduleListOptional = Optional.empty();
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialModuleList;
-        Optional<UniqueUserModuleList> userModuleListOptional = Optional.empty();
-        UniqueUserModuleList initialUserModuleList;
+        // TODO: load from storage
+        UniqueUserModuleList initialUserModuleList = new UniqueUserModuleList();
         String academicYear = userPrefs.getAcademicYear();
-
         try {
-            userModuleListOptional = storage.getUserModuleListStorage().readUserModuleList();
             moduleListOptional = storage.readModuleList(academicYear);
+            if (moduleListOptional.isEmpty()) {
+                logger.info("Data file not found!");
+            }
+            initialModuleList = moduleListOptional.orElseGet(() -> new ModuleList(academicYear));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format!");
-        } catch (NullPointerException e) {
-            logger.warning("Data file is empty!");
-        } finally {
-            initialUserModuleList = loadStoredList(userModuleListOptional, new UniqueUserModuleList());
-            initialModuleList = loadStoredList(moduleListOptional, new ModuleList(academicYear));
+            initialModuleList = new ModuleList(academicYear);
         }
+
+
 
         return new ModelManager(initialModuleList, initialUserModuleList, userPrefs);
-    }
-
-    private <T> T loadStoredList(Optional<T> optionalList, T alternative) {
-        if (optionalList.isEmpty()) {
-            logger.info("Data file not found!");
-            return alternative;
-        } else {
-            return optionalList.get();
-        }
     }
 
     private void initLogging(Config config) {
