@@ -14,7 +14,7 @@ public class UnfocusCommand extends Command {
 
     public static final String COMMAND_WORD = "unfocus";
 
-    public static final String MESSAGE_SUCCESS = "Exited focus mode for %s";
+    public static final String MESSAGE_SUCCESS = "Exited focus mode for [ %s ]";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
