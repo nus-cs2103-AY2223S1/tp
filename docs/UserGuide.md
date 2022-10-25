@@ -267,6 +267,21 @@ Format: `list`
 
 ---
 
+### Viewing Portfolio of a specific client: `view`
+
+View a specific's client portfolio
+
+Format: `view INDEX`
+* Displays the portfolio of client at index `INDEX` on the Portfolio section
+* Portfolio includes risk level and current plans purchased by the client.
+
+Examples:
+
+* `view 1` displays the risk level and current plans purchased by the 1st client of the Financial book data.
+* `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
+
+---
+
 ## Data privacy
 
 ### Locking the application : `lock`
@@ -298,21 +313,6 @@ Examples:
 
 Financial book data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
-
----
-
-### Viewing Portfolio of a specific client: `view`
-
-View a specific's client portfolio
-
-Format: `view INDEX`  
-* Displays the portfolio of client at index `INDEX` on the Portfolio section   
-* Portfolio includes risk level and current plans purchased by the client.   
-
-Examples:
-
-* `view 1` displays the risk level and current plans purchased by the 1st client of the Financial book data.
-* `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
 
 ---
 
