@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MyInsuRecParser" as MyInsuRecParser LOGIC_COLOR
+participant "command:ViewMeetingCommand" as ViewMeetingCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("viewMeeting i/1")
+activate LogicManager
+
+LogicManager -> MyInsuRecParser : parseCommand("viewMeeting i/1")
+activate MyInsuRecParser
+
+create ViewMeetingCommand
+MyInsuRecParser -> ViewMeetingCommand
+activate ViewMeetingCommand
+
+ViewMeetingCommand --> MyInsuRecParser : command
+deactivate ViewMeetingCommand
+
+MyInsuRecParser --> LogicManager : command
+deactivate MyInsuRecParser
+
+LogicManager -> ViewMeetingCommand : execute()
+activate ViewMeetingCommand
+
+ViewMeetingCommand -> Model : model.getFilteredMeetingList()
+activate Model
+
+Model --> ViewMeetingCommand : meetingList
+deactivate Model
+
+ViewMeetingCommand --> ViewMeetingCommand : Get meeting
+
+create CommandResult
+ViewMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewMeetingCommand : result
+deactivate CommandResult
+
+ViewMeetingCommand --> LogicManager : result
+deactivate ViewMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

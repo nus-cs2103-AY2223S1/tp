@@ -32,8 +32,8 @@ public class ClientUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + client.getName().fullName + " ");
         sb.append(PREFIX_PHONE + client.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
+        sb.append(PREFIX_EMAIL + client.getEmail().get().toString() + " ");
+        sb.append(PREFIX_ADDRESS + client.getAddress().get().toString() + " ");
         client.getProducts().stream().forEach(
             s -> sb.append(PREFIX_PRODUCT + s.productName + " ")
         );

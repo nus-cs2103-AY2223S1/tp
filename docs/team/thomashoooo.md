@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to undo/redo previous commands.
   * to be added soon
-  
+
 * **Code contributed**: to be added soon
 
 * **Project management**:

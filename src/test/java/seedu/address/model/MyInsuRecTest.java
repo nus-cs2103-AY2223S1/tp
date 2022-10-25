@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.exceptions.DuplicateClientException;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 import seedu.address.testutil.ClientBuilder;
 
 public class MyInsuRecTest {
@@ -92,6 +93,7 @@ public class MyInsuRecTest {
     private static class MyInsuRecStub implements ReadOnlyMyInsuRec {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
+        private final ObservableList<Product> products = FXCollections.observableArrayList();
 
         MyInsuRecStub(Collection<Client> clients, Collection<Meeting> meetings) {
             this.clients.setAll(clients);
@@ -107,6 +109,12 @@ public class MyInsuRecTest {
         public ObservableList<Meeting> getMeetingList() {
             return meetings;
         }
+
+        @Override
+        public ObservableList<Product> getProductList() {
+            return products;
+        }
+
     }
 
 }

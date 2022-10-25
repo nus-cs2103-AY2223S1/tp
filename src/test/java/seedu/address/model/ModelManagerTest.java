@@ -124,7 +124,7 @@ public class ModelManagerTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING1)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING1)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(ALICE)
                 .build();
         modelManager.addMeeting(meeting1);
@@ -143,7 +143,7 @@ public class ModelManagerTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING1)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING1)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(ALICE)
                 .build();
         modelManager.addMeeting(meeting1);

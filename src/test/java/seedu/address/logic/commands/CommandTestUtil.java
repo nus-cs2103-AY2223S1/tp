@@ -23,6 +23,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingContainsClientPredicate;
+import seedu.address.model.product.Product;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
 /**
@@ -38,8 +39,11 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final LocalDate VALID_BIRTHDAY_AMY = LocalDate.of(1952, 12, 12);
+    public static final LocalDate VALID_BIRTHDAY_BOB = LocalDate.of(2000, 1, 1);
     public static final String VALID_PRODUCT_1 = "Product1";
     public static final String VALID_PRODUCT_2 = "Product2";
+    public static final String INVALID_PRODUCT_1 = "Unadded Product";
 
     public static final String VALID_DESCRIPTION_MEETING1 = "meeting1";
     public static final String VALID_DESCRIPTION_MEETING2 = "meeting2";
@@ -74,10 +78,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withProducts(VALID_PRODUCT_1).build();
+                .withBirthday(VALID_BIRTHDAY_AMY).withProducts(VALID_PRODUCT_1).build();
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withProducts(VALID_PRODUCT_1, VALID_PRODUCT_2).build();
+                .withBirthday(VALID_BIRTHDAY_BOB).withProducts(VALID_PRODUCT_1, VALID_PRODUCT_2).build();
     }
 
     /**
@@ -150,4 +154,16 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredMeetingList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered product list to show only the product at the given {@code targetIndex} in the
+     * {@code model}'s MyInsuRec.
+     */
+    public static void showProductAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Product product = model.getFilteredProductList().get(targetIndex.getZeroBased());
+        model.updateFilteredProductList(item -> item.equals(product));
+
+        assertEquals(1, model.getFilteredProductList().size());
+    }
 }

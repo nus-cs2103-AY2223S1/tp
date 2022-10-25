@@ -27,6 +27,10 @@ public class Product {
         this.productName = productName;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
     /**
      * Returns true if a given string is a valid product name.
      */

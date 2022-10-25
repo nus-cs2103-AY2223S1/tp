@@ -13,6 +13,7 @@ import seedu.address.model.MyInsuRec;
 import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 
 /**
  * An Immutable MyInsuRec that is serializable to JSON format.
@@ -24,13 +25,16 @@ class JsonSerializableMyInsuRec {
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
+    private final List<JsonAdaptedProduct> products = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableMyInsuRec} with the given clients.
      */
     @JsonCreator
-    public JsonSerializableMyInsuRec(@JsonProperty("clients") List<JsonAdaptedClient> clients) {
+    public JsonSerializableMyInsuRec(@JsonProperty("clients") List<JsonAdaptedClient> clients,
+                                     @JsonProperty("products") List<JsonAdaptedProduct> products) {
         this.clients.addAll(clients);
+        this.products.addAll(products);
     }
 
     /**
@@ -40,6 +44,7 @@ class JsonSerializableMyInsuRec {
      */
     public JsonSerializableMyInsuRec(ReadOnlyMyInsuRec source) {
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        products.addAll(source.getProductList().stream().map(JsonAdaptedProduct::new).collect(Collectors.toList()));
     }
 
     /**
@@ -58,6 +63,10 @@ class JsonSerializableMyInsuRec {
             for (Meeting meeting : client.getMeetings()) {
                 myInsuRec.addMeeting(meeting);
             }
+        }
+        for (JsonAdaptedProduct jsonAdaptedProduct : products) {
+            Product product = jsonAdaptedProduct.toModelType();
+            myInsuRec.addProduct(product);
         }
         return myInsuRec;
     }

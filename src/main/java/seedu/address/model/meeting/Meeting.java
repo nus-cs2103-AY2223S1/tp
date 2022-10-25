@@ -13,7 +13,8 @@ public class Meeting {
     private final Client client;
     private final Description description;
     private final MeetingDate meetingDate;
-    private final MeetingTime meetingTime;
+    private final MeetingTime meetingStartTime;
+    private final MeetingTime meetingEndTime;
 
     /**
      * Constructs a {@code Meeting}. Every field must be present and not null.
@@ -21,14 +22,17 @@ public class Meeting {
      * @param client Client to meet with
      * @param description Description of meeting
      * @param meetingDate Date of meeting
-     * @param meetingTime Time of meeting
+     * @param meetingStartTime Start time of meeting
+     * @param meetingEndTime End time of meeting
      */
-    public Meeting(Client client, Description description, MeetingDate meetingDate, MeetingTime meetingTime) {
-        requireAllNonNull(client, description, meetingDate, meetingTime);
+    public Meeting(Client client, Description description,
+                   MeetingDate meetingDate, MeetingTime meetingStartTime, MeetingTime meetingEndTime) {
+        requireAllNonNull(client, description, meetingDate, meetingStartTime, meetingEndTime);
         this.client = client;
         this.description = description;
         this.meetingDate = meetingDate;
-        this.meetingTime = meetingTime;
+        this.meetingStartTime = meetingStartTime;
+        this.meetingEndTime = meetingEndTime;
     }
 
     public Client getClient() {
@@ -51,8 +55,12 @@ public class Meeting {
         return meetingDate;
     }
 
-    public MeetingTime getMeetingTime() {
-        return meetingTime;
+    public MeetingTime getMeetingStartTime() {
+        return meetingStartTime;
+    }
+
+    public MeetingTime getMeetingEndTime() {
+        return meetingEndTime;
     }
 
     /**
@@ -71,9 +79,10 @@ public class Meeting {
         boolean isSameClient = this.getClient().equals(other.getClient());
         boolean isSameDescription = this.getDescription().equals(other.getDescription());
         boolean isSameMeetingDate = this.getMeetingDate().equals(other.getMeetingDate());
-        boolean isSameMeetingTime = this.getMeetingTime().equals(other.getMeetingTime());
+        boolean isSameMeetingStartTime = this.getMeetingStartTime().equals(other.getMeetingStartTime());
+        boolean isSameMeetingEndTime = this.getMeetingEndTime().equals(other.getMeetingEndTime());
 
-        return isSameClient && isSameDescription && isSameMeetingDate && isSameMeetingTime;
+        return isSameClient && isSameDescription && isSameMeetingDate && isSameMeetingStartTime && isSameMeetingEndTime;
     }
 
     /**
@@ -88,9 +97,10 @@ public class Meeting {
         }
 
         boolean isSameMeetingDate = this.getMeetingDate().equals(other.getMeetingDate());
-        boolean isSameMeetingTime = this.getMeetingTime().equals(other.getMeetingTime());
+        boolean isBefore = this.getMeetingStartTime().isBefore(other.getMeetingEndTime());
+        boolean isAfter = this.getMeetingEndTime().isAfter(other.getMeetingStartTime());
 
-        return isSameMeetingDate && isSameMeetingTime;
+        return isSameMeetingDate && isBefore && isAfter;
     }
 
     @Override
@@ -102,8 +112,10 @@ public class Meeting {
                 .append(getDescription())
                 .append("; Date: ")
                 .append(getMeetingDate())
-                .append("; Time: ")
-                .append(getMeetingTime());
+                .append("; Start: ")
+                .append(getMeetingStartTime())
+                .append("; End: ")
+                .append(getMeetingEndTime());
 
         return builder.toString();
     }

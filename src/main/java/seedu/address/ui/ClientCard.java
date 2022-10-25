@@ -59,8 +59,8 @@ public class ClientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
-        address.setText(client.getAddress().value);
-        email.setText(client.getEmail().value);
+        address.setText(client.getAddress().get().toString());
+        email.setText(client.getEmail().get().toString());
         client.getProducts().stream()
                 .sorted(Comparator.comparing(product -> product.productName))
                 .forEach(product -> products.getChildren().add(new Label(product.productName)));
@@ -69,7 +69,7 @@ public class ClientCard extends UiPart<Region> {
             numMeetings.setText(Integer.toString(clientMeetings.size()));
             for (Meeting meeting : clientMeetings) {
                 String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),
-                        meeting.getMeetingTime(), meeting.getDescription());
+                        meeting.getMeetingStartTime(), meeting.getDescription());
                 Label label = new Label(meetingSummary);
                 label.getStyleClass().add("cell_small_label");
                 meetingsBox.getChildren().add(label);
