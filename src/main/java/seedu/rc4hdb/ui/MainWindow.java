@@ -7,10 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -62,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Tab venueTab;
+
+    @FXML
+    private Label venueName;
 
     @FXML
     private StackPane residentTableViewPlaceholder;
@@ -147,6 +147,8 @@ public class MainWindow extends UiPart<Stage> {
 
         residentTab.setContent(residentTableViewPlaceholder);
         venueTab.setContent(bookingTableViewPlaceholder);
+
+        venueName.setText("VenueA");
 
         tableViewPane.getTabs().addAll(residentTab, venueTab);
 

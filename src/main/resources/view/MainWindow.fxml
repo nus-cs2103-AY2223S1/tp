@@ -12,6 +12,7 @@
 
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="RC4HDB" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -43,11 +44,14 @@
                 </VBox>
             </Tab>
             <Tab fx:id="venueTab" closable="false" styleClass="tab">
-                <VBox fx:id="venueTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
-                    </padding>
-                    <StackPane fx:id="bookingTableViewPlaceholder" VBox.vgrow="ALWAYS"/>
+                <VBox styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                    <Label fx:id="venueName" prefHeight="72.00" prefWidth="100.00" textAlignment="CENTER" />
+                    <VBox fx:id="venueTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10" />
+                        </padding>
+                        <StackPane fx:id="bookingTableViewPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
                 </VBox>
             </Tab>
         </TabPane>

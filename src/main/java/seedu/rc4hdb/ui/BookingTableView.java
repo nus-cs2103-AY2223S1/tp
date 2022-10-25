@@ -25,8 +25,8 @@ public class BookingTableView extends UiPart<Region> {
 
     private static final String FXML = "BookingTableView.fxml";
 
-    private static final List<String> hours = List.of("0800", "1000", "1100", "1200", "1300", "1400", "1500", "1600",
-            "1700", "1800", "1900", "2000", "2100", "2200", "2300");
+    private static final List<String> hours = List.of("0800", "0900", "1000", "1100", "1200", "1300", "1400", "1500", "1600",
+            "1700", "1800", "1900", "2000", "2100", "2200");
 
     private final TableColumn<DailySchedule, Day> dayColumn = new TableColumn<>("Day");
     private final List<TableColumn<DailySchedule, Resident[]>> hourColumn;
@@ -136,6 +136,13 @@ public class BookingTableView extends UiPart<Region> {
 
     private void configureTableProperties() {
         this.bookingTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.dayColumn.setSortable(false);
+
+        for (int i = 0; i < 15; i++) {
+            this.bookingTableView.getColumns().get(i).setSortable(false);
+            this.bookingTableView.getColumns().get(i).setResizable(false);
+        }
+
     }
 
     public void updateTable(List<Booking> bookings) {
