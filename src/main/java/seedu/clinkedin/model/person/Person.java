@@ -46,7 +46,6 @@ public class Person {
         this.status = status;
         this.note = new Note("");
         this.rating = new Rating("0");
-        
     }
 
     /**

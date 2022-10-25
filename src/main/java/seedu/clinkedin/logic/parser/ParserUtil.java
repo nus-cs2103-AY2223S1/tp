@@ -165,7 +165,7 @@ public class ParserUtil {
         return new Rating(trimmedRating);
     }
 
-    /**  
+    /**
      * Parses a {@code String link} into a {@code Link}.
      * Leading and trailing whitespaces will be trimmed.
      *
