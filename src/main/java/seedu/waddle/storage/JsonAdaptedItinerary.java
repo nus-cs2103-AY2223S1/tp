@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
+import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
@@ -32,6 +33,7 @@ class JsonAdaptedItinerary {
     private final String budget;
 
     private final List<JsonAdaptedItem> items = new ArrayList<>();
+    private final List<JsonAdaptedDay> days = new ArrayList<>();
 
 
     /**
@@ -42,7 +44,8 @@ class JsonAdaptedItinerary {
                                 @JsonProperty("startDate") String startDate, @JsonProperty("duration") String duration,
                                 @JsonProperty("people") String people,
                                 @JsonProperty("budget") String budget,
-                                @JsonProperty("items") List<JsonAdaptedItem> items) {
+                                @JsonProperty("items") List<JsonAdaptedItem> items,
+                                @JsonProperty("days") List<JsonAdaptedDay> days) {
         this.name = name;
         this.country = country;
         this.startDate = startDate;
@@ -50,6 +53,7 @@ class JsonAdaptedItinerary {
         this.people = people;
         this.budget = budget;
         this.items.addAll(items);
+        this.days.addAll(days);
     }
 
     /**
@@ -64,6 +68,9 @@ class JsonAdaptedItinerary {
         budget = source.getBudget().toString();
         for (Item item : source.getItemList()) {
             items.add(new JsonAdaptedItem(item));
+        }
+        for (Day day : source.getDays()) {
+            days.add(new JsonAdaptedDay(day));
         }
     }
 
@@ -133,6 +140,14 @@ class JsonAdaptedItinerary {
             }
             itinerary.addItem(item);
         }
+
+        final List<Day> modelDays = new ArrayList<>();
+        for (JsonAdaptedDay jsonAdaptedDay : days) {
+            Day day = jsonAdaptedDay.toModelType();
+            modelDays.add(day);
+        }
+        itinerary.setDays(modelDays);
+
         return itinerary;
     }
 

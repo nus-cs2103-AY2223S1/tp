@@ -115,4 +115,8 @@ public class Day {
     public UniqueItemList getItemList() {
         return this.itemList;
     }
+
+    public int getDayNumber() {
+        return this.dayNumber;
+    }
 }

@@ -13,7 +13,6 @@ public class Item {
     private final Cost cost;
     private final Duration duration;
     private LocalTime startTime;
-    // private Category category;
 
     /**
      * Constructor for an item.

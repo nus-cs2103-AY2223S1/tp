@@ -1,11 +1,13 @@
 package seedu.waddle.storage;
 
+import java.time.LocalTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Cost;
-//import seedu.waddle.model.item.Duration;
+import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 
@@ -19,7 +21,8 @@ public class JsonAdaptedItem {
     private final String description;
     private final Integer stars;
     private final String cost;
-    //private final String duration;
+    private final String duration;
+    private final String startTime;
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
@@ -28,11 +31,13 @@ public class JsonAdaptedItem {
     public JsonAdaptedItem(@JsonProperty("description") String description,
                            @JsonProperty("priority") Integer stars,
                            @JsonProperty("cost") String cost,
-                           @JsonProperty("duration") String duration) {
+                           @JsonProperty("duration") String duration,
+                           @JsonProperty("startTime") String startTime) {
         this.description = description;
         this.stars = stars;
         this.cost = cost;
-        //this.duration = duration;
+        this.duration = duration;
+        this.startTime = startTime;
     }
 
     /**
@@ -43,7 +48,12 @@ public class JsonAdaptedItem {
         stars = source.getPriority().getStars();
         cost = source.getCost().toString();
         //TODO duration and startTime null error
-        //duration = source.getDuration().toString();
+        duration = source.getDuration().toString();
+        if (source.getStartTime() == null) {
+            startTime = null;
+        } else {
+            startTime = source.getStartTime().toString();
+        }
     }
 
     /**
@@ -75,9 +85,16 @@ public class JsonAdaptedItem {
 
         final Priority modelPriority = new Priority(stars);
         final Cost modelCost = new Cost(cost);
-        //final Duration modelDuration = new Duration(duration);
+        final Duration modelDuration = new Duration(duration);
 
-        return new Item(modelDescription, modelPriority, modelCost, null);
+        Item item = new Item(modelDescription, modelPriority, modelCost, modelDuration);
+
+        if (startTime != null) {
+            final LocalTime modelStartTime = LocalTime.parse(startTime);
+            item.setStartTime(modelStartTime);
+        }
+
+        return item;
     }
 
 }
