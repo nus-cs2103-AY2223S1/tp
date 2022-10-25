@@ -71,7 +71,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         SubjectHandler subjectHandler = new SubjectHandler(subjectList);
 
         Person person = new Person(name, phone, email, address, studentClass,
-        attendance, remarksList, subjectHandler, tagList);
+            attendance, remarksList, subjectHandler, tagList);
 
         return new AddCommand(person);
     }
