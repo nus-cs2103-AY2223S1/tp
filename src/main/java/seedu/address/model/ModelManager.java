@@ -14,7 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
-import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Group> filteredTeams;
-    private Optional<AbstractContainerItem> currentContext = Optional.empty();
+    private Optional<AbstractSingleItem> currentContext = Optional.empty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -293,7 +293,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateContextContainer(AbstractContainerItem container) {
+    public void updateContextContainer(AbstractSingleItem container) {
         currentContext = Optional.ofNullable(container);
         updateFilteredPersonList(List.of());
         updateFilteredTeamList(List.of());
@@ -301,7 +301,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public AbstractContainerItem getContextContainer() {
+    public AbstractSingleItem getContextContainer() {
         return currentContext.orElse(null);
     }
 

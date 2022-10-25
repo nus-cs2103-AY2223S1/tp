@@ -1,17 +1,19 @@
-package seedu.address.model.person;
+package seedu.address.model.attribute;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Map;
 
 /**
  * Represents a Person's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Phone extends AbstractAttribute<String> {
 
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+    public static final String TYPE = "Phone";
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers,"
+            + " and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -21,6 +23,7 @@ public class Phone {
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
+        super(TYPE, phone);
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
@@ -39,15 +42,8 @@ public class Phone {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Phone // instanceof handles nulls
-                && value.equals(((Phone) other).value)); // state check
+    public Map<String, Object> toSaveableData() {
+        // TODO Auto-generated method stub
+        return null;
     }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }

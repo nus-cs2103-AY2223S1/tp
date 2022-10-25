@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.address.model.person.field.Field;
+import seedu.address.model.attribute.Field;
 
 /**
  * Represents a Person's custom fields pairings in the address book.
@@ -121,8 +121,9 @@ public class Fields {
     /**
      * Checks if the {@code Fields} is empty.
      *
-     * @return true if there are no {@code Field} instances stored in this {@code Fields}
-     *     object, false otherwise.
+     * @return true if there are no {@code Field} instances stored in this
+     *         {@code Fields}
+     *         object, false otherwise.
      */
     public boolean isEmpty() {
         return fields.isEmpty();

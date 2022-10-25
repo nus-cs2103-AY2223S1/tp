@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.AbstractSingleItem;
 
 /**
  * A ui for the status bar that is displayed at the footer of the application.
@@ -33,12 +33,12 @@ public class StatusBarFooter extends UiPart<Region> {
     /**
      * Updates the footer so it represent the current working container
      */
-    public void updateFooter(AbstractContainerItem o) {
+    public void updateFooter(AbstractSingleItem o) {
         if (o == null) {
             currGroupStatus.setText("/");
             return;
         }
-        currGroupStatus.setText(o.getFullPathName());
+        currGroupStatus.setText(o.getFullPath());
     }
 
 }

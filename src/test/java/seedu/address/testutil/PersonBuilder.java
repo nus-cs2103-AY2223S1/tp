@@ -1,15 +1,20 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import javafx.scene.Node;
+import seedu.address.model.attribute.Field;
+import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.Phone;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Fields;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.field.Field;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,9 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    List<Attribute<?>> attrs;
     private Set<Tag> tags;
     private Fields fields;
 
@@ -35,9 +38,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        attrs = new ArrayList<>();
         tags = new HashSet<>();
         fields = new Fields();
     }
@@ -47,10 +48,9 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        attrs = new ArrayList<>(personToCopy.getAttributes());
         tags = new HashSet<>(personToCopy.getTags());
+        fields = personToCopy.getFields();
     }
 
     /**
@@ -62,41 +62,70 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
+    public <U> PersonBuilder addCustomAttr(String name, U data) {
+        this.attrs.add(new Attribute<U>() {
+            @Override
+            public String getAttributeType() {
+                return name;
+            }
 
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
+            @Override
+            public U getAttributeContent() {
+                return data;
+            }
 
-    /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+            @Override
+            public boolean isVisibleInMenu() {
+                return true;
+            }
+
+            @Override
+            public boolean isDisplayable() {
+                return true;
+            }
+
+            @Override
+            public boolean isAllFlagMatch(int flag) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+
+            @Override
+            public boolean isAnyFlagMatch(int flag) {
+                // TODO Auto-generated method stub
+                return false;
+            }
+
+            @Override
+            public Node getJavaFxRepresentation() {
+                return null;
+            }
+
+            @Override
+            public <T> boolean isSameType(Attribute<T> o) {
+                return false;
+            }
+
+            @Override
+            public Map<String, Object> toSaveableData() {
+                return null;
+            }
+        });
         return this;
     }
 
     /**
      * Sets the {@code Fields} of the {@code Person} that we are building.
      */
-    public PersonBuilder withFields(String ... fieldNames) {
+    public PersonBuilder withFields(String... fieldNames) {
         fields = new Fields();
         for (String fieldName : fieldNames) {
             Field field = new Field(fieldName);
@@ -106,7 +135,29 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, fields);
+        Person p = new Person(name.fullName, fields);
+        p.setTags(tags);
+        attrs.forEach(attr -> p.addAttribute(attr));
+        return p;
+    }
+
+    public PersonBuilder withAddress(String string) {
+        attrs.add(new Address(string));
+        return this;
+    }
+
+    /**
+     * @param string
+     * @return
+     */
+    public PersonBuilder withEmail(String string) {
+        attrs.add(new Email(string));
+        return this;
+    }
+
+    public PersonBuilder withPhone(String string) {
+        attrs.add(new Phone(string));
+        return this;
     }
 
 }
