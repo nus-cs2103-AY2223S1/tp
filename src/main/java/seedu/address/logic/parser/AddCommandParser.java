@@ -48,16 +48,15 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE,
+                PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE, PREFIX_TIMEZONE,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SLACK, PREFIX_TELEGRAM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Map<ContactType, Contact> contacts = new HashMap<>();
@@ -72,6 +71,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
             contacts.put(ContactType.TELEGRAM, ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
+        }
+
+        Address address = null;
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         }
 
         Timezone timezone = null;
