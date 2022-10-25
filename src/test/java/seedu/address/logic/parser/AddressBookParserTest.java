@@ -86,7 +86,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, MainPanelName.List) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " " + AddCommand.COMMAND_WORD, MainPanelName.List) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(
+                HelpCommand.COMMAND_WORD + " " + AddCommand.COMMAND_WORD, MainPanelName.List
+        ) instanceof HelpCommand);
     }
 
     @Test
