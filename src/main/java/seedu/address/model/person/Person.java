@@ -90,6 +90,24 @@ public class Person {
     }
 
     /**
+     * Checks if the all interests provided are found in the set of interests linked to this batchmate.
+     *
+     * @param interestsSet The set of interests to be deleted.
+     */
+    public boolean canDeleteInterests(Set<Interest> interestsSet) {
+        return this.interests.containsAll(interestsSet);
+    }
+
+    /**
+     * Removes all interests in {@code interestsSet} from the current list of interests linked to this batchmate.
+     *
+     * @param interestsSet The list of mods to be deleted.
+     */
+    public void deleteInterests(Set<Interest>  interestsSet) {
+        this.interests.removeAll(interestsSet);
+    }
+
+    /**
      * Sorts then returns an immutable mods list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

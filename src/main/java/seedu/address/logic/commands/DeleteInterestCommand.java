@@ -16,25 +16,28 @@ import seedu.address.model.person.Person;
 /**
  * Adds a list of interests to the specified person.
  */
-public class AddInterestCommand extends Command {
+public class DeleteInterestCommand extends Command {
 
-    public static final String COMMAND_WORD = "addInt";
+    public static final String COMMAND_WORD = "deleteInt";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds interest(s) to the batchmate identified by the index number used in the displayed person list.\n"
+            + ": Deletes interest(s) specified from the batchmate as identified by the index number of the"
+            + " displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer) INTEREST [MORE_INTERESTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 tennis netflix";
-    public static final String MESSAGE_SUCCESS = "Interest(s) added successfully!";
+    public static final String MESSAGE_SUCCESS = "Interest(s) deleted successfully!";
+    public static final String MESSAGE_INVALID_INTEREST = "This batchmate does not have all of the interests specified."
+            + "\nPlease check the entered interests and try again.";
 
     private final Index targetIndex;
     private final Set<Interest> interests;
 
     /**
-     * Constructs a command that adds all interests specified to the target batchmate.
+     * Constructs a command that deletes all interests specified from the target batchmate.
      *
      * @param index The index of the batchmate.
-     * @param interests The set of interests to be added.
+     * @param interests The set of interests to be deleted.
      */
-    public AddInterestCommand(Index index, Set<Interest> interests) {
+    public DeleteInterestCommand(Index index, Set<Interest> interests) {
         requireNonNull(index);
         requireNonNull(interests);
 
@@ -52,7 +55,12 @@ public class AddInterestCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
-        personToEdit.addInterests(interests);
+
+        if (personToEdit.canDeleteInterests(this.interests)) {
+            personToEdit.deleteInterests(this.interests);
+        } else {
+            throw new CommandException(MESSAGE_INVALID_INTEREST);
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit), false, false, false, true);
     }
@@ -65,12 +73,12 @@ public class AddInterestCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddInterestCommand)) {
+        if (!(other instanceof DeleteInterestCommand)) {
             return false;
         }
 
         // state check
-        AddInterestCommand e = (AddInterestCommand) other;
+        DeleteInterestCommand e = (DeleteInterestCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && interests.equals(e.interests);
     }
