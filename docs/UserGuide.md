@@ -28,7 +28,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
    * **`listc`** : Lists all contacts.
 
-   * **`add`**`add Finish homework by/2022-12-12 15:04 m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
+   * **`add`**`Finish homework by/tomorrow 5pm m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
 
    * **`delete`**`1` : Deletes the 1st task shown in the current list.
 
@@ -77,14 +77,25 @@ Format: `help`
 
 #### Adding a task: `add`
 
-Adds a task to the task manager.
+Adds a task to the task list.
 
 Format:
 `add {task_name} by/{deadline} m/{module_code}`
 
 Examples:
-* `add finish problem set 5 by/2022-01-02 15:04 m/CS2040S`
+* `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59 m/SEP`
+
+#### Editing a task: `edit`
+
+Edit the specified task from the task list.
+
+Format:
+`edit {task_index} {field prefix + field description}`
+
+Examples:
+* `edit 2 n/Rewatch lecture 6`
+* `edit 3 m/CS2040S by/2022-12-12 23:59`
 
 #### Deleting a task: `del`
 
@@ -243,7 +254,8 @@ Action | Format, Examples
 **Add contact** | `addc n/ {name} p/ {phone_number} e/ {email} [t/ {tag}] [m/ {module_1} m/ {module_2}] gh/ {github} tele/ {telegram}...` <br> e.g., `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S gh/ bobby tele/ bmartin`
 **Clear contacts** | `clear`
 **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
-**Edit contact** | `edit INDEX [n/name}] [p/{phone_number}] [e/{email}] [a/{address}] [t/{tag}]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit contact** | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`        
 **Find contacts** | `findc n/ {name}` <br> `findc m/ {module}`<br> e.g., `findc n/ John`, <br> `findc m/ CS1231S`
 **List contacts** | `listc`
 **Help** | `help`
+

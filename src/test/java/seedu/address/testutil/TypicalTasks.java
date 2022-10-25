@@ -15,6 +15,20 @@ import seedu.address.model.task.TaskName;
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
+    public static final Task FINISH_TUTORIAL = new Task(
+            new TaskName("Finish tutorial 6"),
+            new Module("MA1521"),
+            new Deadline("2022-11-14 00:00"),
+            new Status(false)
+    );
+
+    public static final Task WATCH_LECTURE = new Task(
+            new TaskName("Watch week 5 lecture"),
+            new Module("CS2103T"),
+            new Deadline("2022-11-19 00:00"),
+            new Status(false)
+    );
+
     public static final Task FINISH_TP = new Task(
             new TaskName("Finish TP"),
             new Module("CS2103T"),
@@ -49,7 +63,7 @@ public class TypicalTasks {
     private TypicalTasks() {} // prevents instantiation
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(FINISH_TP, LAB_2));
+        return new ArrayList<>(Arrays.asList(FINISH_TUTORIAL, WATCH_LECTURE));
     }
 
     /**
