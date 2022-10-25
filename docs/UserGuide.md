@@ -433,7 +433,7 @@ Word | Definition
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-###AddressBook Commands
+### AddressBook Commands
 
 Action | Format | Examples
 --------|-------------------------------------|--------
@@ -448,7 +448,7 @@ Action | Format | Examples
 **Help** | `help` | `help`
 **Exit** | `exit` | `exit`
 
-###Note Commands
+### Note Commands
 
 Action | Format | Examples
 --------|---------------------------|-------------
