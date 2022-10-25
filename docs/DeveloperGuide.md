@@ -255,7 +255,7 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
 Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList` 
 named `sortedStudents` according to the data file. 
 
-Step 2. The user executes `sort n/asc` command to sort the students by name in ascending order. `SortCommandParser` will
+Step 2. The user executes `sort n/a` command to sort the students by name in ascending order. `SortCommandParser` will
 check that the command is valid, and pass a `comparator` that orders the student names alphabetically to `SortCommand`.
 
 Step 3. `SortCommand` will call `Model#updateSortedStudentList(Comparator<Student> comparator)` to update `sortedStudents`
