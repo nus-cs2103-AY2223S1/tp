@@ -20,7 +20,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_COMPANY = "Meta";
     public static final String DEFAULT_ROLE = "God Developer";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_STAGE = "HR Interview";
+    public static final String DEFAULT_STAGE = "Technical Interview";
     public static final String DEFAULT_DATETIME = "";
 
 
