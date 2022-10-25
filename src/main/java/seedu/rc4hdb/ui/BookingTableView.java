@@ -59,7 +59,7 @@ public class BookingTableView extends UiPart<Region> {
      */
     public List<DailySchedule> buildWeeklySchedule(List<Booking> bookingList) {
         List<DailySchedule> weeklySchedule = new ArrayList<>();
-        List<Day> days = Day.daysOfWeek.stream().map(Day::new).collect(Collectors.toList());
+        List<Day> days = Day.DAYS_OF_WEEK.stream().map(Day::new).collect(Collectors.toList());
         for (Day day : days) {
             List<Booking> dailyBooking = new ArrayList<>();
             for (Booking booking : bookingList) {

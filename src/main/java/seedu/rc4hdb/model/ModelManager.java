@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
@@ -34,10 +35,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
 
-    private final ObservableList<String> observableFieldList;
-    private ObservableList<Booking> observableBookingList;
+    private final ObservableList<Booking> observableBookingList;
     private final ObservableList<Venue> observableVenueList;
-
+    private final ObservableList<String> visibleFields;
+    private final ObservableList<String> hiddenFields;
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -52,15 +53,16 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
-        this.observableFieldList = FXCollections.observableArrayList();
+        // Set up observable instances
         this.observableVenueList = venueBook.getVenueList();
-
         if (observableVenueList.isEmpty()) {
             logger.info("No venues found in venue list.");
             this.observableBookingList = FXCollections.observableArrayList();
         } else {
             this.observableBookingList = observableVenueList.get(0).getObservableBookings();
         }
+        this.visibleFields = FXCollections.observableArrayList(ResidentField.LOWERCASE_FIELDS);
+        this.hiddenFields = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -221,13 +223,23 @@ public class ModelManager implements Model {
     //=========== Observable Field List Accessors =============================================================
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return this.observableFieldList;
+    public ObservableList<String> getVisibleFields() {
+        return this.visibleFields;
     }
 
     @Override
-    public void setObservableFields(List<String> modifiableFields) {
-        this.observableFieldList.setAll(modifiableFields);
+    public void setVisibleFields(List<String> fieldsToShow) {
+        this.visibleFields.setAll(fieldsToShow);
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return this.hiddenFields;
+    }
+
+    @Override
+    public void setHiddenFields(List<String> fieldsToHide) {
+        this.hiddenFields.setAll(fieldsToHide);
     }
 
     //=========== Observable Venue List Accessors =============================================================

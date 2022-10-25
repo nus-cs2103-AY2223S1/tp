@@ -143,16 +143,48 @@ public interface Model {
 
     //=================== UI population methods ============================
 
-    ObservableList<String> getObservableFields();
-
-    void setObservableFields(List<String> modifiableList);
-
+    /**
+     * Gets the list of venues to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
+     * Use only for setting up listeners.
+     */
     ObservableList<Venue> getObservableVenues();
 
+    /**
+     * Sets the list of venues to be displayed.
+     */
     void setObservableVenues(List<Venue> modifiableVenues);
 
+    /**
+     * Gets the list of bookings to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
+     * Use only for setting up listeners.
+     */
     ObservableList<Booking> getObservableBookings();
 
+    /**
+     * Sets the venue corresponding to {@code venueName} to be displayed on {@link seedu.rc4hdb.ui.BookingTableView}.
+     */
     void setObservableBookings(VenueName venueName);
+
+    /**
+     * Returns an observable list of the fields to be shown when invoking {@code show}.
+     */
+    ObservableList<String> getVisibleFields();
+
+    /**
+     * Updates the list of fields to be shown when invoking {@code show}.
+     * @param fieldsToShow The list of fields to be shown
+     */
+    void setVisibleFields(List<String> fieldsToShow);
+
+    /**
+     * Returns an observable list of the fields to be hidden when invoking {@code hide}.
+     */
+    ObservableList<String> getHiddenFields();
+
+    /**
+     * Updates the list of fields to be hidden when invoking {@code hide}.
+     * @param fieldsToHide The list of fields to be hidden
+     */
+    void setHiddenFields(List<String> fieldsToHide);
 
 }

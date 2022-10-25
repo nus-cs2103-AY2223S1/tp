@@ -112,11 +112,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return model.getObservableFields();
-    }
-
-    @Override
     public ObservableList<Venue> getObservableVenues() {
         return model.getObservableVenues();
     }
@@ -124,6 +119,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableValue<Path> getObservableFolderPath() {
         return storage.getObservableFolderPath();
+    }
+
+    @Override
+    public ObservableList<String> getVisibleFields() {
+        return model.getVisibleFields();
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return model.getHiddenFields();
     }
 
     @Override
