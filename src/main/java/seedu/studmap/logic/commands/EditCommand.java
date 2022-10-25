@@ -23,10 +23,13 @@ import seedu.studmap.logic.commands.exceptions.CommandException;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Email;
+import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
+import seedu.studmap.model.student.StudentID;
+import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 
 /**
@@ -108,6 +111,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
         private Name name;
         private Phone phone;
         private Email email;
+        private StudentID id;
+        private GitName gitName;
+        private TeleHandle handle;
         private Address address;
         private Set<Tag> tags;
 
@@ -122,6 +128,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setId(toCopy.id);
+            setGitName(toCopy.gitName);
+            setHandle(toCopy.handle);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -155,6 +164,30 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
         public void setEmail(Email email) {
             this.email = email;
+        }
+
+        public void setId(StudentID id) {
+            this.id = id;
+        }
+
+        public Optional<StudentID> getId() {
+            return Optional.ofNullable(id);
+        }
+
+        public void setHandle(TeleHandle handle) {
+            this.handle = handle;
+        }
+
+        public Optional<TeleHandle> getHandle() {
+            return Optional.ofNullable(handle);
+        }
+
+        public void setGitName(GitName name) {
+            this.gitName = name;
+        }
+
+        public Optional<GitName> getGitName() {
+            return Optional.ofNullable(gitName);
         }
 
         public Optional<Address> getAddress() {

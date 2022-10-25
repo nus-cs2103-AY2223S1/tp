@@ -52,7 +52,13 @@ public class EditCommandParser extends EditStudentCommandParser<EditCommandStude
             editor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
-            editor.set
+            editor.setId(ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GIT).isPresent()) {
+            editor.setGitName(ParserUtil.parseGitName(argMultimap.getValue(PREFIX_GIT).get()));
+        }
+        if (argMultimap.getValue(PREFIX_HANDLE).isPresent()) {
+            editor.setHandle(ParserUtil.parseHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));

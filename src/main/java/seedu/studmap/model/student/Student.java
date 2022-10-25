@@ -55,12 +55,24 @@ public class Student {
         return id;
     }
 
+    public String getIdString() {
+        return id.toString();
+    }
+
     public GitName getGitName() {
         return gitName;
     }
 
+    public String getGitString() {
+        return gitName.toString();
+    }
+
     public TeleHandle getTeleHandle() {
         return teleHandle;
+    }
+
+    public String getHandleString() {
+        return teleHandle.toString();
     }
 
     public Name getName() {
@@ -75,12 +87,24 @@ public class Student {
         return phone;
     }
 
+    public String getPhoneString() {
+        return phone.toString();
+    }
+
     public Email getEmail() {
         return email;
     }
 
+    public String getEmailString() {
+        return email.toString();
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public String getAddressString() {
+        return address.toString();
     }
 
     /**
@@ -99,17 +123,42 @@ public class Student {
         return Collections.unmodifiableSet(attendances);
     }
 
+    public StudentData getStudentData() {
+
+        StudentData studentData = new StudentData();
+
+        studentData.setName(this.getName());
+        studentData.setPhone(this.getPhone());
+        studentData.setEmail(this.getEmail());
+        studentData.setAddress(this.getAddress());
+
+        studentData.setTags(new HashSet<>(this.getTags()));
+        studentData.setAttendances(new HashSet<>(this.getAttendances()));
+
+        return studentData;
+    }
+
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns attendance in percentage.
      */
-    public boolean isSamePerson(Student otherStudent) {
+    public float getAttendancePercentage() {
+        float numOfClasses = getAttendances().size();
+        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
+        return presentFor / numOfClasses * 100;
+    }
+
+    /**
+     * Returns true if both students have the same name.
+     * This defines a weaker notion of equality between two students.
+     */
+    public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
 
         return otherStudent != null && otherStudent.getName().equals(getName());
     }
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
