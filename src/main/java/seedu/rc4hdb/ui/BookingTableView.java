@@ -2,26 +2,17 @@ package seedu.rc4hdb.ui;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.venues.booking.Booking;
-import seedu.rc4hdb.model.venues.booking.fields.BookingField;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.Hour;
 
@@ -31,6 +22,8 @@ import seedu.rc4hdb.model.venues.booking.fields.Hour;
 public class BookingTableView extends UiPart<Region> {
 
     private static final String FXML = "BookingTableView.fxml";
+
+    private static final List<String> daysOfWeek = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
 
     private final TableColumn<Booking, Day> dayColumn = new TableColumn<>("Day");
     private final TableColumn<Booking, Hour> firstColumn = new TableColumn<>("0800");
@@ -51,7 +44,6 @@ public class BookingTableView extends UiPart<Region> {
     private final TableColumn<Booking, Hour> sixteenthColumn = new TableColumn<>("2300");
 
     private ObservableList<Booking> observableBookings = FXCollections.observableArrayList();
-    private final static List<String> daysOfWeek = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
 
     @FXML
     private TableView<Booking> bookingTableView;
@@ -64,14 +56,14 @@ public class BookingTableView extends UiPart<Region> {
         super(FXML);
         requireNonNull(bookingList);
 
-        this.observableBookings  = bookingList;
+        this.observableBookings = bookingList;
         this.bookingTableView.setItems(bookingList);
         populateDayOfWeekColumn(dayColumn);
         addColumns();
         populateRows();
         configureTableProperties();
 
-//        this.observableBookings.setAll(bookingList);
+        //this.observableBookings.setAll(bookingList);
     }
 
     private void addColumns() {

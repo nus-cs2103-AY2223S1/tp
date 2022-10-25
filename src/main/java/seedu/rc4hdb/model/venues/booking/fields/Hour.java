@@ -38,6 +38,13 @@ public class Hour extends StringField {
         }
     }
 
+    /**
+     * Gets the hour as an integer.
+     */
+    public int asInt() {
+        return Integer.parseInt(value);
+    }
+
     public boolean isAfterOrDuring(Hour other) {
         return hour >= other.hour;
     }
