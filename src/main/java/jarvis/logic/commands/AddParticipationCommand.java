@@ -20,16 +20,17 @@ import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Adds participation for a student for a given studio.
- * The student is identified using its displayed index from the student book.
  * The studio is identified using its displayed index from the lesson book.
+ * The student is identified using its displayed index in the student list of the specified lesson.
  */
 public class AddParticipationCommand extends Command {
 
     public static final String COMMAND_WORD = "addpart";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds participation for a student for a studio. The student and studio are identified by their "
-            + "respective index number used in the displayed student list and in the displayed lesson list.\n"
+            + ": Adds participation for a student in a lesson. The lesson is identified by its index number in the"
+            + " displayed lesson list. The student is identified using its displayed index in the student list of the "
+            + "specified lesson\n"
             + "Parameters: "
             + PREFIX_PARTICIPATION + "PARTICIPATION "
             + PREFIX_LESSON_INDEX + "LESSON INDEX "
@@ -44,8 +45,7 @@ public class AddParticipationCommand extends Command {
     private final Index studentIndex;
 
     /**
-     * Creates an AddParticipationCommand to add participation for the specified student at student index for a given
-     * studio at lesson index.
+     * Creates an AddParticipationCommand to add participation for the specified student in the specified studio.
      */
     public AddParticipationCommand(int participation, Index lessonIndex, Index studentIndex) {
         requireAllNonNull(participation, lessonIndex, studentIndex);

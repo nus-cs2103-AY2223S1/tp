@@ -24,7 +24,7 @@ public class UnmarkLessonCommand extends Command {
             + ": Marks a lesson as not completed. The lesson is identified by its index number in the displayed "
             + "lesson list.\n"
             + "Parameters: "
-            + PREFIX_LESSON_INDEX + "LESSON INDEX \n"
+            + PREFIX_LESSON_INDEX + "LESSON_INDEX \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_LESSON_INDEX + "1";
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as not completed.";

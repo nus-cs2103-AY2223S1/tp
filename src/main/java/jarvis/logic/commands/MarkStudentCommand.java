@@ -18,18 +18,19 @@ import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Marks a student as present for a given lesson.
- * The student is identified using its displayed index from the student book.
  * The lesson is identified using its displayed index from the lesson book.
+ * The student is identified using its displayed index in the student list of the specified lesson.
  */
 public class MarkStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "markstudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a student as present for a lesson. The student and lesson are identified by their respective"
-            + " index number used in the displayed student list and in the displayed lesson list.\n"
+            + ": Marks a student as present for a lesson. "
+            + "The lesson is identified by its index number in the displayed lesson list. The student is identified "
+            + "using its displayed index in the student list of the specified lesson\n"
             + "Parameters: "
-            + PREFIX_LESSON_INDEX + "LESSON INDEX "
+            + PREFIX_LESSON_INDEX + "LESSON_INDEX "
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_LESSON_INDEX + "1 " + PREFIX_STUDENT_INDEX + "2";
 
@@ -39,8 +40,7 @@ public class MarkStudentCommand extends Command {
     private final Index studentIndex;
 
     /**
-     * Creates a MarkStudentCommand to mark the specified student at student index for a given lesson at lesson index as
-     * present.
+     * Creates a MarkStudentCommand to mark the specified student in the specified lesson as present.
      */
     public MarkStudentCommand(Index lessonIndex, Index studentIndex) {
         requireAllNonNull(lessonIndex, studentIndex);

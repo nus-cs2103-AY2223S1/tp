@@ -21,9 +21,9 @@ import jarvis.model.exceptions.StudentNotFoundException;
 /**
  * Deletes a note from a lesson.
  * Note deleted can be for the lesson or for a specific student in the lesson if the student is specified.
- * The note is identified using its displayed index in the lesson notes or for the student notes in the lesson.
- * The student is identified using its displayed index from the student book.
+ * The note is identified using its displayed index in the lesson notes or in the student notes in the lesson.
  * The lesson is identified using its displayed index from the lesson book.
+ * The student is identified using its displayed index in the student list of the specified lesson.
  */
 public class DeleteNoteCommand extends Command {
 
@@ -32,8 +32,9 @@ public class DeleteNoteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a note from a lesson or from a specific student in the lesson if optional student index is "
             + "specified. "
-            + "Note is identified using its displayed index in the list of notes. The student and lesson are identified"
-            + " by their respective index number used in the displayed student list and in the displayed lesson list.\n"
+            + "Note is identified using its displayed index in the list of notes. The lesson is identified by its index"
+            + " number in the displayed lesson list. The student is identified using its displayed index in the "
+            + "student list of the specified lesson\n"
             + "Parameters: "
             + PREFIX_NOTE_INDEX + "NOTE INDEX "
             + PREFIX_LESSON_INDEX + "LESSON INDEX "
@@ -49,7 +50,7 @@ public class DeleteNoteCommand extends Command {
     private final Index studentIndex;
 
     /**
-     * Creates a DeleteNoteCommand to delete a note from a lesson or from a specified student in the lesson.
+     * Creates a DeleteNoteCommand to delete a note from a specified lesson or from a specified student in the lesson.
      */
     public DeleteNoteCommand(Index noteIndex, Index lessonIndex, Index studentIndex) {
         requireAllNonNull(noteIndex, lessonIndex);
