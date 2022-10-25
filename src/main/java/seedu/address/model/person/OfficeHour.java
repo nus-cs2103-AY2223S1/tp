@@ -89,6 +89,12 @@ public class OfficeHour {
         return value.hashCode();
     }
 
+    /**
+     * Converts the office hour stored in value to what the user inputted.
+     * This is used for searching for office hours.
+     * @return The user input form of the office hour stored in value.
+     * @throws ParseException This exception will not be thrown as the value will always be in the correct format.
+     */
     public String getUserInput() throws ParseException {
         if (!value.isEmpty()) {
             String[] seperateDay = value.split(", ");
