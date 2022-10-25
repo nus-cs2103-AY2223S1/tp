@@ -74,6 +74,19 @@ public class AttendanceList {
     }
 
     /**
+     * Attendance object of the specified index in the Attendance list will be marked
+     *
+     * @param index index in the attendance list to be marked
+     */
+    public void markAtIndex(Index index) {
+        int indexToMark = index.getZeroBased();
+        if (indexToMark >= attendanceList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_ATTENDANCE_INDEX);
+        }
+        attendanceList.get(indexToMark).markAsPresent();
+    }
+
+    /**
      * Removes the attendance at the given index.
      * @param index of attendance to be removed
      */
@@ -92,11 +105,54 @@ public class AttendanceList {
         return index.getZeroBased() < attendanceList.size();
     }
 
+    /**
+     * Returns size of list
+     *
+     * @return int size of attendanceList
+     */
+    public int size() {
+        return attendanceList.size();
+    }
+
+    /**
+     * Returns an integer of the total number of days present in the list
+     *
+     * @return total number of days present in the list
+     */
+    public int totalNumberOfDaysPresent() {
+        int totalNumberOfDays = 0;
+        for (Attendance att : attendanceList) {
+            if (att.getIsPresent()) {
+                totalNumberOfDays++;
+            }
+        }
+        return totalNumberOfDays;
+    }
+
+    /**
+     * Returns the percentage of days present, to the nearest integer
+     *
+     * @return int percentage of days present
+     */
+    public int percentagePresent() {
+        int percentage = (totalNumberOfDaysPresent() / size()) * 100;
+        return Math.round(percentage);
+    }
+
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder();
         if (attendanceList.isEmpty()) {
             description.append("No attendance found!\n");
+        } else {
+            description.append(totalNumberOfDaysPresent())
+                    .append("/")
+                    .append(size())
+                    .append(" Days Present,")
+                    .append(" ")
+                    .append(percentagePresent())
+                    .append("%")
+                    .append("\n");
         }
         for (int i = 0; i < attendanceList.size(); i++) {
             description.append(i + 1).append(". ").append(this.attendanceList.get(i)).append("\n");

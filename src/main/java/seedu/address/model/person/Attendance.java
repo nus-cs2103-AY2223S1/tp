@@ -30,6 +30,7 @@ public class Attendance {
 
     protected static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     public final LocalDate time;
+    private boolean isPresent;
 
     /**
      * Constructs an {@code Attendance}.
@@ -44,6 +45,7 @@ public class Attendance {
         } catch (DateTimeParseException dpe) {
             throw new IllegalArgumentException(MESSAGE_INVALID_DATE);
         }
+        isPresent = false;
     }
 
     /**
@@ -53,9 +55,55 @@ public class Attendance {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Getter method for isPresent
+     * @return boolean value of isPresent
+     */
+    public boolean getIsPresent() {
+        return isPresent;
+    }
+
+    /**
+     * Setter method for isPresent
+     * @param value value is set to isPresent
+     */
+    public void setIsPresent(boolean value) {
+        isPresent = value;
+    }
+
+    /**
+     * Method that marks attendance date as present
+     */
+    public void markAsPresent() {
+        isPresent = true;
+    }
+
+    /**
+     * Method that marks the attendance as absent
+     */
+    public void markAsAbsent() {
+        isPresent = false;
+    }
+
+    /**
+     * Returns a String according to value of isPresent
+     *
+     * @return Strings that indicate presence or absence
+     */
+    public String attendanceCheckString() {
+        if (isPresent) {
+            return " [Present]";
+        } else {
+            return " [Absent]";
+        }
+    }
+
     @Override
     public String toString() {
-        return time.format(DTF);
+        StringBuilder desc = new StringBuilder();
+        desc.append(time.format(DTF))
+                .append(attendanceCheckString());
+        return desc.toString();
     }
 
     @Override

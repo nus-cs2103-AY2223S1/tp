@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Homework {
     public final String value;
+    private boolean isCompleted;
 
     /**
      * Constructs an {@code Homework}.
@@ -17,11 +18,42 @@ public class Homework {
     public Homework(String homework) {
         requireNonNull(homework);
         value = homework;
+        isCompleted = false;
+    }
+    /**
+     * Method to indicate homework as done
+     *
+     */
+    public void markAsDone() {
+        isCompleted = true;
+    }
+
+    /**
+     * Getter method for isCompleted
+     * @return boolean value of isCompleted
+     */
+    public boolean getIsCompleted() {
+        return isCompleted;
+    }
+
+    /**
+     * Setter method for isCompleted
+     * @param value value to set on isCompleted
+     */
+    public void setIsCompleted(boolean value) {
+        isCompleted = value;
     }
 
     @Override
     public String toString() {
-        return value;
+        StringBuilder desc = new StringBuilder();
+        desc.append(value);
+        if (isCompleted) {
+            desc.append(" [✓]");
+        } else {
+            desc.append(" [ ]");
+        }
+        return desc.toString();
     }
 
     @Override
