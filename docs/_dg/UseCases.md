@@ -92,6 +92,7 @@ Extensions:
   * 3b1. FoodRem requests for the command to be entered again.
   * 3b2. User re-enters the command.
   * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
+  
 ---
 #### UC5: Find Item
 
