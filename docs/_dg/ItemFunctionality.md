@@ -1,3 +1,8 @@
-{% include_relative _dg/implementations/items/CreateItem.md %}
-{% include_relative _dg/implementations/items/EditItem.md %}
-{% include_relative _dg/implementations/items/SortItems.md %}
+<!-- markdownlint-disable-file first-line-h1 -->
+### Item Feature Implementation
+
+#### Implementation Details
+
+<!-- TODO: ADD ITEM CLASS DIAGRAM -->
+
+#### Design Considerations
