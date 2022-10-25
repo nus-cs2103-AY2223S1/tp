@@ -9,7 +9,7 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.entry.Income;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * Contains utility methods for populating {@code PennyWise} with sample data.

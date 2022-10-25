@@ -6,7 +6,7 @@ import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * A utility class to help with building EditEntryDescriptor objects.

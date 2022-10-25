@@ -16,7 +16,7 @@ import seedu.address.model.entry.Description;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.entry.Income;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object

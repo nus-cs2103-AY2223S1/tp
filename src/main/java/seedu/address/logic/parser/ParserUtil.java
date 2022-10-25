@@ -15,8 +15,7 @@ import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
-import seedu.address.model.entry.Month;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -101,21 +100,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String month} into a {@code Month}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code month} is invalid.
-     */
-    public static Month parseMonth(String month) throws ParseException {
-        requireNonNull(month);
-        String trimmedMonth = month.trim();
-        if (!Month.isValidMonth(trimmedMonth)) {
-            throw new ParseException(Month.MESSAGE_CONSTRAINTS);
-        }
-        return new Month(trimmedMonth);
-    }
-
-    /**
      * Parses a {@code String date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -162,7 +146,7 @@ public class ParserUtil {
         requireNonNull(yearMonth);
         String trimmedYearMonth = yearMonth.trim();
         try {
-            return YearMonth.parse(trimmedYearMonth, DateTimeFormatter.ofPattern("MM-yyyy"));
+            return YearMonth.parse(trimmedYearMonth, DateTimeFormatter.ofPattern(Date.YEAR_MONTH_PATTERN));
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_YEARMONTH);
         }

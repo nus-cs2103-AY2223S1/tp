@@ -1,12 +1,10 @@
-package seedu.address.model.tag;
+package seedu.address.model.entry;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
-
-import seedu.address.model.entry.EntryType;
 
 /**
  * Represents a Tag in the penny wise application.

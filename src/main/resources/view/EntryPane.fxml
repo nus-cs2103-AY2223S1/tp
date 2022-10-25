@@ -4,14 +4,15 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.StackPane?>
 
+
 <TabPane prefWidth="138.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
-        <Tab styleClass="tabButton" text="Expenses">
+        <Tab fx:id="expenses" text="Expenses">
             <content>
                 <StackPane fx:id="expenseEntryPlaceholder" />
             </content>
         </Tab>
-        <Tab styleClass="tabButton" text="Income">
+        <Tab fx:id="income" text="Income">
             <content>
                 <StackPane fx:id="incomeEntryPlaceholder" />
             </content>

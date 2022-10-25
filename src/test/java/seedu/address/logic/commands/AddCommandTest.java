@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -252,11 +251,6 @@ public class AddCommandTest {
         @Override
         public void updateFilteredIncomeList(Predicate<Entry> predicate) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMonthForChart(YearMonth month) {
-
         }
     }
 

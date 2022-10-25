@@ -57,10 +57,8 @@ public class DeleteCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
             }
-            entryToDelete = lastShownList.get(targetIndex.getZeroBased());
 
             entryToDelete = getEntryToDelete(targetIndex, lastShownList);
-
             model.deleteExpenditure(entryToDelete);
             break;
         case INCOME:
@@ -70,10 +68,7 @@ public class DeleteCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
             }
 
-            entryToDelete = lastShownList.get(targetIndex.getZeroBased());
-
             entryToDelete = getEntryToDelete(targetIndex, lastShownList);
-
             model.deleteIncome(entryToDelete);
             break;
         default:

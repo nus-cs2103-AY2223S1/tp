@@ -1,0 +1,32 @@
+@startuml
+
+start
+
+if () then ([inputs are valid))
+    switch ()
+    case ([entry type is income])
+      :Retrieve the list of income;
+    case ([entry type is expenditure])
+      :Retrieve the list of expenditure;
+    case ([else])
+      :Display an error message;
+      stop
+    endswitch
+
+    switch ()
+    case ([category graph type is specified])
+      :Display the list of entries;
+      :Display pie chart of the entries\nbased on all categories;
+    case ([month graph type is specified])
+      :Display the list of entries in the month;
+      :Display line chart of amount statistic\nof the entries in the month;
+    endswitch
+else ([end])
+    stop
+endif
+
+stop
+
+@enduml
+
+
