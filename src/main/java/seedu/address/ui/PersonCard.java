@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -75,7 +76,7 @@ public class PersonCard extends UiPart<Region> {
         lifeInsurance.setText("Life                    "
                 + (person.getLifeInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
         birthday.setText("\uD83C\uDF82\t"
-                + person.getBirthday().value);
+                + person.getBirthday().value.format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
