@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             + PREFIX_INCOME + "$1000 "
             + PREFIX_MONTHLY + "$200 "
             + PREFIX_RISKTAG + "HIGH "
-            + PREFIX_PLANTAG + "Savings Plan"
+            + PREFIX_PLANTAG + "Savings Plan "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
