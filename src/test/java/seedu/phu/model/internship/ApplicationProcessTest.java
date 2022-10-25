@@ -24,14 +24,14 @@ public class ApplicationProcessTest {
         assertThrows(NullPointerException.class, () -> ApplicationProcess.isValidApplicationProcess(null));
 
         // invalid application process
-        assertFalse(ApplicationProcess.isValidApplicationProcess("aapply"));
+        assertFalse(ApplicationProcess.isValidApplicationProcess("aapplied"));
         assertFalse(ApplicationProcess.isValidApplicationProcess("tech interview"));
 
         // valid application process
-        assertTrue(ApplicationProcess.isValidApplicationProcess("APPLY"));
-        assertTrue(ApplicationProcess.isValidApplicationProcess("Apply"));
-        assertTrue(ApplicationProcess.isValidApplicationProcess("apply"));
-        assertTrue(ApplicationProcess.isValidApplicationProcess("AppLy"));
+        assertTrue(ApplicationProcess.isValidApplicationProcess("APPLIED"));
+        assertTrue(ApplicationProcess.isValidApplicationProcess("Applied"));
+        assertTrue(ApplicationProcess.isValidApplicationProcess("applied"));
+        assertTrue(ApplicationProcess.isValidApplicationProcess("Applied"));
         assertTrue(ApplicationProcess.isValidApplicationProcess("ASSESSMENT"));
         assertTrue(ApplicationProcess.isValidApplicationProcess("INTERVIEW"));
         assertTrue(ApplicationProcess.isValidApplicationProcess("OFFER"));

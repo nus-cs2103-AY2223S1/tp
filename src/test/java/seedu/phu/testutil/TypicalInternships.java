@@ -34,7 +34,7 @@ public class TypicalInternships {
     public static final Internship AMAZON = new InternshipBuilder().withName("Amazon")
             .withRemark("1 George St, Singapore 049145").withEmail("amazon@example.com")
             .withPhone("94351253")
-            .withTags("stocks").withPosition("Backend Intern").withApplicationProcess("APPLY")
+            .withTags("stocks").withPosition("Backend Intern").withApplicationProcess("APPLIED")
             .withDate("11-12-2022").withWebsite("https://www.amazon.jobs").build();
     public static final Internship BYTEDANCE = new InternshipBuilder().withName("Bytedance")
             .withRemark("311, Clementi Ave 2, #02-25")
@@ -43,21 +43,21 @@ public class TypicalInternships {
             .withDate("24-09-2022").withWebsite("https://jobs.bytedance.com/en/").build();
     public static final Internship CITADEL = new InternshipBuilder().withName("Citadel").withPhone("95352563")
             .withEmail("heinz@example.com").withRemark("wall street").withPosition("backend engineer")
-            .withApplicationProcess("APPLY").withDate("24-09-2022").withWebsite("NA").build();
+            .withApplicationProcess("APPLIED").withDate("24-09-2022").withWebsite("NA").build();
     public static final Internship DSTA = new InternshipBuilder().withName("DSTA").withPhone("87652533")
             .withEmail("cornelia@example.com").withRemark("10th street").withTags("stocks")
             .withPosition("frontend engineer").withApplicationProcess("INTERVIEW")
             .withDate("14-09-2022").withWebsite("NA").build();
     public static final Internship EBAY = new InternshipBuilder().withName("Ebay").withPhone("9482224")
             .withEmail("werner@example.com").withRemark("michegan ave").withPosition("data engineer")
-            .withApplicationProcess("APPLY").withDate("24-09-2022").withWebsite("NA").build();
+            .withApplicationProcess("APPLIED").withDate("24-09-2022").withWebsite("NA").build();
     public static final Internship FASTLY = new InternshipBuilder().withName("Fastly").withPhone("9482427")
             .withEmail("lydia@example.com").withRemark("little tokyo").withPosition("AI engineer")
-            .withApplicationProcess("APPLY").withApplicationProcess("APPLY").withDate("24-09-2022")
+            .withApplicationProcess("APPLIED").withApplicationProcess("APPLIED").withDate("24-09-2022")
             .withWebsite("NA").build();
     public static final Internship GOOGLE = new InternshipBuilder().withName("Google").withPhone("9482442")
             .withEmail("anna@example.com").withRemark("4th street").withPosition("Data analyst")
-            .withApplicationProcess("APPLY").withApplicationProcess("APPLY").withDate("24-09-2022")
+            .withApplicationProcess("APPLIED").withApplicationProcess("APPLIED").withDate("24-09-2022")
             .withWebsite("NA").build();
 
     // Manually added

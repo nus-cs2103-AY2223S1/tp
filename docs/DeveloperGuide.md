@@ -622,7 +622,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an internship
 
-   1. Test case: `dd n/Google p/Backend Intern pr/APPLY d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
+   1. Test case: `dd n/Google p/Backend Intern pr/APPLIED d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
       date being `11 Dec 2022`, arnd application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
       website `https://careers.google.com/jobs`, remark `offer for Y2 summer break`, and 2 tags: `high` and `java`. 
@@ -630,7 +630,7 @@ testers are expected to do more *exploratory* testing.
    
    2. Test case: `add n/Google p/Backend Intern`<br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
-      date being today's date (by default), arnd application process `APPLY` (by default), phone `NA` (by default),
+      date being today's date (by default), arnd application process `APPLIED` (by default), phone `NA` (by default),
       email `NA` (by default), website `NA` (by default), and empty remark. A success message is shown with the details
       of the added internship. The entire application list is displayed.
 
@@ -717,8 +717,8 @@ testers are expected to do more *exploratory* testing.
     8. Test case: `find c/d 2022-02-02`
         Expected: The application throws an error message since an invalid date format is given.
    
-    9. Test case: `find c/pr APPLY`
-        Expected: The application lists all application process in stage `APPLY`
+    9. Test case: `find c/pr APPLIED`
+        Expected: The application lists all application process in stage `APPLIED`
    
     10. Test case: `find c/pr Unknown_Process`
         Expected: The applications throws an error message.
