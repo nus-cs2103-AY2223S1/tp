@@ -26,6 +26,8 @@ import jeryl.fyp.logic.commands.FindTagsCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
+import jeryl.fyp.logic.commands.SortProjectStatusCommand;
+import jeryl.fyp.logic.commands.SortSpecialisationCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -118,6 +120,20 @@ public class FypManagerParserTest {
         MarkCommand command = (MarkCommand) parser.parseCommand(MarkCommand.COMMAND_WORD + " "
                 + PREFIX_STUDENT_ID + studentId + " " + PREFIX_PROJECT_STATUS + projectStatus);
         assertEquals(new MarkCommand(studentId, projectStatus), command);
+    }
+
+    @Test
+    public void parseCommand_sortProjectStatus() throws Exception {
+        assertTrue(parser.parseCommand(SortProjectStatusCommand.COMMAND_WORD) instanceof SortProjectStatusCommand);
+        assertTrue(parser.parseCommand(SortProjectStatusCommand.COMMAND_WORD + " 3")
+                instanceof SortProjectStatusCommand);
+    }
+
+    @Test
+    public void parseCommand_sortSpecialisation() throws Exception {
+        assertTrue(parser.parseCommand(SortSpecialisationCommand.COMMAND_WORD) instanceof SortSpecialisationCommand);
+        assertTrue(parser.parseCommand(SortSpecialisationCommand.COMMAND_WORD + " 3")
+                instanceof SortSpecialisationCommand);
     }
 
     @Test

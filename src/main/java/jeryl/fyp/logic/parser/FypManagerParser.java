@@ -21,6 +21,8 @@ import jeryl.fyp.logic.commands.FindTagsCommand;
 import jeryl.fyp.logic.commands.HelpCommand;
 import jeryl.fyp.logic.commands.ListCommand;
 import jeryl.fyp.logic.commands.MarkCommand;
+import jeryl.fyp.logic.commands.SortProjectStatusCommand;
+import jeryl.fyp.logic.commands.SortSpecialisationCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 
 /**
@@ -91,6 +93,12 @@ public class FypManagerParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case SortSpecialisationCommand.COMMAND_WORD:
+            return new SortSpecialisationCommand();
+
+        case SortProjectStatusCommand.COMMAND_WORD:
+            return new SortProjectStatusCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -153,6 +153,20 @@ public class ModelManager implements Model {
         return fypManager.getIndexByStudentId(studentId);
     }
 
+    @Override
+    public void sortFilteredStudentListBySpecialisation() {
+        fypManager.sortFilteredStudentListBySpecialisation();
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void sortFilteredStudentListByProjectStatus() {
+        fypManager.sortFilteredStudentListByProjectStatus();
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

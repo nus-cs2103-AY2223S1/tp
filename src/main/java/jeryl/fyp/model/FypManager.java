@@ -113,6 +113,20 @@ public class FypManager implements ReadOnlyFypManager {
         return students.getIndexByStudentId(studentId);
     }
 
+    /**
+     * Sorts our student list by specialisation (which naturally sorts it by alphabetical order as well)
+     */
+    public void sortFilteredStudentListBySpecialisation() {
+        students.sortFilteredStudentListBySpecialisation();
+    }
+
+    /**
+     * Sorts our student list by specialisation (which naturally sorts it by alphabetical order as well)
+     */
+    public void sortFilteredStudentListByProjectStatus() {
+        students.sortFilteredStudentListByProjectStatus();
+    }
+
     //// deadline-level operations
     /**
      * Returns true if a deadline with the same identity as {@code deadline} exists in the {@code student}.

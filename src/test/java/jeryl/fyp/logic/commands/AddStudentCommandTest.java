@@ -182,6 +182,17 @@ public class AddStudentCommandTest {
         public Index getIndexByStudentId(StudentId studentId) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortFilteredStudentListByProjectStatus() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortFilteredStudentListBySpecialisation() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

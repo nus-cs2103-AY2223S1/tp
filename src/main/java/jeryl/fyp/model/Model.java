@@ -126,4 +126,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Sorts projects based on specialisation then by alphabetical order
+     */
+    void sortFilteredStudentListBySpecialisation();
+
+    /**
+     * Sorts projects based on project Status
+     */
+    void sortFilteredStudentListByProjectStatus();
 }
