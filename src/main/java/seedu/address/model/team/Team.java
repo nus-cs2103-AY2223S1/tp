@@ -71,7 +71,6 @@ public class Team {
         return tasks.asUnmodifiableObservableList();
     }
 
-
     public Task getTask(int n) {
         return tasks.get(n);
     }
