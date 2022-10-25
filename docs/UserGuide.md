@@ -245,7 +245,7 @@ Common mistakes:
 
 This command clears all entries from GuestBook. 
 
-This command is typically used as a hard reset of GuestBook. Do note that this command 
+This command is typically used as a hard reset of all guest data in GuestBook. Do note that this command 
 is irreversible. Once cleared, all the guest data cannot be retrieved. Please use this command 
 with utmost caution.
 
