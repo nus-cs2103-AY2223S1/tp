@@ -282,19 +282,29 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`
-**Clear** | `clear`
-**Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
-**View** | `view INDEX`<br> e.g., `view 1`
-**Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
-**Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
-**List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`
-**Help** | `help`
-**Undo** | `undo`
-**Redo** | `redo`
+| Action     | Undo Compatibility | Format, Examples                                                                                                                                                                                               |
+|------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
+| **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
+| **Delete** | :heavy_check_mark: | `delete INDEX...`<br> e.g., `delete 1 3`                                                                                                                                                                       |
+| **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
+| **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
+| **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
+| **List**   | :x:                | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`                                                                                                                                                       |
+| **Help**   | :x:                | `help`                                                                                                                                                                                                         |
+| **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
+| **Redo**   | :x:                | `redo`                                                                                                                                                                                                         |
 
+## Glossary
+
+| Term                           | Description                                                                                                                                        |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
+| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
+| Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
+| Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
+| Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
 
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
