@@ -116,7 +116,7 @@ public class EditTaskCommand extends Command {
             }
             throw new CommandException(String.format("Task #%d has already been set to %s priority.",
                     targetIndex.getOneBased(),
-                    targetPriority
+                    targetPriority.toString().toLowerCase()
             ));
         }
         Task.Priority priority = targetPriority != null ? targetPriority : taskToEdit.getPriority();
