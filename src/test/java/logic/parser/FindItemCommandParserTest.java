@@ -22,7 +22,7 @@ public class FindItemCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindItemCommand() {
         // no leading and trailing whitespaces
         FindItemCommand expectedFindItemCommand =
                 new FindItemCommand(new ItemContainsKeywordsPredicate(Arrays.asList("Chair", "Keychain")));
