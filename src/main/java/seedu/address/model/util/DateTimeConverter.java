@@ -35,7 +35,7 @@ public class DateTimeConverter {
      * @throws DateTimeParseException if it fails to parse IE it's in the wrong format
      */
     public static LocalDateTime processedStringToLocalDatetime(String date) throws DateTimeParseException {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy hh:mm a");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy hh:mm a");
         return LocalDateTime.parse(date, format);
     }
 
