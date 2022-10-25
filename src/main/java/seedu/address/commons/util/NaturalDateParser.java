@@ -28,13 +28,18 @@ public class NaturalDateParser {
     public static LocalDateTime parse(String input) throws DateTimeNotFoundException {
         requireNonNull(input);
 
-        Options options = new Options(Pointer.PointerType.FUTURE);
+        Options options = new Options();
+        options.setContext(Pointer.PointerType.FUTURE);
+        options.setGuess(false);
+
         Span parsedDate = Chronic.parse(input, options);
         if (parsedDate == null) {
             throw new DateTimeNotFoundException(input);
         }
 
-        Instant result = parsedDate.getBeginCalendar().toInstant();
+        // Chronic's right-hand bound seems to be the first second after the range, so subtract 1 to get the
+        // last second in the range
+        Instant result = parsedDate.getEndCalendar().toInstant().minusSeconds(1);
         return LocalDateTime.ofInstant(result, ZoneId.systemDefault());
     }
 

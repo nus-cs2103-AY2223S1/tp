@@ -14,12 +14,26 @@ class NaturalDateParserTest {
     @Test
     void parse_smoketest() {
         assertEquals(
-                parse("2 Jan 2006"),
-                LocalDateTime.of(2006, 1, 2, 12, 0)
+                LocalDateTime.of(2006, 1, 2, 15, 0),
+                parse("2 Jan 2006 3pm")
         );
         assertEquals(
-                parse("Jan 2 2006 15:04:05"),
-                LocalDateTime.of(2006, 1, 2, 15, 4, 5)
+                LocalDateTime.of(2006, 1, 2, 15, 4, 5),
+                parse("Jan 2 2006 15:04:05")
+        );
+    }
+
+    /** Inputs that are not a point - implementations should satisfy these behavior */
+    @Test
+    void parse_nonPointInputs() {
+        // Use the end of the day/week
+        assertEquals(
+                LocalDateTime.of(2006, 1, 2, 23, 59, 59),
+                parse("2 Jan 2006")
+        );
+        assertEquals(
+                LocalDateTime.of(2006, 2, 28, 23, 59, 59),
+                parse("Feb 2006")
         );
     }
 
