@@ -2,8 +2,8 @@ package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
 import seedu.address.logic.commands.CommandResult;
@@ -27,13 +27,13 @@ public class AddClientCommand extends ClientCommand {
             + " " + COMMAND_FLAG
             + ": Adds a client to the address book. "
             + "Parameters: "
-            + PREFIX_CLIENT_NAME + "NAME "
+            + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_PHONE + "PHONE "
             + PREFIX_CLIENT_EMAIL + "EMAIL "
             + PREFIX_PROJECT_ID + "PROJECT ID: "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
-            + PREFIX_CLIENT_NAME + "John Doe "
+            + PREFIX_NAME + "John Doe "
             + PREFIX_CLIENT_PHONE + "98765432 "
             + PREFIX_CLIENT_EMAIL + "johnd@example.com "
             + PREFIX_PROJECT_ID + "1";

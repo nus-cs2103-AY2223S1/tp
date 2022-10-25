@@ -94,7 +94,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
      * Verifies only one valid user input argument
      * Length of a valid command for sort key for project by deadline, issue count and name e.g.d/1
      *
-     * @param arguments user input for key for sort by deadline
+     * @param arguments user input for key for sort
      * @return true if there is only one valid input
      */
     private boolean hasOneArgumentOfLengthThree(String arguments) {
@@ -223,7 +223,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             sortPrefix = PREFIX_NAME;
-            key = ParserUtil.parseNameSort(argMultimap.getValue(PREFIX_NAME).get());
+            key = ParserUtil.parseProjectNameSort(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         return new SortProjectCommand(sortPrefix, key);

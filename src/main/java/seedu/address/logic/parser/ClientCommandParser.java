@@ -19,6 +19,7 @@ import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
+import seedu.address.logic.commands.client.SortClientCommand;
 import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
 import seedu.address.logic.commands.client.find.FindClientByNameCommand;
 import seedu.address.logic.commands.client.find.FindClientByPhoneCommand;
@@ -60,6 +61,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             return parseListClientCommand(arguments);
         case SetClientDefaultViewCommand.COMMAND_FLAG:
             return parseSetClientDefaultViewCommand(arguments);
+        case SortClientCommand.COMMAND_FLAG:
+            return parseSortClientCommand(arguments);
         case FindClientCommand.COMMAND_FLAG:
             return parseFindClientCommand(arguments);
         default:
@@ -67,6 +70,24 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Verifies only one valid user input argument
+     * Length of a valid command for sort key for issue by name e.g.n/1
+     *
+     * @param arguments user input for key for sort
+     * @return true if there is only one valid input
+     */
+    private boolean hasOneArgumentOfLengthThree(String arguments) {
+        return arguments.trim().length() == 3;
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -214,12 +235,29 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         return parseFindClientCommand(arguments);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private SortClientCommand parseSortClientCommand(String arguments) throws ParseException {
+
+        Prefix sortPrefix = null;
+        int key = -1;
+
+        if (!hasOneArgumentOfLengthThree(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortClientCommand.MESSAGE_USAGE));
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME);
+
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortClientCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            sortPrefix = PREFIX_NAME;
+            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_NAME).get());
+        }
+
+        return new SortClientCommand(sortPrefix, key);
     }
 
     /**

@@ -26,13 +26,14 @@ public class SortProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "0 (chronological) or "
             + PREFIX_DEADLINE + "1 (reverse chronological). "
             + "Sort by issue count: "
-            + PREFIX_ISSUE_COUNT + "0 (ascending) or "
-            + PREFIX_ISSUE_COUNT + "1 (descending). "
+            + PREFIX_ISSUE_COUNT + "0 (completed) or "
+            + PREFIX_ISSUE_COUNT + "1 (incomplete). "
             + "Sort by name count: "
             + PREFIX_NAME + "0 (alphabetical) or "
             + PREFIX_NAME + "1 (reverse alphabetical). "
             + "Example: "
             + COMMAND_WORD + " "
+            + COMMAND_FLAG + " "
             + PREFIX_DEADLINE + "0";
 
     private final Prefix sortKey;
