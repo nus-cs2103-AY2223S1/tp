@@ -11,7 +11,7 @@ import seedu.rc4hdb.model.StringField;
 public class Hour extends StringField {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should only contain numbers, and it should be in the format HH";
+            "Time should only contain integers between 8 and 23, and it should be in the format HH.";
 
     private final int hour;
 
@@ -32,14 +32,25 @@ public class Hour extends StringField {
     public static boolean isValidHour(String test) {
         try {
             int hour = Integer.parseInt(test);
-            return hour >= 0 && hour < 24;
+            return hour >= 8 && hour < 24;
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    /**
+     * Gets the hour as an integer.
+     */
+    public int asInt() {
+        return Integer.parseInt(value);
     }
 
     public boolean isAfterOrDuring(Hour other) {
         return hour >= other.hour;
     }
 
+    @Override
+    public String toString() {
+        return Integer.toString(this.hour);
+    }
 }

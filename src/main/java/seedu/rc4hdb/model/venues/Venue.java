@@ -112,8 +112,7 @@ public class Venue implements BookingField {
 
     public ObservableList<Booking> getObservableBookings() {
         clearExpiredBookings();
-        return FXCollections.unmodifiableObservableList(
-                FXCollections.observableArrayList(bookings));
+        return FXCollections.observableArrayList(bookings);
     }
 
     public VenueName getVenueName() {

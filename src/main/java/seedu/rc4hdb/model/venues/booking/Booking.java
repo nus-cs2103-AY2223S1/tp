@@ -95,4 +95,6 @@ public abstract class Booking {
         return builder.toString();
     }
 
+    //====================== Compare Days =================================
+
 }

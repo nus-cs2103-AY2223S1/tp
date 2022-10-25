@@ -35,8 +35,9 @@ public class ModelManager implements Model {
     private final FilteredList<Resident> filteredResidents;
 
     private final ObservableList<String> observableFieldList;
+    private ObservableList<Booking> observableBookingList;
     private final ObservableList<Venue> observableVenueList;
-    private final ObservableList<Booking> observableBookingList;
+
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -52,9 +53,10 @@ public class ModelManager implements Model {
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
         this.observableFieldList = FXCollections.observableArrayList();
-        this.observableVenueList = FXCollections.observableArrayList();
+        this.observableVenueList = venueBook.getVenueList();
 
         if (observableVenueList.isEmpty()) {
+            logger.info("No venues found in venue list.");
             this.observableBookingList = FXCollections.observableArrayList();
         } else {
             this.observableBookingList = observableVenueList.get(0).getObservableBookings();

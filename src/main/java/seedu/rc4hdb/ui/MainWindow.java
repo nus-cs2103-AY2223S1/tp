@@ -21,6 +21,7 @@ import seedu.rc4hdb.logic.Logic;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
+import seedu.rc4hdb.model.venues.booking.Booking;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -85,6 +86,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
         this.logic.getObservableFields().addListener(getListChangeListener());
         this.logic.getObservableFolderPath().addListener(getFileChangeListener());
+        this.logic.getObservableBookings().addListener(getBookingChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -247,9 +249,13 @@ public class MainWindow extends UiPart<Stage> {
                 statusBarFooter.updateFilePath(newValue);
     }
 
+    private ListChangeListener<Booking> getBookingChangeListener() {
+        return c -> bookingTableView.updateTable(logic.getObservableBookings());
+    }
+
     private void setTabLabels() {
         this.residentTab.setText("Residents");
-        this.venueTab.setText("Venues");
+        this.venueTab.setText("Bookings");
     }
 
 }
