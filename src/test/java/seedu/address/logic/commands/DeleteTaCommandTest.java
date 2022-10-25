@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalProfNus;
+import static seedu.address.testutil.TypicalStudents.getTypicalProfNus;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,82 +15,84 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.TutorContainsModulePredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteTaCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteTaCommandTest {
 
     private Model model = new ModelManager(getTypicalProfNus(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Student studentToDelete = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteTaCommand deleteTaCommand = new DeleteTaCommand(INDEX_FIRST_PERSON);
 
         CommandResult expectedCommandResult = new CommandResult(
-                String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
+                String.format(DeleteTaCommand.MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete),
                 false, false, false,
                 true, false, false);
 
         ModelManager expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(studentToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(deleteTaCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTutorList().size() + 1);
+        DeleteTaCommand deleteTaCommand = new DeleteTaCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTaCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        Student studentToDelete = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteTaCommand deleteTaCommand = new DeleteTaCommand(INDEX_FIRST_PERSON);
 
         CommandResult expectedCommandResult = new CommandResult(
-                String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
+                String.format(DeleteTaCommand.MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete),
                 false, false, false,
                 true, false, false);;
 
         Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deleteTutor(studentToDelete);
+        expectedModel.deletePerson(studentToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(deleteTaCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
+        TutorContainsModulePredicate predicate = new TutorContainsModulePredicate(new ModuleCode("CS1101S"));
+        model.updateFilteredTutorList(predicate);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of profNus list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getProfNus().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProfNus().getTutorList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteTaCommand deleteTaCommand = new DeleteTaCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTaCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteTaCommand deleteFirstCommand = new DeleteTaCommand(INDEX_FIRST_PERSON);
+        DeleteTaCommand deleteSecondCommand = new DeleteTaCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteTaCommand deleteFirstCommandCopy = new DeleteTaCommand(INDEX_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -108,8 +109,9 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+        model.updateFilteredTutorList(p -> false);
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getFilteredTutorList().isEmpty());
     }
 }
+
