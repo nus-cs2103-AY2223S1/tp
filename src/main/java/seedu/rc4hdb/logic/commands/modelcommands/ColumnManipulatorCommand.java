@@ -27,7 +27,7 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
             + "that are currently in the table view.\n"
             + "To display columns outside of the current view, use the reset command.\n";
 
-    public static final List<String> ALL_FIELDS = ResidentField.LOWERCASE_FIELDS;
+    public static final List<String> ALL_FIELDS = new ArrayList<>(ResidentField.LOWERCASE_FIELDS);
     protected final List<String> fieldsToShow;
     protected final List<String> fieldsToHide;
 

@@ -65,6 +65,8 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
         requireNonNull(args);
 
         List<String> lettersOfColumnsToShowOrHide = parseColumnsToShowOrHide(args);
+
+        // Non-existent mappings will result in null values in the final list... null checks are performed below
         List<String> fullNamesOfColumnsToShowOrHide = lettersOfColumnsToShowOrHide.stream()
                 .map(LETTER_TO_FIELD_NAME_MAPPINGS::get)
                 .collect(Collectors.toList());
@@ -73,6 +75,9 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
         List<String> complementList = new ArrayList<>(ColumnManipulatorCommand.ALL_FIELDS);
 
         for (String column : fullNamesOfColumnsToShowOrHide) {
+            if (column == null) {
+                throw new ParseException(INVALID_FIELDS_ENTERED);
+            }
             if (!ColumnManipulatorCommand.ALL_FIELDS.contains(column)) {
                 throw new ParseException(INVALID_FIELDS_ENTERED);
             }
