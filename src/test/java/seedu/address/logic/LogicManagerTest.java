@@ -57,12 +57,6 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListPersonsCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListPersonsCommand.MESSAGE_SUCCESS, model);
