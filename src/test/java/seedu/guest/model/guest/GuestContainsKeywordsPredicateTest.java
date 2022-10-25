@@ -111,6 +111,10 @@ public class GuestContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new GuestContainsKeywordsPredicate(Arrays.asList("alice@example.com", "bob@example.com"));
         assertTrue(predicate.test(new GuestBuilder().withEmail("alice@example.com").build()));
+
+        // Mixed-case keyword
+        predicate = new GuestContainsKeywordsPredicate(Arrays.asList("AlIcE@examplE.cOm"));
+        assertTrue(predicate.test(new GuestBuilder().withRequest("alice@example.com").build()));
     }
 
     @Test
@@ -138,6 +142,10 @@ public class GuestContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new GuestContainsKeywordsPredicate(Arrays.asList("04-05", "04-06"));
         assertTrue(predicate.test(new GuestBuilder().withRoom("04-05").build()));
+
+        // Mixed-case keyword
+        predicate = new GuestContainsKeywordsPredicate(Arrays.asList("alOHA"));
+        assertTrue(predicate.test(new GuestBuilder().withRequest("Aloha").build()));
     }
 
     @Test
@@ -219,6 +227,12 @@ public class GuestContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new GuestContainsKeywordsPredicate(Arrays.asList("yes", "no"));
         assertTrue(predicate.test(new GuestBuilder().withIsRoomClean("yes").build()));
+
+        // Different formats
+        predicate = new GuestContainsKeywordsPredicate(Collections.singletonList("y"));
+        assertTrue(predicate.test(new GuestBuilder().withIsRoomClean("yes").build()));
+        predicate = new GuestContainsKeywordsPredicate(Arrays.asList("n"));
+        assertTrue(predicate.test(new GuestBuilder().withIsRoomClean("no").build()));
     }
 
     @Test
