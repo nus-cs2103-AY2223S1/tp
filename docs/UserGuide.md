@@ -111,7 +111,7 @@ Including a reason for every change to a person's loan value reduces the risk of
   - Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Please refer to the `Tags` section below for more information regarding tags.
+Please refer to the `Tag Properties` section below for more information regarding tags.
 </div>
 
 ### Notes Properties
@@ -131,7 +131,7 @@ Please refer to the `Tags` section below for more information regarding tags.
 - Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Please refer to the `Tags` section below for more information regarding tags.
+Please refer to the `Tag Properties` section below for more information regarding tags.
 </div>
 
 ## Features
