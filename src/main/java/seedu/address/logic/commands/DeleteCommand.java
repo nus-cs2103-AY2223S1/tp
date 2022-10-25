@@ -47,7 +47,7 @@ public class DeleteCommand extends Command {
         if (personToDelete.getPersonGroups().size() > 0) {
             throw new CommandException(MESSAGE_PERSON_IN_EXISITING_GROUP);
         }
-        
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
