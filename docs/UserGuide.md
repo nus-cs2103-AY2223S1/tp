@@ -235,13 +235,13 @@ Listed here are some frequently asked questions. Should you require any other as
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GuestBook home folder.
 
 **Q**: Will my data be automatically saved?<br>
-**A**: Yes, Guest Book automatically saves your data after every command entered.
+**A**: Yes, GuestBook automatically saves your data after every command entered.
 
 **Q**: Where is my data saved?<br>
 **A**: Go to where you have downloaded your `guestbook.jar` file, there a `/data` folder will be created and the data will be saved under `guestbook.json`.
 
 **Q**: Can I rename my saved data file?<br>
-**A**: No, Guest Book currently only supports the use of `guestbook.json` as the name of the saved data file.
+**A**: No, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
 
 **Q**: Why are there no guests in my Guest Book?<br>
 **A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing Guest Book to reset it to prevent any malicious files from being used.
