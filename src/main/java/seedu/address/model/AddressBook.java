@@ -195,6 +195,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.remove(key);
         modules.updateNumOfCompletedTasks(key.getModule(), tasks);
         modules.updateTotalNumOfTasks(key.getModule(), tasks);
+        if (key.isLinked()) {
+            exams.updateNumOfCompletedTasks(key.getExam(), tasks);
+            exams.updateTotalNumOfTasks(key.getExam(), tasks);
+        }
     }
 
     //// util methods
