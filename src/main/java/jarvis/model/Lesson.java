@@ -112,7 +112,7 @@ public abstract class Lesson {
     }
 
     public String deleteOverallNote(Index index) {
-        return notes.deleteNote(index.getZeroBalistaddnote n/Get back to jeff on streams li/1sed());
+        return notes.deleteNote(index.getZeroBased());
     }
 
     public String deleteStudentNote(Student student, Index index) {
