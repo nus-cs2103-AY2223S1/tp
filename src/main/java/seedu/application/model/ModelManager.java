@@ -209,6 +209,7 @@ public class ModelManager implements Model {
         filteredApplicationsWithUpcomingInterviews.setPredicate(predicate);
     }
 
+    @Override
     public void sortApplicationListByCompany(boolean shouldReverse) {
         Comparator<Application> comparator = Comparator.comparing(Application::getCompany);
         if (shouldReverse) {

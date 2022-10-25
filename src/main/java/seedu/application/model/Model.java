@@ -129,7 +129,8 @@ public interface Model {
      */
     void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate);
 
-     /** Sorts the application list by company.
+    /**
+     * Sorts the application list by company.
      * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
      *
      * @param shouldReverse Whether to sort in the reversed order.

@@ -18,19 +18,12 @@ public class RemindCommand extends Command {
 
     public static final String SHOWING_REMIND_MESSAGE = "Opened reminder window.";
 
-    private final UpcomingInterviewPredicate upcomingInterviewPredicate;
-
-    /**
-     * Constructs RemindCommand object.
-     */
-    public RemindCommand() {
-        this.upcomingInterviewPredicate = new UpcomingInterviewPredicate();
-    }
+    private static final UpcomingInterviewPredicate UPCOMING_INTERVIEW_PREDICATE = new UpcomingInterviewPredicate();
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicationsWithUpcomingInterviewList(upcomingInterviewPredicate);
+        model.updateFilteredApplicationsWithUpcomingInterviewList(UPCOMING_INTERVIEW_PREDICATE);
         return new CommandResult(SHOWING_REMIND_MESSAGE, true, false, false);
     }
 
