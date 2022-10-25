@@ -2,15 +2,17 @@
 layout: page
 title: User Guide
 ---
-
-TutHub is a **desktop app for NUS School of Computing professors who have to keep track of hundreds of teaching assistant/tutor profiles and monitor their performance and track records but have little time to spare for tedious administrative work. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Introduction 
+Hi Prof, welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA)!
+
+TutHub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. If you can type fast, Tuthub helps you find the best TAs faster than traditional Graphical User Interface (GUI) apps.
+
+## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
