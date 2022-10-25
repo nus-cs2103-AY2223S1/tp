@@ -34,6 +34,7 @@ public class FindPatientCommand extends Command {
             + "Example: " + COMMAND_WORD + " e/example \n"
             + "Example: " + COMMAND_WORD + " a/Blk 123 \n"
             + "Example: " + COMMAND_WORD + " t/friends \n"
+            + "Example: " + COMMAND_WORD + " t/friends t/colleagues \n"
             + "Example: " + COMMAND_WORD + " r/swim";
 
     private final Predicate<Patient> predicate;

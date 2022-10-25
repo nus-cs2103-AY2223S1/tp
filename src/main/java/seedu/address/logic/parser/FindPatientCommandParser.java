@@ -55,8 +55,6 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
 
-            checkArgument(trimmedArgs);
-
             final String finalPredicateString = createPredicateString(trimmedArgs);
 
             Predicate<Name> namePredicate = (name -> name.fullName.toLowerCase()
@@ -71,7 +69,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
 
-            checkArgument(trimmedArgs);
+            if (!trimmedArgs.matches("\\d")) {
+                throw new ParseException("Phone number should only contain numbers");
+            }
 
             Predicate<Phone> phonePredicate = (phone -> phone.value.contains(trimmedArgs));
 
@@ -84,7 +84,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
 
-            checkArgument(trimmedArgs);
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException("Input for finding email should not be empty");
+            }
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
 
@@ -100,8 +102,6 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String trimmedArgs = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).toString().trim();
 
-            checkArgument(trimmedArgs);
-
             final String finalPredicateString = createPredicateString(trimmedArgs);
 
             Predicate<Address> addressPredicate = (address -> address.toString().toLowerCase()
@@ -116,7 +116,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             String trimmedArgs = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()).toString().trim();
 
-            checkArgument(trimmedArgs);
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException("Input for finding remark should not be empty");
+            }
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
 
@@ -132,7 +134,9 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            Predicate<Set<Tag>> tagPredicate = setOfTags -> setOfTags.containsAll(tagSet);
+            Predicate<Set<Tag>> tagPredicate = patientTags -> tagSet.stream().allMatch(inputTag -> patientTags
+                    .stream().anyMatch(patientTag -> patientTag.tagName.toLowerCase()
+                            .contains(inputTag.tagName.toLowerCase())));
 
             this.tagPredicate = tagPredicate;
         }
@@ -167,18 +171,5 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         }
 
         return predicateString;
-    }
-
-    /**
-     * Checks if the trimmed arguments are empty.
-     *
-     * @param trimmedArgs The trimmed arguments.
-     * @throws ParseException If the trimmed arguments are empty.
-     */
-    public void checkArgument(String trimmedArgs) throws ParseException {
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
-        }
     }
 }
