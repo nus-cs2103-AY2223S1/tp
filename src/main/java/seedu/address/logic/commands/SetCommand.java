@@ -254,7 +254,7 @@ public class SetCommand extends Command {
             return this.contacts.equals(s.contacts)
                    && this.name.equals(s.name)
                    && this.tags.equals(s.tags)
-                   && getAddress().equals(getAddress())
+                   && getAddress().equals(s.getAddress())
                    && getRole().equals(s.getRole())
                    && getTimezone().equals(s.getTimezone());
         }
