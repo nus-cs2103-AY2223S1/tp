@@ -13,7 +13,7 @@ import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * An UI component that displays information of a redone command.
  */
 public class RedoCard extends UiPart<Region> {
 
