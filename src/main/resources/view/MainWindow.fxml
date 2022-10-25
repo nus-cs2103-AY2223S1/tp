@@ -40,6 +40,10 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Theme">
+            <MenuItem mnemonicParsing="false" onAction="#applyLightTheme" text="Light" />
+            <MenuItem mnemonicParsing="false" onAction="#applyDarkTheme" text="Dark" />
+          </Menu>
           <Menu mnemonicParsing="false" text="Module">
             <MenuItem fx:id="tabModule" mnemonicParsing="false" onAction="#handleShowTabAllModules" text="Module" />
           </Menu>
