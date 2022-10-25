@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.Comparator;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -11,13 +13,8 @@ import seedu.address.logic.parser.util.SortCommandParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Supplier;
 import seedu.address.testutil.TypicalSuppliers;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class SortSupplierCommandTest {
     private Model sModel = new ModelManager(TypicalSuppliers.getTypicalSupplierAddressBook(), new UserPrefs());
