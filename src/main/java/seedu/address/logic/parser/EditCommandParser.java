@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -34,7 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_REWARD, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                    PREFIX_BIRTHDAY_MONTH, PREFIX_REWARD, PREFIX_TAG);
         Phone phoneIdentifier = null;
         Email emailIdentifier = null;
         Prefix firstPrefix = argMultimap.getFirstPrefix();
@@ -77,6 +79,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
             }
         }
+        if (argMultimap.getValue(PREFIX_BIRTHDAY_MONTH).isPresent()) {
+            editPersonDescriptor.setBirthdayMonth(
+                ParserUtil.parseBirthdayMonth(argMultimap.getValue(PREFIX_BIRTHDAY_MONTH).get()));
+        }
+
         if (argMultimap.getValue(PREFIX_REWARD).isPresent()) {
             try {
                 int newReward = Integer.parseInt(argMultimap.getValue(PREFIX_REWARD).get());
