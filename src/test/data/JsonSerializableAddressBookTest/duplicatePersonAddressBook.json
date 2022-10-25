@@ -3,16 +3,16 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "lessonPlan" : "Algorithms",
-    "homework": [ "science worksheet" ],
-    "attendance": ["2022-08-07"],
+    "homework": [ "science worksheet [ ]" ],
+    "attendance": ["2022-08-07 [Absent]"],
     "gradeProgress" : ["Math: A"],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "lessonPlan" : "Algorithms",
-    "homework": [ "science worksheet" ],
-    "attendance": [ "2022-08-07" ],
+    "homework": [ "science worksheet [ ]" ],
+    "attendance": [ "2022-08-07 [Absent]" ],
     "gradeProgress" : ["Math: A"],
     "tagged": [ "friends" ]
   } ]

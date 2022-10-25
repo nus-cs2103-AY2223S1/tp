@@ -35,6 +35,13 @@ class JsonAdaptedAttendance {
      * Converts this Jackson-friendly adapted tag object into the model's {@code Attendance} object.
      */
     public Attendance toModelType() {
-        return new Attendance(attendanceDesc);
+        String[] parts = attendanceDesc.split(" ");
+        if (parts.length < 2 || parts[1].contains("[Absent]")) {
+            return new Attendance(parts[0]);
+        } else {
+            Attendance att = new Attendance(parts[0]);
+            att.markAsPresent();
+            return att;
+        }
     }
 }

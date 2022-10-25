@@ -35,6 +35,9 @@ public class ParserUtil {
             + "edit [" + PREFIX_NAME + PREFIX_PHONE + PREFIX_LESSON_PLAN + "]NEW_FIELD, or\n"
             + "edit [" + PREFIX_HOMEWORK + PREFIX_GRADEPROGRESS + PREFIX_ATTENDANCE + "]INDEX NEW_FIELD\n"
             + "Example: edit " + PREFIX_HOMEWORK + "2 Maths worksheet";
+    public static final String MESSAGE_REMOVE_COMMAND_FORMAT = "The correct format for a remove is:\n"
+            + "remove PERSON_INDEX [" + PREFIX_HOMEWORK
+            + PREFIX_GRADEPROGRESS + PREFIX_ATTENDANCE + "] INDEX_TO_REMOVE\n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -153,6 +156,18 @@ public class ParserUtil {
         return args;
     }
 
+    /**
+     * Parses a {@code String text} and dissassembles it into index.
+     *
+     * @throws ParseException if the input is more than 1, or does not start with an integer.
+     */
+    public static String[] parseIndexedRemove(String text) throws ParseException {
+        String[] args = text.split("");
+        if (args.length > 1 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_REMOVE_COMMAND_FORMAT));
+        }
+        return args;
+    }
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.

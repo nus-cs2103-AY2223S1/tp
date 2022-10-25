@@ -24,7 +24,7 @@ class JsonAdaptedHomework {
      * Converts a given {@code Homework} into this class for Jackson use.
      */
     public JsonAdaptedHomework(Homework source) {
-        homeworkName = source.value;
+        homeworkName = source.toString();
     }
 
     @JsonValue
@@ -36,7 +36,15 @@ class JsonAdaptedHomework {
      * Converts this Jackson-friendly adapted tag object into the model's {@code Homework} object.
      */
     public Homework toModelType() {
-        return new Homework(homeworkName);
+        if (homeworkName.contains("[✓]")) {
+            String newHw = homeworkName.replace(" [✓]", "");
+            Homework hw = new Homework(newHw);
+            hw.markAsDone();
+            return hw;
+        } else {
+            String newHw = homeworkName.replace(" [ ]", "");
+            return new Homework(newHw);
+        }
     }
 
 }
