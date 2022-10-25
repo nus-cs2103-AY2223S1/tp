@@ -56,14 +56,28 @@ public class JsonAdaptedItemQuantityPair {
      */
     public ItemQuantityPair toModelType(InventoryList inventoryList) throws IllegalValueException {
 
+        // item name check
         if (itemName == null) {
             throw new IllegalValueException(String.format((MISSING_FIELD_MESSAGE_FORMAT),
                 ItemName.class.getSimpleName()));
         }
 
+        // quantity check
         if (quantity == null) {
             throw new IllegalValueException(String.format((MISSING_FIELD_MESSAGE_FORMAT),
                 Quantity.class.getSimpleName()));
+        }
+
+        // sell price checks
+        if (sellPrice == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Price.class.getSimpleName()));
+        }
+
+        // cost price checks
+        if (costPrice == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Price.class.getSimpleName()));
         }
 
         if (!Quantity.isValidQuantity(quantity)) {
