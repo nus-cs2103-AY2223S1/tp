@@ -1,12 +1,10 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 
 import java.util.stream.Stream;
 
 import jarvis.commons.core.index.Index;
-import jarvis.logic.commands.MarkLessonCommand;
 import jarvis.logic.commands.UnmarkLessonCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 
