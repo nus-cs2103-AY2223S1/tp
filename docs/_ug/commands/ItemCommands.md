@@ -151,6 +151,7 @@ List Box:
 ```note
 Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
 ```
+
 **Example Input:**
 
 ```text
