@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.logic.Logic;
 import seedu.address.model.team.Team;
 
 /**
@@ -17,21 +18,23 @@ public class TeamDetailsPanel extends UiPart<Region> {
     private static final String FXML = "TeamDetailsPanel.fxml";
 
     private ObjectProperty<Team> teamProperty;
+    private Logic logic;
     @FXML
     private StackPane teamDetailsView;
 
     /**
      * Creates a {@code TeamDetailsPanel} with the given {@code ObjectProperty}.
      */
-    public TeamDetailsPanel(ObjectProperty<Team> currentTeam) {
+    public TeamDetailsPanel(Logic logic, ObjectProperty<Team> currentTeam) {
         super(FXML);
         teamProperty = currentTeam;
-        TeamDetailsCard newCard = new TeamDetailsCard(currentTeam.getValue());
+        this.logic = logic;
+        TeamDetailsCard newCard = new TeamDetailsCard(logic, currentTeam.getValue());
         teamDetailsView.getChildren().add(newCard.getRoot());
         teamProperty.addListener(new ChangeListener<Team>() {
             @Override
             public void changed(ObservableValue<? extends Team> observable, Team oldValue, Team newValue) {
-                TeamDetailsCard newCard = new TeamDetailsCard(newValue);
+                TeamDetailsCard newCard = new TeamDetailsCard(logic, newValue);
                 teamDetailsView.getChildren().set(0, newCard.getRoot());
             }
         });

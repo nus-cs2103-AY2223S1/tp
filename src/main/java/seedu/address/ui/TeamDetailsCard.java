@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.logic.Logic;
 import seedu.address.model.team.Team;
 
 /**
@@ -15,6 +16,7 @@ public class TeamDetailsCard extends UiPart<Region> {
     private static final String FXML = "TeamDetailsCard.fxml";
 
     private Team team;
+    private Logic logic;
 
     @FXML
     private HBox cardPane;
@@ -28,11 +30,13 @@ public class TeamDetailsCard extends UiPart<Region> {
     /**
      * Creates a {@code TeamDetailsCard} with the given {@code Team}.
      */
-    public TeamDetailsCard(Team team) {
+    public TeamDetailsCard(Logic logic, Team team) {
         super(FXML);
+        this.logic = logic;
         teamNameDisplay.setText(team.getTeamName());
 
-        MemberListPanel members = new MemberListPanel(team.getTeamMembers());
+        MemberListPanel members = new MemberListPanel(logic.getFilteredMemberList());
+
         memberListPanel.getChildren().add(members.getRoot());
 
         TaskListPanel tasks = new TaskListPanel(team.getTaskList());

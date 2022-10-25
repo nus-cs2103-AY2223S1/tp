@@ -26,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Person> filteredMembers;
+
     private final FilteredList<Link> filteredLinks;
 
     /**
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMembers = new FilteredList<>(this.addressBook.getTeam().getTeamMembers());
         filteredLinks = new FilteredList<>(this.addressBook.getLinkList());
     }
 
@@ -191,6 +194,11 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    @Override
+    public ObservableList<Person> getFilteredMemberList() {
+        return filteredMembers;
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook} based on the specified predicate.
@@ -205,6 +213,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredMembersList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredMembers.setPredicate(predicate);
     }
 
     @Override

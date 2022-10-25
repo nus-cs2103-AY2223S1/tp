@@ -83,6 +83,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Person> getFilteredMemberList();
+
     ObservableList<Person> getFilteredPersonList(Predicate<Person> pred);
 
     /**
@@ -91,6 +93,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredMembersList(Predicate<Person> predicate);
 
     ObjectProperty<Team> getTeamAsProperty();
 
