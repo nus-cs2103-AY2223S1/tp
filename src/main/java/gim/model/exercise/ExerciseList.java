@@ -4,6 +4,7 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -113,7 +114,8 @@ public class ExerciseList implements Iterable<Exercise> {
      * Sorts the displayedList according to the chronological order of the date field of exercise.
      */
     public void sortDisplayedList() {
-        Collections.sort(displayedList);
+        Collections.sort(displayedList, Comparator.comparing(e -> e.getDate().date));
+        Collections.reverse(displayedList);
     }
 
     /**
