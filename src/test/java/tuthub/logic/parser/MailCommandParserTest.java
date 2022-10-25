@@ -1,15 +1,15 @@
 package tuthub.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import tuthub.commons.core.index.Index;
-import tuthub.logic.commands.MailCommand;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tuthub.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tuthub.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import tuthub.commons.core.index.Index;
+import tuthub.logic.commands.MailCommand;
 
 public class MailCommandParserTest {
 
