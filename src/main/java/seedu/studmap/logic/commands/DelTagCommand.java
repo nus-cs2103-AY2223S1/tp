@@ -40,9 +40,9 @@ public class DelTagCommand extends EditStudentCommand<DelTagCommand.DelTagComman
             + PREFIX_TAG + "tutorial "
             + PREFIX_TAG + "needRemedial";
 
-    public static final String MESSAGE_SINGLE_DEL_TAGS_SUCCESS = "Delted tags %1$s Student: %2$s";
+    public static final String MESSAGE_SINGLE_DEL_TAGS_SUCCESS = "Deleted tags %1$s Student: %2$s";
 
-    public static final String MESSAGE_MULTI_DEL_TAGS_SUCCESS = "Delted tags %1$s for %2$d students";
+    public static final String MESSAGE_MULTI_DEL_TAGS_SUCCESS = "Deleted tags %1$s for %2$d students";
 
     public static final String MESSAGE_TAGS_NOT_DELETED = "At least one tag must be deleted";
 

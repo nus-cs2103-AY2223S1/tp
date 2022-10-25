@@ -19,7 +19,7 @@ public class DelTagCommandParser extends EditStudentCommandParser<DelTagCommand.
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} conltain only one element which is an empty string, it will be parsed into a
+     * If {@code tags} contains only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
     private Set<Tag> parseTagsSet(Collection<String> tags) throws ParseException {
