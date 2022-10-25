@@ -66,12 +66,6 @@ public class Itinerary {
         return country;
     }
 
-    /* TODO: implement method
-    public Date getEndDate() {
-        return duration.getEndFromStart(startDate);
-    }
-     */
-
     public Date getStartDate() {
         return startDate;
     }
@@ -263,10 +257,14 @@ public class Itinerary {
         return builder.toString();
     }
 
-    public void setDays(List<Day> days) {
-        for (int i = 0; i < getDuration().getValue(); i++) {
-            if (i < days.size()) {
-                this.days.add(i, days.get(i));
+    public void setDays(List<Day> dayList) {
+        for (int i = 0; i < dayList.size(); i++) {
+            if (i < getDuration().getValue()) {
+                this.days.set(i, dayList.get(i));;
+            } else {
+                for (Item item : dayList.get(i).deleteDay()) {
+                    addItem(item);
+                }
             }
         }
     }
