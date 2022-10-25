@@ -97,7 +97,7 @@ public class EditTaskCommand extends Command {
 
         Task taskToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        if (targetModule == null && targetDeadline == null && targetDescription == null) {
+        if (targetModule == null && targetDeadline == null && targetDescription == null && targetPriority == null) {
             throw new CommandException("Please enter a parameter to edit\n"
                     + "\t-c  New module code for the task\n"
                     + "\t-d  New deadline for the task\n"
