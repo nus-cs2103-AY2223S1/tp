@@ -6,10 +6,12 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.Effect;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 import seedu.address.model.portfolio.Portfolio;
+import javafx.scene.effect.BoxBlur;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -54,6 +56,19 @@ public class PortfolioWindow extends UiPart<Region> {
         portfolio.getPlans().stream()
                 .sorted(Comparator.comparing(plan -> plan.value))
                 .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
+    }
+
+    public void hide() {
+        BoxBlur boxBlur = new BoxBlur(10, 0, 5);
+        plans.setEffect(boxBlur);
+        risk.setEffect(boxBlur);
+    }
+
+    public void show() {
+        BoxBlur boxBlur = new BoxBlur(0, 0, 0);
+        plans.setEffect(boxBlur);
+        risk.setEffect(boxBlur);
+
     }
 
 }
