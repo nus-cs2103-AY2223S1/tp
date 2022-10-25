@@ -179,7 +179,7 @@ public class Order {
         for (ItemQuantityPair itemQuantityPair : getItemList()) {
             sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
         }
-        sb.append("Total Order Price: $" + getTotalOrderPrice().toString());
+        sb.append("Total Order Price: $" + getTotalOrderPrice().toString() + "\n");
         sb.append("Paid status: " + getPaidStatus() + "\n");
         sb.append("Delivery status: " + getDeliveryStatus() + "\n");
         return sb.toString();
