@@ -48,9 +48,10 @@ public class AddDebtCommandParser implements Parser<AddDebtCommand> {
         Set<Index> indices;
 
         try {
-            List<String> inputIndices = Arrays.stream(argMultimap.getPreamble().split(" "))
-                    .collect(Collectors.toList());
+            List<String> inputIndices = Arrays.stream(argMultimap.getPreamble().replaceAll("\\s+", " ")
+                            .split(" ")).collect(Collectors.toList());
             logger.info("Add Debt command Person index list: " + inputIndices);
+
             indices = ParserUtil.parseIndexes(inputIndices);
         } catch (ParseException pe) {
             logger.warning("Add Debt command Person index list has items that cannot be parsed to an Index");

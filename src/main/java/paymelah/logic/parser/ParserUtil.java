@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -55,19 +56,12 @@ public class ParserUtil {
      * @return {@code Set<Index>} of indexes parsed from given String.
      * @throws ParseException if an index is invalid (not non-zero unsigned integer).
      */
-    public static Set<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
+    public static Set<Index> parseIndexes(List<String> oneBasedIndexes) throws ParseException {
         requireNonNull(oneBasedIndexes);
         final Set<Index> indexSet = new HashSet<>();
-        System.out.println(oneBasedIndexes);
-        for (String index : oneBasedIndexes) {
-            System.out.println(index + (index != ""));
-            if (!index.equals("")) {
-                indexSet.add(parseIndex(index));
-            }
-        }
 
-        if (indexSet.size() == 0) {
-            assert false : "Whitespace only preambles should have been pre-filtered";
+        for (String index : oneBasedIndexes) {
+            indexSet.add(parseIndex(index));
         }
 
         return indexSet;
