@@ -3,17 +3,50 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+
 /**
  * Represents an inpatient's currently located hospital wing in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidHospitalWing(String)}
  */
 public class HospitalWing {
 
-    public static final String MESSAGE_CONSTRAINTS = "Hospital Wing should be alphanumeric and spaces for inpatients "
+    public static final String MESSAGE_CONSTRAINTS = "Hospital Wing should be of the following values "
+            + "(east, west, north, south; case-insensitive)"
+            + " and spaces for inpatients "
             + "and blank for outpatients";
-    public static final String VALIDATION_REGEX = "[A-Za-z0-9\\s]+";
 
     public final String value;
+
+    /**
+     * Enum for Hospital wing type
+     */
+    public enum HospitalWingTypes {
+        SOUTH {
+            @Override
+            public String toString() {
+                return "south";
+            }
+        },
+        NORTH {
+            @Override
+            public String toString() {
+                return "north";
+            }
+        },
+        EAST {
+            @Override
+            public String toString() {
+                return "east";
+            }
+        },
+        WEST {
+            @Override
+            public String toString() {
+                return "west";
+            }
+        },
+    }
 
     /**
      * Constructs an {@code Hospital Wing}.
@@ -30,7 +63,8 @@ public class HospitalWing {
      * Returns true if a given string is a valid hospital wing.
      */
     public static boolean isValidHospitalWing(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return Arrays.stream(HospitalWingTypes.values()).anyMatch(hospitalwingtype ->
+                test.toLowerCase().equals(hospitalwingtype.toString()));
     }
 
     @Override

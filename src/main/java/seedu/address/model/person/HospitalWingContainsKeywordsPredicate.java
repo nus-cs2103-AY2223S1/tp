@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Tests that a {@code Person}'s {@code Hospital Wing} matches any of the keywords given.
@@ -13,7 +14,9 @@ public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> 
      * @param keywords patients' hospital wings
      */
     public HospitalWingContainsKeywordsPredicate(List<String> keywords) {
-        this.hospitalWings = keywords;
+        this.hospitalWings = keywords.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
 
     /**

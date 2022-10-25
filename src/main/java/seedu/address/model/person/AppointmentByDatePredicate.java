@@ -25,18 +25,31 @@ public class AppointmentByDatePredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
-        Boolean hasMatchPastAppointments = appointments.stream().anyMatch(
-                keyword -> person.getPastAppointments().stream()
-                .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
-        Boolean isPresentUpcomingAppointments = appointments.stream().anyMatch(keyword
-                -> person.getUpcomingAppointment().isPresent());
-        Boolean hasMatchUpcomingAppointments = appointments.stream().anyMatch(keyword
-                -> person.getUpcomingAppointment().stream()
-                .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
-        Boolean isUpcomingAppointments = isPresentUpcomingAppointments
-                && hasMatchUpcomingAppointments;
+        Boolean hasMatchPastAppointments = false;
+        Boolean hasMatchUpcomingAppointments = false;
 
-        return hasMatchPastAppointments || isUpcomingAppointments;
+        if (isPresentPastAppointment(person)) {
+            hasMatchPastAppointments = appointments.stream().anyMatch(
+                    keyword -> person.getPastAppointments().stream()
+                            .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
+        }
+
+        if (isPresentUpcomingAppointment(person)) {
+            hasMatchUpcomingAppointments = appointments.stream().anyMatch(
+                   keyword -> person.getUpcomingAppointment().stream()
+                            .anyMatch(appointment -> keyword.compareTo(appointment.getDate()) == 0));
+        }
+        return hasMatchUpcomingAppointments || hasMatchPastAppointments;
+    }
+
+    private boolean isPresentUpcomingAppointment(Person person) {
+        return !appointments.stream().anyMatch(keyword
+                -> person.getUpcomingAppointment().get().value == null);
+    }
+
+    private boolean isPresentPastAppointment(Person person) {
+        return appointments.stream().anyMatch(keyword
+                -> person.getPastAppointments().size() != 0);
     }
 
     /**
