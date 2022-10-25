@@ -5,8 +5,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.spi.CalendarNameProvider;
+
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,6 +34,8 @@ import seedu.address.ui.RefreshButton;
  * The manager of the logic for the Calendar.
  */
 public class CalendarLogic {
+    public static final String MESSAGE_CONSTRAINTS = "Invalid date time format";
+
     private static final String[] MONTH_NAMES = {
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -168,17 +174,25 @@ public class CalendarLogic {
      */
     public void jump() {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
-        currentMonth = getJumpMonth();
+        currentMonth = getJumpMonth(currentMonth);
         updateCalendarMonth();
     }
 
-    private GregorianCalendar getJumpMonth() {
+    private GregorianCalendar getJumpMonth(Calendar cal) {
+
         String date = jumpText.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-        Date jumpDate = new Date(LocalDate.parse(date, formatter));
-        int newMonth = jumpDate.getMonth() - 1;
-        int newYear = jumpDate.getYear();
-        return new GregorianCalendar(newYear, newMonth, 1);
+        jumpText.clear();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+            Date jumpDate = new Date(LocalDate.parse(date, formatter));
+            int newMonth = jumpDate.getMonth() - 1;
+            int newYear = jumpDate.getYear();
+            return new GregorianCalendar(newYear, newMonth, 1);
+
+        } catch(DateTimeParseException e) {
+            jumpText.setText("Invalid Date Format");
+        }
+        return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
 
     }
 

@@ -30,10 +30,17 @@ public class JumpText extends UiPart<Region> {
     @FXML
     protected void handleOnAction(ActionEvent event) {
         calendarLogic.jump();
-        jumpText.clear();
     }
 
     public String getText() {
         return jumpText.getText();
+    }
+
+    public void setText(String invalid_date_format) {
+        jumpText.setText(invalid_date_format);
+    }
+
+    public void clear() {
+        jumpText.clear();
     }
 }
