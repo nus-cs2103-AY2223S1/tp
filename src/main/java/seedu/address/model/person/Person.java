@@ -151,6 +151,26 @@ public class Person {
     }
 
     /**
+     * Marks the specified mod as taken if it exists in the current list of mods linked to this batchmate.
+     *
+     * @param mod The mod to be marked.
+     */
+    public void markModIfExist(Mod mod) {
+        for (int j = 0; j < this.mods.size(); j++) {
+
+            Mod currentMod = this.mods.get(j);
+            String currentModName = currentMod.getModName();
+            String targetModName = mod.getModName();
+
+            if (currentModName.equals(targetModName)) {
+                currentMod.markMod();
+                break;
+            }
+        }
+        // Do nothing if mod does not exist in the list of mods.
+    }
+
+    /**
      * Unmarks all mods in {@code mods} in the current list of mods linked to this batchmate as not taken.
      *
      * @param mods The list of mods to be unmarked.
