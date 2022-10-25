@@ -1,10 +1,16 @@
 package seedu.taassist.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.taassist.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class AppUtilTest {
+
+    @Test
+    public void getImage_redirectIcon() {
+        assertNotNull(AppUtil.getImage("/images/redirect_icon.png"));
+    }
 
     @Test
     public void getImage_nullGiven_throwsNullPointerException() {

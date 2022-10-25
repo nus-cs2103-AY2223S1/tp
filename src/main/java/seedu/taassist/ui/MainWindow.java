@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
+    private static HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -61,6 +62,8 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+
+        helpWindow = new HelpWindow();
 
         helpButton.setId("helpBtn");
     }
@@ -100,13 +103,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens a particular webpage.
+     * Opens a particular webpage, if unable to do so, help window will be shown for them to copy the URL.
      */
     public static void openWebpage(String urlString) {
         try {
             Desktop.getDesktop().browse(new URL(urlString).toURI());
         } catch (Exception e) {
+            if (!helpWindow.isShowing()) {
+                helpWindow.show();
+            } else {
+                helpWindow.focus();
+            }
             e.printStackTrace();
+
         }
     }
 
@@ -130,6 +139,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
         primaryStage.hide();
     }
 

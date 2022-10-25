@@ -1,0 +1,24 @@
+#copyButton {
+    -fx-text-fill: white;
+    -fx-background-color: gray;
+    -fx-font-family: "Impact";
+    -fx-font-size: 12pt;
+}
+
+#helpMessage {
+    -fx-text-fill: white;
+    -fx-font-family: "Impact";
+    -fx-font-size: 12pt;
+}
+
+#copyButton:hover {
+    -fx-background-color: #3e84a6;
+}
+
+#copyButton:armed {
+    -fx-background-color: #070f36;
+}
+
+#helpMessageContainer {
+    -fx-background-color: derive(#070f36, 20%);
+}

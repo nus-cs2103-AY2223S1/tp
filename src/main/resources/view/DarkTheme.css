@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#070f36, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
@@ -212,7 +212,6 @@
 }
 #helpBtn:hover {
     -fx-background-color: #fe7f9c;
-    -fx-opacity: 0.5;
 }
 
 .menu .left-container {
