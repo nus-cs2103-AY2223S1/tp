@@ -40,9 +40,9 @@ public class ListCommand extends Command {
         model.updateFilteredPetList(Model.PREDICATE_SHOW_ALL_PETS);
         model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);
         if (this.listType == ListCommand.LIST_EMPTY) {
-            return new CommandResult(MESSAGE_SUCCESS_EMPTY, false, false, true, listType);
+            return new CommandResult(MESSAGE_SUCCESS_EMPTY, true, listType);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, listType), false, false, true, listType);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, listType), true, listType);
     }
 
 }
