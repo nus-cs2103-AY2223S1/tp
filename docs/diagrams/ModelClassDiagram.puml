@@ -46,7 +46,7 @@ ModelManager --> "1" TodoList
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 SoConnect *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList ----> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
@@ -67,5 +67,5 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager ----->"~* filtered" Person
-ModelManager ------> "~* filtered" Todo
+ModelManager -------> "~* filtered" Todo
 @enduml
