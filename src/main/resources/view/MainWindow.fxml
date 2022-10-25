@@ -11,6 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="NutriGoals" minWidth="720" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -39,28 +42,37 @@
           </padding>
         </StackPane>
 
-        <HBox VBox.vgrow="ALWAYS">
-          <VBox fx:id="foodList" styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets topRightBottomLeft="10" />
-            </padding>
-            <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
-          </VBox>
-
-          <VBox minWidth="340">
-            <StackPane fx:id="progressBarPlaceholder">
+        <GridPane VBox.vgrow="ALWAYS">
+          <children>
+            <VBox fx:id="foodList" styleClass="pane-with-border" minWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
               <padding>
                 <Insets topRightBottomLeft="10" />
               </padding>
-            </StackPane>
+              <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" />
+            </VBox>
 
-            <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets topRightBottomLeft="10" />
-              </padding>
-            </StackPane>
-          </VBox>
-        </HBox>
+            <VBox minWidth="340" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="right-side">
+              <StackPane fx:id="progressBarPlaceholder">
+                <padding>
+                  <Insets topRightBottomLeft="10" />
+                </padding>
+              </StackPane>
+
+              <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets topRightBottomLeft="10" />
+                </padding>
+              </StackPane>
+            </VBox>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

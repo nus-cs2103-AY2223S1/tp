@@ -352,3 +352,7 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.right-side {
+    -fx-padding: 8;
+}
