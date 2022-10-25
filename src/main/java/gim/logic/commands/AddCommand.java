@@ -27,7 +27,7 @@ public class AddCommand extends Command {
                     + "SETS " + PREFIX_REPS
                     + "REPS " + PREFIX_DATE
                     + "DATE...\n"
-                    + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Squat " + PREFIX_WEIGHT + "60 " + PREFIX_SETS
+                    + "Example:\n" + COMMAND_WORD + " " + PREFIX_NAME + "Squat " + PREFIX_WEIGHT + "60 " + PREFIX_SETS
                     + "1 " + PREFIX_REPS + "5 " + PREFIX_DATE + "25/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New exercise '%s' added as: %s";
