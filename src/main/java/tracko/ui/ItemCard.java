@@ -54,7 +54,7 @@ public class ItemCard extends UiPart<Region> {
         super(FXML);
         this.inventoryItem = inventoryItem;
         id.setText(Integer.toString(displayedIndex));
-        itemName.setText(inventoryItem.getItemName().itemName);
+        itemName.setText(inventoryItem.getItemName().value);
         itemName.setWrapText(true);
         itemName.setPadding(new Insets(0, 10, 0, 0));
 

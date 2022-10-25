@@ -12,17 +12,17 @@ public class ItemName {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String itemName;
+    public final String value;
 
     /**
      * Constructs an {@code ItemName}.
      *
-     * @param itemName The name of the item.
+     * @param value The name of the item.
      */
-    public ItemName(String itemName) {
-        requireNonNull(itemName);
-        checkArgument(isValidItemName(itemName), MESSAGE_CONSTRAINTS);
-        this.itemName = itemName;
+    public ItemName(String value) {
+        requireNonNull(value);
+        checkArgument(isValidItemName(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     public static boolean isValidItemName(String test) {
@@ -32,19 +32,19 @@ public class ItemName {
 
     @Override
     public String toString() {
-        return itemName;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ItemName // instanceof handles nulls
-                && itemName.equalsIgnoreCase(((ItemName) other).itemName)); // state check
+                && value.equalsIgnoreCase(((ItemName) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return itemName.hashCode();
+        return value.hashCode();
     }
 
 }
