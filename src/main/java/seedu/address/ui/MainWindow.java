@@ -44,7 +44,9 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PortfolioWindow portfolioWindow;
     private LockWindow lockWindow;
+    private int index = 0;
 
     @FXML
     private Scene parent;
@@ -63,6 +65,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane portfolioListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -165,6 +170,14 @@ public class MainWindow extends UiPart<Stage> {
         totalClient.setText(String.valueOf(logic.getFilteredPersonList().size()));
     }
 
+    /**
+     * Updates the portfolio page after each view command
+     */
+    public void getPortfolio() {
+        portfolioWindow = new PortfolioWindow(logic.getFilteredPersonList().get(index), index);
+        portfolioListPanelPlaceholder.getChildren().add(portfolioWindow.getRoot());
+    }
+
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
@@ -207,6 +220,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        portfolioWindow = new PortfolioWindow(logic.getFilteredPersonList().get(0), 0);
+        portfolioListPanelPlaceholder.getChildren().add(portfolioWindow.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -227,6 +243,7 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        primaryStage.setResizable(true);
     }
 
     /**
@@ -298,7 +315,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isLock()) {
                 handleLock();
             }
-
+            index = commandResult.getIndex();
+            getPortfolio();
             getTotalClient();
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -306,5 +324,6 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+
     }
 }
