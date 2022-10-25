@@ -45,9 +45,16 @@ public class Survey {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Survey // instanceof handles nulls
-                        && survey.equals(((Survey) other).survey)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Survey)) {
+            return false;
+        }
+
+        Survey otherSurvey = (Survey) other;
+        return survey.equals(otherSurvey.survey) && isDone == otherSurvey.isDone;
     }
 
     @Override
