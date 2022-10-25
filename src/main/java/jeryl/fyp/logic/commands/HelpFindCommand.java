@@ -8,7 +8,7 @@ import jeryl.fyp.model.Model;
 public class HelpFindCommand extends HelpCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows FIND Command usage instructions.\n"
-            + "Example: " + COMMAND_WORD + " " + FindCommand.COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + " " + FindProjectNameCommand.COMMAND_WORD;
 
     public static final String SHOWING_HELP_FIND_MESSAGE = "FIND Command:\n"
             + "Finds projects whose names contain any of the given keyword(s).\n"
