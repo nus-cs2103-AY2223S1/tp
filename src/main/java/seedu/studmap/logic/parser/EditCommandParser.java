@@ -4,6 +4,7 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -28,7 +29,7 @@ public class EditCommandParser extends EditStudentCommandParser<EditCommandStude
     @Override
     public Prefix[] getPrefixes() {
         return new Prefix[]{
-            PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+            PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE,
             PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_TAG
         };
     }
@@ -52,6 +53,9 @@ public class EditCommandParser extends EditStudentCommandParser<EditCommandStude
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
+            editor.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
         }
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
             editor.setId(ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get()));

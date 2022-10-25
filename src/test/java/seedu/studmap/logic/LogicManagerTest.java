@@ -7,6 +7,7 @@ import static seedu.studmap.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.GIT_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.HANDLE_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.ID_DESC_AMY;
+import static seedu.studmap.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.studmap.testutil.Assert.assertThrows;
@@ -82,7 +83,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ID_DESC_AMY + GIT_DESC_AMY + HANDLE_DESC_AMY;
+                + MODULE_DESC_AMY + ID_DESC_AMY + GIT_DESC_AMY + HANDLE_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);

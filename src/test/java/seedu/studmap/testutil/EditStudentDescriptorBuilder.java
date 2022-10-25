@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
+import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
@@ -37,6 +38,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setName(student.getName());
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
+        descriptor.setModule(student.getModule());
         descriptor.setId(student.getId());
         descriptor.setGitName(student.getGitName());
         descriptor.setHandle(student.getTeleHandle());
@@ -64,6 +66,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Module} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withModule(String module) {
+        descriptor.setModule(new Module(module));
         return this;
     }
 

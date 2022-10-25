@@ -21,6 +21,7 @@ public class Student {
     private final Email email;
 
     // Data fields
+    private final Module module;
     private final StudentID id;
     private final TeleHandle teleHandle;
     private final GitName gitName;
@@ -38,10 +39,11 @@ public class Student {
     public Student(StudentData studentData) {
         requireAllNonNull(studentData.getId(), studentData.getGitUser(),
                 studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
-                studentData.getEmail(), studentData.getTags(), studentData.getAttendances(),
-                studentData.getAssignments());
+                studentData.getEmail(), studentData.getModule(), studentData.getTags(),
+                studentData.getAttendances(), studentData.getAssignments());
 
         this.id = studentData.getId();
+        this.module = studentData.getModule();
         this.teleHandle = studentData.getTeleHandle();
         this.gitName = studentData.getGitUser();
         this.name = studentData.getName();
@@ -74,6 +76,14 @@ public class Student {
 
     public String getHandleString() {
         return teleHandle.toString();
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public String getModuleString() {
+        return module.toString();
     }
 
     public Name getName() {
@@ -131,6 +141,7 @@ public class Student {
         studentData.setName(this.getName());
         studentData.setPhone(this.getPhone());
         studentData.setEmail(this.getEmail());
+        studentData.setModule(this.getModule());
         studentData.setId(this.getId());
         studentData.setGitUser(this.getGitName());
         studentData.setTeleHandle(this.getTeleHandle());
@@ -183,6 +194,7 @@ public class Student {
                 && otherStudent.getId().equals(getId())
                 && otherStudent.getGitName().equals(getGitName())
                 && otherStudent.getTeleHandle().equals(getTeleHandle())
+                && otherStudent.getModule().equals(getModule())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTags().equals(getTags())
@@ -194,17 +206,20 @@ public class Student {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
 
-        return Objects.hash(name, phone, email, id, gitName, teleHandle, tags, attendances, assignments);
+        return Objects.hash(name, phone, email, id, gitName, teleHandle, module,
+                tags, attendances, assignments);
 
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName()).append("; Phone: ").append(getPhone()).append("; Email: ")
-                .append(getEmail()).append("; StudentID: ")
-                .append(getId()).append("; GitHub Username: ")
-                .append(getGitName()).append("; TeleHandle: ").append(getTeleHandle());
+        builder.append(getName()).append("; Phone: ").append(getPhone())
+                .append("; Email: ").append(getEmail())
+                .append("; Module: ").append(getModule())
+                .append("; StudentID: ").append(getId())
+                .append("; GitHub Username: ").append(getGitName())
+                .append("; TeleHandle: ").append(getTeleHandle());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

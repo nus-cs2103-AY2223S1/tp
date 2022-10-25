@@ -3,5 +3,9 @@
     "name": "Student with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
+    "module": "CS2103T",
+    "studentID" : "E1234561",
+    "gitName" : "user1",
+    "handle" : "@user1"
   } ]
 }

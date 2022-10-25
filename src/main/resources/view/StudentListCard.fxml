@@ -29,7 +29,8 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <FlowPane fx:id="attendances" />
-      <Label fx:id="StudentId" styleClass="cell_small_label" text="\$StudentId" />
+      <Label fx:id="module" styleClass="cell_small_label" text="\$module" />
+      <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
       <Label fx:id="gitName" styleClass="cell_small_label" text="\$gitName" />
       <Label fx:id="handle" styleClass="cell_small_label" text="\$handle" />
       <FlowPane fx:id="assignments" />

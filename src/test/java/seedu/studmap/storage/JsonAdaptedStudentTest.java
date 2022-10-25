@@ -26,6 +26,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
+    private static final String VALID_MODULE = BENSON.getModule().toString();
     private static final String VALID_ID = BENSON.getId().toString();
     private static final String VALID_GIT = BENSON.getGitString();
     private static final String VALID_HANDLE = BENSON.getHandleString();
@@ -48,7 +49,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(INVALID_NAME, VALID_PHONE, VALID_EMAIL,
+                new JsonAdaptedStudent(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE,
                         VALID_ID, VALID_GIT, VALID_HANDLE,
                         VALID_TAGS, VALID_ATTENDANCES, VALID_ASSIGNMENTS);
 
@@ -58,7 +59,7 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(null, VALID_PHONE, VALID_EMAIL,
+        JsonAdaptedStudent student = new JsonAdaptedStudent(null, VALID_PHONE, VALID_EMAIL, VALID_MODULE,
                 VALID_ID, VALID_GIT, VALID_HANDLE, VALID_TAGS, VALID_ATTENDANCES, VALID_ASSIGNMENTS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
@@ -68,7 +69,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, INVALID_PHONE, VALID_EMAIL,
+                new JsonAdaptedStudent(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_MODULE,
                         VALID_ID, VALID_GIT, VALID_HANDLE,
                         VALID_TAGS, VALID_ATTENDANCES, VALID_ASSIGNMENTS);
 
@@ -78,7 +79,7 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL,
+        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL, VALID_MODULE,
                 VALID_ID, VALID_GIT, VALID_HANDLE,
                 VALID_TAGS, VALID_ATTENDANCES, VALID_ASSIGNMENTS);
 
@@ -89,7 +90,7 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
+                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_MODULE,
                         VALID_ID, VALID_GIT, VALID_HANDLE,
                         VALID_TAGS, VALID_ATTENDANCES, VALID_ASSIGNMENTS);
 
@@ -99,7 +100,7 @@ public class JsonAdaptedStudentTest {
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, null,
+        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, null, VALID_MODULE,
                 VALID_ID, VALID_GIT, VALID_HANDLE, VALID_TAGS, VALID_ATTENDANCES, VALID_ASSIGNMENTS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
@@ -111,7 +112,7 @@ public class JsonAdaptedStudentTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE,
                         VALID_ID, VALID_GIT, VALID_HANDLE, invalidTags,
                         VALID_ATTENDANCES, VALID_ASSIGNMENTS);
 
@@ -123,7 +124,7 @@ public class JsonAdaptedStudentTest {
         List<JsonAdaptedAttendance> invalidAttendances = new ArrayList<>(VALID_ATTENDANCES);
         invalidAttendances.add(new JsonAdaptedAttendance(INVALID_CLASS + ":Present"));
         JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE,
                         VALID_ID, VALID_GIT, VALID_HANDLE,
                         VALID_TAGS, invalidAttendances, VALID_ASSIGNMENTS);
 

@@ -5,6 +5,7 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -25,6 +26,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_MODULE + "MODULE "
             + PREFIX_ID + "ID "
             + PREFIX_GIT + "GITNAME "
             + PREFIX_HANDLE + "HANDLE "
@@ -33,6 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_MODULE + "CS2103T "
             + PREFIX_ID + "E1234567 "
             + PREFIX_GIT + "user1 "
             + PREFIX_HANDLE + "@user1 "

@@ -38,7 +38,9 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label StudentId;
+    private Label module;
+    @FXML
+    private Label studentId;
     @FXML
     private Label gitName;
     @FXML
@@ -60,7 +62,7 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
         email.setText(student.getEmail().value);
-        StudentId.setText(student.getId().value);
+        studentId.setText(student.getId().value);
         gitName.setText(student.getGitName().value);
         handle.setText(student.getTeleHandle().value);
         student.getTags().stream()

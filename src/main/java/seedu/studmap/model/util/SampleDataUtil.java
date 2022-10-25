@@ -11,6 +11,7 @@ import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
+import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
@@ -31,6 +32,7 @@ public class SampleDataUtil {
         studentData.setName(new Name("Alex Yeoh"));
         studentData.setPhone(new Phone("87438807"));
         studentData.setEmail(new Email("alexyeoh@example.com"));
+        studentData.setModule(new Module("CS2103T"));
         studentData.setId(new StudentID("E1234561"));
         studentData.setGitUser(new GitName("user1"));
         studentData.setTeleHandle(new TeleHandle("@user1"));
@@ -43,6 +45,7 @@ public class SampleDataUtil {
         studentData.setName(new Name("Bernice Yu"));
         studentData.setPhone(new Phone("99272758"));
         studentData.setEmail(new Email("berniceyu@example.com"));
+        studentData.setModule(new Module("CS2103T"));
         studentData.setId(new StudentID("E1234562"));
         studentData.setGitUser(new GitName("user2"));
         studentData.setTeleHandle(new TeleHandle("@user2"));
@@ -56,6 +59,7 @@ public class SampleDataUtil {
         studentData.setName(new Name("Charlotte Oliveiro"));
         studentData.setPhone(new Phone("93210283"));
         studentData.setEmail(new Email("charlotte@example.com"));
+        studentData.setModule(new Module("CS2103T"));
         studentData.setId(new StudentID("E1234563"));
         studentData.setGitUser(new GitName("user3"));
         studentData.setTeleHandle(new TeleHandle("@user3"));
@@ -66,6 +70,7 @@ public class SampleDataUtil {
         studentData.setName(new Name("David Li"));
         studentData.setPhone(new Phone("91031282"));
         studentData.setEmail(new Email("lidavid@example.com"));
+        studentData.setModule(new Module("CS2106"));
         studentData.setId(new StudentID("E1234564"));
         studentData.setGitUser(new GitName("user4"));
         studentData.setTeleHandle(new TeleHandle("@user4"));
@@ -76,6 +81,7 @@ public class SampleDataUtil {
         studentData.setName(new Name("Irfan Ibrahim"));
         studentData.setPhone(new Phone("92492021"));
         studentData.setEmail(new Email("irfan@example.com"));
+        studentData.setModule(new Module("CS2106"));
         studentData.setId(new StudentID("E1234565"));
         studentData.setGitUser(new GitName("user5"));
         studentData.setTeleHandle(new TeleHandle("@user5"));
@@ -86,6 +92,7 @@ public class SampleDataUtil {
         studentData.setName(new Name("Roy Balakrishnan"));
         studentData.setPhone(new Phone("92624417"));
         studentData.setEmail(new Email("royb@example.com"));
+        studentData.setModule(new Module("CS2103T"));
         studentData.setId(new StudentID("E1234566"));
         studentData.setGitUser(new GitName("user6"));
         studentData.setTeleHandle(new TeleHandle("@user6"));

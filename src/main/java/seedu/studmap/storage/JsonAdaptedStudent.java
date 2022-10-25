@@ -14,6 +14,7 @@ import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.GitName;
+import seedu.studmap.model.student.Module;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
@@ -32,6 +33,7 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
+    private final String module;
     private final String studentID;
     private final String gitName;
     private final String handle;
@@ -44,15 +46,17 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("studentID") String StudentId,
-                              @JsonProperty("gitName") String gitName, @JsonProperty("handle") String handle,
+                              @JsonProperty("email") String email, @JsonProperty("module") String module,
+                              @JsonProperty("studentID") String studentId, @JsonProperty("gitName") String gitName,
+                              @JsonProperty("handle") String handle,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("attended") List<JsonAdaptedAttendance> attended,
                               @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.studentID = StudentId;
+        this.module = module;
+        this.studentID = studentId;
         this.gitName = gitName;
         this.handle = handle;
         if (tagged != null) {
@@ -73,6 +77,7 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        module = source.getModule().value;
         studentID = source.getId().value;
         gitName = source.getGitName().value;
         handle = source.getTeleHandle().value;
@@ -132,6 +137,14 @@ class JsonAdaptedStudent {
         }
         final Email modelEmail = new Email(email);
 
+        if (module == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Module.class.getSimpleName()));
+        }
+        if (!Module.isValidModule(module)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
+        }
+        final Module modelModule = new Module(module);
+
         if (studentID == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StudentID.class.getSimpleName()));
@@ -168,6 +181,7 @@ class JsonAdaptedStudent {
         studentData.setName(modelName);
         studentData.setPhone(modelPhone);
         studentData.setEmail(modelEmail);
+        studentData.setModule(modelModule);
         studentData.setId(modelId);
         studentData.setGitUser(modelGit);
         studentData.setTeleHandle(modelHandle);
