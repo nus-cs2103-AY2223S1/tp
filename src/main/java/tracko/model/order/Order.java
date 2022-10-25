@@ -53,7 +53,6 @@ public class Order {
         this.itemList = itemList;
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
-        calculateTotalOrderPrice();
     }
 
     public Name getName() {
