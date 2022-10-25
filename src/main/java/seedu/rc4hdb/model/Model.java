@@ -151,7 +151,7 @@ public interface Model {
 
     void setObservableVenues(List<Venue> modifiableVenues);
 
-    ObservableList<Booking> getObservableBookings();
-
-    void setObservableBookings(List<Booking> modifiableBookings);
+//    ObservableList<Booking> getObservableBookings();
+//
+//    void setObservableBookings(List<Booking> modifiableBookings);
 }

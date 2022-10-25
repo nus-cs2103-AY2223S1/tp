@@ -137,9 +137,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        System.out.println("Filling");
         residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
+        System.out.println("Filling booking");
+//        assert(logic.getObservableBookings() != null);
         bookingTableView = new BookingTableView(logic.getObservableBookings());
         bookingTableViewPlaceholder.getChildren().add(bookingTableView.getRoot());
 

@@ -36,7 +36,7 @@ public class ModelManager implements Model {
 
     private final ObservableList<String> observableFieldList;
     private final ObservableList<Venue> observableVenueList;
-    private final ObservableList<Booking> observableBookingList;
+
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -52,8 +52,7 @@ public class ModelManager implements Model {
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
         this.observableFieldList = FXCollections.observableArrayList();
-        this.observableVenueList = FXCollections.observableArrayList();
-        this.observableBookingList = FXCollections.observableArrayList();
+        this.observableVenueList = venueBook.getVenueList();
     }
 
     public ModelManager() {
@@ -235,14 +234,5 @@ public class ModelManager implements Model {
         this.observableVenueList.setAll(modifiableFields);
     }
 
-    //=========== Observable Booking List Accessors =============================================================
-    @Override
-    public ObservableList<Booking> getObservableBookings() {
-        return this.observableBookingList;
-    }
-    @Override
-    public void setObservableBookings(List<Booking> modifiableFields) {
-        this.observableBookingList.setAll(modifiableFields);
-    }
 
 }
