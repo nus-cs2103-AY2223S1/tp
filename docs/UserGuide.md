@@ -80,6 +80,16 @@ This guides aims to:
 
 ## Navigating the GUI
 
+### Bar Chart
+![Ui](images/BarChart.png)
+
+The Bar Chart (located in the bottom right corner of the application) displays the number of
+applications on every stage of the possible application process **which are currently listed by
+the application**.
+
+For example, If you do `find n/Shopee` before viewing the bar chart, the bar chart will only shows
+the data for all internships whose company name contains the word `Shopee`.
+
 ## Command Format
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
