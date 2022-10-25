@@ -189,9 +189,9 @@ public class DateTime {
             return !this.date.isAfter(other.date);
         } else if (this.time.isEmpty()) {
             // the one with time is considered after
-            return false;
-        } else if (other.time.isEmpty()) {
             return true;
+        } else if (other.time.isEmpty()) {
+            return false;
         }
         return this.date.isEqual(other.date)
                 ? !this.time.get().isAfter(other.time.get())
