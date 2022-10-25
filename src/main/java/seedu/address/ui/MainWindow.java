@@ -132,15 +132,14 @@ public class MainWindow extends UiPart<Stage> {
         teamListPanel = new TeamListPanel(logic.getTeamList());
         teamListPanelPlaceholder.getChildren().add(teamListPanel.getRoot());
 
-        teamDetailsPanel = new TeamDetailsPanel(logic.getTeamAsProperty());
-        teamDetailsCardPlaceHolder.getChildren().add(teamDetailsPanel.getRoot());
-
-
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        teamDetailsPanel = new TeamDetailsPanel(logic.getTeamAsProperty(), resultDisplay);
+        teamDetailsCardPlaceHolder.getChildren().add(teamDetailsPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -189,6 +188,44 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Switches the application theme.
+     */
+    private void handleSwitch() {
+        ArrayList<String> newStyleSheets = new ArrayList<>();
+        ArrayList<String> oldStyleSheets = new ArrayList<>();
+        for (String styleSheet : primaryStage.getScene().getStylesheets()) {
+            if (Pattern.matches(".*LightTheme.*", styleSheet)) {
+                oldStyleSheets.add(styleSheet);
+                String newURL = styleSheet.replaceAll("LightTheme", "DarkTheme");
+                newStyleSheets.add(newURL);
+            } else if (Pattern.matches(".*DarkTheme.*", styleSheet)) {
+                oldStyleSheets.add(styleSheet);
+                String newURL = styleSheet.replaceAll("DarkTheme", "LightTheme");
+                newStyleSheets.add(newURL);
+            }
+        }
+        primaryStage.getScene().getStylesheets().addAll(newStyleSheets);
+        primaryStage.getScene().getStylesheets().removeAll(oldStyleSheets);
+
+        ArrayList<String> newHelpStyleSheets = new ArrayList<>();
+        ArrayList<String> oldHelpStyleSheets = new ArrayList<>();
+        for (String styleSheet : helpWindow.getRoot().getScene().getStylesheets()) {
+            if (Pattern.matches(".*LightTheme.*", styleSheet)) {
+                oldStyleSheets.add(styleSheet);
+                String newURL = styleSheet.replaceAll("LightTheme", "DarkTheme");
+                newStyleSheets.add(newURL);
+            } else if (Pattern.matches(".*DarkTheme.*", styleSheet)) {
+                oldStyleSheets.add(styleSheet);
+                String newURL = styleSheet.replaceAll("DarkTheme", "LightTheme");
+                newStyleSheets.add(newURL);
+            }
+        }
+        helpWindow.getRoot().getScene().getStylesheets().addAll(newHelpStyleSheets);
+        helpWindow.getRoot().getScene().getStylesheets().removeAll(oldStyleSheets);
+
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -212,38 +249,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             if (commandResult.isSwitchTheme()) {
-                ArrayList<String> newStyleSheets = new ArrayList<>();
-                ArrayList<String> oldStyleSheets = new ArrayList<>();
-                for (String styleSheet : primaryStage.getScene().getStylesheets()) {
-                    if (Pattern.matches(".*LightTheme.*", styleSheet)) {
-                        oldStyleSheets.add(styleSheet);
-                        String newURL = styleSheet.replaceAll("LightTheme", "DarkTheme");
-                        newStyleSheets.add(newURL);
-                    } else if (Pattern.matches(".*DarkTheme.*", styleSheet)) {
-                        oldStyleSheets.add(styleSheet);
-                        String newURL = styleSheet.replaceAll("DarkTheme", "LightTheme");
-                        newStyleSheets.add(newURL);
-                    }
-                }
-                primaryStage.getScene().getStylesheets().addAll(newStyleSheets);
-                primaryStage.getScene().getStylesheets().removeAll(oldStyleSheets);
-
-                ArrayList<String> newHelpStyleSheets = new ArrayList<>();
-                ArrayList<String> oldHelpStyleSheets = new ArrayList<>();
-                for (String styleSheet : helpWindow.getRoot().getScene().getStylesheets()) {
-                    if (Pattern.matches(".*LightTheme.*", styleSheet)) {
-                        oldStyleSheets.add(styleSheet);
-                        String newURL = styleSheet.replaceAll("LightTheme", "DarkTheme");
-                        newStyleSheets.add(newURL);
-                    } else if (Pattern.matches(".*DarkTheme.*", styleSheet)) {
-                        oldStyleSheets.add(styleSheet);
-                        String newURL = styleSheet.replaceAll("DarkTheme", "LightTheme");
-                        newStyleSheets.add(newURL);
-                    }
-                }
-                helpWindow.getRoot().getScene().getStylesheets().addAll(newHelpStyleSheets);
-                helpWindow.getRoot().getScene().getStylesheets().removeAll(oldStyleSheets);
-
+                handleSwitch();
             }
 
             return commandResult;

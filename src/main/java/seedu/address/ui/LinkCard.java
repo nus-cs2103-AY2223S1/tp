@@ -36,10 +36,12 @@ public class LinkCard extends UiPart<Region> {
     @FXML
     private Label id;
 
+    private ResultDisplay resultDisplay;
+
     /**
      * Creates a {@code LinkCode} with the given {@code Link} and index to display.
      */
-    public LinkCard(Link link, int displayedIndex) {
+    public LinkCard(Link link, int displayedIndex, ResultDisplay resultDisplay) {
         super(FXML);
         this.link = link;
         id.setText(displayedIndex + ". ");
@@ -53,6 +55,7 @@ public class LinkCard extends UiPart<Region> {
                 content.putString(link.getUrl().toString());
                 clipboard.setContent(content);
                 linkName.setVisited(false);
+                resultDisplay.setFeedbackToUser("Copied URL to clipboard: " + link.getUrl().toString());
             }
         });
         linkName.setVisited(false);

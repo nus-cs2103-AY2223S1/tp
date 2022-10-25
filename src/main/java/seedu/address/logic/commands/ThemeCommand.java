@@ -5,9 +5,9 @@ import seedu.address.model.Model;
 /**
  * Switches the theme of the program.
  */
-public class SwitchCommand extends Command {
+public class ThemeCommand extends Command {
 
-    public static final String COMMAND_WORD = "switch";
+    public static final String COMMAND_WORD = "theme";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Switched themes!";
 

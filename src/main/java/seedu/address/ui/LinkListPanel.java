@@ -20,13 +20,16 @@ public class LinkListPanel extends UiPart<Region> {
     @javafx.fxml.FXML
     private ListView<Link> linkListView;
 
+    private static ResultDisplay resultDisplay;
+
     /**
      * Creates a {@code LinkListPanel} with the given {@code ObservableList}.
      */
-    public LinkListPanel(ObservableList<Link> linkList) {
+    public LinkListPanel(ObservableList<Link> linkList, ResultDisplay resultDisplay) {
         super(FXML);
         linkListView.setItems(linkList);
         linkListView.setCellFactory(listView -> new LinkListViewCell());
+        LinkListPanel.resultDisplay = resultDisplay;
     }
 
     /**
@@ -41,7 +44,7 @@ public class LinkListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new LinkCard(link, getIndex() + 1).getRoot());
+                setGraphic(new LinkCard(link, getIndex() + 1, LinkListPanel.resultDisplay).getRoot());
             }
         }
     }
