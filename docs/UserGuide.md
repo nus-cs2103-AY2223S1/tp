@@ -113,7 +113,7 @@ parameter for `NAME`
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `delete all`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
