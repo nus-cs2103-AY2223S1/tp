@@ -52,7 +52,10 @@ public class DateTime {
                 && today.getYear() == dateTime.getYear();
     }
 
-    public int findDaysFromToday() {
+    /**
+     * Returns the amount of days between today and the Date.
+     */
+    public int getDaysFromToday() {
         Long daysBetween = DAYS.between(LocalDate.now(), this.dateTime.toLocalDate());
         return daysBetween.intValue();
     }
