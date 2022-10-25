@@ -26,11 +26,11 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 
    * **`liststudent`** : Show an expanded list of all students.
 
-   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` to JARVIS.
+     * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` with matric number `A0123459G` to JARVIS.
 
    * **`deletestudent 3`** : Deletes the 3rd student shown in the student list.
 
-   * **`clear`** : Deletes all students and tasks.
+   * **`clear`** : Deletes all students, tasks and lessons.
 
    * **`exit`** : Exits the app.
 
@@ -137,7 +137,7 @@ Examples:
 
 ### Deleting a student : `deletestudent`
 
-Deletes the specified student from the student list.
+Deletes a student from the student list.
 
 Format: `deletestudent INDEX`
 
@@ -220,6 +220,7 @@ Adds a task to JARVIS.
 Format: `addtask t/TASK_DESC [d/DEADLINE]`
 
 * `d/DEADLINE` is optional, if specified will indicate a deadline for the task.
+* `d/DEADLINE` should be in the format `yyyy-MM-dd`
 
 Examples:
 * `addtask t/Prepare tutorial slides d/2022-11-01`
@@ -227,7 +228,7 @@ Examples:
 
 ### Deleting a task : `deletetask`
 
-Deletes the specified task from the task list.
+Deletes a task from the task list.
 
 Format: `deletetask INDEX`
 
@@ -271,6 +272,8 @@ Adds a studio lesson to JARVIS.
 Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`
 
 * `l/LESSON_DESC` is optional
+* `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
+* `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as START_DATE
 
 Examples:
@@ -283,6 +286,8 @@ Adds a consult lesson to JARVIS.
 Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
   
 * `l/LESSON_DESC` is optional
+* `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
+* `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as START_DATE
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 
@@ -296,6 +301,8 @@ Adds a mastery check lesson to JARVIS.
 Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`
 
 * `l/LESSON_DESC` is optional
+* `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
+* `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
 * `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as START_DATE
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 
@@ -304,7 +311,7 @@ Examples:
 
 ### Deleting a lesson : `deletelesson`
 
-Deletes the specified lesson from the lesson list.
+Deletes a lesson from the lesson list.
 
 Format: `deletelesson INDEX`
 
@@ -320,7 +327,7 @@ Marks a lesson as completed.
 
 Format: `marklesson li/LESSON_INDEX`
 
-* `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
+* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
 * `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -332,7 +339,7 @@ Marks a lesson as not completed.
 
 Format: `unmarklesson li/LESSON_INDEX`
 
-* `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
+* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
 * `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -344,7 +351,7 @@ Marks a student as present for a lesson.
 
 Format: `markstudent li/LESSON_INDEX si/STUDENT_INDEX`
 
-* `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
+* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
@@ -357,7 +364,7 @@ Marks a student as absent for a lesson.
 
 Format: `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`
 
-* `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
+* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
@@ -371,7 +378,7 @@ Adds a note for a lesson or for a specific student in a lesson.
 Format: `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`
 
 * `si/STUDENT_INDEX` is optional, if specified the command will add to corresponding student notes.
-* `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
+* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
@@ -387,7 +394,7 @@ Format: `deletenote ni/NOTE_INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`
 
 * `si/STUDENT_INDEX` is optional, if specified the command will delete from the corresponding student notes.
 * `NOTE_INDEX` refers to the index number shown in the displayed list of notes for a lesson or for a specific student in a lesson. (use `listlesson` to view the note lists for lessons)
-* `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
+* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
 * `NOTE_INDEX`, `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
@@ -402,7 +409,8 @@ Adds participation for a student in a lesson.
 Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 
 * `PARTICIPATION` **must be a positive integer** from 0 to 500.
-* `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
+* `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
+* `LESSON_INDEX` must refer to a studio (not a consult or mastery check lesson).
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
