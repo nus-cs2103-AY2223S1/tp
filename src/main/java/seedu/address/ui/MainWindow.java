@@ -360,7 +360,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
 
-        } catch (CommandException | ParseException e){
+        } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
