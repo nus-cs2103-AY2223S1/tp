@@ -7,7 +7,7 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 
 - [`Quick start`](#quick-start)
 - [`Features`](#features)
-  - Viewing help: [`help`](#viewing-help-help)
+  - Viewing help: `help`](#viewing-help-help)
   - Adding a person: [`addperson`](#adding-a-person-addperson)
   - Deleting a person : [`deleteperson`](#deleting-a-person-deleteperson)
   - Editing a person: [`editperson`](#editing-a-person-editperson)
@@ -271,23 +271,23 @@ Format: `exit`
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                                               |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**            | `help`                                                                                                                                                                         |
-| **Add Person**      | `addperson [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g. `addperson n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal` |
-| **Delete Person**   | `deleteperson NAME`<br> e.g. `deleteperson Betsy`                                                                                                                              |
-| **Edit Person**     | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`                                            |
-| **Find Person**     | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`                                                                                                            |
-| **List Persons**    | `listpersons`                                                                                                                                                                  |
-| **Add Group**       | `addgroup GROUP` <br> e.g. `addgroup CS2103T`                                                                                                                                  |
-| **Delete Group**    | `deletegroup GROUP` <br/> e.g. `deletegroup CS2103T`                                                                                                                           |
-| **Add Member**      | `addmember g/GROUP n/NAME` <br/> e.g. `addmember g/CS2101 n/Alice`                                                                                                             |
-| **Delete Member**   | `deletemember g/GROUP n/NAME` <br/> e.g. `deletemember g/CS2101 n/Alice`                                                                                                       |
-| **Display Group**   | `displaygroup GROUP` <br/> e.g. `displaygroup CS2103T`                                                                                                                         |
-| **List Groups**     | `listgroups`                                                                                                                                                                   |                                                                                                                                                                                       |
-| **Assign Task**     | `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]` <br/> e.g. `assigntask Alice g/Group Alpha task/Coursework 0 w/Low d/2022-01-01 23:59`                             |
-| **Delete Task**     | `deletetask NAME g/GROUP task/TASK` <br/> e.g. `deletetask John g/CS2103T task/TeamProject`                                                                                    |
-| **Assign Task All** | `assigntaskall g/GROUP task/TASKw/WORKLOAD d/DEADLINE` <br/> e.g. `assigntaskall g/Group Alpha task/Coursework 0 w/Low d/2022-01-01 23:59`                                     |
-| **Delete Task All** | `deletetaskall g/GROUP task/TASK` <br/> e.g. `deletetaskall John g/CS2103T task/TeamProject`                                                                                   |
-| **Clear**           | `clear`                                                                                                                                                                        |
-| **Exit**            | `exit`                                                                                                                                                                         |
+| Action                    | Format, Examples                                                                                                                                                                     |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                  | `help`                                                                                                                                                                               |
+| **Add Person**            | `addperson [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g. `addperson n/Betsy Crowe t/friend e/betsycrowe@example.com <br/> a/Newgate Prison p/1234567 t/criminal` |
+| **Delete Person**         | `deleteperson NAME`<br> e.g. `deleteperson Betsy`                                                                                                                                    |
+| **Edit Person**           | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`                                                  |
+| **Find Person**           | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`                                                                                                                  |
+| **List Persons**          | `listpersons`                                                                                                                                                                        |
+| **Add Group**             | `addgroup GROUP` <br> e.g. `addgroup CS2103T`                                                                                                                                        |
+| **Delete Group**          | `deletegroup GROUP` <br/> e.g. `deletegroup CS2103T`                                                                                                                                 |
+| **Add Member**            | `addmember g/GROUP n/NAME` <br/> e.g. `addmember g/CS2101 n/Alice`                                                                                                                   |
+| **Delete Member**         | `deletemember g/GROUP n/NAME` <br/> e.g. `deletemember g/CS2101 n/Alice`                                                                                                             |
+| **Display Group**         | `displaygroup GROUP` <br/> e.g. `displaygroup CS2103T`                                                                                                                               |
+| **List Groups**           | `listgroups`                                                                                                                                                                         |                                                                                                                                                                                       |
+| **Assign Task**           | `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]` <br/> e.g. `assigntask Alice g/Group Alpha task/Coursework 0 w/Low <br/> d/2022-01-01 23:59`                             |
+| **Delete Task**           | `deletetask NAME g/GROUP task/TASK` <br/> e.g. `deletetask John g/CS2103T task/TeamProject`                                                                                          |
+| **Assign Task <br/> All** | `assigntaskall g/GROUP task/TASKw/WORKLOAD d/DEADLINE` <br/> e.g. `assigntaskall g/Group Alpha task/Coursework 0 w/Low <br/> d/2022-01-01 23:59`                                     |
+| **Delete Task <br/> All** | `deletetaskall g/GROUP task/TASK` <br/> e.g. `deletetaskall John g/CS2103T task/TeamProject`                                                                                         |
+| **Clear**                 | `clear`                                                                                                                                                                              |
+| **Exit**                  | `exit`                                                                                                                                                                               |
