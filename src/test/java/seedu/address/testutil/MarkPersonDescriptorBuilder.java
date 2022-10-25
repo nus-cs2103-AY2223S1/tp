@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.MarkCommand.MarkPersonDescriptor;
+import seedu.address.logic.commands.MarkPersonDescriptor;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Homework;
