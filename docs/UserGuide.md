@@ -45,14 +45,14 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a patient: `add`
 
 Adds a patient into idENTify.
 
 Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A patient can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -108,7 +108,7 @@ Format: `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* When editing tags, the existing tags of the patient will be removed i.e. adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -256,7 +256,7 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be hidden (i.e. `OR` search).
+* Patients matching at least one keyword will be hidden (i.e. `OR` search).
   e.g. `Hans Bo` will hide `Hans Gruber`, `Bo Yang`
 * `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
   * `[n/NAME]` searches for the name of the patients.
@@ -286,20 +286,20 @@ Examples:
 * `find t/throat` returns `Bernice Yu` and `David Li`, both of which contains the `Throat` tag. <br>
   ![result for 'find t/throat'](images/FindThroatTagResult.png)
 
-### Deleting a person : `delete`
+### Deleting a patient : `delete`
 
 Deletes a patient or a range of patients from idENTify.
 
 Format: `delete INDEX [endIndex]`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the patient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list patients` followed by `delete 2` deletes the 2nd person in idENTify.
+* `list patients` followed by `delete 2` deletes the 2nd patient in idENTify.
 * `delete 1 3` deletes the first 3 patients (index 1 to 3 inclusive) in idENTify
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 ### Add an appointment:  `book`
 
