@@ -13,6 +13,8 @@ public class ArgumentTokenizerTest {
     private final Prefix pSlash = new Prefix("p/");
     private final Prefix dashT = new Prefix("-t");
     private final Prefix hatQ = new Prefix("^Q");
+    private final Prefix namePrefix = new Prefix("name/", "n/", "-n");
+    private final Prefix rolePrefix = new Prefix("role/", "r/", "-r");
 
     @Test
     public void tokenize_emptyArgsString_noValues() {
@@ -134,6 +136,24 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, pSlash);
         assertArgumentPresent(argMultimap, dashT, "not joined^Qjoined");
         assertArgumentAbsent(argMultimap, hatQ);
+    }
+
+    @Test
+    public void tokenize_multipleAliases() {
+        String argsString = "SomePreambleString name/test1 n/test2 -n test3";
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, namePrefix);
+        assertPreamblePresent(argMultimap, "SomePreambleString");
+        assertArgumentPresent(argMultimap, namePrefix, "test1", "test2", "test3");
+    }
+
+    @Test
+    public void tokenize_multipleArgumentsWithmultipleAliases() {
+        String argsString = "SomePreambleString -t not -t test name/test1 role/not -r test n/test2 -n test3 name/test4";
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, dashT, rolePrefix, namePrefix);
+        assertPreamblePresent(argMultimap, "SomePreambleString");
+        assertArgumentPresent(argMultimap, dashT, "not", "test");
+        assertArgumentPresent(argMultimap, dashT, "not", "test");
+        assertArgumentPresent(argMultimap, namePrefix, "test1", "test2", "test3", "test4");
     }
 
     @Test
