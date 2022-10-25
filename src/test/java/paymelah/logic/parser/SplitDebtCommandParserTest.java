@@ -1,6 +1,8 @@
 package paymelah.logic.parser;
 
 import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static paymelah.logic.commands.CommandTestUtil.DATE_DESC_MCDONALDS;
+import static paymelah.logic.commands.CommandTestUtil.DATE_DESC_SUPPER;
 import static paymelah.logic.commands.CommandTestUtil.DESCRIPTION_DESC_MCDONALDS;
 import static paymelah.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SUPPER;
 import static paymelah.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
@@ -8,10 +10,16 @@ import static paymelah.logic.commands.CommandTestUtil.INVALID_MONEY_DESC;
 import static paymelah.logic.commands.CommandTestUtil.MONEY_DESC_MCDONALDS;
 import static paymelah.logic.commands.CommandTestUtil.MONEY_DESC_SUPPER;
 import static paymelah.logic.commands.CommandTestUtil.MONEY_DESC_TEN_DOLLARS;
+import static paymelah.logic.commands.CommandTestUtil.TIME_DESC_MCDONALDS;
+import static paymelah.logic.commands.CommandTestUtil.TIME_DESC_SUPPER;
+import static paymelah.logic.commands.CommandTestUtil.VALID_DATE_MCDONALDS;
+import static paymelah.logic.commands.CommandTestUtil.VALID_DATE_SUPPER;
 import static paymelah.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MCDONALDS;
 import static paymelah.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SUPPER;
 import static paymelah.logic.commands.CommandTestUtil.VALID_MONEY_MCDONALDS;
 import static paymelah.logic.commands.CommandTestUtil.VALID_MONEY_SUPPER;
+import static paymelah.logic.commands.CommandTestUtil.VALID_TIME_MCDONALDS;
+import static paymelah.logic.commands.CommandTestUtil.VALID_TIME_SUPPER;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -100,10 +108,12 @@ public class SplitDebtCommandParserTest {
     @Test
     public void parse_singleIndexAllFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS;
+        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
+                + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
-                .withMoney(VALID_MONEY_MCDONALDS).build();
+                .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS)
+                .withTime(VALID_TIME_MCDONALDS).build();
         Set<Index> personIndexSet = new HashSet<>(List.of(targetIndex));
         SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
 
@@ -116,10 +126,12 @@ public class SplitDebtCommandParserTest {
                 INDEX_THIRD_PERSON));
         StringBuilder personIndexes = new StringBuilder();
         personIndexSet.forEach(x -> personIndexes.append(x.getOneBased()).append(" "));
-        String userInput = personIndexes + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_TEN_DOLLARS;
+        String userInput = personIndexes + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_TEN_DOLLARS
+                + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
-                .withMoney("3.34").build();
+                .withMoney("3.34").withDate(VALID_DATE_MCDONALDS)
+                .withTime(VALID_TIME_MCDONALDS).build();
         SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -132,10 +144,11 @@ public class SplitDebtCommandParserTest {
         StringBuilder personIndexes = new StringBuilder();
         personIndexSet.forEach(x -> personIndexes.append(x.getOneBased()).append(" "));
         String userInput = "0 " + personIndexes + DESCRIPTION_DESC_MCDONALDS
-                + MONEY_DESC_TEN_DOLLARS;
+                + MONEY_DESC_TEN_DOLLARS + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
-                .withMoney("2.50").build();
+                .withMoney("2.50").withDate(VALID_DATE_MCDONALDS)
+                .withTime(VALID_TIME_MCDONALDS).build();
         SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -148,10 +161,11 @@ public class SplitDebtCommandParserTest {
         StringBuilder personIndexes = new StringBuilder();
         personIndexSet.forEach(x -> personIndexes.append(x.getOneBased()).append(" "));
         String userInput = "0 3 2 " + personIndexes + DESCRIPTION_DESC_MCDONALDS
-                + MONEY_DESC_TEN_DOLLARS;
+                + MONEY_DESC_TEN_DOLLARS + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
-                .withMoney("2.50").build();
+                .withMoney("2.50").withDate(VALID_DATE_MCDONALDS)
+                .withTime(VALID_TIME_MCDONALDS).build();
         SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -163,10 +177,11 @@ public class SplitDebtCommandParserTest {
         StringBuilder personIndexes = new StringBuilder();
         personIndexSet.forEach(x -> personIndexes.append(x.getOneBased()).append(" "));
         String userInput = personIndexes + INVALID_DESCRIPTION_DESC + DESCRIPTION_DESC_MCDONALDS
-                + MONEY_DESC_MCDONALDS;
+                + MONEY_DESC_MCDONALDS + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
-                .withMoney(VALID_MONEY_MCDONALDS).build();
+                .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS)
+                .withTime(VALID_TIME_MCDONALDS).build();
         SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -178,10 +193,11 @@ public class SplitDebtCommandParserTest {
         StringBuilder personIndexes = new StringBuilder();
         personIndexSet.forEach(x -> personIndexes.append(x.getOneBased()).append(" "));
         String userInput = personIndexes + DESCRIPTION_DESC_MCDONALDS + INVALID_MONEY_DESC
-                + MONEY_DESC_MCDONALDS;
+                + MONEY_DESC_MCDONALDS + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
-                .withMoney(VALID_MONEY_MCDONALDS).build();
+                .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS)
+                .withTime(VALID_TIME_MCDONALDS).build();
         SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -193,10 +209,12 @@ public class SplitDebtCommandParserTest {
         StringBuilder personIndexes = new StringBuilder();
         personIndexSet.forEach(x -> personIndexes.append(x.getOneBased()).append(" "));
         String userInput = personIndexes + DESCRIPTION_DESC_SUPPER + DESCRIPTION_DESC_MCDONALDS
-                + MONEY_DESC_SUPPER + MONEY_DESC_MCDONALDS;
+                + MONEY_DESC_SUPPER + MONEY_DESC_MCDONALDS + DATE_DESC_MCDONALDS + DATE_DESC_SUPPER
+                + TIME_DESC_MCDONALDS + TIME_DESC_SUPPER;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
-                .withMoney(VALID_MONEY_MCDONALDS).build();
+                .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_SUPPER)
+                .withTime(VALID_TIME_SUPPER).build();
         SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
