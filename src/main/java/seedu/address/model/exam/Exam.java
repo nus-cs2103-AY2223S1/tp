@@ -1,5 +1,9 @@
 package seedu.address.model.exam;
 
+
+import static java.util.Objects.requireNonNull;
+
+import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.model.module.Module;
 
 /**
@@ -103,6 +107,18 @@ public class Exam {
 
     public boolean hasTasks() {
         return !(totalNumOfTasks == 0);
+    }
+
+    /**
+     * Creates and returns a {@code Exam} with the details of {@code this}
+     * edited with {@code editExamDescriptor}.
+     */
+    public Exam edit(EditExamCommand.EditExamDescriptor editExamDescriptor) {
+        requireNonNull(editExamDescriptor);
+        Module updatedModule = editExamDescriptor.getModule().orElse(module);
+        ExamDescription updatedDescription = editExamDescriptor.getDescription().orElse(examDescription);
+        ExamDate updatedExamDate = editExamDescriptor.getExamDate().orElse(examDate);
+        return new Exam(updatedModule, updatedDescription, updatedExamDate);
     }
 
     @Override

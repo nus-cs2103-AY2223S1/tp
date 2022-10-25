@@ -330,6 +330,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.unlinkTasksFromExam(exam);
     }
 
+    /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        tasks.updateExamFieldForTask(previousExam, newExam);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
