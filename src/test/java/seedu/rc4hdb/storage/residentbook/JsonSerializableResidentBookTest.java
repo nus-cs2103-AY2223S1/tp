@@ -20,7 +20,7 @@ public class JsonSerializableResidentBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableResidentBookTest");
     private static final Path TYPICAL_RESIDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalResidentsResidentBook.json");
-    private static final Path INVALID_RESIDENT_FILE = TEST_DATA_FOLDER.resolve("resident_data.json");
+    private static final Path INVALID_RESIDENT_FILE = TEST_DATA_FOLDER.resolve("invalidResidentResidentBook.json");
     private static final Path DUPLICATE_RESIDENT_FILE = TEST_DATA_FOLDER.resolve("duplicateResidentResidentBook.json");
 
     @Test
