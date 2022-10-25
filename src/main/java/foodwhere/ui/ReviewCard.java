@@ -70,12 +70,7 @@ public class ReviewCard extends UiPart<Region> {
         setRatingIcon();
 
         if (!review.getTags().isEmpty()) {
-            String assigneesNames = review.getTags()
-                    .stream()
-                    .flatMap(rev -> Stream.of(rev.tag))
-                    .collect(Collectors.joining(", "));
-
-            tags.setText(assigneesNames);
+            tags.setText(review.getTagString());
             tagsLabel.setText("Tags:");
         } else {
             removeRow(gridPane, GridPane.getRowIndex(tagsLabel));

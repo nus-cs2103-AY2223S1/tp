@@ -39,7 +39,7 @@ public class CopyMenuItem<T> extends MenuItem {
             case FIELDS_NAME:
                 return stallItem.getName().toString();
             case FIELDS_TAG:
-                return stallItem.getTags().toString();
+                return stallItem.getTagString();
             case FIELDS_CONTENT:
                 // fallthrough
             case FIELDS_DATE:
@@ -73,7 +73,7 @@ public class CopyMenuItem<T> extends MenuItem {
             case FIELDS_RATING:
                 return reviewItem.getRating().toString();
             case FIELDS_TAG:
-                return reviewItem.getTags().toString();
+                return reviewItem.getTagString();
             case FIELDS_ADDRESS:
                 return reviewItem.getAddress().toString();
             default:
