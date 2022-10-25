@@ -2,6 +2,8 @@ package swift.logic.parser;
 
 import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Set;
@@ -11,6 +13,8 @@ import java.util.stream.Stream;
 import swift.commons.core.index.Index;
 import swift.logic.commands.AddTaskCommand;
 import swift.logic.parser.exceptions.ParseException;
+import swift.model.task.Deadline;
+import swift.model.task.Description;
 import swift.model.task.Task;
 import swift.model.task.TaskName;
 
@@ -27,7 +31,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTaskCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTACT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTACT, PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
@@ -35,9 +39,17 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         try {
             TaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
+            Description description = null;
+            if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+                description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+            }
+            Deadline deadline = null;
+            if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+                deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+            }
             Set<Index> indices = ParserUtil.parseIndices(argMultimap.getAllValues(PREFIX_CONTACT));
 
-            Task task = new Task(UUID.randomUUID(), name);
+            Task task = new Task(UUID.randomUUID(), name, description, deadline);
 
             return new AddTaskCommand(task, indices);
         } catch (ParseException pe) {
