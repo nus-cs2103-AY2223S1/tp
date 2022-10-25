@@ -151,14 +151,8 @@ public interface Model {
 
     void setObservableVenues(List<Venue> modifiableVenues);
 
-<<<<<<< HEAD
-//    ObservableList<Booking> getObservableBookings();
-//
-//    void setObservableBookings(List<Booking> modifiableBookings);
-=======
     ObservableList<Booking> getObservableBookings();
 
     void setObservableBookings(VenueName venueName);
 
->>>>>>> 8780d01b40cadbd61c1708320863c532cd7b92bb
 }

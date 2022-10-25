@@ -42,4 +42,8 @@ public class Hour extends StringField {
         return hour >= other.hour;
     }
 
+    @Override
+    public String toString() {
+        return Integer.toString(this.hour);
+    }
 }

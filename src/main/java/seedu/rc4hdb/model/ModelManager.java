@@ -35,6 +35,7 @@ public class ModelManager implements Model {
     private final FilteredList<Resident> filteredResidents;
 
     private final ObservableList<String> observableFieldList;
+    private ObservableList<Booking> observableBookingList;
     private final ObservableList<Venue> observableVenueList;
 
 
@@ -52,17 +53,13 @@ public class ModelManager implements Model {
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
 
         this.observableFieldList = FXCollections.observableArrayList();
-<<<<<<< HEAD
         this.observableVenueList = venueBook.getVenueList();
-=======
-        this.observableVenueList = FXCollections.observableArrayList();
 
         if (observableVenueList.isEmpty()) {
             this.observableBookingList = FXCollections.observableArrayList();
         } else {
-            this.observableBookingList = observableVenueList.get(0).getObservableBookings();
+            this.observableBookingList = observableVenueList.get(1).getObservableBookings();
         }
->>>>>>> 8780d01b40cadbd61c1708320863c532cd7b92bb
     }
 
     public ModelManager() {
@@ -244,8 +241,6 @@ public class ModelManager implements Model {
         this.observableVenueList.setAll(modifiableFields);
     }
 
-<<<<<<< HEAD
-=======
     //=========== Observable Booking List Accessors =============================================================
     @Override
     public ObservableList<Booking> getObservableBookings() {
@@ -254,8 +249,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setObservableBookings(VenueName venueName) {
-        this.observableBookingList.setAll(venueBook.getBookings(venueName));
+        this.observableBookingList = venueBook.getBookings(venueName);
     }
->>>>>>> 8780d01b40cadbd61c1708320863c532cd7b92bb
 
 }

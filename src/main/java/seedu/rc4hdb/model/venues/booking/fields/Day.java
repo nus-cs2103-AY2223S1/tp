@@ -4,6 +4,8 @@ import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 import seedu.rc4hdb.model.StringField;
 
+import java.util.List;
+
 /**
  * Represents a Booking's day in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidDay(String)}
@@ -14,6 +16,8 @@ public class Day extends StringField implements BookingField {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Day should only contain the first 3 letters of the day of the week. Day is also not case-sensitive";
+
+    public static final List<String> daysOfWeek = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
 
     /**
      * Constructs a {@code Day}.
@@ -35,6 +39,22 @@ public class Day extends StringField implements BookingField {
         default:
             return false;
         }
+    }
+
+    private int getIndex(Day day) {
+        return this.daysOfWeek.indexOf(day.toString());
+    }
+
+    public int compare(Day other) {
+        if (this.equals(other)) {
+            return 0;
+        }
+
+        if (getIndex(this) < getIndex(other)) {
+            return -1;
+        }
+
+        return 1;
     }
 
 }
