@@ -1,13 +1,13 @@
 package tracko.testutil;
 
-import static tracko.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static tracko.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static tracko.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static tracko.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static tracko.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.testutil.TypicalItems.DEFAULT_ITEM;
 import static tracko.testutil.TypicalItems.INVENTORY_LIST;
 import static tracko.testutil.TypicalItems.ITEM_1;
