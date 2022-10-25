@@ -5,13 +5,11 @@ import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 
 import java.util.List;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.student.Student;
 
 /**
  * Lists all sessions in the focused class to the user.
@@ -21,8 +19,8 @@ public class ListsCommand extends Command {
     public static final String COMMAND_WORD = "lists";
 
     public static final String MESSAGE_SUCCESS = "Recorded sessions for class [ %1s ]:\n%2s";
-    public static final String MESSAGE_EMPTY_SESSION_LIST = "No sessions have been added. Add sessions with " +
-            "[ session ] command.";
+    public static final String MESSAGE_EMPTY_SESSION_LIST = "No sessions have been added. Add sessions with "
+            + "[ session ] command.";
 
     @Override
     // TODO: Rudimentary implementation. Needs to be combined with UI.
@@ -40,7 +38,7 @@ public class ListsCommand extends Command {
     }
 
     private static String getSuccessMessage(List<Session> sessions, ModuleClass focusedClass) {
-        if (sessions.size() == 0) {
+        if (sessions.isEmpty()) {
             return MESSAGE_EMPTY_SESSION_LIST;
         }
         StringJoiner sessionsString = new StringJoiner("\n");

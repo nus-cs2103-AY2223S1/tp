@@ -86,6 +86,7 @@ public class GradeCommand extends Command {
                 .collect(Collectors.joining(", "));
         return String.format(MESSAGE_SUCCESS, grade, session.getSessionName(), studentNames);
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
