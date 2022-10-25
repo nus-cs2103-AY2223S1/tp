@@ -96,7 +96,7 @@ public class ImportCommandTest {
         }
 
         @Override
-        public void createDataFile(Path folderPath) throws IOException {
+        public void createDataFolder(Path folderPath) throws IOException {
             // does nothing
         }
 
@@ -129,7 +129,7 @@ public class ImportCommandTest {
 
     private static class StorageStubCreateFileThrowFileAlreadyExistsException extends StorageStubForImportCommand {
         @Override
-        public void createDataFile(Path filePath) throws FileAlreadyExistsException {
+        public void createDataFolder(Path filePath) throws FileAlreadyExistsException {
             throw new FileAlreadyExistsException(filePath.toString());
         }
     }

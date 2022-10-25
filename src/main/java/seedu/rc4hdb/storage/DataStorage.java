@@ -41,7 +41,7 @@ public interface DataStorage extends ResidentBookStorage, VenueBookStorage {
      * @param folderPath location of the directory which holds the data. Cannot be null.
      * @throws IOException if there was any problem deleting the directory.
      */
-    void deleteDataFile(Path folderPath) throws IOException;
+    void deleteDataFolder(Path folderPath) throws IOException;
 
     /**
      * Creates an empty resident and venue data file that is in the directory with path {@code folderPath}.
@@ -49,7 +49,7 @@ public interface DataStorage extends ResidentBookStorage, VenueBookStorage {
      * @param folderPath location of the directory which holds the data. Cannot be null.
      * @throws IOException if there was any problem creating the file.
      */
-    void createDataFile(Path folderPath) throws IOException;
+    void createDataFolder(Path folderPath) throws IOException;
 
     //================= Resident book methods =======================
 

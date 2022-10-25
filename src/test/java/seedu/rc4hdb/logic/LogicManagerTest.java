@@ -296,7 +296,7 @@ public class LogicManagerTest {
      */
     private static class StorageStubForFileCreate extends StorageStubForLogicManagerTest {
         @Override
-        public void createDataFile(Path folderPath) {
+        public void createDataFolder(Path folderPath) {
             // does nothing
         }
 

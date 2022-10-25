@@ -68,7 +68,7 @@ public class DataStorageManager implements DataStorage {
      * @throws IOException if there was any problem deleting the directory.
      */
     @Override
-    public void deleteDataFile(Path folderPath) throws IOException {
+    public void deleteDataFolder(Path folderPath) throws IOException {
         requireNonNull(folderPath);
         logger.info(String.format("Attempting to delete folder: %s", folderPath));
         if (!FileUtil.isFolderExists(folderPath)) {
@@ -95,7 +95,7 @@ public class DataStorageManager implements DataStorage {
      * @throws IOException if there was any problem creating the files.
      */
     @Override
-    public void createDataFile(Path folderPath) throws IOException {
+    public void createDataFolder(Path folderPath) throws IOException {
         requireNonNull(folderPath);
         logger.info(String.format("Attempting to create folder: %s", folderPath));
         if (FileUtil.isFolderExists(folderPath)) {

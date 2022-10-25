@@ -3,6 +3,7 @@ package seedu.rc4hdb.logic.commands.filecommands;
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandFailure;
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertDirExists;
+import static seedu.rc4hdb.logic.commands.filecommands.FileCommand.MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class FileCreateCommandTest {
 
     @BeforeEach
     public void setUp() {
-        DataStorageManager dataStorageManager = new DataStorageManager(getTempFilePath("test.json"));
+        DataStorageManager dataStorageManager = new DataStorageManager(getTempFilePath("test"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("testPrefs.json"));
         storage = new StorageManager(dataStorageManager, userPrefsStorage);
     }
@@ -48,36 +49,35 @@ public class FileCreateCommandTest {
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
 
-        String targetFileName = "DoesNotExist";
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, targetFileName);
-        Path targetFilePath = getTempFilePath(targetFileName);
+        String targetFolderName = "DoesNotExist";
+        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, targetFolderName);
+        Path targetFolderPath = getTempFilePath(targetFolderName);
 
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
+        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFolderName);
 
         assertCommandSuccess(fileCreateCommand, storage, expectedMessage, expectedStorage);
-        assertDirExists(targetFilePath);
+        assertDirExists(targetFolderPath);
     }
 
     @Test
     public void execute_currentFolder_throwsCommandException() throws Exception {
-        Path target = getTempFilePath("test");
-        String targetFileName = "test";
+        String targetFolderName = "test";
+        Path targetFolderPath = getTempFilePath(targetFolderName);
 
-        String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_ALREADY_EXIST, "test");
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
-        FileUtil.createDirIfMissing(target);
+        String expectedMessage = String.format(MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, targetFolderName);
+        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFolderName);
+        FileUtil.createDirIfMissing(targetFolderPath);
 
         assertCommandFailure(fileCreateCommand, storage, expectedMessage);
     }
 
     @Test
     public void execute_folderAlreadyExists_throwsCommandException() throws IOException {
+        String targetFolderName = "AlreadyExists";
         String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_ALREADY_EXIST, "AlreadyExists");
-
-        Path filePath = getTempFilePath("AlreadyExists");
-        String targetFileName = "AlreadyExists";
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
-        FileUtil.createDirIfMissing(filePath);
+        Path targetFolderPath = getTempFilePath(targetFolderName);
+        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFolderName);
+        FileUtil.createDirIfMissing(targetFolderPath);
 
         assertCommandFailure(fileCreateCommand, storage, expectedMessage);
     }
@@ -86,8 +86,8 @@ public class FileCreateCommandTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         String expectedMessage = String.format(FileCreateCommand.MESSAGE_FAILED, "creating");
 
-        String targetFileName = "DoesNotExist";
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
+        String targetFolderName = "DoesNotExist";
+        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFolderName);
         storage = new StorageStubThrowsIoException();
 
         assertThrows(CommandException.class, expectedMessage, () -> fileCreateCommand.execute(storage));
@@ -95,13 +95,13 @@ public class FileCreateCommandTest {
 
     /**
      * A storage stub class that throws an {@code IOException} when the
-     * @see #createDataFile(Path) method is invoked.
+     * @see #createDataFolder(Path) method is invoked.
      */
     private static class StorageStubThrowsIoException extends StorageStub {
         public static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
         @Override
-        public void createDataFile(Path filePath) throws IOException {
+        public void createDataFolder(Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
 

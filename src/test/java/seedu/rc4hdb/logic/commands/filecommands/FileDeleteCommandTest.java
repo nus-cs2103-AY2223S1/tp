@@ -48,25 +48,25 @@ public class FileDeleteCommandTest {
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
 
-        String targetFileName = "AlreadyExists";
-        Path targetFilePath = getTempFilePath(targetFileName);
-        String expectedMessage = String.format(FileDeleteCommand.MESSAGE_SUCCESS, targetFileName);
+        String targetFolderName = "AlreadyExists";
+        Path targetFolderPath = getTempFilePath(targetFolderName);
+        String expectedMessage = String.format(FileDeleteCommand.MESSAGE_SUCCESS, targetFolderName);
 
-        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
-        FileUtil.createDirIfMissing(targetFilePath);
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFolderName);
+        FileUtil.createDirIfMissing(targetFolderPath);
 
         assertCommandSuccess(fileDeleteCommand, storage, expectedMessage, expectedStorage);
-        assertFileDoesNotExist(targetFilePath);
+        assertFileDoesNotExist(targetFolderPath);
     }
 
     @Test
     public void execute_currentFolder_throwsCommandException() throws Exception {
-        String targetFileName = "test";
-        Path target = getTempFilePath(targetFileName);
+        String targetFolderName = "test";
+        Path targetFolderPath = getTempFilePath(targetFolderName);
 
         String expectedMessage = String.format(FileCommand.MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, "test");
-        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
-        FileUtil.createDirIfMissing(target);
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFolderName);
+        FileUtil.createDirIfMissing(targetFolderPath);
 
         assertCommandFailure(fileDeleteCommand, storage, expectedMessage);
     }
@@ -75,8 +75,8 @@ public class FileDeleteCommandTest {
     public void execute_folderDoesNotExist_throwsCommandException() {
         String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_DOES_NOT_EXIST, "DoesNotExist");
 
-        String targetFileName = "DoesNotExist";
-        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
+        String targetFolderName = "DoesNotExist";
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFolderName);
 
         assertCommandFailure(fileDeleteCommand, storage, expectedMessage);
     }
@@ -85,8 +85,8 @@ public class FileDeleteCommandTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         String expectedMessage = String.format(FileDeleteCommand.MESSAGE_FAILED, "deleting");
 
-        String targetFileName = "AlreadyExists";
-        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
+        String targetFolderName = "AlreadyExists";
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFolderName);
         storage = new StorageStubThrowsIoException();
 
         assertThrows(CommandException.class, expectedMessage, () -> fileDeleteCommand.execute(storage));
@@ -100,7 +100,7 @@ public class FileDeleteCommandTest {
         public static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
         @Override
-        public void deleteDataFile(Path folderPath) throws IOException {
+        public void deleteDataFolder(Path folderPath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
 
