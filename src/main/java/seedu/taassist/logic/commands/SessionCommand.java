@@ -20,7 +20,7 @@ public class SessionCommand extends Command {
 
     public static final String COMMAND_WORD = "session";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new session for a class. "
+    public static final String MESSAGE_USAGE = "> Creates a new session for a class.\n"
             + "Paramaters: "
             + PREFIX_SESSION + "SESSION_NAME "
             + "[" + PREFIX_DATE + "DATE]\n"
@@ -28,8 +28,8 @@ public class SessionCommand extends Command {
             + PREFIX_SESSION + "Lab1 "
             + PREFIX_DATE + "2022-01-01";
 
-    public static final String MESSAGE_SUCCESS = "New session added: %s";
-    public static final String MESSAGE_SESSION_EXISTS = "Session %s already exists!";
+    public static final String MESSAGE_SUCCESS = "Added new session:\nSession Name: %1s\nSession Date: %2s";
+    public static final String MESSAGE_SESSION_EXISTS = "Session [ %s ] already exists!";
 
     private final Session session;
 
@@ -60,7 +60,7 @@ public class SessionCommand extends Command {
 
         model.setModuleClass(oldClass, newClass);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, session));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, session.getSessionName(), session.getDate()));
     }
 
     @Override
@@ -69,4 +69,6 @@ public class SessionCommand extends Command {
                 || (other instanceof SessionCommand // instanceof handles nulls
                 && session.equals(((SessionCommand) other).session));
     }
+
+
 }
