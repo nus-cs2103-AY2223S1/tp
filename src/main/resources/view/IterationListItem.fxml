@@ -38,7 +38,7 @@
         </VBox.margin>
     </BorderPane>
     <HBox alignment="CENTER_LEFT">
-        <ImageView fx:id="artImage" fitHeight="70.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="artImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
             <HBox.margin>
                 <Insets right="16.0" />
             </HBox.margin>
