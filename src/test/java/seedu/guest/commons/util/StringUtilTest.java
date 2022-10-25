@@ -187,9 +187,9 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsDateIgnoreHyphenIgnoreSpace("    ", "13/03/22"));
 
         // Sentence date bigger than query date
-        assertFalse(StringUtil.containsDateIgnoreHyphenIgnoreSpace("aaa bbb ccc", "13/03"));
+        assertFalse(StringUtil.containsDateIgnoreHyphenIgnoreSpace("13/03/22", "13/03"));
         // Query date bigger than sentence date
-        assertFalse(StringUtil.containsDateIgnoreHyphenIgnoreSpace("aaa bbb ccc", "13/03/2022"));
+        assertFalse(StringUtil.containsDateIgnoreHyphenIgnoreSpace("13/03/22", "13/03/2022"));
 
         // Matches dates in sentence with multiple dates
         assertTrue(StringUtil.containsDateIgnoreHyphenIgnoreSpace("13/03/22 14/03/22 15/03/22", "13/03/22"));
