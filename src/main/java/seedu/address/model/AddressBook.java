@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -244,6 +245,46 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
+    /**
+     * Sorts the buyer list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    public void sortBuyer(Comparator<Buyer> comparator) {
+        buyers.sort(comparator);
+    }
+
+    /**
+     * Sorts the supplier list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    public void sortSupplier(Comparator<Supplier> comparator) {
+        suppliers.sort(comparator);
+    }
+
+    /**
+     * Sorts the deliverer list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    public void sortDeliverer(Comparator<Deliverer> comparator) {
+        deliverers.sort(comparator);
+    }
+
+    /**
+     * Sorts the order list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    public void sortOrder(Comparator<Order> comparator) {
+        orders.sort(comparator);
+    }
+
+    /**
+     * Sorts the pet list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    public void sortPet(Comparator<Pet> comparator) {
+        pets.sort(comparator);
+    }
+
     @Override
     public ObservableList<Buyer> getBuyerList() {
         return buyers.asUnmodifiableObservableList();
@@ -279,5 +320,4 @@ public class AddressBook implements ReadOnlyAddressBook {
                 && pets.equals(((AddressBook) other).pets)
                 && orders.equals(((AddressBook) other).orders));
     }
-
 }

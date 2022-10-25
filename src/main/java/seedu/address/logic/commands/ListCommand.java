@@ -44,4 +44,5 @@ public class ListCommand extends Command {
         }
         return CommandResult.createListCommandResult(String.format(MESSAGE_SUCCESS, listType), listType);
     }
+
 }

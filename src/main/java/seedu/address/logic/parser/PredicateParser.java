@@ -5,9 +5,16 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import seedu.address.logic.commands.FilterOrderCommand;
 import seedu.address.logic.commands.FilterPetCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Price;
+import seedu.address.model.order.predicates.AdditionalRequestPredicate;
+import seedu.address.model.order.predicates.OrderStatusPredicate;
+import seedu.address.model.order.predicates.PriceRangePredicate;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
@@ -28,18 +35,23 @@ import seedu.address.model.pet.predicates.VaccinationStatusPredicate;
  */
 public class PredicateParser {
     //For persons
-    public static final String ADDRESS_PREFIX = "a";
-    public static final String EMAIL_PREFIX = "e";
-    public static final String LOC_PREFIX = "l";
-    public static final String NAME_PREFIX = "n";
-    public static final String PHONE_PREFIX = "p";
+    private static final String ADDRESS_PREFIX = "a";
+    private static final String EMAIL_PREFIX = "e";
+    private static final String LOC_PREFIX = "l";
+    private static final String NAME_PREFIX = "n";
+    private static final String PHONE_PREFIX = "p";
 
     //For pets
-    public static final String COLOR_PREFIX = "c";
-    public static final String PET_NAME_PREFIX = "n";
-    public static final String PRICE_PREFIX = "p";
-    public static final String SPECIES_PREFIX = "s";
-    public static final String VACCINATION_PREFIX = "v";
+    private static final String COLOR_PREFIX = "c";
+    private static final String PET_NAME_PREFIX = "n";
+    private static final String PRICE_PREFIX = "p";
+    private static final String SPECIES_PREFIX = "s";
+    private static final String VACCINATION_PREFIX = "v";
+
+    //For orders
+    private static final String ADDITIONAL_REQUEST_PREFIX = "ar";
+    private static final String ORDER_STATUS_PREFIX = "os";
+    private static final String PRICE_RANGE_PREFIX = "pr";
 
     /**
      * Parses the given {@code String} of arguments in the context of a Predicate
@@ -154,6 +166,52 @@ public class PredicateParser {
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPetCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of a Predicate
+     * and returns a Predicate.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
+    public static Predicate<Order> parseOrder(String input) throws ParseException {
+        String[] nameKeywords = input.trim().split("/", 2);
+        if (nameKeywords.length < 2 || nameKeywords[1].isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+        }
+        String query = nameKeywords[1].trim();
+        switch (nameKeywords[0]) {
+        case ADDITIONAL_REQUEST_PREFIX:
+            return new AdditionalRequestPredicate<>(Arrays.asList(query));
+        case ORDER_STATUS_PREFIX:
+            if (!OrderStatus.isValidOrderStatus(query)) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            }
+            if (query.equals(OrderStatus.DELIVERING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.DELIVERING);
+            } else if (query.equals(OrderStatus.NEGOTIATING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.NEGOTIATING);
+            } else if (query.equals(OrderStatus.PENDING.toString())) {
+                return new OrderStatusPredicate<>(OrderStatus.PENDING);
+            }
+
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+        case PRICE_RANGE_PREFIX:
+            String[] prices = query.split("-");
+            Price lowerBound = new Price(Double.parseDouble(prices[0]));
+            Price upperBound = new Price(Double.parseDouble(prices[1]));
+
+            if (lowerBound.getPrice() > upperBound.getPrice()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
+            }
+            return new PriceRangePredicate<>(lowerBound, upperBound);
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
         }
     }
 }

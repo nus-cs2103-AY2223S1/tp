@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 /**
  * Represents the height of a pet.
  */
-public class Height {
+public class Height implements Comparable<Height> {
 
     public static final String UNIT = "cm";
     public static final String MESSAGE_USAGE =
@@ -40,4 +40,8 @@ public class Height {
         return value;
     }
 
+    @Override
+    public int compareTo(Height o) {
+        return Double.compare(this.value, o.value);
+    }
 }

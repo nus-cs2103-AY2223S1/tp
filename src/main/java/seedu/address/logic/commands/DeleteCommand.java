@@ -1,92 +1,40 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonCategory;
-import seedu.address.model.person.Supplier;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * The abstract base class of all DeleteCommand variations,
+ * including DeleteBuyerCommand, DeleteDelivererCommand, DeleteSupplierCommand, DeleteOrderCommand, Delete.
  */
-public class DeleteCommand extends Command {
-
-    public static final String COMMAND_WORD = "delete";
+public abstract class DeleteCommand extends Command {
+    public static final String COMMAND_WORD = "delete-[KEY]";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by their category and index used in the displayed person list.\n"
-            + "Parameters: c/PERSON_CATEGORY i/INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " c/Buyer i/1";
-
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
-
-    public static final String MESSAGE_DELETE_PERSON_FAILURE = "Unable to execute Delete Command.";
-
-    private final PersonCategory personCategory;
-    private final Index targetIndex;
+            + ": Deletes the person/item identified by index used in the displayed person/item list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Format: " + COMMAND_WORD + " 1\n"
+            + "Examples:\n"
+            + "delete-b 1 : deletes the buyer of index 1\n"
+            + "delete-d 2 : deletes the deliverer of index 2\n"
+            + "delete-s 3 : deletes the supplier of index 3\n"
+            + "delete-o 1 : deletes the order of index 1\n"
+            + "delete-p 2 : deletes the pet of index 2";
+    /**
+     * Creates a default base DeleteCommand.
+     */
+    public DeleteCommand() {}
 
     /**
-     * Creates a DeleteCommand to delete the specified {@code Person}.
+     * Returns the command result to display.
+     * This is an abstract method that requires its subclasses,
+     * such as {@code DeleteBuyerCommand, DeleteDelivererCommand, DeleteSupplierCommand, DeleteOrderCommand,
+     * DeletePetCommand}, to implement.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult the result to be displayed.
+     * @throws CommandException if the command cannot work.
      */
-    public DeleteCommand(PersonCategory personCategory, Index targetIndex) {
-        this.personCategory = personCategory;
-        this.targetIndex = targetIndex;
-    }
-
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        ObservableList<? extends Person> lastShownList;
-
-        switch (personCategory.toString()) {
-        case "Buyer":
-            lastShownList = model.getFilteredBuyerList();
-            break;
-        case "Deliverer":
-            lastShownList = model.getFilteredDelivererList();
-            break;
-        case "Supplier":
-            lastShownList = model.getFilteredSupplierList();
-            break;
-        default:
-            throw new CommandException(MESSAGE_DELETE_PERSON_FAILURE);
-        }
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-
-        switch (personCategory.toString()) {
-        case "Buyer":
-            model.deleteBuyer((Buyer) personToDelete);
-            break;
-        case "Deliverer":
-            model.deleteDeliverer((Deliverer) personToDelete);
-            break;
-        case "Supplier":
-            model.deleteSupplier((Supplier) personToDelete);
-            break;
-        default:
-            throw new CommandException(MESSAGE_DELETE_PERSON_FAILURE);
-        }
-
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
-    }
+    public abstract CommandResult execute(Model model) throws CommandException;
 }

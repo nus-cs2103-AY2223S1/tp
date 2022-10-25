@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Represents the price range (lower bound, upper bound) of an order during negotiation.
  */
-public class PriceRange {
+public class PriceRange implements Comparable<PriceRange> {
 
     public static final String DELIMITER = ",";
     public static final String MESSAGE_USAGE =
@@ -79,4 +79,8 @@ public class PriceRange {
         }
     }
 
+    @Override
+    public int compareTo(PriceRange o) {
+        return this.lowerBound.compareTo(o.lowerBound);
+    }
 }

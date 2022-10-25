@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -241,6 +242,36 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedOrder);
 
         addressBook.setOrder(target, editedOrder);
+    }
+
+    @Override
+    public void sortBuyer(Comparator<Buyer> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortBuyer(comparator);
+    }
+
+    @Override
+    public void sortSupplier(Comparator<Supplier> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortSupplier(comparator);
+    }
+
+    @Override
+    public void sortDeliverer(Comparator<Deliverer> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortDeliverer(comparator);
+    }
+
+    @Override
+    public void sortOrder(Comparator<Order> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortOrder(comparator);
+    }
+
+    @Override
+    public void sortPet(Comparator<Pet> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortPet(comparator);
     }
 
     //=========== Filtered Person List Accessors =============================================================

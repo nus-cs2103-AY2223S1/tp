@@ -10,7 +10,7 @@ import seedu.address.model.ModelManager;
 /**
  * Abstracts the date of birth of a pet.
  */
-public class DateOfBirth {
+public class DateOfBirth implements Comparable<DateOfBirth> {
 
     public static final String MESSAGE_USAGE = "The date of birth should be in this format preferably: "
             + ModelManager.PREFERRED_DATE_FORMAT;
@@ -69,5 +69,10 @@ public class DateOfBirth {
 
     public String getPreferredDateInString() {
         return date.format(PREFERRED_FORMATTER);
+    }
+
+    @Override
+    public int compareTo(DateOfBirth o) {
+        return this.date.compareTo(o.date);
     }
 }

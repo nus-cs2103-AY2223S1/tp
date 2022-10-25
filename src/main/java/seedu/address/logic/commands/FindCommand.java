@@ -19,16 +19,22 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds buyers, deliverers or suppliers "
+            + "who match the specified attribute. "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " [b/d/s]/Bernice Charlotte";
+            + "Parameters: PREFIX/[KEYWORDS]...\n"
+            + "For Address, use the prefix 'a' \n"
+            + "For Email, use the prefix 'e' \n"
+            + "For Location, use the prefix 'l' \n"
+            + "For Name, use the prefix 'n' \n"
+            + "For Phone, use the prefix 'p' \n"
+            + "Example: " + COMMAND_WORD + " n/Bernice";
 
-    private final Predicate<Buyer> bPredicate;
+    private final Predicate<Buyer> buyerPredicate;
 
-    private final Predicate<Deliverer> dPredicate;
+    private final Predicate<Deliverer> delivererPredicate;
 
-    private final Predicate<Supplier> sPredicate;
+    private final Predicate<Supplier> supplierPredicate;
 
     private final PersonCategory type;
 
@@ -46,18 +52,18 @@ public class FindCommand extends Command {
      */
     public FindCommand(Predicate<Buyer> bPredicate, Predicate<Deliverer> dPredicate,
                        Predicate<Supplier> sPredicate, PersonCategory type) {
-        this.bPredicate = bPredicate;
-        this.dPredicate = dPredicate;
-        this.sPredicate = sPredicate;
+        this.buyerPredicate = bPredicate;
+        this.delivererPredicate = dPredicate;
+        this.supplierPredicate = sPredicate;
         this.type = type;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredBuyerList(bPredicate);
-        model.updateFilteredDelivererList(dPredicate);
-        model.updateFilteredSupplierList(sPredicate);
+        model.updateFilteredBuyerList(buyerPredicate);
+        model.updateFilteredDelivererList(delivererPredicate);
+        model.updateFilteredSupplierList(supplierPredicate);
         if (type.equals(PersonCategory.BUYER)) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredBuyerList().size()));
@@ -74,9 +80,9 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && bPredicate.equals(((FindCommand) other).bPredicate) // state checck
-                && dPredicate.equals(((FindCommand) other).dPredicate)
-                && sPredicate.equals(((FindCommand) other).sPredicate)
+                && buyerPredicate.equals(((FindCommand) other).buyerPredicate) // state checck
+                && delivererPredicate.equals(((FindCommand) other).delivererPredicate)
+                && supplierPredicate.equals(((FindCommand) other).supplierPredicate)
                 && type.equals(((FindCommand) other).type));
     }
 }

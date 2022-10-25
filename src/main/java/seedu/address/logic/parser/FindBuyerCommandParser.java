@@ -29,8 +29,8 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        Predicate<Buyer> bPredicate = PredicateParser.parseBuyer(trimmedArgs);
-        Predicate<Deliverer> dPredicate = new Predicate<Deliverer>() {
+        Predicate<Buyer> buyerPredicate = PredicateParser.parseBuyer(trimmedArgs);
+        Predicate<Deliverer> delivererPredicate = new Predicate<Deliverer>() {
             @Override
             public boolean test(Deliverer deliverer) {
                 return false;
@@ -39,7 +39,7 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
                 return object instanceof Predicate;
             }
         };
-        Predicate<Supplier> sPredicate = new Predicate<Supplier>() {
+        Predicate<Supplier> supplierPredicate = new Predicate<Supplier>() {
             @Override
             public boolean test(Supplier supplier) {
                 return false;
@@ -49,7 +49,7 @@ public class FindBuyerCommandParser implements Parser<FindCommand> {
             }
         };
 
-        return new FindCommand(bPredicate, dPredicate, sPredicate,
+        return new FindCommand(buyerPredicate, delivererPredicate, supplierPredicate,
                 PersonCategory.getFromString("Buyer"));
     }
 }

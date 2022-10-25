@@ -3,6 +3,7 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -113,6 +114,14 @@ public class UniqueOrderList implements Iterable<Order> {
                 .filter(order -> ids.stream()
                         .anyMatch(order::hasId))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Sorts the list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    public void sort(Comparator<Order> comparator) {
+        internalList.sort(comparator);
     }
 
     @Override

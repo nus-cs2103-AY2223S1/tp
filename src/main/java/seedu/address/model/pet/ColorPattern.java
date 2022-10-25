@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 /**
  * Represents the color pattern of a pet. For example, stripped, grid, dark.
  */
-public class ColorPattern {
+public class ColorPattern implements Comparable<ColorPattern> {
 
     private final String value;
 
@@ -49,5 +49,10 @@ public class ColorPattern {
     @Override
     public String toString() {
         return "Color pattern: " + value;
+    }
+
+    @Override
+    public int compareTo(ColorPattern o) {
+        return this.value.compareTo(o.value);
     }
 }

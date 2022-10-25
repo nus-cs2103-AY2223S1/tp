@@ -3,6 +3,7 @@ package seedu.address.model.pet;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -114,6 +115,14 @@ public class UniquePetList implements Iterable<Pet> {
                 .filter(pet -> ids.stream()
                         .anyMatch(pet::hasId))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Sorts the list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    public void sort(Comparator<Pet> comparator) {
+        internalList.sort(comparator);
     }
 
     @Override
