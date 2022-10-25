@@ -15,7 +15,8 @@ public class Tag {
             + "replacing multiple spaces with a single space, "
             + "Tags can only be of length max " + LENGTH_LIMIT;
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric or spaces";
+    public static final String MESSAGE_CONSTRAINTS = "Tag should be alphabets or spaces "
+            + "and it should not be blank or spaces only";
 
     public static final String VALIDATION_REGEX = "[a-zA-Z ]+";
 

@@ -6,17 +6,17 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("name/");
-    public static final Prefix PREFIX_PHONE = new Prefix("phone/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("email/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("address/");
-    public static final Prefix PREFIX_GENDER = new Prefix("gender/");
-    public static final Prefix PREFIX_UNIVERSITY = new Prefix("university/");
-    public static final Prefix PREFIX_MAJOR = new Prefix("major/");
-    public static final Prefix PREFIX_JOB_ID = new Prefix("jobId/");
-    public static final Prefix PREFIX_JOB_TITLE = new Prefix("jobTitle/");
-    public static final Prefix PREFIX_TAG = new Prefix("tag/");
-    public static final Prefix PREFIX_GRADUATION_DATE = new Prefix("graduationDate/");
-    public static final Prefix PREFIX_CAP = new Prefix("cap/");
+    public static final Prefix PREFIX_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_PHONE = new Prefix("p/");
+    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
+    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
+    public static final Prefix PREFIX_GENDER = new Prefix("g/");
+    public static final Prefix PREFIX_UNIVERSITY = new Prefix("u/");
+    public static final Prefix PREFIX_MAJOR = new Prefix("m/");
+    public static final Prefix PREFIX_JOB_ID = new Prefix("ji/");
+    public static final Prefix PREFIX_JOB_TITLE = new Prefix("jt/");
+    public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_GRADUATION_DATE = new Prefix("gd/");
+    public static final Prefix PREFIX_CAP = new Prefix("c/");
 
 }
