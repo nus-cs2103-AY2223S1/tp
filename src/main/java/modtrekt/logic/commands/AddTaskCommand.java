@@ -23,7 +23,7 @@ import modtrekt.model.task.Task;
 @Parameters(commandDescription = "Adds a task or deadline to the task book.")
 public class AddTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add task";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. \n"
             + "Usage: " + COMMAND_WORD + " "
             + "task" + " <DESCRIPTION> "

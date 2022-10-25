@@ -73,19 +73,19 @@ public class ModtrektParserTest {
 
     @Test
     public void parseCommand_addTaskCommandNoDeadline_throws() {
-        assertThrows(Exception.class, () -> parser.parseCommand("add -c CS2102"));
-        assertThrows(Exception.class, () -> parser.parseCommand("add -d 2022-09-19 -c CS2102"));
+        assertThrows(Exception.class, () -> parser.parseCommand("add task -c CS2102"));
+        assertThrows(Exception.class, () -> parser.parseCommand("add task -d 2022-09-19 -c CS2102"));
     }
 
     @Test
     public void parseCommand_addTaskCommandNoModCode_returnsTrue() throws Exception {
         AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null);
-        assertEquals(parser.parseCommand("add desc"), cmd);
+        assertEquals(parser.parseCommand("add task desc"), cmd);
     }
 
     @Test
     public void parseCommand_addTaskCommandInvalidDate_throws() {
-        assertThrows(ParseException.class, () -> parser.parseCommand("add desc -d 4"));
+        assertThrows(ParseException.class, () -> parser.parseCommand("add task desc -d 4"));
     }
 
 
