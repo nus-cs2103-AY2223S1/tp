@@ -29,12 +29,15 @@ import seedu.address.ui.JumpText;
 import seedu.address.ui.NextButton;
 import seedu.address.ui.PreviousButton;
 import seedu.address.ui.RefreshButton;
+import seedu.address.ui.TextValidation;
 
 /**
  * The manager of the logic for the Calendar.
  */
 public class CalendarLogic {
-    public static final String MESSAGE_CONSTRAINTS = "Invalid date time format";
+    private static final String SUCCESS_MESSAGE = "success";
+    private static final String FAILURE_MESSAGE = "failure";
+
 
     private static final String[] MONTH_NAMES = {
         "January", "February", "March", "April", "May", "June",
@@ -49,6 +52,7 @@ public class CalendarLogic {
     private NextButton nextButton = new NextButton("Next", this);
     private RefreshButton refreshButton = new RefreshButton("Refresh", this);
     private JumpText jumpText = new JumpText(this);
+    private TextValidation textValidation = new TextValidation();
 
     @FXML
     private GridPane calendarDisplay;
@@ -91,7 +95,7 @@ public class CalendarLogic {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
-                refreshButton.getRoot(), jumpText.getRoot());
+                refreshButton.getRoot(), jumpText.getRoot(), textValidation.getRoot());
         topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
@@ -149,6 +153,7 @@ public class CalendarLogic {
     public void refresh() {
         resetGridPane();
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        textValidation.setTextValidation("");
         drawCalendar();
     }
 
@@ -158,6 +163,7 @@ public class CalendarLogic {
     public void previous() {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getPreviousMonth(currentMonth);
+        textValidation.setTextValidation("");
         updateCalendarMonth();
     }
 
@@ -167,6 +173,7 @@ public class CalendarLogic {
     public void next() {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getNextMonth(currentMonth);
+        textValidation.setTextValidation("");
         updateCalendarMonth();
     }
     /**
@@ -187,10 +194,10 @@ public class CalendarLogic {
             Date jumpDate = new Date(LocalDate.parse(date, formatter));
             int newMonth = jumpDate.getMonth() - 1;
             int newYear = jumpDate.getYear();
+            textValidation.setTextValidation(SUCCESS_MESSAGE);
             return new GregorianCalendar(newYear, newMonth, 1);
-
         } catch(DateTimeParseException e) {
-            jumpText.setText("Invalid Date Format");
+            textValidation.setTextValidation(FAILURE_MESSAGE);
         }
         return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
 
