@@ -29,7 +29,7 @@ IdENTify is a **desktop app for managing contacts, optimized for use via a Comma
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -47,7 +47,7 @@ Format: `help`
 
 Adds a patient into idENTify.
 
-Format: `Format: add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​`
+Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -59,11 +59,20 @@ Examples:
 
 ### Listing all patients/appointments : `list`
 
-Shows a list of all patients or appointments, depending on the parameter given.
+Shows a list of all patients and/or appointments, depending on the parameter given.
 
 Format:
-* `list patients`
-* `list appts`
+* `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
+* `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
+* `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
+
+### Grouping all patients/appointments : `group`
+
+Shows a list of all patients or appointments grouped by their tags, depending on the parameter given.
+
+Format:
+* `group patients`
+* `group appts`
 
 
 ### Editing a patient : `edit patients`
@@ -98,14 +107,42 @@ Examples:
 respectively. Existing time period will not be edited.
 * `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason and date will not be edited.
 
-### Find results that satisify an input criteria: `find`
 
+### Hiding patients by name or tag: `hide patients`
+
+####By name:
+Filters out (hides) patients whose names contain any of the given keywords.
+
+Format: `hide patients KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+* `hide patients John` hides `john` and `John Doe`
+* `hide patients alex david` hides `Alex Yeoh`, `David Li`<br>
+
+####By tag:
+
+Hides patients whose names contain any of the given tags.
+
+Format: `hide patients t/TAG [MORE_TAGS]`
+
+* The search is case-insensitive. e.g `FRIENDS` will match `friends`
+* All tags of a patient are searched.
+
+Examples:
+* `hide patients t/friends colleagues` hides all patients with a friends OR colleagues tag.
+
+### Find results that satisify an input criteria: `find`
 Finds patients and appointments that matches all the given criteria specified.
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`
 
 * At least 1 of the optional fields must be provided.
 * The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be hidden (i.e. `OR` search).
+  e.g. `Hans Bo` will hide `Hans Gruber`, `Bo Yang`
 * `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/TAG]…​` are fields to find information about the patient (patient criteria).
   * `[n/NAME]` searches for the name of the patients.
   * `[p/PHONE]` searches for the phone number of the patients.
@@ -136,7 +173,7 @@ Examples:
 
 Deletes a patient or a range of patients from idENTify.
 
-Format: `delete INDEX [endIndex]` 
+Format: `delete INDEX [endIndex]`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.

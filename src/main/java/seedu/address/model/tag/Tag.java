@@ -19,10 +19,6 @@ public enum Tag {
         this.tagName = tagName;
     }
 
-    public String getTagName() {
-        return tagName;
-    }
-
     @Override
     public String toString() {
         return tagName;

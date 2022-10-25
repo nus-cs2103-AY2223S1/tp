@@ -1,13 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AppointmentList;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
@@ -45,18 +42,9 @@ public class CancelCommand extends SelectAppointmentCommand {
         Appointment toBeCancelledAppt = getTargetAppointment(model);
 
         int index = patientToCancelAppt.getAppointments().indexOf(toBeCancelledAppt) + 1;
-        cancelAppointment(patientToCancelAppt.getAppointments(), toBeCancelledAppt);
-        model.deleteAppointment(toBeCancelledAppt);
-
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-
+        AppointmentList.cancelAppointment(model, patientToCancelAppt, toBeCancelledAppt);
         return new CommandResult(String.format(MESSAGE_CANCEL_APPOINTMENT_SUCCESS, index)
                 + patientToCancelAppt.getName());
-    }
-
-    private void cancelAppointment(List<Appointment> appointmentList, Appointment appointment) {
-        appointmentList.remove(appointment);
     }
 
     @Override

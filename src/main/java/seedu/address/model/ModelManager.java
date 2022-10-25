@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -20,12 +21,10 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointments;
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -103,12 +102,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
     public void deleteAppointment(Appointment target) {
         addressBook.removeAppointment(target);
     }
@@ -121,8 +114,8 @@ public class ModelManager implements Model {
     @Override
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
-
         addressBook.setAppointment(target, editedAppointment);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     @Override
@@ -134,14 +127,21 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person}
+     * in ascending order by name backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -155,10 +155,17 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public void updatePersonComparator(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortPersons(comparator);
+    }
+
     //=========== Filtered Appointment List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Appointment}
+     * in ascending order by datetime backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -170,6 +177,12 @@ public class ModelManager implements Model {
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateAppointmentComparator(Comparator<Appointment> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortAppointments(comparator);
     }
 
     @Override

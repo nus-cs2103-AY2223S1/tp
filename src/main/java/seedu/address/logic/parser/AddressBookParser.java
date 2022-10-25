@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.INCOMPLETE_COMMAND;
+import static seedu.address.commons.core.Messages.INCOMPLETE_LIST_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -19,9 +20,14 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GroupAppointmentCommand;
+import seedu.address.logic.commands.GroupPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HideAppointmentsCommand;
+import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.UngroupCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -33,7 +39,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)"
-            + "(?<descriptor>(?i:\\s+appts|\\s+patients)?)(?<arguments>.*)");
+            + "(?<descriptor>(?i:\\s+appts|\\s+patients|\\s+all)?)(?<arguments>.*)");
 
     private final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
@@ -74,8 +80,35 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case GroupPatientCommand.COMMAND_WORD:
+            if (descriptor.equals(GroupPatientCommand.DESCRIPTOR_WORD)) {
+                return new GroupPatientCommand();
+            } else if (descriptor.equals(GroupAppointmentCommand.DESCRIPTOR_WORD)) {
+                return new GroupAppointmentCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
+
+        case UngroupCommand.COMMAND_WORD:
+            if (!descriptor.isEmpty()) {
+                return new UngroupCommand(descriptor);
+            } else if (!arguments.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UngroupCommand.MESSAGE_USAGE));
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case HidePatientsCommand.COMMAND_WORD:
+            if (descriptor.equals(HidePatientsCommand.DESCRIPTOR_WORD)) {
+                return new HidePatientsCommandParser().parse(arguments);
+            } else if (descriptor.equals(HideAppointmentsCommand.DESCRIPTOR_WORD)) {
+                return new HideAppointmentsCommandParser().parse(arguments);
+            } else {
+                throw new ParseException(INCOMPLETE_COMMAND);
+            }
 
         case BookCommand.COMMAND_WORD:
             return new BookCommandParser().parse(arguments);
@@ -95,8 +128,9 @@ public class AddressBookParser {
             } else if (!arguments.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
+                throw new ParseException(INCOMPLETE_LIST_COMMAND);
             }
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
