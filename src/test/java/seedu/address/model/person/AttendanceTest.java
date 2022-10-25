@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -34,6 +35,30 @@ public class AttendanceTest {
         assertTrue(Attendance.isValidAttendance("2022-08-08")); // valid yyyy-MM-dd format.
         assertTrue(Attendance.isValidAttendance("2021-07-12")); // valid yyyy-MM-dd format.
         assertTrue(Attendance.isValidAttendance("2021-08-27")); // valid yyyy-MM-dd format.
+    }
+
+    @Test
+    public void test_markAsPresent() {
+        Attendance testAtt = new Attendance("2022-08-12");
+        testAtt.markAsPresent();
+        assertEquals(testAtt.getIsPresent(), true);
+    }
+
+    @Test
+    public void test_markAsAbsent() {
+        Attendance testAtt = new Attendance("2022-08-12");
+        testAtt.markAsAbsent();
+        assertEquals(testAtt.getIsPresent(), false);
+    }
+
+    @Test
+    public void test_attendanceCheckString() {
+        Attendance testAtt = new Attendance("2022-08-12");
+        assertEquals(testAtt.attendanceCheckString(), " [Absent]");
+        testAtt.markAsPresent();
+        assertEquals(testAtt.attendanceCheckString(), " [Present]");
+        testAtt.markAsAbsent();
+        assertEquals(testAtt.attendanceCheckString(), " [Absent]");
     }
 
     @Test

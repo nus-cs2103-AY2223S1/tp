@@ -24,7 +24,7 @@ class JsonAdaptedHomework {
      * Converts a given {@code Homework} into this class for Jackson use.
      */
     public JsonAdaptedHomework(Homework source) {
-        homeworkName = source.value;
+        homeworkName = source.toString();
     }
 
     @JsonValue
