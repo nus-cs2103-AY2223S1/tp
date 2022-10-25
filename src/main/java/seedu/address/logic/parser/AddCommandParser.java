@@ -70,7 +70,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
         SubjectHandler subjectHandler = new SubjectHandler(subjectList);
 
-        Person person = new Person(name, phone, email, address, studentClass, 
+        Person person = new Person(name, phone, email, address, studentClass,
         attendance, remarksList, subjectHandler, tagList);
 
         return new AddCommand(person);

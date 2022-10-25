@@ -25,7 +25,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                       new Address("Blk 30 Geylang Street 29, #06-40"), new StudentClass("1.2"), 
+                       new Address("Blk 30 Geylang Street 29, #06-40"), new StudentClass("1.2"),
                        new Attendance(), getRemarkSet("family"),
                        new SubjectHandler("english: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, "
                                + "56.0, 0.4, 2.0] %%math: CA1:[80.0, 100.0, 0.2, 1.0], CA2:[30.0, 56.0, 0.4, 2.0]"),
