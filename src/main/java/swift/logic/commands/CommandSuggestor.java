@@ -105,6 +105,10 @@ public class CommandSuggestor {
         boolean isCommandComplete = userInput.contains(" ");
         int autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
 
+        // If command has no prefix arguments
+        if(autocompleteUptoIndex == 0) {
+            autocompleteUptoIndex = suggestedCommand.length();
+        }
         userInput = userInput + suggestedCommand.substring(0, autocompleteUptoIndex);
         return userInput;
     }
