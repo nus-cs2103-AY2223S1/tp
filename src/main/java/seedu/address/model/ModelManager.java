@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -30,7 +29,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Entry> filteredExpenditure;
     private final FilteredList<Entry> filteredIncome;
-    private YearMonth monthForChart;
 
     /**
      * Initializes a ModelManager with the given pennyWise and userPrefs.
@@ -44,7 +42,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenditure = new FilteredList<>(this.pennyWise.getExpenditureList());
         filteredIncome = new FilteredList<>(this.pennyWise.getIncomeList());
-        monthForChart = YearMonth.now();
     }
 
     public ModelManager() {
@@ -191,7 +188,9 @@ public class ModelManager implements Model {
      * @return ObservableList of income pie chart data
      */
     public ObservableList<PieChart.Data> getIncomePieChartData() {
-
+        if (filteredIncome.size() == 0) {
+            return null;
+        }
         int[] incomePieChartArr = new int[6];
 
         for (Entry e : filteredIncome) {
@@ -236,6 +235,9 @@ public class ModelManager implements Model {
      * @return ObservableList of expense pie chart data
      */
     public ObservableList<PieChart.Data> getExpensePieChartData() {
+        if (filteredExpenditure.size() == 0) {
+            return null;
+        }
         int[] expensePieChartArr = new int[6];
 
         for (Entry e : filteredExpenditure) {
@@ -284,9 +286,13 @@ public class ModelManager implements Model {
     }
 
     private XYChart.Series<String, Number> getLineChartData(FilteredList<Entry> filteredEntryList) {
+        if (filteredEntryList.size() == 0) {
+            return null;
+        }
         HashMap<String, Number> dateToExpenditureMap = new HashMap<>();
 
-        LocalDate date = monthForChart.atDay(1);
+        LocalDate date = filteredEntryList.get(0).getLocalDate();
+        date = date.withDayOfMonth(1);
         int daysInMonth = date.lengthOfMonth();
         for (int i = 0; i < daysInMonth; i++) {
             dateToExpenditureMap.put(date.format(ISO_LOCAL_DATE), 0);
