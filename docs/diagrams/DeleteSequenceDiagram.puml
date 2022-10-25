@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":PennyWiseParser" as PennyWiseParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -13,20 +13,20 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete 1 t/e")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> PennyWiseParser : parseCommand("delete 1 t/e")
+activate PennyWiseParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+PennyWiseParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> PennyWiseParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+PennyWiseParser -> DeleteCommandParser : parse("1 t/e")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,19 +36,27 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> PennyWiseParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> PennyWiseParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+PennyWiseParser --> LogicManager : d
+deactivate PennyWiseParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model :getFilteredExpenditureList()
+activate Model
+return lastShownList
+
+DeleteCommand -> DeleteCommand :getEntryToDelete(1, lastShownList)
+activate DeleteCommand
+return entryToDelete
+
+DeleteCommand -> Model : deleteExpenditure(entryToDelete)
 activate Model
 
 Model --> DeleteCommand

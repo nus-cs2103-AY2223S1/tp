@@ -60,9 +60,6 @@ LogicManager -> MainWindow
 deactivate LogicManager
 deactivate MainWindow
 
-ViewCommand -[hidden]-> LogicManager : result
-destroy ViewCommand
-
 [<--MainWindow
 deactivate MainWindow
 @enduml
