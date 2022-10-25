@@ -3,7 +3,7 @@ layout: page
 title: FinBook User Guide
 ---
 
-# Table of Contents
+## Table of Contents
 - [Introduction](#introduction)
   * [What is FinBook?](#what-is-finbook)
 - [How to use this User Guide?](#how-to-use-this-user-guide)
@@ -36,7 +36,7 @@ title: FinBook User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Introduction
+## Introduction
 
 ## What is FinBook?
 
