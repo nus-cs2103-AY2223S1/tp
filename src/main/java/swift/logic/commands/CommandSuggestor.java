@@ -1,7 +1,6 @@
 package swift.logic.commands;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.ArgumentMultimap;
@@ -13,53 +12,53 @@ import swift.logic.parser.Prefix;
  */
 public class CommandSuggestor {
     private ArrayList<String> commandList;
-    private ArrayList<HashMap<Prefix, String>> argPromptList;
+    private ArrayList<ArrayList<Prefix>> argPrefixList;
 
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
      */
     public CommandSuggestor() {
         commandList = new ArrayList<>();
-        argPromptList = new ArrayList<>();
+        argPrefixList = new ArrayList<>();
 
         commandList.add(AddContactCommand.COMMAND_WORD);
-        argPromptList.add(AddContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(AddContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(AddTaskCommand.COMMAND_WORD);
-        argPromptList.add(AddTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(AddTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ClearCommand.COMMAND_WORD);
-        argPromptList.add(ClearCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ClearCommand.ARGUMENT_PREFIXES);
 
         commandList.add(DeleteContactCommand.COMMAND_WORD);
-        argPromptList.add(DeleteContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(DeleteContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(DeleteTaskCommand.COMMAND_WORD);
-        argPromptList.add(DeleteTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(DeleteTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(EditContactCommand.COMMAND_WORD);
-        argPromptList.add(EditContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(EditContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(EditTaskCommand.COMMAND_WORD);
-        argPromptList.add(EditTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(EditTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ExitCommand.COMMAND_WORD);
-        argPromptList.add(ExitCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ExitCommand.ARGUMENT_PREFIXES);
 
         commandList.add(FindContactCommand.COMMAND_WORD);
-        argPromptList.add(FindContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(FindContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(FindTaskCommand.COMMAND_WORD);
-        argPromptList.add(FindTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(FindTaskCommand.ARGUMENT_PREFIXES);
 
         commandList.add(HelpCommand.COMMAND_WORD);
-        argPromptList.add(HelpCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(HelpCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ListContactCommand.COMMAND_WORD);
-        argPromptList.add(ListContactCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ListContactCommand.ARGUMENT_PREFIXES);
 
         commandList.add(ListTaskCommand.COMMAND_WORD);
-        argPromptList.add(ListTaskCommand.ARGUMENT_PROMPTS);
+        argPrefixList.add(ListTaskCommand.ARGUMENT_PREFIXES);
     }
 
     /**
@@ -84,12 +83,12 @@ public class CommandSuggestor {
         if (suggestedCommand == "" && commandWord != "") {
             throw new CommandException("Invalid command");
         }
-        HashMap<Prefix, String> argPrompt = argPromptList.get(commandList.indexOf(suggestedCommand));
+        ArrayList<Prefix> argPrefixes = argPrefixList.get(commandList.indexOf(suggestedCommand));
 
         if (userInputArray.length > 1) {
-            return userInput.stripTrailing() + suggestArguments(argPrompt, userInput);
+            return userInput.stripTrailing() + suggestArguments(argPrefixes, userInput);
         } else {
-            return suggestedCommand + suggestArguments(argPrompt, userInput);
+            return suggestedCommand + suggestArguments(argPrefixes, userInput);
         }
     }
 
@@ -113,14 +112,14 @@ public class CommandSuggestor {
     /**
      * Suggests prompts for arguments based on the user input.
      *
-     * @param argPrompt Argument prompts for specified command.
+     * @param argPrefixes Argument prefixes for specified command.
      * @param userInput Current user input.
      * @return Suggested arguments.
      * @throws CommandException If the user input is invalid.
      */
-    public String suggestArguments(HashMap<Prefix, String> argPrompt, String userInput) throws CommandException {
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, argPrompt.keySet()
-            .toArray(new Prefix[] {}));
+    public String suggestArguments(
+            ArrayList<Prefix> argPrefixes, String userInput) throws CommandException {
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, argPrefixes.toArray(new Prefix[]{}));
         String argumentSuggestion = "";
         String[] userInputArray = userInput.split(" ");
         Prefix currPrefix = null;
@@ -130,14 +129,14 @@ public class CommandSuggestor {
             argumentSuggestion += "/ ";
             currPrefix = new Prefix(userInputArray[userInputArray.length - 1] + "/");
             argumentMultimap.put(currPrefix, "");
-            if (argPrompt.get(currPrefix) == null) {
+            if (!argPrefixes.contains(currPrefix)) {
                 throw new CommandException("Invalid prefix");
             }
         }
 
-        for (Prefix key : argPrompt.keySet()) {
-            if (!argumentMultimap.getValue(key).isPresent()) {
-                argumentSuggestion += " " + key + argPrompt.get(key);
+        for (Prefix prefix : argPrefixes) {
+            if (!argumentMultimap.getValue(prefix).isPresent()) {
+                argumentSuggestion += " " + prefix + prefix.getUserPrompt();
             }
         }
         return argumentSuggestion;
