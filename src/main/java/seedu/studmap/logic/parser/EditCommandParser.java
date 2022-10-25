@@ -28,8 +28,10 @@ public class EditCommandParser extends EditStudentCommandParser<EditCommandStude
 
     @Override
     public Prefix[] getPrefixes() {
-        return new Prefix[]{PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_ADDRESS, PREFIX_TAG};
+        return new Prefix[]{
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_ADDRESS, PREFIX_TAG
+        };
     }
 
     @Override
