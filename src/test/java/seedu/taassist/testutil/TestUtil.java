@@ -52,4 +52,11 @@ public class TestUtil {
     public static Student getStudent(Model model, Index index) {
         return model.getFilteredStudentList().get(index.getZeroBased());
     }
+
+    /**
+     * Joins a variable number of string arguments with whitespace.
+     */
+    public static String joinWithSpace(String... str) {
+        return String.join(" ", str);
+    }
 }

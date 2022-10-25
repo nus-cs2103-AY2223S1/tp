@@ -43,7 +43,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new StudentBuilder(BOB).withModuleClasses(VALID_CLASS_CS1231S).build();
+        Student expectedStudent = new StudentBuilder(BOB)
+                .withModuleClasses(new ModuleClass(VALID_CLASS_CS1231S)).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -67,7 +68,7 @@ public class AddCommandParserTest {
 
         // multiple classes - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB)
-                .withModuleClasses(VALID_CLASS_CS1231S, VALID_CLASS_CS1101S)
+                .withModuleClasses(new ModuleClass(VALID_CLASS_CS1231S), new ModuleClass(VALID_CLASS_CS1101S))
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + CLASS_DESC_CS1101S + CLASS_DESC_CS1231S, new AddCommand(expectedStudentMultipleTags));

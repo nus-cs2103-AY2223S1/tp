@@ -48,7 +48,7 @@ public class TaAssistTest {
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withModuleClasses(VALID_CLASS_CS1101S)
+                .withModuleClasses(new ModuleClass(VALID_CLASS_CS1101S))
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         List<ModuleClass> newModuleClasses = Arrays.asList(); // TODO: Add test case for classes too
@@ -77,7 +77,7 @@ public class TaAssistTest {
     public void hasStudent_studentWithSameIdentityFieldsInTaAssist_returnsTrue() {
         taAssist.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withModuleClasses(VALID_CLASS_CS1101S)
+                .withModuleClasses(new ModuleClass(VALID_CLASS_CS1101S))
                 .build();
         assertTrue(taAssist.hasStudent(editedAlice));
     }

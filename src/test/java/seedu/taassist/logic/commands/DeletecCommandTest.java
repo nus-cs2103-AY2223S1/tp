@@ -88,7 +88,7 @@ public class DeletecCommandTest {
     @Test
     public void execute_deleteExistingModuleClass_unassignsModuleClassFromStudent() throws Exception {
         // Student with one module class
-        Student oldStudent = new StudentBuilder().withModuleClasses("CS1101S").build();
+        Student oldStudent = new StudentBuilder().withModuleClasses(CS1101S).build();
         ModuleClass moduleClass = oldStudent.getModuleClasses().get(0);
 
         ModelStubAcceptingStudentAndModuleClass modelStub = new ModelStubAcceptingStudentAndModuleClass();

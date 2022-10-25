@@ -11,5 +11,5 @@ public class TypicalSessions {
     public static final Session LAB_1 = new SessionBuilder().withName("lab1")
             .withDate("2022-10-12").build();
     public static final Session TUTORIAL_1 = new SessionBuilder().withName("tutorial1")
-            .withDate("2020-02-29").build();
+            .withDate("2022-02-28").build();
 }
