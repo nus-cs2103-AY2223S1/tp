@@ -224,7 +224,16 @@ public class Person {
         return getAClass().isEmpty();
     }
 
-    public int compareTo(Person person) {
-        return this.aClass.startTime.compareTo(person.aClass.startTime);
+    public int compareToByNameAsc(Person person) {
+        return this.name.compareTo(person.name);
+    }
+
+    public int compareToByNameDesc(Person person) {
+        // return opposite result as this::compareToByNameAsc
+        return -1 * this.compareToByNameDesc(person);
+    }
+
+    public int compareToByClass(Person person) {
+        return this.aClass.compareToByStartTime(person.aClass);
     }
 }

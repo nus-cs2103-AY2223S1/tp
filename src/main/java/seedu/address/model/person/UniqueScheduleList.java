@@ -109,7 +109,7 @@ public class UniqueScheduleList implements Iterable<Person> {
         return internalList
                 .stream()
                 .filter(person -> LocalDate.now().equals(person.getAClass().date))
-                .sorted(Person::compareTo)
+                .sorted(Person::compareToByClass)
                 .collect(Collectors.toList());
     }
 

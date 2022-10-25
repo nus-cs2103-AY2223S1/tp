@@ -18,6 +18,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
@@ -300,5 +301,25 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static SortCommand.ORDER parseSortOrder(String arg) throws ParseException {
+        switch (arg.toUpperCase()) {
+        case "ASC":
+            return SortCommand.ORDER.ASC;
+        case "DESC":
+            return SortCommand.ORDER.DESC;
+        default:
+            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
+        }
+    }
+
+    public static SortCommand.TYPE parseSortType(String arg) throws ParseException {
+        switch (arg) {
+        case "NAME":
+            return SortCommand.TYPE.NAME;
+        default:
+            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_TYPE_KEYWORD);
+        }
     }
 }
