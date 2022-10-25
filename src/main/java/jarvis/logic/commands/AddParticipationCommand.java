@@ -33,7 +33,7 @@ public class AddParticipationCommand extends Command {
             + "specified lesson\n"
             + "Parameters: "
             + PREFIX_PARTICIPATION + "PARTICIPATION "
-            + PREFIX_LESSON_INDEX + "LESSON INDEX "
+            + PREFIX_LESSON_INDEX + "LESSON_INDEX "
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_PARTICIPATION + "100 " + PREFIX_LESSON_INDEX + "1 "
             + PREFIX_STUDENT_INDEX + "2";

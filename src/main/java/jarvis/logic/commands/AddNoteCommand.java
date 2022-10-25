@@ -33,7 +33,7 @@ public class AddNoteCommand extends Command {
             + "identified using its displayed index in the student list of the specified lesson\n"
             + "Parameters: "
             + PREFIX_NOTE + "NOTE "
-            + PREFIX_LESSON_INDEX + "LESSON INDEX "
+            + PREFIX_LESSON_INDEX + "LESSON_INDEX "
             + "[" + PREFIX_STUDENT_INDEX + "STUDENT_INDEX] \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NOTE + "Get back to jeff on streams "
             + PREFIX_LESSON_INDEX + "1 " + PREFIX_STUDENT_INDEX + "2";
