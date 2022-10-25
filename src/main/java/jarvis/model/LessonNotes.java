@@ -1,26 +1,30 @@
 package jarvis.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
+import jarvis.model.exceptions.NoteNotFoundException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * Represents the notes for a lesson in JARVIS.
  */
 public class LessonNotes {
-    private final StringBuilder overallNotes = new StringBuilder("Lesson Notes:\n");
-    private final HashMap<Student, StringBuilder> studentNotes;
+    private final ArrayList<String> overallNotes;
+    private final HashMap<Student, ArrayList<String>> studentNotes;
 
     /**
      * Creates the notes for a lesson.
      * @param students Students who are involved in the lesson.
      */
     public LessonNotes(Collection<Student> students) {
+        overallNotes = new ArrayList<>();
+        overallNotes.add("Lesson Notes:\n");
+
         studentNotes = new HashMap<>();
         for (Student stu : students) {
-            studentNotes.put(stu, new StringBuilder());
+            studentNotes.put(stu, new ArrayList<>());
         }
     }
 
@@ -29,8 +33,7 @@ public class LessonNotes {
      * @param notes Lines to append to the overall lesson notes.
      */
     public void addNote(String notes) {
-        overallNotes.append(notes);
-        overallNotes.append("\n");
+        overallNotes.add(notes);
     }
 
     /**
@@ -42,31 +45,71 @@ public class LessonNotes {
         if (!studentNotes.containsKey(student)) {
             throw new StudentNotFoundException();
         }
-        studentNotes.get(student).append(notes);
-        studentNotes.get(student).append("\n");
+        studentNotes.get(student).add(notes);
+    }
+
+    /**
+     * Deletes note at given index from overall notes.
+     *
+     * @param index Index of the note according to the list of overall notes.
+     * @return String of the deleted note.
+     */
+    public String deleteNote(int index) {
+        if (index >= overallNotes.size()) {
+            throw new NoteNotFoundException();
+        }
+        return overallNotes.remove(index);
+    }
+
+    /**
+     * Deletes note at given index of from a specific student's notes.
+     *
+     * @param student Student to delete notes from.
+     * @param index Index of the note according to the list of student notes.
+     * @return String of the deleted note.
+     */
+    public String deleteNote(Student student, int index) {
+        if (!studentNotes.containsKey(student)) {
+            throw new StudentNotFoundException();
+        }
+        ArrayList<String> specifiedStudentNotes = studentNotes.get(student);
+        if (index >= specifiedStudentNotes.size()) {
+            throw new NoteNotFoundException();
+        }
+        return specifiedStudentNotes.remove(index);
     }
 
     public String getNotes() {
-        return overallNotes.toString();
+        StringBuilder formattedOverallNotes = new StringBuilder();
+        for (String overallNote: overallNotes) {
+            formattedOverallNotes.append(overallNote);
+            formattedOverallNotes.append("\n");
+        }
+        return formattedOverallNotes.toString();
     }
 
     public String getNotes(Student student) {
         if (!studentNotes.containsKey(student)) {
             throw new StudentNotFoundException();
         }
-        return studentNotes.get(student).toString();
+        StringBuilder formattedStudentNotes = new StringBuilder();
+        for (String studentNote: studentNotes.get(student)) {
+            formattedStudentNotes.append(studentNote);
+            formattedStudentNotes.append("\n");
+        }
+        return formattedStudentNotes.toString();
     }
 
     public String getAllNotes() {
-        StringBuilder sb = new StringBuilder(overallNotes);
-        sb.append("\nNotes for individual students:\n");
-        for (Map.Entry<Student, StringBuilder> entry : studentNotes.entrySet()) {
-            sb.append(entry.getKey());
-            sb.append(":\n");
-            sb.append(entry.getValue());
-            sb.append("\n");
+        StringBuilder formattedAllNotes = new StringBuilder(getNotes());
+        formattedAllNotes.append("\nNotes for individual students:\n");
+        for (Student student: studentNotes.keySet()) {
+            formattedAllNotes.append(student.toString());
+            formattedAllNotes.append(":\n");
+            formattedAllNotes.append(getNotes(student));
+            formattedAllNotes.append("\n");
         }
-        return sb.toString();
+        return formattedAllNotes.toString();
     }
 
     @Override
