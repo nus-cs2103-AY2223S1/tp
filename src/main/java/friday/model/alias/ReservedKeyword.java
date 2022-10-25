@@ -23,7 +23,6 @@ import friday.logic.commands.UnaliasCommand;
 
 /**
  * Represents a ReservedKeyword in friday.
- * Guarantees: immutable; is always valid
  */
 public class ReservedKeyword {
 
@@ -48,6 +47,9 @@ public class ReservedKeyword {
         value = reservedKeyword;
     }
 
+    /**
+     * Returns if a given string is a valid reserved keyword.
+     */
     public static boolean isValidReservedKeyword(String test) {
         return LIST_RESERVED_KEYWORDS.contains(test);
     }

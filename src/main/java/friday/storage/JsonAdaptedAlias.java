@@ -23,9 +23,7 @@ class JsonAdaptedAlias {
      * Constructs a {@code JsonAdaptedAlias} with the given alias details.
      */
     @JsonCreator
-
     public JsonAdaptedAlias(@JsonProperty("alias") String alias, @JsonProperty("reservedKeyword") String keyword) {
-
         this.alias = alias;
         this.keyword = keyword;
     }

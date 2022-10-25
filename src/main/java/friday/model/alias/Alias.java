@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an Alias in FRIDAY.
- * Guarantees: immutable; is always valid
  */
 public class Alias {
 
@@ -20,6 +19,9 @@ public class Alias {
         value = alias;
     }
 
+    /**
+     * Returns if a given String is a valid alias.
+     */
     public static boolean isValidAlias(String test) {
         return !ReservedKeyword.LIST_RESERVED_KEYWORDS.contains(test);
     }
