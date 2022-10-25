@@ -74,8 +74,9 @@ public class UniqueGuestList implements Iterable<Guest> {
 
         if (!target.isSameGuest(editedGuest) && contains(editedGuest)) {
             throw new DuplicateGuestException();
-            // Only check for room equality if the guest's room has been edited
+
         } else if (!target.getRoom().equals(editedGuest.getRoom()) && hasSameRoom(editedGuest)) {
+            // Only check for room equality if the guest's room has been edited
             throw new RoomOccupiedException();
         }
 
