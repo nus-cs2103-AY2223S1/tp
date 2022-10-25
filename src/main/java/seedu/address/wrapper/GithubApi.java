@@ -13,16 +13,43 @@ import seedu.address.wrapper.exceptions.NetworkConnectionException;
 import seedu.address.wrapper.exceptions.RepoNotFoundException;
 import seedu.address.wrapper.exceptions.UserInvalidException;
 
+/**
+ * Class representing a singleton GitHub API wrapper
+ */
 public class GithubApi {
-    //@@author arnav-ag
-    private final static String BASE_CHECK_USER_URL = "https://api.github.com/users/";
-    final private UnirestInstance unirest;
-    final private Storage storage;
 
+    //@@author arnav-ag
+    private static final String BASE_CHECK_USER_URL = "https://api.github.com/users/";
+    private final UnirestInstance unirest;
+    private final Storage storage;
+
+    /**
+     * @param storage Storage used to handle downloading of user avatar images
+     */
     public GithubApi(Storage storage) {
 
         unirest = getDefaultUnirestInstance();
         this.storage = storage;
+    }
+
+    public static UnirestInstance getDefaultUnirestInstance() {
+        Config config = new Config()
+                .interceptor(new Interceptor() {
+                    @Override
+                    public void onResponse(HttpResponse<?> response, HttpRequestSummary request, Config config) {
+                        if (response.getStatus() == 404) {
+                            throw new UserInvalidException(
+                                    "User does not exist. Please provide an existing GitHub username.");
+                        }
+                    }
+
+                    @Override
+                    public HttpResponse<?> onFail(Exception e, HttpRequestSummary request, Config config)
+                            throws RepoNotFoundException {
+                        throw new NetworkConnectionException("Error while getting request, unable to get results.");
+                    }
+                });
+        return new UnirestInstance(config);
     }
 
     User getUser(String username) throws UserInvalidException, NetworkConnectionException {
@@ -34,28 +61,8 @@ public class GithubApi {
         return new User(username, userInfoWrapper, userReposWrapper);
     }
 
-    public static UnirestInstance getDefaultUnirestInstance() {
-        Config config = new Config()
-            .interceptor(new Interceptor() {
-                @Override
-                public void onResponse(HttpResponse<?> response, HttpRequestSummary request, Config config) {
-                    if (response.getStatus() == 404) {
-                        throw new UserInvalidException(
-                            "User does not exist. Please provide an existing GitHub username.");
-                    }
-                }
-
-                @Override
-                public HttpResponse<?> onFail(Exception e, HttpRequestSummary request, Config config)
-                    throws RepoNotFoundException {
-                    throw new NetworkConnectionException("Error while getting request, unable to get results.");
-                }
-            });
-        return new UnirestInstance(config);
-    }
-
     private void checkUserExists(String username, UnirestInstance unirest)
-        throws UserInvalidException, NetworkConnectionException {
+            throws UserInvalidException, NetworkConnectionException {
         unirest.get(BASE_CHECK_USER_URL + username).asEmpty();
     }
 }

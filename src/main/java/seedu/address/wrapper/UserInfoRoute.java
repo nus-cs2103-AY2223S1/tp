@@ -2,9 +2,9 @@ package seedu.address.wrapper;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,13 +14,16 @@ import kong.unirest.UnirestInstance;
 import seedu.address.storage.Storage;
 import seedu.address.wrapper.exceptions.ResponseParseException;
 
+/**
+ * Class representing routes taken to get user information
+ */
 public final class UserInfoRoute {
     //@@author arnav-ag
 
     public static final String BASE_GITHUB_URL = "https://api.github.com";
     private static final String SERVER_DOWN_STATUS_MESSAGE = "Unable to get information from API.";
 
-    private final static String GET_USER_BASE_PATH = "/users/";
+    private static final String GET_USER_BASE_PATH = "/users/";
     private final String path;
     private final Storage storage;
     private final String username;
@@ -37,6 +40,10 @@ public final class UserInfoRoute {
         return new UserInfoRoute(GET_USER_BASE_PATH + username, username, storage);
     }
 
+    /**
+     * @param unirest Unirest instance to be used to carry out requests
+     * @return Request class pertaining to user information from GitHub
+     */
     public UserInfoRequest createRequest(UnirestInstance unirest) {
         requireAllNonNull(unirest);
 
@@ -47,6 +54,9 @@ public final class UserInfoRoute {
         return this.path;
     }
 
+    /**
+     * Class representing request needed to retrieve user information from GitHub
+     */
     public static class UserInfoRequest {
         private final Storage storage;
 
@@ -63,7 +73,7 @@ public final class UserInfoRoute {
             this.username = username;
         }
 
-        public JSONObject getJSON() {
+        public JSONObject getJson() {
             var response = this.unirest.get(this.url).asString().getBody();
 
             try {
@@ -73,6 +83,9 @@ public final class UserInfoRoute {
             }
         }
 
+        /**
+         * @param fileUrl URL pertaining to the user's avatar image
+         */
         public void downloadAvatarImage(String fileUrl) {
             Unirest.get(fileUrl).thenConsume(rawResponse -> {
                 try {

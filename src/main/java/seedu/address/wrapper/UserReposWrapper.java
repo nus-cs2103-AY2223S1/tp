@@ -11,21 +11,28 @@ import org.json.JSONObject;
 import kong.unirest.UnirestInstance;
 import seedu.address.wrapper.exceptions.RepoNotFoundException;
 
+/**
+ * Class representing a wrapper over the requests and routes needed to get user repo information from GitHub
+ */
 public class UserReposWrapper {
     //@@author arnav-ag
 
     private final UserReposRoute.UserReposRequest getUserReposRequest;
     private JSONArray reposJson;
 
-    public UserReposWrapper(String user, UnirestInstance unirest) {
-        requireAllNonNull(user);
+    /**
+     * @param username Username of GitHub user to initialise class
+     * @param unirest  Unirest instance used for all further requests
+     */
+    public UserReposWrapper(String username, UnirestInstance unirest) {
+        requireAllNonNull(username);
 
-        UserReposRoute getUserInfoGetInfoRoute = getUserReposRoute(user);
+        UserReposRoute getUserInfoGetInfoRoute = getUserReposRoute(username);
         getUserReposRequest = getUserInfoGetInfoRoute.createRequest(unirest);
     }
 
     private void updateReposJson() {
-        this.reposJson = getUserReposRequest.getJSON();
+        this.reposJson = getUserReposRequest.getJson();
     }
 
     public ArrayList<Integer> getIDs() {

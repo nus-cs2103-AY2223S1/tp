@@ -40,13 +40,12 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 2, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
-
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
-    public GithubApi githubApi;
     protected Config config;
+    private GithubApi githubApi;
 
     @Override
     public void init() throws Exception {
@@ -70,8 +69,6 @@ public class MainApp extends Application {
         ui = new UiManager(logic);
 
         githubApi = new GithubApi(storage);
-
-
     }
 
     /**

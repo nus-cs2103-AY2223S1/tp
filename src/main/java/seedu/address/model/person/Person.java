@@ -42,11 +42,11 @@ public class Person implements Comparable<Person> {
         this.address = address;
         // mock user
         // Todo: Add githubUser to constructor
-        this.gitHubUser = new User("arnav-ag");
         this.role = role;
         this.timezone = timezone;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
+        this.gitHubUser = null;
     }
 
     public Name getName() {

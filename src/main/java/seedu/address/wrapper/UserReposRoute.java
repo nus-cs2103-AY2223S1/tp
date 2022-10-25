@@ -8,6 +8,9 @@ import org.json.JSONException;
 import kong.unirest.UnirestInstance;
 import seedu.address.wrapper.exceptions.ResponseParseException;
 
+/**
+ * Class representing routes taken to get user's repo information
+ */
 public class UserReposRoute {
     //@@author arnav-ag
 
@@ -27,6 +30,10 @@ public class UserReposRoute {
         return new UserReposRoute(GET_USER_BASE_PATH + user + GET_REPO_PATH);
     }
 
+    /**
+     * @param unirest Unirest instance to carry out all requests with
+     * @return Request class instance pertaining to getting user repo information
+     */
     public UserReposRequest createRequest(UnirestInstance unirest) {
         requireAllNonNull(unirest);
 
@@ -37,6 +44,9 @@ public class UserReposRoute {
         return this.path;
     }
 
+    /**
+     * Class representing request needed to retrieve user repo information from GitHub
+     */
     public static class UserReposRequest {
 
         private final UnirestInstance unirest;
@@ -48,7 +58,7 @@ public class UserReposRoute {
             this.url = url;
         }
 
-        public JSONArray getJSON() {
+        public JSONArray getJson() {
             String response = this.unirest.get(this.url).asString().getBody();
 
             try {
