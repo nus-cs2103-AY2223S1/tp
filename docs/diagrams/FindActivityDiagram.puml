@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes find command;
+
+if () then ([valid find command])
+
+    if () then ([blank or white space
+    only parameter])
+        :Display invalid command
+                format message;
+
+        else ([else])
+          :Find tasks with matching keywords;
+            :Update model with new filtered task list;
+            :Display list of matching task(s) if any;
+        endif
+
+else ([else])
+    :Display unknown
+    command message;
+endif
+stop
+@enduml

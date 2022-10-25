@@ -37,6 +37,7 @@ class JsonSerializableTeachersPet {
      * @param source future changes to this will not affect the created {@code JsonSerializableTeachersPet}.
      */
     public JsonSerializableTeachersPet(ReadOnlyTeachersPet source) {
+        assert source != null;
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 

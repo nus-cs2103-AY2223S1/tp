@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes edit class command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid index])
+    :Fetch Student in List;
+    if () then ([No Class Conflict])
+        :Save Class in ClassStorage;
+        if () then ([Has pre-existing Class])
+            :Remove pre-existing Class;
+        else([else])
+        endif
+    else ([else])
+       : Display error message;
+    endif
+else ([else])
+    : Display invalid index error message;
+endif
+stop
+@enduml
+Footer

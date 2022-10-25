@@ -16,6 +16,22 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Phone
+Person *--> NokPhone
 Person *--> Email
 Person *--> Address
+Person *--> Class
+Person *--> MoneyOwed
+Person *--> MoneyPaid
+Person *--> RatesPerClass
+Person *--> AdditionalNotes
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> NokPhone
+NokPhone -[hidden]right-> Address
+Address -[hidden]right-> Email
+Name -[hidden]down-> Class
+Class -[hidden]right-> MoneyOwed
+MoneyOwed -[hidden]right-> MoneyPaid
+MoneyPaid -[hidden]right-> RatesPerClass
+RatesPerClass -[hidden]right-> AdditionalNotes
 @enduml

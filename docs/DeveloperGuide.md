@@ -2,22 +2,347 @@
 layout: page
 title: Developer Guide
 ---
+# Developer Guide
 
 ## Table of contents
-* [Target User Profile](#target-user-profile)
-* [Value Proposition](#value-proposition)
-* [User Stories](#user-stories)
-* [Use Case](#use-case)
+* [Implementation](#implementation)
+  * [Edit Class Feature](#edit-class-feature)
+    * [Implementation details](#implementation-details)
+    * [Design Considerations](#design-considerations)
+  * [Statistics Display Feature](#statistics-display-feature)
+  * [Schedule List Feature](#schedule-list-feature)
+  * [[Proposed] Sort-by](#proposed-sort-by-feature)
+* [Appendix](#appendix-requirements)
+  * [Target User Profile](#target-user-profile)
+  * [Value Proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
     * [Use case: **Delete a student**](#use-case-delete-a-student)
     * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
     * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
+    * [Use case: **Find student by address**](#use-case-find-student-by-address)
     * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
     * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
-* [Non-Functional Requirement](#non-functional-requirement)
-* [Glossary](#glossary)
+  * [Non-Functional Requirement](#non-functional-requirement)
+  * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-## Target User Profile
+## Design
+### Architecture
+
+<img src="images/DG-images/ArchitectureDiagram.png" width="280" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App.
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img src="images/DG-images/ArchitectureSequenceDiagram.png" width="574" />
+
+Each of the four main components (also shown in the diagram above),
+
+* defines its *API* in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+
+<img src="images/DG-images/ComponentManagers.png" width="300" />
+
+The sections below give more details of each component.
+
+### UI component
+[//]: # (TODO: The UI component needs to be updated)
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+
+![Structure of the UI Component](images/DG-images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `StatisticsDisplay`, `ScheduleListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+### Logic component
+
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+
+Here's a (partial) class diagram of the `Logic` component:
+
+<img src="images/DG-images/LogicClassDiagram.png" width="550"/>
+
+How the `Logic` component works:
+1. When `Logic` is called upon to execute a command, it uses the `TeachersPetParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DG-images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+<img src="images/DG-images/ParserClasses.png" width="600"/>
+
+How the parsing works:
+* When called upon to parse a user command, the `TeachersPetParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TeachersPetParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+### Model component
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+
+<img src="images/DG-images/ModelClassDiagram.png" width="450" />
+
+
+The `Model` component,
+
+* stores the teacher's pet data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TeachersPet`, which `Person` references. This allows `TeachersPet` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+
+<img src="images/DG-images/BetterModelClassDiagram.png" width="450" />
+
+</div>
+
+
+### Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+
+<img src="images/DG-images/StorageClassDiagram.png" width="550" />
+
+The `Storage` component,
+* can save both teacher's pet data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TeachersPetStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+--------------------------------------------------------------------------------------------------------------------
+## Implementation
+
+This section describes some noteworthy details on how certain features are implemented.
+The features covered in this guide are:
+
+* [Edit Class Feature](#edit-class-feature)
+* [Statistics Display Feature](#statistics-display-feature)
+* [[Proposed] Sort-by feature](#proposed-sort-by-feature)
+* [[Proposed] Find-by feature](#proposed-find-by-feature)
+
+### Edit Class Feature
+
+This feature allows the teacher to create a class at a specified date and time.
+
+#### Implementation Details
+
+The edit class mechanism is facilitated by ClassStorage. It stores the date of the classes as well as the students who attend them.
+
+Additionally, it implements the following operations:
+
+ClassStorage#saveClass() — Saves the new class into its storage.
+
+ClassStorage#removeExistingClass() — Removes class from storage to free up the time slot.
+
+ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
+
+The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer,
+a `ParseException` will be thrown.
+If the index is valid, `ParserUtil` will then check that both the date and time are valid before creating an `EditCommand`.
+
+During the execution of `EditCommand`, if the given index is not within the range of the list, a `CommandException` will be thrown.
+Otherwise, the model will then obtain the student using getFilteredPersonList.
+
+Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new class
+and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class
+will be removed in order to free up the time slot. If there is no time conflict, `ClassStorage` will proceed to
+save both the new class and student.
+
+The following sequence diagram shows how the edit class operation works:
+
+![EditClassSequenceDiagram](images/DG-images/EditClassSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a teacher executes an edit class command:
+
+![EditClassActivityDiagram](images/DG-images/EditClassActivityDiagram.png)
+
+#### Design Considerations:
+##### Aspect: Input format for edit class:
+
+* **Alternative 1**: dt/yyyy-MM-dd 0000-2359
+  * Pros: Easy to implement.
+  * Cons: The teacher has to fully match the date format and order, which is much more cumbersome.
+
+* **Alternative 2**: dt/Day-of-Week 0000-2359 (case-insensitive)
+  * Pros: More convenient and easier for the teacher to type.
+  * Cons:
+    1. Harder to implement.
+    2. Only can set the class to a date at most 1 week away.
+  
+### Statistics Display Feature
+
+This feature allows the teacher to get an overall view of his/her teaching statistics, which includes the number of students, total money owed and total money paid by the current list of students.
+
+#### Implementation Details
+
+`MainWindow.fxml` is modified to update the `UI` from the original single-panel view to include an additional top right statistics panel.
+The calculation of the statistics is facilitated by `StatisticsCalculator`, which stores `ReadOnlyTeachersPet` internally that keeps track of the list of students.
+
+Additionally, it implements the following operations:
+- `StatisticsCalculator#getSize()` — Gets the current number of students in the list.
+- `StatisticsCalculator#getAmountOwed()` — Calculates the total amount owed by students in the list.
+- `StatisticsCalculator#getAmountPaid()` — Calculates the total amount paid by students in the list.
+
+When a user command gets executed, the 3 operations are performed once to display the updated statistics.
+
+How the individual operations work:
+- `StatisticsCalculator#getSize()`
+  1. When `StatisticsCalculator#getSize()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
+  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator returns the `size` of the `ObservableList<Person>`.
+  
+  ![StatisticsCalculatorGetSizeSequenceDiagram](images/DG-images/StatisticsCalculatorGetSizeSequenceDiagram.png)
+
+- `StatisticsCalculator#getAmountOwed()`
+  1. When `StatisticsCalculator#getAmountOwed()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
+  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator iterates across all students in the list and sums the total amount owed.
+
+  ![StatisticsCalculatorGetAmountOwedSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountOwedSequenceDiagram.png)
+
+- `StatisticsCalculator#getAmountPaid()`
+  1. When `StatisticsCalculator#getAmountPaid()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
+  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator iterates across all students in the list and sums the total amount paid.
+  
+  ![StatisticsCalculatorGetAmountPaidSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountPaidSequenceDiagram.png)
+
+#### Design Considerations:
+##### Aspect: Implementing the statistics function:
+
+* **Alternative 1 (current choice)**: Call three different statistics functions (getSize(), getAmountOwed(), getAmountPaid()) 
+    * Pros: Each function obeys Single Responsibility Principle (SRP).
+    * Cons: More code must be typed.
+
+* **Alternative 2**: Call a single statistics function which returns an array of statistical values
+    * Pros: 
+        1. Fewer repetition of code.
+        2. More optimised solution as `ObservableList<Person>` needs to be iterated only once. 
+    * Cons: Violates Single Responsibility Principle (SRP) as the function would have multiple responsibilities.
+
+### Schedule List Feature
+This feature allows the user to be able to view a schedule on the right hand side of the panel.
+
+#### Implementation Details
+`MainWindow.fxml` is modified to update the UI from the original single-panel view to include an additional right panel.
+
+Since there is a need for the schedule list to be a constant panel, which is separate from the `PersonListPanel`,
+a `ScheduleListPanel` under `UI` had to be created along with a `ScheduleListCard` class also under `UI`. The
+`ScheduleListCard` will contain a selective set of information related to a schedule compared to `PersonCard`. 
+
+Correspondingly, `PersonListCard.fxml` and `PersonListPanel.fxml` had to be created too.
+
+Since the `UI` depends on the `Model`, there was a need to update the model to now include a `UniqueScheduleList`.
+This `UniqueScheduleList` would store the filtered version of the original `AddressBook`, based on the current date.
+
+#### Design Considerations
+#### Aspect: Determining how to design ScheduleList:
+* Alternative 1: Reusing `UniquePersonList` to store the `ScheduleList` under `AddressBook`
+  * Pros: Minimise code duplication since class is reused
+  * Cons: UniquePersonList insufficient in design to support the needs of holding untouched state and filtered state
+* Alternative 2: Creating a dedicated `UniqueScheduleList` 
+  * Pros: Achieved our purpose of a `ScheduleList`
+  * Cons: Code duplication
+
+### [Proposed] Sort-by feature
+
+This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
+
+#### Proposed Implementation
+
+The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
+list of person as per usual. Additionally, it implements the following operation:
+- `TeachersPet#SortBy(ComparatorM<Person>)` -- Updates the `FilteredPersonList` by reordering the list with the given `Comparator`
+
+The following diagram illustrates how the operation works:
+
+![SortBySequenceDiagram](images/DG-images/SortBySequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+<<<<<<< HEAD
+--------------------------------------------------------------------------------------------------------------------
+=======
+
+### [Proposed] Find-by feature
+
+This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
+
+#### Proposed Implementation
+
+The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+There are 4 different variations of `find`:
+1. Find by name: Find all matching student(s) using any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
+2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) using any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+4. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindActivityDiagram](images/DG-images/FindActivityDiagram.png)
+
+Below is an example of the general flow of a find by address command.
+
+##### Find by address
+1. `FindCommandParser` will parse the keywords to `AddressContainsKeywordsPredicate`.
+2. `AddressContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
+3. `FindCommandParser` will send the predicate value to `FindCommand`.
+4. `FindCommand` will be generated and the command will be returned to the `FindCommandParser`.
+5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredTaskList`.
+6. `filteredTasks` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
+7. `CommandResult` will eventually be returned and feedback will be given to the user.
+
+The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
+
+![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
+>>>>>>> 3edb1f6263bbc24dff50228e6030932fe15223be
+
+## Appendix: Requirements
+
+### Target User Profile
 
 - a private tutor who teaches 1-1 classes and needs to manage the students’ details
 - prefer desktop apps over other types
@@ -25,11 +350,11 @@ title: Developer Guide
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-## Value Proposition
+### Value Proposition
 
 Manage contacts and schedule of students faster than a typical mouse/GUI driven app
 
-## User Stories
+### User Stories
 
 | S/N | As a/an ...                                                                  | I can ...                                                                           | So that...                                                              | Priority   |
 |-----|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------|------------|
@@ -65,11 +390,12 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 | 30  | Tutor who loves money                                                        | Know the total money unpaid by all students                                         | Know the total money unpaid by students                                 | LOW        |
 | 31  | Tutor who wants to keep track of expenses                                    | Check the total amount of money paid by all students                                | I can check the total amount I have earned                              | LOW        |
 
-## Use Case
 
-(For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `Teacher`, unless specified otherwise)
+### Use Cases
 
-### Use case: **Delete a student**
+(For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `teacher`, unless specified otherwise)
+
+#### Use case: **Delete a student**
 
 **MSS**
 
@@ -92,8 +418,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case resumes at step 2.
 
-[](#use-case-edit-a-student-contact-detail)
-### Use case: **Edit a student contact detail**
+#### Use case: **Edit a student contact detail**
 
 **MSS**
 
@@ -114,7 +439,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
   Use case ends.
 
-### Use case: **Find student contact details**
+#### Use case: **Find student contact details**
 
 **MSS**
 
@@ -135,7 +460,28 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case ends.
 
-### Use case: **Mark student as present for class**
+#### Use case: **Find student by address**
+
+**MSS**
+
+1. Teacher requests to [find](#use-case-find-student-by-address) a student by address
+2. Teacher’s Pet shows a list of filtered students according to their provided query
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. Teacher requests to find by address without providing any query.
+    - 1a1. Teacher’s Pet displays invalid command format message.
+
+      Use case ends.
+
+- 1b. Teacher's Pet detects multiple students share the same address in the system.
+    - 1b1. Teacher’s Pet lists the details of multiple students.
+
+      Use case ends.
+
+#### Use case: **Mark student as present for class**
 
 **MSS**
 
@@ -164,7 +510,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
         Use case resumes at step 2.
 
-### Use case: **Allocate a slot for future class**
+#### Use case: **Allocate a slot for future class**
 
 **MSS**
 
@@ -179,7 +525,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
     Use case resumes at step 3.
 
-## Non-Functional Requirement
+### Non-Functional Requirement
 
 1. Should work on any *mainstream OS* as long as it has Java`11` or above installed.
 2. Should be able to hold up to 50 students without a noticeable sluggishness in performance for typical usage.
@@ -190,13 +536,14 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
    opened.
 6. The UI page should load when first launched within 2 seconds.
 
-## Glossary
+### Glossary
 
-| Terms         | Definition                              |
-|---------------|-----------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X              |
-| CLI           | Command Line Interface                  |
-| Class         | The 1-1 tutoring time slot of a student |
+| Terms         | Definition                                           |
+|---------------|------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                           |
+| CLI           | Command Line Interface                               |
+| Class         | The 1-1 tutoring time slot of a student              |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive eg. Mon, MON |
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.

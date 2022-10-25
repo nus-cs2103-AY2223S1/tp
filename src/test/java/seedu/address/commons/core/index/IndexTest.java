@@ -38,6 +38,20 @@ public class IndexTest {
     }
 
     @Test
+    public void compareTo() {
+        final Index fifthPersonIndex = Index.fromOneBased(5);
+        final Index fourthPersonIndex = Index.fromOneBased(4);
+
+        assertTrue(fifthPersonIndex.compareTo(fifthPersonIndex) == 0);
+
+        assertTrue(fifthPersonIndex.compareTo(fourthPersonIndex) > 0);
+
+        assertTrue(fourthPersonIndex.compareTo(fifthPersonIndex) < 0);
+
+        assertFalse(fourthPersonIndex.compareTo(fifthPersonIndex) == 0);
+    }
+
+    @Test
     public void equals() {
         final Index fifthPersonIndex = Index.fromOneBased(5);
 
