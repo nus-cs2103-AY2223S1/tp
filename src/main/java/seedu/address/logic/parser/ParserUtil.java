@@ -2,11 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.NaturalDateParser;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
@@ -171,7 +173,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a human-given {@code String deadline} into a {@code Deadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code deadline} is invalid.
@@ -179,9 +181,14 @@ public class ParserUtil {
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+
+        LocalDateTime parsedDeadline;
+        try {
+            parsedDeadline = NaturalDateParser.parse(trimmedDeadline);
+        } catch (NaturalDateParser.DateTimeNotFoundException e) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return new Deadline(trimmedDeadline);
+
+        return new Deadline(parsedDeadline);
     }
 }
