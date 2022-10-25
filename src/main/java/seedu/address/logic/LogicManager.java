@@ -57,6 +57,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public int getTabToShow(String commandText) throws ParseException {
+        return addressBookParser.parseCommandForTab(commandText);
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }
@@ -73,7 +78,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Tag> getTagList() {
-        return model.getTagList();
+        return model.getFilteredTagList();
     }
 
     @Override

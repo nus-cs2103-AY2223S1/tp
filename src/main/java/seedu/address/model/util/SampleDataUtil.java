@@ -25,22 +25,33 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Remark("prefers online meetings"),
-                getTagSet("friends")),
+                getTagSet("CS2101")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Remark("only free on monday"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("CS2103T", "CS2101")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Remark("good at coding"),
-                getTagSet("neighbours")),
+                getTagSet("CS2102")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Remark("in charge of funds"),
-                getTagSet("family")),
+                getTagSet("GEA1000")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Remark(""),
-                getTagSet("classmates")),
+                getTagSet("ACC1701X")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Remark(""),
-                getTagSet("colleagues"))
+                getTagSet("CS2103T"))
+        };
+    }
+
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            new Task(new Description("Prepare meeting agenda"), new Deadline("10-10-2022"), true,
+                getTagSet("CS2101")),
+            new Task(new Description("Update user guide"), new Deadline("12-12-2022"), false,
+                getTagSet("CS2103T")),
+            new Task(new Description("Finish report"), new Deadline("20-11-2022"), false,
+                getTagSet("GEA1000"))
         };
     }
 

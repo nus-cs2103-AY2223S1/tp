@@ -260,45 +260,45 @@ Example:
 * `filterT cs2103t` may return a tasks with label `CS2103T Software Engineering`.
 
 ## Section 3: Labels
-### Listing all labels: `listL`
 
-Shows a list of all existing labels in the address book.
+### Adding a label to a contact/task: `addL`
 
-Format: `listL`
+Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels. 
+At the same time, the label is added to the label list, shown under the "tags" tab of the app. 
+This list is unique, meaning each label with a distinct name is only shown once, even if more than one contact/task has the same label.
 
-### Adding a label to a contact: `addL`
+Multiple labels can be added in the same command. 
+However, only a maximum of one contact and one task can be labelled within the same command.
 
-Adds a label to an existing contact in the address book. Each contact can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if contact does not exist.
+Throws an exception if: 
+- Contact/task does not exist
+- Contact/task already has the required label
+- No label is provided
+- No contact/task is provided
+- More than one contact or more than one task is specified
 
-Format: `addL c/INDEX l/label_NAME`
-
-Example:
-
-* `addL c/12 l/CS2103T` will add the label "CS2103T" to the 12th contact on the contact list.
-
-### Removing a label from a contact: `deleteL`
-
-Removes a label from an existing contact in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if contact or label does not exist.
-
-Format: `deleteL c/INDEX l/label_NAME`
+Format: `addL c/INDEX t/INDEX l/label_NAME`
 
 Example:
 
-* `deleteL c/14 l/CS2101` will remove the label "CS2101" from the 14th contact on the contact list.
+* `addL c/3 t/12 l/CS2103T` will add the label "CS2103T" to the 3rd contact on the contact list and 12th task on the task list.
 
-### Adding a label to a task: `addL`
+### Removing a label from a contact/task: `deleteL`
 
-Adds a label to an existing task in the address book. Each task can have multiple labels. If there is no existing label with the same name, label is added to the label list. Throws an exception if task does not exist.
+Removes a label from an existing contact/task in YellowBook. 
 
-Format: `addL t/INDEX l/label_NAME`
+If contact/task is last remaining contact/task with said label, label is removed from the label list. 
+Otherwise, it is only removed from the specified contact/task label list.
 
-Example:
+Multiple labels can be deleted in the same command. 
+However, only a maximum of one contact and one task can be edited within the same command.
 
-* `addL t/12 l/CS2103T` will add the label "CS2103T" to the 12th task on the task list.
-
-### Removing a label from a task: `deleteL`
-
-Removes a label from an existing task in the address book. If contact is last remaining person with said label, label is removed from the label list. Throws an exception if task or label does not exist.
+Throws an exception if:
+- Contact/task does not exist
+- Label does not exist on specified contact/task
+- No contact/task is provided
+- No label is provided
+- More than one contact or more than one task is specified
 
 Format: `deleteL t/INDEX l/label_NAME`
 
