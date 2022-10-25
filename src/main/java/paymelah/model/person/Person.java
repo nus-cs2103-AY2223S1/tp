@@ -81,7 +81,7 @@ public class Person {
     }
 
     public int compareEarliestDebtDateTimeWith(Person o) {
-        return debts.getEarliestDebt().compareDateTimeWith(o.debts.getEarliestDebt());
+        return debts.compareEarliestDebtDateTimeWith(o.debts);
     }
 
     /**

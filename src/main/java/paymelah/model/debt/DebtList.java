@@ -51,9 +51,13 @@ public class DebtList {
         return totalDebt;
     }
 
-    public Debt getEarliestDebt() {
-        assert debts.size() > 0 : "getEarliestDebt should not be called when DebtList is empty";
-        return debts.get(0);
+    /**
+     * Compares this DebtList's earliest Debt's DateTime to that of another DebtList.
+     */
+    public int compareEarliestDebtDateTimeWith(DebtList o) {
+        assert !isEmpty() && !o.isEmpty() : "compareEarliestDebtDateTimeWith should not be called "
+                                                + "when DebtLists are empty";
+        return debts.get(0).compareDateTimeWith(o.debts.get(0));
     }
 
     /**
