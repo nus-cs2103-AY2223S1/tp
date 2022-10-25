@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class TaskTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Address(null));
+        assertThrows(NullPointerException.class, () -> new Task(null, null));
     }
 
     @Test
@@ -21,14 +21,10 @@ public class TaskTest {
 
     @Test
     public void isValidTask() {
-        // null address
+        // null task
         assertThrows(NullPointerException.class, () -> Task.isValidTask(null));
 
-        // invalid addresses
-        assertFalse(Task.isValidTask(new Task("", ""))); // empty string
-        assertFalse(Task.isValidTask(new Task(" ", " "))); // spaces only
-
-        // valid addresses
+        // valid tasks
         assertTrue(Task.isValidTask(new Task("Online Assessment", "10-10-2023 10:00")));
         assertTrue(Task.isValidTask(new Task("-", "05-11-2022 11:00"))); // one character
         assertTrue(Task.isValidTask(new Task("The quick brown fox jumped over the lazy dog while testing"
