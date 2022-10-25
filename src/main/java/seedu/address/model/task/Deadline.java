@@ -20,7 +20,7 @@ public class Deadline implements Comparable<Deadline> {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public final String value;
-    public LocalDate date;
+    public final LocalDate date;
 
     /**
      * Constructs an {@code Deadline}.
