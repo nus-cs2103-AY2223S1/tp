@@ -244,22 +244,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
-The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to 
-parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents` 
-in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`, 
+The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to
+parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents`
+in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`,
 `Consultation`, and `MasteryCheck` implement the `Comparable` interface, where the natural ordering of `String` and `LocalDate`
-are used to implement the `compareTo` method. 
+are used to implement the `compareTo` method.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList` 
-named `sortedStudents` according to the data file. 
+Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList`
+named `sortedStudents` according to the data file.
 
 Step 2. The user executes `sort n/asc` command to sort the students by name in ascending order. `SortCommandParser` will
 check that the command is valid, and pass a `comparator` that orders the student names alphabetically to `SortCommand`.
 
 Step 3. `SortCommand` will call `Model#updateSortedStudentList(Comparator<Student> comparator)` to update `sortedStudents`
-with the given `comparator`. The list `students` is then set to `sortedStudents`, and 
+with the given `comparator`. The list `students` is then set to `sortedStudents`, and
 `StudentListPanel#setList(ObservableList<Student> studentList)` is called to refresh the UI `ListView` with the new
 `students` list.
 
@@ -288,9 +288,9 @@ _{To add activity diagram}_
 **Aspect: How to sort empty details**
 
 * Students with empty details are sorted last in ascending order, and first in descending order
-    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter. 
-            Users can sort a detail in descending order to see which students have the detail empty. 
-    * Cons: Top of the list may be cluttered with empty details when sorted in descending order. 
+    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter.
+            Users can sort a detail in descending order to see which students have the detail empty.
+    * Cons: Top of the list may be cluttered with empty details when sorted in descending order.
 
 
 ### \[Proposed\] Alias feature
@@ -302,7 +302,7 @@ in-built command names (e.g. add, delete) will be stored in a constant `reserved
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager` 
+Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
 with an empty `UniqueAliasList`.
 
 Step 2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command 
@@ -310,9 +310,9 @@ will check that `list` is in the `reservedCommandList` and `ls` is not in the `U
 are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
 `Model#addAlias(Alias toadd)`.
 
-Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that 
-the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in 
-`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand` 
+Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that
+the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in
+`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand`
 is then executed.
 
 _{To add sequence diagram}_
@@ -337,8 +337,8 @@ Example of current implementation of find feature
 Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
 and their data into a list of students.
 
-Step 2. When user types in the find command the logic will tell the program to go through all the fields for every 
-student inside the student class and return the student if there is a successful match in any of the fields 
+Step 2. When user types in the find command the logic will tell the program to go through all the fields for every
+student inside the student class and return the student if there is a successful match in any of the fields
 
 #### Design considerations:
 
@@ -631,13 +631,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The given order is invalid.
 
-    * 1b1. FRIDAY shows an error message. 
+    * 1b1. FRIDAY shows an error message.
 
       Use case resumes at step 1.
 
-* 1c. More than one criterion is given. 
+* 1c. More than one criterion is given.
 
-    * 1c1. FRIDAY shows an error message. 
+    * 1c1. FRIDAY shows an error message.
 
       Use case resumes at step 1.
 
@@ -656,7 +656,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends 
+  Use case ends
 
 * 3a. The given index is invalid.
 
@@ -665,6 +665,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 3b. The Mastery Check of the student has already been marked as passed.
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Unmark a student's Mastery Check.**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to unmark the Mastery Check of a specific student
+4. FRIDAY unmarks the student's Mastery Check as passed
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The Mastery Check of the student has not yet been marked as passed.
 
     * 3b1. FRIDAY shows an error message.
 
@@ -684,9 +711,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY. 
+* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
 * **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
-* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants). 
+* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
 --------------------------------------------------------------------------------------------------------------------
