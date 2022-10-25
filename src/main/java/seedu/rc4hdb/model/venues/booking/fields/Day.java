@@ -17,7 +17,7 @@ public class Day extends StringField implements BookingField {
     public static final String MESSAGE_CONSTRAINTS =
             "Day should only contain the first 3 letters of the day of the week. Day is also not case-sensitive";
 
-    public static final List<String> daysOfWeek = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
+    public static final List<String> DAYS_OF_WEEK = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
 
     /**
      * Constructs a {@code Day}.
@@ -42,7 +42,7 @@ public class Day extends StringField implements BookingField {
     }
 
     private int getIndex(Day day) {
-        return this.daysOfWeek.indexOf(day.toString());
+        return this.DAYS_OF_WEEK.indexOf(day.toString());
     }
 
 }
