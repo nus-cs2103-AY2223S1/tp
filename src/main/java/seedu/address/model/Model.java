@@ -62,6 +62,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same identity as any person in {@code other} exists in the address book.
+     */
+    boolean hasPersons(AddressBook addressBook);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -80,6 +85,13 @@ public interface Model {
      * existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Appends {@code addressBook} to the current address book.
+     * The person identity of everyone in {@code addressBook} must not be the same as another
+     * existing person in the current address book.
+     */
+    void appendAddressBook(AddressBook addressBook);
 
     /**
      * Returns an unmodifiable view of the filtered list of persons.

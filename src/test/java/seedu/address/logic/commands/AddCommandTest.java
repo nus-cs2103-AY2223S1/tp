@@ -136,6 +136,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPersons(AddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -144,6 +149,11 @@ public class AddCommandTest {
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void appendAddressBook(AddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        };
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {

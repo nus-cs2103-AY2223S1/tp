@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalFilePaths.PATH_TO_JERRY_JPG;
+import static seedu.address.testutil.TypicalFilePaths.PATH_TO_JERRY_WITH_SPACE_JPG;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -47,6 +49,7 @@ public class ParserUtilTest {
     private static final String INVALID_MAJOR = "C0MPUT3R $C13NC3";
     private static final String INVALID_ID = "J9021-1";
     private static final String INVALID_TITLE = "Intern | Software Engineer";
+    private static final String INVALID_FILE_PATH = "src\0a";
 
     private static final String LENGTH_LIMIT_EXCEEDED_NAME = "Rachel Wakanda Always and Forever Avengers Assemble";
     private static final String LENGTH_LIMIT_EXCEEDED_PHONE = "6512345678901234567890";
@@ -83,6 +86,8 @@ public class ParserUtilTest {
     private static final String VALID_MULTIPLE_SPACES_MAJOR = VALID_MAJOR.replaceAll(SINGLE_SPACE, MULTIPLE_SPACES);
     private static final String VALID_ID = "J90211";
     private static final String VALID_TITLE = "Intern - Software Engineer";
+    private static final String VALID_FILE_PATH = "src/folder/jerry.jpg";
+    private static final String VALID_FILE_PATH_WITH_SPACE = "src/folder/jerry with space.jpg";
     private static final String VALID_MULTIPLE_SPACES_TITLE = VALID_TITLE.replaceAll(SINGLE_SPACE, MULTIPLE_SPACES);
     private static final String VALID_TAG_1 = "Final Interview";
     private static final String VALID_MULTIPLE_SPACES_TAG = VALID_TAG_1.replaceAll(SINGLE_SPACE, MULTIPLE_SPACES);
@@ -108,6 +113,24 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseFilePath_invalidFilePath_throwsParseException() {
+        // Empty string
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilePath(""));
+
+        // Invalid filename
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilePath(INVALID_FILE_PATH));
+    }
+
+    @Test
+    public void parseFilePath_validFilePath_success() throws Exception {
+        // File name without space
+        assertEquals(PATH_TO_JERRY_JPG, ParserUtil.parseFilePath(VALID_FILE_PATH));
+
+        // File name with space
+        assertEquals(PATH_TO_JERRY_WITH_SPACE_JPG, ParserUtil.parseFilePath(VALID_FILE_PATH_WITH_SPACE));
     }
 
     @Test

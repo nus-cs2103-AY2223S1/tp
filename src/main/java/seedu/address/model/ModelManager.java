@@ -97,6 +97,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersons(AddressBook other) {
+        requireNonNull(other);
+        return addressBook.hasPersons(other);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -114,6 +120,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void appendAddressBook(AddressBook other) {
+        addressBook.appendAddressBook(other);
     }
 
     //=========== Filtered Person List Accessors =============================================================

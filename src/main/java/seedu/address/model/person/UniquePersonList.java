@@ -36,6 +36,19 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains any equivalent person in the given list.
+     */
+    public boolean containsSome(List<Person> toCheck) {
+        requireNonNull(toCheck);
+        for (Person personToCheck : toCheck) {
+            if (contains(personToCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
@@ -94,6 +107,21 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Appends the contents of {@code persons} to this list
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void appendList(List<Person> persons) {
+        requireAllNonNull(persons);
+        if (!personsAreUnique(persons)) {
+            throw new DuplicatePersonException();
+        }
+
+        for (Person person : persons) {
+            add(person);
+        }
     }
 
     /**

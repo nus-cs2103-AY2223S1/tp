@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -138,6 +139,34 @@ public class StringUtilTest {
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
+    }
+
+    //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
+
+    @Test
+    public void trimAndReplaceMultipleSpaces() {
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces(null), null);
+
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces("test "), "test"); // No spaces
+
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces("test "),
+                "test"); // 1 trailing space
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces(" test "),
+                "test"); // 1 Leading and trailing space
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces("   test     "),
+                "test"); // Multiple Leading and trailing space
+
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces("test 123"),
+                "test 123"); // 1 space in between
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces("test      123"),
+                "test 123"); // Multiple spaces in between
+
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces("   test 123   "),
+                "test 123"); // 1 space in between and multiple leading and trailing spaces
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces(" test      123 "),
+                "test 123"); // Multiple spaces in between and 1 leading and trailing space
+        assertEquals(StringUtil.trimAndReplaceMultipleSpaces("    test      123    "),
+                "test 123"); // Multiple spaces in between and multiple leading and trailing spaces
     }
 
 }

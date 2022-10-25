@@ -65,4 +65,17 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Trims value and replaces multiple spaces with a single space
+     * Will return null if value is null
+     *
+     * @param value a String to be processed
+     */
+    public static String trimAndReplaceMultipleSpaces(String value) {
+        if (value == null) {
+            return null;
+        }
+        return value.trim().replaceAll(" +", " ");
+    }
 }
