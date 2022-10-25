@@ -6,7 +6,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import jarvis.commons.core.index.Index;
 import jarvis.model.exceptions.DuplicateStudentException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import javafx.collections.FXCollections;
