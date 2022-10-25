@@ -61,27 +61,27 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor
-                .setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+                    .setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor
-                .setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+                    .setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor
-                .setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+                    .setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor
-                .setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+                    .setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_CAP).isPresent()) {
             editPersonDescriptor
-                .setCap(ParserUtil.parseCap(argMultimap.getValue(PREFIX_CAP).get()));
+                    .setCap(ParserUtil.parseCap(argMultimap.getValue(PREFIX_CAP).get()));
         }
         if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
             editPersonDescriptor
-                .setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+                    .setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
         }
         if (argMultimap.getValue(PREFIX_GRADUATION_DATE).isPresent()) {
             editPersonDescriptor
@@ -90,19 +90,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_UNIVERSITY).isPresent()) {
             editPersonDescriptor
-                .setUniversity(ParserUtil.parseUniversity(argMultimap.getValue(PREFIX_UNIVERSITY).get()));
+                    .setUniversity(ParserUtil.parseUniversity(argMultimap.getValue(PREFIX_UNIVERSITY).get()));
         }
         if (argMultimap.getValue(PREFIX_MAJOR).isPresent()) {
             editPersonDescriptor
-                .setMajor(ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get()));
+                    .setMajor(ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get()));
         }
         if (argMultimap.getValue(PREFIX_JOB_ID).isPresent()) {
             editPersonDescriptor
-                .setId(ParserUtil.parseId(argMultimap.getValue(PREFIX_JOB_ID).get()));
+                    .setId(ParserUtil.parseId(argMultimap.getValue(PREFIX_JOB_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_JOB_TITLE).isPresent()) {
             editPersonDescriptor
-                .setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_JOB_TITLE).get()));
+                    .setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_JOB_TITLE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
