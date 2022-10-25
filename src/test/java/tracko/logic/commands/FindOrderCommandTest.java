@@ -1,2 +1,4 @@
-package tracko.logic.commands;public class FindOrderCommandTest {
+package tracko.logic.commands;
+
+public class FindOrderCommandTest {
 }
