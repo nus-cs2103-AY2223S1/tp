@@ -4,24 +4,24 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.internship.CompanyContainsKeywordsPredicate;
+import seedu.address.model.internship.ContainsKeywordsPredicate;
 
 /**
- * Finds and lists all internships in address book whose company contains any of the argument keywords.
+ * Finds and lists all internships in address book whose company or tags contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships whose company contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships whose company or tags contain"
+            + " any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " google apple tiktok";
+            + "Example: " + COMMAND_WORD + " google apple frontend";
 
-    private final CompanyContainsKeywordsPredicate predicate;
+    private final ContainsKeywordsPredicate predicate;
 
-    public FindCommand(CompanyContainsKeywordsPredicate predicate) {
+    public FindCommand(ContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
