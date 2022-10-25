@@ -23,8 +23,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

@@ -206,7 +206,6 @@ public interface Model {
     void filterTask();
 
     /**
-<<<<<<< HEAD
      * Update the task of the filtered task list to set it to be a completed task.
      *
      * @param targetIndex The index of the task in the filtered task list.
