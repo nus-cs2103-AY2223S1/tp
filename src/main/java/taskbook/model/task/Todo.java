@@ -52,7 +52,7 @@ public class Todo extends Task {
     public String getStatus() {
         return isDone() ? "[X]  [T]" : "[  ]  [T]";
     }
-  
+
     public LocalDate getDate() {
         return null;
     }
