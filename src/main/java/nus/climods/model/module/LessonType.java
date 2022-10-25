@@ -1,7 +1,8 @@
 package nus.climods.model.module;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
+/**
+ * Module lesson type
+ */
 public enum LessonType {
     TUT("Tutorial"),
     LEC("Lecture"),
@@ -11,11 +12,21 @@ public enum LessonType {
 
     private final String valueStr;
 
+    /**
+     * Creates a LessonType enum
+     *
+     * @param valueStr lesson type description
+     */
     LessonType(String valueStr) {
         this.valueStr = valueStr;
     }
 
-    @JsonCreator
+    /**
+     * Creates a LessonType from a given value
+     *
+     * @param value value
+     * @return lesson type
+     */
     public static LessonType fromValue(String value) {
         for (LessonType l : LessonType.values()) {
             if (l.valueStr.equals(value)) {
