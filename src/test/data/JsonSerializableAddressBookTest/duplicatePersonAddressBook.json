@@ -4,12 +4,14 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "tutorial": "T08",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "occupation" : "STUDENT",
     "name": "Alice Pauline",
     "phone": "94351253",
+    "tutorial": "T08",
     "email": "pauline@example.com",
     "address": "4th street"
   } ]
