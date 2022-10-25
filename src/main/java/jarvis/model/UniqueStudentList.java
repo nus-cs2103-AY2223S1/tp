@@ -119,7 +119,7 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalUnmodifiableList;
     }
 
-    public int numStudents() {
+    public int getNumStudents() {
         return internalList.size();
     }
 
