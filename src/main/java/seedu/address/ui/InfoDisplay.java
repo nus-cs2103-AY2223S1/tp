@@ -88,7 +88,6 @@ public class InfoDisplay extends UiPart<Region> {
      * Displays a Graph in a new window.
      */
     public void displayGraph() {
-        System.out.println("clicked");
         Stage stage = new Stage();
         stage.setTitle("Grades of " + name.getText());
         Group root = new Group(chart);
