@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.student;
 
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -20,14 +21,17 @@ public class ExtractEmailsCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Copied link to clipboard! Open it in a browser.";
 
+    private static String generateUrl(Collection<Student> students) {
+        return students.stream()
+                .map(student -> student.getEmail().value)
+                .collect(Collectors.joining(",", "mailto:", ""));
+    }
     @Override
     public CommandResult execute(Model model) {
         ObservableList<Student> students = model.getFilteredPersonList();
 
         // Combine emails into a mailto: string
-        String mailtoString = students.stream()
-                .map(student -> student.getEmail().value)
-                .collect(Collectors.joining(",", "mailto:", ""));
+        String mailtoString = generateUrl(students);
 
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
