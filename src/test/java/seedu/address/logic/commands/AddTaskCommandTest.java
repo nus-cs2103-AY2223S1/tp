@@ -171,7 +171,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void updateFilteredTaskList(Comparator<Task> comparator) {
+        public void updateSortingCriteria(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
