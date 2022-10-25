@@ -284,7 +284,7 @@ Listed here are some frequently asked questions. Should you require any other as
 **A**: No, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
 
 **Q**: Why are there no guests in my GuestBook?<br>
-**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing Guest Book to reset it to prevent any malicious files from being used.
+**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing GuestBook to reset it to prevent any malicious files from being used.
 
 --------------------------------------------------------------------------------------------------------------------
 
