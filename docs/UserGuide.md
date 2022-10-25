@@ -130,7 +130,7 @@ Example command: `github 1`
 --------------------------------------------------------------------------------------------------------------------
 ## 3.5 Fast Template Command
 
-Returns a template with all the fields of a Person on the CLI. 
+Returns a template with all the fields of a Person on the CLI.
 
 Format: `tt PERSON`
 * PERSON can be `prof`, `student`, or `ta`.
