@@ -43,7 +43,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withIncome("$1000")
             .withMonthly("$200")
-            .withRiskTag("HIGH")
+            .withRiskTag("LOW")
             .withTags("friends")
             .build();
 
@@ -104,7 +104,7 @@ public class TypicalPersons {
             .withAddress("little tokyo")
             .withIncome("$1000")
             .withMonthly("$500")
-            .withRiskTag("HIGH")
+            .withRiskTag("MEDIUM")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_23_MAR_2024)
                     .withLocation(VALID_LOCATION_WESTMALL).build())

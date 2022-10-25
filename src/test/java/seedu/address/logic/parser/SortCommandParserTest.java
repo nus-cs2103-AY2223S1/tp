@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.sort.SortByAppointment;
 import seedu.address.logic.parser.sort.SortByName;
+import seedu.address.logic.parser.sort.SortByRiskTag;
 
 
 public class SortCommandParserTest {
@@ -39,9 +40,14 @@ public class SortCommandParserTest {
                 new SortCommand(new SortByAppointment("asc"), "appt");
         assertParseSuccess(parser, "appt", expectedSortCommandAppt);
 
+        SortCommand expectedSortCommandRisk =
+                new SortCommand(new SortByRiskTag("asc"), "risk");
+        assertParseSuccess(parser, "risk", expectedSortCommandRisk);
+
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name \n", expectedSortCommandName);
         assertParseSuccess(parser, " \t appt \n", expectedSortCommandAppt);
+        assertParseSuccess(parser, " \t risk \n", expectedSortCommandRisk);
     }
 
     @Test
@@ -54,9 +60,14 @@ public class SortCommandParserTest {
                 new SortCommand(new SortByAppointment("desc"), "appt");
         assertParseSuccess(parser, "appt desc", expectedSortCommandAppt);
 
+        SortCommand expectedSortCommandRisk =
+                new SortCommand(new SortByRiskTag("desc"), "risk");
+        assertParseSuccess(parser, "risk", expectedSortCommandRisk);
+
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n name desc \n", expectedSortCommandName);
         assertParseSuccess(parser, " \t appt desc \n", expectedSortCommandAppt);
+        assertParseSuccess(parser, " \t risk \n", expectedSortCommandRisk);
     }
 }
 
