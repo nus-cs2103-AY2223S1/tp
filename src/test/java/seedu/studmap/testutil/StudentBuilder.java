@@ -168,16 +168,25 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code id} of the {@code StudentID} that we are building.
+     */
     public StudentBuilder withId(String id) {
         this.id = new StudentID(id);
         return this;
     }
 
+    /**
+     * Sets the {@code gitName} of the {@code GitName} that we are building.
+     */
     public StudentBuilder withGitName(String name) {
         this.gitName = new GitName(name);
         return this;
     }
 
+    /**
+     * Sets the {@code handle} of the {@code TeleHandle} that we are building.
+     */
     public StudentBuilder withTeleHandle(String teleHandle) {
         this.handle = new TeleHandle(teleHandle);
         return this;

@@ -5,7 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
-import seedu.studmap.model.student.*;
+import seedu.studmap.model.student.Address;
+import seedu.studmap.model.student.Email;
+import seedu.studmap.model.student.GitName;
+import seedu.studmap.model.student.Name;
+import seedu.studmap.model.student.Phone;
+import seedu.studmap.model.student.Student;
+import seedu.studmap.model.student.StudentID;
+import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 
 /**
