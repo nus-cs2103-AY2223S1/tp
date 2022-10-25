@@ -372,3 +372,6 @@
     -fx-underline: true;
 }
 
+.link_panel {
+    -fx-background-color: #F7ECDE;
+}
