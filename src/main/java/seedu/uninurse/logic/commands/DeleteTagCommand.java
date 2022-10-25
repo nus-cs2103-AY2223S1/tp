@@ -9,9 +9,9 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
-import seedu.uninurse.model.person.Patient;
 
 /**
  * Deletes a tag from a patient identified using its displayed index from the patient list.
