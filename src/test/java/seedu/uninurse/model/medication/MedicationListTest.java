@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
 import seedu.uninurse.model.medication.exceptions.MedicationNotFoundException;
-import seedu.uninurse.model.medication.exceptions.UnmodifiedMedicationException;
 import seedu.uninurse.testutil.TypicalMedications;
 
 public class MedicationListTest {
@@ -64,9 +63,9 @@ public class MedicationListTest {
     }
 
     @Test
-    public void edit_sameMedication_throwsUnmodifiedMedicationException() {
+    public void edit_sameMedication_throwsDuplicateMedicationException() {
         MedicationList updatedMedicationList = medicationList.add(TypicalMedications.MEDICATION_AMOXICILLIN);
-        assertThrows(UnmodifiedMedicationException.class, () -> updatedMedicationList
+        assertThrows(DuplicateMedicationException.class, () -> updatedMedicationList
                 .edit(0, TypicalMedications.MEDICATION_AMOXICILLIN));
     }
 

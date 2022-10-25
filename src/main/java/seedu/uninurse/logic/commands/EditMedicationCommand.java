@@ -13,7 +13,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
-import seedu.uninurse.model.medication.exceptions.UnmodifiedMedicationException;
+import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -36,7 +36,7 @@ public class EditMedicationCommand extends EditGenericCommand {
     public static final String MESSAGE_EDIT_MEDICATION_SUCCESS = "Edited medication %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final String MESSAGE_NOT_EDITED = "Medication has not been modified.";
+    public static final String MESSAGE_NOT_EDITED = "Medication to edit must be provided.";
     public static final String MESSAGE_EDIT_DUPLICATE_MEDICATION =
             "Medication already exists in %1$s's medication list.";
 
@@ -83,16 +83,12 @@ public class EditMedicationCommand extends EditGenericCommand {
                 editMedicationDescriptor.getType().orElse(initialMedication.getType()),
                 editMedicationDescriptor.getDosage().orElse(initialMedication.getDosage()));
 
-        if (initialMedicationList.getInternalList().contains(updatedMedication)) {
-            throw new CommandException(String.format(MESSAGE_EDIT_DUPLICATE_MEDICATION, patientToEdit.getName()));
-        }
-
         MedicationList updatedMedicationList;
 
         try {
             updatedMedicationList = initialMedicationList.edit(medicationIndex.getZeroBased(), updatedMedication);
-        } catch (UnmodifiedMedicationException exception) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
+        } catch (DuplicateMedicationException exception) {
+            throw new CommandException(String.format(MESSAGE_EDIT_DUPLICATE_MEDICATION, patientToEdit.getName()));
         }
 
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
