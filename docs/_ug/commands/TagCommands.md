@@ -53,9 +53,6 @@ Carrots
 
 > Tags the item at the specified index
 
-**Format**: `tag n/TAG_NAME id/INDEX`
-> Tags an item (based on its index on the list) with a tag that exists in FoodRem.
-
 **Example Input:**
 
 ```text
@@ -81,7 +78,7 @@ Tags: {Vegetables}
 
 #### Untag an item: `untag`
 
-**Format**: `untag n/TAG_NAME id/INDEX`
+**Format**: `untag INDEX n/TAG_NAME`
 
 > Untags the item at the specified index
 
@@ -114,8 +111,9 @@ Tags: {}
 
 > Renames a tag currently in FoodRem.
 
-**Note:**
-* The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
+```info
+The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
+```
 
 **Example Input:**
 

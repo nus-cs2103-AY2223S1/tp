@@ -7,7 +7,9 @@ If you have not installed FoodRem head over to the [Installation](#installation)
 
 Once FoodRem is installed, you can head over to the section [Using FoodRem](#using-foodrem) which will share with you the basics of FoodRem. This includes:
 
-* Introducing you to the general [Command Format](#command-format).
+* FoodRem [Layout](#layout)
+* [Items and Tags](#items-and-tags) in FoodRem
+* FoodRem [Command Format](#command-format).
 * [Flags](#flags) and [Placeholders](#placeholders):
   * Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
   * The description of all syntax and how to use them
@@ -16,10 +18,6 @@ Once FoodRem is installed, you can head over to the section [Using FoodRem](#usi
 If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all currently supported FoodRem commands.
 
 Here are some icons you may encounter in FoodRem and what they mean:
-
-<!-- TODO: Change to Admonishments -->
-* ℹ️ : Additional Information
-* ❗ : Warning
 
 If you are stuck, refer to the section on [Troubleshooting](#troubleshooting) or [FAQ](#faq).
 
