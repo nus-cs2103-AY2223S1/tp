@@ -52,7 +52,7 @@ public class SampleDataUtil {
                     new TelegramHandle("berniceyu"),
                     new TutorialModule("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade(""),
-                getTagSet("active", "strong programmer")),
+                getTagSet("active", "strong")),
             new Student(new Name("Charlotte Oliveiro"),
                     new StudentId("A0000000C"),
                     new Phone("93210283"), new Email("charlotte@example.com"),
@@ -86,11 +86,11 @@ public class SampleDataUtil {
 
     public static Reminder[] getSampleReminders() {
         return new Reminder[] {
-            new Reminder(new ReminderName("Mark Midterms"), Datetime.fromFormattedString("20:00"),
+            new Reminder(new ReminderName("Mark Midterms"), Datetime.fromFormattedString("2022-01-01 20:00"),
                     new ReminderPriority("HIGH"), new ReminderDescription("300 papers to mark")),
-            new Reminder(new ReminderName("Send email to TAs"), Datetime.fromFormattedString("21:00"),
+            new Reminder(new ReminderName("Send email to TAs"), Datetime.fromFormattedString("2022-01-01 21:00"),
                     new ReminderPriority("MEDIUM"), new ReminderDescription("Erratum in midterms")),
-            new Reminder(new ReminderName("Meeting with Prof Lee"), Datetime.fromFormattedString("22:00"),
+            new Reminder(new ReminderName("Meeting with Prof Lee"), Datetime.fromFormattedString("2022-01-01 22:00"),
                     new ReminderPriority("LOW"), new ReminderDescription("Discuss incoming finals for CS2201")),
         };
     }
