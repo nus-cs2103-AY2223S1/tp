@@ -43,8 +43,7 @@ public class Person {
                   HospitalWing hospitalWing, FloorNumber floorNumber, WardNumber wardNumber,
                   Set<Medication> medications, List<PastAppointment> pastAppointments,
                   UpcomingAppointment upcomingAppointment) {
-        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications,
-                pastAppointments);
+        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications, pastAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -191,6 +190,17 @@ public class Person {
             isEqual = isEqual && otherPerson.getHospitalWing().equals(getHospitalWing())
                     && otherPerson.getFloorNumber().equals(getFloorNumber())
                     && otherPerson.getWardNumber().equals(getWardNumber());
+        }
+        List<PastAppointment> otherPastAppointments = otherPerson.getPastAppointments();
+        if (otherPastAppointments == null && pastAppointments == null) {
+            isEqual = isEqual && true;
+        } else if (otherPastAppointments == null || pastAppointments == null) {
+            isEqual = isEqual && false;
+        } else {
+            isEqual = isEqual && otherPastAppointments.size() == pastAppointments.size();
+            for (int i = 0; i < pastAppointments.size(); i++) {
+                isEqual = isEqual && otherPastAppointments.get(i).equals(pastAppointments.get(i));
+            }
         }
         return isEqual;
     }
