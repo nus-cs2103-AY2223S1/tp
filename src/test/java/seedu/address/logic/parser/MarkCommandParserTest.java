@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_AP
 import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_INTERVIEWED;
 import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_INVALID;
 import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_REJECTED;
+import static seedu.address.logic.commands.CommandTestUtil.APPLICATION_STATUS_SHORTLISTED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
@@ -27,13 +28,17 @@ public class MarkCommandParserTest {
     public void parse_validArgs_returnsMarkCommand() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
 
+        //For accepted
+        String userInputAccepted = targetIndex.getOneBased() + APPLICATION_STATUS_ACCEPTED;
+        assertParseSuccess(parser, userInputAccepted, new MarkCommand(targetIndex, ApplicationStatus.Accepted));
+
         //For applied
         String userInputApplied = targetIndex.getOneBased() + APPLICATION_STATUS_APPLIED;
         assertParseSuccess(parser, userInputApplied, new MarkCommand(targetIndex, ApplicationStatus.Applied));
 
-        //For rejected
-        String userInputAccepted = targetIndex.getOneBased() + APPLICATION_STATUS_ACCEPTED;
-        assertParseSuccess(parser, userInputAccepted, new MarkCommand(targetIndex, ApplicationStatus.Accepted));
+        //For shortlisted
+        String userInputShortlisted = targetIndex.getOneBased() + APPLICATION_STATUS_SHORTLISTED;
+        assertParseSuccess(parser, userInputShortlisted, new MarkCommand(targetIndex, ApplicationStatus.Shortlisted));
 
         //For interviewed
         String userInputInterviewed = targetIndex.getOneBased() + APPLICATION_STATUS_INTERVIEWED;

@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
+      <ColumnConstraints minWidth="10" prefWidth="23" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-      <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
-      </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="company" text="\$first" styleClass="cell_big_label" />
-        <Label fx:id="link" styleClass="cell_small_label" text="\$link" />
+    <rowConstraints>
+      <RowConstraints minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <Label fx:id="id" styleClass="cell_index" GridPane.columnIndex="0" />
+    <VBox alignment="CENTER_LEFT" spacing="2" GridPane.columnIndex="1">
+      <HBox spacing="30" alignment="BOTTOM_LEFT">
+        <Text fx:id="company" text="\$first" styleClass="cell_company" />
+        <Button fx:id="linkButton" styleClass="cell_button_link" mnemonicParsing="false" onAction="#copyInternshipUrl" />
         <Pane maxHeight="-Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
         <Label fx:id="applicationStatus" styleClass="applicationStatus_label" text="\$applicationStatus" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+      <Label fx:id="description" styleClass="cell_small_text" text="\$description" wrapText="true" />
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label styleClass="cell_small_label" text="Applied:" />
-        <Label fx:id="appliedDate" styleClass="cell_small_label" text="\$appliedDate" />
+        <Label fx:id="appliedDateLabel" styleClass="cell_small_label" text="\$appliedDateLabel" />
+        <Label fx:id="appliedDate" styleClass="cell_small_text" text="\$appliedDate" />
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="interviewDateTime" styleClass="cell_small_label" text="\$interviewDateTime" />
+        <Label fx:id="interviewDateTimeLabel" styleClass="cell_small_label" text="\$interviewDateTimeLabel" />
+        <Label fx:id="interviewDateTime" styleClass="cell_small_text" text="\$interviewDateTime" />
+        <Pane maxHeight="-Infinity" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+        <VBox fx:id="tags" />
       </HBox>
     </VBox>
   </GridPane>

@@ -103,11 +103,13 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
+
         return otherInternship.getCompany().equals(getCompany())
                 && otherInternship.getLink().equals(getLink())
                 && otherInternship.getDescription().equals(getDescription())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
                 && otherInternship.getAppliedDate().equals(getAppliedDate())
+                && InterviewDateTime.bothNullOrEqual(getInterviewDateTime(), otherInternship.getInterviewDateTime())
                 && otherInternship.getTags().equals(getTags());
     }
 
@@ -121,24 +123,24 @@ public class Internship {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getCompany())
-                .append("; Link: ")
+                .append(";\nLink: ")
                 .append(getLink())
-                .append("; Description: ")
+                .append(";\nDescription: ")
                 .append(getDescription())
-                .append("; Application Status: ")
+                .append(";\nApplication status: ")
                 .append(getApplicationStatus())
-                .append("; Applied Date: ")
+                .append(";\nApplied date: ")
                 .append(getAppliedDate());
 
         InterviewDateTime interviewDateTime = getInterviewDateTime();
         if (interviewDateTime != null) {
-            builder.append("; Interview Date: ")
+            builder.append(";\nInterview date: ")
                     .append(getInterviewDateTime());
         }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append(";\nTags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

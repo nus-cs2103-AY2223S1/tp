@@ -45,9 +45,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
             + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
+            + PREFIX_LINK + "https://careers.tiktok.com/position "
             + PREFIX_DESCRIPTION + "Global e-Commerce";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
@@ -158,7 +158,7 @@ public class EditCommand extends Command {
             setLink(toCopy.link);
             setDescription(toCopy.description);
             setAppliedDate(toCopy.appliedDate);
-            setInterviewDate(toCopy.interviewDateTime);
+            setInterviewDateTime(toCopy.interviewDateTime);
             setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
@@ -202,7 +202,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(appliedDate);
         }
 
-        public void setInterviewDate(InterviewDateTime interviewDateTime) {
+        public void setInterviewDateTime(InterviewDateTime interviewDateTime) {
             this.interviewDateTime = interviewDateTime;
         }
 

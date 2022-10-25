@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.internship.Internship;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
+    private SortedList<Internship> sortedInternships;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
+        sortedInternships = new SortedList<>(filteredInternships);
     }
 
     public ModelManager() {
@@ -124,13 +128,19 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {
-        return filteredInternships;
+        return sortedInternships;
     }
 
     @Override
     public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
         filteredInternships.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedInternshipList(Comparator<Internship> comparator) {
+        requireNonNull(comparator);
+        sortedInternships.setComparator(comparator);
     }
 
     @Override
@@ -149,7 +159,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredInternships.equals(other.filteredInternships);
+                && sortedInternships.equals(other.sortedInternships);
     }
 
 }
