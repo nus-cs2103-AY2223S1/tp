@@ -90,4 +90,9 @@ public interface Model {
 
     /** Returns a sorted list of the reminder list */
     SortedList<Pair<Person, Reminder>> getSortedReminderList();
+
+    /**
+     * Adds the given person reminder pair.
+     */
+    void addReminder(Person person, Reminder reminder);
 }

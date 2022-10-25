@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +12,7 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is always valid
  */
 public class Birthday {
-    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in the format 'DD-MM-YYYY'";
+    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in the format '" + DATE_FORMAT_PATTERN + "'";
 
     public final LocalDate value;
 
@@ -22,12 +23,12 @@ public class Birthday {
      */
     public Birthday(String birthday) {
         requireNonNull(birthday);
-        value = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("d-MM-yyyy"));
+        value = LocalDate.parse(birthday, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
     }
 
     @Override
     public String toString() {
-        return value.format(DateTimeFormatter.ofPattern("d-MM-yyyy"));
+        return value.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
     }
 
     @Override
@@ -47,7 +48,7 @@ public class Birthday {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDate.parse(test, DateTimeFormatter.ofPattern("d-MM-yyyy"));
+            LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
         } catch (DateTimeParseException e) {
             return false;
         }

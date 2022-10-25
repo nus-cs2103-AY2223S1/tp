@@ -116,7 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateReminderList(person);
+        addReminder(person, person.getReminders().iterator().next());
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -170,12 +170,9 @@ public class ModelManager implements Model {
         return reminders;
     }
 
-    /**
-     * Updates the reminder list with the person's {@code Reminders}.
-     */
-    private void updateReminderList(Person person) {
-        unsortedReminders.addAll(person.getReminders().stream().map(reminder -> new Pair<Person, Reminder>(
-                person, reminder)).collect(Collectors.toList()));
+    @Override
+    public void addReminder(Person person, Reminder reminder) {
+        unsortedReminders.add(new Pair<>(person, reminder));
     }
 
     @Override

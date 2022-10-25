@@ -46,6 +46,7 @@ public class ReminderCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         personToEdit.getReminders().add(reminder);
+        model.addReminder(personToEdit, reminder);
 
         return new CommandResult(generateSuccessMessage(personToEdit));
     }

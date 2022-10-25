@@ -9,6 +9,8 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Reminder;
 
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
+
 /**
  * An UI component that displays reminder information of a {@code Person}.
  */
@@ -47,7 +49,7 @@ public class ReminderCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         reminderTask.setText(reminder.task);
         reminderDate.setText(reminder.date
-                .format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
+                .format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
     }
 
     @Override

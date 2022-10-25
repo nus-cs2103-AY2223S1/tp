@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +44,7 @@ public class ReminderCommandParser {
         String date = argMultimap.getValue(PREFIX_DATE).orElse("");
 
         try {
-            LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
         } catch (DateTimeParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ReminderCommand.MESSAGE_USAGE), e);
