@@ -37,7 +37,7 @@ public class UntagCommandTest {
         // Creating a copy of first item of model (with tag removed)
         Item editedItem = new ItemBuilder(model.getCurrentList().get(0)).build();
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
-        editedItem.removeItemTag(tag);
+        editedItem.getTagSet().remove(tag);
         //The initial model does not have the tag in its UniqueTagList
         //model.addTag(tag);
 
@@ -53,7 +53,7 @@ public class UntagCommandTest {
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
         assertCommandSuccess(untagItemCommand, model, expectedMessage, expectedModel);
-        assertFalse(model.getCurrentList().get(0).containsTag(tag));
+        assertFalse(model.getCurrentList().get(0).getTagSet().contains(tag));
 
     }
 
@@ -90,7 +90,7 @@ public class UntagCommandTest {
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
         //Manually remove tag from typical FoodRem item
-        model.getCurrentList().get(0).removeItemTag(tag);
+        model.getCurrentList().get(0).getTagSet().remove(tag);
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 

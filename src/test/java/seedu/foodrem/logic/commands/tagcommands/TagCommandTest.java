@@ -54,7 +54,7 @@ public class TagCommandTest {
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
         assertCommandSuccess(tagItemCommand, model, expectedMessage, expectedModel);
-        assertTrue(model.getCurrentList().get(0).containsTag(tag));
+        assertTrue(model.getCurrentList().get(0).getTagSet().contains(tag));
 
     }
 
@@ -92,7 +92,7 @@ public class TagCommandTest {
 
         model.addTag(tag);
 
-        model.getCurrentList().get(0).addItemTag(tag);
+        model.getCurrentList().get(0).getTagSet().add(tag);
 
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
