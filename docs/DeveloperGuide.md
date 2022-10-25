@@ -303,7 +303,7 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 ### MarkRoomsUnclean Command
 
 #### Implementation
-* The `markRoomsUnclean` command edits all the guests in the guest book and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields. 
+* The `markRoomsUnclean` command edits all the guests in the guest book and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields.
 
 The following activity diagram summarizes what happens when a user enters a `markRoomsUnclean` command.
 
@@ -311,7 +311,7 @@ The following activity diagram summarizes what happens when a user enters a `mar
 
 #### Design Considerations:
 **Aspect: The scope at which the command changes all guests' isRoomClean statuses**
-* Alternative 1: Allow `markRoomsUnclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete). 
+* Alternative 1: Allow `markRoomsUnclean` command to operate only on the last shown list instead of the entire list. This is to Standardise how edits are made across the commands (e.g. edit and delete).
   * Pros: This might be more intuitive for users, as `edit` and `delete` commands work only on the last shown lists.
   * Cons: User is unable to change all the guests' isRoomClean statuses in a single command.
 * Alternative 2 (current choice): Allow `markRoomsUnclean` command to change all guests' isRoomClean statuses in the guest book instead of the last shown list.
@@ -471,10 +471,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * To know when the guests check in and check out
 * To keep track of the guests' bills
-* To know where the guests book the hotel from
 * To note down all the requirements/requests that the guests asked for
 * To note down the status of the room, if the room is cleaned or not cleaned
 
@@ -506,7 +505,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | hotel manager            | get the details of the bill of the hotel guest                     | charge the guest the right amount                                                         |
 | `* *`    | hotel manager            | be able to add to the bill of the hotel guest                      | update it if there are any changes                                                        |
 | `* *`    | hotel manager            | be able to deduct from the bill of the hotel guest                 | update it if there are any changes                                                        |
-| `* *`    | hotel manager            | view if a room has been cleaned                                    | allocate my cleaners cleaning duties                                                      | 
+| `* *`    | hotel manager            | view if a room has been cleaned                                    | allocate my cleaners cleaning duties                                                      |
 | `* *`    | hotel manager            | mark a room as clean                                               | my cleaners will not need to waste time cleaning the room again                           |
 | `* *`    | hotel manager            | mark a room as not clean                                           | my cleaners will know which room to clean                                                 |
 | `* *`    | hotel manager            | get the details of any special requests from the guests            | serve the guest as requested                                                              |
@@ -530,7 +529,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add a guest to the list with guest's details.
 2. System adds the guest.
-    
+
     Use case ends.
 
 **Extensions**
@@ -580,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
 
       Use case resumes at step 2.
-  
+
 **Use case 4: Delete a guest**
 
 **MSS**
@@ -739,27 +738,27 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Only one guest to be added.
       The name of the guest to be added should not exist in the guest book.
    The format and data of the command should be valid.
-   
-   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 
+
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73
                   dr/13/09/22 - 15/09/22 ng/1 rq/Apply for room service `<br>
       Expected: Guest add successfully
-   
+
    3. Test case: `add n/John Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added,
       because the name is already in the guest book. Error details shown in the status message.
          Status bar remains the same.
-   
+
    4. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the name is invalid. Error details shown in the status message.
       Status bar remains the same.
-   
+
    5. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the phone number is invalid. Error details shown in the status message.
       Status bar remains the same.
-   
+
    6. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the email address is invalid. Error details shown in the status message.
@@ -777,7 +776,7 @@ testers are expected to do more *exploratory* testing.
 
    9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/5 rq/Kill the insect `<br>
-      Expected: No guest is added, because the number of guest is invalid(>4). 
+      Expected: No guest is added, because the number of guest is invalid(>4).
       Error details shown in the status message.
          Status bar remains the same.
 
@@ -789,7 +788,7 @@ testers are expected to do more *exploratory* testing.
    let INVALID_REQUEST be a string of 501 characters long.
    11. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
        dr/13/09/22 - 15/09/23 ng/1 rq/INVALID_REQUEST `<br>
-       Expected: No guest is added, because the request is invalid(>500 characters). 
+       Expected: No guest is added, because the request is invalid(>500 characters).
        Status bar remains the same.
 
 ### Editing a guest
@@ -799,7 +798,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: Only 1 guest to be edited; the guest's index should exist.
    The guest should exist in the guest book.
    The format and content of the command should be valid.
-   
+
    2. Test case: `edit 1 n/Johnny`<br>
       Expected: Guest edit successfully, the first guest's name will change from "John Doe" to "Johnny"
 

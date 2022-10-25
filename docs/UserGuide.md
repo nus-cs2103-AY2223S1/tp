@@ -14,6 +14,17 @@ guest management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Components of the UI
+
+![UiComponentLabels](images/UiComponentLabels.png)
+
+* Command Box: This is where you enter your commands.
+* Result Display: This is where the detailed results of your command will be shown.
+* Guest Card: This is where all your guest information will be shown.
+* Status Bar: This is where your saved file is stored.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -31,11 +42,11 @@ guest management tasks done faster than traditional GUI apps.
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to the guest book.
 
    * **`edit`** `1` `n/Bob rc/no rq/Room Service`: Edits the first guest shown in the current list.
-   
+
    * **`find`** `James` : Finds all the guests where at least one of the fields contains `James` (case insensitive).
 
    * **`list`** : Lists all guests.
-   
+
    * **`bill`** `2` `b/+99.99`: Adds 99.99 to the bill of the 2nd guest.
 
    * **`delete`**`3` : Deletes the 3rd guest shown in the current list.
@@ -105,7 +116,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a guest: `add`
+### Adding a guest : `add`
 
 This command adds a guest to the guest book. This is akin to checking in a guest with their personal 
 and room details.
@@ -169,7 +180,7 @@ Common mistakes:
 * Missing out the b/ prefix in the bill command
 * Editing the bill using the edit command instead of the bill command
 
-### Locating guests: `find`
+### Locating guests : `find`
 
 This command locates guests whose details contain any of the given keywords.
 
@@ -258,8 +269,22 @@ _Details coming soon ..._
 
 ## FAQ
 
+Listed here are some frequently asked questions. Should you require any other assistance, feel free to [contact us](#contact-us).
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GuestBook home folder.
+
+**Q**: Will my data be automatically saved?<br>
+**A**: Yes, GuestBook automatically saves your data after every command entered.
+
+**Q**: Where is my data saved?<br>
+**A**: Go to where you have downloaded your `guestbook.jar` file, there a `/data` folder will be created and the data will be saved under `guestbook.json`.
+
+**Q**: Can I rename my saved data file?<br>
+**A**: No, GuestBook currently only supports the use of `guestbook.json` as the name of the saved data file.
+
+**Q**: Why are there no guests in my GuestBook?<br>
+**A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing GuestBook to reset it to prevent any malicious files from being used.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -277,4 +302,4 @@ _Details coming soon ..._
 | **List**               | `list`                                                                                                                                                                                         |
 | **Help**               | `help`                                                                                                                                                                                         |
 
-
+## Contact Us

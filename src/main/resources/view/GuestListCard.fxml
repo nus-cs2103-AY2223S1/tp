@@ -28,8 +28,8 @@
         <Region HBox.hgrow="ALWAYS" />
       </HBox>
 
-      <HBox HBox.hgrow="ALWAYS">
-        <VBox id="personalParticulars" minWidth="280" maxWidth="280" HBox.hgrow="NEVER">
+      <HBox>
+        <VBox id="personalParticulars" minWidth="280" prefWidth="280" maxWidth="480" HBox.hgrow="ALWAYS">
           <Label fx:id="personalParticulars" text="Personal Particulars" />
 
           <HBox fx:id="phoneBox" alignment="CENTER_LEFT">
@@ -46,55 +46,51 @@
 
         <Region minWidth="5" HBox.hgrow="NEVER" />
 
-        <HBox minWidth="240" maxWidth="240">
-          <VBox id="roomDetails" minWidth="240" HBox.hgrow="NEVER">
-            <Label fx:id="roomDetails" text="Room Details" />
+        <VBox id="roomDetails" minWidth="240" prefWidth="240" maxWidth="480" HBox.hgrow="ALWAYS">
+          <Label fx:id="roomDetails" text="Room Details" />
 
-            <HBox fx:id="roomBox" alignment="CENTER_LEFT">
-              <Label fx:id="room" styleClass="cell_small_label" text="\$room" />
-            </HBox>
+          <HBox fx:id="roomBox" alignment="CENTER_LEFT">
+            <Label fx:id="room" styleClass="cell_small_label" text="\$room" />
+          </HBox>
 
-            <Region minHeight="3" />
+          <Region minHeight="3" />
 
-            <HBox fx:id="dateRangeBox" alignment="CENTER_LEFT">
-              <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
-            </HBox>
+          <HBox fx:id="dateRangeBox" alignment="CENTER_LEFT">
+            <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
+          </HBox>
 
-            <Region minHeight="3" />
+          <Region minHeight="3" />
 
-            <HBox fx:id="numberOfGuestsBox" alignment="CENTER_LEFT">
-              <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
-            </HBox>
+          <HBox fx:id="numberOfGuestsBox" alignment="CENTER_LEFT">
+            <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
+          </HBox>
 
-          </VBox>
-        </HBox>
+        </VBox>
 
         <Region minWidth="10" HBox.hgrow="NEVER"/>
 
-        <HBox minWidth="195" maxWidth="195" HBox.hgrow="NEVER">
-          <VBox id="roomStatus" minWidth="195" HBox.hgrow="NEVER">
-            <Label fx:id="roomStatus" text="Room Status" />
+        <VBox id="roomStatus" minWidth="195" prefWidth="195" maxWidth="480" HBox.hgrow="ALWAYS">
+          <Label fx:id="roomStatus" text="Room Status" />
 
-            <HBox fx:id="isRoomCleanBox" alignment="CENTER_LEFT">
-              <Label fx:id="isRoomClean" styleClass="cell_small_label" text="\$isRoomClean" />
-              <Region minWidth="5" HBox.hgrow="NEVER" />
-              <Label fx:id="isRoomCleanStatus" styleClass="cell_small_label" text="\$isRoomCleanStatus" />
-            </HBox>
+          <HBox fx:id="isRoomCleanBox" alignment="CENTER_LEFT">
+            <Label fx:id="isRoomClean" styleClass="cell_small_label" text="\$isRoomClean" />
+            <Region minWidth="5" HBox.hgrow="NEVER" />
+            <Label fx:id="isRoomCleanStatus" styleClass="cell_small_label" text="\$isRoomCleanStatus" />
+          </HBox>
 
-            <Region minHeight="3" />
+          <Region minHeight="3" />
 
-            <HBox fx:id="billBox" alignment="CENTER_LEFT">
-              <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
-            </HBox>
+          <HBox fx:id="billBox" alignment="CENTER_LEFT">
+            <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
+          </HBox>
 
-            <Region minHeight="3" />
+          <Region minHeight="3" />
 
-            <HBox fx:id="requestBox" alignment="CENTER_LEFT">
-              <Label fx:id="request" styleClass="cell_small_label" text="\$request" />
-            </HBox>
+          <HBox fx:id="requestBox" alignment="CENTER_LEFT">
+            <Label fx:id="request" styleClass="cell_small_label" text="\$request" />
+          </HBox>
 
-          </VBox>
-        </HBox>
+        </VBox>
       </HBox>
     </VBox>
   </GridPane>
