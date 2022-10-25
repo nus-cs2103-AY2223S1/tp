@@ -42,7 +42,8 @@ public class SampleDataUtil {
         return new Order[] {
             new Order(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                    List.of(new ItemQuantityPair(INVENTORY_ITEM_1, new Quantity(2))), true, true),
+                    List.of(new ItemQuantityPair(INVENTORY_ITEM_1.getRecordedItem(), new Quantity(2))),
+                        true, true),
             new Order(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     List.of(new ItemQuantityPair(INVENTORY_ITEM_2, new Quantity(4))), true, false),

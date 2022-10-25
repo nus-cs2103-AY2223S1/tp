@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.item.DeleteItemCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
@@ -20,16 +19,16 @@ import tracko.model.item.InventoryItem;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteItemCommand}.
  */
-public class DeleteInventoryItemCommandTest {
+public class DeleteItemCommandTest {
 
     private Model model = new ModelManager(getTrackOWithTypicalItems(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         InventoryItem inventoryItemToDelete = model.getInventoryList().get(INDEX_FIRST.getZeroBased());
-        DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
+        tracko.logic.commands.item.DeleteItemCommand deleteItemCommand = new tracko.logic.commands.item.DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
+        String expectedMessage = String.format(tracko.logic.commands.item.DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.deleteItem(inventoryItemToDelete);
@@ -40,7 +39,7 @@ public class DeleteInventoryItemCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getInventoryList().size() + 1);
-        DeleteItemCommand deleteItemCommand = new DeleteItemCommand(outOfBoundIndex);
+        tracko.logic.commands.item.DeleteItemCommand deleteItemCommand = new tracko.logic.commands.item.DeleteItemCommand(outOfBoundIndex);
 
         CommandTestUtil.assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
@@ -50,9 +49,9 @@ public class DeleteInventoryItemCommandTest {
         CommandTestUtil.showItemAtIndex(model, INDEX_FIRST);
 
         InventoryItem inventoryItemToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
-        DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
+        tracko.logic.commands.item.DeleteItemCommand deleteItemCommand = new tracko.logic.commands.item.DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
+        String expectedMessage = String.format(tracko.logic.commands.item.DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
 
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.deleteItem(inventoryItemToDelete);
@@ -70,21 +69,21 @@ public class DeleteInventoryItemCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getInventoryList().size());
 
-        DeleteItemCommand deleteItemCommand = new DeleteItemCommand(outOfBoundIndex);
+        tracko.logic.commands.item.DeleteItemCommand deleteItemCommand = new tracko.logic.commands.item.DeleteItemCommand(outOfBoundIndex);
 
         CommandTestUtil.assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteItemCommand deleteFirstCommand = new DeleteItemCommand(INDEX_FIRST);
-        DeleteItemCommand deleteSecondCommand = new DeleteItemCommand(INDEX_SECOND);
+        tracko.logic.commands.item.DeleteItemCommand deleteFirstCommand = new tracko.logic.commands.item.DeleteItemCommand(INDEX_FIRST);
+        tracko.logic.commands.item.DeleteItemCommand deleteSecondCommand = new tracko.logic.commands.item.DeleteItemCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteItemCommand deleteFirstCommandCopy = new DeleteItemCommand(INDEX_FIRST);
+        tracko.logic.commands.item.DeleteItemCommand deleteFirstCommandCopy = new tracko.logic.commands.item.DeleteItemCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -18,7 +18,7 @@ import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
 import tracko.model.item.ItemContainsKeywordsPredicate;
 
-public class FindInventoryItemCommandTest {
+public class FindItemCommandTest {
 
     private Model model = new ModelManager(getTrackOWithTypicalItems(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTrackOWithTypicalItems(), new UserPrefs());
