@@ -113,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        reminderListPanel = new ReminderListPanel(logic.getFilteredPersonList());
+        reminderListPanel = new ReminderListPanel(logic.getSortedReminderList());
         centerPanel = new CenterPanel(personListPanel, reminderListPanel);
         centerPanelPlaceholder.getChildren().add(centerPanel.getRoot());
 
@@ -185,8 +185,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-            reminderListPanel.updateItems(logic.getFilteredPersonList());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

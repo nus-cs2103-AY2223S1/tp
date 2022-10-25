@@ -29,6 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_BIRTHDAY = "01-01-2000";
+    public static final String DEFAULT_REMINDER = "Wish Amy Bee Happy Birthday!";
     public static final boolean DEFAULT_HEALTH_INSURANCE = false;
     public static final boolean DEFAULT_DISABILITY_INSURANCE = false;
     public static final boolean DEFAULT_CRITICAL_ILLNESS_INSURANCE = false;
@@ -61,6 +62,7 @@ public class PersonBuilder {
         lifeInsurance = new LifeInsurance(DEFAULT_LIFE_INSURANCE);
         tags = new HashSet<>();
         reminders = new HashSet<>();
+        reminders.add(new Reminder(DEFAULT_REMINDER, DEFAULT_BIRTHDAY));
     }
 
     /**

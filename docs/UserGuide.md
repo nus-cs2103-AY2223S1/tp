@@ -77,14 +77,14 @@ Format: `help`
 
 Adds a person to Friendnancial.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [a/Address] [b/BIRTHDAY] …​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ a/Address b/BIRTHDAY …​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18 August 2000`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18-08-2000`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
@@ -138,7 +138,6 @@ Deletes the specified person from Friendnancial.
 
 Format: `delete INDEX` or `delete n/NAME`
 
-* Before deleting the contact permanently, confirms with the user with a message.
 * Deletes the person at the specified `INDEX` or with the specified `NAME`.
     * Only full name will be matched e.g. `Han` will not match `Hans`.
 * If multiple entries with the same `NAME` are found, sends a message to user to tell the user to delete by `INDEX` instead.
@@ -160,15 +159,38 @@ Format: `clear`
 * Before clearing all entries permanently, confirms with the user with a message.
 
 
-### Getting reminders : `remind`
+### Adding a reminder : `remind`
 
-Reminds the user of the upcoming birthdays of all the users contacts stored in Friendnancial.
+Adds a reminder to the specified contact.
 
-Format: `remind`
+Format: `remind INDEX r/REMINDER d/DATE`
+
+* Adds a reminder to the person at the specified `INDEX` with the reminder `REMINDER` and date `DATE`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, ...
+* The date **must be in the format of** `D-MM-YYYY`.
+
 
 Examples:
-* `remind` displays a popup listing all the users contacts names and birthdays as
-as reminder to the user.
+* `remind 2 r/update client information d/20-10-2022` adds a reminder to the 2nd person in the address book.
+* `find Betsy` followed by `remind 1 r/buy gift d/25-10-2022` adds a reminder linked to the 1st person in the result of the `find` command.
+
+### Updating insurance information about a contact : `insurance`
+
+Edits whether a contact has the four main types of insurance, namely health, disability, critical illness and life insurance.
+
+Prefixes:
+* "hi" - health insurance
+* "di" - disability insurance
+* "ci" - critical illness insurance
+* "li" - life insurance
+
+Format: `insurance INDEX [hi/] [di/] [ci/] [li/]` (Number of insurance prefixes can range from 0-4)
+
+Examples:
+* `insurance 1 hi/ ci/`
+* `insurance 2`
+* `insurance 3 hi/ ci/ di/ li/`
 
 ### Exiting the program : `exit`
 
@@ -193,10 +215,13 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 | Action     | Format, Examples                                                                                                                                         |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] [a/ADDRESS] [b/BIRTHDAY]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18 August 2000` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
 | **Clear**  | `clear`                                                                                                                                                  |
 | **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                                   |
 | **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                        |
 | **List**   | `list`                                                                                                                                                   |
-| **Remind** | `remind`                                                                                                                                                 |
+| **Remind** | `remind` 
+|
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`      
+|
 | **Help**   | `help`                                                                                                                                                   |

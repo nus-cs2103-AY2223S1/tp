@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_BIRTHDAY + "18 August 2000 "
+            + PREFIX_BIRTHDAY + "18-08-2000 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
@@ -58,6 +58,10 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+
+        assert toAdd.getReminders().size() == 1 : "Person should be instantiated with a default birthday reminder!";
+        model.addReminder(toAdd, toAdd.getReminders().iterator().next());
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

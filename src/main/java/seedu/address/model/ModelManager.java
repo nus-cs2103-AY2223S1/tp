@@ -4,14 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Reminder;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +29,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Pair<Person, Reminder>> unsortedReminders;
+    private final SortedList<Pair<Person, Reminder>> reminders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,6 +42,12 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        this.unsortedReminders = convert(this.addressBook.getPersonList());
+        this.reminders = new SortedList<>(unsortedReminders);
+        this.reminders.setComparator(Comparator.comparing(x -> x.getKey().getName().fullName));
+        this.reminders.setComparator(Comparator.comparing(x -> x.getValue().date));
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -126,6 +141,43 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Sorted Reminder List Accessors =============================================================
+
+    /**
+     * Converts the {@code ObservableList} into an {@code ObservableList} with a Pair of Person and Reminder
+     * returns the new {@code ObservableList}
+     * @param personList The {@code ObservableList} to be converted
+     * @return The converted {@code ObservableList}
+     */
+    private ObservableList<Pair<Person, Reminder>> convert(ObservableList<Person> personList) {
+        ArrayList<Pair<Person, Reminder>> total = new ArrayList<>();
+        for (Person person : personList) {
+            total.addAll(person.getReminders().stream().map(reminder -> new Pair<Person, Reminder>(
+                    person, reminder
+            )).collect(Collectors.toList()));
+        }
+        return FXCollections.observableList(total);
+    }
+
+    /**
+     * Returns the sorted list of {@code Reminders}
+     */
+    @Override
+    public SortedList<Pair<Person, Reminder>> getSortedReminderList() {
+        return reminders;
+    }
+
+    @Override
+    public void addReminder(Person person, Reminder reminder) {
+        unsortedReminders.add(new Pair<>(person, reminder));
+    }
+
+    @Override
+    public void deleteReminder(Pair<Person, Reminder> target) {
+        unsortedReminders.remove(target);
+        target.getKey().deleteReminder(target.getValue());
     }
 
     @Override
