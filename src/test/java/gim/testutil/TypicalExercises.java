@@ -169,4 +169,19 @@ public class TypicalExercises {
     public static List<Exercise> getSortedDifferentExercisesDifferentDates() {
         return new ArrayList<>(Arrays.asList(ARM_CURLS, ARM_CURLS_2));
     }
+
+    /**
+     * Returns an {@code ExerciseTracker} with a sample unsorted exercises.
+     */
+    public static ExerciseTracker getSampleUnsortedExercisesExerciseTracker() {
+        ExerciseTracker exerciseTracker = new ExerciseTracker();
+        for (Exercise exercise : getSampleUnsortedExercises()) {
+            exerciseTracker.addExercise(exercise);
+        }
+        return exerciseTracker;
+    }
+
+    public static List<Exercise> getSampleUnsortedExercises() {
+        return new ArrayList<>(Arrays.asList(ARM_CURLS_2, ARM_CURLS, BENCH_PRESS));
+    }
 }

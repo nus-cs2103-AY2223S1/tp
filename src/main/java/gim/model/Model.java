@@ -79,7 +79,7 @@ public interface Model {
     void setExercise(Exercise target, Exercise editedExercise);
 
     /**
-     * Returns an unmodifiable view of the filtered exercise list.
+     * Returns a view of the filtered exercise list.
      */
     ObservableList<Exercise> getFilteredExerciseList();
 
