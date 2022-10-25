@@ -20,7 +20,7 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
 
     private boolean matchesName(Person person) {
         if (descriptor.getName().isPresent()) {
-            return StringUtil.containsWordIgnoreCase(person.getName().fullName, descriptor.getName().get().fullName);
+            return StringUtil.containsStringIgnoreCase(person.getName().fullName, descriptor.getName().get().fullName);
         }
         return true;
     }

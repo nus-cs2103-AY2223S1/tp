@@ -15,7 +15,6 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -29,8 +28,8 @@ import paymelah.model.debt.DebtDate;
 import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
-import paymelah.model.person.NameContainsKeywordsPredicate;
 import paymelah.model.person.Person;
+import paymelah.model.person.PersonMatchesDescriptorPredicate;
 import paymelah.testutil.PersonDescriptorBuilder;
 
 /**
@@ -189,8 +188,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName(person.getName().fullName).build()));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

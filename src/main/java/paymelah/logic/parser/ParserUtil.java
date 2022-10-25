@@ -23,7 +23,6 @@ import paymelah.model.person.DebtContainsKeywordsPredicate;
 import paymelah.model.person.DebtGreaterEqualAmountPredicate;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
-import paymelah.model.person.NameContainsKeywordsPredicate;
 import paymelah.model.person.Phone;
 import paymelah.model.tag.Tag;
 
@@ -250,18 +249,6 @@ public class ParserUtil {
             throw new ParseException(DebtTime.MESSAGE_CONSTRAINTS);
         }
         return new DebtTime(trimmedTime);
-    }
-
-    /**
-     * Parses {@code String s} into a {@code NameContainsKeywordsPredicate}.
-     */
-    public static NameContainsKeywordsPredicate prepareNameContainsKeywordsPredicate(String s) throws ParseException {
-        requireNonNull(s);
-        String trimmed = s.trim();
-        if (trimmed.isEmpty()) {
-            throw new ParseException(NameContainsKeywordsPredicate.MESSAGE_CONSTRAINTS);
-        }
-        return new NameContainsKeywordsPredicate(Arrays.asList(trimmed.split("\\s+")));
     }
 
     /**
