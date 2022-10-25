@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 /**
  * Toggles the PersonCards between a compacted or an expanded mode.
  */
-public class ToggleListMode extends Command {
+public class ToggleListModeCommand extends Command {
 
     public static final String COMMAND_WORD = "toggle-list-mode";
 
