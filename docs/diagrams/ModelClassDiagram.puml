@@ -12,13 +12,24 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+package "Person" {
+    Class UniquePersonList
+    Class Person
+    Class Address
+    Class Email
+    Class Name
+    Class Phone
+    Class Tag
+}
+
+package "Debt" {
+    Class DebtList
+    Class Debt
+    Class Description
+    Class Money
+    Class DebtDate
+    Class DebtTime
+}
 
 }
 
@@ -34,17 +45,30 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+ModelManager --->"~* filtered" Person
+
 AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+UniquePersonList ---> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *-right-> "1" DebtList
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+DebtList "1" *--> "*" Debt
+Debt *--> Description
+Debt *--> Money
+Debt *--> DebtDate
+Debt *--> DebtTime
+
+Description -[hidden]right-> Money
+Money -[hidden]right-> DebtDate
+DebtDate -[hidden]right-> DebtTime
+
+
 @enduml

@@ -36,12 +36,21 @@ public class DebtTest {
         // different money -> returns false
         editedMcdonalds = new DebtBuilder(MCDONALDS).withMoney("120.40").build();
         assertFalse(MCDONALDS.equals(editedMcdonalds));
+
+        // different date -> returns false
+        editedMcdonalds = new DebtBuilder(MCDONALDS).withDate("2011-10-12").build();
+        assertFalse(MCDONALDS.equals(editedMcdonalds));
+
+        // different time -> returns false
+        editedMcdonalds = new DebtBuilder(MCDONALDS).withTime("01:23").build();
+        assertFalse(MCDONALDS.equals(editedMcdonalds));
     }
 
     @Test
     public void makeDebt() {
-        Debt fromDebtBuilder = new DebtBuilder().withDescription("Gift cards").withMoney("50").build();
-        Debt fromMakeDebt = Debt.makeDebt("Gift cards", "50");
+        Debt fromDebtBuilder = new DebtBuilder().withDescription("Gift cards").withMoney("50")
+                .withDate("2022-10-12").withTime("12:34").build();
+        Debt fromMakeDebt = Debt.makeDebt("Gift cards", "50", "2022-10-12", "12:34");
 
         assertEquals(fromDebtBuilder, fromMakeDebt);
     }
