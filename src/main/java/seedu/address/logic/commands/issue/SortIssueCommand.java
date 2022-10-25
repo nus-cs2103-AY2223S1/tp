@@ -29,6 +29,7 @@ public class SortIssueCommand extends IssueCommand {
             + PREFIX_PRIORITY + "1 (highest). "
             + "Example: "
             + COMMAND_WORD + " "
+            + COMMAND_FLAG + " "
             + PREFIX_PRIORITY + "0";
 
     private final Prefix sortKey;

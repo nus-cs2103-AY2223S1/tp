@@ -82,7 +82,10 @@ public class EditProjectCommand extends ProjectCommand {
         if (newClientId != null) {
             try {
                 Client newClient = model.getClientById(newClientId.getIdInt());
+                Client oldClient = toEditProject.getClient();
                 toEditProject.setClient(newClient);
+                oldClient.removeProject(toEditProject);
+                newClient.addProjects(toEditProject);
             } catch (NotFoundException e) {
                 throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         EditProjectCommand.MESSAGE_INVALID_CLIENT));
