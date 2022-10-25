@@ -2,11 +2,19 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
+import seedu.address.model.tag.Tag;
 
 /**
  * Finds and lists all patients by name, email, address, phone number, tag or remark filter, according to the prefix
@@ -30,8 +38,18 @@ public class FindPatientCommand extends Command {
 
     private final Predicate<Patient> predicate;
 
-    public FindPatientCommand(Predicate<Patient> predicate) {
-        this.predicate = predicate;
+    /**
+     * Creates a FindPatientCommand to find patients(s) according to the prefix input(s).
+     */
+    public FindPatientCommand(Optional<Predicate<Name>> namePredicate, Optional<Predicate<Phone>> phonePredicate,
+                              Optional<Predicate<Email>> emailPredicate, Optional<Predicate<Address>> addressPredicate,
+                              Optional<Predicate<Set<Tag>>> tagPredicate, Optional<Predicate<Remark>> remarkPredicate) {
+        this.predicate = patient -> namePredicate.orElse(x -> true).test(patient.getName())
+                && phonePredicate.orElse(x -> true).test(patient.getPhone())
+                && emailPredicate.orElse(x -> true).test(patient.getEmail())
+                && addressPredicate.orElse(x -> true).test(patient.getAddress())
+                && tagPredicate.orElse(x -> true).test(patient.getTags())
+                && remarkPredicate.orElse(x -> true).test(patient.getRemark());
     }
 
     @Override
