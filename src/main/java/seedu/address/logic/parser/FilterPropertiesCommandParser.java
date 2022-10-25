@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import seedu.address.logic.commands.FilterPropsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Name;
+import seedu.address.model.buyer.Name;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.property.AbstractFilterPropsPredicate;
 import seedu.address.model.property.FilterPropsByCharacteristicsPredicate;

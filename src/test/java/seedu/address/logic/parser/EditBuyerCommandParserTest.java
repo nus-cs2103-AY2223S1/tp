@@ -44,10 +44,10 @@ import seedu.address.logic.commands.EditBuyerCommand;
 import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.pricerange.PriceRange;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -105,7 +105,7 @@ public class EditBuyerCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        //        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        //        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Buyer} being edited,
         //        // parsing it together with a valid tag results in error
         //        assertParseFailure(parser, "1" +
         //        TAG_DESC_PRIORITY_HIGH + TAG_DESC_PRIORITY_LOW + TAG_EMPTY, Priority.MESSAGE_CONSTRAINTS);

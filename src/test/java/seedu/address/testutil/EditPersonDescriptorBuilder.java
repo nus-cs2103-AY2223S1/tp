@@ -3,11 +3,11 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.Phone;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
@@ -26,17 +26,17 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code buyer}'s details
      */
-    public EditPersonDescriptorBuilder(Person person) {
+    public EditPersonDescriptorBuilder(Buyer buyer) {
         descriptor = new EditPersonDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setPriceRange(person.getPriceRange().orElse(null));
-        descriptor.setDesiredCharacteristics(person.getDesiredCharacteristics().orElse(null));
-        descriptor.setPriority(person.getPriority());
+        descriptor.setName(buyer.getName());
+        descriptor.setPhone(buyer.getPhone());
+        descriptor.setEmail(buyer.getEmail());
+        descriptor.setAddress(buyer.getAddress());
+        descriptor.setPriceRange(buyer.getPriceRange().orElse(null));
+        descriptor.setDesiredCharacteristics(buyer.getDesiredCharacteristics().orElse(null));
+        descriptor.setPriority(buyer.getPriority());
     }
 
     /**

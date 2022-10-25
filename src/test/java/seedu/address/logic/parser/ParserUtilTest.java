@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
 import seedu.address.model.pricerange.PriceRange;
 
 public class ParserUtilTest {

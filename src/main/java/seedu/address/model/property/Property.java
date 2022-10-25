@@ -8,8 +8,8 @@ import java.util.Optional;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
 
 /**
  * Represents a Property in the address book.

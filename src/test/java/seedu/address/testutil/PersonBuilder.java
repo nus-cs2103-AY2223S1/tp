@@ -2,15 +2,15 @@ package seedu.address.testutil;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Buyer objects.
  */
 public class PersonBuilder {
 
@@ -42,20 +42,20 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code buyerToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        priceRange = personToCopy.getPriceRange().orElse(null);
-        characteristics = personToCopy.getDesiredCharacteristics().orElse(null);
-        priority = personToCopy.getPriority();
+    public PersonBuilder(Buyer buyerToCopy) {
+        name = buyerToCopy.getName();
+        phone = buyerToCopy.getPhone();
+        email = buyerToCopy.getEmail();
+        address = buyerToCopy.getAddress();
+        priceRange = buyerToCopy.getPriceRange().orElse(null);
+        characteristics = buyerToCopy.getDesiredCharacteristics().orElse(null);
+        priority = buyerToCopy.getPriority();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
@@ -63,7 +63,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -71,7 +71,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -79,7 +79,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -87,7 +87,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Priority} of the {@code Person} that we are building.
+     * Sets the {@code Priority} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withPriority(String priority) {
         this.priority = new Priority(priority);
@@ -95,7 +95,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Price Range} of the {@code Person} that we are building.
+     * Sets the {@code Price Range} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withPriceRange(String priceRange) {
         this.priceRange = new PriceRange(priceRange);
@@ -103,7 +103,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Removes the {@code Price Range} of the {@code Person} that we are building.
+     * Removes the {@code Price Range} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withNoPriceRange() {
         this.priceRange = null;
@@ -111,7 +111,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code DesiredCharacteristics} of the {@code Person} that we are building.
+     * Sets the {@code DesiredCharacteristics} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withDesiredCharacteristics(String desiredCharacteristics) {
         this.characteristics = new Characteristics(desiredCharacteristics);
@@ -119,15 +119,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Removes the {@code DesiredCharacteristics} of the {@code Person} that we are building.
+     * Removes the {@code DesiredCharacteristics} of the {@code Buyer} that we are building.
      */
     public PersonBuilder withNoDesiredCharacteristics() {
         this.characteristics = null;
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, priceRange, characteristics, priority);
+    public Buyer build() {
+        return new Buyer(name, phone, email, address, priceRange, characteristics, priority);
     }
 
 }

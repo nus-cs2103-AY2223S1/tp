@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -51,7 +51,7 @@ public class CobbParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddPersonCommand.COMMAND_WORD:
+        case AddBuyerCommand.COMMAND_WORD:
             return new AddPersonCommandParser().parse(arguments);
 
         case EditBuyerCommand.COMMAND_WORD:

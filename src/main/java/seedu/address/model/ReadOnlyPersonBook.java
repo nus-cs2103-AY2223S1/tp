@@ -1,10 +1,10 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
 
 /**
- * Unmodifiable view of a Person list
+ * Unmodifiable view of a Buyer list
  */
 public interface ReadOnlyPersonBook {
 
@@ -12,6 +12,6 @@ public interface ReadOnlyPersonBook {
      * Returns an unmodifiable view of the persons list.
      * This list will not contain any duplicate persons.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<Buyer> getPersonList();
 
 }

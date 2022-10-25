@@ -7,7 +7,7 @@ import seedu.address.model.PersonBook;
 import seedu.address.model.PropertyBook;
 
 /**
- * Clears both person and property list.
+ * Clears both buyer and property list.
  */
 public class ClearCommand extends Command {
 

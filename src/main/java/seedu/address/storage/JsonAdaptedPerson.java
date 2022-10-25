@@ -6,20 +6,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.Phone;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.pricerange.PriceRange;
 
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Buyer}.
  */
 class JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Buyer's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String specifiedPriority;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPerson} with the given buyer details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -49,9 +49,9 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Buyer} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public JsonAdaptedPerson(Buyer source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -64,11 +64,11 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted buyer object into the model's {@code Buyer} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted buyer.
      */
-    public Person toModelType() throws IllegalValueException {
+    public Buyer toModelType() throws IllegalValueException {
         if (specifiedPriority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Priority.class.getSimpleName()));
@@ -131,7 +131,7 @@ class JsonAdaptedPerson {
                 ? null
                 : new Characteristics(desiredCharacteristics);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+        return new Buyer(modelName, modelPhone, modelEmail, modelAddress,
                 modelPriceRange, modelCharacteristics, modelPriority);
     }
 }

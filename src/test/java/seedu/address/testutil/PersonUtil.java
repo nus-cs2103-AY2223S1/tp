@@ -8,38 +8,38 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.EditBuyerCommand.EditPersonDescriptor;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
 
 /**
- * A utility class for Person.
+ * A utility class for Buyer.
  */
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code buyer}.
      */
-    public static String getAddCommand(Person person) {
-        return AddPersonCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddCommand(Buyer buyer) {
+        return AddBuyerCommand.COMMAND_WORD + " " + getPersonDetails(buyer);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code buyer}'s details.
      */
-    public static String getPersonDetails(Person person) {
+    public static String getPersonDetails(Buyer buyer) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        if (person.getPriceRange().isPresent()) {
-            sb.append(PREFIX_PRICE_RANGE + person.getPriceRange().get().toString());
+        sb.append(PREFIX_NAME + buyer.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + buyer.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + buyer.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + buyer.getAddress().value + " ");
+        if (buyer.getPriceRange().isPresent()) {
+            sb.append(PREFIX_PRICE_RANGE + buyer.getPriceRange().get().toString());
         }
-        if (person.getDesiredCharacteristics().isPresent()) {
-            sb.append(PREFIX_CHARACTERISTICS + person.getDesiredCharacteristics().get().toString());
+        if (buyer.getDesiredCharacteristics().isPresent()) {
+            sb.append(PREFIX_CHARACTERISTICS + buyer.getDesiredCharacteristics().get().toString());
         }
-        sb.append(PREFIX_PRIORITY + person.getPriority().toString() + " ");
+        sb.append(PREFIX_PRIORITY + buyer.getPriority().toString() + " ");
         return sb.toString();
     }
 

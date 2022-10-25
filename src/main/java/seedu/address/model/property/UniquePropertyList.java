@@ -31,7 +31,7 @@ public class UniquePropertyList implements Iterable<Property> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent buyer as the given argument.
      */
     public boolean contains(Property toCheck) {
         requireNonNull(toCheck);
@@ -39,8 +39,8 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a buyer to the list.
+     * The buyer must not already exist in the list.
      */
     public void add(Property toAdd) {
         requireNonNull(toAdd);
@@ -53,7 +53,7 @@ public class UniquePropertyList implements Iterable<Property> {
     /**
      * Replaces the property {@code target} in the list with {@code editedProperty}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The buyer identity of {@code editedPerson} must not be the same as another existing buyer in the list.
      */
     public void setProperty(Property target, Property editedProperty) {
         requireAllNonNull(target, editedProperty);
@@ -71,8 +71,8 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent buyer from the list.
+     * The buyer must exist in the list.
      */
     public void remove(Property toRemove) {
         requireNonNull(toRemove);

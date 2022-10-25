@@ -17,7 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.buyer.Buyer;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -29,14 +29,14 @@ public class DeleteBuyerCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Buyer buyerToDelete = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, buyerToDelete);
 
         ModelManager expectedModel = new ModelManager(
                 model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(buyerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -53,13 +53,13 @@ public class DeleteBuyerCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_ITEM);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Buyer buyerToDelete = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, buyerToDelete);
 
         Model expectedModel = new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
+        expectedModel.deletePerson(buyerToDelete);
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -96,7 +96,7 @@ public class DeleteBuyerCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different buyer -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

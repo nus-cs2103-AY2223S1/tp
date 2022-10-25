@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
 import seedu.address.model.property.Description;
 import seedu.address.model.property.Owner;
 import seedu.address.model.property.Price;

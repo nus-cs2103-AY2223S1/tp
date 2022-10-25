@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindBuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.buyer.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindBuyerCommand object

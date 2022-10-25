@@ -9,35 +9,35 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.Phone;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddPersonCommandParser extends Parser<AddPersonCommand> {
+public class AddPersonCommandParser extends Parser<AddBuyerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddPersonCommand parse(String args) throws ParseException {
+    public AddBuyerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBuyerCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -62,9 +62,9 @@ public class AddPersonCommandParser extends Parser<AddPersonCommand> {
             priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
 
-        Person person = new Person(name, phone, email, address, priceRange, characteristics, priority);
+        Buyer buyer = new Buyer(name, phone, email, address, priceRange, characteristics, priority);
 
-        return new AddPersonCommand(person);
+        return new AddBuyerCommand(buyer);
     }
 
 }

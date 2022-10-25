@@ -20,15 +20,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.address.Address;
 import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.Email;
+import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Phone;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing buyer in the address book.
  */
 public class EditBuyerCommand extends Command {
 
@@ -57,8 +57,8 @@ public class EditBuyerCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the buyer in the filtered buyer list to edit
+     * @param editPersonDescriptor details to edit the buyer with
      */
     public EditBuyerCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -71,47 +71,47 @@ public class EditBuyerCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Buyer> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Buyer buyerToEdit = lastShownList.get(index.getZeroBased());
+        Buyer editedBuyer = createEditedPerson(buyerToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!buyerToEdit.isSamePerson(editedBuyer) && model.hasPerson(editedBuyer)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(buyerToEdit, editedBuyer);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedBuyer));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Buyer} with the details of {@code buyerToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Buyer createEditedPerson(Buyer buyerToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert buyerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Name updatedName = editPersonDescriptor.getName().orElse(buyerToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(buyerToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(buyerToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(buyerToEdit.getAddress());
         PriceRange updatedPriceRange = editPersonDescriptor
                 .getPriceRange()
-                .orElse(personToEdit.getPriceRange().orElse(null));
+                .orElse(buyerToEdit.getPriceRange().orElse(null));
         Characteristics updatedCharacteristics = editPersonDescriptor
                 .getDesiredCharacteristics()
-                .orElse(personToEdit.getDesiredCharacteristics().orElse(null));
-        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(personToEdit.getPriority());
+                .orElse(buyerToEdit.getDesiredCharacteristics().orElse(null));
+        Priority updatedPriority = editPersonDescriptor.getPriority().orElse(buyerToEdit.getPriority());
 
-        Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        Buyer newBuyer = new Buyer(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedPriceRange, updatedCharacteristics, updatedPriority);
 
-        return newPerson;
+        return newBuyer;
     }
 
     @Override
@@ -133,8 +133,8 @@ public class EditBuyerCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the buyer with. Each non-empty field value will replace the
+     * corresponding field value of the buyer.
      */
     public static class EditPersonDescriptor {
         private Name name;
