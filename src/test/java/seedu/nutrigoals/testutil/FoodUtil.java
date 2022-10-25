@@ -5,7 +5,6 @@ import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.nutrigoals.logic.commands.AddCommand;
-import seedu.nutrigoals.logic.commands.EditCommand;
 import seedu.nutrigoals.logic.commands.EditCommand.EditFoodDescriptor;
 import seedu.nutrigoals.model.meal.Food;
 
@@ -38,7 +37,7 @@ public class FoodUtil {
     public static String getEditFoodDescriptorDetails(EditFoodDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getCalorie().ifPresent(calorie -> sb.append(EditCommand.PREFIX_CALORIE)
+        descriptor.getCalorie().ifPresent(calorie -> sb.append(PREFIX_CALORIE)
                 .append(calorie.value).append(" "));
         descriptor.getTag().ifPresent(tag -> sb.append(PREFIX_TAG).append(tag.tagName).append(" "));
         return sb.toString();
