@@ -25,7 +25,7 @@ public class ItemGroupCard extends UiPart<Region> {
     public final ObservableList<Item> itemGroup;
 
     @FXML
-    private Label id;
+    private Label dayNumber;
     @FXML
     private StackPane itemListPanelPlaceholder;
 
@@ -36,9 +36,9 @@ public class ItemGroupCard extends UiPart<Region> {
         super(FXML);
         this.itemGroup = itemGroup;
         if (dayNumber == 0) {
-            this.id.setText("Wishlist");
+            this.dayNumber.setText("Wishlist");
         } else {
-            this.id.setText("Day " + dayNumber);
+            this.dayNumber.setText("Day " + dayNumber);
         }
         this.itemListPanelPlaceholder.getChildren().add(new ItemListPanel(itemGroup, dayNumber).getRoot());
         this.itemListPanelPlaceholder.setMinHeight(UiSizes.ITEM_LIST_MIN_HEIGHT);
@@ -58,7 +58,7 @@ public class ItemGroupCard extends UiPart<Region> {
 
         // state check
         ItemGroupCard card = (ItemGroupCard) other;
-        return id.getText().equals(card.id.getText())
+        return dayNumber.getText().equals(card.dayNumber.getText())
                 && itemGroup.equals(card.itemGroup);
     }
 }

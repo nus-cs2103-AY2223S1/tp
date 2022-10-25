@@ -74,6 +74,17 @@ public class Itinerary {
         return this.duration;
     }
 
+    public String getTimeString() {
+        if (this.startDate != null) {
+            if (this.duration != null) {
+                return this.startDate + " - " + this.startDate.getValue().plusDays(this.duration.getValue());
+            } else {
+                return this.startDate.toString();
+            }
+        }
+        return "(Not planned)";
+    }
+
     public People getPeople() {
         return people;
     }
@@ -88,6 +99,18 @@ public class Itinerary {
 
     public List<Day> getDays() {
         return this.days;
+    }
+
+    public void setDays(List<Day> dayList) {
+        for (int i = 0; i < dayList.size(); i++) {
+            if (i < getDuration().getValue()) {
+                this.days.set(i, dayList.get(i));
+            } else {
+                for (Item item : dayList.get(i).deleteDay()) {
+                    addItem(item);
+                }
+            }
+        }
     }
 
     /**
@@ -109,6 +132,7 @@ public class Itinerary {
 
     /**
      * Add item into itinerary.
+     *
      * @param item Item to be added.
      */
     public void addItem(Item item) {
@@ -118,6 +142,7 @@ public class Itinerary {
 
     /**
      * Remove item from itinerary.
+     *
      * @param index A MultiIndex specifying position of task.
      * @return The item to be removed.
      */
@@ -160,6 +185,7 @@ public class Itinerary {
 
     /**
      * Unplan an item.
+     *
      * @param index A multiIndex to locate the day and index of task within the day
      */
     public Item unplanItem(MultiIndex index) {
@@ -173,6 +199,7 @@ public class Itinerary {
 
     /**
      * Plan an item.
+     *
      * @param itemIndex Index of item in unscheduled list.
      * @param dayNumber Day to include this item.
      * @param startTime startTime of the item.
@@ -255,18 +282,6 @@ public class Itinerary {
                 .append(getBudget().calculateLeftOverBudget());
 
         return builder.toString();
-    }
-
-    public void setDays(List<Day> dayList) {
-        for (int i = 0; i < dayList.size(); i++) {
-            if (i < getDuration().getValue()) {
-                this.days.set(i, dayList.get(i));;
-            } else {
-                for (Item item : dayList.get(i).deleteDay()) {
-                    addItem(item);
-                }
-            }
-        }
     }
 
     public void setSpending(Budget budget) {

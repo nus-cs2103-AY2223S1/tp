@@ -32,9 +32,9 @@ public class ItineraryCard extends UiPart<Region> {
     @FXML
     private Label country;
     @FXML
-    private Label startDate;
-    @FXML
     private Label duration;
+    @FXML
+    private Label time;
     @FXML
     private Label people;
 
@@ -47,10 +47,10 @@ public class ItineraryCard extends UiPart<Region> {
         this.itinerary = itinerary;
         id.setText(displayedIndex + ". ");
         name.setText(itinerary.getName().fullName);
-        country.setText(itinerary.getCountry().country);
-        startDate.setText(itinerary.getStartDate().date);
-        duration.setText(itinerary.getDuration().toString());
-        people.setText(itinerary.getPeople().numOfPeople);
+        country.setText("Country: " + itinerary.getCountry().country);
+        time.setText("Dates: " + itinerary.getTimeString());
+        duration.setText("Duration: " + itinerary.getDuration().toString() + " Days");
+        people.setText("Waddlers: " + itinerary.getPeople().numOfPeople);
     }
 
     @Override

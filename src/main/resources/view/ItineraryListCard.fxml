@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="itinerary-card">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -28,8 +28,8 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <Label fx:id="country" styleClass="cell_small_label" text="\$country" />
-      <Label fx:id="startDate" styleClass="cell_small_label" text="\$startDate" />
       <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
+      <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
       <Label fx:id="people" styleClass="cell_small_label" text="\$people" />
     </VBox>
   </GridPane>
