@@ -8,6 +8,7 @@ public enum LessonType {
     LEC("Lecture"),
     LAB("Laboratory"),
     REC("Recitation"),
+    SEC("Sectional Teaching"),
     UNSUPPORTED("");
 
     private final String valueStr;
