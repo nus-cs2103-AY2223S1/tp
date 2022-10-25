@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.CurrentModule;
@@ -41,6 +42,7 @@ public class ModuleCommand extends Command {
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Modules: %1$s";
     public static final String MESSAGE_MOD_NOT_IN_LIST = "Module to be removed is not in list!";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public ModuleCommand() {}
 
@@ -69,6 +71,13 @@ public class ModuleCommand extends Command {
             setCurrModules(toCopy.currModules);
             setPrevModules(toCopy.prevModules);
             setPlanModules(toCopy.planModules);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(currModules, prevModules, planModules);
         }
 
         public void setCurrModules(Set<CurrentModule> currModules) {

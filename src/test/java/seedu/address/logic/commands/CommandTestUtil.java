@@ -101,9 +101,6 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withGithub(VALID_GITHUB_AMY).withTags(VALID_TAG_FRIEND)
-                .withCurrentModules(VALID_CURRENT_MODULE)
-                .withPreviousModules(VALID_PREVIOUS_MODULE)
-                .withPlannedModules(VALID_PLANNED_MODULE)
                 .build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)

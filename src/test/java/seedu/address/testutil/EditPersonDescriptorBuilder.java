@@ -114,7 +114,4 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptor build() {
         return descriptor;
     }
-
-    public PersonBuilder withCurrentModules(String validCurrentModule) {
-    }
 }
