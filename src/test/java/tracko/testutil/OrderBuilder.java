@@ -126,6 +126,22 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the delivery status of the {@code Order} that we are building.
+     */
+    public OrderBuilder withDelivedStatus(Boolean isDelivered) {
+        this.isDelivered = isDelivered;
+        return this;
+    }
+
+    /**
+     * Sets the payment status of the {@code Order} that we are building.
+     */
+    public OrderBuilder withPaymentStatus(Boolean isPaid) {
+        this.isPaid = isPaid;
+        return this;
+    }
+
+    /**
      * Clears the item list.
      */
     public OrderBuilder withEmptyItemList() {
