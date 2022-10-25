@@ -14,12 +14,14 @@ import static seedu.clinkedin.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.clinkedin.commons.core.Messages;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.CollectionUtil;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -134,9 +136,10 @@ public class EditCommand extends Command {
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
+        Set<Link> updatedLinks = editPersonDescriptor.getLinks().orElse(personToEdit.getLinks());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedStatus,
-                updatedNote, updatedRating);
+                updatednote, updatedRating, updatedLinks);
     }
 
     @Override
@@ -172,6 +175,8 @@ public class EditCommand extends Command {
         private Note note;
         private Rating rating;
 
+        private Set<Link> links;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -188,6 +193,7 @@ public class EditCommand extends Command {
             setStatus(toCopy.status);
             setNote(toCopy.note);
             setRating(toCopy.rating);
+            setLinks(toCopy.links);
         }
 
         /**
@@ -197,7 +203,7 @@ public class EditCommand extends Command {
             if (!newTagTypeMap.isEmpty() || !oldTagTypeMap.isEmpty()) {
                 return true;
             }
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note, rating);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note, rating, links);
         }
 
         public void setName(Name name) {
@@ -288,6 +294,13 @@ public class EditCommand extends Command {
 
         public void setRating(Rating rating) {
             this.rating = rating;
+          
+        public void setLinks(Set<Link> links) {
+            this.links = links;
+        }
+
+        public Optional<Set<Link>> getLinks() {
+            return Optional.ofNullable(links);
         }
 
         @Override
@@ -314,6 +327,7 @@ public class EditCommand extends Command {
                     && getStatus().equals(e.getStatus())
                     && getNote().equals(e.getNote())
                     && getRating().equals(e.getRating());
+                    && getLinks().equals(e.getLinks());
         }
 
 

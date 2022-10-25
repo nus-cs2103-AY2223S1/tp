@@ -1,5 +1,9 @@
 package seedu.clinkedin.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -33,6 +37,8 @@ public class PersonBuilder {
     private Note note;
     private Rating rating;
 
+    private Set<Link> links;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -45,6 +51,7 @@ public class PersonBuilder {
         status = new Status(DEFAULT_STATUS);
         note = new Note(DEFAULT_NOTE);
         rating = new Rating(DEFAULT_RATING);
+        links = new HashSet<>();
     }
 
     /**
@@ -61,6 +68,7 @@ public class PersonBuilder {
         status = personToCopy.getStatus();
         note = personToCopy.getNote();
         rating = personToCopy.getRating();
+        links = new HashSet<>(personToCopy.getLinks());
     }
 
     /**
@@ -120,17 +128,23 @@ public class PersonBuilder {
     }
 
     /**
-     * Setts the {@code Rating} of the {@code Person} that we are building.
+     * Sets the {@code Rating} of the {@code Person} that we are building.
      * @param rating
      * @return
      */
     public PersonBuilder withRating(String rating) {
         this.rating = new Rating(rating);
+
+    /**  
+     * Parses the {@code links} into a {@code Set<Link>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withLinks(String ... links) {
+        this.links = SampleDataUtil.getLinkSet(links);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, status, note, rating);
+        return new Person(name, phone, email, address, tags, status, note, rating, links);
     }
 
 
