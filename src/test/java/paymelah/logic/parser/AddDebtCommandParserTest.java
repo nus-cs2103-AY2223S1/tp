@@ -140,10 +140,6 @@ public class AddDebtCommandParserTest {
         assertParseFailure(parser, "1" + DESCRIPTION_DESC_SUPPER + MONEY_DESC_SUPPER + INVALID_TIME_DESC,
                 DebtTime.MESSAGE_CONSTRAINTS); // invalid time
 
-        // invalid field followed by valid field
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC + MONEY_DESC_SUPPER,
-                Description.MESSAGE_CONSTRAINTS);
-
         // valid money followed by invalid money. The test case for invalid money followed by valid money
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + DESCRIPTION_DESC_SUPPER + MONEY_DESC_SUPPER + INVALID_MONEY_DESC,
