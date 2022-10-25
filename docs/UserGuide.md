@@ -26,7 +26,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
    * **`list`** : Lists all applicants.
 
-   * **`add`**`name/John Doe phone/98765432 email/johnd@example.com address/311, Clementi Ave 2, #02-25 cap/3.50/4.00 gender/male university/Nanyang Polytechnic graduationDate/05-2024major/Computer Science jobId/173296 jobTitle/Software Engineer Intern tag/rejected tag/KIV` : Adds an applicant named `Alex Yeoh` to InternConnect.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` : Adds an applicant named `Alex Yeoh` to InternConnect.
 
    * **`delete`**`3` : Deletes the 3rd applicant shown in the current list.
 
@@ -48,6 +48,23 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Specifiers:
+Each field of an applicant is specified by a specifier as follows:
+* `n/NAME`
+* `p/PHONE`
+* `e/EMAIL`
+* `a/ADDRESS`
+* `c/CAP`
+* `g/GENDER`
+* `u/UNIVERSITY`
+* `gd/GRADUATION_DATE`
+* `m/MAJOR`
+* `ji/JOB_ID`
+* `jt/JOB_TITLE`
+* `t/TAG`
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -57,16 +74,16 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 * An address book cannot have multiple persons with the same `NAME`, `EMAIL`, and `JOB_ID` at once.
 
 * Words in `UPPER_CASE` are the parameter details to be supplied by the user.  
-  e.g., in `add name/NAME`, `NAME` is a parameter which can be used as `add name/Bobby Doe`.
+  e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Bobby Doe`.
 
 * Items in curly brackets are mandatory.
-  e.g., `name/NAME phone/PHONE email/EMAIL {specifier/SPECIFIER_DETAIL}`, all specifiers need to be listed
+  e.g., `n/NAME p/PHONE e/EMAIL {specifier/SPECIFIER_DETAIL}`, all specifiers need to be listed
 
 * Items in square brackets are optional.
-  e.g., `name/NAME phone/PHONE email/EMAIL [tag/TAGS]` can be used as `name/Bobby phone/91234567 email/bob@example.com tag/KIV` or as `name/Bobby phone/91234567 email/bob@example.com`
+  e.g., `n/NAME p/PHONE e/EMAIL [t/TAGS]` can be used as `n/Bobby p/91234567 e/bob@example.com t/KIV` or as `n/Bobby p/91234567 e/bob@example.com`
 
 * Parameters can be in any order.
-  e.g., if the command specifies `name/NAME phone/PHONE email/EMAIL`, `name/NAME email/EMAIL phone/PHONE` is also acceptable.
+  e.g., if the command specifies `n/NAME p/PHONE email/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.  
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
@@ -84,25 +101,29 @@ Format: `help`
 
 Adds an applicant to InternConnect.
 
-Format: `add name/NAME email/EMAIL jobId/JOB_ID {specifier/SPECIFIER_DETAIL}`
+Format: `add n/NAME e/EMAIL ji/JOB_ID {specifier/SPECIFIER_DETAIL}`
 
 Specifiers:
-* `phone/PHONE` 
-* `address/ADDRESS`
-* `jobTitle/JOB_TITLE`
-* `cap/CAP`
-* `gender/GENDER`
-* `major/MAJOR`
-* `university/UNIVERSITY`
-* `graduation/GRADUATION_DATE`
+* `n/NAME`
+* `p/PHONE`
+* `e/EMAIL`
+* `a/ADDRESS`
+* `c/CAP`
+* `g/GENDER`
+* `u/UNIVERSITY`
+* `gd/GRADUATION_DATE`
+* `m/MAJOR`
+* `ji/JOB_ID`
+* `jt/JOB_TITLE`
+* `t/TAG`
 
 Examples:
-* `add name/John Doe phone/98765432 email/johnd@example.com address/311, Clementi Ave 2, #02-25 cap/3.50/4.00 gender/male university/Nanyang Polytechnic graduationDate/05-2024 major/Computer Science jobId/173296 jobTitle/Software Engineer Intern tag/rejected tag/KIV`
+* `n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV`
 
 
-### Listing all persons : `list`
+### Listing all applicants : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all applicants in the address book.
 
 Format: `list`
 
@@ -117,7 +138,7 @@ Format: `view INDEX`
 
 Edits an existing applicant in InternConnect.
 
-Format: `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER_DETAIL]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [specifier/SPECIFIER_DETAIL]…​`
 
 * Edits the applicant at the specified `INDEX`. 
 * The index refers to the index number shown in the displayed applicant list. 
@@ -128,13 +149,13 @@ Format: `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER
 * You can remove all the applicant’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 phone/91234567 email/bob@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `bob@example.com` respectively.
-*  `edit 2 name/Betty` Edits the name of the 2nd person to be `Betty`.
+*  `edit 1 p/91234567 e/bob@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `bob@example.com` respectively.
+*  `edit 2 n/Betty` Edits the name of the 2nd person to be `Betty`.
 
 
 ### Locating person's fields by field: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose has a field containing any of the given keywords among all specifed fields.
 
 Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
 
@@ -147,8 +168,10 @@ Format: `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`
 * Applicants matching at least one keyword will be returned (i.e., OR search). E.g., `Bobby Cortez` will return `Bobby Lacruz`, `Alexander Cortez`
 
 Examples:
-* `find name/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
-* `find gender/F cap/5 ` returns female applicants with a CAP of 5
+* `find n/Bobby ` Returns applicants with names matching `bobby` and `Bobby Cortez`
+* `find g/Female c/3.5 5 ` returns female applicants with a CAP of 3.5 or 5
+* `find g/Male t/offered KIV` returns male applicants who have an offered or KIV tag attached to them
+
 
 <br>
 
@@ -197,14 +220,14 @@ If your changes to the data file makes its format invalid, InternConnect will di
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                           |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add name/NAME phone/PHONE jobId/JOB_ID {specifier/SPECIFIER_DETAIL}` <br> e.g., `add name/John Doe phone/98765432 email/johnd@example.com address/311, Clementi Ave 2, #02-25 cap/3.50/4.00 gender/male university/Nanyang Polytechnic graduationDate/05-2024 major/Computer Science jobId/173296 jobTitle/Software Engineer Intern tag/rejected tag/KIV` |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                    |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                        |
-| **Edit**   | `edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [specifier/SPECIFIER_DETAIL]…​`<br> e.g.,`edit 1 phone/91234567 email/bob@example.com`                                                                                                                                                                                                                 |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                 |
-| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                                                                                            |
-| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                     | 
-| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                     |
-| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                     |
+| Action     | Format, Examples                                                                                                                                                                                        |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/173296 jt/Software Engineer Intern t/rejected t/KIV` |
+| **Clear**  | `clear`                                                                                                                                                                                                 |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                     |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [specifier/SPECIFIER_DETAIL]…​`<br> e.g.,`edit 1 p/91234567 e/bob@example.com`                                                                                 |
+| **Find**   | `find specifier/KEYWORD [more_specifier/MORE_KEYWORDS]`<br> e.g., `find g/Male t/offered KIV`                                                                                                           |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                         |
+| **List**   | `list`                                                                                                                                                                                                  | 
+| **Help**   | `help`                                                                                                                                                                                                  |
+| **Exit**   | `exit`                                                                                                                                                                                                  |
