@@ -45,6 +45,21 @@ public class PrCommand extends Command {
         this.nameSet = nameSet;
     }
 
+    /**
+     * Given the appropriate hashmap, returns a prettier String output for PrCommand.
+     * @param hashMap HashMap from PrCommand::execute.
+     * @return Displayed String output.
+     */
+    public String prettyStringifyHashMap(HashMap<Name, Weight> hashMap) {
+        StringBuilder returnString = new StringBuilder();
+        for (Name name : hashMap.keySet()) {
+            String exerciseName = name.toString();
+            String exerciseWeight = hashMap.get(name).toString();
+            returnString.append(exerciseName).append(": ").append(exerciseWeight).append("kg").append("\n");
+        }
+        return returnString.toString();
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -62,7 +77,7 @@ public class PrCommand extends Command {
                 }
             }
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, outputHashmap));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prettyStringifyHashMap(outputHashmap)));
     }
 
     @Override
