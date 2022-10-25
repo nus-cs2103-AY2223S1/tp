@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
@@ -27,10 +28,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
-    private final FilteredList<Person> filteredMembers;
-
-    private final FilteredList<Task> filteredTasks;
-
     private final FilteredList<Link> filteredLinks;
 
     /**
@@ -44,8 +41,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMembers = new FilteredList<>(this.addressBook.getTeam().getTeamMembers());
-        filteredTasks = new FilteredList<>(this.addressBook.getTeam().getTaskList());
         filteredLinks = new FilteredList<>(this.addressBook.getLinkList());
     }
 
@@ -200,12 +195,12 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getFilteredMemberList() {
-        return filteredMembers;
+        return addressBook.getTeam().getFilteredMemberList();
     }
 
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
+        return addressBook.getTeam().getFilteredTaskList();
     }
 
     /**
@@ -227,13 +222,13 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredMembersList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredMembers.setPredicate(predicate);
+        addressBook.getTeam().updateFilteredMembersList(predicate);
     }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
+        addressBook.getTeam().updateFilteredTaskList(predicate);
     }
 
     @Override

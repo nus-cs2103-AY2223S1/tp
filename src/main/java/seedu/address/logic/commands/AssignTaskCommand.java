@@ -42,7 +42,7 @@ public class AssignTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> taskList = model.getTeam().getTaskList();
+        List<Task> taskList = model.getFilteredTaskList();
         List<Person> memberList = model.getTeam().getTeamMembers();
         Person currentPerson = null;
         for (Person person : memberList) {

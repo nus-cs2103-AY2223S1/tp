@@ -40,7 +40,7 @@ public class RandomlyAssignTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> tasks = model.getTeam().getTaskList();
+        List<Task> tasks = model.getFilteredTaskList();
         List<Person> members = model.getTeam().getTeamMembers();
 
         if (taskIndex >= tasks.size()) {

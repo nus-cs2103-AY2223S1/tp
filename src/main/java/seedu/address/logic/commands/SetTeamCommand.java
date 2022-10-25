@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -46,6 +48,8 @@ public class SetTeamCommand extends Command {
             throw new CommandException(MESSAGE_TEAM_ALREADY_SET);
         }
         model.setTeam(teamList.get(teamIndex));
+        model.updateFilteredMembersList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, targetTeam));
     }
 

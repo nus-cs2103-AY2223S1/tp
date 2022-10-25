@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -23,7 +25,11 @@ public class Team {
 
     private final String teamName;
     private final UniquePersonList teamMembers = new UniquePersonList();
+
+    private final FilteredList<Person> filteredMembers;
     private final TaskList taskList = new TaskList();
+
+    private final FilteredList<Task> filteredTasks;
     private final UniqueLinkList links = new UniqueLinkList();
     /**
      * Constructs a {@code Team}.
@@ -36,6 +42,8 @@ public class Team {
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.teamMembers.setPersons(teamMembers);
+        filteredMembers = new FilteredList<>(getTeamMembers());
+        filteredTasks = new FilteredList<>(getTaskList());
     }
 
     /**
@@ -50,6 +58,8 @@ public class Team {
         this.teamName = teamName;
         this.teamMembers.setPersons(teamMembers);
         this.taskList.setTasks(tasks);
+        filteredMembers = new FilteredList<>(getTeamMembers());
+        filteredTasks = new FilteredList<>(getTaskList());
     }
 
     /**
@@ -66,6 +76,8 @@ public class Team {
         this.teamMembers.setPersons(teamMembers);
         this.taskList.setTasks(tasks);
         this.links.setLinks(links);
+        filteredMembers = new FilteredList<>(getTeamMembers());
+        filteredTasks = new FilteredList<>(getTaskList());
     }
 
     public static Team createDefaultTeam() {
@@ -83,6 +95,26 @@ public class Team {
     public ObservableList<Person> getTeamMembers() {
         return teamMembers.asUnmodifiableObservableList();
     }
+
+    public FilteredList<Person> getFilteredMemberList() {
+        return filteredMembers;
+    }
+
+    public void updateFilteredMembersList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredMembers.setPredicate(predicate);
+    }
+
+    public FilteredList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the team.
