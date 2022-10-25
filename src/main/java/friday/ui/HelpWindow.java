@@ -19,9 +19,19 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_CONTENT = "Here are all the commands in Friday:\n"
             + "add - to add a student\n"
             + "delete - to delete a student\n"
-            + "find - to find students related to a keyword\n"
             + "edit - to edit a specific student's details\n"
             + "list - to list all students\n"
+            + "sort - sort students based on the given criteria\n"
+            + "find - to find students related to a keyword\n"
+            + "grade - grade a specific student\n"
+            + "remark - to add a remark to a specific student\n"
+            + "mark - to mark the mastery check of a specific student\n"
+            + "alias - to add alias for a command to FRIDAY\n"
+            + "unalias - to delete an alias for a command in FRIDAY\n"
+            + "aliaslist - to display all alias in FRIDAY\n"
+            + "clear - to clear all data in FRIDAY\n"
+            + "guide - display a link to the User Guide\n"
+            + "help - to display a help message\n"
             + "For more details, refer to the user guide: ";
     public static final String HELP_MESSAGE = HELP_CONTENT + USERGUIDE_URL;
 

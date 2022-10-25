@@ -31,7 +31,8 @@ public class MarkMasteryCheckCommandParser implements Parser<MarkMasteryCheckCom
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    MarkMasteryCheckCommand.MESSAGE_USAGE),
                     pe);
         }
 
