@@ -15,8 +15,7 @@ public class TaskListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_USAGE = ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
-        + ": Shows a list of all tasks assigned by the user to contacts in the taskbook, "
-        + "and vice versa, in alphabetical order.";
+        + ": Shows a list of all tasks assigned by the user to contacts in the taskbook";
 
     @Override
     public CommandResult execute(Model model) {
