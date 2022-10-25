@@ -1,6 +1,7 @@
 package gim.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import gim.commons.core.GuiSettings;
@@ -71,6 +72,12 @@ public interface Model {
      * @return Exercise containing the highest weight.
      */
     Exercise getExercisePR(Name exerciseName);
+
+    /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    ArrayList<Exercise> getAllExercisePRs();
 
     /**
      * Adds the given exercise.

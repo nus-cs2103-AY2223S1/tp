@@ -93,6 +93,18 @@ public class ExerciseHashMap {
     }
 
     /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    public ArrayList<Exercise> getAllExercisePRs() {
+        ArrayList<Exercise> returnList = new ArrayList<>();
+        for (Name name : exerciseHashMap.keySet()) {
+            returnList.add(getExercisePR(name));
+        }
+        return returnList;
+    }
+
+    /**
      * Adds an Exercise to the exerciseHashMap.
      * If the Exercise already exists, i.e. two Exercises with the same Name, categorise them together. Returns the
      * Exercise added to the exerciseHashMap.

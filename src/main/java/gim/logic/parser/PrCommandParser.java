@@ -1,8 +1,10 @@
 package gim.logic.parser;
 
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static gim.logic.parser.CliSyntax.PREFIX_ALL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -21,7 +23,10 @@ public class PrCommandParser implements Parser<PrCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public PrCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ALL);
+        if (arePrefixesPresent(argMultimap, PREFIX_ALL)) {
+            return new PrCommand(new HashSet<Name>());
+        }
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrCommand.MESSAGE_USAGE));
         }
@@ -36,5 +41,4 @@ public class PrCommandParser implements Parser<PrCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

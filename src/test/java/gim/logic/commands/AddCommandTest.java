@@ -107,6 +107,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ArrayList<Exercise> getAllExercisePRs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Exercise addExercise(Exercise exercise) {
             throw new AssertionError("This method should not be called.");
         }

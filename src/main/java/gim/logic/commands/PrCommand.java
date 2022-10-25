@@ -1,8 +1,10 @@
 package gim.logic.commands;
 
+import static gim.logic.parser.CliSyntax.PREFIX_ALL;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -20,15 +22,18 @@ public class PrCommand extends Command {
 
     public static final String COMMAND_WORD = ":pr";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find the personal record of each exercise and "
-            + "display the weight in the console.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find the personal record of each inputted exercise.\n"
             + "Parameters: " + PREFIX_NAME
             + "NAME " + "[" + PREFIX_NAME
             + "NAME2" + " + " + PREFIX_NAME
             + "NAME3 ... ]" + "\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "squat " + PREFIX_NAME + "bench press";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "squat " + PREFIX_NAME + "bench press\n"
+            + "OR \n"
+            + "List personal records for all exercises.\n"
+            + "Parameters: " + PREFIX_ALL + "\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ALL;
 
-    public static final String MESSAGE_SUCCESS = "Listing PRs for %s:\n%s";
+    public static final String MESSAGE_SUCCESS = "Listing PRs:\n%s";
 
     private final Set<Name> nameSet;
 
@@ -44,13 +49,20 @@ public class PrCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         HashMap<Name, Weight> outputHashmap = new HashMap<>();
-        for (Name name : nameSet) {
-            Exercise exerciseWithPR = model.getExercisePR(name);
-            if (exerciseWithPR != null) {
-                outputHashmap.put(exerciseWithPR.getName(), exerciseWithPR.getWeight());
+        if (nameSet.isEmpty()) {
+            ArrayList<Exercise> allExercisePRs = model.getAllExercisePRs();
+            for (Exercise exercise : allExercisePRs) {
+                outputHashmap.put(exercise.getName(), exercise.getWeight());
+            }
+        } else {
+            for (Name name : nameSet) {
+                Exercise exerciseWithPR = model.getExercisePR(name);
+                if (exerciseWithPR != null) {
+                    outputHashmap.put(exerciseWithPR.getName(), exerciseWithPR.getWeight());
+                }
             }
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, nameSet, outputHashmap));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, outputHashmap));
     }
 
     @Override

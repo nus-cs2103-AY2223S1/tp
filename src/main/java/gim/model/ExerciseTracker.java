@@ -2,6 +2,7 @@ package gim.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gim.model.exercise.Exercise;
@@ -82,6 +83,14 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      */
     public Exercise getExercisePR(Name exerciseName) {
         return exerciseHashMap.getExercisePR(exerciseName);
+    }
+
+    /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    public ArrayList<Exercise> getAllExercisePRs() {
+        return exerciseHashMap.getAllExercisePRs();
     }
 
     /**
