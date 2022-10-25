@@ -65,6 +65,7 @@ public class CheckoutCommand extends Command {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        userPrefs.setAddressBookFilePath(addressBookFilePath);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         Storage newStorage = new StorageManager(addressBookStorage, userPrefsStorage);
         Model newModel = initModelManager(newStorage, userPrefs);
