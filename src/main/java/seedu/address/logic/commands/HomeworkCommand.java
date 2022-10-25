@@ -67,13 +67,13 @@ public class HomeworkCommand extends Command {
                 personToEdit.getSessionList(),
                 personToEdit.getGradeProgressList(),
                 personToEdit.getTags());
-        if (model.isFullView()) {
-            editedPerson.setFullView();
-        }
 
         model.setPerson(personToEdit, editedPerson);
-        String[] newNameKeywords = {personToEdit.getName().fullName};
-        model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
+        if (model.isFullView()) {
+            editedPerson.setFullView();
+            String[] newNameKeywords = {personToEdit.getName().fullName};
+            model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
+        }
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
