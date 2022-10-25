@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -17,6 +18,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -33,7 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_LINK, PREFIX_DESCRIPTION,
-                        PREFIX_APPLIED_DATE, PREFIX_TAG);
+                        PREFIX_APPLIED_DATE, PREFIX_INTERVIEW_DATE_TIME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_APPLIED_DATE, PREFIX_LINK, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,8 +49,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         AppliedDate appliedDate = ParserUtil.parseAppliedDate(argMultimap.getValue(PREFIX_APPLIED_DATE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        InterviewDateTime interviewDateTime = null;
+        if (argMultimap.getValue(PREFIX_INTERVIEW_DATE_TIME).isPresent()) {
+            interviewDateTime = ParserUtil.parseInterviewDateTime(
+                    argMultimap.getValue(PREFIX_INTERVIEW_DATE_TIME).get());
+            applicationStatus = ApplicationStatus.Shortlisted;
+        }
+
         Internship internship = new Internship(company, link, description, applicationStatus, appliedDate,
-                null, tagList);
+                interviewDateTime, tagList);
 
         return new AddCommand(internship);
     }
