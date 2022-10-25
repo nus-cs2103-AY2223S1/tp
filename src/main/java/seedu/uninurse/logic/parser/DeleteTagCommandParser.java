@@ -24,15 +24,12 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        List<Index> indices;
-
         try {
-            indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+            List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+            return new DeleteTagCommand(indices.get(0), indices.get(1));
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE), pe);
         }
-
-        return new DeleteTagCommand(indices.get(0), indices.get(1));
     }
 }

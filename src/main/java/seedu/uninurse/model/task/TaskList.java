@@ -126,6 +126,10 @@ public class TaskList implements GenericList<Task> {
         return !this.getAllTasksToday().isEmpty();
     }
 
+    public boolean hasTask(Task task) {
+        return internalTaskList.contains(task);
+    }
+
     public void filterTasks(Predicate<Task> filter) {
         filteredTaskLists = (ArrayList<Task>) internalTaskList.stream().filter(filter).collect(Collectors.toList());
     }

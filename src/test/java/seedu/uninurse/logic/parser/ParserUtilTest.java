@@ -8,9 +8,11 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.uninurse.logic.commands.EditMedicationCommand.EditMedicationDescriptor;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
@@ -264,6 +266,62 @@ public class ParserUtilTest {
                     new Medication(VALID_MEDICATION_TYPE_2, VALID_MEDICATION_DOSAGE_2)));
 
         assertEquals(expectedMedicationList, actualMedicationList);
+    }
+
+    @Test
+    public void parseEditMedicationDescriptor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEditMedicationDescriptor(null));
+    }
+
+    @Test
+    public void parseEditMedicationDescriptor_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEditMedicationDescriptor(INVALID_MEDICATION_1));
+    }
+
+    @Test
+    public void parseEditMedicationDescriptor_validValueWithoutWhitespace_returnsEditMedicationDescriptor()
+            throws Exception {
+        EditMedicationDescriptor expectedDescriptor =
+                new EditMedicationDescriptor(
+                        Optional.of(VALID_MEDICATION_TYPE_1), Optional.of(VALID_MEDICATION_DOSAGE_1));
+        assertEquals(expectedDescriptor, ParserUtil.parseEditMedicationDescriptor(VALID_MEDICATION_1));
+    }
+
+    @Test
+    public void parseEditMedicationDescriptor_validValueWithWhitespace_returnsEditMedicationDescriptor()
+            throws Exception {
+        String medicationWithWhitespace = WHITESPACE + VALID_MEDICATION_1 + WHITESPACE;
+        EditMedicationDescriptor expectedDescriptor =
+                new EditMedicationDescriptor(
+                        Optional.of(VALID_MEDICATION_TYPE_1), Optional.of(VALID_MEDICATION_DOSAGE_1));
+        assertEquals(expectedDescriptor, ParserUtil.parseEditMedicationDescriptor(medicationWithWhitespace));
+    }
+
+    @Test
+    public void parseEditMedicationDescriptor_validValueWithoutMedicationDosage_returnsEditMedicationDescriptor()
+            throws Exception {
+        String medicationWithoutDosage = VALID_MEDICATION_TYPE_1 + " | ";
+        EditMedicationDescriptor expectedDescriptor =
+                new EditMedicationDescriptor(Optional.of(VALID_MEDICATION_TYPE_1), Optional.empty());
+        assertEquals(expectedDescriptor, ParserUtil.parseEditMedicationDescriptor(medicationWithoutDosage));
+    }
+
+    @Test
+    public void parseEditMedicationDescriptor_validValueWithoutSeparator_returnsEditMedicationDescriptor()
+            throws Exception {
+        String medicationWithoutSeparator = VALID_MEDICATION_TYPE_1;
+        EditMedicationDescriptor expectedDescriptor =
+                new EditMedicationDescriptor(Optional.of(VALID_MEDICATION_TYPE_1), Optional.empty());
+        assertEquals(expectedDescriptor, ParserUtil.parseEditMedicationDescriptor(medicationWithoutSeparator));
+    }
+
+    @Test
+    public void parseEditMedicationDescriptor_validValueWithoutMedicationType_returnsEditMedicationDescriptor()
+            throws Exception {
+        String medicationWithoutType = " | " + VALID_MEDICATION_DOSAGE_1;
+        EditMedicationDescriptor expectedDescriptor =
+                new EditMedicationDescriptor(Optional.empty(), Optional.of(VALID_MEDICATION_DOSAGE_1));
+        assertEquals(expectedDescriptor, ParserUtil.parseEditMedicationDescriptor(medicationWithoutType));
     }
 
     @Test

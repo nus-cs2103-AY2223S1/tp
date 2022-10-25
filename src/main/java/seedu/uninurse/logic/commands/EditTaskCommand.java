@@ -67,6 +67,10 @@ public class EditTaskCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
+        if (patientToEdit.getTasks().hasTask(updatedTask)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
+        }
+
         Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
         TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
 

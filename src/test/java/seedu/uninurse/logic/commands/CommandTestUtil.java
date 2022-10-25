@@ -10,17 +10,22 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN;
+import static seedu.uninurse.testutil.TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.uninurse.commons.core.index.Index;
+import seedu.uninurse.logic.commands.EditMedicationCommand.EditMedicationDescriptor;
+import seedu.uninurse.logic.commands.EditPatientCommand.EditPatientDescriptor;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.UninurseBook;
-import seedu.uninurse.model.person.NameContainsKeywordsPredicate;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientContainsKeywordsPredicate;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
 
 /**
@@ -70,14 +75,25 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditPatientCommand.EditPatientDescriptor DESC_AMY;
-    public static final EditPatientCommand.EditPatientDescriptor DESC_BOB;
+    public static final EditPatientDescriptor DESC_AMY;
+    public static final EditPatientDescriptor DESC_BOB;
+
+    public static final EditMedicationDescriptor DESC_MED_AMOXICILLIN;
+    public static final EditMedicationDescriptor DESC_MED_TYPE_AMOXICILLIN;
+    public static final EditMedicationDescriptor DESC_MED_DOSAGE_AMOXICILLIN;
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).build();
+
+        DESC_MED_AMOXICILLIN = new EditMedicationDescriptor(
+                Optional.of(TYPICAL_MEDICATION_AMOXICILLIN), Optional.of(TYPICAL_DOSAGE_AMOXICILLIN));
+        DESC_MED_TYPE_AMOXICILLIN = new EditMedicationDescriptor(
+                Optional.of(TYPICAL_MEDICATION_AMOXICILLIN), Optional.empty());
+        DESC_MED_DOSAGE_AMOXICILLIN = new EditMedicationDescriptor(
+                Optional.empty(), Optional.of(TYPICAL_DOSAGE_AMOXICILLIN));
     }
 
     /**
@@ -86,7 +102,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -101,7 +117,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            CommandType expectedCommandType, Model expectedModel) {
+                                            CommandType expectedCommandType, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedCommandType);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -122,6 +138,7 @@ public class CommandTestUtil {
         assertEquals(expectedUninurseBook, actualModel.getUninurseBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s uninurse book.
@@ -131,7 +148,7 @@ public class CommandTestUtil {
 
         Patient person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().getValue().split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new PatientContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

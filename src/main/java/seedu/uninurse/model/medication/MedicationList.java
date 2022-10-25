@@ -9,7 +9,6 @@ import java.util.List;
 import seedu.uninurse.model.GenericList;
 import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
 import seedu.uninurse.model.medication.exceptions.MedicationNotFoundException;
-import seedu.uninurse.model.medication.exceptions.UnmodifiedMedicationException;
 
 /**
  * Represents a unique list of medications for a particular patient.
@@ -62,10 +61,12 @@ public class MedicationList implements GenericList<Medication> {
     public MedicationList edit(int index, Medication editedMedication) {
         try {
             List<Medication> updatedMedications = new ArrayList<>(internalMedicationList);
-            if (updatedMedications.get(index).equals(editedMedication)) {
-                throw new UnmodifiedMedicationException();
-            }
             updatedMedications.set(index, editedMedication);
+
+            if (internalMedicationList.contains(editedMedication)) {
+                throw new DuplicateMedicationException();
+            }
+
             return new MedicationList(updatedMedications);
         } catch (IndexOutOfBoundsException e) {
             throw new MedicationNotFoundException();

@@ -2,6 +2,7 @@ package seedu.uninurse.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Task for a Patient.
@@ -37,8 +38,7 @@ public class Task {
      * Constructs a {@code Task} with the given {@code description} and {@code dateAndTime}.
      */
     public Task(String description, DateTime dateAndTime) {
-        requireNonNull(description);
-        requireNonNull(description);
+        requireAllNonNull(description, dateAndTime);
         checkArgument(isValidTaskDescription(description), MESSAGE_CONSTRAINTS);
         taskDescription = description;
         dateTime = dateAndTime;
@@ -76,7 +76,8 @@ public class Task {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Task // instanceof handles nulls
-                && taskDescription.equals(((Task) other).taskDescription)); // state check
+                && taskDescription.equals(((Task) other).taskDescription)
+                && dateTime.equals(((Task) other).dateTime)); // state check
     }
 
     @Override
