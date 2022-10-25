@@ -1,4 +1,4 @@
-package seedu.address.logic.SortComparators;
+package seedu.address.logic.sortcomparators;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -51,7 +51,7 @@ public class Order {
      * Format state as text for viewing.
      */
     public String toString() {
-        return orderType.toString();
+        return orderType.toString() + " order";
     }
 }
 

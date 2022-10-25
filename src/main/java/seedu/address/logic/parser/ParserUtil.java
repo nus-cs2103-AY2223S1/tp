@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.SortComparators.Order;
+import seedu.address.logic.sortcomparators.Order;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.address.Address;
 import seedu.address.model.buyer.Email;
@@ -211,10 +211,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String price} into a {@code Price}.
+     * Parses a {@code String order} into an {@code Order}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code price} is invalid.
+     * @throws ParseException if the given {@code order} is invalid.
      */
     public static Order parseOrder(String order) throws ParseException {
         requireNonNull(order);

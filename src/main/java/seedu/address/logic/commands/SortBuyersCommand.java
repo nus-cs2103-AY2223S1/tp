@@ -25,7 +25,7 @@ public class SortBuyersCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " ASC";
 
-    public static final String MESSAGE_SUCCESS = "Sorted all buyers by %s in %s order";
+    public static final String MESSAGE_SUCCESS = "Buyer list: %s";
 
     private final Comparator<Buyer> comparator;
 
@@ -42,7 +42,7 @@ public class SortBuyersCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateSortedPersonList(comparator);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, comparator.toString()));
     }
 
     @Override

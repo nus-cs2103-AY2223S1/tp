@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.SortComparators.BuyerComparator;
-import seedu.address.logic.SortComparators.NameComparator;
-import seedu.address.logic.SortComparators.Order;
+import seedu.address.logic.sortcomparators.BuyerComparator;
+import seedu.address.logic.sortcomparators.NameComparator;
+import seedu.address.logic.sortcomparators.Order;
 import seedu.address.logic.commands.SortBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;

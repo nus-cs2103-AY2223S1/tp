@@ -1,4 +1,4 @@
-package seedu.address.logic.SortComparators;
+package seedu.address.logic.sortcomparators;
 
 import seedu.address.model.buyer.Name;
 
@@ -24,5 +24,10 @@ public class NameComparator implements Comparator<Name> {
     public int compare(Name firstName, Name secondName) {
         int comparisonValue = firstName.fullName.compareTo(secondName.fullName);
         return order.equals(new Order("ASC")) ? comparisonValue : -comparisonValue;
+    }
+    
+    @Override
+    public String toString() {
+        return "Sorted by name in " + order;
     }
 }
