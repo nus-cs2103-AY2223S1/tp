@@ -104,11 +104,6 @@ public class AddCommandParserTest {
                         + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
                 expectedMessage);
 
-        // missing studmap prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
-                expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
                         + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,

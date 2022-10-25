@@ -14,5 +14,6 @@
     "studentID" : "E1234562",
     "gitName" : "user1",
     "handle" : "@user1",
+    "tagged": [ "friends" ]
   } ]
 }

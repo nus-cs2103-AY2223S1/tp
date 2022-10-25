@@ -47,10 +47,6 @@ public class EditCommandStudentEditorTest {
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different studmap -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
         // different tags -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
