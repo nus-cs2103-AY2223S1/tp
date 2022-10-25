@@ -3,6 +3,7 @@ package seedu.classify.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -141,6 +142,17 @@ public class ModelManager implements Model {
     @Override
     public FilteredStudents getFilteredStudents() {
         return this.filteredStudents;
+    }
+
+    @Override
+    public void sortFilteredStudentList(Comparator<Student> comparator) {
+        this.filteredStudents.sortFilteredStudentList(comparator);
+
+    }
+
+    @Override
+    public double calculateExamMean(String exam) {
+        return this.filteredStudents.calculateExamMean(exam);
     }
 
     @Override

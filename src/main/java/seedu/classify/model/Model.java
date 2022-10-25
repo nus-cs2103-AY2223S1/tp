@@ -1,6 +1,7 @@
 package seedu.classify.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -86,6 +87,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Sorts the filtered student list using the given {@code comparator}.
+     * @param comparator
+     */
+    void sortFilteredStudentList(Comparator<Student> comparator);
+
+    /**
+     * Calculates the mean {@code String exam} score of the filtered student list.
+     */
+    double calculateExamMean(String exam);
 
     /**
      * Toggles between showing all students' information and hiding students' parent details

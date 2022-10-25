@@ -4,7 +4,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.classify.commons.core.Messages;
-import seedu.classify.logic.commands.*;
+
+import seedu.classify.logic.commands.AddStudCommand;
+import seedu.classify.logic.commands.Command;
+import seedu.classify.logic.commands.ClearCommand;
+import seedu.classify.logic.commands.DeleteCommand;
+import seedu.classify.logic.commands.EditCommand;
+import seedu.classify.logic.commands.ExitCommand;
+import seedu.classify.logic.commands.FindCommand;
+import seedu.classify.logic.commands.HelpCommand;
+import seedu.classify.logic.commands.ToggleViewCommand;
+import seedu.classify.logic.commands.ViewAllCommand;
+import seedu.classify.logic.commands.ViewClassCommand;
+import seedu.classify.logic.commands.ViewStatsCommand;
 import seedu.classify.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,6 +77,7 @@ public class StudentRecordParser {
             return new ToggleViewCommand();
 
         case ViewStatsCommand.COMMAND_WORD:
+            return new ViewStatsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

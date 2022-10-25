@@ -12,5 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_STUDENT_ID = "The student ID provided does not exist!";
     public static final String MESSAGE_INVALID_STUDENT_NAME = "The student name provided does not exist!";
     public static final String MESSAGE_PERSONS_LISTED_IN_CLASS = "There are %1$d students in this class!";
+    public static final String MESSAGE_CLASS_SORTED_BY_GRADE = "Students of class %s sorted by grade!\n";
+    public static final String MESSAGE_DISPLAY_MEAN = "Mean of %s for class %s is %.2f";
 
 }

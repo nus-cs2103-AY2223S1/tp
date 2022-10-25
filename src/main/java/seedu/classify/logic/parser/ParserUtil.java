@@ -149,4 +149,21 @@ public class ParserUtil {
         return examSet;
     }
 
+    /**
+     * Parses a {@code String filter} into a boolean value.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filter} is invalid.
+     */
+    public static boolean parseFilter(String filter) throws ParseException {
+        String trimmedFilter = filter.trim();
+        if (trimmedFilter.equals("ON")) {
+            return true;
+        } else if (trimmedFilter.equals("OFF")) {
+            return false;
+        } else {
+            throw new ParseException("Value for filter should either be 'on' or 'off'");
+        }
+    }
+
 }

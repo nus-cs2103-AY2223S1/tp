@@ -4,6 +4,7 @@ import static seedu.classify.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -74,6 +75,23 @@ public class Student {
      */
     public Set<Exam> getExams() {
         return Collections.unmodifiableSet(exams);
+    }
+
+    public Exam getExam(String exam) {
+        assert exam.equals("CA1") || exam.equals("CA2") || exam.equals("SA1") || exam.equals("SA2");
+        Iterator<Exam> examIterator = exams.iterator();
+        Exam currExam = null;
+        while (examIterator.hasNext()) {
+            currExam = examIterator.next();
+            if (currExam.getExamName().equals(exam)) {
+                break;
+            }
+        }
+        return currExam;
+    }
+
+    public int getExamScore(String exam) {
+        return getExam(exam).getScore();
     }
 
     /**
