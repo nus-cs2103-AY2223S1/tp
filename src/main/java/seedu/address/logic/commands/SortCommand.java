@@ -12,12 +12,11 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all clients whose names or tags contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters (by name): n/KEYWORD [n/MORE_KEYWORDS]...\n"
-            + "Parameters (by tags): t/KEYWORD [t/MORE_KEYWORDS]...\n"
-            + "Example (by name): " + COMMAND_WORD + " n/alice n/bob n/charlie"
-            + "Example (by tags): " + COMMAND_WORD + " t/friend t/school";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all clients according to given parameters "
+            + "in ascending order. Parameters which can be sorted by are Name, Income and Meeting Date.\n"
+            + "Parameters: n/ or i/ or m/\n"
+            + "Example (by name): " + COMMAND_WORD + " n/"
+            + "Example (by income): " + COMMAND_WORD + " i/";
 
     private final String sortParam;
 
