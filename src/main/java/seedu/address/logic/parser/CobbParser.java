@@ -6,22 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddBuyerCommand;
-import seedu.address.logic.commands.AddPropertyCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteBuyerCommand;
-import seedu.address.logic.commands.DeletePropertyCommand;
-import seedu.address.logic.commands.EditBuyerCommand;
-import seedu.address.logic.commands.EditPropertyCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterBuyersCommand;
-import seedu.address.logic.commands.FilterPropsCommand;
-import seedu.address.logic.commands.FindBuyerCommand;
-import seedu.address.logic.commands.FindPropertyCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListBuyersCommand;
-import seedu.address.logic.commands.ListPropertiesCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -95,6 +80,12 @@ public class CobbParser {
 
         case FilterPropsCommand.COMMAND_WORD:
             return new FilterPropertiesCommandParser().parse(arguments);
+
+        case MultiFlagFilterBuyersCommand.COMMAND_WORD:
+            return new MultiFlagFilterBuyersCommandParser().parse(arguments);
+
+        case MultiFlagFilterPropsCommand.COMMAND_WORD:
+            return new MultiFlagFilterPropsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
