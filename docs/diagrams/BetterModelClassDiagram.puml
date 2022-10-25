@@ -18,4 +18,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *-right> GraduationDate
+Person *--> Major
+Person *--> Gender
+Person *--> University
+Person *--> CAP
 @enduml

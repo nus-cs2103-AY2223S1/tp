@@ -20,12 +20,22 @@ public class TitleTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Title.isWithinLengthLimit("A".repeat(Title.LENGTH_LIMIT - 1)));
+        assertTrue(Title.isWithinLengthLimit("A".repeat(Title.LENGTH_LIMIT)));
+        assertFalse(Title.isWithinLengthLimit("A".repeat(Title.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidTitle() {
         // null title
         assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
 
         // blank title
         assertFalse(Title.isValidTitle("")); // empty string
+        assertFalse(Title.isValidTitle(" ")); // 1 space only
+        assertFalse(Title.isValidTitle("    ")); // multiple spaces
+        assertFalse(Title.isValidTitle(" Software Engineer Intern")); // starting with 1 space
 
         // invalid title
         assertFalse(Title.isValidTitle("Campus Recruitment | Software Engineer Intern")); // '|' symbol in title
@@ -34,7 +44,6 @@ public class TitleTest {
         assertFalse(Title.isValidTitle("Campus Recruitment \\ Software Engineer Intern")); // '\' symbol in title
         assertFalse(Title.isValidTitle("* Campus Recruitment Software Engineer Intern")); // '*' symbol in title
         assertFalse(Title.isValidTitle("{Campus Recruitment} Software Engineer Intern")); // '{}' symbol in title
-
 
         // valid title
         assertTrue(Title.isValidTitle("Campus Recruitment - Software Engineer Intern")); // '-' symbol in title

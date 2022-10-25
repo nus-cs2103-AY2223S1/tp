@@ -20,6 +20,13 @@ public class MajorTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Major.isWithinLengthLimit("A".repeat(Major.LENGTH_LIMIT - 1)));
+        assertTrue(Major.isWithinLengthLimit("A".repeat(Major.LENGTH_LIMIT)));
+        assertFalse(Major.isWithinLengthLimit("A".repeat(Major.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidMajor() {
         // null major type
         assertThrows(NullPointerException.class, () -> Major.isValidMajor(null));
