@@ -29,7 +29,6 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
 
 | Flags | Related Placeholder   |
 |-------|-----------------------|
-| id/   | INDEX                 |
 | n/    | ITEM_NAME<br>TAG_NAME |
 | qty/  | QUANTITY              |
 | u/    | UNIT                  |
