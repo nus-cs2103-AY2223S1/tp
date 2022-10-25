@@ -135,9 +135,6 @@ public interface Model {
      */
     int indexOf(Task task);
 
-    /** Returns an unmodifiable view of the filtered task list */
-    ObservableList<Task> getFilteredTaskList();
-
     /** Returns an unmodifiable view of the sorted task list */
     ObservableList<Task> getSortedTaskList();
 

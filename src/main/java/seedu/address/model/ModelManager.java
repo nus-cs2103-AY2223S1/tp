@@ -201,15 +201,6 @@ public class ModelManager implements Model {
      * {@code versionedTaskList}
      */
     @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedTaskList}
-     */
-    @Override
     public ObservableList<Task> getSortedTaskList() {
         return sortedTasks;
     }

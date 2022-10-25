@@ -159,11 +159,6 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public ObservableList<Task> getFilteredTaskList() {
-            return null;
-        }
-
-        @Override
         public ObservableList<Task> getSortedTaskList() {
             return null;
         }

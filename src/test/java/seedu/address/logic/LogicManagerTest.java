@@ -100,8 +100,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
+    public void getSortedTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedTaskList().remove(0));
     }
 
     /**

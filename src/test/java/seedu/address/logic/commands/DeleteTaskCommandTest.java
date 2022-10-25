@@ -29,7 +29,7 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST.getZeroBased());
+        Task taskToDelete = model.getSortedTaskList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
@@ -42,7 +42,7 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedTaskList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -52,7 +52,7 @@ public class DeleteTaskCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST);
 
-        Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST.getZeroBased());
+        Task taskToDelete = model.getSortedTaskList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
@@ -105,6 +105,6 @@ public class DeleteTaskCommandTest {
     private void showNoTask(Model model) {
         model.updateFilteredTaskList(p -> false);
 
-        assertTrue(model.getFilteredTaskList().isEmpty());
+        assertTrue(model.getSortedTaskList().isEmpty());
     }
 }

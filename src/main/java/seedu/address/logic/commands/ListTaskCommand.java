@@ -24,7 +24,7 @@ public class ListTaskCommand extends Command {
 
     private final Comparator<Task> comparator;
 
-    public ListTaskCommand(Comparator comparator) {
+    public ListTaskCommand(Comparator<Task> comparator) {
         this.comparator = comparator;
     }
 

@@ -158,11 +158,6 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public ObservableList<Task> getFilteredTaskList() {
-            return null;
-        }
-
-        @Override
         public ObservableList<Task> getSortedTaskList() {
             return null;
         }
