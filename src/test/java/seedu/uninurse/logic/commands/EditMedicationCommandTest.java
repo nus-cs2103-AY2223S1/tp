@@ -7,8 +7,8 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.logic.commands.EditMedicationCommand.EDIT_MEDICATION_COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.EditMedicationCommand.MESSAGE_EDIT_DUPLICATE_MEDICATION;
 import static seedu.uninurse.logic.commands.EditMedicationCommand.MESSAGE_EDIT_MEDICATION_SUCCESS;
-import static seedu.uninurse.logic.commands.EditMedicationCommand.MESSAGE_NOT_EDITED;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -159,7 +159,7 @@ class EditMedicationCommandTest {
     }
 
     @Test
-    public void execute_unmodifiedMedication_throwsCommandException() {
+    public void execute_duplicateMedication_throwsCommandException() {
         Patient patient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
         Medication initialMedication = patient.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
@@ -170,7 +170,8 @@ class EditMedicationCommandTest {
         EditMedicationCommand editMedicationCommand =
                 new EditMedicationCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, duplicateMedicationDescriptor);
 
-        assertCommandFailure(editMedicationCommand, model, MESSAGE_NOT_EDITED);
+        assertCommandFailure(editMedicationCommand, model,
+                String.format(MESSAGE_EDIT_DUPLICATE_MEDICATION, patient.getName().toString()));
     }
 
     @Test

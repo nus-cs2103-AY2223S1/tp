@@ -37,6 +37,8 @@ public class EditMedicationCommand extends EditGenericCommand {
             + "Before: %3$s\n"
             + "After: %4$s";
     public static final String MESSAGE_NOT_EDITED = "Medication has not been modified.";
+    public static final String MESSAGE_EDIT_DUPLICATE_MEDICATION =
+            "Medication already exists in %1$s's medication list.";
 
     public static final CommandType EDIT_MEDICATION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
@@ -80,6 +82,10 @@ public class EditMedicationCommand extends EditGenericCommand {
         Medication updatedMedication = new Medication(
                 editMedicationDescriptor.getType().orElse(initialMedication.getType()),
                 editMedicationDescriptor.getDosage().orElse(initialMedication.getDosage()));
+
+        if (initialMedicationList.getInternalList().contains(updatedMedication)) {
+            throw new CommandException(String.format(MESSAGE_EDIT_DUPLICATE_MEDICATION, patientToEdit.getName()));
+        }
 
         MedicationList updatedMedicationList;
 
