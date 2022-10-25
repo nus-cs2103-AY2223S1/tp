@@ -30,5 +30,12 @@ public class TagContainsKeywordsPredicate implements Predicate<Task> {
                 && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
     }
 
+    @Override
+    public String toString() {
+        return this.keywords.size() == 1
+                ? "Tag(s) containing '" + keywords.get(0) + "'"
+                : "Tag(s) containing ''";
+    }
+
 }
 

@@ -1,5 +1,5 @@
 package seedu.address.model.task;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -70,5 +70,15 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withModule("12345").build()));
+    }
+
+    @Test
+    public void isString_validInputs_correctResult() {
+        // Zero keyword predicate
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
+        assertEquals("Names containing ''", predicate.toString());
+        // Regular test case
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("taskName", "task2"));
+        assertEquals("Names containing [taskName, task2]", predicate.toString());
     }
 }

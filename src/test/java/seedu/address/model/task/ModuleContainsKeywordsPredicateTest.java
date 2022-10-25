@@ -1,5 +1,5 @@
 package seedu.address.model.task;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+
+
 
 public class ModuleContainsKeywordsPredicateTest {
     @Test
@@ -70,5 +72,14 @@ public class ModuleContainsKeywordsPredicateTest {
         predicate = new ModuleContainsKeywordsPredicate(Arrays.asList("tp", "2022-10-07", "highPriority", "false"));
         assertFalse(predicate.test(new PersonBuilder().withName("tp").withModule("cs2103t")
                 .withDeadline("2022-10-07").withTags("highPriority").withIsDone(false).build()));
+    }
+    @Test
+    public void isString_validInputs_correctResult() {
+        // Zero keyword predicate
+        ModuleContainsKeywordsPredicate predicate = new ModuleContainsKeywordsPredicate(Collections.emptyList());
+        assertEquals("Modules containing ''", predicate.toString());
+        // Regular test case
+        predicate = new ModuleContainsKeywordsPredicate(List.of("Cs2103T"));
+        assertEquals("Modules containing 'Cs2103T'", predicate.toString());
     }
 }

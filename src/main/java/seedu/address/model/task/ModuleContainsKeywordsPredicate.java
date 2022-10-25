@@ -28,5 +28,11 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Task> {
                 || (other instanceof ModuleContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ModuleContainsKeywordsPredicate) other).keywords)); // state check
     }
+    @Override
+    public String toString() {
+        return this.keywords.size() == 1
+                ? "Modules containing '" + this.keywords.get(0) + "'"
+                : "Modules containing ''";
+    }
 
 }
