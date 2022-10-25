@@ -149,6 +149,7 @@ public class TaAssist implements ReadOnlyTaAssist {
 
     /**
      * Removes {@code moduleClass} from this {@code TaAssist} and unassigns all students in the class.
+     * The {@code moduleClass} must exist in TA-Assist.
      */
     public void removeModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
