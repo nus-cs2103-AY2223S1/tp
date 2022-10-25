@@ -11,6 +11,10 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": lists all the eateries in the food guide\n"
+            + "Example: " + COMMAND_WORD;
+
     public static final String MESSAGE_SUCCESS = "Listed all eateries";
 
 

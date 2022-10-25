@@ -1,9 +1,14 @@
 package eatwhere.foodguide.logic.parser;
 
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
+import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
+
 import java.util.Arrays;
 
 import eatwhere.foodguide.commons.core.Messages;
+import eatwhere.foodguide.logic.commands.DeleteCommand;
 import eatwhere.foodguide.logic.commands.FindCommand;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 
@@ -17,7 +22,13 @@ public class FindCommandParser implements Parser<FindCommand> {
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindCommand parse(String args) throws ParseException, DisplayCommandHelpException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
+
+        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+            throw new DisplayCommandHelpException(DeleteCommand.MESSAGE_USAGE);
+        }
+
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(

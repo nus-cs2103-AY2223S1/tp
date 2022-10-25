@@ -15,6 +15,7 @@ import eatwhere.foodguide.logic.commands.HelpCommand;
 import eatwhere.foodguide.logic.commands.ListCommand;
 import eatwhere.foodguide.logic.commands.TagCommand;
 import eatwhere.foodguide.logic.commands.UntagCommand;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,7 +35,7 @@ public class FoodGuideParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException, DisplayCommandHelpException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -66,7 +67,7 @@ public class FoodGuideParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
