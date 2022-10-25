@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ import seedu.address.model.task.Task;
 
 
 public class RemoveTaskCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBookWithToDos(), new UserPrefs());
 
     @Test
     public void execute_validIndexTaskList_success() {

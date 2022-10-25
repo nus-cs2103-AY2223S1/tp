@@ -24,7 +24,7 @@ public class JsonSerializableTaskBookTest {
         JsonSerializableTaskBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskBook.class).get();
         TaskBook taskBookFromFile = dataFromFile.toModelType();
-        TaskBook typicalTaskBook = TypicalToDos.getTypicalTaskBook();
+        TaskBook typicalTaskBook = TypicalToDos.getTypicalTaskBookWithToDos();
         assertEquals(taskBookFromFile, typicalTaskBook);
     }
 

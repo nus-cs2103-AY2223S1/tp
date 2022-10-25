@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.ELLE;
 import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +25,9 @@ import seedu.address.model.student.StudentContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBookWithToDos(), new UserPrefs());
+    private Model expectedModel =
+            new ModelManager(getTypicalAddressBook(), getTypicalTaskBookWithToDos(), new UserPrefs());
 
     @Test
     public void equals() {

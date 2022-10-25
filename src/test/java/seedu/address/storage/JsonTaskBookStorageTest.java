@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalToDos.FIRST;
 import static seedu.address.testutil.TypicalToDos.SECOND;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -57,7 +57,7 @@ public class JsonTaskBookStorageTest {
     @Test
     public void readAndSaveTaskBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        TaskBook original = getTypicalTaskBook();
+        TaskBook original = getTypicalTaskBookWithToDos();
         JsonTaskBookStorage jsonTaskBookStorage = new JsonTaskBookStorage(filePath);
 
         // Save in new file and read back

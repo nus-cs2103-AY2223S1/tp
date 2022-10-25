@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_ADD_STUDENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -72,8 +73,12 @@ public class CommandTestUtil {
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
 
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TODO;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_DEADLINE;
+
     public static final String VALID_TASK_TITLE = "Grade assignments";
     public static final String VALID_TASK_DESCRIPTION = "Complete by tonight";
+<<<<<<< HEAD
     public static final String VALID_FORMAT_DATE = "2022-10-22";
     public static final String INVALID_TASK_TITLE = "invalid title#";
     public static final String INVALID_TASK_DESCRIPTION = "invalid description?";
@@ -82,6 +87,22 @@ public class CommandTestUtil {
     public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;
     public static final String TASK_DESCRIPTION_DESC = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_DESCRIPTION;
     public static final String FORMAT_DATE_DESC = " " + PREFIX_DEADLINE_DATE + VALID_FORMAT_DATE;
+=======
+    public static final String VALID_DEADLINE_DATE = "2022-09-09";
+    public static final String VALID_ASSIGNMENT_STUDENTS = "Adam, Ben, Charles";
+    public static final String VALID_ASSIGNMENT_STUDENT_ADAM = "Adam";
+    public static final String VALID_ASSIGNMENT_STUDENT_BEN = "Ben";
+
+    public static final String INVALID_TASK_TITLE = "invalid title#";
+    public static final String INVALID_TASK_DESCRIPTION = "invalid description?";
+    public static final String INVALID_DEADLINE_DATE = "09-09-2002";
+
+    public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;
+    public static final String TASK_DESCRIPTION_DESC = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_DESCRIPTION;
+    public static final String DEADLINE_DATE_DESC = " " + PREFIX_DEADLINE_DATE + VALID_DEADLINE_DATE;
+    public static final String ASSIGNMENT_ADD_STUDENTS_DESC =
+            " " + PREFIX_ASSIGNMENT_ADD_STUDENTS + VALID_ASSIGNMENT_STUDENTS;
+>>>>>>> master
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -90,6 +111,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withClassGroup(VALID_CLASS_GROUP_BOB)
                 .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_TODO = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION).build();
+        DESC_DEADLINE = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION).withDate(VALID_DEADLINE_DATE).build();
     }
 
     /**

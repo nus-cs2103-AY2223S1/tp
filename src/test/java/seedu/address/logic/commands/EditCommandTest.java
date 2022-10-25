@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ import seedu.address.testutil.StudentBuilder;
 public class EditCommandTest {
 
     public static final String TEST_STUDENT_NAME = "A random Name";
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalTaskBookWithToDos(), new UserPrefs());
 
 
     @Test
