@@ -31,11 +31,11 @@ public abstract class Lesson {
         this.notes = notes;
     }
 
-    public LocalDateTime startTime() {
+    public LocalDateTime startDateTime() {
         return timePeriod.getStart();
     }
 
-    public LocalDateTime endTime() {
+    public LocalDateTime endDateTime() {
         return timePeriod.getEnd();
     }
 

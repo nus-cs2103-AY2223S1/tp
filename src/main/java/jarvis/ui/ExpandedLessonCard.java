@@ -1,6 +1,7 @@
 package jarvis.ui;
 
 import jarvis.model.Lesson;
+import jarvis.model.LessonType;
 import jarvis.model.Student;
 import jarvis.model.Studio;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -73,12 +74,25 @@ public class ExpandedLessonCard extends UiPart<Region> {
     public ExpandedLessonCard(Lesson lesson, int displayedIndex) {
         super(FXML);
         this.lesson = lesson;
+        setTextUi(displayedIndex);
+        setTableUi();
+    }
+
+    private void setTextUi(int displayedIndex) {
         id.setText(displayedIndex + ". ");
+
         if (lesson.isCompleted()) {
             checkbox.setImage(tick);
         } else {
             checkbox.setImage(cross);
         }
+
+        if (lesson.hasDesc()) {
+            lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
+        } else {
+            lessonDesc.setText("{No description}");
+        }
+
         switch(lesson.getLessonType()) {
         case MASTERY_CHECK:
             lessonType.setText("Mastery Check");
@@ -88,24 +102,24 @@ public class ExpandedLessonCard extends UiPart<Region> {
             break;
         case STUDIO:
             lessonType.setText("Studio");
-            // Set participation column for studio
-            studentParticipation.setVisible(true);
-            studentParticipation.setCellValueFactory(s -> new ReadOnlyObjectWrapper<>((
-                    (Studio) lesson).getParticipationForStudent(s.getValue())));
             break;
         default:
             assert false : "There are only 3 types of lesson";
         }
-        if (lesson.hasDesc()) {
-            lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
-        } else {
-            lessonDesc.setText("{No description}");
-        }
+
         timePeriod.setText(lesson.getTimePeriod().toString());
         generalNotes.setText(lesson.getGeneralNotes());
+    }
 
+    private void setTableUi() {
         ObservableList<Student> list = FXCollections.observableArrayList(lesson.getAttendance().getAllStudents());
         tableView.setPrefHeight(LESSON_CARD_BASE_HEIGHT + list.size() * TABLE_VIEW_ROW_HEIGHT);
+        // Set participation column for studio
+        if (lesson.getLessonType() == LessonType.STUDIO) {
+            studentParticipation.setVisible(true);
+            studentParticipation.setCellValueFactory(s -> new ReadOnlyObjectWrapper<>((
+                    (Studio) lesson).getParticipationForStudent(s.getValue())));
+        }
         studentIndex.setCellValueFactory(s -> new ReadOnlyObjectWrapper<>(
                 tableView.getItems().indexOf(s.getValue()) + 1));
         studentNames.setCellValueFactory(s -> new ReadOnlyStringWrapper(s.getValue().getName().toString()));

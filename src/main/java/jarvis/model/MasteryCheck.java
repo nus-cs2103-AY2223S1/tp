@@ -38,8 +38,8 @@ public class MasteryCheck extends Lesson {
         }
 
         return masteryCheckDescEquality
-                && otherMasteryCheck.startTime().equals(startTime())
-                && otherMasteryCheck.endTime().equals(endTime())
+                && otherMasteryCheck.startDateTime().equals(startDateTime())
+                && otherMasteryCheck.endDateTime().equals(endDateTime())
                 && otherMasteryCheck.getAttendance().equals(getAttendance());
     }
 

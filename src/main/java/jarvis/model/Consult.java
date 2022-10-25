@@ -37,8 +37,8 @@ public class Consult extends Lesson {
             consultDescEquality = otherConsult.getDesc() == null;
         }
         return consultDescEquality
-                && otherConsult.startTime().equals(startTime())
-                && otherConsult.endTime().equals(endTime())
+                && otherConsult.startDateTime().equals(startDateTime())
+                && otherConsult.endDateTime().equals(endDateTime())
                 && otherConsult.getAttendance().equals(getAttendance());
     }
 

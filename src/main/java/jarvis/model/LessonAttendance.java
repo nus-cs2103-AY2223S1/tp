@@ -21,7 +21,7 @@ public class LessonAttendance {
     public LessonAttendance(Collection<Student> students) {
         attendance = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
         for (Student stu : students) {
-            attendance.put(stu, true);
+            attendance.put(stu, false);
         }
     }
 
