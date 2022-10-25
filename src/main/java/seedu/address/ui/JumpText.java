@@ -6,9 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.CalendarLogic;
-import seedu.address.ui.UiPart;
 
-
+/**
+ * A textField that reads user input for the new month
+ * when interacted with.
+ */
 public class JumpText extends UiPart<Region> {
     private static final String FXML = "JumpText.fxml";
     private CalendarLogic calendarLogic;
@@ -16,6 +18,9 @@ public class JumpText extends UiPart<Region> {
     @FXML
     private TextField jumpText;
 
+    /**
+     * Creates a {@code JumpText} with the given {@code CalendarLogic}.
+     */
     public JumpText(CalendarLogic calendarLogic) {
         super(FXML);
         this.calendarLogic = calendarLogic;
