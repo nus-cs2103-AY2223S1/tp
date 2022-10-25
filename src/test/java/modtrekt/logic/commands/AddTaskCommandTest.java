@@ -107,7 +107,7 @@ public class AddTaskCommandTest {
     @Test
     public void testCommandModuleCodeInvalid_throws() {
         AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, "CS2000");
-        assertThrows(CommandException.class, "Module code does not exist", ()
+        assertThrows(CommandException.class, "Module code CS2000 does not exist", ()
                 -> cmd.execute(new ModelStub()));
     }
 
@@ -212,7 +212,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void updateModuleTask(Task t) {
+        public void updateModuleTaskCount(Task t) {
 
         }
 
@@ -247,7 +247,17 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public void updateTaskModule(ModCode oldCode, ModCode newCode) {
+
+        }
+
+        @Override
         public void setTask(Task target, Task editedTask) {
+
+        }
+
+        @Override
+        public void archiveDoneModuleTasks(ModCode code) {
 
         }
 

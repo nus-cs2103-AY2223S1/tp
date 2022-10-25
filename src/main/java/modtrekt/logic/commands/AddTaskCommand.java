@@ -89,18 +89,6 @@ public class AddTaskCommand extends Command {
 
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-//=======
-//        if (!(model.hasModuleWithModCode(this.modCode))) {
-//            throw new CommandException("Module code does not exist");
-//        }
-//
-//        /* If deadline is not null, a Deadline object is created instead */
-//        Task newTask = deadline == null
-//                ? new Task(description, modCode, false, Task.Priority.NONE)
-//                : new Deadline(description, modCode, deadline, false, Task.Priority.NONE);
-//        model.addTask(newTask);
-//        return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
-//>>>>>>> master
     }
 
     @Override
