@@ -22,6 +22,7 @@ It is named `Salesy` because our team wanted to up the sales of canteen vendors 
 * Update your inventory and keep track of stock changes.
 * Be well aware when your stock is healthy, average or low.
 * Search for suppliers in our comprehensive data bank.
+* Keep up to date with the best price for items.
 
 ## More information about this project
 * This project was made as part of CS2103T in AY22/23 S1.
