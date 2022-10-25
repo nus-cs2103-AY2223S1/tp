@@ -186,6 +186,8 @@ public class ModelManager implements Model {
      */
     @Override
     public void updateEventPersonReference() {
+        // This predicate updates the person names in the UidList in each event
+        // All events in the event list are displayed since the predicate returns true for all events
         this.updateFilteredEventList(x -> x.getUids().setPersonNames(this));
     }
 
