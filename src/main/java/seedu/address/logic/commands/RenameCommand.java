@@ -19,10 +19,12 @@ public class RenameCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Renames the current folder "
             + "by the input string.\n"
-            + "Parameters: NAME (must be an alphanumeric String)";
+            + "Parameters: NAME (must be an alphanumeric String with only '-' and '_' allowed)";
 
     public static final String MESSAGE_RENAME_SUCCESS = "Renamed successfully!";
-    public static final String MESSAGE_RENAME_FAILURE = "File name already exists!";
+    public static final String MESSAGE_RENAME_FAILURE = "There is an error creating the file!\n"
+            + "The file has to be in alphanumeric format with only '-' and '_' allowed\n"
+            + "The file cannot be a duplicate";
 
     private final String name;
 

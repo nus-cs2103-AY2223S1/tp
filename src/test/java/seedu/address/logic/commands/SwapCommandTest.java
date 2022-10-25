@@ -13,7 +13,7 @@ public class SwapCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
+    public void execute_swap_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_SWAP_ACKNOWLEDGEMENT, null,
                 false, false, true, false);
         assertCommandSuccess(new SwapCommand(), model, expectedCommandResult, expectedModel);

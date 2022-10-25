@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.RenameCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
@@ -86,7 +87,7 @@ public class MainWindow extends UiPart<Stage> {
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
         setAccelerator(swapBook, KeyCombination.valueOf("Shift+Tab"));
-        setAccelerator(swapBook, KeyCombination.valueOf("Ctrl+Shift+N"));
+        setAccelerator(newBook, KeyCombination.valueOf("Ctrl+Shift+N"));
     }
 
     /**
@@ -152,6 +153,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Resets what the status bar shows.
+     */
+    public void refreshStatusBar() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().set(0, statusBarFooter.getRoot());
+    }
+
+    /**
      * Opens the help window in a new browser window
      */
     @FXML
@@ -184,9 +193,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleSwap() {
         logic.swapAddressBook();
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().set(0, statusBarFooter.getRoot());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        refreshStatusBar();
     }
 
     /**
@@ -228,6 +235,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isNewBook()) {
                 handleNewBook();
+            }
+
+            if (commandResult.getFeedbackToUser().equals(RenameCommand.MESSAGE_RENAME_SUCCESS)) {
+                refreshStatusBar();
             }
 
             if (commandResult.isSwap()) {
