@@ -22,7 +22,7 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.entry.Income;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.entry.Tag;
 
 /**
  * Edits the details of an existing entry in the penny wise application.
