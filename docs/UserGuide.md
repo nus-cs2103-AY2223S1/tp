@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-#Waddle User Guide 🦆
+# Waddle User Guide 🦆
 Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**. Waddle allows users to plan their travels in **3 simple steps**.
 1. Create a trip
 2. Add activities
@@ -48,7 +48,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `new n/NAME`, `NAME` is a parameter which can be used as `add n/My Japan Trip`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/My Japan Trip`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [c/COUNTRY]` can be used as `n/My Japan Trip c/Japan` or as `n/My Japan Trip`.
@@ -76,15 +76,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Creating a new itinerary: `new`
+### Creating a new itinerary: `add`
 
 Adds an itinerary to Waddle.
 
-Format: `new n/NAME [c/COUNTRY] dur/DURATION [s/START DATE] [p/NUMBER OF WADDLERS]`
+Format: `add n/NAME [c/COUNTRY] dur/DURATION s/START DATE [p/NUMBER OF WADDLERS]`
 
 Examples:
-* `new n/My Japan Trip d/6`
-* `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4`
+* `add n/My Japan Trip d/6`
+* `add n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4`
 
 ### Listing all itineraries : `list`
 
@@ -188,10 +188,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**New** | `new n/NAME [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4 b/7000`
+**Add** | `add n/NAME [c/COUNTRY] du/DURATION s/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4 b/7000`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [c/COUNTRY] [d/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/04/10/22`
+**Edit** | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/04/10/22`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`
 **List** | `list`
 **Help** | `help`
