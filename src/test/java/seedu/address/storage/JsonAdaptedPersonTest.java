@@ -30,7 +30,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_STUDENTCLASS = BENSON.getStudentClass().toString();
-  private static final String VALID_ATTENDANCE = BENSON.getAttendance().toString();
+    private static final String VALID_ATTENDANCE = BENSON.getAttendance().toString();
     private static final String VALID_SUBJECTHANDLER = BENSON.getSubjectHandler().dataString();
     private static final List<JsonAdaptedRemark> VALID_REMARKS = BENSON.getRemarks().stream()
                                                                        .map(JsonAdaptedRemark::new)
@@ -127,7 +127,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullStudentClass_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                                                         null, VALID_ATTENDANCE, VALID_SUBJECTHANDLER, VALID_REMARKS, VALID_TAGS);
+                                                         null, VALID_ATTENDANCE, 
+                                                         VALID_SUBJECTHANDLER, VALID_REMARKS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentClass.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
