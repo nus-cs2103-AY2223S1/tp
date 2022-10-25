@@ -10,6 +10,12 @@ FoodWhere (FW) is a desktop app for managing food reviews, optimized for use via
   * add reviews for food stalls
   * list all food stalls stored in FoodWhere
   * list all reviews stored in FoodWhere
+  * edit existing food stalls in FoodWhere
+  * edit existing reviews in FoodWhere
+  * find food stalls by name and/or tag
+  * find reviews by stall name and/or tag
+  * sort food stalls by name
+  * sort reviews by stall name, date or ratings
 
 For more information on how to start using the application, check out the [User Guide](https://AY2223S1-CS2103-W14-2.github.io/tp/UserGuide.html)
 
