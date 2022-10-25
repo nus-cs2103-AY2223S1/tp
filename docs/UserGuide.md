@@ -144,9 +144,11 @@ Adds an event with a name, a start timing and end timing.
 
 Format: `event -a n/TITLE s/START e/END [t/TAG]… [p/PROFILE]…`
 
+* The start and end dates can be specified in [various formats](#accepted-date-time-formats).
+* The start date must occur before or on the same day and time as the end date.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An event can have 0 or more profiles.
-An event can have 0 or more tags.
+An event can have 0 or more profiles. An event can have 0 or more tags.
 </div>
 
 ### Viewing upcoming events: `event -u`
@@ -178,6 +180,7 @@ Format: `event -e INDEX [n/TITLE] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the event will be removed i.e adding of tags is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it.
+* The start and end dates can be specified in [various formats](#accepted-date-time-formats).
 
 ### Finding events by date or title: `event -f KEYWORD_OR_DATE [MORE]`
 
