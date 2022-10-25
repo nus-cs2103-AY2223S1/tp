@@ -13,7 +13,7 @@ public class Debt {
     private final Money money;
     private final DebtDate date;
     private final DebtTime time;
-    private boolean isPaid;
+    private final boolean isPaid;
 
     /**
      * Every field must be present and not null.
@@ -37,6 +37,8 @@ public class Debt {
      *
      * @param description The description of the debt.
      * @param money The money amount of the debt.
+     * @param date The date of the debt.
+     * @param time The time of the debt.
      * @param isPaid Whether the debt has been paid.
      */
     public Debt(Description description, Money money, DebtDate date, DebtTime time, boolean isPaid) {
@@ -68,8 +70,8 @@ public class Debt {
         return isPaid;
     }
 
-    public void setPaid(boolean isPaid) {
-        this.isPaid = isPaid;
+    public Debt setPaid(boolean isPaid) {
+        return new Debt(description, money, date, time, isPaid);
     }
 
     /**
@@ -126,7 +128,8 @@ public class Debt {
                 .append(": ")
                 .append(getDescription())
                 .append("; $")
-                .append(getMoney());
+                .append(getMoney())
+                .append(isPaid() ? " (paid)" : " (unpaid)");
 
         return builder.toString();
     }

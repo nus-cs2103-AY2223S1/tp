@@ -16,11 +16,13 @@ public class DebtBuilder {
     public static final String DEFAULT_MONEY = "100";
     public static final String DEFAULT_DATE = "2022-10-12";
     public static final String DEFAULT_TIME = DebtTime.DEFAULT_TIME;
+    public static final boolean DEFAULT_IS_PAID = false;
 
     private Description description;
     private Money money;
     private DebtDate date;
     private DebtTime time;
+    private boolean isPaid;
 
     /**
      * Creates a {@code DebtBuilder} with the default details.
@@ -31,6 +33,7 @@ public class DebtBuilder {
             money = new Money(DEFAULT_MONEY);
             date = new DebtDate(DEFAULT_DATE);
             time = new DebtTime(DEFAULT_TIME);
+            isPaid = DEFAULT_IS_PAID;
         } catch (DateTimeParseException e) {
             assert false : "DebtBuilder constructor error that should not occur has occurred.";
         }
@@ -44,6 +47,7 @@ public class DebtBuilder {
         money = debtToCopy.getMoney();
         date = debtToCopy.getDate();
         time = debtToCopy.getTime();
+        isPaid = debtToCopy.isPaid();
     }
 
     /**
@@ -94,7 +98,15 @@ public class DebtBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isPaid} of the {@code Debt} that we are building.
+     */
+    public DebtBuilder withIsPaid(boolean isPaid) {
+        this.isPaid = isPaid;
+        return this;
+    }
+
     public Debt build() {
-        return new Debt(description, money, date, time);
+        return new Debt(description, money, date, time, isPaid);
     }
 }
