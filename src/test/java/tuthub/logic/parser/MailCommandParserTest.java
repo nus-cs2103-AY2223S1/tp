@@ -43,5 +43,4 @@ public class MailCommandParserTest {
         assertParseSuccess(parser, " \n all \n \t \t", expectedMailCommand1);
         assertParseSuccess(parser, " \n 3 \n \t \t", expectedMailCommand2);
     }
-
 }
