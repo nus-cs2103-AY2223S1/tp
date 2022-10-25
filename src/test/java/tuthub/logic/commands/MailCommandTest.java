@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tuthub.testutil.Assert.assertThrows;
 import static tuthub.testutil.TypicalIndexes.INDEX_FIRST_TUTOR;
 import static tuthub.testutil.TypicalIndexes.INDEX_SECOND_TUTOR;
 import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import tuthub.commons.core.Messages;
 import tuthub.commons.core.index.Index;
+import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
 import tuthub.model.UserPrefs;
@@ -34,7 +36,7 @@ public class MailCommandTest {
         String invalidWord = "a";
         MailCommand mailCommand = new MailCommand(invalidWord);
         String expectedMessage = String.format(MailCommand.MESSAGE_INVALID_WORD, invalidWord);
-        assertCommandFailure(mailCommand, model, expectedMessage);
+        assertThrows(CommandException.class, expectedMessage, () -> mailCommand.execute(model));
     }
 
     @Test
