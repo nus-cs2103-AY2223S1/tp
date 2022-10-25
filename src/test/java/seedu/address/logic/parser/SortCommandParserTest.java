@@ -1,14 +1,12 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.Comparator;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortBuyerCommand;
+
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.util.CommandUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.SortCommandParserUtil;
 import seedu.address.model.order.Order;
@@ -17,10 +15,8 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
-import java.util.Comparator;
-
 public class SortCommandParserTest {
-    SortCommandParser parser = new SortCommandParser();
+    private SortCommandParser parser = new SortCommandParser();
 
     private final Integer firstAttributePos = 0;
 

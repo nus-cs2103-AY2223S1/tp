@@ -1,6 +1,13 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.Comparator;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.SortCommandParserUtil;
 import seedu.address.model.Model;
@@ -8,12 +15,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.TypicalPets;
-
-import java.util.Comparator;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class SortPetCommandTest {
     private Model pModel = new ModelManager(TypicalPets.getTypicalPetsAddressBook(), new UserPrefs());
