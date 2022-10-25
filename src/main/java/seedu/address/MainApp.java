@@ -32,7 +32,6 @@ import seedu.address.storage.PropertyBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.ui.PersonListPanel;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -69,7 +68,7 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        model = initModelManager(storage, userPrefs, ui.getMainWindow().getPersonListPanel());
+        model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
     }
@@ -79,7 +78,7 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs, PersonListPanel personListPanel) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPersonBook> personModelOptional;
         ReadOnlyPersonBook personModel;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
@@ -113,7 +112,7 @@ public class MainApp extends Application {
             propertyBook = new PropertyBook();
         }
 
-        return new ModelManager(personModel, propertyBook, userPrefs, personListPanel);
+        return new ModelManager(personModel, propertyBook, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -192,6 +191,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting PersonBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        model.setPersonListPanel(ui.getMainWindow().getPersonListPanel());
     }
 
     @Override

@@ -27,7 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final PersonBook personBook;
     private final PropertyBook propertyBook;
-    private final PersonListPanel personListPanel;
+    private PersonListPanel personListPanel;
     private final FilteredList<Buyer> filteredBuyers;
     private final SortedList<Buyer> sortedBuyers;
     // lastShownListFlag set to false for filteredBuyers and true for sortedBuyers
@@ -38,8 +38,8 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given personBook and userPrefs.
      */
     public ModelManager(ReadOnlyPersonBook personModel, ReadOnlyPropertyBook propertyModel,
-                        ReadOnlyUserPrefs userPrefs, PersonListPanel personListPanel) {
-        requireAllNonNull(personModel, propertyModel, userPrefs, personListPanel);
+                        ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(personModel, propertyModel, userPrefs);
 
         logger.fine("Initializing with buyer model: " + personModel + " and property model: " + propertyModel
                 + " and user prefs " + userPrefs);
@@ -47,14 +47,18 @@ public class ModelManager implements Model {
         this.personBook = new PersonBook(personModel);
         this.propertyBook = new PropertyBook(propertyModel);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.personListPanel = personListPanel;
         filteredBuyers = new FilteredList<>(this.personBook.getPersonList());
         sortedBuyers = new SortedList<>(this.personBook.getPersonList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new PersonBook(), new PropertyBook(), new UserPrefs(), new PersonListPanel(FXCollections.observableArrayList()));
+        this(new PersonBook(), new PropertyBook(), new UserPrefs());
+    }
+
+    @Override
+    public void setPersonListPanel(PersonListPanel personListPanel) {
+        this.personListPanel = personListPanel;
     }
 
     //=========== UserPrefs ==================================================================================

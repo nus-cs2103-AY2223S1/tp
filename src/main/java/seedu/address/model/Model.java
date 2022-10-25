@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
+import seedu.address.ui.PersonListPanel;
 
 import static java.util.Objects.requireNonNull;
 
@@ -25,6 +26,7 @@ public interface Model {
      */
     Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
 
+    void setPersonListPanel(PersonListPanel personListPanel);
     //=========== UserPrefs ==================================================================================
 
     /**
