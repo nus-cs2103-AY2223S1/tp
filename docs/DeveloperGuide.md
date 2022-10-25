@@ -624,13 +624,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `dd n/Google p/Backend Intern pr/APPLIED d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
-      date being `11 Dec 2022`, arnd application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
+      date being `11 Dec 2022`, application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
       website `https://careers.google.com/jobs`, remark `offer for Y2 summer break`, and 2 tags: `high` and `java`. 
       A success message is shown with the details of the added internship. The entire application list is displayed.
    
    2. Test case: `add n/Google p/Backend Intern`<br>
       Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
-      date being today's date (by default), arnd application process `APPLIED` (by default), phone `NA` (by default),
+      date being today's date (by default), application process `APPLIED` (by default), phone `NA` (by default),
       email `NA` (by default), website `NA` (by default), and empty remark. A success message is shown with the details
       of the added internship. The entire application list is displayed.
 
