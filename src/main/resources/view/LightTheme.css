@@ -148,7 +148,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Courier New", Monospace;
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -158,7 +158,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Courier New", Monospace;
     -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -198,7 +198,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Courier New", Monospace;
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
@@ -219,6 +219,7 @@
     -fx-background-radius: 0;
     -fx-background-color: #F7ECDE;
     -fx-font-family: "Courier New", Monospace;
+
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -325,7 +326,7 @@
     -fx-border-color: #54BAB9 #54BAB9 #54BAB9 #54BAB9;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Courier New", Monospace;
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -360,7 +361,7 @@
 
 #linkName {
     -fx-font-size: 16px;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Courier New", Monospace;
 }
 .hyperlink {
     -fx-border-color: transparent;
