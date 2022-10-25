@@ -145,12 +145,10 @@ Format: `edit [index] n/[name of student] id/[id of student] pn/[name of parent]
 
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:** 
-   <ul>
-      <li> Edits the person at the specified `index`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3, …​ </li>
-      <li> Any tag can be used to edit the respective information. </li>
-      <li> At least one tag must be provided. </li>
-      <li> Existing values will be updated to the input values. </li>
-   </ul>
+- Edits the person at the specified `index`. The index refers to the index number shown in the current displayed list. The index **must be a positive integer** 1, 2, 3, …​ 
+- Any tag can be used to edit the respective information
+- At least one tag must be provided
+- Existing values will be updated to the input values
 </div><br>
 
 Examples:
