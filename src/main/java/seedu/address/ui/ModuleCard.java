@@ -3,9 +3,7 @@ package seedu.address.ui;
 import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTP;
 import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTPS;
 
-import java.awt.Desktop;
 import java.io.IOException;
-import java.net.URI;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,10 +23,15 @@ import seedu.address.model.module.task.Task;
  * A UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
-
-    private static final Desktop desktop = Desktop.getDesktop();
     private static final String FXML = "ModuleListCard.fxml";
-    private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Error: Link cannot be launched by your desktop";
+    private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Error: Your desktop prevents" +
+            " link URLs to be opened from Plannit";
+    private static final String OS_NAME_LOWERCASE_WINDOWS = "windows";
+    private static final String WINDOWS_OPEN_LINK_COMMAND_KEY = "rundll32 url.dll,FileProtocolHandler ";
+    private static final String OS_NAME_LOWERCASE_MAC = "mac";
+    private static final String MAC_OPEN_LINK_COMMAND_KEY = "open ";
+    private static final String OS_NAME_LOWERCASE_LINUX = "linux";
+    private static final String LINUX_OPEN_LINK_COMMAND_KEY = "xdg-open";
     private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
 
 
@@ -81,6 +84,11 @@ public class ModuleCard extends UiPart<Region> {
     private static Hyperlink createHyperLinkNode(String linkAlias, String linkUrl) {
         Hyperlink hyperLinkNode = new Hyperlink(linkAlias);
         hyperLinkNode.setStyle(LINK_TEXT_COLOR);
+        final Tooltip linkUrlHint = new Tooltip();
+        linkUrlHint.setText(linkUrl);
+        linkUrlHint.setShowDelay(Duration.seconds(0.5));
+        hyperLinkNode.setTooltip(linkUrlHint);
+
         boolean isLinkUrlPaddedWithHttps = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTPS);
         boolean isLinkUrlPaddedWithHttp = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTP);
         if (!(isLinkUrlPaddedWithHttps || isLinkUrlPaddedWithHttp)) {
@@ -89,19 +97,32 @@ public class ModuleCard extends UiPart<Region> {
         final String finalLinkUrl = linkUrl;
         hyperLinkNode.setOnAction(e -> {
             try {
-                desktop.browse(URI.create(finalLinkUrl));
-            } catch (IOException ex) {
+                launchLinkFromPlannit(finalLinkUrl);
+            } catch (IOException | SecurityException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(MESSAGE_LINK_LAUNCH_FAILURE);
                 alert.showAndWait();
             }
         });
-        final Tooltip linkUrlHint = new Tooltip();
-        linkUrlHint.setText(linkUrl);
-        linkUrlHint.setShowDelay(Duration.seconds(0.5));
-        hyperLinkNode.setTooltip(linkUrlHint);
         return hyperLinkNode;
     }
+
+    //@@author shwene-reused
+    //Reused from https://stackoverflow.com/questions/5226212/how-to-open-the-default-webbrowser-using-java
+    //with slight modification
+    private static void launchLinkFromPlannit(String linkUrl) throws IOException, SecurityException {
+        String os = System.getProperty("os.name").toLowerCase();
+        Runtime rt = Runtime.getRuntime();
+        if (os.contains(OS_NAME_LOWERCASE_WINDOWS)) {
+            rt.exec(WINDOWS_OPEN_LINK_COMMAND_KEY + linkUrl);
+        } else if (os.contains(OS_NAME_LOWERCASE_MAC)) {
+            rt.exec(MAC_OPEN_LINK_COMMAND_KEY + linkUrl);
+        } else if (os.contains(OS_NAME_LOWERCASE_LINUX)){
+            String[] cmd = {LINUX_OPEN_LINK_COMMAND_KEY, linkUrl};
+            rt.exec(cmd);
+        }
+    }
+    //@@author
 
     @Override
     public boolean equals(Object other) {

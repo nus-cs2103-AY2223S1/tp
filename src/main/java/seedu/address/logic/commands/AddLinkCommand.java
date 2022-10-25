@@ -34,7 +34,7 @@ public class AddLinkCommand extends Command {
             + PREFIX_MODULE_LINK_URL + "coursemology.org";
 
     public static final String MESSAGE_ADD_LINK_SUCCESS = "Successfully added link/s to module code [%1$s]";
-    public static final String MESSAGE_NOT_EDITED = "At least one link must be added.";
+    public static final String MESSAGE_NOT_EDITED = "At least one link url and alias must be added.";
     public static final String MESSAGE_DUPLICATE_LINK_ALIAS = "The link alias [%1$s] already exists"
             + " in the module with module code [%2$s].";
     public static final String MESSAGE_DUPLICATE_LINK_URL = "The link URL [%1$s] already exists"

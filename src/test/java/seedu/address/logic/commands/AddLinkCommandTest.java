@@ -17,11 +17,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalLinks.getTypicalLinks;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +37,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAdaptedLink;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddLinkCommand.
@@ -46,8 +49,7 @@ public class AddLinkCommandTest {
     @Test
     public void execute_addLinkCommandFilteredList_success() {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Set<Link> linksToAdd = new HashSet<Link>(Arrays.asList(
-                new Link(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_URL)));
+        Set<Link> linksToAdd = new HashSet<Link>(getTypicalLinks());
         Module moduleToEdit = expectedModel.getModuleUsingModuleCode(new ModuleCode(VALID_CS2106_MODULE_CODE), true);
 
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
@@ -68,6 +70,7 @@ public class AddLinkCommandTest {
         assertCommandSuccess(addLinkCommand, model, expectedMessage, expectedModel);
     }
 
+    //check for order of error message thrown, alias duplicate message expected.
     @Test
     public void execute_duplicateModuleLinkAliasAndUrlFilteredList_failure() {
         Module module = model.getModuleUsingModuleCode(new ModuleCode(MODULE_CODE_WITH_LINK), true);

@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TITLE;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalLinks.getTypicalLinks;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.GE3238;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
@@ -30,8 +30,9 @@ public class JsonAdaptedModuleTest {
     private static final List<JsonAdaptedTask> VALID_LIST_OF_TASKS = getTypicalTasks().stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedLink> VALID_LIST_OF_LINKS =
-            Arrays.asList(new JsonAdaptedLink(VALID_MODULE_LINK_ALIAS_URL));
+    private static final List<JsonAdaptedLink> VALID_LIST_OF_LINKS = getTypicalLinks().stream()
+            .map(JsonAdaptedLink::new)
+            .collect(Collectors.toList());
     private static final Set<JsonAdaptedPerson> VALID_SET_OF_PERSONS = getTypicalPersons().stream()
             .map(JsonAdaptedPerson::new)
             .collect(Collectors.toSet());

@@ -63,11 +63,15 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_LINK_ALIAS = "2103T";
     public static final String VALID_MODULE_LINK_ALIAS_2 = "nusmods";
     public static final String VALID_MODULE_LINK_ALIAS_3 = "wow";
-    public static final String VALID_MODULE_LINK_ALIAS_URL = "2103T;https://nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_ALIAS_4 = "gg";
+    public static final String VALID_MODULE_LINK_ALIAS_5 = "66666666";
     public static final String VALID_MODULE_LINK_URL = "https://nus-cs2103-ay2223s1.github.io/website/";
     public static final String VALID_MODULE_LINK_URL_WITHOUT_HTTPS = "nus-cs2103-ay2223s1.github.io/website/";
     public static final String VALID_MODULE_LINK_URL_2 = "https://nusmods.com/timetable/sem-1";
     public static final String VALID_MODULE_LINK_URL_3 = "haxball.com";
+    public static final String VALID_MODULE_LINK_URL_4 = "https://google.com";
+    public static final String VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS = "google.com";
+    public static final String VALID_MODULE_LINK_URL_4_WITH_HTTP = "http://google.com";
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
     public static final String VALID_MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK_ALIAS
@@ -102,7 +106,12 @@ public class CommandTestUtil {
 
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "C$2500";
     public static final String INVALID_MODULE_LINK_ALIAS = "().()";
+    //exceeds character limit of 15
+    public static final String INVALID_MODULE_LINK_ALIAS_2 = "This module assumes a reasonable prior knowledge of Java";
     public static final String INVALID_MODULE_LINK_URL = "^.^";
+    public static final String INVALID_MODULE_LINK_URL_2 = "git hub.com";
+    public static final String INVALID_MODULE_LINK_URL_3 = "https://googlecom";
+    public static final String INVALID_MODULE_LINK_URL_4 = "https://¯\\_(ツ)_/¯.com";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
     public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
             " " + PREFIX_TASK_NUMBER_TO_DELETE + "-99$9";

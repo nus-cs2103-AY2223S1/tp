@@ -45,8 +45,8 @@ public class Link implements Comparable<Link> {
         requireAllNonNull(linkAlias, linkUrl);
         checkArgument(isValidLinkAlias(linkAlias), MESSAGE_CONSTRAINTS_ALIAS);
         checkArgument(isValidLinkUrl(linkUrl), MESSAGE_CONSTRAINTS_URL);
-        this.linkAlias = linkAlias;
-        this.linkUrl = linkUrl;
+        this.linkAlias = linkAlias.trim();
+        this.linkUrl = linkUrl.trim();
     }
 
     /**
@@ -108,8 +108,8 @@ public class Link implements Comparable<Link> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Link // instanceof handles nulls
-                && linkAlias.equals(((Link) other).linkAlias) // state check
-                && linkUrl.equals(((Link) other).linkUrl)); // state check
+                && this.isSameLinkAlias((Link) other) // state check
+                && this.isSameLinkUrlIgnoreProtocol(((Link) other))); // state check
     }
 
     @Override

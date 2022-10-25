@@ -10,9 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_LINK_A
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalLinks.VALID_LINK_1;
 
 public class JsonAdaptedLinkTest {
-    private static final Link VALID_LINK = new Link(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_URL);
 
     @Test
     public void toModelType_invalidLinkAlias_throwsIllegalValueException() {
@@ -44,14 +44,14 @@ public class JsonAdaptedLinkTest {
 
     @Test
     public void toModelType_validLinkAliasAndUrl_returnsLink() throws Exception {
-        JsonAdaptedLink validLink = new JsonAdaptedLink(VALID_LINK);
-        assertEquals(VALID_LINK, validLink.toModelType());
+        JsonAdaptedLink validLink = new JsonAdaptedLink(VALID_LINK_1);
+        assertEquals(VALID_LINK_1, validLink.toModelType());
     }
 
     @Test
     public void toModelType_validLinkAliasAndUrlWithWhitespace_returnsLink() throws Exception {
         JsonAdaptedLink validLink = new JsonAdaptedLink(
                 VALID_MODULE_LINK_ALIAS + "    ;    " + VALID_MODULE_LINK_URL);
-        assertEquals(VALID_LINK, validLink.toModelType());
+        assertEquals(VALID_LINK_1, validLink.toModelType());
     }
 }

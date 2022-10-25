@@ -126,7 +126,7 @@ public class ParserUtil {
         final Set<Link> linkSet = new HashSet<>();
         final List<String> listLinkAliases = new ArrayList<>(linkAliases);
         final List<String> listLinkUrls = new ArrayList<>(linkUrls);
-
+        //check that the number of alias and urls match
         validateAddLinkCommandPairSize(listLinkAliases, listLinkUrls);
         if (!isUniqueList(listLinkAliases)) {
             throw new ParseException(AddLinkCommandParser.MESSAGE_DUPLICATE_ALIAS);

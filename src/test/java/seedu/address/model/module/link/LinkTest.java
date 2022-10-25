@@ -3,7 +3,13 @@ package seedu.address.model.module.link;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalLinks.VALID_LINK_2;
+import static seedu.address.testutil.TypicalLinks.VALID_LINK_2_DIFFERENT_ALIAS;
+import static seedu.address.testutil.TypicalLinks.VALID_LINK_2_DIFFERENT_URL;
+import static seedu.address.testutil.TypicalLinks.VALID_LINK_4;
+import static seedu.address.testutil.TypicalLinks.VALID_LINK_4_NO_HTTPS_HEADER;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,157 +21,156 @@ public class LinkTest {
 
     @Test
     public void constructor_invalidLinkUrl_throwsIllegalArgumentException() {
-        String invalidLinkUrl = "";
-        String validLinkAlias = "nice";
+        String invalidLinkUrl = INVALID_MODULE_LINK_URL;
+        String validLinkAlias = VALID_MODULE_LINK_ALIAS_4;
         assertThrows(IllegalArgumentException.class, () -> new Link(validLinkAlias, invalidLinkUrl));
     }
 
     @Test
     public void constructor_invalidLinkAlias_throwsIllegalArgumentException() {
-        String validLinkUrl = "https://luminus.edu.sg";
-        String invalidLinkAlias = "///";
+        String validLinkUrl = VALID_MODULE_LINK_URL_4;
+        String invalidLinkAlias = INVALID_MODULE_LINK_ALIAS;
         assertThrows(IllegalArgumentException.class, () -> new Link(invalidLinkAlias, validLinkUrl));
     }
 
     @Test
-    public void isInvalidLinkAlias_throwsNullPointerException() {
-        // null link alias
-        assertThrows(NullPointerException.class, () -> Link.isValidLinkAlias(null));
+    public void isValidLinkAlias() {
+        String linkAliasOnlyAlphabets = VALID_MODULE_LINK_ALIAS_4;
+        String linkAliasOnlyNumbers = VALID_MODULE_LINK_ALIAS_5;
+        String linkAliasAlphanumericWithWhitespace = VALID_MODULE_LINK_ALIAS + "   " + VALID_MODULE_LINK_ALIAS;
+        String linkAliasOnlyWhitespace = "       ";
+        String linkAliasWithSpecialCharacters = INVALID_MODULE_LINK_ALIAS;
+        String linkAliasAlphanumericLong = INVALID_MODULE_LINK_ALIAS_2;
+
+        //alias with only alphabets and less than 15 characters -> returns true
+        assertTrue(Link.isValidLinkAlias(linkAliasOnlyAlphabets));
+
+        //alias with only numbers and less than 15 characters -> returns true
+        assertTrue(Link.isValidLinkAlias(linkAliasOnlyNumbers));
+
+        //alias which is alphanumeric and whitespace and less than 15 characters -> returns true
+        assertTrue(Link.isValidLinkAlias(linkAliasAlphanumericWithWhitespace));
+
+        //alias comprised of multiple whitespace characters only -> returns false
+        assertFalse(Link.isValidLinkAlias(linkAliasOnlyWhitespace));
+
+        //alias with special characters -> returns false
+        assertFalse(Link.isValidLinkAlias(linkAliasWithSpecialCharacters));
+
+        //alias with alphanumeric characters only but longer than 15 characters -> returns false
+        assertFalse(Link.isValidLinkAlias(linkAliasAlphanumericLong));
+
+        assertThrows(NullPointerException.class, () ->Link.isValidLinkAlias(null));
     }
 
     @Test
-    public void isValidLinkAlias_linkAliasWithOnlyAlphabets() {
-        String linkAlias = "nus";
-        assertTrue(Link.isValidLinkAlias(linkAlias));
+    public void isValidLinkUrl() {
+        String linkUrlWithHttps = VALID_MODULE_LINK_URL;
+        String linkUrlWithoutHttps = VALID_MODULE_LINK_URL_WITHOUT_HTTPS;
+        String linkUrlWithOnlyWhitespace = "       ";
+        String linkUrlWithWhitespace = INVALID_MODULE_LINK_URL_2;
+        String linkUrlWithNoDomain = INVALID_MODULE_LINK_URL_3;
+        String linkUrlWithForbiddenSpecialCharacters = INVALID_MODULE_LINK_URL_4;
+
+        //valid link url with https header -> returns true
+        assertTrue(Link.isValidLinkUrl(linkUrlWithHttps));
+        //valid link url with no https header -> returns true
+        assertTrue(Link.isValidLinkUrl(linkUrlWithoutHttps));
+        //link url with only whitespace -> returns false
+        assertFalse(Link.isValidLinkUrl(linkUrlWithOnlyWhitespace));
+        //link url with whitespace in between -> returns false
+        assertFalse(Link.isValidLinkUrl(linkUrlWithWhitespace));
+        //link url with no top level domain -> returns false
+        assertFalse(Link.isValidLinkUrl(linkUrlWithNoDomain));
+        //link url with forbidden special characters -> returns false
+        assertFalse(Link.isValidLinkUrl(linkUrlWithForbiddenSpecialCharacters));
     }
 
     @Test
-    public void isValidLinkAlias_linkAliasWithOnlyNumbers() {
-        String linkAlias = "5555";
-        assertTrue(Link.isValidLinkAlias(linkAlias));
+    public void removeLinkUrlProtocol() {
+        String linkUrlWithHttps = VALID_MODULE_LINK_URL_4;
+        String linkUrlWithHttp = VALID_MODULE_LINK_URL_4_WITH_HTTP;
+        String linkUrlWithoutHttps = VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS;
+
+        //String with https header -> returns string without https header
+        assertEquals(VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS, Link.removeLinkUrlProtocol(linkUrlWithHttps));
+
+        //String with http header -> returns string without https header
+        assertEquals(VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS, Link.removeLinkUrlProtocol(linkUrlWithHttp));
+
+        //String without https header -> return original string
+        assertEquals(VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS, Link.removeLinkUrlProtocol(linkUrlWithoutHttps));
+
+        assertThrows(NullPointerException.class, () -> Link.removeLinkUrlProtocol(null));
     }
 
     @Test
-    public void isValidLinkAlias_linkAliasAlphanumericAndWhitespace() {
-        String linkAlias = "ha ha 5";
-        assertTrue(Link.isValidLinkAlias(linkAlias));
+    public void hasLinkAlias() {
+        Link link = VALID_LINK_4;
+
+        // link has same link alias as given String -> returns true
+        assertTrue(link.hasLinkAlias(VALID_MODULE_LINK_ALIAS_4));
+
+        // link has different link alias as given String -> returns true
+        assertFalse(link.hasLinkAlias(VALID_MODULE_LINK_ALIAS_4 + "g"));
     }
 
     @Test
-    public void isInvalidLinkAlias_linkAliasWithOnlyWhitespace() {
-        String linkAlias = "     ";
-        assertFalse(Link.isValidLinkAlias(linkAlias));
+    public void isSameLinkAlias() {
+        Link link2 = VALID_LINK_2;
+        Link link2DifferentAlias = VALID_LINK_2_DIFFERENT_URL;
+        Link link4 = VALID_LINK_4;
+
+        // same object -> returns true
+        assertTrue(link4.isSameLinkAlias(link4));
+
+        // same alias, different object -> returns true
+        assertTrue(link2.isSameLinkAlias(link2DifferentAlias));
+
+        // different link alias -> returns false;
+        assertFalse(link4.isSameLinkAlias(link2));
     }
 
     @Test
-    public void isInvalidLinkAlias_linkAliasWithSpecialCharacters() {
-        String linkAlias = "////";
-        assertFalse(Link.isValidLinkAlias(linkAlias));
+    public void isSameLinkUrl() {
+        Link link2 = VALID_LINK_2;
+        Link link2DifferentAlias = VALID_LINK_2_DIFFERENT_ALIAS;
+        Link link4 = VALID_LINK_4;
+        Link link4NoHttpsHeader = VALID_LINK_4_NO_HTTPS_HEADER;
+
+        // same object -> returns true
+        assertTrue(link2.isSameLinkUrlIgnoreProtocol(link2));
+
+        // same URL (both with https), different object and alias -> returns true
+        assertTrue(link2.isSameLinkUrlIgnoreProtocol(link2DifferentAlias));
+
+        // same URL (one without https), different object and alias -> returns true
+        assertTrue(link4.isSameLinkUrlIgnoreProtocol(link4NoHttpsHeader));
+
+        // different link URL -> returns false;
+        assertFalse(link2.isSameLinkUrlIgnoreProtocol(link4));
     }
 
     @Test
-    public void isInvalidLinkUrl_throwsNullPointerException() {
-        // null link url
-        assertThrows(NullPointerException.class, () -> Link.isValidLinkUrl(null));
-    }
+    public void equals() {
+        // same values -> returns true
+        Link link2 = VALID_LINK_2;
+        Link link4 = VALID_LINK_4;
+        Link link4WithoutHttpsHeader = VALID_LINK_4_NO_HTTPS_HEADER;
 
-    @Test
-    public void isValidLinkUrl_linkUrlWithHttps() {
-        String linkUrl = "https://luminus.edu.sg";
-        assertTrue(Link.isValidLinkUrl(linkUrl));
-    }
+        // same value different object -> returns true
+        assertTrue(link4.equals(link4WithoutHttpsHeader));
 
-    @Test
-    public void isValidLinkUrl_linkUrlWithoutHttps() {
-        String linkUrl = "outlook.office.com/mail/";
-        assertTrue(Link.isValidLinkUrl(linkUrl));
-    }
+        // same object -> returns true
+        assertTrue(link4.equals(link4));
 
-    @Test
-    public void isInvalidLinkUrl_linkUrlWithWhitespace() {
-        String linkUrl = "git hub.com";
-        assertFalse(Link.isValidLinkUrl(linkUrl));
-    }
+        // null -> returns false
+        assertFalse(link4.equals(null));
 
-    @Test
-    public void isInvalidLinkUrl_linkUrlWithOnlyWhitespace() {
-        String linkUrl = "           ";
-        assertFalse(Link.isValidLinkUrl(linkUrl));
-    }
+        // different type -> returns false
+        assertFalse(link4.equals(5));
 
-    @Test
-    public void isInvalidLinkUrl_linkUrlWithSpecialCharacters() {
-        String linkUrl = "https://¯\\_(ツ)_/¯.com";
-        assertFalse(Link.isValidLinkUrl(linkUrl));
-    }
-
-    @Test
-    public void isInvalidLinkUrl_linkUrlWithNoDomain() {
-        String linkUrl = "https://googlecom";
-        assertFalse(Link.isValidLinkUrl(linkUrl));
-    }
-
-    @Test
-    public void removeLinkUrlProtocol_linkUrlWithHTTPS() {
-        String linkUrl = "https://google.com";
-        assertEquals("google.com", Link.removeLinkUrlProtocol(linkUrl));
-    }
-
-    @Test
-    public void removeLinkUrlProtocol_linkUrlWithHTTP() {
-        String linkUrl = "http://google.com";
-        assertEquals("google.com", Link.removeLinkUrlProtocol(linkUrl));
-    }
-
-    @Test
-    public void removeLinkUrlProtocol_linkUrlWithoutHeaderProtocol() {
-        String linkUrl = "google.com";
-        assertEquals("google.com", Link.removeLinkUrlProtocol(linkUrl));
-    }
-
-    @Test
-    public void isSameLinkAlias_duplicateLinkAlias() {
-        Link link = new Link("gg", "google.com");
-        assertTrue(link.isSameLinkAlias(link));
-    }
-
-    @Test
-    public void isSameLinkAlias_differentLinkAlias() {
-        Link link = new Link("gg", "google.com");
-        Link link2 = new Link("g", "google.com");
-        assertFalse(link.isSameLinkAlias(link2));
-    }
-
-    @Test
-    public void isSameLinkUrlIgnoreProtocol_sameLinkUrlWithDifferentProtocol() {
-        Link link = new Link("gg", "google.com");
-        Link link2 = new Link("gg", "https://google.com");
-        assertTrue(link.isSameLinkUrlIgnoreProtocol(link2));
-    }
-
-    @Test
-    public void isSameLinkUrlIgnoreProtocol_sameLinkUrlWithSameProtocol() {
-        Link link = new Link("gg", "google.com");
-        Link link2 = new Link("gg", "google.com");
-        assertTrue(link.isSameLinkUrlIgnoreProtocol(link2));
-    }
-
-    @Test
-    public void isSameLinkUrlIgnoreProtocol_differentLinkUrlWithSameProtocol() {
-        Link link = new Link("gg", "google.com");
-        Link link2 = new Link("gg", "goggle.com");
-        assertFalse(link.isSameLinkUrlIgnoreProtocol(link2));
-    }
-
-    @Test
-    public void hasLinkAlias_sameLinkAlias() {
-        Link link = new Link("gg", "google.com");
-        assertTrue(link.hasLinkAlias("gg"));
-    }
-
-    @Test
-    public void hasLinkAlias_differentLinkAlias() {
-        Link link = new Link("gg", "google.com");
-        assertFalse(link.hasLinkAlias("ggg"));
+        // different task description -> returns false
+        assertFalse(link2.equals(link4));
     }
 }
