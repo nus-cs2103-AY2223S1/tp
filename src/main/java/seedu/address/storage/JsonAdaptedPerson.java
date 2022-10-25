@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.Name;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String birthday;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String loan;
 
@@ -37,12 +39,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("birthday") String birthday,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("loan") String loan) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -57,6 +61,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        birthday = source.getBirthday().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -119,6 +124,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        // Birthday validity check
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName()));
+        }
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
+
         // Loan validity check
         if (loan == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Loan.class.getSimpleName()));
@@ -128,7 +142,7 @@ class JsonAdaptedPerson {
         }
         final Loan modelLoan = new Loan(loan);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLoan);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelLoan);
     }
 
 }
