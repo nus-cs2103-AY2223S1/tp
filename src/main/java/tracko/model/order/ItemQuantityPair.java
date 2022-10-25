@@ -24,7 +24,11 @@ public class ItemQuantityPair {
         requireAllNonNull(item, quantity);
         this.item = item;
         this.quantity = quantity;
-        this.itemPrice = calculatePrice();
+        calculatePrice();
+    }
+
+    public void updatePrice() {
+        calculatePrice();
     }
 
     /**
@@ -69,10 +73,10 @@ public class ItemQuantityPair {
         return quantity.getQuantity();
     }
 
-    public Price calculatePrice() {
+    public void calculatePrice() {
         Price singleItemPrice = this.item.getSellPrice();
         double itemPrice = singleItemPrice.getPrice() * quantity.getQuantity();
-        return new Price(itemPrice);
+        this.itemPrice = new Price(itemPrice);
     }
 
     public Price getPrice() {

@@ -38,7 +38,7 @@ public class Order {
         this.timeCreated = LocalDateTime.now();
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
-        this.totalOrderPrice = calculateTotalOrder();
+        calculateTotalOrder();
     }
 
     /**
@@ -56,6 +56,7 @@ public class Order {
         this.itemList = itemList;
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
+        calculateTotalOrder();
     }
 
     public Name getName() {
@@ -128,13 +129,18 @@ public class Order {
         this.isDelivered = true;
     }
 
-    public Price calculateTotalOrder() {
+    public void calculateTotalOrder() {
         double totalOrderPrice = 0;
         for (int i = 0; i < itemList.size(); i++) {
             ItemQuantityPair item = itemList.get(i);
+            item.calculatePrice();
             totalOrderPrice += item.getPrice().price;
         }
-        return new Price(totalOrderPrice);
+        this.totalOrderPrice = new Price(totalOrderPrice);
+    }
+
+    public void setTotalOrderPrice() {
+        this.totalOrderPrice = totalOrderPrice;
     }
 
     @Override

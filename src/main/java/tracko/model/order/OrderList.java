@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tracko.model.item.InventoryList;
 import tracko.model.item.exceptions.ItemNotFoundException;
 
 /**
@@ -62,7 +63,13 @@ public class OrderList implements Iterable<Order> {
      */
     public void refreshData() {
         for (int i = 0; i < internalList.size(); i++) {
-            internalList.set(i, internalList.get(i));
+            Order order = internalList.get(i);
+            List<ItemQuantityPair> itemList = order.getItemList();
+            for (int j = 0; j < itemList.size(); j++) {
+                itemList.get(j).calculatePrice();
+            }
+            order.calculateTotalOrder();
+            internalList.set(i, order);
         }
     }
 
