@@ -118,7 +118,11 @@ public class Exam {
         Module updatedModule = editExamDescriptor.getModule().orElse(module);
         ExamDescription updatedDescription = editExamDescriptor.getDescription().orElse(examDescription);
         ExamDate updatedExamDate = editExamDescriptor.getExamDate().orElse(examDate);
-        return new Exam(updatedModule, updatedDescription, updatedExamDate);
+
+        if (!module.isSameModule(updatedModule)) {
+            return new Exam(updatedModule, updatedDescription, updatedExamDate);
+        }
+        return new Exam(updatedModule, updatedDescription, updatedExamDate, totalNumOfTasks, numOfCompletedTasks);
     }
 
     @Override
