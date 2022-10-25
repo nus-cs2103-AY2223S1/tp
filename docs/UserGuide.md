@@ -131,7 +131,7 @@ Please refer to the `Tag Properties` section below for more information regardin
   - This property cannot be left empty.
 
 #### Tags
-- Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
+- Notes can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Please refer to the `Tag Properties` section below for more information regarding tags.
