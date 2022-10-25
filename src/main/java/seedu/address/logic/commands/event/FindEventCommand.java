@@ -9,6 +9,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.StartDateTimeContainsDatePredicate;
+import seedu.address.model.event.TitleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all events in address book whose title contains any of the argument keywords, or if
@@ -35,7 +37,11 @@ public class FindEventCommand extends EventCommand {
 
     private final Predicate<Event> predicate;
 
-    public FindEventCommand(Predicate<Event> predicate) {
+    public FindEventCommand(TitleContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public FindEventCommand(StartDateTimeContainsDatePredicate predicate) {
         this.predicate = predicate;
     }
 
