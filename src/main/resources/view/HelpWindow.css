@@ -20,4 +20,16 @@
 
 #helpMessage {
     -fx-background-color: #181b24;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.helpPara {
+    -fx-background-color: dimgray;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#helpPara .content {
+    -fx-background-color: transparent, #262e42, transparent, #262e42;
+    -fx-background-radius: 0;
 }
