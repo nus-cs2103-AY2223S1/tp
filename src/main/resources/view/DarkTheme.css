@@ -148,8 +148,8 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10.5pt;
     -fx-text-fill: white;
 }
 
@@ -323,8 +323,8 @@
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11pt;
     -fx-text-fill: white;
 }
 
