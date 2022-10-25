@@ -10,7 +10,7 @@ import foodwhere.model.review.Review;
 public enum ReviewsComparatorList {
 
     NAME("name (0 to 9, then A to Z)", new NameComparator()),
-    REVERSEDNAME("name (9 to 0, then Z to A)", new NameComparator().reversed()),
+    REVERSEDNAME("name (Z to A, then 9 to 0)", new NameComparator().reversed()),
     DATE("date (Oldest to Newest)", new DateComparator()),
     REVERSEDDATE("date (Newest to Oldest)", new DateComparator().reversed()),
     RATING("rating (Lowest to Highest)", new RatingComparator()),
