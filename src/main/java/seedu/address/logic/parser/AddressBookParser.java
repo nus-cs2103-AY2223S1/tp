@@ -16,12 +16,14 @@ import seedu.address.logic.commands.ExcludeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.IncludeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PreferCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.HistoryList;
 
 /**
  * Parses user input.
@@ -48,48 +50,65 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
+        switch (commandWord) {
         case AddCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new EditCommandParser().parse(arguments);
 
         case AddAddressCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new AddAddressCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
+            HistoryList.addToHistory(commandWord);
             return new ClearCommand();
 
         case UndoCommand.COMMAND_WORD:
+            HistoryList.addToHistory(commandWord);
             return new UndoCommand();
 
         case FindCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            HistoryList.addToHistory(commandWord);
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
+            HistoryList.addToHistory(commandWord);
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            HistoryList.addToHistory(commandWord);
             return new HelpCommand();
 
         case SortCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new SortCommandParser().parse(arguments);
 
+        case HistoryCommand.COMMAND_WORD:
+            return new HistoryCommand();
+
         case IncludeCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new IncludeCommandParser().parse(arguments);
 
         case ExcludeCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new ExcludeCommandParser().parse(arguments);
 
         case PreferCommand.COMMAND_WORD:
+            HistoryList.addToHistory(userInput);
             return new PreferCommandParser().parse(arguments);
 
         default:
