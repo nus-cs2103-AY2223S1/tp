@@ -17,13 +17,14 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ReminderCommand
      * and returns an ReminderCommand object for execution.
+     *
+     * @param args Raw arguments from user.
+     * @return ReminderCommand object.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ReminderCommand parse(String args) throws ParseException {
         try {
             Deadline deadline = ParserUtil.parseDeadline(args);
-
-
             return new ReminderCommand(
                     new TaskUntilDeadlinePredicate(deadline));
         } catch (ParseException pe) {

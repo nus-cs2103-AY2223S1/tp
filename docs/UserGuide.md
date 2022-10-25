@@ -147,7 +147,7 @@ Filters contacts whose label(s) contain any of the given keywords.
 
 Format: `filterC KEYWORD [MORE_KEYWORDS]`
 
-* The filer is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
+* The filter is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
 
 * The order of the keywords does not matter, e.e. `software cs2103t` will match
   `CS2103T Software Engineering`.

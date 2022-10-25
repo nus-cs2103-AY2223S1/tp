@@ -237,6 +237,27 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    @Override
+    public double percentageCompleteTaskList(Predicate<Task> predicate) {
+        updateFilteredTaskList(predicate);
+
+        double numOfTasks = filteredTasks.size();
+        double numCompleted = 0.0;
+
+        if (numOfTasks == 0) {
+            return 100.0;
+        }
+
+        for (int i = 0; i < numOfTasks; i++) {
+            Task currTask = filteredTasks.get(i);
+            if (currTask.getIsDone()) {
+                numCompleted += 1;
+            }
+        }
+
+        return (numCompleted / numOfTasks) * 100.0;
+    }
+
     //=========== Tag List Accessors =============================================================
     @Override
     public void addTag(Tag tag) {
