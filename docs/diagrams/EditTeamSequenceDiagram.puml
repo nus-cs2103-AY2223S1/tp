@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditTeamCommandParser" as EditTeamCommandParser LOGIC_COLOR
+participant "e:EditTeamCommand" as EditTeamCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("editteam t/1 n/TeamNew")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("editteam t/1 n/TeamNew")
+activate AddressBookParser
+
+create EditTeamCommandParser
+AddressBookParser -> EditTeamCommandParser
+activate EditTeamCommandParser
+
+EditTeamCommandParser --> AddressBookParser
+deactivate EditTeamCommandParser
+
+AddressBookParser -> EditTeamCommandParser : parse("t/1 n/TeamNew")
+activate EditTeamCommandParser
+
+create EditTeamCommand
+EditTeamCommandParser -> EditTeamCommand
+activate EditTeamCommand
+
+EditTeamCommand --> EditTeamCommandParser : e
+deactivate EditTeamCommand
+
+EditTeamCommandParser --> AddressBookParser : e
+deactivate EditTeamCommandParser
+
+EditTeamCommandParser -[hidden]-> AddressBookParser
+destroy EditTeamCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager --> EditTeamCommand : execute()
+activate EditTeamCommand
+
+EditTeamCommand --> Model : setTeamName(targetIndex, newTeamName)
+activate Model
+
+Model --> EditTeamCommand
+deactivate Model
+
+create CommandResult
+EditTeamCommand -> CommandResult
+activate CommandResult
+
+
+CommandResult --> EditTeamCommand : result
+deactivate CommandResult
+
+EditTeamCommand --> LogicManager : result
+deactivate EditTeamCommand
+
+EditTeamCommand -[hidden]-> LogicManager
+destroy EditTeamCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
+
