@@ -28,6 +28,12 @@ public class MailCommandParserTest {
     }
 
     @Test
+    public void parse_invalidIndex_throwsParseException() {
+        assertParseFailure(parser, "-2", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MailCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsMailCommand() {
         // no leading and trailing whitespaces
         MailCommand expectedMailCommand1 =
