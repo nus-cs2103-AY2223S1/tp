@@ -31,6 +31,7 @@ Given below are my contributions to the project.
     * Extracted a generic `UniqueList<T>` class replacing previously existing `Unique*List` classes.
         * The generic type `T` implements the `Identity<T>` interface, which makes a way to compare two objects of type `T` with a defined identity, ignoring other data fields.    
         * This change was necessary to reduce code duplication and improve code quality.
+    * Updated the `find` command to filter on the current displayed list instead of all students. 
 
 * **Documentation**: 
     * Implementation details and sequence diagrams for the `grade` command.
