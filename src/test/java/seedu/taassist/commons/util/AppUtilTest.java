@@ -1,6 +1,5 @@
 package seedu.taassist.commons.util;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.taassist.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
