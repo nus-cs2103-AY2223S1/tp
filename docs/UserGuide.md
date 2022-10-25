@@ -26,7 +26,7 @@ Pupilist is a **desktop app for managing students details for private tutors**. 
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 lp/Algorithms` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -212,7 +212,7 @@ Format: `session INDEX s/TUITION_TIME`
 Examples:
 *`session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
 
-### Update Lesson Plan for student: `lessonplan`
+### Update Lesson Plan for student: `lesson`
 
 Updates a student's lesson plan by overwriting the current one. Can only be used in view or list mode.
 
