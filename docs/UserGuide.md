@@ -118,25 +118,29 @@ Format: `project -d PROJECT_ID`
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
 
-### Tagging a client : `client -t`
+### Adding a client : `client -a`
 
-Tags a client to a project.
+Adds a client to the list of clients and to the specified project.
 
-Format: `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
+Format: `client -a n/CLIENT_NAME pid/PROJECT_ID [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 
-* Adds the client to the project with the specified `PROJECT_ID`.
+* Adds the client to `ClientList` and to the project with the specified `PROJECT_ID`.
 
 Examples:
-*  `client -t 1 n/Amy` Tags the project with `PROJECT_ID` 1 with a client with `CLIENT_NAME` Amy.
-*  `client -t 2 n/Bob p/91234567` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Bob and `CLIENT_CONTACT_NUMBER` 91234567.
-*  `client -t 3 n/Charlie e/charlie@gmail.com` Tags the project with `PROJECT_ID` 3 with a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -t 2 n/Dave p/91111111 e/dave@gmail.com` Tags the project with `PROJECT_ID` 2 with a client with `CLIENT_NAME` Dave, `CLIENT_CONTACT_NUMBER` 91111111 and `CLIENT_EMAIL` dave@gmail.com
+*  `client -a n/Amy pid/1` Adds a client with `CLIENT_NAME` Amy to the `ClientList` and to the project with 
+   `PROJECT_ID` 1.
+*  `client -a n/Bob pid/2 p/12345678` Adds a client with `CLIENT_NAME` Bob and `CLIENT_PHONE` 12345678 to the 
+   `ClientList` and to the project with `PROJECT_ID` 2.
+*  `client -a n/Charlie e/charlie@gmail.com pid/3` Adds a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` 
+   charlie@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 3.
+*  `client -a n/Dave p/12345678 e/dave@gmail.com pid/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_PHONE` 
+   12345678 and `CLIENT_EMAIL` dave@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 4.
 
 ### Editing a client : `client -e`
 
 Edits the client for a specific project.
 
-Format: `client -e i/PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]…​`
+Format: `client -e pid/PROJECT_ID [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 
 * Edits the client of the project with the specified `PROJECT_ID`.
 * At least one of the optional fields must be provided.
