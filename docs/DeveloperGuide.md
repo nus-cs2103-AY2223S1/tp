@@ -163,8 +163,6 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.
 </div>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.</div>
-
 
 ### Fast Template Feature
 
@@ -458,14 +456,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SoConnect` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a student**
+
+**MSS**
+
+1. User requests to list persons.
+2. SoConnect shows a list of persons.
+3. User requests to add a student to the list.
+4. SoConnect adds the student to the list.
+
+**Extensions**
+
+* 3a. The student specified by the user is invalid.
+  * 3a1. SoConnect shows an error message.
+    
+    Use case resumes at step 2.  
+
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons.
 2.  SoConnect shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  SoConnect deletes the person.
+3.  User requests to delete multiple people in the list.
+4.  SoConnect deletes the all the people specified by the user.
 
     Use case ends.
 
@@ -475,11 +489,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. At least one of the given indexes is invalid.
 
     * 3a1. SoConnect shows an error message.
 
       Use case resumes at step 2.
+
 
 **Use case: Open a person's GitHub profile page**
 
