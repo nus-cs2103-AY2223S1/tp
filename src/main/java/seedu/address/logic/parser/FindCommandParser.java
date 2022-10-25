@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_APPOINTMENT;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -40,21 +41,23 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END);
+                PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END, PREFIX_TAG_APPOINTMENT);
 
         String name = argMultimap.getValue(PREFIX_NAME).orElse("");
         String phone = argMultimap.getValue(PREFIX_PHONE).orElse("");
         String email = argMultimap.getValue(PREFIX_EMAIL).orElse("");
         String address = argMultimap.getValue(PREFIX_ADDRESS).orElse("");
-        List<String> tagList = argMultimap.getAllValues(PREFIX_TAG);
+        List<String> personTagList = argMultimap.getAllValues(PREFIX_TAG);
         String reason = argMultimap.getValue(PREFIX_REASON).orElse("");
         String startDateTime =
                 StringUtil.removeRedundantSpaces(argMultimap.getValue(PREFIX_DATE_TIME_START).orElse(""));
         String endDateTime =
                 StringUtil.removeRedundantSpaces(argMultimap.getValue(PREFIX_DATE_TIME_END).orElse(""));
+        List<String> appointmentTagList = argMultimap.getAllValues(PREFIX_TAG_APPOINTMENT);
 
-        checkIfAtLeastOneInputPresent(tagList, name, phone, email, address, reason, startDateTime, endDateTime);
-        checkIfInputsValid(name, phone, tagList, startDateTime, endDateTime);
+        checkIfAtLeastOneInputPresent(personTagList, appointmentTagList,
+                name, phone, email, address, reason, startDateTime, endDateTime);
+        checkIfInputsValid(name, phone, personTagList, startDateTime, endDateTime);
 
         LocalDateTime parsedStartDateTime = startDateTime.isEmpty()
                 ? LocalDateTime.MIN
@@ -66,19 +69,21 @@ public class FindCommandParser implements Parser<FindCommand> {
         checkIfStartDateIsBeforeEndDate(parsedStartDateTime, parsedEndDateTime);
 
         CombinedPersonPredicate combinedPersonPredicate =
-                new CombinedPersonPredicate(name, phone, email, address, tagList);
+                new CombinedPersonPredicate(name, phone, email, address, personTagList);
         CombinedAppointmentPredicate combinedAppointmentPredicate =
-                new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime);
+                new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime, appointmentTagList);
 
         boolean isAnyAppointmentFieldSpecified =
-                !reason.isEmpty() || !startDateTime.isEmpty() || !endDateTime.isEmpty();
+                !reason.isEmpty() || !startDateTime.isEmpty() || !endDateTime.isEmpty() || !appointmentTagList.isEmpty();
 
         return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isAnyAppointmentFieldSpecified);
     }
 
-    private void checkIfAtLeastOneInputPresent(List<String> tagList, String... otherFields) throws ParseException {
+    private void checkIfAtLeastOneInputPresent(List<String> personTagList, List<String> appointmentTagList,
+                                               String... otherFields) throws ParseException {
         List<String> allFields = new ArrayList<>(Arrays.asList(otherFields));
-        allFields.addAll(tagList);
+        allFields.addAll(personTagList);
+        allFields.addAll(appointmentTagList);
 
         boolean areAllFieldsEmpty = allFields.stream().allMatch(String::isEmpty);
 
