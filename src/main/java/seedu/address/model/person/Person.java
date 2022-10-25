@@ -103,7 +103,7 @@ public class Person {
      *
      * @param interestsSet The list of mods to be deleted.
      */
-    public void deleteInterests(Set<Interest>  interestsSet) {
+    public void deleteInterests(Set<Interest> interestsSet) {
         this.interests.removeAll(interestsSet);
     }
 
