@@ -47,7 +47,7 @@ public class Budget {
         return String.valueOf(this.initialBudget);
     }
 
-    public float getBudget() {
+    public float getValue() {
         return this.initialBudget;
     }
 
@@ -71,7 +71,7 @@ public class Budget {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Budget // instanceof handles nulls
-                && this.initialBudget == (((Budget) other).getBudget())); // state check
+                && this.initialBudget == (((Budget) other).getValue())); // state check
     }
 
     @Override
