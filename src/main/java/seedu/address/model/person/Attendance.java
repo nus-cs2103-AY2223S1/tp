@@ -81,7 +81,7 @@ public class Attendance {
     /**
      * Method that marks the attendance as absent
      */
-    public void unmarkAsPresent() {
+    public void markAsAbsent() {
         isPresent = false;
     }
 
