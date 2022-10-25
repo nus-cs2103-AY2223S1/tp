@@ -272,17 +272,19 @@ Example:
 
 Finds all students with classes on a particular date.
 
-Format: `find dt/yyyy-MM-dd`
+Formats:
+    1. `find dt/yyyy-MM-dd`
+    2. `find dt/Day-of-Week`
 
 - Only the date is searched.
 ```yaml
 ❗ Caution: Do not include class timing.
 ```
 
-Example:
+Examples:
 
 `find dt/2022-10-15` returns all students with classes on 15 October 2022.
-
+`find dt/Mon` returns all students with classes on the coming monday.
 
 ### Deleting a student: 'delete'
 
@@ -370,15 +372,15 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action               | Format, Examples                                                                                                                                                                                   |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com`                                         |
-| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431` |
-| Get help             | `help`                                                                                                                                                                                             |
-| List all students    | `list`                                                                                                                                                                                             |
-| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                    |
-| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                      |
-| Clear all students   | `clear`                                                                                                                                                                                            |
-| Exit the application | `exit`                                                                                                                                                                                             |
+| Action               | Format, Examples                                                                                                                                                                                                                  |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com`                                                                        |
+| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
+| Get help             | `help`                                                                                                                                                                                                                            |
+| List all students    | `list`                                                                                                                                                                                                                            |
+| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                                                   |
+| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
+| Clear all students   | `clear`                                                                                                                                                                                                                           |
+| Exit the application | `exit`                                                                                                                                                                                                                            |
 
 [Back to top](#table-of-contents)
