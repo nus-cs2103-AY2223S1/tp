@@ -38,6 +38,11 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
+    /**
+     * Returns true if the {@code sentence} contains the {@code word} as substring.
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
     public static boolean containsSubString(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);

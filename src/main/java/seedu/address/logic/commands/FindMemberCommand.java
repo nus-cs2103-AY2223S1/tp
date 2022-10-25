@@ -11,6 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Finds and lists all members on the current team based on argument keywords.
+ */
 public class FindMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "find_member";

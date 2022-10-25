@@ -10,6 +10,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Task;
 
+/**
+ * Finds and lists all tasks in the current team whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class FindTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "find_task";

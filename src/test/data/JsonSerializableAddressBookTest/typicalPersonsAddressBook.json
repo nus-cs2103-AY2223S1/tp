@@ -44,8 +44,10 @@
     "tagged" : [ ]
   } ],
   "teams" : [ {
-    "teamName" : "first"
+    "teamName" : "first",
+    "description" : "first group"
   }, {
-    "teamName" : "second"
+    "teamName" : "second",
+    "description" : "second group"
   } ]
 }

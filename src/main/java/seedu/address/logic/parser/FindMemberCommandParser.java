@@ -22,9 +22,15 @@ import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new FindMemberCommandParser object
+ */
 public class FindMemberCommandParser implements Parser<FindMemberCommand> {
     private final Options options;
 
+    /**
+     * Creates a FindMemberCommandParser object.
+     */
     public FindMemberCommandParser() {
         Options options = new Options();
         options.addOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of member");
@@ -39,11 +45,13 @@ public class FindMemberCommandParser implements Parser<FindMemberCommand> {
             CommandLine cmd = parser.parse(options, argsArray);
 
             if (cmd.getArgs().length > 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
             }
 
             if (cmd.getOptions().length > 1) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
             }
 
             if (cmd.hasOption(FLAG_NAME_STR)) {
@@ -55,7 +63,8 @@ public class FindMemberCommandParser implements Parser<FindMemberCommand> {
                 String[] nameKeywords = searchString.split("\\s+");
                 return new FindMemberCommand(new EmailContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
             }
         } catch (MissingArgumentException e) {
             Option opt = e.getOption();
@@ -65,10 +74,12 @@ public class FindMemberCommandParser implements Parser<FindMemberCommand> {
             case FLAG_EMAIL_STR:
                 throw new ParseException(Email.MESSAGE_CONSTRAINTS);
             default:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
             }
         } catch (org.apache.commons.cli.ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindMemberCommand.MESSAGE_USAGE));
         }
     }
 }

@@ -3,7 +3,6 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -43,8 +42,9 @@ public class Team {
     public Team(String teamName, String description) {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
-        this.teamMembers.setPersons(teamMembers);
+        this.description = description;
         filteredMembers = new FilteredList<>(getTeamMembers());
         filteredTasks = new FilteredList<>(getTaskList());
     }
@@ -60,6 +60,7 @@ public class Team {
     public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
         this.description = description;
         this.teamMembers.setPersons(teamMembers);
@@ -73,8 +74,7 @@ public class Team {
      * This method creates a default team in TruthTable.
      */
     public static Team createDefaultTeam() {
-        return new Team("default", "A default team created just for you!",
-                new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        return new Team("default", "A default team created just for you");
     }
 
     public String getTeamName() {
@@ -97,6 +97,9 @@ public class Team {
         return filteredMembers;
     }
 
+    /**
+     * Updates the displayed members that matches a certain criteria.
+     */
     public void updateFilteredMembersList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredMembers.setPredicate(predicate);
@@ -106,6 +109,9 @@ public class Team {
         return filteredTasks;
     }
 
+    /**
+     * Updates the displayed tasks that matches a certain criteria.
+     */
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);

@@ -18,10 +18,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new FindTaskCommandParser object
+ */
 public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
     private final Options options;
 
+    /**
+     * Creates a FindTaskCommandParser object.
+     */
     public FindTaskCommandParser() {
         Options options = new Options();
         options.addRequiredOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of task");
