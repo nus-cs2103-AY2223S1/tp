@@ -4,6 +4,7 @@ import static bookface.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static bookface.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
+import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
@@ -20,7 +21,6 @@ public class AddBookCommand extends AddCommand {
                     + " book t/The Broken House a/John Doe");
 
     public static final String MESSAGE_SUCCESS = "New book added: %s by %s";
-    public static final String MESSAGE_DUPLICATE_BOOK = "This book is already in our records.";
     private final Book bookToAdd;
 
     /**
@@ -37,7 +37,7 @@ public class AddBookCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasBook(this.bookToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_BOOK);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_BOOK);
         }
 
         model.addBook(this.bookToAdd);

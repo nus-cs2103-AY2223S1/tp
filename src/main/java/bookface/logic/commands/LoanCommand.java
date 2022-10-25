@@ -26,11 +26,9 @@ public class LoanCommand extends Command {
 
     public static final String ALREADY_LOANED = "Book is already loaned out.";
 
-
     private final Index targetUserIndex;
 
     private final Index targetBookIndex;
-
 
     /**
      * Creates an LoanCommand to loan to a specified {@code Person} from the specified {@code Book}

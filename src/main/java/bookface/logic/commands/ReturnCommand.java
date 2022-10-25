@@ -16,7 +16,7 @@ import bookface.model.book.Book;
 public class ReturnCommand extends Command {
     public static final String COMMAND_WORD = "return";
 
-    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Return the"
+    public static final String MESSAGE_USAGE = Command.generateMessage(COMMAND_WORD, "Returns the"
             + " book identified by the index number in book list", "BOOK_INDEX (must be a positive"
                     + " integer)", COMMAND_WORD + " 2");
 
