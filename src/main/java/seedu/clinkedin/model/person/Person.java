@@ -222,7 +222,7 @@ public class Person {
 
         builder.append("; Rating: ")
                 .append(getRating());
-      
+
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {
             builder.append("; Links: ");
