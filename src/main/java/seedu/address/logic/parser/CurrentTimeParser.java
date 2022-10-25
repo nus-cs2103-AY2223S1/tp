@@ -16,8 +16,7 @@ public class CurrentTimeParser {
      * Converts current time to String representation.
      * Current time is dependent on the time displayed on
      * your personal device.
-     * @return A String representation of current
-     * time.
+     * @return A String representation of current time.
      */
     public static String findTimeNowInString() {
         LocalDateTime currentTime = LocalDateTime.now();
