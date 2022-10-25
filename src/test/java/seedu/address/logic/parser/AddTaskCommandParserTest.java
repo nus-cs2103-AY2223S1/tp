@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASKDESCRIPTI
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TASKDEADLINE_DESC_ALPHA;
-import static seedu.address.logic.commands.CommandTestUtil.TASKDEALINE_DESC_BRAVO;
+import static seedu.address.logic.commands.CommandTestUtil.TASKDEADLINE_DESC_BRAVO;
 import static seedu.address.logic.commands.CommandTestUtil.TASKDESCRIPTION_DESC_ALPHA;
 import static seedu.address.logic.commands.CommandTestUtil.TASKDESCRIPTION_DESC_BRAVO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASKDEADLINE_ALPHA;
@@ -35,7 +35,7 @@ public class AddTaskCommandParserTest {
                 + TASKDESCRIPTION_DESC_ALPHA, new AddTaskCommand(expectedTask));
 
         // Multiple deadline - last one taken
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASKDEALINE_DESC_BRAVO + TASKDEADLINE_DESC_ALPHA
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO + TASKDEADLINE_DESC_ALPHA
                 + TASKDESCRIPTION_DESC_ALPHA, new AddTaskCommand(expectedTask));
 
         // Multiple description - last one taken
@@ -51,7 +51,7 @@ public class AddTaskCommandParserTest {
         assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDESCRIPTION_DESC_ALPHA, expectedMessage);
 
         // Missing task description
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEALINE_DESC_BRAVO, expectedMessage);
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO, expectedMessage);
     }
 
     @Test
@@ -61,11 +61,11 @@ public class AddTaskCommandParserTest {
                 + INVALID_TASKDEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
 
         // Invalid task description
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEALINE_DESC_BRAVO
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO
                 + INVALID_TASKDESCRIPTION_DESC, TaskDescription.MESSAGE_CONSTRAINTS);
 
         // Invalid preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TASKDEALINE_DESC_BRAVO
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + TASKDEADLINE_DESC_BRAVO
                         + VALID_TASKDESCRIPTION_ALPHA,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
     }
@@ -79,7 +79,7 @@ public class AddTaskCommandParserTest {
                 + VALID_TASKDEADLINE_ALPHA, expectedMessage);
 
         // Missing task description prefix
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEALINE_DESC_BRAVO
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + TASKDEADLINE_DESC_BRAVO
                 + VALID_TASKDESCRIPTION_ALPHA, expectedMessage);
 
     }

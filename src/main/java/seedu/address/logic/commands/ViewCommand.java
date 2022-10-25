@@ -41,6 +41,7 @@ public class ViewCommand extends Command {
 
         Project projectToView = lastShownList.get(targetIndex.getZeroBased());
         model.setFilteredStaffList(projectToView);
+        model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_SUCCESS, projectToView));
     }
 
