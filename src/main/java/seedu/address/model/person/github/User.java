@@ -1,5 +1,7 @@
 package seedu.address.model.person.github;
 
+import seedu.address.model.person.github.repo.RepoList;
+
 /**
  * Represents a GitHub's User
  */
@@ -21,6 +23,7 @@ public class User {
             + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
 
     private String username = "";
+    private RepoList repoList = new RepoList();
 
     /**
      * Constructs a GitHub's user
