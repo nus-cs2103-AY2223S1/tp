@@ -31,7 +31,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the application.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deletePerson`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -257,7 +257,7 @@ Examples:
 
 ### Tag persons to an event : `tagEvent`
 
-Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [PERSON_INDEX] ...`
+Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
@@ -267,12 +267,12 @@ Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [PERSON_INDEX] ...`
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
 Example:
-* `tagEvent 1 p/2` tags the 2nd person to the 1st event
-* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to the 2nd event
+* `tagEvent 1 p/2` tags the 2nd person in the contact list to the 1st event in the event list
+* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the contact list the 2nd event in the event list
 
 ### Untag persons from an event : `untagEvent`
 
-Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [PERSON_INDEX] ...`
+Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
@@ -282,8 +282,8 @@ Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [PERSON_INDEX] ...`
 * Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
 
 Example:
-* `untagEvent 1 p/2` untags the 2nd person from the 1st event
-* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person from the 2nd event
+* `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
+* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
 
 ### Clearing all entries : `clear`
 
