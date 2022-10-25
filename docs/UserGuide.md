@@ -181,14 +181,14 @@ Format: `event -e INDEX [n/NAME] [s/START] [e/END] [t/TAG]… [p/PROFILE]…`
 
 ### Finding events by date or name: `event -f KEYWORD_OR_DATE [MORE]`
 
-Find events whose names contain any of the given keywords.
+Find events whose names contain any of the given keywords or start times contain any of the given start times.
 
-* The search is case-insensitive. e.g `birthday` will match `Birthday`
-* The order of the keywords does not matter. e.g. `one two` will match `two one`
-* Only the name of the event is searched.
-* Only full words will be matched e.g. `Birth` will not match `Birthday`
-* Events matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `interview meeting` will return `Meeting Tom`, `Job Interview`
+* Date search will occur when all inputs are [valid dates](#accepted-date-time-formats), otherwise, keyword search will occur.
+* The date search occurs only by date, ignoring the time, e.g. `11/10/2022 08:00` will match any events that start on `11/10/2022`.
+* The keyword search is case-insensitive. e.g `birthday` will match `Birthday`.
+* The order of the keywords does not matter. e.g. `one two` will match `two one`.
+* Partial match will also be returned. e.g. `inter` will match `interview`
+* Events matching at least one keyword will be returned (i.e. `OR` search) e.g. `interview meeting` will return `Meeting Tom`, `Job Interview`.
 
 ### Deleting an event: `event -d`
 
@@ -213,7 +213,9 @@ Format: `exit`
 
 ## FAQ
 
-No FAQ Yet.
+### Accepted Date Time Formats
+
+Lorem ipsum
 
 --------------------------------------------------------------------------------------------------------------------
 
