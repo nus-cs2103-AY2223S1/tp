@@ -7,7 +7,6 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import java.util.Set;
 
 import seedu.travelr.logic.commands.AddCommand;
-import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 

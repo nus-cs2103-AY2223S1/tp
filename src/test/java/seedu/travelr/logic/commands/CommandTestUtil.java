@@ -17,7 +17,6 @@ import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 import seedu.travelr.model.trip.Trip;
-import seedu.travelr.testutil.EditTripDescriptorBuilder;
 
 
 /**

@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
