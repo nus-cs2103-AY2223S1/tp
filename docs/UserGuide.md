@@ -284,7 +284,7 @@ Format: `exit`
 | **Add Member**            | `addmember g/GROUP n/NAME` <br/> e.g. `addmember g/CS2101 n/Alice`                                                                                          |
 | **Delete Member**         | `deletemember g/GROUP n/NAME` <br/> e.g. `deletemember g/CS2101 n/Alice`                                                                                    |
 | **Display Group**         | `displaygroup GROUP` <br/> e.g. `displaygroup CS2103T`                                                                                                      |
-| **List Groups**           | `listgroups`                                                                                                                                                |                                                                                                                                                                                       |
+| **List Groups**           | `listgroups`                                                                                                                                                |
 | **Assign Task**           | `assigntask NAME g/GROUP task/TASK w/WORKLOAD [d/DEADLINE]` <br/> e.g. `assigntask Alice g/Group Alpha task/Coursework 0 w/Low  d/2022-01-01 23:59`         |
 | **Delete Task**           | `deletetask NAME g/GROUP task/TASK` <br/> e.g. `deletetask John g/CS2103T task/TeamProject`                                                                 |
 | **Assign Task <br/> All** | `assigntaskall g/GROUP task/TASKw/WORKLOAD d/DEADLINE` <br/> e.g. `assigntaskall g/Group Alpha task/Coursework 0 w/Low  d/2022-01-01 23:59`                 |
