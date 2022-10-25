@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditPersonCommandParser" as EditPersonCommandParser LOGIC_COLOR
+participant "c:EditPersonCommand" as EditPersonCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute(cmd)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(cmd)
+activate AddressBookParser
+
+create EditPersonCommandParser
+AddressBookParser -> EditPersonCommandParser
+activate EditPersonCommandParser
+
+create EditPersonCommand
+EditPersonCommandParser -> EditPersonCommand : parse(cmd)
+activate EditPersonCommand
+
+EditPersonCommand --> EditPersonCommandParser
+deactivate EditPersonCommand
+
+EditPersonCommandParser --> AddressBookParser
+deactivate EditPersonCommandParser
+
+AddressBookParser --> LogicManager : c
+deactivate AddressBookParser
+
+LogicManager -> EditPersonCommand : execute()
+activate EditPersonCommand
+
+EditPersonCommand -> ModelManager : setPerson(P1, P2)
+activate ModelManager
+
+ModelManager -> AddressBook : setPerson(P1, P2)
+activate AddressBook
+
+AddressBook --> ModelManager :
+deactivate AddressBook
+
+ModelManager --> EditPersonCommand :
+deactivate ModelManager
+
+EditPersonCommand --> LogicManager : result
+deactivate EditPersonCommand
+EditPersonCommand -[hidden]-> LogicManager : result
+destroy EditPersonCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

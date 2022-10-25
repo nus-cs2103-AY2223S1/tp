@@ -119,6 +119,13 @@ public interface Model {
     void deleteEvent(Event event);
 
     /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /**
      * Sorts all events in the address book by the given {@code sortField}.
      */
     void sortEvents(EventSortField sortField);
@@ -132,4 +139,8 @@ public interface Model {
      */
     void updateFilteredEventList(Predicate<Event> predicate);
 
+    /**
+     * Updates the reference to Persons from Events.
+     */
+    void updateEventPersonReference();
 }

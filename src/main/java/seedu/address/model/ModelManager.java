@@ -117,7 +117,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -143,6 +142,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        addressBook.setEvent(target, editedEvent);
+    }
+
+    @Override
     public void sortEvents(EventSortField sortField) {
         requireNonNull(sortField);
         addressBook.sortEvents(sortField);
@@ -159,6 +164,27 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
+    /**
+     * Updates an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
+    /**
+     * Updates the reference between an {@code Event} and the persons it is tagged with.
+     * This method is used after editPerson, deletePerson and tagEvent commands to provide timely GUI update.
+     */
+    @Override
+    public void updateEventPersonReference() {
+        // This predicate updates the person names in the UidList in each event
+        // All events in the event list are displayed since the predicate returns true for all events
+        this.updateFilteredEventList(x -> x.getUids().setPersonNames(this));
+    }
+
 
     //=========== Filtered Person List Accessors ==============================================================
 
@@ -172,7 +198,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * Updates an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -181,13 +207,8 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    @Override
-    public void updateFilteredEventList(Predicate<Event> predicate) {
-        requireNonNull(predicate);
-        filteredEvents.setPredicate(predicate);
-    }
 
-
+    //=========== Utility Methods =============================================================================
 
     @Override
     public boolean equals(Object obj) {

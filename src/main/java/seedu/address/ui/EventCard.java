@@ -36,6 +36,8 @@ public class EventCard extends UiPart<Region> {
     private Label purpose;
     @FXML
     private Label id;
+    @FXML
+    private Label personNames;
 
 
     /**
@@ -49,6 +51,7 @@ public class EventCard extends UiPart<Region> {
         date.setText(event.getStartDate().toString());
         time.setText(event.getStartTime().toString());
         purpose.setText(event.getPurpose());
+        personNames.setText(event.getUids().getPersonNames());
     }
 
     @Override

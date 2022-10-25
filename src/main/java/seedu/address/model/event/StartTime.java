@@ -13,11 +13,14 @@ import java.time.format.DateTimeParseException;
  */
 public class StartTime implements Comparable<StartTime> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM or hh/mm/PM";
+    public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM, hh/mm/PM or hh:mm";
 
-    //for checking if valid input date format and for changing to storage friendly format
-    private static final DateTimeFormatter checkAndLogFormatter = DateTimeFormatter
-            .ofPattern("[hh/mm/a][h/mm/a][hh/m/a][h/m/a]");
+    //for checking if valid input date format
+    private static final DateTimeFormatter checkFormatter = DateTimeFormatter
+            .ofPattern("[HH:MM][hh/mm/a][h/mm/a][hh/m/a][h/m/a]");
+
+    //for changing to storage friendly format
+    private static final DateTimeFormatter logFormatter = DateTimeFormatter.ofPattern("hh/mm/a");
 
     //for changing to user-readable format
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a");
@@ -32,8 +35,9 @@ public class StartTime implements Comparable<StartTime> {
      */
     public StartTime(String startTime) {
         requireNonNull(startTime);
+        assert !startTime.isBlank();
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
-        this.time = LocalTime.parse(startTime, checkAndLogFormatter);
+        this.time = LocalTime.parse(startTime, checkFormatter);
     }
 
     /**
@@ -43,7 +47,7 @@ public class StartTime implements Comparable<StartTime> {
     //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidStartTime(String test) {
         try {
-            LocalTime.parse(test, checkAndLogFormatter);
+            LocalTime.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -60,7 +64,7 @@ public class StartTime implements Comparable<StartTime> {
      * @return String
      */
     public String toLogFormat() {
-        return this.time.format(checkAndLogFormatter);
+        return this.time.format(logFormatter);
     }
 
     @Override
