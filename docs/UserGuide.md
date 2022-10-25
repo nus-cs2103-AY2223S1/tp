@@ -202,6 +202,7 @@ Format: `ssort CRITERION`
 * The criterion must be provided and should not be blank.
 * The command will fail if two or more criteria are provided or any other criterion not listed is provided.
 * Below are the supported sorting criteria:
+
 | Criterion      | Notes                          |
 |----------------|--------------------------------|
 | `name`         | Sorts from 0 to 9, then A to Z |
@@ -218,6 +219,7 @@ Format: `ssort CRITERION`
 * The criterion must be provided and should not be blank.
 * The command will fail if two or more criteria are provided or any other criterion not listed is provided.
 * Below are the supported sorting criteria:
+
 | Criterion        | Notes                          |
 |------------------|--------------------------------|
 | `name`           | Sorts from 0 to 9, then A to Z |
