@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 
