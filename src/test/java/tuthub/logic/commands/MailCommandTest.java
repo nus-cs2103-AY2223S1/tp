@@ -36,7 +36,7 @@ public class MailCommandTest {
         String invalidWord = "a";
         MailCommand mailCommand = new MailCommand(invalidWord);
         String expectedMessage = String.format(MailCommand.MESSAGE_INVALID_WORD, invalidWord);
-        assertThrows(CommandException.class, expectedMessage, () -> mailCommand.execute(model));
+        assertCommandFailure(mailCommand, model, expectedMessage);
     }
 
     @Test
