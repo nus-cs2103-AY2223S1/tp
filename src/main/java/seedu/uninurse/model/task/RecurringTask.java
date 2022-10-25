@@ -1,5 +1,6 @@
 package seedu.uninurse.model.task;
 
+import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -7,40 +8,22 @@ import static java.util.Objects.requireNonNull;
  */
 public class RecurringTask extends Task {
 
-    /**
-     * Frequency is a enum which represents the different time frequencies the user can have for a recurring task.
-     */
-    public enum Frequency {
-        DAILY,
-        WEEKLY,
-        MONTHLY;
+    // TODO MESSAGE_CONSTRAINTS
+    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid recurrence time period and time amount"
+            + " e.g 3 weeks or 2 months";
 
-        static int getDays(Frequency freq) {
-            switch (freq) {
-            case DAILY:
-                return 1;
-            case WEEKLY:
-                return 7;
-            case MONTHLY:
-                return 30;
-            default:
-                return 0;
-            }
-        }
-    }
-
-    public static final String MESSAGE_CONSTRAINTS = "TODO";
-
-    public final Frequency recurrence;
+    private final Recurrence recurrence;
+    private final int frequency;
 
     /**
      * Constructs a {@code RecurringTask} from the given description
      * dateAndTime and frequency.
      */
-    public RecurringTask(String description, DateTime dateAndTime, Frequency freq) {
+    public RecurringTask(String description, DateTime dateAndTime, Recurrence recur, int freq) {
         super(description, dateAndTime);
-        requireNonNull(freq);
-        recurrence = freq;
+        requireNonNull(recur);
+        recurrence = recur;
+        frequency = freq;
     }
 
     /**
@@ -56,15 +39,29 @@ public class RecurringTask extends Task {
      */
     public RecurringTask getNextRecurringTask() {
         return new RecurringTask(super.getTaskDescription(),
-                super.getDateTime().plusDays(Frequency.getDays(recurrence)), recurrence);
+                super.getDateTime().plusDuration(recurrence, frequency), recurrence, frequency);
     }
 
     /**
      * Returns whether the given frequency string is valid.
      */
-    public static boolean isValidFreq(String test) {
+    public static boolean isValidRecurAndFreq(String test) {
+        String[] recurAndFreq = test.trim().split(" ");
+
+        if (recurAndFreq.length > 2) {
+            return false;
+        }
+
+        int freq = parseInt(recurAndFreq[0].trim(), 10);
+
+        if (freq <= 0) {
+            return false;
+        }
+
+        String recur = recurAndFreq[1].trim();
+
         try {
-            Frequency.valueOf(test.toUpperCase());
+            Recurrence.valueOf(recur.toUpperCase());
             return true;
         } catch (IllegalArgumentException iae) {
             return false;
@@ -72,16 +69,29 @@ public class RecurringTask extends Task {
     }
 
     /**
-     * Returns {@code Frequency} based on the frequency string passed in.
+     * Returns {@code RecurringTask} by parsing the validRecurFreq string and then
+     * combining them with task description and datetime to construct a {@code RecurringTask}.
      */
-    public static Frequency parseFreq(String validFreq) {
-        assert isValidFreq(validFreq);
-        return Frequency.valueOf(validFreq.toUpperCase());
+    public static RecurringTask parseRecurringTask(String description, DateTime dateTime, String validRecurFreq) {
+        assert isValidRecurAndFreq(validRecurFreq);
+        String[] recurAndFreq = validRecurFreq.trim().split(" ");
+        int freq = parseInt(recurAndFreq[0].trim(), 10);
+        Recurrence recur = Recurrence.valueOf(recurAndFreq[1].trim().toUpperCase());
+
+        return new RecurringTask(description, dateTime, recur, freq);
+    }
+
+    public Recurrence getRecurrence() {
+        return recurrence;
+    }
+
+    public int getFrequency() {
+        return frequency;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " " + recurrence;
+        return super.toString() + " every " + frequency + " " + recurrence;
     }
 
     @Override

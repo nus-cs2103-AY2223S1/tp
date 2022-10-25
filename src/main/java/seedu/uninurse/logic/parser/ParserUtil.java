@@ -5,11 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.StringUtil;
@@ -23,6 +21,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
@@ -216,6 +215,11 @@ public class ParserUtil {
             return parseRecurringTask(descriptionAndTime[0], descriptionAndTime[1], descriptionAndTime[2]);
         }
 
+        if (descriptionAndTime.length > 3) {
+            // TODO proper parseexception
+            throw new ParseException("Invalid format");
+        }
+
         return parseTaskWithDateTime(descriptionAndTime[0], descriptionAndTime[1]);
     }
 
@@ -244,10 +248,11 @@ public class ParserUtil {
         return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));
     }
 
-    private static Task parseRecurringTask(String taskDescription, String dateTime, String freq) throws ParseException {
+    private static Task parseRecurringTask(String taskDescription, String dateTime, String recurAndFreq)
+            throws ParseException {
         String trimmedTaskDescription = taskDescription.trim();
         String trimmedDateTime = dateTime.trim();
-        String trimmedFreq = freq.trim();
+        String trimmedRecurAndFreq = recurAndFreq.trim();
 
         if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
@@ -257,12 +262,12 @@ public class ParserUtil {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
-        if (!RecurringTask.isValidFreq(trimmedFreq)) {
+        if (!RecurringTask.isValidRecurAndFreq(trimmedRecurAndFreq)) {
             throw new ParseException(RecurringTask.MESSAGE_CONSTRAINTS);
         }
 
-        return new RecurringTask(trimmedTaskDescription, new DateTime(trimmedDateTime),
-                RecurringTask.parseFreq(trimmedFreq));
+        return RecurringTask.parseRecurringTask(trimmedTaskDescription, new DateTime(trimmedDateTime),
+                trimmedRecurAndFreq);
     }
 
     /**
@@ -293,15 +298,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code TagList}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static TagList parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final List<Tag> tagList = new ArrayList<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            tagList.add(parseTag(tagName));
         }
-        return tagSet;
+        return new TagList(tagList);
     }
 
     /**

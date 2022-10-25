@@ -9,7 +9,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_CONDITION_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_ROOM;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalPersons.ALICE;
 import static seedu.uninurse.testutil.TypicalPersons.BOB;
@@ -23,7 +23,7 @@ public class PersonTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Patient person = new PersonBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> person.getTags().getInternalList().remove(0));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Patient editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withConditions(VALID_CONDITION_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_BOB).withConditions(VALID_CONDITION_BOB).withTags(VALID_TAG_ROOM).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -92,7 +92,7 @@ public class PersonTest {
         assertNotEquals(ALICE, editedAlice);
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_ROOM).build();
         assertNotEquals(ALICE, editedAlice);
     }
 }

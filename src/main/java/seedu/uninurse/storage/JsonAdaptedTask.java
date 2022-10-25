@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.uninurse.commons.exceptions.IllegalValueException;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.Recurrence;
 import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 
@@ -15,7 +16,8 @@ public class JsonAdaptedTask {
 
     private final String taskDescription;
     private final JsonAdaptedDateTime dateTime;
-    private final RecurringTask.Frequency freq;
+    private final Recurrence recurrence;
+    private final int frequency;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskDescription}.
@@ -23,10 +25,12 @@ public class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskDescription") String taskDescription,
                            @JsonProperty("dateTime") JsonAdaptedDateTime dateTime,
-                           @JsonProperty("frequency") RecurringTask.Frequency freq) {
+                           @JsonProperty("recurrence") Recurrence recur,
+                           @JsonProperty("frequency") int frequency) {
         this.taskDescription = taskDescription;
         this.dateTime = dateTime;
-        this.freq = freq;
+        this.recurrence = recur;
+        this.frequency = frequency;
     }
 
     /**
@@ -37,9 +41,11 @@ public class JsonAdaptedTask {
         dateTime = new JsonAdaptedDateTime(source.getDateTime());
         if (source instanceof RecurringTask) {
             RecurringTask recurTask = (RecurringTask) source;
-            freq = recurTask.recurrence;
+            recurrence = recurTask.getRecurrence();
+            frequency = recurTask.getFrequency();
         } else {
-            freq = null;
+            recurrence = null;
+            frequency = 0;
         }
     }
 
@@ -53,10 +59,10 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
         }
 
-        if (freq == null) {
+        if (recurrence == null) {
             return new Task(taskDescription, dateTime.toModelType());
         } else {
-            return new RecurringTask(taskDescription, dateTime.toModelType(), freq);
+            return new RecurringTask(taskDescription, dateTime.toModelType(), recurrence, frequency);
         }
     }
 }

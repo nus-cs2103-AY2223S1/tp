@@ -100,6 +100,10 @@ public interface Model {
      */
     void setPatientOfInterest(Patient patient);
 
+    /**
+     * Updates the TaskList of each patient with new RecurringTasks if the existing RecurringTask are past their
+     * Task date.
+     */
     void updateRecurringTasks();
 
     /**

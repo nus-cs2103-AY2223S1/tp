@@ -61,13 +61,18 @@ public class EditTaskCommand extends EditGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        TaskList initialTaskList = patientToEdit.getTasks();
 
-        if (taskIndex.getZeroBased() >= patientToEdit.getTasks().size()) {
+        if (taskIndex.getZeroBased() >= initialTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
-        Task initialTask = patientToEdit.getTasks().get(taskIndex.getZeroBased());
-        TaskList updatedTaskList = patientToEdit.getTasks().edit(taskIndex.getZeroBased(), updatedTask);
+        if (patientToEdit.getTasks().hasTask(updatedTask)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
+        }
+
+        Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
+        TaskList updatedTaskList = initialTaskList.edit(taskIndex.getZeroBased(), updatedTask);
 
         Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 

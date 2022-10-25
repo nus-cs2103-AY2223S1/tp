@@ -3,12 +3,9 @@ package seedu.uninurse.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 
 /**
  * Represents a Person in the uninurse book.
@@ -22,18 +19,18 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final TagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, TagList tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tags = tags;
     }
 
     /**
@@ -45,7 +42,21 @@ public class Person {
         this.phone = person.phone;
         this.email = person.email;
         this.address = person.address;
-        this.tags.addAll(person.tags);
+        this.tags = person.tags;
+    }
+
+    /**
+     * Used to return a new immutable {@code Person} when {@code TagList} is updated.
+     * @param person The person to be updated.
+     * @param updatedTagList The updated tags.
+     */
+    public Person(Person person, TagList updatedTagList) {
+        requireAllNonNull(person, updatedTagList);
+        this.name = person.name;
+        this.phone = person.phone;
+        this.email = person.email;
+        this.address = person.address;
+        this.tags = updatedTagList;
     }
 
     public Name getName() {
@@ -64,12 +75,8 @@ public class Person {
         return address;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public TagList getTags() {
+        return tags;
     }
 
     /**
@@ -124,10 +131,10 @@ public class Person {
                 .append("\nAddress: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
+        TagList tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("\nTags: ");
-            tags.forEach(builder::append);
+            builder.append("\nTags: ")
+                    .append(tags);
         }
         return builder.toString();
     }
