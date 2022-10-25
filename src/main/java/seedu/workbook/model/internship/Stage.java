@@ -45,7 +45,7 @@ public class Stage {
      * Returns true if a given stage has curated tips.
      */
     public boolean hasNoTips() {
-        return !StageUtil.getStagesWithTips().contains(this);
+        return !StageUtil.stageHasTips(this);
     }
 
     @Override

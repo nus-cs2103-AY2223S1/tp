@@ -108,11 +108,20 @@ public class StageUtil {
      * @param input the user input
      * @return a list of stage-specific tips
      */
-    public static List<String> getStageSpecificTip(String input) {
+    public static List<String> getStageSpecificTips(String input) {
         Stage providedStage = new Stage(input);
         return (!stagesWithTips.contains(providedStage))
                 ? Collections.emptyList()
                 : tipsForStage.get(providedStage);
+    }
+
+    /**
+     * Checks if a stage is in the pre-defined list of stages which has tips.
+     * @param stage the given stage
+     * @return true if the stage has tips
+     */
+    public static boolean stageHasTips(Stage stage) {
+        return stagesWithTips.contains(stage);
     }
 
     /**
