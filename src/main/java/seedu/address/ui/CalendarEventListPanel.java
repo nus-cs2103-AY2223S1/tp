@@ -10,8 +10,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
-import java.util.Comparator;
-
 /**
  * Panel containing the list of CalendarEvents.
  */
