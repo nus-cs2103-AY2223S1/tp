@@ -27,6 +27,9 @@ public class RootCommand implements Runnable {
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec spec;
 
+    /**
+     * Throws a {@code ParameterException} when called, which should only occur when no subcommands are found.
+     */
     public void run() {
         throw new CommandLine.ParameterException(spec.commandLine(), MESSAGE_UNKNOWN_COMMAND);
     }
