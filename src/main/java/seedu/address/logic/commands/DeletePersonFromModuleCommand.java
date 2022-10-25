@@ -1,14 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.link.Link;
@@ -65,9 +64,9 @@ public class DeletePersonFromModuleCommand extends Command {
             moduleToDeletePersonFrom = model.getModuleUsingModuleCode(targetModuleCode, true);
             personToDeleteInModule = model.getPersonUsingName(targetName, true);
         } catch (ModuleNotFoundException e) {
-            throw new CommandException(MESSAGE_NO_SUCH_MODULE);
+            throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
         } catch (PersonNotFoundException e) {
-            throw new CommandException(MESSAGE_NO_SUCH_PERSON);
+            throw new CommandException(Messages.MESSAGE_NO_SUCH_PERSON);
         }
 
         assert moduleToDeletePersonFrom != null;
