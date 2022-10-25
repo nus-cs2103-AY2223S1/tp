@@ -102,12 +102,20 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code positionLine} is invalid.
      */
-    public static Position parsePosition(String position) throws ParseException {
+    public static Position parsePosition(String position, String tags) throws ParseException {
         requireNonNull(position);
+        requireNonNull(tags);
+
+        String relativePath = "./data/";
+        String txt = ".txt";
+        String tag = "";
+        String[] handleTag = tags.split("-");
+        String module = handleTag[0].replace("[", "");
+        String filePath = relativePath + module + txt;
         if (!Position.isValidPosition(position)) {
             throw new ParseException(Position.MESSAGE_CONSTRAINTS);
         }
-        return Position.buildPosition(position);
+        return Position.buildPosition(position, filePath);
     }
 
     /**
@@ -119,9 +127,11 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        String module = trimmedTag.split("-")[0];
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
+
         return new Tag(trimmedTag);
     }
 

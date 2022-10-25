@@ -69,7 +69,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Position} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withPosition(String position) {
-        descriptor.setPosition(Position.buildPosition(position));
+        descriptor.setPosition(Position.buildPosition(position, "./data/CS2103T.txt"));
         return this;
     }
 

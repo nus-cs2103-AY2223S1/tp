@@ -2,6 +2,10 @@ package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
+
 /**
  * Represents the Teaching Assistant position in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
@@ -81,5 +85,8 @@ public class TeachingAssistant extends Position {
     @Override
     public String getDetails() {
         return availability;
+    }
+
+    public void setFilePath(Set<Tag> modelTags) {
     }
 }

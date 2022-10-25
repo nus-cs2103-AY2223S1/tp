@@ -67,7 +67,7 @@ public class AttendanceCommand extends Command {
         Student currPosition = (Student) personToEdit.getPosition();
         Student editedPosition = new Student(attendance,
                 currPosition.getOverallGrade(),
-                currPosition.getAssignmentsList());
+                currPosition.getAssignmentsList(), currPosition.getFilePath());
         Person editedPerson = new Person(personToEdit.getName(),
                 personToEdit.getPhone(),
                 personToEdit.getEmail(),

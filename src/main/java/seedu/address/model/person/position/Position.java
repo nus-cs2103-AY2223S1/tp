@@ -1,5 +1,10 @@
 package seedu.address.model.person.position;
 
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
+
+
 /**
  * Represents a Person's position in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
@@ -43,9 +48,9 @@ public abstract class Position {
      * @param position A valid position.
      * @return The desired Position descendant
      */
-    public static Position buildPosition(String position) {
+    public static Position buildPosition(String position, String filePath) {
         if (Positions.STUDENT.name().equalsIgnoreCase(position)) {
-            return new Student();
+            return new Student(filePath);
         } else if (Positions.TA.name().equalsIgnoreCase(position)) {
             return new TeachingAssistant();
         } else if (Positions.PROFESSOR.name().equalsIgnoreCase(position)) {
@@ -65,4 +70,5 @@ public abstract class Position {
 
     public abstract String getDetails();
     public abstract void setDetails(String details);
+    public abstract void setFilePath(Set<Tag> modelTags);
 }

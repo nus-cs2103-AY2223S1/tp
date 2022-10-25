@@ -2,11 +2,19 @@ package seedu.address.model.person.position;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Assignment;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the Student position in the address book.
@@ -20,21 +28,44 @@ public class Student extends Position {
     public static final String ATTENDANCE_VALIDATION_REGEX = "\\d{1,3}" + "/" + "\\d{1,3}";
     public static final String MESSAGE_ASSIGNMENT_INVALID = "The index of the assignment is invalid.";
     public static final String ASSIGNMENT_CONSTRAINTS =
-            "Incorrect Assignments";
+            "Incorrect Assignment inputs. Please make sure your input is in the right format "
+                    + "\n i.e. assignments assignments/ Assignment 1 w/20, Assignments 2 w/20, Finals w/60"
+                    + "\n Please ensure that your weightages add up to 100.";
 
     private String attendance;
     private String overallGrade;
     private ArrayList<Assignment> assignmentsList;
 
+    private String filePath;
+
+
     /**
      * Creates a student and initialises their attendance to 0/0.
      */
-    public Student() {
+    public Student(String filePath) {
         super("Student");
         this.attendance = "0/0";
         this.overallGrade = "0/0";
         this.assignmentsList = new ArrayList<>();
+        this.filePath = filePath;
+        File file = new File(filePath);
+        String dir = System.getProperty("user.dir");
+        Path path = Paths.get(dir, filePath);
 
+
+
+        if (Files.exists(path)) {
+            try {
+                Scanner scanner = new Scanner(file);
+                if (scanner.hasNext()) {
+                    String assignments = scanner.nextLine();
+                    setAssignments(assignments);
+                }
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -43,11 +74,12 @@ public class Student extends Position {
      * @param overallGrade of the student
      * @param assignmentsList Assignments that have been assigned to the student
      */
-    public Student(String attendance, String overallGrade, ArrayList<Assignment> assignmentsList) {
+    public Student(String attendance, String overallGrade, ArrayList<Assignment> assignmentsList, String filePath) {
         super("Student");
         this.attendance = attendance;
         this.overallGrade = overallGrade;
         this.assignmentsList = assignmentsList;
+        this.filePath = filePath;
     }
 
     public String getAttendance() {
@@ -60,6 +92,26 @@ public class Student extends Position {
 
     public ArrayList<Assignment> getAssignmentsList() {
         return assignmentsList;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        requireNonNull(filePath);
+        this.filePath = filePath;
+    }
+
+    public void setFilePath(Set<Tag> modelTags) {
+        requireNonNull(modelTags);
+        String str = modelTags.toString();
+        String data = "./data/";
+        String txt = ".txt";
+        System.out.println(str);
+        String module = str.split("-")[0].replace("[", "");
+        String filePath = data + module + txt;
+        this.filePath = filePath;
     }
 
     public void setAttendance(String attendance) {
@@ -108,6 +160,7 @@ public class Student extends Position {
      * @return whether the given index is valid
      */
     public boolean isValidAssignmentIndex(Index indexOfAssignment) {
+        assert false;
         return indexOfAssignment.getZeroBased() >= 0
                 && indexOfAssignment.getZeroBased() < assignmentsList.size();
     }
@@ -170,6 +223,7 @@ public class Student extends Position {
     }
 
     public ArrayList<Assignment> setAssignments(String assignments) {
+
         String[] splitStr = assignments.split(", ");
         int len = splitStr.length;
         if (assignmentsList.size() > 0) {
@@ -227,7 +281,8 @@ public class Student extends Position {
     @Override
     public String toShow() {
         return "Attendance: " + attendance + "\n"
-                + "Grade: " + overallGrade;
+                + "Grade: " + overallGrade
+                + "\nAssignments: " + assignmentsList.toString();
     }
 
     @Override
