@@ -9,9 +9,11 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASK_DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -23,11 +25,15 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddPersonToModuleCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteLinkCommand;
+import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -37,13 +43,16 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SwapTaskNumbersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonToModuleUtil;
 import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
@@ -62,6 +71,18 @@ public class AddressBookParserTest {
         Module module = new ModuleBuilder().build();
         AddModuleCommand command = (AddModuleCommand) parser.parseCommand(ModuleUtil.getAddModuleCommand(module));
         assertEquals(new AddModuleCommand(module), command);
+    }
+
+    @Test
+    public void parseCommand_addPersonToModule() throws Exception {
+        Module module = new ModuleBuilder().build();
+        Person person = new PersonBuilder().build();
+        ModuleCode moduleCode = module.getModuleCode();
+        Name name = person.getName();
+
+        AddPersonToModuleCommand command = (AddPersonToModuleCommand) parser.parseCommand(
+                PersonToModuleUtil.getAddPersonToModuleCommand(moduleCode, name));
+        assertEquals(new AddPersonToModuleCommand(moduleCode, name), command);
     }
 
     @Test
@@ -91,6 +112,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteModule() throws Exception {
+        DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
+                DeleteModuleCommand.COMMAND_WORD + " " + MODULE_CODE_DESC_CS2106);
+        assertEquals(new DeleteModuleCommand(new ModuleCode(VALID_CS2106_MODULE_CODE)), command);
+    }
+
+    @Test
     public void parseCommand_deleteLink() throws Exception {
         assertTrue(parser.parseCommand(DeleteLinkCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MODULE_LINK
@@ -111,6 +139,16 @@ public class AddressBookParserTest {
         EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editModule() throws Exception {
+        Module module = new ModuleBuilder().build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(module).build();
+        EditModuleCommand command =
+                (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_MODULE.getOneBased() + " " + ModuleUtil.getEditModuleDescriptorDetails(descriptor));
+        assertEquals(new EditModuleCommand(INDEX_FIRST_MODULE, descriptor), command);
     }
 
     @Test
