@@ -14,17 +14,26 @@ public class Survey {
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
+    private static final String DONE = "DONE";
+    private static final String NOT_DONE = "NOT_DONE";
+
     public final String survey;
+    public final boolean isDone;
 
     /**
      * Constructs a {@code Survey}.
      *
      * @param survey A valid survey.
      */
-    public Survey(String survey) {
+    public Survey(String survey, boolean isDone) {
         requireNonNull(survey);
         checkArgument(isValidSurvey(survey), MESSAGE_CONSTRAINTS);
         this.survey = survey;
+        this.isDone = isDone;
+    }
+
+    public Survey(String survey) {
+        this(survey, false);
     }
 
     /**
@@ -36,9 +45,16 @@ public class Survey {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Survey // instanceof handles nulls
-                && survey.equals(((Survey) other).survey)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Survey)) {
+            return false;
+        }
+
+        Survey otherSurvey = (Survey) other;
+        return survey.equals(otherSurvey.survey) && isDone == otherSurvey.isDone;
     }
 
     @Override
@@ -50,6 +66,10 @@ public class Survey {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + survey + ']';
+        return String.format("[%s, %s]", survey, getStatus());
+    }
+
+    private String getStatus() {
+        return isDone ? DONE : NOT_DONE;
     }
 }
