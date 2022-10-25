@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
-
+/**
+ * Contains base command words for all commands that are shared among some commands and generate approperiate error
+ * messages
+ */
 public class BaseCommandUtil {
 
     /* Base Commands */
