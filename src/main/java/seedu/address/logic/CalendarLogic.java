@@ -3,6 +3,8 @@ package seedu.address.logic;
 import static javafx.scene.paint.Color.WHITE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -17,7 +19,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
+import seedu.address.model.person.Date;
 import seedu.address.ui.CalendarEventListPanel;
+import seedu.address.ui.JumpText;
 import seedu.address.ui.NextButton;
 import seedu.address.ui.PreviousButton;
 import seedu.address.ui.RefreshButton;
@@ -38,6 +42,8 @@ public class CalendarLogic {
     private PreviousButton prevButton = new PreviousButton("Prev", this);
     private NextButton nextButton = new NextButton("Next", this);
     private RefreshButton refreshButton = new RefreshButton("Refresh", this);
+    private JumpText jumpText = new JumpText(this);
+
     @FXML
     private GridPane calendarDisplay;
     @FXML
@@ -156,6 +162,24 @@ public class CalendarLogic {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getNextMonth(currentMonth);
         updateCalendarMonth();
+    }
+    /**
+     * Displays the CalendarEvents given by the user input.
+     */
+    public void jump() {
+        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        currentMonth = getJumpMonth();
+        updateCalendarMonth();
+    }
+
+    private GregorianCalendar getJumpMonth() {
+        String date = jumpText.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+        Date jumpDate = new Date(LocalDate.parse(date, formatter));
+        int newMonth = jumpDate.getMonth() - 1;
+        int newYear = jumpDate.getYear();
+        return new GregorianCalendar(newYear, newMonth, 1);
+
     }
 
     private void updateCalendarMonth() {
