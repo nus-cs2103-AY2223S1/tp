@@ -62,7 +62,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `listPersons`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -120,12 +120,12 @@ Shows a list of all persons in the application.
 
 Format: `listPersons [s/FIELD]`
 
-* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
+* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one of the following values:
   * `n` or `N` sort by name ignoring case differences
   * `d` or `D` sort by date of birth
   * `g` or `G` sort by gender
 
-* It is optional to include the sorting prefix and field. If the sorting prefix and field to sort by are not included, no sorting is performed.
+* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
 
@@ -253,11 +253,11 @@ Shows a list of all events in the application.
 
 Format: `listEvents [s/FIELD]`
 
-* Sorts the events by the specified field in **ascending** order. `FIELD` must take one the following values:
+* Sorts the events by the specified field in **ascending** order. `FIELD` must take one of the following values:
   * `e` or `E` sort by event title ignoring case differences
   * `d` or `D` sort by date
 
-* It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
+* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
 
