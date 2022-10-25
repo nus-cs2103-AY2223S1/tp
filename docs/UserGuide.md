@@ -212,6 +212,12 @@ Examples:
 
 Toggle the mode of the list between a compacted or an expanded mode.
 
+Expanded Mode:<br>
+![ExpandedMode](images/ExpandedMode.png)
+
+Compacted Mode:<br>
+![CompactedMode](images/CompactedMode.png)
+
 Format: `toggle-list-mode`
 
 ### Clearing all entries : `clear`
