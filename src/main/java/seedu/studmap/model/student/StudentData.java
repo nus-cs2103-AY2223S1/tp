@@ -10,6 +10,9 @@ import seedu.studmap.model.tag.Tag;
  * A parameter object for Student constructor.
  */
 public class StudentData {
+    private StudentID studentID;
+    private GitName gitName;
+    private TeleHandle teleHandle;
     private Name name;
     private Phone phone;
     private Email email;
@@ -17,6 +20,30 @@ public class StudentData {
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
     private Set<Assignment> assignments = new HashSet<>();
+
+    public StudentID getId() {
+        return studentID;
+    }
+
+    public void setId(StudentID id) {
+        this.studentID = id;
+    }
+
+    public GitName getGitUser() {
+        return gitName;
+    }
+
+    public void setGitUser(GitName gitName) {
+        this.gitName = gitName;
+    }
+
+    public TeleHandle getTeleHandle() {
+        return teleHandle;
+    }
+
+    public void setTeleHandle(TeleHandle teleHandle) {
+        this.teleHandle = teleHandle;
+    }
 
     public Name getName() {
         return name;
@@ -94,6 +121,9 @@ public class StudentData {
         return Objects.equals(name, that.name)
                 && Objects.equals(phone, that.phone)
                 && Objects.equals(email, that.email)
+                && Objects.equals(studentID, that.studentID)
+                && Objects.equals(gitName, that.gitName)
+                && Objects.equals(teleHandle, that.teleHandle)
                 && Objects.equals(address, that.address)
                 && Objects.equals(tags, that.tags)
                 && Objects.equals(attendances, that.attendances)
@@ -102,6 +132,8 @@ public class StudentData {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, address, tags, attendances, assignments);
+        return Objects.hash(name, phone, email, studentID, gitName,
+                teleHandle, address, tags, attendances, assignments);
     }
+
 }

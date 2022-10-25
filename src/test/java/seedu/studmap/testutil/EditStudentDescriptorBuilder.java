@@ -7,9 +7,12 @@ import java.util.stream.Stream;
 import seedu.studmap.logic.commands.EditCommand.EditCommandStudentEditor;
 import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Email;
+import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
+import seedu.studmap.model.student.StudentID;
+import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 
 /**
@@ -35,6 +38,9 @@ public class EditStudentDescriptorBuilder {
         descriptor.setName(student.getName());
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
+        descriptor.setId(student.getId());
+        descriptor.setGitName(student.getGitName());
+        descriptor.setHandle(student.getTeleHandle());
         descriptor.setAddress(student.getAddress());
         descriptor.setTags(student.getTags());
     }
@@ -60,6 +66,30 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code StudentId} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withId(String id) {
+        descriptor.setId(new StudentID(id));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Git} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withGitName(String name) {
+        descriptor.setGitName(new GitName(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Handle} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withTeleHandle(String teleHandle) {
+        descriptor.setHandle(new TeleHandle(teleHandle));
         return this;
     }
 

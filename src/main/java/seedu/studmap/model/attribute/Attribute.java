@@ -44,6 +44,18 @@ public abstract class Attribute {
             resultComparator = Comparator.comparing(Student::getPhoneString);
             break;
 
+        case ID:
+            resultComparator = Comparator.comparing(Student::getIdString);
+            break;
+
+        case GIT:
+            resultComparator = Comparator.comparing(Student::getGitString);
+            break;
+
+        case HANDLE:
+            resultComparator = Comparator.comparing(Student::getHandleString);
+            break;
+
         case ADDRESS:
             resultComparator = Comparator.comparing(Student::getAddressString);
             break;

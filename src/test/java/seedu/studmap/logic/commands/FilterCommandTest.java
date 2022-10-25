@@ -34,7 +34,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_nostudentFound() {
+    public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         TagContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterCommand command = new FilterCommand(predicate);

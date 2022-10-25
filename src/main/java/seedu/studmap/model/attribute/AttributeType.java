@@ -7,6 +7,9 @@ public enum AttributeType {
     NAME,
     PHONE,
     ADDRESS,
+    ID,
+    GIT,
+    HANDLE,
     EMAIL,
     ATTENDANCE
 }

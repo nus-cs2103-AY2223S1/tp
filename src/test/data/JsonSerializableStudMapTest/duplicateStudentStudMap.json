@@ -3,12 +3,18 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "studentID" : "E1234561",
+    "gitName" : "user1",
+    "handle" : "@user1",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "studentID" : "E1234562",
+    "gitName" : "user1",
+    "handle" : "@user1",
     "address": "4th street"
   } ]
 }

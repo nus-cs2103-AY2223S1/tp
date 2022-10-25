@@ -7,10 +7,13 @@ import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
+import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
+import seedu.studmap.model.student.StudentID;
+import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 import seedu.studmap.model.util.SampleDataUtil;
 
@@ -23,10 +26,16 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ID = "E1234567";
+    public static final String DEFAULT_GIT = "GitUser";
+    public static final String DEFAULT_TELE = "@CS2103T";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private StudentID id;
+    private GitName gitName;
+    private TeleHandle handle;
     private Address address;
     private Set<Tag> tags;
     private Set<Attendance> attendances;
@@ -39,6 +48,9 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        id = new StudentID(DEFAULT_ID);
+        gitName = new GitName(DEFAULT_GIT);
+        handle = new TeleHandle(DEFAULT_TELE);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         attendances = new HashSet<>();
@@ -52,6 +64,9 @@ public class StudentBuilder {
         name = studentToCopy.getName();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
+        id = studentToCopy.getId();
+        gitName = studentToCopy.getGitName();
+        handle = studentToCopy.getTeleHandle();
         address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
         attendances = new HashSet<>(studentToCopy.getAttendances());
@@ -154,6 +169,30 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code id} of the {@code StudentID} that we are building.
+     */
+    public StudentBuilder withId(String id) {
+        this.id = new StudentID(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code gitName} of the {@code GitName} that we are building.
+     */
+    public StudentBuilder withGitName(String name) {
+        this.gitName = new GitName(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code handle} of the {@code TeleHandle} that we are building.
+     */
+    public StudentBuilder withTeleHandle(String teleHandle) {
+        this.handle = new TeleHandle(teleHandle);
+        return this;
+    }
+
+    /**
      * Builds the student using the given parameters.
      * @return New Student.
      */
@@ -162,6 +201,9 @@ public class StudentBuilder {
         studentData.setName(this.name);
         studentData.setPhone(this.phone);
         studentData.setEmail(this.email);
+        studentData.setId(this.id);
+        studentData.setGitUser(this.gitName);
+        studentData.setTeleHandle(this.handle);
         studentData.setAddress(this.address);
         studentData.setTags(this.tags);
         studentData.setAttendances(this.attendances);

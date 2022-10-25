@@ -2,6 +2,9 @@ package seedu.studmap.logic.commands;
 
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -20,10 +23,13 @@ import seedu.studmap.logic.commands.exceptions.CommandException;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Email;
+import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
+import seedu.studmap.model.student.StudentID;
+import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 
 /**
@@ -40,6 +46,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_GIT + "GITUSER] "
+            + "[" + PREFIX_HANDLE + "TELEHANDLE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -102,6 +111,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
         private Name name;
         private Phone phone;
         private Email email;
+        private StudentID id;
+        private GitName gitName;
+        private TeleHandle handle;
         private Address address;
         private Set<Tag> tags;
 
@@ -116,6 +128,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setId(toCopy.id);
+            setGitName(toCopy.gitName);
+            setHandle(toCopy.handle);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -124,7 +139,8 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email,
+                    id, gitName, handle, address, tags);
         }
 
         public Optional<Name> getName() {
@@ -149,6 +165,30 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
         public void setEmail(Email email) {
             this.email = email;
+        }
+
+        public void setId(StudentID id) {
+            this.id = id;
+        }
+
+        public Optional<StudentID> getId() {
+            return Optional.ofNullable(id);
+        }
+
+        public void setHandle(TeleHandle handle) {
+            this.handle = handle;
+        }
+
+        public Optional<TeleHandle> getHandle() {
+            return Optional.ofNullable(handle);
+        }
+
+        public void setGitName(GitName name) {
+            this.gitName = name;
+        }
+
+        public Optional<GitName> getGitName() {
+            return Optional.ofNullable(gitName);
         }
 
         public Optional<Address> getAddress() {
@@ -194,6 +234,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getId().equals(e.getId())
+                    && getGitName().equals(e.getGitName())
+                    && getHandle().equals(e.getHandle())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
@@ -206,6 +249,9 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
             studentData.setName(getName().orElse(studentToEdit.getName()));
             studentData.setPhone(getPhone().orElse(studentToEdit.getPhone()));
             studentData.setEmail(getEmail().orElse(studentToEdit.getEmail()));
+            studentData.setId(getId().orElse(studentToEdit.getId()));
+            studentData.setGitUser(getGitName().orElse(studentToEdit.getGitName()));
+            studentData.setTeleHandle(getHandle().orElse(studentToEdit.getTeleHandle()));
             studentData.setAddress(getAddress().orElse(studentToEdit.getAddress()));
             studentData.setTags(getTags().orElse(studentToEdit.getTags()));
 
@@ -214,7 +260,8 @@ public class EditCommand extends EditStudentCommand<EditCommand.EditCommandStude
 
         @Override
         public boolean hasEdits() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email,
+                    id, gitName, handle, address, tags);
         }
     }
 }

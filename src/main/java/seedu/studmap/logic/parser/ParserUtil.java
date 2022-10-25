@@ -16,8 +16,11 @@ import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
+import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
+import seedu.studmap.model.student.StudentID;
+import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 
 /**
@@ -105,6 +108,51 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String StudentId} into an {@code StudentId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code StudentId} is invalid.
+     */
+    public static StudentID parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        /*if (!StudentID.isValidStudentID(trimmedId)) {
+            throw new ParseException(StudentID.MESSAGE_CONSTRAINTS);
+        }*/
+        return new StudentID(trimmedId);
+    }
+
+    /**
+     * Parses a {@code String gitName} into an {@code GitName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gitName} is invalid.
+     */
+    public static GitName parseGitName(String gitName) throws ParseException {
+        requireNonNull(gitName);
+        String trimmedGit = gitName.trim();
+        if (!GitName.isValidGitName(trimmedGit)) {
+            throw new ParseException(GitName.MESSAGE_CONSTRAINTS);
+        }
+        return new GitName(trimmedGit);
+    }
+
+    /**
+     * Parses a {@code String handle} into an {@code TeleHandle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code handle} is invalid.
+     */
+    public static TeleHandle parseHandle(String handle) throws ParseException {
+        requireNonNull(handle);
+        String trimmedHandle = handle.trim();
+        if (!TeleHandle.isValidTeleHandle(trimmedHandle)) {
+            throw new ParseException(TeleHandle.MESSAGE_CONSTRAINTS);
+        }
+        return new TeleHandle(trimmedHandle);
     }
 
     /**

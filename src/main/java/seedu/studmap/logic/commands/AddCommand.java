@@ -3,6 +3,9 @@ package seedu.studmap.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,12 +26,18 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ID + "ID "
+            + PREFIX_GIT + "GITNAME "
+            + PREFIX_HANDLE + "HANDLE "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ID + "E1234567 "
+            + PREFIX_GIT + "user1 "
+            + PREFIX_HANDLE + "@user1 "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";

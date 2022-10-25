@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Represents a Student in the student map.
+ * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -21,6 +21,9 @@ public class Student {
     private final Email email;
 
     // Data fields
+    private final StudentID id;
+    private final TeleHandle teleHandle;
+    private final GitName gitName;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
@@ -28,16 +31,21 @@ public class Student {
 
     /**
      * Constructor using a StudentData parameter object.
-     * Requires name, phone, email, studmap, tags, attendances and assignments to be non-null.
+     * Requires name, phone, email, id, gitName, teleHanlde,
+     * studmap, tags, attendances and assignments to be non-null.
      *
      * @param studentData StudentData parameter object.
      */
     public Student(StudentData studentData) {
-        requireAllNonNull(studentData.getName(), studentData.getPhone(),
+        requireAllNonNull(studentData.getId(), studentData.getGitUser(),
+                studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
                 studentData.getEmail(), studentData.getAddress(),
                 studentData.getTags(), studentData.getAttendances(),
                 studentData.getAssignments());
 
+        this.id = studentData.getId();
+        this.teleHandle = studentData.getTeleHandle();
+        this.gitName = studentData.getGitUser();
         this.name = studentData.getName();
         this.phone = studentData.getPhone();
         this.email = studentData.getEmail();
@@ -45,6 +53,30 @@ public class Student {
         this.tags.addAll(studentData.getTags());
         this.attendances.addAll(studentData.getAttendances());
         this.assignments.addAll(studentData.getAssignments());
+    }
+
+    public StudentID getId() {
+        return id;
+    }
+
+    public String getIdString() {
+        return id.toString();
+    }
+
+    public GitName getGitName() {
+        return gitName;
+    }
+
+    public String getGitString() {
+        return gitName.toString();
+    }
+
+    public TeleHandle getTeleHandle() {
+        return teleHandle;
+    }
+
+    public String getHandleString() {
+        return teleHandle.toString();
     }
 
     public Name getName() {
@@ -110,6 +142,9 @@ public class Student {
         studentData.setName(this.getName());
         studentData.setPhone(this.getPhone());
         studentData.setEmail(this.getEmail());
+        studentData.setId(this.getId());
+        studentData.setGitUser(this.getGitName());
+        studentData.setTeleHandle(this.getTeleHandle());
         studentData.setAddress(this.getAddress());
 
         studentData.setTags(new HashSet<>(this.getTags()));
@@ -140,9 +175,10 @@ public class Student {
         return otherStudent != null && otherStudent.getName().equals(getName());
     }
 
+
     /**
-     * Returns true if both students have the same identity and data fields.
-     * This defines a stronger notion of equality between two students.
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -156,6 +192,9 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
+                && otherStudent.getId().equals(getId())
+                && otherStudent.getGitName().equals(getGitName())
+                && otherStudent.getTeleHandle().equals(getTeleHandle())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
@@ -167,14 +206,19 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, attendances, assignments);
+
+        return Objects.hash(name, phone, email, id, gitName, teleHandle, address, tags, attendances, assignments);
+
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName()).append("; Phone: ").append(getPhone()).append("; Email: ")
-                .append(getEmail()).append("; Address: ").append(getAddress());
+                .append(getEmail()).append("; StudentID: ")
+                .append(getId()).append("; GitHub Username: ")
+                .append(getGitName()).append("; TeleHandle: ").append(getTeleHandle())
+                .append("; Address: ").append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
