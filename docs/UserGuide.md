@@ -80,14 +80,15 @@ Format:
 ### Grouping all appointments : `group appts`
 
 Shows a list of all appointments grouped by their tags or attached patients, depending on the parameter given.
+Shortcuts can be used.
 
 Format:
-* `group appts k/[KEY]`
+* `group appts k/KEY`
 
 Examples:
-* `group appts k/tag`
-* `group appts k/patient`
-* `group appts k/mark`
+* `group appts k/tag` (`group appts k/t`)
+* `group appts k/patient` (`group appts k/p`)
+* `group appts k/mark` (`group appts k/m`)
 
 ### Ungrouping all patients/ appointments : `ungroup`
 
@@ -386,7 +387,7 @@ Action | Format, Examples
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Group Patients** | `group patients`
-**Group Appointents** | `group appts k/[KEY]` <br> e.g., `group appts k/mark`
+**Group Appointents** | `group appts k/KEY` <br> e.g., `group appts k/mark`
 **Ungroup** | `ungroup patients` <br> `ungroup appts`
 **Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`

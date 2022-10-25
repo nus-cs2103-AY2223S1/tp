@@ -22,7 +22,7 @@ import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 
 /**
- * Finds and lists all persons and their appointments in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons and their appointments in idENTify whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
@@ -45,8 +45,8 @@ public class FindCommand extends Command {
             + PREFIX_PHONE + "9876 "
             + PREFIX_EMAIL + "johnd "
             + PREFIX_ADDRESS + "Clementi "
-            + PREFIX_TAG + "cough "
-            + PREFIX_TAG + "tonsils "
+            + PREFIX_TAG + "ear "
+            + PREFIX_TAG + "nose "
             + PREFIX_REASON + "checkup "
             + PREFIX_DATE_TIME_START + "2022-10-20 00:00 "
             + PREFIX_DATE_TIME_END + "2023-10-20 00:00";
