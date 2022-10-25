@@ -354,5 +354,5 @@
 }
 
 .right-side {
-    -fx-padding: 8;
+    -fx-padding: 0 8 8 8;
 }
