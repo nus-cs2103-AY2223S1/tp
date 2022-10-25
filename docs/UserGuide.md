@@ -124,21 +124,17 @@ Finds and lists all the projects matching the search criteria.
 
 Format: `project -f [n/PROJECT_NAME] [r/REPOSITORY]…​`
 
-* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_PHONE` and `CLIENT_EMAIL`.
-* Finds all the clients such that the fields under the client contain at least one word from the keywords provided
+* Finds all the projects with the specified `PROJECT_NAME` and `REPOSITORY`.
+* Finds all the projects such that the fields under the project contain at least one word from the keywords provided
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
 
 Examples:
-* `client -f n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy`.
-* `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
-* `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and
-  with `CLIENT_EMAIL` amy@gmail.com.
-* `client -f n/Amy e/amy@gmail.com p/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word
-  `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_PHONE` 12345678.
-* `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com p/12345678` Finds and lists all the clients whose
-  `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with
-  `CLIENT_PHONE` 12345678.
+* `project -f n/DevEnable` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable.
+* `project -f n/DevEnable AB3` Finds and lists all the projects whose `PROJECT_NAME` contains the word DevEnable or AB3.
+* `project -f r/tp/F13` Finds and lists all the projects with `REPOSITORY` tp/F13.
+* `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
+  and with `REPOSITORY` tp/F13.
 
 ### Adding a client : `client -a`
 
