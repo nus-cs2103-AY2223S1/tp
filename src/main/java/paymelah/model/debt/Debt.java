@@ -40,7 +40,7 @@ public class Debt {
      * @param isPaid Whether the debt has been paid.
      */
     public Debt(Description description, Money money, DebtDate date, DebtTime time, boolean isPaid) {
-        requireAllNonNull(description, money, isPaid);
+        requireAllNonNull(description, money, date, time, isPaid);
         this.description = description;
         this.money = money;
         this.date = date;
