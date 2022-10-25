@@ -14,8 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_5;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4_WITH_HTTP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4_WITHOUT_HTTPS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_4_WITH_HTTP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_WITHOUT_HTTPS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLinks.VALID_LINK_2;
