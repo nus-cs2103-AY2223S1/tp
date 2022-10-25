@@ -123,13 +123,14 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
         taskBook.setTask(target, editedTask);
+        updateModuleTask(editedTask);
     }
 
     @Override
     public void updateModuleTask(Task t) {
         Module toUpdate = parseModuleFromCode(t.getModule());
         FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
-        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode()) && !task.isArchived();
         tempList.setPredicate(newPredicate);
         toUpdate.updateTaskCount(tempList.size());
         setModule(toUpdate, toUpdate);
