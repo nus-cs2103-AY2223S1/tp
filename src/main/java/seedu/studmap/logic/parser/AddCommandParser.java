@@ -1,11 +1,7 @@
 package seedu.studmap.logic.parser;
 
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.studmap.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
@@ -35,9 +31,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_ID, PREFIX_GIT, PREFIX_HANDLE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -47,6 +45,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         studentData.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         studentData.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         studentData.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        studentData.setId(ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get()));
+        studentData.setGitUser(ParserUtil.parseGitName(argMultimap.getValue(PREFIX_GIT).get()));
+        studentData.setTeleHandle(ParserUtil.parseHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
         studentData.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         studentData.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 

@@ -1,15 +1,21 @@
 {
-  "_comment": "StudMap save file which contains the same Student values as in TypicalStudents#getTypicalStudMap()",
-  "students" : [ {
+  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
+    "StudentId" : "A1234567A",
+    "gitName" : "user1",
+    "handle" : "@user1",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
+    "StudentId" : "A1234567B",
+    "gitName" : "user2",
+    "handle" : "@user2",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "attended" : [ "T01:Present", "T03:Absent", "T02:Present" ]
@@ -17,30 +23,45 @@
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
+    "StudentId" : "A1234567C",
+    "gitName" : "user3",
+    "handle" : "@user3",
     "address" : "wall street",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
+    "StudentId" : "A1234567D",
+    "gitName" : "user4",
+    "handle" : "@user4",
     "address" : "10th street",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
+    "StudentId" : "A1234567E",
+    "gitName" : "user5",
+    "handle" : "@user5",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
+    "StudentId" : "A1234567F",
+    "gitName" : "user6",
+    "handle" : "@user6",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
+    "StudentId" : "A1234567G",
+    "gitName" : "user7",
+    "handle" : "@user7",
     "address" : "4th street",
     "tagged" : [ ]
   } ]
