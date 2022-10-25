@@ -62,17 +62,18 @@ public class AddParticipationCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
         }
 
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
-        if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-
         Lesson lessonToMark = lastShownLessonList.get(lessonIndex.getZeroBased());
         if (!(lessonToMark instanceof Studio)) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDIO_DISPLAYED_INDEX);
         }
+
+        Student[] studentsInLesson = lessonToMark.getStudents().toArray(new Student[0]);
+        if (studentIndex.getZeroBased() >= studentsInLesson.length) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        }
+
         Studio studioToMark = (Studio) lessonToMark;
-        Student studentToMark = lastShownStudentList.get(studentIndex.getZeroBased());
+        Student studentToMark = studentsInLesson[studentIndex.getZeroBased()];
         try {
             studioToMark.setParticipationForStudent(studentToMark, participation);
         } catch (StudentNotFoundException snfe) {

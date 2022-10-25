@@ -55,14 +55,14 @@ public class UnmarkStudentCommand extends Command {
         if (lessonIndex.getZeroBased() >= lastShownLessonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
         }
+        Lesson lessonToMark = lastShownLessonList.get(lessonIndex.getZeroBased());
 
-        List<Student> lastShownStudentList = model.getFilteredStudentList();
-        if (studentIndex.getZeroBased() >= lastShownStudentList.size()) {
+        Student[] studentsInLesson = lessonToMark.getStudents().toArray(new Student[0]);
+        if (studentIndex.getZeroBased() >= studentsInLesson.length) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
+        Student studentToMark = studentsInLesson[studentIndex.getZeroBased()];
 
-        Lesson lessonToMark = lastShownLessonList.get(lessonIndex.getZeroBased());
-        Student studentToMark = lastShownStudentList.get(studentIndex.getZeroBased());
         try {
             lessonToMark.markAsAbsent(studentToMark);
         } catch (StudentNotFoundException snfe) {
