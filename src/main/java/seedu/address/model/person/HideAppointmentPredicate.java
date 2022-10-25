@@ -56,9 +56,6 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
         default:
             assert false : condition; //should not reach here
         }
-        if (passed) {
-            HiddenPredicateSingleton.addToHiddenApptList(appt);
-        }
         return passed;
     }
 
