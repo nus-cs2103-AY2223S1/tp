@@ -56,15 +56,19 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (hasPrefixPresent(argMultimap, PREFIX_NAME)) {
             List<String> nameKeywords = getPartialKeywordsList(argMultimap, PREFIX_NAME);
-            applicantPredicateList.add(new NameContainsKeywordsPredicate(nameKeywords));
+            NameContainsKeywordsPredicate nameKeywordsPredicate = new NameContainsKeywordsPredicate(nameKeywords);
+            applicantPredicateList.add(nameKeywordsPredicate);
         }
         if (hasPrefixPresent(argMultimap, PREFIX_SCHOLARSHIP)) {
             List<String> scholarshipKeywords = getPartialKeywordsList(argMultimap, PREFIX_SCHOLARSHIP);
-            applicantPredicateList.add(new ScholarshipContainsKeywordsPredicate(scholarshipKeywords));
+            ScholarshipContainsKeywordsPredicate scholarshipKeywordsPredicate =
+                    new ScholarshipContainsKeywordsPredicate(scholarshipKeywords);
+            applicantPredicateList.add(scholarshipKeywordsPredicate);
         }
         if (hasPrefixPresent(argMultimap, PREFIX_MAJOR)) {
             List<String> majorKeywords = getPartialKeywordsList(argMultimap, PREFIX_MAJOR);
-            applicantPredicateList.add(new MajorContainsKeywordsPredicate(majorKeywords));
+            MajorContainsKeywordsPredicate majorKeywordsPredicate = new MajorContainsKeywordsPredicate(majorKeywords);
+            applicantPredicateList.add(majorKeywordsPredicate);
         }
 
         assert !applicantPredicateList.isEmpty();
@@ -73,6 +77,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(predicate);
     }
 
+
+    /**
+     * Combines the given predicate list into a chain of predicate.
+     *
+     * @param applicantPredicateList Predicate list to combine.
+     * @return A chain of combined predicate list.
+     */
     private static Predicate<Applicant> combinePredicateList(List<Predicate<Applicant>> applicantPredicateList) {
         return applicantPredicateList.stream().reduce(Predicate::or).orElse(x -> false);
     }
