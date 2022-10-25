@@ -86,6 +86,7 @@ Format:
 Examples:
 * `group appts k/tag`
 * `group appts k/patient`
+* `group appts k/mark`
 
 ### Ungrouping all patients/ appointments : `ungroup`
 
@@ -294,6 +295,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
+**Group Patients** | `group patients`
+**Group Appointents** | `group appts k/[KEY]` <br> e.g., `group appts k/mark`
+**Ungroup** | `ungroup patients` <br> `ungroup appts`
 **Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
