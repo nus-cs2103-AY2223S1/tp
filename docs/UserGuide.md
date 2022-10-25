@@ -12,6 +12,8 @@ Hi Prof, welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI
 
 TutHub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. If you can type fast, Tuthub helps you find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -21,7 +23,7 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
 1. Copy the file to the folder you want to use as the _home folder_ for Tuthub.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/user-guide/start.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -30,21 +32,54 @@ TutHub is a desktop app for NUS professors who wish to choose their next batch o
 
    * **`view`**`3` : Displays full details of the 3rd tutor shown in the current list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3 s/A1234567X tn/3 r/5.0` : Adds a tutor named `John Doe` to Tuthub.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
 
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
-
-   * **`save`** : Saves the data to your local device.
-
+   
    * **`clear`** : Deletes all tutors.
 
    * **`exit`** : Exits the TutHub app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to [4. Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## 3. About this Document
 
-## Features
+### 3.1 Structure of this Document
+This document is designed to help you find what you need in a quick and fuss-free way. Here are some useful tips for reading and navigating through this user guide!
+
+### 3.2 Reading this User Guide
+This section will introduce you to symbols frequently used in this document and the Tuthub app layout for a better understanding of the user guide! 
+
+**3.2.1 Symbols and Syntax**
+
+| Symbol                                | What it means                                                                 | 
+|---------------------------------------|-------------------------------------------------------------------------------|
+| `highlights`                          | 	Executable commands or possible parameters that can be entered into the CLI. |
+| :information_source: **Information:** | Additional information that may be useful to know                             |
+| :bulb: **Tip:**                       | Tips to improve the Tuthub experience                                         |
+| :exclamation: **Caution:**            | Things to be cautious of and should be followed closely                       |
+
+**3.2.2 Layout of Tuthub Application Window**
+
+The image below shows a Tuthub Application Window (with a tutor profile selected) with all its sections labelled.
+
+![Layout](images/user-guide/layout.png)
+
+The following table describes the sections in detail:
+
+| **No.**  | **Section**           | **Description**                                                                     |
+|----------|-----------------------|-------------------------------------------------------------------------------------|
+| 1        | Toolbars              | Click on the respective buttons to exit the app/view help.                          |
+| 2        | Command Box           | Type in your commands here.                                                         |
+| 3        | Result Display Box    | Displays various messages (e.g. success/error messages) after commands are entered. |
+| 4        | Tutor List Card       | Displays condensed information of a tutor saved in Tuthub.                          |
+| 5        | Tutor List Panel      | Displays the entire/filtered list of tutors saved in Tuthub.                        |    
+| 6        | Tutor Details Pane    | Displays full details of a tutor saved in Tuthub.                                   |
+| 7        | Storage File Location | Displays the location of your **Tuthub** data file.                                 |          
+
+--------------------------------------------------------------------------------------------------------------------
+## 4. Features
 
 <div markdown="block" class="alert alert-info">
 
