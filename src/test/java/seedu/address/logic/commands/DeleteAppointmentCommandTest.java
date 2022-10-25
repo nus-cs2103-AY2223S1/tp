@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
+import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,7 +33,7 @@ public class DeleteAppointmentCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -43,7 +44,7 @@ public class DeleteAppointmentCommandTest {
                 .build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_22_JAN_2023)
@@ -65,7 +66,7 @@ public class DeleteAppointmentCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                                 .withAppointment(new AppointmentBuilder()
                                         .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -79,7 +80,7 @@ public class DeleteAppointmentCommandTest {
         showPersonAtIndex(actualModel, INDEX_FIRST_PERSON);
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                                 .withAppointment(new AppointmentBuilder()
                                         .withDateTime(VALID_DATETIME_22_JAN_2023)
@@ -102,7 +103,7 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -121,7 +122,7 @@ public class DeleteAppointmentCommandTest {
     }
     @Test
     public void execute_invalidPersonIndexFilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                             .withAppointment(new AppointmentBuilder()
                                     .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -143,7 +144,7 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_invalidAppointmentIndexUnfilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                             .withAppointment(new AppointmentBuilder()
                                     .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -165,7 +166,7 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_invalidAppointmentIndexFilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -188,7 +189,7 @@ public class DeleteAppointmentCommandTest {
     }
     @Test
     public void execute_noAppointmentToDeleteUnfilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
 
         DeleteAppointmentCommand deleteAppointmentCommand =
@@ -202,7 +203,7 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_noAppointmentToDeleteFilteredList_throwsCommandException() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
         testModel.addPerson(new PersonBuilder(ALICE).build());
         showPersonAtIndex(testModel, INDEX_FIRST_PERSON);

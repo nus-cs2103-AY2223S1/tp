@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 
 
@@ -30,14 +29,6 @@ public class CalendarEvent {
 
     public Name getName() {
         return name;
-    }
-
-    public Location getLocation() {
-        return appointment.getLocation();
-    }
-
-    public String getDate() {
-        return appointment.getDate().toString();
     }
 
     public int getDay() {
