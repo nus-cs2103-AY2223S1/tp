@@ -31,7 +31,7 @@ public class DeleteNoteCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + titleA + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                        + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
         assertTrue(model.getTagMapping().containsKey(tagName));
@@ -39,7 +39,7 @@ public class DeleteNoteCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + titleB + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                        + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
         assertAll(() -> new DeleteNoteCommandParser().parse("2").execute(model));
@@ -68,7 +68,7 @@ public class DeleteNoteCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                        + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
         assertTrue(model.getTagMapping().containsKey(tagName));

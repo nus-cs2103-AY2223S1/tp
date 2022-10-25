@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -34,7 +34,7 @@ public class EditNoteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)"
             + "[" + PREFIX_NOTES_TITLE + "TITLE] "
             + "[" + PREFIX_NOTES_CONTENT + "CONTENT] "
-            + "[" + PREFIX_NOTES_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTES_CONTENT + "New Content";
 

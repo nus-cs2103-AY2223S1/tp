@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -43,7 +43,7 @@ public class AddNoteCommandParser {
     public AddNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT, PREFIX_NOTES_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTES_TITLE, PREFIX_NOTES_CONTENT)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -52,7 +52,7 @@ public class AddNoteCommandParser {
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_NOTES_TITLE).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(PREFIX_NOTES_CONTENT).get());
-        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NOTES_TAG), model);
+        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG), model);
 
         Note note = new Note(title, content, tagSet);
 

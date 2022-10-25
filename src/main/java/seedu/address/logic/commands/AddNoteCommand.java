@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,11 +20,11 @@ public class AddNoteCommand extends Command {
             + "Parameters: "
             + PREFIX_NOTES_TITLE + "TITLE "
             + PREFIX_NOTES_CONTENT + "CONTENT "
-            + "[" + PREFIX_NOTES_TAG + "TAG]... "
+            + "[" + PREFIX_TAG + "TAG]... "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NOTES_TITLE + "Club meetup "
             + PREFIX_NOTES_CONTENT + "3rd October 9pm, everybody. "
-            + PREFIX_NOTES_TAG + "friends";
+            + PREFIX_TAG + "friends";
 
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
     public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the address book";

@@ -235,7 +235,7 @@ public class EditCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                        + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
         assertAll(() -> new EditCommandParser(model).parse(" "
@@ -259,7 +259,7 @@ public class EditCommandTest {
         assertAll(() -> new AddNoteCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
                         + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
-                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                        + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
         assertAll(() -> new AddCommandParser(model).parse(" "
