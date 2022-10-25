@@ -22,7 +22,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FIELD);
 
-        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_FIELD);
+        ParserUtil.assertAllPrefixesPresent(argMultimap, PREFIX_FIELD);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
