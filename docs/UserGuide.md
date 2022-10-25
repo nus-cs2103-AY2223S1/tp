@@ -3,11 +3,21 @@ layout: page
 title: User Guide
 ---
 
+## Introduction
+
+![App Logo](../src/main/resources/images/guest_book.png)
+
 GuestBook is a **desktop app for managing guests in a hotel,
 optimized for use via a Command Line Interface** (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, GuestBook can get your
 guest management tasks done faster than traditional GUI apps.
+
+You can use GuestBook to track guest and room details such as emails, phone numbers, room numbers, dates of stay,
+numbers of guests, bills, requests, and whether the rooms have been cleaned. By allowing you to add, edit, delete, and
+filter guests, GuestBook can fulfill all your hotel management needs.
+
+This user guide provides in-depth descriptions of all the available features in GuestBook and how to use them.
 
 * Table of Contents
 {:toc}
@@ -174,7 +184,7 @@ Format: `bill INDEX b/BILL`
 
 Examples:
 * `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
-* `bill 2 n/-10` Subtracts 10 from the bill of the 2nd guest.
+* `bill 2 b/-10` Subtracts 10 from the bill of the 2nd guest.
 
 Common mistakes:
 * Missing out the b/ prefix in the bill command
@@ -298,7 +308,7 @@ Listed here are some frequently asked questions. Should you require any other as
 | **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5` |
 | **Bill**               | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
-| **Mark rooms unclean** | `markRoomsUnclean`                                                                                                                                                                             |
+| **Mark Rooms Unclean** | `markRoomsUnclean`                                                                                                                                                                             |
 | **List**               | `list`                                                                                                                                                                                         |
 | **Help**               | `help`                                                                                                                                                                                         |
 
