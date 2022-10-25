@@ -123,6 +123,8 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+    
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
