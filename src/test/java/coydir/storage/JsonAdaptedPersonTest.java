@@ -50,7 +50,7 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_validPersonDetailsNAValues_returnsPerson() throws IllegalValueException {
+    public void toModelType_validPersonDetailsNaValues_returnsPerson() throws IllegalValueException {
         JsonAdaptedPerson person = new JsonAdaptedPerson(PRITTAM);
         assertEquals(PRITTAM, person.toModelType());
     }

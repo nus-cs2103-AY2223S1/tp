@@ -21,8 +21,6 @@ import coydir.model.person.Phone;
 import coydir.model.person.Position;
 import coydir.model.tag.Tag;
 
-import static coydir.logic.parser.AddCommandParser.DEFAULT_LEAVES;
-
 /**
  * Jackson-friendly version of {@link Person}.
  */
@@ -51,7 +49,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("position") String position, @JsonProperty("department") String department,
                              @JsonProperty("address") String address, @JsonProperty("leave") String leave,
-                             @JsonProperty("leaveLeft") String leaveLeft, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("leaveLeft") String leaveLeft,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
         this.name = name;
         this.employeeId = employeeId;
@@ -172,12 +171,7 @@ class JsonAdaptedPerson {
             modelAddress = new Address(address);
         }
 
-        int modelLeave;
-        if (leave == "N/A") {
-            modelLeave = DEFAULT_LEAVES;
-        } else {
-            modelLeave = Integer.valueOf(leave);
-        }
+        final int modelLeave = Integer.valueOf(leave);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
@@ -192,6 +186,5 @@ class JsonAdaptedPerson {
             p.addLeave(l);
         }
         return p;
-        }
-
     }
+}
