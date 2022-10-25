@@ -113,7 +113,8 @@ public class ModelManager implements Model {
     public void setCalorieTarget(Calorie calorieTarget) {
         requireNonNull(calorieTarget);
         nutriGoals.setCalorieTarget(calorieTarget);
-        calorieIntakeProgress.set(calculateCalorieIntakeProgress());
+        IsFoodAddedOnThisDatePredicate predicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
+        updateFilteredFoodList(predicate);
     }
 
     /**

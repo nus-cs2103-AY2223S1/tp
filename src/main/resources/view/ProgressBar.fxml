@@ -12,7 +12,7 @@
     <stylesheets>
         <URL value="@ProgressBar.css" />
     </stylesheets>
-    <Label fx:id="progressBarLabel" styleClass="progress-bar-label" minWidth="175" wrapText="true">
+    <Label fx:id="progressBarLabel" styleClass="progress-bar-label" minWidth="250" wrapText="true">
         <padding>
             <Insets topRightBottomLeft="3" />
         </padding>

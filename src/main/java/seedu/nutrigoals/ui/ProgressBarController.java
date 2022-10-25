@@ -27,7 +27,7 @@ public class ProgressBarController extends UiPart<Region> {
      */
     public ProgressBarController(DoubleProperty progress) {
         super(FXML);
-        progressBarLabel.setText("Daily Calorie Intake Progress");
+        progressBarLabel.setText("Calorie Intake Progress For Today");
         progressBar.progressProperty().bind(progress);
         progressPercentage.textProperty().bind(progress.multiply(100.0).asString("%.0f%%"));
     }

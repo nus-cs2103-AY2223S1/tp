@@ -209,7 +209,7 @@ Step 4. The `TargetCommand#execute()` calls the following methods from `Model`:
 
 Step 5. `TargetCommand#execute()` returns a `CommandResult` with the following result displayed:
 
-Your calorie target set: 2103 calories
+Your calorie target set for today: 2103 calories
 
 The following diagram illustrates how the set calorie target operation works:
 
