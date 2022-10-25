@@ -204,4 +204,10 @@ public interface Model {
      */
     void updateFilteredExamList(Predicate<Exam>predicate);
 
+    /**
+     * Updates the exam field in task by replacing the previous exam with the new exam.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    void updateExamFieldForTask(Exam previousExam, Exam newExam);
 }

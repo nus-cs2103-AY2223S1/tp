@@ -21,6 +21,7 @@ import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditTagCommand;
 import seedu.address.logic.commands.EditTaskCommand;
@@ -162,10 +163,10 @@ public class AddressBookParser {
 
         case AddExamCommand.COMMAND_WORD:
             return new AddExamCommandParser().parse(arguments);
-
+        case EditExamCommand.COMMAND_WORD:
+            return new EditExamCommandParser().parse(arguments);
         case ListExamTasksCommand.COMMAND_WORD:
             return new ListExamTasksCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
