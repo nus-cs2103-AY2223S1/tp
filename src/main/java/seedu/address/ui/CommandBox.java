@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,12 +28,14 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor, ListView<Person> personListView) {
+    public CommandBox(CommandExecutor commandExecutor, ListView<Person> personListView, StackPane resultDisplay) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.personListView = personListView;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.focusedProperty().addListener((obs, o, n) -> resultDisplay.setOpacity(n ? 0.9 : 0));
+        resultDisplay.requestFocus();
     }
 
     /**

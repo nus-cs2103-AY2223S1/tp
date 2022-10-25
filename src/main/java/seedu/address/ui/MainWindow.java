@@ -27,6 +27,7 @@ import seedu.address.model.person.Person;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static final double OFFSET_HEIGHT = 100;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -73,13 +74,15 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         primaryStage.heightProperty().addListener((ob, oldVal, newVal) ->
-                windowAnchorPane.resizeElements(primaryStage.getHeight() - 200,
+                windowAnchorPane.resizeElements(primaryStage.getHeight() - OFFSET_HEIGHT,
                         primaryStage.getWidth())
         );
         primaryStage.widthProperty().addListener((ob, oldVal, newVal) ->
-                windowAnchorPane.resizeElements(primaryStage.getHeight() - 200,
+                windowAnchorPane.resizeElements(primaryStage.getHeight() - OFFSET_HEIGHT,
                         primaryStage.getWidth())
         );
+
+        primaryStage.getScene().setOnMouseClicked(e -> resultDisplayPlaceholder.requestFocus());
     }
 
     public Stage getPrimaryStage() {
@@ -127,7 +130,8 @@ public class MainWindow extends UiPart<Stage> {
         windowAnchorPane = new WindowAnchorPane(logic);
         windowAnchorPane.fillInnerParts();
         windowAnchorPaneHolder.getChildren().add(windowAnchorPane.getRoot());
-        windowAnchorPane.resizeElements(primaryStage.getHeight() - 200, primaryStage.getWidth());
+        windowAnchorPane.resizeElements(primaryStage.getHeight() - OFFSET_HEIGHT,
+                primaryStage.getWidth());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -136,7 +140,8 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand,
-                windowAnchorPane.getPersonListPanel().getListView());
+                windowAnchorPane.getPersonListPanel().getListView(),
+                resultDisplayPlaceholder);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 

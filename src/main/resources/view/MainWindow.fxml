@@ -31,15 +31,20 @@
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+        <AnchorPane VBox.vgrow="ALWAYS">
+          <AnchorPane VBox.vgrow="ALWAYS" fx:id = "windowAnchorPaneHolder" styleClass="pane-with-border"
+                   minHeight="200" prefHeight="200" maxHeight="Infinity"
+                    AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0"/>
 
-        <AnchorPane VBox.vgrow="ALWAYS" fx:id = "windowAnchorPaneHolder" styleClass="pane-with-border"
-                   minHeight="200" prefHeight="200" maxHeight="Infinity"/>
+          <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                     minHeight="100" prefHeight="100" maxHeight="100"
+                     AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="20"
+                     opacity="0" mouseTransparent="true">
+            <padding>
+              <Insets top="5" right="10" bottom="5" left="10" />
+            </padding>
+          </StackPane>
+        </AnchorPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

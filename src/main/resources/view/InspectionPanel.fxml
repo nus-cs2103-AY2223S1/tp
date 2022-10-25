@@ -10,9 +10,26 @@
 
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.image.ImageView?>
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="inspectionPanel-VBox">
+
+<?import javafx.scene.control.Separator?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <Separator maxWidth="100" styleClass="separator-text">
+    <padding>
+      <Insets top="10" bottom="5"/>
+    </padding>
+  </Separator>
+  <Label id="invertedScheme" text="Inspect" styleClass="label-header">
+    <padding>
+      <Insets left="20" top="5" bottom="5" right="10"/>
+    </padding>
+  </Label>
+  <Separator maxWidth="150" styleClass="separator-text">
+    <padding>
+      <Insets top="5" bottom="10"/>
+    </padding>
+  </Separator>
+  <HBox styleClass="inspectionPanel-VBox">
   <padding>
     <Insets top="10" right="10" bottom="10" left="10" />
   </padding>
@@ -48,4 +65,5 @@
     </GridPane>
   </VBox>
   <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
-</HBox>
+  </HBox>
+</VBox>

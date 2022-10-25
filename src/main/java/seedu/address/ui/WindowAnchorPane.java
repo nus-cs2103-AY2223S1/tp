@@ -14,9 +14,9 @@ import seedu.address.logic.Logic;
  * Panel containing the list of persons.
  */
 public class WindowAnchorPane extends UiPart<Region> {
-    private static final double HORIZONTAL_DIVIDER = 0.5;
+    private static final double HORIZONTAL_DIVIDER = 0.45;
     private static final double VERTICAL_DIVIDER = 0.65;
-    private static final double DISTANCE_BOTTOM = 20;
+    private static final double DISTANCE_BOTTOM = 25;
 
     private static final String FXML = "WindowAnchorPane.fxml";
     private final Logger logger = LogsCenter.getLogger(WindowAnchorPane.class);
@@ -96,7 +96,7 @@ public class WindowAnchorPane extends UiPart<Region> {
         //set anchors of noteListPanel
         AnchorPane.setLeftAnchor(noteList, (VERTICAL_DIVIDER - 0.03) * stageWidth);
         AnchorPane.setRightAnchor(noteList, 25.0);
-        AnchorPane.setTopAnchor(noteList, 0.0);
+        AnchorPane.setTopAnchor(noteList, 10.0);
         AnchorPane.setBottomAnchor(noteList, DISTANCE_BOTTOM);
 
         System.out.println("Height " + stageHeight + " Width " + stageWidth);

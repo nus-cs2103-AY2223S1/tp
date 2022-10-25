@@ -1,5 +1,5 @@
 * {
-  -fx-bg-color: #000000;
+  -fx-bg-color: Gainsboro;
   -fx-contrast-color: #F2D492;
   -fx-highlight-color: #B8B08D;
   -fx-shadow-color: #2C3333;
@@ -8,27 +8,27 @@
 }
 
 .background {
-    -fx-background-color: -fx-bg-color;
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 55% , AliceBlue, -fx-bg-color);
     background-color: -fx-bg-color; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Minion Pro Med';
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Minion Pro Med';
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 21pt;
-    -fx-font-family: "Segoe UI Bold";
+    -fx-font-family: 'Minion Pro';
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -36,7 +36,7 @@
 .text-field {
     -fx-font-size: 12pt;
     -fx-background-color: -fx-bg-color;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Minion Pro Med'
 }
 
 .tab-pane {
@@ -76,7 +76,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Minion Pro Regular';
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -98,17 +98,29 @@
 }
 
 .notes-VBox {
-    -fx-background-color: linear-gradient(to left, derive(-fx-shadow-color, 20%) 99%, orangered 100%);
-    -fx-background-radius: 20;
+    -fx-background-color: linear-gradient(to left, -fx-shadow-color 99%, orangered 100%);
+    -fx-background-radius: 0;
     -fx-padding: 5, 5, 5, 5;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
 }
 
 .person-VBox {
-    -fx-background-color: linear-gradient(to left, -fx-shadow-color 99.5%, orangered 100%);
-    -fx-background-radius: 20;
-    -fx-padding: 5, 5, 5, 5;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.label#invertedScheme {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.label#normalScheme {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+.separator-text *.line {
+    -fx-border-color: black;
 }
 
 .inspectionPanel-VBox {
@@ -142,6 +154,21 @@
     -fx-background-insets: 4px ;
 }
 
+.person-list .list-cell:filled {
+    -fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 75% , #2a2a2a, #000000);
+    -fx-background-radius: 5;
+    -fx-border-width: 3;
+    -fx-border-color: #f7bf97;
+    -fx-border-insets: 4px ;
+    -fx-border-radius: 3;
+}
+
+.person-list .list-cell:filled:selected #cardPane {
+    -fx-border-color: #3e7b91;
+    -fx-border-width: 1;
+    -fx-border-radius: 0px;
+}
+
 .list-cell:filled:selected {
     -fx-background-color: derive(-fx-midtone-color, 20%);
 }
@@ -157,19 +184,25 @@
 }
 
 .cell_bigger_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Minion Pro Med';
     -fx-font-size: 21px;
     -fx-text-fill: #010504;
 }
 
-.cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+.person-VBox .cell_big_label {
+    -fx-padding: 5 5 5 5;
+    -fx-font-family: 'Minion Pro';
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+}
+
+.separator-card *.line {
+    -fx-border-color: orangered;
+    -fx-border-width: 1;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Minion Pro SmBd";
     -fx-font-size: 10px;
     -fx-text-fill: #010504;
 }
@@ -179,18 +212,18 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(-fx-bg-color, 20%);
+     -fx-background-color: transparent;
      /*-fx-border-color: derive(-fx-bg-color, 10%);*/
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(-fx-bg-color, 30%);
+    -fx-background-color: derive(-fx-bg-color, 10%);
 }
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Minion Pro Med';
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -200,8 +233,8 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: 'MinionPro-Medium';
+    -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
@@ -240,7 +273,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Minion Pro Regular';
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -260,7 +293,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: 'Minion Pro Med', Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -376,7 +409,7 @@
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Minion Pro Regular';
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }

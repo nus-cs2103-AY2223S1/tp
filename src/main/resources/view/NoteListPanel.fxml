@@ -5,11 +5,32 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.ImageView?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="notes-VBox">
-  <Label text="Notes" styleClass="label-header">
+  <Separator translateX="10" maxWidth="150">
     <padding>
-      <Insets top="10" left="20" />
+      <Insets top="10" bottom="5"/>
+    </padding>
+  </Separator>
+  <Label id="normalScheme" text="Notes" styleClass="label-header" translateX="10">
+    <padding>
+      <Insets left="20" top="2" bottom="2" right="5"/>
     </padding>
   </Label>
-  <ListView fx:id="noteListView" VBox.vgrow="ALWAYS"/>
+  <Separator translateX="10" maxWidth="100">
+    <padding>
+      <Insets top="5" bottom="5"/>
+    </padding>
+  </Separator>
+  <AnchorPane VBox.vgrow="ALWAYS">
+    <ImageView fx:id="notebookLogo" fitHeight="100" fitWidth="100" opacity="0.6"
+               AnchorPane.bottomAnchor="0"
+               AnchorPane.rightAnchor="0"/>
+    <ListView fx:id="noteListView" styleClass="notes-list"
+              AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="0"
+              AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"/>
+  </AnchorPane>
 </VBox>

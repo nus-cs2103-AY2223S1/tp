@@ -2,10 +2,12 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
 import seedu.address.commons.core.LogsCenter;
@@ -50,6 +52,21 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
+
+        System.out.println(Font.loadFont(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Medium.otf")).toExternalForm(),
+                10
+        ));
+
+        Font.loadFonts(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Semibold.otf")).toExternalForm(),
+                10
+        );
+
+        Font.loadFonts(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Bold.otf")).toExternalForm(),
+                10
+        );
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());

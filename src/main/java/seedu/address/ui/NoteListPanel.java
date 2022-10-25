@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.note.Note;
@@ -19,6 +22,8 @@ public class NoteListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Note> noteListView;
+    @FXML
+    private ImageView notebookLogo;
 
     /**
      * Creates a {@code NoteListPanel} with the given {@code ObservableList}.
@@ -27,6 +32,9 @@ public class NoteListPanel extends UiPart<Region> {
         super(FXML);
         noteListView.setItems(noteList);
         noteListView.setCellFactory(listView -> new NoteListViewCell());
+        notebookLogo.setImage(
+                new Image(Objects.requireNonNull(getClass().getResource("/images/notebook.png"))
+                        .toString()));
     }
 
     /**
