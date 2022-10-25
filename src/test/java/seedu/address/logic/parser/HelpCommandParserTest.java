@@ -122,7 +122,6 @@ public class HelpCommandParserTest {
 
         assertParseSuccess(parser, FilterTransCommand.COMMAND_WORD, expectedHelpCommand);
     }
-    
     @Test
     public void parse_sellArg_returnsHelpCommandWithSellMessageUsage() {
         HelpCommand expectedHelpCommand = new HelpCommand(SellCommand.MESSAGE_USAGE);
