@@ -22,26 +22,31 @@ public class CommandResult {
     /** The theme to change to, null if no change. */
     private final Theme theme;
 
+    /** Should toggle the PersonCardView */
+    private final boolean toggleCardView;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, Theme theme) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.theme = theme;
         this.showHelp = false;
         this.exit = false;
+        this.theme = theme;
+        this.toggleCardView = false;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      * and Optional fields set to empty
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleCardView) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         theme = null;
+        this.toggleCardView = toggleCardView;
     }
 
     /**
@@ -49,7 +54,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -74,6 +79,10 @@ public class CommandResult {
 
     public Theme getTheme() {
         return theme;
+    }
+
+    public boolean isToggleCardView() {
+        return toggleCardView;
     }
 
     @Override

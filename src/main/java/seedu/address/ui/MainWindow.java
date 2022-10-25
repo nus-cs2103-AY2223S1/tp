@@ -262,17 +262,30 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isThemeChange()) {
-                assert !commandResult.isShowHelp() && !commandResult.isExit();
+                assert !commandResult.isToggleCardView()
+                        && !commandResult.isShowHelp()
+                        && !commandResult.isExit();
                 handleThemeCommand(commandResult.getTheme());
             }
 
+            if (commandResult.isToggleCardView()) {
+                assert !commandResult.isThemeChange()
+                        && !commandResult.isShowHelp()
+                        && !commandResult.isExit();
+                handleCompactExpand();
+            }
+
             if (commandResult.isShowHelp()) {
-                assert !commandResult.isThemeChange() && !commandResult.isExit();
+                assert !commandResult.isThemeChange()
+                        && !commandResult.isToggleCardView()
+                        && !commandResult.isExit();
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
-                assert !commandResult.isThemeChange() && !commandResult.isShowHelp();
+                assert !commandResult.isThemeChange()
+                        && !commandResult.isToggleCardView()
+                        && !commandResult.isShowHelp();
                 handleExit();
             }
 

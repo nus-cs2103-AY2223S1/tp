@@ -17,6 +17,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ThemeCommand;
+import seedu.address.logic.commands.ToggleCardViewCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -82,6 +83,9 @@ public class AddressBookParser {
 
         case ThemeCommand.COMMAND_WORD:
             return new ThemeCommandParser().parse(arguments);
+
+        case ToggleCardViewCommand.COMMAND_WORD:
+            return new ToggleCardViewCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
