@@ -102,9 +102,9 @@ public class UnmarkCommand extends Command {
     }
 
     public static AttendanceList getUpdatedAttendanceList(Person personToUnmark,
-                                                          MarkPersonDescriptor mPerDesc) throws CommandException {
+            MarkPersonDescriptor markPersonDescriptor) throws CommandException {
         AttendanceList updatedAttendanceList = personToUnmark.getAttendanceList();
-        Optional<Index> attendanceIndex = mPerDesc.getAttendanceIndex();
+        Optional<Index> attendanceIndex = markPersonDescriptor.getAttendanceIndex();
         if (attendanceIndex.isEmpty()) {
             return updatedAttendanceList;
         }
