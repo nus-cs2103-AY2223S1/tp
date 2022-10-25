@@ -152,8 +152,8 @@ Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPL
 
 Examples:
 
-`edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
-`edit 2 c/Garena t/` edits the company of the 2nd application to be `Garena` and clears all existing tags.
+* `edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
+* `edit 2 c/Garena t/` edits the company of the 2nd application to be `Garena` and clears all existing tags.
 
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
@@ -164,6 +164,42 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Adding / Editing an interview: `application`
+Adds an interview to an existing application or edits an existing interview in an application.
+
+Format: `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b><br>
+InterviewDate must be specified in the format <em>yyyy-MM-dd</em>.<br>
+InterviewTime must be specified in the format <em>HHmm</em>.<br>
+</div>
+<br>
+
+* Adds interview to the application at the specified `INDEX`.
+* The index refers to the index number shown in the displayed **application** list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* All fields must be provided
+* Supports edit of the existing interview by overwriting the old interview.
+
+Examples:
+
+* `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546` adds interview to application with displayed index `5`.
+* if application with displayed index `5` has an existing interview, the above input overwrites the previous existing interview.
+
+### Removing an interview: `remove-i`
+Removes an interview from an existing application in the CinternS.
+
+Format: `remove-i INDEX`
+
+* Removes the interview at the specified `INDEX`.
+* The index refers to the index number shown in the displayed **interview** list which has a prefix `i`.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available interviews in the interview list.
+
+Examples:
+
+* `remove-i 3` removes the interview in the interview list with display index `i3`.
 
 ### Saving the data
 
