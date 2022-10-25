@@ -26,7 +26,7 @@ TrackO is a **desktop app built for small business owners to help them manage or
 
     * **`listo`** : Lists all orders.
 
-    * **`addi`**`n/Keychain q/200 d/This is a metal keychain` : Adds an inventory item named `Keychain`, which has quantity `200` and description `This is a metal keychain` to the inventory list.
+    * **`addi`**`n/Keychain q/200 d/This is a metal keychain` : Adds an inventory inventoryItem named `Keychain`, which has quantity `200` and description `This is a metal keychain` to the inventory list.
 
     * **`deleteo`**`3` : Deletes the 3rd order shown in the current list.
 
@@ -77,7 +77,7 @@ Format: `listo`
 
 ### Locating orders by keyword: `findo`
 
-Finds order with item names containing any of the given keywords.
+Finds order with inventoryItem names containing any of the given keywords.
 
 Format: `findo KEYWORD [MORE_KEYWORDS]`
 
@@ -120,7 +120,7 @@ Format: `deleteo INDEX`
 
 Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
-* `findo Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo` command.
+* `findo Paper` followed by `deleteo 1` deletes the 1st inventoryItem in the results of the `findo` command.
 * `sorto new` followed by `deleteo 1` deletes the most recently created order
 
 ### Editing details of an order: `edito`
@@ -133,52 +133,52 @@ Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/Q
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Every field is optional, except for `i/ITEM_NAME` and `q/QUANTITY`. Both fields need to be present to update
-  the customer's ordered items.
-* When editing items in the order list, this feature is case-insensitive.
-* You can only edit the order list to consist of items that exists in your inventory. <br> 
+  the customer's ordered inventoryItems.
+* When editing inventoryItems in the order list, this feature is case-insensitive.
+* You can only edit the order list to consist of inventoryItems that exists in your inventory. <br> 
   e.g. If your inventory does not have `Apples`, then you cannot edit your customer's order list to have `Apples`.
-* Editing an item that does not exist in your customer's order list, but exists in your inventory 
-  will add the item to the order list.
-* Setting an ordered item quantity to `0` will remove the item from the order list.
+* Editing an inventoryItem that does not exist in your customer's order list, but exists in your inventory 
+  will add the inventoryItem to the order list.
+* Setting an ordered inventoryItem quantity to `0` will remove the inventoryItem from the order list.
 
 Examples:
 * `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`
   Edits the name, phone, email, and address of the second order in the list to `Peter`,`98765432`, `peter@email.com`, 
   and `123 Apartment Unit, #05-11` respectively.
 * When the third order in the list has `Chairs` in quantity `5`, `editi 3 i/chairs q/0` 
-  will remove the item from the order list. 
+  will remove the inventoryItem from the order list. 
 * When the fifth order in the list has `Tables` in quantity `3` and you have `Chairs` in your inventory, 
 ` editi 5 i/chairs q/15` will add `15 chairs` to the order list.
 
-### Adding an inventory item: `addi`
+### Adding an inventory inventoryItem: `addi`
 
-Adds an item to the list of tracked inventory.
+Adds an inventoryItem to the list of tracked inventory.
 
 Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item can have any number of tags (including 0)
+An inventory inventoryItem can have any number of tags (including 0)
 </div>
 
 Examples:
 * `addi n/Keychain q/20 d/Silicone keychain with a metal buckle sp/3.50 cp/1`
 * `addi n/Chair q/10 d/This is a wooden dining chair t/Furniture sp/50 cp/20`
 
-### Listing all inventory items: `listi`
+### Listing all inventory inventoryItems: `listi`
 
-Lists all the existing items in the store’s inventory.
+Lists all the existing inventoryItems in the store’s inventory.
 
 Format: `listi`
 
-### Finding an inventory item: `findi`
+### Finding an inventory inventoryItem: `findi`
 
-Finds an inventory item whose name fits any of the given keywords.
+Finds an inventory inventoryItem whose name fits any of the given keywords.
 
 Format: `findi KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g. `keychain` will match `Keychain`
 - The order of the keywords does not matter. e.g. `pants long` will match `long pants`
-- Only the name of the item is searched.
+- Only the name of the inventoryItem is searched.
 - Only full words will be matched. e.g. `key` will not match `Keychain`
 - Items matching at least one keyword will be returned (i.e. OR search).
   e.g. `shirt` will return `dress shirt`, `collared shirt`
@@ -187,37 +187,37 @@ Examples:
 - `findi oil` returns `Olive Oil` and `Vegetable Oil`
 - `findi blue` returns `Blue Shirt`, `Blue Pants`
 
-### Deleting an inventory item : `deletei`
+### Deleting an inventory inventoryItem : `deletei`
 
-Deletes the specified item from the list of tracked inventory.
+Deletes the specified inventoryItem from the list of tracked inventory.
 
 Format: `deletei INDEX`
 
-* Deletes the item at the specified `INDEX`.
+* Deletes the inventoryItem at the specified `INDEX`.
 * The index refers to the index number shown in the displayed inventory list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listi` followed by `deletei 2` deletes the 2nd item in the list of tracked inventory.
-* `findi Paper` followed by `deletei 1` deletes the 1st item in the results of the `findi` command.
+* `listi` followed by `deletei 2` deletes the 2nd inventoryItem in the list of tracked inventory.
+* `findi Paper` followed by `deletei 1` deletes the 1st inventoryItem in the results of the `findi` command.
 
-### Editing an inventory item: `editi`
+### Editing an inventory inventoryItem: `editi`
 
-Edits an existing item in the inventory list.
+Edits an existing inventoryItem in the inventory list.
 
 Format: `edit INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
 
-* Edits the item at the specified `INDEX`.
+* Edits the inventoryItem at the specified `INDEX`.
 * The index refers to the index number shown in the displayed inventory list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* You can remove all the item’s tags by typing `t/` without
+* You can remove all the inventoryItem’s tags by typing `t/` without
   specifying any tags after it.
 
 Examples:
 * `editi 1 i/Table q/200 d/Metal Table t/Fragile`
-  Edits the item name, quantity, description and tag of the 1st item to be
+  Edits the inventoryItem name, quantity, description and tag of the 1st inventoryItem to be
   `Table`, `200`, `Metal Table` and `Fragile` respectively.
-* `editi 3 t/` removes the tags of the item at index 3.
+* `editi 3 t/` removes the tags of the inventoryItem at index 3.
 
 ### Exiting the program : `exit`
 

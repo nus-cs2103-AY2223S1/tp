@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
@@ -46,12 +46,12 @@ public class ItemBuilder {
     /**
      * Initializes the ItemBuilder with the data of {@code itemToCopy}.
      */
-    public ItemBuilder(Item itemToCopy) {
-        itemName = itemToCopy.getItemName();
-        description = itemToCopy.getDescription();
-        quantity = itemToCopy.getTotalQuantity();
-        sellPrice = itemToCopy.getSellPrice();
-        costPrice = itemToCopy.getCostPrice();
+    public ItemBuilder(InventoryItem inventoryItemToCopy) {
+        itemName = inventoryItemToCopy.getItemName();
+        description = inventoryItemToCopy.getDescription();
+        quantity = inventoryItemToCopy.getTotalQuantity();
+        sellPrice = inventoryItemToCopy.getSellPrice();
+        costPrice = inventoryItemToCopy.getCostPrice();
     }
 
     /**
@@ -106,8 +106,8 @@ public class ItemBuilder {
     /**
      * Builds an item.
      */
-    public Item build() {
-        return new Item(itemName, description, quantity, new HashSet<>(),
+    public InventoryItem build() {
+        return new InventoryItem(itemName, description, quantity, new HashSet<>(),
                 sellPrice, costPrice);
     }
 

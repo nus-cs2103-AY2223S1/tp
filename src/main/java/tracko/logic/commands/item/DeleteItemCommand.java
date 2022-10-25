@@ -9,7 +9,7 @@ import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 
 /**
  * Deletes an item identified using it's displayed index in TrackO.
@@ -34,15 +34,15 @@ public class DeleteItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Item> lastShownList = model.getFilteredItemList();
+        ObservableList<InventoryItem> lastShownList = model.getFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
 
-        Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteItem(itemToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete));
+        InventoryItem inventoryItemToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteItem(inventoryItemToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete));
     }
 
     @Override

@@ -11,14 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
 import tracko.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Item}.
+ * Jackson-friendly version of {@link InventoryItem}.
  */
 public class JsonAdaptedItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
@@ -52,7 +52,7 @@ public class JsonAdaptedItem {
     /**
      * Converts a given {@code Item} into this class for Jackson use.
      */
-    public JsonAdaptedItem(Item source) {
+    public JsonAdaptedItem(InventoryItem source) {
         itemName = source.getItemName().itemName;
         quantity = source.getTotalQuantity().getQuantity();
         description = source.getDescription().value;
@@ -68,7 +68,7 @@ public class JsonAdaptedItem {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted item.
      */
-    public Item toModelType() throws IllegalValueException {
+    public InventoryItem toModelType() throws IllegalValueException {
         final List<Tag> itemTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             itemTags.add(tag.toModelType());
@@ -126,7 +126,7 @@ public class JsonAdaptedItem {
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
 
-        return new Item(modelItemName, modelDescription, modelQuantity, modelTags,
+        return new InventoryItem(modelItemName, modelDescription, modelQuantity, modelTags,
                 modelSellPrice, modelCostPrice);
     }
 }

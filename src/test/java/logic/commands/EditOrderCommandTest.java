@@ -137,7 +137,7 @@ public class EditOrderCommandTest {
     @Test
     public void execute_removeOnlyItemInOrderList_failure() {
         Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        copiedModel.addItem(TypicalItems.ITEM_1);
+        copiedModel.addItem(TypicalItems.INVENTORY_ITEM_1);
         Order initialOrder = new OrderBuilder().build();
         copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()), initialOrder);
 
@@ -153,7 +153,7 @@ public class EditOrderCommandTest {
     @Test
     public void execute_removeOneItemFromList_success() {
         Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        copiedModel.addItem(TypicalItems.ITEM_1);
+        copiedModel.addItem(TypicalItems.INVENTORY_ITEM_1);
         Order editedOrder = new OrderBuilder().build();
         Order initialOrder = new OrderBuilder().withItemQuantityPair(new ItemQuantityPairBuilder().build()).build();
         copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()), initialOrder);

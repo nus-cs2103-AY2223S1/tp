@@ -13,7 +13,7 @@ import tracko.model.tag.Tag;
  * Represents an item in the inventory list.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Item {
+public class InventoryItem {
     private ItemName itemName;
     private Description description;
     private Quantity totalQuantity;
@@ -30,8 +30,8 @@ public class Item {
      * @param sellPrice The price the item is sold at.
      * @param costPrice The price the item was bought at.
      */
-    public Item(ItemName itemName, Description description, Quantity quantity, Set<Tag> tags,
-                Price sellPrice, Price costPrice) {
+    public InventoryItem(ItemName itemName, Description description, Quantity quantity, Set<Tag> tags,
+                         Price sellPrice, Price costPrice) {
         requireAllNonNull(itemName, description, tags, sellPrice, costPrice);
         this.itemName = itemName;
         this.description = description;
@@ -81,7 +81,7 @@ public class Item {
     /**
      * Updates the invoked {@code Item} reference with the given {@code Item}'s data.
      */
-    public void updateData(Item toCopy) {
+    public void updateData(InventoryItem toCopy) {
         this.itemName = toCopy.itemName;
         this.description = toCopy.description;
         this.totalQuantity = toCopy.totalQuantity;
@@ -101,13 +101,13 @@ public class Item {
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
      */
-    public boolean isSameItem(Item otherItem) {
-        if (otherItem == this) {
+    public boolean isSameItem(InventoryItem otherInventoryItem) {
+        if (otherInventoryItem == this) {
             return true;
         }
 
-        return otherItem != null
-                && otherItem.getItemName().equals(getItemName());
+        return otherInventoryItem != null
+                && otherInventoryItem.getItemName().equals(getItemName());
     }
 
     /**
@@ -120,17 +120,17 @@ public class Item {
             return true;
         }
 
-        if (!(other instanceof Item)) {
+        if (!(other instanceof InventoryItem)) {
             return false;
         }
 
-        Item otherItem = (Item) other;
-        return otherItem.getItemName().equals(getItemName())
-                && otherItem.getDescription().equals(getDescription())
-                && otherItem.getTotalQuantity().equals(getTotalQuantity())
-                && otherItem.getTags().equals(getTags())
-                && otherItem.getCostPrice().equals(getCostPrice())
-                && otherItem.getSellPrice().equals(getSellPrice());
+        InventoryItem otherInventoryItem = (InventoryItem) other;
+        return otherInventoryItem.getItemName().equals(getItemName())
+                && otherInventoryItem.getDescription().equals(getDescription())
+                && otherInventoryItem.getTotalQuantity().equals(getTotalQuantity())
+                && otherInventoryItem.getTags().equals(getTags())
+                && otherInventoryItem.getCostPrice().equals(getCostPrice())
+                && otherInventoryItem.getSellPrice().equals(getSellPrice());
     }
 
     @Override

@@ -14,17 +14,17 @@ import tracko.model.item.exceptions.ItemNotFoundException;
 /**
  * Represents the list of items in the inventory.
  */
-public class InventoryList implements Iterable<Item> {
+public class InventoryList implements Iterable<InventoryItem> {
 
-    private final ObservableList<Item> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Item> internalUnmodifiableList =
+    private final ObservableList<InventoryItem> internalList = FXCollections.observableArrayList();
+    private final ObservableList<InventoryItem> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Adds an item to the inventory list.
      * @param toAdd Item to be added to the list
      */
-    public void add(Item toAdd) {
+    public void add(InventoryItem toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }
@@ -35,14 +35,14 @@ public class InventoryList implements Iterable<Item> {
      * @returns An item with the given item name.
      * @throws ItemNotFoundException if item is not found
      */
-    public Item get(String itemName) {
+    public InventoryItem get(String itemName) {
 
-        Iterator<Item> itemIterator = iterator();
+        Iterator<InventoryItem> itemIterator = iterator();
 
         while (itemIterator.hasNext()) {
-            Item item = itemIterator.next();
-            if (item.nameMatches(itemName)) {
-                return item;
+            InventoryItem inventoryItem = itemIterator.next();
+            if (inventoryItem.nameMatches(itemName)) {
+                return inventoryItem;
             }
         }
 
@@ -53,7 +53,7 @@ public class InventoryList implements Iterable<Item> {
      * Deletes an item from the inventory list.
      * @param toDelete Item to be deleted from the list
      */
-    public void delete(Item toDelete) {
+    public void delete(InventoryItem toDelete) {
         requireNonNull(toDelete);
         internalList.remove(toDelete);
     }
@@ -61,7 +61,7 @@ public class InventoryList implements Iterable<Item> {
     /**
      * Returns true if the list contains an equivalent item as the given argument.
      */
-    public boolean contains(Item toCheck) {
+    public boolean contains(InventoryItem toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameItem);
     }
@@ -71,19 +71,19 @@ public class InventoryList implements Iterable<Item> {
      * {@code target} must exist in the list.
      * The item identity of {@code editedItem} must not be the same as another existing item in the list.
      */
-    public void setItem(Item target, Item editedItem) {
-        requireAllNonNull(target, editedItem);
+    public void setItem(InventoryItem target, InventoryItem editedInventoryItem) {
+        requireAllNonNull(target, editedInventoryItem);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new ItemNotFoundException();
         }
 
-        if (!target.isSameItem(editedItem) && contains(editedItem)) {
+        if (!target.isSameItem(editedInventoryItem) && contains(editedInventoryItem)) {
             throw new DuplicateItemException();
         }
 
-        target.updateData(editedItem);
+        target.updateData(editedInventoryItem);
     }
 
     public void setItems(InventoryList replacement) {
@@ -91,9 +91,9 @@ public class InventoryList implements Iterable<Item> {
         internalList.setAll(replacement.internalList);
     }
 
-    public void setItems(List<Item> items) {
-        requireAllNonNull(items);
-        internalList.setAll(items);
+    public void setItems(List<InventoryItem> inventoryItems) {
+        requireAllNonNull(inventoryItems);
+        internalList.setAll(inventoryItems);
     }
 
     /**
@@ -108,12 +108,12 @@ public class InventoryList implements Iterable<Item> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Item> asUnmodifiableObservableList() {
+    public ObservableList<InventoryItem> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Item> iterator() {
+    public Iterator<InventoryItem> iterator() {
         return internalList.iterator();
     }
 

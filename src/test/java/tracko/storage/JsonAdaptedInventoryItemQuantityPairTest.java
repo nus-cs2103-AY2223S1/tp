@@ -13,7 +13,7 @@ import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.item.InventoryList;
 import tracko.model.item.Quantity;
 
-public class JsonAdaptedItemQuantityPairTest {
+public class JsonAdaptedInventoryItemQuantityPairTest {
     private static final Integer INVALID_QUANTITY = -111;
     private static final String INVALID_ITEM_NAME = "NOT AN ITEM NAME IN INVENTORY LIST";
 

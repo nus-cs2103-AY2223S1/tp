@@ -6,7 +6,7 @@ import static tracko.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class ItemNameTest {
+public class InventoryItemNameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {

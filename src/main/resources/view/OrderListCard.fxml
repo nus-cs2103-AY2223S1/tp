@@ -33,7 +33,7 @@
           </padding>
         </HBox>
         <VBox style="-fx-padding: 0 20 0 20;" spacing="2" HBox.hgrow="ALWAYS">
-          <VBox fx:id="items" spacing="2"/>
+          <VBox fx:id="inventoryItems" spacing="2"/>
           <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="date-container">
             <Region styleClass="date-icon" id="timeCreatedIcon"/>
             <Label fx:id="timeCreated" styleClass="date-label" text="\$timeCreated" />

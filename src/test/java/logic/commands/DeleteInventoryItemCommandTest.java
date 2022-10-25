@@ -14,25 +14,25 @@ import tracko.logic.commands.item.DeleteItemCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteItemCommand}.
  */
-public class DeleteItemCommandTest {
+public class DeleteInventoryItemCommandTest {
 
     private Model model = new ModelManager(getTrackOWithTypicalItems(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = model.getInventoryList().get(INDEX_FIRST.getZeroBased());
+        InventoryItem inventoryItemToDelete = model.getInventoryList().get(INDEX_FIRST.getZeroBased());
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        expectedModel.deleteItem(itemToDelete);
+        expectedModel.deleteItem(inventoryItemToDelete);
 
         CommandTestUtil.assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
@@ -49,13 +49,13 @@ public class DeleteItemCommandTest {
     public void execute_validIndexFilteredList_success() {
         CommandTestUtil.showItemAtIndex(model, INDEX_FIRST);
 
-        Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        InventoryItem inventoryItemToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
 
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        expectedModel.deleteItem(itemToDelete);
+        expectedModel.deleteItem(inventoryItemToDelete);
         showNoItem(expectedModel);
 
         CommandTestUtil.assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);

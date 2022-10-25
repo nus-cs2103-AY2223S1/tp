@@ -12,7 +12,7 @@ import tracko.logic.commands.item.FindItemCommand;
 import tracko.logic.parser.item.FindItemCommandParser;
 import tracko.model.item.ItemContainsKeywordsPredicate;
 
-public class FindItemCommandParserTest {
+public class FindInventoryItemCommandParserTest {
     private FindItemCommandParser parser = new FindItemCommandParser();
 
     @Test

@@ -19,7 +19,7 @@ import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
@@ -53,9 +53,9 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         Price costPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_COST_PRICE).get());
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Item item = new Item(itemName, description, quantity, tagList, sellPrice, costPrice);
+        InventoryItem inventoryItem = new InventoryItem(itemName, description, quantity, tagList, sellPrice, costPrice);
 
-        return new AddItemCommand(item);
+        return new AddItemCommand(inventoryItem);
     }
 
     /**

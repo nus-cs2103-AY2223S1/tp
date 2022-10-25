@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tracko.commons.exceptions.IllegalValueException;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.InventoryList;
-import tracko.model.item.Item;
 import tracko.model.item.Quantity;
 import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.ItemQuantityPair;
@@ -60,8 +60,8 @@ public class JsonAdaptedItemQuantityPair {
         final Quantity modelQuantity = new Quantity(quantity);
 
         try {
-            Item modelItem = inventoryList.get(itemName);
-            return new ItemQuantityPair(modelItem, modelQuantity);
+            InventoryItem modelInventoryItem = inventoryList.get(itemName);
+            return new ItemQuantityPair(modelInventoryItem, modelQuantity);
         } catch (ItemNotFoundException e) {
             throw new IllegalValueException(String.format(MESSAGE_ITEM_NOT_FOUND, itemName));
         }

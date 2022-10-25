@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import tracko.testutil.ItemBuilder;
 
-public class ItemContainsKeywordsPredicateTest {
+public class InventoryItemContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {

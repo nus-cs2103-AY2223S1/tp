@@ -8,7 +8,7 @@ import tracko.logic.commands.MultiLevelCommand;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
 import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.ItemQuantityPair;
@@ -104,8 +104,8 @@ public class AddOrderCommand extends MultiLevelCommand {
         Quantity quantity = itemNameQuantityPairInput.getValue();
 
         try {
-            Item orderItem = model.getItem(itemName);
-            ItemQuantityPair pair = new ItemQuantityPair(orderItem, quantity);
+            InventoryItem orderInventoryItem = model.getItem(itemName);
+            ItemQuantityPair pair = new ItemQuantityPair(orderInventoryItem, quantity);
             toAdd.addToItemList(pair);
             return new CommandResult(String.format(MESSAGE_ADDED_ITEM, pair));
         } catch (ItemNotFoundException e) {

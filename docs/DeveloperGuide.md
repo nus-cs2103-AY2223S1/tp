@@ -158,19 +158,19 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
+The add inventoryItem command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
 
-Given below is an example usage scenario and how the add item mechanism behaves at each step.
+Given below is an example usage scenario and how the add inventoryItem mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `ItemsList` will contain sample data.
 
-Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+Step 2. The user executes `addi i/keys q/10` command to add 10 keys to inventoryItem list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for inventoryItem name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the inventoryItem and its corresponding quantity into the inventoryItems list.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete inventoryItem will not be saved to `ItemsList`.
 
 </div>
 
-The following sequence diagram shows how the add item operation works:
+The following sequence diagram shows how the add inventoryItem operation works:
 
 _{insert sequence diagram}_
 
@@ -184,7 +184,7 @@ _{insert activity diagram}_
 
 #### Design considerations:
 
-**Aspect: How add item executes:**
+**Aspect: How add inventoryItem executes:**
 
 _{add design considerations}_
 
@@ -192,12 +192,12 @@ _{more aspects and alternatives to be added}_
 
 ### Edit Item Feature
 
-The edit item feature allows the user to edit an `Item` currently being tracked by the system.
+The edit inventoryItem feature allows the user to edit an `Item` currently being tracked by the system.
 
 #### Implementation
 
-The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic` 
-component parses the user input, the `Model` component then performs the edit on the target item, the `Storage` 
+The edit inventoryItem command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic` 
+component parses the user input, the `Model` component then performs the edit on the target inventoryItem, the `Storage` 
 component then saves the edited data into `data/trackO.json`.
 
 Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCommand#execute()` which calls
@@ -205,18 +205,18 @@ Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCom
 `EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target index and the
 appropriate `EditItemDescriptor` as input. The `EditItemDescriptor` contains information which the newly edited `Item`
 should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
-`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing item at the
+`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing inventoryItem at the
 target index 1.
 
 Step 2. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
 checks if this `Item` already exists in the inventory list by using `Model#has()`. If it already exists, a
-`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`. An item already exists if there is another item in the
+`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`. An inventoryItem already exists if there is another inventoryItem in the
 inventory list with same `ItemName`. `Item#isSameItem` returns true when both `Item` have the same `ItemName`. This is
 because having 2 `Item` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
 situation.
 
 Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
-successfully executing the edit item command in the `Model`.
+successfully executing the edit inventoryItem command in the `Model`.
 
 Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the new `Model` to the data file.
 
@@ -261,7 +261,7 @@ This feature is facilitated by the `AddOrderCommand`, which extends from the `Mu
 The user will enter multiple rounds of input before an `Order` is successfully added to the system.
 
 Given below is an example usage scenario and how the add order mechanism behaves at each step. We assume that the user
-has already added some inventory items to be tracked by the system, such that our initial state before the add order command
+has already added some inventory inventoryItems to be tracked by the system, such that our initial state before the add order command
 is initiated, is illustrated as such.
 
 Step 1. The user enters the following input into the UI's command box:
@@ -274,7 +274,7 @@ a new `Order` which encapsulates the input customer data. This then sets the sys
 **_Object diagram to be added here_**
 
 Step 2a. The user then enters `i/Pen q/3`, representing that the order requires 3 units (quantities) of 'Pens' to fulfill.
-The system updates the instantiated command, by first having the `AddOrderCommand` stages the input item name and quantity for validation,
+The system updates the instantiated command, by first having the `AddOrderCommand` stages the input inventoryItem name and quantity for validation,
 using the `AddOrderCommand#stageForValidation()` method.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
@@ -282,18 +282,18 @@ using the `AddOrderCommand#stageForValidation()` method.
 
 **_Object diagram to be added here_**
 
-Step 2b. The system searches the inventory items for an item that has a matching name. In this scenario,
-we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked items.
-Hence, upon execution, a valid item was found based on the user's input item name, and the system adds a new `ItemQuantityPair` that
-references the found item to the list of items ordered in the instantiated `Order`.
+Step 2b. The system searches the inventory inventoryItems for an inventoryItem that has a matching name. In this scenario,
+we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked inventoryItems.
+Hence, upon execution, a valid inventoryItem was found based on the user's input inventoryItem name, and the system adds a new `ItemQuantityPair` that
+references the found inventoryItem to the list of inventoryItems ordered in the instantiated `Order`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that cannot be matched to the system's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an inventoryItem name that cannot be matched to the system's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs)
 </div>
 
 **_Object diagram to be added here_**
 
 
-Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
+Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered inventoryItems.
 
 **_Object diagram to be added here_**
 
@@ -316,7 +316,7 @@ The following activity diagram below illustrates the general flow of the user's 
 ##### Design considerations
 
 Aspect: How add order command executes:
-* **Alternative 1 (current choice)**: Multi-level command, with user inputting information multiples times between customer data and then subsequently multiple item and quantity inputs.
+* **Alternative 1 (current choice)**: Multi-level command, with user inputting information multiples times between customer data and then subsequently multiple inventoryItem and quantity inputs.
   * Pros: Better user experience. Users don't have to type out a very long command in one go to add an order.
   * Cons: Harder to implement.
 * **Alternative 2**: Single level command, user inputs all required information in one long command.
@@ -336,11 +336,11 @@ Given below is an example usage scenario and how the find order mechanism behave
 Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
 state, and the `OrdersList` will contain sample data.
 
-Step 2. The user executes `findo keychain apple` command to find the orders containing items with the keywords
+Step 2. The user executes `findo keychain apple` command to find the orders containing inventoryItems with the keywords
 keychain or apple. The `findo` command calls `FindOrderCommandParser` which checks for the correct command
 syntax and separates the keywords, utilising each space as a delimiter. The keywords are then passed as a `List`
 into a constructor for `OrderContainsKeywordsPredicate`, which extends `Predicate<Order>`, to construct a predicate
-that will filter the items according to the keywords. The predicate is passed into a new instance of
+that will filter the inventoryItems according to the keywords. The predicate is passed into a new instance of
 `FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
 according to the previously constructed `OrderContainsKeywordsPredicate`.
 
@@ -487,14 +487,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | business owner                               | add orders easily                                                       | keep track of ongoing orders                                                      |
 | `* * *`  | business owner                               | delete entire orders                                                    |                                                                                   |
 | `* * *`  | busy business owner                          | list all orders                                                         | see all my ongoing orders in one place and keep track of them                     |
-| `* * *`  | business owner                               | add items to my inventory                                               | keep track of additions to my inventory                                           |
-| `* * *`  | business owner                               | delete items from my inventory                                          | have an updated list of inventory items                                           |
-| `* * *`  | business owner                               | list all items in my inventory                                          | see all items in my inventory in one place                                        |
-| `* * *`  | business owner                               | tag inventory items                                                     | keep an organised inventory of items                                              |
+| `* * *`  | business owner                               | add inventoryItems to my inventory                                               | keep track of additions to my inventory                                           |
+| `* * *`  | business owner                               | delete inventoryItems from my inventory                                          | have an updated list of inventory inventoryItems                                           |
+| `* * *`  | business owner                               | list all inventoryItems in my inventory                                          | see all inventoryItems in my inventory in one place                                        |
+| `* * *`  | business owner                               | tag inventory inventoryItems                                                     | keep an organised inventory of inventoryItems                                              |
 | `* *  `  | busy business owner                          | find orders                                                             | locate an order without manually searching through the entire list                |
-| `* *  `  | business owner                               | find items in my inventory                                              | locate an item in my inventory without manually searching through the entire list |
+| `* *  `  | business owner                               | find inventoryItems in my inventory                                              | locate an inventoryItem in my inventory without manually searching through the entire list |
 | `* * `   | business owner                               | edit order details                                                      | update changes to orders                                                          |
-| `* *  `  | business owner                               | edit inventory item details                                             | update changes to inventory                                                       |
+| `* *  `  | business owner                               | edit inventory inventoryItem details                                             | update changes to inventory                                                       |
 | `* *  `  | business owner                               | see which orders have been paid for                                     | press customers for payment                                                       |
 | `* *  `  | business owner                               | mark orders as completed                                                | not get mixed up with ones that have not been completed yet                       |
 | `* *  `  | business owner                               | sort orders by expected delivery time                                   | know which orders are due first                                                   |
@@ -583,88 +583,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC05 - Add an inventory item**
+**Use case: UC05 - Add an inventory inventoryItem**
 
 **MSS**
 
-1. User requests to add an inventory item.
-2. System adds the inventory item.
+1. User requests to add an inventory inventoryItem.
+2. System adds the inventory inventoryItem.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. User inputs incomplete details of the item.
+- 1a. User inputs incomplete details of the inventoryItem.
   - 1a1. System informs user of the incomplete details.
 
     Use case resumes at 1.
 
-**Use case: UC06 - Delete an inventory item**
+**Use case: UC06 - Delete an inventory inventoryItem**
 
 **MSS**
 
-1. User requests to delete an inventory item.
-2. System deletes the inventory item.
+1. User requests to delete an inventory inventoryItem.
+2. System deletes the inventory inventoryItem.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. The item that the user requests to delete does not exist.
-  - 1a1. System informs user of the non-existent item.
+- 1a. The inventoryItem that the user requests to delete does not exist.
+  - 1a1. System informs user of the non-existent inventoryItem.
 
     Use case ends.
 
-- 2a. The list of inventory items is empty.
-    - 2a1. System informs user that the list of items is empty.
+- 2a. The list of inventory inventoryItems is empty.
+    - 2a1. System informs user that the list of inventoryItems is empty.
 
       Use case ends.
 
-**Use case: UC07 - List all inventory items**
+**Use case: UC07 - List all inventory inventoryItems**
 
 **MSS**
 
-1. User requests to list all inventory items.
-2. System lists all inventory items.
+1. User requests to list all inventory inventoryItems.
+2. System lists all inventory inventoryItems.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list of inventory items is empty.
+- 2a. The list of inventory inventoryItems is empty.
   - 2a1. System informs user of the empty list.
 
     Use case ends.
 
-**Use case: UC08 - Find an inventory item**
+**Use case: UC08 - Find an inventory inventoryItem**
 
 **MSS**
 
-1. User requests to find an inventory item.
-2. System finds the item and informs the user of its details.
+1. User requests to find an inventory inventoryItem.
+2. System finds the inventoryItem and informs the user of its details.
 
     Use case ends.
 
 **Extensions**
 
-- 1a. The inventory item that the user requests to find does not exist.
-  - 1a1. System informs the user of the non-existent item.
+- 1a. The inventory inventoryItem that the user requests to find does not exist.
+  - 1a1. System informs the user of the non-existent inventoryItem.
 
     Use case ends.
 
-**Use case: UC09 - Tag an inventory item**
+**Use case: UC09 - Tag an inventory inventoryItem**
 
 **MSS**
 
-1. User requests to tag an inventory item.
-2. System tags the inventory item.
+1. User requests to tag an inventory inventoryItem.
+2. System tags the inventory inventoryItem.
 
     Use case ends.
 
-**Use case: UC10 - Edit an inventory item**
+**Use case: UC10 - Edit an inventory inventoryItem**
 
-1. User requests to edit an inventory item.
-2. System edits the inventory item.
+1. User requests to edit an inventory inventoryItem.
+2. System edits the inventory inventoryItem.
 
     Use case ends.
 
@@ -681,7 +681,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. The software should be portable. Moving from one device to another should not create any problems as long as it is on a _mainstream OS_ with Java `11` or above installed.
 3. Each command should be executed within 1 second.
 4. Should be able to hold up to 10000 orders without a noticeable sluggishness in performance for typical usage.
-5. Should be able to hold up to 100 items without a noticeable sluggishness in performance for typical usage.
+5. Should be able to hold up to 100 inventoryItems without a noticeable sluggishness in performance for typical usage.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
@@ -689,7 +689,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS (Operating System)**: Windows, Linux, Unix, OS-X
 * **CLI**: Command Line Interface, receives commands from user in the form of lines of text
 * **GUI**: Graphical User Interface, a system of interactive user components for computer software
-* **Inventory**: Any item that the business needs to operate
+* **Inventory**: Any inventoryItem that the business needs to operate
 * **Order**: Any sales promise that needs to be fulfilled
 
 --------------------------------------------------------------------------------------------------------------------
