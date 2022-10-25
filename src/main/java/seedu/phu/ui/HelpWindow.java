@@ -43,6 +43,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "| List all internship(s)   | list [c/CATEGORY [DESCENDING]]                                     |\n"
             + "| in specified order       |                                                                    |\n"
             + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Copy internship details  | copy INDEX                                                         |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
             + "| Undo previous command    | undo                                                               |\n"
             + "+--------------------------+--------------------------------------------------------------------+\n"
             + "| Redo previous            | redo                                                               |\n"

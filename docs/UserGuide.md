@@ -276,8 +276,6 @@ PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbo
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-
-
 ### Archiving data files `[coming in v1.3]`
 
 _Details coming soon ..._
@@ -303,6 +301,7 @@ _Details coming soon ..._
 | **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
 | **List**   | :x:                | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`                                                                                                                                                       |
 | **Help**   | :x:                | `help`                                                                                                                                                                                                         |
+| **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
 | **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
 | **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
 
