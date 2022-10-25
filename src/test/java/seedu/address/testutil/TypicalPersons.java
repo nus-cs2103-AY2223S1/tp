@@ -90,6 +90,7 @@ public class TypicalPersons {
     public static final Tag FRIENDS = new TagBuilder().withName("friends").withCount(3).build();
     public static final Tag OWESMONEY = new TagBuilder().withName("owesMoney").withCount(1).build();
 
+
     // Manually added
     public static final Person HOON = new PersonBuilder()
             .withId("caafeb13-997a-4e80-971b-d94b64f0a85e")
