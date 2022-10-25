@@ -15,14 +15,14 @@ import seedu.address.model.buyer.exceptions.PersonNotFoundException;
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A buyer is considered unique by comparing using {@code Buyer#isSamePerson(Buyer)}. As such, adding and updating of
  * persons uses Buyer#isSamePerson(Buyer) for equality so as to ensure that the buyer being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a buyer uses Buyer#equals(Object) so
+ * unique in terms of identity in the UniqueBuyerList. However, the removal of a buyer uses Buyer#equals(Object) so
  * as to ensure that the buyer with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Buyer#isSamePerson(Buyer)
+ * @see Buyer#isSameBuyer(Buyer)
  */
-public class UniquePersonList implements Iterable<Buyer> {
+public class UniqueBuyerList implements Iterable<Buyer> {
 
     private final ObservableList<Buyer> internalList = FXCollections.observableArrayList();
     private final ObservableList<Buyer> internalUnmodifiableList =
@@ -33,7 +33,7 @@ public class UniquePersonList implements Iterable<Buyer> {
      */
     public boolean contains(Buyer toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameBuyer);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniquePersonList implements Iterable<Buyer> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedBuyer) && contains(editedBuyer)) {
+        if (!target.isSameBuyer(editedBuyer) && contains(editedBuyer)) {
             throw new DuplicatePersonException();
         }
 
@@ -79,7 +79,7 @@ public class UniquePersonList implements Iterable<Buyer> {
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setBuyers(UniqueBuyerList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +88,9 @@ public class UniquePersonList implements Iterable<Buyer> {
      * Replaces the contents of this list with {@code buyers}.
      * {@code buyers} must not contain duplicate buyers.
      */
-    public void setPersons(List<Buyer> buyers) {
+    public void setBuyers(List<Buyer> buyers) {
         requireAllNonNull(buyers);
-        if (!personsAreUnique(buyers)) {
+        if (!buyersAreUnique(buyers)) {
             throw new DuplicatePersonException();
         }
 
@@ -112,8 +112,8 @@ public class UniquePersonList implements Iterable<Buyer> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                || (other instanceof UniqueBuyerList // instanceof handles nulls
+                        && internalList.equals(((UniqueBuyerList) other).internalList));
     }
 
     @Override
@@ -124,10 +124,10 @@ public class UniquePersonList implements Iterable<Buyer> {
     /**
      * Returns true if {@code buyers} contains only unique buyers.
      */
-    private boolean personsAreUnique(List<Buyer> buyers) {
+    private boolean buyersAreUnique(List<Buyer> buyers) {
         for (int i = 0; i < buyers.size() - 1; i++) {
             for (int j = i + 1; j < buyers.size(); j++) {
-                if (buyers.get(i).isSamePerson(buyers.get(j))) {
+                if (buyers.get(i).isSameBuyer(buyers.get(j))) {
                     return false;
                 }
             }

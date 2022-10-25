@@ -28,10 +28,10 @@ public class BuyerTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameBuyer(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameBuyer(null));
 
         // same name, all other attributes different -> returns true
         Buyer editedAlice = new PersonBuilder(ALICE)
@@ -41,20 +41,20 @@ public class BuyerTest {
                 .withPriceRange(VALID_PRICE_RANGE_BOB)
                 .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
                 .withPriority(VALID_PRIORITY_HIGH).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameBuyer(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameBuyer(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Buyer editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameBuyer(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSameBuyer(editedBob));
     }
 
     @Test

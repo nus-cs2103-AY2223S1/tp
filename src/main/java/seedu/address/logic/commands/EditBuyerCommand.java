@@ -80,7 +80,7 @@ public class EditBuyerCommand extends Command {
         Buyer buyerToEdit = lastShownList.get(index.getZeroBased());
         Buyer editedBuyer = createEditedPerson(buyerToEdit, editBuyerDescriptor);
 
-        if (!buyerToEdit.isSamePerson(editedBuyer) && model.hasPerson(editedBuyer)) {
+        if (!buyerToEdit.isSameBuyer(editedBuyer) && model.hasPerson(editedBuyer)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

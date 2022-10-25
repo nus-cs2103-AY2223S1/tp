@@ -76,10 +76,10 @@ public class Buyer {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both buyers have the same name.
+     * This defines a weaker notion of equality between two buyers.
      */
-    public boolean isSamePerson(Buyer otherBuyer) {
+    public boolean isSameBuyer(Buyer otherBuyer) {
         if (otherBuyer == this) {
             return true;
         }
@@ -89,8 +89,8 @@ public class Buyer {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both buyers have the same identity and data fields.
+     * This defines a stronger notion of equality between two buyers.
      */
     @Override
     public boolean equals(Object other) {

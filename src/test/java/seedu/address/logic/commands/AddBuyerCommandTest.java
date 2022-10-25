@@ -217,7 +217,7 @@ public class AddBuyerCommandTest {
         @Override
         public boolean hasPerson(Buyer buyer) {
             requireNonNull(buyer);
-            return this.buyer.isSamePerson(buyer);
+            return this.buyer.isSameBuyer(buyer);
         }
     }
 
@@ -230,7 +230,7 @@ public class AddBuyerCommandTest {
         @Override
         public boolean hasPerson(Buyer buyer) {
             requireNonNull(buyer);
-            return personsAdded.stream().anyMatch(buyer::isSamePerson);
+            return personsAdded.stream().anyMatch(buyer::isSameBuyer);
         }
 
         @Override

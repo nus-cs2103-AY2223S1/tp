@@ -6,7 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.UniquePersonList;
+import seedu.address.model.buyer.UniqueBuyerList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.address.model.buyer.UniquePersonList;
  */
 public class PersonBook implements ReadOnlyPersonBook {
 
-    private final UniquePersonList persons;
+    private final UniqueBuyerList persons;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class PersonBook implements ReadOnlyPersonBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueBuyerList();
     }
 
     public PersonBook() {}
@@ -44,7 +44,7 @@ public class PersonBook implements ReadOnlyPersonBook {
      * {@code buyers} must not contain duplicate buyers.
      */
     public void setPersons(List<Buyer> buyers) {
-        this.persons.setPersons(buyers);
+        this.persons.setBuyers(buyers);
     }
 
     /**
