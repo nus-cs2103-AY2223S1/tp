@@ -21,19 +21,20 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Created GitHub Issues representing user stories
-  * Added tasks in GitHub Issues
-  * Released trial JAR on GitHub
+  * Delegated GitHub Issues to team members
+  * Released v1.2.trial JAR on GitHub
+  * Released v1.3 JAR on GitHub
 
 * **Enhancements to existing features**:
   * Updated the `add` command to add students with optional details [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
   * Wrote additional tests for existing features [\#92](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/92)
-  * Refactored code to fit project name and purpose
+  * Refactored code and documentation to fit project name and purpose
 
 * **Documentation**:
   * User Guide:
     * Updated documentation for the features `add` and `delete` [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
     * Wrote documentation for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
-    * Updates command format notes [\#120](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/120)
+    * Updated command format notes [\#120](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/120)
   * Developer Guide:
     * Formatted template for team use [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55) 
     * Added target user profile and acknowledgements [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59)

@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-FRIDAY is a **desktop app for CS1101S TAs to organize and track their students’ progress, optimized for use via a
-Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type
-fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
+FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ progress, optimized for 
+use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can 
+type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
 1. Table of Contents
@@ -15,18 +15,18 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 ## Features
 
-1. Add and delete students
-2. Edit details of students
+1. Add students
+2. Delete students
+3. Edit details of students
    1. Name
    2. Telegram handle
    3. Consultation dates
    4. Dates of Mastery Checks
-   5. Grades
    6. Remarks
-3. Edit grades of students
-4. Find individual student details
-5. View all students
-6. Sort students
+4. Edit grades of students
+5. Find individual student details
+6. View all students
+7. Sort students
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -70,9 +70,14 @@ Adds a student to FRIDAY, with the given name, Telegram handle, consultation dat
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle, consultation date, and Mastery Check date are optional. 
 A student can have any number of tags (including 0).
 </div>
+
+Example:
+![AddCommand.png](images/AddCommand.png)
+
+Outcome:
+![AddCommandOutcome.png](images/AddCommandOutcome.png)
 
 ### Deleting a student: `delete`
 
@@ -154,13 +159,17 @@ Sorts all students in FRIDAY with the given criteria, in ascending or descending
 
 Format: `sort CRITERIA/ORDER`
 
-`CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`.
-`ORDER` can be `asc` (ascending) or `desc` (descending). 
+* `CRITERIA` can be `n` (name), `t` (Telegram handle), `c` (consultation), `m` (Mastery Check), or the following grades: `ra1`, `ra2`, `mt`, `pa`, `mt`, and `ft`
+* `ORDER` can be `asc` (ascending) or `desc` (descending)
+* Names and Telegram handles are sorted in alphabetical order
+* Consultations and Mastery Checks are sorted by time
+* Grades are sorted in numerical order
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The names and Telegram handles are sorted in alphabetical order, while the consultations and Mastery Checks are sorted
-by time. The grades are sorted in numerical order. 
-</div>
+Example:
+![SortCommand.png](images/SortCommand.png)
+
+Outcome:
+![SortCommandOutcome.png](images/SortCommandOutcome.png)
 
 ### Getting User Guide link: `guide`
 
