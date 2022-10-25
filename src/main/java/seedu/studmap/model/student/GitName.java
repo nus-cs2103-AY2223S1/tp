@@ -3,6 +3,10 @@ package seedu.studmap.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Student's git username in the student map.
+ * Guarantees: immutable; is valid as declared in {@link #isValidGitName(String)}
+ */
 public class GitName {
 
     public static final String MESSAGE_CONSTRAINTS = "Github username can be anything";
@@ -11,12 +15,20 @@ public class GitName {
 
     public final String value;
 
+    /**
+     * Constructs a {@code GitName}.
+     *
+     * @param username A valid name.
+     */
     public GitName(String username) {
         requireNonNull(username);
         checkArgument(isValidGitName(username), MESSAGE_CONSTRAINTS);
         this.value = username;
     }
 
+    /**
+     * Returns true if a given string is a valid git username.
+     */
     public static boolean isValidGitName(String test) {
         return test.matches(VALIDATION_REGEX);
     }

@@ -110,6 +110,12 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String StudentId} into an {@code StudentId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code StudentId} is invalid.
+     */
     public static StudentID parseId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedId = id.trim();
@@ -119,6 +125,12 @@ public class ParserUtil {
         return new StudentID(trimmedId);
     }
 
+    /**
+     * Parses a {@code String gitName} into an {@code GitName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gitName} is invalid.
+     */
     public static GitName parseGitName(String gitName) throws ParseException {
         requireNonNull(gitName);
         String trimmedGit = gitName.trim();
@@ -128,6 +140,12 @@ public class ParserUtil {
         return new GitName(trimmedGit);
     }
 
+    /**
+     * Parses a {@code String handle} into an {@code TeleHandle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code handle} is invalid.
+     */
     public static TeleHandle parseHandle(String handle) throws ParseException {
         requireNonNull(handle);
         String trimmedHandle = handle.trim();

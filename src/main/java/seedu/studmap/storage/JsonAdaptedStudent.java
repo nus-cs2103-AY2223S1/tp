@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.studmap.commons.exceptions.IllegalValueException;
-
 import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
@@ -19,8 +18,8 @@ import seedu.studmap.model.student.GitName;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
 import seedu.studmap.model.student.Student;
-import seedu.studmap.model.student.StudentID;
 import seedu.studmap.model.student.StudentData;
+import seedu.studmap.model.student.StudentID;
 import seedu.studmap.model.student.TeleHandle;
 import seedu.studmap.model.tag.Tag;
 

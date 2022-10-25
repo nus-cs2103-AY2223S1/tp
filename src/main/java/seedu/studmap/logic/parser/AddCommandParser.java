@@ -1,7 +1,14 @@
 package seedu.studmap.logic.parser;
 
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.studmap.logic.parser.CliSyntax.*;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 

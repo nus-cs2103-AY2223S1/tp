@@ -3,6 +3,10 @@ package seedu.studmap.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Student's ID in the student map.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStudentID(String)}
+ */
 public class StudentID {
 
     public static final String MESSAGE_CONSTRAINTS = "Student ID should be in the format AXXXXXXXA";
@@ -11,12 +15,20 @@ public class StudentID {
 
     public final String value;
 
+    /**
+     * Constructs a {@code StudentID}.
+     *
+     * @param studentID A valid name.
+     */
     public StudentID(String studentID) {
         requireNonNull(studentID);
         checkArgument(isValidStudentID(studentID), MESSAGE_CONSTRAINTS);
         this.value = studentID;
     }
 
+    /**
+     * Returns true if a given string is a valid student ID.
+     */
     public static boolean isValidStudentID(String test) {
         return test.matches(VALIDATION_REGEX);
     }

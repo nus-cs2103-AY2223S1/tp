@@ -3,6 +3,10 @@ package seedu.studmap.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Student's telegram handle in the student map.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTeleHandle(String)}
+ */
 public class TeleHandle {
 
     public static final String MESSAGE_CONSTRAINTS = "Telegram handle should be in the format @handle";
@@ -11,12 +15,20 @@ public class TeleHandle {
 
     public final String value;
 
+    /**
+     * Constructs a {@code TeleHandle}.
+     *
+     * @param handle A valid name.
+     */
     public TeleHandle(String handle) {
         requireNonNull(handle);
         checkArgument(isValidTeleHandle(handle), MESSAGE_CONSTRAINTS);
         this.value = handle;
     }
 
+    /**
+     * Returns true if a given string is a valid telegram handle.
+     */
     public static boolean isValidTeleHandle(String test) {
         return test.matches(VALIDATION_REGEX);
     }
