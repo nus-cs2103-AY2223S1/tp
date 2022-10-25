@@ -51,7 +51,7 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 * Parameters can be in any order.<br>
 
-  e.g. if the command specifies `n/NAME t/TELEGRAM_HANDLE`, `p/TELEGRAM_HANDLE n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME t/TELEGRAM_HANDLE`, `t/TELEGRAM_HANDLE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
 
