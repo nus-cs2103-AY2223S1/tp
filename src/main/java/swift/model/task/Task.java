@@ -3,6 +3,7 @@ package swift.model.task;
 import static swift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -13,9 +14,9 @@ public class Task {
 
     private final TaskName name;
 
-    private final Description description;
+    private final Optional<Description> description;
 
-    private final Deadline deadline;
+    private final Optional<Deadline> deadline;
 
     private boolean isDone = false;
 
@@ -24,15 +25,15 @@ public class Task {
      *
      * @param id          A unique identifier for the task.
      * @param name        A valid task name.
-     * @param description A valid description.
-     * @param deadline    A valid deadline, which is optional.
+     * @param description A valid description, which may be null.
+     * @param deadline    A valid deadline, which may be null.
      */
     public Task(UUID id, TaskName name, Description description, Deadline deadline) {
         requireAllNonNull(id, name, description, deadline);
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.deadline = deadline;
+        this.description = Optional.ofNullable(description);
+        this.deadline = Optional.ofNullable(deadline);
     }
 
     public UUID getId() {
@@ -43,11 +44,11 @@ public class Task {
         return name;
     }
 
-    public Description getDescription() {
+    public Optional<Description> getDescription() {
         return description;
     }
 
-    public Deadline getDeadline() {
+    public Optional<Deadline> getDeadline() {
         return deadline;
     }
 
