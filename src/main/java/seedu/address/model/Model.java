@@ -141,7 +141,7 @@ public interface Model {
     /**
      * Sets the flag to indicate if the last shown buyers list is the sorted or filtered list.
      */
-    void setLastShownBuyersListFlag(boolean b);
+    void setLastShownBuyersListSorted(boolean b);
     
     //=========== PropertyBook ================================================================================
 

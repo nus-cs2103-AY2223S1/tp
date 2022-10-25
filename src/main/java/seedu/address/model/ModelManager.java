@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -30,8 +29,9 @@ public class ModelManager implements Model {
     private PersonListPanel personListPanel;
     private final FilteredList<Buyer> filteredBuyers;
     private final SortedList<Buyer> sortedBuyers;
-    // lastShownListFlag set to false for filteredBuyers and true for sortedBuyers
-    public boolean lastShownBuyersListFlag = false; 
+    // flag to indicate the last shown buyers list
+    // set to false for filteredBuyers and true for sortedBuyers
+    public boolean isLastShownBuyersListSorted = false; 
     private final FilteredList<Property> filteredProperties;
 
     /**
@@ -157,7 +157,7 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Buyer> predicate) {
         requireNonNull(predicate);
         filteredBuyers.setPredicate(predicate);
-        lastShownBuyersListFlag = false;
+        isLastShownBuyersListSorted = false;
         personListPanel.setNewList(filteredBuyers);
     }
 
@@ -176,20 +176,20 @@ public class ModelManager implements Model {
     public void updateSortedPersonList(Comparator<Buyer> comparator) {
         requireNonNull(comparator);
         sortedBuyers.setComparator(comparator);
-        lastShownBuyersListFlag = true;
+        isLastShownBuyersListSorted = true;
         personListPanel.setNewList(sortedBuyers);
     }
 
     @Override
     public ObservableList<Buyer> getLastShownBuyersList() {
-        return lastShownBuyersListFlag
+        return isLastShownBuyersListSorted
                 ? sortedBuyers
                 : filteredBuyers;
     }
 
     @Override
-    public void setLastShownBuyersListFlag(boolean b) {
-        lastShownBuyersListFlag = b;
+    public void setLastShownBuyersListSorted(boolean b) {
+        isLastShownBuyersListSorted = b;
     }
 
     //=========== PropertyBook ================================================================================
