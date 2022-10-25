@@ -17,7 +17,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.MaximumSortedList;
 
 /**
