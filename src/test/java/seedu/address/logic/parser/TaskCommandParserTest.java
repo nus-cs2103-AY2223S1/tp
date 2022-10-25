@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ASSIGNMENT_ADD_STUDENTS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_TITLE_DESC;
@@ -55,5 +56,13 @@ public class TaskCommandParserTest {
 
         // missing all prefix
         assertParseFailure(parser, VALID_TASK_TITLE + VALID_TASK_DESCRIPTION, expectedMessage);
+    }
+
+    @Test
+    public void parse_assignmentAndDeadlinePrefix_throwsParseException() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, TASK_TITLE_DESC + TASK_DESCRIPTION_DESC
+                + DEADLINE_DATE_DESC + ASSIGNMENT_ADD_STUDENTS_DESC, expectedMessage);
     }
 }
