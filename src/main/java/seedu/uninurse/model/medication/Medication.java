@@ -1,7 +1,9 @@
 package seedu.uninurse.model.medication;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Optional;
 
 /**
  * Represents a Patient's required medication type and dosage
@@ -30,8 +32,7 @@ public class Medication {
      * @param medicationDosage A valid dosage amount.
      */
     public Medication(String medicationType, String medicationDosage) {
-        requireNonNull(medicationType);
-        requireNonNull(medicationDosage);
+        requireAllNonNull(medicationType, medicationDosage);
         checkArgument(isValidMedication(medicationType, medicationDosage), MESSAGE_CONSTRAINTS);
         this.medicationType = medicationType;
         this.medicationDosage = medicationDosage;
@@ -42,6 +43,17 @@ public class Medication {
      */
     public static boolean isValidMedication(String medicationType, String medicationDosage) {
         return medicationType.matches(MEDICATION_VALIDATION_REGEX) && medicationDosage.matches(DOSAGE_VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if given optional strings make a part of a valid medication.
+     * At least one of the given optional strings cannot be empty.
+     */
+    public static boolean isValidMedication(Optional<String> optionalMedicationType,
+            Optional<String> optionalMedicationDosage) {
+        return (optionalMedicationType.isPresent() || optionalMedicationDosage.isPresent())
+                && optionalMedicationType.map(type -> type.matches(MEDICATION_VALIDATION_REGEX)).orElse(true)
+                && optionalMedicationDosage.map(dosage -> dosage.matches(DOSAGE_VALIDATION_REGEX)).orElse(true);
     }
 
     public String getType() {

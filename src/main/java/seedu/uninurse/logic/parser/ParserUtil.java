@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.StringUtil;
+import seedu.uninurse.logic.commands.EditMedicationCommand.EditMedicationDescriptor;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
@@ -194,6 +195,45 @@ public class ParserUtil {
             medicationList.add(parseMedication(medication));
         }
         return new MedicationList(medicationList);
+    }
+
+    /**
+     * Parses a {@code String medication} into a {@code Medication}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String medication} is invalid.
+     */
+    public static EditMedicationDescriptor parseEditMedicationDescriptor(String medication) throws ParseException {
+        requireNonNull(medication);
+        String[] medicationTypeAndDosage = medication.split("\\|");
+
+        if (medicationTypeAndDosage.length > 2) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+
+        String trimmedMedicationType = medicationTypeAndDosage[0].trim();
+        String trimmedMedicationDosage = "";
+
+        if (medicationTypeAndDosage.length == 2) {
+            trimmedMedicationDosage = medicationTypeAndDosage[1].trim();
+        }
+
+        Optional<String> optionalMedicationType = Optional.empty();
+        Optional<String> optionalMedicationDosage = Optional.empty();
+
+        if (trimmedMedicationType.length() > 0) {
+            optionalMedicationType = Optional.of(trimmedMedicationType);
+        }
+
+        if (trimmedMedicationDosage.length() > 0) {
+            optionalMedicationDosage = Optional.of(trimmedMedicationDosage);
+        }
+
+        if (!Medication.isValidMedication(optionalMedicationType, optionalMedicationDosage)) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+
+        return new EditMedicationDescriptor(optionalMedicationType, optionalMedicationDosage);
     }
 
     /**

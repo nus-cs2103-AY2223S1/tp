@@ -33,8 +33,6 @@ class EditTaskCommandParserTest {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
                 + PREFIX_TASK_DESCRIPTION + nonEmptyTask + " | " + DATE_TIME_STRING;
 
-        System.out.println(userInput);
-
         EditTaskCommand expectedCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
                 new Task(nonEmptyTask, new DateTime(DATE_TIME_STRING)));
 

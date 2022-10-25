@@ -24,15 +24,13 @@ public class DeleteMedicationCommandParser implements Parser<DeleteMedicationCom
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        List<Index> indices;
-
         try {
-            indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+            List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+
+            return new DeleteMedicationCommand(indices.get(0), indices.get(1));
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMedicationCommand.MESSAGE_USAGE), pe);
         }
-
-        return new DeleteMedicationCommand(indices.get(0), indices.get(1));
     }
 }
