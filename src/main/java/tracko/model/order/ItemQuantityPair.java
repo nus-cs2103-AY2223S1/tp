@@ -75,6 +75,10 @@ public class ItemQuantityPair {
         return new Price(itemPrice);
     }
 
+    public Price getPrice() {
+        return this.itemPrice;
+    }
+
     @Override
     public String toString() {
         return quantity + " * " + this.getItemName();

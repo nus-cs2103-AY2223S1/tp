@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import tracko.commons.util.DateTimeUtil;
+import tracko.model.item.Price;
 
 /**
  * Represents an Order in the address book.
@@ -21,6 +22,7 @@ public class Order {
     private final List<ItemQuantityPair> itemList;
     private boolean isPaid;
     private boolean isDelivered;
+    private Price totalOrderPrice;
 
     /**
      * Every field must be present and not null.
@@ -36,6 +38,7 @@ public class Order {
         this.timeCreated = LocalDateTime.now();
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
+        this.totalOrderPrice = calculateTotalOrder();
     }
 
     /**
@@ -119,6 +122,15 @@ public class Order {
 
     public void setDelivered() {
         this.isDelivered = true;
+    }
+
+    public Price calculateTotalOrder() {
+        double totalOrderPrice = 0;
+        for (int i = 0; i < itemList.size(); i++) {
+            ItemQuantityPair item = itemList.get(i);
+            totalOrderPrice += item.getPrice().price;
+        }
+        return new Price(totalOrderPrice);
     }
 
     @Override
