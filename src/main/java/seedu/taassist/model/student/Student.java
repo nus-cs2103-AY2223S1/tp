@@ -86,7 +86,8 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns a student by removing the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
+     * Returns a new student by removing the {@code StudentModuleData} of
+     * this student for the given {@code ModuleClass}.
      */
     public Student removeModuleClass(ModuleClass moduleClass) {
         List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
@@ -96,20 +97,15 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns a student by updating {@code oldStudent}'s grade for the given {@code session} in {@code moduleClass}.
+     * Returns a new student by updating this student's grade for the
+     * given {@code session} in {@code moduleClass}.
      */
-    public static Student getUpdatedStudent(Student oldStudent,
-            ModuleClass moduleClass, Session session, double grade) {
-        requireAllNonNull(oldStudent, moduleClass, session);
-        List<StudentModuleData> oldModuleDataList = oldStudent.getModuleDataList();
-        List<StudentModuleData> newModuleDataList =
-                StudentModuleData.getUpdatedModuleDataList(oldModuleDataList, moduleClass, session, grade);
-        return new Student(
-                oldStudent.getName(),
-                oldStudent.getPhone(),
-                oldStudent.getEmail(),
-                oldStudent.getAddress(),
-                newModuleDataList);
+    public Student updateModuleSessionGrade(ModuleClass moduleClass, Session session, double grade) {
+        requireAllNonNull(moduleClass, session);
+        List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
+                .map(d -> d.getModuleClass().isSame(moduleClass) ? d.updateSessionGrade(session, grade) : d)
+                .collect(Collectors.toList());
+        return new Student(name, phone, email, address, updatedModuleData);
     }
 
     /**
