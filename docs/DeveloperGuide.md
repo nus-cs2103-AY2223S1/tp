@@ -231,45 +231,111 @@ Our team decided to change the user input format of the cancel command from `can
 to `cancel APPOINTMENT_INDEX`, so it is faster for
 the user to key in, and also more similar to the other commands with only 1 index.
 
-### \[In progress\] Appointments archiving
+### \[Implemented\] Group Patient
 
-#### In progress
+The group mechanism implements the following operations:
 
-The archive mechanism implements the following operations:
+* Group patients according to their tags.
 
-* `idENTify#archive()` — Archive appointments according to their tags or dates.
+The operation is exposed in the `Command` interface as `Command#GroupPatientCommand()`.
 
-The operation is exposed in the `Command` interface as `Command#ArchiveAppointmentCommand()`.
+Given below is an example usage scenario and how the group mechanism behaves at each step.
 
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
+patient list.
 
+Step 2. The user executes `group patients` command to group patients by their tags, causing the modified list of
+patients after the `group patients` command executes to show on the screen.
 
-Given below is an example usage scenario and how the archive mechanism behaves at each step.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("group patients")` API call.
+
+![Interactions Inside the Logic Component for the `group patients` Command](images/GroupPatientSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/GroupPatientCommand.png" width="1000" />
+
+#### Design considerations:
+
+**Aspect: How group patients executes:**
+
+* **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
+  tag group where a patient belongs.
+
+### \[Implemented\] Group Appointment
+
+The group mechanism implements the following operations:
+
+* Group appointments according to their tags or patient.
+
+The operation is exposed in the `Command` interface as `Command#GroupAppointmentCommand()`.
+
+Given below is an example usage scenario and how the group mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
 appointment list.
 
-
-Step 2. The user executes `archive appts /t` command to archive patients by their tags, causing the modified list of
-appointments after the `archive appts /t` command executes to show on the screen.
+Step 2. The user executes `group appts k/[KEY]` command to group appointments by their tags `(k/ tag)` or patient `
+(k/ patient)`, causing the modified list of appointments after the `group appts k/[KEY]` command executes to show on 
+the screen.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
-("archive appts")` API
-call.
+("group appts k/[KEY]")` API call.
 
-![Interactions Inside the Logic Component for the `archive appts` Command](images/ArchiveAppointmentSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `group appts k/[KEY]` Command](images/GroupAppointmentSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/ArchiveAppointmentCommand.png" width="250" />
+<img src="images/GroupAppointmentCommand.png" width="1000" />
 
 #### Design considerations:
 
-**Aspect: How archive appointment executes:**
+**Aspect: How group appointments executes:**
 
-* **Current choice:** Create multiple appointment lists according to tags or dates and merge all the lists to show the
-  merged list on the screen.
+* **Current choice:** Use a different comparator from default so that a heavy weight can be assigned to the value of a
+  tag group where a patient belongs or the patient attached to the appointment.
 
-_{more aspects and alternatives to be added}_
+### \[Implemented\] Ungroup
+
+The ungroup mechanism implements the following operations:
+
+* Either ungroup appointments or ungroup patients.
+
+The operation is exposed in the `Command` interface as `Command#UngroupCommand()`.
+
+Given below is an example usage scenario and how the group mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `idENTify` will be initialized with the initial
+patient and appointment list.
+
+Step 2. The user executes `group appts k/[KEY]` command to group appointments by their tags `(k/ tag)` or patient `
+(k/ patient)`, causing the modified list of appointments after the `group appts k/[KEY]` command executes to show on
+the screen or executes `group patients` command to group patients by their tags, causing the modified list of
+patients after the `group patients` command executes to show on the screen.
+
+Step 3. The user executes `ungroup appts` command to ungroup appointments or `ungroup patients` command to ungroup 
+patients.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the use has not group patients or 
+appointments, ungroup commands will make no effect on the current addressbook list on the screen.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
+("ungroup")` API call.
+
+![Interactions Inside the Logic Component for the `ungroup` Command](images/UngroupSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/UngroupCommand.png" width="1000" />
+
+#### Design considerations:
+
+**Aspect: How ungroup executes:**
+
+* **Current choice:** Use the default comparator for appointments or patients so that the specified list will sort 
+  as default settings. To be more specific, the patient list will be sorted by patients' names and the appointemnt 
+  list will be sorted by datetime.
 
 ### \[Implemented\] Book feature
 
@@ -427,19 +493,23 @@ more efficient than alternative 2.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | starting user                              | view a help screen             | understand how this application works                                  |
-| `* * *`  | user                                       | search idENTify                | find specific patients and information faster                          |
-| `* * *`  | user                                       | add a contact of the patient   | keep track of the patient's contact details                            |
-| `* * *`  | user                                       | delete a contact of the patient| remove the patient from my contacts when no longer needed              |
-| `* * *`  | user                                       | book an appointment for the patient | schedule the patient to meet the doctor                           |
-| `* * *`  | user                                       | cancel an appointment for the patient | ensure that the appointment schedule is updated and accurate    |
-| `* * *`  | user                                       | save the data of my contacts when I exit the app  | not lose the contacts when I open the app again     |
-| `* * *`  | user                                       | mark an appointment as done    |  know that the patient has already visited                             |
-| `* *`    | user                                       | edit information about a patient | merge and keep his information up to date                            |
-| `* *`    | clumsy user                                | edit an existing appointment   | fix my error in setting their appointment details                      |
-| `* *`    | clumsy user                         | unmark an appointment as done  | change my appointment state without deleting and adding the appointment again |
+| Priority | As a …​                      | I want to …​                                           | So that I can…​                                                               |
+|----------|------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------|
+| `* * *`  | starting user                | view a help screen                                     | understand how this application works                                         |
+| `* * *`  | user                         | search idENTify                                        | find specific patients and information faster                                 |
+| `* * *`  | user                         | add a contact of the patient                           | keep track of the patient's contact details                                   |
+| `* * *`  | user                         | delete a contact of the patient                        | remove the patient from my contacts when no longer needed                     |
+| `* * *`  | user                         | book an appointment for the patient                    | schedule the patient to meet the doctor                                       |
+| `* * *`  | user                         | cancel an appointment for the patient                  | ensure that the appointment schedule is updated and accurate                  |
+| `* * *`  | user                         | save the data of my contacts when I exit the app       | not lose the contacts when I open the app again                               |
+| `* * *`  | user                         | mark an appointment as done                            | know that the patient has already visited                                     |
+| `* *`    | user                         | edit information about a patient                       | merge and keep his information up to date                                     |
+| `* *`    | clumsy user                  | edit an existing appointment                           | fix my error in setting their appointment details                             |
+| `* *`    | clumsy user                  | unmark an appointment as done                          | change my appointment state without deleting and adding the appointment again |
+| `*`      | user                         | have my patients sorted by their names                 | look up their information more quickly                                        |
+| `*`      | user                         | have my appointments sorted by their datetime          | arrange appintments more efficiently                                          |
+| `*`      | user                         | have my patients grouped by their tags                 | check patients' problems more easily                                          |
+| `*`      | user                         | have my appointments grouped by their patients or tags | check and arrange appointments in one go                                      |
 
 *{More to be added}*
 
@@ -635,6 +705,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
   Use case resumes at step 3.
+
+**Use Case: UC11 - sort the patient list**
+
+**Guarantees:** There does not exist two patients with both the same name and the same phone number.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  idENTify displays the patient list sorted by their names.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects multiple patients with the same name.
+    - 2a1. idENTify compares their phone numbers.
+    - 2a2. idENTify sort them by their phone numebrs.
+    - 2a3. idENTify displays the sorted patient list.
+
+    
+**Use Case: UC12 - sort the appointment list**
+
+**Guarantees:** There does not exist two appointments occurring at the same time and attached with the same patient.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  idENTify displays the appointment list sorted by their datetime.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects multiple appointments with the same datetime.
+    - 2a1. idENTify compares their corresponding patients.
+    - 2a2. idENTify sort them by their patient information.
+    - 2a3. idENTify displays the sorted appointment list.
+
+
+**Use Case: UC13 - group patients**
+
+**Guarantees:** There are restricted types of tags assigned to patients.
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  User enters command to group patients.
+3.  idENTify displays the patient list grouped by their tags.
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. idENTify detects multiple patients with the same tags.
+    - 3a1. idENTify compares their other information.
+    - 3a2. idENTify sort them by the information mentioned above.
+    - 3a3. idENTify displays the sorted patient list.
+
+
+**Use Case: UC14 - group appointments**
+
+**Guarantees:** There are restricted types of tags assigned to appointments and every appointment is attached to one 
+and only one patient.
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User enters command to group appointments either by their tags or patient or mark status.
+3.  idENTify displays the appointment list grouped by the specified key.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. idENTify detects an error in the entered data.
+    - 2a1. idENTify shows an error message.
+    - 2a2. User enters new data.
+    - Steps 2a1-2a2 are repeated until the data entered are correct. 
+  Use case resumes at step 3.
+
+* 3a. idENTify detects multiple appointments with the same keys.
+    - 3a1. idENTify compares their other information.
+    - 3a2. idENTify sort them by the information mentioned above.
+    - 3a3. idENTify displays the sorted appointment list.
+  
+
+**Use Case: UC15 - ungroup patients**
+
+**MSS**
+1.  User gets the <ins>list of patients(UC02)<ins>.
+2.  User enters command to ungroup patients.
+3.  idENTify displays the patient list sorted by default comparator (UC11).
+
+    Use case ends.
+
+
+**Use Case: UC16 - ungroup appointments**
+
+**MSS**
+1.  User gets the <ins>list of appointments(UC03)<ins>.
+2.  User enters command to ungroup appointments.
+3.  idENTify displays the patient list sorted by default comparator (UC12).
+
+    Use case ends.
 
 
 ### Non-Functional Requirements

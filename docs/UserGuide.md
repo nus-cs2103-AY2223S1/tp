@@ -55,25 +55,47 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 a/John street, block 123, #01-01`
-* `add n/Betsy Crowe p/88888888 a/Newgate Prison t/e`
+* `add n/Betsy Crowe p/88888888 a/Newgate Prison t/ear`
 
 ### Listing all patients/appointments : `list`
 
-Shows a list of all patients and/or appointments, depending on the parameter given.
+Shows a list of all patients or appointments, depending on the parameter given. \
+If it is a patient list, then patients will be sorted by their names first; if there are people with the same name, they will be sorted by their 
+phone numbers. \
+If it is an appointment list, then appointments will be sorted by their datetime first; if there are appointments 
+with the same datetime, they will be sorted by their attached patients' information.
 
 Format:
 * `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
 * `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
 * `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
 
-### Grouping all patients/appointments : `group`
+### Grouping all patients : `group patients`
 
-Shows a list of all patients or appointments grouped by their tags, depending on the parameter given.
+Shows a list of all patients grouped by their tags.
 
 Format:
 * `group patients`
-* `group appts`
 
+### Grouping all appointments : `group appts`
+
+Shows a list of all appointments grouped by their tags or attached patients, depending on the parameter given.
+
+Format:
+* `group appts k/[KEY]`
+
+Examples:
+* `group appts k/tag`
+* `group appts k/patient`
+* `group appts k/mark`
+
+### Ungrouping all patients/ appointments : `ungroup`
+
+Shows a list of all patients or appointments ungrouped 
+
+Format:
+* `ungroup patients`
+* `ungroup appts`
 
 ### Editing a patient : `edit patients`
 
@@ -274,6 +296,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
+**Group Patients** | `group patients`
+**Group Appointents** | `group appts k/[KEY]` <br> e.g., `group appts k/mark`
+**Ungroup** | `ungroup patients` <br> `ungroup appts`
 **Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
