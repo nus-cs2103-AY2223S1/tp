@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
-import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.model.Model;
 
@@ -20,7 +19,7 @@ public class TaskListCommand extends Command {
         + "and vice versa, in alphabetical order.";
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskListPredicate(Model.PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
