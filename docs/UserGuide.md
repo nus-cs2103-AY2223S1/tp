@@ -29,6 +29,7 @@ more effectively than traditional GUI apps.
         * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
         * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
         * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+        * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
     * **Exiting the program**: [`exit`](#exiting-the-program--exit)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -139,11 +140,11 @@ Examples:
 
 Adds the number of messages a specified student sent during tutorial.
 
-Format: `addresponse n\NAME m\MESSAGE_COUNT`
+Format: `addresponse INDEX m\MESSAGE_COUNT`
 
 Examples:
 
-* `addresponse n\John Doe m\7`
+* `addresponse 1 m\7`
 
 ### Adding help tag: `helpstu`
 
@@ -292,6 +293,20 @@ Example:
 
 * `marktut 1` marks the first tutorial from the tutorial list as done.
 
+### Unmarking a tutorial: `unmarktut`
+
+Marks content in the tutorial as undone.
+
+Format: `unmarktut INDEX`
+
+* Marks the tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2, 3, ...
+
+Example:
+
+* `unmarktut 1` marks the first tutorial from the tutorial list as undone.
+
 
 ### Exiting the program : `exit`
 
@@ -331,14 +346,14 @@ the data of your previous SETA home folder.
 
 ## Command summary
 
-| Action         | Format, Examples                    |
-|----------------|-------------------------------------|
-| **Add**        | `addstu`, `addq`, `addtut`          |
-| **Attendance** | `attendance`                        |
-| **Delete**     | `deletestu`, `deleteq`, `deletetut` |
-| **Edit**       | `editstu`                           |
-| **Find**       | `findstu`                           |  
-| **List**       | `liststu`                           |  
-| **Mark**       | `markq`, `unmarkq`, `marktut`       |
-| **Tag**        | `helpstu`                           |
-| **Exit**       | `exit`                              |
+| Action         | Format, Examples                           |
+|----------------|--------------------------------------------|
+| **Add**        | `addstu`, `addq`, `addtut`                 |
+| **Attendance** | `attendance`, `addresponse`                |
+| **Delete**     | `deletestu`, `deleteq`, `deletetut`        |
+| **Edit**       | `editstu`                                  |
+| **Find**       | `findstu`                                  |  
+| **List**       | `liststu`                                  |  
+| **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
+| **Tag**        | `helpstu`                                  |
+| **Exit**       | `exit`                                     |
