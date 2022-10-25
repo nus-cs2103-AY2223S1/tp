@@ -26,7 +26,7 @@ SectresBook helps **secretaries** to maintain all the information of the members
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the SectresBook.
 
    * **`delete 3`** : Deletes the 3rd contact shown in the current list.
    
@@ -49,17 +49,19 @@ SectresBook helps **secretaries** to maintain all the information of the members
 - A
   - 
 - Email
-  - 
-- Tags
-  - 
+  -
 
 ### Notes Properties
 - Title
   - 
 - Content
-  - 
-- Tags
-  - 
+  -
+
+### Tag Properties
+- A tag that is used to group together specific People and Notes.
+- Identified by the prefix `tag`.
+- Person and Note can hold tags.
+- Searching for a tag brings up all the People and Notes that have the tag.
 
 ## Features
 
@@ -155,14 +157,14 @@ Examples:
 
 ### Locating persons by tag: `findTag`
 
-Finds persons that have the given tag.
+Finds People and Notes that have the given tag.
 
 Format: `findTag TAG [MORE_TAGS]`
 
 * The tag search is case-insensitive. e.g `finance` will match `Finance`
 * Only the tag is searched.
 * Only full words will be matched e.g. `Tech` will not match `Technology`
-* Persons matching at least one tag will be returned (i.e. `OR` search).
+* Persons and Notes matching at least one tag will be returned (i.e. `OR` search).
   e.g. `Finance` will return 
   * `John (tag: Finance)`,
   * `Caroline (tag: Finance) (tag: Tech)`,
