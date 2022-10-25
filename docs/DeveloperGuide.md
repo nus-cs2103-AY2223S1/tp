@@ -37,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -70,33 +70,33 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `FridayParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -111,23 +111,23 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `FridayParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FridayParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the FRIDAY data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -136,18 +136,18 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/masteryCheck/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both FRIDAY data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `fridaybook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -161,31 +161,31 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current FRIDAY state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous FRIDAY state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone FRIDAY state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial FRIDAY state, and the `currentStatePointer` pointing to that single FRIDAY state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the FRIDAY. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the FRIDAY after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted FRIDAY state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified FRIDAY state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the FRIDAY state will not be saved into the `addressBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FRIDAY state, and restores the FRIDAY to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -202,17 +202,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FRIDAY to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest FRIDAY state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the FRIDAY, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all FRIDAY states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire FRIDAY.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -240,6 +240,111 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### Sort feature
+
+#### Implementation
+
+The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to 
+parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents` 
+in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`, 
+`Consultation`, and `MasteryCheck` implement the `Comparable` interface, where the natural ordering of `String` and `LocalDate`
+are used to implement the `compareTo` method. 
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList` 
+named `sortedStudents` according to the data file. 
+
+Step 2. The user executes `sort n/asc` command to sort the students by name in ascending order. `SortCommandParser` will
+check that the command is valid, and pass a `comparator` that orders the student names alphabetically to `SortCommand`.
+
+Step 3. `SortCommand` will call `Model#updateSortedStudentList(Comparator<Student> comparator)` to update `sortedStudents`
+with the given `comparator`. The list `students` is then set to `sortedStudents`, and 
+`StudentListPanel#setList(ObservableList<Student> studentList)` is called to refresh the UI `ListView` with the new
+`students` list.
+
+_{To add sequence diagram}_
+
+_{To add activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How to display the sorted list**
+
+* Refreshes the list of students in the UI whenever a command is executed
+    * Pros: Easy to implement.
+    * Cons: May have performance issues with large number of students.
+
+**Aspect: How many criteria should the sort command accept**
+
+* **Alternative 1 (current choice):** Accept only one criterion
+    * Pros: Clear to the user, and easy to implement.
+    * Cons: Unable to further sort details with a secondary criteria when the first criteria of some students match.
+
+* **Alternative 2:** Accept multiple criteria and sort in the order they are given
+    * Pros: More precise sorting when many students have matching details, e.g. same Mastery Check dates.
+    * Cons: Sorting becomes confusing for the user and difficult to implement if many criteria are given.
+
+**Aspect: How to sort empty details**
+
+* Students with empty details are sorted last in ascending order, and first in descending order
+    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter. 
+            Users can sort a detail in descending order to see which students have the detail empty. 
+    * Cons: Top of the list may be cluttered with empty details when sorted in descending order. 
+
+
+### \[Proposed\] Alias feature
+
+#### Proposed Implementation
+
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `UniqueAliasList`, while
+in-built command names (e.g. add, delete) will be stored in a constant `reservedCommandList`.
+
+Given below is an example usage scenario and how the alias mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager` 
+with an empty `UniqueAliasList`.
+
+Step 2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command 
+will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
+are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
+`Model#addAlias(Alias toadd)`.
+
+Step 3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that 
+the alias `ls` is assigned to a command (in this case it is `list`) in `AddressBookParser`. `commandWord` in 
+`AddressBookParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand` 
+is then executed.
+
+_{To add sequence diagram}_
+
+_{To add activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How alias command is implemented:**
+
+_{To add other design considerations}_
+
+### \[Proposed\] Find feature
+
+#### Proposed Implementation
+The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
+logic established. However, it is unique in the sense that it will look through all the possible fields and data
+and return matches.
+
+Example of current implementation of find feature
+
+Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
+and their data into a list of students.
+
+Step 2. When user types in the find command the logic will tell the program to go through all the fields for every 
+student inside the student class and return the student if there is a successful match in any of the fields 
+
+#### Design considerations:
+
+**Aspect: How find command is implemented:**
+
+_{To add other design considerations}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -276,36 +381,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                      | So that I can…​                                                        |
-|----------| ------------------------------------------ |-------------------------------------------------------------------| ---------------------------------------------------------------------- |
-| `* * *`  | user              | add students                                                      |                                                                  |
-| `* * *`  | user              | remove students                                                   |                                                                  |
-| `* * *`  | user              | add my students’ contact details                                  | contact them when I need to                                      |
-| `* * *`  | user              | delete my students’ contact details                               | remove outdated information                                      |
-| `* * *`  | user              | add my students’ grades and marks for tests                       | assess and see how well they are performing                      |
-| `* * *`  | user              | delete my students’ grades and marks for tests                    | remove outdated results                                          |
-| `* * *`  | user              | add queries from students                                         | keep track of any queries i need to address                      |
-| `* * *`  | user              | delete certain comments that are no longer relevant               | Not clutter up space with old comments                           |
-| `* * *`  | user              | add comments for a specific student                               | take note of their progress                                      |
-| `* * *`  | user              | view the information of a specific student                        | retrieve details about the student                               |
-| `* * *`  | user              | search for keywords                                               | look for information i need from my students                     |
-| `* * *`  | user              | be given helpful error messages when I give an invalid command    | troubleshoot easily without consulting the User Guide every time |
-| `* * *`  | user              | add dates for my students’ Mastery Checks                         | schedule the meetings                                            |
-| `* * *`  | user              | delete dates for my students’ Mastery Checks                      | remove outdated dates and Mastery Checks                         |
-| `* *`    | user              | get help in the app itself                                        | get help without consulting the User Guide                       |
-| `* *`    | user              | edit my students’ grades and marks for tests                      | update the student’s results                                     |
-| `* *`    | user              | edit the contact details of a specific student                    | update the student’s contact details                             |
-| `* *`    | user              | edit the information of a specific student                        | update the student’s details.                                    |
-| `* *`    | user              | edit previously added comments                                    | update my comments for a student.                                |
-| `* *`    | new user          | see the app populated with sample data                            | easily see how the app will look when it is in use               |
-| `* *`    | new user          | purge all current data                                            | get rid of sample/experimental data I used for exploring the app |
-| `* *`    | expert user       | create custom alias for my commands                               | enter commands more efficiently                                  |
-| `* *`    | expert user       | delete a custom alias                                             | remove aliases I no longer need                                  |
-| `* *`    | intermediate user | generate random pairs to group my students into pairs             | split my students for pair work                                  |
-| `*`      | expert user       | view all my current macros                                        | view all my macros and know what they do                         |
-| `*`      | expert user       | create my own macros to  perform certain functions                | be more efficient using the app                                  |
+| Priority | As a …​           | I want to …​                                                        | So that I can…​                                                  |
+|----------|-------------------|---------------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | user              | add students                                                        |                                                                  |
+| `* * *`  | user              | remove students                                                     |                                                                  |
+| `* * *`  | user              | add my students’ contact details                                    | contact them when I need to                                      |
+| `* * *`  | user              | delete my students’ contact details                                 | remove outdated information                                      |
+| `* * *`  | user              | add my students’ grades and marks for tests                         | assess and see how well they are performing                      |
+| `* * *`  | user              | delete my students’ grades and marks for tests                      | remove outdated results                                          |
+| `* * *`  | user              | add queries from students                                           | keep track and be reminded of the students' questions            |
+| `* * *`  | user              | delete certain comments that are no longer relevant                 | not clutter up space with old comments                           |
+| `* * *`  | user              | add comments for a specific student                                 | take note of their progress                                      |
+| `* * *`  | user              | view the information of a specific student                          | retrieve details about the student                               |
+| `* * *`  | user              | search for keywords                                                 | look for information i need from my students                     |
+| `* * *`  | user              | be given helpful error messages when I give an invalid command      | troubleshoot easily without consulting the User Guide every time |
+| `* * *`  | user              | add dates for my students’ Mastery Checks                           | schedule the meetings                                            |
+| `* * *`  | user              | delete dates for my students’ Mastery Checks                        | remove outdated dates and Mastery Checks                         |
+| `* *`    | user              | get help in the app itself                                          | get help without consulting the User Guide                       |
+| `* *`    | user              | edit my students’ grades and marks for tests                        | update the student’s results                                     |
+| `* *`    | user              | edit the contact details of a specific student                      | update the student’s contact details                             |
+| `* *`    | user              | edit the information of a specific student                          | update the student’s details.                                    |
+| `* *`    | user              | edit previously added comments                                      | update my comments for a student.                                |
+| `* *`    | user              | sort my students by Mastery Check dates                             | easily see when is the next Mastery Check.                       |
+| `* *`    | user              | sort my students by consultation dates                              | easily see when is the next consultation.                        |
+| `* *`    | new user          | see the app populated with sample data                              | easily see how the app will look when it is in use               |
+| `* *`    | new user          | purge all current data                                              | get rid of sample/experimental data I used for exploring the app |
+| `* *`    | expert user       | create custom alias for my commands                                 | enter commands more efficiently                                  |
+| `* *`    | expert user       | delete a custom alias                                               | remove aliases I no longer need                                  |
+| `* *`    | intermediate user | generate random pairs to group my students into pairs               | split my students for pair work                                  |
+| `*`      | expert user       | view all my current macros                                          | view all my macros and know what they do                         |
+| `*`      | expert user       | create my own macros to  perform certain functions                  | be more efficient using the app                                  |
 | `*`      | intermediate user | have suggestions on comments to give students for generic  feedback | provide fast feedback                                            |
-| `*`      | intermediate user | customize the look and feel of the software                       | make the software feel like my own                               |
+| `*`      | intermediate user | customize the look and feel of the software                         | make the software feel like my own                               |
 
 *{More to be added}*
 
@@ -313,14 +420,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a student**
 
 **MSS**
 
-1.  User requests to list persons
-2.  FRIDAY shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  FRIDAY deletes the person
+1.  User requests to list students
+2.  FRIDAY shows a list of students
+3.  User requests to delete a specific student in the list
+4.  FRIDAY deletes the student
 
     Use case ends.
 
@@ -336,14 +443,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: List a person's details**
+**Use case: List a student's details**
 
 **MSS**
 
-1. User requests to list all persons
-2. FRIDAY shows a list of persons
-3. User requests to view the details of a specific person in the list
-4. FRIDAY displays the details of the person
+1. User requests to list all students
+2. FRIDAY shows a list of students
+3. User requests to view the details of a specific student in the list
+4. FRIDAY displays the details of the student
 
     Use case ends.
 
@@ -360,43 +467,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-**Use case: Add details to a person**
+**Use case: Add details to a student**
 
 **MSS**
 
-1. User requests to list persons
-2. FRIDAY shows a list of persons
-3. User requests to add details for a specific person in the list
-4. FRIDAY adds details for the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. FRIDAY shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given details have the wrong formats or tags
-
-    * 3b1. FRIDAY shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Edit details of a person**
-
-**MSS**
-
-1. User requests to list persons
-2. FRIDAY shows a list of persons
-3. User requests to edit details for a specific person in the list
-4. FRIDAY edits details for the person
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to add details for a specific student in the list
+4. FRIDAY adds details for the student
 
     Use case ends.
 
@@ -418,14 +496,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete details of a person**
+**Use case: Edit details of a student**
 
 **MSS**
 
-1. User requests to list persons
-2. FRIDAY shows a list of persons
-3. User requests to delete details for a specific person in the list
-4. FRIDAY deletes details for the person
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to edit details for a specific student in the list
+4. FRIDAY edits details for the student
 
     Use case ends.
 
@@ -447,13 +525,157 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit remarks for a student**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to edit remarks for a specific student in the list
+4. FRIDAY edits details for the student
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given remark is empty.
+
+    * 3b1. FRIDAY removes remarks for the specified student.
+
+      Use case ends.
+
+**Use case: Delete details of a student**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to delete details for a specific student in the list
+4. FRIDAY deletes details for the student
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given details have the wrong formats or tags
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Edit grades for a student**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to edit grades for a specific student in the list
+4. FRIDAY edits grades for the student
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given score of the grade is empty.
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Sort students**
+
+**MSS**
+
+1. User requests to sort students with a specific criteria and order
+2. FRIDAY displays the students in sorted order
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given criteria is invalid.
+
+    * 1a1. FRIDAY shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The given order is invalid.
+
+    * 1b1. FRIDAY shows an error message. 
+
+      Use case resumes at step 1.
+
+* 1c. More than one criterion is given. 
+
+    * 1c1. FRIDAY shows an error message. 
+
+      Use case resumes at step 1.
+
+**Use case: Mark a student's Mastery Check as passed.**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to mark the Mastery Check of a specific student as passed
+4. FRIDAY marks the student's Mastery Check as passed
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends 
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The Mastery Check of the student has already been marked as passed.
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
@@ -462,7 +684,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY. 
+* **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
+* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants). 
+There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
+Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -491,17 +717,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
