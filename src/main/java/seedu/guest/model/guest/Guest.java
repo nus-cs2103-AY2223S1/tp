@@ -90,6 +90,19 @@ public class Guest {
     }
 
     /**
+     * Returns true if both guests have the same room.
+     * This defines a weaker notion of equality between two guests.
+     */
+    public boolean isSameRoom(Guest otherGuest) {
+        if (otherGuest == this) {
+            return true;
+        }
+
+        return otherGuest != null
+                && otherGuest.getRoom().equals(getRoom());
+    }
+
+    /**
      * Returns true if both guests have the same identity and data fields.
      * This defines a stronger notion of equality between two guests.
      */
@@ -145,5 +158,4 @@ public class Guest {
 
         return builder.toString();
     }
-
 }

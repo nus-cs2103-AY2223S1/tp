@@ -30,6 +30,7 @@ public class AddCommandIntegrationTest {
         Guest validGuest = new GuestBuilder().build();
 
         Model expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
+
         expectedModel.addGuest(validGuest);
 
         assertCommandSuccess(new AddCommand(validGuest), model,

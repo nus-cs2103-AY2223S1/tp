@@ -35,7 +35,6 @@ public class AddCommandTest {
         ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
         Guest validGuest = new GuestBuilder().build();
 
-
         CommandResult commandResult = new AddCommand(validGuest).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validGuest), commandResult.getFeedbackToUser());
@@ -130,6 +129,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameRoom(Guest guest) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteGuest(Guest target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -178,6 +182,12 @@ public class AddCommandTest {
         public boolean hasGuest(Guest guest) {
             requireNonNull(guest);
             return guestsAdded.stream().anyMatch(guest::isSameGuest);
+        }
+
+        @Override
+        public boolean hasSameRoom(Guest guest) {
+            requireNonNull(guest);
+            return guestsAdded.stream().anyMatch(guest::isSameRoom);
         }
 
         @Override

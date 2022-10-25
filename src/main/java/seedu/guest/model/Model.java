@@ -58,6 +58,11 @@ public interface Model {
     boolean hasGuest(Guest guest);
 
     /**
+     * Returns true if a guest with the same room as {@code guest} exists in the guest book.
+     */
+    boolean hasSameRoom(Guest toAdd);
+
+    /**
      * Deletes the given guest.
      * The guest must exist in the guest book.
      */
