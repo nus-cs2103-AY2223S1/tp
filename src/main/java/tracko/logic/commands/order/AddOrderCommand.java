@@ -11,7 +11,6 @@ import tracko.model.Model;
 import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
 import tracko.model.item.exceptions.ItemNotFoundException;
-import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 
 /**

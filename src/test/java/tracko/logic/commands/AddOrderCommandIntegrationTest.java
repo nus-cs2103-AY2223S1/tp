@@ -39,9 +39,4 @@ public class AddOrderCommandIntegrationTest {
                 String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), expectedModel);
     }
 
-    // @Test
-    // public void execute_duplicatePerson_throwsCommandException() {
-    //    Person personInList = model.getAddressBook().getPersonList().get(0);
-    //    assertCommandFailure(new AddOrderCommand(personInList), model, AddOrderCommand.MESSAGE_DUPLICATE_PERSON);
-    // }
 }

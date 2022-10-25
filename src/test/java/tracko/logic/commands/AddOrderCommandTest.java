@@ -49,15 +49,6 @@ public class AddOrderCommandTest {
         assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
     }
 
-    // @Test
-    // public void execute_duplicatePerson_throwsCommandException() {
-    //     Person validPerson = new OrderBuilder().build();
-    //     AddOrderCommand addOrderCommand = new AddOrderCommand(validPerson);
-    //     ModelStub modelStub = new ModelStubWithOrder(validPerson);
-    //     assertThrows(CommandException.class, AddOrderCommand.MESSAGE_DUPLICATE_PERSON,
-    //         () -> addOrderCommand.execute(modelStub));
-    // }
-
     @Test
     public void equals() {
         Order alice = new OrderBuilder().withName("Alice").build();
