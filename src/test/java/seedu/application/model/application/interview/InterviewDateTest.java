@@ -56,5 +56,8 @@ public class InterviewDateTest {
     public void interviewDate() {
         assertEquals(new InterviewDate("2022-11-12").toString(), "Nov 12 2022");
         assertEquals(new InterviewDate("2020-02-29").toString(), "Feb 29 2020");
+
+        assertEquals(new InterviewDate("2019-06-09").toCommandString(), "2019-06-09");
+        assertEquals(new InterviewDate("1999-08-17").toCommandString(), "1999-08-17");
     }
 }
