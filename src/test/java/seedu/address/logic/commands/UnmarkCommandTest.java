@@ -14,9 +14,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code MarkCommand}.
+ * Contains integration tests (interaction with the Model) for {@code UnmarkCommand}.
  */
-public class MarkCommandTest {
+public class UnmarkCommandTest {
 
     private static final Index INDEX_FIRST_ITEM = Index.fromOneBased(1);
 
@@ -38,17 +38,17 @@ public class MarkCommandTest {
     @Test
     public void execute_inListView_failure() {
         setListView();
-        MarkCommand markCommand = new MarkCommand(new MarkPersonDescriptor());
+        UnmarkCommand unmarkCommand = new UnmarkCommand(new MarkPersonDescriptor());
 
-        assertCommandFailure(markCommand, model, MarkCommand.MESSAGE_NOT_VIEW_MODE);
+        assertCommandFailure(unmarkCommand, model, UnmarkCommand.MESSAGE_NOT_VIEW_MODE);
     }
 
     @Test
     public void execute_inDayView_failure() {
         setDayView();
-        MarkCommand markCommand = new MarkCommand(new MarkPersonDescriptor());
+        UnmarkCommand unmarkCommand = new UnmarkCommand(new MarkPersonDescriptor());
 
-        assertCommandFailure(markCommand, model, MarkCommand.MESSAGE_NOT_VIEW_MODE);
+        assertCommandFailure(unmarkCommand, model, UnmarkCommand.MESSAGE_NOT_VIEW_MODE);
     }
 
 
@@ -56,7 +56,7 @@ public class MarkCommandTest {
     @Test
     public void equals() {
         setFullView(INDEX_FIRST_ITEM);
-        final MarkCommand standardCommand = new MarkCommand(new MarkPersonDescriptor());
+        final UnmarkCommand standardCommand = new UnmarkCommand(new MarkPersonDescriptor());
 
 
         // same object -> returns true

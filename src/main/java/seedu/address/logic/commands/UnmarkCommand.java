@@ -22,31 +22,30 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
-
 /**
- * Marks the details of an existing person in the address book
+ * Unmarks the details of an existing person in the address book
  */
-public class MarkCommand extends Command {
+public class UnmarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
+    public static final String COMMAND_WORD = "unmark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_HOMEWORK + "INDEX HOMEWORK]"
             + "[" + PREFIX_ATTENDANCE + "INDEX ATTENDANCE]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ATTENDANCE + " 1 ";
 
-    public static final String MESSAGE_MARKED_PERSON_SUCCESS = "Marked Person Detail: %1$s";
+    public static final String MESSAGE_UNMARKED_PERSON_SUCCESS = "Unmarked Person Detail: %1$s";
     public static final String MESSAGE_NOT_VIEW_MODE =
-            "You need to be in full view mode to mark a person's details.";
+            "You need to be in full view mode to unmark a person's details.";
 
     private final MarkPersonDescriptor markPersonDescriptor;
 
     /**
      * @param markPersonDescriptor details to edit the person with
      */
-    public MarkCommand(MarkPersonDescriptor markPersonDescriptor) {
+    public UnmarkCommand(MarkPersonDescriptor markPersonDescriptor) {
         requireNonNull(markPersonDescriptor);
 
         this.markPersonDescriptor = new MarkPersonDescriptor(markPersonDescriptor);
@@ -66,31 +65,31 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToMark = lastShownList.get(index.getZeroBased());
-        Person markedPerson = createMarkedPerson(personToMark, markPersonDescriptor);
+        Person personToUnmark = lastShownList.get(index.getZeroBased());
+        Person unmarkedPerson = createUnmarkedPerson(personToUnmark, markPersonDescriptor);
 
-        model.setPerson(personToMark, markedPerson);
-        return new CommandResult(String.format(MESSAGE_MARKED_PERSON_SUCCESS, markedPerson));
+        model.setPerson(personToUnmark, unmarkedPerson);
+        return new CommandResult(String.format(MESSAGE_UNMARKED_PERSON_SUCCESS, unmarkedPerson));
     }
 
-    private static Person createMarkedPerson(Person personToMark, MarkPersonDescriptor markPersonDescriptor)
+    private static Person createUnmarkedPerson(Person personToUnmark, MarkPersonDescriptor markPersonDescriptor)
             throws CommandException {
-        Name name = personToMark.getName();
-        Phone phone = personToMark.getPhone();
-        LessonPlan lessonPlan = personToMark.getLessonPlan();
-        HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToMark, markPersonDescriptor);
-        AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToMark, markPersonDescriptor);
-        SessionList sessionList = personToMark.getSessionList();
-        GradeProgressList gradeProgressList = personToMark.getGradeProgressList();
-        Set<Tag> tags = personToMark.getTags();
+        Name name = personToUnmark.getName();
+        Phone phone = personToUnmark.getPhone();
+        LessonPlan lessonPlan = personToUnmark.getLessonPlan();
+        HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToUnmark, markPersonDescriptor);
+        AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToUnmark, markPersonDescriptor);
+        SessionList sessionList = personToUnmark.getSessionList();
+        GradeProgressList gradeProgressList = personToUnmark.getGradeProgressList();
+        Set<Tag> tags = personToUnmark.getTags();
 
         return new Person(name, phone, lessonPlan, updatedHomeworkList,
                 updatedAttendanceList, sessionList, gradeProgressList, tags);
     }
 
-    public static HomeworkList getUpdatedHomeworkList(Person personToMark, MarkPersonDescriptor markPersonDescriptor)
+    public static HomeworkList getUpdatedHomeworkList(Person personToUnmark, MarkPersonDescriptor markPersonDescriptor)
             throws CommandException {
-        HomeworkList updatedHomeworkList = personToMark.getHomeworkList();
+        HomeworkList updatedHomeworkList = personToUnmark.getHomeworkList();
         Optional<Index> homeworkIndex = markPersonDescriptor.getHomeworkIndex();
         if (homeworkIndex.isEmpty()) {
             return updatedHomeworkList;
@@ -98,21 +97,21 @@ public class MarkCommand extends Command {
         if (!updatedHomeworkList.isValidIndex(homeworkIndex.get())) {
             throw new CommandException(HomeworkList.MESSAGE_INVALID_HOMEWORK_INDEX);
         }
-        updatedHomeworkList.markAtIndex(homeworkIndex.get());
+        updatedHomeworkList.unmarkAtIndex(homeworkIndex.get());
         return updatedHomeworkList;
     }
 
-    public static AttendanceList getUpdatedAttendanceList(Person personToMark,
-                                                           MarkPersonDescriptor mPerDesc) throws CommandException {
-        AttendanceList updatedAttendanceList = personToMark.getAttendanceList();
-        Optional<Index> attendanceIndex = mPerDesc.getAttendanceIndex();
+    public static AttendanceList getUpdatedAttendanceList(Person personToUnmark,
+            MarkPersonDescriptor markPersonDescriptor) throws CommandException {
+        AttendanceList updatedAttendanceList = personToUnmark.getAttendanceList();
+        Optional<Index> attendanceIndex = markPersonDescriptor.getAttendanceIndex();
         if (attendanceIndex.isEmpty()) {
             return updatedAttendanceList;
         }
         if (!updatedAttendanceList.isValidIndex(attendanceIndex.get())) {
             throw new CommandException(AttendanceList.MESSAGE_INVALID_ATTENDANCE_INDEX);
         }
-        updatedAttendanceList.markAtIndex(attendanceIndex.get());
+        updatedAttendanceList.unmarkAtIndex(attendanceIndex.get());
         return updatedAttendanceList;
     }
 
@@ -124,12 +123,12 @@ public class MarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkCommand)) {
+        if (!(other instanceof UnmarkCommand)) {
             return false;
         }
 
         // state check
-        MarkCommand e = (MarkCommand) other;
+        UnmarkCommand e = (UnmarkCommand) other;
         return markPersonDescriptor.equals(e.markPersonDescriptor);
     }
 

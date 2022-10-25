@@ -87,6 +87,19 @@ public class AttendanceList {
     }
 
     /**
+     * Attendance object of the specified index in the Attendance list will be marked
+     *
+     * @param index index in the attendance list to be marked
+     */
+    public void unmarkAtIndex(Index index) {
+        int indexToMark = index.getZeroBased();
+        if (indexToMark >= attendanceList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_ATTENDANCE_INDEX);
+        }
+        attendanceList.get(indexToMark).markAsAbsent();
+    }
+
+    /**
      * Removes the attendance at the given index.
      * @param index of attendance to be removed
      */
