@@ -46,15 +46,15 @@ public class EditTaskCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new TaskList(model.getTaskList()), new UserPrefs());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setTask(model.getSortedTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
-        Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
+        Index indexLastTask = Index.fromOneBased(model.getSortedTaskList().size());
+        Task lastTask = model.getSortedTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
         Task editedTask = taskInList.withName(VALID_TASK_NAME_FINISH_TP).withModule(VALID_MODULE_FINISH_TP)
@@ -76,7 +76,7 @@ public class EditTaskCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST, new EditTaskDescriptor());
-        Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST.getZeroBased());
+        Task editedTask = model.getSortedTaskList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -90,7 +90,7 @@ public class EditTaskCommandTest {
     public void execute_filteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST);
 
-        Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST.getZeroBased());
+        Task taskInFilteredList = model.getSortedTaskList().get(INDEX_FIRST.getZeroBased());
         Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_TASK_NAME_FINISH_TP).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST,
                 new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_FINISH_TP).build());
@@ -99,14 +99,14 @@ public class EditTaskCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new TaskList(model.getTaskList()), new UserPrefs());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setTask(model.getSortedTaskList().get(0), editedTask);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST.getZeroBased());
+        Task firstTask = model.getSortedTaskList().get(INDEX_FIRST.getZeroBased());
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND, descriptor);
 
@@ -115,7 +115,8 @@ public class EditTaskCommandTest {
 
     @Test
     public void execute_duplicateTaskFilteredList_failure() {
-        showTaskAtIndex(model, INDEX_FIRST);
+        // The list is sorted in reverse by default
+        showTaskAtIndex(model, INDEX_SECOND);
 
         // edit Task in filtered list into a duplicate in task list
         Task taskInList = model.getTaskList().getTaskList().get(INDEX_SECOND.getZeroBased());
@@ -127,7 +128,7 @@ public class EditTaskCommandTest {
 
     @Test
     public void execute_invalidTaskIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedTaskList().size() + 1);
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_FINISH_TP).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
 

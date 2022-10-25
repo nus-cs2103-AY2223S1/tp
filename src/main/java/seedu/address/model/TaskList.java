@@ -93,6 +93,15 @@ public class TaskList implements ReadOnlyTaskList {
         tasks.remove(key);
     }
 
+    /**
+     * Returns index of specified task in the list.
+     */
+    public int indexOf(Task task) {
+        requireNonNull(task);
+        assert hasTask(task);
+        return tasks.indexOf(task);
+    }
+
     //// util methods
 
     @Override

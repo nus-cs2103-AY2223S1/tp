@@ -28,7 +28,7 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
    * **`listc`** : Lists all contacts.
 
-   * **`add`**`add Finish homework by/2022-12-12 15:04 m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
+   * **`add`**`Finish homework by/tomorrow 5pm m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
 
    * **`delete`**`1` : Deletes the 1st task shown in the current list.
 
@@ -83,7 +83,7 @@ Format:
 `add {task_name} by/{deadline} m/{module_code}`
 
 Examples:
-* `add finish problem set 5 by/2022-01-02 15:04 m/CS2040S`
+* `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59 m/SEP`
 
 #### Editing a task: `edit`
@@ -153,11 +153,11 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc {name} e/ {email} p/ {phone_number} [m/ {module1} {module2}] [t/ {tag1}]`
+Format: `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module1} m/ {module2}] gh/ {github} tele/ {telegram}...`
 
 Examples:
-* `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S`
-* `addc Betsy Crowe e/ betsycrowe@gmail.com p/ 89985432 t/ friend`
+* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S gh/ bobby tele/ bmartin`
+* `addc n/ Betsy Crowe p/ 89985432 e/ betsycrowe@gmail.com gh/betsycrowe tele/croweybetty`
 
 #### Listing all contact : `listc`
 
@@ -250,7 +250,7 @@ _Details coming soon ..._
 | **Delete task**    | `del {task_index}` <br> e.g. `delete 5`                                                                                                                                       |
 | **Mark task**      | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                        |
 | **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                                    |
-| **Find tasks**     | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`                                                                                 |
+| **Find tasks**     | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`
 | **List tasks**     | `list` / `list time`                                                                                                                                                          |
 | **Add contact**    | `addc {name} e/ {email} p/ {phone_number} [m/{module1} {module2}] [t/{tag1}]` <br> e.g., `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S t/ friend` |
 | **Clear contacts** | `clear`                                                                                                                                                                       |
@@ -258,4 +258,4 @@ _Details coming soon ..._
 | **Edit contact**   | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                                     |
 | **Find contacts**  | `findc n/ {name}` <br> `findc m/ {module}`<br> `findc ts/ {task_index}` <br> e.g., `findc /n John`, `findc /m CS1231S`, `findc ts/ 3`                                         |
 | **List contacts**  | `listc`                                                                                                                                                                       |
-| **Help**           | `help`                                                                                                                                                                        |
+| **Help**           | `help`

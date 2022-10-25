@@ -1,4 +1,3 @@
-
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -62,7 +61,7 @@ public class FindTaskCommandTest {
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTaskList());
+        assertEquals(Collections.emptyList(), model.getSortedTaskList());
     }
 
     @Test
@@ -72,7 +71,7 @@ public class FindTaskCommandTest {
         FindTaskCommand command = new FindTaskCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FINISH_TUTORIAL, WATCH_LECTURE), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(WATCH_LECTURE, FINISH_TUTORIAL), model.getSortedTaskList());
     }
 
     /**

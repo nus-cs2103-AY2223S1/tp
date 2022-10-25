@@ -22,7 +22,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_MODULE + "{module}" + "\n"
             + "Example: " + COMMAND_WORD + " "
             + "Lab2" + " "
-            + PREFIX_DEADLINE + "2022-02-02 23:59" + " "
+            + PREFIX_DEADLINE + "tomorrow 23:59" + " "
             + PREFIX_MODULE + "CS2030S";
 
     public static final String TEMPLATE_SUCCESS = "New task added: %1$s";

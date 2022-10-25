@@ -98,6 +98,15 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns index of specified Task in the list.
+     */
+    public int indexOf(Task task) {
+        requireNonNull(task);
+        assert contains(task);
+        return internalList.indexOf(task);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {

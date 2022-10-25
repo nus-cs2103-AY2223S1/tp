@@ -4,15 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.DefaultComparator;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,6 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,6 +46,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        sortedTasks = new SortedList<>(filteredTasks, new DefaultComparator(this.taskList));
     }
 
     public ModelManager() {
@@ -191,21 +196,38 @@ public class ModelManager implements Model {
         taskList.setTask(target, editedTask);
     }
 
-    //=========== Filtered Task List Accessors ===============================================================
+    @Override
+    public int indexOf(Task task) {
+        requireNonNull(task);
+        assert hasTask(task);
+        return taskList.indexOf(task);
+    }
+
+    //=========== Sorted and Filtered Task List Accessors ==============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedTaskList}
      */
     @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
+    public ObservableList<Task> getSortedTaskList() {
+        return sortedTasks;
     }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedTaskList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        if (comparator instanceof DefaultComparator) {
+            sortedTasks.setComparator(new DefaultComparator(taskList));
+        } else {
+            sortedTasks.setComparator(comparator);
+        }
     }
 
     //=========== General operations =========================================================================
@@ -228,7 +250,8 @@ public class ModelManager implements Model {
                 && taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && sortedTasks.equals(other.sortedTasks);
     }
 
 }

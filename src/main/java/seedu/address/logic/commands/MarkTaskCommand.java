@@ -34,7 +34,7 @@ public class MarkTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = model.getSortedTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -42,7 +42,7 @@ public class MarkTaskCommand extends Command {
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
 
-        if (taskToMark.getStatus().getIsComplete()) {
+        if (taskToMark.isTaskComplete()) {
             throw new CommandException(MESSAGE_TASK_ALREADY_COMPLETED);
         }
 
