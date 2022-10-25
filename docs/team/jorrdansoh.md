@@ -13,12 +13,15 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to sort students [\#109](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/109)
   * What it does: Allows the user to sort students by different criteria (such as name or consultation date), in ascending or descending order.
-  * Justification: This feature improves the product because a user can choose how they want to view the students, and see if they have any upcoming consultations or Mastery Checks.  
+  * Justification: This feature improves the product because a user can choose how they want to view the students, and see if they have any upcoming consultations or Mastery Checks.
+  * Highlights: The current list of sorting criteria is: name, Telegram handle, consultation, Mastery Check, and grades.
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jorrdansoh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=jorrdansoh&tabRepo=AY2223S1-CS2103T-W15-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Created GitHub issues representing user stories
+  * Created GitHub Issues representing user stories
+  * Added tasks in GitHub Issues
   * Released trial JAR on GitHub
 
 * **Enhancements to existing features**:
@@ -30,13 +33,15 @@ Given below are my contributions to the project.
   * User Guide:
     * Updated documentation for the features `add` and `delete` [\#87](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/87)
     * Wrote documentation for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
+    * Updates command format notes [\#120](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/120)
   * Developer Guide:
+    * Formatted template for team use [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55) 
     * Added target user profile and acknowledgements [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59)
     * Added user stories and use case for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
     * Added implementation details and design considerations for the `sort` feature [\#109](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/109)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93), [\#110](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/110)
+  * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/93), [\#110](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/110), [\#121](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/121)
 
 * **Tools**:
   * Updated site-wide settings (Jekyll) for the project [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)

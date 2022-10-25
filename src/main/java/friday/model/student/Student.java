@@ -125,15 +125,15 @@ public class Student {
                     .append(getTelegramHandle());
         }
         if (!consultation.isEmpty()) {
-            builder.append("; ")
+            builder.append("; Consultation: ")
                     .append(getConsultation());
         }
         if (!masteryCheck.isEmpty()) {
-            builder.append("; ")
+            builder.append("; Mastery Check: ")
                     .append(getMasteryCheck());
         }
         if (!remark.isEmpty()) {
-            builder.append(" Remark: ")
+            builder.append("; Remark: ")
                     .append(getRemark());
         }
 

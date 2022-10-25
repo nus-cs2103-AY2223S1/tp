@@ -103,8 +103,8 @@ public class MasteryCheck implements Comparable<MasteryCheck> {
     @Override
     public String toString() {
         String value = isEmpty() ? "" : this.value.toString();
-        String isDone = this.isPassed ? "(Passed)" : " ";
-        return value + " " + isDone;
+        String isDone = this.isPassed ? " (Passed)" : "";
+        return value + isDone;
     }
 
     @Override

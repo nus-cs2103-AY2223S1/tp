@@ -51,6 +51,11 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private SortCommand parseMain(ArgumentMultimap argMultimap) throws ParseException {
         Comparator<Student> comparator = null;
+
+        assert argMultimap.size() < 1;
+
+        // Since there is only one prefix in argMultimap, only one of the following getComparator methods will
+        // return a proper comparator
         comparator = getNameComparator(argMultimap, comparator);
         comparator = getTelegramHandleComparator(argMultimap, comparator);
         comparator = getConsultationComparator(argMultimap, comparator);
@@ -171,10 +176,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     private Comparator<Student> getMidtermComparator(Order order) {
         return (x, y) -> order.equals(ORDER_ASCENDING)
-                ? x.getGradesList().getGrade("Mid-Term").score
-                .compareTo(y.getGradesList().getGrade("Mid-Term").score)
-                : y.getGradesList().getGrade("Mid-Term").score
-                .compareTo(x.getGradesList().getGrade("Mid-Term").score);
+                ? x.getGradesList().getGrade("Midterm").score
+                .compareTo(y.getGradesList().getGrade("Midterm").score)
+                : y.getGradesList().getGrade("Midterm").score
+                .compareTo(x.getGradesList().getGrade("Midterm").score);
     }
 
     private Comparator<Student> getPracticalComparator(ArgumentMultimap argMultimap,
