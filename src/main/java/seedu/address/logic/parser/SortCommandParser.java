@@ -2,13 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.SortCommand.MESSAGE_USAGE;
 import static seedu.address.logic.commands.SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD;
 import static seedu.address.logic.commands.SortCommand.MESSAGE_UNKNOWN_TYPE_KEYWORD;
+import static seedu.address.logic.commands.SortCommand.MESSAGE_USAGE;
 
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.SortCommand.ORDER;
-import seedu.address.logic.commands.SortCommand.TYPE;
+import seedu.address.logic.commands.SortCommand.Order;
+import seedu.address.logic.commands.SortCommand.Type;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -37,8 +37,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
-        TYPE type;
-        ORDER order;
+        Type type;
+        Order order;
         try {
             type = ParserUtil.parseSortType(typeString);
         } catch (ParseException pe) {

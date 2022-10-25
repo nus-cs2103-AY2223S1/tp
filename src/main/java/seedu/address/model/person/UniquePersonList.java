@@ -10,7 +10,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -100,6 +99,9 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    /**
+     * Sorts the {@code internalList} by the given {@code comparator}.
+     */
     public void sortPersons(Comparator<Person> comparator) {
         requireNonNull(comparator);
         ArrayList<Person> sortedList = replaceSelectionSort(internalList, comparator);
@@ -107,7 +109,8 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
 
-    private static ArrayList<Person> replaceSelectionSort(ObservableList<Person> observableList, Comparator<Person> comparator) {
+    private static ArrayList<Person> replaceSelectionSort(
+            ObservableList<Person> observableList, Comparator<Person> comparator) {
         ArrayList<Person> duplicatedList = new ArrayList<>();
         for (int i = 0; i < observableList.size(); i++) {
             duplicatedList.add(observableList.get(i));
