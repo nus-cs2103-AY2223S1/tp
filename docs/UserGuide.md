@@ -27,7 +27,7 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
 
    * **`project -a`**`n/Orbital` : Adds a project named `Orbital` to the Address Book.
 
-   * **`project -d`**`3` : Deletes the 3rd project shown in the current list.
+   * **`project -d`**`3` : Deletes the project with project id `3`.
 
    * **`clear`** : Deletes all projects.
 
@@ -69,42 +69,44 @@ Format: `help`
 
 ### Adding a project: `project -a`
 
-Adds a project to the application. A unique project ID will be automatically generated.
+Adds a project to the list of projects. A unique project ID will be automatically generated.
 
-Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME]…​`
+Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME] [cid/CLIENT_ID] [d/PROJECT_DEADLINE]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A project can have any number of tags (including 0)
-</div>
+* Adds the project to the `ProjectList`.
 
 Examples:
-* `project -a n/ProjectX`
-* `project -a n/ProjectY r/AgentX/ProjectY`
-
-### Listing all projects : `project -l`
-
-Shows a list of all projects.
-
-Format: `project -l`
+* `project -a n/Coding101` Adds a project with `PROJECT_NAME` Coding101 to the `ProjectList`.
+* `project -a n/MyFavProject r/Jeff/MyFavProject` Adds a project with `PROJECT_NAME` MyFavProject and 
+`USERNAME/REPO_NAME` Jeff/MyFavProject to the `ProjectList`.
+* `project -a n/AnotherProject cid/1` Adds a project with `PROJECT_NAME` AnotherProject to the `ProjectList` and adds a
+client with `CLIENT_ID` 1 to the project.
+* `project -a n/OneMoreProject cid/1 d/2022-03-07` Adds a project with `PROJECT_NAME` OneMoreProject and `PROJECT_DEADLINE`
+2022-03-07 to the `ProjectList` and adds a client with `CLIENT_ID` 1 to the project.
+* `project -a n/LastProject d/2023-10-01 r/Dave/LastProject cid/2` Adds a project with `PROJECT_NAME` LastProject and 
+`DEADLINE` 2023-10-01 and `USERNAME/REPO` Dave/LastProject to the `ProjectList` and adds a client with `CLIENT_ID` 2 
+to the project.
 
 ### Editing a project : `project -e`
 
-Edits an existing project.
+Edits a specified existing project.
 
-Format: `project -e PROJECT_ID [n/PROJECT_NAME] [r/REPO_URL]…​`
+Format: `project -e pid/PROJECT_ID [n/PROJECT_NAME] [r/USERNAME/REPO] [cid/CLIENT_ID] [d/DEADLINE]…​`
 
 * Edits the project with the specified `PROJECT_ID`. The ID refers to the unique ID generated upon adding a project.
   The ID **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the project will be removed i.e. adding of tags is not cumulative.
-* You can remove all the project’s tags by typing `t/` without
-    specifying any tags after it.
 
 Examples:
-*  `project -e 1 n/ProjectX` Edits the project with `PROJECT_ID` 1 to be renamed to ProjectX.
-*  `project -e 2 r/AgentY/ProjectY` Edits the project with `PROJECT_ID` 2 to be associated with new repository link.
-*  `project -e 3 n/ProjectZ r/AgentZ/ProjectZ` Edits the project with `PROJECT_ID` 3.
+* `project -e pid/1 n/FirstProject` Edits the project with `PROJECT_ID` 1 to have the new `PROJECT_NAME` FirstProject.
+* `project -e pid/2 r/James/SecondProject` Edits the project with `PROJECT_ID` 2 to have the new `USERNAME/REPO` 
+James/SecondProject.
+* `project -e pid/3 cid/1 d/2021-12-03` Edits the project with `PROJECT_ID` 3 to have the new client with `CLIENT_ID` 1 
+and new `DEADLINE` 2021-12-03.
+* `project -e pid/4 n/ThirdProject d/2022-02-02 r/Jackson/ThirdProject cid/2` Edits the project with `PROJECT_ID` 4 to 
+have the new `PROJECT_NAME` ThirdProject, new `DEADLINE` 2022-02-02, new `USERNAME/REPO` Jackson/ThirdProject and new 
+client with `CLIENT_ID` 2.
 
 ### Deleting a project : `project -d`
 
@@ -117,6 +119,12 @@ Format: `project -d PROJECT_ID`
 
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
+
+### Listing all projects : `project -l`
+
+Shows a list of all projects.
+
+Format: `project -l`
 
 ### Tagging a client : `client -t`
 
