@@ -93,7 +93,5 @@ public class PersistentUninurseBook {
         return other == this // short circuit if same object
                 || (other instanceof PersistentUninurseBook // instanceof handles nulls
                 && workingCopy.equals(((PersistentUninurseBook) other).workingCopy));
-                //&& uninurseBookVersions.equals(((PersistentUninurseBook) other).uninurseBookVersions)
-                //&& currentVersion == ((PersistentUninurseBook) other).currentVersion);
     }
 }
