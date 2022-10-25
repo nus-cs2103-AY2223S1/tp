@@ -423,7 +423,7 @@ JARVIS data is saved in 3 JSON files:
 Advanced users are welcome to update data directly by editing the data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, JARVIS will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, JARVIS will discard all data and start with empty data files at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
