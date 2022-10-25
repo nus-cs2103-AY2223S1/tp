@@ -38,7 +38,7 @@ public class MailCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a MailCommand to email tutors.
+     * Creates a MailCommand to email all tutors.
      */
     public MailCommand(String target) {
         this.target = target;
@@ -46,6 +46,9 @@ public class MailCommand extends Command {
         this.targetIndex = Index.fromZeroBased(0);
     }
 
+    /**
+     * Creates a MailCommand to email the tutor at {@code targetIndex}.
+     */
     public MailCommand(Index targetIndex) {
         this.target = "";
         this.isAll = false;
