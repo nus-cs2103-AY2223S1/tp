@@ -87,10 +87,10 @@ public class EditCommand extends Command {
         }
 
         // editing supplier's SupplyItem details
-        boolean inventoryContainsSupplier = model.hasSupplyItemSuppliedBy(editedPerson);
+        boolean inventoryContainsSupplier = model.hasSupplyItemSuppliedBy(personToEdit);
         if (inventoryContainsSupplier) {
             CommandResult editItemResult =
-                    new EditItemSupplierCommand(editedPerson).execute(model);
+                    new EditItemSupplierCommand(personToEdit, editedPerson).execute(model);
         }
 
         model.setPerson(personToEdit, editedPerson);

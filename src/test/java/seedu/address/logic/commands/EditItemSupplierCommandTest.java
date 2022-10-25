@@ -32,10 +32,26 @@ public class EditItemSupplierCommandTest {
 
     @Test
     public void execute_supplierSupplyingItemNameChange_success() {
+        Person personToEdit = new PersonBuilder(ALICE_SUPPLIER).build();
         Person editedPerson = new PersonBuilder(ALICE_SUPPLIER).withName("Alicia").build();
         SupplyItem expectedSupplyItem = new SupplyItem(GINGER.getName(), GINGER.getCurrentStock(),
                 GINGER.getMinStock(), editedPerson, GINGER.getTags());
-        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(editedPerson);
+        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(personToEdit, editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new UserPrefs(), new TaskList(), getTypicalInventory());
+        expectedModel.setSupplyItem(expectedSupplyItem, INDEX_SECOND_SUPPLY_ITEM);
+        String expectedMessage = EditItemSupplierCommand.MESSAGE_EDIT_ITEM_SUCCESS;
+
+        assertCommandSuccess(editItemSupplierCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_supplierSupplyingItemNameAndPhoneChange_success() {
+        Person personToEdit = new PersonBuilder(ALICE_SUPPLIER).build();
+        Person editedPerson = new PersonBuilder(ALICE_SUPPLIER).withName("Alicia").withPhone("61231234").build();
+        SupplyItem expectedSupplyItem = new SupplyItem(GINGER.getName(), GINGER.getCurrentStock(),
+                GINGER.getMinStock(), editedPerson, GINGER.getTags());
+        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(personToEdit, editedPerson);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), new TaskList(), getTypicalInventory());
         expectedModel.setSupplyItem(expectedSupplyItem, INDEX_SECOND_SUPPLY_ITEM);
@@ -46,10 +62,11 @@ public class EditItemSupplierCommandTest {
 
     @Test
     public void execute_supplierSupplyingItemItemChange_success() {
+        Person personToEdit = new PersonBuilder(BENSON_SUPPLIER).build();
         Person editedPerson = new PersonBuilder(BENSON_SUPPLIER).withItem("Veal").build();
         SupplyItem expectedSupplyItem = new SupplyItem("Veal", BEEF.getCurrentStock(),
                 BEEF.getMinStock(), editedPerson, BEEF.getTags());
-        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(editedPerson);
+        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(personToEdit, editedPerson);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), new TaskList(), getTypicalInventory());
         expectedModel.setSupplyItem(expectedSupplyItem, INDEX_THIRD_SUPPLY_ITEM);
@@ -60,10 +77,11 @@ public class EditItemSupplierCommandTest {
 
     @Test
     public void execute_supplierSupplyingItemPriceChange_success() {
+        Person personToEdit = new PersonBuilder(CARL_SUPPLIER).build();
         Person editedPerson = new PersonBuilder(CARL_SUPPLIER).withPrice("$1.20").build();
         SupplyItem expectedSupplyItem = new SupplyItem(LAMB.getName(), LAMB.getCurrentStock(),
                 LAMB.getMinStock(), editedPerson, LAMB.getTags());
-        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(editedPerson);
+        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(personToEdit, editedPerson);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), new TaskList(), getTypicalInventory());
         expectedModel.setSupplyItem(expectedSupplyItem, INDEX_FOURTH_SUPPLY_ITEM);
@@ -74,11 +92,12 @@ public class EditItemSupplierCommandTest {
 
     @Test
     public void execute_supplierSupplyingItemAllChange_success() {
+        Person personToEdit = new PersonBuilder(ALICE_SUPPLIER).build();
         Person editedPerson = new PersonBuilder(ALICE_SUPPLIER)
                 .withName("Alicia").withItem("Garlic").withPrice("$1.20").build();
         SupplyItem expectedSupplyItem = new SupplyItem("Garlic", GINGER.getCurrentStock(),
                 GINGER.getMinStock(), editedPerson, GINGER.getTags());
-        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(editedPerson);
+        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(personToEdit, editedPerson);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new UserPrefs(), new TaskList(), getTypicalInventory());
         expectedModel.setSupplyItem(expectedSupplyItem, INDEX_SECOND_SUPPLY_ITEM);
@@ -89,8 +108,9 @@ public class EditItemSupplierCommandTest {
 
     @Test
     public void execute_duplicateSupplyItemItemChange_failure() {
+        Person personToEdit = new PersonBuilder(ALICE_SUPPLIER).build();
         Person editedPerson = new PersonBuilder(ALICE_SUPPLIER).withItem("Beef").build();
-        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(editedPerson);
+        EditItemSupplierCommand editItemSupplierCommand = new EditItemSupplierCommand(personToEdit, editedPerson);
         String expectedMessage = EditItemSupplierCommand.MESSAGE_DUPLICATE_ITEM;
 
         assertCommandFailure(editItemSupplierCommand, model, expectedMessage);
