@@ -163,6 +163,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.remove(key);
     }
 
+    public void markReminder(Reminder target) {
+        reminders.mark(target);
+    }
+
+    public void unmarkReminder(Reminder target) {
+        reminders.unmark(target);
+    }
 
     //// tutorial-level operations
 
@@ -304,4 +311,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }

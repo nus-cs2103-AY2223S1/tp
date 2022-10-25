@@ -182,4 +182,9 @@ public interface Model {
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
+    void markReminder(Reminder reminderToMark);
+
+    boolean reminderIsMarked(Reminder reminderToMark);
+
+    void unmarkReminder(Reminder reminderToUnmark);
 }

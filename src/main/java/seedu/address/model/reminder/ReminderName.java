@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Reminder's name in ModQuik.
- * Guarantees: immutable;
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class ReminderName {
 

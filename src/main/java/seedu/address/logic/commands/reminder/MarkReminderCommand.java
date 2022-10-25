@@ -1,5 +1,4 @@
 package seedu.address.logic.commands.reminder;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -13,22 +12,23 @@ import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Deletes a reminder identified using it's displayed index from the address book.
+ * Marks a reminder in ModQuik as done.
  */
-public class DeleteReminderCommand extends Command {
+public class MarkReminderCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete reminder";
+    public static final String COMMAND_WORD = "mark reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the reminder identified by the index number used in the displayed reminder list.\n"
+            + ": Marks the remind identified by the index number used in the reminder list as done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Reminder: %1$s";
+    public static final String MESSAGE_MARK_REMINDER_SUCCESS = "Reminder is marked as done: %1$s";
+    public static final String MESSAGE_REMINDER_ALREADY_MARKED = "You have already completed this reminder.";
 
     private final Index targetIndex;
 
-    public DeleteReminderCommand(Index targetIndex) {
+    public MarkReminderCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -41,15 +41,20 @@ public class DeleteReminderCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
         }
 
-        Reminder reminderToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteReminder(reminderToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_REMINDER_SUCCESS, reminderToDelete));
+        Reminder reminderToMark = lastShownList.get(targetIndex.getZeroBased());
+        if (model.reminderIsMarked(reminderToMark)) {
+            throw new CommandException(MESSAGE_REMINDER_ALREADY_MARKED);
+        }
+
+        model.markReminder(reminderToMark);
+        return new CommandResult(String.format(MESSAGE_MARK_REMINDER_SUCCESS, reminderToMark));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteReminderCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteReminderCommand) other).targetIndex)); // state check
+                || (other instanceof MarkReminderCommand // instanceof handles nulls
+                && targetIndex.equals(((MarkReminderCommand) other).targetIndex)); // state check
     }
+
 }
