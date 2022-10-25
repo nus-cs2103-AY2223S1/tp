@@ -36,9 +36,9 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
         AddressContainsKeywordsPredicate addressFirstPredicate =
-                new AddressContainsKeywordsPredicate(Collections.singletonList("121 Baker Street #100-@-99"))
+                new AddressContainsKeywordsPredicate(Collections.singletonList("121 Baker Street #100-@-99"));
         AddressContainsKeywordsPredicate addressSecondPredicate =
-                new AddressContainsKeywordsPredicate(Collections.singletonList("(00 - 12379623) Prinsep :1 Lane"))
+                new AddressContainsKeywordsPredicate(Collections.singletonList("(00 - 12379623) Prinsep :1 Lane"));
         ClassContainsKeywordsPredicate classOnePredicate =
                 new ClassContainsKeywordsPredicate(Collections.singletonList("2022-10-10"));
         NameContainsKeywordsPredicate classTwoPredicate =
@@ -95,6 +95,16 @@ public class FindCommandTest {
     }
 
     @Test
+    public void execute_zeroAddressKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate("    ");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
     public void execute_zeroClassKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ClassContainsKeywordsPredicate predicate = prepareClassPredicate("2022-01-01");
@@ -119,6 +129,13 @@ public class FindCommandTest {
      */
     private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code AddressContainsKeywordsPredicate}.
+     */
+    private AddressContainsKeywordsPredicate prepareAddressPredicate(String userInput) {
+        return new AddressContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**
