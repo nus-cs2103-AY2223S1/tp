@@ -3,6 +3,7 @@ package tracko.model.order;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import tracko.model.item.Item;
+import tracko.model.item.Price;
 import tracko.model.item.Quantity;
 
 /**
@@ -12,6 +13,7 @@ public class ItemQuantityPair {
 
     private final Item item;
     private Quantity quantity;
+    private Price itemPrice;
 
     /**
      *  * Constructs an ItemQuantityPair with the given Item and Quantity.
@@ -22,6 +24,7 @@ public class ItemQuantityPair {
         requireAllNonNull(item, quantity);
         this.item = item;
         this.quantity = quantity;
+        this.itemPrice = calculatePrice();
     }
 
     /**
@@ -64,6 +67,12 @@ public class ItemQuantityPair {
      */
     public Integer getQuantityValue() {
         return quantity.getQuantity();
+    }
+
+    public Price calculatePrice() {
+        Price singleItemPrice = this.item.getSellPrice();
+        double itemPrice = singleItemPrice.getPrice() * quantity.getQuantity();
+        return new Price(itemPrice);
     }
 
     @Override
