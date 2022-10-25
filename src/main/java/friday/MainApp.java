@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s FRIDAY and {@code userPrefs}. <br>
+     * The data from the sample FRIDAY will be used instead if {@code storage}'s FRIDAY is not found,
+     * or an empty FRIDAY will be used instead if errors occur when reading {@code storage}'s FRIDAY.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyFriday> fridayOptional;
@@ -83,10 +83,10 @@ public class MainApp extends Application {
             }
             initialData = fridayOptional.orElseGet(SampleDataUtil::getSampleFriday);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty Friday");
             initialData = new Friday();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Friday");
             initialData = new Friday();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Friday");
             initializedPrefs = new UserPrefs();
         }
 

@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-// import friday.commons.exceptions.DataConversionException;
+import friday.commons.exceptions.DataConversionException;
 import friday.model.Friday;
 import friday.model.ReadOnlyFriday;
 import friday.testutil.TypicalStudents;
@@ -42,7 +42,6 @@ public class JsonFridayStorageTest {
         assertFalse(readFriday("NonExistentFile.json").isPresent());
     }
 
-    /*
     @Test
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataConversionException.class, () -> readFriday("notJsonFormatFriday.json"));
@@ -57,11 +56,11 @@ public class JsonFridayStorageTest {
     public void readFriday_invalidAndValidStudentFriday_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readFriday("invalidAndValidStudentFriday.json"));
     }
-    */
+
 
     @Test
     public void readAndSaveFriday_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempFriday.json");
         Friday original = TypicalStudents.getTypicalFriday();
         JsonFridayStorage jsonFridayStorage = new JsonFridayStorage(filePath);
 
