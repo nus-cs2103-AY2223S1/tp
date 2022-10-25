@@ -35,15 +35,13 @@ public class CommandBox extends UiPart<Region> {
     // command log navigation
     private final List<String> commandLog;
     private int commandLogPointer;
-    private String currentText;
 
-    // autocomplete
-    // suggestions for address book commands (excludes task related commands)
-    private final SortedSet<String> suggestionsAb;
-    // suggestions for task related commands
-    private final SortedSet<String> suggestionsTasks;
+    // suggestions (excludes task related commands)
+    private final SortedSet<String> suggestionsMain;
+    // task related suggestions
+    private final SortedSet<String> suggestionsTask;
     // pop up used to select a suggestion
-    private final ContextMenu suggestionsPopup;
+    private final ContextMenu popupMenu;
 
     @FXML
     private TextField commandTextField;
@@ -55,39 +53,35 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         commandLog = new ArrayList<>();
-        suggestionsPopup = new ContextMenu();
-        suggestionsAb = new TreeSet<>(
+        popupMenu = new ContextMenu();
+        suggestionsMain = new TreeSet<>(
             Arrays.asList("add", "clear", "delete", "edit", "exit", "find", "help", "list", "task"));
-        suggestionsTasks = new TreeSet<>(
+        suggestionsTask = new TreeSet<>(
             Arrays.asList("add", "assign", "deadline", "delete", "edit", "list", "mark", "unmark"));
-
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
-        addEvents();
     }
 
     /**
-     * Sets focus on the CommandTextField.
+     * Load objects and data.
      */
-    public void focus() {
-        commandTextField.requestFocus();
+    private void load() {
+        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
+        // prevents the suggestions popup from disappearing when user presses tab
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.TAB) {
+                if (!isCommandTextFieldEmpty()) {
+                    event.consume();
+                }
+            }
+        });
     }
-
 
     /**
      * Add events to commandTextField.
      */
     private void addEvents() {
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
-        // prevents the suggestions popup from disappearing when user presses tab.
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.TAB) {
-                // Allow Tab key to shift focus to other GUI elements
-                if (suggestionsPopup.isShowing()) {
-                    suggestionsPopup.hide();
-                }
-            }
-        });
+
     }
 
     /**
@@ -95,17 +89,17 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        String commandText = commandTextField.getText();
-        if (commandText.equals("")) {
+        // Guard: If command text field is empty, no command is entered
+        if (isCommandTextFieldEmpty()) {
             return;
         }
 
         try {
-            commandLog.add(commandText);
+            commandLog.add(getCommandText());
             commandLogPointer = commandLog.size();
 
             commandTextField.setText("");
-            commandExecutor.execute(commandText);
+            commandExecutor.execute(getCommandText());
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -117,95 +111,96 @@ public class CommandBox extends UiPart<Region> {
      * If current text matches the latest command and DOWN key is pressed, nothing happens.
      */
     private void handleNavigationKeysPressed(KeyEvent event) {
-        // TODO: Update this comment
-        if (suggestionsPopup.isShowing()) {
-            suggestionsPopup.hide();
+
+        // Reset the popup
+        if (popupMenu.isShowing()) {
+            popupMenu.hide();
             return;
         }
 
-        // Guard: If there are no commands, nothing happens
-        if (commandLog.size() == 0) {
-            return;
-        }
-
-        if (event.getCode() == KeyCode.UP) {
+        // Checks if either command log navigation key are pressed
+        if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
             event.consume();
 
-            // Guard: If the text field shows the earliest command, nothing changes
-            if (commandLogPointer == 0) {
+            // Guard: Prevents the user from navigating if there is text in the command text field.
+            if (!getCommandText().isEmpty()) {
                 return;
             }
 
-            // Text in the commandTextField should be saved, so the user does not need to type it in again
-            if (commandLogPointer == commandLog.size()) {
-                currentText = commandTextField.getText();
-            }
-
-            commandTextField.setText(commandLog.get(--commandLogPointer));
-        } else if (event.getCode() == KeyCode.DOWN) {
-            event.consume();
-            commandLogPointer += 1;
-
-            // If text field shows the latest command, nothing changes
-            if (commandLogPointer >= commandLog.size()) {
-                commandLogPointer = commandLog.size();
-                commandTextField.setText(currentText == null ? "" : currentText);
+            // Guard: If there are no commands, nothing happens
+            if (commandLog.size() == 0) {
                 return;
             }
 
-            commandTextField.setText(commandLog.get(commandLogPointer));
-        } else {
-            // do not do anything if any other key is pressed
-            return;
-        }
+            if (event.getCode() == KeyCode.UP) {
 
-        commandTextField.positionCaret(commandTextField.getText().length());
+                // Guard: If the text field shows the earliest command, UP arrow does nothing
+                if (commandLogPointer == 0) {
+                    return;
+                }
+
+                commandTextField.setText(commandLog.get(--commandLogPointer));
+            } else if (event.getCode() == KeyCode.DOWN) {
+                commandLogPointer += 1;
+
+                // If text field shows the latest command, nothing changes
+                if (commandLogPointer >= commandLog.size()) {
+                    commandLogPointer = commandLog.size();
+                    return;
+                }
+
+                commandTextField.setText(commandLog.get(commandLogPointer));
+            } else {
+                // do not do anything if any other key is pressed
+                return;
+            }
+
+            commandTextField.positionCaret(commandTextField.getText().length());
+        }
     }
 
     // Detects text changes in commandTextField to update suggestions popup
     @FXML
     private void handleTextChanged() {
-        String currentText = commandTextField.getText();
-
         // Guard: Stop if no text in command text field
-        if (currentText.isEmpty()) {
-            suggestionsPopup.hide();
+        if (isCommandTextFieldEmpty()) {
+            popupMenu.hide();
             return;
         }
 
         // "/" requests focus on the CommandTextField. Since it is an invalid starting command text, we can clear it.
-        if (commandTextField.getText().length() == 1 && commandTextField.getText().equals("/")) {
+        if (getCommandText().length() == 1 && getCommandText().equals("/")) {
             commandTextField.clear();
         }
 
         // Guard: If suggestions do not match text in command text field, stop
-        if (suggestionsAb.size() == 0 || suggestionsTasks.size() == 0) {
+        if (suggestionsMain.size() == 0 || suggestionsTask.size() == 0) {
             return;
         }
 
         List<String> searchResult;
 
         // Populate suggestions popup with task related commands
-        if (currentText.startsWith(TaskCommand.COMMAND_WORD + " ")
-            || currentText.startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
-            String resultFrom = currentText.substring(currentText.indexOf(" ")).stripLeading();
-            searchResult = new LinkedList<>(suggestionsTasks
+        if (getCommandText().startsWith(TaskCommand.COMMAND_WORD + " ")
+            || getCommandText().startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
+            String resultFrom = getCommandText().substring(getCommandText().indexOf(" ")).stripLeading();
+            searchResult = new LinkedList<>(suggestionsTask
                 .subSet(resultFrom, resultFrom + Character.MAX_VALUE));
             // Guard: If the text in command text field matches the only suggestion, hide the popup
             if (searchResult.size() == 1 && resultFrom.equalsIgnoreCase(searchResult.get(0))) {
                 return;
             }
         } else {
-            searchResult = new LinkedList<>(suggestionsAb
-                .subSet(currentText, currentText + Character.MAX_VALUE));
-            if (searchResult.size() == 1 && currentText.equalsIgnoreCase(searchResult.get(0))) {
+            searchResult = new LinkedList<>(suggestionsMain
+                .subSet(getCommandText(), getCommandText() + Character.MAX_VALUE));
+            if (searchResult.size() == 1 && getCommandText().equalsIgnoreCase(searchResult.get(0))) {
                 return;
             }
         }
 
         populatePopup(searchResult);
-        suggestionsPopup.show(
-            getRoot(), Side.BOTTOM, 14 + currentText.length() * 7, -8);
+        popupMenu.show(
+            getRoot(), Side.BOTTOM, 14 + getCommandText().length() * 7, -8);
     }
 
     /**
@@ -213,29 +208,49 @@ public class CommandBox extends UiPart<Region> {
      * @param searchResult set of matching strings
      */
     private void populatePopup(List<String> searchResult) {
-        String currentText = commandTextField.getText();
         List<CustomMenuItem> menuItems = new LinkedList<>();
         for (final String result : searchResult) {
             Label entryLabel = new Label(result);
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             item.setOnAction(actionEvent -> {
                 // Checks if user is typing a task command
-                if (currentText.startsWith(TaskCommand.COMMAND_WORD + " ")
-                    || currentText.startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
+                if (getCommandText().startsWith(TaskCommand.COMMAND_WORD + " ")
+                    || getCommandText().startsWith(TaskCommand.COMMAND_WORD_ALIAS + " ")) {
                     // Keep the front part (i.e. 'task or 't') the same
-                    commandTextField.setText(currentText.split(" ")[0] + " " + result);
+                    commandTextField.setText(getCommandText().split(" ")[0] + " " + result);
                 } else {
                     // Autocomplete the user's current command
                     commandTextField.setText(result);
                 }
-                commandTextField.positionCaret(currentText.length());
+                commandTextField.positionCaret(getCommandText().length());
                 // Hide the popup once the autocomplete happens
-                suggestionsPopup.hide();
+                popupMenu.hide();
             });
             menuItems.add(item);
         }
-        suggestionsPopup.getItems().clear();
-        suggestionsPopup.getItems().addAll(menuItems);
+        popupMenu.getItems().clear();
+        popupMenu.getItems().addAll(menuItems);
+    }
+
+    /**
+     * Sets focus on the CommandTextField.
+     */
+    public void focus() {
+        commandTextField.requestFocus();
+    }
+
+    /**
+     * Gets the current text in the command text field.
+     */
+    private String getCommandText() {
+        return commandTextField.getText();
+    }
+
+    /**
+     * Check if command text field is empty
+     */
+    private boolean isCommandTextFieldEmpty() {
+        return commandTextField.getText().isEmpty();
     }
 
     /**
