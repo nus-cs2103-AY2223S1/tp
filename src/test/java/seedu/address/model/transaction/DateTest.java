@@ -47,6 +47,7 @@ class DateTest {
         assertTrue(Date.isValidDate("29/02/2004")); // leap year
     }
 
+
     @Test
     public void toString_returnsValueInName() {
         String value = "22/09/2000";
@@ -61,6 +62,7 @@ class DateTest {
         Date date = new Date(value);
         Date otherDate = new Date(value);
         assertEquals(date, otherDate);
+        assertEquals(date.getLocalDate(), otherDate.getLocalDate());
     }
 
     @Test

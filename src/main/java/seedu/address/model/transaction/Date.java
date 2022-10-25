@@ -21,7 +21,7 @@ public class Date {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
     public final String date;
-    public final LocalDate localDate;
+    private final LocalDate localDate;
     private final String unformattedDate;
 
 
@@ -80,6 +80,10 @@ public class Date {
         return other == this // short circuit if same object
                 || (other instanceof Date // instanceof handles nulls
                 && date.equals(((Date) other).date)); // state check
+    }
+
+    public LocalDate getLocalDate() {
+        return this.localDate;
     }
 
 

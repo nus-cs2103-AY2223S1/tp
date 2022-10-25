@@ -194,6 +194,6 @@ class TransactionLogTest {
         list4.add(SELL_PAPAYA);
         assertNotEquals(log.getLatestTransactionList(), list4);
 
-
     }
+
 }
