@@ -26,7 +26,7 @@ public class MajorContainsKeywordsPredicate implements Predicate<Applicant> {
                 .map(major -> major.major.split("\\s+"))
                 .collect(Collectors.toSet());
 
-        ArrayList<String> partialMajorKeywords = new ArrayList<>();
+        List<String> partialMajorKeywords = new ArrayList<>();
         majors.forEach(x -> partialMajorKeywords.addAll(List.of(x)));
 
         return partialMajorKeywords.stream()
