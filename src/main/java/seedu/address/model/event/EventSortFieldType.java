@@ -5,7 +5,7 @@ package seedu.address.model.event;
  */
 public enum EventSortFieldType {
 
-    NAME("name"),
+    EVENT_TITLE("event title"),
     DATE("date"),
     NO_FIELD("no field");
 

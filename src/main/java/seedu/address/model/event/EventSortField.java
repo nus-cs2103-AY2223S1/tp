@@ -13,15 +13,15 @@ import java.util.Objects;
  */
 public class EventSortField {
 
-    public static final String MESSAGE_CONSTRAINTS = "Event sort field must either be n, N, d or D.";
+    public static final String MESSAGE_CONSTRAINTS = "Event sort field must either be e, E, d or D.";
 
     // Accept exactly one upper or lower case n or d
-    public static final String VALIDATION_REGEX = "[nNdD]{1}";
+    public static final String VALIDATION_REGEX = "[eEdD]{1}";
 
 
     // Comparator logic
     private static final Comparator<Event> SORT_BY_NO_FIELD = (e1, e2) -> 0;
-    private static final Comparator<Event> SORT_BY_NAME = (e1, e2)
+    private static final Comparator<Event> SORT_BY_EVENT_TITLE = (e1, e2)
             -> e1.getEventTitle().compareToIgnoreCase(e2.getEventTitle());
 
     private static final Comparator<Event> SORT_BY_DATE = new Comparator<Event>() {
@@ -107,9 +107,9 @@ public class EventSortField {
 
         switch(sortFieldLetter) {
 
-        case "n":
-        case "N":
-            return new EventSortField(EventSortFieldType.NAME, SORT_BY_NAME);
+        case "e":
+        case "E":
+            return new EventSortField(EventSortFieldType.EVENT_TITLE, SORT_BY_EVENT_TITLE);
 
         case "d":
         case "D":
