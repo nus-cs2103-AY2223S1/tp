@@ -84,12 +84,12 @@ public class LinkCommand extends Command {
             throw new CommandException(String.format(
                     MESSAGE_LINKED_PERSON,
                     personToLink.getName(),
-                    model.findInternshipById(personToLink.getInternshipId()).getCompanyName()));
+                    model.findInternshipById(personToLink.getInternshipId()).getDisplayName()));
         } else if (internshipToLink.getContactPersonId() != null) {
             throw new CommandException(String.format(
                     MESSAGE_LINKED_INTERNSHIP,
                     model.findPersonById(internshipToLink.getContactPersonId()).getName(),
-                    internshipToLink.getCompanyName()));
+                    internshipToLink.getDisplayName()));
         }
 
         Person linkedPerson = new Person(
@@ -124,7 +124,7 @@ public class LinkCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, linkedPerson.getName(), linkedInternship.getCompanyName()));
+                String.format(MESSAGE_SUCCESS, linkedPerson.getName(), linkedInternship.getDisplayName()));
     }
 
     @Override
