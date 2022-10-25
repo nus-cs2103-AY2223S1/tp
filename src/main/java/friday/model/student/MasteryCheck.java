@@ -100,6 +100,13 @@ public class MasteryCheck implements Comparable<MasteryCheck> {
         this.isPassed = true;
     }
 
+    /**
+     * Unmarks the given Mastery Check.
+     */
+    public void unmark() {
+        this.isPassed = false;
+    }
+
     @Override
     public String toString() {
         String value = isEmpty() ? "" : this.value.toString();
