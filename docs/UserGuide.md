@@ -5,11 +5,21 @@ title: User Guide
 
 # User Guide
 
-Watson is a **desktop app for teachers that helps with a multitude of tasks, such as handling student particulars, sorting students with different filters, and more. It adopts a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Watson can retrieve and handle the data of students faster than other GUI-based applications.
+Welcome to the **Watson** user guide! This guide covers all of Watson's features and how to use them.
+Throughout this guide, you may see some words in _italics_.
+These terms can be found in the [Glossary](#glossary).
+
+Watson is a **desktop app for teachers that helps with a multitude of tasks,
+such as handling student particulars, sorting students with different filters,
+and more.** It adopts a _Command Line Interface_ (CLI)
+while still having the benefits of a _Graphical User Interface_ (GUI).
+If you can type fast, Watson can retrieve and handle the data of students
+faster than other GUI-based applications.
 
 * Table of Contents
+    * [Glossary](#glossary)
     * [Quick Start](#quick-start)
-    * [Features](#features) `(Version 1.2)`
+    * [Features](#features) `(Version 1.3)`
         * Listing all persons: [`list`](#listing-all-persons--list)
         * Adding a person: [`add`](#adding-a-person-add)
         * Editing a person: [`edit`](#editing-a-person--edit)
@@ -20,11 +30,19 @@ Watson is a **desktop app for teachers that helps with a multitude of tasks, suc
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+* **CLI** : Command Line Interface
+* **GUI** : Graphical User Interface
+* **Main Window** : The main window of the application that shows the list of students.
+* **Home Folder** : The folder where Watson will store student data.
+
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer 
+(Not sure how? Check out [this](https://www.java.com/en/download/help/version_manual.html) guide).
 
-2. Download the latest `watson.jar` from here (Hyperlink will be added in the future).
+2. Download the latest `watson.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-1/tp/releases/tag/v.1.3.trial).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Watson.
 
@@ -34,11 +52,11 @@ Watson is a **desktop app for teachers that helps with a multitude of tasks, suc
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all persons in Watson.
+    * **`list`** : Lists all students in Watson.
 
-    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a person named `John Doe` to Watson.
+    * **`add`**`id/12345678 n/John Doe p/98765432 a/John street, #01-01` : Adds a student named `John Doe` to Watson, with `p`hone number 98765432 and `a`ddress "John Street, #01-01".
 
-    * **`delete`**`id/12345678` : Deletes the person with `ID number 12345678` from Watson.
+    * **`delete`**`id/12345678` : Deletes the student with `ID number 12345678` from Watson.
 
 6. Refer to the [Features](#features) below for details of each command.
 
