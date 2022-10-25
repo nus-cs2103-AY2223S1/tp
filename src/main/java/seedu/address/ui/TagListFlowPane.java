@@ -28,6 +28,9 @@ public class TagListFlowPane extends UiPart<Region> {
      */
     public TagListFlowPane(ObservableList<Tag> tagList) {
         super(FXML);
+        tagList.stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         tagList.addListener(new ListChangeListener<Tag>() {
             @Override
             public void onChanged(Change<? extends Tag> c) {

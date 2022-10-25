@@ -80,6 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
+        setTags(newData.getTagList());
 
         if (newData.isSortByDeadline()) {
             sortByDeadline();
@@ -130,7 +131,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons, "
-                + tasks.asUnmodifiableObservableList().size() + " tasks";
+                + tasks.asUnmodifiableObservableList().size() + " tasks, "
+                + tags.asUnmodifiableObservableList().size() + " tags";
         // TODO: refine later
     }
 
