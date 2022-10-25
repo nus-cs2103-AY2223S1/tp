@@ -307,7 +307,7 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 
 The following activity diagram summarizes what happens when a user enters a `markRoomsUnclean` command.
 
-![MarkRoomsUncleanActivityDiagram](images/markRoomsUncleanActivityDiagram.png)
+![MarkRoomsUncleanActivityDiagram](images/MarkRoomsUncleanActivityDiagram.png)
 
 #### Design Considerations:
 **Aspect: The scope at which the command changes all guests' isRoomClean statuses**

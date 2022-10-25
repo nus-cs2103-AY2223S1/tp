@@ -94,6 +94,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSameRoom(Guest guest) {
+        requireNonNull(guest);
+        return guestBook.hasSameRoom(guest);
+    }
+
+    @Override
     public void deleteGuest(Guest target) {
         guestBook.removeGuest(target);
     }

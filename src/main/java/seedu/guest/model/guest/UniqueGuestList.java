@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.guest.model.guest.exceptions.DuplicateGuestException;
 import seedu.guest.model.guest.exceptions.GuestNotFoundException;
+import seedu.guest.model.guest.exceptions.RoomOccupiedException;
 
 /**
  * A list of guests that enforces uniqueness between its elements and does not allow nulls.
@@ -37,6 +38,14 @@ public class UniqueGuestList implements Iterable<Guest> {
     }
 
     /**
+     * Returns true if the list contains an equivalent guest with the same room as the given argument.
+     */
+    public boolean hasSameRoom(Guest toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameRoom);
+    }
+
+    /**
      * Adds a guest to the list.
      * The guest must not already exist in the list.
      */
@@ -44,6 +53,8 @@ public class UniqueGuestList implements Iterable<Guest> {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateGuestException();
+        } else if (hasSameRoom(toAdd)) {
+            throw new RoomOccupiedException();
         }
         internalList.add(toAdd);
     }
@@ -63,6 +74,10 @@ public class UniqueGuestList implements Iterable<Guest> {
 
         if (!target.isSameGuest(editedGuest) && contains(editedGuest)) {
             throw new DuplicateGuestException();
+
+        } else if (!target.getRoom().equals(editedGuest.getRoom()) && hasSameRoom(editedGuest)) {
+            // Only check for room equality if the guest's room has been edited
+            throw new RoomOccupiedException();
         }
 
         internalList.set(index, editedGuest);

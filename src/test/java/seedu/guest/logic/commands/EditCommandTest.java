@@ -6,6 +6,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_ROOM_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.guest.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.guest.logic.commands.CommandTestUtil.showGuestAtIndex;
@@ -53,10 +54,11 @@ public class EditCommandTest {
         Guest lastGuest = model.getFilteredGuestList().get(indexLastGuest.getZeroBased());
 
         GuestBuilder guestInList = new GuestBuilder(lastGuest);
-        Guest editedGuest = guestInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
+        Guest editedGuest = guestInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).withRoom(VALID_ROOM_BOB)
+                .build();
 
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).build();
+                .withPhone(VALID_PHONE_BOB).withRoom(VALID_ROOM_BOB).build();
         EditCommand editCommand = new EditCommand(indexLastGuest, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_GUEST_SUCCESS, editedGuest);
@@ -84,9 +86,11 @@ public class EditCommandTest {
         showGuestAtIndex(model, INDEX_FIRST_GUEST);
 
         Guest guestInFilteredList = model.getFilteredGuestList().get(INDEX_FIRST_GUEST.getZeroBased());
-        Guest editedGuest = new GuestBuilder(guestInFilteredList).withName(VALID_NAME_BOB).build();
+        Guest editedGuest = new GuestBuilder(guestInFilteredList).withName(VALID_NAME_BOB).withRoom(VALID_ROOM_BOB)
+                .build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_GUEST,
-                new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB).withRoom(VALID_ROOM_BOB)
+                        .build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_GUEST_SUCCESS, editedGuest);
 
@@ -115,6 +119,18 @@ public class EditCommandTest {
                 new EditGuestDescriptorBuilder(guestInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_GUEST);
+    }
+
+    @Test
+    public void execute_roomOccupiedFilteredList_failure() {
+        showGuestAtIndex(model, INDEX_FIRST_GUEST);
+
+        // edit guest in filtered list into a duplicate in guest book
+        Guest guestInList = model.getGuestBook().getGuestList().get(INDEX_SECOND_GUEST.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_GUEST,
+                new EditGuestDescriptorBuilder(guestInList).withName("Anderson").build());
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_ROOM_OCCUPIED);
     }
 
     @Test
