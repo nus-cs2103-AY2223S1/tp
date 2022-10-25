@@ -43,13 +43,13 @@ public class CsvReaderTest {
 
     @Test
     public void readCsvFile_csvFileDoesNotExist_returnEmptyOptional() throws Exception {
-        Path csvFilePath = testFolder.resolve("doesNotExist.csv");
+        Path csvFilePath = testFolder.resolve("doesNotExist");
         assertEquals(Optional.empty(), csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_validCsvFileSingleRow_returnOptionalReadOnlyResidentBook() throws Exception {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("validSingleRow.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("validSingleRow");
         ResidentBook expectedResidentBook = new ResidentBook();
         expectedResidentBook.addResident(ALICE);
         ReadOnlyResidentBook actualResidentBook = csvReader.readCsvFile(csvFilePath).get();
@@ -59,7 +59,7 @@ public class CsvReaderTest {
 
     @Test
     public void readCsvFile_validCsvFileWithBom_returnOptionalReadOnlyResidentBook() throws Exception {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("validCsvWithBom.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("validCsvWithBom");
         ResidentBook expectedResidentBook = new ResidentBook();
         expectedResidentBook.addResident(ALICE);
         ReadOnlyResidentBook actualResidentBook = csvReader.readCsvFile(csvFilePath).get();
@@ -69,7 +69,7 @@ public class CsvReaderTest {
 
     @Test
     public void readCsvFile_validCsvFileWithMultipleResidents_returnOptionalReadOnlyResidentBook() throws Exception {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("validMultiResident.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("validMultiResident");
         ResidentBook expectedResidentBook = new ResidentBook();
         expectedResidentBook.setResidents(List.of(ALICE, BENSON, CARL));
         ReadOnlyResidentBook actualResidentBook = csvReader.readCsvFile(csvFilePath).get();
@@ -79,7 +79,7 @@ public class CsvReaderTest {
 
     @Test
     public void readCsvFile_validCsvFileWithMultipleTag_returnOptionalReadOnlyResidentBook() throws Exception {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("validMultiTag.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("validMultiTag");
         ResidentBook expectedResidentBook = new ResidentBook();
         Resident aliceMoreTag = new ResidentBuilder(ALICE).withTags("friends", "captain", "helper").build();
         expectedResidentBook.addResident(aliceMoreTag);
@@ -90,70 +90,70 @@ public class CsvReaderTest {
 
     @Test
     public void readCsvFile_invalidCsvFileFormat_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidCsvFormat.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidCsvFormat");
         assertThrows(DataConversionException.class, InvalidCsvFileFormatException.DEFAULT_ERROR_MESSAGE, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithTooManyCommas_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("tooManyCommas.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("tooManyCommas");
         assertThrows(DataConversionException.class, InvalidCsvFileFormatException.DEFAULT_ERROR_MESSAGE, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidName_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidName.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidName");
         assertThrows(DataConversionException.class, Name.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidPhone_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidPhone.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidPhone");
         assertThrows(DataConversionException.class, Phone.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidEmail_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidEmail.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidEmail");
         assertThrows(DataConversionException.class, Email.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidRoom_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidRoom.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidRoom");
         assertThrows(DataConversionException.class, Room.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidGender_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidGender.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidGender");
         assertThrows(DataConversionException.class, Gender.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidHouse_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidHouse.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidHouse");
         assertThrows(DataConversionException.class, House.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidMatricNumber_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidMatricNumber.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidMatricNumber");
         assertThrows(DataConversionException.class, MatricNumber.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
 
     @Test
     public void readCsvFile_csvWithInvalidTags_throwsDataConversionException() {
-        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidTags.csv");
+        Path csvFilePath = TEST_DATA_FOLDER.resolve("invalidTags");
         assertThrows(DataConversionException.class, Tag.MESSAGE_CONSTRAINTS, ()
                 -> csvReader.readCsvFile(csvFilePath));
     }
