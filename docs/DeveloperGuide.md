@@ -329,7 +329,75 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
-  
+
+
+### View feature
+
+#### Proposed Implementation
+The proposed view mechanism is implemented mainly using the help of `ExactMatchPredicate`.
+It implements `Predicate<Internship>` where the test method looks for the exact match of the internship requested.
+
+The predicate is used in the Model interface on the `updateViewItem` method
+
+The following sequence diagram shows how the view command works.
+
+TODO: ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+#### Design Considerations
+**How to view the Internship**:
+* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current)
+    * Pros: Simple, Better cohesion, more maintainability
+    * Cons: More code to write
+
+**How to display the internship in view panel**:
+* **Alternative 1 (current choice)**: Fully display with prefix denoting category
+    * Pros: More descriptive and easier to understand
+    * Cons: Makes UI seem wordy
+
+* **Alternative 2** Only display details with no category
+    * Pros: Looks cleaner
+    * Cons: Difficult to understand for new users
+
+**Parameters for view command**:
+* **Alternative 1 (current choice)**: `INDEX` parameter only takes in one index
+    * Pros: Easier to implement
+    * Cons: User will have to use the `view` command multiple times to view multiple internships
+
+* **Alternative 2** `INDEX` parameter can have multiple indexes
+    * Pros: User can view multiple details at once
+    * Cons: Makes `view` UI panel large, difficult to implement
+
+### Copy feature
+
+#### Proposed Implementation
+The proposed copy mechanism is implemented mainly using the help of `CopyCommandParser`
+It implements `Predicate<Internship>` where the test method looks for the exact match of the internship requested.
+
+The following sequence diagram shows how the copy command works.
+
+TODO: ![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+#### Design Considerations
+**How to copy the Internship**:
+* Use `java.awt` library `Toolkit` and `StringSelection` classes (current)
+    * Pros: Simple, cleaner code
+    * Cons: Limited extensibility
+
+**How to copy the internship details**:
+* **Alternative 1 (current choice)**: Copy to clipboard
+    * Pros: Easy to use
+    * Cons: Unable to choose the exact selection to copy
+
+* **Alternative 2** Make text highlightable to manually copy
+    * Pros: Can choose the exact selection to copy
+    * Cons: Slow to use
+
+**Parameters for copy command**:
+* `INDEX` parameter only takes in one index
+    * Pros: Easier to implement, makes more sense
+
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
