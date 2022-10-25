@@ -13,6 +13,7 @@ import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
@@ -24,6 +25,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonCommandHistoryStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -44,6 +46,7 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected Model model;
+    protected CommandHistory commandHistory;
     protected Config config;
 
     @Override
@@ -57,13 +60,16 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonCommandHistoryStorage commandHistoryStorage =
+                new JsonCommandHistoryStorage(userPrefs.getCommandHistoryFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
 
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        commandHistory = initCommandHistory(storage);
+        logic = new LogicManager(model, storage, commandHistory);
 
         ui = new UiManager(logic);
     }
@@ -91,6 +97,32 @@ public class MainApp extends Application {
         }
 
         return new ModelManager(initialData, userPrefs);
+    }
+
+    /**
+     * Returns a {@code CommandHistory} with the data from {@code storage}'s commandHistory <br>
+     * A new commandHistory will be constructed instead if {@code storage}'s commandHistory is not found,
+     * or if errors occur when reading {@code storage}'s commandHistory.
+     */
+    private CommandHistory initCommandHistory(Storage storage) {
+        Optional<CommandHistory> commandHistoryOptional;
+        CommandHistory initialData;
+        try {
+            commandHistoryOptional = storage.readCommandHistory();
+            if (!commandHistoryOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a empty commandHistory");
+            }
+            commandHistoryOptional.map(CommandHistory::resetIndex);
+            initialData = commandHistoryOptional.orElseGet(CommandHistory::new);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty commandHistory");
+            initialData = new CommandHistory();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty commandHistory");
+            initialData = new CommandHistory();
+        }
+
+        return initialData;
     }
 
     private void initLogging(Config config) {

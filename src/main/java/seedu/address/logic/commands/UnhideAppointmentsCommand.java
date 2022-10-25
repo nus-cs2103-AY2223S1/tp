@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.HiddenPredicateSingleton;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Unhides appointments in idENTify previously hidden by some condition.

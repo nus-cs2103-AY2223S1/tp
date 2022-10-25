@@ -39,13 +39,11 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     public UniqueAppointmentList() {
         internalList.addListener((ListChangeListener<Appointment>) c -> {
             while (c.next()) {
-                if (c.wasUpdated()) {
-                    sort(comparator);
-                }
                 if (c.wasAdded()) {
                     sort(comparator);
                 }
             }
+
         });
     }
 
