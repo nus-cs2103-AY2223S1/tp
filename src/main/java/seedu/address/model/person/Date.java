@@ -43,4 +43,12 @@ public class Date implements Comparable<Date> {
     public int hashCode() {
         return localDate.hashCode();
     }
+
+    public int getYear() {
+        return localDate.getYear();
+    }
+
+    public int getMonth() {
+        return localDate.getMonthValue();
+    }
 }
