@@ -274,4 +274,8 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     public boolean isEmpty() {
         return internalMap.isEmpty();
     }
+
+    public static boolean isExist(String otherTagType) {
+        return prefixMap.values().stream().anyMatch(tagType -> tagType.getTagTypeName().equals(otherTagType));
+    }
 }

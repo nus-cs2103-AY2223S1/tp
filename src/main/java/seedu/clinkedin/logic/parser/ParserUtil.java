@@ -3,6 +3,7 @@ package seedu.clinkedin.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,11 +14,13 @@ import java.util.Set;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.StringUtil;
 import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
+import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
+import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
@@ -329,5 +332,81 @@ public class ParserUtil {
         }
 
         return fileType;
+    }
+
+    /**
+     * Parses a person.
+     */
+    public static Person parsePerson(ArrayList<String[]> person) throws InvalidPersonException {
+        boolean atleastOne = person.stream().allMatch(detail -> detail.length >= 1);
+        if (!atleastOne) {
+            throw new InvalidPersonException();
+        }
+        Name name = null;
+        Phone phone = null;
+        Email email = null;
+        Address address = null;
+        Status status = null;
+        Note note = null;
+        UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+
+        for (String[] detail: person) {
+            for (String s: detail) {
+                System.out.println(s);
+            }
+            String check = detail[0];
+            String tagType = null;
+            if (check.startsWith("Tag:")) {
+                tagType = check.substring(4);
+                check = "Tag:";
+            } else if (detail.length != 2) {
+                throw new InvalidPersonException("More arguments found than possible!");
+            }
+            switch (check) {
+            case "Name":
+                name = new Name(detail[1]);
+                break;
+            case "Phone":
+                phone = new Phone(detail[1]);
+                break;
+            case "Email":
+                email = new Email(detail[1]);
+                break;
+            case "Address":
+                address = new Address(detail[1]);
+                break;
+            case "Status":
+                status = new Status(detail[1]);
+                break;
+            case "Note":
+                note = new Note(detail[1]);
+                break;
+            case "Tag:":
+                TagType tagTypeName = new TagType(tagType);
+                ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
+                break;
+            default:
+                throw new InvalidPersonException("Invalid attribute found!");
+            }
+        }
+        boolean foundAll = checkAllNonNull(name, phone, email, address, tagTypeMap, status, note);
+        if (!foundAll) {
+            throw new InvalidPersonException("All attributes not present!");
+        }
+        return new Person(name, phone, email, address, tagTypeMap, status, note);
+    }
+
+    private static void addTags(UniqueTagTypeMap tagTypeMap, TagType tagType, String[] tags) {
+        for (int i = 1; i < tags.length; i++) {
+            tagTypeMap.mergeTag(tagType, new Tag(tags[i]));
+        }
+    }
+    private static boolean checkAllNonNull(Name name, Phone phone, Email email,
+                                           Address address, UniqueTagTypeMap tagTypeMap, Status status, Note note) {
+        if (name == null || phone == null || email == null || address == null || tagTypeMap == null || status == null
+                || note == null) {
+            return false;
+        }
+        return true;
     }
 }

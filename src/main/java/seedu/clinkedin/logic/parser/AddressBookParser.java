@@ -20,6 +20,7 @@ import seedu.clinkedin.logic.commands.ExitCommand;
 import seedu.clinkedin.logic.commands.ExportCommand;
 import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
+import seedu.clinkedin.logic.commands.ImportCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.NoteCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
@@ -94,6 +95,8 @@ public class AddressBookParser {
             return new EditTagTypeCommandParser().parse(arguments);
         case ExportCommand.COMMAND_WORD:
             return new ExportCommandParser().parse(arguments);
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
