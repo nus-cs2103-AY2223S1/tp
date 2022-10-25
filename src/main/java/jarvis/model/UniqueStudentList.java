@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import jarvis.commons.core.index.Index;
 import jarvis.model.exceptions.DuplicateStudentException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import javafx.collections.FXCollections;
@@ -50,20 +49,6 @@ public class UniqueStudentList implements Iterable<Student> {
         }
         internalList.add(toAdd);
         FXCollections.sort(internalList, STUDENT_COMPARATOR);
-    }
-
-    /**
-     * Returns the index of a student in the list.
-     * @param target Student to find the index of.
-     * @return the {@code Index} of the student.
-     */
-    public Index indexOf(Student target) {
-        requireNonNull(target);
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new StudentNotFoundException();
-        }
-        return Index.fromZeroBased(index);
     }
 
     /**
@@ -124,6 +109,10 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public ObservableList<Student> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public int getNumStudents() {
+        return internalList.size();
     }
 
     @Override

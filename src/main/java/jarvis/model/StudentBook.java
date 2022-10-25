@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import jarvis.model.exceptions.MaxStudentsExceededException;
 import javafx.collections.ObservableList;
 
 /**
@@ -11,6 +12,8 @@ import javafx.collections.ObservableList;
  * Duplicates are not allowed (by .equal comparison)
  */
 public class StudentBook implements ReadOnlyStudentBook {
+
+    public static final int MAX_STUDENTS = 10;
 
     private final UniqueStudentList students;
 
@@ -67,8 +70,12 @@ public class StudentBook implements ReadOnlyStudentBook {
     /**
      * Adds a student to the student book.
      * The student must not already exist in the student book.
+     * Number of students in student book must be less than MAX_STUDENTS.
      */
     public void addStudent(Student p) {
+        if (getNumStudents() >= MAX_STUDENTS) {
+            throw new MaxStudentsExceededException("Maximum number of students (" + MAX_STUDENTS + ") exceeded");
+        }
         students.add(p);
     }
 
@@ -93,6 +100,10 @@ public class StudentBook implements ReadOnlyStudentBook {
     }
 
     //// util methods
+
+    public int getNumStudents() {
+        return students.getNumStudents();
+    }
 
     @Override
     public String toString() {
