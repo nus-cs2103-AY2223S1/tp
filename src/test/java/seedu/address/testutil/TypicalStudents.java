@@ -52,7 +52,7 @@ public class TypicalStudents {
             .withEmail(VALID_EMAIL_AMY).withResponse(VALID_RESPONSE_AMY).withAttendance(VALID_ATTENDANCE_BOB).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withTelegram(VALID_TELEGRAM_BOB)
             .withEmail(VALID_EMAIL_BOB).withResponse(VALID_RESPONSE_BOB).withAttendance(VALID_ATTENDANCE_BOB)
-            .build();
+            .withHelpTag(false).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.AddQCommand;
 import seedu.address.logic.commands.AddStuCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Attendance;
@@ -20,7 +21,7 @@ import seedu.address.model.student.Telegram;
 /**
  * Parses input arguments and creates a new AddStuCommand object
  */
-public class AddStuCommandParser {
+public class AddStuCommandParser implements Parser<AddStuCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
