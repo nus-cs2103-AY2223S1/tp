@@ -59,7 +59,7 @@ public abstract class Lesson {
     public Student getStudent(Index studentIndex) throws CommandException {
         int index = studentIndex.getZeroBased();
         if (index >= studentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
         return studentList.get(index);
     }
