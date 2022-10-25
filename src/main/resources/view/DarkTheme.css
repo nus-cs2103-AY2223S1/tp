@@ -172,7 +172,8 @@
 .result-display {
     -fx-background-color: #15181F;
     -fx-font-size: 12pt;
-    -fx-text-fill: #D8D8D8;
+    -fx-text-fill: #CDCDCD;
+    -fx-padding: 8px;
 }
 
 .result-display .label {
