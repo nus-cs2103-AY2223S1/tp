@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.fields.BookingField;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
@@ -96,10 +97,10 @@ public class BookingTableView extends UiPart<Region> {
     private void populateRows() {
         this.dayColumn.setCellFactory(this::populateDayOfWeekColumn);
 //        this.firstColumn.setCellValueFactory(new PropertyValueFactory<>("Resident"));
-        separateByDay();
+        ObservableList<Booking> firstPeriod = separateByPeriod("8");
     }
 
-    private void separateByDay() {
+    private ObservableList<Booking> separateByPeriod(String startHour) {
         Comparator<Booking> byDayOfWeek = new Comparator<Booking>() {
             @Override
             public int compare(Booking o1, Booking o2) {
@@ -107,17 +108,22 @@ public class BookingTableView extends UiPart<Region> {
             }
         };
 
-        Stream<Booking> firstPeriod = this.observableBookings.stream()
-                .filter(b -> b.getHourPeriod().getStart().toString().equals("8")) // improve here
+        ObservableList<Booking> firstPeriod = this.observableBookings
+                .filtered(b -> b.getHourPeriod().getStart().toString().equals(startHour))
                 .sorted(byDayOfWeek);
 
-//        for (int i = 0; i < 7; i++) {
-//            int finalI = i;
-//            if (!firstPeriod.anyMatch(b -> b.getDayOfWeek().equals(daysOfWeek.get(finalI)))) {
-//                List<Integer> emptyDaysIndex = new ArrayList<>().add(i);
-//            };
-//        }
-        //
+        return firstPeriod;
+
+//        Stream<Day> DaysBooked = firstPeriod.map(b -> b.getDayOfWeek().toString())
+//                .anyMatch(b -> {
+//                    for (int i = 0; i < 7; i++) {
+//                        return b.equals(daysOfWeek.get(i));
+//                    }
+//                    return
+//                });
+
+        // I want to get the index of the days that has no booking with time period that starts at 8
+
 //        String test = firstPeriod.map(c -> c.toString()).collect(Collectors.joining());
 //        System.out.print(test);
 
