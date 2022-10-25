@@ -22,8 +22,8 @@ public class CommandResult {
     /** The theme to change to, null if no change. */
     private final Theme theme;
 
-    /** Should toggle the PersonCardView */
-    private final boolean toggleCardView;
+    /** Should toggle the list mode */
+    private final boolean toggleListMode;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -34,19 +34,19 @@ public class CommandResult {
         this.showHelp = false;
         this.exit = false;
         this.theme = theme;
-        this.toggleCardView = false;
+        this.toggleListMode = false;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      * and Optional fields set to empty
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleCardView) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleListMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         theme = null;
-        this.toggleCardView = toggleCardView;
+        this.toggleListMode = toggleListMode;
     }
 
     /**
@@ -81,8 +81,8 @@ public class CommandResult {
         return theme;
     }
 
-    public boolean isToggleCardView() {
-        return toggleCardView;
+    public boolean isToggleListMode() {
+        return toggleListMode;
     }
 
     @Override

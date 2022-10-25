@@ -262,13 +262,13 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isThemeChange()) {
-                assert !commandResult.isToggleCardView()
+                assert !commandResult.isToggleListMode()
                         && !commandResult.isShowHelp()
                         && !commandResult.isExit();
                 handleThemeCommand(commandResult.getTheme());
             }
 
-            if (commandResult.isToggleCardView()) {
+            if (commandResult.isToggleListMode()) {
                 assert !commandResult.isThemeChange()
                         && !commandResult.isShowHelp()
                         && !commandResult.isExit();
@@ -277,14 +277,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 assert !commandResult.isThemeChange()
-                        && !commandResult.isToggleCardView()
+                        && !commandResult.isToggleListMode()
                         && !commandResult.isExit();
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 assert !commandResult.isThemeChange()
-                        && !commandResult.isToggleCardView()
+                        && !commandResult.isToggleListMode()
                         && !commandResult.isShowHelp();
                 handleExit();
             }
