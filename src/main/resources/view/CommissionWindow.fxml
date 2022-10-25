@@ -14,6 +14,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
          xmlns:fx="http://javafx.com/fxml/1" width="720" height="500" onCloseRequest="#handleCloseCommissionWindow">
     <icons>
@@ -93,12 +95,18 @@
                         </HBox>
 
                         <HBox>
-                            <Label text="Completed" styleClass="addCommissionWindowLabel">
+                            <Label text="Completion" styleClass="addCommissionWindowLabel">
                                 <HBox.margin>
                                     <Insets right="36.0"/>
                                 </HBox.margin>
                             </Label>
-                            <TextField fx:id="completed" styleClass="addCommissionTextField"/>
+                            <fx:define>
+                                <ToggleGroup fx:id="completion"/>
+                            </fx:define>
+                            <ToggleButton text="Completed" toggleGroup="$completion" fx:id="completed"
+                                          styleClass="completionToggleButton, completionToggleButtonLeft"/>
+                            <ToggleButton text="Not Completed" toggleGroup="$completion" fx:id="notCompleted"
+                                          styleClass="completionToggleButton, completionToggleButtonRight"/>
                         </HBox>
 
                         <HBox>

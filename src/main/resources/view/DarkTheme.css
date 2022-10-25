@@ -458,6 +458,31 @@
     -fx-text-fill: #6F747E;
 }
 
+.completionToggleButton {
+    -fx-background-color: #4E545F;
+    -fx-font-size: 16px;
+    -fx-text-fill: #E8E8E8;
+    -fx-border-color: #6F747E;
+}
+
+.completionToggleButton.completionToggleButtonLeft {
+    -fx-border-radius: 12 0 0 12;
+    -fx-background-radius: 12 0 0 12;
+}
+
+.completionToggleButton.completionToggleButtonLeft:selected {
+    -fx-background-color: #4B68CD;
+}
+
+.completionToggleButton.completionToggleButtonRight {
+    -fx-border-radius: 0 16 16 0;
+    -fx-background-radius: 0 16 16 0;
+}
+
+.completionToggleButton.completionToggleButtonRight:selected {
+    -fx-background-color: #4B68CD;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

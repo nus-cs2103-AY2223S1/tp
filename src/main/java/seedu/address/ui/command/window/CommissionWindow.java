@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -42,7 +43,9 @@ public abstract class CommissionWindow extends UiPart<Stage> {
     @FXML
     private TextField fee;
     @FXML
-    private TextField completed;
+    private ToggleButton completed;
+    @FXML
+    private ToggleButton notCompleted;
     @FXML
     private TextField description;
     @FXML
@@ -119,7 +122,8 @@ public abstract class CommissionWindow extends UiPart<Stage> {
     }
 
     String getCompletedInput() {
-        return completed.getText();
+        return completed.isSelected() || notCompleted.isSelected()
+                ? Boolean.toString(completed.isSelected()) : "";
     }
 
     String getDescriptionInput() {
@@ -145,7 +149,8 @@ public abstract class CommissionWindow extends UiPart<Stage> {
         tagsHandler.clear();
         deadline.clear();
         fee.clear();
-        completed.clear();
+        completed.setSelected(false);
+        notCompleted.setSelected(false);
         description.clear();
         errorDisplay.clearError();
     }
