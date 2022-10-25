@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package logic.commands;
 
  import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
  import static tracko.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
