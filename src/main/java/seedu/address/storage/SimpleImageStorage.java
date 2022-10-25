@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
-import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.core.Messages;
 
 /**
  * A simple implementation of ImageStorage which supports reading and saving images
@@ -73,21 +73,25 @@ public class SimpleImageStorage implements ImageStorage {
     }
 
     /**
-     * @param imagePath Location of the image. Cannot be null.
-     * @throws DataConversionException if the file format is not as expected.
+     * @param imagePath location of the image. Cannot be null
+     * @throws IOException if the file format is not as expected.
      */
     public BufferedImage getImage(Path imagePath) throws IOException {
         File imageFile = new File(imagePath.toUri());
         FileInputStream fis = new FileInputStream(imageFile);
+        if (!Files.exists(imagePath)) {
+            throw new IOException(Messages.MESSAGE_NONEXISTENT_IMAGE_PATH);
+        }
         try {
-            ImageIO.getImageReadersByMIMEType(Files.probeContentType(imagePath));
+            String fileContentType = Files.probeContentType(imagePath);
+            ImageIO.getImageReadersByMIMEType(fileContentType);
             BufferedImage image = ImageIO.read(fis);
             if (image == null) {
-                throw new IOException("Image is empty!");
+                throw new IOException(Messages.MESSAGE_NOT_AN_IMAGE);
             }
             return image;
         } catch (IllegalArgumentException e) {
-            throw new IOException("Unable to parse provided image.");
+            throw new IOException(Messages.MESSAGE_NOT_AN_IMAGE);
         }
     }
 

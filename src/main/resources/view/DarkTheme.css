@@ -309,11 +309,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #3C424B;
     -fx-background-insets: 3;
 }
 
@@ -349,6 +349,138 @@
 .noSuchData {
     -fx-background-color: #1E2128;
     -fx-background-radius: 4px;
+}
+
+.addButton, .addButton:armed, .addButton:pressed, .addButton:selected, .addButton:hover, .addButton:focused {
+    -fx-background-color: #949AA4, #1E2128;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0, 1;
+    -fx-border-width: 0px;
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: #D3D3D3;
+}
+
+.addButton:focused {
+    -fx-border-insets: 0;
+}
+
+.addButton:hover {
+    -fx-background-color: #949AA4, #282D39;
+}
+
+.addButton:pressed {
+    -fx-background-color: #949AA4, #383D48;
+}
+
+.addIterationButton {
+    -fx-font-size: 13px;
+}
+
+.addCommissionWindowButton, .addCommissionWindowButton:armed, .addCommissionWindowButton:pressed,
+.addCommissionWindowButton:selected, .addCommissionWindowButton:hover,
+.addCommissionWindowButton:focused {
+    -fx-background-color: #027900;
+    -fx-background-radius: 4px;
+    -fx-border-width: 0px;
+    -fx-font-size: 15px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: #D3D3D3;
+}
+
+.addCommissionWindowButton:focused {
+    -fx-border-insets: 0;
+}
+
+.addCommissionWindowButton:hover {
+    -fx-background-color: #0B5E0A;
+}
+
+.addCommissionWindowButton:pressed {
+    -fx-background-color: #145712;
+}
+
+.addCommissionWindowLabel {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+
+.addCommissionTextField {
+    -fx-background-color: #4E545F;
+    -fx-text-fill: #E8E8E8;
+    -fx-background-radius: 8px;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #6F747E;
+    -fx-font-size: 16px;
+}
+
+.addCommissionTextArea {
+    -fx-background-color: #6F747E;
+    -fx-text-fill: #E8E8E8;
+    -fx-font-size: 16px;
+}
+
+.addCommissionTextArea .content {
+    -fx-border-width: 0.5px;
+    -fx-border-color: #6F747E;
+    -fx-background-color: #4E545F;
+    -fx-font-size: 16px;
+}
+
+.commandWindowErrorMessage {
+    -fx-font-size: 16px;
+    -fx-text-fill: #A7BAFF;
+    -fx-text-alignment: center;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #A7BAFF;
+    -fx-padding: 8px;
+}
+
+.imagePreview {
+    -fx-background-color: #363A42;
+    -fx-background-radius: 4px;
+    -fx-border-width: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #1E2229;
+    -fx-border-style: dashed;
+}
+
+.uploadImagePrompt {
+    -fx-font-family: "Arial";
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6F747E;
+}
+
+.completionToggleButton {
+    -fx-background-color: #4E545F;
+    -fx-font-size: 16px;
+    -fx-text-fill: #E8E8E8;
+    -fx-border-color: #6F747E;
+}
+
+.completionToggleButton.completionToggleButtonLeft {
+    -fx-border-radius: 12 0 0 12;
+    -fx-background-radius: 12 0 0 12;
+}
+
+.completionToggleButton.completionToggleButtonLeft:selected {
+    -fx-background-color: #4B68CD;
+}
+
+.completionToggleButton.completionToggleButtonRight {
+    -fx-border-radius: 0 16 16 0;
+    -fx-background-radius: 0 16 16 0;
+}
+
+.completionToggleButton.completionToggleButtonRight:selected {
+    -fx-background-color: #4B68CD;
 }
 
 #cardPane {
@@ -401,6 +533,15 @@
 
 .commissionTags .label  {
     -fx-background-color: #F26417;
+}
+
+.deleteTagLabel {
+    -fx-background-color: #6F747E!important;
+    -fx-text-fill: #333F4F!important;
+}
+
+.windowScrollPane .viewport {
+    -fx-background-color: #3C424B;
 }
 
 #iterationListView.list-view {

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
+         xmlns:fx="http://javafx.com/fxml/1" width="720" height="500" onCloseRequest="#handleCloseCommissionWindow">
+    <icons>
+        <Image url="@/images/art.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css"/>
+            </stylesheets>
+
+            <ScrollPane maxWidth="720" maxHeight="500" fitToWidth="true" fitToHeight="true"
+                        styleClass="edge-to-edge">
+            <BorderPane fx:id="addCommissionContainer" style="-fx-background-color: #3C424B;">
+                <top>
+                    <HBox style="-fx-background-color: #1E2229;">
+                        <Label fx:id="customerWindowHeader" text="Add Commission"
+                               style="-fx-font-size: 24px; -fx-text-fill: #E8E8E8;
+                            -fx-font-family: Arial; -fx-font-weight: bold;" wrapText="true"/>
+                        <padding>
+                            <Insets top="16" bottom="16" left="36" right="36"/>
+                        </padding>
+                        <BorderPane.margin>
+                            <Insets bottom="14"/>
+                        </BorderPane.margin>
+                    </HBox>
+                </top>
+                <center>
+                    <VBox spacing="12">
+                        <HBox fx:id="errorMessagePlaceholder" alignment="CENTER"/>
+                        <HBox>
+                            <Label text="Title" styleClass="addCommissionWindowLabel">
+                                <HBox.margin>
+                                    <Insets top ="10" right="82.0"/>
+                                </HBox.margin>
+                            </Label>
+                            <TextField fx:id="title" styleClass="addCommissionTextField" minWidth="500"/>
+                        </HBox>
+
+                        <HBox>
+                            <Label text="Tags" styleClass="addCommissionWindowLabel">
+                                <HBox.margin>
+                                    <Insets right="78.0"/>
+                                </HBox.margin>
+                            </Label>
+                            <VBox minWidth="500" maxWidth="500">
+                                <ScrollPane maxWidth="500" maxHeight="200" fitToWidth="true" fitToHeight="true">
+                                    <FlowPane fx:id="tags" styleClass="commissionTags" />
+                                </ScrollPane>
+                                <TextField fx:id="tagField" promptText="To create a tag, key in the tag name and press enter"
+                                           styleClass="addCommissionTextField" minWidth="500" maxWidth="500">
+                                    <VBox.margin>
+                                        <Insets top="8"/>
+                                    </VBox.margin>
+                                </TextField>
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="36">
+                            <HBox>
+                                <Label text="Deadline" styleClass="addCommissionWindowLabel">
+                                    <HBox.margin>
+                                        <Insets right="50.0"/>
+                                    </HBox.margin>
+                                </Label>
+                                <TextField fx:id="deadline" styleClass="addCommissionTextField"/>
+                            </HBox>
+
+                            <HBox>
+                                <Label text="Fee" styleClass="addCommissionWindowLabel">
+                                    <HBox.margin>
+                                        <Insets right="20.0"/>
+                                    </HBox.margin>
+                                </Label>
+                                <TextField fx:id="fee" styleClass="addCommissionTextField"/>
+                            </HBox>
+                        </HBox>
+
+                        <HBox>
+                            <Label text="Completion" styleClass="addCommissionWindowLabel">
+                                <HBox.margin>
+                                    <Insets right="36.0"/>
+                                </HBox.margin>
+                            </Label>
+                            <fx:define>
+                                <ToggleGroup fx:id="completion"/>
+                            </fx:define>
+                            <ToggleButton text="Completed" toggleGroup="$completion" fx:id="completed"
+                                          styleClass="completionToggleButton, completionToggleButtonLeft"/>
+                            <ToggleButton text="Not Completed" toggleGroup="$completion" fx:id="notCompleted"
+                                          styleClass="completionToggleButton, completionToggleButtonRight"/>
+                        </HBox>
+
+                        <HBox>
+                            <Label text="Description" styleClass="addCommissionWindowLabel">
+                                <HBox.margin>
+                                    <Insets right="32.0"/>
+                                </HBox.margin>
+                            </Label>
+                            <TextField fx:id="description" styleClass="addCommissionTextField" minWidth="500"/>
+                        </HBox>
+                        <BorderPane.margin>
+                            <Insets left="36" right="36"/>
+                        </BorderPane.margin>
+                    </VBox>
+                </center>
+                <bottom>
+                    <HBox alignment="BOTTOM_RIGHT">
+                        <Button fx:id="addCommissionButton" mnemonicParsing="false"
+                                text="+   Add Commission" styleClass="addCommissionWindowButton"
+                                onAction="#handleCommissionCommand">
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <BorderPane.margin>
+                            <Insets top="12" left="16" right="16" bottom="16"/>
+                        </BorderPane.margin>
+                    </HBox>
+                </bottom>
+            </BorderPane>
+            </ScrollPane>
+        </Scene>
+    </scene>
+</fx:root>
