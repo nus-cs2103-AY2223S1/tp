@@ -31,7 +31,6 @@ public class Price {
      * @return True if input is a valid price
      */
     public static boolean isValidPrice(Double test) {
-        // BigDecimal bigDecimalTest = new BigDecimal(test);
         boolean isPositive = !(BigDecimal.valueOf(test).compareTo(BigDecimal.ZERO) < 0);
         boolean isRoundedTo2dp = (BigDecimal.valueOf(test).scale() <= 2);
         return isPositive && isRoundedTo2dp;
