@@ -171,12 +171,12 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The delete person feature is facilitated by `DeleteCommand`. It allows users to delete a person from the SecTresBook that match the full
+The delete person feature is facilitated by `DeleteCommand`. It allows users to delete a person from the SectresBook that match the full
 First name or Last name of the person.
 
 Given below is the example usage scenario and how the delete feature behaves at each step.
 
-Step 1. The user executes 'delete David' command to delete a person with the name 'David' from the SecTresBook.
+Step 1. The user executes 'delete David' command to delete a person with the name 'David' from the SectresBook.
 
 Step 2. The `DeleteCommandParser` creates a `FindCommand` with 'David'.
 
@@ -196,7 +196,7 @@ but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </
 * **Alternative 1 (Currect choice):** Deletes person based on complete first/last name from input.
   * Pros: Less strictness of input from the user to delete a person.
   * Cons: User may accidentally delete a person not meant to be deleted.
-* **Alternative 2:** Delete a person based on completed name i.e. first and last name required in input.
+* **Alternative 2:** Delete a person based on complete name i.e. first and last name required in input.
   * Pros: Stricter input requirement, ensuring that persons are not accidentally deleted.
   * Cons: Longer input required for the same output. 
 
