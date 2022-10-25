@@ -211,9 +211,6 @@ public class MainWindow extends UiPart<Stage> {
                             .getSelectedItinerary().getUnmodifiableItemGroups();
                     setListPanel(new ItemGroupListPanel(itemGroups));
                     break;
-                case SCHEDULE:
-                    //TODO: create a ListPanel for Schedule page
-                    break;
                 default:
                     break;
                 }

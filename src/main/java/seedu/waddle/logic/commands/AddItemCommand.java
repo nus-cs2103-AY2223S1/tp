@@ -49,14 +49,6 @@ public class AddItemCommand extends Command {
 
         StageManager stageManager = StageManager.getInstance();
 
-        // if not at wish stage, throw exception and change to wish stage
-        /*
-        if (!stageManager.isCurrentStage(Stages.WISH)) {
-            return new CommandResult(MESSAGE_WRONG_STAGE);
-        }
-
-        stageManager.setHomeStage();
-         */
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         if (itinerary.hasItem(toAdd)) {
