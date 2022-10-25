@@ -50,14 +50,10 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTeamCommand.MESSAGE_USAGE));
             }
 
-            Name name = ParserUtil.parseName(cmd.getOptionValue(FLAG_NAME_STR));
-            Name description = cmd.hasOption(FLAG_DESCRIPTION_STR)
-                    ? ParserUtil.parseName(cmd.getOptionValue(FLAG_DESCRIPTION_STR))
-                    : new Name("No description added");
-
-            String nameString = name.toString();
-            String descriptionString = description.toString();
-
+            String nameString = cmd.getOptionValue(FLAG_NAME_STR);
+            String descriptionString = cmd.hasOption(FLAG_DESCRIPTION_STR)
+                    ? cmd.getOptionValue(FLAG_DESCRIPTION_STR)
+                    : "No description added";
 
             Team team = new Team(nameString, descriptionString);
 

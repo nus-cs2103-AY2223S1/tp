@@ -53,19 +53,18 @@ public class EditTeamCommandParser implements Parser<EditTeamCommand> {
             }
 
             if (cmd.hasOption(FLAG_NAME_STR)) {
-                Name name = ParserUtil.parseName(cmd.getOptionValue(FLAG_NAME_STR));
-                editTeamDescriptor.setName(name.toString());
+                String nameString = cmd.getOptionValue(FLAG_NAME_STR);
+                editTeamDescriptor.setName(nameString);
             }
 
             if (cmd.hasOption(FLAG_DESCRIPTION_STR)) {
-                Name description = ParserUtil.parseName(cmd.getOptionValue(FLAG_DESCRIPTION_STR));
-                editTeamDescriptor.setDescription(description.toString());
+                String descriptionString = cmd.getOptionValue(FLAG_DESCRIPTION_STR);
+                editTeamDescriptor.setDescription(descriptionString);
             }
 
             if (!editTeamDescriptor.isAnyFieldEdited()) {
                 throw new ParseException(EditTeamCommand.MESSAGE_NOT_EDITED);
             }
-
 
             return new EditTeamCommand(editTeamDescriptor);
         } catch (MissingArgumentException e) {

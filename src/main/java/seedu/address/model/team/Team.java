@@ -29,7 +29,7 @@ public class Team {
     private final UniqueLinkList links = new UniqueLinkList();
 
     /**
-     * Constructor with of an empty team with its name and description.
+     * Constructs an empty team with its name and description.
      *
      * @param teamName A valid team name.
      * @param description A valid team description.
