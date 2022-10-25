@@ -191,7 +191,6 @@ Format: `hide appts r/REASON [MORE_REASONS]`
 
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
-* `hide appts s/marked` hides all marked appointments.<br>
 
 By tag:
 
@@ -208,8 +207,8 @@ Examples:
 By marked/unmarked status:
 Hides appointments which are marked/unmarked.
 
-Format: `hide appts s/marked` or `hide appts s/m` <br>
-Alternative: `hide appts s/unmarked` or `hide appts s/um`
+Format: `hide appts s/STATUS` <br>
+Shortform: `marked` status can be shortened to `m`, `unmarked` can be shortened to `um`.
 
 Examples:
 * `hide appts s/marked` hides all appointments that has been marked.
@@ -285,7 +284,7 @@ Examples:
 
 Deletes a patient or a range of patients from idENTify.
 
-Format: `delete INDEX [ENDINDEX]`
+Format: `delete INDEX [END_INDEX]`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
@@ -380,7 +379,7 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-IdENTify data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+idENTify data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, idENTify will discard all data and start with an empty data file at the next run.
@@ -394,7 +393,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `delete INDEX [END_INDEX]`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD] [t/TAG]…​` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Group Patients** | `group patients`
