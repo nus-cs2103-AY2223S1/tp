@@ -2,32 +2,53 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 
-<?import java.net.URL?>
-<?import javafx.scene.layout.FlowPane?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPanePortfolio" fx:id="cardPanePortfolio" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane prefHeight="350.0" prefWidth="350.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES"  />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <ScrollPane fx:id="scroller" >
+        <VBox fx:id="portfolio" alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
-            <VBox fx:id="personDetails" alignment="CENTER_LEFT" minHeight="105" minWidth="300" prefHeight="150" prefWidth="300" GridPane.columnIndex="0">
+
+            <VBox fx:id="riskLevel" alignment="CENTER_LEFT" minHeight="100" prefHeight="100" GridPane.columnIndex="0">
                 <padding>
-                    <Insets top="10" right="10" bottom="10" left="30" />
+                    <Insets bottom="10" left="30" right="10" top="10" />
                 </padding>
-                <Label fx:id="risk" styleClass="cell_small_label" text="\$risk" wrapText="true"/>
-                <FlowPane fx:id="plans" >
+                <Label fx:id="risk" styleClass="cell_small_label" text="\$risk" wrapText="true" />
+            <Line endX="300" startX="-100.0" stroke="#0b2545" />
+            </VBox>
+
+            <VBox fx:id="currentPlans" alignment="CENTER_LEFT" maxHeight="Infinity" minHeight="150" prefHeight="500" prefWidth="300" GridPane.columnIndex="0">
+                <padding>
+                    <Insets bottom="10" left="30" right="10" top="10" />
+                </padding>
+                <VBox.margin>
+                    <Insets bottom="20" top="20" />
+                </VBox.margin>
+                <Label fx:id="plan" styleClass="cell_small_label" text="Current Plans: " wrapText="true" />
+                <Line endX="300" startX="-100.0" stroke="#0b2545" />
+                <VBox fx:id="plans" alignment="CENTER_LEFT" GridPane.columnIndex="0" >
                     <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
+                        <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
-                </FlowPane>
+                </VBox>
+            </VBox>
         </VBox>
+
+        </ScrollPane>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 </HBox>

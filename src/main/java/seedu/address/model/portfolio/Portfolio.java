@@ -27,4 +27,13 @@ public class Portfolio {
     public Set<Plan> getPlans() {
         return Collections.unmodifiableSet(plans);
     }
+
+    /**
+     * Displays the message in command result
+     * @return string that shows the risk level and current plans
+     */
+    public String display() {
+        String str = "\nRisk Level: " + this.getRisk().toString() + "\nPlans: " + this.getPlans().toString();
+        return str;
+    }
 }

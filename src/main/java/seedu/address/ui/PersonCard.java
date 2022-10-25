@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-import seedu.address.model.portfolio.Portfolio;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -26,7 +25,6 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-    public final Portfolio portfolio;
 
     @FXML
     private HBox cardPane;
@@ -45,10 +43,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label meetingDate;
     @FXML
-    private Label risk;
-    @FXML
-    private FlowPane plans;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -57,7 +51,6 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        this.portfolio = person.getPortfolio();
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -72,14 +65,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        if (portfolio.getRisk().value != null && portfolio.getRisk().value != "") {
-            risk.setText(portfolio.getRisk().value);
-        } else {
-            risk.setText("no risk assessment yet");
-        }
-        portfolio.getPlans().stream()
-                .sorted(Comparator.comparing(plan -> plan.value))
-                .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
+
     }
 
     @Override

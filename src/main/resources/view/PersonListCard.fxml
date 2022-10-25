@@ -36,12 +36,6 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true"/>
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true"/>
-            <Label fx:id="risk" styleClass="cell_small_label" text="\$risk" wrapText="true"/>
-            <FlowPane fx:id="plans" >
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-            </FlowPane>
           </VBox>
           <VBox fx:id="personDetails2" alignment="CENTER_LEFT" maxWidth="150" minHeight="105" minWidth="150" GridPane.columnIndex="0">
             <padding>

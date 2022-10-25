@@ -104,6 +104,7 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+        Set<Plan> plans = new HashSet<>();
         assert personToEdit != null;
         Portfolio portfolio = personToEdit.getPortfolio();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -114,7 +115,14 @@ public class EditCommand extends Command {
         MeetingDate updatedMeetingDate = editPersonDescriptor.getMeetingDate().orElse(personToEdit.getMeetingDate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Risk risk = editPersonDescriptor.getRisk().orElse(portfolio.getRisk());
-        Set<Plan> plans = editPersonDescriptor.getPlans().orElse(portfolio.getPlans());
+        if (editPersonDescriptor.getPlans().isPresent()) {
+            //if want to continue adding plans without overriding
+            //plans.addAll(portfolio.getPlans());
+            plans.addAll(editPersonDescriptor.getPlans().get());
+        } else {
+            plans = portfolio.getPlans();
+        }
+
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
                 updatedMeetingDate, updatedTags, risk, plans);

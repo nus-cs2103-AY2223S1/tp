@@ -687,16 +687,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: Importing an invalid JSON file
+    1. Test case: Importing an invalid JSON file   
        Expected: list of clients will be empty and nothing is shown
 
-    2. Test case: Importing an invalid CSV file
+    2. Test case: Importing an invalid CSV file   
        Expected: list of clients will be empty and nothing is shown
 
-    3. Test case: Editing the JSON file when the application is not launched with invalid datas
+    3. Test case: Editing the JSON file when the application is not launched with invalid datas   
        Expected: list of clients will be empty and nothing is shown
 
-    4. Test case: Missing JSON file
+    4. Test case: Missing JSON file   
        Expected: Creates a new addressbook.json file when there is a new command entered
 
     5. {explain how to simulate a missing/corrupted file, and the expected behavior}_

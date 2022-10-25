@@ -2,6 +2,7 @@
   -main-background: #13315C;
   -second-background: #0B2545;
   -contrast-background: #8DA9C4;
+  -white-background: #EEF4ED;
   -text: #738979;
 }
 
@@ -63,7 +64,7 @@
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: #13315C;
-    -fx-border-color: #13315C
+    -fx-border-color: #13315C;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -339,6 +340,11 @@
     -fx-padding: 3 5 3 5;
 }
 
+#cardPanePortfolio {
+    -fx-background-color: -second-background;
+    -fx-border-width: 0;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
@@ -405,13 +411,7 @@
      -fx-font-size: 20px;
 }
 
-#personDetails {
-    -fx-background-color: #EEF4ED;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-}
-
-#personDetails2 {
+#personDetails, #personDetails2, #riskLevel, #currentPlans {
     -fx-background-color: #EEF4ED;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
@@ -439,5 +439,24 @@
     -fx-font-size: 14;
     -fx-border-radius: 7;
 }
+
+#plans .label {
+    -fx-text-fill: #0B2545;
+    -fx-padding: 3 5 3 5;
+    -fx-font-size: 16;
+    -fx-word-wrap: break-word;
+}
+
+#scroller {
+    -fx-background-color: -main-background;
+
+}
+
+#portfolio {
+    -fx-background-color: -second-background;
+}
+
+
+
 
 

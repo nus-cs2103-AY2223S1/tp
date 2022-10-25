@@ -20,6 +20,7 @@ done faster and more securely than traditional GUI apps.
     * [Listing all clients: `list`](#listing-all-clients-list)
     * [Exiting the application: `exit`](#exiting-the-application--exit)
     * [Saving the data](#saving-the-data)
+    * [Viewing Portfolio of a specific client: `view`](#viewing-portfolio-of-a-specific-client--view)
     * [Importing data: `import`](#importing-data--import)
     * [Exporting data: `export`](#exporting-data--export)
     * [Locking the application: `lock`](#locking-the-application--lock)
@@ -220,6 +221,21 @@ save manually.
 
 ---
 
+### Viewing Portfolio of a specific client: `view`
+
+View a specific's client portfolio
+
+Format: `view INDEX`  
+* Displays the portfolio of client at index `INDEX` on the Portfolio section   
+* Portfolio includes risk level and current plans purchased by the client.   
+
+Examples:
+
+* `view 1` displays the risk level and current plans purchased by the 1st client of the Financial book data.
+* `view 2` displays the risk level and current plans purchased by the 2nd client of the Financial book data.
+
+---
+
 ### Editing the data file
 
 Financial book data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to
@@ -331,6 +347,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                              |
 | **List**             | `list`                                                                                                                                                                                                                                                                                    |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                    |
+| **View Portfolio**   | `view INDEX` <br> e.g., `view 1`                                                                                                                                                                                                                                                          |
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                               |
 | **Lock application** | `lock`                                                                                                                                                                                                                                                                                    |
