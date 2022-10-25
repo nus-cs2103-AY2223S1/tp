@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="pieChartTitle" styleClass="label-header"/>
+        <Label fx:id="chartTitle" styleClass="label-header"/>
         <StackPane fx:id="graphPlaceholder"/>
     </children>
     <opaqueInsets>

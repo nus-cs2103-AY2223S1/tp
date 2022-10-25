@@ -16,5 +16,15 @@
     "date" : "21-08-2022",
     "tagged" : "Entertainment"
   }],
-  "incomes" : []
+  "incomes" : [{
+    "description" : "Allowance",
+    "amount" : "300",
+    "date" : "01-10-2022",
+    "tagged" : "Allowance"
+  }, {
+    "description" : "Investment",
+    "amount" : "40.80",
+    "date" : "10-10-2022",
+    "tagged" : "Investment"
+  }]
 }

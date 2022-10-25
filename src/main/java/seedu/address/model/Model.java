@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entry.Entry;
 
@@ -121,6 +122,12 @@ public interface Model {
 
     /** Returns an unmodifiable list of pie chart data for expenditure */
     ObservableList<PieChart.Data> getExpensePieChartData();
+
+    /** Returns an unmodifiable list of line chart data for expenditure */
+    XYChart.Series<String, Number> getExpenseLineChartData();
+
+    /** Returns an unmodifiable list of line chart data for income */
+    XYChart.Series<String, Number> getIncomeLineChartData();
 
     // todo remove updateFilteredEntryList after 'find' command has been implemented
     /**

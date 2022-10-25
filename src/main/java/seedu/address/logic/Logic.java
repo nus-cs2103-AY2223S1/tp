@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,25 +34,34 @@ public interface Logic {
     ReadOnlyPennyWise getPennyWise();
 
     /**
-     * Returns an unmodifiable view of the filtered list of expenditure
+     * Returns an unmodifiable view of the filtered list of expenditure.
      */
     ObservableList<Entry> getFilteredExpenditureList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of income
+     * Returns an unmodifiable view of the filtered list of income.
      */
     ObservableList<Entry> getFilteredIncomeList();
 
     /**
-     * Returns an unmodifiable list of pie chart data for income
+     * Returns an unmodifiable list of pie chart data for income.
      */
     ObservableList<PieChart.Data> getIncomePieChartData();
 
     /**
-     * Returns an unmodifiable list of pie chart data for expenditure
+     * Returns an unmodifiable list of pie chart data for expenditure.
      */
     ObservableList<PieChart.Data> getExpensePieChartData();
 
+    /**
+     * Returns an unmodifiable list of line chart data for expenditure.
+     */
+    XYChart.Series<String, Number> getExpenseLineChartData();
+
+    /**
+     * Returns an unmodifiable list of line chart data for income.
+     */
+    XYChart.Series<String, Number> getIncomeLineChartData();
 
     /**
      * Returns the user prefs' penny wise file path.

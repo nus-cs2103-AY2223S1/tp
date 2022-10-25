@@ -1,9 +1,13 @@
 package seedu.address.ui;
 
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +20,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.GraphConfiguration;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
 
@@ -29,13 +34,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private EntryPane entryPane;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -115,11 +120,11 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
         EntryListPanel expenseEntryPanel = new EntryListPanel(logic.getFilteredExpenditureList());
         EntryListPanel incomeEntryPanel = new EntryListPanel(logic.getFilteredIncomeList());
 
-        EntryPane entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
+        entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -132,7 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         GraphPanel graphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                                                        logic.getExpensePieChartData());
+                logic.getExpensePieChartData());
         graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
     }
 
@@ -165,56 +170,60 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Calls updateGraph method based on entry type and graph type.
+     * Updates the graph shown in the graph panel depending on the graph configuration associated with
+     * the provided command result.
+     *
+     * @param commandResult The provided command result.
      */
-    public void handleGraph(String commandResult) {
-        if (commandResult.contains("expenditure") && commandResult.contains("category")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE), new GraphType(GraphType.GRAPH_TYPE_CATEGORY));
-        }
-
-        if (commandResult.contains("income") && commandResult.contains("category")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_INCOME), new GraphType(GraphType.GRAPH_TYPE_CATEGORY));
-        }
-
-        if (commandResult.contains("expenditure") && commandResult.contains("month")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE), new GraphType(GraphType.GRAPH_TYPE_MONTH));
-        }
-
-        if (commandResult.contains("income") && commandResult.contains("month")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_INCOME), new GraphType(GraphType.GRAPH_TYPE_MONTH));
-        }
-    }
-
-    /**
-     * Updates the graph
-     */
-    public void updateGraph(EntryType entryType, GraphType graphType) {
+    private void updateGraph(CommandResult commandResult) {
         graphPanelPlaceholder.getChildren().clear();
-        switch (graphType.getGraphType()) {
-        case CATEGORY:
+
+        GraphConfiguration graphConfiguration = commandResult.getGraphConfiguration();
+        if (!graphConfiguration.getShouldUpdateGraph()) {
+            return;
+        }
+
+        GraphType graphType = graphConfiguration.getGraphType();
+        EntryType entryType = graphConfiguration.getEntryType();
+
+        Supplier<ObservableList<PieChart.Data>> pieChartDataSupplier = () -> {
             switch (entryType.getEntryType()) {
             case EXPENDITURE:
-                GraphPanel expenseGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                                                                       logic.getExpensePieChartData());
-                graphPanelPlaceholder.getChildren().add(expenseGraphPanel.getRoot());
-                break;
+                return logic.getExpensePieChartData();
             case INCOME:
-                GraphPanel incomeGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_INCOME),
-                                                                      logic.getIncomePieChartData());
-                graphPanelPlaceholder.getChildren().add(incomeGraphPanel.getRoot());
-                break;
+                return logic.getIncomePieChartData();
             default:
-                break;
+                // Should never reach here
+                return null;
             }
-            break;
+        };
 
+        Supplier<XYChart.Series<String, Number>> lineChartDataSupplier = () -> {
+            switch (entryType.getEntryType()) {
+            case EXPENDITURE:
+                return logic.getExpenseLineChartData();
+            case INCOME:
+                return logic.getIncomeLineChartData();
+            default:
+                // Should never reach here
+                return null;
+            }
+        };
+
+        GraphPanel graphPanel = null;
+        switch (graphType.getGraphType()) {
+        case CATEGORY:
+            graphPanel = new GraphPanel(entryType, pieChartDataSupplier.get());
+            break;
         case MONTH:
+            graphPanel = new GraphPanel(entryType, lineChartDataSupplier.get());
             break;
         default:
             break;
-
         }
 
+        assert graphPanel != null;
+        graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
     }
 
     /**
@@ -223,7 +232,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                                                  (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -252,8 +261,20 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowGraph()) {
-                handleGraph(commandResult.getFeedbackToUser());
+            GraphConfiguration graphConfiguration = commandResult.getGraphConfiguration();
+            if (graphConfiguration.getShouldUpdateGraph()) {
+                updateGraph(commandResult);
+            }
+            EntryType entryType = graphConfiguration.getEntryType();
+            switch (entryType.getEntryType()) {
+            case EXPENDITURE:
+                entryPane.showExpenseEntryPanel();
+                break;
+            case INCOME:
+                entryPane.showIncomeEntryPanel();
+                break;
+            default:
+                break;
             }
 
             return commandResult;

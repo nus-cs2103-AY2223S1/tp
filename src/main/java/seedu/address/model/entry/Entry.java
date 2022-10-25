@@ -2,6 +2,8 @@ package seedu.address.model.entry;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -10,10 +12,9 @@ import seedu.address.model.tag.Tag;
  * Represents an Entry in the PennyWise application.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Entry {
+public abstract class Entry {
     // Identity fields
     private final Description description;
-    // private final EntryType type;
     // Data fields
     private final Date date;
     private final Amount amount;
@@ -39,8 +40,20 @@ public class Entry {
         return date;
     }
 
+    public YearMonth getYearMonth() {
+        return date.getYearMonth();
+    }
+
+    public String getFormattedDate(DateTimeFormatter formatter) {
+        return date.getLocalDate().format(formatter);
+    }
+
     public Amount getAmount() {
         return amount;
+    }
+
+    public Double getAmountValue() {
+        return amount.getValue();
     }
 
     /**

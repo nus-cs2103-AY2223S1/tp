@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.GraphConfiguration;
 import seedu.address.model.Model;
 
 /**
@@ -13,7 +14,8 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
+        return new CommandResult(
+                MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, GraphConfiguration.ofDefault());
     }
 
 }

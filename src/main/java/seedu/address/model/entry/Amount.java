@@ -40,6 +40,10 @@ public class Amount {
         return amount;
     }
 
+    public static Amount add(Amount amount1, Amount amount2) {
+        return new Amount(String.valueOf(amount1.getValue() + amount2.getValue()));
+    }
+
     @Override
     public String toString() {
         return amountString;
@@ -49,7 +53,7 @@ public class Amount {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Amount // instanceof handles nulls
-                && amountString.equals(((Amount) other).amountString)); // state check
+                && this.amount == (((Amount) other).amount)); // state check
     }
 
     @Override
