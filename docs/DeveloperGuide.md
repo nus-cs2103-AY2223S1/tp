@@ -394,7 +394,7 @@ Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign t
 Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and
 team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
 
-The following sequence diagram shows how the edit team operation works:
+The following sequence diagram shows how the unassign team operation works:
 ![UnAssignMemberSequenceDaigram](images/UnAssignMemberSequenceDiagram.png)
 
 _{more aspects and alternatives to be added}
