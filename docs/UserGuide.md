@@ -293,7 +293,7 @@ _Details coming soon ..._
 | **List**   | :x:                | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`                                                                                                                                                       |
 | **Help**   | :x:                | `help`                                                                                                                                                                                                         |
 | **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
-| **Redo**   | :x:                | `redo`                                                                                                                                                                                                         |
+| **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
 
 ## Glossary
 
