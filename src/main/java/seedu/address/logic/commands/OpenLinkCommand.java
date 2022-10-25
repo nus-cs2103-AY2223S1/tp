@@ -31,10 +31,11 @@ public class OpenLinkCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_ALIAS + "coursemo " + PREFIX_MODULE_LINK_ALIAS + "kattis";
 
-    public static final String MESSAGE_OPEN_LINK_SUCCESS = "Successfully opened link/s from module code [%1$s]!";
+    public static final String MESSAGE_OPEN_LINK_SUCCESS = "Successfully opened the following link/s "
+            + "from module code [%1$s]!\n%2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be opened.";
     public static final String MESSAGE_MISSING_LINK_ALIAS = "The link alias [%1$s] does not currently exist"
-            + " in the module with module code [%2$s]";
+            + " in the module with module code [%2$s].";
     private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Your desktop prevents"
             + " link URLs to be opened from Plannit. "
             + "Please enable system security permissions for Plannit to use this feature.";
@@ -73,9 +74,9 @@ public class OpenLinkCommand extends Command {
         }
         assert moduleToOpenLinks != null;
 
-        openLinksFromModule(moduleToOpenLinks, linkAliases);
+        String linksOpened = openLinksFromModule(moduleToOpenLinks, linkAliases);
         return new CommandResult(String.format(MESSAGE_OPEN_LINK_SUCCESS,
-                moduleCode.getModuleCodeAsUpperCaseString()));
+                moduleCode.getModuleCodeAsUpperCaseString(), linksOpened));
     }
 
     /**
@@ -85,10 +86,11 @@ public class OpenLinkCommand extends Command {
      * the collection {@code linksToOpen} or till a non-matching link alias between the collection and
      * the links from the specified module is encountered.
      */
-    private static void openLinksFromModule(Module moduleToOpenLinks, List<String> linkAliasesToOpen)
+    private static String openLinksFromModule(Module moduleToOpenLinks, List<String> linkAliasesToOpen)
             throws CommandException {
         assert moduleToOpenLinks != null;
         Set<Link> moduleLinksCopy = moduleToOpenLinks.copyLinks();
+        StringBuilder linksOpened = new StringBuilder();
         for (String linkAlias : linkAliasesToOpen) {
             Link linkToOpen = moduleLinksCopy.stream()
                     .filter(link -> link.hasLinkAlias(linkAlias))
@@ -97,10 +99,12 @@ public class OpenLinkCommand extends Command {
                             linkAlias, moduleToOpenLinks.getModuleCode().getModuleCodeAsUpperCaseString())));
             try {
                 launchLinkFromPlannit(linkToOpen.linkUrl);
+                linksOpened.append(String.format("[%s]\n", linkToOpen.linkUrl));
             } catch (IOException | SecurityException ex) {
                 throw new CommandException(MESSAGE_LINK_LAUNCH_FAILURE);
             }
         }
+        return linksOpened.toString();
     }
 
     //@@author shwene-reused

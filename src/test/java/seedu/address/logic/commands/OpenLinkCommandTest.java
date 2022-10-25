@@ -35,20 +35,22 @@ public class OpenLinkCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_deleteLinkCommandFilteredList_success() {
+    public void execute_openLinkCommandFilteredList_success() {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Module moduleToOpenLinks = expectedModel.getModuleUsingModuleCode(
                 new ModuleCode(MODULE_CODE_WITH_LINK), true);
 
         ModuleCode moduleCode = moduleToOpenLinks.getModuleCode();
-        List<String> moduleLinksToOpen = moduleToOpenLinks.copyLinks().stream()
+        List<String> moduleLinkAliasesToOpen = moduleToOpenLinks.copyLinks().stream()
                 .map(link -> link.linkAlias).collect(Collectors.toList());
+        String moduleLinkUrlsToOpen = moduleToOpenLinks.copyLinks().stream()
+                .map(link -> String.format("[%s]\n", link.linkUrl)).collect(Collectors.joining(""));
 
         OpenLinkCommand openLinkCommand = new OpenLinkCommand(
-                new ModuleCode(MODULE_CODE_WITH_LINK), moduleLinksToOpen);
+                new ModuleCode(MODULE_CODE_WITH_LINK), moduleLinkAliasesToOpen);
 
         String expectedMessage = String.format(OpenLinkCommand.MESSAGE_OPEN_LINK_SUCCESS,
-                moduleCode.getModuleCodeAsUpperCaseString());
+                moduleCode.getModuleCodeAsUpperCaseString(), moduleLinkUrlsToOpen);
 
         assertCommandSuccess(openLinkCommand, model, expectedMessage, expectedModel);
     }
