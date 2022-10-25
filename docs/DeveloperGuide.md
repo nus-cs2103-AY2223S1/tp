@@ -167,7 +167,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 4.2.1 Adding new students
 
-##### Description
+**Description**
 
 Adding new students is first basic step of using Class-ify. This is primarily done via the `AddStudCommand` and `AddStudCommandParser` classes.
 Before going into the sequence of executing a `addstud` command, let us take a quick look at the `Student` class.
@@ -183,12 +183,32 @@ The `Student` class contains a total of 6 fields:
     * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
     * Future implementations may allow teachers to create their own examinable items.
 
-##### Implementation
+**Implementation**
 
 Adding a student record can be divided into 2 main steps: parsing the user input and executing it.
-The sequence diagram below illustrates the interactions within the `Logic` component when the user calls a `addstu` command, for example, `addstu nm/Alice id/321A class/1F exam/CA1 40`.
 
-##### Design Considerations
+Step 1: Parsing the command
+
+The delete command is first parsed.
+
+1. `MainWindow` calls the `execute` method of `LogicManager` to execute the given user’s command.
+2. Before the command is executed, it is parsed by `StudentRecordParser`, which identifies the command to be a addstud command and creates a new `AddStudCommandParser` instance to parse the user’s command.
+3. Once the command is successfully parsed, `AddStudCommandParser` creates a new `AddStudCommand` instance which will be executed by the `LogicManager`.
+
+Step 2: Executing the command
+
+The `AddStudCommand` instance now interacts with the `ModelManager` to execute the command.
+1. The `hasStudent` method is called to check if the `Model` contains the student to be added.
+2. Assuming there are no duplicates, the `addStudent` method is then called to add the student into the student record.
+3. The `updateFilteredStudentList` method is called to show the updated list of students in the student record.
+4. A new `CommandResult` instance is created and returned to `LogicManager`.
+5. The control is then passed back to `MainWindow` where the `CommandResult` is displayed to the UI as feedback to the user.
+
+The following activity diagram below summarizes what happens when a user executes an `addstud` command.
+
+<img src="images/AddStudentCommandActivityDiagram.png" width="550" />
+
+**Design Considerations**
 
 The current approach creates multiple `Class` objects per student. It serves as a more straightforward implementation. However, it is not a very OOP solution for the following reasons:
 
@@ -228,7 +248,7 @@ The delete command is first parsed.
 
 Step 2: Executing the command
 
-The ‘DeleteCommand’ instance now communicates with the `ModelManager` to execute the command.
+The `DeleteCommand` instance now communicates with the `ModelManager` to execute the command.
 
 1. The `updateFilteredStudentList` method is called to isolate the student record to be deleted.
 2. The `deleteStudent` method is called to delete the student record.
