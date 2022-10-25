@@ -36,7 +36,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>^[^-\\s]+)(\\s+)?(?<flag>-\\S+)?(?<arguments>\\s.*)");
+            Pattern.compile("(?<commandWord>^[^-\\s]+)(\\s+)?(?<flag>-\\S+)?(?<arguments>\\s.*)?");
 
     /**
      * Parses user input into command for execution.
@@ -53,7 +53,7 @@ public class AddressBookParser {
 
         final String commandWord;
         final String flag = matcher.group("flag");
-        final String arguments = matcher.group("arguments");
+        final String arguments = matcher.group("arguments") == null ? "" : matcher.group("arguments");
         if (flag != null) {
             commandWord = matcher.group("commandWord") + " " + flag;
         } else {
