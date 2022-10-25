@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Field;
+import seedu.address.model.attribute.Name;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Fields;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.field.Field;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -62,9 +62,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -96,7 +97,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Fields} of the {@code Person} that we are building.
      */
-    public PersonBuilder withFields(String ... fieldNames) {
+    public PersonBuilder withFields(String... fieldNames) {
         fields = new Fields();
         for (String fieldName : fieldNames) {
             Field field = new Field(fieldName);

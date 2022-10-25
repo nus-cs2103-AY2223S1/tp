@@ -1,13 +1,17 @@
-package seedu.address.model.person;
+package seedu.address.model.attribute;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Map;
+
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email {
+public class Email extends AbstractAttribute<String> {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -39,7 +43,7 @@ public class Email {
      * @param email A valid email address.
      */
     public Email(String email) {
-        requireNonNull(email);
+        super("Email", email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
@@ -52,20 +56,15 @@ public class Email {
     }
 
     @Override
-    public String toString() {
-        return value;
+    public Node getJavaFxRepresentation() {
+        Label ret = new Label();
+        ret.setText(value);
+        return ret;
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+    public Map<String, Object> toSaveableData() {
+        // TODO Auto-generated method stub
+        return null;
     }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }

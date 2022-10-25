@@ -10,7 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.item.AbstractContainerItem;
+import seedu.address.model.item.AbstractSingleItem;
 import seedu.address.model.person.Person;
 
 /**
@@ -36,7 +36,7 @@ public class RemoveUserFromTeamCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Person toRemove;
-        AbstractContainerItem currContext = model.getContextContainer();
+        AbstractSingleItem currContext = model.getContextContainer();
         if (currContext == null) {
             return new CommandResult("You are not in any team scope right now!");
         }

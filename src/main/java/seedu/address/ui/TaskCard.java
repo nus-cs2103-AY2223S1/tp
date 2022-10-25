@@ -2,11 +2,14 @@ package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.task.Task;
 
 /**
@@ -47,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label detail;
+    private VBox parentContainer;
     @FXML
     private Label datetime;
     @FXML
@@ -62,8 +65,13 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.toString());
-        detail.setText(task.getStatus());
-        path.setText(String.format("Path: " + task.getParentPath()));
+        List<Attribute<?>> attrs = task.getAttributes();
+        for (int i = 0; i < attrs.size(); i++) {
+            if (attrs.get(i).isDisplayable()) {
+                parentContainer.getChildren().add(attrs.get(i).getJavaFxRepresentation());
+            }
+        }
+        path.setText(String.format("Path: " + task.getFullPath()));
         if (task.getCompletedTime() != null) {
             datetime.setText(
                     "Completed on: " + task.getCompletedTime()
