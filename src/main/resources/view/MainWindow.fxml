@@ -11,20 +11,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="HobbyList" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
-
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
-
   <scene>
-
     <Scene>
-      <VBox styleClass="pic">
 
-      <VBox>
+      <VBox styleClass="pic">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -60,11 +55,8 @@
           <StackPane fx:id="activityListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+        <StackPane fx:id="statusbarPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
-
   </scene>
-
 </fx:root>

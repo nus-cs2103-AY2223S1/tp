@@ -3,18 +3,17 @@
 
     -fx-background-size: contain;
 }
-
 .list-view {
     -fx-background-insets: 10;
-    -fx-padding: 10 10 10 10;
-    -fx-background-color: rgba(0,0,255,0);
+    -fx-padding: 10;
+    -fx-background-color: rgb(192,192,192,0);
 }
 
 
 
 .list-cell:filled:even {
 
-    -fx-background-color: rgba(192,192,192,0);
+    -fx-background-color: rgba(192,192,192,0.3);
     -fx-background-radius: 20;
     -fx-padding: 15 10 10 10;
 }
@@ -56,12 +55,7 @@
      -fx-text-filled:black;
 }
 
-.pane-with-border {
-     -fx-background-color: rgb(255,255,255,0.7);
-     -fx-border-color: rgb(255,255,255,0.7);
-     -fx-border-top-width: 10;
-     -fx-text-filled:black;
-}
+
 .commandTextField{
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
@@ -75,19 +69,20 @@
      -fx-border-top-width: 0;
 }
 
+
 .status-bar {
     -fx-background-color: rgb(255,255,255,0.7);
 }
 
 .result-display {
-    -fx-background-color: rgb(255,255,255,0.7);
+    -fx-background-color: rgb(255,255,255,0);
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
 
 .result-display .label {
-    -fx-text-fill: rgb(192,192,192,0.5);
+    -fx-text-fill: rgb(192,192,192,0);
 }
 
 .status-bar .label {

@@ -135,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         primaryStage.setResizable(false);
-        primaryStage.getScene().getStylesheets().add("view/StarTheme.css");
+        primaryStage.getScene().getStylesheets().add("view/DarkTheme.css");
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
