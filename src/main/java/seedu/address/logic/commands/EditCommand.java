@@ -37,9 +37,9 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PROJECT_NAME + "PROJECT NAME] "
-            + "[" + PREFIX_BUDGET + "BUDGET] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
+            + "[" + PREFIX_PROJECT_NAME + "PROJECT_NAME] "
+            + "[" + PREFIX_BUDGET + "PROJECT_BUDGET] "
+            + "[" + PREFIX_DEADLINE + "PROJECT_DEADLINE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_BUDGET + "500 "
@@ -47,7 +47,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in HR Pro Max++.";
 
     private final Index index;
     private final EditProjectDescriptor editProjectDescriptor;

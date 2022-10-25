@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all projects in address book whose name contains any of the argument keywords.
+ * Finds and lists all projects in HR Pro Max++ whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all projects whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " CS2103T";
 
     private final ProjectNameContainsKeywordsPredicate predicate;
 

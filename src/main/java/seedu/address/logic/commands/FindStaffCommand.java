@@ -14,10 +14,11 @@ public class FindStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "findstaff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all staffs in the currently active project "
-            + "whose names contains any of the specified keywords (case-insensitive) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all staffs in the currently displayed "
+            + "whose names contains any of the specified keywords (case-insensitive) and "
+            + "displays them as a list with index numbers\n"
             + "Parameters: "
-            + "Parameters: KEYWORD [MORE_KEYWORDS]..."
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "alice bob charlie ";
 

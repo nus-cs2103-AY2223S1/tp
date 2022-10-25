@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
 /**
- * Edits the details of an existing task in the address book.
+ * Edits the details of an existing task in HR Pro Max++.
  */
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edittask";
@@ -27,15 +27,15 @@ public class EditTaskCommand extends Command {
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TASK_DESCRIPTION + "TASK DESCRIPTION] "
-            + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] \n"
+            + "[" + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION] "
+            + "[" + PREFIX_TASK_DEADLINE + "TASK_DEADLINE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASK_DESCRIPTION + "Finish CS2103T Team Project "
             + PREFIX_TASK_DEADLINE + "2022-10-25";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in HR Pro Max++.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;

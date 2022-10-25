@@ -55,7 +55,10 @@ public class AddStaffCommandTest {
         model.addProject(validProject);
         AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, validProject.getProjectName());
 
-        assertCommandFailure(addStaffCommand, model, AddStaffCommand.MESSAGE_DUPLICATE_STAFF);
+        String expectedMesage = String.format(AddStaffCommand.MESSAGE_DUPLICATE_STAFF,
+                validProject.getProjectName().toString());
+
+        assertCommandFailure(addStaffCommand, model, expectedMesage);
     }
 
     @Test
