@@ -16,6 +16,7 @@ public class StudentData {
     private Address address;
     private Set<Tag> tags = new HashSet<>();
     private Set<Attendance> attendances = new HashSet<>();
+    private Set<Assignment> assignments = new HashSet<>();
 
     public Name getName() {
         return name;
@@ -65,8 +66,20 @@ public class StudentData {
         this.attendances.addAll(attendances);
     }
 
+    public void setAssignments(Set<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
+    public void addAssignments(Set<Assignment> assignments) {
+        this.assignments.addAll(assignments);
+    }
+
     public Set<Attendance> getAttendances() {
         return attendances;
+    }
+
+    public Set<Assignment> getAssignments() {
+        return assignments;
     }
 
     @Override
@@ -83,11 +96,12 @@ public class StudentData {
                 && Objects.equals(email, that.email)
                 && Objects.equals(address, that.address)
                 && Objects.equals(tags, that.tags)
-                && Objects.equals(attendances, that.attendances);
+                && Objects.equals(attendances, that.attendances)
+                && Objects.equals(assignments, that.assignments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, address, tags, attendances);
+        return Objects.hash(name, phone, email, address, tags, attendances, assignments);
     }
 }

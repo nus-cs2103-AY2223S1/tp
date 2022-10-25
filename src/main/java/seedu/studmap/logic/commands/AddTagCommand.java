@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import seedu.studmap.MainApp;
 import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.commons.util.CollectionUtil;
@@ -23,7 +22,7 @@ import seedu.studmap.model.tag.Tag;
  */
 public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagCommandStudentEditor> {
 
-    public static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
+    public static final Logger LOGGER = LogsCenter.getLogger(AddTagCommand.class);
 
     public static final String COMMAND_WORD = "addtag";
 

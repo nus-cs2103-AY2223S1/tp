@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.studmap.model.ReadOnlyStudMap;
 import seedu.studmap.model.StudMap;
 import seedu.studmap.model.student.Address;
+import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.Name;
@@ -41,6 +42,9 @@ public class SampleDataUtil {
         studentData.setEmail(new Email("berniceyu@example.com"));
         studentData.setAddress(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
         studentData.setTags(getTagSet("colleagues", "friends"));
+        studentData.setAssignments(getMarkedAssignments("A01", "A02"));
+        studentData.addAssignments(getReceivedAssignments("A03", "A04"));
+        studentData.addAssignments(getNewAssignments("A05", "A06"));
         studentDatas.add(studentData);
 
         studentData = new StudentData();
@@ -112,6 +116,33 @@ public class SampleDataUtil {
     public static Set<Attendance> getNotAttendedSet(String... strings) {
         return Arrays.stream(strings)
                 .map(className -> new Attendance(className, Boolean.FALSE))
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a set of unmarked assignments containing the list of strings.
+     */
+    public static Set<Assignment> getNewAssignments(String... strings) {
+        return Arrays.stream(strings)
+                .map(assignmentName -> new Assignment(assignmentName, Assignment.Status.NEW))
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a set of received assignments containing the list of strings.
+     */
+    public static Set<Assignment> getReceivedAssignments(String... strings) {
+        return Arrays.stream(strings)
+                .map(assignmentName -> new Assignment(assignmentName, Assignment.Status.RECEIVED))
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a set of marked assignments containing the list of strings.
+     */
+    public static Set<Assignment> getMarkedAssignments(String... strings) {
+        return Arrays.stream(strings)
+                .map(assignmentName -> new Assignment(assignmentName, Assignment.Status.MARKED))
                 .collect(Collectors.toSet());
     }
 }

@@ -13,6 +13,7 @@ import seedu.studmap.commons.util.StringUtil;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Address;
+import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.Name;
@@ -146,6 +147,21 @@ public class ParserUtil {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
         return trimmedClass;
+    }
+
+    /**
+     * Parses a {@code String assignmentName} checking for any errors.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code assignmentName} is invalid.
+     */
+    public static String parseAssignmentName(String assignmentName) throws ParseException {
+        requireNonNull(assignmentName);
+        String trimmedAssignment = assignmentName.trim();
+        if (!Assignment.isValidAssignmentName(trimmedAssignment)) {
+            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedAssignment;
     }
 
     /**

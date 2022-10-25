@@ -1,17 +1,15 @@
 package seedu.studmap.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.studmap.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.studmap.commons.core.Messages;
-import seedu.studmap.commons.core.index.Index;
-import seedu.studmap.logic.commands.exceptions.CommandException;
-import seedu.studmap.model.Model;
+import seedu.studmap.commons.core.index.IndexListGenerator;
+import seedu.studmap.logic.commands.commons.StudentEditor;
+import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
@@ -19,73 +17,164 @@ import seedu.studmap.model.student.StudentData;
 /**
  * Unmarks the specified attendance record from the student identified using its displayed index.
  */
-public class UnmarkCommand extends Command {
+public class UnmarkCommand extends EditStudentCommand<UnmarkCommand.UnmarkCommandStudentEditor> {
 
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmarks the attendance for student identified by the index number used in the displayed"
-            + " student list.\n Removes attendance record for the class or tutorial specified in the parameter.\n"
+            + ": Unmarks the attendance for student identified by the index number used in the displayed student list."
+            + "\nSupport both attendance and assignment."
+            + "\n<Attendance>"
+            + "\n Removes attendance record for the class or tutorial specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer) "
             + PREFIX_CLASS + " [CLASS]\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS + " T01";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS + " T01"
+            + "\n<Assignment>"
+            + "\n Removes the specified assignment.\n"
+            + "Parameters: INDEX (must be positive integer) "
+            + PREFIX_ASSIGNMENT + " [CLASS]"
+            + "\n Example: " + COMMAND_WORD + " 1 " + PREFIX_ASSIGNMENT + " A01";
 
-    public static final String MESSAGE_UNMARK_SUCCESS = "Removed Class %1$s from Student: %2$s";
-    public static final String MESSAGE_UNMARK_NOTFOUND = "Class %1$s not found in Student: %2$s";
+    public static final String MESSAGE_UNMARK_SINGLE_ATTENDANCE_SUCCESS = "Removed Class %1$s from Student: %2$s";
+    public static final String MESSAGE_UNMARK_SINGLE_ASSIGNMENT_SUCCESS = "Removed Assignment %1$s from Student: %2$s";
 
-    private final Index index;
-    private final Attendance attendance;
+    public static final String MESSAGE_UNMARK_MULTI_ATTENDANCE_SUCCESS = "Removed Class %1$s from %2$s students";
+    public static final String MESSAGE_UNMARK_MULTI_ASSIGNMENT_SUCCESS = "Removed Assignment %1$s from %2$s Students";
+
+    public static final String MESSAGE_UNMARK_ATTENDANCE_NOTFOUND = "Class %1$s not found in Student: %2$s";
+    public static final String MESSAGE_UNMARK_ASSIGNMENT_NOTFOUND = "Assignment %1$s not found in Student: %2$s";
+
+    public static final String MESSAGE_NO_EDIT = "Attendance or Assignment must be provided.";
+
+    public UnmarkCommand(IndexListGenerator indexListGenerator, UnmarkCommandStudentEditor studentEditor) {
+        super(indexListGenerator, studentEditor);
+    }
+
+    @Override
+    public String getSingleEditSuccessMessage(Student editedStudent) {
+        if (studentEditor.getAttendance() != null) {
+            assert studentEditor.getAssignment() == null : "Assignment should not be marked if attendance is marked";
+            return String.format(MESSAGE_UNMARK_SINGLE_ATTENDANCE_SUCCESS,
+                    studentEditor.getAttendance().className,
+                    editedStudent);
+        } else {
+            assert studentEditor.getAttendance() == null : "Attendance should not be marked if assignment is marked";
+            Assignment assignment = studentEditor.getAssignment();
+            return String.format(MESSAGE_UNMARK_SINGLE_ASSIGNMENT_SUCCESS,
+                    assignment.getAssignmentName(),
+                    editedStudent);
+        }
+    }
+
+    @Override
+    public String getMultiEditSuccessMessage(List<Student> editedStudents) {
+        if (studentEditor.getAttendance() != null) {
+            assert studentEditor.getAssignment() == null : "Assignment should not be marked if attendance is marked";
+            return String.format(MESSAGE_UNMARK_MULTI_ATTENDANCE_SUCCESS,
+                    studentEditor.getAttendance().className,
+                    editedStudents.size());
+        } else {
+            assert studentEditor.getAssignment() == null : "Attendance should not be marked if assignment is marked";
+            Assignment assignment = studentEditor.getAssignment();
+            return String.format(MESSAGE_UNMARK_MULTI_ASSIGNMENT_SUCCESS,
+                    assignment.getAssignmentName(),
+                    editedStudents.size());
+        }
+    }
+
+    @Override
+    public String getNoEditMessage() {
+        return MESSAGE_NO_EDIT;
+    }
 
     /**
-     * @param index Index of the student in the filtered student list to remove the attendance
-     * @param attendance Attendance of the student to be removed
+     * A static StudentEditor that adjusts Attendance or Assignment for a given Student.
      */
-    public UnmarkCommand(Index index, Attendance attendance) {
-        this.index = index;
-        this.attendance = attendance;
-    }
+    public static class UnmarkCommandStudentEditor implements StudentEditor {
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        private final Attendance attendance;
+        private final Assignment assignment;
 
-        List<Student> lastShownList = model.getFilteredStudentList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        /**
+         * Constructor using Attendance.
+         *
+         * @param attendance Attendance to edit the student with.
+         */
+        public UnmarkCommandStudentEditor(Attendance attendance) {
+            this.assignment = null;
+            this.attendance = attendance;
         }
 
-        Student studentToEdit = lastShownList.get(index.getZeroBased());
-        StudentData studentData = studentToEdit.getStudentData();
-
-        Set<Attendance> newAttendance = new HashSet<>(studentToEdit.getAttendances());
-        boolean isRemoved = newAttendance.remove(attendance);
-        studentData.setAttendances(newAttendance);
-        Student editedStudent = new Student(studentData);
-
-        model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-
-        return new CommandResult(
-                String.format(isRemoved ? MESSAGE_UNMARK_SUCCESS : MESSAGE_UNMARK_NOTFOUND,
-                        attendance.className, editedStudent));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
+        /**
+         * Constructor using Assignment.
+         *
+         * @param assignment Assignment to edit the student with.
+         */
+        public UnmarkCommandStudentEditor(Assignment assignment) {
+            this.assignment = assignment;
+            this.attendance = null;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof UnmarkCommand)) {
-            return false;
+        public Attendance getAttendance() {
+            return attendance;
         }
 
-        // state check
-        UnmarkCommand e = (UnmarkCommand) other;
-        return index.equals(e.index)
-                && attendance.equals(e.attendance);
+        public Assignment getAssignment() {
+            return assignment;
+        }
+
+
+        @Override
+        public Student editStudent(Student studentToEdit) {
+            StudentData studentData = studentToEdit.getStudentData();
+
+            if (attendance != null) {
+                Set<Attendance> newAttendance = new HashSet<>(studentToEdit.getAttendances());
+                newAttendance.remove(attendance);
+                studentData.setAttendances(newAttendance);
+            } else if (assignment != null) {
+                Set<Assignment> newAssignments = new HashSet<>(studentToEdit.getAssignments());
+                newAssignments.remove(assignment);
+                studentData.setAssignments(newAssignments);
+            }
+
+            return new Student(studentData);
+        }
+
+        @Override
+        public boolean hasEdits() {
+            return attendance != null || assignment != null;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof UnmarkCommand.UnmarkCommandStudentEditor)) {
+                return false;
+            }
+
+            // state check
+            UnmarkCommand.UnmarkCommandStudentEditor e = (UnmarkCommand.UnmarkCommandStudentEditor) other;
+
+            if (getAttendance() == null && e.getAttendance() != null) {
+                return false;
+            } else if (getAttendance() == null && e.getAttendance() == null) {
+                return true;
+            }
+
+            if (getAssignment() == null && e.getAssignment() != null) {
+                return false;
+            } else if (getAssignment() == null && e.getAssignment() == null) {
+                return true;
+            }
+
+            return getAttendance().equals(e.getAttendance()) && getAssignment().equals(e.getAssignment());
+        }
     }
 }
