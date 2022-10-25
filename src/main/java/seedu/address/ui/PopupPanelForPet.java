@@ -1,4 +1,4 @@
-package seedu.address.ui.popupWindow;
+package seedu.address.ui;
 
 import java.util.HashSet;
 import java.util.Set;

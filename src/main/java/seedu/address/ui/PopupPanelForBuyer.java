@@ -1,4 +1,4 @@
-package seedu.address.ui.popupWindow;
+package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,32 +9,33 @@ import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
-import seedu.address.logic.commands.AddSupplierCommand;
+import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Supplier;
-import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
 /**
- * A panel for entering supplier information, which can be used to fill the placeholder in the pop-up window.
- * It can contain any number of {@code PopupPanelForPet}.
+ * A panel for entering buyer information, which can be used to fill the placeholder in the pop-up window.
+ * It can contain any number of {@code PopupPanelForOrder}.
  */
-public class PopupPanelForSupplier extends PopUpPanel {
+public class PopupPanelForBuyer extends PopUpPanel {
 
-    private static final String FXML = "PopupPanelForSupplier.fxml";
-    private final List<PopupPanelForPet> petComponents;
+    private static final String FXML = "PopupPanelForBuyer.fxml";
+    private final List<PopupPanelForOrder> orderComponents;
 
     @FXML
     private Button addComponentButton;
@@ -50,7 +51,6 @@ public class PopupPanelForSupplier extends PopUpPanel {
 
     @FXML
     private Button deleteComponentButton;
-
     @FXML
     private TextField emailField;
 
@@ -60,12 +60,17 @@ public class PopupPanelForSupplier extends PopUpPanel {
     @FXML
     private TextField phoneField;
 
+
+    @FXML
+    private ScrollPane scrollPane;
+
     /**
-     * Constructs a {@code PopupPanelForSupplier} by setting input sequence, prompt text style and keyboard shortcut.
+     * Constructs a {@code PopupPanelForBuyer} by setting input sequence, prompt text style and keyboard shortcut.
      */
-    public PopupPanelForSupplier() {
+    public PopupPanelForBuyer() {
         super(FXML);
-        petComponents = new ArrayList<>();
+        orderComponents = new ArrayList<>();
+        nameField.requestFocus();
         generateInputSequence(nameField, phoneField, emailField, countryField, addressField, addComponentButton);
         setPromptTextStyle(nameField, phoneField, emailField, countryField, addressField);
         generateButtonShortcut(addComponentButton, new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN));
@@ -73,49 +78,51 @@ public class PopupPanelForSupplier extends PopUpPanel {
     }
 
     /**
-     * Adds a pet component to the temporary storage list and the displayed grid pane
+     * Adds an order component to the temporary storage list and the displayed grid pane
      * when the {@code addComponentButton} is pressed.
      *
      * @param event An action event.
      */
     @FXML
-    public void addPetComponent(ActionEvent event) {
-        PopupPanelForPet petComponent = new PopupPanelForPet();
-        petComponents.add(petComponent);
-        int numOfComponents = petComponents.size();
-        componentPlaceholder.addRow(numOfComponents - 1, petComponent.getRoot());
+    public void addOrderComponent(ActionEvent event) {
+        PopupPanelForOrder orderComponent = new PopupPanelForOrder();
+        orderComponents.add(orderComponent);
+        int numOfComponents = orderComponents.size();
+        componentPlaceholder.addRow(numOfComponents - 1, orderComponent.getRoot());
     }
 
     /**
-     * Deletes a pet component from the temporary storage list and the displayed grid pane
+     * Deletes an order component from the temporary storage list and the displayed grid pane
      * when the {@code deleteComponentButton} is pressed.
      *
      * @param event An action event.
      */
     @FXML
-    void deletePetComponent(ActionEvent event) {
-        int numOfComponents = petComponents.size();
+    void deleteOrderComponent(ActionEvent event) {
+        // Solution adapted from
+        // https://stackoverflow.com/questions/23002532/javafx-2-how-do-i-delete-a-row-or-column-in-gridpane
+        int numOfComponents = orderComponents.size();
         if (numOfComponents > 0) {
-            petComponents.remove(numOfComponents - 1);
+            orderComponents.remove(numOfComponents - 1);
             componentPlaceholder.getChildren().removeIf(node -> GridPane.getRowIndex(node) == numOfComponents - 1);
         }
     }
 
     @Override
     public Command generateCommand() throws ParseException {
-        Supplier supplier = generateSupplier();
-        List<Pet> pets = generatePets(supplier);
-        supplier.addPets(pets.stream().map(Pet::getId).collect(Collectors.toList()));
-        return new AddSupplierCommand(supplier, pets);
+        Buyer buyer = generateBuyer();
+        List<Order> orders = generateOrders(buyer);
+        buyer.addOrders(orders.stream().map(Order::getId).collect(Collectors.toList()));;
+        return new AddBuyerCommand(buyer, orders);
     }
 
     /**
-     * Generates a {@code Supplier} from user inputs.
+     * Generates a {@code Buyer} from user inputs.
      *
-     * @return A {@code Supplier}.
+     * @return A {@code Buyer}.
      * @throws ParseException When the user inputs cannot be parsed.
      */
-    public Supplier generateSupplier() throws ParseException {
+    public Buyer generateBuyer() throws ParseException {
         Name name = ParserUtil.parseName(nameField.getText());
         Phone phone = ParserUtil.parsePhone(phoneField.getText());
         Email email = ParserUtil.parseEmail(emailField.getText());
@@ -123,22 +130,22 @@ public class PopupPanelForSupplier extends PopUpPanel {
         // TODO: implement location in constructor
         Location location = new Location(countryField.getText());
         Set<Tag> tags = new HashSet<>();
-        return new Supplier(name, phone, email, address, tags, null);
+        return new Buyer(name, phone, email, address, tags, null);
     }
 
     /**
-     * Generates a list of {@code Pet} from the user inputs.
+     * Generates a list of {@code Order} from the user inputs.
      *
-     * @param supplier Supplier of the pets.
+     * @param buyer Buyer of the orders.
      * @return A list of {@code Order}.
      * @throws ParseException When the user inputs cannot be parsed.
      */
-    public List<Pet> generatePets(Supplier supplier) throws ParseException {
-        List<Pet> pets = new ArrayList<>();
-        for (PopupPanelForPet petComponent : petComponents) {
-            pets.add(petComponent.generatePet(supplier));
+    public List<Order> generateOrders(Buyer buyer) throws ParseException {
+        List<Order> orders = new ArrayList<>();
+        for (PopupPanelForOrder order : orderComponents) {
+            orders.add(order.generateOrder(buyer));
         }
-        return pets;
+        return orders;
     }
 
     @Override
@@ -148,13 +155,12 @@ public class PopupPanelForSupplier extends PopUpPanel {
         if (!contactFilled) {
             return false;
         }
-        for (PopupPanelForPet petComponent : petComponents) {
-            if (!petComponent.checkAllPartsFilled()) {
+        for (PopupPanelForOrder orderComponent : orderComponents) {
+            if (!orderComponent.checkAllPartsFilled()) {
                 return false;
             }
         }
         return true;
     }
-
 
 }

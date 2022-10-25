@@ -25,7 +25,6 @@ import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
-import seedu.address.ui.popupWindow.AddCommandPopupWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing

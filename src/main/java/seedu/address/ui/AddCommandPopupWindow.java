@@ -1,4 +1,4 @@
-package seedu.address.ui.popupWindow;
+package seedu.address.ui;
 
 import java.util.logging.Logger;
 
@@ -19,8 +19,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.ResultDisplay;
-import seedu.address.ui.UiPart;
 
 /**
  * The pop-up window for adding a buyer with/without orders,
