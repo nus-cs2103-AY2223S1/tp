@@ -31,7 +31,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_DATE = "An invalid date is provided. "
             + "Dates should be given in YYYY-MM-DD format and must be an actual date.";
     public static final String MESSAGE_INVALID_GRADE = "An invalid grade value is provided. "
-            + "The grade must be a double or integer.";
+            + "The grade must be a number.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
