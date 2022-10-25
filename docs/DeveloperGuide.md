@@ -177,6 +177,8 @@ This feature allows a TA to easily mass email a selected group of students. A ty
 The following sequence diagram shows how the extract emails command works.
 
 
+![ExtractEmailsSequenceDiagram](images/ExtractEmailsSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
