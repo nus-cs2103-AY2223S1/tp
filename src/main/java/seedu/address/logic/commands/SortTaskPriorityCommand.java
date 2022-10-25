@@ -30,7 +30,7 @@ public class SortTaskPriorityCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(comparator);
+        model.updateSortingCriteria(comparator);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }

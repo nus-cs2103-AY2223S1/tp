@@ -178,7 +178,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredTaskList(Comparator<Task> comparator) {
+    public void updateSortingCriteria(Comparator<Task> comparator) {
         requireNonNull(comparator);
         sortedTasks.setComparator(comparator);
     }
