@@ -28,7 +28,7 @@ public class Date {
     /**
      * Constructs a {@code Date}.
      *
-     * @param date A valid date that is before today.
+     * @param date A valid date.
      */
     public Date(String date) {
         requireNonNull(date);
@@ -101,8 +101,8 @@ public class Date {
      * Compares this {@code Date} to another {@code Date}.
      *
      * @param other The other {@code Date}.
-     * @return Negative if this {@code Date} is earlier and positive if this {@code Date} is latter than the
-     *     other {@code Date}, otherwise 0.
+     * @return Negative integer if this {@code Date} is earlier and positive integer
+     *     if this {@code Date} is latter than the other {@code Date}, otherwise 0.
      */
     public int compareTo(Date other) {
         return date.compareTo(other.date);

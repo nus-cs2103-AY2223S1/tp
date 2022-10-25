@@ -17,7 +17,7 @@ public class CliSyntax {
     /* Todo prefix indicator*/
     public static final String INDICATOR_DESCRIPTION = "d/";
     public static final String INDICATOR_DATE = "date/";
-    public static final String INDICATOR_PRIORITY = "p/";
+    public static final String INDICATOR_PRIORITY = "pr/";
 
     /* Person prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix(INDICATOR_NAME);

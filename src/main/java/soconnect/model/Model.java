@@ -234,7 +234,6 @@ public interface Model {
 
     /**
      * Returns the header to be displayed on the {@code TodoListPanel}.
-     * @return
      */
     SimpleStringProperty getTodoListHeader();
 
