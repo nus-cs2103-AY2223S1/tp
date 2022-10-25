@@ -16,14 +16,16 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.COMMAND_WORD,
+                    ViewCommand.MESSAGE_USAGE));
         }
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.COMMAND_WORD,
+                    ViewCommand.MESSAGE_USAGE));
         }
 
         return new ViewCommand(index);

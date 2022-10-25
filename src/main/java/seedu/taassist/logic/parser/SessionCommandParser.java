@@ -23,7 +23,8 @@ public class SessionCommandParser implements Parser<SessionCommand> {
     public SessionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION, PREFIX_DATE);
         if (!argMultimap.containsPrefixes(PREFIX_SESSION) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SessionCommand.COMMAND_WORD,
+                    SessionCommand.MESSAGE_USAGE));
         }
 
         Date date;
