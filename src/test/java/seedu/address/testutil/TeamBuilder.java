@@ -47,6 +47,7 @@ public class TeamBuilder {
      * Inserts the {@code members} into a {@code UniquePersonList} and set it to the {@code Team} that we are building.
      */
     public TeamBuilder withMembers(Person... members) {
+        this.members = new UniquePersonList();
         for (Person p : members) {
             this.members.add(p);
         }
@@ -57,6 +58,7 @@ public class TeamBuilder {
      * Inserts the {@code tasks} into a {@code UniqueTaskList} and set it to the {@code Team} that we are building.
      */
     public TeamBuilder withTask(Task... tasks) {
+        this.tasks = new UniqueTaskList();
         for (Task t : tasks) {
             this.tasks.add(t);
         }
