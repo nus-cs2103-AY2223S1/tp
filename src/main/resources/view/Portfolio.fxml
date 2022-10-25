@@ -29,7 +29,7 @@
             <Line endX="300" startX="-100.0" stroke="#0b2545" />
             </VBox>
 
-            <VBox fx:id="currentPlans" alignment="CENTER_LEFT" maxHeight="Infinity" minHeight="150" prefHeight="400" prefWidth="300" GridPane.columnIndex="0">
+            <VBox fx:id="currentPlans" alignment="CENTER_LEFT" maxHeight="Infinity" minHeight="150" prefWidth="300" GridPane.columnIndex="0">
                 <padding>
                     <Insets bottom="10" left="30" right="10" top="10" />
                 </padding>

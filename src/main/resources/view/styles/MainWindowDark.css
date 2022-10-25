@@ -448,7 +448,7 @@
 }
 
 #scroller {
-    -fx-background-color: -main-background;
+    -fx-background-color: -second-background;
 
 }
 
