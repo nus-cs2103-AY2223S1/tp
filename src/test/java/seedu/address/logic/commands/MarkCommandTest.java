@@ -35,7 +35,7 @@ class MarkCommandTest {
 
         MarkCommand markCommand = new MarkCommand(INDEX_SECOND_APPOINTMENT);
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
-                INDEX_FIRST_APPOINTMENT.getOneBased(), person.getName());
+                INDEX_SECOND_APPOINTMENT.getOneBased());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setAppointment(expectedModel.getFilteredAppointmentList().get(1), appointment);
@@ -51,7 +51,7 @@ class MarkCommandTest {
 
         MarkCommand markCommand = new MarkCommand(INDEX_THIRD_APPOINTMENT);
         String markSuccessMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
-                INDEX_SECOND_APPOINTMENT.getOneBased(), person.getName());
+                INDEX_THIRD_APPOINTMENT.getOneBased());
         String recurringMessage = "\nA recurring appointment has been automatically added";
         String expectedMessage = markSuccessMessage + recurringMessage;
 
