@@ -68,6 +68,28 @@ public class CommandSuggestorTest {
     public void suggestCommand_validCommandWithInvalidPrefix_failure() {
         assertThrows(CommandException.class, () -> commandSuggestor.suggestCommand("add_task a"));
     }
+    
+    @Test
+    public void suggestCommand_validCommandWithIndex_success() {
+        String expectedSuggestion = DeleteTaskCommand.COMMAND_WORD + " <task_index>";
+        try {
+            assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("delete_task "));
+        } catch (CommandException e) {
+            throw new AssertionError("Command Suggestion should not fail.", e);
+        }
+    }
+
+    @Test
+    public void suggestCommand_validCommandWithIndexGiven_success() {
+        String expectedSuggestion =
+                EditTaskCommand.COMMAND_WORD + " 1 " + PREFIX_NAME + PREFIX_NAME.getUserPrompt()
+                        + " " + PREFIX_CONTACT + PREFIX_CONTACT.getUserPrompt();
+        try {
+            assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("edit_task 1 "));
+        } catch (CommandException e) {
+            throw new AssertionError("Command Suggestion should not fail.", e);
+        }
+    }
 
     @Test
     public void autocomplete_validCommandWithNoPrefix_success() {
@@ -90,4 +112,16 @@ public class CommandSuggestorTest {
             throw new AssertionError("Autocomplete should not fail.", e);
         }
     }
+
+    @Test
+    public void autocomplete_validCommandWithNoArgs_success() {
+        String expectedSuggestion = ListTaskCommand.COMMAND_WORD;
+        try {
+            assertEquals(expectedSuggestion, commandSuggestor.autocompleteCommand("list_t",
+                    commandSuggestor.suggestCommand("list_t")));
+        } catch (CommandException e) {
+            throw new AssertionError("Autocomplete should not fail.", e);
+        }
+    }
+
 }
