@@ -3,13 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList; //import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Predicate; //import org.junit.jupiter.api.Test;
+import java.util.*;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings; //import seedu.address.logic.commands.exceptions.CommandException;
+import org.junit.jupiter.api.Test;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -19,69 +19,68 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
-//import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonBuilder;
 
-/*
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
- */
+
 
 public class AddBuyerCommandTest {
 
-    //    @Test
-    //    public void constructor_nullBuyer_throwsNullPointerException() {
-    //        assertThrows(NullPointerException.class, () -> new AddBuyerCommand(null));
-    //    }
-    //
-    //    @Test
-    //    public void execute_buyerAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
-    //        Buyer validBuyer = new PersonBuilder().buildBuyer();
-    //
-    //        CommandResult commandResult = new AddBuyerCommand(validBuyer).execute(modelStub);
-    //
-    //        String expectedResult = "\n" + "0 orders added\n0 pets added\n\n"
-    //                + String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer);
-    //
-    //        assertEquals(expectedResult, commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
-    //    }
-    //
-    //    @Test
-    //    public void execute_duplicateBuyer_throwsCommandException() {
-    //        Buyer validBuyer = new PersonBuilder().buildBuyer();
-    //        AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer);
-    //        ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
-    //
-    //        assertThrows(CommandException.class,
-    //                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
-    //    }
-    //
-    //    @Test
-    //    public void equals() {
-    //        Buyer alice = new PersonBuilder().withName("Alice").buildBuyer();
-    //        Buyer bob = new PersonBuilder().withName("Bob").buildBuyer();
-    //        AddBuyerCommand addAliceCommand = new AddBuyerCommand(alice);
-    //        AddBuyerCommand addBobCommand = new AddBuyerCommand(bob);
-    //
-    //        // same object -> returns true
-    //        assertTrue(addAliceCommand.equals(addAliceCommand));
-    //
-    //        // same values -> returns true
-    //        AddBuyerCommand addAliceCommandCopy = new AddBuyerCommand(alice);
-    //        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-    //
-    //        // different types -> returns false
-    //        assertFalse(addAliceCommand.equals(1));
-    //
-    //        // null -> returns false
-    //        assertFalse(addAliceCommand.equals(null));
-    //
-    // different buyer -> returns false
-    //        assertFalse(addAliceCommand.equals(addBobCommand));
-    //    }`
+    @Test
+    public void constructor_nullBuyer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddBuyerCommand(null, null));
+    }
+
+    @Test
+    public void execute_buyerAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingBuyerAdded modelStub = new ModelStubAcceptingBuyerAdded();
+        Buyer validBuyer = new PersonBuilder().buildBuyer();
+        CommandResult commandResult = new AddBuyerCommand(validBuyer, new ArrayList<>()).execute(modelStub);
+
+        String expectedResult = "\n" + "0 orders added\n"
+                + String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer);
+
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
+    }
+
+    @Test
+    public void execute_duplicateBuyer_throwsCommandException() {
+            Buyer validBuyer = new PersonBuilder().buildBuyer();
+            AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer, new ArrayList<>());
+            ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
+
+            assertThrows(CommandException.class,
+                    AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        Buyer alice = new PersonBuilder().withName("Alice").buildBuyer();
+        Buyer bob = new PersonBuilder().withName("Bob").buildBuyer();
+        AddBuyerCommand addAliceCommand = new AddBuyerCommand(alice, new ArrayList<>());
+        AddBuyerCommand addBobCommand = new AddBuyerCommand(bob, new ArrayList<>());
+
+        // same object -> returns true
+        assertTrue(addAliceCommand.equals(addAliceCommand));
+
+        // same values -> returns true
+        AddBuyerCommand addAliceCommandCopy = new AddBuyerCommand(alice, new ArrayList<>());
+        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addAliceCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addAliceCommand.equals(null));
+
+        //different buyer -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
+    }
 
     /**
      * A default model stub that have all the methods failing.
