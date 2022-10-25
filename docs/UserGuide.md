@@ -13,9 +13,9 @@ while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, GuestBook can get your
 guest management tasks done faster than traditional GUI apps.
 
-You can use GuestBook to track guest and room details such as emails, phone numbers, room numbers, dates of stay,
-numbers of guests, bills, requests, and whether the rooms have been cleaned. By allowing you to add, edit, delete, and
-filter guests, GuestBook can fulfill all your hotel management needs.
+You can use GuestBook to track guests and their details including name, email address, phone number, room number, 
+dates of stay, number of guests, bill, request, and whether their room has been cleaned. By allowing you to add, edit, 
+delete, and filter guests, GuestBook can fulfill all your hotel management needs.
 
 This user guide provides in-depth descriptions of all the available features in GuestBook and how to use them.
 
