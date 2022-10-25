@@ -19,6 +19,7 @@ import seedu.address.logic.commands.reminder.UnmarkReminderCommand;
 import seedu.address.logic.commands.student.AddCommand;
 import seedu.address.logic.commands.student.DeleteCommand;
 import seedu.address.logic.commands.student.EditCommand;
+import seedu.address.logic.commands.student.ExtractEmailsCommand;
 import seedu.address.logic.commands.student.FindCommand;
 import seedu.address.logic.commands.student.ShowGradeCommand;
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
@@ -117,6 +118,9 @@ public class AddressBookParser {
 
         case DeleteConsultationCommand.COMMAND_WORD:
             return new DeleteConsultationCommandParser().parse(arguments);
+
+        case ExtractEmailsCommand.COMMAND_WORD:
+            return new ExtractEmailsCommand();
 
         default:
             throw new UnknownPreambleException(commandWords);
