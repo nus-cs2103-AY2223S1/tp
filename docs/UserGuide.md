@@ -79,8 +79,9 @@ The following table describes the sections in detail:
 | 7        | Storage File Location | Displays the location of your **Tuthub** data file.                                 |          
 
 **3.2.3 Notes About Command Format**
+<div markdown="block" class="alert alert-info">
 
-Some general rules that Tuthub commands follow:
+:information_source: Some general rules that Tuthub commands follow:
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -89,8 +90,6 @@ Some general rules that Tuthub commands follow:
 
 * Items with `…` after them can be used as many times as the user would like.<br>
   e.g. `[t/TAG]…` can be used multiple times like `t/good` or `t/good t/highRatings`, or can be omitted altogether.
-
-:information_source: **Information:**
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
@@ -101,29 +100,10 @@ Some general rules that Tuthub commands follow:
 * Commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will ignore follow-up inputs.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/senior`, `t/senior t/great` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-
-</div>
 
 ### Viewing help : `help`
 
