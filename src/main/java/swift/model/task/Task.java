@@ -15,17 +15,22 @@ public abstract class Task {
 
     private final Description description;
 
+    private final Deadline deadline;
+
     /**
      * Constructs a {@code Task}.
      *
-     * @param id   A unique identifier for the task.
-     * @param name A valid task name.
+     * @param id          A unique identifier for the task.
+     * @param name        A valid task name.
+     * @param description A valid description.
+     * @param deadline    A valid deadline, which is optional.
      */
-    public Task(UUID id, TaskName name, Description description) {
-        requireAllNonNull(id, name);
+    public Task(UUID id, TaskName name, Description description, Deadline deadline) {
+        requireAllNonNull(id, name, description, deadline);
         this.id = id;
         this.name = name;
         this.description = description;
+        this.deadline = deadline;
     }
 
     public UUID getId() {
@@ -40,11 +45,22 @@ public abstract class Task {
         return description;
     }
 
+    public Deadline getDeadline() {
+        return deadline;
+    }
+
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Task
-                && name.equals(((Task) other).name));
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof Task) {
+            Task otherTask = (Task) other;
+            return name.equals(otherTask.name)
+                    && description.equals(otherTask.description)
+                    && deadline.equals(otherTask.deadline);
+        }
+        return false;
     }
 
     @Override
