@@ -17,7 +17,7 @@ public class ItemExpiryDate {
     public static final DateTimeFormatter EXPIRY_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(EXPIRY_DATE_PATTERN_REGEX);
 
-    public static final ItemExpiryDate NOT_SET_EXPIRY_DATE = new ItemExpiryDate(LocalDate.MIN);
+    private static final ItemExpiryDate NOT_SET_EXPIRY_DATE = new ItemExpiryDate(LocalDate.MIN);
 
     private final LocalDate expiryDate;
 
@@ -47,13 +47,21 @@ public class ItemExpiryDate {
     }
 
     /**
+     * Returns true if the expiry date is not set, false otherwise.
+     */
+    public boolean isNotSet() {
+        return this == NOT_SET_EXPIRY_DATE;
+    }
+
+    /**
      * Returns {@code true} if both {@link ItemExpiryDate#expiryDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ItemExpiryDate // instanceof handles nulls
+                || (other != NOT_SET_EXPIRY_DATE
+                && other instanceof ItemExpiryDate // instanceof handles nulls
                 && expiryDate.equals(((ItemExpiryDate) other).expiryDate)); // state check
     }
 

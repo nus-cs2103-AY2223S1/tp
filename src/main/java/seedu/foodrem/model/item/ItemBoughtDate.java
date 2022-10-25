@@ -17,7 +17,7 @@ public class ItemBoughtDate {
     public static final DateTimeFormatter BOUGHT_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(BOUGHT_DATE_PATTERN_REGEX);
 
-    public static final ItemBoughtDate NOT_SET_BOUGHT_DATE = new ItemBoughtDate(LocalDate.MIN);
+    private static final ItemBoughtDate NOT_SET_BOUGHT_DATE = new ItemBoughtDate(LocalDate.MIN);
 
     private final LocalDate boughtDate;
 
@@ -47,13 +47,21 @@ public class ItemBoughtDate {
     }
 
     /**
+     * Returns true if the bought date is not set, false otherwise.
+     */
+    public boolean isNotSet() {
+        return this == NOT_SET_BOUGHT_DATE;
+    }
+
+    /**
      * Returns {@code true} if both {@link ItemBoughtDate#boughtDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ItemBoughtDate // instanceof handles nulls
+                || (other != NOT_SET_BOUGHT_DATE
+                && other instanceof ItemBoughtDate // instanceof handles nulls
                 && boughtDate.equals(((ItemBoughtDate) other).boughtDate)); // state check
     }
 

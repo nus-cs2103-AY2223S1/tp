@@ -8,8 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.foodrem.model.item.Item;
-import seedu.foodrem.model.item.ItemBoughtDate;
-import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.tag.Tag;
 
 /**
@@ -56,9 +54,9 @@ public class ItemCard extends UiPart<Region> {
         quantityAndUnit.setText(item.getQuantity() + " " + item.getUnit());
         price.setText("$" + item.getPrice());
         bought.setText(String.format("(Bought Date: %s)",
-                item.getBoughtDate() == ItemBoughtDate.NOT_SET_BOUGHT_DATE ? "Not Set" : item.getBoughtDate()));
+                item.getBoughtDate().isNotSet() ? "Not Set" : item.getBoughtDate()));
         expiry.setText(String.format("(Expiry Date: %s)",
-                item.getExpiryDate() == ItemExpiryDate.NOT_SET_EXPIRY_DATE ? "Not Set" : item.getExpiryDate()));
+                item.getExpiryDate().isNotSet() ? "Not Set" : item.getExpiryDate()));
         item.getTagSet().stream()
                 .sorted(Comparator.comparing(Tag::getName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getName())));
