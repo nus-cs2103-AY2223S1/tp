@@ -213,21 +213,53 @@ Format: `clear`
 
 Adds a note to the SectresBook.
 
-Format: `addNote title/TITLE content/CONTENT `
+Format: `addNote title/TITLE content/CONTENT [tag/TAG]... `
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-TITLE must be unique and not longer than 100 characters.
+TITLE must be unique and not longer than 100 characters. Tags are also optional.
 </div>
 
 Examples:
 * `add title/Club meeting soon! content/Remind club members to attend meeting.`
-* `add title/T-Shirt payment due content/Collect money`
+* `add title/T-Shirt payment due content/Collect money tag/Juniors`
 
 ### Listing Notes `listNote`
 
 Shows a list of all notes in the SectresBook.
 
 Format: `listNote`
+
+### Editing Notes `editNote`
+
+Edits an existing specified note in the SectresBook.
+
+Format: `editNote INDEX [title/TITLE] [content/CONTENT] [tag/TAG]...`
+
+Example of usage:
+
+* `editNote 1 content/Second club meeting` can be used to easily update the first note's contents.
+* `editeNote 2 title/2020 alumni meeting` can be used to easily update the second note's title.
+
+### Locating a note by title: `findNote`
+
+Finds the notes whose titles match any of the given keywords.
+
+Format: `findNote KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `meeting` will match `Meeting`
+* The order of the keywords does not matter. e.g. `Meeting Club` will match `Club Meeting`
+* Only the title is searched.
+* Only the full words will be matched. e.g. `Meetings` will not match `Meeting`
+* Keyword cannot contain special characters. However, numbers will be allowed.
+  * e.g. The keywords `?!` and `t-shirt` will not be allowed.
+  * e.g. `2` will match `shirt 2` but will not match `shirt2`
+* Keywords will ignore special characters.
+  * e.g. `Meetings` will match `Meetings!!!` and `Meetings 1`
+  * e.g. `shirt` will match `t-shirt`
+
+Examples:
+* findNote `Meeting` returns `Club Meeting`, `Meeting!` and `Meeting 2`
+* findNote `Soon` returns `Payment (soon)`
 
 ### Deleting Notes `deleteNote`
 
@@ -274,6 +306,15 @@ _Details coming soon ..._
 
 **Q**: Double-clicking the jar file does not open the jar file!<br>
 **A**: Make sure that Java 11 is installed on your computer. You may also open the terminal or command prompt and type `java -jar SectresBook.jar`.
+
+**Q** Do I need to have Java installed to run SectresBook?<br>
+**A** Yes, SectresBook runs on Java and would require it to work. For more information on how to install Java 11, visit this [website](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
+
+**Q** What can I can do if the window size is too small?<br>
+**A** Drag the window of the application with your mouse to enlarge it, or simply click the top right maximise icon of the window.
+
+**Q** Do I require an internet connection to use SectresBook?<br>
+**A** No, SectreBook fully works without the need for internet connection.
 
 --------------------------------------------------------------------------------------------------------------------
 
