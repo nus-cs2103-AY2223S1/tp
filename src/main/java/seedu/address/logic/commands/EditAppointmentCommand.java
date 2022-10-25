@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -39,10 +40,12 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
             + "[" + PREFIX_REASON + "REASON] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_RECURRING_PERIOD + "TIME PERIOD] "
+            + "[" + PREFIX_TAG + "TAG] "
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " 1 "
             + PREFIX_REASON + "Sore Throat "
             + PREFIX_DATE + "2022-10-12 16:30 "
-            + PREFIX_RECURRING_PERIOD + "1Y0M0D";
+            + PREFIX_RECURRING_PERIOD + "1Y0M0D"
+            + PREFIX_TAG + "Ear";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
