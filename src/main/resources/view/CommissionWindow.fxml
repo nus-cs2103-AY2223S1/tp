@@ -12,15 +12,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
          xmlns:fx="http://javafx.com/fxml/1" width="720" height="500" onCloseRequest="#handleCloseCommissionWindow">
+    <icons>
+        <Image url="@/images/art.png"/>
+    </icons>
     <scene>
         <Scene>
             <stylesheets>
                 <URL value="@DarkTheme.css"/>
             </stylesheets>
 
+            <ScrollPane maxWidth="720" maxHeight="500" fitToWidth="true" fitToHeight="true"
+                        styleClass="edge-to-edge">
             <BorderPane fx:id="addCommissionContainer" style="-fx-background-color: #3C424B;">
                 <top>
                     <HBox style="-fx-background-color: #1E2229;">
@@ -123,6 +129,7 @@
                     </HBox>
                 </bottom>
             </BorderPane>
+            </ScrollPane>
         </Scene>
     </scene>
 </fx:root>

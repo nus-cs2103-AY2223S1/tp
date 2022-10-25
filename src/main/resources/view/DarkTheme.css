@@ -515,6 +515,10 @@
     -fx-text-fill: #333F4F!important;
 }
 
+.windowScrollPane .viewport {
+    -fx-background-color: #3C424B;
+}
+
 #iterationListView.list-view {
     -fx-padding: 0px;
     -fx-background-color: #15181F;
