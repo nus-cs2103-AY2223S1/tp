@@ -156,6 +156,8 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
+                && otherPerson.getIncome().equals(getIncome())
+                && otherPerson.getMonthly().equals(getMonthly())
                 && otherPerson.getAppointments().equals(getAppointments());
     }
 

@@ -120,13 +120,13 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        calendarDisplay = new CalendarDisplay(logic);
+        calendarDisplay = new CalendarDisplay(logic, primaryStage);
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay);
+        CommandBox commandBox = new CommandBox(this::executeCommand, resultDisplay, logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 

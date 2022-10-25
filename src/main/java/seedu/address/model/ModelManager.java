@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -25,11 +26,13 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final CommandHistory commandHistory;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyCommandHistory commandHistory) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -37,10 +40,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.commandHistory = new CommandHistory(commandHistory);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new CommandHistory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -97,6 +101,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonWithSameAppointmentDateTime(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasPersonWithSameAppointmentDateTime(appointment);
+    }
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -149,7 +158,30 @@ public class ModelManager implements Model {
         return calendarEventList;
     }
 
-    @Override public boolean equals(Object obj) {
+    //=========== Command History=============================================================
+    @Override
+    public ReadOnlyCommandHistory getCommandHistory() {
+        return commandHistory;
+    }
+
+    @Override
+    public void addToCommandHistory(String validCommandInput) {
+        commandHistory.addToCommandHistory(validCommandInput);
+    }
+
+    @Override
+    public String nextCommand() {
+        return commandHistory.getNextCommand();
+    }
+
+    @Override
+    public String prevCommand() {
+        return commandHistory.getPrevCommand();
+    }
+
+    //=========== equals method =============================================================
+    @Override
+    public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
             return true;
@@ -166,5 +198,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

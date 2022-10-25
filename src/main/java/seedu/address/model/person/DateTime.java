@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.DateTimeParser.DATE_TIME_FORMAT;
 
 import java.time.LocalDateTime;
 
@@ -50,7 +51,7 @@ public class DateTime implements Comparable<DateTime> {
     @Override
     public String toString() {
         return localDateTime.format(java.time.format
-                .DateTimeFormatter.ofPattern("d-MMM-yyyy hh:mm a"));
+                .DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
     }
 
     @Override

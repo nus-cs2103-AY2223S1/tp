@@ -5,17 +5,18 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Parses string representation of a date and time and creates
  * a new LocalDateTime object
  */
 public class DateTimeParser {
-    private static final String DATE_TIME_FORMAT = "d-MMM-yyyy hh:mm a";
-    private static final String DATE_FORMAT = "d-MMM-yyyy";
+    public static final String DATE_TIME_FORMAT = "d-MMM-uuuu hh:mm a";
+    private static final String DATE_FORMAT = "d-MMM-uuuu";
     private static final String TIME_FORMAT = "hh:mm a";
     private static final DateTimeFormatter dateTimeFormatter = java.time.format
-            .DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
+            .DateTimeFormatter.ofPattern(DATE_TIME_FORMAT).withResolverStyle(ResolverStyle.STRICT);
     private static final DateTimeFormatter dateFormatter = java.time.format
             .DateTimeFormatter.ofPattern(DATE_FORMAT);
     private static final DateTimeFormatter timeFormatter = java.time.format

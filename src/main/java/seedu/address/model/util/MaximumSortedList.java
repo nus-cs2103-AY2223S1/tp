@@ -48,7 +48,9 @@ public class MaximumSortedList<T extends Comparable<T>> {
     }
 
     public ObservableList<T> getObservableList() {
-        return internalMaximumSortedList;
+        ObservableList<T> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalMaximumSortedList);
+        return internalUnmodifiableList;
     }
 
     /**

@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -59,6 +60,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// person-level operations
 
+    /**
+     * Returns true if a person has an appointment with the same datetime as {@code person} exists in the address book.
+     */
+    public boolean hasPersonWithSameAppointmentDateTime(Appointment appointment) {
+        requireNonNull(appointment);
+        return persons.containsPersonWithSameAppointmentDateTime(appointment);
+    }
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
