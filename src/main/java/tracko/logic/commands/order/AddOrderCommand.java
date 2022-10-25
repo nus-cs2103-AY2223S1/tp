@@ -107,7 +107,7 @@ public class AddOrderCommand extends MultiLevelCommand {
             Item orderItem = model.getItem(itemName);
             ItemQuantityPair pair = new ItemQuantityPair(orderItem, quantity);
             toAdd.addToItemList(pair);
-            toAdd.calculateTotalOrder();
+            toAdd.calculateTotalOrderPrice();
             return new CommandResult(String.format(MESSAGE_ADDED_ITEM, pair));
         } catch (ItemNotFoundException e) {
             return new CommandResult(String.format(MESSAGE_INVALID_ITEM, itemName));

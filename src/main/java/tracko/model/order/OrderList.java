@@ -67,7 +67,7 @@ public class OrderList implements Iterable<Order> {
             for (int j = 0; j < itemList.size(); j++) {
                 itemList.get(j).calculatePrice();
             }
-            order.calculateTotalOrder();
+            order.calculateTotalOrderPrice();
             internalList.set(i, order);
         }
     }

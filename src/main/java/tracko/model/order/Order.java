@@ -38,7 +38,7 @@ public class Order {
         this.timeCreated = LocalDateTime.now();
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
-        calculateTotalOrder();
+        calculateTotalOrderPrice();
     }
 
     /**
@@ -56,7 +56,7 @@ public class Order {
         this.itemList = itemList;
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
-        calculateTotalOrder();
+        calculateTotalOrderPrice();
     }
 
     public Name getName() {
@@ -132,7 +132,7 @@ public class Order {
     /**
      * Calculates the total price of a customer's ordered items.
      */
-    public void calculateTotalOrder() {
+    public void calculateTotalOrderPrice() {
         double totalOrderPrice = 0;
         for (int i = 0; i < itemList.size(); i++) {
             ItemQuantityPair item = itemList.get(i);

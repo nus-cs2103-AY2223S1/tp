@@ -1,9 +1,6 @@
 package tracko.model.order;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static tracko.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
@@ -58,7 +55,19 @@ public class ItemQuantityPairTest {
         assertEquals(validPair.toString(), validQuantity + " * " + validItem.getItemName());
     }
 
-    @ Test
+    @Test
+    public void test_calculatePrice_success() {
+        Item validItem = new Item(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
+                new Quantity(10), new HashSet<>(), new Price(523.98), new Price(300.67));
+        Quantity validQuantity = new Quantity(50);
+        ItemQuantityPair validPair = new ItemQuantityPair(validItem, validQuantity);
+        Double validPairPrice = validPair.getPrice();
+
+        assertEquals(validPairPrice, 26199.00);
+        assertNotEquals(validPairPrice, 500);
+    }
+
+    @Test
     public void equals() {
         Item validItemOne = new Item(new ItemName("Valid Item Name One"), new Description("Valid Item Description One"),
                 new Quantity(10), new HashSet<>(), new Price(10.00), new Price(20.00));
