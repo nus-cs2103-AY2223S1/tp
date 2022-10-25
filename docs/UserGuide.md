@@ -19,11 +19,12 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
    5. [Editing an applicant](#35-editing-an-applicant-edit)
    6. [Locating applicants by field](#36-locating-applicants-by-field-find)
    7. [Importing applicants from an external text file](#37-importing-applicants-from-an-external-text-file-import)
-   8. [Deleting an applicant](#38-deleting-an-applicant-delete)
-   9. [Clearing all entries](#39-clearing-all-entries-clear)
-   10. [Exiting the program](#310-exiting-the-program-exit)
-   11. [Saving the data](#311-saving-the-data)
-   12. [Editing the data file](#312-editing-the-data-file)
+   8. [Exporting displayed list](#38-exporting-displayed-list-export)
+   9. [Deleting an applicant](#39-deleting-an-applicant-delete)
+   10. [Clearing all entries](#310-clearing-all-entries-clear)
+   11. [Exiting the program](#311-exiting-the-program-exit)
+   12. [Saving the data](#312-saving-the-data)
+   13. [Editing the data file](#313-editing-the-data-file)
 4. [Command Summary](#4-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -213,7 +214,7 @@ Examples:
 * `import nus_students.json` Imports NUS students listed in the `nus_students.json` file
 
 
-### 3.8 Exporting the displayed list: `export`
+### 3.8 Exporting displayed list: `export`
 
 Exports the displayed list from InternConnect.
 
