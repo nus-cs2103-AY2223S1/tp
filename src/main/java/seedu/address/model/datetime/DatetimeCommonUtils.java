@@ -3,6 +3,8 @@ package seedu.address.model.datetime;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -100,7 +102,7 @@ public class DatetimeCommonUtils {
      */
     public static void assertDateValid(String dateString) throws ParseException {
         try {
-            LocalTime.parse(dateString, DATE_INPUT_FORMATTER);
+            LocalDate.parse(dateString, DATE_INPUT_FORMATTER);
         } catch (DateTimeParseException ex) {
             throw new ParseException(DATE_MESSAGE_CONSTRAINTS_UNPARSABLE);
         }
@@ -115,7 +117,7 @@ public class DatetimeCommonUtils {
      */
     public static void assertDatetimeValid(String datetimeString) throws ParseException {
         try {
-            LocalTime.parse(datetimeString, DATETIME_INPUT_FORMATTER);
+            LocalDateTime.parse(datetimeString, DATETIME_INPUT_FORMATTER);
         } catch (DateTimeParseException ex) {
             throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE);
         }
