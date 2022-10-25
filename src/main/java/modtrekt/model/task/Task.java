@@ -3,6 +3,7 @@ package modtrekt.model.task;
 import java.util.Comparator;
 
 import modtrekt.model.module.ModCode;
+import modtrekt.model.util.DeadlineComparator;
 
 /**
  * Represents a basic immutable task in the task list.
@@ -12,6 +13,7 @@ public class Task implements Comparable<Task> {
     public static final Comparator<Task> PRIORITY_COMPARATOR = Comparator.comparingInt(t -> t.getPriority().ordinal());
     public static final Comparator<Task> ARCHIVAL_COMPARATOR = Comparator.comparing(Task::isArchived);
     public static final Comparator<Task> DESCRIPTION_COMPARATOR = Comparator.comparing(Task::getDescription);
+    public static final Comparator<Task> DEADLINE_COMPARATOR = new DeadlineComparator();
 
     /**
      * String representing description of task
@@ -92,6 +94,7 @@ public class Task implements Comparable<Task> {
     @Override
     public int compareTo(Task that) {
         return ARCHIVAL_COMPARATOR.thenComparing(PRIORITY_COMPARATOR.reversed())
+                .thenComparing(DEADLINE_COMPARATOR.reversed())
                 .thenComparing(DESCRIPTION_COMPARATOR)
                 .compare(this, that);
     }
