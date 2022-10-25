@@ -24,6 +24,7 @@ public class TaskDeleteCommand extends Command {
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Deletes the task identified by the index number.\n"
+            + "\n"
             + "Parameters: " + CliSyntax.PREFIX_INDEX + "INDEX (must be a positive integer)\n"
             + "Example: " + TaskCategoryParser.CATEGORY_WORD + " "
             + COMMAND_WORD + " " + CliSyntax.PREFIX_INDEX + "1";
