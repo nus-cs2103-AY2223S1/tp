@@ -25,14 +25,14 @@ import soconnect.model.Model;
 public abstract class CustomiseCommand extends Command {
     public static final String COMMAND_WORD = "customise";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " order: Changes the order of the details\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " order: Changes the order of the details.\n"
             + "Parameters: "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_EMAIL + "] "
             + "[" + PREFIX_ADDRESS + "] "
             + "[" + PREFIX_TAG + "]\n"
             + "Example: " + COMMAND_WORD + " order p/ a/\n\n"
-            + COMMAND_WORD + " hide / " + COMMAND_WORD + " show: Changes the visibility of the details\n"
+            + COMMAND_WORD + " hide / " + COMMAND_WORD + " show: Changes the visibility of the details.\n"
             + "Parameters: "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_EMAIL + "] "
@@ -40,9 +40,9 @@ public abstract class CustomiseCommand extends Command {
             + "[" + PREFIX_TAG + "]\n"
             + "Examples: " + COMMAND_WORD + " hide p/ a/, " + COMMAND_WORD + " show a/ e/ p/ t/";
 
-    public static final String MESSAGE_UNKNOWN_CUSTOMISE_COMMAND = "Unknown customise command\n%1$s";
+    public static final String MESSAGE_UNKNOWN_CUSTOMISE_COMMAND = "Unknown customise command.\n%1$s";
 
-    public static final String MESSAGE_DUPLICATE_ATTRIBUTE = "There should not be duplicate attributes";
+    public static final String MESSAGE_DUPLICATE_ATTRIBUTE = "There should not be duplicate attributes.";
 
     public static final int NUMBER_OF_CUSTOMISABLE_ATTRIBUTES = 4; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
 
