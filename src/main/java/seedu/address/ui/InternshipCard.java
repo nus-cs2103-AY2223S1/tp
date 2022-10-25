@@ -64,6 +64,8 @@ public class InternshipCard extends UiPart<Region> {
         String applicationStatusString = internship.getApplicationStatus().toString();
 
         id.setText(displayedIndex + ". ");
+        id.setMinWidth(Region.USE_PREF_SIZE);
+
         company.setText(internship.getCompany().value);
         linkButton.setText(internship.getLink().value);
         appliedDateLabel.setText("Applied:");
