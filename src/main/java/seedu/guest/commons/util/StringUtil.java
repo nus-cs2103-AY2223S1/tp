@@ -62,9 +62,9 @@ public class StringUtil {
         checkArgument(preppedDate.split("\\s+").length == 1, "Date parameter should be a single date");
 
         String preppedSentence = sentence.replace("-", "");
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] datesInPreppedSentence = preppedSentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
+        return Arrays.stream(datesInPreppedSentence)
                 .anyMatch(preppedDate::equalsIgnoreCase);
     }
 
@@ -82,7 +82,7 @@ public class StringUtil {
      *       containsIsRoomCleanIgnoreCase("no", "nope") == false //not in the correct format
      *       </pre>
      * @param sentence cannot be null
-     * @param isRoomClean cannot be null, cannot be empty, must be a single word
+     * @param isRoomClean cannot be null, cannot be empty, must be a single isRoomClean
      */
     public static boolean containsIsRoomCleanIgnoreCase(String sentence, String isRoomClean) {
         requireNonNull(sentence);
@@ -99,9 +99,9 @@ public class StringUtil {
         }
 
         String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String[] isRoomCleansInPreppedSentence = preppedSentence.split("\\s+");
 
-        return Arrays.stream(wordsInPreppedSentence)
+        return Arrays.stream(isRoomCleansInPreppedSentence)
                 .anyMatch(preppedIsRoomClean::equalsIgnoreCase);
     }
 
