@@ -17,7 +17,7 @@ import tracko.model.item.Price;
 import tracko.model.item.Quantity;
 import tracko.testutil.OrderBuilder;
 
-public class OrderContainsKeywordsPredicateTest {
+public class OrderMatchesFlagsAndPrefixPredicateTest {
 
     @Test
     public void equals() {
@@ -68,6 +68,7 @@ public class OrderContainsKeywordsPredicateTest {
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
+    // contains keywords
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),

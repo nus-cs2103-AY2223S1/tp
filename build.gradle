@@ -41,6 +41,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    implementation 'org.testng:testng:7.1.0'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
