@@ -33,7 +33,10 @@ public enum Key {
     public static boolean isValidKey(String keyContent) {
         return keyContent.equalsIgnoreCase("patient")
                 || keyContent.equalsIgnoreCase("tag")
-                || keyContent.equalsIgnoreCase("mark");
+                || keyContent.equalsIgnoreCase("mark")
+                || keyContent.equalsIgnoreCase("p")
+                || keyContent.equalsIgnoreCase("t")
+                || keyContent.equalsIgnoreCase("m");
     }
 
     /**
