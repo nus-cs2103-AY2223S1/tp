@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
-import tracko.model.item.Price;
 
 public class OrderTest {
 
