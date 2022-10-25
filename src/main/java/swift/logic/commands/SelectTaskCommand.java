@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
-import swift.model.bridge.PersonTaskBridge;
 import swift.model.Model;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 
