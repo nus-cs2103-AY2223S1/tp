@@ -187,12 +187,14 @@ Given below is an example usage scenario and how groups are added/deleted at eac
 **Step 1.** 
 The user launches the application for the first time. Presuming they have not made changes to the default persons,
 the `AddressBook` model looks like this:
-<!-- Diagram 1 -->
+
+<img src="images/AddDeleteGroupState0.png" width="300" />
 
 **Step 2.**
 User executes `addgroup g/CS2103T`. This causes a new group with `GroupName` "CS2103T" and no members to be
 added to the `AddressBook` model, reflected below:
-<!-- Diagram 2 -->
+
+<img src="images/AddDeleteGroupState1.png" width="300" />
 
 **Note:** The associated parser `AddGroupCommandParser` checks that the entered group name is valid, following same
 conventions as naming a `Person`, and the command itself `AddGroupCommand` checks that a group of the same name does
@@ -205,14 +207,16 @@ As a detailed overview, the `addgroup` command operates via the following sequen
 **Step 3.**
 Suppose now the user adds `Alice` and `Bob` as members of the CS2103T, and assigns `Alice` a task under the group.
 The `AddressBook` model now looks like this:
-<!-- Diagram 3 -->
+
+<img src="images/AddDeleteGroupState2.png" width="300" />
 
 **Step 4.**
 User executes `deletegroup g/CS2103T`. This deletes the group with `GroupName` "CS2103T" and additionally:
 - Removes any members of the group e.g. `Alice` and `Bob` in this instance
 - Removes any tasks associated with the group e.g. `Alice`'s task.
 The `AddressBook` model now looks like this:
-<!-- Diagram 4 -->
+
+<img src="images/AddDeleteGroupState0.png" width="300" />
 
 **Note:** The associated parser `DeleteGroupCommandParser` checks that the entered group name is valid, following same
 conventions as naming a `Person`, and the command itself `DeleteGroupCommand` checks that a group with this name exists
