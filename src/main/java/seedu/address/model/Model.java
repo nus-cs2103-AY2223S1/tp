@@ -95,4 +95,10 @@ public interface Model {
      * Adds the given person reminder pair.
      */
     void addReminder(Person person, Reminder reminder);
+
+    /**
+     * Deletes the given person reminder pair.
+     * The reminder must exist in the address book.
+     */
+    void deleteReminder(Pair<Person, Reminder> target);
 }

@@ -1,9 +1,10 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
 /**
  * Represents a Reminder in the address book.

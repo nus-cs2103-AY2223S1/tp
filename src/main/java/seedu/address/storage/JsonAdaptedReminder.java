@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
+
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -8,10 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import javafx.util.Pair;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Reminder;
-
-import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
 /**
  * Jackson-friendly version of {@link Reminder}.
@@ -33,7 +31,6 @@ class JsonAdaptedReminder {
      * Converts a given {@code Reminder} into this class for Jackson use.
      */
     public JsonAdaptedReminder(Reminder source) {
-        System.out.println(source.date);
         this.reminderPair = new Pair<>(source.task, source.date.format(
                 DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
     }

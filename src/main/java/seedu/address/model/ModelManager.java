@@ -176,6 +176,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteReminder(Pair<Person, Reminder> target) {
+        unsortedReminders.remove(target);
+        target.getKey().deleteReminder(target.getValue());
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
