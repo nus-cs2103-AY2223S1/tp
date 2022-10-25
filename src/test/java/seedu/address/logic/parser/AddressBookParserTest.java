@@ -23,11 +23,18 @@ import seedu.address.logic.commands.DeleteStaffCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Project;
@@ -36,7 +43,9 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.ProjectBuilder;
 import seedu.address.testutil.ProjectUtil;
 import seedu.address.testutil.StaffBuilder;
@@ -82,6 +91,12 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_sortTask() throws Exception {
+        assertTrue(parser.parseCommand(SortTaskCommand.COMMAND_WORD) instanceof SortTaskCommand);
+        assertTrue(parser.parseCommand(SortTaskCommand.COMMAND_WORD + " 3") instanceof SortTaskCommand);
+    }
+
+    @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased());
@@ -117,9 +132,25 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_editTask() throws Exception {
+        Task task = new TaskBuilder().build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
+        EditTaskCommand command = (EditTaskCommand) parser.parseCommand(EditTaskCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
+        assertEquals(new EditTaskCommand(INDEX_FIRST_TASK, descriptor), command);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_filterTask() throws Exception {
+        assertTrue(parser.parseCommand(FilterTaskCommand.COMMAND_WORD) instanceof FilterTaskCommand);
+        assertTrue(parser.parseCommand(
+                FilterTaskCommand.COMMAND_WORD + " RANDOM INPUT 123!!") instanceof FilterTaskCommand);
     }
 
     @Test
@@ -128,6 +159,14 @@ public class AddressBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findTask() throws Exception {
+        List<String> keywords = Arrays.asList("too", "lar", "laz");
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(FindTaskCommand.COMMAND_WORD + " "
+                + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTaskCommand(new TaskDescriptionContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -140,6 +179,20 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_markTask() throws Exception {
+        MarkTaskCommand command = (MarkTaskCommand) parser.parseCommand(
+                MarkTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new MarkTaskCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkTask() throws Exception {
+        UnmarkTaskCommand command = (UnmarkTaskCommand) parser.parseCommand(
+                UnmarkTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new UnmarkTaskCommand(INDEX_FIRST_TASK), command);
     }
 
     @Test

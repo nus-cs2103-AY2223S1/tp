@@ -43,6 +43,7 @@
     "staffList": [],
     "tagged" : [ ]
   } ],
+  "staff" : [],
   "tasks" : [{
     "taskDescription" : "Assignment 2101",
     "taskDeadline": "2022-07-11",

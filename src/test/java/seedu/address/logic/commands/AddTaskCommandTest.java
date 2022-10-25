@@ -17,12 +17,14 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.project.Project;
+import seedu.address.model.staff.Staff;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -148,13 +150,43 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void setTargetProject(Project target) {
+        public void setFilteredStaffList(Project target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ArrayList<Project> getTargetProject() {
-            return null;
+        public ObservableList<Staff> getFilteredStaffList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredStaffList(Predicate<Staff> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStaff(Staff staff) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStaff(Staff target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStaff(Staff staff) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStaff(Staff target, Staff editedStaff) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortTasks() {
+            throw new AssertionError(("This method should not be called."));
         }
 
         @Override
@@ -206,6 +238,20 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void filterTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markTask(Index index) {
+            throw new AssertionError("this mehtod should not be called.");
+        }
+
+        @Override
+        public void unmarkTask(Index index) {
+            throw new AssertionError("this mehtod should not be called.");
+        }
     }
 
     /**

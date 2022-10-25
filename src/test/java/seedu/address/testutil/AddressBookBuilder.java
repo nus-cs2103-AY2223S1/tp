@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.project.Project;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -25,6 +27,22 @@ public class AddressBookBuilder {
      */
     public AddressBookBuilder withProject(Project project) {
         addressBook.addProject(project);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Staff} to the {@code AddressBook} that we are building.
+     */
+    public AddressBookBuilder withStaff(Staff staff) {
+        addressBook.addStaff(staff);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Task} to the {@code AddressBook} that we are building.
+     */
+    public AddressBookBuilder withTask(Task task) {
+        addressBook.addTask(task);
         return this;
     }
 

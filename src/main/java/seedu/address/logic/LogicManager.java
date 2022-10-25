@@ -15,7 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.project.Project;
-import seedu.address.model.staff.UniqueStaffList;
+import seedu.address.model.staff.Staff;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
@@ -67,6 +67,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Staff> getFilteredStaffList() {
+        return model.getFilteredStaffList();
+    }
+
+    @Override
     public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
     }
@@ -86,13 +91,4 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public UniqueStaffList getTargetProjectStaffList() {
-        try {
-            return model.getTargetProject().get(0).getStaffList();
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
-
-    }
 }

@@ -37,14 +37,6 @@ public class StaffListPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets a {@code StaffListPanel} with the given {@code ObservableList}.
-     */
-    public void updateStaffList(ObservableList<Staff> staffList) {
-        staffListView.setItems(staffList);
-        staffListView.setCellFactory(listView -> new StaffListViewCell());
-    }
-
-    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Staff} using a {@code StaffCard}.
      */
     class StaffListViewCell extends ListCell<Staff> {

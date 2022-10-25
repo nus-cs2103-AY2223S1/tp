@@ -46,7 +46,8 @@ public class TaskDescription {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDescription // instanceof handles nulls
-                && taskDescription.equals(((TaskDescription) other).taskDescription)); // state check
+                && taskDescription.equalsIgnoreCase(((TaskDescription) other).taskDescription)); // state check
+
     }
 
     @Override

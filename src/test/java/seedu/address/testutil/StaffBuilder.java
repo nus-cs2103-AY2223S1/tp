@@ -66,32 +66,32 @@ public class StaffBuilder {
     /**
      * Sets the {@code StaffContact} of the {@code Staff} that we are building.
      */
-    public StaffBuilder withStaffContact(String budget) {
-        this.staffContact = new StaffContact(budget);
+    public StaffBuilder withStaffContact(String contact) {
+        this.staffContact = new StaffContact(contact);
         return this;
     }
 
     /**
      * Sets the {@code StaffDepartment} of the {@code Staff} that we are building.
      */
-    public StaffBuilder withStaffDepartment(String deadline) {
-        this.staffDepartment = new StaffDepartment(deadline);
+    public StaffBuilder withStaffDepartment(String department) {
+        this.staffDepartment = new StaffDepartment(department);
         return this;
     }
 
     /**
      * Sets the {@code StaffLeave} of the {@code Staff} that we are building.
      */
-    public StaffBuilder withStaffLeave(String deadline) {
-        this.staffLeave = new StaffLeave(deadline);
+    public StaffBuilder withStaffLeave(String leaveStatus) {
+        this.staffLeave = new StaffLeave(leaveStatus);
         return this;
     }
 
     /**
      * Sets the {@code StaffTitle} of the {@code Staff} that we are building.
      */
-    public StaffBuilder withStaffTitle(String deadline) {
-        this.staffTitle = new StaffTitle(deadline);
+    public StaffBuilder withStaffTitle(String title) {
+        this.staffTitle = new StaffTitle(title);
         return this;
     }
 

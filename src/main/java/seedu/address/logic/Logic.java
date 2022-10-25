@@ -9,7 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.project.Project;
-import seedu.address.model.staff.UniqueStaffList;
+import seedu.address.model.staff.Staff;
 import seedu.address.model.task.Task;
 
 /**
@@ -35,6 +35,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
 
+    /** Returns an unmodifiable view of the filtered list of staff */
+    ObservableList<Staff> getFilteredStaffList();
+
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
@@ -53,6 +56,4 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-
-    UniqueStaffList getTargetProjectStaffList();
 }

@@ -41,6 +41,7 @@ public class DeleteCommand extends Command {
 
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProject(projectToDelete);
+        model.setFilteredStaffList(null);
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }
 
