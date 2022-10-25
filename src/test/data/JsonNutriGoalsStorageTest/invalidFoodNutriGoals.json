@@ -1,7 +1,8 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: bre@d",
+  "foods": [ {
+    "name": "Food with invalid name field: bre@d",
     "tagged": "Breakfast",
+    "dateTime" : "2022-10-20T15:21:02.886911",
     "calorie": "200"
   } ],
   "calorieTarget" : {

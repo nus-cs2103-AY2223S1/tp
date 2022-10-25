@@ -29,8 +29,8 @@ public class TypicalFoods {
             .withTag("dinner").build();
 
     // Manually added
-    public static final Food SUSHI = new FoodBuilder().withName("Sushi")
-            .withTag("dinner").build();
+    public static final Food SUSHI = new FoodBuilder().withName("sushi")
+            .withTag("dinner").withCalorie("200").build();
     public static final Food PANCAKE = new FoodBuilder().withName("Pancake")
             .withTag("lunch").build();
 

@@ -186,6 +186,11 @@ public class ProfileCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Food> getUnFilteredFoodList() {
+            throw new AssertionError("This method should not be called");
+        }
+
         @Test
         public Map<Name, Calorie> getFoodCalorieList() {
             throw new AssertionError("This method should not be called.");
