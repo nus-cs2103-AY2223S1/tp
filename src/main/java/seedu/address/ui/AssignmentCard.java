@@ -38,6 +38,8 @@ public class AssignmentCard extends UiPart<Region> {
      */
     public AssignmentCard(Person person, int displayedIndex) {
         super(FXML);
+        this.cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 0 0 5;",
+            getColourFromWorkload(person.getWorkloadScore())));
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
@@ -70,6 +72,16 @@ public class AssignmentCard extends UiPart<Region> {
         AssignmentCard card = (AssignmentCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
+    }
+
+    private String getColourFromWorkload(int score) {
+        if (score < 5) {
+            return "green";
+        } else if (score >= 5 && score < 15) {
+            return "yellow";
+        } else {
+            return "red";
+        }
     }
 
 }
