@@ -121,9 +121,9 @@ Adds an internship into the list.
 
 Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
-* Possible options for `APPLICATION_PROCESS` : `APPLY`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
-* Case-insensitive: `Apply`, `APPLY`, and `apply` are all acceptable inputs.
-* `APPLICATION_PROCESS` will be set to `APPLY` by default.
+* Possible options for `APPLICATION_PROCESS` : `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
+* Case-insensitive: `Applied`, `APPLIED`, and `applied` are all acceptable inputs.
+* `APPLICATION_PROCESS` will be set to `APPLIED` by default.
 * `DATE` should be in dd-mm-yyyy format.
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
@@ -136,7 +136,7 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 </div>
 
 Examples:
-* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLY d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
+* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
 * `add n/Tiktok p/backend engineer`
 * `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
