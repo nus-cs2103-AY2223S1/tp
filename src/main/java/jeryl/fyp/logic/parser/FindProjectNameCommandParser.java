@@ -4,25 +4,25 @@ import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import jeryl.fyp.logic.commands.FindCommand;
+import jeryl.fyp.logic.commands.FindProjectNameCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindProjectNameCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindProjectNameCommandParser implements Parser<FindProjectNameCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindProjectNameCommand
+     * and returns a FindProjectNameCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindProjectNameCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectNameCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = Arrays.stream(trimmedArgs.split("/"))
@@ -30,7 +30,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 .filter(keyword -> !keyword.equals(""))
                 .toArray(size -> new String[size]); // split by "/" then trim each
 
-        return new FindCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindProjectNameCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
-
 }

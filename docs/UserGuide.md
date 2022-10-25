@@ -121,22 +121,32 @@ Examples:
 * `mark id/A0123456G s/DONE`
 * `mark id/A0234567H s/YTS`
 
-### Searching keyword: `find` [pending enhancement]
+### Searching keyword: `find`
 
-Finds projects whose names contain any of the given keyword(s).
-[Enhancement: we can find students by their tags, names, etc.]
+Finds for projects whose field (to be specified by user) contains any of the given keyword(s).
+The four fields that the user can search by are:
+1) `StudentId`
+2) `StudentName`
+3)  `Tags` (accorded to a student)
+4) `ProjectName`
 
-Format: `find KEYWORD/[KEYWORD2/KEYWORD3/…]`
-* Only project names could be searched
+Format for:
+1) `StudentId`: `find-id KEYWORD/[KEYWORD2/KEYWORD3/…]`
+2) `StudentName`: `find-n KEYWORD/[KEYWORD2/KEYWORD3/…]`
+3)  `Tags`: `find-t KEYWORD/[KEYWORD2/KEYWORD3/…]`
+4) `ProjectName`: `find-proj KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+* Only the four specified fields above could be searched, and only one field can be searched at any one time.
 * The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`
 * The keyword could contain space, e.g. `practical guide of machine learning` is allowed
 * Partial keywords will also be matched, e.g. `Ne` will match `neural network` and `Genetic Algorithm`
 * Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`
-* Projects matching at least one keyword will be returned (i.e. `OR` search), e.g. `find neural network/tree` will match both `neural network` and `decision tree`
+* Projects matching at least one keyword will be returned (i.e. `OR` search), 
+  e.g. `find-t neural network/tree` will match project titles with `neural network` or `decision tree`
 
 Examples:
-* `find Neural Network`
-* `find Neural/Network  /    Data`
+* `find-t Neural Network` searches for all projects with the tag `Neural Network`.
+* `find-proj Neural/Network  /    Data` searches for all projects with `Neural` or `Network` or `Data` in their titles.
 
 ### List of commands: `help`
 
