@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
 
 import seedu.address.logic.commands.ListPersonsCommand;
@@ -22,6 +23,11 @@ public class ListPersonsCommandParser implements Parser<ListPersonsCommand> {
 
         PersonSortField sortField;
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_SORT);
+
+        // If there are extra arguments before the prefix
+        if (!argMultiMap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListPersonsCommand.MESSAGE_USAGE));
+        }
 
         // If sort field is missing
         if (!argMultiMap.getValue(PREFIX_SORT).isPresent()) {
