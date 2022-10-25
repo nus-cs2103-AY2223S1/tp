@@ -48,6 +48,14 @@ public class CommandResult {
     }
 
     /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser) {
+        this(feedbackToUser, false, false, false, null, false, null);
+    }
+
+    /**
      * Constructs a {@code CommandResult} for {@code HelpCommand}.
      * @param feedbackToUser Feedback to the user.
      * @return A {@code CommandResult} for {@code HelpCommand}.
@@ -81,14 +89,6 @@ public class CommandResult {
      */
     public static CommandResult createAddByPopupCommandResult(String feedbackToUser, String addType) {
         return new CommandResult(feedbackToUser, false, false, false, null, true, addType);
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, null, false, null);
     }
 
     public String getFeedbackToUser() {

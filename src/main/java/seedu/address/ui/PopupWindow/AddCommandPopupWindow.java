@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.PopupWindow;
 
 import java.util.logging.Logger;
 
@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -20,24 +19,39 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.ResultDisplay;
+import seedu.address.ui.UiPart;
 
+/**
+ * The pop-up window for adding a buyer with/without orders,
+ * or adding a supplier with/without pets.
+ */
 public class AddCommandPopupWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(AddCommandPopupWindow.class);
     private static final String FXML = "AddCommandPopupWindow.fxml";
-    private Stage stage;
-    private Logic logic;
+    private final Stage stage;
+    private final Logic logic;
+    private final ResultDisplay resultDisplay;
     private PopUpPanel popUpPanel;
-    private ResultDisplay resultDisplay;
 
     @FXML
     private StackPane popupContentPlaceholder;
 
     @FXML
     private Button saveButton;
+
     @FXML
     private Label typeToBeAdded;
 
+    /**
+     * Constructs a {@code AddCommandPopupWindow}.
+     *
+     * @param root Stage of the window.
+     * @param logic Logic for execution of the generated add command.
+     * @param typeToBeAdded Type of person to add.
+     * @param resultDisplay Result display window of the main window.
+     */
     public AddCommandPopupWindow(Stage root, Logic logic, String typeToBeAdded, ResultDisplay resultDisplay) {
         super(FXML, root);
         this.stage = root;
@@ -45,8 +59,7 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         this.typeToBeAdded.setText(typeToBeAdded);
         this.resultDisplay = resultDisplay;
         fillContentPlaceholder(typeToBeAdded);
-        setCloseWindowKey();
-        // Alternative solution: setCloseWindowKey(new KeyCodeCombination(KeyCode.ESCAPE));
+        setCloseWindowKey(KeyCode.ESCAPE);
         setSaveButtonShortcut(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
     }
 
@@ -54,6 +67,13 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         this(new Stage(), logic, typeToBeAdded, resultDisplay);
     }
 
+
+
+    /**
+     * Fills the placeholder in the pop-up window with content based on the typo of person to be added.
+     *
+     * @param typeToBeAdded Type of person to be added.
+     */
     public void fillContentPlaceholder(String typeToBeAdded) {
         typeToBeAdded = typeToBeAdded.trim().toUpperCase();
         popupContentPlaceholder.getChildren().clear();
@@ -73,25 +93,13 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         }
     }
 
-    public void setCloseWindowKey() {
-        // Solution adapted from https://stackoverflow.com/questions/14357515/javafx-close-window-on-pressing-esc
-        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                close();
-            }
-        });
-    }
-
-    public void setCloseWindowKey(KeyCombination keyCombination) {
-        // Solution adapted from https://stackoverflow.com/questions/25397742/javafx-keyboard-event-shortcut-key
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                stage.close();
-                event.consume();
-            }
-        });
-    }
-
+    /**
+     * Converts the user input to a {@code Command} when the {@code saveButton} is pressed.
+     *
+     * @param event Action event.
+     * @throws CommandException If the execution of the generated command causes exception.
+     * @throws ParseException If the parsing of the user input into a command causes exception.
+     */
     @FXML
     void exitWithSave(ActionEvent event) throws CommandException, ParseException {
         try {
@@ -110,6 +118,25 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Sets the keyboard shortcut for closing the pop-up window.
+     *
+     * @param keyCode A keyboard key.
+     */
+    public void setCloseWindowKey(KeyCode keyCode) {
+        // Solution adapted from https://stackoverflow.com/questions/14357515/javafx-close-window-on-pressing-esc
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (event.getCode() == keyCode) {
+                close();
+            }
+        });
+    }
+
+    /**
+     * Sets the keyboard shortcut for the save button.
+     *
+     * @param keyCombination A combination of keyboard keys.
+     */
     public void setSaveButtonShortcut(KeyCombination keyCombination) {
         getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (keyCombination.match(event)) {
@@ -119,12 +146,18 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         });
     }
 
+    /**
+     * Shows the pop-up window.
+     */
     public void show() {
         logger.fine("Showing add command pop-up window.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
+    /**
+     * Closes the pop-up window.
+     */
     public void close() {
         logger.fine("Add command pop-up window closed.");
         stage.close();

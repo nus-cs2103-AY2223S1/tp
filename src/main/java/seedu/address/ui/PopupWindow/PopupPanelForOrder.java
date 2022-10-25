@@ -1,13 +1,11 @@
-package seedu.address.ui;
+package seedu.address.ui.PopupWindow;
 
 import java.time.LocalDate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.AdditionalRequests;
@@ -22,6 +20,9 @@ import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
+/**
+ * A panel for entering order information, which can be part of the {@code PopupPanelForBuyer}.
+ */
 public class PopupPanelForOrder extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForOrder.fxml";
@@ -55,30 +56,18 @@ public class PopupPanelForOrder extends PopUpPanel {
                 ageField, priceRangeField, byDateField);
     }
 
-    public String generateCommandText() {
-        boolean allPartsFilled = checkGivenFieldsAllFilled(ageField, byDateField, colorField,
-                colorPatternField, priceRangeField, speciesField, additionalRequestsField);
-        if (!allPartsFilled) {
-            return "";
-        } else {
-            StringBuilder builder = new StringBuilder();
-            builder.append(AddOrderCommand.COMMAND_WORD).append(" ")
-                    .append(CliSyntax.PREFIX_ORDER_AGE).append(ageField.getText())
-                    .append(CliSyntax.PREFIX_ORDER_DATE).append(byDateField.getText())
-                    .append(CliSyntax.PREFIX_ORDER_COLOR).append(colorField.getText())
-                    .append(CliSyntax.PREFIX_ORDER_COLOR_PATTERN).append(colorPatternField.getText())
-                    .append(CliSyntax.PREFIX_ORDER_PRICE_RANGE).append(priceRangeField.getText())
-                    .append(CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS).append(additionalRequestsField.getText());
-            return builder.toString();
-        }
-    }
-
     @Override
     public Command generateCommand() {
-        // TODO: implement this
+        // TODO: modify AddOrderCommand
         return null;
     }
 
+    /**
+     * Generates an {@code Order} from user inputs.
+     * @param buyer Buyer of the order.
+     * @return An {@code Order}.
+     * @throws ParseException When user inputs cannot be parsed.
+     */
     public Order generateOrder(Buyer buyer) throws ParseException {
         Species species = ParserUtil.parseSpecies(speciesField.getText());
         Color color = ParserUtil.parseColor(colorField.getText());

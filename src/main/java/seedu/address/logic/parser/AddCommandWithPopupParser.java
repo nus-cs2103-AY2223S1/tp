@@ -6,6 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.logic.commands.AddCommandWithPopup;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses the input arguments and creates an {@code AddCommandWithPopup}.
+ */
 public class AddCommandWithPopupParser implements Parser<AddCommandWithPopup> {
 
     @Override

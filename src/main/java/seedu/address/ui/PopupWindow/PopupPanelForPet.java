@@ -1,13 +1,11 @@
-package seedu.address.ui;
+package seedu.address.ui.PopupWindow;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import seedu.address.logic.commands.AddPetCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Price;
@@ -24,6 +22,9 @@ import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A panel for entering pet information, which can be part of the {@code PopupPanelForSupplier}.
+ */
 public class PopupPanelForPet extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForPet.fxml";
@@ -61,32 +62,18 @@ public class PopupPanelForPet extends PopUpPanel {
                 dateOfBirthField, colorField, colorPatternField, priceField);
     }
 
-    public String generateCommandText() {
-        boolean allPartsFilled = checkGivenFieldsAllFilled(colorField, colorPatternField, dateOfBirthField,
-                heightField, petNameField, priceField, speciesField, weightField);
-        if (!allPartsFilled) {
-            return "";
-        } else {
-            StringBuilder builder = new StringBuilder();
-            builder.append(AddPetCommand.COMMAND_WORD).append(" ")
-                    .append(CliSyntax.PREFIX_PET_COLOR).append(colorField.getText())
-                    .append(CliSyntax.PREFIX_PET_COLOR_PATTERN).append(colorPatternField.getText())
-                    .append(CliSyntax.PREFIX_PET_DATE_OF_BIRTH).append(dateOfBirthField.getText())
-                    .append(CliSyntax.PREFIX_PET_HEIGHT).append(heightField.getText())
-                    .append(CliSyntax.PREFIX_PET_NAME).append(petNameField.getText())
-                    .append(CliSyntax.PREFIX_PET_PRICE).append(priceField.getText())
-                    .append(CliSyntax.PREFIX_PET_SPECIES).append(speciesField.getText())
-                    .append(CliSyntax.PREFIX_PET_WEIGHT).append(weightField.getText());
-            return builder.toString();
-        }
-    }
-
     @Override
     public Command generateCommand() {
-        // TODO: implement this
+        // TODO: modify AddPetCommand
         return null;
     }
 
+    /**
+     * Generates a {@code Pet} from user inputs.
+     * @param supplier Supplier of the order.
+     * @return A {@code Pet}.
+     * @throws ParseException When user inputs cannot be parsed.
+     */
     public Pet generatePet(Supplier supplier) throws ParseException {
         Name name = ParserUtil.parseName(petNameField.getText());
         Species species = ParserUtil.parseSpecies(speciesField.getText());

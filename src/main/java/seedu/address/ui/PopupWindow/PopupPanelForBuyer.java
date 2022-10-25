@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.PopupWindow;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.Command;
@@ -29,6 +28,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A panel for entering buyer information, which can be used to fill the placeholder in the pop-up window.
+ * It can contain any number of {@code PopupPanelForOrder}.
+ */
 public class PopupPanelForBuyer extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForBuyer.fxml";
@@ -71,6 +74,12 @@ public class PopupPanelForBuyer extends PopUpPanel {
         generateButtonShortcut(deleteComponentButton, new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN));
     }
 
+    /**
+     * Adds an order component to the temporary storage list and the displayed grid pane
+     * when the {@code addComponentButton} is pressed.
+     *
+     * @param event An action event.
+     */
     @FXML
     public void addOrderComponent(ActionEvent event) {
         PopupPanelForOrder orderComponent = new PopupPanelForOrder();
@@ -79,22 +88,21 @@ public class PopupPanelForBuyer extends PopUpPanel {
         componentPlaceholder.addRow(numOfComponents - 1, orderComponent.getRoot());
     }
 
+    /**
+     * Deletes an order component from the temporary storage list and the displayed grid pane
+     * when the {@code deleteComponentButton} is pressed.
+     *
+     * @param event An action event.
+     */
     @FXML
     void deleteOrderComponent(ActionEvent event) {
+        // Solution adapted from
+        // https://stackoverflow.com/questions/23002532/javafx-2-how-do-i-delete-a-row-or-column-in-gridpane
         int numOfComponents = orderComponents.size();
         if (numOfComponents > 0) {
             orderComponents.remove(numOfComponents - 1);
             componentPlaceholder.getChildren().removeIf(node -> GridPane.getRowIndex(node) == numOfComponents - 1);
         }
-    }
-
-    public void setAddComponentButtonShortcut(KeyCombination keyCombination) {
-        getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (keyCombination.match(event)) {
-                addComponentButton.fire();
-                event.consume();
-            }
-        });
     }
 
     @Override
@@ -105,6 +113,12 @@ public class PopupPanelForBuyer extends PopUpPanel {
         return new AddBuyerCommand(buyer, orders);
     }
 
+    /**
+     * Generates a {@code Buyer} from user inputs.
+     *
+     * @return A {@code Buyer}.
+     * @throws ParseException When the user inputs cannot be parsed.
+     */
     public Buyer generateBuyer() throws ParseException {
         Name name = ParserUtil.parseName(nameField.getText());
         Phone phone = ParserUtil.parsePhone(phoneField.getText());
@@ -116,6 +130,13 @@ public class PopupPanelForBuyer extends PopUpPanel {
         return new Buyer(name, phone, email, address, tags, null);
     }
 
+    /**
+     * Generates a list of {@code Order} from the user inputs.
+     *
+     * @param buyer Buyer of the orders.
+     * @return A list of {@code Order}.
+     * @throws ParseException When the user inputs cannot be parsed.
+     */
     public List<Order> generateOrders(Buyer buyer) throws ParseException {
         List<Order> orders = new ArrayList<>();
         for (PopupPanelForOrder order : orderComponents) {

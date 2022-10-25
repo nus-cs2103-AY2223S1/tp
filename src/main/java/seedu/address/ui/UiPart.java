@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Control;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCode;
 import seedu.address.MainApp;
 
 /**

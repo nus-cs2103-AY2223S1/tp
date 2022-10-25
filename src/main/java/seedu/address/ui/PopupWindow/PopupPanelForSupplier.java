@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.PopupWindow;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,6 +27,10 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A panel for entering supplier information, which can be used to fill the placeholder in the pop-up window.
+ * It can contain any number of {@code PopupPanelForPet}.
+ */
 public class PopupPanelForSupplier extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForSupplier.fxml";
@@ -65,6 +69,12 @@ public class PopupPanelForSupplier extends PopUpPanel {
         generateButtonShortcut(deleteComponentButton, new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN));
     }
 
+    /**
+     * Adds a pet component to the temporary storage list and the displayed grid pane
+     * when the {@code addComponentButton} is pressed.
+     *
+     * @param event An action event.
+     */
     @FXML
     public void addPetComponent(ActionEvent event) {
         PopupPanelForPet petComponent = new PopupPanelForPet();
@@ -73,6 +83,12 @@ public class PopupPanelForSupplier extends PopUpPanel {
         componentPlaceholder.addRow(numOfComponents - 1, petComponent.getRoot());
     }
 
+    /**
+     * Deletes a pet component from the temporary storage list and the displayed grid pane
+     * when the {@code deleteComponentButton} is pressed.
+     *
+     * @param event An action event.
+     */
     @FXML
     void deletePetComponent(ActionEvent event) {
         int numOfComponents = petComponents.size();
@@ -90,6 +106,12 @@ public class PopupPanelForSupplier extends PopUpPanel {
         return new AddSupplierCommand(supplier, pets);
     }
 
+    /**
+     * Generates a {@code Supplier} from user inputs.
+     *
+     * @return A {@code Supplier}.
+     * @throws ParseException When the user inputs cannot be parsed.
+     */
     public Supplier generateSupplier() throws ParseException {
         Name name = ParserUtil.parseName(nameField.getText());
         Phone phone = ParserUtil.parsePhone(phoneField.getText());
@@ -101,6 +123,13 @@ public class PopupPanelForSupplier extends PopUpPanel {
         return new Supplier(name, phone, email, address, tags, null);
     }
 
+    /**
+     * Generates a list of {@code Pet} from the user inputs.
+     *
+     * @param supplier Supplier of the pets.
+     * @return A list of {@code Order}.
+     * @throws ParseException When the user inputs cannot be parsed.
+     */
     public List<Pet> generatePets(Supplier supplier) throws ParseException {
         List<Pet> pets = new ArrayList<>();
         for (PopupPanelForPet petComponent : petComponents) {

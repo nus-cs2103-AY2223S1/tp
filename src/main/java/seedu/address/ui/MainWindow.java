@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.AddCommandWithPopup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.PopupWindow.AddCommandPopupWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -268,6 +268,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Creates a pop-up window.
+     *
+     * @param addType Typo of person to be added.
+     */
     public void handleAddByPopup(String addType) {
         addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay);
         addCommandPopupWindow.show();
