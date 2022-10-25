@@ -19,6 +19,9 @@ import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
  * Edits the details of an existing Remark for a patient.
  */
 public class EditRemarkCommand extends EditGenericCommand {
+    // tentative syntax; TODO: integrate with EditGenericCommand
+    public static final String COMMAND_WORD = "editRemark";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark identified by the index number in the remark list of the patient "
             + "identified by the index number used in the last patient listing.\n"
