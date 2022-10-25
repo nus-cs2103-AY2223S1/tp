@@ -16,7 +16,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
-import seedu.address.model.person.Tutorial;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
