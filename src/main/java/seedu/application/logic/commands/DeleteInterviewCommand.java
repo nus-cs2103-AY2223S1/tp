@@ -45,7 +45,7 @@ public class DeleteInterviewCommand extends Command {
         model.setApplication(applicationToRemoveInterview, editedApplication);
         model.updateApplicationListWithInterview();
 
-        assert applicationToRemoveInterview.getInterview().isEmpty();
+        assert applicationToRemoveInterview.getInterview().isPresent();
         Interview removedInterview = applicationToRemoveInterview.getInterview().get();
         return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, removedInterview));
     }
