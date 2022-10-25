@@ -80,7 +80,7 @@ Next, let's find out which statement(s) in the `UI` code is calling this method,
 
 Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
 
-Now let’s set the breakpoint. First, double-click the inventoryItem to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
+Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
  ![LeftGutter](../images/tracing/LeftGutter.png)
 
 ## Tracing the execution path
