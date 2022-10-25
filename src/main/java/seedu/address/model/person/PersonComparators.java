@@ -3,11 +3,14 @@ package seedu.address.model.person;
 import java.util.Comparator;
 import java.util.Optional;
 
+/**
+ * Comparators for fields in person model.
+ */
 public class PersonComparators {
 
-    public final static Comparator<Person> NAME_COMPARATOR = (Comparator.comparing(Person::getName));
+    public static final Comparator<Person> NAME_COMPARATOR = (Comparator.comparing(Person::getName));
 
-    public final static Comparator<Person> ADDRESS_COMPARATOR = ((o1, o2) -> {
+    public static final Comparator<Person> ADDRESS_COMPARATOR = ((o1, o2) -> {
         if (o1.getAddress().isEmpty() || o2.getAddress().isEmpty()) {
             return compareOptional(o1.getAddress(), o2.getAddress());
         }
@@ -15,7 +18,7 @@ public class PersonComparators {
         return o1.getAddress().get().compareTo(o2.getAddress().get());
     });
 
-    public final static Comparator<Person> ROLE_COMPARATOR = ((o1, o2) -> {
+    public static final Comparator<Person> ROLE_COMPARATOR = ((o1, o2) -> {
         if (o1.getRole().isEmpty() || o2.getRole().isEmpty()) {
             return compareOptional(o1.getRole(), o2.getRole());
         }
@@ -23,6 +26,11 @@ public class PersonComparators {
         return o1.getRole().get().compareTo(o2.getRole().get());
     });
 
+    /**
+     * Compare between two Optional fields, {@code o1} and {@code o2}.
+     * When both of them are present, returns 0 as it cannot be determined.
+     * When one of them is present, returns 1 when {@code o1} is present else -1.
+     */
     public static int compareOptional(Optional<?> o1, Optional<?> o2) {
         if (o1.isPresent() && o2.isPresent()) {
             return 0; // cannot be determined
