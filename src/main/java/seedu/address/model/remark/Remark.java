@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Point of contact in the client.
+ * Represents a remark for the client.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Remark {
@@ -44,7 +44,7 @@ public class Remark {
     }
 
     /**
-     * Returns true if both remarks have the same name.
+     * Returns true if both remarks have the same text.
      * This defines a weaker notion of equality between two remarks.
      */
     public boolean isSameRemark(Remark otherRemark) {
