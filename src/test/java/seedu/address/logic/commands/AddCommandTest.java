@@ -204,6 +204,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addReminder(Person person, Reminder reminder) {
+            // Adds the reminder linked to the person.
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
