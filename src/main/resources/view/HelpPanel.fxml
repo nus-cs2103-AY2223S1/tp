@@ -9,15 +9,19 @@
     <children>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="add"/>
-            <Label text="Adds user to contact book" HBox.hgrow="ALWAYS"/>
+            <Label text="Adds person to contact book" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="delete"/>
-            <Label text="Deletes user from contact book" HBox.hgrow="ALWAYS"/>
+            <Label text="Deletes person from contact book" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="find"/>
-            <Label text="Displays the users that match the keyword" HBox.hgrow="ALWAYS"/>
+            <Label text="Displays the persons that match the keyword" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <TextField editable="false" styleClass="command-text" text="sort"/>
+            <Label text="Sorts the persons" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="reset"/>

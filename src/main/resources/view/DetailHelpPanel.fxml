@@ -13,7 +13,7 @@
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="delete"/>
-            <Label text="Deletes user's attribute" HBox.hgrow="ALWAYS"/>
+            <Label text="Deletes person's attribute" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox>
             <TextField editable="false" styleClass="command-text" text="back"/>
