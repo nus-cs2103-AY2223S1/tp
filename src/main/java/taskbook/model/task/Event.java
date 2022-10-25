@@ -56,6 +56,7 @@ public class Event extends Task {
         return isDone() ? "[X]  [E]" : "[  ]  [E]";
     }
 
+    @Override
     public LocalDate getDate() {
         return date;
     }
