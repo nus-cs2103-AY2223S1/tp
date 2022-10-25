@@ -9,6 +9,7 @@ Class "<<interface>>\nReadOnlyInternshipBook" as ReadOnlyInternshipBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
 Class InternshipBook
+Class VersionedInternshipBook
 Class ModelManager
 Class UserPrefs
 
@@ -30,15 +31,16 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 InternshipBook .up.|> ReadOnlyInternshipBook
+VersionedInternshipBook .up.|> InternshipBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyInternshipBook
-ModelManager -left-> "1" InternshipBook
+ModelManager -down-> "1" VersionedInternshipBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-InternshipBook *--> "1" UniqueInternshipList
+VersionedInternshipBook *-->"1" UniqueInternshipList
 ModelManager -->"~* filtered" Internship
 UniqueInternshipList --> "~* all" Internship
 Internship *--> Name
