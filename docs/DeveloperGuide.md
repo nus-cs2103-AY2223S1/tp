@@ -137,7 +137,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-The `Model` component,
+The `Model` component:
 
 * stores the student record data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
@@ -146,8 +146,9 @@ The `Model` component,
 
 <div class="alert alert-info">:information_source:
 **Note:** An alternative and perhaps more OOP model is given below. It has a `Class` list in the `StudentRecord`, which `Student` references.
-- This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
-- This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.
+
+* This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
+* This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.
 <img src="images/BetterModelClassDiagram.png" width="450" />
 </div>
 
@@ -284,10 +285,10 @@ Step 4. The `updateFilteredStudentList` method in `model` is called with the Cla
 *Insert Object Diagram*
 
 Step 5. Class-ify displays the list of students with the class "1A" on the student card list panel according to the updated `FilteredStudentList`.
-<Insert Object Diagram>
+*Insert Object Diagram*
 
 The following sequence diagram shows how the ViewClass Command works:
-<Insert Sequence Diagram>
+*Insert Sequence Diagram*
 
 Design Considerations:
 1. Predicate logic for filtering students by their class
