@@ -362,6 +362,9 @@ Step 1. The user executes `editteam t/1 n/Team1` to change the name of first tea
 Step 2. The `editTeam` command is created by the parser using the given team index and new name. It calls
 `Model#setTeamName`to change the name of the required team.
 
+The following sequence diagram shows how the edit team operation works:
+![EditTeamSequenceDaigram](images/EditTeamSequenceDiagram.png)
+
 ### Assign Member Feature
 
 #### Implementation
@@ -375,6 +378,9 @@ Step 1. The user executes `assign m/1 t/1` to assign the first person as a membe
 Step 2. The `assignMember` command is created by the parser using the given member's index (global person index) and
 team's index. It calls `Model#addPersonToTeam` to add the person to given team.
 
+The following sequence diagram shows how the assign member operation works:
+![AssignMemberSequenceDaigram](images/AssignMemberSequenceDiagram.png)
+
 ### unAssign Member Feature
 
 #### Implementation
@@ -387,6 +393,9 @@ Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign t
 
 Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and
 team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
+
+The following sequence diagram shows how the edit team operation works:
+![UnAssignMemberSequenceDaigram](images/UnAssignMemberSequenceDiagram.png)
 
 _{more aspects and alternatives to be added}
 
