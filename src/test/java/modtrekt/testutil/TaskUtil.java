@@ -21,7 +21,7 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code task}'s details.
      */
     public static String getTaskDetails(Task t) {
-        return PREFIX_TASK + t.getDescription().description + " -c " + t.getModule()
+        return PREFIX_TASK + "'" + t.getDescription().description + "'" + " -c " + t.getModule()
                 .toString();
     }
 }

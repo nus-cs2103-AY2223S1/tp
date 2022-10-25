@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             Module module = new Module(code, name, credit, taskCount);
 
-            return new AddCommand(module);
+            return new AddCommand(code);
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME)
                 || arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_CREDIT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -54,7 +54,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                     throw new ParseException("Module code does not exist");
                 }
 
-                return new AddCommand(module);
+                return new AddCommand(code);
 
             } catch (IOException | InterruptedException e) {
                 throw new ParseException(
