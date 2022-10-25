@@ -12,9 +12,9 @@ import seedu.trackascholar.model.applicant.Applicant;
 /**
  * An UI component that displays information of a {@code Applicant}.
  */
-public class PersonCard extends UiPart<Region> {
+public class PinCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "PinCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,11 +27,9 @@ public class PersonCard extends UiPart<Region> {
     public final Applicant applicant;
 
     @FXML
-    private HBox cardPane;
+    private HBox pinCardPane;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -46,15 +44,16 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Applicant} and index to display.
      */
-    public PersonCard(Applicant applicant, int displayedIndex) {
+    public PinCard(Applicant applicant) {
         super(FXML);
         this.applicant = applicant;
-        id.setText(displayedIndex + ". ");
         name.setText(applicant.getName().fullName);
         phone.setText(applicant.getPhone().value);
         scholarship.setText(applicant.getScholarship().scholarship);
         applicationStatus.setText(applicant.getApplicationStatus().applicationStatus);
         setApplicationStatusStyling(applicant.getApplicationStatus().applicationStatus);
+        //Ensure only pinned applicants are here
+        assert applicant.getPin().getHasPinned();
         email.setText(applicant.getEmail().value);
         applicant.getMajors().stream()
                 .sorted(Comparator.comparing(major -> major.major))
@@ -74,9 +73,8 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && applicant.equals(card.applicant);
+        PinCard card = (PinCard) other;
+        return applicant.equals(card.applicant);
     }
 
     public void setApplicationStatusStyling(String status) {
@@ -88,4 +86,6 @@ public class PersonCard extends UiPart<Region> {
             applicationStatus.getStyleClass().add("cell_rejected_label");
         }
     }
+
+
 }

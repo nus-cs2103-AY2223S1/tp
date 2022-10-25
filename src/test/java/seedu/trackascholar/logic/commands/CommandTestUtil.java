@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_SCHOLARSHIP_BOB = "Sports scholarship";
     public static final String VALID_APPLICATION_STATUS_AMY = "pending";
     public static final String VALID_APPLICATION_STATUS_BOB = "accepted";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_MAJOR_HUSBAND = "husband";
+    public static final String VALID_MAJOR_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -52,8 +52,8 @@ public class CommandTestUtil {
             + VALID_APPLICATION_STATUS_AMY;
     public static final String APPLICATION_STATUS_DESC_BOB = " " + PREFIX_APPLICATION_STATUS
             + VALID_APPLICATION_STATUS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String MAJOR_DESC_FRIEND = " " + PREFIX_MAJOR + VALID_MAJOR_FRIEND;
+    public static final String MAJOR_DESC_HUSBAND = " " + PREFIX_MAJOR + VALID_MAJOR_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -62,7 +62,7 @@ public class CommandTestUtil {
             + PREFIX_SCHOLARSHIP; // empty string not allowed for scholarships
     public static final String INVALID_APPLICATION_STATUS_DESC = " "
             + PREFIX_APPLICATION_STATUS + "reject"; // wrong status
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_MAJOR_DESC = " " + PREFIX_MAJOR + "hubby*"; // '*' not allowed in majors
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -73,10 +73,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditApplicantDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withScholarship(VALID_SCHOLARSHIP_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withMajors(VALID_MAJOR_FRIEND).build();
         DESC_BOB = new EditApplicantDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withScholarship(VALID_SCHOLARSHIP_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withMajors(VALID_MAJOR_HUSBAND, VALID_MAJOR_FRIEND).build();
     }
 
     /**
