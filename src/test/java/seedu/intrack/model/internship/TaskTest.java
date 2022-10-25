@@ -6,6 +6,9 @@ import static seedu.intrack.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class TaskTest {
+    String invalidTaskName = "";
+    String invalidTaskTime = "TODAY";
+
     @Test
     public void constructor_nullTaskName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Task(null, "15-12-2022 10:00"));
@@ -18,14 +21,11 @@ public class TaskTest {
 
     @Test
     public void constructor_invalidTaskName_throwsIllegalArgumentException() {
-        String invalidTaskName = "";
-        String invalidTaskTime = "TODAY";
         assertThrows(IllegalArgumentException.class, () -> new Task(invalidTaskName, "15-12-2022 10:00"));
     }
 
     @Test
     public void constructor_invalidTaskTime_throwsIllegalArgumentException() {
-        String invalidTaskTime = "TODAY";
         assertThrows(IllegalArgumentException.class, () -> new Task("HR Interview", invalidTaskTime));
     }
 
