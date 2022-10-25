@@ -370,8 +370,7 @@ Adds a note for a lesson or for a specific student in a lesson.
 
 Format: `addnote n/NOTE li/LESSON INDEX [si/STUDENT_INDEX]`
 
-* si/STUDENT_INDEX is optional, if specified the command will add to corresponding student notes.
-
+* `si/STUDENT_INDEX` is optional, if specified the command will add to corresponding student notes.
 * `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
 * `LESSON_INDEX` and `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -386,8 +385,7 @@ Deletes a note for a lesson or for a specific student in a lesson.
 
 Format: `deletenote ni/NOTE INDEX li/LESSON INDEX [si/STUDENT_INDEX]`
 
-* si/STUDENT_INDEX is optional, if specified the command will delete from the corresponding student notes.
-
+* `si/STUDENT_INDEX` is optional, if specified the command will delete from the corresponding student notes.
 * `NOTE_INDEX` refers to the index number shown in the displayed list of notes for a lesson or for a specific student in a lesson. (use `listlesson` to view the note lists for lessons)
 * `LESSON_INDEX` refers to the index number shown in the displayed list of tasks.
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
