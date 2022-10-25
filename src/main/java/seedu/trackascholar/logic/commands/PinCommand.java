@@ -3,12 +3,20 @@ package seedu.trackascholar.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.trackascholar.commons.core.Messages;
 import seedu.trackascholar.commons.core.index.Index;
 import seedu.trackascholar.logic.commands.exceptions.CommandException;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.applicant.Applicant;
+import seedu.trackascholar.model.applicant.ApplicationStatus;
+import seedu.trackascholar.model.applicant.Email;
+import seedu.trackascholar.model.applicant.Name;
+import seedu.trackascholar.model.applicant.Phone;
+import seedu.trackascholar.model.applicant.Pin;
+import seedu.trackascholar.model.applicant.Scholarship;
+import seedu.trackascholar.model.tag.Tag;
 
 /**
  * Pins an applicant identified using its displayed index from TrackAScholar.
@@ -21,10 +29,10 @@ public class PinCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_PIN_APPLICANT_SUCCESS = "Pinned Applicant: %1$s";
 
-    private final Index targetIndex;
+    private final Index index;
 
     public PinCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+        this.index = targetIndex;
     }
 
     @Override
@@ -32,22 +40,34 @@ public class PinCommand extends Command {
         requireNonNull(model);
         List<Applicant> lastShownList = model.getFilteredApplicantList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
         }
 
-        Applicant originalApplicant = lastShownList.get(targetIndex.getZeroBased());
-        final Applicant copyOriginalApplicant = originalApplicant;
-        originalApplicant.setHasPinnedInPin(true);
-        Applicant pinnedApplicant = originalApplicant;
-        model.setApplicant(copyOriginalApplicant, pinnedApplicant);
-        return new CommandResult(String.format(MESSAGE_PIN_APPLICANT_SUCCESS, copyOriginalApplicant));
+        Applicant applicantToPin = lastShownList.get(index.getZeroBased());
+        Applicant pinnedApplicant = createPinnedApplicant(applicantToPin);
+
+        model.setApplicant(applicantToPin, pinnedApplicant);
+        return new CommandResult(String.format(MESSAGE_PIN_APPLICANT_SUCCESS, pinnedApplicant));
+    }
+
+    private static Applicant createPinnedApplicant(Applicant applicantToPin) {
+        assert applicantToPin != null;
+        Name name = applicantToPin.getName();
+        Phone phone = applicantToPin.getPhone();
+        Email email = applicantToPin.getEmail();
+        Scholarship scholarship = applicantToPin.getScholarship();
+        ApplicationStatus applicationStatus = applicantToPin.getApplicationStatus();
+        Set<Tag> tags = applicantToPin.getTags();
+        Pin pin = new Pin(true);
+
+        return new Applicant(name, phone, email, scholarship, applicationStatus, tags, pin);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PinCommand // instanceof handles nulls
-                && targetIndex.equals(((PinCommand) other).targetIndex)); // state check
+                && index.equals(((PinCommand) other).index)); // state check
     }
 }

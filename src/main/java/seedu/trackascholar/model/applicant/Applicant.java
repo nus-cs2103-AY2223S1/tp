@@ -43,6 +43,10 @@ public class Applicant {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+
     public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
                      ApplicationStatus applicationStatus, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
@@ -205,15 +209,16 @@ public class Applicant {
                 .append("; Scholarship: ")
                 .append(getScholarship())
                 .append("; Application Status: ")
-                .append(getApplicationStatus());
+                .append(getApplicationStatus())
+                .append("; hasPinned: ")
+                .append(getPin().getHasPinned());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-        builder.append("; hasPinned: ")
-                .append(getPin().getHasPinned());
+
         return builder.toString();
     }
 
