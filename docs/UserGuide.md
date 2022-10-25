@@ -313,3 +313,4 @@ Listed here are some frequently asked questions. Should you require any other as
 | **Help**               | `help`                                                                                                                                                                                         |
 
 ## Contact Us
+For enquiries or feedback, feel free to let us know at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com).
