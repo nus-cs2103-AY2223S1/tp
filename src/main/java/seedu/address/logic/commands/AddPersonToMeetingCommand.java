@@ -6,7 +6,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -27,23 +30,25 @@ public class AddPersonToMeetingCommand extends Command {
 
     private final String info;
 
+    private Index meetingIndex;
+
     public AddPersonToMeetingCommand(String info) {
         this.info = info;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         String[] newPeopleInformation = this.info.split(";");
         String[] newPeople = newPeopleInformation[1].strip().split(",");
-        int meetingIndex = parseInt(newPeopleInformation[0].strip());
+        meetingIndex = ParserUtil.parseIndex(newPeopleInformation[0].strip());
 
-        if (meetingIndex < 0 || meetingIndex >= model.getFilteredMeetingList().size()) {
+        if (meetingIndex.getZeroBased() >= model.getFilteredMeetingList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, newPeople);
-        Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex);
+        Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex.getZeroBased());
         model.deleteMeeting(meetingToUpdate);
         meetingToUpdate.addPersons(arrayOfPeopleToMeet);
         model.addMeeting(meetingToUpdate);
