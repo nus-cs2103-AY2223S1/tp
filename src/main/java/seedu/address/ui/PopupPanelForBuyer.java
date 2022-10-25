@@ -47,6 +47,8 @@ public class PopupPanelForBuyer extends PopUpPanel {
     private TextField countryField;
 
     @FXML
+    private Button deleteComponentButton;
+    @FXML
     private TextField emailField;
 
     @FXML
@@ -66,6 +68,7 @@ public class PopupPanelForBuyer extends PopUpPanel {
         generateInputSequence(nameField, phoneField, emailField, countryField, addressField, addComponentButton);
         setPromptTextStyle(nameField, phoneField, emailField, countryField, addressField);
         generateButtonShortcut(addComponentButton, new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN));
+        generateButtonShortcut(deleteComponentButton, new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN));
     }
 
     @FXML
@@ -74,6 +77,15 @@ public class PopupPanelForBuyer extends PopUpPanel {
         orderComponents.add(orderComponent);
         int numOfComponents = orderComponents.size();
         componentPlaceholder.addRow(numOfComponents - 1, orderComponent.getRoot());
+    }
+
+    @FXML
+    void deleteOrderComponent(ActionEvent event) {
+        int numOfComponents = orderComponents.size();
+        if (numOfComponents > 0) {
+            orderComponents.remove(numOfComponents - 1);
+            componentPlaceholder.getChildren().removeIf(node -> GridPane.getRowIndex(node) == numOfComponents - 1);
+        }
     }
 
     public void setAddComponentButtonShortcut(KeyCombination keyCombination) {

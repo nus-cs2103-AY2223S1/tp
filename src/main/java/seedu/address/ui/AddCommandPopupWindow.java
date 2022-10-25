@@ -57,7 +57,6 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
     public void fillContentPlaceholder(String typeToBeAdded) {
         typeToBeAdded = typeToBeAdded.trim().toUpperCase();
         popupContentPlaceholder.getChildren().clear();
-        System.out.println(typeToBeAdded);
         switch (typeToBeAdded) {
         case AddCommandWithPopup.ADD_BUYER:
             PopupPanelForBuyer popupPanelForBuyer = new PopupPanelForBuyer();

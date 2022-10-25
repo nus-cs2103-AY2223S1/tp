@@ -50,6 +50,11 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Button>
+                        <Button fx:id="deleteComponentButton" alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="10.0" mnemonicParsing="false" onAction="#deletePetComponent" text="Delete last pet (CTRL+D)">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                </children>
