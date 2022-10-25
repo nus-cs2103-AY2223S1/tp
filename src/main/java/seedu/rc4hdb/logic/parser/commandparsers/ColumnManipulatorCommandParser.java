@@ -13,7 +13,7 @@ import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 public abstract class ColumnManipulatorCommandParser implements Parser<ColumnManipulatorCommand> {
 
-    public static final String INTENDED_USAGE_FORMAT = "Please enter the command %s followed by "
+    public static final String INTENDED_USAGE_FORMAT = "Please enter the %s command followed by"
             + " at least one column to %s\n"
             + "Example: %s n p e\n";
 
@@ -26,25 +26,29 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
 
     private static final String COMPLEMENT_LIST = "complementList";
 
-    public static final String EMPTY_STRING = "";
-
-    public static String getArgumentsAfterSpecifierIfPresent(String args, List<String> specifierList) {
+    public static String getArgumentsAfterSpecifierIfPresent(String args, List<String> specifierList,
+                                                             String errorMessage) throws ParseException {
+        String result = args;
         for (String specifier : specifierList) {
             if (args.contains(specifier)) {
                 int indexAfterEndOfSpecifier = args.indexOf(specifier) + specifier.length();
-                return args.substring(indexAfterEndOfSpecifier);
+                result = args.substring(indexAfterEndOfSpecifier);
             }
         }
-        return args;
+        if (result.trim().isEmpty()) {
+            throw new ParseException(errorMessage);
+        }
+        return result;
     }
 
-    public static String getSpecifierIfPresent(String args, List<String> specifierList) {
+    public static String getSpecifierIfPresent(String args, List<String> specifierList,
+                                               String errorMessage) throws ParseException {
         for (String specifier : specifierList) {
             if (args.contains(specifier)) {
                 return specifier;
             }
         }
-        return EMPTY_STRING;
+        throw new ParseException(errorMessage);
     }
 
     private static List<String> parseColumnsToShowOrHide(String args) {
@@ -90,12 +94,12 @@ public abstract class ColumnManipulatorCommandParser implements Parser<ColumnMan
         if (args.isEmpty()) {
             throw new ParseException(String.format(INTENDED_USAGE_FORMAT,
                     getCommandWord(),
-                    getCommandVerbs(),
-                    getCommandWord()));
+                    getCommandPresentTense(),
+                    getCommandPresentTense()));
         }
     }
 
     public abstract String getCommandWord();
 
-    public abstract String getCommandVerbs();
+    public abstract String getCommandPresentTense();
 }

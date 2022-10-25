@@ -3,8 +3,8 @@ package seedu.rc4hdb.logic.parser.commandparsers;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
-import seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.COMMAND_WORD;
 import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.EXCLUDE_SPECIFIER;
 import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.INCLUDE_SPECIFIER;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
@@ -13,6 +13,11 @@ public class ListCommandParser extends ColumnManipulatorCommandParser {
 
     public static final List<String> LIST_OF_SPECIFIERS = List.of(INCLUDE_SPECIFIER, EXCLUDE_SPECIFIER);
 
+    public static final String INTENDED_SPECIFIER_USAGE_MESSAGE = "Please enter the " + COMMAND_WORD
+            + " command without any specifiers, or use either " + COMMAND_WORD + " " + INCLUDE_SPECIFIER
+            + " or " + COMMAND_WORD + " " + EXCLUDE_SPECIFIER + " followed by at least one column"
+            + " to include or exclude.";
+
     @Override
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -20,8 +25,9 @@ public class ListCommandParser extends ColumnManipulatorCommandParser {
             return new ListCommand();
         }
 
-        String listSpecifier = getSpecifierIfPresent(args, LIST_OF_SPECIFIERS);
-        String stringOfFieldsToProcess = getArgumentsAfterSpecifierIfPresent(args, LIST_OF_SPECIFIERS);
+        String listSpecifier = getSpecifierIfPresent(args, LIST_OF_SPECIFIERS, INTENDED_SPECIFIER_USAGE_MESSAGE);
+        String stringOfFieldsToProcess = getArgumentsAfterSpecifierIfPresent(args, LIST_OF_SPECIFIERS,
+                INTENDED_SPECIFIER_USAGE_MESSAGE);
 
         List<String> fieldsToShow = getBaseFieldList(stringOfFieldsToProcess);
         List<String> fieldsToHide = getComplementFieldList(stringOfFieldsToProcess);
@@ -35,11 +41,11 @@ public class ListCommandParser extends ColumnManipulatorCommandParser {
 
     @Override
     public String getCommandWord() {
-        return HideOnlyCommand.COMMAND_WORD;
+        return ListCommand.COMMAND_WORD;
     }
 
     @Override
-    public String getCommandVerbs() {
-        return HideOnlyCommand.COMMAND_VERBS;
+    public String getCommandPresentTense() {
+        return ListCommand.COMMAND_PRESENT_TENSE;
     }
 }

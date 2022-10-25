@@ -24,7 +24,7 @@ public class HideOnlyCommandParser extends ColumnManipulatorCommandParser {
     }
 
     @Override
-    public String getCommandVerbs() {
-        return HideOnlyCommand.COMMAND_VERBS;
+    public String getCommandPresentTense() {
+        return HideOnlyCommand.COMMAND_PRESENT_TENSE;
     }
 }
