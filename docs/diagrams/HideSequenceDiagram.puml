@@ -4,7 +4,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskListParser" as TaskListParser LOGIC_COLOR
 participant ":ArchiveCommandParser" as ArchiveCommandParser LOGIC_COLOR
 participant "f:ArchiveCommand" as ArchiveCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -17,14 +17,14 @@ end box
 [-> LogicManager : execute("archive 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("archive 1")
-activate AddressBookParser
+LogicManager -> TaskListParser : parseCommand("archive 1")
+activate TaskListParser
 
 create ArchiveCommandParser
-AddressBookParser -> ArchiveCommandParser
+TaskListParser -> ArchiveCommandParser
 activate ArchiveCommandParser
 
-ArchiveCommandParser --> AddressBookParser
+ArchiveCommandParser --> TaskListParser
 deactivate ArchiveCommandParser
 
 ArchiveCommandParser -> ArchiveCommandParser : parse("1")
@@ -37,14 +37,14 @@ activate ArchiveCommand
 ArchiveCommand --> ArchiveCommandParser : d
 deactivate ArchiveCommand
 
-ArchiveCommandParser --> AddressBookParser : d
+ArchiveCommandParser --> TaskListParser : d
 deactivate ArchiveCommandParser
 
-ArchiveCommandParser -[hidden]-> AddressBookParser
+ArchiveCommandParser -[hidden]-> TaskListParser
 destroy ArchiveCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+TaskListParser --> LogicManager : d
+deactivate TaskListParser
 
 LogicManager -> ArchiveCommand : execute()
 activate ArchiveCommand
