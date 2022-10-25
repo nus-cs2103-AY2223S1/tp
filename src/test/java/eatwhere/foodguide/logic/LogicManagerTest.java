@@ -16,6 +16,7 @@ import eatwhere.foodguide.logic.commands.CommandResult;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.logic.commands.ListCommand;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
+import eatwhere.foodguide.logic.parser.exceptions.DisplayCommandHelpException;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.ModelManager;
@@ -99,7 +100,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+            Model expectedModel) throws CommandException, ParseException, DisplayCommandHelpException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
