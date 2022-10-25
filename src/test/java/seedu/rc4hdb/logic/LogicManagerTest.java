@@ -13,7 +13,6 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -24,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
@@ -36,11 +36,16 @@ import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelStub;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.model.ResidentBook;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageStub;
 
+/**
+ * Unit tests for {@link LogicManager}.
+ */
 public class LogicManagerTest {
 
     private Model model;
@@ -76,10 +81,11 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validStorageCommand_success() throws Exception {
-        String fileCreateCommand = FileCommand.COMMAND_WORD + " " + FileCreateCommand.COMMAND_WORD + " test";
+        String fileName = "test";
+        String fileCreateCommand = FileCommand.COMMAND_WORD + " " + FileCreateCommand.COMMAND_WORD + " " + fileName;
         storage = new StorageStubForFileCreate();
         logic = new LogicManager(model, storage);
-        assertCommandSuccess(fileCreateCommand, String.format(FileCreateCommand.MESSAGE_SUCCESS, "test.json"));
+        assertCommandSuccess(fileCreateCommand, String.format(FileCreateCommand.MESSAGE_SUCCESS, fileName));
     }
 
     @Test
@@ -88,7 +94,7 @@ public class LogicManagerTest {
         model = new ModelStubForFileSwitch();
         storage = new StorageStubForFileSwitch();
         logic = new LogicManager(model, storage);
-        assertCommandSuccess(fileSwitchCommand, String.format(FileSwitchCommand.MESSAGE_SUCCESS, "residentBook1.json"));
+        assertCommandSuccess(fileSwitchCommand, String.format(FileSwitchCommand.MESSAGE_SUCCESS, "residentBook1"));
     }
 
     @Test
@@ -104,6 +110,11 @@ public class LogicManagerTest {
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE
                 + StorageIoExceptionThrowingStub.DUMMY_IO_EXCEPTION;
         assertExceptionFromExecution(addCommand, expectedMessage, CommandException.class);
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSetting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
     }
 
     @Test
@@ -144,7 +155,12 @@ public class LogicManagerTest {
     private static class ModelStubForLogicManagerTest extends ModelStub {
         @Override
         public ReadOnlyResidentBook getResidentBook() {
-            return new ResidentBook();
+            return null;
+        }
+
+        @Override
+        public ReadOnlyVenueBook getVenueBook() {
+            return null;
         }
     }
 
@@ -155,6 +171,11 @@ public class LogicManagerTest {
     private static class ModelStubForFileSwitch extends ModelStubForLogicManagerTest {
         @Override
         public void setResidentBook(ReadOnlyResidentBook residentBook) {
+            // does nothing
+        }
+
+        @Override
+        public void setVenueBook(ReadOnlyVenueBook venueBook) {
             // does nothing
         }
 
@@ -225,6 +246,11 @@ public class LogicManagerTest {
         public void saveResidentBook(ReadOnlyResidentBook residentBook) throws IOException {
             // does nothing
         }
+
+        @Override
+        public void saveVenueBook(ReadOnlyVenueBook venueBook) {
+            // does nothing
+        }
     }
 
     /**
@@ -244,12 +270,24 @@ public class LogicManagerTest {
      * {@code FileSwitchCommand}.
      */
     private static class StorageStubForFileSwitch extends StorageStubForLogicManagerTest {
-        public static final String DUMMY_PATH_STRING_NO_DIR = "dummy";
-        public static final Path DUMMY_PATH = Paths.get("data", DUMMY_PATH_STRING_NO_DIR + ".json");
+        @Override
+        public Optional<ReadOnlyResidentBook> readResidentBook(Path folderPath) {
+            return Optional.of(new ResidentBook());
+        }
 
         @Override
-        public Optional<ReadOnlyResidentBook> readResidentBook(Path filePath) {
-            return Optional.of(new ResidentBook());
+        public Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) {
+            return Optional.of(new VenueBook());
+        }
+
+        @Override
+        public Path getDataStorageFolderPath() {
+            return null;
+        }
+
+        @Override
+        public void setDataStorageFolderPath(Path folderPath) {
+            // do nothing
         }
     }
 
@@ -259,8 +297,14 @@ public class LogicManagerTest {
      */
     private static class StorageStubForFileCreate extends StorageStubForLogicManagerTest {
         @Override
-        public void createResidentBookFile(Path filePath) throws IOException {
+        public void createDataFile(Path folderPath) {
             // does nothing
         }
+
+        @Override
+        public Path getDataStorageFolderPath() {
+            return null;
+        }
     }
+
 }

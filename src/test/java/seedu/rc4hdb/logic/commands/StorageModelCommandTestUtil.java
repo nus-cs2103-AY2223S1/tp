@@ -62,7 +62,7 @@ public class StorageModelCommandTestUtil {
             String expectedMessage) {
         // we are unable to defensively copy the storage and model for comparison later, so we can
         // only do so by copying its components.
-        DataStorageManager expectedDataStorage = new DataStorageManager(actualStorage.getDataStorageFilePath());
+        DataStorageManager expectedDataStorage = new DataStorageManager(actualStorage.getDataStorageFolderPath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(actualStorage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
 

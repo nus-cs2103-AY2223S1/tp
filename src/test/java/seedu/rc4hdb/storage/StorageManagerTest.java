@@ -82,14 +82,14 @@ public class StorageManagerTest {
 
     @Test
     public void setResidentBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> storageManager.setDataStorageFilePath(null));
+        assertThrows(NullPointerException.class, () -> storageManager.setDataStorageFolderPath(null));
     }
 
     @Test
     public void setDataStoragePath_validFilePath_filePathSet() {
         Path expectedPath = Path.of("SomeFile.json");
-        storageManager.setDataStorageFilePath(expectedPath);
-        assertEquals(expectedPath, storageManager.getDataStorageFilePath());
+        storageManager.setDataStorageFolderPath(expectedPath);
+        assertEquals(expectedPath, storageManager.getDataStorageFolderPath());
     }
 
     @Test

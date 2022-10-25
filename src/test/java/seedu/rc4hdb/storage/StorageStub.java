@@ -41,12 +41,12 @@ public class StorageStub implements Storage {
     }
 
     @Override
-    public Path getDataStorageFilePath() {
+    public Path getDataStorageFolderPath() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setDataStorageFilePath(Path folderPath) {
+    public void setDataStorageFolderPath(Path folderPath) {
         throw new AssertionError("This method should not be called.");
     }
 
