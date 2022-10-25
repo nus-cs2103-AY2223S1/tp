@@ -26,6 +26,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "grade - grade a specific student\n"
             + "remark - to add a remark to a specific student\n"
             + "mark - to mark the mastery check of a specific student\n"
+            + "unmark - to unmark the mastery check of a specific student\n"
             + "alias - to add alias for a command to FRIDAY\n"
             + "unalias - to delete an alias for a command in FRIDAY\n"
             + "aliaslist - to display all alias in FRIDAY\n"
