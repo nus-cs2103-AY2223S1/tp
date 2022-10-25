@@ -12,10 +12,10 @@ import seedu.address.model.person.Person;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class PersonProfile extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
-    private MainDisplay mainDisplayListener;
+    private static final String FXML = "PersonProfile.fxml";
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -27,11 +27,9 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
+    private HBox profilePane;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -50,10 +48,9 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonProfile(Person person) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -64,22 +61,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        cardPane.setOnMouseClicked(event -> updateMainDisplay());
-    }
-
-    /**
-     * Stores a reference to a main display instance that listens to on click events from PersonCard
-     * @param mainDisplay the main display that changes on click
-     */
-    public void addMainDisplayListener(MainDisplay mainDisplay) {
-        mainDisplayListener = mainDisplay;
-    }
-
-    /**
-     * Updates the main display with the new person to display
-     */
-    private void updateMainDisplay() {
-        mainDisplayListener.setPersonProfile(person);
     }
 
     @Override
@@ -90,13 +71,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof PersonProfile)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+        PersonProfile profile = (PersonProfile) other;
+        return person.equals(profile.person);
     }
 }
