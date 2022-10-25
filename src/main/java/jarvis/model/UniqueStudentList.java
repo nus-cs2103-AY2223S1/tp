@@ -50,20 +50,6 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Returns the index of a student in the list.
-     * @param target Student to find the index of.
-     * @return the {@code Index} of the student.
-     */
-    public Index indexOf(Student target) {
-        requireNonNull(target);
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new StudentNotFoundException();
-        }
-        return Index.fromZeroBased(index);
-    }
-
-    /**
      * Replaces the student {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The student identity of {@code editedPerson} must not be the same as another existing student in the list.
