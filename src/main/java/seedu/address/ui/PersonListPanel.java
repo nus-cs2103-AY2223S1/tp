@@ -42,6 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
             return;
         }
         personListView.setItems(newList);
+        currentlyDisplayedBuyerList = newList;
     }
     
     /**
