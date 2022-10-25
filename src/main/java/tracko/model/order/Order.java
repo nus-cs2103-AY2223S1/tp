@@ -97,7 +97,6 @@ public class Order {
             }
         }
         this.itemList.add(itemQuantityPair);
-        calculateTotalOrderPrice();
     }
 
     public LocalDateTime getTimeCreated() {
