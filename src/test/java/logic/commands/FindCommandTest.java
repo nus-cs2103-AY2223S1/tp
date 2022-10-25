@@ -1,35 +1,31 @@
-package tracko.logic.commands;
-//
-//import static java.util.Objects.requireNonNull;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static tracko.commons.core.Messages.MESSAGE_ITEMS_FOUND_OVERVIEW;
-//import static tracko.testutil.Assert.assertThrows;
-//
-//import java.nio.file.Path;
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.function.Predicate;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import javafx.collections.ObservableList;
-//import tracko.commons.core.GuiSettings;
-//import tracko.logic.commands.exceptions.CommandException;
-//import tracko.logic.commands.item.FindItemCommand;
-//import tracko.logic.commands.order.AddOrderCommand;
-//import tracko.model.Model;
-//import tracko.model.ReadOnlyTrackO;
-//import tracko.model.ReadOnlyUserPrefs;
-//import tracko.model.TrackO;
-//import tracko.model.items.Item;
-//import tracko.model.items.ItemContainsKeywordsPredicate;
-//import tracko.model.order.Order;
-// import tracko.model.person.Person;
-//import tracko.testutil.OrderBuilder;
+package logic.commands;
 
-public class FindItemCommandTest {
+// import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertFalse;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static tracko.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+// import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
+// import static tracko.testutil.TypicalOrders.ORDER_3;
+// import static tracko.testutil.TypicalOrders.ORDER_5;
+// import static tracko.testutil.TypicalOrders.ORDER_6;
+// import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
+//
+// import java.util.Arrays;
+// import java.util.Collections;
+//
+// import org.junit.jupiter.api.Test;
+//
+// import tracko.logic.commands.order.FindOrderCommand;
+// import tracko.model.Model;
+// import tracko.model.ModelManager;
+// import tracko.model.UserPrefs;
+// import tracko.model.order.NameContainsKeywordsPredicate;
+
+/**
+ * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ */
+public class FindCommandTest {
+    // TODO: Update test cases according to new implementations
 
 //    private Model model = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
 //    private Model expectedModel = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
@@ -63,9 +59,9 @@ public class FindItemCommandTest {
 //
 //    @Test
 //    public void execute_zeroKeywords_noPersonFound() {
-//        String expectedMessage = String.format(MESSAGE_ITEMS_FOUND_OVERVIEW, 0);
-//        ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
-//        FindItemCommand command = new FindItemCommand(predicate);
+//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+//        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+//        FindOrderCommand command = new FindOrderCommand(predicate);
 //        expectedModel.updateFilteredPersonList(predicate);
 //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
 //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -73,8 +69,8 @@ public class FindItemCommandTest {
 //
 //    @Test
 //    public void execute_multipleKeywords_multiplePersonsFound() {
-//        String expectedMessage = String.format(MESSAGE_ITEMS_FOUND_OVERVIEW, 3);
-//        ItemContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+//        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+//        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
 //        FindOrderCommand command = new FindOrderCommand(predicate);
 //        expectedModel.updateFilteredPersonList(predicate);
 //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -86,4 +82,5 @@ public class FindItemCommandTest {
 //     */
 //    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
 //        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+//    }
 }
