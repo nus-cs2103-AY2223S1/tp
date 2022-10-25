@@ -77,7 +77,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedNote jsonAdaptedNote : notes) {
-            Note note = jsonAdaptedNote.toModelType();
+            Note note = jsonAdaptedNote.toModelType(addressBookTagList);
             if (addressBook.hasNote(note)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_NOTE);
             }
