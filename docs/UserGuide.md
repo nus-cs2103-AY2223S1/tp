@@ -303,12 +303,15 @@ _Details coming soon ..._
 | **Add Project**    | `project -a`     |
 | **Edit Project**   | `project -e`     |
 | **Delete Project** | `project -d`     |
-| **Tag Client**     | `client -a`      |
+| **Find Project**   | `project -f`     |
+| **Add Client**     | `client -a`      |
 | **Edit Client**    | `client -e`      |
 | **Delete Client**  | `client -d`      |
+| **Find Client**    | `client -f`      |
 | **Tag Issue**      | `issue -a`       |
 | **Edit Issue**     | `issue -e`       |
 | **Delete Issue**   | `issue -d`       |
+| **Find Issue**     | `issue -f`       |
 | **Clear**          | `clear`          |
 | **List**           | `list`           |
 | **Help**           | `help`           |
