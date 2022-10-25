@@ -2,9 +2,11 @@ package seedu.workbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.workbook.commons.core.Messages;
 import seedu.workbook.model.Model;
-import seedu.workbook.model.internship.CompanyContainsKeywordsPredicate;
+import seedu.workbook.model.internship.Internship;
 
 /**
  * Finds and lists all internships in WorkBook whose company name contains
@@ -24,9 +26,9 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
     /** Keyword to search for */
-    private final CompanyContainsKeywordsPredicate predicate;
+    private final Predicate<Internship> predicate;
 
-    public FindCommand(CompanyContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Internship> predicate) {
         this.predicate = predicate;
     }
 

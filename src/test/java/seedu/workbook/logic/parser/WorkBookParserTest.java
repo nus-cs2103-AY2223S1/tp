@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,9 +71,9 @@ public class WorkBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("Amy", "Bee");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + COMPANY_DESC_AMY);
         assertEquals(new FindCommand(new CompanyContainsKeywordsPredicate(keywords)), command);
     }
 

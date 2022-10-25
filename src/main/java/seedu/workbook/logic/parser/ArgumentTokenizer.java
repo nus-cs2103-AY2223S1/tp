@@ -28,6 +28,10 @@ public class ArgumentTokenizer {
         return extractArguments(argsString, positions);
     }
 
+    public static int numberOfPrefixes(String argsString, Prefix... prefixes) {
+        return findAllPrefixPositions(argsString, prefixes).size();
+    }
+
     /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
@@ -40,6 +44,8 @@ public class ArgumentTokenizer {
                 .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
                 .collect(Collectors.toList());
     }
+
+
 
     /**
      * {@see findAllPrefixPositions}
