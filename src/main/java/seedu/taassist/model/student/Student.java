@@ -74,7 +74,7 @@ public class Student implements Identity<Student> {
     /**
      * Returns true if the Student is assigned to the provided {@code moduleClass}.
      */
-    public boolean isInModuleClass(ModuleClass moduleClass) {
+    private boolean isInModuleClass(ModuleClass moduleClass) {
         return moduleDataList.contains(new StudentModuleData(moduleClass));
     }
 
@@ -86,8 +86,21 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns a new student by removing the {@code StudentModuleData} of
-     * this student for the given {@code ModuleClass}.
+     * Returns a new student by adding the given {@code moduleClass} to the student's module data.
+     * If the student is already enrolled in the module class returned.
+     */
+    public Student addModuleClass(ModuleClass moduleClass) {
+        if (isInModuleClass(moduleClass)) {
+            return this;
+        }
+        Student newStudent = new Student(name, phone, email, address, moduleDataList.asUnmodifiableObservableList());
+        newStudent.moduleDataList.add(new StudentModuleData(moduleClass));
+        return newStudent;
+    }
+
+    /**
+     * Returns a new student by removing the {@code StudentModuleData}
+     * of this student for the given {@code ModuleClass}.
      */
     public Student removeModuleClass(ModuleClass moduleClass) {
         List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
