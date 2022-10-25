@@ -35,7 +35,6 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_KEYWORDS = "The keywords for tag delete must be priority"
             + " or deadline or both.";
-    public static final String MESSAGE_DUPLICATE_KEYWORD = "Duplicate %s keyword is used.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -169,9 +168,6 @@ public class ParserUtil {
             if (!(keyword.equalsIgnoreCase("priority")
                     || keyword.equalsIgnoreCase("deadline"))) {
                 throw new ParseException(MESSAGE_INVALID_KEYWORDS);
-            }
-            if (keywordSet.contains(keyword)) {
-                throw new ParseException(String.format(MESSAGE_DUPLICATE_KEYWORD, keyword));
             }
             keywordSet.add(keyword.toLowerCase());
         }
