@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,7 +30,9 @@ public class AddCommand extends Command {
         + PREFIX_ADDRESS + "ADDRESS "
         + PREFIX_INCOME + "INCOME "
         + PREFIX_MEETING_DATE + "MEETINGDATE "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_TAG + "TAG]..."
+        + PREFIX_RISK + "RISK "
+        + PREFIX_PLAN + "PLAN \n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_NAME + "John Doe "
         + PREFIX_PHONE + "98765432 "
@@ -36,7 +40,9 @@ public class AddCommand extends Command {
         + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
         + PREFIX_INCOME + "$1000 "
         + PREFIX_MEETING_DATE + "20 Nov 2022 "
-        + PREFIX_TAG + "VIPClient";
+        + PREFIX_TAG + "VIPClient "
+        + PREFIX_RISK + "High "
+        + PREFIX_PLAN + "Prudential Retirement Plan ";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FinBook";
