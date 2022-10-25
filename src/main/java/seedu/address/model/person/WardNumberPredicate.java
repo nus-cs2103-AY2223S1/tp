@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Person}'s {@code Ward Number} matches any of the ward numbers given.
  */
@@ -18,9 +16,12 @@ public class WardNumberPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return wardNumbers.stream()
-                .anyMatch(wardNumber ->
-                        StringUtil.containsWordIgnoreCase(person.getWardNumber().get().value, wardNumber));
+        Boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
+        if (isInpatient) {
+            return wardNumbers.stream()
+                    .anyMatch(wardNumber -> person.getHospitalWing().get().value.equals(wardNumber));
+        }
+        return false;
     }
 
     @Override
