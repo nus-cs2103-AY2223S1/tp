@@ -5,12 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.buyer.AbstractFilterBuyerPredicate;
 import seedu.address.model.buyer.Buyer;
 
-import java.util.function.Predicate;
 
 /**
  * Filters and lists all buyers in the buyer list that either have a price range that accepts the given price,

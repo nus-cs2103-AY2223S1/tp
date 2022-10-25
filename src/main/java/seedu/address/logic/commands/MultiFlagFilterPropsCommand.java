@@ -5,12 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.property.AbstractFilterPropsPredicate;
 import seedu.address.model.property.Property;
 
-import java.util.function.Predicate;
 
 /**
  * Filters and lists all properties in the property list that either has a price that is within the given price,

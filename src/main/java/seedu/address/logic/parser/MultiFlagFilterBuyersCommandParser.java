@@ -6,16 +6,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
-import seedu.address.logic.commands.FilterBuyersCommand;
-import seedu.address.logic.commands.MultiFlagFilterBuyersCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.buyer.*;
-import seedu.address.model.characteristics.Characteristics;
-import seedu.address.model.property.Price;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.logic.commands.MultiFlagFilterBuyersCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.buyer.Buyer;
+import seedu.address.model.buyer.FilterBuyerByCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyerByPricePredicate;
+import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
+import seedu.address.model.buyer.Priority;
+import seedu.address.model.characteristics.Characteristics;
+import seedu.address.model.property.Price;
+
+
 
 
 /**
@@ -63,7 +68,7 @@ public class MultiFlagFilterBuyersCommandParser extends Parser<MultiFlagFilterBu
 
         // Get logical OR of all predicates
         for (int i = 1; i < predicatesList.size(); i++) {
-            predicatesList.set(0,predicatesList.get(0).or(predicatesList.get(i)));
+            predicatesList.set(0, predicatesList.get(0).or(predicatesList.get(i)));
         }
 
         return new MultiFlagFilterBuyersCommand(predicatesList.get(0));
