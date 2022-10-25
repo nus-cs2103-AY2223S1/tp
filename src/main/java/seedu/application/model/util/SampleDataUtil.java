@@ -59,15 +59,15 @@ public class SampleDataUtil {
 
     private static Interview[] getSampleInterviews() {
         return new Interview[] {
-            new Interview(new Round("Technical interview 1"), new InterviewDate("2023-11-15"),
+            new Interview(new Round("Technical interview 1"), new InterviewDate("2022-11-09"),
                     new InterviewTime("1000"), new Location("Zoom")),
-            new Interview(new Round("Technical interview 2"), new InterviewDate("2023-11-30"),
+            new Interview(new Round("Technical interview 2"), new InterviewDate("2022-11-15"),
                     new InterviewTime("0900"), new Location("Microsoft Teams")),
             new Interview(new Round("Technical interview 3"), new InterviewDate("2023-12-08"),
                     new InterviewTime("1130"), new Location("77, Kallang Way 7, #02-18")),
             new Interview(new Round("HR interview"), new InterviewDate("2023-01-31"),
                     new InterviewTime("1345"), new Location("11, Science Park 2, #01-04")),
-            new Interview(new Round("Manager interview"), new InterviewDate("2023-02-12"),
+            new Interview(new Round("Manager interview"), new InterviewDate("2022-10-31"),
                     new InterviewTime("1500"), new Location("69, Keppel Tech Park, #04-20")),
             new Interview(new Round("Online assessment"), new InterviewDate("2023-01-02"),
                     new InterviewTime("1630"), new Location("Online"))
