@@ -86,7 +86,7 @@
 }
 
 .split-pane {
-    -fx-background-color: #13315C;
+    -fx-background-color: transparent;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
 }
