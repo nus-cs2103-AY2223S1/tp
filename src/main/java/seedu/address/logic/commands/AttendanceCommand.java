@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -60,8 +62,13 @@ public class AttendanceCommand extends Command {
                 personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
                 personToEdit.getSessionList(),
                 personToEdit.getGradeProgressList(), personToEdit.getTags());
+        if (model.isFullView()) {
+            editedPerson.setFullView();
+        }
 
         model.setPerson(personToEdit, editedPerson);
+        String[] newNameKeywords = {personToEdit.getName().fullName};
+        model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
