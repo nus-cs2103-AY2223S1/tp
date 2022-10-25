@@ -45,25 +45,98 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
 --------------------------------------------------------------------------------------------------------------------
 
 ## Properties
+
 ### Person Properties
-- N
-  - 
-- P
-  - 
-- A
-  - 
-- Email
-  - 
-- Tags
-  - 
+
+#### Name
+  - The name of person to be recorded in the SectresBook.
+  - Identified by prefix `name`.
+  - This is a valid property to find a person by using the `find` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+It is recommended to include the full name of the person to avoid ambiguities during operations.
+</div>
+
+#### Phone
+  - The phone number of the person to be recorded in the SectresBook.
+  - Identified by the prefix `phone`.
+  - This is a valid property to find a person by using the `find` command.
+  - A phone number should contain only numbers and be at least 3 digits long.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Ensure that no two persons have the same phone number!
+</div>
+
+#### Email
+  - The email address of the person to be recorded in the SectresBook.
+  - Identified by the prefix `email`.
+  - Serves mainly as a point of information relating the person.
+  - Emails should be of the format `local-part@domain` and adhere to the following constraints:
+    1. The local-part should only contain alphanumeric characters and these special characters `_` and `.`. The local-part may not start or end with any special characters
+    2. This is followed by a `@` and then a domain name. The domain name is made up of domain labels separated by periods. The domain name must:
+       + end with a domain label at least 2 characters long
+       + have each domain label start and end with alphanumeric characters
+       + have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+#### Address
+  - The residing address of the person.
+  - Identified by the prefix `home`.
+  - Serves mainly as a point of information relating to the person.
+  - There is no constraint on how the home address of a person should be written, as long as it is sufficiently understandable.
+
+#### Loan
+  - The amount of money that is owed by a person, or is to be paid to that person.
+  - Identified by the prefix `loan`.
+  - A loan amount can be either negative, positive or zero.
+    + A positive value indicates an amount that the person has yet to pay to the organisation.
+    + A zero value indicates no outstanding loan.
+    + A negative value indicates an amount that should be paid back to the person.
+  - Loans can only take up numerical values.
+
+#### Loan History
+  - A loan history is a subset of the loans properties that describes the changes to the numeric values of the loans in detail.
+  - As this property is a descriptor of the prefix `loan`, it does not have its own prefix, but it can be visually seen from the inspection panel.
+  - Consists of the following:
+    - Current loan value
+    - Change in amount from last value
+    - Reason for change
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Including a reason for every change to a person's loan value reduces the risk of accidentally adding an incorrect amount to someone. It keeps a detail tab of every increment and decrement in value.
+</div>
+
+#### Birthday
+  - The birthday date of the person.
+  - Identified by the prefix `bday`.
+  - Serves as a point of information for a person.
+  - This must be a valid date form `DD/MM/YYYY`.
+       
+#### Tags
+  - Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Please refer to the `Tag Properties` section below for more information regarding tags.
+</div>
 
 ### Notes Properties
-- Title
-  - 
-- Content
-  - 
-- Tags
-  - 
+#### Title
+  - The title serves as the main marker for notes and summarises the important details of this specific note.
+  - This property is identified by the prefix `title`.
+  - Notes can be filtered through with the `find` command using the title property.
+  - Titles must be within 100 characters and can contain any ASCII characters.
+  - This property cannot be left empty.
+  
+#### Content
+  - The content serves as the description for notes.
+  - This property is identified by `content`.
+  - This property cannot be left empty.
+
+#### Tags
+- Persons can be linked to tag objects, which serve as markers that draw connections between different people as well as associated notes.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Please refer to the `Tag Properties` section below for more information regarding tags.
+</div>
 
 ## Features
 
@@ -318,6 +391,22 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+The definitions in this glossary are context-specific to this application.
+
+Word | Definition
+--------|------------------
+**Command Line Interface (CLI)** | A text-based interface that recieves typed commands as input and returns textual feedback as output.
+**Graphical User Interface (GUI)** | An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use icons and images.
+**Loan** | An amount of money that is borrowed by or owed to a person. A positive value signifies an amount owed by the person and a negative value signifies an amount to be paid to that person.
+**Parameter** | A value passed as a section of a command, typically following a prefix.
+**Prefix** | A signposting word that indicates the kind of property (i.e. name, email, address, etc), which typically follows immediately after the prefix, that is to be passed as a parameter.
+**Property** | An identifiable feature a person or object has that sufficiently distinguishes it from other objects of the same kind.
+**Secretary** | A person that manages the tasks and events related to the operations of an organisation.
+**Tag** | A label that groups related people together, such that they can be referred to as a single encapsulated entity specified by the tag.
+**Treasurer** | A person that manages the finances and monetary transactions related to the operations of an organisation.
+
+--------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
 Action | Format, Examples
