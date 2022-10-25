@@ -6,12 +6,12 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the list of stalls and reviews in FoodWhere.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "FoodWhere has been cleared!";
 
 
     @Override

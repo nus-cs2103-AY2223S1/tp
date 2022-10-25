@@ -24,7 +24,7 @@ import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.stall.Stall;
 
 /**
- * Edits the details of an existing stall in the address book.
+ * Edits the details of an existing stall in FoodWhere.
  */
 public class SEditCommand extends Command {
 
@@ -41,7 +41,7 @@ public class SEditCommand extends Command {
 
     public static final String MESSAGE_EDIT_STALL_SUCCESS = "Edited Stall: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_STALL = "This stall already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STALL = "This stall already exists in FoodWhere.";
 
     private final Index index;
     private final EditStallDescriptor editStallDescriptor;

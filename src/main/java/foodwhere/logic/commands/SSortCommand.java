@@ -7,7 +7,7 @@ import foodwhere.model.Model;
 import foodwhere.model.stall.comparator.StallsComparatorList;
 
 /**
- * Sort and list all stalls in the address book to the user.
+ * Sort and list all stalls in FoodWhere to the user.
  */
 public class SSortCommand extends Command {
 

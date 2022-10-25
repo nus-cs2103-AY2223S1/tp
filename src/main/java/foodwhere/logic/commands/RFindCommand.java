@@ -8,7 +8,7 @@ import foodwhere.model.Model;
 import foodwhere.model.review.ReviewContainsKeywordsPredicate;
 
 /**
- * Finds and lists all reviews in address book whose names or tags contains any of the argument keywords.
+ * Finds and lists all reviews in FoodWhere whose names or tags contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class RFindCommand extends Command {
