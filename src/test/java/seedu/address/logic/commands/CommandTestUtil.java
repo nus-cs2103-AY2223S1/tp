@@ -66,17 +66,19 @@ public class CommandTestUtil {
 
     public static final String VALID_TASK_NAME_FINISH_TP = "Finish TP";
     public static final String VALID_DEADLINE_FINISH_TP = "2022-11-15 00:00";
+    public static final String HUMAN_DEADLINE_FINISH_TP = "15/11/2022 00:00";
     public static final String VALID_MODULE_FINISH_TP = "CS2103T";
     public static final String VALID_TASK_NAME_LAB_2 = "Lab 2";
     public static final String VALID_DEADLINE_LAB_2 = "2022-02-02 23:59";
+    public static final String HUMAN_DEADLINE_LAB_2 = "2 Feb 2022 23:59";
     public static final String VALID_MODULE_LAB_2 = "CS2030S";
 
     public static final String TASK_NAME_DESC_FINISH_TP = " " + PREFIX_NAME + VALID_TASK_NAME_FINISH_TP;
     public static final String MODULE_DESC_FINISH_TP = " " + PREFIX_MODULE + VALID_MODULE_FINISH_TP;
-    public static final String DEADLINE_DESC_FINISH_TP = " " + PREFIX_DEADLINE + VALID_DEADLINE_FINISH_TP;
+    public static final String DEADLINE_DESC_FINISH_TP = " " + PREFIX_DEADLINE + HUMAN_DEADLINE_FINISH_TP;
     public static final String TASK_NAME_DESC_LAB_2 = " " + PREFIX_NAME + VALID_TASK_NAME_LAB_2;
     public static final String MODULE_DESC_LAB_2 = " " + PREFIX_MODULE + VALID_MODULE_LAB_2;
-    public static final String DEADLINE_DESC_LAB_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_LAB_2;
+    public static final String DEADLINE_DESC_LAB_2 = " " + PREFIX_DEADLINE + HUMAN_DEADLINE_LAB_2;
     public static final String INVALID_TASK_NAME_DESC = "John\nEvelyn\tTan";
     public static final String INVALID_TASK_NAME_PREF = " " + PREFIX_NAME + " ";
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "Software Engineering";

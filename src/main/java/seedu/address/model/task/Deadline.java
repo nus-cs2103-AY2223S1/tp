@@ -15,18 +15,19 @@ import java.time.format.DateTimeParseException;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be entered in the format \"2006-01-15 15:04\"";
+            "The deadline was not understood. Perhaps enter it like \"2 Jan 2022 15:04\" or \"tomorrow 2pm\"?";
 
     //@@author parnikkapore-reused
     // Date format taken from https://github.com/angkl0/ip/blob/master/src/main/java/duke/tasks/Deadline.java#L39
     // and https://github.com/angkl0/ip/blob/master/src/main/java/duke/commands/DeadlineCommand.java#L42
     private static final DateTimeFormatter WRITE_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy");
-    private static final DateTimeFormatter READ_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter CONSTRUCT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public final LocalDateTime deadline;
 
     /**
-     * Constructs a {@code Deadline} from a handwritten description.
+     * Constructs a {@code Deadline} from a String written in the CONSTRUCT_FORMATTER format.
+     * This can be used to make constants more readable. For all other cases, use Deadline(LocalDateTime).
      *
      * @param deadlineString A valid deadline written as a string.
      */
@@ -36,7 +37,7 @@ public class Deadline {
 
         LocalDateTime newDeadline;
         try {
-            newDeadline = LocalDateTime.parse(deadlineString, READ_FORMATTER);
+            newDeadline = LocalDateTime.parse(deadlineString, CONSTRUCT_FORMATTER);
         } catch (DateTimeParseException e) {
             assert false : "Checked deadline string should not fail to parse?";
             newDeadline = LocalDateTime.now(); // A good enough fallback
@@ -60,7 +61,7 @@ public class Deadline {
      */
     public static boolean isValidDeadline(String test) {
         try {
-            LocalDateTime.parse(test, READ_FORMATTER);
+            LocalDateTime.parse(test, CONSTRUCT_FORMATTER);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -74,7 +75,7 @@ public class Deadline {
     }
 
     public String deadlineString() {
-        return deadline.format(READ_FORMATTER);
+        return deadline.format(CONSTRUCT_FORMATTER);
     }
 
     @Override
@@ -88,5 +89,4 @@ public class Deadline {
     public int hashCode() {
         return deadline.hashCode();
     }
-
 }
