@@ -14,6 +14,11 @@ import seedu.address.model.UserPrefs;
  */
 public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
+    /**
+     * Replaces addressBookStorage data with the data in {@code addressBookStorage}.
+     */
+    void setAddressBookStorage(AddressBookStorage addressBookStorage);
+
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 

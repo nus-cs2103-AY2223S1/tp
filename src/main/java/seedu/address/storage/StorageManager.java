@@ -75,4 +75,9 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public void setAddressBookStorage(AddressBookStorage addressBookStorage) {
+        this.addressBookStorage = addressBookStorage;
+    }
+
 }

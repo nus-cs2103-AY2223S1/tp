@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBookFile;
 import seedu.address.model.job.Id;
 import seedu.address.model.job.Title;
 import seedu.address.model.person.Address;
@@ -279,6 +280,25 @@ public class ParserUtil {
         }
 
         return new Title(cleanedTitle);
+    }
+
+    /**
+     * Parses a {@code String file} into an {@code AddressBookFile}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Multiple whitespaces will be replaced with a single space.
+     *
+     * @throws ParseException if the given {@code file} is invalid.
+     */
+    public static AddressBookFile parseAddressBookFile(String file) throws ParseException {
+        requireNonNull(file);
+        String trimmedFile = file.trim();
+        String cleanedFile = trimmedFile.replaceAll(" +", " ");
+
+        if (!AddressBookFile.isValidAddressBookFile(cleanedFile)) {
+            throw new ParseException(AddressBookFile.MESSAGE_CONSTRAINTS);
+        }
+
+        return new AddressBookFile(cleanedFile);
     }
 
     /**

@@ -17,16 +17,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIVERSITY;
 import static seedu.address.model.person.Cap.CAP_SEPARATOR;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.Storage;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -144,8 +151,9 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
+        StorageStub storageStub = new StorageStub();
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, storageStub);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -170,12 +178,13 @@ public class CommandTestUtil {
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        StorageStub storageStub = new StorageStub();
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, storageStub));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
@@ -192,6 +201,58 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * A default storage stub that have all of the methods failing.
+     */
+    private static class StorageStub implements Storage {
+
+        @Override
+        public Optional<ReadOnlyAddressBook> readAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveAddressBook(ReadOnlyAddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getUserPrefsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAddressBookStorage(AddressBookStorage addressBookStorage) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<UserPrefs> readUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
 }

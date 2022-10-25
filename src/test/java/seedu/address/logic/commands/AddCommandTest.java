@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.Storage;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -33,9 +37,10 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        StorageStub storageStub = new StorageStub();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub, storageStub);
 
         assertEquals(AddCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -46,8 +51,10 @@ public class AddCommandTest {
         Person validPerson = new PersonBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        StorageStub storageStub = new StorageStub();
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
+            addCommand.execute(modelStub, storageStub));
     }
 
     @Test
@@ -198,6 +205,58 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+    }
+
+    /**
+     * A default storage stub that have all of the methods failing.
+     */
+    private class StorageStub implements Storage {
+
+        @Override
+        public Optional<ReadOnlyAddressBook> readAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveAddressBook(ReadOnlyAddressBook addressBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getUserPrefsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAddressBookStorage(AddressBookStorage addressBookStorage) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<UserPrefs> readUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
         }
 
     }
