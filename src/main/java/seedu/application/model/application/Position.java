@@ -9,7 +9,8 @@ import static seedu.application.commons.util.AppUtil.checkArgument;
  */
 public class Position implements Comparable<Position> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Positions can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Positions should only contain alphanumeric characters and "
+            + "spaces, and it should not be blank";
 
     /*
      * The first character of the position applied must not be a whitespace,

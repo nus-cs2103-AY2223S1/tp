@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.application.logic.commands.SortByCompanyCommand;
 import seedu.application.logic.commands.SortByDateCommand;
+import seedu.application.logic.commands.SortByInterviewCommand;
 import seedu.application.logic.commands.SortByPositionCommand;
 import seedu.application.logic.commands.SortCommand;
 
@@ -68,6 +69,20 @@ class SortCommandParserTest {
         expectedSortCommand = new SortByDateCommand(true);
 
         assertParseSuccess(parser, " " + PREFIX_ORDER + "date " + PREFIX_REVERSE, expectedSortCommand);
+    }
+
+    @Test
+    public void parse_interviewOrder_success() {
+        SortCommand expectedSortCommand = new SortByInterviewCommand(false);
+
+        assertParseSuccess(parser, " " + PREFIX_ORDER + "interview", expectedSortCommand);
+
+        // Test case-insensitivity
+        assertParseSuccess(parser, " " + PREFIX_ORDER + "InTeRvIeW", expectedSortCommand);
+
+        expectedSortCommand = new SortByInterviewCommand(true);
+
+        assertParseSuccess(parser, " " + PREFIX_ORDER + "interview " + PREFIX_REVERSE, expectedSortCommand);
     }
 
     @Test
