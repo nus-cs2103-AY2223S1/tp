@@ -3,7 +3,7 @@ package seedu.classify.logic.commands;
 import seedu.classify.model.Model;
 
 /**
- * Terminates the program.
+ * Terminates the application.
  */
 public class ExitCommand extends Command {
 

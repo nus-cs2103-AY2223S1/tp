@@ -22,10 +22,10 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student record identified by the student name or "
-            + "student ID used in the displayed student list.\n"
-            + "Parameters: NAME (should only contain alphanumeric characters and spaces) or"
-            + "\n ID (should only contain 3 digits and 1 character)"
+            + ": Deletes a student record identified by the student name or student ID used in the student list.\n"
+            + "Parameters:\n"
+            + "NAME (should only contain alphanumeric characters and spaces) or\n"
+            + "ID (should only contain 3 digits followed by 1 character)\n"
             + "Example: " + COMMAND_WORD + " nm/Jonathan Tan" + " or " + COMMAND_WORD + " id/123A";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
@@ -65,14 +65,17 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
 
         if (targetId.isEmpty()) {
+            assert(namePredicate.isPresent());
             model.updateFilteredStudentList(namePredicate.get());
         } else {
+            assert(idPredicate.isPresent());
             model.updateFilteredStudentList(idPredicate.get());
         }
 
         List<Student> studentList = model.getFilteredStudentList();
 
         if (studentList.size() == 0) {
+            model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
             if (targetId.isEmpty()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_NAME);
             } else {
@@ -90,9 +93,7 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        }
-
-        if (targetId.isEmpty()) {
+        } else if (targetId.isEmpty()) {
             return other instanceof DeleteCommand && targetName.equals(((DeleteCommand) other).targetName);
         } else {
             return other instanceof DeleteCommand && targetId.equals(((DeleteCommand) other).targetId);

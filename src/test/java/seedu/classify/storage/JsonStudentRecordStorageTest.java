@@ -105,7 +105,7 @@ public class JsonStudentRecordStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveStudentRecord_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveStudentRecord(new StudentRecord(), null));
     }
 }

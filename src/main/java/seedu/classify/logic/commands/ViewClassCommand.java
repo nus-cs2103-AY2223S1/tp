@@ -8,7 +8,7 @@ import seedu.classify.model.student.ClassPredicate;
 
 /**
  * Lists all the students who are in a particular class.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class ViewClassCommand extends Command {
 
