@@ -67,6 +67,14 @@ public class GuestBook implements ReadOnlyGuestBook {
     }
 
     /**
+     * Returns true if a guest with the same room as {@code guest} exists in the guest book.
+     */
+    public boolean hasSameRoom(Guest guest) {
+        requireNonNull(guest);
+        return guests.hasSameRoom(guest);
+    }
+
+    /**
      * Adds a guest to the guest book.
      * The guest must not already exist in the guest book.
      */

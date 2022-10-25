@@ -35,7 +35,6 @@ public class AddCommandTest {
         ModelStubAcceptingGuestAdded modelStub = new ModelStubAcceptingGuestAdded();
         Guest validGuest = new GuestBuilder().build();
 
-
         CommandResult commandResult = new AddCommand(validGuest).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validGuest), commandResult.getFeedbackToUser());
@@ -49,6 +48,16 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithGuest(validGuest);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_GUEST, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_roomOccupied_throwsCommandException() {
+        Guest anotherGuest = new GuestBuilder().withName("Anderson").build();
+        Guest validGuest = new GuestBuilder().build();
+        AddCommand addCommand = new AddCommand(anotherGuest);
+        ModelStub modelStub = new ModelStubWithGuest(validGuest);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_ROOM_OCCUPIED, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -130,6 +139,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSameRoom(Guest guest) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteGuest(Guest target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -166,6 +180,12 @@ public class AddCommandTest {
             requireNonNull(guest);
             return this.guest.isSameGuest(guest);
         }
+
+        @Override
+        public boolean hasSameRoom(Guest guest) {
+            requireNonNull(guest);
+            return this.guest.isSameRoom(guest);
+        }
     }
 
     /**
@@ -178,6 +198,12 @@ public class AddCommandTest {
         public boolean hasGuest(Guest guest) {
             requireNonNull(guest);
             return guestsAdded.stream().anyMatch(guest::isSameGuest);
+        }
+
+        @Override
+        public boolean hasSameRoom(Guest guest) {
+            requireNonNull(guest);
+            return guestsAdded.stream().anyMatch(guest::isSameRoom);
         }
 
         @Override

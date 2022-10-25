@@ -18,7 +18,7 @@ public class GuestBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ROOM = "05-73";
+    public static final String DEFAULT_ROOM = "09-99";
     public static final String DEFAULT_DATE_RANGE = "13/09/22 - 15/09/22";
     public static final String DEFAULT_NUMBER_OF_GUESTS = "1";
     public static final String DEFAULT_IS_ROOM_CLEAN = "yes";

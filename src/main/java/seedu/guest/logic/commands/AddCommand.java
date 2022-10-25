@@ -40,6 +40,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in the guest book";
+    public static final String MESSAGE_ROOM_OCCUPIED = "The room is currently occupied by a guest";
 
     private final Guest toAdd;
 
@@ -57,6 +58,8 @@ public class AddCommand extends Command {
 
         if (model.hasGuest(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_GUEST);
+        } else if (model.hasSameRoom(toAdd)) {
+            throw new CommandException(MESSAGE_ROOM_OCCUPIED);
         }
 
         model.addGuest(toAdd);

@@ -56,6 +56,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_GUEST_SUCCESS = "Edited Guest: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in the guest book.";
+    public static final String MESSAGE_ROOM_OCCUPIED = "The room is currently occupied by a guest";
 
     private final Index index;
     private final EditGuestDescriptor editGuestDescriptor;
@@ -86,6 +87,8 @@ public class EditCommand extends Command {
 
         if (!guestToEdit.isSameGuest(editedGuest) && model.hasGuest(editedGuest)) {
             throw new CommandException(MESSAGE_DUPLICATE_GUEST);
+        } else if (!guestToEdit.getRoom().equals(editedGuest.getRoom()) && model.hasSameRoom(editedGuest)) {
+            throw new CommandException(MESSAGE_ROOM_OCCUPIED);
         }
 
         model.setGuest(guestToEdit, editedGuest);
