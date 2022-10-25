@@ -30,7 +30,7 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01` : Adds a contact named `John Doe` to the SectresBook.
 
    * **`delete 3`** : Deletes the 3rd contact shown in the current list.
    
@@ -47,7 +47,6 @@ This User Guide is an in-depth guide to help you start managing your contacts, n
 ## Properties
 
 ### Person Properties
-
 #### Name
   - The name of person to be recorded in the SectresBook.
   - Identified by prefix `name`.
@@ -137,6 +136,12 @@ Please refer to the `Tag Properties` section below for more information regardin
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Please refer to the `Tag Properties` section below for more information regarding tags.
 </div>
+
+### Tag Properties
+- A tag that is used to group together specific People and Notes.
+- Identified by the prefix `tag`.
+- Person and Note can hold tags.
+- Searching for a tag brings up all the People and Notes that have the tag.
 
 ## Features
 
@@ -232,14 +237,14 @@ Examples:
 
 ### Locating persons by tag: `findTag`
 
-Finds persons that have the given tag.
+Finds People and Notes that have the given tag.
 
 Format: `findTag TAG [MORE_TAGS]`
 
 * The tag search is case-insensitive. e.g `finance` will match `Finance`
 * Only the tag is searched.
 * Only full words will be matched e.g. `Tech` will not match `Technology`
-* Persons matching at least one tag will be returned (i.e. `OR` search).
+* Persons and Notes matching at least one tag will be returned (i.e. `OR` search).
   e.g. `Finance` will return 
   * `John (tag: Finance)`,
   * `Caroline (tag: Finance) (tag: Tech)`,
@@ -406,7 +411,7 @@ _Details coming soon ..._
 **A** Drag the window of the application with your mouse to enlarge it, or simply click the top right maximise icon of the window.
 
 **Q** Do I require an internet connection to use SectresBook?<br>
-**A** No, SectreBook fully works without the need for internet connection.
+**A** No, SectresBook fully works without the need for internet connection.
 
 --------------------------------------------------------------------------------------------------------------------
 
