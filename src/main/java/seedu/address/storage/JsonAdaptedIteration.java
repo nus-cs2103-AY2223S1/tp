@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.nio.file.Path;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -8,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.iteration.Date;
 import seedu.address.model.iteration.Feedback;
-import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.Iteration;
 import seedu.address.model.iteration.IterationDescription;
 
@@ -42,7 +42,7 @@ public class JsonAdaptedIteration {
     public JsonAdaptedIteration(Iteration source) {
         date = source.getDate().date;
         description = source.getDescription().description;
-        path = source.getImagePath().path;
+        path = String.valueOf(source.getImagePath());
         feedback = source.getFeedback().feedback;
     }
 
@@ -70,13 +70,11 @@ public class JsonAdaptedIteration {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Feedback.class.getSimpleName()));
         }
-
-        final ImagePath modelImagePath = new ImagePath(path);
-
         if (path == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ImagePath.class.getSimpleName()));
+                    Path.class.getSimpleName()));
         }
+        Path modelImagePath = Path.of(path);
 
         final Feedback modelFeedback = new Feedback(feedback);
 
