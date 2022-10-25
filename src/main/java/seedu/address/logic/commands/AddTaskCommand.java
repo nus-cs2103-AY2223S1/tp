@@ -17,7 +17,7 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the current team.\n"
             + "Parameters: TASK_NAME\n"
-            + "Example: " + COMMAND_WORD + " merge PR#12";
+            + "Example: " + COMMAND_WORD + " \"merge PR#12\"";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";

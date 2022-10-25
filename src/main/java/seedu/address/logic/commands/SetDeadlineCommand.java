@@ -32,7 +32,7 @@ public class SetDeadlineCommand extends Command {
     @CommandLine.Parameters(arity = "1")
     private Index taskIndex;
 
-    @CommandLine.Parameters(parameterConsumer = LocalDateTimeConverter.class)
+    @CommandLine.Parameters(arity = "1..2", parameterConsumer = LocalDateTimeConverter.class)
     private LocalDateTime deadline;
 
     public SetDeadlineCommand() {

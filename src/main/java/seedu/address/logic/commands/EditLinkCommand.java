@@ -30,9 +30,9 @@ public class EditLinkCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Edits a current link identified by the index number used in the displayed link list. \n"
                     + "Existing values will be overwritten by the input values. \n"
-                    + "Parameters: INDEX (must be a positive integer) " + "-" + FLAG_NAME_STR + " NAME " + "-"
-                    + FLAG_URL_STR + " PHONE \n" + "Example: " + COMMAND_WORD + " 1 " + "-" + FLAG_NAME_STR
-                    + " \"Google\" " + "-" + FLAG_URL_STR + " https://google.com ";
+                    + "Parameters: INDEX (must be a positive integer) " + FLAG_NAME_STR + " NAME "
+                    + FLAG_URL_STR + " PHONE \n" + "Example: " + COMMAND_WORD + " 1 " + FLAG_NAME_STR
+                    + " \"Google\" " + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
@@ -89,7 +89,6 @@ public class EditLinkCommand extends Command {
         model.setLink(linkToEdit, editedLink);
         model.updateFilteredLinkList(PREDICATE_SHOW_ALL_LINKS);
         return new CommandResult(String.format(MESSAGE_EDIT_LINK_SUCCESS, editedLink));
-
     }
 
     @Override

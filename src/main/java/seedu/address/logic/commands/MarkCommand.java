@@ -19,7 +19,7 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Marks the specified existing task as complete.\n"
-        + "Parameters: INDEX of task (must be a positive integer) \n"
+        + "Parameters: TASK_INDEX (must be a positive integer) \n"
         + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_SUCCESS = "Marked as complete: [x] %1$s";

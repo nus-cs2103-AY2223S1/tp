@@ -25,9 +25,9 @@ public class AssignTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a task to the specified member in the team.\n"
-            + "Parameters: index of task \n"
-            + "Parameters: name of person \n"
-            + "Example: " + COMMAND_WORD + " 1" + " Bernice Yu";
+            + "Parameters: TASK_INDEX (must be a positive integer) \n"
+            + "Parameters: PERSON_NAME \n"
+            + "Example: " + COMMAND_WORD + " 1" + " \"Bernice Yu\"";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned Task: %1$s assigned to %2$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
