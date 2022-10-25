@@ -63,6 +63,11 @@ public class FindCommandParser implements Parser<FindCommand> {
             // TODO: Implement address search here, remove the exception below
             throw new ParseException("a/ search not implemented yet.");
 
+        } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
+
+            // TODO: Implement date search here, remove the exception below
+            throw new ParseException("dt/ search not implemented yet.");
+
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.
             throw new ParseException(

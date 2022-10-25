@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
@@ -23,7 +24,7 @@ public class FindCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
 
     private static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
-            + "either n/, p/, np/, e/ or a/";
+            + "either n/, p/, np/, e/, a/ or dt/";
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
@@ -87,6 +88,12 @@ public class FindCommandParserTest {
     public void parse_validNokPhonePrefix_returnsFindCommand() {
         // TODO: Update test case with np/ prefix
         assertParseFailure(parser, NOK_PHONE_DESC_AMY, "np/ search not implemented yet.");
+    }
+
+    @Test
+    public void parse_validClassDate_returnsFindCommand() {
+        // TODO: Update test case with dt/ prefix
+        assertParseFailure(parser, CLASS_DESC_AMY, "dt/ search not implemented yet.");
     }
 
 }
