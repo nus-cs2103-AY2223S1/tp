@@ -223,5 +223,13 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + HELP_DESC;
 
         CommandParserTestUtil.assertParseDisplayCommandHelp(parser, userInput, EditCommand.MESSAGE_USAGE);
+
+        // help prefix overrides normal edit command behavior
+        userInput = targetIndex.getOneBased()
+                + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
+                + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
+                + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND + HELP_DESC;
+
+        CommandParserTestUtil.assertParseDisplayCommandHelp(parser, userInput, EditCommand.MESSAGE_USAGE);
     }
 }
