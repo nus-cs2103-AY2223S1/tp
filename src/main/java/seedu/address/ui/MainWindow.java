@@ -42,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AddCommandPopupWindow addCommandPopupWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -181,6 +182,9 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        if (addCommandPopupWindow != null) {
+            addCommandPopupWindow.close();
+        }
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -265,7 +269,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public void handleAddByPopup(String addType) {
-        AddCommandPopupWindow addCommandPopupWindow = new AddCommandPopupWindow(logic, addType);
+        addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay);
         addCommandPopupWindow.show();
     }
 

@@ -229,6 +229,10 @@
     -fx-background-color: #3a3a3a;
 }
 
+.button:focused {
+    -fx-background-color: #283747;
+}
+
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
   -fx-text-fill: #1d1d1d;

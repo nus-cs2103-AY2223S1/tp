@@ -16,19 +16,19 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddCommandWithPopup;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AddCommandPopupWindow extends UiPart<Stage> {
 
-    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+    private static final Logger logger = LogsCenter.getLogger(AddCommandPopupWindow.class);
     private static final String FXML = "AddCommandPopupWindow.fxml";
-    private static final String ORDER_COMPONENT = "order";
-    private static final String PET_COMPONENT = "pet";
     private Stage stage;
     private Logic logic;
-    private PopupPanelForOrder popupPanelForOrder;
-    private PopupPanelForBuyer popupPanelForBuyer;
-    private PopupPanelForSupplier popupPanelForSupplier;
-    private PopupPanelForPet popupPanelForPet;
+    private PopUpPanel popUpPanel;
+    private ResultDisplay resultDisplay;
 
     @FXML
     private StackPane popupContentPlaceholder;
@@ -38,30 +38,37 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
     @FXML
     private Label typeToBeAdded;
 
-    public AddCommandPopupWindow(Stage root, Logic logic, String typeToBeAdded) {
+    public AddCommandPopupWindow(Stage root, Logic logic, String typeToBeAdded, ResultDisplay resultDisplay) {
         super(FXML, root);
         this.stage = root;
+        this.logic = logic;
         this.typeToBeAdded.setText(typeToBeAdded);
+        this.resultDisplay = resultDisplay;
         fillContentPlaceholder(typeToBeAdded);
         setCloseWindowKey();
         // Alternative solution: setCloseWindowKey(new KeyCodeCombination(KeyCode.ESCAPE));
         setSaveButtonShortcut(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
     }
 
-    public AddCommandPopupWindow(Logic logic, String typeToBeAdded) {
-        this(new Stage(), logic, typeToBeAdded);
+    public AddCommandPopupWindow(Logic logic, String typeToBeAdded, ResultDisplay resultDisplay) {
+        this(new Stage(), logic, typeToBeAdded, resultDisplay);
     }
 
     public void fillContentPlaceholder(String typeToBeAdded) {
         typeToBeAdded = typeToBeAdded.trim().toUpperCase();
         popupContentPlaceholder.getChildren().clear();
+        System.out.println(typeToBeAdded);
         switch (typeToBeAdded) {
         case AddCommandWithPopup.ADD_BUYER:
-            popupPanelForBuyer = new PopupPanelForBuyer();
+            PopupPanelForBuyer popupPanelForBuyer = new PopupPanelForBuyer();
+            popUpPanel = popupPanelForBuyer;
             popupContentPlaceholder.getChildren().add(popupPanelForBuyer.getRoot());
+            break;
         case AddCommandWithPopup.ADD_SUPPLIER:
-            popupPanelForSupplier = new PopupPanelForSupplier();
+            PopupPanelForSupplier popupPanelForSupplier = new PopupPanelForSupplier();
+            popUpPanel = popupPanelForSupplier;
             popupContentPlaceholder.getChildren().add(popupPanelForSupplier.getRoot());
+            break;
         default:
             // Do nothing
         }
@@ -71,7 +78,7 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         // Solution adapted from https://stackoverflow.com/questions/14357515/javafx-close-window-on-pressing-esc
         stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.ESCAPE) {
-                stage.close();
+                close();
             }
         });
     }
@@ -87,8 +94,21 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
     }
 
     @FXML
-    void handleInputCommand(ActionEvent event) {
-
+    void exitWithSave(ActionEvent event) throws CommandException, ParseException {
+        try {
+            if (!popUpPanel.checkAllPartsFilled()) {
+                return;
+            }
+            Command command = popUpPanel.generateCommand();
+            CommandResult commandResult = logic.executeGivenCommand(command);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            close();
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command!");
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
     }
 
     public void setSaveButtonShortcut(KeyCombination keyCombination) {
@@ -104,6 +124,11 @@ public class AddCommandPopupWindow extends UiPart<Stage> {
         logger.fine("Showing add command pop-up window.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    public void close() {
+        logger.fine("Add command pop-up window closed.");
+        stage.close();
     }
 
 }

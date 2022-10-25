@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Region;
 import seedu.address.logic.commands.AddOrderCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.CliSyntax;
@@ -23,7 +22,7 @@ import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
-public class PopupPanelForOrder extends UiPart<Region> implements PopUpPanel {
+public class PopupPanelForOrder extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForOrder.fxml";
 
@@ -52,6 +51,8 @@ public class PopupPanelForOrder extends UiPart<Region> implements PopUpPanel {
         speciesField.requestFocus();
         generateInputSequence(speciesField, colorField, colorPatternField,
                 ageField, priceRangeField, byDateField, additionalRequestsField);
+        setPromptTextStyle(speciesField, colorField, colorPatternField,
+                ageField, priceRangeField, byDateField);
     }
 
     public String generateCommandText() {
@@ -94,8 +95,8 @@ public class PopupPanelForOrder extends UiPart<Region> implements PopUpPanel {
 
     @Override
     public boolean checkAllPartsFilled() {
-        boolean allPartsFilled = checkGivenFieldsAllFilled(ageField, byDateField, colorField,
-                colorPatternField, priceRangeField, speciesField);
+        boolean allPartsFilled = checkGivenFieldsAllFilled(speciesField, colorField, colorPatternField,
+                ageField, priceRangeField, byDateField);
         return allPartsFilled;
     }
 

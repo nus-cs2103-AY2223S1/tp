@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.ParserUtil;
@@ -29,7 +29,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-public class PopupPanelForBuyer extends UiPart<Region> implements PopUpPanel {
+public class PopupPanelForBuyer extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForBuyer.fxml";
     private final List<PopupPanelForOrder> orderComponents;
@@ -55,12 +55,17 @@ public class PopupPanelForBuyer extends UiPart<Region> implements PopUpPanel {
     @FXML
     private TextField phoneField;
 
+
+    @FXML
+    private ScrollPane scrollPane;
+
     public PopupPanelForBuyer() {
         super(FXML);
         orderComponents = new ArrayList<>();
         nameField.requestFocus();
         generateInputSequence(nameField, phoneField, emailField, countryField, addressField, addComponentButton);
-        setAddComponentButtonShortcut(new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN));
+        setPromptTextStyle(nameField, phoneField, emailField, countryField, addressField);
+        generateButtonShortcut(addComponentButton, new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN));
     }
 
     @FXML
@@ -109,8 +114,8 @@ public class PopupPanelForBuyer extends UiPart<Region> implements PopUpPanel {
 
     @Override
     public boolean checkAllPartsFilled() {
-        boolean contactFilled = checkGivenFieldsAllFilled(addressField, countryField,
-                emailField, nameField, phoneField);
+        boolean contactFilled = checkGivenFieldsAllFilled(nameField, phoneField,
+                emailField, countryField, addressField);
         if (!contactFilled) {
             return false;
         }

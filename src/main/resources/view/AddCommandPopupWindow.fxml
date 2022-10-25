@@ -37,7 +37,7 @@
                                  </Label>
                               </children>
                            </HBox>
-                           <Label text="Press ENTER to go to the next input box; press ESC to close the window" textFill="RED">
+                           <Label text="Press ENTER to go to the next input box; press ESC to close the window without saving" textFill="RED">
                               <VBox.margin>
                                  <Insets left="15.0" right="15.0" top="10.0" />
                               </VBox.margin>
@@ -54,7 +54,7 @@
                      </StackPane>
                   </children>
                </VBox>
-               <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleInputCommand" text="Button" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
+               <Button fx:id="saveButton" mnemonicParsing="false" onAction="#exitWithSave" text="Save (CTRL+S)" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
             </children></AnchorPane>
         </Scene>
     </scene>

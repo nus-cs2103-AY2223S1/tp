@@ -13,9 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.ParserUtil;
@@ -29,7 +27,7 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
-public class PopupPanelForSupplier extends UiPart<Region> implements PopUpPanel {
+public class PopupPanelForSupplier extends PopUpPanel {
 
     private static final String FXML = "PopupPanelForSupplier.fxml";
     private final List<PopupPanelForPet> petComponents;
@@ -58,9 +56,9 @@ public class PopupPanelForSupplier extends UiPart<Region> implements PopUpPanel 
     public PopupPanelForSupplier() {
         super(FXML);
         petComponents = new ArrayList<>();
-        nameField.requestFocus();
         generateInputSequence(nameField, phoneField, emailField, countryField, addressField, addComponentButton);
-        setAddComponentButtonShortcut(new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN));
+        setPromptTextStyle(nameField, phoneField, emailField, countryField, addressField);
+        generateButtonShortcut(addComponentButton, new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN));
     }
 
     @FXML
@@ -69,15 +67,6 @@ public class PopupPanelForSupplier extends UiPart<Region> implements PopUpPanel 
         petComponents.add(petComponent);
         int numOfComponents = petComponents.size();
         componentPlaceholder.addRow(numOfComponents - 1, petComponent.getRoot());
-    }
-
-    public void setAddComponentButtonShortcut(KeyCombination keyCombination) {
-        getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if (keyCombination.match(event)) {
-                addComponentButton.fire();
-                event.consume();
-            }
-        });
     }
 
     @Override
@@ -109,8 +98,8 @@ public class PopupPanelForSupplier extends UiPart<Region> implements PopUpPanel 
 
     @Override
     public boolean checkAllPartsFilled() {
-        boolean contactFilled = checkGivenFieldsAllFilled(addressField, countryField,
-                emailField, nameField, phoneField);
+        boolean contactFilled = checkGivenFieldsAllFilled(nameField, phoneField,
+                emailField, countryField, addressField);
         if (!contactFilled) {
             return false;
         }

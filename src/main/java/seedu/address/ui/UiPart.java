@@ -88,33 +88,4 @@ public abstract class UiPart<T> {
         return requireNonNull(fxmlFileUrl);
     }
 
-    private void goToNextFieldWithEnter(Control currentField, Control nextField) {
-        // Solution below adapted from http://www.shorturl.at/aHLX7
-        currentField.setOnKeyPressed(event ->{
-            if(event.getCode().equals(KeyCode.ENTER)){
-                nextField.requestFocus();
-            }
-        });
-    }
-
-    public void generateInputSequence(Control... fields) {
-        Control currentField = null;
-        for (Control nextField : fields) {
-            if (currentField != null) {
-                goToNextFieldWithEnter(currentField, nextField);
-            }
-            currentField = nextField;
-        }
-    }
-
-    public boolean checkGivenFieldsAllFilled(TextInputControl... textInputFields) {
-        for (TextInputControl textInputField : textInputFields) {
-            if (textInputField.getText().equals("")) {
-                textInputField.requestFocus();
-                return false;
-            }
-        }
-        return true;
-    }
-
 }
