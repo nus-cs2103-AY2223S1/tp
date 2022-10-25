@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.HiddenPredicateSingleton;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Hides all persons and their appointments in address book whose name contains any of the argument keywords.

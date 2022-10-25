@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -19,13 +20,17 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private JsonCommandHistoryStorage commandHistoryStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage} and
+     * {@code JsonCommandHistoryStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          JsonCommandHistoryStorage commandHistoryStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.commandHistoryStorage = commandHistoryStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +80,23 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public void saveCommandHistory(CommandHistory commandHistory) throws IOException {
+        saveCommandHistory(commandHistory, commandHistoryStorage.getCommandHistoryFilePath());
+    }
+
+    private void saveCommandHistory(CommandHistory commandHistory, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        commandHistoryStorage.saveCommandHistory(commandHistory, filePath);
+    }
+
+    @Override
+    public Optional<CommandHistory> readCommandHistory() throws DataConversionException {
+        return readCommandHistory(commandHistoryStorage.getCommandHistoryFilePath());
+    }
+
+    private Optional<CommandHistory> readCommandHistory(Path filePath) throws DataConversionException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return commandHistoryStorage.readCommandHistory(filePath);
+    }
 }
