@@ -10,9 +10,14 @@ import javafx.collections.transformation.TransformationList;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 
+/*
+  Adapted from James_D's answer on Stack Overflow, see
+  https://stackoverflow.com/questions/32294055/mirror-one-observablelist-to-another.
+*/
+
 /**
- * Adapted from James_D's answer on Stack Overflow, see
- * https://stackoverflow.com/questions/32294055/mirror-one-observablelist-to-another.
+ * An {@code ObservableList} implementation that maps {@code Student}-s to {@code StudentView}-s. The list
+ * stores the parameter of the target session to be queried for each {@code Student} within the source list.
  */
 public class MappedStudentViewList extends TransformationList<StudentView, Student> {
 
@@ -63,7 +68,7 @@ public class MappedStudentViewList extends TransformationList<StudentView, Stude
     }
 
     private class Change extends ListChangeListener.Change<StudentView> {
-        ListChangeListener.Change<? extends Student> change;
+        private final ListChangeListener.Change<? extends Student> change;
 
         public Change(ListChangeListener.Change<? extends Student> c) {
             super(MappedStudentViewList.this);
@@ -101,6 +106,15 @@ public class MappedStudentViewList extends TransformationList<StudentView, Stude
         }
 
         @Override
+        protected int[] getPermutation() {
+            // This method is only called by the superclass methods
+            // wasPermutated() and getPermutation(int), which are
+            // both overriden by this class. There is no other way
+            // this method can be called.
+            throw new AssertionError("Unreachable code");
+        }
+
+        @Override
         public boolean next() {
             return change.next();
         }
@@ -123,17 +137,8 @@ public class MappedStudentViewList extends TransformationList<StudentView, Stude
         @Override
         public List<StudentView> getRemoved() {
             return change.getRemoved().stream()
-                    .map(student -> MappedStudentViewList.this.getStudentView(student))
+                    .map(MappedStudentViewList.this::getStudentView)
                     .collect(Collectors.toList());
-        }
-
-        @Override
-        protected int[] getPermutation() {
-            // This method is only called by the superclass methods
-            // wasPermutated() and getPermutation(int), which are
-            // both overriden by this class. There is no other way
-            // this method can be called.
-            throw new AssertionError("Unreachable code");
         }
     }
 

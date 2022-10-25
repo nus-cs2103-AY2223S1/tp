@@ -85,6 +85,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list. */
     ObservableList<Student> getFilteredStudentList();
 
+    /** Returns a view of students along with its associated session data */
     ObservableList<StudentView> getStudentViewList();
 
     /** Returns an unmodifiable view of the student list. */
@@ -146,7 +147,9 @@ public interface Model {
 
     SimpleStringProperty getFocusLabelProperty();
 
+    /** Queries {@code SessionData} within studentViewList with the provided {@code Session} */
     public void querySessionData(Session targetSession);
 
+    /** Removes queried {@code SessionData} within the studentViewList */
     public void resetQueriedSessionData();
 }

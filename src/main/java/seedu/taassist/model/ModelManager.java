@@ -56,7 +56,7 @@ public class ModelManager implements Model {
         focusLabelProperty = new SimpleStringProperty(DEFAULT_FOCUS_LABEL);
 
         studentViewList.addListener((ListChangeListener.Change<? extends StudentView> change) -> {
-            logger.info("ListChange called: " + change.getList());
+            logger.fine("StudentViewList: Fired a change");
         });
     }
 

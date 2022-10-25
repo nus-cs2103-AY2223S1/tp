@@ -10,6 +10,7 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 
 /**
  * API of the Logic component
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns a view of students along with its associated session data */
+    ObservableList<StudentView> getStudentViewList();
 
     /**
      * Returns the user prefs' TaAssist file path.

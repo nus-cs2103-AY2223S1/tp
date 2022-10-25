@@ -1,0 +1,50 @@
+package seedu.taassist.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_SESSION;
+import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
+
+import seedu.taassist.logic.commands.exceptions.CommandException;
+import seedu.taassist.model.Model;
+import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
+
+/**
+ * Displays student's scores for a session within the focused class.
+ */
+public class ScoresCommand extends Command {
+
+    public static final String COMMAND_WORD = "scores";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Displays student's scores for a session within the focused class. "
+            + "Parameters: " + PREFIX_SESSION + "SESSION_NAME\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_SESSION + "Lab1";
+
+    public static final String MESSAGE_SUCCESS = "Listed scores of all students for session %s";
+
+    private final Session session;
+
+    public ScoresCommand(Session session) {
+        this.session = session;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (!model.isInFocusMode()) {
+            throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
+        }
+
+        ModuleClass focusedClass = model.getFocusedClass();
+        if (!focusedClass.hasSession(session)) {
+            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session.getSessionName(), focusedClass));
+        }
+
+        model.querySessionData(session);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, session.getSessionName()));
+    }
+}
