@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
 /**
@@ -35,9 +36,26 @@ public class TaskListCard extends UiPart<Region> {
                 + "-fx-border-radius: 5;" + "-fx-border-color: black;");
         this.task = task;
         id.setText(displayedIndex + ". ");
-        taskname.setText(task.toString());
-        date.setText("Date: 06/06/2022 (Today)"); // dummy value
-        time.setText("Time: 0900"); // dummy value
+        taskname.setText(task.getTaskDescription());
+        DateTime dateTime = task.getDateTime();
+        String dateString = dateTime.getDate();
+        String timeString = dateTime.getTime();
+        int daysFromToday = dateTime.findDaysFromToday();
+
+        if (daysFromToday == 0) {
+            date.setText(String.format("Date: %s (Today)", dateString));
+        } else if (daysFromToday == 1) {
+        date.setText(String.format("Date: %s (Tommorow)", dateString));
+        } else if (daysFromToday < 0) {
+            if (daysFromToday == -1) {
+                date.setText(String.format("Date: %s (Overdue by 1 day)", dateString));
+            } else {
+                date.setText(String.format("Date: %s (Overdue by %s days)", dateString, Math.abs(daysFromToday)));
+            }
+        } else {
+            date.setText(String.format("Date: %s (in %s days)", dateString, daysFromToday));
+        }
+        time.setText(String.format("Time: %s", timeString));
     }
 
     @Override

@@ -1,7 +1,9 @@
 package seedu.uninurse.model.task;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -13,11 +15,13 @@ public class DateTime {
 
     public static final String DATE_TIME_PATTERN = "dd-MM-yyyy HHmm";
     public static final String DATE_PATTERN = "dd-MM-yyyy";
+    public static final String TIME_PATTERN = "HH:mm";
     public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
             + DATE_TIME_PATTERN + " i.e 16-10-2022 1015\n" + "or just date should be in the format of: "
             + DATE_PATTERN + " i.e 20-10-2022";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_PATTERN);
 
     public final LocalDateTime dateTime;
 
@@ -46,6 +50,11 @@ public class DateTime {
 
         return today.getDayOfYear() == dateTime.getDayOfYear()
                 && today.getYear() == dateTime.getYear();
+    }
+
+    public int findDaysFromToday() {
+        Long daysBetween = DAYS.between(LocalDate.now(), this.dateTime.toLocalDate());
+        return daysBetween.intValue();
     }
 
     /**
@@ -93,6 +102,10 @@ public class DateTime {
 
     public String getDate() {
         return dateTime.toLocalDate().toString();
+    }
+
+    public String getTime() {
+        return dateTime.toLocalTime().format(TIME_FORMATTER);
     }
 
     @Override
