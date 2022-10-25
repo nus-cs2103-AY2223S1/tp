@@ -76,14 +76,14 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN[h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS]`
+Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [h/HOMEWORK a/ATTENDANCE g/GRADE s/SESSION]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person must minimally have 3 tags, NAME, PHONE_NUMBER, and LESSON_PLAN.
 </div>
 
 Examples:
-* `add n/Farisa p/87159999 h/math done a/12/08/2022 g/D+ lp/tutorial 2`
+* `add n/Farisa p/87159999 h/math done a/12/08/2022 g/D+ lp/tutorial 2 s/Mon 08:00`
 
 ### Listing all persons : `list`
 
@@ -97,13 +97,15 @@ Edits an existing person in the address book, accessed by View method.<br>
 It requires one field:
 - n/: To be followed by updated name of student
 - p/: To be followed by updated phone number of student
+- lp/: To be followed by updated lesson plan of student
 - h/: To be followed by INDEX of homework to be updated, then updated homework
 - a/: To be followed by INDEX of attendance to be updated, then updated attendance
-- g/: To be followed by INDEX of grade book to be updated, then updated grade book
-- lp/: To be followed by updated lesson plan of student
+- g/: To be followed by INDEX of grade to be updated, then updated grade
+- s/: To be followed by INDEX of session to be updated, then updated session
+
 
 Format: `edit [n/ p/ lp/]NEW_FIELD`<br>
-`edit [h/ a/ g/]INDEX NEW_FIELD`
+`edit [h/ a/ g/ s/]INDEX NEW_FIELD`
 
 Examples:
 * `view 1` returns person in first index <br>
@@ -115,9 +117,10 @@ Edits a specific field of a person in the address book, accessed by View method.
 It requires one field:
 - h/: To be followed by INDEX of homework to be removed
 - a/: To be followed by INDEX of attendance to be removed
-- g/: To be followed by INDEX of grade book to be removed
+- g/: To be followed by INDEX of grade to be removed
+- s/: To be followed by INDEX of session to be removed
 
-Format: `remove [h/ a/ g/] INDEX`
+Format: `remove [h/ a/ g/ s/]INDEX`
 
 Examples:
 * `view 1` returns person in first index <br>
@@ -138,19 +141,16 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find 81112222` returns person with number `81112222`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-
 ### Viewing persons details: `view`
 
-View details of a person.
+View details of a person. Required to `edit` or `remove` person's details.
 
 Format: `view NAME` 
 
 * The command requires the full `NAME` of a person.
-
 
 ### Deleting a person : `delete`
 
@@ -203,17 +203,17 @@ Format: `attendance INDEX h/ATTENDACE`
 Examples:
 *`attendance 1 a/2022-12-08` marks 2022-12-08 attendance for first student in address book.
 
-### Adding Tuition Timing to student: `tuitiontiming`
+### Adding Session to student: `session`
 
-Adds a formatted tuition timing to student, expected to repeat weekly.
+Adds a formatted session timing to student, expected to repeat weekly.
 
-Format: `tuitiontime INDEX h/TUITION_TIME`
+Format: `session INDEX s/TUITION_TIME`
 
 *Adds tuition time to student with the specified `INDEX`.</br>
-*Tuition time must be in `DDD HH-MM-SS` format
+*Tuition time must be in `DDD HH-MM` format
 
 Examples:
-*`tuitiontime 1 tt/MON 12:00:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
+*`session 1 s/MON 12:00` adds a tuition slot of 12 afternoon, Monday to first student in address book.
 
 ### Editing Lesson Plan for student: `lessonplan`
 
@@ -233,7 +233,7 @@ See all classes to be had on a certain day of the week
 Format: `show [DDD]`
 
 Examples:
-*`show [MON]` lists all tuition timings scheduled for Monday.
+*`show MON` lists all tuition timings scheduled for Monday.
 
 ### Exiting the program : `exit`
 
@@ -274,12 +274,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER [h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS lp/LESSON_PLAN]…​` <br> e.g., `add n/James Ho p/22224444 h/math done a/12/09/2022 g/A+ lp/tutorial 3`
+**Add** | `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN[h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS s/SESSION]…​` <br> e.g., `add n/James Ho p/22224444  lp/english h/math a/12/09/2022 g/A+`
 **Clear** | `clear`
-**Delete** | `delete n/NAME`<br> `delete p/PHONE_NUMBER`<br> e.g., `delete James Ho`
-**Edit** | `edit INDEX [n/NAME p/PHONE_NUMBER h/HOMEWORK a/ATTENDANCE g/GRADE_PROGRESS lp/LESSON_PLAN]…​`<br> e.g.,`edit 2 n/James Lee h/math not done`
+**Delete** | `delete INDEX`<br> e.g., `delete 1`
+**Edit** | `edit [n/NAME p/PHONE_NUMBER lp/LESSON_PLAN]`<br> `edit [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g.,`edit 2 n/James Lee h/1 math`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**View** | `view n/NAME`<br> `view p/PHONE_NUMBER`<br> e.g., `view James Ho`
+**View** | `view NAME`<br> e.g., `view James Ho`
+**Remove** | `remove [s/INDEX SESSION h/INDEX HOMEWORK g/INDEX GRADE a/INDEX ATTENDANCE]`<br> e.g., `remove h/1`
 **List** | `list`
 **Exit** | `exit`
 **Help** | `help`

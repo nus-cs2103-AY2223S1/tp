@@ -46,7 +46,7 @@ public class RemoveCommand extends Command {
             + "[" + PREFIX_SESSION + "INDEX SESSION]"
             + "[" + PREFIX_GRADEPROGRESS + "INDEX GRADE PROGRESS]"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: PERSON_INDEX " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
 
     public static final String MESSAGE_REMOVED_PERSON_SUCCESS = "Removed Person Detail: %1$s";
     public static final String MESSAGE_NOT_VIEW_MODE =

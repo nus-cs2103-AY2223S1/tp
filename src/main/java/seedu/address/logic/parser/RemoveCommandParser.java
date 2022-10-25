@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveCommand.RemovePersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,21 +34,21 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
 
         RemovePersonDescriptor removePersonDescriptor = new RemovePersonDescriptor();
         if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
-            String[] homeworkArgs = ParserUtil.parseIndexedRemove(argMultimap.getValue(PREFIX_HOMEWORK).get());
-            removePersonDescriptor.setHomeworkIndex(ParserUtil.parseIndex(homeworkArgs[0]));
+            Index homeworkIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_HOMEWORK).get());
+            removePersonDescriptor.setHomeworkIndex(homeworkIndex);
         }
         if (argMultimap.getValue(PREFIX_GRADEPROGRESS).isPresent()) {
-            String[] gradeProgressArgs = ParserUtil
-                    .parseIndexedRemove(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
-            removePersonDescriptor.setGradeProgressIndex(ParserUtil.parseIndex(gradeProgressArgs[0]));
+            Index gradeProgressIndex = ParserUtil
+                    .parseIndex(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
+            removePersonDescriptor.setGradeProgressIndex(gradeProgressIndex);
         }
         if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {
-            String[] attendanceArgs = ParserUtil.parseIndexedRemove(argMultimap.getValue(PREFIX_ATTENDANCE).get());
-            removePersonDescriptor.setAttendanceIndex(ParserUtil.parseIndex(attendanceArgs[0]));
+            Index attendanceIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ATTENDANCE).get());
+            removePersonDescriptor.setAttendanceIndex(attendanceIndex);
         }
         if (argMultimap.getValue(PREFIX_SESSION).isPresent()) {
-            String[] sessionArgs = ParserUtil.parseIndexedRemove(argMultimap.getValue(PREFIX_SESSION).get());
-            removePersonDescriptor.setSessionIndex(ParserUtil.parseIndex(sessionArgs[0]));
+            Index sessionIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SESSION).get());
+            removePersonDescriptor.setSessionIndex(sessionIndex);
         }
 
         return new RemoveCommand(removePersonDescriptor);
