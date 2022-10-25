@@ -172,10 +172,12 @@ public class ParserUtil {
         }
         switch (trimmedUrgency) {
         case ("0"):
-            return Urgency.LOW;
+            return Urgency.NONE;
         case ("1"):
-            return Urgency.MEDIUM;
+            return Urgency.LOW;
         case ("2"):
+            return Urgency.MEDIUM;
+        case ("3"):
             return Urgency.HIGH;
         default:
             throw new ParseException(Urgency.MESSAGE_CONSTRAINTS);

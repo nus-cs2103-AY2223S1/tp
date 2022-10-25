@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public enum Urgency {
     NONE, LOW, MEDIUM, HIGH;
 
-    public static final String MESSAGE_CONSTRAINTS = "Urgency should be an integer 0, 1 or 2";
+    public static final String MESSAGE_CONSTRAINTS = "Urgency should be an integer 0, 1, 2 or 3";
 
     /**
      * Checks if the urgency integer string is valid.
@@ -21,6 +21,7 @@ public enum Urgency {
         priorities.add(0);
         priorities.add(1);
         priorities.add(2);
+        priorities.add(3);
         for (Integer i: priorities) {
             if (Integer.valueOf(i).equals(Integer.valueOf(urgencyValue))) {
                 return true;
