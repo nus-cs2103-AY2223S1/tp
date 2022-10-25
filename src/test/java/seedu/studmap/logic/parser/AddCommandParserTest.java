@@ -1,8 +1,6 @@
 package seedu.studmap.logic.parser;
 
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.studmap.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.studmap.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.GIT_DESC_AMY;
@@ -11,7 +9,6 @@ import static seedu.studmap.logic.commands.CommandTestUtil.HANDLE_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.HANDLE_DESC_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.ID_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.ID_DESC_BOB;
-import static seedu.studmap.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.studmap.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.studmap.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.studmap.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -24,7 +21,6 @@ import static seedu.studmap.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.studmap.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.studmap.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.studmap.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.studmap.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.studmap.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -38,7 +34,6 @@ import static seedu.studmap.testutil.TypicalStudents.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.studmap.logic.commands.AddCommand;
-import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.Name;
 import seedu.studmap.model.student.Phone;
@@ -56,33 +51,28 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
-
-        // multiple addresses - last studmap accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
     }
 
@@ -91,7 +81,7 @@ public class AddCommandParserTest {
         // zero tags
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + ID_DESC_AMY + GIT_DESC_AMY + HANDLE_DESC_AMY + ADDRESS_DESC_AMY,
+                        + ID_DESC_AMY + GIT_DESC_AMY + HANDLE_DESC_AMY,
                 new AddCommand(expectedStudent));
     }
 
@@ -101,27 +91,27 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB,
+                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
                 expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB,
+                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB,
+                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
                 expectedMessage);
 
         // missing studmap prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + VALID_ADDRESS_BOB,
+                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
                 expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + VALID_ADDRESS_BOB,
+                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
                 expectedMessage);
     }
 
@@ -129,37 +119,32 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid studmap
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + INVALID_ADDRESS_DESC,
+                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

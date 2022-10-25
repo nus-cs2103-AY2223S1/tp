@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.studmap.commons.exceptions.IllegalValueException;
-import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
@@ -36,7 +35,6 @@ class JsonAdaptedStudent {
     private final String studentID;
     private final String gitName;
     private final String handle;
-    private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attended = new ArrayList<>();
     private final List<JsonAdaptedAssignment> assigned = new ArrayList<>();
@@ -48,7 +46,6 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("studentID") String StudentId,
                               @JsonProperty("gitName") String gitName, @JsonProperty("handle") String handle,
-                              @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("attended") List<JsonAdaptedAttendance> attended,
                               @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
@@ -58,7 +55,6 @@ class JsonAdaptedStudent {
         this.studentID = StudentId;
         this.gitName = gitName;
         this.handle = handle;
-        this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -80,7 +76,6 @@ class JsonAdaptedStudent {
         studentID = source.getId().value;
         gitName = source.getGitName().value;
         handle = source.getTeleHandle().value;
-        address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -164,13 +159,6 @@ class JsonAdaptedStudent {
         }
         final TeleHandle modelHandle = new TeleHandle(handle);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         final Set<Attendance> modelAttendances = new HashSet<>(studentAttendances);
         final Set<Assignment> modelAssignments = new HashSet<>(studentAssignments);
@@ -183,7 +171,6 @@ class JsonAdaptedStudent {
         studentData.setId(modelId);
         studentData.setGitUser(modelGit);
         studentData.setTeleHandle(modelHandle);
-        studentData.setAddress(modelAddress);
         studentData.setTags(modelTags);
         studentData.setAttendances(modelAttendances);
         studentData.setAssignments(modelAssignments);

@@ -1,6 +1,5 @@
 package seedu.studmap.testutil;
 
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_GIT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_HANDLE;
@@ -39,7 +38,6 @@ public class StudentUtil {
         sb.append(PREFIX_ID + student.getId().value + " ");
         sb.append(PREFIX_GIT + student.getGitName().value + " ");
         sb.append(PREFIX_HANDLE + student.getTeleHandle().value + " ");
-        sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
         student.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -57,7 +55,6 @@ public class StudentUtil {
         descriptor.getId().ifPresent(studentID -> sb.append(PREFIX_ID).append(studentID.value).append(" "));
         descriptor.getGitName().ifPresent(gitName -> sb.append(PREFIX_GIT).append(gitName.value).append(" "));
         descriptor.getHandle().ifPresent(teleHandle -> sb.append(PREFIX_HANDLE).append(teleHandle.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -3,7 +3,6 @@ package seedu.studmap.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.studmap.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.studmap.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.GIT_DESC_AMY;
 import static seedu.studmap.logic.commands.CommandTestUtil.HANDLE_DESC_AMY;
@@ -83,7 +82,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ID_DESC_AMY + GIT_DESC_AMY + HANDLE_DESC_AMY + ADDRESS_DESC_AMY;
+                + ID_DESC_AMY + GIT_DESC_AMY + HANDLE_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addStudent(expectedStudent);

@@ -6,7 +6,6 @@ package seedu.studmap.model.attribute;
 public enum AttributeType {
     NAME,
     PHONE,
-    ADDRESS,
     ID,
     GIT,
     HANDLE,

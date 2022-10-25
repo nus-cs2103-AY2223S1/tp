@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in the student map.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -24,7 +24,6 @@ public class Student {
     private final StudentID id;
     private final TeleHandle teleHandle;
     private final GitName gitName;
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Attendance> attendances = new HashSet<>();
     private final Set<Assignment> assignments = new HashSet<>();
@@ -39,8 +38,7 @@ public class Student {
     public Student(StudentData studentData) {
         requireAllNonNull(studentData.getId(), studentData.getGitUser(),
                 studentData.getTeleHandle(), studentData.getName(), studentData.getPhone(),
-                studentData.getEmail(), studentData.getAddress(),
-                studentData.getTags(), studentData.getAttendances(),
+                studentData.getEmail(), studentData.getTags(), studentData.getAttendances(),
                 studentData.getAssignments());
 
         this.id = studentData.getId();
@@ -49,7 +47,6 @@ public class Student {
         this.name = studentData.getName();
         this.phone = studentData.getPhone();
         this.email = studentData.getEmail();
-        this.address = studentData.getAddress();
         this.tags.addAll(studentData.getTags());
         this.attendances.addAll(studentData.getAttendances());
         this.assignments.addAll(studentData.getAssignments());
@@ -103,14 +100,6 @@ public class Student {
         return email.toString();
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public String getAddressString() {
-        return address.toString();
-    }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -145,7 +134,6 @@ public class Student {
         studentData.setId(this.getId());
         studentData.setGitUser(this.getGitName());
         studentData.setTeleHandle(this.getTeleHandle());
-        studentData.setAddress(this.getAddress());
 
         studentData.setTags(new HashSet<>(this.getTags()));
         studentData.setAttendances(new HashSet<>(this.getAttendances()));
@@ -197,7 +185,6 @@ public class Student {
                 && otherStudent.getTeleHandle().equals(getTeleHandle())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTags().equals(getTags())
                 && otherStudent.getAttendances().equals(getAttendances())
                 && otherStudent.getAssignments().equals(getAssignments());
@@ -207,7 +194,7 @@ public class Student {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
 
-        return Objects.hash(name, phone, email, id, gitName, teleHandle, address, tags, attendances, assignments);
+        return Objects.hash(name, phone, email, id, gitName, teleHandle, tags, attendances, assignments);
 
     }
 
@@ -217,8 +204,7 @@ public class Student {
         builder.append(getName()).append("; Phone: ").append(getPhone()).append("; Email: ")
                 .append(getEmail()).append("; StudentID: ")
                 .append(getId()).append("; GitHub Username: ")
-                .append(getGitName()).append("; TeleHandle: ").append(getTeleHandle())
-                .append("; Address: ").append(getAddress());
+                .append(getGitName()).append("; TeleHandle: ").append(getTeleHandle());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
