@@ -40,5 +40,8 @@ class CreatePastAppointmentCommandTest {
         expectedModel.getFilteredPersonList().get(0).addPastAppointment(pastAppointment);
 
         assertCommandSuccess(createPastAppointmentCommand, model, expectedMessage, expectedModel);
+
+        // remove the appointment from the model for tear down
+        expectedModel.getFilteredPersonList().get(0).getPastAppointments().remove(pastAppointment);
     }
 }

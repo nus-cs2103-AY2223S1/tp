@@ -30,7 +30,9 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withPhone("94351253")
             .withEmail("alice@example.com").withNextOfKin("Charlie Pauline, Brother, 81273645")
-            .withPatientType(PatientTypes.OUTPATIENT).withMedication("Ibuprofen").build();
+            .withPatientType(PatientTypes.OUTPATIENT).withMedication("Ibuprofen")
+            .withPastAppointment("12-06-2022", "Paracetamol Ibuprofen", "Sick")
+            .withPastAppointment("14-06-2022", "Chlormine Amoxycillin", "Sick").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPhone("98765432")
             .withEmail("johnd@example.com").withNextOfKin("Daniel Meier, Husband, 81273546")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("south").withFloorNumber(1).withWardNumber("B690")

@@ -66,6 +66,13 @@ public class Person {
         int length = pastAppointments.size();
         LocalDate apptDate = appt.getDate();
 
+        // if appt is equal to any current past appointment, do not add as duplicate
+        for (int i = 0; i < length; i++) {
+            if (pastAppointments.get(i).equals(appt)) {
+                return;
+            }
+        }
+
         for (int i = 0; i < length; i++) {
             LocalDate currentApptDate = pastAppointments.get(i).getDate();
             if (apptDate.compareTo(currentApptDate) > 0) { //apptDate is more recent than currentApptDate
