@@ -28,7 +28,7 @@ ProfNUS is a **desktop application which helps SOC Professors who have many modu
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/A0837092R t/@john_doe c/CS2030S cg/CS2030S:Tut07`: Adds a student named `John Doe` to the ProfNUS application.
 
-   * **`delstu`**`3` : Deletes the 3rd student shown in the current student list.
+   * **`delstu`**`3` : Deletes the 3rd student shown in the current list of students.
 
    * **`clear`** : Deletes all students, teaching assistants, modules and schedules.
 
@@ -198,8 +198,8 @@ Deletes the specified teaching assistant from the ProfNUS application.
 
 Format: `delta INDEX`
 
-* Deletes the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
+* Deletes the teaching assistant at the specified `INDEX`.
+* The index refers to the index number shown in the displayed teaching assistant list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
