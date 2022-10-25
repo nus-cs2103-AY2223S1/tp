@@ -40,4 +40,11 @@ public class FilterMeetingCommand extends Command {
         return new CommandResult(String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW,
                 model.getFilteredMeetingList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FilterMeetingCommand // instanceof handles nulls
+                && predicate.equals(((FilterMeetingCommand) other).predicate)); // state check
+    }
 }
