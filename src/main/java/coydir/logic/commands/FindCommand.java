@@ -1,10 +1,16 @@
 package coydir.logic.commands;
 
+import static coydir.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
+import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
+import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
 import static java.util.Objects.requireNonNull;
 
 import coydir.commons.core.Messages;
 import coydir.model.Model;
-import coydir.model.person.NameContainsKeywordsPredicate;
+import coydir.model.person.DepartmentContainsKeywordPredicate;
+import coydir.model.person.NameContainsKeywordPredicate;
+import coydir.model.person.PersonMatchesKeywordsPredicate;
+import coydir.model.person.PositionContainsKeywordPredicate;
 
 /**
  * Finds and lists all persons in database whose name contains any of the argument keywords.
@@ -14,14 +20,21 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons by searching for any combination\n"
+            + "of name, position, and department given the specified keywords (case-insensitive)\n"
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_POSITION + "POSITION] "
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John "
+            + PREFIX_POSITION + "Recruiter "
+            + PREFIX_DEPARTMENT + "Human Resources";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PersonMatchesKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(PersonMatchesKeywordsPredicate predicate) { 
         this.predicate = predicate;
     }
 
