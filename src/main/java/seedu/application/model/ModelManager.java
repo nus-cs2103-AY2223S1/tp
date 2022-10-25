@@ -154,6 +154,7 @@ public class ModelManager implements Model {
 
     @Override
     public void archiveApplication(Application target) {
+        assert !target.isArchived();
         versionedApplicationBook.setArchive(target);
         filteredApplications.setPredicate(HIDE_ARCHIVE_IN_LIST);
         commitApplicationBook();
@@ -161,6 +162,7 @@ public class ModelManager implements Model {
 
     @Override
     public void retrieveApplication(Application target) {
+        assert target.isArchived();
         versionedApplicationBook.retrieveApplication(target);
         filteredApplications.setPredicate(SHOW_ARCHIVE_ONLY);
         commitApplicationBook();
