@@ -32,17 +32,9 @@ import seedu.address.ui.MainPanelName;
 public class DeleteAttributeCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_DELETE_SUCCESS = "Contact Attribute successfully deleted";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a person's specified contact. "
-        + "Allowed Parameters are: "
-        + "email"
-        + "phone"
-        + "slack"
-        + "telegram"
-        + "role"
-        + "timezone"
-        + "address"
-        + "Example: " + COMMAND_WORD + " "
-        + "email";
+    public static final String MESSAGE_USAGE = " Deletes a person's specified contact. "
+        + "Allowed Parameters are: email, phone, slack, telegram, role, timezone, address\n"
+        + "Example: " + COMMAND_WORD + " email";
 
     private final Prefix prefixToDelete;
 
