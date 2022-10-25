@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -12,12 +14,18 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.PopupWindow.AddCommandPopupWindow;
+import seedu.address.model.order.Order;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -238,7 +246,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles the behaviour of window to display for list command.
+     * Handles the window display behaviour for list command.
      */
     public void handleList(String listType) {
         listType = listType.trim().toUpperCase();
@@ -279,6 +287,47 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Handles the display for CheckCommand.
+     * @param index The index of the item needs to be checked.
+     */
+    public void handleCheck(String checkType, int index) {
+        checkType = checkType.trim().toUpperCase();
+        switch (checkType) {
+        case CheckCommand.CHECK_BUYER:
+            Buyer buyer = logic.getFilteredBuyerList().get(index);
+            ObservableList<Order> buyerOrderList = logic.getOrderAsObservableListFromBuyer(buyer);
+            OrderListPanel newOrderList = new OrderListPanel(buyerOrderList);
+            personListPanelPlaceholder.getChildren().clear();
+            personListPanelPlaceholder.getChildren().add(newOrderList.getRoot());
+            break;
+        case CheckCommand.CHECK_SUPPLIER:
+            Supplier supplier = logic.getFilteredSupplierList().get(index);
+            ObservableList<Pet> supplierPetList = logic.getPetAsObservableListFromSupplier(supplier);
+            PetListPanel newPetList = new PetListPanel(supplierPetList);
+            personListPanelPlaceholder.getChildren().clear();
+            personListPanelPlaceholder.getChildren().add(newPetList.getRoot());
+            break;
+        case CheckCommand.CHECK_ORDER:
+            Order order = logic.getFilteredOrderList().get(index);
+            ObservableList<Order> orders = FXCollections.singletonObservableList(order);
+            OrderListPanel tempOrderPanel = new OrderListPanel(orders);
+            personListPanelPlaceholder.getChildren().clear();
+            personListPanelPlaceholder.getChildren().add(tempOrderPanel.getRoot());
+            break;
+        case CheckCommand.CHECK_PET:
+            Pet pet = logic.getFilteredPetList().get(index);
+            ObservableList<Pet> pets = FXCollections.singletonObservableList(pet);
+            PetListPanel tempPetPanel = new PetListPanel(pets);
+            personListPanelPlaceholder.getChildren().clear();
+            personListPanelPlaceholder.getChildren().add(tempPetPanel.getRoot());
+            break;
+        default:
+            //Do nothing
+        }
+
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -304,9 +353,14 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isAddByPopup()) {
                 handleAddByPopup(commandResult.getAddType());
             }
+            if (commandResult.isCheck()) {
+                Index index = commandResult.getIndex();
+                handleCheck(commandResult.getCheckType(), index.getZeroBased());
+            }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+
+        } catch(CommandException | ParseException e){
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
