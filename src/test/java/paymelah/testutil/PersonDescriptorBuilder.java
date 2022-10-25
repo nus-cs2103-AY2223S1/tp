@@ -30,7 +30,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code PersonDescriptor} with fields containing {@code person}'s details
      */
     public PersonDescriptorBuilder(Person person) {
         descriptor = new PersonDescriptor();
@@ -42,7 +42,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code PersonDescriptor} that we are building.
      */
     public PersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -50,7 +50,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code PersonDescriptor} that we are building.
      */
     public PersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -58,7 +58,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code PersonDescriptor} that we are building.
      */
     public PersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -66,7 +66,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code PersonDescriptor} that we are building.
      */
     public PersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -74,7 +74,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code PersonDescriptor}
      * that we are building.
      */
     public PersonDescriptorBuilder withTags(String... tags) {
@@ -84,7 +84,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code descriptions} into a {@code Set<Description>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code descriptions} into a {@code Set<Description>} and set it to the {@code PersonDescriptor}
      * that we are building.
      */
     public PersonDescriptorBuilder withDescriptions(String... descriptions) {
@@ -94,7 +94,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code PersonDescriptor}
      * that we are building.
      */
     public PersonDescriptorBuilder withMonies(String... monies) {
