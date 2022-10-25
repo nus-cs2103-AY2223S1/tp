@@ -13,19 +13,22 @@ import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.model.Model;
 import tuthub.model.tutor.Tutor;
 
+/**
+ * Opens the user's email client with the tutors to send to specified.
+ */
 public class MailCommand extends Command {
     public static final String COMMAND_WORD = "mail";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Launches the mail composing window with "
             + "the \"to\" specified for a tutor or all tutors displayed. "
             + "Parameters: "
-            + "[INDEX/\"all\"] \n"
+            + "INDEX or \"all\" \n"
             + "Example: " + COMMAND_WORD + " "
             + "all";
 
     public static final String MESSAGE_MAIL_TUTOR_SUCCESS = "Launching mail composing window.";
-    public static final String MESSAGE_MAIL_CLIENT_FAIL = "The user default mail client is not found " +
-            "or fails to be launched";
+    public static final String MESSAGE_MAIL_CLIENT_FAIL = "The user default mail client is not found "
+            + "or fails to be launched";
     public static final String MESSAGE_INVALID_WORD = "Word %1$s is invalid.";
     public static final String MAILTO_PREFIX = "mailto:";
     public static final String ALL_WORD = "all";
@@ -35,7 +38,7 @@ public class MailCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a MailCommand to email the tutor list.
+     * Creates a MailCommand to email tutors.
      */
     public MailCommand(String target) {
         this.target = target;
@@ -49,12 +52,25 @@ public class MailCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Checks if the {@code target} is valid or not.
+     * {@code target} is valid if and only if it is equal to "add"
+     *
+     * @throws CommandException If {@code target} is not valid.
+     */
     public void checkValidTarget() throws CommandException {
         if (!target.equals(ALL_WORD)) {
             throw new CommandException(String.format(MESSAGE_INVALID_WORD, target));
         }
     }
 
+    /**
+     * Checks if the {@code targetIndex} is valid or not.
+     * {@code targetIndex} is valid if and only if it is less than the list size.
+     *
+     * @param list The current list being displayed in Tuthub.
+     * @throws CommandException If the {@code targetIndex} is not valid.
+     */
     public void checkValidIndex(List<Tutor> list) throws CommandException {
         if (targetIndex.getZeroBased() >= list.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
