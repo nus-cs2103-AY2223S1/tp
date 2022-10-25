@@ -1,6 +1,14 @@
 package seedu.address.model.social;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.OpenCommand.MESSAGE_BAD_LINK;
+
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import seedu.address.model.social.exceptions.SocialException;
 
 /**
  * Represents a Social in uNivUSal.
@@ -161,7 +169,124 @@ public class Social {
      * @return preferred Socials for communication.
      */
     public String getPreferred() {
-        return this.preferred.toString();
+        if (this.preferred == null) {
+            return "NO PREFERENCE SET";
+        } else {
+            return this.preferred.toString();
+        }
+    }
+
+    public String getPreferredLink() {
+        if (this.preferred == null) {
+            return null;
+        } else {
+            switch (this.preferred) {
+            case WHATSAPP:
+                return this.getWhatsapp();
+
+            case TELEGRAM:
+                return this.getTelegram();
+
+            case EMAIL:
+                return this.getEmail();
+
+            case INSTAGRAM:
+                return this.getInstagram();
+
+            default:
+                return null;
+            }
+
+        }
+    }
+    /**
+     * Opens the link inside Whatsapp
+     */
+    public void openWhatsapp() throws SocialException {
+        try {
+            if (getWhatsapp() == null) {
+                throw new SocialException("No Whatsapp Link");
+            }
+            URI uri = new URI(getWhatsapp());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
+        } catch (URISyntaxException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (IOException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        }
+    }
+
+    /**
+     * Opens the link inside Telegram
+     */
+    public void openTelegram() throws SocialException {
+        try {
+            if (getTelegram() == null) {
+                throw new SocialException("No Telegram Link");
+            }
+            URI uri = new URI(getTelegram());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
+        } catch (URISyntaxException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (IOException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        }
+    }
+
+    /**
+     * Opens the link inside Email
+     */
+    public void openEmail() throws SocialException {
+        try {
+            if (getEmail() == null) {
+                throw new SocialException("No Email Link");
+            }
+            URI uri = new URI(getEmail());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
+        } catch (URISyntaxException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (IOException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        }
+    }
+
+    /**
+     * Opens the link inside Whatsapp
+     */
+    public void openInstagram() throws SocialException {
+        try {
+            if (getInstagram() == null) {
+                throw new SocialException("No Instagram Link");
+            }
+            URI uri = new URI(getInstagram());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
+        } catch (URISyntaxException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (IOException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        }
+    }
+
+    /**
+     * Opens the link inside Whatsapp
+     */
+    public void openPreferred() throws SocialException {
+        try {
+            if (getPreferredLink() == null) {
+                throw new SocialException("No Preferred Link");
+            }
+            URI uri = new URI(getPreferredLink());
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.browse(uri);
+        } catch (URISyntaxException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (IOException e) {
+            throw new SocialException(MESSAGE_BAD_LINK);
+        }
     }
 
     @Override

@@ -110,7 +110,7 @@ public class OpenCommand extends Command {
             return p.getSocial().getInstagram();
 
         case PREFERRED:
-            return p.getSocial().getPreferred();
+            return p.getSocial().getPreferredLink();
 
         default:
             throw new CommandException(MESSAGE_WRONG_SOCIAL);
@@ -130,6 +130,22 @@ public class OpenCommand extends Command {
             throw new CommandException(MESSAGE_BAD_LINK);
         }
     }
+
+    /**
+     * Runs the command after we get the Person p and Socials s
+     * @param p Person p
+     * @param s Socials s
+     * @throws CommandException
+     */
+    public void run(Person p, Socials s) throws CommandException {
+        String link = getLink(p, s);
+        if (link == null || link == "null") {
+            throw new CommandException(MESSAGE_MISSING_LINK);
+        }
+        convert(link);
+        open(this.uri);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -141,13 +157,8 @@ public class OpenCommand extends Command {
         //gets the person to be edited;
         Person personToOpen = lastShownList.get(index.getZeroBased());
         Socials socialToOpen = findSocial(social);
-        String link = getLink(personToOpen, socialToOpen);
-        if (link == null || link == "null") {
-            throw new CommandException(MESSAGE_MISSING_LINK);
-        }
-        System.out.println(link);
-        convert(link);
-        open(this.uri);
+
+        run(personToOpen, socialToOpen);
 
         ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
