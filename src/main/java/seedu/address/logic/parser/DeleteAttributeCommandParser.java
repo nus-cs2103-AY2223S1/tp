@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.DeleteAttributeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -21,24 +20,26 @@ import java.util.stream.Stream;
 public class DeleteAttributeCommandParser implements Parser<DeleteAttributeCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the SetCommand
-     * and returns an SetCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteAttributeCommand
+     * and returns an DeleteCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
     public DeleteAttributeCommand parse(String userInput) throws ParseException {
-
+        
+        // Allows user to not specify '/' when deleting attribute
+        userInput = userInput + "/";
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(userInput, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
-                                            PREFIX_ADDRESS, PREFIX_NAME, PREFIX_TAG, PREFIX_ROLE,
+                                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE,
                                             PREFIX_TIMEZONE);
         
-        List<Prefix> prefixesToDelete = findPrefixesToDelete(argMultimap, PREFIX_EMAIL, 
+        List<Prefix> prefixesToDelete = findPrefixesToDelete(argMultimap, PREFIX_EMAIL,
                 PREFIX_PHONE, PREFIX_SLACK, PREFIX_TELEGRAM,
-                PREFIX_ADDRESS, PREFIX_NAME, PREFIX_TAG, PREFIX_ROLE,
+                PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE,
                 PREFIX_TIMEZONE);
-        
+
         if (prefixesToDelete.size() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAttributeCommand.MESSAGE_USAGE));
         }
@@ -48,7 +49,7 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
     }
 
     /**
-     * Returns true if one of the prefixes contains empty {@code Optional} values in the given
+     * Returns the prefix to be passed into DeleteAttributeCommand, i.e. the attribute to delete.
      * {@code ArgumentMultimap}.
      */
     private static List<Prefix> findPrefixesToDelete(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

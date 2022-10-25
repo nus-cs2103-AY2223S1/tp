@@ -41,10 +41,18 @@ public class DeleteAttributeCommand extends Command{
 
     private Prefix prefixToDelete;
 
+    /**
+     * Constructor for DeleteAttributeCommand
+     */
     public DeleteAttributeCommand (Prefix prefixToDelete) {
         this.prefixToDelete = prefixToDelete;
     }
 
+    /**
+     * Creates a new Person after deleting specified attribute.
+     * Sets it to the previous person
+     * @return CommandResult depicting success of delete command
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         // Get the Person whose attribute will be deleted
@@ -55,17 +63,24 @@ public class DeleteAttributeCommand extends Command{
         Person personAfterDeletion = createPersonAfterDeletion(toDelete);
 
         // Check for Duplicates
-
         model.setPerson(toDelete, personAfterDeletion);
         return new CommandResult(MESSAGE_DELETE_SUCCESS);
-
     }
 
+    /**
+     * Returns if DeleteAttributeCommand can execute at given Panel name.
+     * @return true if Detail Page, false otherwise. 
+     */
     @Override
     public boolean canExecuteAt(MainPanelName name) {
         return name.equals(MainPanelName.Detail);
     }
 
+    /**
+     * Creates new Person Object after deleting specified attribute (prefixToDelete)
+     * @param toDelete
+     * @return
+     */
     private Person createPersonAfterDeletion(Person toDelete) {
         Name name = toDelete.getName();
         Role role = prefixToDelete.equals(PREFIX_ROLE) ? null : toDelete.getRole().orElse(null);
@@ -74,7 +89,6 @@ public class DeleteAttributeCommand extends Command{
         Set<Tag> tags = prefixToDelete.equals(PREFIX_TAG) ? null : toDelete.getTags();
         Timezone timezone = prefixToDelete.equals(PREFIX_TIMEZONE) ? null :
                                 toDelete.getTimezone().orElse(null);
-        
         Map<ContactType, Contact> contacts = toDelete.getContacts();
         Contact email = prefixToDelete.equals(PREFIX_EMAIL) ? null :
                                         contacts.get(ContactType.EMAIL);
@@ -86,14 +100,12 @@ public class DeleteAttributeCommand extends Command{
                                         contacts.get(ContactType.TELEGRAM);
 
         Map<ContactType, Contact> updatedContacts = new HashMap<>();
-        
+       
         updatedContacts.put(ContactType.EMAIL, email);
         updatedContacts.put(ContactType.TELEGRAM, telegram);
         updatedContacts.put(ContactType.PHONE, phone);
         updatedContacts.put(ContactType.SLACK, slack);
 
         return new Person(name, address, tags, updatedContacts, role, timezone);
-        
     }
-    
 }
