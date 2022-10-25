@@ -148,9 +148,9 @@ List Box:
 
 > Displays the item at the specified index
 
-**Note:**
-* Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
-
+```note
+Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
+```
 **Example Input:**
 
 ```text
