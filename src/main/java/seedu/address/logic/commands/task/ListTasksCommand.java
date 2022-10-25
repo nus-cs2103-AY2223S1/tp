@@ -115,6 +115,7 @@ public class ListTasksCommand extends TaskCommand {
         ListTasksCommand e = (ListTasksCommand) other;
         return keywordFilter.equals(e.keywordFilter)
                 && flags.equals(e.flags)
+                && projectNames.equals(e.projectNames)
                 && beforeArgs.equals(e.beforeArgs)
                 && afterArgs.equals(e.afterArgs)
                 && setIndexEquals(personIndexes, e.personIndexes);

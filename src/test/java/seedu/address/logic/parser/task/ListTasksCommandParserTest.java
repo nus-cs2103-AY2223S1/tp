@@ -13,6 +13,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.task.ListTasksCommand;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.task.Deadline;
 
 public class ListTasksCommandParserTest {
@@ -48,7 +49,7 @@ public class ListTasksCommandParserTest {
 
         assertParseSuccess(
                 parser,
-                " c/1",
+                String.format(" %s1", CliSyntax.PREFIX_CONTACT),
                 new ListTasksCommand(
                         "",
                         List.of(),
@@ -62,7 +63,7 @@ public class ListTasksCommandParserTest {
 
         assertParseSuccess(
                 parser,
-                " hi c/1 c/2",
+                String.format(" hi %s1 %s2", CliSyntax.PREFIX_CONTACT, CliSyntax.PREFIX_CONTACT),
                 new ListTasksCommand(
                         "hi",
                         List.of(),
@@ -76,9 +77,13 @@ public class ListTasksCommandParserTest {
 
     @Test
     public void parse_validArgsWithFlags() {
+        String command1 = String.format(" hi %s1 %s2 -%s",
+                CliSyntax.PREFIX_CONTACT,
+                CliSyntax.PREFIX_CONTACT,
+                ListTasksCommand.COMPLETED_FLAG);
         assertParseSuccess(
                 parser,
-                " hi c/1 c/2 -c",
+                command1,
                 new ListTasksCommand(
                         "hi",
                         List.of(),
@@ -89,9 +94,13 @@ public class ListTasksCommandParserTest {
                 )
         );
 
+        String command2 = String.format(" hi %s1 %s2 -%s",
+                CliSyntax.PREFIX_CONTACT,
+                CliSyntax.PREFIX_CONTACT,
+                ListTasksCommand.ALL_FLAG);
         assertParseSuccess(
                 parser,
-                " hi c/1 c/2 -a",
+                command2,
                 new ListTasksCommand(
                         "hi",
                         List.of(),
@@ -107,7 +116,7 @@ public class ListTasksCommandParserTest {
     public void parse_nlp_deadlines() {
         assertParseSuccess(
                 parser,
-                " before tomorrow",
+                String.format(" %s tomorrow", CliSyntax.PREFIX_BEFORE),
                 new ListTasksCommand(
                         "",
                         List.of(),
@@ -120,7 +129,7 @@ public class ListTasksCommandParserTest {
 
         assertParseSuccess(
                 parser,
-                " after today",
+                String.format(" %s today", CliSyntax.PREFIX_AFTER),
                 new ListTasksCommand(
                         "",
                         List.of(),
