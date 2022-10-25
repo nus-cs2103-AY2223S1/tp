@@ -59,13 +59,50 @@ public class StringUtil {
         if (preppedDate.isEmpty()) {
             return false;
         }
-        checkArgument(preppedDate.split("\\s+").length == 1, "date parameter should be a single date");
+        checkArgument(preppedDate.split("\\s+").length == 1, "Date parameter should be a single date");
 
         String preppedSentence = sentence.replace("-", "");
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
                 .anyMatch(preppedDate::equalsIgnoreCase);
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code isRoomClean}.
+     *   Ignores case, but must be either 'yes', 'no', 'y' or 'n'.
+     *   <br>examples:<pre>
+     *       containsIsRoomCleanIgnoreCase("yes", "y") == true
+     *       containsIsRoomCleanIgnoreCase("yes", "yes") == true
+     *       containsIsRoomCleanIgnoreCase("yes", "yEs") == true
+     *       containsIsRoomCleanIgnoreCase("no", "n") == true
+     *       containsIsRoomCleanIgnoreCase("no", "no") == true
+     *       containsIsRoomCleanIgnoreCase("no", "nO") == true
+     *       containsIsRoomCleanIgnoreCase("yes", "yep") == false //not in the correct format
+     *       containsIsRoomCleanIgnoreCase("no", "nope") == false //not in the correct format
+     *       </pre>
+     * @param sentence cannot be null
+     * @param isRoomClean cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsIsRoomCleanIgnoreCase(String sentence, String isRoomClean) {
+        requireNonNull(sentence);
+        requireNonNull(isRoomClean);
+
+        String preppedIsRoomClean = isRoomClean.trim();
+        checkArgument(!preppedIsRoomClean.isEmpty(), "IsRoomClean parameter cannot be empty");
+        checkArgument(preppedIsRoomClean.split("\\s+").length == 1,
+                "IsRoomClean parameter should be a single IsRoomClean");
+        if (preppedIsRoomClean.equals("y") || preppedIsRoomClean.equals("Y")) {
+            preppedIsRoomClean = "yes";
+        } else if (preppedIsRoomClean.equals("n") || preppedIsRoomClean.equals("N")) {
+            preppedIsRoomClean = "no";
+        }
+
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(preppedIsRoomClean::equalsIgnoreCase);
     }
 
     /**
