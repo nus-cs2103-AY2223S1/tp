@@ -1,7 +1,5 @@
-package logic.parser;
+package tracko.logic.parser;
 
-import static logic.parser.CommandParserTestUtil.assertParseFailure;
-import static logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -24,12 +22,12 @@ public class DeleteOrderCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteOrderCommand(INDEX_FIRST));
+        CommandParserTestUtil.assertParseSuccess(parser, "1", new DeleteOrderCommand(INDEX_FIRST));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a",
+        CommandParserTestUtil.assertParseFailure(parser, "a",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteOrderCommand.MESSAGE_USAGE));
     }
 }

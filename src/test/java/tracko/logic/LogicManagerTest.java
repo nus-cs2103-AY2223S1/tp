@@ -1,12 +1,12 @@
-package logic;
+package tracko.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 // import static tracko.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static tracko.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-// import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-// import static tracko.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-// import static tracko.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-// import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.ADDRESS_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.EMAIL_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.NAME_DESC_AMY;
+// import static tracko.tracko.commands.logic.CommandTestUtil.PHONE_DESC_AMY;
 import static tracko.testutil.Assert.assertThrows;
 // import static tracko.testutil.TypicalOrders.ORDER_10;
 

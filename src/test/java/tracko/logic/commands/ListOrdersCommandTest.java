@@ -1,7 +1,7 @@
-package logic.commands;
+package tracko.logic.commands;
 
-//import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
+//import static tracko.tracko.commands.logic.CommandTestUtil.assertCommandSuccess;
+//import static tracko.tracko.commands.logic.CommandTestUtil.showOrderAtIndex;
 //import static tracko.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 //import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 //

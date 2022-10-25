@@ -1,4 +1,4 @@
-package logic.commands;
+package tracko.logic.commands;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

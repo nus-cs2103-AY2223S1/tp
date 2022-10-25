@@ -1,10 +1,10 @@
-package logic.commands;
+package tracko.logic.commands;
 
 // import static org.junit.jupiter.api.Assertions.assertEquals;
 // import static org.junit.jupiter.api.Assertions.assertFalse;
 // import static org.junit.jupiter.api.Assertions.assertTrue;
 // import static tracko.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-// import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
+// import static tracko.tracko.commands.logic.CommandTestUtil.assertCommandSuccess;
 // import static tracko.testutil.TypicalOrders.ORDER_3;
 // import static tracko.testutil.TypicalOrders.ORDER_5;
 // import static tracko.testutil.TypicalOrders.ORDER_6;

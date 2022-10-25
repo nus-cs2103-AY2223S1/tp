@@ -1,11 +1,9 @@
-package logic.commands;
+package tracko.logic.commands;
 
 import static tracko.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.logic.commands.CommandResult;
-import tracko.logic.commands.ExitCommand;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 
