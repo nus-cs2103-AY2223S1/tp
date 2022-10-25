@@ -65,7 +65,7 @@ public class FilterCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        TagContainsKeywordPredicate predicate = preparePredicate("owesMoney");
+        TagContainsKeywordPredicate predicate = preparePredicate("CS2103-T69");
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
