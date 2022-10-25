@@ -14,4 +14,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The item index provided is invalid";
     public static final String MESSAGE_ORDER_ALREADY_DELIVERED = "Order has been delivered previously";
     public static final String MESSAGE_ORDER_ALREADY_PAID = "Order has already been paid for";
+    public static final String MESSAGE_INSUFFICIENT_STOCK =
+            "There is insufficient stock in the inventory to deliver order";
 }

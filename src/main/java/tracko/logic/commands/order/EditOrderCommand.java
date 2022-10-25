@@ -3,6 +3,7 @@ package tracko.logic.commands.order;
 import static java.util.Objects.requireNonNull;
 import static tracko.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -118,10 +119,11 @@ public class EditOrderCommand extends Command {
         }
 
         List<ItemQuantityPair> updatedItemList = editOrderDescriptor.getItemList().orElse(orderToEdit.getItemList());
+        LocalDateTime timeCreated = orderToEdit.getTimeCreated();
         boolean isPaid = orderToEdit.getPaidStatus();
         boolean isDelivered = orderToEdit.getDeliveryStatus();
 
-        return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress, timeCreated,
                 updatedItemList, isPaid, isDelivered);
     }
 

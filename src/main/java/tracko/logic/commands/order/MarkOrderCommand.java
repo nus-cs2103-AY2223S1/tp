@@ -26,7 +26,7 @@ public class MarkOrderCommand extends Command {
             + FLAG_DELIVERED + " (optional) \n"
             + "Example: " + COMMAND_WORD + " 1 " + FLAG_PAID + " " + FLAG_DELIVERED;
 
-    public static final String MESSAGE_MARK_ORDER_SUCCESS = "Marked Order:\n %1$s";
+    public static final String MESSAGE_MARK_ORDER_SUCCESS = "Marked Order:\n%1$s";
 
     private final Index targetIndex;
     private final boolean isPaid;
@@ -57,15 +57,22 @@ public class MarkOrderCommand extends Command {
 
         if (isPaid && orderToMark.getPaidStatus()) {
             throw new CommandException(Messages.MESSAGE_ORDER_ALREADY_PAID);
-        } else if (isPaid && !orderToMark.getPaidStatus()) {
-            orderToMark.setPaid();
         }
 
         if (isDelivered && orderToMark.getDeliveryStatus()) {
             throw new CommandException(Messages.MESSAGE_ORDER_ALREADY_DELIVERED);
-        } else if (isDelivered && !orderToMark.getDeliveryStatus()) {
-            orderToMark.setDelivered();
         }
+
+        // if order is marked paid and delivered in the same command when there is insufficient stock,
+        // the order will not be marked as paid either.
+        if (isDelivered && !orderToMark.isDeliverable()) {
+            throw new CommandException(Messages.MESSAGE_INSUFFICIENT_STOCK);
+        }
+
+        model.markOrder(orderToMark, isPaid && !orderToMark.getPaidStatus(),
+                isDelivered && !orderToMark.getDeliveryStatus());
+
+        model.refreshData();
 
         return new CommandResult(String.format(MESSAGE_MARK_ORDER_SUCCESS, orderToMark));
     }

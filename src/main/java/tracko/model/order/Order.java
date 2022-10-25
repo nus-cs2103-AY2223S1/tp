@@ -103,6 +103,12 @@ public class Order {
         return timeCreated;
     }
 
+    public boolean isDeliverable() {
+        return itemList.stream()
+                        .map(pair -> pair.getQuantityValue() < pair.getItem().getTotalQuantityValue())
+                        .anyMatch(x -> x == true);
+    }
+
     public boolean isCompleted() {
         return isPaid && isDelivered;
     }

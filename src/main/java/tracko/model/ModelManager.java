@@ -119,6 +119,26 @@ public class ModelManager implements Model {
         trackO.setOrder(orderToEdit, editedOrder);
     }
 
+    @Override
+    public void markOrder(Order orderToMark, boolean isPaid, boolean isDelivered) {
+        requireNonNull(orderToMark);
+
+        if (isPaid) {
+            orderToMark.setPaid();
+        }
+
+        // decreases the quantity of each item delivered in the inventory list according to the quantity delivered
+        if (isDelivered) {
+            getInventoryList().stream().forEach(item -> orderToMark.getItemList().stream().forEach(orderItem -> {
+                if (item.isSameItem(orderItem.getItem())) {
+                    item.reduceItem(orderItem.getQuantityValue());
+                }
+            }));
+
+            orderToMark.setDelivered();
+        }
+    }
+
     // FILTERED ORDER LIST ACCESSORS ========================================================================
 
 
