@@ -20,7 +20,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
-    private CommandHistory commandHistory;
+    private CommandRetriever commandRetriever;
     private int previousCommandsIndex;
 
     private final CommandExecutor commandExecutor;
@@ -34,7 +34,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        commandHistory = new CommandHistory();
+        commandRetriever = new CommandRetriever();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
@@ -51,7 +51,7 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
-            commandHistory.addCommand(commandText, commandTextField);
+            commandRetriever.addCommand(commandText, commandTextField);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -59,8 +59,8 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Handles any key release.
-     * UP arrow invokes {@link CommandHistory#getPreviousCommand(TextField commandTextField)}.
-     * DOWN arrow invokes {@link CommandHistory#getNextCommand(TextField commandTextField)}.
+     * UP arrow invokes {@link CommandRetriever#getPreviousCommand(TextField commandTextField)}.
+     * DOWN arrow invokes {@link CommandRetriever#getNextCommand(TextField commandTextField)}.
      * Does nothing for other keys.
      *
      * @param e KeyEvent denoting the key that was released
@@ -69,9 +69,9 @@ public class CommandBox extends UiPart<Region> {
     private void handleKeyReleased(KeyEvent e) {
         KeyCode keyCode = e.getCode();
         if (keyCode.equals(KeyCode.UP)) {
-            commandHistory.getPreviousCommand(commandTextField);
+            commandRetriever.getPreviousCommand(commandTextField);
         } else if (keyCode.equals(KeyCode.DOWN)) {
-            commandHistory.getNextCommand(commandTextField);
+            commandRetriever.getNextCommand(commandTextField);
         }
     }
 
@@ -112,11 +112,11 @@ public class CommandBox extends UiPart<Region> {
      * Contains all successfully executed commands from the last application start.
      * Keeps track of the currently displayed command's index in the history.
      */
-    class CommandHistory {
+    class CommandRetriever {
         private ArrayList<String> commandHistory;
         private int index;
 
-        public CommandHistory() {
+        public CommandRetriever() {
             commandHistory = new ArrayList<>();
             commandHistory.add("");
 
@@ -124,7 +124,7 @@ public class CommandBox extends UiPart<Region> {
         }
 
         /**
-         * Adds a successfully executed command into {@code commandHistory}, and sets
+         * Adds a successfully executed command into {@code commandRetriever}, and sets
          * {@code textField} to an empty string.
          *
          * @param command the user-inputted String of the successfully executed command.
