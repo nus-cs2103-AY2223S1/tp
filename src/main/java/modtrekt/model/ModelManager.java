@@ -13,6 +13,7 @@ import modtrekt.commons.core.GuiSettings;
 import modtrekt.commons.core.LogsCenter;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
+import modtrekt.model.task.Deadline;
 import modtrekt.model.task.Task;
 
 /**
@@ -134,6 +135,24 @@ public class ModelManager implements Model {
         for (Task t : tempList) {
             setTask(t, t.archive());
         }
+    }
+
+    @Override
+    public void updateTaskModule(ModCode oldCode, ModCode newCode) {
+        FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(oldCode);
+        tempList.setPredicate(newPredicate);
+        for (Task t : tempList) {
+            Task newTask;
+            if (t instanceof Deadline) {
+                Deadline d = (Deadline) t;
+                newTask = new Deadline(d.getDescription(), newCode, d.getDueDate(), d.isArchived(), d.getPriority());
+            } else {
+                newTask = new Task(t.getDescription(), newCode, t.isArchived(), t.getPriority());
+            }
+            addTask(newTask);
+        }
+        taskBook.removeTasksWithModCode(oldCode);
     }
 
     //=========== ModuleList ================================================================================

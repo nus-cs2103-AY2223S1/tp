@@ -29,12 +29,11 @@ import modtrekt.model.task.Task;
 @Parameters(commandDescription = "Edits a a task in task book.")
 public class EditTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit task";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task successfully edited: %1$s";
 
-    @Parameter(names = "-t", description = "Index of the task to edit",
-            required = true, converter = IndexConverter.class)
+    @Parameter(description = "Index of the task to edit", required = true, converter = IndexConverter.class)
     private Index targetIndex;
 
     @Parameter(names = "-c", description = "New module code for the task",
@@ -58,9 +57,9 @@ public class EditTaskCommand extends Command {
     /**
      * Creates an EditTaskCommand to edit the specified {@code Task}
      *
-     * @param targetIndex the index of the task to prioritize
-     * @param targetModule the ModCode that you want to change to
-     * @param targetDeadline the Deadline that you want to change to
+     * @param targetIndex       the index of the task to edit
+     * @param targetModule      the ModCode that you want to change to
+     * @param targetDeadline    the Deadline that you want to change to
      * @param targetDescription the description that you want to change to
      */
     public EditTaskCommand(Index targetIndex, ModCode targetModule, LocalDate targetDeadline,
@@ -81,6 +80,13 @@ public class EditTaskCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(targetIndex.getZeroBased());
+
+        if (targetModule == null && targetDeadline == null && targetDescription == null) {
+            throw new CommandException("Please enter a parameter to edit\n"
+                    + "\t-c  New module code for the task\n"
+                    + "\t-d  New deadline for the task\n"
+                    + "\t-ds New description for the task");
+        }
 
         boolean archived = taskToEdit.isArchived();
         Task.Priority priority = taskToEdit.getPriority();
@@ -112,11 +118,21 @@ public class EditTaskCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EditTaskCommand // instanceof handles nulls
-                && (targetIndex == null || targetIndex.equals(((EditTaskCommand) other).targetIndex))
-                && (targetModule == null || targetModule.equals(((EditTaskCommand) other).targetModule))
-                && (targetDescription == null || targetDescription.equals(((EditTaskCommand) other).targetDescription))
-                && (targetDeadline == null || targetDeadline.equals(((EditTaskCommand) other).targetDeadline)));
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof EditTaskCommand) {
+            EditTaskCommand newOther = (EditTaskCommand) other;
+            return ((targetIndex == null && newOther.targetIndex == null) || targetIndex.equals(newOther.targetIndex))
+                    && ((targetModule == null && newOther.targetModule == null)
+                    || targetModule.equals(newOther.targetModule))
+                    && ((targetDescription == null && newOther.targetDescription == null)
+                    || targetDescription.equals(newOther.targetDescription))
+                    && ((targetDeadline == null && newOther.targetDeadline == null)
+                    || targetDeadline.equals(newOther.targetDeadline));
+        }
+
+        return false;
     }
 }

@@ -108,6 +108,11 @@ public interface Model {
     void setCurrentModule(ModCode code);
 
     /**
+     * Updates the ModCodes of tasks after an edit to module.
+     */
+    void updateTaskModule(ModCode oldCode, ModCode newCode);
+
+    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task book.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
