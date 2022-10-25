@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" styleClass="card_pane_style" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="pinCardPane" fx:id="pinCardPane"  xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -71,13 +71,16 @@
                     </image>
                 </ImageView>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label styleClass="title_name" text="Pin value:" />
-                <Label fx:id="pinStatus" styleClass="cell_small_label" text="\$pinStatus" />
-            </HBox>
         </VBox>
         <rowConstraints>
             <RowConstraints />
         </rowConstraints>
     </GridPane>
+    <VBox alignment="CENTER">
+        <ImageView fx:id="flagIcon">
+            <image>
+                <Image url="@../images/pin.png" />
+            </image>
+        </ImageView>
+    </VBox>
 </HBox>

@@ -32,8 +32,6 @@ public class PinCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label phone;
     @FXML
     private Label scholarship;
@@ -41,25 +39,22 @@ public class PinCard extends UiPart<Region> {
     private Label applicationStatus;
     @FXML
     private Label email;
-
-    @FXML
-    private Label pinStatus;
     @FXML
     private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Applicant} and index to display.
      */
-    public PinCard(Applicant applicant, int displayedIndex) {
+    public PinCard(Applicant applicant) {
         super(FXML);
         this.applicant = applicant;
-        id.setText(displayedIndex + ". ");
         name.setText(applicant.getName().fullName);
         phone.setText(applicant.getPhone().value);
         scholarship.setText(applicant.getScholarship().scholarship);
         applicationStatus.setText(applicant.getApplicationStatus().applicationStatus);
         setApplicationStatusStyling(applicant.getApplicationStatus().applicationStatus);
-        setPin(applicant.getPin());
+        //Ensure only pinned applicants are here
+        assert applicant.getPin().getHasPinned();
         email.setText(applicant.getEmail().value);
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -80,8 +75,7 @@ public class PinCard extends UiPart<Region> {
 
         // state check
         PinCard card = (PinCard) other;
-        return id.getText().equals(card.id.getText())
-                && applicant.equals(card.applicant);
+        return applicant.equals(card.applicant);
     }
 
     public void setApplicationStatusStyling(String status) {
@@ -94,11 +88,5 @@ public class PinCard extends UiPart<Region> {
         }
     }
 
-    public void setPin(Pin pin) {
-        if (pin.getHasPinned()) {
-            pinStatus.setText("true");
-        } else {
-            pinStatus.setText("false");
-        }
-    }
+
 }

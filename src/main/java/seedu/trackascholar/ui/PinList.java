@@ -18,15 +18,15 @@ public class PinList extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Applicant> hehe;
+    private ListView<Applicant> pinList;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PinList(ObservableList<Applicant> applicantList) {
         super(FXML);
-        hehe.setItems(applicantList);
-        hehe.setCellFactory(listView -> new PersonListViewCell());
+        pinList.setItems(applicantList);
+        pinList.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
@@ -41,7 +41,7 @@ public class PinList extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PinCard(applicant, getIndex() + 1).getRoot());
+                setGraphic(new PinCard(applicant).getRoot());
             }
         }
     }
