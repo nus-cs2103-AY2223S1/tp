@@ -26,11 +26,11 @@ CodeConnect allows you to quickly manage your tasks and contacts through a text 
 Finds tasks from your task list via keywords, or via module.
 
 Format:
-`find /t {task}`, `find /m {module}`
+`find t/ {task}`, `find m/ {module}`
 
 Examples:
-* `find /t homework` returns `Science homework`, `Math homework`
-* `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
+* `find t/ homework` returns `Science homework`, `Math homework`
+* `find m/ CS1101S` returns `Problem set 4`, `Reading assignment 2`
 
 ### Adding a task: `add`
 
@@ -42,6 +42,15 @@ Format:
 Examples:
 * `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
 * `add finish SEP application /by 2359 today`
+
+### Editing a task: `edit`
+
+Edits the specified task from the task list.
+
+Format: `edit {task_index} {field prefix + field description}`
+
+Examples:
+* `edit 3 m/ CS1101S by/ 2022-12-12 17:00` edits the module and deadline of the task at index 3
 
 ### Deleting a task: `del`
 
@@ -88,11 +97,11 @@ Examples:
 
 Adds a contact to the contact list.
 
-Format: `addc {name} /email {email} /hp {phone number} /mods {module1} {module2}...`
+Format: `addc {name} e/ {email} p/ {phone number} [m/ {module1} {module2}] [t/ {tag1}]`
 
 Examples:
-* `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
-* `addc Betsy Crowe /email betsycrowe@gmail.com /hp 89985432`
+* `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S`
+* `addc Betsy Crowe e/ betsycrowe@gmail.com p/ 89985432 t/ friend`
 
 ### Deleting a contact: `delc`
 
