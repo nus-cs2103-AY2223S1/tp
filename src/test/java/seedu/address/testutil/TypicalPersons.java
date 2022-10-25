@@ -35,7 +35,6 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-
     public static final Person ALICE = new PersonBuilder()
             .withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
@@ -44,15 +43,19 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$200")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .withTags("friends")
             .build();
 
     public static final Person MUSAB_WITH_NO_APPT = new PersonBuilder()
             .withName("Musab")
             .withAddress("301 Upper Thomson Rd, Singapore 574408")
+
             .withEmail("musab@gmail.com")
             .withPhone("92345678")
             .withMonthly("$100")
+            .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .withTags("gay")
             .build();
 
@@ -64,6 +67,7 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$100")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder()
@@ -74,6 +78,7 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$200")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
@@ -84,6 +89,7 @@ public class TypicalPersons {
             .withMonthly("$300")
             .withRiskTag("HIGH")
             .withTags("friends")
+            .withPlanTag("Savings Plan")
             .build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
@@ -93,6 +99,7 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$250")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_22_JAN_2023)
                     .withLocation(VALID_LOCATION_JURONGPOINT).build())
@@ -105,6 +112,7 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$500")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_23_MAR_2024)
                     .withLocation(VALID_LOCATION_WESTMALL).build())
@@ -115,6 +123,7 @@ public class TypicalPersons {
             .withEmail("anna@example.com")
             .withAddress("4th street").withIncome("$1000").withMonthly("$400")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_21_JAN_2023)
                     .withLocation(VALID_LOCATION_NUS).build())
@@ -132,6 +141,7 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$300")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .build();
     public static final Person IDA = new PersonBuilder()
             .withName("Ida Mueller")
@@ -141,6 +151,7 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$200")
             .withRiskTag("HIGH")
+            .withPlanTag("Savings Plan")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -152,6 +163,7 @@ public class TypicalPersons {
             .withIncome(VALID_INCOME_AMY)
             .withMonthly(VALID_MONTHLY_AMY)
             .withRiskTag(VALID_RISKTAG_LOW)
+            .withPlanTag("Savings Plan")
             .withTags(VALID_TAG_FRIEND)
             .build();
     public static final Person BOB = new PersonBuilder()
@@ -162,6 +174,7 @@ public class TypicalPersons {
             .withIncome(VALID_INCOME_BOB)
             .withMonthly(VALID_MONTHLY_BOB)
             .withRiskTag(VALID_RISKTAG_HIGH)
+            .withPlanTag("Savings Plan")
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
