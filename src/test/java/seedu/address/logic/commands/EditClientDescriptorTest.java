@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_2;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.address.logic.commands.EditClientCommand.EditClientDescriptor;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
 public class EditClientDescriptorTest {

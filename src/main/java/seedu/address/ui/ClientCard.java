@@ -59,8 +59,16 @@ public class ClientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
-        address.setText(client.getAddress().get().toString());
-        email.setText(client.getEmail().get().toString());
+        if (!client.getAddress().isEmpty()) {
+            address.setText(client.getAddress().get().toString());
+        } else {
+            address.setText("");
+        }
+        if (!client.getEmail().isEmpty()) {
+            email.setText(client.getEmail().get().toString());
+        } else {
+            email.setText("");
+        }
         client.getProducts().stream()
                 .sorted(Comparator.comparing(product -> product.productName))
                 .forEach(product -> products.getChildren().add(new Label(product.productName)));

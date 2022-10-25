@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteClientCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
+import seedu.address.logic.commands.EditClientCommand;
+import seedu.address.logic.commands.EditClientCommand.EditClientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -57,9 +57,9 @@ public class MyInsuRecParserTest {
     public void parseCommand_edit() throws Exception {
         Client client = new ClientBuilder().build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " i/"
+        EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " i/"
                 + INDEX_FIRST_ELEMENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_ELEMENT, descriptor), command);
+        assertEquals(new EditClientCommand(INDEX_FIRST_ELEMENT, descriptor), command);
     }
 
     @Test
