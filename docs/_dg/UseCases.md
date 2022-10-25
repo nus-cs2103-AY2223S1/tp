@@ -1,70 +1,114 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 #### UC1: Add Item to Inventory
 
-<!-- TODO: Use Cases 1 to 5 to be updated in another PR by Ting Kai-->
-Use Case: UC1 - Add Item to Inventory
+**Use Case: UC1 - Add Item to Inventory**
+
+Preconditions: Item to add does not yet exist in inventory.
 
 MSS:
 
-1. User adds an item to the inventory.
+1. User adds a new Item to the inventory with the specified arguments.
+1. FoodRem informs user that item has been successfully created.
    
 Extensions:
 
 * 1a. If the item name already exists in the inventory, FoodRem will throw an error.
-  * 1a1. User will re-enter command until the new item is correct. <br> Use case resumes from Step 2.
+  * 1a1. FoodRem requests for the command to be entered again.
+  * 1a2. FoodRem re-enters the command.
+  * Steps 1a1-1a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
+   
+* 1b. FoodRem detects that there is an issue with the command entered.
+  * 1b1. FoodRem requests for the command to be entered again.
+  * 1b2. User re-enters the command.
+  * Steps 1a1-1a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
   
 ---
 #### UC2: Update Item in Inventory
 
-Use Case: UC2 - Update Item in Inventory
+**Use Case: UC2 - Update Item in Inventory**
+
+Preconditions: Item to edit exists in inventory.
 
 MSS:
 
-1. User updates an inventory item's detail.
+1. User chooses to view all items.
+1. FoodRem shows all items.
+1. User enters the command to edit the item with new fields. 
+1. FoodRem informs user that item has been successfully edited.
 
 Extensions:
 
-* 1a. If the item does not exist in the inventory, FoodRem will throw an error.
-  * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).<br>Use case resumes from Step 2.
+* 3a. If the item name does not exist in the inventory, FoodRem will throw an error.
+  * 3a1. FoodRem requests for the command to be entered again.
+  * 3a2. FoodRem re-enters the command.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 3.
+
+* 3b. FoodRem detects that there is an issue with the command entered.
+  * 3b1. FoodRem requests for the command to be entered again.
+  * 3b2. User re-enters the command.
+  * Steps 3b1-3b2 are repeated until the command entered is correct. <br> Use case resumes from step 3.
   
 ---
 #### UC3: Delete Item from Inventory
 
-Use Case: UC2 - Delete Item from Inventory
+**Use Case: UC3 - Delete Item from Inventory**
+
+Preconditions: Item to delete exists in inventory.
 
 MSS:
 
-1. User deletes an item from inventory.
+1. User chooses to view all items.
+1. FoodRem shows all items.
+1. User enters the command to delete an item.
+1. FoodRem informs user that item has been successfully deleted.
 
 Extensions:
 
-* 1a. Item does not exist in inventory.
-  * 1a1. FoodRem displays error to user that item does not exist in inventory.<br> Use case resumes from step 1.
+* 3b. FoodRem detects that there is an issue with the command entered.
+  * 3b1. FoodRem requests for the command to be entered again.
+  * 3b2. User re-enters the command.
+  * Steps 3b1-3b2 are repeated until the command entered is correct. <br> Use case resumes from step 3.
   
 ---
 #### UC4: Create Tag
 
-Use Case: UC4 - Create Tag
+**Use Case: UC4 - Create Tag**
+
+Preconditions: Tag does not yet exist in FoodRem.
 
 MSS:
 
-1. User creates a tag.
+1. User adds a new Tag to the inventory with the specified arguments.
+1. FoodRem informs user that tag has been successfully created.
 
 Extensions:
 
-* 1a. Tag already exists.
-  * 1a1. FoodRem displays error warning to user.<br>Use case resumes from step 1.
-  
+* 3a. If the tag name already exists in the inventory, FoodRem will throw an error.
+  * 3a1. FoodRem requests for the command to be entered again.
+  * 3a2. FoodRem re-enters the command.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
+
+* 3b. FoodRem detects that there is an issue with the command entered.
+  * 3b1. FoodRem requests for the command to be entered again.
+  * 3b2. User re-enters the command.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 2.
 ---
 #### UC5: Find Item
 
-Use Case: UC5 - Find Item
+**Use Case: UC5 - Find Item**
 
 MSS:
 
-1. User searches for an Item using keywords.
-1. FoodRem displays all items in inventory which name matches the given keyword.
+1. User chooses to view items.
+2. FoodRem shows a list containing the items.
+3. User searches for an Item with one or more criteria.
+4. FoodRem displays all items in inventory which matches the given criteria.
    Use case ends.
+
+* 3a. FoodRem detects that there is an issue with the command entered.
+  * 3a1. FoodRem requests for the command to be entered again.
+  * 3a2. User re-enters the command.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 4.
 
 ---
 #### UC6: Add Tag to Item
