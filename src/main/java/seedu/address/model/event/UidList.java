@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -66,8 +67,8 @@ public class UidList implements Iterable<Uid> {
      * Returns a list of Person object corresponding to the uids in the UidList object.
      * @return a list of persons.
      */
-    public List<Person> getPersons(Model model) {
-        List<Person> persons = new ArrayList<>();
+    public ObservableList<Person> getPersons(Model model) {
+        ObservableList<Person> persons = FXCollections.observableArrayList();
         ObservableList<Person> modelPersons = model.getFilteredPersonList();
         for (Person person : modelPersons) {
             if (this.contains(person.getUid())) {
