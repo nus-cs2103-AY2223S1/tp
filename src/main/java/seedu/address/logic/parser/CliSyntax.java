@@ -18,6 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_BEFORE = new Prefix("before");
     public static final Prefix PREFIX_AFTER = new Prefix("after");
     public static final Prefix PREFIX_TITLE = new Prefix("ti/");
-    public static final Prefix PREFIX_PROJECT = new Prefix("pr/");
+    public static final Prefix PREFIX_PROJECT = new Prefix("#");
     public static final Prefix PREFIX_FLAG = new Prefix("-");
 }
