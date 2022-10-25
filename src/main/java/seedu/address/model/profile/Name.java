@@ -38,7 +38,6 @@ public class Name implements Comparable<Name> {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return fullName;
@@ -58,7 +57,11 @@ public class Name implements Comparable<Name> {
 
     @Override
     public int compareTo(Name other) {
-        return this.fullName.compareTo(other.fullName);
+        int compareSpelling = this.fullName.toLowerCase().compareTo(other.fullName.toLowerCase());
+        if (compareSpelling == 0) {
+            return this.fullName.compareTo(other.fullName);
+        }
+        return compareSpelling;
     }
 
 }

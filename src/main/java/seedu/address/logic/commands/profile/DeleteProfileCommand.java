@@ -26,6 +26,8 @@ public class DeleteProfileCommand extends ProfileCommand {
 
     public static final String MESSAGE_MISSING_INDEX = "Index is required!\n%1$s";
     public static final String MESSAGE_DELETE_PROFILE_SUCCESS = "Deleted Profile:\n%1$s";
+    public static final String MESSAGE_HELP = "Deletes an existing profile in NUScheduler.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " INDEX";
 
     private final Index targetIndex;
 
