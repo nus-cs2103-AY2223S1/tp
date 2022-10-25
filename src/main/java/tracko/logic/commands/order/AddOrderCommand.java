@@ -102,6 +102,10 @@ public class AddOrderCommand extends MultiLevelCommand {
         String itemName = itemNameQuantityPairInput.getKey();
         Quantity quantity = itemNameQuantityPairInput.getValue();
 
+        if (quantity.value <= 0) {
+            return new CommandResult(String.format(MESSAGE_INVALID_QUANTITY, quantity));
+        }
+
         try {
             InventoryItem inventoryItem = model.getItem(itemName);
             toAdd.addToItemList(inventoryItem, quantity);
