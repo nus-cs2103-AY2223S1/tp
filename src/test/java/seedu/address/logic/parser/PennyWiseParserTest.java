@@ -32,6 +32,7 @@ import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
 import seedu.address.testutil.EntryUtil;
 import seedu.address.testutil.ExpenditureBuilder;
+import seedu.address.testutil.ViewEntriesDescriptorBuilder;
 
 public class PennyWiseParserTest {
 
@@ -104,9 +105,11 @@ public class PennyWiseParserTest {
 
     @Test
     public void parseCommand_view() throws Exception {
-        ViewCommand viewCommand = new ViewCommand(
+        ViewCommand.ViewEntriesDescriptor viewEntriesDescriptor = new ViewEntriesDescriptorBuilder(
                 new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                new GraphType(GraphType.GRAPH_TYPE_CATEGORY));
+                new GraphType(GraphType.GRAPH_TYPE_CATEGORY),
+                null).build();
+        ViewCommand viewCommand = new ViewCommand(viewEntriesDescriptor);
         assertEquals(parser.parseCommand(
                 ViewCommand.COMMAND_WORD
                         + " "

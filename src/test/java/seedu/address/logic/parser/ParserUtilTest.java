@@ -29,8 +29,8 @@ public class ParserUtilTest {
     private static final String VALID_ENTRYTYPE = "e";
     private static final String VALID_INCOMETYPE = "i";
     private static final String VALID_DESCRIPTION = "Lunch";
-    private static final String INVALID_YEAR_MONTH = "13-2022";
-    private static final String VALID_YEAR_MONTH = "10-2022";
+    private static final String INVALID_YEAR_MONTH = "2022-13";
+    private static final String VALID_YEAR_MONTH = "2022-10";
     private static final String VALID_TAG_1 = "Food";
     private static final String VALID_TAG_2 = "Allowance";
 
@@ -186,13 +186,17 @@ public class ParserUtilTest {
     }
     @Test
     public void parseYearMonth_validInput_success() throws Exception {
-        YearMonth expectedYearMonth = YearMonth.parse(VALID_YEAR_MONTH, DateTimeFormatter.ofPattern("MM-yyyy"));
+        YearMonth expectedYearMonth = YearMonth.parse(
+                VALID_YEAR_MONTH,
+                DateTimeFormatter.ofPattern(Date.YEAR_MONTH_PATTERN));
         assertEquals(expectedYearMonth, ParserUtil.parseYearMonth(VALID_YEAR_MONTH));
     }
 
     @Test
     public void parseYearMonth_validInputWithWhiteSpace_success() throws Exception {
-        YearMonth expectedYearMonth = YearMonth.parse(VALID_YEAR_MONTH, DateTimeFormatter.ofPattern("MM-yyyy"));
+        YearMonth expectedYearMonth = YearMonth.parse(
+                VALID_YEAR_MONTH,
+                DateTimeFormatter.ofPattern(Date.YEAR_MONTH_PATTERN));
         assertEquals(expectedYearMonth, ParserUtil.parseYearMonth(WHITESPACE + VALID_YEAR_MONTH + WHITESPACE));
     }
 
