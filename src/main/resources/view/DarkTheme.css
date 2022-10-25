@@ -82,7 +82,7 @@
 }
 
 .split-pane {
-    -fx-border-radius: 1;
+    -fx-border-radius: 20;
     -fx-border-width: 1;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
@@ -139,7 +139,26 @@
 .pane-with-border {
      -fx-background-color: #070F37;
      -fx-border-top-width: 5px;
-     -fx-border-radius: 5;
+     -fx-border-radius: 20;
+}
+
+.pane-with-border .content {
+    -fx-background-radius: 20 20 0 0;
+}
+
+.text-title {
+    -fx-font-family: "Impact";
+    -fx-text-fill: black;
+    -fx-font-size: 15;
+}
+
+.text-title .content{
+    -fx-background-color: #90C7F0;
+    -fx-background-radius: 30 30 0 0;
+}
+
+.text-title .content .text{
+    -fx-text-alignment: center;
 }
 
 .status-bar {
@@ -227,7 +246,7 @@
     -fx-padding: 5 22 5 22;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
-    -fx-background-radius: 0;
+    -fx-background-radius: 20;
     -fx-background-color: #1d1d1d;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
@@ -248,7 +267,7 @@
     -fx-border-color: white, white;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
+    -fx-border-radius: 20, 20;
     -fx-border-insets: 1 1 1 1, 0;
 }
 
