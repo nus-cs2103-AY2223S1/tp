@@ -5,7 +5,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
@@ -53,7 +52,7 @@ public class DeleteAttributeCommandParser implements Parser<DeleteAttributeComma
      * {@code ArgumentMultimap}.
      */
     private static List<Prefix> findPrefixesToDelete(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).filter(prefix -> argumentMultimap.hasGivenPrefix(prefix)).collect(Collectors.toList());
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.containsPrefix(prefix)).collect(Collectors.toList());
     }
     
 }

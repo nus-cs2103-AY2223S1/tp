@@ -54,7 +54,7 @@ public class ArgumentMultimap {
     /**
      * Returns if the ArgMultimap contains the given prefix or not.
      */
-    public boolean hasGivenPrefix(Prefix prefix) {
+    public boolean containsPrefix(Prefix prefix) {
         return this.argMultimap.containsKey(prefix);
     }
 
