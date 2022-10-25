@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.INCOMPLETE_COMMAND;
+import static seedu.address.commons.core.Messages.INCOMPLETE_LIST_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -38,7 +39,7 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)"
-            + "(?<descriptor>(?i:\\s+appts|\\s+patients)?)(?<arguments>.*)");
+            + "(?<descriptor>(?i:\\s+appts|\\s+patients|\\s+all)?)(?<arguments>.*)");
 
     private final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
@@ -127,7 +128,7 @@ public class AddressBookParser {
             } else if (!arguments.isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             } else {
-                throw new ParseException(INCOMPLETE_COMMAND);
+                throw new ParseException(INCOMPLETE_LIST_COMMAND);
             }
 
         case ExitCommand.COMMAND_WORD:

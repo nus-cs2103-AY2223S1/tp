@@ -59,11 +59,12 @@ Examples:
 
 ### Listing all patients/appointments : `list`
 
-Shows a list of all patients or appointments, depending on the parameter given.
+Shows a list of all patients and/or appointments, depending on the parameter given.
 
 Format:
-* `list patients`
-* `list appts`
+* `list patients` - Refreshes only the patient list to show all patients, leaving the appointment list unchanged.
+* `list appts` - Refreshes only the appointment list to show all appointments, leaving the patient list unchanged.
+* `list all` - Refreshes both the patient and appointment lists to show all patients and appointments.
 
 ### Grouping all patients/appointments : `group`
 
