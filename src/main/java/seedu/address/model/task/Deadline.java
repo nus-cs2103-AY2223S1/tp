@@ -75,7 +75,7 @@ public class Deadline {
     }
 
     public String deadlineString() {
-        return deadline.format(READ_FORMATTER);
+        return deadline.format(CONSTRUCT_FORMATTER);
     }
 
     @Override
