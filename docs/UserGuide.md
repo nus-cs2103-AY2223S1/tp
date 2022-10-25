@@ -208,11 +208,11 @@ Examples:
 - `theme light`
 - `theme dark`
 
-### Toggle mode of list : `toggle-card-mode`
+### Toggle mode of list : `toggle-list-mode`
 
-Toggle the mode of the list between compacted and expanded.
+Toggle the mode of the list between a compacted or an expanded mode.
 
-Format: `toggle-card-mode`
+Format: `toggle-list-mode`
 
 ### Clearing all entries : `clear`
 
