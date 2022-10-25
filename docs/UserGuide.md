@@ -253,16 +253,9 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/
 * At least 1 of the optional fields must be provided.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/PATIENT_TAG]` are fields to find information about the patient (patient criteria).
-  * `[n/NAME]` searches for the name of the patients.
-  * `[p/PHONE]` searches for the phone number of the patients.
-  * `[e/EMAIL]` searches for the email of the patients.
-  * `[a/ADDRESS]` searches for the address of the patients.
-  * `[t/TAG]` searches for matching tags of the patients.
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` and `[ta/APPOINTMENT_TAG]` are fields to find information about appointments (appointment criteria).
-  * `[r/REASON]` searches for appointments with the given reason.
   * `[ds/DATE_START]` searches for appointments occurring at or after `DATE_START`.
   * `[ds/DATE_END]` searches for appointments occurring at or before `DATE_END`.
-  * `[ta/APPOINTMENT_TAG]` searches for matching tags of the appointments.
 * Only patients and appointments that satisifies all criteria will be displayed.
   * A patient must satisify all patient criteria and have at least 1 appointment that satisifies all the appointment criteria to be displayed.
   * An appointment must satisify all appointment criteria and belong to a patient that satisifes all the patient criteria to be displayed.
