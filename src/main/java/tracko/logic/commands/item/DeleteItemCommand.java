@@ -10,6 +10,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
 import tracko.model.item.InventoryItem;
+import tracko.model.item.exceptions.ItemUndeletableException;
 
 /**
  * Deletes an item identified using it's displayed index in TrackO.
@@ -24,6 +25,9 @@ public class DeleteItemCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item:\n%1$s";
+
+    public static final String MESSAGE_UNCOMPLETED_ORDER_ITEM = "Item cannot be deleted, there exists uncompleted " +
+        "orders for item:\n%1$s";
 
     private final Index targetIndex;
 
@@ -41,8 +45,13 @@ public class DeleteItemCommand extends Command {
         }
 
         InventoryItem inventoryItemToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteItem(inventoryItemToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete));
+
+        try {
+            model.deleteItem(inventoryItemToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete));
+        } catch (ItemUndeletableException e) {
+            return new CommandResult(String.format(MESSAGE_UNCOMPLETED_ORDER_ITEM, inventoryItemToDelete));
+        }
     }
 
     @Override

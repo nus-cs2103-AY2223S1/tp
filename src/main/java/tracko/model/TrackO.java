@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import tracko.model.item.InventoryItem;
 import tracko.model.item.InventoryList;
+import tracko.model.item.exceptions.ItemUndeletableException;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
 
@@ -100,6 +101,9 @@ public class TrackO implements ReadOnlyTrackO {
      * @param inventoryItem The item to be added
      */
     public void deleteItem(InventoryItem inventoryItem) {
+        if (orders.containsOrderWithItem(inventoryItem)) {
+            throw new ItemUndeletableException();
+        }
         items.delete(inventoryItem);
     }
 

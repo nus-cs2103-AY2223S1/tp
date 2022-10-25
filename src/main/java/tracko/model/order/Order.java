@@ -125,6 +125,10 @@ public class Order {
         this.isDelivered = true;
     }
 
+    public boolean containsItem(InventoryItem inventoryItem) {
+        return itemList.stream().anyMatch(pair -> pair.getItem().equals(inventoryItem));
+    }
+
     /**
      * Returns a copy of this {@code Order}, that holds immutable copies of its list of ordered {@code Item}s.
      * @return A copy of this {@code Order}, that holds immutable copies of its list of ordered {@code Item}s.
