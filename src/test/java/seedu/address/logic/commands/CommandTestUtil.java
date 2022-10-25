@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,6 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_BIRTHDAY_MONTH_AMY = "1";
+    public static final String VALID_BIRTHDAY_MONTH_BOB = "2";
     public static final String VALID_REWARD_AMY = "420";
     public static final String VALID_REWARD_BOB = "5000";
     public static final String VALID_TAG_GOLD = "GOLD";
@@ -44,6 +47,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String BIRTHDAY_MONTH_DESC_AMY = " " + PREFIX_BIRTHDAY_MONTH + VALID_BIRTHDAY_MONTH_AMY;
+    public static final String BIRTHDAY_MONTH_DESC_BOB = " " + PREFIX_BIRTHDAY_MONTH + VALID_BIRTHDAY_MONTH_BOB;
     public static final String REWARD_DESC_AMY = " " + PREFIX_REWARD + VALID_REWARD_AMY;
     public static final String REWARD_DESC_BOB = " " + PREFIX_REWARD + VALID_REWARD_BOB;
     public static final String TAG_DESC_MEMBER = " " + PREFIX_TAG + VALID_TAG_MEMBER;
@@ -52,6 +57,7 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_BIRTHDAY_MONTH_DESC = " " + PREFIX_BIRTHDAY_MONTH + "two"; // not integer value
     public static final String INVALID_REWARD_DESC = " " + PREFIX_REWARD; // empty string not allowed for rewards
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "GOLD*"; // '*' not allowed in tags
 
@@ -63,11 +69,13 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withReward(VALID_REWARD_AMY)
-                .withTags(VALID_TAG_MEMBER).build();
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withBirthdayMonth(VALID_BIRTHDAY_MONTH_AMY)
+                .withReward(VALID_REWARD_AMY).withTags(VALID_TAG_MEMBER).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withReward(VALID_REWARD_BOB)
-                .withTags(VALID_TAG_GOLD, VALID_TAG_MEMBER).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withBirthdayMonth(VALID_BIRTHDAY_MONTH_BOB)
+                .withReward(VALID_REWARD_BOB).withTags(VALID_TAG_GOLD, VALID_TAG_MEMBER).build();
     }
 
     /**

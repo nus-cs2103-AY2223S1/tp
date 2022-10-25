@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,6 +24,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.person.BirthdayMonth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_BIRTHDAY_MONTH + "BIRTHDAY_MONTH] "
             + "[" + PREFIX_REWARD + "REWARD] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " p/98349032  or  " + COMMAND_WORD + " e/example@gmail.com"
@@ -127,10 +130,12 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        BirthdayMonth updatedBirthdayMonth = editPersonDescriptor.getBirthdayMonth()
+            .orElse(personToEdit.getBirthdayMonth());
         Reward updatedReward = editPersonDescriptor.getReward().orElse(personToEdit.getReward());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedReward, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthdayMonth, updatedReward, updatedTags);
     }
 
     @Override
@@ -160,6 +165,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private BirthdayMonth birthdayMonth;
         private Reward reward;
         private Set<Tag> tags;
 
@@ -173,6 +179,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setBirthdayMonth(toCopy.birthdayMonth);
             setReward(toCopy.reward);
             setTags(toCopy.tags);
         }
@@ -206,6 +213,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setBirthdayMonth(BirthdayMonth birthdayMonth) {
+            this.birthdayMonth = birthdayMonth;
+        }
+
+        public Optional<BirthdayMonth> getBirthdayMonth() {
+            return Optional.ofNullable(birthdayMonth);
         }
 
         public void setReward(Reward reward) {
@@ -251,6 +266,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getBirthdayMonth().equals(e.getBirthdayMonth())
                     && getReward().equals(e.getReward())
                     && getTags().equals(e.getTags());
         }

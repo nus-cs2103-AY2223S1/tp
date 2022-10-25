@@ -3,11 +3,13 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "birthdayMonth": "1",
+    "reward": "1234"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "birthdayMonth": "2",
+    "reward": "4567"
   } ]
 }

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.BirthdayMonth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -27,6 +28,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+    private final String birthdayMonth;
     private final String reward;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +37,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("reward") String reward,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("birthdayMonth") String birthdayMonth,
+             @JsonProperty("reward") String reward, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.birthdayMonth = birthdayMonth;
         this.reward = reward;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        birthdayMonth = source.getBirthdayMonth().value;
         reward = source.getReward().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -94,6 +98,15 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (birthdayMonth == null) {
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, BirthdayMonth.class.getSimpleName()));
+        }
+        if (!BirthdayMonth.isValidBirthdayMonth(birthdayMonth)) {
+            throw new IllegalValueException(BirthdayMonth.MESSAGE_CONSTRAINTS);
+        }
+        final BirthdayMonth modelBirthdayMonth = new BirthdayMonth(birthdayMonth);
+
         if (reward == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Reward.class.getSimpleName()));
         }
@@ -103,7 +116,7 @@ class JsonAdaptedPerson {
         final Reward modelReward = new Reward(reward);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelReward, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelBirthdayMonth, modelReward, modelTags);
     }
 
 }
