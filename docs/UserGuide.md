@@ -18,7 +18,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 
 1. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-1. On Windows and Mac, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. On Windows and Mac, double-click the file to start the app. The application can also be started by running `java -jar FoodWhere.jar` in the terminal. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -78,17 +78,16 @@ Adds a stall.
 
 Format: `sadd n/NAME a/ADDRESS [t/TAGS]…`
 
-Examples:
+Example:
 * `sadd n/John Doe Eatery a/Blk 123 Bedok South t/VeryNice`
-
-![sadd](images/sadd.png)
 
 ### Adding a review: `radd`
 
 Adds a review.
 
 Format: `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`
-Examples:
+
+Example:
 * `radd s/3 d/20/09/2022 c/The food was good, the chicken rice was fresh. r/4`
 
 ### Listing all stalls: `slist`
@@ -107,7 +106,6 @@ Format: `rlist`
 Deletes the specified stall from the application at the specified `INDEX`.
 
 Format: `sdel INDEX`
-
 * The index refers to the index number shown in the displayed stalls list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -119,7 +117,6 @@ Example:
 Deletes a review at the specified `INDEX`.
 
 Format: `rdel INDEX`
-
 * The index refers to the index number shown in the displayed reviews list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -131,7 +128,6 @@ Example:
 Edits an existing stall at the specified `INDEX`.
 
 Format: `sedit INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…`
-
 * The index refers to the index number shown in the displayed stalls list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Editing stalls is flexible in FoodWhere. For example, you can update just the stall name or perhaps just the address and tags of the stall only.
@@ -152,7 +148,6 @@ Examples:
 Edits an existing review at the specified `INDEX`.
 
 Format: `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
-
 * The index refers to the index number shown in the displayed reviews list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Editing reviews is flexible in FoodWhere. For example, you can update just the review content or perhaps just the date and rating of the review only.
@@ -172,14 +167,13 @@ Examples:
 Finds stalls whose names or tags contain any of the given keywords.
 
 Format: `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
-
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
 * Using `n/` and `t/`will search name and tag fields of stall respectively
 * Only full words will be matched e.g. `Joh` will not match `John`
 * Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
-Example:
+Examples:
 * `sfind n/eatery` returns `John's eatery` and `Doe eatery`
 * `sfind t/opensDaily veryNice` returns all stalls that has the tag `opensDaily` OR `veryNice`
 * `sfind n/eatery t/opensDaily` returns all stalls where name includes `eatery` OR has the tag `opensDaily` 
@@ -189,43 +183,42 @@ Example:
 Finds reviews whose names or tags contain any of the given keywords.
 
 Format: `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
-
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
 * Using `n/` and `t/` will search name and tag fields of review respectively
 * Only full words will be matched e.g. `Joh` will not match `John`
 * Reviews matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
-Example:
+Examples:
 * `rfind n/eatery` returns reviews `John's eatery` and `Doe eatery`
 * `rfind t/opensDaily veryNice` returns all reviews that has the tag `opensDaily` OR `veryNice`
 * `rfind n/eatery t/opensDaily` returns all reviews where name includes `eatery` OR has the tag `opensDaily`
 
 ### Sorting stall list: `ssort`
 
-Sorts the stall list by specified criteria.
+Sorts the stall list by the specified criterion.
 
-Format: `ssort CRITERIA`
-
-* The criteria must be provided and should not be blank.
+Format: `ssort CRITERION`
+* The criterion must be provided and should not be blank.
+* The command will fail if two or more criteria are provided or any other criterion not listed is provided.
 * Below are the supported sorting criteria:
-
-| Criteria       | Notes                          |
+| Criterion      | Notes                          |
 |----------------|--------------------------------|
 | `name`         | Sorts from 0 to 9, then A to Z |
 | `reversedname` | Sorts from Z to A, then 9 to 0 |
 
-* The command will fail if two or more criteria are provided or any other criteria not listed above is provided. <br>
-Examples: `ssort name reversedname`, `ssort address`
+Example:
+* `ssort name`
 
 ### Sorting review list: `rsort`
 
-Sorts the review list by specified criteria.
+Sorts the review list by the specified criterion.
 
-* The criteria must be provided and should not be blank.
+Format: `ssort CRITERION`
+* The criterion must be provided and should not be blank.
+* The command will fail if two or more criteria are provided or any other criterion not listed is provided.
 * Below are the supported sorting criteria:
-
-| Criteria         | Notes                          |
+| Criterion        | Notes                          |
 |------------------|--------------------------------|
 | `name`           | Sorts from 0 to 9, then A to Z |
 | `reversedname`   | Sorts from Z to A, then 9 to 0 |
@@ -234,8 +227,8 @@ Sorts the review list by specified criteria.
 | `rating`         | Sorts from lowest to highest   |
 | `reversedrating` | Sorts from highest to lowest   |
 
-* The command will fail if two or more criteria are provided or any other criteria not listed above is provided. <br>
-Examples: `rsort name date`, `rsort content`
+Example:
+* `rsort name`
 
 ### Clearing all entries : `clear`
 
@@ -263,15 +256,18 @@ If there are no commands entered, simply exiting the program will not generate a
 FoodWhere data are saved as a JSON file `[JAR file location]/data/foodwhere.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, FoodWhere will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, FoodWhere will discard all data and start with an empty data file at the next run. Close FoodWhere without using the `exit` command to avoid overwriting the data file.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FoodWhere application.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install and run the app on the other computer. Overwrite the data file it creates with the `foodwhere.json` file that contains the data of your previous FoodWhere application.
+
+**Q**: How do I backup my data?<br>
+**A**: Backup the `foodwhere.json` file in another directory.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -282,15 +278,15 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **exit**  | `exit`                                                                                                       |
 | **help**  | `help`                                                                                                       |
 | **clear** | `clear`                                                                                                      |
-| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/20/09/2022 c/Great food! r/4` |
+| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…` <br> e.g., `radd s/3 d/20/09/2022 c/Great food! r/4`|
 | **rdel**  | `rdel INDEX`                                                                                                 |
 | **redit** | `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…` <br> e.g., `redit d/20/09/2022 c/Great food!`        |
 | **rlist** | `rlist`                                                                                                      |
-| **rfind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                       |
-| **rsort** | `rsort CRITERIA` <br> e.g., `rsort rating`                                                                   |                                                                   
-| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`      |
+| **rfind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…` <br> e.g., `rfind n/eatery`           |
+| **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                  |                                                                   
+| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…` <br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`     |
 | **sdel**  | `sdel INDEX`                                                                                                 |
 | **sedit** | `sedit INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…` <br> e.g., `sedit n/John Chicken Rice a/Blk 123 Bedok South`    |
 | **slist** | `slist`                                                                                                      |
-| **sfind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                       |
-| **ssort** | `ssort CRITERIA` <br> e.g., `ssort reversedname`                                                             |
+| **sfind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…` <br> e.g., `rfind n/eatery`           |
+| **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                            |
