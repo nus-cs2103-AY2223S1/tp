@@ -168,6 +168,28 @@ Examples:
 * `client -d 1` Deletes client with `CLIENT_ID` 1.
 * `client -d 6` Deletes client with `CLIENT_ID` 6.
 
+### Finding a client : `client -f`
+
+Finds and lists all the clients matching the search criteria.
+
+Format: `client -f [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+
+* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_PHONE` and `CLIENT_EMAIL`.
+* Finds all the clients such that the fields under the client contain at least one word from the keywords provided 
+  after each search criteria.
+* The keywords provided must be valid arguments for their respective search criteria.
+
+Examples:
+* `client -e n/Amy` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy`.
+* `client -e n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
+* `client -e n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and 
+  with `CLIENT_EMAIL` amy@gmail.com.
+* `client -e n/Amy e/amy@gmail.com p/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
+  `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_PHONE` 12345678.
+* `client -e n/Amy Bob e/amy@gmail.com bobamy@gmail.com p/12345678` Finds and lists all the clients whose 
+  `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
+  `CLIENT_PHONE` 12345678.
+
 ### Adding an issue : `issue -a`
 
 Adds an issue to a project.
