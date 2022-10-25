@@ -32,7 +32,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code MarkPersonDescriptor} with fields containing {@code person}'s details
      */
     public MarkPersonDescriptorBuilder(Person person) {
         descriptor = new MarkPersonDescriptor();
@@ -43,7 +43,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -51,7 +51,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -59,7 +59,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code LessonPlan} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code LessonPlan} of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withLessonPlan(String lessonPlan) {
         descriptor.setLessonPlan(new LessonPlan(lessonPlan));
@@ -67,7 +67,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Homework} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Homework} of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withHomework(String homework) {
         descriptor.setHomework(new Homework(homework));
@@ -75,7 +75,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Index} of the homework of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Index} of the homework of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withHomeworkIndex(Index homeworkIndex) {
         descriptor.setHomeworkIndex(homeworkIndex);
@@ -83,7 +83,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Attendance} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Attendance} of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withAttendance(String attendance) {
         descriptor.setAttendance(new Attendance(attendance));
@@ -91,7 +91,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Index} of the attendance of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Index} of the attendance of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withAttendanceIndex(Index attendanceIndex) {
         descriptor.setAttendanceIndex(attendanceIndex);
@@ -99,7 +99,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Session} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Session} of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withSession(String session) {
         descriptor.setSession(new Session(session));
@@ -107,7 +107,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Index} of the session of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Index} of the session of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withSessionIndex(Index sessionIndex) {
         descriptor.setSessionIndex(sessionIndex);
@@ -115,7 +115,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code GradeProgress} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code GradeProgress} of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withGradeProgress(String gradeProgress) {
         descriptor.setGradeProgress(new GradeProgress(gradeProgress));
@@ -123,7 +123,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Index} of the grade of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Index} of the grade of the {@code MarkPersonDescriptor} that we are building.
      */
     public MarkPersonDescriptorBuilder withGradeProgressIndex(Index gradeProgressIndex) {
         descriptor.setGradeProgressIndex(gradeProgressIndex);
@@ -131,7 +131,7 @@ public class MarkPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code MarkPersonDescriptor}
      * that we are building.
      */
     public MarkPersonDescriptorBuilder withTags(String... tags) {
