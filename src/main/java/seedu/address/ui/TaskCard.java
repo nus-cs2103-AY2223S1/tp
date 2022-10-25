@@ -50,8 +50,8 @@ public class TaskCard extends UiPart<Region> {
 
         Label label = new Label((task.getTaskMark().toString().equals("true")) ? "Completed" : "Not Completed");
         label.setStyle((task.getTaskMark().toString().equals("true"))
-                ? "-fx-background-color: #89f98c"
-                : "-fx-background-color: #d73c3c");
+                ? "-fx-background-color: #7e867b"
+                : "-fx-background-color: #bb3634");
         taskMark.getChildren().add(label);
     }
 

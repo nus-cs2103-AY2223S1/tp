@@ -29,7 +29,7 @@ public class ProjectListPanel extends UiPart<Region> {
      */
     public ProjectListPanel(ObservableList<Project> projectList) {
         super(FXML);
-        projectListTitle.setText("Project List");
+        projectListTitle.setText("Projects");
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
     }

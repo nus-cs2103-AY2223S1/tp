@@ -37,7 +37,7 @@ public class StaffListPanel extends UiPart<Region> {
      */
     public StaffListPanel(ObservableList<Staff> staffList) {
         super(FXML);
-        staffListTitle.setText("Staff List");
+        staffListTitle.setText("Staff");
         staffListView.setItems(staffList);
         staffListView.setCellFactory(listView -> new StaffListViewCell());
     }

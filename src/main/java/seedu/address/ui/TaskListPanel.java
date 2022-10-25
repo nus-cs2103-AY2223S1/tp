@@ -29,7 +29,7 @@ public class TaskListPanel extends UiPart<Region> {
      */
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
-        taskListTitle.setText("Task List");
+        taskListTitle.setText("Tasks");
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
