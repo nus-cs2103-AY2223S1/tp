@@ -215,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles changes to the UI whenever the filtered command is executed.
+     * @param result the result of command executed.
      */
     private void handleFilterTransaction(CommandResult result) {
         ObservableList<Client> clientList = logic.getFilteredClientList();
@@ -232,9 +233,32 @@ public class MainWindow extends UiPart<Stage> {
         transactionListPanel.setTransactionList(transactions);
     }
 
+    /**
+     * Handles changes to the UI whenever the sort command is executed.
+     * @param result the result of command executed.
+     */
+
+    private void handleSortTransaction(CommandResult result) {
+        ObservableList<Client> clientList = logic.getFilteredClientList();
+        companyListPanel.setCompanyList(FXCollections.observableArrayList());
+        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+        Client client = clientList.get(0);
+        if (isOldestSort(result)) {
+            transactions.addAll(client.getSortOldestTransaction());
+        } else {
+            transactions.addAll(client.getSortLatestTransaction());
+        }
+        transactionListPanel.setTransactionList(transactions);
+    }
+
     private boolean isBuyFilter(CommandResult result) {
         String output = result.toString();
         return (output.contains("buy"));
+    }
+
+    private boolean isOldestSort(CommandResult result) {
+        String output = result.toString();
+        return (output.contains("oldest"));
     }
 
     /**
@@ -258,8 +282,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isFilterTransactions()) {
                 handleFilterTransaction(commandResult);
-            } else {
+            } else if (!commandResult.isFilterTransactions() && !commandResult.isSortTransactions()) {
                 handleClientDetailsUpdate(commandResult);
+            }
+
+            if (commandResult.isSortTransactions()) {
+                handleSortTransaction(commandResult);
             }
 
             return commandResult;

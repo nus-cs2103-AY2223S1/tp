@@ -89,4 +89,5 @@ public interface Model {
      * Updates the total transaction of the filtered client list.
      */
     double calculateTotalTransaction(ObservableList<Client> filteredClientList);
+
 }

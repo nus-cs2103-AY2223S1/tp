@@ -106,4 +106,76 @@ public class TransactionLog {
         }
         return FXCollections.unmodifiableObservableList(internalList);
     }
+
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of sorted transactions by oldest.
+     */
+    public ObservableList<Transaction> getOldestTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.addAll(transactionList);
+        quickSort(internalList, 0, internalList.size() - 1, 1);
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of sorted transactions by latest.
+     */
+    public ObservableList<Transaction> getLatestTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.addAll(transactionList);
+        quickSort(internalList, 0, internalList.size() - 1, 0);
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    private static void swap(ObservableList<Transaction> arr, int i, int j) {
+        Transaction temp = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, temp);
+    }
+
+    private static int partition(ObservableList<Transaction> arr, int low, int high, int old) {
+
+        Transaction pivot = arr.get(high);
+
+        int i = (low - 1);
+
+
+        for (int j = low; j <= high - 1; j++) {
+
+            //if sort by oldest, old == 1, else old == 0.
+            if (old == 1) {
+                if (arr.get(j).isOlderThan(pivot)) {
+
+                    i++;
+                    swap(arr, i, j);
+                }
+            } else {
+                if (!arr.get(j).isOlderThan(pivot)) {
+
+                    i++;
+                    swap(arr, i, j);
+                }
+            }
+        }
+        swap(arr, i + 1, high);
+        return (i + 1);
+    }
+
+    private static void quickSort(ObservableList<Transaction> arr, int low, int high, int old) {
+        //if sort by oldest, old == 1 else old == 0
+        if (low < high) {
+            int pi;
+
+            if (old == 1) {
+                pi = partition(arr, low, high, old);
+            } else {
+                pi = partition(arr, low, high, old);
+            }
+
+            quickSort(arr, low, pi - 1, old);
+            quickSort(arr, pi + 1, high, old);
+        }
+    }
 }
