@@ -79,7 +79,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddNoteCommand.COMMAND_WORD:
-            return new AddNoteCommandParser().parse(arguments);
+            return new AddNoteCommandParser(model).parse(arguments);
 
         case ListNoteCommand.COMMAND_WORD:
             return new ListNoteCommand();
@@ -91,7 +91,7 @@ public class AddressBookParser {
             return new FindNoteCommandParser().parse(arguments);
 
         case EditNoteCommand.COMMAND_WORD:
-            return new EditNoteCommandParser().parse(arguments);
+            return new EditNoteCommandParser(model).parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

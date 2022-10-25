@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-SectresBook helps **secretaries** to maintain all the information of the members of their club by **collating a list of identifiable information, past records and future tasks.**
+SectresBook helps **secretaries** to maintain all the information of the members of their club by **collating a list of identifiable information, past records, loan amounts and future tasks.** As a **treasurer**, use SectresBook **manage the finances of your club better** by keeping track of the funds loaned to each member. This all-in-one tool eliminates the trouble of having to search through multiple notebooks/apps to find information regarding a club member, saving you time and effort, so that you can focus on other tasks at hand using the notes feature!
+
+Focusing on speed and efficiency, interact with SectresBook using the **Command Line Interface (CLI)**, while still having the benefits of a visually appealing **Graphical User Interface (GUI)**.
+
+This User Guide is an in-depth guide to help you start managing your contacts, notes and finances. It includes the **installation, features and how to use them, and FAQ for troubleshooting**, ensuring a smooth pickup of the SectresBook.
 
 * Table of Contents
 {:toc}
@@ -26,7 +30,7 @@ SectresBook helps **secretaries** to maintain all the information of the members
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete 3`** : Deletes the 3rd contact shown in the current list.
    
@@ -68,22 +72,22 @@ SectresBook helps **secretaries** to maintain all the information of the members
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
 
 * `<OR>` signifies an exclusive-or parameter that is to be input.<br>
   e.g `INDEX <OR> NAME` allows either the parameter `INDEX` or the parameter `NAME`, but not both
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -102,16 +106,16 @@ Format: `help`
 
 Adds a person to the SectresBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...​ [l/LOAN]`
+Format: `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS [tag/TAG]...​ [l/LOAN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Member`
-* `add n/Jane Doe p/98876542 e/jane@example.com a/That Street, block 133, #11-10 t/Member l/10`
-* `add n/Neethesh t/VicePresident e/neethesh@example.com a/Happy Avenue p/91234567`
+* `add name/John Doe phone/98765432 email/johnd@example.com home/John street, block 123, #01-01 tag/Member`
+* `add name/Jane Doe phone/98876542 email/jane@example.com home/That Street, block 133, #11-10 tag/Member l/10`
+* `add name/Neethesh tag/VicePresident email/neethesh@example.com home/Happy Avenue phone/91234567`
 
 ### Listing all persons : `list`
 
@@ -123,13 +127,13 @@ Format: `list`
 
 Edits an existing club member’s information in the SectresBook
 
-Format: `edit INDEX <OR> NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX <OR> NAME [name/NAME] [phone/PHONE] [email/EMAIL] [home/ADDRESS] [tag/TAG]…​`
 
 Example of usage:
 
-`edit 1 p/99999999` can be used to easily update the first person's contact information.
+`edit 1 phone/99999999` can be used to easily update the first person's contact information.
 
-`edit John p/91235555` can be used to update a person’s contact information if there exists only one person whose name contains John.<br>
+`edit John phone/91235555` can be used to update a person’s contact information if there exists only one person whose name contains John.<br>
   If no person is named `John`, no operations are performed. If more than one person has `John` in their name, then the operation is equivalent to `find John`.
 
 ### Locating persons by name: `find`
@@ -209,15 +213,15 @@ Format: `clear`
 
 Adds a note to the SectresBook.
 
-Format: `addNote n_t/TITLE n_c/CONTENT `
+Format: `addNote title/TITLE content/CONTENT `
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 TITLE must be unique and not longer than 100 characters.
 </div>
 
 Examples:
-* `add n_t/Club meeting soon! n_c/Remind club members to attend meeting.`
-* `add n_t/T-Shirt payment due n_c/Collect money`
+* `add title/Club meeting soon! content/Remind club members to attend meeting.`
+* `add title/T-Shirt payment due content/Collect money`
 
 ### Listing Notes `listNote`
 
@@ -277,10 +281,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add name/NAME phone/PHONE_NUMBER email/EMAIL home/ADDRESS [tag/TAG]…​` <br> e.g., `add name/James Ho phone/22224444 email/jamesho@example.com home/123, Clementi Rd, 1234665 tag/friend tag/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [name/NAME] [phone/PHONE_NUMBER] [email/EMAIL] [home/ADDRESS] [tag/TAG]…​`<br> e.g.,`edit 2 name/James Lee email/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **FindTag** | `findTag TAG [MORE_TAGS]`<br> e.g., `findTag Operations Outreach`
 **List** | `list`
