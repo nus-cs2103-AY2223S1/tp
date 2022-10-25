@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-#Waddle User Guide 🦆
+# Waddle User Guide 🦆
 Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**. Waddle allows users to plan their travels in **3 simple steps**.
 1. Create a trip
 2. Add activities
@@ -48,7 +48,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `new n/NAME`, `NAME` is a parameter which can be used as `add n/My Japan Trip`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/My Japan Trip`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [c/COUNTRY]` can be used as `n/My Japan Trip c/Japan` or as `n/My Japan Trip`.
@@ -60,7 +60,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
   e.g. if the command specifies `c/CATEGORY d/DESCRIPTION`, `d/DESCRIPTION c/CATEGORY` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `d/Eat Ramen d/Aquarium`, only `p/Aquarium` will be taken.
+  e.g. if you specify `d/Eat Ramen d/Aquarium`, only `d/Aquarium` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -76,15 +76,15 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Creating a new itinerary: `new`
+### Creating a new itinerary: `add`
 
 Adds an itinerary to Waddle.
 
-Format: `new n/NAME [c/COUNTRY] d/DURATION [s/START DATE] [p/NUMBER OF WADDLERS]`
+Format: `add n/NAME [c/COUNTRY] dur/DURATION s/START DATE [p/NUMBER OF WADDLERS]`
 
 Examples:
-* `new n/My Japan Trip d/6`
-* `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4`
+* `add n/My Japan Trip d/6`
+* `add n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4`
 
 ### Listing all itineraries : `list`
 
@@ -92,31 +92,30 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
-### Selecting an itinerary: `plan`
+### Selecting an itinerary: `select`
 
 Enters the planning page for the selected itinerary.
 
-Format: `plan n/NAME`
+Format: `select INDEX`
 
 Examples:
-* `plan n/My Japan Trip`
-* `plan n/Germanyyyy`
+* `select 1`
 
 ### Editing the details of an itinerary: `edit`
 
 Edits an existing itinerary in Waddle.
 
-Format: `edit INDEX [n/NAME] [c/COUNTRY] [d/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS]`
+Format: `edit INDEX [n/NAME] [c/COUNTRY] [dur/DURATION] [sd/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`
 
 * Edits the itinerary at the specified `INDEX`. The index refers to the index number shown in the displayed itinerary list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-* `edit 1 d/15 s/04/10/22` Edits the duration and start date of the first itinerary to be `15` and `04/10/22` respectively.
+* `edit 1 d/15 sd/04/10/22` Edits the duration and start date of the first itinerary to be `15` and `04/10/22` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
 
-### Locating persons by name: `find`
+### Locating itineraries by name: `find`
 
 Finds itineraries with names containing any of the given keywords.
 
@@ -126,7 +125,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Trip Japan My` will match `My Japan Trip`
 * Only the name is searched.
 * Only full words will be matched e.g. `Jap` will not match `Japan`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Itineraries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Trip` will return `My Japan Trip`, `My Germany Trip`
 
 Examples:
@@ -141,7 +140,7 @@ Deletes the specified itinerary from Waddle.
 Format: `delete INDEX`
 
 * Deletes the itinerary at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed itinerary list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -189,10 +188,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**New** | `new n/NAME [c/COUNTRY] d/DURATION [s/START DATE] [p/NUMBER OF WADDLERS]`<br> e.g., `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4`
+**Add** | `add n/NAME [c/COUNTRY] du/DURATION s/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4 b/7000`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [c/COUNTRY] [d/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS]`<br> e.g.,`edit 1 d/15 s/04/10/22`
+**Edit** | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/04/10/22`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`
 **List** | `list`
 **Help** | `help`

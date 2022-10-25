@@ -78,6 +78,7 @@ public class EditCommand extends Command {
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
         ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration()
                 .orElse(itineraryToEdit.getDuration());
+        System.out.println("the updated duration is: " + updatedDuration);
         People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
         Budget updatedBudget = editItineraryDescriptor.getBudget().orElse(itineraryToEdit.getBudget());
 

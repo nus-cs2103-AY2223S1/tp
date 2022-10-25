@@ -3,7 +3,7 @@ package seedu.waddle.logic.parser;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.stream.Stream;
@@ -27,7 +27,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
     public AddItemCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
-                                           PREFIX_COST, PREFIX_DURATION);
+                                           PREFIX_COST, PREFIX_ITEM_DURATION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -52,8 +52,8 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         }
 
         Duration duration;
-        if (arePrefixesPresent(argMultimap, PREFIX_DURATION)) {
-            duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_ITEM_DURATION)) {
+            duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_ITEM_DURATION).get());
         } else {
             duration = ParserUtil.parseDuration("0");
         }
