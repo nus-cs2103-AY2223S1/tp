@@ -2,9 +2,9 @@ package bookface.testutil;
 
 import java.util.Set;
 
-import bookface.logic.commands.EditCommand;
 import bookface.logic.commands.add.AddCommand;
 import bookface.logic.commands.add.AddUserCommand;
+import bookface.logic.commands.edit.EditUserCommand;
 import bookface.logic.parser.CliSyntax;
 import bookface.model.person.Person;
 import bookface.model.tag.Tag;
@@ -38,7 +38,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditUserCommand.EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(CliSyntax.PREFIX_PHONE).append(phone.value).append(" "));

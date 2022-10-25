@@ -135,6 +135,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setBook(Book target, Book editedBook) {
+        CollectionUtil.requireAllNonNull(target, editedBook);
+        bookFace.setBook(target, editedBook);
+    }
+
+    @Override
     public void loan(Person person, Book book) {
         CollectionUtil.requireAllNonNull(person, book);
         bookFace.loan(person, book);

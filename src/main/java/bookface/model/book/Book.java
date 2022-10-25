@@ -54,7 +54,9 @@ public class Book {
      * @param loanee the person borrowing this book
      */
     public void loanTo(Person loanee) {
-        this.loanee = loanee;
+        if (loanee != null) {
+            this.loanee = loanee;
+        }
     }
 
     /**

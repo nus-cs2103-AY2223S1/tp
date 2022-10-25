@@ -53,8 +53,8 @@ public class BookFace implements ReadOnlyBookFace {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the person list with {@code books}.
+     * {@code books} must not contain duplicate books.
      */
     public void setBooks(List<Book> books) {
         this.books.setBooks(books);
@@ -117,7 +117,7 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void deleteBook(Book book) {
         books.delete(book);
-        persons.refreshUserListAfterDeletingBook(book);
+        persons.refreshUserListAfterOperationOnBook(book);
     }
 
     /**
@@ -129,6 +129,19 @@ public class BookFace implements ReadOnlyBookFace {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        books.refreshBookListAfterEditingPerson(editedPerson);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedBook}.
+     * {@code target} must exist in BookFace.
+     * The book identity of {@code editeBook} must not be the same as another existing book in BookFace.
+     */
+    public void setBook(Book target, Book editedBook) {
+        requireNonNull(editedBook);
+
+        books.setBook(target, editedBook);
+        persons.refreshUserListAfterOperationOnBook(editedBook);
     }
 
     /**
@@ -163,7 +176,7 @@ public class BookFace implements ReadOnlyBookFace {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-        books.refreshBookListAfterDeletingUser(key);
+        books.refreshBookListAfterDeletingPerson(key);
     }
 
     //// util methods

@@ -1,11 +1,14 @@
-package bookface.logic.commands;
+package bookface.logic.commands.edit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import bookface.logic.commands.EditCommand.EditPersonDescriptor;
+import bookface.logic.commands.CommandTestUtil;
+import bookface.logic.commands.edit.EditUserCommand.EditPersonDescriptor;
 import bookface.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -14,38 +17,38 @@ public class EditPersonDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(CommandTestUtil.DESC_AMY);
-        assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
+        assertEquals(CommandTestUtil.DESC_AMY, descriptorWithSameValues);
 
         // same object -> returns true
-        assertTrue(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_AMY));
+        assertEquals(CommandTestUtil.DESC_AMY, CommandTestUtil.DESC_AMY);
 
         // null -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(null));
+        assertNotEquals(null, CommandTestUtil.DESC_AMY);
 
         // different types -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(5));
+        assertNotEquals(5, CommandTestUtil.DESC_AMY);
 
         // different values -> returns false
-        assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
+        assertNotEquals(CommandTestUtil.DESC_AMY, CommandTestUtil.DESC_BOB);
 
         // different name -> returns false
         EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withName(CommandTestUtil.VALID_NAME_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
 
         // different phone -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
 
         // different email -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
 
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
+        assertNotEquals(CommandTestUtil.DESC_AMY, editedAmy);
     }
 }

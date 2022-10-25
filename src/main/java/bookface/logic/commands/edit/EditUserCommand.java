@@ -1,4 +1,4 @@
-package bookface.logic.commands;
+package bookface.logic.commands.edit;
 
 import static bookface.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
@@ -15,6 +15,7 @@ import java.util.Set;
 import bookface.commons.core.Messages;
 import bookface.commons.core.index.Index;
 import bookface.commons.util.CollectionUtil;
+import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
 import bookface.model.book.Book;
@@ -25,13 +26,16 @@ import bookface.model.person.Phone;
 import bookface.model.tag.Tag;
 
 /**
- * Edits the details of an existing user in the user list.
+ * Deletes a user identified using it's displayed index from the user list.
  */
-public class EditCommand extends Command {
+public class EditUserCommand extends EditCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "user";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the user identified "
+    public static final String MESSAGE_USAGE =
+            EditCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Edits the details "
+            + "of the user identified "
             + "by the index number used in the displayed user list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -44,7 +48,6 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited User: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the user list.";
 
     private final Index index;
@@ -54,7 +57,7 @@ public class EditCommand extends Command {
      * @param index of the person in the filtered user list to edit
      * @param editPersonDescriptor details to edit the user with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditUserCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -93,10 +96,15 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Set<Book> updatedLoanedBook = editPersonDescriptor.getBook().orElse(personToEdit.getLoanedBooksSet());
+        Set<Book> updatedLoanedBook = editPersonDescriptor.getLoanedBooks().orElse(personToEdit.getLoanedBooksSet());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedLoanedBook, updatedTags);
+        Person newPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedLoanedBook, updatedTags);
+        //todo shift out
+        for (Book book : updatedLoanedBook) {
+            book.loanTo(newPerson);
+        }
+        return newPerson;
     }
 
     @Override
@@ -107,12 +115,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditUserCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditUserCommand e = (EditUserCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
@@ -126,7 +134,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
 
-        private Set<Book> loanedBook;
+        private Set<Book> loanedBooks;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -139,7 +147,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setBook(toCopy.loanedBook);
+            setBook(toCopy.loanedBooks);
             setTags(toCopy.tags);
         }
 
@@ -176,7 +184,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code book} is used internally.
          */
         public void setBook(Set<Book> book) {
-            this.loanedBook = (book != null) ? new HashSet<>(book) : null;
+            this.loanedBooks = (book != null) ? new HashSet<>(book) : null;
         }
 
         /**
@@ -184,8 +192,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code book} is null.
          */
-        public Optional<Set<Book>> getBook() {
-            return (loanedBook != null) ? Optional.of(Collections.unmodifiableSet(loanedBook)) : Optional.empty();
+        public Optional<Set<Book>> getLoanedBooks() {
+            return (loanedBooks != null) ? Optional.of(Collections.unmodifiableSet(loanedBooks)) : Optional.empty();
         }
 
         public Optional<Email> getEmail() {

@@ -89,6 +89,14 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Replaces the given book {@code target} with {@code editedBook}.
+     * {@code target} must exist in BookFace.
+     * The book identity of {@code editedPerson} must not be the same as another existing book in BookFace.
+     */
+    void setBook(Book target, Book editedBook);
+
+
+    /**
      * Loans to given person {@code person} from {@code book}.
      * {@code person} and {@code book} must exist in BookFace.
      */

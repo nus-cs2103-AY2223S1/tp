@@ -6,7 +6,7 @@ import bookface.logic.parser.CommandParser;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new ListCommand object
  */
 public class ListCommandParser extends CommandParser<ListCommand> {
     public ListCommandParser() {
