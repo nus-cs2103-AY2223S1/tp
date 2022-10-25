@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 
 import java.util.List;
 
@@ -15,8 +17,15 @@ public class AddTeamCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a new team \n"
-            + "Parameters: TEAM_NAME\n"
-            + "Example: " + COMMAND_WORD + " project";
+            + "Parameters: "
+            + "-" + FLAG_NAME_STR + " TEAM_NAME "
+            + "[-" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
+            + "Example:\n"
+            + "1. " + COMMAND_WORD + " "
+            + "-" + FLAG_NAME_STR + " CS2103T "
+            + "-" + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
+            + "2. " + COMMAND_WORD + " "
+            + "-" + FLAG_NAME_STR + " CS2102 ";
 
     public static final String MESSAGE_ADD_TEAM_SUCCESS = "Added team: %1$s";
 

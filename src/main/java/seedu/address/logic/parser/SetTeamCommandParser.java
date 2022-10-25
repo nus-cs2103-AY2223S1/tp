@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.util.ArrayList;
-
 import seedu.address.logic.commands.SetTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.team.Team;
@@ -17,6 +15,6 @@ public class SetTeamCommandParser implements Parser<SetTeamCommand> {
      */
     @Override
     public SetTeamCommand parse(String args) throws ParseException {
-        return new SetTeamCommand(new Team(args.trim(), new ArrayList<>()));
+        return new SetTeamCommand(new Team(args.trim(), "No description added"));
     }
 }

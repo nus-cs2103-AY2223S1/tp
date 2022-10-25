@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
@@ -27,7 +25,7 @@ class SetTeamCommandTest {
     @Test
     void testEquals() {
         Team exitingTeam = model.getTeam();
-        Team anotherTeam = new Team("first", new ArrayList<>(), new ArrayList<>());
+        Team anotherTeam = new Team("first", "No description added");
         SetTeamCommand setTeamCommand = new SetTeamCommand(exitingTeam);
         SetTeamCommand setTeamCommandDuplicate = new SetTeamCommand(exitingTeam);
         SetTeamCommand setTeamCommandAnotherTeam = new SetTeamCommand(anotherTeam);
