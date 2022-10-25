@@ -63,7 +63,7 @@ public class StudentModuleData implements Identity<StudentModuleData> {
      * Returns a new {@code StudentModuleData} by updating the grade in the given {@code session}.
      * If the session does not exist in the list of session data, a new session data is added.
      */
-    public StudentModuleData updateSessionGrade(Session session, double grade) {
+    public StudentModuleData updateGrade(Session session, double grade) {
         requireAllNonNull(session);
         StudentModuleData newStudentModuleData = removeSession(session);
         newStudentModuleData.sessionDataList.add(new SessionData(session, grade));

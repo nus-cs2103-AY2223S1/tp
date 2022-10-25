@@ -110,10 +110,10 @@ public class Student implements Identity<Student> {
      * Returns a new student by updating this student's grade for the
      * given {@code session} in {@code moduleClass}.
      */
-    public Student updateModuleSessionGrade(ModuleClass moduleClass, Session session, double grade) {
+    public Student updateGrade(ModuleClass moduleClass, Session session, double grade) {
         requireAllNonNull(moduleClass, session);
         List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
-                .map(d -> d.getModuleClass().isSame(moduleClass) ? d.updateSessionGrade(session, grade) : d)
+                .map(d -> d.getModuleClass().isSame(moduleClass) ? d.updateGrade(session, grade) : d)
                 .collect(Collectors.toList());
         return new Student(name, phone, email, address, updatedModuleData);
     }
