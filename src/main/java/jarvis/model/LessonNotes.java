@@ -22,7 +22,6 @@ public class LessonNotes {
     public LessonNotes(Collection<Student> students) {
         studentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
         generalNotes = new ArrayList<>();
-        generalNotes.add("Lesson Notes:\n");
         for (Student stu : students) {
             studentNotes.put(stu, new ArrayList<>());
         }
@@ -80,8 +79,10 @@ public class LessonNotes {
     }
 
     public String getGeneralNotes() {
-        StringBuilder formattedGeneralNotes = new StringBuilder();
+        StringBuilder formattedGeneralNotes = new StringBuilder("Lesson Notes:\n");
+        int index = 0;
         for (String overallNote: generalNotes) {
+            formattedGeneralNotes.append(++index + ". ");
             formattedGeneralNotes.append(overallNote);
             formattedGeneralNotes.append("\n");
         }
@@ -93,7 +94,9 @@ public class LessonNotes {
             throw new StudentNotFoundException();
         }
         StringBuilder formattedStudentNotes = new StringBuilder();
+        int index = 0;
         for (String studentNote: studentNotes.get(student)) {
+            formattedStudentNotes.append(++index + ". ");
             formattedStudentNotes.append(studentNote);
             formattedStudentNotes.append("\n");
         }
