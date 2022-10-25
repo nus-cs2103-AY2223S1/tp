@@ -19,11 +19,12 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
    5. [Editing an applicant](#35-editing-an-applicant-edit)
    6. [Locating applicants by field](#36-locating-applicants-by-field-find)
    7. [Importing applicants from an external text file](#37-importing-applicants-from-an-external-text-file-import)
-   8. [Deleting an applicant](#38-deleting-an-applicant-delete)
-   9. [Clearing all entries](#39-clearing-all-entries-clear)
-   10. [Exiting the program](#310-exiting-the-program-exit)
-   11. [Saving the data](#311-saving-the-data)
-   12. [Editing the data file](#312-editing-the-data-file)
+   8. [Exporting displayed list](#38-exporting-displayed-list-export)
+   9. [Deleting an applicant](#39-deleting-an-applicant-delete)
+   10. [Clearing all entries](#310-clearing-all-entries-clear)
+   11. [Exiting the program](#311-exiting-the-program-exit)
+   12. [Saving the data](#312-saving-the-data)
+   13. [Editing the data file](#313-editing-the-data-file)
 4. [Command Summary](#4-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -112,6 +113,9 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 * Parameters can be in any order, and are separated by a space.
   e.g., if the command specifies `n/NAME p/PHONE e/EMAIL`, `n/NAME e/EMAIL p/PHONE` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. 
+  e.g. if you specify p/12341234 p/56785678, only p/56785678 will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.  
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
@@ -210,7 +214,19 @@ Examples:
 * `import nus_students.json` Imports NUS students listed in the `nus_students.json` file
 
 
-### 3.8 Deleting an applicant: `delete`
+### 3.8 Exporting displayed list: `export`
+
+Exports the displayed list from InternConnect.
+
+Format: `export`
+
+* Exported JSON file will be stored in `data/export/` folder
+
+Examples:
+* `find university/NUS` followed by `export` exports the result of the `find` command to a JSON file.
+
+
+### 3.9 Deleting an applicant: `delete`
 
 Deletes the specified applicant from InternConnect.
 
@@ -225,24 +241,24 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
 
-### 3.9 Clearing all entries: `clear`
+### 3.10 Clearing all entries: `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
 
-### 3.10 Exiting the program: `exit`
+### 3.11 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.11 Saving the data
+### 3.12 Saving the data
 
 InternConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 3.12 Editing the data file
+### 3.13 Editing the data file
 
 InternConnect data are saved as a JSON file `[JAR file location]/data/internconnect.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -262,6 +278,7 @@ If your changes to the data file makes its format invalid, InternConnect will di
 | **Edit**   | `edit INDEX [parameter/NEW_PARAMETER_DETAIL]...`<br> e.g.,`edit 1 p/91234567 e/bob@example.com`                                                                                                                                                                                   |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                        |
 | **Import** | `import FILE_PATH`<br> e.g., `import nus_students.json`                                                                                                                                                                                                                           | 
+| **Export** | `export`                                                                                                                                                                                                                                                                          |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                   |
 | **List**   | `list`                                                                                                                                                                                                                                                                            | 
 | **Help**   | `help`                                                                                                                                                                                                                                                                            |
