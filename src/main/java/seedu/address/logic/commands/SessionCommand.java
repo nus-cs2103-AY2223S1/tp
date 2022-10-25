@@ -3,12 +3,14 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 import seedu.address.model.person.SessionList;
@@ -62,6 +64,11 @@ public class SessionCommand extends Command {
                 personToEdit.getGradeProgressList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
+        if (model.isFullView()) {
+            editedPerson.setFullView();
+            String[] newNameKeywords = {personToEdit.getName().fullName};
+            model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
+        }
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 

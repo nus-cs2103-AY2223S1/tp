@@ -74,7 +74,7 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the address book. This command can only be used in list mode.
 
 Format: `add n/NAME p/PHONE_NUMBER lp/LESSON_PLAN [h/HOMEWORK a/ATTENDANCE g/GRADE s/SESSION]`
 
@@ -87,14 +87,15 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the address book. Toggles the address book to list mode.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book, accessed by View method.<br>
-It requires one field:
+Edits an existing person in the address book. Can only be used in view mode.
+
+It requires at least one field:
 - n/: To be followed by updated name of student
 - p/: To be followed by updated phone number of student
 - lp/: To be followed by updated lesson plan of student

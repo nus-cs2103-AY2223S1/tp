@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.HomeworkList;
+import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -65,8 +67,13 @@ public class HomeworkCommand extends Command {
                 personToEdit.getSessionList(),
                 personToEdit.getGradeProgressList(),
                 personToEdit.getTags());
-        model.setPerson(personToEdit, editedPerson);
 
+        model.setPerson(personToEdit, editedPerson);
+        if (model.isFullView()) {
+            editedPerson.setFullView();
+            String[] newNameKeywords = {personToEdit.getName().fullName};
+            model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
+        }
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
