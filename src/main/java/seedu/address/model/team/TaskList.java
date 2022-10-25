@@ -85,6 +85,7 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Returns a map representing the number of tasks assigned to each person.
+     *
      * @return Map of person to number of tasks assigned
      */
     public Map<Person, Integer> getTasksPerPerson() {
@@ -113,7 +114,7 @@ public class TaskList implements Iterable<Task> {
         int i = 1;
         for (Task task : internalList) {
             if (task.isComplete()) {
-                sb.append(String.format("\t%d. %s\n", i, task));
+                sb.append(String.format("%d. %s\n", i, task));
             }
             i++;
         }
@@ -128,7 +129,7 @@ public class TaskList implements Iterable<Task> {
         int i = 1;
         for (Task task : internalList) {
             if (!task.isComplete()) {
-                sb.append(String.format("\t%d. %s\n", i, task));
+                sb.append(String.format("%d. %s\n", i, task));
             }
             i++;
         }
@@ -161,7 +162,7 @@ public class TaskList implements Iterable<Task> {
         StringBuilder sb = new StringBuilder();
         int i = 1;
         for (Task task : internalList) {
-            sb.append(String.format("\t%d. %s\n", i, task));
+            sb.append(String.format("%d. %s\n", i, task));
             i++;
         }
         return sb.toString();
