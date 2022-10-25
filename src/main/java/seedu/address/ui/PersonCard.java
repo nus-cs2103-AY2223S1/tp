@@ -2,12 +2,20 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.social.Social;
+import seedu.address.model.social.exceptions.SocialException;
+
+
 
 /**
  * A UI component that displays information of a {@code Person}.
@@ -42,6 +50,16 @@ public class PersonCard extends UiPart<Region> {
     private Label occupation;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Button whatsapp;
+    @FXML
+    private Button telegram;
+    @FXML
+    private Button email2;
+    @FXML
+    private Button instagram;
+    @FXML
+    private Button preferred;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,6 +77,87 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        Social social = person.getSocial();
+        whatsapp.setText("Whatsapp: " + social.getWhatsapp());
+        telegram.setText("Telegram: " + social.getTelegram());
+        email2.setText("Email: " + social.getEmail());
+        instagram.setText("Instagram: " + social.getInstagram());
+        preferred.setText("Preferred: " + social.getPreferred());
+
+        whatsapp.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    social.openWhatsapp();
+                } catch (SocialException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Whatsapp Link error");
+                    alert.setHeaderText(e.getMessage());
+                    alert.setContentText("To find out more info: Try using the Command Line to open the link selected");
+                    alert.showAndWait();
+                }
+            }
+        });
+
+        telegram.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    social.openTelegram();
+                } catch (SocialException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Telegram Link error");
+                    alert.setHeaderText(e.getMessage());
+                    alert.setContentText("To find out more info: Try using the Command Line to open the link selected");
+                    alert.showAndWait();
+                }
+            }
+        });
+
+        email2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    social.openEmail();
+                } catch (SocialException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Email Link error");
+                    alert.setHeaderText(e.getMessage());
+                    alert.setContentText("To find out more info: Try using the Command Line to open the link selected");
+                    alert.showAndWait();
+                }
+            }
+        });
+
+        instagram.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    social.openInstagram();
+                } catch (SocialException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Instagram Link error");
+                    alert.setHeaderText(e.getMessage());
+                    alert.setContentText("To find out more info: Try using the Command Line to open the link selected");
+                    alert.showAndWait();
+                }
+            }
+        });
+
+        preferred.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    social.openPreferred();
+                } catch (SocialException e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Preferred Link error");
+                    alert.setHeaderText(e.getMessage());
+                    alert.setContentText("To find out more info: Try using the Command Line to open the link selected");
+                    alert.showAndWait();
+                }
+            }
+        });
     }
 
     @Override
