@@ -405,6 +405,6 @@ Action | Format, Examples
 **Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
 **Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD] [t/TAG]…​` <br> e.g., `edit appts 1 r/Cough`
-**List** | `list patients` <br> `list appointments` <br> `list all`
+**List** | `list patients` <br> `list appts` <br> `list all`
 **Help** | `help`
 **Exit** | `exit`
