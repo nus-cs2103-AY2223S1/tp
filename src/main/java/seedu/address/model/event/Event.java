@@ -77,7 +77,6 @@ public class Event {
     public boolean containsPerson(Person person) {
         return uids.contains(person.getUid());
     }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

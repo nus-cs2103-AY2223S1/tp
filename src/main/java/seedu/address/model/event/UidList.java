@@ -56,10 +56,25 @@ public class UidList implements Iterable<Uid> {
     }
 
     /**
-     * Returns the internal list as an observableList object
+     * Returns the internal list as an observableList object.
      */
     public ObservableList<Uid> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns a list of Person object corresponding to the uids in the UidList object.
+     * @return a list of persons.
+     */
+    public List<Person> getPersons(Model model) {
+        List<Person> persons = new ArrayList<>();
+        ObservableList<Person> modelPersons = model.getFilteredPersonList();
+        for (Person person : modelPersons) {
+            if (this.contains(person.getUid())) {
+                persons.add(person);
+            }
+        }
+        return persons;
     }
     /**
      * Update personNames corresponding to the UidList with new string of person names.
