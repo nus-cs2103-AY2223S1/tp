@@ -16,8 +16,9 @@ import seedu.address.model.person.PersonId;
 public class InternshipBuilder {
 
     public static final Integer DEFAULT_INTERNSHIP_ID = 0;
-    public static final String DEFAULT_NAME = "ABCDE Pte Ltd";
+    public static final String DEFAULT_COMPANY_NAME = "ABCDE Pte Ltd";
     public static final String DEFAULT_ROLE = "Workman";
+    public static final String DEFAULT_NAME = DEFAULT_COMPANY_NAME + " " + DEFAULT_ROLE;
     public static final InternshipStatus.State DEFAULT_STATUS = InternshipStatus.State.ACCEPTED;
     public static final String DEFAULT_INTERVIEW_DATE = "2022-11-11 11:11";
 
@@ -33,7 +34,7 @@ public class InternshipBuilder {
      */
     public InternshipBuilder() {
         internshipId = new InternshipId(DEFAULT_INTERNSHIP_ID);
-        name = new CompanyName(DEFAULT_NAME);
+        name = new CompanyName(DEFAULT_COMPANY_NAME);
         role = new InternshipRole(DEFAULT_ROLE);
         status = new InternshipStatus(DEFAULT_STATUS);
         interviewDate = new InterviewDate(DEFAULT_INTERVIEW_DATE);
