@@ -10,7 +10,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 Cobb can also run on any machine, *without the need for an internet connection*.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -18,39 +18,26 @@ Cobb can also run on any machine, *without the need for an internet connection*.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `cobb.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-1/tp/releases).
+2. Download the latest `cobb.jar` from [here](https://github.com/AY2223S1-CS2103T-F12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Cobb.
+3. Copy the file to the folder you want to use as the _home folder_ for Cobb.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display some help text.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display some help text.<br>
    Some example commands you can try:
 
-<<<<<<< HEAD
-   * **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place..
+* **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place..
    
-   * **`addbuyer -n Tim Cook -ph 91234567 -r 1000000-2500000 -c bright; sunny`**: Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
-    This buyer has a specified price range, and desired characteristics for the property he wants to buy.
-
-  * **`delete -s -n Tim Cook`** : Deletes a seller named Tim Cook from the database.
-
-  * **`help`** : Displays some help text.
-
-  * **`exit`** : Exits the app.
-=======
-    * **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place..
-
-    * **`addbuyer -n Tim Cook -ph 91234567 -r 1000000-2500000 -c bright; sunny`**: Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
-      This buyer has a specified price range, and desired characteristics for the property he wants to buy.
+* **`addbuyer -n Tim Cook -ph 91234567 -r 1000000-2500000 -c bright; sunny`**: Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
+ This buyer has a specified price range, and desired characteristics for the property he wants to buy.
 
 * **`delete -s -n Tim Cook`** : Deletes a seller named Tim Cook from the database.
 
 * **`help`** : Displays some help text.
 
 * **`exit`** : Exits the app.
->>>>>>> 617ebbc151bb50e948cbdd3c1cab21cc3ba249bd
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -115,7 +102,6 @@ The `-r` flag indicates the price range of properties that the buyer can accept.
 The `-c` flag indicates the characteristics that the buyer is looking for in a property.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Notes:
 The range field and the characteristics field are optional.
 That is, it is perfectly okay to initialise a buyer that does not have these fields.
 </div>
@@ -146,12 +132,12 @@ The property is owned by Bob with a phone number of 91234567.
 
 Syntax: `deletebuyer INDEX`
 
-<div markdown="span" class="alert alert-primary">:Exclamation: **Note:**
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 Note that this command has a slightly different syntax from the usual commands, as it takes a number representing the index of the object that you would like to delete
 instead of flags like other commands.
 </div>
 
-The`INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
+The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
 Note that if an entry has been filtered out / is not currently on the list, then a `deletebuyer` command cannot be executed on it.
 
 Examples:<br>
@@ -161,7 +147,7 @@ Examples:<br>
 
 Syntax: `deleteprop INDEX`
 
-The`INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
+The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
 Note that if an entry has been filtered out / is not currently on the list, then a `deleteprop` command cannot be executed on it.
 
 Examples:<br>
@@ -237,6 +223,22 @@ Examples:<br>
 `filterbuyers -c bright; sunny`: Filters all buyers that have "bright" and/or "sunny" in their desired characteristics.
 `filterbuyers -priority HIGH`: Filters all buyers that are of `HIGH` priority.
 
+### Filter buyers in database (multiple conditions): `multifilterbuyers`
+
+Filters buyers in the database according to multiple given conditions, and updates the visible buyer list.
+
+Syntax: `multifilterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`
+
+The `-p` flag indicates that we will be filtering buyers that have a price range containing the specified price.
+The `-c` flag indicates that we will be filtering buyers that want properties with some (or all) of the specified ";"-separated characteristics.
+The `-priority` flag indicates that we will be filtering buyers according to the specified priority level.
+
+Note that unlike the version of the command above, the user is allowed to provide multiple filtering conditions.
+The buyer list will be filtered to contain buyers who match *any one of the given commands*.
+
+Examples:<br>
+`multifilterbuyers -p 500000 -c bright; sunny -priority HIGH`: Filters all buyers that have a price range containing $500000 *OR* desired characteristics of bright and sunny *OR* a `HIGH` priority.
+
 ### Filter property in database: `filterprops`
 
 Filters properties in the database according to a given condition, and updates the visible property list.
@@ -252,6 +254,36 @@ Note that a user must only provide one of the three optional flags listed above,
 Examples:<br>
 `filterprops -r 500000-1000000`: Filters all properties that have a price in the range $500000 - $1000000.
 `filterprops -c bright; sunny`: Filters all properties that have "bright" and/or "sunny" in their characteristics.
+
+### Filter property in database (multiple conditions): `multifilterprops`
+
+Filters properties in the database according to multiple given conditions, and updates the visible property list.
+
+Syntax: `multifilterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-seller}`
+
+The `-r` flag indicates that we will be filtering properties that have a price within the specified price range.
+The `-c` flag indicates that we will be filtering properties with some (or all) of the specified ";"-separated characteristics.
+The `-seller` flag indicates that we will be filtering properties that have the specified seller.
+
+Note that unlike the version of the command above, the user is allowed to provide multiple filtering conditions.
+The property list will be filtered to contain properties which match *any one of the given commands*.
+
+Examples:<br>
+`multifilterprops -r 500000-1000000 -c bright; sunny`: Filters all properties that have a price in the range $500000 - $1000000 _OR_ have characteristics of bright and sunny.
+
+### Match single property to buyers: `matchprop`
+
+Matches a property in the database to buyers who might be interested in buying the specific property.
+
+Syntax: `matchprop INDEX`
+
+The `INDEX` specified in this command refers to the index of the entry that is currently visible on the list.
+Note that if an entry has been filtered out / is not currently on the list, then a `matchprop` command cannot be executed on it.
+
+This command filters the buyers list to only display buyers who have criteria that match a given property, that is, they might be interested in buying the said property.
+
+Examples:<br>
+`matchprop 5`: Matches property 5 to existing buyers in the database.
 
 ### List buyers in database: `listbuyers`
 
@@ -312,18 +344,21 @@ If the problem persists, report the bug to us!
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                                                                                                             |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add buyer**         | `addbuyer [-n NAME] [-ph PHONE]] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`                                                                                       |
-| **Add property**      | `addprop [-n NAME] [-price PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-owner OWNER NAME] [-p PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -price 1000000 -d long long long property description -owner Bob -p 91234567` |
-| **Delete buyer**      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                                |
-| **Delete property**   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                                  | 
-| **Update property**   | `editprop INDEX {-n NAME} {-price PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                                   |
-| **Update buyer**      | `editbuyer INDEX {-n NAME} {-p PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`                            |
-| **Find entries**      | `find [-k KEYWORDS]` <br> e.g. `find -k John Alice Bob`                                                                                                                                                                                                      |
-| **Filter buyers**     | `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}` <br> e.g. `filterbuyers -c bright; sunny`                                                                                                                             |
-| **Filter properties** | `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-seller}` <br> e.g. `filterprops -r 500000-1000000`                                                                                                                                                      |
-| **List users**        | `listbuyers`                                                                                                                                                                                                                                                 |
-| **List Properties**   | `listprops`                                                                                                                                                                                                                                                  |
-| **Exit cobb**         | `exit`                                                                                                                                                                                                                                                       |
-| **Get help**          | `help`                                                                                                                                                                                                                                                       |
+| Action                                | Format, Examples                                                                                                                                                                                                                                             |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add buyer**                         | `addbuyer [-n NAME] [-ph PHONE]] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`                                                                                       |
+| **Add property**                      | `addprop [-n NAME] [-price PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-owner OWNER NAME] [-p PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -price 1000000 -d long long long property description -owner Bob -p 91234567` |
+| **Delete buyer**                      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                                |
+| **Delete property**                   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                                  | 
+| **Update property**                   | `editprop INDEX {-n NAME} {-price PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                                   |
+| **Update buyer**                      | `editbuyer INDEX {-n NAME} {-p PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`                            |
+| **Find entries**                      | `find [-k KEYWORDS]` <br> e.g. `find -k John Alice Bob`                                                                                                                                                                                                      |
+| **Filter buyers**                     | `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}` <br> e.g. `filterbuyers -c bright; sunny`                                                                                                                             |
+| **Multi-Condition Filter Buyers**     | `multifilterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}` <br> e.g. `multifilterbuyers -p 500000 -c bright; sunny -priority HIGH`                                                                                          |
+| **Filter properties**                 | `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-seller}` <br> e.g. `filterprops -r 500000-1000000`                                                                                                                                                      |
+| **Multi-Condition Filter Properties** | `multifilterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-seller}` <br> e.g. `multifilterprops -r 500000-1000000 -c bright; sunny`                                                                                                                           |
+| **Match Properties**                  | `matchprop INDEX` <br> e.g. `matchprop 5`                                                                                                                                                                                                                    |
+| **List users**                        | `listbuyers`                                                                                                                                                                                                                                                 |
+| **List Properties**                   | `listprops`                                                                                                                                                                                                                                                  |
+| **Exit cobb**                         | `exit`                                                                                                                                                                                                                                                       |
+| **Get help**                          | `help`                                                                                                                                                                                                                                                       |
