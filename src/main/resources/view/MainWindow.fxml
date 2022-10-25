@@ -34,6 +34,7 @@
         </MenuBar>
 
         <HBox styleClass="pane-with-border" VBox.vgrow = "ALWAYS">
+
           <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                 HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <padding>
