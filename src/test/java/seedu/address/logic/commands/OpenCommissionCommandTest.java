@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.commission.Commission;
+import seedu.address.ui.GuiTab;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -35,6 +36,14 @@ class OpenCommissionCommandTest {
     }
 
     @Test
+    public void execute_noIndex_switchesTab() {
+        model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
+        CommandResult result = assertDoesNotThrow(() -> new OpenCommissionCommand().execute(model));
+        assertEquals(result.getFeedbackToUser(), Messages.MESSAGE_OPEN_COMMISSION_TAB_SUCCESS);
+        assertEquals(model.getSelectedTab(), GuiTab.COMMISSION);
+    }
+
+    @Test
     public void execute_validIndex_success() {
         model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         model.getSelectedCustomer().getValue().addCommission(
@@ -45,7 +54,7 @@ class OpenCommissionCommandTest {
         Commission commissionToOpen = model.getFilteredCommissionList().get(1);
         OpenCommissionCommand openCommissionCommand = new OpenCommissionCommand(INDEX_SECOND);
 
-        String expectedMessage = String.format(OpenCommissionCommand.MESSAGE_OPEN_COMMISSION_SUCCESS,
+        String expectedMessage = String.format(Messages.MESSAGE_OPEN_COMMISSION_SUCCESS,
                 commissionToOpen);
 
         CommandResult result = assertDoesNotThrow(() -> openCommissionCommand.execute(model));

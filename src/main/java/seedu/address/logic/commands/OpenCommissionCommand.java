@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_OPEN_COMMISSION_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_OPEN_COMMISSION_TAB_SUCCESS;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -23,12 +26,18 @@ public class OpenCommissionCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_OPEN_COMMISSION_SUCCESS = "Opened Commission: %1$s";
 
     private final Index targetIndex;
 
+    /** Creates an {@code OpenCommissionCommand} to open the specified commission at the given `targetIndex`. */
     public OpenCommissionCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
+    }
+
+    /** Creates an {@code OpenCommissionCommand} to open the commissions tab. */
+    public OpenCommissionCommand() {
+        this.targetIndex = null;
     }
 
     @Override
@@ -37,6 +46,11 @@ public class OpenCommissionCommand extends Command {
 
         if (!model.hasSelectedCustomer()) {
             throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
+        }
+        model.selectTab(GuiTab.COMMISSION);
+
+        if (targetIndex == null) {
+            return new CommandResult(MESSAGE_OPEN_COMMISSION_TAB_SUCCESS);
         }
 
         List<Commission> lastShownList = model.getFilteredCommissionList();
@@ -47,14 +61,17 @@ public class OpenCommissionCommand extends Command {
 
         Commission commissionToOpen = lastShownList.get(targetIndex.getZeroBased());
         model.selectCommission(commissionToOpen);
-        model.selectTab(GuiTab.COMMISSION);
         return new CommandResult(String.format(MESSAGE_OPEN_COMMISSION_SUCCESS, commissionToOpen));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof OpenCommissionCommand // instanceof handles nulls
-                && targetIndex.equals(((OpenCommissionCommand) other).targetIndex)); // state check
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof OpenCommissionCommand)) {
+            return false;
+        }
+        return Objects.equals(targetIndex, ((OpenCommissionCommand) other).targetIndex);
     }
 }

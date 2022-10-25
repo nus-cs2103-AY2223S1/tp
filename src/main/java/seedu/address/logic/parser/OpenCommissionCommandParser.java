@@ -18,6 +18,10 @@ public class OpenCommissionCommandParser implements Parser<OpenCommissionCommand
      */
     public OpenCommissionCommand parse(String args) throws ParseException {
         try {
+            String trimmedArgs = args.trim();
+            if (trimmedArgs.isEmpty()) {
+                return new OpenCommissionCommand();
+            }
             Index index = ParserUtil.parseIndex(args);
             return new OpenCommissionCommand(index);
         } catch (ParseException pe) {
