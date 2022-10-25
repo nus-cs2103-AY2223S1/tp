@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Are you a CS student struggling to keep track of your internship? 
-Do you feel tired of using spreadsheets to keep track of your applications? 
-We have just the right tool for you! 
+Are you a CS student struggling to keep track of your internship?
+Do you feel tired of using spreadsheets to keep track of your applications?
+We have just the right tool for you!
 
 Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
 
@@ -50,21 +50,48 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## About this User Guide
 
-## Features
+This guides aims to:
+1. Teach first-time users how to start using PleaseHireUs
+2. Show and explain to users how to use each command
+3. Provide users with a summary of the commands available
+4. Provide advance users with tips to improve their experience
 
+
+## Navigating the User Guide 
+**Information Box**
 <div markdown="block" class="alert alert-info">
+**:information_source: Info:** Provides extra information that is useful
+</div>
 
+**Tip Box**
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** Provides pointers to enhance your experience using the application 
+</div>
+
+**Warning Box**
+<div markdown="block" class="alert alert-danger">
+**:exclamation: Warning: Important messages**
+</div>
+
+**Highlights** <br>
+`commands` or `PARAMETERS`
+
+## Navigating the GUI
+
+## Command Format
+<div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add n/Grab`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/COMPANY_NAME [t/TAG]` can be used as `n/Jane Street t/$$$` or as `n/Jane Street`.
+  e.g `n/COMPANY_NAME [t/TAG]` can be used as `n/Jane Street t/highSalary` or as `n/Jane Street`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/$$$`, `t/free lunch t/transport` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/highSalary`, `t/freeLunch t/transport` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/COMPANY_NAME pr/APPLICATION_PROCESS`, `pr/APPLICATION_PROCESS n/COMPANY_NAME` is also acceptable.
@@ -76,6 +103,8 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+## Features
 
 ### Viewing help : `help`
 
@@ -102,7 +131,9 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 * `WEBSITE` will be set to “NA” by default.
 * `REMARK` will be empty by default.
 
-💡 **Tip:** A person can have any number of tags (including 0)
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** A person can have any number of tags (including 0)
+</div>
 
 Examples:
 * `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLY d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
@@ -131,6 +162,9 @@ Examples:
 * `list c/date true`
 * `list c/position false`
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** `DESCENDING` parameter will always default to `false` if the input is misspelt
+</div>
 
 ### Locating internships by: `find`
 
@@ -227,7 +261,7 @@ PleaseHireUs data are saved in the hard disk automatically after any command tha
 
 PleaseHireUs data are saved as a JSON file `[JAR file location]/data/internshipbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
@@ -239,14 +273,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PleaseHireUs home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Command summary
+## Command summary
 
 Action | Format, Examples
 --------|------------------
@@ -260,3 +294,9 @@ Action | Format, Examples
 **Help** | `help`
 **Undo** | `undo`
 **Redo** | `redo`
+
+
+## Acknowledgements
+* This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
