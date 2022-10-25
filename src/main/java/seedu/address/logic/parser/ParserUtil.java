@@ -35,7 +35,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     private static final String RESPONSE_CONSTRAINTS = "Response for criteria should be indicated as y or n";
 
-    public static boolean isValidYesNoResponse(String response) {
+    private static boolean isValidYesNoResponse(String response) {
         return response.equals("y") || response.equals("n");
     }
 
