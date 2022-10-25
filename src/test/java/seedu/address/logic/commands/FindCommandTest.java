@@ -54,13 +54,15 @@ public class FindCommandTest {
                 new CombinedPersonPredicate("first", "", "", "" ,
                         Collections.singletonList("test"));
         CombinedAppointmentPredicate firstCombinedAppointmentPredicate =
-                new CombinedAppointmentPredicate("reason1", LocalDateTime.MIN, LocalDateTime.MAX);
+                new CombinedAppointmentPredicate("reason1", LocalDateTime.MIN, LocalDateTime.MAX,
+                        Collections.emptyList());
 
         CombinedPersonPredicate secondCombinedPersonPredicate =
                 new CombinedPersonPredicate("second", "", "", "" ,
                         Collections.singletonList("test"));
         CombinedAppointmentPredicate secondCombinedAppointmentPredicate =
-                new CombinedAppointmentPredicate("reason2", LocalDateTime.MIN, LocalDateTime.MAX);
+                new CombinedAppointmentPredicate("reason2", LocalDateTime.MIN, LocalDateTime.MAX,
+                        Collections.emptyList());
 
         FindCommand findFirstCommand =
                 new FindCommand(firstCombinedPersonPredicate, firstCombinedAppointmentPredicate,

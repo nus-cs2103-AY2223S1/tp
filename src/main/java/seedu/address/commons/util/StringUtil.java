@@ -6,7 +6,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Helper functions for handling strings.
@@ -44,7 +49,6 @@ public class StringUtil {
      *
      * @param sentence cannot be null, but can be empty
      * @param sequence cannot be null, but can be empty
-     * @return
      */
     public static boolean containsIgnoreCase(String sentence, String sequence) {
         requireNonNull(sentence);
@@ -52,6 +56,24 @@ public class StringUtil {
 
         // Solution below adapted from https://stackoverflow.com/a/86832
         return Pattern.compile(Pattern.quote(sequence), Pattern.CASE_INSENSITIVE).matcher(sentence).find();
+    }
+
+    /**
+     * Returns true if {@code tagSet} has all the {@code strings} in it.
+     *
+     * @param tagSet cannot be null
+     * @param strings cannot be null
+     */
+    public static boolean containsAllTagsIgnoreCase(Set<Tag> tagSet, List<String> strings) {
+        requireNonNull(tagSet);
+        requireNonNull(strings);
+
+        List<String> tagListToCheckInUpperCase =
+                tagSet.stream().map(tag -> tag.toString().toUpperCase()).collect(Collectors.toList());
+        List<String> stringsToSearchInUpperCase =
+                strings.stream().map(String::toUpperCase).collect(Collectors.toList());
+
+        return tagListToCheckInUpperCase.containsAll(stringsToSearchInUpperCase);
     }
 
     /**

@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
@@ -95,15 +94,7 @@ public class CombinedPersonPredicate implements Predicate<Person> {
 
     private void addTagListPredicate(List<Predicate<Person>> personPredicates) {
         Predicate<Person> personContainsTagsPredicate =
-                person -> {
-                    List<String> tagsToSearchInUpperCase =
-                            tagList.stream().map(String::toUpperCase).collect(Collectors.toList());
-                    List<String> personTagsInUpperCase =
-                            person.getTags().stream().map(
-                                    tag -> tag.toString().toUpperCase()).collect(Collectors.toList());
-
-                    return personTagsInUpperCase.containsAll(tagsToSearchInUpperCase);
-                };
+                person -> StringUtil.containsAllTagsIgnoreCase(person.getTags(), tagList);
 
         personPredicates.add(personContainsTagsPredicate);
     }

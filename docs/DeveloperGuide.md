@@ -434,8 +434,8 @@ The `find` command,
 the search terms.
 * `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that
 satisfies all the search terms.
-* These 2 predicates are then used together to create a single predicate that displays all the relevant patient
-and appointments.
+* These 2 predicates are then used together in `FindCommand#execute()` to create a single predicate that displays all 
+* the relevant patient and appointments.
 
 #### Design considerations:
 

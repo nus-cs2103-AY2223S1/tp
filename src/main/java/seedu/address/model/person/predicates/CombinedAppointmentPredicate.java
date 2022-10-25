@@ -18,6 +18,7 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
     private final String reason;
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
+    private final List<String> tagList;
 
     // There is no equals() method for predicates. Ensure this predicate and variables to generate it are always final!
     private final Predicate<Appointment> combinedPredicate;
@@ -30,13 +31,15 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
      * @param startDateTime Start date to test.
      * @param endDateTime End date of test.
      */
-    public CombinedAppointmentPredicate(String reason, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public CombinedAppointmentPredicate(
+            String reason, LocalDateTime startDateTime, LocalDateTime endDateTime, List<String> tagList) {
         requireNonNull(startDateTime);
         requireNonNull(endDateTime);
 
         this.reason = reason;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
+        this.tagList = tagList;
 
         combinedPredicate = combineAllPredicates();
     }
@@ -50,8 +53,10 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
         if (!reason.isEmpty()) {
             addReasonPredicate(appointmentPredicates);
         }
-
         addDatePredicate(appointmentPredicates);
+        if (!tagList.isEmpty()) {
+            addTagListPredicate(appointmentPredicates);
+        }
 
         return appointmentPredicates.stream().reduce(PREDICATE_SHOW_ALL_APPOINTMENTS, Predicate::and);
     }
@@ -78,6 +83,13 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
         appointmentPredicates.add(dateTimeWithinRangePredicate);
     }
 
+    private void addTagListPredicate(List<Predicate<Appointment>> appointmentPredicates) {
+        Predicate<Appointment> appointmentContainsTagsPredicate =
+                appointment -> StringUtil.containsAllTagsIgnoreCase(appointment.getTags(), tagList);
+
+        appointmentPredicates.add(appointmentContainsTagsPredicate);
+    }
+
     @Override
     public boolean test(Appointment appointment) {
         return combinedPredicate.test(appointment);
@@ -96,6 +108,7 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
         CombinedAppointmentPredicate otherPredicate = (CombinedAppointmentPredicate) other;
         return reason.equals(otherPredicate.reason)
                 && startDateTime.equals(otherPredicate.startDateTime)
-                && endDateTime.equals(otherPredicate.endDateTime);
+                && endDateTime.equals(otherPredicate.endDateTime)
+                && tagList.equals(otherPredicate.tagList);
     }
 }
