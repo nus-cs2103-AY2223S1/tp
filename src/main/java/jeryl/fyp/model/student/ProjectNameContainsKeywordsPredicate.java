@@ -1,23 +1,16 @@
 package jeryl.fyp.model.student;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import jeryl.fyp.commons.util.StringUtil;
-
 
 /**
  * Tests that a {@code Student}'s {@code ProjectName} matches any of the keywords given.
  */
-public class ProjectNameContainsKeywordsPredicate implements Predicate<Student> {
-    private final List<String> keywords;
+public class ProjectNameContainsKeywordsPredicate extends FieldContainsKeywordsPredicate {
 
-    /**
-     * Initialise ProjectNameContainsKeywordsPredicate with the given keywords for searching.
-     * @param keywords The keyword list the user wants to search.
-     */
     public ProjectNameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        super(keywords);
     }
 
     @Override
@@ -33,5 +26,4 @@ public class ProjectNameContainsKeywordsPredicate implements Predicate<Student> 
                 || (other instanceof ProjectNameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ProjectNameContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }
