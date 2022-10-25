@@ -258,7 +258,7 @@ If there are no commands entered, simply exiting the program will not generate a
 FoodWhere data are saved as a JSON file `[JAR file location]/data/foodwhere.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, FoodWhere will discard all data and start with an empty data file at the next run. Close FoodWhere without using the <code>exit</code> command to avoid overwriting the data file.
+If your changes to the data file make its format invalid, FoodWhere will discard all data and start with an empty data file at the next run. Close FoodWhere without using the `exit` command to avoid overwriting the data file.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
