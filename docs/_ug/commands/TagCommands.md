@@ -111,7 +111,7 @@ Tags: {}
 
 > Renames a tag currently in FoodRem.
 
-```note
+```info
 The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
 ```
 
