@@ -19,14 +19,13 @@ import seedu.address.model.commission.Commission;
 import seedu.address.model.iteration.Iteration;
 
 /**
- * An UI component that displays information about a {@code Commission}.
+ * A UI component that displays information about a {@code Commission}.
  */
 public class CommissionDetailsPane extends UiPart<Region> {
 
     private static final String FXML = "CommissionDetailsPane.fxml";
     private static final Image ICON_MONEY_BAG = new Image("/images/money bag.png");
     private static final Image ICON_CALENDAR = new Image("/images/calendar dark.png");
-    private static final Image ICON_PERSON = new Image("/images/person silhouette.png");
     private static final Color COLOR_COMPLETED = Color.rgb(50, 174, 70);
     private static final Color COLOR_IN_PROGRESS = Color.rgb(84, 141, 225);
     private static final Color COLOR_NOT_STARTED = Color.rgb(184, 184, 184);
@@ -53,10 +52,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private Circle completionStatusCircle;
     @FXML
     private Label completionStatus;
-    @FXML
-    private ImageView customerIcon;
-    @FXML
-    private Label customerName;
     @FXML
     private FlowPane tags;
     @FXML
@@ -89,7 +84,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private void removeFieldIcons() {
         feeIcon.setImage(null);
         deadlineIcon.setImage(null);
-        customerIcon.setImage(null);
     }
 
     private void resetAllFields() {
@@ -100,7 +94,6 @@ public class CommissionDetailsPane extends UiPart<Region> {
         deadline.setText("");
         completionStatusCircle.setFill(null);
         completionStatus.setText("");
-        customerName.setText("");
         tags.getChildren().clear();
         iterationListView.setItems(null);
     }
@@ -108,14 +101,12 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private void setFieldIcons() {
         feeIcon.setImage(ICON_MONEY_BAG);
         deadlineIcon.setImage(ICON_CALENDAR);
-        customerIcon.setImage(ICON_PERSON);
     }
 
     private void updateFieldAttributeComponents(Commission commission) {
         title.setText(commission.getTitle().title);
         fee.setText("$" + String.format("%.2f", commission.getFee().fee));
         deadline.setText(commission.getDeadline().toString());
-        customerName.setText(commission.getCustomer().getName().fullName);
 
         if (commission.getDescription().isEmpty()) {
             description.setText("No description found");
