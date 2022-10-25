@@ -137,7 +137,7 @@ Format: `list`
 
 This command edits an existing guest in the guest book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rq/REQUEST]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 
@@ -234,7 +234,7 @@ Format: `clear`
 
 ### Exiting the program : `exit`
 
-This command exits the programme.
+This command exits the program.
 
 Format: `exit`
 
