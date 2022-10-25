@@ -222,7 +222,7 @@ Step 4: The result list of students will then be shown back to the user via the 
 ### Addtag feature
 
 #### Current Implementation
-The `addtag` feature is implemented by the `AddTagCommand` class which extends the more general `EditStudentCommand` class. 
+The `addtag` feature is implemented by the `AddTagCommand` class which extends the more general `EditStudentCommand` class.
 `AddTagCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
 The execution of this command is handled by `EditStudentCommand#execute`, which calls `AddTagCommand.AddTagStudentEditor#editStudent`,
 which in turn adds the tags. `EditStudentCommand#execute` handles the re-insert of the edited `Student` back into `Model`.
@@ -255,24 +255,24 @@ The flow for `AddTagCommand.AddTagStudentEditor#editStudent` is as follows
 
 #### Current Implementation
 
-The `mark` feature is implemented through the `MarkCommand` which extends the `Command` abstract class. 
+The `mark` feature is implemented through the `MarkCommand` which extends the `Command` abstract class.
 
 `MarkCommand` extends the `EditStudentCommand` abstract class, as it is a feature that modifies students in the list.
-The implementation of the execute command is contained in the parent class `EditStudentCommand#execute`, which 
+The implementation of the execute command is contained in the parent class `EditStudentCommand#execute`, which
 `MarkCommand` calls from. A brief summary of the class structure is illustrated in the class diagram below.
 
 ![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png)
 
-`IndexListGenerator` is an abstract class representing the list of indexes to modify. 
-The instance of `IndexListGenerator` can be either 
+`IndexListGenerator` is an abstract class representing the list of indexes to modify.
+The instance of `IndexListGenerator` can be either
 * `AllIndexGenerator`, which corresponds to all indexes of the filtered list (meaning all listed students are modified)
 * `SingleIndexGenerator`, which corresponds to a single index (meaning one selected student is modified)
 
 `StudentEditor` is an abstract class which contains all the logic for modifying the student. MarkCommand implements an
 unique subclass of `StudentEditor` called `MarkCommandStudentEditor`.
 
-Both `IndexListGenerator` and `MarkCommandStudentEditor` are passed to `MarkCommand` in its constructor via the 
-`MarkCommandParser`. Details of the class structure for `MarkCommandParser` are illustrated in the class diagram 
+Both `IndexListGenerator` and `MarkCommandStudentEditor` are passed to `MarkCommand` in its constructor via the
+`MarkCommandParser`. Details of the class structure for `MarkCommandParser` are illustrated in the class diagram
 below.
 
 ![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png)
