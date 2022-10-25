@@ -30,17 +30,20 @@ public class SortCommand extends Command {
     private final Comparator<Person> comparator;
 
     public SortCommand(TYPE type, ORDER order) {
+        this.comparator = generateComparator(type, order);
+    }
+
+    public static Comparator<Person> generateComparator(TYPE type, ORDER order) {
         switch (type) {
         case NAME:
             if (order.equals(ORDER.ASC)) {
-                this.comparator = Person::compareToByNameAsc;
+                return Person::compareToByNameAsc;
             } else {
-                this.comparator = Person::compareToByNameDesc;
+                return Person::compareToByNameDesc;
             }
-            break;
         default:
             // default sorting is to sort by Name Asc
-            this.comparator = Person::compareToByNameAsc;
+            return Person::compareToByNameAsc;
         }
     }
 
@@ -49,5 +52,12 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.sortPersons(this.comparator);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return this == other // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles null
+        && this.comparator.equals(((SortCommand) other).comparator)); // state check
     }
 }
