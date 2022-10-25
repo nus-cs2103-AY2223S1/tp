@@ -240,7 +240,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleSortTransaction(CommandResult result) {
         ObservableList<Client> clientList = logic.getFilteredClientList();
-        companyListPanel.setCompanyList(FXCollections.observableArrayList());
+        remarkListPanel.setRemarkList(FXCollections.observableArrayList());
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         Client client = clientList.get(0);
         if (isOldestSort(result)) {
