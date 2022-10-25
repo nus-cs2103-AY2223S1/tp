@@ -9,7 +9,18 @@
     "hospitalWing": null,
     "floorNumber": null,
     "wardNumber": null,
-    "medications" : [ "Ibuprofen" ]
+    "medications" : [ "Ibuprofen" ],
+    "pastAppointments" : [
+      {
+        "date" : "12-06-2022",
+        "diagnosis" : "Sick",
+        "medication": [ "Paracetamol", "Ibuprofen" ]
+      },
+      {
+        "date" : "14-06-2022",
+        "diagnosis" : "Sick",
+        "medication": [ "Chlormine", "Amoxycillin" ]
+      }]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -19,7 +30,19 @@
     "hospitalWing": "south",
     "floorNumber": "1",
     "wardNumber": "B690",
-    "medications" : [ "Paracetamol", "Xanax" ]
+    "medications" : [ "Paracetamol", "Xanax" ],
+    "pastAppointments" : [
+      {
+        "date" : "12-06-2022",
+        "diagnosis" : "Sick",
+        "medication": [ "Paracetamol", "Ibuprofen" ]
+      },
+      {
+        "date" : "14-06-2022",
+        "diagnosis" : "Sick",
+        "medication": [ "Chlormine", "Amoxycillin" ]
+      }],
+    "upcomingAppointment" : "12-06-2022"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",

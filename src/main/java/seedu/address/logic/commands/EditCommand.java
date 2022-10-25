@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UPCOMING_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -133,7 +134,7 @@ public class EditCommand extends Command {
         }
         Set<Medication> updatedMedications = editPersonDescriptor.getMedications()
                 .orElse(personToEdit.getMedications());
-        List<PastAppointment> pastAppointments = personToEdit.getPastAppointments();
+        List<PastAppointment> pastAppointments = editPersonDescriptor.getPastAppointments();
         UpcomingAppointment updatedUpcomingAppointment = editPersonDescriptor.getUpcomingAppointment()
                 .orElse(personToEdit.getUpcomingAppointment().orElse(null));
 
@@ -174,6 +175,7 @@ public class EditCommand extends Command {
         private FloorNumber floorNumber;
         private WardNumber wardNumber;
         private Set<Medication> medications;
+        private List<PastAppointment> pastAppointments;
         private UpcomingAppointment upcomingAppointment;
 
         public EditPersonDescriptor() {}
@@ -193,6 +195,7 @@ public class EditCommand extends Command {
             setWardNumber(toCopy.wardNumber);
             setMedications(toCopy.medications);
             setUpcomingAppointment(toCopy.upcomingAppointment);
+            setPastAppointments(toCopy.pastAppointments);
         }
 
         /**
@@ -315,6 +318,17 @@ public class EditCommand extends Command {
                     && getFloorNumber().equals(e.getFloorNumber())
                     && getWardNumber().equals(e.getWardNumber())
                     && getMedications().equals(e.getMedications());
+        }
+
+        public void setPastAppointments(List<PastAppointment> pastAppointments) {
+            this.pastAppointments = pastAppointments;
+        }
+        public List<PastAppointment> getPastAppointments() {
+            if (pastAppointments == null) {
+                return new ArrayList<>();
+            } else {
+                return pastAppointments;
+            }
         }
     }
 }
