@@ -109,13 +109,13 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
-        updateModuleTask(target);
+        updateModuleTaskCount(target);
     }
 
     @Override
     public void addTask(Task t) {
         taskBook.addTask(t);
-        updateModuleTask(t);
+        updateModuleTaskCount(t);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -123,16 +123,17 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
         taskBook.setTask(target, editedTask);
+        updateModuleTaskCount(editedTask);
     }
 
     @Override
-    public void updateModuleTask(Task t) {
-        Module toUpdate = parseModuleFromCode(t.getModule());
+    public void archiveDoneModuleTasks(ModCode code) {
         FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
-        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(code);
         tempList.setPredicate(newPredicate);
-        toUpdate.updateTaskCount(tempList.size());
-        setModule(toUpdate, toUpdate);
+        for (Task t : tempList) {
+            setTask(t, t.archive());
+        }
     }
 
     //=========== ModuleList ================================================================================
@@ -203,6 +204,16 @@ public class ModelManager implements Model {
             updateFilteredModuleList(model -> model.getCode().equals(code));
             updateFilteredTaskList(task -> task.getModule().equals(code));
         }
+    }
+
+    @Override
+    public void updateModuleTaskCount(Task t) {
+        Module toUpdate = parseModuleFromCode(t.getModule());
+        FilteredList<Task> tempList = new FilteredList<>(this.taskBook.getTaskList());
+        Predicate<Task> newPredicate = task -> task.getModule().equals(toUpdate.getCode()) && !task.isArchived();
+        tempList.setPredicate(newPredicate);
+        toUpdate.updateTaskCount(tempList.size());
+        setModule(toUpdate, toUpdate);
     }
 
     //=========== Filtered Task List Accessors =============================================================

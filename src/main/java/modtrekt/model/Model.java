@@ -84,7 +84,7 @@ public interface Model {
 
 
     /** Updates module list after task removal */
-    void updateModuleTask(Task t);
+    void updateModuleTaskCount(Task t);
 
     /** Updates task list after module removal */
     void deleteTasksOfModule(Module target);
@@ -113,6 +113,13 @@ public interface Model {
      * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Archives all the tasks in the done module.
+     *
+     * @param code the code of the module that is marked as done.
+     */
+    void archiveDoneModuleTasks(ModCode code);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
