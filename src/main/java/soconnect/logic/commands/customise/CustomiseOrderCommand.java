@@ -22,7 +22,7 @@ public class CustomiseOrderCommand extends CustomiseCommand {
     public static final String COMMAND_WORD = "order";
 
     public static final String MESSAGE_USAGE = CustomiseCommand.COMMAND_WORD + " "
-            + COMMAND_WORD + " : Changes the order of the details\n"
+            + COMMAND_WORD + " : Changes the order of the details.\n"
             + "Parameters: "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_EMAIL + "] "
