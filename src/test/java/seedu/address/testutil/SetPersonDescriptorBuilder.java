@@ -34,7 +34,7 @@ public class SetPersonDescriptorBuilder {
     public SetPersonDescriptorBuilder(Person person) {
         this.descriptor = new SetPersonDescriptor();
         this.descriptor.setName(person.getName());
-        this.descriptor.setAddress(person.getAddress());
+        this.descriptor.setAddress(person.getAddress().orElse(null));
         this.descriptor.setRole(person.getRole().orElse(null));
         this.descriptor.setTimezone(person.getTimezone().orElse(null));
         this.descriptor.setTags(person.getTags());
