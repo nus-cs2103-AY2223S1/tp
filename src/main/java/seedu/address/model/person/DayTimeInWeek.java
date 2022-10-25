@@ -19,6 +19,7 @@ public class DayTimeInWeek {
      * Completely no whitespace in the name
      */
     public static final String VALIDATION_REGEX = "(mon|tue|wed|thu|fri|sat|sun)@([0-9]{4})";
+    public static final String CURRENT_TIME_COMMAND = "now";
 
     public final Integer minutesSinceMondayMidnight;
 
@@ -51,6 +52,10 @@ public class DayTimeInWeek {
 
         return stringToMinutesSinceMondayMidnight(test) < MINUTES_IN_A_WEEK;
 
+    }
+
+    public static boolean isFindTimeNow(String test) {
+        return test.equals(CURRENT_TIME_COMMAND);
     }
 
     /**
