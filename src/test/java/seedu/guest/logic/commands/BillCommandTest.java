@@ -40,7 +40,7 @@ public class BillCommandTest {
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
 
-        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, guestToBill);
+        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, billedGuest);
 
         ModelManager expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestToBill, billedGuest);
@@ -56,7 +56,7 @@ public class BillCommandTest {
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_ZERO).build();
 
-        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, guestToBill);
+        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, billedGuest);
 
         ModelManager expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestToBill, billedGuest);
@@ -72,7 +72,7 @@ public class BillCommandTest {
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
 
-        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, guestToBill);
+        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, billedGuest);
 
         ModelManager expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestToBill, billedGuest);
@@ -90,7 +90,7 @@ public class BillCommandTest {
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
 
-        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, guestToBill);
+        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, billedGuest);
 
         ModelManager expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestToBill, billedGuest);
@@ -108,7 +108,7 @@ public class BillCommandTest {
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_ZERO).build();
 
-        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, guestToBill);
+        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, billedGuest);
 
         ModelManager expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestToBill, billedGuest);
@@ -126,7 +126,7 @@ public class BillCommandTest {
         GuestBuilder guestInList = new GuestBuilder(guestToBill);
         Guest billedGuest = guestInList.withBill(VALID_BILL_POSITIVE).build();
 
-        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, guestToBill);
+        String expectedMessage = String.format(BillCommand.MESSAGE_SUCCESS, billedGuest);
 
         ModelManager expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
         expectedModel.setGuest(guestToBill, billedGuest);
