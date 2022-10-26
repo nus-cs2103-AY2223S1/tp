@@ -161,6 +161,18 @@ public class Module {
     }
 
     /**
+     * Replaces the person {@code target} in the module's set of persons with {@code editedPerson}.
+     *
+     * @param target The person in the module's set to be replaced.
+     * @param editedPerson The person to replace {@code target} in the module's set.
+     */
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        persons.remove(target);
+        persons.add(editedPerson);
+    }
+
+    /**
      * Removes the specified person from the module's set of persons.
      *
      * @param person The person to be removed from the module's set of persons.

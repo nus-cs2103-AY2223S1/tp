@@ -120,6 +120,26 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Replaces the person {@code target} in every module with {@code editedPerson}
+     * if {@code target} exists in the module.
+     *
+     * {@code target} must exist in the address book person list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person
+     * in the address book person list.
+     *
+     * @param target The person to be replaced.
+     * @param editedPerson The person to replace {@code target}.
+     */
+    public void setPersonInModules(Person target, Person editedPerson) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Module module = internalList.get(i);
+            if (module.containsPerson(target)) {
+                module.setPerson(target, editedPerson);
+            }
+        }
+    }
+
+    /**
      * Removes the provided person object from every module's set of persons if it exists.
      *
      * @param person The person to be removed from every module's set of persons.
