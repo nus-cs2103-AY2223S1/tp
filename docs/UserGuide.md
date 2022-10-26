@@ -42,7 +42,7 @@ Before diving into the features, the examples in this guide are formatted with t
 
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
-be run in focus mode. On the other had, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
+be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
 Let's first begin with the commands available in the default mode.
 
