@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -99,6 +100,16 @@ public class ModelStub implements Model {
 
     @Override
     public void setEvent(Event target, Event editedProfile) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
         throw new AssertionError("This method should not be called.");
     }
 

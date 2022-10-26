@@ -80,4 +80,22 @@ public class DeleteProfilesFromEventCommand extends EventCommand {
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_ATTENDEES_SUCCESS, event));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DeleteProfilesFromEventCommand)) {
+            return false;
+        }
+
+        // state check
+        DeleteProfilesFromEventCommand d = (DeleteProfilesFromEventCommand) other;
+        return eventIndex.equals(d.eventIndex)
+                && profileIndexes.equals(d.profileIndexes);
+    }
 }
