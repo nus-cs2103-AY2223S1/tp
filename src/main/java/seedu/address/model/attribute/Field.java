@@ -1,4 +1,4 @@
-package seedu.address.model.person.field;
+package seedu.address.model.attribute;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -35,7 +35,7 @@ public class Field {
     /**
      * Constructs a {@code Field}.
      *
-     * @param name The name of the field.
+     * @param name  The name of the field.
      * @param value The value of the field.
      */
     public Field(String name, String value) {
