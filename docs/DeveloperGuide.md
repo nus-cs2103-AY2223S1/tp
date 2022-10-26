@@ -312,9 +312,9 @@ The following activity diagram summarizes what happens when a user executes a `G
 
 #### Design consideration:
 
-##### Aspect: How find executes
+##### Aspect: How goto executes
 
-* **Alternative 1 (current choice):** Navigate to a single module by module code and updating home status.
+* **Alternative 1 (current choice):** Navigate to a single module by module code and update home status.
     * Pros:
         * Provides an intuitive and more versatile way for users to navigate between modules.
         * Provides an intuitive usage of commands by limiting the scope of possible commands usable
@@ -330,12 +330,13 @@ The following activity diagram summarizes what happens when a user executes a `G
     * Cons: Require user to navigate back to home page before going to another module which might be unintuitive for users.
 
 ##### Rationale behind current choice:
-* Alternative 1 was chosen as it provides a more intuitive way for prospective users.
+1. Alternative 1 was chosen as it provides a more intuitive way for prospective users.
 
-* The following commands`list-module`, `find-module` are implemented to allow users to filter
-  the module list via module code prefix and reset the filtered module list while in home page. <br>
-  It is not meant to be used in tandem with `goto` command. Instead, `home` command should be used to navigate back to the home page
-  after usage of the `goto` command.
+2. The following commands `list-module` and `find-module` are disabled as they are not meant to be used in tandem with `goto` command
+   as the filtering of modules is not needed when there exist only one module.
+
+3. The following commands `list-module` and `find-module` are disabled as they are not meant to be used in tandem with `goto` command
+   as essential person within a module (i.e. professors, tutor assistant and friends) are likely to be limited in numbers.
 
 Hence, to prevent confusion we chose Alternative 1.
 
