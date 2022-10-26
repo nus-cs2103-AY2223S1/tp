@@ -97,12 +97,12 @@ Examples:
 * Case-insensitive i.e. venues `Meeting Room` and `meeting room` are identical
 
 `tp/TIME_PERIOD`
-* Must be in the format `START_TIME`-`END_TIME` *i.e. 8 to 9 must be indicated as 8-9*
-* Must begin and end on the hour *i.e. 1230-13 will not be accepted*
-* Operates on a 24-hour format *i.e. 4p.m. must be indicated as 16*
-* Valid booking hours are from 8 to 22
-* Can indicate blocks *i.e. 18-21 will be from 6p.m. to 9p.m.*
-* `START_TIME` must be earlier than `END_TIME`
+* The start time and end time must be separated by a hyphen *i.e. 8 to 9 must be indicated as `8-9`*
+* Must begin and end on the hour *i.e. `1230-13` will not be accepted*
+* Operates on a 24-hour format *i.e. `4p.m.` must be indicated as `16`*
+* Valid booking hours are from `8` to `22`
+* Blocks of time are allowed *i.e. `18-21` is accepted*
+* The start time must be earlier than end time
 
 `d/DAY`
 * Must be the first three characters of a day *i.e. Monday must be indicated as mon*
