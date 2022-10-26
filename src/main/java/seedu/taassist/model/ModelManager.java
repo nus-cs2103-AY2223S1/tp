@@ -117,7 +117,7 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         requireNonNull(student);
         taAssist.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
@@ -208,9 +208,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredStudentList(Predicate<Student> predicate) {
+    public void setFilteredListPredicate(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void andFilteredListPredicate(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(filteredStudents.getPredicate() == null
+                ? predicate
+                : predicate.and(filteredStudents.getPredicate()));
     }
 
     @Override
@@ -246,14 +254,14 @@ public class ModelManager implements Model {
 
         focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
-        updateFilteredStudentList(predicate);
+        setFilteredListPredicate(predicate);
     }
 
     @Override
     public void exitFocusMode() {
         focusedClass = null;
         focusLabelProperty.set(DEFAULT_FOCUS_LABEL);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override

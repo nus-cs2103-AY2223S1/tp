@@ -102,7 +102,7 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoStudent(Model model) {
-        model.updateFilteredStudentList(p -> false);
+        model.setFilteredListPredicate(p -> false);
 
         assertTrue(model.getFilteredStudentList().isEmpty());
     }
