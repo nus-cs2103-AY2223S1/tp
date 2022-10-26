@@ -306,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | first time user                   | see the app being populated with sample students, tasks and lessons      | can try out the functions of the app                                            |
 | `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data |
 | `* *`    | user                              | add attendance for a lesson                                      | can keep track of who attended the lesson                                       |
-| `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in participation                        |
+| `* *`    | user                              | keep track of my students' level of participation               | can prompt students who are less active in class                        |
 | `* *`    | user                              | keep track of my students' grades                               | can help and pay more attention to the weaker students                             |  
 | `* *`    | user                              | take down notes related to a lesson                             | can refer back and remember important things that happened during the lesson      |      
 | `* *`    | user                              | detect if there are any lesson schedule conflicts                      | will not wrongly schedule lessons at the same time                               |
