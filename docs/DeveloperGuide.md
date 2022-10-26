@@ -489,8 +489,8 @@ We give an example usage scenario of `SortSpecialisationCommand` and `SortProjec
     1. The user enters `sort-sp` if he wishes to execute the `SortSpecialisationCommand`
     2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
     3. `LogicManager` executes the `SortSpecialisationCommand` using the `LogicManager#execute()` method.
-    4. `SortSpecialisationCommand` sorts our internalList `ObservableList<Student>`, 
-       and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+    4. `SortSpecialisationCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be
+       identified as a `SortSpecialisationCommand` so that our `MainWindow` will show the sorted List.
 
 ![SortSpecialisationCommandSequenceDiagram](images/SortSpecialisationCommandSequenceDiagram.jpg)
 
@@ -498,8 +498,8 @@ We give an example usage scenario of `SortSpecialisationCommand` and `SortProjec
     1. The user enters `sort-s` if he wishes to execute the `SortProjectStatusCommand`
     2. FypManagerParser creates a new `SortSpecialisationCommand` after preliminary check of user input.
     3. `LogicManager` executes the `SortProjectStatusCommand` using the `LogicManager#execute()` method.
-    4. `SortProjectStatusCommand` sorts our internalList `ObservableList<Student>`,
-       and then creates a `CommandResult` and returns it to `LogicManager`
+    4. `SortProjectStatusCommand` creates a `CommandResult` and returns it to `LogicManager`, which will be 
+        identified as a `SortProjectStatusCommand` so that our `MainWindow` will show the sorted List.
 
 ![SortProjectStatusCommandSequenceDiagram](images/SortProjectStatusCommandSequenceDiagram.jpg)
 
