@@ -64,4 +64,24 @@ public class MoneyTest {
 
         assertThrows(CommandException.class, () -> moneyWithMaximumValue.addTo(moneyWithFiveAmount));
     }
+
+    @Test
+    public void moneySubtractionTest() {
+        Money moneyWithZeroAmount = new Money(0);
+        Money moneyWithFiveAmount = new Money(5);
+        Money moneyWithTenAmount = new Money(10);
+
+        try {
+            Money fiveSubtractZero = moneyWithFiveAmount.subtract(moneyWithZeroAmount);
+            Money tenSubtractFive = moneyWithTenAmount.subtract(moneyWithFiveAmount);
+            assertEquals(new Money(5), fiveSubtractZero);
+            assertEquals(new Money(5), tenSubtractFive);
+        } catch (CommandException e) {
+            // Should not throw an error
+            assert false;
+        }
+
+        // Expected to throw an error because -5 is negative
+        assertThrows(CommandException.class, () -> moneyWithZeroAmount.subtract(moneyWithFiveAmount));
+    }
 }
