@@ -32,7 +32,7 @@ public class AddEventToTripCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Event added to trip: %1$s "
             + "\nThe specified event has been removed "
-            + "from the bucket list. Current bucket list:";
+            + "from the bucket list. \nCurrent bucket list:";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event already exists in the specified trip";
 
     private final Title eventToAdd;
@@ -59,12 +59,17 @@ public class AddEventToTripCommand extends Command {
         if (!model.hasTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()))) {
             throw new CommandException("Please enter a valid Trip");
         }
+        
+        if (!model.hasEventInBucketList(new Event(eventToAdd))) {
+            throw new CommandException("This event is no longer in the bucket list!");
+        }
 
         Event event = model.getEvent(new Event(eventToAdd));
         Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
         model.removeFromBucketList(event);
         toAddInto.addEvent(event);
         model.updateFilteredEventList(model.getBucketPredicate());
+        model.resetSelectedTrip();
         model.sortTripsByComparator(DO_NOTHING);
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }

@@ -252,5 +252,10 @@ public class ModelManager implements Model {
     public void sortEvents(Comparator<Event> comp) {
         addressBook.sortEvents(comp);
     }
+    
+    @Override
+    public boolean hasEventInBucketList(Event event) {
+        return bucketList.contains(event);
+    }
 
 }

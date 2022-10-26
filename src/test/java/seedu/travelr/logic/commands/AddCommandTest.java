@@ -236,6 +236,11 @@ public class AddCommandTest {
         public void sortEvents(Comparator<Event> comp) {
             throw new AssertionError("This method should not be called.");
         }
+        
+        @Override
+        public boolean hasEventInBucketList(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
 
     }
 
