@@ -305,18 +305,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                               |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/DustAllergy` |
-| **Add Record**    | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                |
-| **Clear**         | `clear`                                                                                                                                                        |
-| **Clear Records** | `rclear`                                                                                                                                                       |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
-| **Delete Record** | `rdelete INDEX`                                                                                                                                                |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
-| **Edit Record**   | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                  |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                     |
-| **Find Record**   | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                      |
-| **List**          | `list`                                                                                                                                                         |
-| **List Records**  | `rlist`                                                                                                                                                        |
-| **Help**          | `help`                                                                                                                                                         |
+| Action                | Format, Examples                                                                                                                                               |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/DustAllergy` |
+| **Add Record**        | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                |
+| **Clear**             | `clear`                                                                                                                                                        |
+| **Clear Records**     | `rclear`                                                                                                                                                       |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
+| **Delete Record**     | `rdelete INDEX`                                                                                                                                                |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
+| **Edit Record**       | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                  |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                     |
+| **Find Record**       | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                      |
+| **List**              | `list`                                                                                                                                                         |
+| **List Records**      | `rlist`                                                                                                                                                        |
+| **Add Appointment**   | `appt INDEX [d/DATE]` <br> e.g., `appt 1 d/01-01-2000 1230`                                                                                                    |
+| **Clear Appointment** | `apptcl`                                                                                                                                                       |
+| **Help**              | `help`                                                                                                                                                         |
