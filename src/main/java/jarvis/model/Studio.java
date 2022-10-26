@@ -21,6 +21,11 @@ public class Studio extends Lesson {
         this.participation = new StudioParticipation(students);
     }
 
+    public Studio(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students, LessonNotes notes) {
+        super(lessonDesc, timePeriod, students, notes);
+        this.participation = new StudioParticipation(students);
+    }
+
     public void setParticipationForStudent(Student student, int i) {
         participation.setParticipationForStudent(student, i);
     }

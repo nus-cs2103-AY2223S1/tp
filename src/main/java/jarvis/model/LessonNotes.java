@@ -29,6 +29,14 @@ public class LessonNotes {
         }
     }
 
+    public LessonNotes(Collection<Student> students, ArrayList<String> generalNotes) {
+        this.generalNotes = generalNotes;
+        this.studentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
+        for (Student stu : students) {
+            studentNotes.put(stu, new ArrayList<>());
+        }
+    }
+
     /**
      * Adds on to the overall lesson notes.
      * @param notes Lines to append to the overall lesson notes.
@@ -80,7 +88,7 @@ public class LessonNotes {
         return specifiedStudentNotes.remove(index);
     }
 
-    public String getGeneralNotes() {
+    public String getGeneralNotesString() {
         StringBuilder formattedGeneralNotes = new StringBuilder("Lesson Notes:\n");
         int index = 0;
         for (String generalNote: generalNotes) {
@@ -106,7 +114,7 @@ public class LessonNotes {
     }
 
     public String getAllNotes() {
-        StringBuilder formattedAllNotes = new StringBuilder(getGeneralNotes());
+        StringBuilder formattedAllNotes = new StringBuilder(getGeneralNotesString());
         formattedAllNotes.append("\nNotes for individual students:\n");
         for (Student student: studentNotes.keySet()) {
             formattedAllNotes.append(student.toString());
@@ -117,17 +125,14 @@ public class LessonNotes {
         return formattedAllNotes.toString();
     }
 
+    public ArrayList<String> getGeneralNotes() {
+        return generalNotes;
+    }
+
     public void setStudent(Student targetStudent, Student editedStudent) {
         ArrayList<String> tempNotes = studentNotes.get(targetStudent);
         studentNotes.remove(targetStudent);
         studentNotes.put(editedStudent, tempNotes);
-    }
-
-    public String toFullString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nNotes for individual students:\n");
-
-        return sb.toString();
     }
 
     @Override

@@ -44,7 +44,7 @@ public abstract class JsonAdaptedLesson {
 
     // Data fields
     private final String attendance;
-    private final String notes;
+    private final ArrayList<String> generalNotes;
     private final boolean isCompleted;
 
     /**
@@ -56,26 +56,26 @@ public abstract class JsonAdaptedLesson {
                              @JsonProperty("endDateTime") LocalDateTime endDateTime,
                              @JsonProperty("studentIndexList") Set<Integer> studentIndexList,
                              @JsonProperty("attendance") String attendance,
-                             @JsonProperty("notes") String notes,
+                             @JsonProperty("generalNotes") ArrayList<String> generalNotes,
                              @JsonProperty("isCompleted") boolean isCompleted) {
         this.lessonDesc = lessonDesc;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.studentIndexList = studentIndexList;
         this.attendance = attendance;
-        this.notes = notes;
+        this.generalNotes = generalNotes;
         this.isCompleted = isCompleted;
     }
 
     public JsonAdaptedLesson(LessonDesc lessonDesc, TimePeriod timePeriod, Set<Integer> studentIndexList,
-                             LessonAttendance attendance, String notes,
+                             LessonAttendance attendance, ArrayList<String> generalNotes,
                              boolean isCompleted) throws JsonProcessingException {
         this.lessonDesc = lessonDesc == null ? null : lessonDesc.lessonDesc;
         this.startDateTime = timePeriod.getStart();
         this.endDateTime = timePeriod.getEnd();
         this.studentIndexList = studentIndexList;
         this.attendance = attendance.toFullString();
-        this.notes = notes;
+        this.generalNotes = generalNotes;
         this.isCompleted = isCompleted;
     }
 
@@ -122,8 +122,8 @@ public abstract class JsonAdaptedLesson {
         return attendance;
     }
 
-    protected String getNotes() {
-        return notes;
+    protected ArrayList<String> getGeneralNotes() {
+        return generalNotes;
     }
 
     protected boolean isCompleted() {

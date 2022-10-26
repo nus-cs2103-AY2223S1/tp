@@ -107,7 +107,7 @@ public class ExpandedLessonCard extends UiPart<Region> {
         }
 
         timePeriod.setText(lesson.getTimePeriod().toString());
-        generalNotes.setText(lesson.getGeneralNotes());
+        generalNotes.setText(lesson.getGeneralNotesString());
     }
 
     private void setTableUi() {

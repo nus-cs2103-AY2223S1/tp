@@ -44,6 +44,16 @@ public abstract class Lesson {
         this.notes = new LessonNotes(students);
     }
 
+    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students, LessonNotes notes) {
+        requireAllNonNull(timePeriod, students, notes);
+        this.lessonDesc = lessonDesc;
+        this.timePeriod = timePeriod;
+        this.studentList = new ArrayList<>(students);
+        this.observableStudentList = FXCollections.observableArrayList(studentList);
+        this.attendance = new LessonAttendance(students);
+        this.notes = notes;
+    }
+
     public LocalDateTime startDateTime() {
         return timePeriod.getStart();
     }
@@ -129,7 +139,11 @@ public abstract class Lesson {
         return notes.getStudentNotes(student);
     }
 
-    public String getGeneralNotes() {
+    public String getGeneralNotesString() {
+        return notes.getGeneralNotesString();
+    }
+
+    public ArrayList<String> getGeneralNotes() {
         return notes.getGeneralNotes();
     }
 

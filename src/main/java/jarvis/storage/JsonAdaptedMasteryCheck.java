@@ -1,6 +1,7 @@
 package jarvis.storage;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -35,9 +36,9 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
                                    @JsonProperty("endDateTime") LocalDateTime endDateTime,
                                    @JsonProperty("studentIndexList") Set<Integer> studentIndexList,
                                    @JsonProperty("attendance") String attendance,
-                                   @JsonProperty("notes") String notes,
+                                   @JsonProperty("generalNotes") ArrayList<String> generalNotes,
                                    @JsonProperty("isCompleted") boolean isCompleted) {
-        super(lessonDesc, startDateTime, endDateTime, studentIndexList, attendance, notes, isCompleted);
+        super(lessonDesc, startDateTime, endDateTime, studentIndexList, attendance, generalNotes, isCompleted);
     }
 
     /**
@@ -78,13 +79,14 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
                     LessonAttendance.class.getSimpleName()));
         }
 
-        if (this.getNotes() == null) {
+        if (this.getGeneralNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
         }
+        LessonNotes modelLessonNotes = new LessonNotes(modelStudentSet, this.getGeneralNotes());
 
-        MasteryCheck masteryCheck = new MasteryCheck(modelLessonDesc, modelTimePeriod,
-                modelStudentSet);
+        MasteryCheck masteryCheck = new MasteryCheck(modelLessonDesc, modelTimePeriod, modelStudentSet,
+                modelLessonNotes);
         if (this.isCompleted()) {
             masteryCheck.markAsCompleted();
         }

@@ -1,6 +1,7 @@
 package jarvis.storage;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jarvis.commons.core.index.Index;
 import jarvis.commons.exceptions.IllegalValueException;
+import jarvis.model.Lesson;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
@@ -38,10 +40,10 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
                              @JsonProperty("endDateTime") LocalDateTime endDateTime,
                              @JsonProperty("studentIndexList") Set<Integer> studentIndexList,
                              @JsonProperty("attendance") String attendance,
-                             @JsonProperty("notes") String notes,
+                             @JsonProperty("generalNotes") ArrayList<String> generalNotes,
                              @JsonProperty("isCompleted") boolean isCompleted,
                              @JsonProperty("studioParticipation") String studioParticipation) {
-        super(lessonDesc, startDateTime, endDateTime, studentIndexList, attendance, notes, isCompleted);
+        super(lessonDesc, startDateTime, endDateTime, studentIndexList, attendance, generalNotes, isCompleted);
         this.studioParticipation = studioParticipation;
     }
 
@@ -85,17 +87,18 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
                     LessonAttendance.class.getSimpleName()));
         }
 
-        if (this.getNotes() == null) {
+        if (this.getGeneralNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
         }
+        LessonNotes modelLessonNotes = new LessonNotes(modelStudentSet, this.getGeneralNotes());
 
         if (studioParticipation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StudioParticipation.class.getSimpleName()));
         }
 
-        Studio studio = new Studio(modelLessonDesc, modelTimePeriod, modelStudentSet);
+        Studio studio = new Studio(modelLessonDesc, modelTimePeriod, modelStudentSet, modelLessonNotes);
         if (this.isCompleted()) {
             studio.markAsCompleted();
         }

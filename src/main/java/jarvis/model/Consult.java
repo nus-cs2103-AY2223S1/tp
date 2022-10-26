@@ -18,6 +18,11 @@ public class Consult extends Lesson {
         super(lessonDesc, timePeriod, students);
     }
 
+    public Consult(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
+                   LessonNotes notes) {
+        super(lessonDesc, timePeriod, students, notes);
+    }
+
     /**
      * Returns true if both Consults have the same description,
      * occur at the same time and are attended by the same students.

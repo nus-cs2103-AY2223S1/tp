@@ -2,6 +2,7 @@ package jarvis.storage;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -41,9 +42,9 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
                               @JsonProperty("endDateTime") LocalDateTime endDateTime,
                               @JsonProperty("studentIndexList") Set<Integer> studentIndexList,
                               @JsonProperty("attendance") String attendance,
-                              @JsonProperty("notes") String notes,
+                              @JsonProperty("generalNotes") ArrayList<String> generalNotes,
                               @JsonProperty("isCompleted") boolean isCompleted) {
-        super(lessonDesc, startDateTime, endDateTime, studentIndexList, attendance, notes, isCompleted);
+        super(lessonDesc, startDateTime, endDateTime, studentIndexList, attendance, generalNotes, isCompleted);
     }
 
     /**
@@ -84,19 +85,21 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
         }
+
+        if (this.getGeneralNotes() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LessonNotes.class.getSimpleName()));
+        }
+        LessonNotes modelLessonNotes = new LessonNotes(modelStudentSet, this.getGeneralNotes());
+
         /*
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<Student, Boolean> attendance = objectMapper.readValue(this.getAttendance(),
                 new TypeReference<HashMap<Student,Boolean>>(){});
         LessonAttendance modelLessonAttendance = new LessonAttendance(attendance);*/
 
-        if (this.getNotes() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LessonNotes.class.getSimpleName()));
-        }
-
         Consult consult = new Consult(modelLessonDesc, modelTimePeriod,
-                modelStudentSet);
+                modelStudentSet, modelLessonNotes);
 
         if (this.isCompleted()) {
             consult.markAsCompleted();
