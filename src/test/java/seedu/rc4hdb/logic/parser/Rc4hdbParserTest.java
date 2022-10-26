@@ -50,7 +50,6 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
-import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
