@@ -65,9 +65,9 @@ public class HospitalWing {
      * Returns true if a given string is a valid hospital wing.
      */
     public static boolean isValidHospitalWing(String test) {
-            String[] enumArr = Arrays.stream(HospitalWingTypes.values())
-                    .map(HospitalWingTypes::name).toArray(String[]::new);
-            return StringUtil.containsWordIgnoreCase(String.join(" ", enumArr), test);
+        String[] enumArr = Arrays.stream(HospitalWingTypes.values())
+                .map(HospitalWingTypes::name).toArray(String[]::new);
+        return StringUtil.containsWordIgnoreCase(String.join(" ", enumArr), test);
     }
 
     @Override
