@@ -32,9 +32,9 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
         return true;
     }
 
-    private boolean matchesEmail(Person person) {
-        if (descriptor.getEmail().isPresent()) {
-            return person.getEmail().equals(descriptor.getEmail().get());
+    private boolean matchesTelegram(Person person) {
+        if (descriptor.getTelegram().isPresent()) {
+            return person.getTelegram().equals(descriptor.getTelegram().get());
         }
         return true;
     }
@@ -90,7 +90,7 @@ public class PersonMatchesDescriptorPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return matchesName(person)
                 && matchesPhone(person)
-                && matchesEmail(person)
+                && matchesTelegram(person)
                 && matchesAddress(person)
                 && matchesTags(person)
                 && matchesDescriptions(person)

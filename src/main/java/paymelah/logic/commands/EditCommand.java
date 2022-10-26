@@ -95,7 +95,7 @@ public class EditCommand extends Command {
 
         Name updatedName = personDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = personDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = personDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Telegram updatedTelegram = personDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         Address updatedAddress = personDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = personDescriptor.getTags().orElse(personToEdit.getTags());
         DebtList updatedDebts = personToEdit.getDebts(); // edit command does not allow editing debts

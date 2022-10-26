@@ -3,11 +3,11 @@ package paymelah.logic.parser;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Collection;
@@ -37,7 +37,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_TELEGRAM, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_MONEY, PREFIX_DATE, PREFIX_TIME);
 
         PersonDescriptor personDescriptor = new PersonDescriptor();
@@ -47,8 +47,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             personDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            personDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
+            personDescriptor.setTelegram(ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             personDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
