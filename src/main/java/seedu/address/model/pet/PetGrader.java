@@ -1,6 +1,10 @@
 package seedu.address.model.pet;
 
+import static seedu.address.model.order.PriceRange.LOWER_THAN_RANGE;
+import static seedu.address.model.order.PriceRange.WITHIN_RANGE;
+
 import seedu.address.model.order.Order;
+import seedu.address.model.order.PriceRange;
 
 /**
  * Grades how fit a pet is given an order.
@@ -72,7 +76,22 @@ public class PetGrader {
                 * colorPatternScoreWeight;
         double speciesScore = (order.getRequest().getRequestedSpecies().equals(pet.getSpecies()) ? 1 : 0)
                 * speciesScoreWeight;
-        return ageScore + colorScore + colorPatternScore + speciesScore;
+
+        double priceScore;
+        PriceRange priceRange = order.getRequestedPriceRange();
+        int priceRangeSituation = priceRange.isWithinRange(pet.getPrice());
+
+        if (priceRangeSituation == WITHIN_RANGE) {
+            priceScore = priceScoreWeight;
+        } else {
+            priceScore = priceScoreWeight
+                    - Math.abs((priceRangeSituation == LOWER_THAN_RANGE
+                            ? priceRange.getLowerBound().getPrice()
+                            : priceRange.getUpperBound().getPrice())
+                            - pet.getPrice().getPrice());
+        }
+
+        return ageScore + colorScore + colorPatternScore + speciesScore + priceScore;
     }
 
     public double getAgeScoreWeight() {
