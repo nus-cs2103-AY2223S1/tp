@@ -5,7 +5,6 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TIME_PERIOD;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE_NAME;
 
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import seedu.rc4hdb.logic.commands.venuecommands.UnbookCommand;
@@ -33,12 +32,7 @@ public class UnbookCommandParser implements CommandParser<UnbookCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_DAY, PREFIX_TIME_PERIOD, PREFIX_VENUE_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnbookCommand.MESSAGE_USAGE));
         }
-
-        try {
-            return new UnbookCommand(buildBookingDescriptor(argMultimap));
-        } catch (NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnbookCommand.MESSAGE_USAGE), e);
-        }
+        return new UnbookCommand(buildBookingDescriptor(argMultimap));
     }
 
     /**
