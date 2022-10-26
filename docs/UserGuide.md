@@ -246,7 +246,22 @@ Lorem Ipsum
 
 ###### Quick Links
 
-Lorem Ipsum
+NUScheduler offers you easy access to some of your favourite NUS websites, right from the menu. 
+
+1. Click on `Links` in the menu bar. A dropdown should appear.
+2. Click on the link you want to visit, if you want to visit `Canvas`, click on `Canvas`.
+3. The website should open in your browser.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips:**
+
+* Press <kbd> F2 </kbd> to open LumiNUS.
+* Press <kbd> F3 </kbd> to open Canvas.
+* Press <kbd> F4 </kbd> to open EduRec.
+
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
