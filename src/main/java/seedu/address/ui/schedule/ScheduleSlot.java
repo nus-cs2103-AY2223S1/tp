@@ -1,5 +1,7 @@
 package seedu.address.ui.schedule;
 
+import java.util.Random;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seedu.address.model.module.schedule.Schedule;
@@ -9,6 +11,9 @@ import seedu.address.model.module.schedule.Schedule;
  */
 public class ScheduleSlot extends SlotContainer {
     private static final String FXML = "schedule/ScheduleSlot.fxml";
+
+    private static final String[] COLORS = {"#FF8787", "#F8C4B4", "#E5EBB2", "#BCE29E", "#B8E8FC", "#B1AFFF",
+        "#A7D2CB"};
 
     protected String moduleCode;
     protected String duration;
@@ -57,5 +62,16 @@ public class ScheduleSlot extends SlotContainer {
         } else {
             return "#B8E8FC"; // BLUE
         }
+    }
+
+    /**
+     * Change color when user clicks the slot.
+     */
+    @FXML
+    public void handleOnClick() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(7);
+        String randomColor = COLORS[randomNumber];
+        setColor(randomColor);
     }
 }

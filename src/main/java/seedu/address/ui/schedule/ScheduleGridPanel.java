@@ -28,7 +28,7 @@ public class ScheduleGridPanel extends UiPart<Region> {
 
     private static final int ROW_SPAN = 1;
     private static final int COLUMN_SPAN = 1;
-    private static final double COLUMNS_WIDTH = 50;
+    private static final double COLUMNS_WIDTH = 100;
     private static final double ROWS_WIDTH = 50;
     private static final int NUM_OF_COLUMNS = SCALE_FACTOR * (END_HOUR - START_HOUR) + ROW_SPAN * 2;
     private static final int NUM_OF_ROWS = SCALE_FACTOR * (END_HOUR - START_HOUR) + COLUMN_SPAN;
@@ -119,6 +119,17 @@ public class ScheduleGridPanel extends UiPart<Region> {
         }
     }
 
+    private int getNumOfColumns() {
+        double end = 0;
+        for (Schedule schedule: schedules) {
+            if (end < schedule.getHour(schedule.getEndTime())) {
+                end = schedule.getHour(schedule.getEndTime());
+            }
+        }
+        System.out.println(end);
+        return (int) (end - 6) * 2;
+    }
+
     /**
      * Builds the horizontal grid pane
      */
@@ -126,7 +137,8 @@ public class ScheduleGridPanel extends UiPart<Region> {
         logger.fine("Constructing the horizontal grid panel");
         // gridPane.setGridLinesVisible(true);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
-        for (int i = 0; i < NUM_OF_COLUMNS; ++i) {
+        int numOfColumns = getNumOfColumns();
+        for (int i = 0; i < numOfColumns; ++i) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPrefWidth(COLUMNS_WIDTH);
             gridPane.getColumnConstraints().add(column);
@@ -178,7 +190,7 @@ public class ScheduleGridPanel extends UiPart<Region> {
      */
     public void addWeekdayToVerticalGrid() {
         for (int i = 0; i < 7; ++i) {
-            SlotContainer weekday = new WeekdayCard(i);
+            SlotContainer weekday = new WeekdayCardVertical(i);
             gridPane.add(weekday.getRoot(), i, 0, COLUMN_SPAN, 1);
         }
     }
