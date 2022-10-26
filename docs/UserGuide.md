@@ -165,7 +165,7 @@ Example: `ls -d 2022-11-11`
 
 Edits an existing task in the task list, at least one field needs to be edited. 
 
-Format: `edit TASK_NUMBER [-nTASK_NAME] [-mMODULE] [-dDATE] [-tTAG_NAME]...`
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]...`
 
 * `TASK_NUMBER`: This is the number of the task currently displayed.
 * `MODULE`: Should be alphanumeric, ie must not contain any spaces.
@@ -173,7 +173,7 @@ Format: `edit TASK_NUMBER [-nTASK_NAME] [-mMODULE] [-dDATE] [-tTAG_NAME]...`
 * `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Examples:
-*  `edit 1 -mCS2103T -nip` Edits the taskName to ip.
+*  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
 
 ### Deleting a task : `delete`
 
