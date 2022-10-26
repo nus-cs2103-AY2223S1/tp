@@ -27,6 +27,17 @@
       <VBox styleClass="pane-with-border">
         <ButtonBar fx:id="buttonBar" VBox.vgrow="NEVER">
           <buttons>
+            <Button fx:id="classTitle" visible="false" disable="true"/>
+            <Button ButtonBar.buttonData="LEFT" fx:id="unfocusButton" mnemonicParsing="false" visible="false" onAction="#handleUnfocusMode">
+              <graphic>
+                <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@/images/back_icon.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+
             <Button fx:id="helpButton" mnemonicParsing="false" text="Help" onAction="#handleHelp" translateX="-25">
               <graphic>
                 <ImageView fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
@@ -47,7 +58,7 @@
             <padding>
               <Insets top="10" right="12.5" bottom="10"/>
             </padding>
-            <TextArea styleClass="class-title" prefHeight="50" editable="false">Classes</TextArea>
+            <TextArea fx:id="sessionClassText" styleClass="class-title" prefHeight="50" editable="false">Classes</TextArea>
             <StackPane fx:id="moduleClassListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
           </VBox>
 

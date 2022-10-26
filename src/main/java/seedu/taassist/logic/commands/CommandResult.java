@@ -1,5 +1,8 @@
 package seedu.taassist.logic.commands;
 
+import com.fasterxml.jackson.databind.Module;
+import seedu.taassist.model.moduleclass.ModuleClass;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -17,13 +20,21 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The application should focus. */
+    private final boolean focus;
+
+    /** The application should unfocus. */
+    private final boolean unfocus;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean focus, boolean unfocus) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.focus = focus;
+        this.unfocus = unfocus;
     }
 
     /**
@@ -31,7 +42,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false,false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +55,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isFocus() {
+        return focus;
+    }
+
+    public boolean isUnfocus() {
+        return unfocus;
     }
 
     @Override

@@ -16,6 +16,7 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.StudentView;
 import seedu.taassist.storage.Storage;
@@ -75,6 +76,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<ModuleClass> getModuleClassList() {
         return model.getModuleClassList();
+    }
+
+    @Override
+    public ObservableList<Session> getSessionList() {
+        return model.getSessionList();
     }
 
     @Override

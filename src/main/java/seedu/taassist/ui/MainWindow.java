@@ -1,12 +1,16 @@
 package seedu.taassist.ui;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.taassist.commons.core.GuiSettings;
@@ -15,8 +19,6 @@ import seedu.taassist.logic.Logic;
 import seedu.taassist.logic.commands.CommandResult;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.exceptions.ParseException;
-import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.session.Session;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -48,13 +50,22 @@ public class MainWindow extends UiPart<Stage> {
     private Button helpButton;
 
     @FXML
+    private Button classTitle;
+
+    @FXML
+    private Button unfocusButton;
+
+    @FXML
+    private ButtonBar buttonBar;
+
+    @FXML
+    private TextArea sessionClassText;
+
+    @FXML
     private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane moduleClassListPanelPlaceholder;
-
-    @FXML
-    private StackPane sessionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -94,6 +105,8 @@ public class MainWindow extends UiPart<Stage> {
         moduleClassListPanel = new ModuleClassListPanel(logic.getModuleClassList());
         moduleClassListPanelPlaceholder.getChildren().add(moduleClassListPanel.getRoot());
 
+        sessionListPanel = new SessionListPanel(logic.getSessionList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -114,14 +127,6 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
-    }
-
-    /**
-     * Fills up session placeholder of the focus window based on module class provided.
-     */
-    void setSessionListPanelPlaceholder(ModuleClass moduleClass) {
-        sessionListPanel = new SessionListPanel((ObservableList<Session>) moduleClass.getSessions());
-        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
     /**
@@ -165,6 +170,31 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleFocusMode() {
+        sessionClassText.setText("Sessions");
+        unfocusButton.setVisible(true);
+        classTitle.setVisible(true);
+        classTitle.textProperty().bind(logic.getFocusLabelProperty());
+        Region content = (Region) sessionClassText.lookup(".content");
+        content.setStyle("-fx-background-color:#f5d58b");
+        buttonBar.setStyle("-fx-background-color: derive(#a5dff0, 20%);");
+        moduleClassListPanelPlaceholder.getChildren().remove(moduleClassListPanel.getRoot());
+        moduleClassListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+    }
+
+    @FXML
+    private void handleUnfocusMode() {
+        sessionClassText.setText("Classes");
+        unfocusButton.setVisible(false);
+        classTitle.setVisible(false);
+        Region content = (Region) sessionClassText.lookup(".content");
+        content.setStyle("-fx-background-color:#a5dff0;");
+        buttonBar.setStyle("-fx-background-color: derive(#EDA7A7, 20%);");
+        moduleClassListPanelPlaceholder.getChildren().remove(sessionListPanel.getRoot());
+        moduleClassListPanelPlaceholder.getChildren().add(moduleClassListPanel.getRoot());
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -194,6 +224,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if(commandResult.isFocus()) {
+                handleFocusMode();
+            }
+
+            if(commandResult.isUnfocus()) {
+                handleUnfocusMode();
             }
 
             return commandResult;
