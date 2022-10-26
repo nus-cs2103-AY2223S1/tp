@@ -189,7 +189,7 @@ Format: `find [m/all/LIST OF MODULES] [t/all/LIST OF TAGS]`
 
 * Other fields can still be provided with this search mode, and they will still be OR search (but module/ tag will be ALL).
 * This is not case-sensitive.
-* `OR` search is still supported for modules and tags.
+* `OR` search is still supported for modules and tags (omit the `all/`).
 
 Examples 
 *  `find n/wong m/all/CS2100 CS2103T CS2109S` Returns all contacts who have `wong` in their name OR (take the modules: `CS2100` AND `CS2103T` and `CS2109S`).
