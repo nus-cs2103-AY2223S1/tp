@@ -26,19 +26,19 @@ loop until end of indexes
     StudentEditor -> StudentData : studentToEdit.getStudentData()
     activate StudentData
 
-    StudentData -> StudentEditor
+    StudentData --> StudentEditor
 
     StudentEditor -> StudentData : setAttendances(newAttendances)
 
-    StudentData -> StudentEditor
+    StudentData --> StudentEditor
     deactivate StudentData
 
-    StudentEditor -> MarkCommand : editedStudent
+    StudentEditor --> MarkCommand : editedStudent
     deactivate StudentEditor
 
     MarkCommand -> Model : setStudent(studentToEdit, editedStudent)
     activate Model
-    Model -> MarkCommand
+    Model --> MarkCommand
     deactivate Model
 end
 
