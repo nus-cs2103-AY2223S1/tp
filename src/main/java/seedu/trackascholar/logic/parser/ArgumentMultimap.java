@@ -57,4 +57,12 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Returns true if preamble(text before the first valid prefix) is empty.
+     */
+    public boolean isEmptyPreamble() {
+        String preamble = getValue(new Prefix("")).orElse("");
+        return preamble.isEmpty();
+    }
 }
