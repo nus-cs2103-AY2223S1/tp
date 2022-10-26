@@ -11,6 +11,8 @@ title: User Guide
 
 ## Features
 
+<div markdown="block" class="alert alert-info">
+
 :information_source: Notes about the command format:<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -25,6 +27,8 @@ title: User Guide
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</div>
 
 | Command    | Format                                   |
 | ---------- | ---------------------------------------- |
@@ -253,11 +257,11 @@ Example:
 
 ### Clear all existing data: `clear`
 
-<div markdown="block" class="alert alert-info">
+{% include note.html content="
 
 Clears all existing data in TA Assist.
 
-</div>
+" %}
 
 Format: `clear`
 
@@ -370,11 +374,11 @@ Format: `lists`
 
 ### Export class data: `export`
 
-<div markdown="block" class="alert alert-info">
+{% include note.html content="
 
 Export the class as a CSV file containing grade information of the class's students on all sessions of the class.
 
-</div>
+" %}
 
 Format: `export`
 

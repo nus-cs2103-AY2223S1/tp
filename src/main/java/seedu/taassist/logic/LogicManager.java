@@ -11,8 +11,6 @@ import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.CommandResult;
 import seedu.taassist.logic.commands.exceptions.CommandException;
-import seedu.taassist.logic.commands.storagecommands.CommandResultWithStorageCommand;
-import seedu.taassist.logic.commands.storagecommands.StorageCommand;
 import seedu.taassist.logic.parser.TaAssistParser;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
@@ -47,11 +45,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = taAssistParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
-        if (commandResult instanceof CommandResultWithStorageCommand) {
-            StorageCommand storageCommand = ((CommandResultWithStorageCommand) commandResult).getStorageCommand();
-            commandResult = storageCommand.execute(storage);
-        }
 
         try {
             storage.saveTaAssist(model.getTaAssist());

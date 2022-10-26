@@ -2,7 +2,6 @@ package seedu.taassist.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -20,15 +19,13 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private TaAssistStorage taAssistStorage;
     private UserPrefsStorage userPrefsStorage;
-    private CsvStorage csvStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code TaAssistStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(TaAssistStorage taAssistStorage, UserPrefsStorage userPrefsStorage, CsvStorage csvStorage) {
+    public StorageManager(TaAssistStorage taAssistStorage, UserPrefsStorage userPrefsStorage) {
         this.taAssistStorage = taAssistStorage;
         this.userPrefsStorage = userPrefsStorage;
-        this.csvStorage = csvStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -76,13 +73,5 @@ public class StorageManager implements Storage {
     public void saveTaAssist(ReadOnlyTaAssist taAssist, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         taAssistStorage.saveTaAssist(taAssist, filePath);
-    }
-
-    // ================ CSV file methods ==============================
-
-    @Override
-    public Path saveAsCsvFile(String fileName, List<List<String>> fileData) throws IOException {
-        logger.fine("Attempting to save " + fileName + " to CSV file.");
-        return csvStorage.saveAsCsvFile(fileName, fileData);
     }
 }

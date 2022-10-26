@@ -27,7 +27,6 @@ import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.storage.CsvDefaultStorage;
 import seedu.taassist.storage.JsonTaAssistStorage;
 import seedu.taassist.storage.JsonUserPrefsStorage;
 import seedu.taassist.storage.StorageManager;
@@ -47,8 +46,7 @@ public class LogicManagerTest {
         JsonTaAssistStorage taAssistStorage =
                 new JsonTaAssistStorage(temporaryFolder.resolve("taassist.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        CsvDefaultStorage csvDefaultStorage = new CsvDefaultStorage();
-        StorageManager storage = new StorageManager(taAssistStorage, userPrefsStorage, csvDefaultStorage);
+        StorageManager storage = new StorageManager(taAssistStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,8 +75,7 @@ public class LogicManagerTest {
                 new JsonTaAssistIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaAssist.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        CsvDefaultStorage csvDefaultStorage = new CsvDefaultStorage();
-        StorageManager storage = new StorageManager(taAssistStorage, userPrefsStorage, csvDefaultStorage);
+        StorageManager storage = new StorageManager(taAssistStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

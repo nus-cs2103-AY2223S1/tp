@@ -2,7 +2,6 @@ package seedu.taassist.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 
 import seedu.taassist.commons.exceptions.DataConversionException;
@@ -13,7 +12,7 @@ import seedu.taassist.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends TaAssistStorage, UserPrefsStorage, CsvStorage {
+public interface Storage extends TaAssistStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -29,7 +28,4 @@ public interface Storage extends TaAssistStorage, UserPrefsStorage, CsvStorage {
 
     @Override
     void saveTaAssist(ReadOnlyTaAssist taAssist) throws IOException;
-
-    @Override
-    Path saveAsCsvFile(String fileName, List<List<String>> fileData) throws IOException;
 }
