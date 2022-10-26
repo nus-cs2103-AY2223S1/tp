@@ -183,7 +183,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br> 
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 </div>
 
@@ -191,7 +191,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br> 
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
 If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
@@ -201,7 +201,7 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br> 
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
 The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
@@ -282,7 +282,7 @@ The implementation of the task tab UI is facilitated by `TaskCard` and `TaskList
 The implementation of Command Suggestions and Command Auto-Completion is facilitated by `CommandSuggestor` in the `Logic` Component. The `CommandBox` UI component listens for changes in the command box textField and calls methods from `CommandSuggestor` to reflect command suggestions and allow autocompletion.
 
 `CommandSuggestor` mainly implements the following operations:
-- `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input 
+- `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
 ## **Documentation, logging, testing, configuration, and dev-ops**
@@ -464,7 +464,7 @@ Priorities:
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note** <br> 
+<div markdown="span" class="alert alert-info">:information_source: **Note** <br>
 These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 </div>

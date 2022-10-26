@@ -6,4 +6,5 @@ public enum CommandType {
     CONTACTS,
     TASKS,
     CLEAR
+
 }

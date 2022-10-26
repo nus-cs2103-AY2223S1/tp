@@ -14,6 +14,7 @@ import swift.commons.core.GuiSettings;
 import swift.commons.core.LogsCenter;
 import swift.logic.Logic;
 import swift.logic.commands.CommandResult;
+import swift.logic.commands.CommandType;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.exceptions.ParseException;
 
@@ -233,20 +234,22 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            if (commandResult.isContactCommand()) {
-                showContactTab();
-            }
-
-            if (commandResult.isTaskCommand()) {
-                showTaskTab();
+            CommandType commandType = commandResult.getCommandType();
+            switch (commandType) {
+                case HELP:
+                    handleHelp();
+                    break;
+                case EXIT:
+                    handleExit();
+                    break;
+                case CONTACTS:
+                    showContactTab();
+                    break;
+                case TASKS:
+                    showTaskTab();
+                    break;
+                default:
+                    break;
             }
 
             return commandResult;

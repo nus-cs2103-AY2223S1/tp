@@ -26,20 +26,8 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return commandType == CommandType.HELP;
-    }
-
-    public boolean isExit() {
-        return commandType == CommandType.EXIT;
-    }
-
-    public boolean isContactCommand() {
-        return commandType == CommandType.CONTACTS;
-    }
-
-    public boolean isTaskCommand() {
-        return commandType == CommandType.TASKS;
+    public CommandType getCommandType() {
+        return commandType;
     }
 
     @Override
