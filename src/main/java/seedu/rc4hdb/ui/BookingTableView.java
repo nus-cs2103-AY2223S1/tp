@@ -25,8 +25,8 @@ public class BookingTableView extends UiPart<Region> {
 
     private static final String FXML = "BookingTableView.fxml";
 
-    private static final List<String> hours = List.of("0800", "0900", "1000", "1100", "1200", "1300", "1400", "1500", "1600",
-            "1700", "1800", "1900", "2000", "2100", "2200");
+    private static final List<String> hours = List.of("0800", "0900", "1000", "1100", "1200", "1300", "1400",
+            "1500", "1600", "1700", "1800", "1900", "2000", "2100", "2200");
 
     private final TableColumn<DailySchedule, Day> dayColumn = new TableColumn<>("Day");
     private final List<TableColumn<DailySchedule, Resident[]>> hourColumn;
@@ -59,7 +59,7 @@ public class BookingTableView extends UiPart<Region> {
      */
     public List<DailySchedule> buildWeeklySchedule(List<Booking> bookingList) {
         List<DailySchedule> weeklySchedule = new ArrayList<>();
-        List<Day> days = Day.daysOfWeek.stream().map(Day::new).collect(Collectors.toList());
+        List<Day> days = Day.DAYS_OF_WEEK.stream().map(Day::new).collect(Collectors.toList());
         for (Day day : days) {
             List<Booking> dailyBooking = new ArrayList<>();
             for (Booking booking : bookingList) {
