@@ -12,6 +12,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attribute.Address;
+import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.person.Person;
@@ -52,6 +54,9 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .map(str -> new Email(str))
                 .ifPresent(email -> person.addAttribute(email));
 
+        argMultimap.getValue(PREFIX_ADDRESS)
+                .map(str -> new Address(str))
+                .ifPresent(email -> person.addAttribute(email));
         return new AddCommand(person);
     }
 

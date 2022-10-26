@@ -37,11 +37,6 @@ public class Phone extends AbstractAttribute<String> {
     }
 
     @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
     public Map<String, Object> toSaveableData() {
         // TODO Auto-generated method stub
         return null;

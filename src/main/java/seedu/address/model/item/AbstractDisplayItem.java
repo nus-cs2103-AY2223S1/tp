@@ -81,7 +81,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         if (!attribute.isAllFlagMatch(typeFlag)) {
             throw new ItemCannotBeParentException(this);
         }
-        if (!attributes.stream().allMatch(x -> x.equals(attribute))) {
+        if (attributes.stream().anyMatch(x -> x.equals(attribute))) {
             throw new ItemCannotBeParentException(this);
         }
         attributes.add(attribute);

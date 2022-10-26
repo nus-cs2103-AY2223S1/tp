@@ -57,13 +57,6 @@ public class Email extends AbstractAttribute<String> {
     }
 
     @Override
-    public Node getJavaFxRepresentation() {
-        Label ret = new Label();
-        ret.setText(value);
-        return ret;
-    }
-
-    @Override
     public Map<String, Object> toSaveableData() {
         // TODO Auto-generated method stub
         return null;

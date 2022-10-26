@@ -61,6 +61,16 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
     }
 
     @Override
+    public boolean isAnyStyleMatch(int flag) {
+        return (styleFlag & flag) > 0;
+    }
+
+    @Override
+    public boolean isAllStyleMatch(int flag) {
+        return (styleFlag & flag) == flag;
+    }
+
+    @Override
     public T getAttributeContent() {
         return value;
     }
@@ -111,6 +121,7 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
         Label ret = new Label();
         ret.setText(txt);
+        System.out.printf("%s: ", txt);
         System.out.println(getFormatCSS());
         ret.setStyle(getFormatCSS());
         return ret;
@@ -118,54 +129,54 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
 
     @Override
     public int hashCode() {
-        return typeName.hashCode() ^ value.hashCode() ^ accessCtrl;
+        return typeName.hashCode() ^ value.hashCode() ^ accessCtrl ^ styleFlag;
     }
 
     protected String getFormatCSS() {
+        return getFormatCSS(true);
+    }
+
+    protected String getFormatCSS(boolean isInMenu) {
         StringBuilder sb = new StringBuilder("-fx-font: normal");
         double size = 12;
 
-        if (isStyleFlag(styleFlag, BOLD)) {
+        if (isAllStyleMatch(BOLD)) {
             sb.append(" bold");
         }
-        if (isStyleFlag(styleFlag, ITALIC)) {
+        if (isAllStyleMatch(ITALIC)) {
             sb.append(" italic");
         }
-        if (isStyleFlag(styleFlag, FONT_SIZE_SMALL)) {
+        if (isAllStyleMatch(FONT_SIZE_SMALL)) {
             size = 10;
         }
-        if (isStyleFlag(styleFlag, FONT_SIZE_BIG)) {
+        if (isAllStyleMatch(FONT_SIZE_BIG) && !isInMenu) {
             size = 32;
         }
-        if (isStyleFlag(styleFlag, FONT_SIZE_NORMAL)) {
+        if (isAllStyleMatch(FONT_SIZE_NORMAL)) {
             size = 12;
         }
 
-        sb.append(String.format("%dpt 'Segoe UI';", size));
+        sb.append(String.format(" %fpt 'Segoe UI';", size));
 
-        if (isStyleFlag(styleFlag, UNDERLINE)) {
+        if (isAllStyleMatch(UNDERLINE)) {
             sb.append(" -fx-underline: true;");
         }
-        if (isStyleFlag(styleFlag, STRIKETHROUGH)) {
+        if (isAllStyleMatch(STRIKETHROUGH)) {
             sb.append(" -fx-strikethrough: true;");
         }
-        if (isStyleFlag(styleFlag, DROPSHADOW)) {
+        if (isAllStyleMatch(DROPSHADOW)) {
             sb.append(" -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);");
         }
-        if (isStyleFlag(styleFlag, LEFT_JUSTIFY)) {
+        if (isAllStyleMatch(LEFT_JUSTIFY)) {
             sb.append(" -fx-text-alignment: left;");
         }
-        if (isStyleFlag(styleFlag, CENTER_JUSTIFY)) {
+        if (isAllStyleMatch(CENTER_JUSTIFY)) {
             sb.append(" -fx-text-alignment: center;");
         }
-        if (isStyleFlag(styleFlag, RIGHT_JUSTIFY)) {
+        if (isAllStyleMatch(RIGHT_JUSTIFY)) {
             sb.append(" -fx-text-alignment: right;");
         }
 
         return sb.toString();
-    }
-
-    protected static boolean isStyleFlag(int compareFlag, int flag) {
-        return (compareFlag & flag) == flag;
     }
 }
