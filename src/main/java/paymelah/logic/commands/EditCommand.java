@@ -93,11 +93,11 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, PersonDescriptor personDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = personDescriptor.getName().orElse(personToEdit.getName());
+        Phone updatedPhone = personDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Telegram updatedTelegram = personDescriptor.getTelegram().orElse(personToEdit.getTelegram());
+        Address updatedAddress = personDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Tag> updatedTags = personDescriptor.getTags().orElse(personToEdit.getTags());
         DebtList updatedDebts = personToEdit.getDebts(); // edit command does not allow editing debts
 
         return new Person(updatedName, updatedPhone, updatedTelegram, updatedAddress, updatedTags, updatedDebts);

@@ -332,7 +332,7 @@ public class ParserUtil {
     public static class PersonDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
+        private Telegram telegram;
         private Address address;
         private Set<Tag> tags;
         private Set<Description> descriptions;
@@ -349,7 +349,7 @@ public class ParserUtil {
         public PersonDescriptor(PersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setTelegram(toCopy.telegram);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setDescriptions(toCopy.descriptions);
@@ -362,7 +362,7 @@ public class ParserUtil {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldSet() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, descriptions, monies, dates, times);
+            return CollectionUtil.isAnyNonNull(name, phone, telegram, address, tags, descriptions, monies, dates, times);
         }
 
         public void setName(Name name) {
@@ -381,12 +381,12 @@ public class ParserUtil {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
         }
 
         public void setAddress(Address address) {
@@ -499,7 +499,7 @@ public class ParserUtil {
 
             return getName().equals(pd.getName())
                     && getPhone().equals(pd.getPhone())
-                    && getEmail().equals(pd.getEmail())
+                    && getTelegram().equals(pd.getTelegram())
                     && getAddress().equals(pd.getAddress())
                     && getTags().equals(pd.getTags())
                     && getDescriptions().equals(pd.getDescriptions())
