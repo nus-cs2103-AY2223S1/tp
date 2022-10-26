@@ -334,7 +334,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | new user        | see sample data                        | get to know how the app works               |
 | `* *`    | user            | tag an activity with a type            | know what type of activity it is            |
 | `* *`    | user            | change the appearance of the app       | have better experience when looking through |
-| `* *`    | user            | add an activity description            | know what the activity is about             | 
+| `* *`    | user            | add an activity description            | know what the activity is about             |
 | `*`      | long time user  | use shortcuts for commands             | enter commands faster                       |
 | `*`      | food enthusiast | review restaurants                     | note down my opinions of the restaurant     |
 | `*`      | food enthusiast | rate restaurants                       | note down my opinions of the restaurant     |
@@ -403,7 +403,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HobbyList shows an error message.
 
       Use case resumes at step 2.
-  
 **Use case: Find activities in a certain time period**
 
 **MSS**

@@ -103,10 +103,10 @@ Example:
 Shows a list of all hobby activities whose names or descriptions contain any of the specified keywords.
 Show alist of all hobby activities that located on a certain date, or in a certain month of a year, or in a certain year.
 
-Format: 
+Format:
     `find KEYWORD`
     `find yyyy-mm-dd`
-    `find yyyy-mm`  
+    `find yyyy-mm`
     `find yyyy`
 
 * The keywords are case-insensitive.
@@ -210,7 +210,7 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 | Action     | Format                                                                                                                                             |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                | 
+| **Add**    | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
 | **Clear**  | `clear`                                                                                                                                            |
 | **Delete** | `delete INDEX`                                                                                                                                     |
 | **Edit**   | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
