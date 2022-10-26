@@ -276,6 +276,8 @@ public class Person {
 
     /**
      * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When one of the two has empty {@code Class}, this person should be placed at the end.
+     * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByClassAsc(Person person) {
         if (this.aClass.isEmpty() && person.aClass.isEmpty()) {
@@ -291,6 +293,8 @@ public class Person {
 
     /**
      * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * When one of the two has empty {@code Class}, this person should be placed at the end.
+     * When both have empty {@code Class}, they are compared by their {@code name} in ascending order.
      */
     public int compareToByClassDesc(Person person) {
         if (this.aClass.isEmpty() && person.aClass.isEmpty()) {
