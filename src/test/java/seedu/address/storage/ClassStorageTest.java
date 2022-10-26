@@ -7,7 +7,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +47,9 @@ public class ClassStorageTest {
 
     @Test
     public void execute_saveClassFailure() throws Exception {
-        Person person = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
-                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1200-1400").build();
+        Person person = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
+                .withEmail("cornelia@example.com").withAddress("10th street")
+                .withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
@@ -58,8 +61,9 @@ public class ClassStorageTest {
 
     @Test
     public void execute_getIndexSuccess() throws Exception {
-        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438807")
-                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
+        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438807").withNokPhone("67192213")
+                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
+                .build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
@@ -71,8 +75,9 @@ public class ClassStorageTest {
     @Test
     public void execute_getIndexZero() throws Exception {
         // phone number here intentionally be wrong
-        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438811")
-                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
+        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438811").withNokPhone("67192213")
+                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400")
+                .build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
@@ -82,4 +87,26 @@ public class ClassStorageTest {
         assertEquals(0, ClassStorage.getIndex(person));
     }
 
+    @Test
+    public void execute_updatePerson() throws Exception {
+        Person personToEdit = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
+                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
+                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("Remind student to submit homework")
+                .withRatesPerClass(40).build();
+        Person editedPerson = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
+                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
+                .withMoneyOwed(20).withMoneyPaid(10).withAdditionalNotes("Remind student to submit homework")
+                .withRatesPerClass(40).build();
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+                JsonSerializableTeachersPet.class).get();
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
+        ClassStorage classStorage = new ClassStorage(modelManager);
+        // edit money owed and money paid of Daniel Tan (last person on personsTeachersPet list)
+        ClassStorage.updatePerson(personToEdit, editedPerson);
+        List<Person> listOfPerson = ClassStorage.getListOfPerson(LocalDate.of(2022, 5, 5));
+
+        assert listOfPerson.size() == 3;
+        assertEquals(editedPerson, listOfPerson.get(2));
+    }
 }

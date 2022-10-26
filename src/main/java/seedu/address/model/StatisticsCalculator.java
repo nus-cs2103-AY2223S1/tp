@@ -67,4 +67,11 @@ public class StatisticsCalculator {
         }
         return "$" + String.valueOf(moneyPaid);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatisticsCalculator // instanceof handles nulls
+                && teachersPet.equals(((StatisticsCalculator) other).teachersPet));
+    }
 }

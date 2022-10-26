@@ -161,7 +161,7 @@ Edits an existing student in the list.
 - Amount owed
 - Additional notes
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow 
+1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow
 the same convention as [adding a student](#adding-a-student-add).
 
 2. Amount paid:
@@ -184,7 +184,7 @@ Note: Amount paid, Amount owed can only be between $0 and $2147483647.
 Important: Note **at least one** of these fields must exist in order to make the `edit` command valid.
 ```
 
-Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
+Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
 
 Example:
@@ -244,7 +244,7 @@ Example:
 
 Deletes the specified person from the student list.
 
-Format: `delete INDEX`
+Format: `delete INDEX ...`
 
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the Student's Details panel (bottom left).
@@ -255,7 +255,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
+❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
 ```
 
 [Back to top](#table-of-contents)
