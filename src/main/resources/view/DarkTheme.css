@@ -149,7 +149,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: white;
 }
 
@@ -389,11 +389,36 @@
     -fx-background-color: #447959;
 }
 
-#new {
+#received {
     -fx-background-color: #a5344c;
 }
 
-#received {
+#new {
     -fx-background-color: #be6805;
 }
 
+#attendanceRate .label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#assignmentRate .label {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#success {
+    -fx-text-fill: #447959;
+}
+
+#caution {
+    -fx-text-fill: #be6805;
+}
+
+#fail {
+    -fx-text-fill: #a5344c;
+}
+
+#info {
+    -fx-text-fill: white;
+}
