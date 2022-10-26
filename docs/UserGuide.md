@@ -4,7 +4,9 @@
 * Adding a patient (add)
 * Search for a patient (search)
 * Edit patient details (edit)
-* Filter patients (filter)
+* Find patients (findpatient/fp)
+* Find appointments (findappointment/fa)
+* Find bills (findbill/fb)
 * Sort (sort)
 
 
@@ -55,40 +57,33 @@ Examples:
 * `edit John date: 2019-12-25` John’s appointment date has been changed to Dec 25th, 2019.
 * `edit John note: use medicine` Doctor’s notes for John has been changed to use medicine.
 
-### Filtering a patient: `filter` [coming soon]
+### Finding patients `findpatient` `fp`
 
-Shows the patients that satisfy given condition
+Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
+special characters).
 
 Format:
-```
-filter <Patient Information Attribute> <operator> <value>
-```
-where `operator` supports `>`, `<`, `>=`, `<=`, `==`
+```findpatient <prefix><input> ...``` or ```fp <prefix><input>...```
 
-If there is no such information attributes, shows error message.
+* The command words are ``findpatient`` or ``fp``.
+* The prefixes are n/ for Name, p/ for Phone, e/ for Email, a/ for Address, r/ for Remark and t/ for Tags.
+* The filter is case-insensitive. e.g. han will match Han
+* Can filter using full words or partial words. e.g. han will match Hannah
+* Can filter using a combination of inputs for a field, according to the constraints of the field. 
+  e.g. e/@gmail.com
+* Can filter using one field or multiple fields at once. e.g. n/John p/91234567
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 Examples:
-```
-> filter age > 25
+* ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
+  
+<img src="images/findpatientAlex.png" width="800px" height ="400px">
 
-Here are the patient that age > 25:
-    1. Jack
-    2. Peter
-    3. Larry
-```
-```
-> filter appointment date > 2019-12-25
+* ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
 
-Here are the patient that date > 2019-12-25:
-    1. Jack
-    2. Larry
-```
-```
-> filter favourite food == Chicken Masala
+<img src="images/findpatientBernice.png" width="800px" height ="400px">
 
-Unable to filter patients by favourite food
-
-```
 
 ### Sorting by criteria: `sort` [coming soon]
 
