@@ -26,7 +26,7 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
 
    * **`liststudent`** : Show an expanded list of all students.
 
-     * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` with matric number `A0123459G` to JARVIS.
+   * **`addstudent s/John Doe m/A0123459G`** : Adds a student named `John Doe` with matric number `A0123459G` to JARVIS.
 
    * **`deletestudent 3`** : Deletes the 3rd student shown in the student list.
 
@@ -48,7 +48,7 @@ JARVIS is a **desktop app for a CS1101S Teaching Assistant to manage students, t
   e.g. in `addstudent s/STUDENT_NAME m/MATRIC_NUM`, `STUDENT_NAME` and `MATRIC_NUM` are parameters which can be used as `addstudent s/John Doe m/A0123459G`.
 
 * Items in square brackets are optional.<br>
-  e.g `t/TASK_DESC [d/DEADLINE]` can be used as `t/Mark quest 2 d/23-09-2023` or as `t/Mark quest 2`.
+  e.g `t/TASK_DESC [d/DEADLINE]` can be used as `t/Mark quest 2 d/2022-11-01` or as `t/Mark quest 2`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `t/TASK_DESC d/DEADLINE`, `d/DEADLINE t/TASK_DESC` is also acceptable.
@@ -130,6 +130,7 @@ Adds a student to JARVIS.
 Format: `addstudent s/NAME m/MATRIC_NUM`
 
 * `m/MATRIC_NUM` must start with 'A', followed by 7 digits and a capital letter
+* A maximum of 10 students can exist in the student list at any point in time. The user will not be allowed to add more students after reaching the limit of 10 students.
 
 Examples:
 * `addstudent s/John Doe m/A0123459G`
@@ -159,7 +160,7 @@ Format: `edit INDEX [s/NAME] [m/MATRIC_NUM]`
 * Existing values will be updated to the input values.
 
 Examples:
-*  `editstudent 1 s/John Do` edits the name the 1st student to be `John Do`
+*  `editstudent 1 s/John Do` edits the name of the 1st student to be `John Do`
 
 ### Locating students by name: `findstudent`
 
