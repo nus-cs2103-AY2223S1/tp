@@ -52,17 +52,19 @@ UniqueModuleList --> "~* all" Module
 Person *--> "1" Email
 Person *--> "1" Name
 Person *--> "1" Phone
-Module -right--> "*" Person : contains
+Module -right--> "*" Person :> contains
 
 Module *--> "1" ModuleCode
 Module *--> "1" ModuleTitle
 Module *--> "1" TaskList
-TaskList --> "*" Task : contains
+TaskList --> "*" Task :> contains
 Module *--> "*" Link
 
 UniquePersonList -[hidden]up-> ModelManager
 UniquePersonList -[hidden]up-> ModelManager
 UniquePersonList -[hidden]up-> UserPrefs
+Module -[hidden]up-> UniqueModuleList
+ModuleCode -[hidden]right-> ModuleTitle
 Email -[hidden]right-> Name
 Name -[hidden]right-> Phone
 
