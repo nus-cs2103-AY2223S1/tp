@@ -153,7 +153,7 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc n/ {name} p/ {phone_number} [e/ {email}] [a/ {address}] [t/ {tag}] [m/ {module}] [gh/ {github}] [tele/ {telegram}]...`
+Format: `addc n/ {name} p/ {phone_number} [e/ {email}] [a/ {address}] [t/ {tag}...] [m/ {module}...] [gh/ {github}] [tele/ {telegram}]`
 
 Examples:
 * `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S gh/ bobby tele/ bmartin`
