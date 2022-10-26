@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.predicates.ListOfContainsKeywordsPredicates;
 
 /**
  * Finds and lists all persons in address book whose field(s) contains any of the argument keywords.
@@ -26,16 +27,16 @@ public class FindCommand extends Command {
             + PREFIX_CAP + "3.5 5 "
             + PREFIX_TAG + "offered KIV ";
 
-    private final Predicate predicate;
+    private final ListOfContainsKeywordsPredicates predicates;
 
-    public FindCommand(Predicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(ListOfContainsKeywordsPredicates predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPersonList(predicates.getChainedPredicate());
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -44,6 +45,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicates.equals(((FindCommand) other).predicates)); // state check
     }
 }

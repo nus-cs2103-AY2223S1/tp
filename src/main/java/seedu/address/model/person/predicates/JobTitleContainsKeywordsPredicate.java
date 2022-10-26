@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code JobTitle} matches any of the keywords given.
  */
 public class JobTitleContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;

@@ -25,6 +25,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.predicates.ListOfContainsKeywordsPredicates;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -75,9 +76,10 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
-        Predicate<Person> predicate = p -> true;
-        predicate = predicate.and(new NameContainsKeywordsPredicate(keywords));
-        assertEquals(new FindCommand(predicate), command);
+        ListOfContainsKeywordsPredicates predicateList = ListOfContainsKeywordsPredicates
+                .newListOfContainsKeywordsPredicates();
+        predicateList.addPredicate(new NameContainsKeywordsPredicate(keywords));
+        assertEquals(new FindCommand(predicateList), command);
     }
 
     @Test
