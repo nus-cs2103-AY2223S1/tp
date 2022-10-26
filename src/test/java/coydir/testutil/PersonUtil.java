@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import coydir.logic.commands.AddCommand;
-import coydir.logic.commands.ListCommand;
 import coydir.logic.commands.EditCommand.EditPersonDescriptor;
 import coydir.model.person.Person;
 import coydir.model.tag.Tag;
