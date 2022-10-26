@@ -174,7 +174,7 @@
 
 .person-list .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-width: 0;
     -fx-border-radius: 0px;
 }
 
