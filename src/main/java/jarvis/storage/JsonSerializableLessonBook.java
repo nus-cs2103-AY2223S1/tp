@@ -3,7 +3,6 @@ package jarvis.storage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -48,7 +47,9 @@ public class JsonSerializableLessonBook {
                 return false;
             }
             return true;
-        })) throw new AssertionError();
+        })) {
+            throw new AssertionError();
+        }
     }
 
     /**
