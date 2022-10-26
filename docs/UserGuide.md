@@ -185,9 +185,22 @@ Format: `sort APPLICATION_STATUS/NAME/SCHOLARSHIP`
 * The user can choose to sort the list according the applicant's `APPLICATION_STATUS`, `NAME` or types of `SCHOLARSHIP` they are applying for.
 
 Examples:
-*  `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
-*  `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for. 
-*  `sort status` All applicants in TrackAScholar will be sorted according to their application status.
+* `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
+* `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for. 
+* `sort status` All applicants in TrackAScholar will be sorted according to their application status.
+
+### Pinning an applicant
+
+An applicant will be pinned in the pinned applicant list on the right side of the screen. The applicant will be displayed on both applicant lists.
+
+Format: `pin INDEX`
+
+* Pins the scholarship application with the specified `INDEX`.
+* The index refers to the index number shown in the displayed applicant list.
+* The index **must be a positive integer** 1, 2, 3, …​.
+
+Examples:
+* `list` followed by `pin 2` pins the 2nd applicant in TrackAScholar.
 
 
 --------------------------------------------------------------------------------------------------------------------
