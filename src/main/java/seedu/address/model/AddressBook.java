@@ -164,7 +164,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sorts reminder by priority in the list. Reminders with the same priority will be sorted lexicographically.
+     * Sorts reminder by priority in the list. Reminders with the same priority will be sorted lexicographically by
+     * their names.
      */
     public void sortRemindersByPriority() {
         reminders.sortRemindersByPriority();

@@ -61,7 +61,8 @@ public class UniqueReminderList implements Iterable<Reminder> {
     }
 
     /**
-     * Sorts reminder by priority in the list. Reminders with the same priority will be sorted lexicographically.
+     * Sorts reminder by priority in the list. Reminders with the same priority will be sorted lexicographically by
+     * their names.
      */
     public void sortRemindersByPriority() {
         Collections.sort(internalList);

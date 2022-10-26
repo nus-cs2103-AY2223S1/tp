@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Sorts reminder by their priority. Reminders with same priority will be sorted lexicographically.
+ * Sorts reminder by their priority. Reminders with same priority will be sorted lexicographically by their names.
  */
 public class SortReminderCommand extends Command {
 

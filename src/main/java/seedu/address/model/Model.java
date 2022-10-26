@@ -113,7 +113,7 @@ public interface Model {
     void deleteReminder(Reminder reminder);
 
     /**
-     * Sort reminders by priority. Reminders with the same priority will be sorted lexicographically.
+     * Sort reminders by priority. Reminders with the same priority will be sorted lexicographically by their names.
      */
     void sortReminderByPriority();
 
