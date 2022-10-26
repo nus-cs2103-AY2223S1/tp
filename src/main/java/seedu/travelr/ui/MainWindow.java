@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SummaryWindow summaryWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -78,6 +79,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        summaryWindow = new SummaryWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -168,6 +170,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the summary window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSummary() {
+        if (!summaryWindow.isShowing()) {
+            summaryWindow.show();
+        } else {
+            summaryWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +194,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        summaryWindow.hide();
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -210,6 +225,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowSummary()) {
+                handleSummary();
             }
 
             return commandResult;

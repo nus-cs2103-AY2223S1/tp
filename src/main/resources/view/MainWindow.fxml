@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Label?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Travelr App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -46,36 +46,20 @@
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-        <StackPane fx:id="overlayPane">
-          <HBox fx:id="labeler" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="tripsTextField" HBox.hgrow="ALWAYS"/>
-            <StackPane fx:id="eventsTextField" HBox.hgrow="ALWAYS"/>
-          </HBox>
-          <HBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="tripListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
-            <StackPane fx:id="eventListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
-          </HBox>
-          <VBox>
-            <StackPane fx:id="SummaryLabelPlaceholder" styleClass="pane-with-border">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <Label fx:id="SummaryLabel" text="Summary" styleClass="cell_big_label" />
-            </StackPane>
-            <HBox fx:id="summaryPanelPlaceholder" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-              <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-              </padding>
-              <StackPane fx:id="completedTripListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
-            </HBox>
-          </VBox>
-        </StackPane>
+        <HBox fx:id="labeler" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="tripsTextField" HBox.hgrow="ALWAYS"/>
+          <StackPane fx:id="eventsTextField" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="tripListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+          <StackPane fx:id="eventListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+        </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
