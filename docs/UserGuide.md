@@ -144,7 +144,7 @@ Note: Email cannot be empty. It must fulfil the above requirements.
 Note: Tags must contain at least 1 alphanumeric character and cannot contain spacings.
 ```
 
-Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Example:
 
@@ -198,7 +198,7 @@ Important: Note **at least one** of these fields must exist in order to make the
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [t/TAG]...`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [t/TAG]…`
 
 Example:
 
