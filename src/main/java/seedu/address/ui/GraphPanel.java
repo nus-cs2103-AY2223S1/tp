@@ -47,7 +47,7 @@ public class GraphPanel extends UiPart<Region> {
             break;
         }
 
-        if (pieChartData == null) {
+        if (pieChartData.size() == 0) {
             graphPlaceholder.getChildren().add(noEntryFound.getRoot());
             return;
         }
@@ -73,7 +73,7 @@ public class GraphPanel extends UiPart<Region> {
             break;
         }
 
-        if (lineGraphData == null) {
+        if (lineGraphData.getData().size() == 0) {
             graphPlaceholder.getChildren().add(noEntryFound.getRoot());
             return;
         }

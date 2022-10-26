@@ -115,9 +115,9 @@ public class ModelManagerTest {
 
     @Test
     public void getExpensePieChart_emptyExpensesArray_success() {
+        ObservableList<PieChart.Data> expectedExpensePieChartData = FXCollections.observableArrayList();
         ObservableList<PieChart.Data> actualExpensePieChartData = modelManager.getExpensePieChartData();
-        assertEquals(null, actualExpensePieChartData);
-
+        assertEquals(expectedExpensePieChartData, actualExpensePieChartData);
     }
 
     @Test
@@ -143,8 +143,9 @@ public class ModelManagerTest {
 
     @Test
     public void getIncomePieChart_emptyIncomeArray_success() {
+        ObservableList<PieChart.Data> expectedIncomePieChartData = FXCollections.observableArrayList();
         ObservableList<PieChart.Data> actualIncomePieChartData = modelManager.getIncomePieChartData();
-        assertEquals(null, actualIncomePieChartData);
+        assertEquals(expectedIncomePieChartData, actualIncomePieChartData);
     }
 
     @Test

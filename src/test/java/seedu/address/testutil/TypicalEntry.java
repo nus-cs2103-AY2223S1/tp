@@ -2,25 +2,21 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_ALLOWANCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_BREAKFAST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_INVESTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_ALLOWANCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BREAKFAST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_INVESTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_ALLOWANCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_BREAKFAST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_INVESTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ALLOWANCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INVESTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
@@ -38,13 +34,6 @@ import seedu.address.model.entry.Income;
  *  A utility class containing a list of {@code Entry} objects to be used in tests.
  */
 public class TypicalEntry {
-
-    public static final Expenditure BREAKFAST = new ExpenditureBuilder()
-            .withDescription(VALID_DESC_BREAKFAST)
-            .withAmount(VALID_AMT_BREAKFAST)
-            .withDate(VALID_DATE_BREAKFAST)
-            .withTag(VALID_TAG_BREAKFAST)
-            .build();
 
     public static final Expenditure LUNCH = new ExpenditureBuilder()
             .withDescription(VALID_DESC_LUNCH)

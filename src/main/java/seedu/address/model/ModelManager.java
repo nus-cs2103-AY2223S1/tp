@@ -189,7 +189,7 @@ public class ModelManager implements Model {
      */
     public ObservableList<PieChart.Data> getIncomePieChartData() {
         if (filteredIncome.size() == 0) {
-            return null;
+            return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList());
         }
 
         double[] incomePieChartArr = new double[6];
@@ -236,7 +236,7 @@ public class ModelManager implements Model {
      */
     public ObservableList<PieChart.Data> getExpensePieChartData() {
         if (filteredExpenditure.size() == 0) {
-            return null;
+            return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList());
         }
 
         double[] expensePieChartArr = new double[6];
@@ -288,7 +288,7 @@ public class ModelManager implements Model {
 
     private XYChart.Series<String, Number> getLineChartData(FilteredList<Entry> filteredEntryList) {
         if (filteredEntryList.size() == 0) {
-            return null;
+            return new XYChart.Series<>();
         }
         HashMap<String, Number> dateToExpenditureMap = new HashMap<>();
 
