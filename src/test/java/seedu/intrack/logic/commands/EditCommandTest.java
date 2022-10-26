@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.DESC_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_SALARY_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Internship lastInternship = model.getFilteredInternshipList().get(indexLastInternship.getZeroBased());
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
-        Internship editedInternship = internshipInList.withName(VALID_NAME_MSFT).withPhone(VALID_PHONE_MSFT)
+        Internship editedInternship = internshipInList.withName(VALID_NAME_MSFT).withSalary(VALID_SALARY_MSFT)
                 .withTags(VALID_TAG_URGENT).build();
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT)
-                .withPhone(VALID_PHONE_MSFT).withTags(VALID_TAG_URGENT).build();
+                .withSalary(VALID_SALARY_MSFT).withTags(VALID_TAG_URGENT).build();
         EditCommand editCommand = new EditCommand(indexLastInternship, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);

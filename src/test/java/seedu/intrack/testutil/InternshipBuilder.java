@@ -10,9 +10,9 @@ import java.util.Set;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
-import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
+import seedu.intrack.model.internship.Salary;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.internship.Website;
@@ -27,20 +27,20 @@ public class InternshipBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_POSITION = "Software Engineer";
     public static final String DEFAULT_STATUS = "Progress";
-    public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_WEBSITE = "https://careers.shopee.sg/";
     public static final Task DEFAULT_TASK = new Task("Application submitted",
             LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER));
+    public static final String DEFAULT_SALARY = "100000";
     public static final String DEFAULT_REMARK = "";
 
     private Name name;
     private Position position;
     private Status status;
-    private Phone phone;
     private Email email;
     private Website website;
     private List<Task> tasks;
+    private Salary salary;
     private Set<Tag> tags;
     private Remark remark;
 
@@ -51,11 +51,11 @@ public class InternshipBuilder {
         name = new Name(DEFAULT_NAME);
         position = new Position(DEFAULT_POSITION);
         status = new Status(DEFAULT_STATUS);
-        phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         website = new Website(DEFAULT_WEBSITE);
         tasks = new ArrayList<>();
         tasks.add(DEFAULT_TASK);
+        salary = new Salary(DEFAULT_SALARY);
         tags = new HashSet<>();
         remark = new Remark(DEFAULT_REMARK);
     }
@@ -67,10 +67,10 @@ public class InternshipBuilder {
         name = internshipToCopy.getName();
         position = internshipToCopy.getPosition();
         status = internshipToCopy.getStatus();
-        phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
         website = internshipToCopy.getWebsite();
         tasks = new ArrayList<>(internshipToCopy.getTasks());
+        salary = internshipToCopy.getSalary();
         tags = new HashSet<>(internshipToCopy.getTags());
         remark = internshipToCopy.getRemark();
     }
@@ -96,14 +96,6 @@ public class InternshipBuilder {
      */
     public InternshipBuilder withStatus(String status) {
         this.status = new Status(status);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Internship} that we are building.
-     */
-    public InternshipBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
         return this;
     }
 
@@ -140,6 +132,14 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code Salary} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withSalary(String salary) {
+        this.salary = new Salary(salary);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Internship} that we are building.
      */
     public InternshipBuilder withTags(String ... tags) {
@@ -156,7 +156,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(name, position, status, phone, email, website, tasks, tags, remark);
+        return new Internship(name, position, status, email, website, tasks, salary, tags, remark);
     }
 
 }

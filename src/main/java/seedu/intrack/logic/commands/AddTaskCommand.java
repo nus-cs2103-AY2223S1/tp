@@ -51,8 +51,8 @@ public class AddTaskCommand extends Command {
         editedTasks.sort(Comparator.comparing(task -> task.taskTime));
 
         Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
-                internshipToEdit.getStatus(), internshipToEdit.getPhone(), internshipToEdit.getEmail(),
-                internshipToEdit.getWebsite(), editedTasks, internshipToEdit.getTags(), internshipToEdit.getRemark());
+                internshipToEdit.getStatus(), internshipToEdit.getEmail(), internshipToEdit.getWebsite(),
+                editedTasks, internshipToEdit.getSalary(), internshipToEdit.getTags(), internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
