@@ -10,7 +10,7 @@
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PennyWise" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/address_book_32.png"/>
+        <Image url="@/images/pennywise-logo/png/logo-color.png"/>
     </icons>
     <scene>
         <Scene>
