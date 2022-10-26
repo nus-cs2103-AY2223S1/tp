@@ -44,7 +44,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " 1 "
             + PREFIX_REASON + "Sore Throat "
             + PREFIX_DATE + "2022-10-12 16:30 "
-            + PREFIX_RECURRING_PERIOD + "1Y0M0D"
+            + PREFIX_RECURRING_PERIOD + "1Y0M0D "
             + PREFIX_TAG + "Ear";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
