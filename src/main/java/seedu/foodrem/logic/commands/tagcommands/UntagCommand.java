@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.UNTAG_COMMAND;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.Command;
@@ -50,11 +51,12 @@ public class UntagCommand extends Command {
         }
 
         Item itemToUntag = lastShownList.get(index.getZeroBased());
-        if (!itemToUntag.containsTag(tag)) {
+        Set<Tag> itemTags = itemToUntag.getTagSet();
+        if (!itemTags.contains(tag)) {
             throw new CommandException(ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
         }
-
-        Item newTagSetItem = Item.createUntaggedItem(itemToUntag, tag);
+        itemTags.remove(tag);
+        Item newTagSetItem = Item.createItemWithTags(itemToUntag, itemTags);
 
         model.setItem(itemToUntag, newTagSetItem);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTagSetItem));

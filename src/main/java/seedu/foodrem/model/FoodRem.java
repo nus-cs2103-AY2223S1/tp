@@ -3,6 +3,7 @@ package seedu.foodrem.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.foodrem.model.item.Item;
@@ -125,27 +126,40 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Replaces the given item {@code target} in the list with {@code editedTag}.
-     * {@code target} must exist in the foodRem.
-     * The tag in {@code editedTag} must not be the same as another existing tag in the foodRem.
+     * Replaces the {@code originalTag} with the {@code renamedTag} in the item.
+     * The {@code originalTag} must exist in foodRem
+     * The tag in {@code renamedTag} must not be the same as another existing tag in the foodRem.
      */
-    public void setTag(Tag target, Tag editedTag) {
-        requireNonNull(editedTag);
+    public void renameTag(Tag originalTag, Tag renamedTag) {
+        requireNonNull(originalTag);
+        requireNonNull(renamedTag);
 
-        tags.setTag(target, editedTag);
+        for (Item item : items) {
+            Set<Tag> tags = item.getTagSet();
+            if (tags.contains(originalTag)) {
+                tags.remove(originalTag);
+                tags.add(renamedTag);
+                setItem(item, Item.createItemWithTags(item, tags));
+            }
+        }
+        tags.setTag(originalTag, renamedTag);
     }
 
     /**
      * Removes {@code key} from this {@code FoodRem}.
      * {@code key} must exist in the foodRem.
      */
-    public void removeTag(Tag key) {
-        for (Item i : items) {
-            if (i.containsTag(key)) {
-                setItem(i, Item.createUntaggedItem(i, key));
+    public void removeTag(Tag tag) {
+        requireNonNull(tag);
+
+        for (Item item : items) {
+            Set<Tag> tags = item.getTagSet();
+            if (tags.contains(tag)) {
+                tags.remove(tag);
+                setItem(item, Item.createItemWithTags(item, tags));
             }
         }
-        tags.remove(key);
+        tags.remove(tag);
     }
 
     //// util methods
