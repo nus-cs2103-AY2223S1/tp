@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/leecaregene.png" width="200px">
 
-[[github](https://github.com/leecaregene)]
+[[github](https://github.com/leecaregene)][[portfolio](team/leecaregene.md)]
 
 Roles:
 * Code quality
@@ -23,7 +23,7 @@ Roles:
 
 <img src="images/jovitaanderson.png" width="200px">
 
-[[github](https://github.com/jovitaanderson)]
+[[github](https://github.com/jovitaanderson)][[portfolio](team/jovitaanderson.md)]
 
 Roles: 
 * Team Lead
@@ -32,7 +32,7 @@ Roles:
 
 <img src="images/shaniceng.png" width="200px">
 
-[[github](https://github.com/shaniceng)]
+[[github](https://github.com/shaniceng)][[portfolio](team/shaniceng.md)]
 
 Roles: 
 * Deliverables and deadlines
@@ -42,7 +42,7 @@ Roles:
 
 <img src="images/alexandermula.png" width="200px">
 
-[[github](https://github.com/alexandermula)]
+[[github](https://github.com/alexandermula)][[portfolio](team/alexandermula.md)]
 
 Roles: 
 * Documentation
@@ -51,7 +51,7 @@ Roles:
 
 <img src="images/yztangent.png" width="200px">
 
-[[github](https://github.com/YZTangent)]
+[[github](https://github.com/YZTangent)][[portfolio](team/yztangent.md)]
 
 Roles: 
 * Testing
