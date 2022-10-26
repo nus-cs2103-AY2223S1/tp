@@ -5,7 +5,7 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "birthday": "01/01/2000",
-    "loan": "0.0"
+    "loan": "0.0",
     "history" : [ ]
   } ],
   "tags": []
