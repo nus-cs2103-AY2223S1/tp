@@ -90,6 +90,19 @@ public enum CommandType {
                     + PREFIX_NAME + "Potatoes";
         }
     },
+    FILTER_TAG_COMMAND("filtertag") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Filters all items in FoodRem by the specified tag"
+                    + "\n\n"
+                    + "Format:\n"
+                    + getCommandWord() + " "
+                    + PREFIX_NAME + "NAME\n\n"
+                    + "Example:\n"
+                    + getCommandWord() + " "
+                    + PREFIX_NAME + "Potatoes ";
+        }
+    },
     FIND_COMMAND("find") {
         @Override
         public String getUsage() {
@@ -188,19 +201,6 @@ public enum CommandType {
                     + getCommandWord() + " INDEX\n\n"
                     + "Example:\n"
                     + getCommandWord() + " 1";
-        }
-    },
-    FILTER_TAG_COMMAND("filtertag") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Filters all items in FoodRem by the specified tag"
-                    + "\n\n"
-                    + "Format:\n"
-                    + getCommandWord() + " "
-                    + PREFIX_NAME + "NAME\n\n"
-                    + "Example:\n"
-                    + getCommandWord() + " "
-                    + PREFIX_NAME + "Potatoes ";
         }
     },
 
