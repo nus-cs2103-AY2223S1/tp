@@ -294,18 +294,18 @@ The command takes in:
 - ```Set<Interest>```
 
 #### Implementation
-Each ```Person``` has a ```Set``` of ```Interest``` and adding an ```Interest``` would add the specified ```Interest``` into this set.
+Each ```Student``` has a ```Set``` of ```Interest``` and adding an ```Interest``` would add the specified ```Interest``` into this set.
 
 The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
 ```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
 
 ####Steps:
-1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```AddressBookParser``` to parse the command.
+1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```MassLinkersParser``` to parse the command.
 2. A new ```AddInterestCommandParser``` object is constructed.
 3. ```AddInterestCommandParser#parse``` parses the command arguments and returns a set of Interests. A new ```AddInterestCommand``` is constructed.
 4. ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
-5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Person``` marked by ```Index```.
-6. ```Person``` is updated with the added interests. ```ModelManager``` will also be updated with the changes.
+5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Student``` marked by ```Index```.
+6. ```Student``` is updated with the added interests. ```ModelManager``` will also be updated with the changes.
 
 The sequence diagram for the command ```addInt 1 anime``` is as follows.
 
@@ -315,14 +315,14 @@ In addition, the below sequence diagram illustrates how the ```AddInterestComman
 
 ![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 
-####Design considerations:
+#### Design considerations:
 1. Usefulness of ```AddInterestCommand```
 - The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Person```.
 2. Managing the List of Interests
-- **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Person``` class.
+- **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Student``` class.
     * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
-    * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Person```.
-- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniquePersonList```)
+    * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Student```.
+- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniqueStudentList```)
   * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
   * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead complexity.
 --------------------------------------------------------------------------------------------------------------------
