@@ -34,6 +34,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     private List<Project> projects;
 
     private ClientId clientId;
+    private boolean isPinned;
 
     /**
      * Constructs a client with inputs given by the user.
@@ -48,6 +49,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         this.email = email;
         this.projects = projects;
         this.clientId = clientId;
+        this.isPinned = false;
     }
 
     /**
@@ -200,6 +202,14 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     public void removeProject(Project p) {
         this.projects.remove(p);
+    }
+
+    public void togglePin() {
+        this.isPinned = !this.isPinned;
+    }
+
+    public boolean isPinned() {
+        return isPinned;
     }
 
 

@@ -26,6 +26,7 @@ public class ProjectWithoutModel implements Function<Model, Project> {
     private final Deadline deadline;
     private final List<Issue> issueList;
 
+
     /**
      * Partially initialise a Project object without access to a Model class.
      * @param name project name

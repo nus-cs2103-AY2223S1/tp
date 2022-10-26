@@ -26,6 +26,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     private Status status;
     private Project project;
     private IssueId issueId;
+    private boolean isPinned;
 
     /**
      * Description field and project field must be present and not null, but all other fields are optional.
@@ -40,6 +41,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         this.project = project;
         this.issueId = issueId;
         this.project.getIssueList().add(this);
+        this.isPinned = false;
     }
 
     /**
@@ -142,6 +144,14 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
      */
     public boolean isEmpty() {
         return false;
+    }
+
+    public void togglePin() {
+        this.isPinned = !this.isPinned;
+    }
+
+    public boolean isPinned() {
+        return isPinned;
     }
 
     public String uiRepresentation() {

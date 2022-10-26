@@ -32,6 +32,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     private Client client;
     private ProjectId projectId;
     private List<Issue> issueList;
+    private boolean isPinned;
 
     /**
      * Name field must be present and not null and other fields may be optional.
@@ -45,6 +46,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         this.client = client;
         this.issueList = issueList;
         this.projectId = projectId;
+        this.isPinned = false;
     }
 
     /**
@@ -144,6 +146,13 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         getIssueList().remove(i);
     }
 
+    public void togglePin() {
+        this.isPinned = !this.isPinned;
+    }
+
+    public boolean isPinned() {
+        return isPinned;
+    }
 
     /**
      * Checks if input is a valid deadline sort key.
