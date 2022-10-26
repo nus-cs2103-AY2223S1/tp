@@ -50,6 +50,10 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = CommandUtil.prepareFilteredList(model, index);
 
+        if (!Appointment.isFutureDate(appointmentDate)) {
+            throw new CommandException(Appointment.MESSAGE_DATE_PAST);
+        }
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getBirthdate(),
                 personToEdit.getPhone(), personToEdit.getEmail(),

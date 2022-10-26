@@ -5,9 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 class AppointmentTest {
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> Appointment.of(null));
@@ -42,6 +47,23 @@ class AppointmentTest {
     }
 
     @Test
+    public void isFutureDate() {
+        assertThrows(NullPointerException.class, () -> Appointment.isValidDate(null)); // null date
+
+        // invalid dates
+        assertFalse(Appointment.isFutureDate(LocalDateTime.now()
+                .minusDays(1).format(DATE_FORMAT).toString()));
+        assertFalse(Appointment.isFutureDate(LocalDateTime.now()
+                .minusMonths(1).format(DATE_FORMAT).toString()));
+
+        // valid dates
+        assertTrue(Appointment.isFutureDate(LocalDateTime.now()
+                .plusDays(1).format(DATE_FORMAT).toString()));
+        assertTrue(Appointment.isFutureDate(LocalDateTime.now()
+                .plusMonths(1).format(DATE_FORMAT).toString()));
+    }
+
+    @Test
     public void isValidAppointment() {
         assertThrows(NullPointerException.class, () -> Appointment.isValidAppointment(null)); // null date
 
@@ -64,9 +86,9 @@ class AppointmentTest {
     @Test
     public void storageFormat() {
         Appointment emptyAppointment = Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED);
-        Appointment testAppointment = Appointment.of("01-01-2001 1200");
+        Appointment testAppointment = Appointment.of("01-01-2024 1200");
 
         assertEquals(Appointment.NO_APPOINTMENT_SCHEDULED, emptyAppointment.storageFormat());
-        assertEquals("01-01-2001 1200", testAppointment.storageFormat());
+        assertEquals("01-01-2024 1200", testAppointment.storageFormat());
     }
 }

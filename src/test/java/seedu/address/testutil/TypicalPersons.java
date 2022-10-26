@@ -38,12 +38,12 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withBirthdate("04-04-1944")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").withAppointment("01-01-2000 0000").build();
+            .withTags("friends").withAppointment("01-01-2024 0000").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withBirthdate("08-08-1988")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").withRecordList(RECORD1, RECORD2, RECORD3)
-            .withAppointment("05-05-2023 1200").build();
+            .withAppointment("05-05-2024 1200").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withBirthdate("02-02-2002")
             .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withBirthdate("06-06-1996")

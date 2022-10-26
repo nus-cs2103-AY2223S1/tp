@@ -15,6 +15,7 @@ public class Appointment {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     public static final String NO_APPOINTMENT_SCHEDULED = "No appointment scheduled!";
     public static final String MESSAGE_CONSTRAINTS = "Appointment dates have to be of format dd-MM-yyyy HHmm!";
+    public static final String MESSAGE_DATE_PAST = "Appointment dates have to be scheduled in the future!";
 
     private final LocalDateTime appointmentDate;
 
@@ -26,6 +27,7 @@ public class Appointment {
     private Appointment(String appointmentDate) {
         requireNonNull(appointmentDate);
         checkArgument(isValidDate(appointmentDate), MESSAGE_INVALID_DATE_FORMAT);
+        checkArgument(isFutureDate(appointmentDate), MESSAGE_DATE_PAST);
         this.appointmentDate = LocalDateTime.parse(appointmentDate, DATE_FORMAT);
     }
 
@@ -49,6 +51,19 @@ public class Appointment {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if the date is in the past.
+     *
+     * @param testDate Date to be tested
+     * @return
+     */
+    public static boolean isFutureDate(String testDate) {
+        LocalDateTime currDate = LocalDateTime.now();
+        LocalDateTime actualDate = LocalDateTime.parse(testDate, DATE_FORMAT);
+        // Use !isBefore to allow date to be today.
+        return !actualDate.isBefore(currDate);
     }
 
     /**
@@ -86,15 +101,6 @@ public class Appointment {
         } else {
             return this.toString();
         }
-    }
-
-    /**
-     * Appointment date getter.
-     *
-     * @return The record date.
-     */
-    public String getAppointmentDate() {
-        return appointmentDate.format(DATE_FORMAT);
     }
 
     @Override

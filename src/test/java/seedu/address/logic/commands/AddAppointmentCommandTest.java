@@ -26,7 +26,7 @@ class AddAppointmentCommandTest {
 
     @Test
     public void execute_validIndexValidDate_success() {
-        String appointmentDate = "01-01-2000 1200";
+        String appointmentDate = "01-01-2024 1200";
         Person personToAddAppointment = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(FIRST_INDEX, appointmentDate);
@@ -46,7 +46,7 @@ class AddAppointmentCommandTest {
     @Test
     public void execute_validIndexValidDateFilteredList_success() {
         showPersonAtIndex(model, FIRST_INDEX);
-        String appointmentDate = "01-01-2000 1200";
+        String appointmentDate = "01-01-2024 1200";
 
         Person personToAddAppointment = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
         AddAppointmentCommand addAppointmentCommand =
