@@ -3,20 +3,27 @@ layout: page
 title: File Management
 ---
 
-All file commands have a `FILE_NAME` field that requires you to input a name for the file you are targeting.
+Align with our goal of providing a streamline way of managing RC4 related data, RC4HDB provides users with the ability to organise their files using our file management commands.
+
+RC4HDB currently supports the following file management functionalities:
+* [**Creation**](#creating-a-new-data-file--file-create) of new data folders
+* [**Deletion**](#deleting-an-existing-data-file--file-delete) of old data folders
+* [**Switching**](#switching-to-a-different-data-file--file-switch) between different data folders
+* [**Importing**](#importing-from-csv-file--file-import) of resident data from a [CSV](glossary.md#csv) file.
 
 ### File Command Format:
-* Do not include the file type in the `FILE_NAME`.
-* The following symbols are not to be used in `FILE_NAME`.
+* All file commands have a `FOLDER_NAME` field, which signifies the name of the folder to be targeted.
+* Do not include any file types in the `FOLDER_NAME`.
+* The following symbols are not to be used in `FOLDER_NAME`.
     * Empty spaces
     * `.` dots
     * `/` forward slashes
     * `\ ` backslashes
-  
+
 ### Example:
-* `rc4_data_2022` is a valid `FILE_NAME`.
-* `rc4_data_2022.json` is an invalid `FILE_NAME` due to the inclusion of the file type, `.json`.
-* The following are invalid `FILE_NAME` due to the inclusion of restricted symbols.
+* `rc4_data_2022` is a valid `FOLDER_NAME`.
+* `rc4_data_2022.json` is an invalid `FOLDER_NAME` due to the inclusion of the file type, `.json`.
+* The following are invalid `FOLDER_NAME` due to the inclusion of restricted symbols.
   * `rc4 data 2022` has empty spaces.
   * `rc4.data.2022` has dots.
   * `rc4/data/2022` has forward slashes.
@@ -26,13 +33,12 @@ All file commands have a `FILE_NAME` field that requires you to input a name for
 
 ### Creating a new data file : `file create`
 
-Creates a new data file with the specified `FILE_NAME`, if such a file does not exist.
+Creates a new folder with the specified `FOLDER_NAME`, if such a folder does not exist. RC4HDB will then create fresh data files for both the **venue** and **resident** data.
 
-Format: `file create FILE_NAME`
-* Does not create a new file if the file already exists.
-* The file must be a `.json` file.
+Format: `file create FOLDER_NAME`
+* Does not create a new folder if the folder already exists.
 
-:information source: `FILE_NAME` must follow this [format](#file-command-format).
+:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file create rc4_data_2022` will create a new file named `rc4_data_2022.json`.
