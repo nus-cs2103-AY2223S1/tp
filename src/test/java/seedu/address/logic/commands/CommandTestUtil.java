@@ -70,8 +70,9 @@ public class CommandTestUtil {
     public static final String MEETING_TIME_DESC_BOB = " " + PREFIX_MEETING_TIME + VALID_MEETING_TIME_BOB;
     public static final String FILEPATH_DESC_AMY = " " + PREFIX_FILEPATH + VALID_FILEPATH_AMY;
     public static final String FILEPATH_DESC_BOB = " " + PREFIX_FILEPATH + VALID_FILEPATH_BOB;
-    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_BOB;
-    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_AMY;
+
+    public static final String TAG_DESC_AMY = " " + PREFIX_TAG + VALID_TAG_AMY;
+    public static final String TAG_DESC_BOB = " " + PREFIX_TAG + VALID_TAG_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

@@ -66,32 +66,32 @@ public class CreateCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_BOB, new CreateCommand(expectedPerson));
+                + TAG_DESC_AMY, new CreateCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_BOB, new CreateCommand(expectedPerson));
+                + TAG_DESC_AMY, new CreateCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_BOB, new CreateCommand(expectedPerson));
+                + TAG_DESC_AMY, new CreateCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_BOB, new CreateCommand(expectedPerson));
+                + TAG_DESC_AMY, new CreateCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_BOB, new CreateCommand(expectedPerson));
+                + TAG_DESC_AMY, new CreateCommand(expectedPerson));
 
         // multiple networths - last networth accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NETWORTH_DESC_AMY + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
-                + TAG_DESC_BOB, new CreateCommand(expectedPerson));
+                + TAG_DESC_AMY, new CreateCommand(expectedPerson));
 
         // multiple meeting times - all accepted
         Person expectedPersonMultipleMeetingTimes = new PersonBuilder(BOB)
@@ -100,7 +100,7 @@ public class CreateCommandParserTest {
                 .withFilePath(EMPTY_FILEPATH).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + NETWORTH_DESC_BOB + MEETING_TIME_DESC_AMY
-                        + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_BOB,
+                        + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_AMY,
                 new CreateCommand(expectedPersonMultipleMeetingTimes));
     }
 
@@ -110,31 +110,31 @@ public class CreateCommandParserTest {
         // missing address prefix
         Person noAddressPerson = new PersonBuilder(AMY).withAddress(EMPTY_ADDRESS).buildNoFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                        + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_AMY,
+                        + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_BOB,
                 new CreateCommand(noAddressPerson));
 
         // missing email prefix
         Person noEmailPerson = new PersonBuilder(AMY).withEmail(EMPTY_EMAIL).buildNoFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
-                + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_AMY,
+                + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_BOB,
                 new CreateCommand(noEmailPerson));
 
         // missing description prefix
         Person noDescriptionPerson = new PersonBuilder(AMY).withDescription(EMPTY_DESCRIPTION).buildNoFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_AMY,
+                        + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_BOB,
                 new CreateCommand(noDescriptionPerson));
 
         // missing networth prefix
         Person noNetworthPerson = new PersonBuilder(AMY).withNetWorth(EMPTY_NETWORTH).buildNoFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + DESCRIPTION_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_AMY,
+                        + DESCRIPTION_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_BOB,
                 new CreateCommand(noNetworthPerson));
 
         // missing meeting time prefix
         Person noMeetingTimePerson = new PersonBuilder(AMY).withMeetingTimes().buildNoFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + TAG_DESC_AMY,
+                        + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + TAG_DESC_BOB,
                 new CreateCommand(noMeetingTimePerson));
 
         // zero tags and no filepath
@@ -171,27 +171,27 @@ public class CreateCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_BOB,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_AMY,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_BOB,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_AMY,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_BOB,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_AMY,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid networth
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + INVALID_NETWORTH_DESC + MEETING_TIME_DESC_BOB + TAG_DESC_BOB
-                + TAG_DESC_AMY, NetWorth.MESSAGE_CONSTRAINTS);
+                + DESCRIPTION_DESC_BOB + INVALID_NETWORTH_DESC + MEETING_TIME_DESC_BOB + TAG_DESC_AMY
+                + TAG_DESC_BOB, NetWorth.MESSAGE_CONSTRAINTS);
 
         // invalid meeting time
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + INVALID_MEETING_TIME + TAG_DESC_BOB
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + INVALID_MEETING_TIME + TAG_DESC_AMY
                 + VALID_TAG_AMY, MeetingTime.MESSAGE_CONSTRAINTS);
 
         // invalid tag
@@ -206,6 +206,6 @@ public class CreateCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB
-                + TAG_DESC_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
+                + TAG_DESC_AMY, String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
     }
 }
