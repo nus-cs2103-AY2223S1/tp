@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
  */
 public class PersonProfile extends UiPart<Region> {
     private static final String FXML = "PersonProfile.fxml";
+    public static final String EMPTY_DISPLAY_VALUE = "-";
 
     public final Person person;
 
@@ -50,18 +51,22 @@ public class PersonProfile extends UiPart<Region> {
     public PersonProfile(Person person) {
         super(FXML);
         this.person = person;
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        description.setText(person.getDescription().value);
-        netWorth.setText(person.getNetWorth().value);
+        name.setText(person.getName().getFullDisplayName());
+        phone.setText(person.getPhone().getDisplayValue());
+        address.setText(person.getAddress().getDisplayValue());
+        email.setText(person.getEmail().getDisplayValue());
+        description.setText(person.getDescription().getDisplayValue());
+        netWorth.setText(person.getNetWorth().getDisplayValue());
         person.getMeetingTimes().stream()
                 .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
                 .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private String getDisplayValue() {
+        return "";
     }
 
     @Override

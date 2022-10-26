@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.ui.PersonProfile;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -7,8 +9,8 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class Address {
-
-    public final String value;
+    private final String EMPTY_ADDRESS = "";
+    private final String value;
 
     /**
      * Constructs an {@code Address}.
@@ -18,6 +20,20 @@ public class Address {
     public Address(String address) {
         requireNonNull(address);
         value = address;
+    }
+
+    /**
+     * Returns value of address.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns value of address if not null else, EMPTY_DISPLAY_VALUE.
+     */
+    public String getDisplayValue() {
+        return value == EMPTY_ADDRESS ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     @Override

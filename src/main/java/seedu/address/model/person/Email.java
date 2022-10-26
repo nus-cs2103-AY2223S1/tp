@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.ui.PersonProfile;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -32,7 +34,7 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Email}.
@@ -50,6 +52,20 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.equals(EMPTY_EMAIL) || test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns value of email.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns value of Email if not null else, EMPTY_VALUE.
+     */
+    public String getDisplayValue() {
+        return value == EMPTY_EMAIL ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     @Override

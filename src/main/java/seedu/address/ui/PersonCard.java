@@ -53,12 +53,12 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        description.setText(person.getDescription().value);
-        netWorth.setText(person.getNetWorth().value);
+        name.setText(person.getName().getFullName());
+        phone.setText(person.getPhone().getDisplayValue());
+        address.setText(person.getAddress().getDisplayValue());
+        email.setText(person.getEmail().getDisplayValue());
+        description.setText(person.getDescription().getDisplayValue());
+        netWorth.setText(person.getNetWorth().getDisplayValue());
         person.getMeetingTimes().stream()
                 .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
                 .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));

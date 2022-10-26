@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.ui.PersonProfile;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,11 +11,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-
+    public static final String EMPTY_PHONE = "";
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Phone}.
@@ -33,6 +35,20 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns value of phone number.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns value of phone number if not null else, EMPTY_VALUE.
+     */
+    public String getDisplayValue() {
+        return value == EMPTY_PHONE ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
+    }
+
     @Override
     public String toString() {
         return value;
@@ -49,5 +65,4 @@ public class Phone {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
