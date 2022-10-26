@@ -73,9 +73,7 @@ public class AddClientCommand extends ClientCommand {
         if (model.hasClient(toAddClient)) {
             Client existingClient = model.getClient(toAddClient);
             existingClient.addProjects(toModifyProject);
-        }
-
-        else {
+        } else {
             toAddClient.addProjects(toModifyProject);
             model.addClient(toAddClient);
         }

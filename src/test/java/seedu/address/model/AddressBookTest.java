@@ -101,6 +101,11 @@ public class AddressBookTest {
         }
 
         @Override
+        public Client getClient(Client client) {
+            return null;
+        }
+
+        @Override
         public int generateClientId() {
             return 0;
         }
