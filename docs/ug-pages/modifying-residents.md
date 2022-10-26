@@ -3,11 +3,23 @@ layout: page
 title: Modifying Residents
 ---
 
-In order to maintain the database, we have provided crucial commands such as `add`, `edit`, `delete` and `clear`.
+In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear` to help
+you manipulate residents within RC4HDB.
+
+---
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Before proceeding to learn more about resident commands. Have a quick read about the **resident fields**, which will
+be used in the commands.
+</div>
+
+The resident fields can be found [here](#format-for-resident-fields).
+
+---
 
 ### Adding a resident : `add`
 
-Adds a resident to the database. The format for resident fields can be found [here](#format-for-resident-fields).
+Adds a resident to the database.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
@@ -27,7 +39,9 @@ Edits the data of an existing resident in the RC4HDB database.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
 
-* Edits the resident at the specified `INDEX`. The index refers to the index number shown in the displayed residents list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the resident at the specified `INDEX`.
+* The index refers to the index number shown in the displayed residents list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
@@ -60,6 +74,10 @@ Examples:
 Clears all entries from the database.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Deleted data can not be retrieved. Do use this command cautiously!
+</div>
 
 ---
 
@@ -96,8 +114,6 @@ Format: `clear`
 * Optional. A resident can have any number of tags, including 0
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
-
-_More details coming soon ..._
 
 ---
 

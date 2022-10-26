@@ -18,16 +18,25 @@ To view the bookings, you will have to click on the tab labelled as bookings.
 As you perform the booking commands, the table will automatically update to reflect the changes you have made.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you are currently viewing a certain venue, and you have added a booking to another venue, the table will
-automatically switch to that venue's booking. Alternatively, you can use the `venue switch VENUE_NAME` command
-to switch manually.
+If you are currently viewing a certain venue, and you have added a booking to another venue, or removed a booking
+from another venue, the table will automatically switch to that venue's booking. 
+Alternatively, you can use the `venue switch VENUE_NAME` command to switch manually.
 </div>
+
+---
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Before proceeding to learn more about venue commands. Have a quick read about the **venue fields**, which will
+be used in the commands. 
+</div>
+
+The venue fields can be found [here](#format-for-venue-fields).
 
 ---
 
 ### Adding a venue : `venue add`
 
-Adds a venue to the database. The format for venue fields can be found [here](#format-for-venue-fields).
+Adds a venue to the database.
 
 Format: `venue add VENUE_NAME`
 

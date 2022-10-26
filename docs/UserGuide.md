@@ -140,7 +140,7 @@ may have typed a command incorrectly as RC4HDB will step in as and when needed!
 
 <div markdown="block" class="alert alert-info">
 
-* Words in `UPPER_CASE` are compulsory and must be entered by you.<br>
+* Words in `UPPER_CASE` are compulsory and must be entered by you, the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which you must enter, such as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
