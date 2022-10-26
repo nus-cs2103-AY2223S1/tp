@@ -12,6 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Creates a meeting with a person in the address book
@@ -39,6 +41,11 @@ public class AddPersonToMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         String[] newPeopleInformation = this.info.split(";");
+
+        if (newPeopleInformation.length != 2) {
+            throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+
         String[] newPeople = newPeopleInformation[1].strip().split(",");
         meetingIndex = ParserUtil.parseIndex(newPeopleInformation[0].strip());
 
@@ -46,13 +53,26 @@ public class AddPersonToMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, newPeople);
-        Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex.getZeroBased());
-        model.deleteMeeting(meetingToUpdate);
-        meetingToUpdate.addPersons(arrayOfPeopleToMeet);
-        model.addMeeting(meetingToUpdate);
+        try {
+            ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, newPeople);
+            Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex.getZeroBased());
+            meetingToUpdate.addPersons(arrayOfPeopleToMeet);
+            model.deleteMeeting(meetingToUpdate);
+            model.addMeeting(meetingToUpdate, meetingIndex.getZeroBased());
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
+        } catch (DuplicatePersonException e) {
+            throw new CommandException(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
+        }
 
         return new CommandResult(String.format(MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddPersonToMeetingCommand // instanceof handles nulls
+                && this.info.equals(((AddPersonToMeetingCommand) other).info)); // state check
     }
 
 }
