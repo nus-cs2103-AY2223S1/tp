@@ -12,51 +12,12 @@ participant "l:ListMeetingCommand" as ListMeetingCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-end box
-
-
 [->MainWindow : executeCommand("listMeeting")
 activate MainWindow
 
-MainWindow -> LogicManager : execute("listMeeting")
-activate LogicManager
+group ref [execute ListMeetingCommand]
 
-LogicManager -> MyInsuRecParser : parseCommand("listMeeting")
-activate MyInsuRecParser
-
-create ListMeetingCommand
-MyInsuRecParser -> ListMeetingCommand
-activate ListMeetingCommand
-
-ListMeetingCommand --> MyInsuRecParser : l
-deactivate ListMeetingCommand
-
-MyInsuRecParser --> LogicManager : l
-deactivate MyInsuRecParser
-
-LogicManager -> ListMeetingCommand : execute()
-activate ListMeetingCommand
-
-ListMeetingCommand -> Model : updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETING)
-activate Model
-
-Model --> ListMeetingCommand
-deactivate Model
-
-create CommandResult
-ListMeetingCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> ListMeetingCommand
-deactivate CommandResult
-
-ListMeetingCommand --> LogicManager : result
-deactivate ListMeetingCommand
-
-LogicManager --> MainWindow : result
-deactivate LogicManager
+end
 
 MainWindow -> CommandResult : getCommandSpecific()
 activate CommandResult

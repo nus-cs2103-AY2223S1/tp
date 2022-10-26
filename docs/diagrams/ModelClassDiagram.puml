@@ -20,7 +20,7 @@ Class Name
 Class Phone
 Class Product
 
-Class UniqueMeetingList
+Class NoConflictMeetingList
 Class Meeting
 Class Description
 Class MeetingDate
@@ -49,11 +49,11 @@ Client *--> Email
 Client *--> Address
 Client *--> "*" Product
 
-MyInsuRec *--> "1" UniqueMeetingList
-UniqueMeetingList --> "~* all" Meeting
+MyInsuRec *--> "1" NoConflictMeetingList
+NoConflictMeetingList --> "~* all" Meeting
 Meeting *--> Description
 Meeting *--> MeetingDate
-Meeting *--> MeetingTime
+Meeting *--> "2" MeetingTime
 Meeting <-> Client
 
 Name -[hidden]right-> Phone

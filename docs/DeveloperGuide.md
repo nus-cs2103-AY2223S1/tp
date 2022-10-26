@@ -87,8 +87,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
-
+The **API** of this component is specified in [`Logic.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
@@ -115,7 +114,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+The **API** of this component is specified in [`Model.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="600" />
 
@@ -124,19 +124,17 @@ The `Model` component,
 
 * stores the MyInsuRec data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
 * stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores the currently 'selected' `Meeting` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+ 
+A close-up of the  `Client` is given below to explain the `Product` attribute. The `Model` has a `Product` list in `MyInsuRec`, which `Client` references. This allows `MyInsuRec` to only require one `Product` object per unique product, instead of each `Client` needing their own `Product` objects.<br>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `MyInsuRec`, which `Client` references. This allows `MyInsuRec` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+<img src="images/ModelProductClassDiagram.png" width="450" />
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/se-edu/MyInsuRec-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -155,40 +153,48 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Delete Meeting Feature
 
-Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
+### Add Meeting Feature
 
-Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
+Syntax: `addMeeting i/INDEX d/DATE st/START TIME et/END TIME dn/DESCRIPTION`
+
+Purpose: Adds a meeting with the given information to the internal model and storage
 
 #### Implementation
 
-Usage Scenario of `delMeeting`:
+In keeping with the command execution structure of the overall program, the command
+specific classes `AddMeetingCommandd` and `AddMeetingCommandParser` are added to the
+commands and parser packages respectively. The main parser `MyInsuRecParser` is modified
+to accept the new command word, `addMeeting`.
 
-1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
-2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
+The following sequence diagram offers a high-level overview of how
+the command is executed.
 
-Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
-
-![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
-
-Below is an activity diagram that summarises the execution of `delMeeting`.
-
-![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
 
 #### Design Considerations
 
-Aspect: How many meetings to delete in one command
+**Aspect: What the `addMeeting` command accepts as a reference to a client:**
 
-- Alternative Solution 1 (Current Choice): Allows only one deletion
-  - Pros: Easy to implement
-  - Cons: Troublesome in the event where multiple meetings
-- Alternative Solution 2: Allows multiple deletion
-  - Pros: Convenient to delete multiple meetings when needed.
-  - Cons: Complex to implement
-- Considering that the approach taken to develop MyInsuRec is a breath first approach,
-where we should only build to the point where every iteration is a working product,
-**Solution 1** is thus chosen as it is easier to implement.
+- **Alternative 1 (Current choice):** Accept the client's list index.
+    - Pros: Each valid index is guaranteed to refer to a unique client.
+    - Cons: It is less intuitive for the user compared to typing in a name.
+- **Alternative 2:** Accept the client's name.
+    - Pros: It is intuitive for the user to enter a name.
+    - Cons: Names have to be spelt exactly as stored, otherwise the name.
+      could be referencing more than one client.
+
+**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
+
+- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
+    - Pros: The logic and operations on the model that are associated with
+      command execution are inside the `AddMeetingCommand`.
+    - Cons: The design of `AddMeetingCommand` is less intuitive.
+- **Alternative 2:** Accept a completed `Meeting`.
+    - Pros: The design of `AddMeetingCommand` is simpler.
+    - Cons: The parser will need to have access to the model in order to
+      obtain the referenced client.
+
 
 ### List Meeting feature
 
@@ -206,7 +212,7 @@ Below is a sequence diagram that illustrates the execution of `listMeeting` comm
 
 ![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
 
-### Different view panels
+#### Different view panels
 
 The GUI changes view panels depending on the last executed command. For example, a `listMeeting` will cause the meeting list view panel to be displayed, while `viewClient i/1` will cause a detailed client view panel to be displayed.
 
@@ -222,7 +228,11 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 #### Proposed future changes
 
-We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. We are currently exploring the use of event listeners on the Model, such that when a command is executed, the Model can listen for the specific view for the UI to display. This however causes the Model to have to depend on UI which results in more coupling of compartments. Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
+We feel that there is a way for us to cut down on repetition of code. More specifically, the methods for setting the view panels which is currently done through four very similar methods in `MainWindow#setListPanelToXYZ`. 
+
+We are currently exploring the use of event listeners on the `Model`, such that when a command is executed, the `Model` can listen for the specific view for the `UI` to display. This however causes the `Model` to have to depend on `UI` which results in more coupling of compartments.
+
+Another possibility is to have a general `MainWindow#setListPanelToXYZ` which takes in some input to specify which view to show. It will behave much like how `MyInsuRecParser#parseCommand` works, using switch cases to decide which panels to use.
 
 
 ### View Meeting feature
@@ -243,113 +253,135 @@ Below is a sequence diagram that illustrates the execution of `viewMeeting` comm
 
 ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
 
-#### `editClient` and `editMeeting` feature
+### Delete Meeting Feature
+
+Syntax: `delMeeting i/x`, where x is an index shown in the `NoConflictMeetingList`.
+
+Purpose: Delete a specified `Meeting` from `NoConflictMeetingList` in `Model`
+
+#### Implementation
+
+Usage Scenario of `delMeeting`:
+
+1) User inputs `listMeeting` to view the current meetings in the `Model`'s `NoConflictMeetingList` with their respective indexes.
+2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
+
+Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
+
+![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `delMeeting`.
+
+![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How many meetings to delete in one command**
+
+- **Alternative 1 (Current choice):** Allows only one deletion
+  - Pros: Easy to implement.
+  - Cons: Troublesome in the event where multiple meetings.
+- **Alternative 2:** Allows multiple deletion
+  - Pros: Convenient to delete multiple meetings when needed.
+  - Cons: Complex to implement, can be postponed to later versions.
+  
+**Rationale:**
+
+- Considering that the approach taken to develop MyInsuRec is a breadth-first iterative approach (every iteration adds an enhancement to the working product, hence building a better working product)
+**Alternative 1** is thus chosen as it is adds a minimal working enchancement over v1.2.
+
+  
+### Edit Client and Edit Meeting Features
+
+`editClient` and `editMeeting` execute in a similar manner to each other.
+
+#### Edit Client Feature
+
+Syntax: `editClient i/x n/NAME p/PHONE [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`, where x is an index shown in the `UniqueClientList`.
+
+Purpose: Edit a specified `Client` from the `UniqueClientList` in `Model`
+
+Usage Scenario of `editClient`:
+
+1) Add client address to a client that already exists using
+   `editClient i/x a/address` where x is the required index and the address is given.
+
+#### Edit Meeting Feature
+
+Syntax: `editMeeting i/2 d/DATE st/START TIME et/END TIME dn/DESCRIPTION`, where x is an index shown in the `NoConflictMeetingList`.
+
+Purpose: Edit a specified `Meeting` from `NoConflictMeetingList` in `Model`
+
+Usage Scenario of `editMeeting`:
+
+1) Change meeting date using `editMeeting i/x d\new date` where x is the required index and the new date is in DDMMYYYY format.
+
+#### Implementation
 
 `editClient` and `editMeeting` execute in a similar manner to each other.
 Let the term entity refer to either a client or a meeting.
 Every entity is uniquely identified by a UUID in storage, so essentially all fields in an entity can be edited without loss of its uniqueness.
 
 Below is an activity diagram that summarizes how the updates are reflected in MyInsuRec.
-EditCommand::execute() caused the model to be updated first and then the storage
+`EditCommand::execute()` updates model and then storage.
 
 <img src="images/EditActivityDiagram.png" width="200" />
 
 #### Design Considerations
 
-Aspect: Class that triggers model and storage update
+**Aspect: Which class triggers model and storage update**
 
-- Alternative Solution 1 (Current choice):
-- LogicManager::execute() causes both updates
-- Pros: Any error in updating storage or model can be identified within execute() 
+- **Alternative 1 (Current choice):** `LogicManager::execute()` causes both updates
+- Pros: Any error in updating storage or model can be identified within `execute()` 
 - Cons: execute command performs two functions, update model and update storage, which is not ideal for separating responsibilities.
-
-- Alternative Solution 2:
-- LogicManager causes Model update which internally triggers Storage update
-- Pros: Removes one instance of cohesion between Logic and Storage (Logic can access Storage via Model only)
+- **Alternative 2:** `LogicManager` causes `Model` update which internally triggers `Storage` update
+- Pros: Removes one instance of cohesion between `Logic` and `Storage` (`Logic` can access `Storage` via `Model` only)
 - Cons: Model is a single point of failure in this scheme.
 
 <img src="images/AlternativeEditActivityDiagram.png" width="250" />
 
-#### Rationale
-LogicManager is responsible for coordinating both Model and Storage updates because Model and Storage should be kept as separate entities.
+**Rationale:**
 
-[Proposed] Multiple possible prefixes per command feature
+- `LogicManager` is responsible for coordinating both `Model` and `Storage` updates because `Model` and `Storage` should be maintained as separate entities.
+
+
+### [Proposed] Multiple Possible Prefixes per Command Feature
 
 In this proposed feature, the user is provided with  multiple possible prefixes for defining fields in a command.
 For example, currently we can define a client's birthday using the `b/` prefix.
 However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead (see `addMeeting` command).
 
-Proposed implementation 
+#### Proposed implementation
 
-AddClientCommandParser depends on multiple Prefix objects such as PREFIX_BIRTHDAY, and PREFIX_DATE to identify each field in an AddClientCommand.
-Currently, Prefix class stores the required prefix word as a String.
-Consider changing the prefix word to a Pattern which can be matched against using Matcher. 
-For all prefixes we are looking for, we first get the matching pattern using getPrefix().
-Then, findPrefixPosition()  validates the presence of a field and also obtain the index of its first occurrence.
-From then on, the AddClientCommand can be built as expected.
+`AddClientCommandParser` depends on multiple `Prefix` objects such as `PREFIX_BIRTHDAY`, and `PREFIX_DATE` to identify each field in an `AddClientCommand`.
+Currently, `Prefix` class stores the required prefix word as a `String`.
+Consider changing the prefix word to a `Pattern` which can be matched against using `Matcher`.
+For all prefixes we are looking for, we first get the matching pattern using `getPrefix()`.
+Then, `findPrefixPosition()`  validates the presence of a field and also obtain the index of its first occurrence.
+From then on, the `AddClientCommand` can be built as expected.
 
 <img src="images/ProposedPrefixSequenceDiagram.png" width="550" />
 
 
 #### Design considerations
 
-Aspect: How prefixes are stored:
+**Aspect: How prefixes are stored**
 
--Alternative Solution 1 (current choice): Prefix::getPrefix() returns a Pattern that findPrefixPosition() can match against using Matcher class.
-- Pros: Matcher has several useful methods for validating a match.
-- Case-insensitive matches can be made easily by setting a flag in the Pattern.
+- **Alternative 1 (current choice):** `Prefix::getPrefix()` returns a `Pattern` that `findPrefixPosition()` can match against using `Matcher` class.
+- Pros: `Matcher` has several useful methods for validating a match.
+- Case-insensitive matches can be made easily by setting a flag in the `Pattern`.
 - Cons: Regex string used to define a pattern may be difficult to read.
-e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
+  e.g. `String regexForBirthday = "[b|d|birthday|birthdate][\\\\]";` is not as clear as Alternative 2
 
-- Alternative Solution 2: Store each possible prefix as a String in a List maintained by Prefix.
-- Pros:   String matches are easier to understand than regexes 
-e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
-- Cons: List of String returned is cumbersome for pattern matching, i.e. Iterate through every String in patternsForBirthday to look for a match.
+- **Alternative 2:** Store each possible prefix as a `String` in a `List` maintained by `Prefix`.
+- Pros:   `String` matches are easier to read and understand than regexes
+  e.g. `String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"};`
+- Cons: `List` of `String` returned is cumbersome for pattern matching, i.e. Iterate through every `String` in `patternsForBirthday` to look for a match.
 
-#### Rationale 
-- A single Pattern for each Prefix is more succinct that a List.
+**Rationale:**
+- A single `Pattern` for each `Prefix` is more succinct that a `List`.
 - No need to iterate through a list of Strings to find a match.
-- Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
-
-### Add Meeting Feature
-
-Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
-Purpose: Adds a meeting with the given information to the internal model and storage
-
-#### Implementation
-
-In keeping with the command execution structure of the overall program, the command
-specific classes `AddMeetingCommandd` and `AddMeetingCommandParser` were added to the 
-commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
-to accept the new command word, `addMeeting`.
-
-The following sequence diagram offers a high-level overview of how
-the command is executed.
-
-![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
-
-#### Design Considerations
-
-**Aspect: What the addMeeting command accepts as a reference to a client:**
-
-- **Alternative 1 (current choice):** Accept the client's list index.
-  - Pros: Each valid index is guaranteed to refer to a unique client.
-  - Cons: It is less intuitive for the user compared to typing in a name.
-- **Alternative 2:** Accept the client's name.
-  - Pros: It is intuitive for the user to enter a name.
-  - Cons: Names have to be spelt exactly as stored, otherwise the name.
-could be referencing more than one client.
-
-**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
-
-- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
-  - Pros: The logic and operations on the model that are associated with 
-command execution are inside the AddMeetingCommand.
-  - Cons: The design of AddMeetingCommand is less intuitive.
-- **Alternative 2:** Accept a completed Meeting.
-  - Pros: The design of AddMeetingCommmand is simpler.
-  - Cons: The parser will need to have access to the model in order to 
-obtain the referenced client.
+- Matches can be made using pre-existing methods in `Matcher` (no need to rely on `String` methods)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -389,7 +421,7 @@ obtain the referenced client.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
-| Priority | As an …         | I want to …                                                 | So that I can…                                                             | Conditions                                                             |
+| Priority | As an …         | I want to …                                                 | So that I can…                                                              | Conditions                                                             |
 |----------|-----------------|-------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | insurance agent | add client details                                          | keep track of my client's details                                           |                                                                        |
 | `* * *`  | insurance agent | view all my clients                                         | see who I am providing services to                                          |                                                                        |
@@ -516,6 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 * **Mainstream OS**: Windows, MacOS, Unix
 * **Meeting**: An event that the user with the client at a specific date and time.
 * **Timing conflict**: Time periods that overlap. e.g. meetings should not be happening on the same time.
+* **UUID**: Universally unique identifier, generated by `ObjectIdGenerators.UUIDGenerator.class` in `jackson` package
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -561,10 +594,3 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …  }_
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
