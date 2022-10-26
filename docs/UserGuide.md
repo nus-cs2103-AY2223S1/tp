@@ -3,7 +3,6 @@ layout: page
 title: User Guide
 ---
 
-# User Guide
 **CinternS** is a **desktop app for managing internship applications, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **CinternS** can get your internship application management tasks done faster than traditional GUI apps. It consists of several useful features which the users are able to execute using commands.
 
 * [Quick Start](#quick-start)
