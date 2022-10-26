@@ -40,9 +40,6 @@ public class UnPinCommand extends Command {
         List<Applicant> lastShownList = model.getFilteredApplicantList();
 
         int indexOfApplicant = getApplicantIndex(lastShownList, name);
-        if (indexOfApplicant == -1) {
-            throw new CommandException(MESSAGE_NO_SUCH_APPLICANT_FOUND);
-        }
 
         Applicant applicantToUnpin = lastShownList.get(indexOfApplicant);
         Applicant unPinnedApplicant = createUnPinnedApplicant(applicantToUnpin);
@@ -51,7 +48,7 @@ public class UnPinCommand extends Command {
         return new CommandResult(String.format(MESSAGE_UNPIN_APPLICANT_SUCCESS, unPinnedApplicant));
     }
 
-    private static int getApplicantIndex(List<Applicant> list, Name nameToBeSearched) {
+    private static int getApplicantIndex(List<Applicant> list, Name nameToBeSearched) throws CommandException {
         for (int i = 0; i < list.size(); i++) {
             Applicant currApplicant = list.get(i);
             Name currApplicantName = currApplicant.getName();
@@ -59,7 +56,7 @@ public class UnPinCommand extends Command {
                 return i;
             }
         }
-        return -1;
+        throw new CommandException(MESSAGE_NO_SUCH_APPLICANT_FOUND);
     }
 
     private static Applicant createUnPinnedApplicant(Applicant applicantToPin) {
