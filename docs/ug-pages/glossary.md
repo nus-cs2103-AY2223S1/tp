@@ -3,11 +3,6 @@ layout: page
 title: Glossary
 ---
 
-<<<<<<< HEAD
-### Idempotent
-
-This term describes an operation which can be applied multiple times without changing the result beyond the initial application.
-=======
 ## Glossary of terms
 
 ### Idempotent
