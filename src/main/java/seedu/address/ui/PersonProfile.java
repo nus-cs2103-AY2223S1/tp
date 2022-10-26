@@ -86,6 +86,9 @@ public class PersonProfile extends UiPart<Region> {
         setPersonFileButton();
     }
 
+    /**
+     * Sets name value in name if value is not empty.
+     */
     private void setNameField() {
         if (person.getName().isEmpty()) {
             name.setManaged(false);
@@ -95,6 +98,9 @@ public class PersonProfile extends UiPart<Region> {
         name.setText(person.getName().getFullDisplayName());
     }
 
+    /**
+     * Sets phone value in phone if value is not empty.
+     */
     private void setPhoneField() {
         if (person.getPhone().isEmpty()) {
             phone.setManaged(false);
@@ -104,6 +110,9 @@ public class PersonProfile extends UiPart<Region> {
         phone.setText(person.getPhone().getDisplayValue());
     }
 
+    /**
+     * Sets address value in address if value is not empty.
+     */
     private void setAddressField() {
         if (person.getAddress().isEmpty()) {
             address.setManaged(false);
@@ -113,6 +122,9 @@ public class PersonProfile extends UiPart<Region> {
         address.setText(person.getAddress().getDisplayValue());
     }
 
+    /**
+     * Sets email value in email if value is not empty.
+     */
     private void setEmailField() {
         if (person.getEmail().isEmpty()) {
             email.setManaged(false);
@@ -122,6 +134,9 @@ public class PersonProfile extends UiPart<Region> {
         email.setText(person.getEmail().getDisplayValue());
     }
 
+    /**
+     * Sets description value in description if value is not empty.
+     */
     private void setDescriptionField() {
         if (person.getDescription().isEmpty()) {
             description.setManaged(false);
@@ -131,6 +146,9 @@ public class PersonProfile extends UiPart<Region> {
         description.setText(person.getDescription().getDisplayValue());
     }
 
+    /**
+     * Sets netWorth value in netWorth if value is not empty.
+     */
     private void setNetWorthField() {
         if (person.getNetWorth().isEmpty()) {
             netWorth.setManaged(false);
@@ -140,6 +158,9 @@ public class PersonProfile extends UiPart<Region> {
         netWorth.setText(person.getNetWorth().getDisplayValue());
     }
 
+    /**
+     * Sets person meetingTimes in meetingTimes if meetingTimes is not empty.
+     */
     private void setMeetingsField() {
         if (person.getMeetingTimes().isEmpty()) {
             meetingTimes.setManaged(false);
@@ -150,6 +171,9 @@ public class PersonProfile extends UiPart<Region> {
                 .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
     }
 
+    /**
+     * Sets person tags in tags if tags is not empty.
+     */
     private void setTagsField() {
         if (person.getTags().isEmpty()) {
             tags.setManaged(false);
@@ -160,6 +184,9 @@ public class PersonProfile extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    /**
+     * Sets personFileButton to unmanaged if filepath is empty.
+     */
     private void setPersonFileButton() {
         if (person.getFilePath().isEmpty()) {
             personFileButton.setManaged(false);
