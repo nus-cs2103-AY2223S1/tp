@@ -20,16 +20,17 @@ public class RecordContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        RecordContainsKeywordsPredicate firstPredicate = new RecordContainsKeywordsPredicate(firstPredicateKeywordList);
+        RecordContainsKeywordsPredicate firstPredicate = new RecordContainsKeywordsPredicate(
+                firstPredicateKeywordList, firstPredicateKeywordList, "10-2022");
         RecordContainsKeywordsPredicate secondPredicate = new RecordContainsKeywordsPredicate(
-                secondPredicateKeywordList);
+                secondPredicateKeywordList, secondPredicateKeywordList, "12-2012");
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         RecordContainsKeywordsPredicate firstPredicateCopy = new RecordContainsKeywordsPredicate(
-                firstPredicateKeywordList);
+                firstPredicateKeywordList, firstPredicateKeywordList, "10-2022");
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,38 +39,38 @@ public class RecordContainsKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different record -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
     @Test
-    public void test_recordContainsKeywords_returnsTrue() {
+    public void test_recordFieldsContainsKeywords_returnsTrue() {
+        List<String> nonSpecifiedKeyword = Arrays.asList();
+        String nonSpecifiedDate = "";
+
         // One keyword
         RecordContainsKeywordsPredicate predicate = new RecordContainsKeywordsPredicate(
-                Collections.singletonList("Flu"));
+                Collections.singletonList("Flu"), nonSpecifiedKeyword, nonSpecifiedDate);
         assertTrue(predicate.test(recordWithKeywords));
 
         // Multiple keywords
-        predicate = new RecordContainsKeywordsPredicate(Arrays.asList("Covid-19", "Flu"));
+        predicate = new RecordContainsKeywordsPredicate(
+                Arrays.asList("Covid-19", "Flu"), nonSpecifiedKeyword, nonSpecifiedDate);
         assertTrue(predicate.test(recordWithKeywords));
 
         // Only one matching keyword
-        predicate = new RecordContainsKeywordsPredicate(Arrays.asList("Covid-19", "H1N1"));
+        predicate = new RecordContainsKeywordsPredicate(
+                Arrays.asList("Covid-19", "H1N1"), nonSpecifiedKeyword, nonSpecifiedDate);
         assertTrue(predicate.test(recordWithKeywords));
 
         // Mixed-case keywords
-        predicate = new RecordContainsKeywordsPredicate(Arrays.asList("cOVid-19", "h1n1"));
+        predicate = new RecordContainsKeywordsPredicate(
+                Arrays.asList("cOVid-19", "h1n1"), nonSpecifiedKeyword, nonSpecifiedDate);
         assertTrue(predicate.test(recordWithKeywords));
-    }
 
-    @Test
-    public void test_recordDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        RecordContainsKeywordsPredicate predicate = new RecordContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(recordWithKeywords));
-
-        // Non-matching keyword
-        predicate = new RecordContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(recordWithKeywords));
+        // Correct find date format
+        predicate = new RecordContainsKeywordsPredicate(
+                nonSpecifiedKeyword, nonSpecifiedKeyword, "10-2000");
+        assertTrue(predicate.test(recordWithKeywords));
     }
 }

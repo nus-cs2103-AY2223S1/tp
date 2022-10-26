@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -196,6 +197,54 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseKeywords_unspecifiedPrefix_returnsEmptyList() throws Exception {
+        List<String> actualPredicate = ParserUtil.parseKeywords(FindRecordCommandParser.PREFIX_NOT_SPECIFIED);
+        List<String> expectedPredicate = Arrays.asList();
+
+        assertEquals(expectedPredicate, actualPredicate);
+    }
+
+    @Test
+    public void parseKeywords_emptySpecifiedPrefix_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseKeywords(""));
+    }
+
+    @Test
+    public void parseKeywords_validValue_returnsListOfKeywords() throws Exception {
+        String toParse = "covid-19 SARS H1N1";
+        List<String> actualPredicate = ParserUtil.parseKeywords(toParse);
+        List<String> expectedPredicate = Arrays.asList(toParse.split("\\s+"));
+
+        assertEquals(expectedPredicate, actualPredicate);
+    }
+
+    @Test
+    public void parseDateKeyword_unspecifiedPrefix_returnsBlankString() throws Exception {
+        String actualPredicate = ParserUtil.parseDateKeyword(FindRecordCommandParser.PREFIX_NOT_SPECIFIED);
+        String expectedPredicate = "";
+
+        assertEquals(expectedPredicate, actualPredicate);
+    }
+
+    @Test
+    public void parseDateKeywords_emptySpecifiedPrefix_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateKeyword(""));
+    }
+
+    @Test
+    public void parseDateKeywords_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateKeyword("99-2022"));
+    }
+
+    @Test
+    public void parseDateKeyword_validValue_returnsDateString() throws Exception {
+        String expectedPredicate = "10-2000";
+        String actualPredicate = ParserUtil.parseDateKeyword(expectedPredicate);
+
+        assertEquals(expectedPredicate, actualPredicate);
     }
 
     /*

@@ -16,6 +16,4 @@ public class Messages {
             "Invalid date format! \nPlease use the format dd-MM-yyyy HHmm!";
     public static final String MESSAGE_INVALID_FIND_DATE_FORMAT =
             "Invalid find date format! \nPlease use the format MM-yyyy!";
-
-
 }
