@@ -8,8 +8,8 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.GOOG;
 import static seedu.intrack.testutil.TypicalInternships.META;
-import static seedu.intrack.testutil.TypicalInternships.SSNLF;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
+import static seedu.intrack.testutil.TypicalInternships.SSNLF;
 
 import java.util.Arrays;
 import java.util.Collections;
