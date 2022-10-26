@@ -17,24 +17,24 @@ import seedu.address.model.UserPrefs;
 //import seedu.address.model.entry.EntryType;
 //import seedu.address.model.entry.Expenditure;
 
-public class SummaryCommandTest {
-    private Model model = new ModelManager(getTypicalPennyWise(), new UserPrefs());
-    @Test
-    public void execute_noSpecifiedDate_summarySuccessful() {
-        SummaryCommand summaryCommand = new SummaryCommand();
-        Double totalExpenditure = model.getFilteredExpenditureList()
-                .stream()
-                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
-                .sum();
-        Double totalIncome = model.getFilteredIncomeList()
-                .stream()
-                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
-                .sum();
-        String expectedMessage = String.format(
-                SummaryCommand.MESSAGE_SUCCESS,
-                totalExpenditure,
-                totalIncome,
-                totalIncome - totalExpenditure);
-        assertCommandSuccess(summaryCommand, model, expectedMessage, model);
-    }
-}
+//public class SummaryCommandTest {
+//    private Model model = new ModelManager(getTypicalPennyWise(), new UserPrefs());
+//    @Test
+//    public void execute_noSpecifiedDate_summarySuccessful() {
+//        SummaryCommand summaryCommand = new SummaryCommand();
+//        Double totalExpenditure = model.getFilteredExpenditureList()
+//                .stream()
+//                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
+//                .sum();
+//        Double totalIncome = model.getFilteredIncomeList()
+//                .stream()
+//                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
+//                .sum();
+//        String expectedMessage = String.format(
+//                SummaryCommand.MESSAGE_SUCCESS,
+//                totalExpenditure,
+//                totalIncome,
+//                totalIncome - totalExpenditure);
+//        assertCommandSuccess(summaryCommand, model, expectedMessage, model);
+//    }
+//}

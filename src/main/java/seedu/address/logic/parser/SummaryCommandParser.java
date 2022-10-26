@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 
+import java.time.YearMonth;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SummaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.Date;
+import seedu.address.model.entry.EntryInYearMonthPredicate;
 
 
 /**
@@ -21,11 +24,12 @@ public class SummaryCommandParser implements Parser<SummaryCommand> {
     @Override
     public SummaryCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MONTH);
 
-        if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
-            Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-            return new SummaryCommand(date);
+        if (arePrefixesPresent(argMultimap, PREFIX_MONTH)) {
+            YearMonth month = ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get());
+            EntryInYearMonthPredicate predicate = new EntryInYearMonthPredicate(month);
+            return new SummaryCommand(predicate);
         }
         return new SummaryCommand();
     }
