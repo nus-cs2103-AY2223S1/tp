@@ -102,7 +102,7 @@ public class Student {
     /**
      * Removes all interests in {@code interestsSet} from the current list of interests linked to this batchmate.
      *
-     * @param interestsSet The list of mods to be deleted.
+     * @param interestsSet The set of interests to be deleted.
      */
     public void deleteInterests(Set<Interest> interestsSet) {
         this.interests.removeAll(interestsSet);
