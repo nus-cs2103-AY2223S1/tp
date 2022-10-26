@@ -1,5 +1,6 @@
 package coydir.logic.parser;
 
+import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -149,8 +150,7 @@ public class ParserUtil {
      * @throws ParseException if the  given {@code leave period} is invalid.
      */
     public static Leave parseLeave(String leaveStart, String leaveEnd) throws ParseException {
-        requireNonNull(leaveStart);
-        requireNonNull(leaveEnd);
+        requireAllNonNull(leaveStart, leaveEnd);
         String start = leaveStart.trim();
         String end = leaveEnd.trim();
         if (!Leave.isValidLeave(start, end)) {

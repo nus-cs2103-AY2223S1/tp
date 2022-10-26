@@ -53,7 +53,6 @@ public class Leave {
         @Override
         public int compare(Leave o1, Leave o2) {
             return o2.startDate.compareTo(o1.startDate);
-
         }
     }
 
