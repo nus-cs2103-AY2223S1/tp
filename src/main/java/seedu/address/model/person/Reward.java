@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import java.nio.charset.StandardCharsets;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Represents a Person's reward points in bobaBot.
@@ -36,7 +36,7 @@ public class Reward {
         value = String.valueOf(integerValue);
 
         // Generate reward emoji
-        byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x8E, (byte)0x81};
+        byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x8E, (byte) 0x81};
         String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
         displayValue = emoji + " " + value;
     }
