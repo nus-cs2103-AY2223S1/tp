@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTeachersPet;
 import seedu.address.model.StatisticsCalculator;
 import seedu.address.model.person.Person;
+import seedu.address.storage.ClassStorage;
 import seedu.address.storage.Storage;
 
 /**
@@ -54,6 +55,8 @@ public class LogicManager implements Logic {
             model.deleteTeachersPetHistory();
             throw e;
         }
+
+        ClassStorage.refresh(model);
 
         try {
             storage.saveTeachersPet(model.getTeachersPet());

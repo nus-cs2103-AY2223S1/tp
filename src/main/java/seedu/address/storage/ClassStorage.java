@@ -62,7 +62,7 @@ public class ClassStorage {
      *
      * @return HashMap object.
      */
-    public HashMap<LocalDate, List<Person>> initialiseClass() {
+    public static HashMap<LocalDate, List<Person>> initialiseClass() {
         HashMap<LocalDate, List<Person>> map = new HashMap<>();
         ObservableList<Person> listOfPersons = teachersPet.getPersonList();
         for (Person person : listOfPersons) {
@@ -157,5 +157,11 @@ public class ClassStorage {
             }
         }
         return 0;
+    }
+
+    public static void refresh(Model model) {
+        ClassStorage.model = model;
+        ClassStorage.teachersPet = (TeachersPet) model.getTeachersPet();
+        ClassStorage.classes = ClassStorage.initialiseClass();
     }
 }
