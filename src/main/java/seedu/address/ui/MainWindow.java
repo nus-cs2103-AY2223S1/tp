@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -38,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -110,6 +112,14 @@ public class MainWindow extends UiPart<Stage> {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
             }
+
+            // Checks if '/' key was pressed and if the user is not focused on an editable GUI element
+            if (event.getCode() == KeyCode.SLASH
+                    && !(event.getTarget() instanceof TextInputControl
+                            && ((TextInputControl) event.getTarget()).isEditable())) {
+                event.consume();
+                commandBox.focus();
+            }
         });
     }
 
@@ -137,7 +147,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 

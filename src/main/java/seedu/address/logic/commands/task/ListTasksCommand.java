@@ -92,14 +92,14 @@ public class ListTasksCommand extends TaskCommand {
             filter = Model.PREDICATE_INCOMPLETE_TASKS;
         }
 
-        filter = filter.and(new TitleContainsKeywordPredicate(keywordFilter));
-        filter = filter.and(new ContainsProjectsPredicate(projectNames));
-        filter = filter.and(parseDeadlineArgs());
-        filter = filter.and(new AssignedToContactsPredicate(model, personIndexes));
+        filter = filter.and(new TitleContainsKeywordPredicate(keywordFilter))
+                .and(new ContainsProjectsPredicate(projectNames))
+                .and(parseDeadlineArgs())
+                .and(new AssignedToContactsPredicate(model, personIndexes));
 
         model.updateFilteredTaskList(filter);
 
-        return new CommandResult(getSuccessMessage(model));
+        return new CommandResult(getSuccessMessage());
     }
 
     @Override
@@ -148,7 +148,7 @@ public class ListTasksCommand extends TaskCommand {
         return predicate;
     }
 
-    public String getSuccessMessage(Model model) {
+    public String getSuccessMessage() {
         StringBuilder successMessage = new StringBuilder();
 
         if (flags.contains(COMPLETED_FLAG)) {
@@ -180,9 +180,7 @@ public class ListTasksCommand extends TaskCommand {
 
         if (!personIndexes.isEmpty()) {
             successMessage.append(
-                    personIndexes.isEmpty()
-                    ? ""
-                    : String.format(" that are also assigned to %s contacts", personIndexes.size())
+                String.format(" that are also assigned to %s contacts", personIndexes.size())
             );
         }
 
@@ -203,7 +201,7 @@ public class ListTasksCommand extends TaskCommand {
                             : String.format(" that are also due after %s", after)
             );
         }
-        return String.format(MESSAGE_SUCCESS, successMessage.toString());
+        return String.format(MESSAGE_SUCCESS, successMessage);
     }
 
 }
