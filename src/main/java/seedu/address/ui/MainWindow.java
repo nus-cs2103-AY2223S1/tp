@@ -184,7 +184,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        PauseTransition delay = new PauseTransition(Duration.seconds(DELAY_DURATION));
+        PauseTransition delay = new PauseTransition(Duration.seconds(DELAY_DURATION_SECONDS));
         delay.setOnFinished(event -> {
             GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                     (int) primaryStage.getX(), (int) primaryStage.getY());

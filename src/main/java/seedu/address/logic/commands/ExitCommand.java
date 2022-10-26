@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "exit";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT =
-            "Exiting Address Book as requested (will close in " + MainWindow.DELAY_DURATION + "s)...";
+            "Exiting Address Book as requested (will close in " + MainWindow.DELAY_DURATION_SECONDS + "s)...";
 
     @Override
     public CommandResult execute(Model model) {
