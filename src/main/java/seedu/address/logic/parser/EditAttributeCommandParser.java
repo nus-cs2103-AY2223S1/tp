@@ -6,36 +6,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.attributes.AddAttributeCommand;
-import seedu.address.logic.commands.attributes.AddGroupAttributeCommand;
-import seedu.address.logic.commands.attributes.AddPersonAttributeCommand;
-import seedu.address.logic.commands.attributes.AddTaskAttributeCommand;
+import seedu.address.logic.commands.attributes.EditAttributeCommand;
+import seedu.address.logic.commands.attributes.EditGroupAttributeCommand;
+import seedu.address.logic.commands.attributes.EditPersonAttributeCommand;
+import seedu.address.logic.commands.attributes.EditTaskAttributeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new {@code AddAttributeCommand} object
+ * Parses input arguments and creates a new {@code EditAttributeCommand} object
  */
-public class AddAttributeCommandParser implements Parser<AddAttributeCommand> {
+public class EditAttributeCommandParser implements Parser<EditAttributeCommand> {
 
     /**
-     * Regex for the basic format of AddAttributeCommand, should contain a type (user/group/task), its respective
+     * Regex for the basic format of EditAttributeCommand, should contain a type (user/group/task), its respective
      * ID, the name of the attribute and the content of the attribute.
      */
     private static final Pattern ADD_ATTRIBUTE_COMMAND_FORMAT =
             Pattern.compile("(?<type>[ugt])/(?<id>\\w+)\\s+(?<attributeName>\\w+)\\s+(?<attributeContent>.+)");
 
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code AddAttributeCommand}
-     * and returns a {@code AddFieldCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code EditAttributeCommand}
+     * and returns a {@code EditAttributeCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddAttributeCommand parse(String args) throws ParseException {
+    public EditAttributeCommand parse(String args) throws ParseException {
 
         final Matcher matcher = ADD_ATTRIBUTE_COMMAND_FORMAT.matcher(args.trim());
 
         if (!matcher.matches()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttributeCommand.MESSAGE_USAGE)
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAttributeCommand.MESSAGE_USAGE)
             );
         }
 
@@ -45,7 +45,7 @@ public class AddAttributeCommandParser implements Parser<AddAttributeCommand> {
             index = ParserUtil.parseIndex(matcher.group("id").trim()); // TODO: change this to UUID implementation
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttributeCommand.MESSAGE_USAGE), pe
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAttributeCommand.MESSAGE_USAGE), pe
             );
         }
 
@@ -55,14 +55,14 @@ public class AddAttributeCommandParser implements Parser<AddAttributeCommand> {
         String attributeContent = matcher.group("attributeContent").trim();
 
         if (type.equals("u")) {
-            return new AddPersonAttributeCommand(index, attributeName, attributeContent);
+            return new EditPersonAttributeCommand(index, attributeName, attributeContent);
         } else if (type.equals("g")) {
-            return new AddGroupAttributeCommand(index, attributeName, attributeContent);
+            return new EditGroupAttributeCommand(index, attributeName, attributeContent);
         } else if (type.equals("t")) {
-            return new AddTaskAttributeCommand(index, attributeName, attributeContent);
+            return new EditTaskAttributeCommand(index, attributeName, attributeContent);
         } else {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttributeCommand.MESSAGE_USAGE)
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAttributeCommand.MESSAGE_USAGE)
             );
         }
 

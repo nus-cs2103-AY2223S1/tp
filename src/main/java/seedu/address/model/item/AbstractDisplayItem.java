@@ -95,8 +95,10 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         attributes.addAttribute(attributeName, attributeContent);
     }
 
-    public void addAttribute(String attributeName) throws AttributeException {
-        attributes.addAttribute(attributeName);
+    @Override
+    public void editAttribute(String attributeName, String attributeContent) throws AttributeException {
+        requireAllNonNull(attributeName, attributeContent);
+        attributes.editAttribute(attributeName, attributeContent);
     }
 
 

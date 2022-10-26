@@ -38,6 +38,15 @@ public class AttributeList {
         logger.info(String.format("Attribute added successfully: %s", attribute.getAttributeType()));
     }
 
+    public <T> Attribute<T> createAttributeInstance(String attributeName, T value) {
+        String name = formatProperName(attributeName);
+        return new AbstractAttribute<T>(name, value) {
+            @Override
+            public Map<String, Object> toSaveableData() {
+                return null;
+            }
+        };
+    }
 
     /**
      * Adds a field to the list of fields by a given field name.
@@ -47,45 +56,20 @@ public class AttributeList {
      * @param value the value of the field.
      */
     public <T> void addAttribute(String attributeName, T value) throws AttributeException {
-        if (this.checkForAttributeName(attributeName) != null) {
-            String existingName = this.checkForAttributeName(attributeName).getAttributeType();
+        if (this.findAttribute(attributeName) != null) {
+            String existingName = this.findAttribute(attributeName).getAttributeType();
             throw new DuplicateAttributeException(existingName, attributeName);
         }
-        AbstractAttribute<T> attribute = new AbstractAttribute<T>(attributeName, value) {
-            @Override
-            public Map<String, Object> toSaveableData() {
-                return null;
-            }
-        };
+        Attribute<T> attribute = createAttributeInstance(attributeName, value);
         this.addAttribute(attribute);
     }
 
     /**
-     * Adds a field
-     *
-     * @param attributeName
-     * @throws AttributeException
-     */
-    public void addAttribute(String attributeName) throws AttributeException {
-        if (this.checkForAttributeName(attributeName) != null) {
-            String existingName = this.checkForAttributeName(attributeName).getAttributeType();
-            throw new DuplicateAttributeException(existingName, attributeName);
-        }
-        AbstractAttribute<String> attribute = new AbstractAttribute<>(attributeName, null) {
-            @Override
-            public Map<String, Object> toSaveableData() {
-                return null;
-            }
-        };
-        this.addAttribute(attribute);
-    }
-
-    /**
-     * Checks for attribute name
+     * Finds an attribute that matches the attribute name.
      * @param attributeName
      * @return
      */
-    public Attribute<?> checkForAttributeName(String attributeName) {
+    public Attribute<?> findAttribute(String attributeName) {
         List<Attribute<?>> lst = attributeList.stream()
                 .filter(attr -> attr.isNameMatch(attributeName))
                 .collect(Collectors.toList());
@@ -93,6 +77,16 @@ public class AttributeList {
             return null;
         }
         return lst.get(0);
+    }
+
+    public void editAttribute(String attributeName, String attributeType) {
+        Attribute<?> oldAttribute = findAttribute(attributeName);
+        if (oldAttribute == null) {
+            // throw something here later
+        }
+        Attribute<?> newAttribute = createAttributeInstance(attributeName, attributeType);
+        updateAttribute(oldAttribute, newAttribute);
+        logger.info("Attribute edited successfully");
     }
 
     /**
@@ -198,4 +192,9 @@ public class AttributeList {
         attributeList.forEach(builder::append);
         return builder.toString();
     }
+
+    private String formatProperName(String name) {
+        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+    }
+
 }

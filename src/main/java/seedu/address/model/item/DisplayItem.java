@@ -100,6 +100,11 @@ public interface DisplayItem {
     void addAttribute(String attributeName, String attributeContent) throws AttributeException;
 
     /**
+     * Edits an existing attribute with an attribute name and attribute content.
+     */
+    void editAttribute(String attributeName, String attributeContent) throws AttributeException;
+
+    /**
      * Delete an attribute to the current object.
      */
     void deleteAttribute(String type);

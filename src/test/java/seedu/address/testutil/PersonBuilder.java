@@ -142,7 +142,7 @@ public class PersonBuilder {
     public PersonBuilder withFields(String... fieldNames) throws AttributeException {
         fields = new AttributeList();
         for (String fieldName : fieldNames) {
-            fields.addAttribute(fieldName);
+            fields.addAttribute(fieldName, "dummy content");
         }
         return this;
     }

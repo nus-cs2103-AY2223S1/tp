@@ -13,19 +13,19 @@ import seedu.address.model.task.exceptions.TaskOutOfBoundException;
 /**
  * Adds a task attribute to the address book.
  */
-public class AddTaskAttributeCommand extends AddAttributeCommand {
+public class EditTaskAttributeCommand extends EditAttributeCommand {
 
     public static final String MESSAGE_SUCCESS = "New field added: %s, with value: %s";
 
     private final Index taskIndex; // change this to UUID later
 
     /**
-     * Constructs an AddTaskAttributeCommand instance.
+     * Constructs an EditTaskAttributeCommand instance.
      * @param taskIndex index of the task.
      * @param attributeName the name of the attribute to be added.
      * @param attributeContent the content of the attribute to be added.
      */
-    public AddTaskAttributeCommand(Index taskIndex, String attributeName, String attributeContent) {
+    public EditTaskAttributeCommand(Index taskIndex, String attributeName, String attributeContent) {
         super(attributeName, attributeContent);
         requireNonNull(taskIndex);
         this.taskIndex = taskIndex;
@@ -36,7 +36,7 @@ public class AddTaskAttributeCommand extends AddAttributeCommand {
         requireNonNull(model);
         try {
             Task task = model.getFromFilteredTasks(taskIndex);
-            task.addAttribute(attributeName, attributeContent);
+            task.editAttribute(attributeName, attributeContent);
         } catch (TaskOutOfBoundException | AttributeException ae) {
             throw new CommandException(ae.getMessage());
         }
@@ -47,7 +47,7 @@ public class AddTaskAttributeCommand extends AddAttributeCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (super.equals(other)
-                && (other instanceof AddTaskAttributeCommand
-                && taskIndex.equals(((AddTaskAttributeCommand) other).taskIndex)));
+                && (other instanceof EditTaskAttributeCommand
+                && taskIndex.equals(((EditTaskAttributeCommand) other).taskIndex)));
     }
 }
