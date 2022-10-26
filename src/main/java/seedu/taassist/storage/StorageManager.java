@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.commons.exceptions.DataConversionException;
+import seedu.taassist.commons.util.FileUtil;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.UserPrefs;
@@ -75,4 +76,12 @@ public class StorageManager implements Storage {
         taAssistStorage.saveTaAssist(taAssist, filePath);
     }
 
+    @Override
+    public void backupFile(Path filePath) throws IOException {
+        if (!FileUtil.isFileExists(filePath)) {
+            return;
+        }
+        Path backupFilePath = filePath.resolveSibling(filePath.getFileName() + ".bak");
+        FileUtil.writeToFile(backupFilePath, FileUtil.readFromFile(filePath));
+    }
 }

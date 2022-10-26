@@ -64,6 +64,12 @@ public class MainApp extends Application {
 
         initLogging(config);
 
+        try {
+            storage.backupFile(userPrefs.getTaAssistFilePath());
+        } catch (IOException e) {
+            logger.warning("Failed to backup data file");
+        }
+
         model = initModelManager(storage, userPrefs);
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
@@ -111,6 +117,7 @@ public class MainApp extends Application {
         Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.YES, ButtonType.NO);
         alert.setTitle("Error");
 
+        alert.setResizable(true);
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.getDialogPane().setMinWidth(Region.USE_PREF_SIZE);
         alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
