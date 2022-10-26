@@ -21,7 +21,6 @@ import tuthub.logic.parser.Prefix;
 import tuthub.model.Model;
 import tuthub.model.ModelManager;
 import tuthub.model.UserPrefs;
-import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.SortByRatingComparator;
 import tuthub.model.tutor.SortByTeachingNominationComparator;
 
