@@ -4,6 +4,7 @@ import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.List;
 
+import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 
@@ -35,8 +36,14 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         List<Internship> lastShownList = model.getSelectedInternship();
+        for (int i = 0; i < lastShownList.size(); i++) {
+            Internship internship = lastShownList.get(i);
+            if (internship.isTaskListEmpty()) {
+                throw new CommandException(MISSING_TASKLIST);
+            }
+        }
         if (orderType.equals("a")) {
             model.ascendSort();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);

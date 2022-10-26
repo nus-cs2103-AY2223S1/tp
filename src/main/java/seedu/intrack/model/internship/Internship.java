@@ -95,6 +95,15 @@ public class Internship {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Checks if tasks list is empty or not
+     * @return boolean indicating whether the tasks list is empty or not.
+     */
+    public boolean isTaskListEmpty() {
+        return this.tasks.isEmpty();
+    }
+
+
     public Remark getRemark() {
         return remark;
     }
@@ -134,7 +143,6 @@ public class Internship {
                 break;
             }
             i++;
-
         }
         return nearestDate;
     }
