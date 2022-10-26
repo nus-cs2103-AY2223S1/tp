@@ -23,7 +23,7 @@ public class HourTest {
     }
 
     @Test
-    public void constructor_validHour_constructDay() {
+    public void constructor_validHour_constructHour() {
         assertTrue(new Hour("12") instanceof Hour);
     }
 
