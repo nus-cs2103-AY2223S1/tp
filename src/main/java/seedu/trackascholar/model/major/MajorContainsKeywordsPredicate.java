@@ -26,17 +26,12 @@ public class MajorContainsKeywordsPredicate implements Predicate<Applicant> {
                 .map(major -> major.major.split("\\s+"))
                 .collect(Collectors.toSet());
 
-        ArrayList<String> partialMajorKeywords = new ArrayList<>();
-        majors.forEach(x -> partialMajorKeywords.addAll(List.of(x)));
+        List<String> listOfMajors = new ArrayList<>();
+        majors.forEach(x -> listOfMajors.addAll(List.of(x)));
 
-        return partialMajorKeywords.stream().anyMatch(partialKeyword -> {
-            for (int i = 0; i < keywords.size(); i++) {
-                if (StringUtil.containsWordIgnoreCase(partialKeyword, keywords.get(i))) {
-                    return true;
-                }
-            }
-            return false;
-        });
+        return listOfMajors.stream()
+                .anyMatch(majorNames -> keywords.stream()
+                        .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(majorNames, keyword)));
     }
 
     @Override

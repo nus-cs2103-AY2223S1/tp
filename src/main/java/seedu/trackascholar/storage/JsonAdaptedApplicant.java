@@ -35,7 +35,7 @@ class JsonAdaptedApplicant {
 
     private final boolean hasPinned;
 
-    private final List<JsonAdaptedMajor> tagged = new ArrayList<>();
+    private final List<JsonAdaptedMajor> majors = new ArrayList<>();
 
 
     /**
@@ -47,7 +47,7 @@ class JsonAdaptedApplicant {
                                 @JsonProperty("email") String email,
                                 @JsonProperty("scholarship") String scholarship,
                                 @JsonProperty("applicationStatus") String applicationStatus,
-                                @JsonProperty("tagged") List<JsonAdaptedMajor> tagged,
+                                @JsonProperty("majors") List<JsonAdaptedMajor> majors,
                                 @JsonProperty("hasPinned") boolean hasPinned) {
         this.name = name;
         this.phone = phone;
@@ -56,8 +56,8 @@ class JsonAdaptedApplicant {
         this.applicationStatus = applicationStatus;
         this.hasPinned = hasPinned;
 
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (majors != null) {
+            this.majors.addAll(majors);
         }
     }
 
@@ -71,7 +71,7 @@ class JsonAdaptedApplicant {
         scholarship = source.getScholarship().scholarship;
         applicationStatus = source.getApplicationStatus().applicationStatus;
         hasPinned = source.getPin().getHasPinned();
-        tagged.addAll(source.getMajors().stream()
+        majors.addAll(source.getMajors().stream()
                 .map(JsonAdaptedMajor::new)
                 .collect(Collectors.toList()));
     }
@@ -83,7 +83,7 @@ class JsonAdaptedApplicant {
      */
     public Applicant toModelType() throws IllegalValueException {
         final List<Major> applicantMajors = new ArrayList<>();
-        for (JsonAdaptedMajor major : tagged) {
+        for (JsonAdaptedMajor major : majors) {
             applicantMajors.add(major.toModelType());
         }
 
