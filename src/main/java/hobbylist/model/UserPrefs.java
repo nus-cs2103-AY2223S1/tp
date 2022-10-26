@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 
 /**
@@ -14,6 +15,7 @@ import hobbylist.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
+    private AliasSettings aliasSettings = new AliasSettings();
     private Path hobbyListFilePath = Paths.get("data" , "hobbylist.json");
 
     /**
@@ -35,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
+        setAliasSettings(newUserPrefs.getAliasSettings());
         setHobbyListFilePath(newUserPrefs.getHobbyListFilePath());
     }
 
@@ -42,9 +45,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return guiSettings;
     }
 
+    public AliasSettings getAliasSettings() {
+        return aliasSettings;
+    }
+
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
+    }
+
+    public void setAliasSettings(AliasSettings aliasSettings) {
+        requireNonNull(aliasSettings);
+        this.aliasSettings = aliasSettings;
     }
 
     public Path getHobbyListFilePath() {
@@ -68,18 +80,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
+                && aliasSettings.equals(o.aliasSettings)
                 && hobbyListFilePath.equals(o.hobbyListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, hobbyListFilePath);
+        return Objects.hash(guiSettings, aliasSettings, hobbyListFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
+        sb.append("Alias Settings : " + aliasSettings);
         sb.append("\nLocal data file location : " + hobbyListFilePath);
         return sb.toString();
     }

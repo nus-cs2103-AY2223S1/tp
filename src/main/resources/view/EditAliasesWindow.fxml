@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root resizable="false" title="Edit Aliases" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/edit_icon.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@EditAliasesWindow.css" />
+                <URL value="@DarkTheme.css" />
+            </stylesheets>
+
+            <VBox fx:id="editAliasesContainer" alignment="CENTER">
+                <GridPane hgap="5.0" vgap="5.0">
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                    </rowConstraints>
+                    <columnConstraints>
+                        <ColumnConstraints maxWidth="92.66668701171875" minWidth="10.0" prefWidth="58.66668701171875" />
+                        <ColumnConstraints maxWidth="142.6666259765625" minWidth="10.0" prefWidth="141.33331298828125" />
+                    </columnConstraints>
+                    <children>
+                        <Label text="Add" />
+                        <Label text="Clear" GridPane.rowIndex="1" />
+                        <Label text="Delete" GridPane.rowIndex="2" />
+                        <Label text="Edit" GridPane.rowIndex="3" />
+                        <Label text="Exit" GridPane.rowIndex="4" />
+                        <Label text="FilterStatus" GridPane.rowIndex="5" />
+                        <Label text="FilterTag" GridPane.rowIndex="6" />
+                        <Label text="Find" GridPane.rowIndex="7" />
+                        <Label text="List" GridPane.rowIndex="8" />
+                        <Label text="Help" GridPane.rowIndex="9" />
+                        <Label text="Rate" GridPane.rowIndex="10" />
+                        <TextField fx:id="add" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" />
+                        <TextField fx:id="clear" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="delete" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="edit" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="exit" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="filterStatus" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="filterTag" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="find" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextField fx:id="list" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="help" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextField fx:id="rate" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding></GridPane>
+                <Button mnemonicParsing="false" onAction="#handleSave" text="Save and close" />
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

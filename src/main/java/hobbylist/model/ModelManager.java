@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.LogsCenter;
 import hobbylist.commons.util.CollectionUtil;
@@ -62,6 +63,17 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public AliasSettings getAliasSettings() {
+        return userPrefs.getAliasSettings();
+    }
+
+    @Override
+    public void setAliasSettings(AliasSettings aliasSettings) {
+        requireNonNull(aliasSettings);
+        userPrefs.setAliasSettings(aliasSettings);
     }
 
     @Override

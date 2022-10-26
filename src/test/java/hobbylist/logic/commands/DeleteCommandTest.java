@@ -3,6 +3,7 @@ package hobbylist.logic.commands;
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static hobbylist.logic.commands.CommandTestUtil.showActivityAtIndex;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -75,6 +76,13 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void setCommandWord_validWord_success() {
+        DeleteCommand.setCommandWord("test");
+        assertEquals(DeleteCommand.getCommandWord(), "test");
+        DeleteCommand.setCommandWord("delete");
     }
 
     @Test
