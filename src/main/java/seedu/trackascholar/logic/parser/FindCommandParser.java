@@ -55,18 +55,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<Predicate<Applicant>> applicantPredicateList = new ArrayList<>();
 
         if (hasPrefixPresent(argMultimap, PREFIX_NAME)) {
-            List<String> nameKeywords = getPartialKeywordsList(argMultimap, PREFIX_NAME);
+            List<String> nameKeywords = getKeywordsList(argMultimap, PREFIX_NAME);
             NameContainsKeywordsPredicate nameKeywordsPredicate = new NameContainsKeywordsPredicate(nameKeywords);
             applicantPredicateList.add(nameKeywordsPredicate);
         }
         if (hasPrefixPresent(argMultimap, PREFIX_SCHOLARSHIP)) {
-            List<String> scholarshipKeywords = getPartialKeywordsList(argMultimap, PREFIX_SCHOLARSHIP);
+            List<String> scholarshipKeywords = getKeywordsList(argMultimap, PREFIX_SCHOLARSHIP);
             ScholarshipContainsKeywordsPredicate scholarshipKeywordsPredicate =
                     new ScholarshipContainsKeywordsPredicate(scholarshipKeywords);
             applicantPredicateList.add(scholarshipKeywordsPredicate);
         }
         if (hasPrefixPresent(argMultimap, PREFIX_MAJOR)) {
-            List<String> majorKeywords = getPartialKeywordsList(argMultimap, PREFIX_MAJOR);
+            List<String> majorKeywords = getKeywordsList(argMultimap, PREFIX_MAJOR);
             MajorContainsKeywordsPredicate majorKeywordsPredicate = new MajorContainsKeywordsPredicate(majorKeywords);
             applicantPredicateList.add(majorKeywordsPredicate);
         }
@@ -111,18 +111,17 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return List of partial keywords.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    private static List<String> getPartialKeywordsList(ArgumentMultimap argumentMultimap,
-                                                       Prefix prefix) throws ParseException {
+    private static List<String> getKeywordsList(ArgumentMultimap argumentMultimap,
+                                                Prefix prefix) throws ParseException {
         if (argumentMultimap.getValue(prefix).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        List<String> keywords = argumentMultimap.getAllValues(prefix);
-        List<String> partialKeywords = new ArrayList<>();
+        List<String> userInputs = argumentMultimap.getAllValues(prefix);
+        List<String> keywords = new ArrayList<>();
 
-        for (int i = 0; i < keywords.size(); i++) {
-            partialKeywords.addAll(Arrays.asList(keywords.get(i).split("\\s+")));
-        }
-        return partialKeywords;
+        userInputs.forEach(input -> keywords.addAll(Arrays.asList(input.split("\\s+"))));
+
+        return keywords;
     }
 
 }
