@@ -42,7 +42,6 @@ public class UnmarkMasteryCheckCommand extends Command {
             studentToUnmark.getMasteryCheck().unmark();
         }
 
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(generateSuccessMessage(studentToUnmark));
     }
 

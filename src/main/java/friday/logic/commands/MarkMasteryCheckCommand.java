@@ -42,7 +42,6 @@ public class MarkMasteryCheckCommand extends Command {
             studentToMark.getMasteryCheck().markAsPassed();
         }
 
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(generateSuccessMessage(studentToMark));
     }
 
