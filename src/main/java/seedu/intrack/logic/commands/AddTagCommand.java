@@ -79,5 +79,7 @@ public class AddTagCommand extends Command {
         AddTagCommand e = (AddTagCommand) other;
         return index.equals(e.index)
                 && tags.equals(e.tags);
+
     }
 }
+
