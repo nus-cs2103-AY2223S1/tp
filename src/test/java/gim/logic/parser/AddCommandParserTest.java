@@ -139,7 +139,7 @@ public class AddCommandParserTest {
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BENCH_PRESS + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS
-                + REPS_DESC_BENCH_PRESS + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
+                + REPS_DESC_BENCH_PRESS + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS_FORMAT);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + WEIGHT_DESC_BENCH_PRESS + SETS_DESC_BENCH_PRESS

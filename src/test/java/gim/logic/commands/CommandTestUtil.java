@@ -58,7 +58,7 @@ public class CommandTestUtil {
     public static final String INVALID_REPS_DESC = " " + PREFIX_REPS; // empty string not allowed for reps
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "02/05/2022z"; // 'z' not allowed in date
     public static final String VALID_START_DATE_DESC = " " + PREFIX_DATE + "01/10/2022";
-    public static final String INVALID_START_DATE_DESC = " " + PREFIX_DATE + "1/10/2022";
+    public static final String INVALID_START_DATE_DESC = " " + PREFIX_DATE + "001/10/2022";
     public static final String VALID_END_DATE_DESC = " " + PREFIX_END_DATE + "31/10/2022";
     public static final String INVALID_END_DATE_DESC = " " + PREFIX_END_DATE + "031/10/2022";
     // date can be empty, it will default to today's date

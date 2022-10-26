@@ -4,7 +4,6 @@ import static gim.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,17 +30,15 @@ public class DateTest {
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         String invalidDateEmptyString = "";
-        String invalidDateFormatOne = "5/5/2022";
-        String invalidDateFormatTwo = "05/5/2022";
-        String invalidDateFormatThree = "5/05/2022";
-        String invalidDateFormatFour = "05/05/22";
-        String invalidDateFormatFive = "31-04-2022";
+        String invalidDateWhitespaces = "     ";
+        String invalidDateFormatOne = "005/5/2022";
+        String invalidDateFormatTwo = "05/005/2022";
+        String invalidDateFormatThree = "5/05/20220";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateWhitespaces));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatOne));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatTwo));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatThree));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFour));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFive));
     }
 
     /**
@@ -49,9 +46,9 @@ public class DateTest {
      * Example: 31st February 2022 is a non-existent date.
      */
     @Test
-    public void constructor_nonExistentDate_throwsDateTimeParseException() {
+    public void constructor_nonExistentDate_throwsIllegalArgumentException() {
         String nonExistentDate = "31/02/2022";
-        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDate));
+        assertThrows(IllegalArgumentException.class, () -> new Date(nonExistentDate));
     }
 
     @Test
