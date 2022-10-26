@@ -29,7 +29,6 @@ public class DateTest {
         assertFalse(Date.isValidDate(""));
         assertFalse(Date.isValidDate(invalidDate));
 
-
         //valid_date
         String validDate = "22-04-2022";
         assertTrue(Date.isValidDate(validDate));
