@@ -20,6 +20,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.model.Model;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
 import seedu.address.model.module.LectureDetails;
@@ -101,8 +102,9 @@ public class EditModuleCommand extends Command {
         ModuleCode updatedModuleCode = editModuleDescriptor.getModuleCode().orElse(moduleToEdit.getModuleCode());
         LectureDetails updatedLecture = editModuleDescriptor.getLecture().orElse(moduleToEdit.getLectureDetails());
         TutorialDetails updatedTutorial = editModuleDescriptor.getTutorial().orElse(moduleToEdit.getTutorialDetails());
-        ZoomLink updatedLectureZoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLectureZoomLink());
-        ZoomLink updatedTutorialZoomLink = editModuleDescriptor.getZoomLink()
+        ZoomLink updatedLectureZoomLink = editModuleDescriptor
+                .getLectureZoomLink().orElse(moduleToEdit.getLectureZoomLink());
+        ZoomLink updatedTutorialZoomLink = editModuleDescriptor.getTutorialZoomLink()
                 .orElse(moduleToEdit.getTutorialZoomLink());
         Set<AssignmentDetails> updatedAssignment =
             editModuleDescriptor.getAssignments().orElse(moduleToEdit.getAssignmentDetails());
@@ -136,7 +138,8 @@ public class EditModuleCommand extends Command {
         private ModuleCode moduleCode;
         private LectureDetails lecture;
         private TutorialDetails tutorial;
-        private ZoomLink zoomLink;
+        private ZoomLink lectureZoomLink;
+        private ZoomLink tutorialZoomLink;
         private Set<AssignmentDetails> assignments;
 
         public EditModuleDescriptor() {
@@ -150,7 +153,8 @@ public class EditModuleCommand extends Command {
             setModuleCode(toCopy.moduleCode);
             setLecture(toCopy.lecture);
             setTutorial(toCopy.tutorial);
-            setZoomLink(toCopy.zoomLink);
+            setLectureZoomLink(toCopy.lectureZoomLink);
+            setTutorialZoomLink(toCopy.tutorialZoomLink);
             setAssignments(toCopy.assignments);
         }
 
@@ -158,11 +162,16 @@ public class EditModuleCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(moduleCode, lecture, tutorial, zoomLink, assignments);
+            return CollectionUtil.isAnyNonNull(moduleCode, lecture,
+                    tutorial, lectureZoomLink, tutorialZoomLink, assignments);
         }
 
         public void setModuleCode(ModuleCode moduleCode) {
             this.moduleCode = moduleCode;
+        }
+
+        public void setModuleTitle(NusModulesParser nusModulesParser) {
+            moduleCode.setModuleTitle(nusModulesParser.getModuleTitle(moduleCode.moduleCode));
         }
 
         public Optional<ModuleCode> getModuleCode() {
@@ -185,12 +194,20 @@ public class EditModuleCommand extends Command {
             return Optional.ofNullable(tutorial);
         }
 
-        public void setZoomLink(ZoomLink zoomLink) {
-            this.zoomLink = zoomLink;
+        public void setLectureZoomLink(ZoomLink lectureZoomLink) {
+            this.lectureZoomLink = lectureZoomLink;
         }
 
-        public Optional<ZoomLink> getZoomLink() {
-            return Optional.ofNullable(zoomLink);
+        public Optional<ZoomLink> getLectureZoomLink() {
+            return Optional.ofNullable(lectureZoomLink);
+        }
+
+        public void setTutorialZoomLink(ZoomLink tutorialZoomLink) {
+            this.tutorialZoomLink = tutorialZoomLink;
+        }
+
+        public Optional<ZoomLink> getTutorialZoomLink() {
+            return Optional.ofNullable(tutorialZoomLink);
         }
 
         /**
@@ -226,10 +243,11 @@ public class EditModuleCommand extends Command {
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
             return getModuleCode().equals(e.getModuleCode())
-                && getLecture().equals(e.getLecture())
-                && getTutorial().equals(e.getTutorial())
-                && getZoomLink().equals(e.getZoomLink())
-                && getAssignments().equals(e.getAssignments());
+                    && getLecture().equals(e.getLecture())
+                    && getTutorial().equals(e.getTutorial())
+                    && getLectureZoomLink().equals(e.getLectureZoomLink())
+                    && getTutorialZoomLink().equals(e.getTutorialZoomLink())
+                    && getAssignments().equals(e.getAssignments());
         }
     }
 }

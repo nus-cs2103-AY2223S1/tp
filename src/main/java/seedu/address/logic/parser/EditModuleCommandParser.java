@@ -17,6 +17,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
 
@@ -26,6 +27,11 @@ import seedu.address.model.assignmentdetails.AssignmentDetails;
  */
 public class EditModuleCommandParser implements Parser<EditModuleCommand> {
 
+    private NusModulesParser nusModulesParser;
+
+    public EditModuleCommandParser(NusModulesParser nusModulesParser) {
+        this.nusModulesParser = nusModulesParser;
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the EditModuleCommand
      * and returns an EditModuleCommand object for execution.
@@ -51,6 +57,7 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             editModuleDescriptor.setModuleCode(ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get()));
+            editModuleDescriptor.setModuleTitle(nusModulesParser);
         }
         if (argMultimap.getValue(PREFIX_LECTURE).isPresent()) {
             editModuleDescriptor.setLecture(ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).get()));
@@ -60,11 +67,12 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
                 ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get()));
         }
         if (argMultimap.getValue(PREFIX_LECTURE_ZOOM).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).get()));
+            editModuleDescriptor.setLectureZoomLink(ParserUtil
+                    .parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).get()));
         }
         if (argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(
-                    argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).get()));
+            editModuleDescriptor.setTutorialZoomLink(ParserUtil
+                    .parseZoomLink(argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).get()));
         }
         parseAssignmentsForEdit(argMultimap
             .getAllValues(PREFIX_ASSIGNMENT)).ifPresent(editModuleDescriptor::setAssignments);

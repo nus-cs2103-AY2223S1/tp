@@ -2,9 +2,11 @@ package seedu.address.model.module;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.nusmodules.NusModule;
+
 /**
  * Represents a Module's code in the address book.
- * Guarantees: immutable; is valid as decalred in {@link #isValidModuleCode(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
 public class ModuleCode {
 
@@ -19,6 +21,7 @@ public class ModuleCode {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String moduleCode;
+    private String moduleTitle;
 
     /**
      * Constructs a {@code ModuleCode}.
@@ -28,6 +31,25 @@ public class ModuleCode {
     public ModuleCode(String moduleCodeInput) {
         checkArgument(isValidModuleCode(moduleCodeInput), MESSAGE_CONSTRAINTS);
         moduleCode = moduleCodeInput;
+        moduleTitle = null;
+    }
+
+    /**
+     * Sets the title of the module based on the moduleCode.
+     *
+     * @param moduleTitle List of NUS modules from Json file.
+     */
+    public void setModuleTitle(String moduleTitle) {
+        this.moduleTitle = moduleTitle;
+    }
+
+    /**
+     * Gets the title of the module.
+     *
+     * @return The title of the module.
+     */
+    public String getModuleTitle() {
+        return this.moduleTitle;
     }
 
     /**
@@ -38,6 +60,13 @@ public class ModuleCode {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid NUS module code.
+     */
+    public boolean isNusModule(NusModule nusModule) {
+        return nusModule.getModuleCode().equalsIgnoreCase(moduleCode);
     }
 
     @Override

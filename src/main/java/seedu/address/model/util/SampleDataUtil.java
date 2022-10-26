@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,22 +22,22 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new ModuleCode("CS1101S"),
+                new Telegram("@alexyeoh"), new ModuleCode("CS1101S"),
                 getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new ModuleCode("LSM1301"),
+                new Telegram("@bernice"), new ModuleCode("LSM1301"),
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new ModuleCode("MA1521"),
+                new Telegram("@charlotte"), new ModuleCode("MA1521"),
                 getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new ModuleCode("CG1111A"),
+                new Telegram("@david"), new ModuleCode("CG1111A"),
                 getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new ModuleCode("CS3243"),
+                new Telegram("@irfan"), new ModuleCode("CS3243"),
                 getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new ModuleCode("CS2040S"),
+                new Telegram("@roy"), new ModuleCode("CS2040S"),
                 getTagSet("colleagues"))
         };
     }

@@ -26,7 +26,11 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
-                <FlowPane fx:id="tags"/>
+                <FlowPane fx:id="tags">
+                    <padding>
+                        <Insets left="15" bottom="10"/>
+                    </padding>
+                </FlowPane>
             </HBox>
             <HBox>
                 <Label styleClass="field_label" text="Phone: "/>
@@ -40,7 +44,7 @@
                 <Label styleClass="field_label" text="Email: "/>
                 <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
             </HBox>
-
+            <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram"/>
         </VBox>
     </GridPane>
 </HBox>
