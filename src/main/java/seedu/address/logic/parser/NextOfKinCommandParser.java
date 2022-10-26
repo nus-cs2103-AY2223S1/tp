@@ -67,7 +67,7 @@ public class NextOfKinCommandParser implements Parser<NextOfKinCommand> {
 
         if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_RELATIONSHIP))
-                || (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME, CliSyntax.PREFIX_SUBJECT_OR_SCHOOL,
+                || (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME,
                 PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
         }

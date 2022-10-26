@@ -18,7 +18,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.nextofkin.Relationship;
 import seedu.address.model.person.student.School;
@@ -207,11 +206,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseQualification__validInput_success() throws Exception {
+    public void parseQualification_validInput_success() throws Exception {
         Qualification expectedQualification = new Qualification(VALID_QUALIFICATION);
         assertEquals(expectedQualification, ParserUtil.parseQualification(VALID_QUALIFICATION));
         //trim leading and trailing whitespace
-        assertEquals(expectedQualification, ParserUtil.parseQualification(WHITESPACE + VALID_QUALIFICATION + WHITESPACE));
+        assertEquals(expectedQualification,
+                ParserUtil.parseQualification(WHITESPACE + VALID_QUALIFICATION + WHITESPACE));
         //dupe white space
         assertEquals(expectedQualification, ParserUtil.parseQualification("MSc,,,,    Master   of    Science"));
     }
@@ -227,7 +227,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseInstitution__validInput_success() throws Exception {
+    public void parseInstitution_validInput_success() throws Exception {
         Institution expectedInstitution = new Institution(VALID_INSTITUTION);
         assertEquals(expectedInstitution, ParserUtil.parseInstitution(VALID_INSTITUTION));
         //trim leading and trailing whitespace

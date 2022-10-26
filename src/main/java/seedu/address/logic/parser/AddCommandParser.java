@@ -48,8 +48,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_RELATIONSHIP);
 
         if (argMultimap.getPreamble().isEmpty()) {
@@ -81,8 +81,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     private Student extractFromMapForStudent(ArgumentMultimap argMultimap) throws ParseException {
-        if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SUBJECT_OR_SCHOOL,
-                PREFIX_LEVEL))
+        if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                PREFIX_SUBJECT_OR_SCHOOL, PREFIX_LEVEL))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                 PREFIX_DAY, PREFIX_TIME))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -91,7 +91,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        School school = ParserUtil.parseSchool(argMultimap.getValue(CliSyntax.PREFIX_SUBJECT_OR_SCHOOL).get());
+        School school = ParserUtil.parseSchool(argMultimap.getValue(PREFIX_SUBJECT_OR_SCHOOL).get());
         Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

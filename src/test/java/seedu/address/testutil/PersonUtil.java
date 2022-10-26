@@ -19,7 +19,6 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.NextOfKinCommand;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.Student;
@@ -66,7 +65,7 @@ public class PersonUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         if (person instanceof Student) {
-            sb.append(CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + ((Student) person).getSchool().school + " ");
+            sb.append(PREFIX_SUBJECT_OR_SCHOOL + ((Student) person).getSchool().school + " ");
             sb.append(PREFIX_LEVEL + ((Student) person).getLevel().level + " ");
         } else if (person instanceof Tutor) {
             sb.append(PREFIX_QUALIFICATION + ((Tutor) person).getQualification().qualification + " ");

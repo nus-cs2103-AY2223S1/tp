@@ -17,7 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -79,7 +78,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL "
             + PREFIX_LEVEL + "LEVEL "
             + "[" + PREFIX_TAG + "TAG]... OR\n"
             + "tutor "
@@ -103,7 +102,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
+            + PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
             + PREFIX_LEVEL + "Primary3 "
             + PREFIX_TAG + "badBoy "
             + PREFIX_TAG + "owesMoney";
