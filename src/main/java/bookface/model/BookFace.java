@@ -2,6 +2,7 @@ package bookface.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -152,13 +153,13 @@ public class BookFace implements ReadOnlyBookFace {
      * Loans to the person {@code person} in the user list with the book {@code book} in the book list.
      * {@code person} and {@code book} must exist in BookFace.
      */
-    public void loan(Person person, Book book) {
-        CollectionUtil.requireAllNonNull(person, book);
+    public void loan(Person person, Book book, Date returnDate) {
+        CollectionUtil.requireAllNonNull(person, book, returnDate);
         if (book.isLoaned()) {
             return;
         }
-        books.loan(person, book);
-        persons.loan(person, book);
+        books.loan(person, book, returnDate);
+        persons.loan(person, book, returnDate);
     }
 
     /**
@@ -208,6 +209,7 @@ public class BookFace implements ReadOnlyBookFace {
             book.loanTo(newPerson);
         }
     }
+
 
     //// util methods
 

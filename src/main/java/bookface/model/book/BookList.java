@@ -2,6 +2,7 @@ package bookface.model.book;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -155,11 +156,11 @@ public class BookList implements Iterable<Book> {
     }
 
     /**
-     * Loans to a person {@code person} a book {@code book} .
+     * Loans to a person {@code person} a book {@code book} with the given {@code returnDate}.
      */
-    public void loan(Person person, Book book) {
-        CollectionUtil.requireAllNonNull(person, book);
-        book.loanTo(person);
+    public void loan(Person person, Book book, Date returnDate) {
+        CollectionUtil.requireAllNonNull(person, book, returnDate);
+        book.loanTo(person, returnDate);
         int index = internalList.indexOf(book);
         internalList.set(index, book);
     }
