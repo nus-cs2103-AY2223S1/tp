@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_COMBINED;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS1101;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS2030S;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -35,7 +36,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -104,9 +104,8 @@ public class AddContactCommandParserTest {
                 new AddContactCommand(expectedPersonMultipleModules));
 
         // multiple modules written in one string - all accepted
-        String moduleDescCombined = " " + PREFIX_MODULE + VALID_MODULE_CS1101 + "  \t " + VALID_MODULE_CS2030S;
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + TAG_DESC_HUSBAND + moduleDescCombined
+                        + TAG_DESC_HUSBAND + MODULE_DESC_COMBINED
                         + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
                 new AddContactCommand(expectedPersonMultipleModules));
 
