@@ -48,12 +48,10 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
    open the help window.<br>
    Some example commands you can try:
 
-    - **`list`** : Lists all contacts.
+    - **`add`**`t/i d/Tution Teaching a/45.00 da/13-10-2022 c/Salary` : Adds an income entry
+      with the description `Tuition Teaching` to the PennyWise application.
 
-    - **`add`**`t/i d/TutionTeaching a/45.00 da/13-10-2022 c/Salary` : Adds an income entry
-      with the description `TuitionTeaching` to the PennyWise application.
-
-    - **`delete`**`3 t/e` : Deletes the 3rd contact shown in the expenditure.
+    - **`delete`**`3 t/e` : Deletes the 3rd entry shown in the expenditure list.
 
     - **`view`**`t/e g/c` : View a PieChart of all expenses.
 
@@ -86,6 +84,9 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
 - Items in square brackets are optional.<br>
   e.g `view t/ENTRY_TYPE g/GRAPH_TYPE [MONTH]` can be used as `view t/e g/c [mo/2022-05]` or as `view t/e g/c`.
+
+- **ALL** identifiers are <ins>case sensitive</ins>. 
+  e.g `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 </div>
 
 ## Before Using
@@ -93,8 +94,8 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the application:**<br>
-- For **ALL** entries, categories are <ins>compulsory</ins> and every entry can only contain <ins>one</ins> category. 
-  The following table shows the`Expenditure` and `Income` entries categories.
+- For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. 
+  The following table shows the`Expenditure` and `Income` entries categories. The category names are <ins>case sensitive</ins>.
 
 |   `Expenditure`   |    `Income`     |
 |:-----------------:|:---------------:|
@@ -112,8 +113,15 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
   e.g. Executing the following 2 commands one after another, PennyWise will recognise (2) as a duplicate entry. 
   <pre>
     <code>
-        1. add t/e d/TehBeng a/1.50 da/22-10-2022 c/Food 
-        2. add t/e d/TehBeng a/1.50 da/22-10-2022 c/Food
+        1. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/Food
+        2. add t/e d/Teh Beng a/1.50 da/22-10-2022 c/Food
+    </code>
+  </pre>
+  To add similar entries, vary the description/amount/date/category to let PennyWise know they are not duplicates!
+  <pre>
+    <code>
+        1. add t/e d/Teh Beng 11am a/1.50 da/22-10-2022 c/Food
+        2. add t/e d/Teh Beng 4pm a/1.50 da/22-10-2022 c/Food 
     </code>
   </pre>
 
@@ -162,19 +170,22 @@ The default date is the current date on your computer!
 
 ### Summary of entries : `summary [mo/MONTH]`
 
-1. View a summary of all entires
+1. Summarise of all entries in the currently shown list
    * Examples: `summary`
      * Expected: <br/>
        Financials Summarized <br/>
        Total Expenditure: 154.40 <br/>
        Total Income: 150.00 <br/>
        Total Balance: -4.40 <br/>
-2. View a summary of all entires the specified month
+2. Summarise of all entries the specified month
     * Examples: `summary mo/2022-09`
-    * Expected: A summary of entries in September 2022: `Total amount spent in September 2022: $37.70`
-
+    * Expected: <br/>
+      Financials Summarized <br/>
+      Total Expenditure: 80.40 <br/>
+      Total Income: 50.00 <br/>
+      Total Balance: -30.40 <br/>
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
-* The `MONTH` field is optional, if no month is specified, the application displays the current month.
+* The `MONTH` field is optional, if no month is specified, the application displays the summary for all entries.
 
 ### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE`
 
@@ -227,7 +238,7 @@ If your changes to the data file makes its format invalid, PennyWise will discar
 
 **Q**: How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous AddressBook home folder.
+the data of your previous PennyWise home folder.
 
 ---
 
