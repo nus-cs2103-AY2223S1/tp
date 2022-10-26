@@ -125,7 +125,7 @@ public class AddCommandParserTest {
 
         // invalid age
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_BIRTHDATE_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Birthdate.MESSAGE_INVALID_DATE_FORMAT);
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Birthdate.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + BIRTHDATE_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB

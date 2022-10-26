@@ -54,6 +54,21 @@ public class Record implements Comparable<Record> {
     }
 
     /**
+     * Returns true if date is valid.
+     *
+     * @param testDate Date to be tested.
+     * @return True if valid.
+     */
+    public static boolean isValidDate(String testDate) {
+        try {
+            LocalDateTime.parse(testDate, DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Returns true if a given string is valid record data.
      */
     public static boolean isValidRecordData(String test) {

@@ -34,7 +34,7 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecordCommand.MESSAGE_USAGE));
         }
 
-        LocalDateTime recordDate = ParserUtil.parseRecordDate(argMultimap.getValue(PREFIX_DATE).get());
+        LocalDateTime recordDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         String recordData = ParserUtil.parseRecordData(argMultimap.getValue(PREFIX_RECORD).get());
         Set<Medication> medications = ParserUtil.parseMedications(argMultimap.getAllValues(PREFIX_MEDICATION));
 

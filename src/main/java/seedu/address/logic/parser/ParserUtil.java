@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.util.DateUtil.isValidDateFormat;
-import static seedu.address.model.util.DateUtil.isValidDateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -70,8 +68,8 @@ public class ParserUtil {
     public static Birthdate parseBirthdate(String birthdate) throws ParseException {
         requireNonNull(birthdate);
         String trimmedBirthdate = birthdate.trim();
-        if (!isValidDateFormat(trimmedBirthdate)) {
-            throw new ParseException(Birthdate.MESSAGE_INVALID_DATE_FORMAT);
+        if (!Birthdate.isValidBirthdate(trimmedBirthdate)) {
+            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
         }
         return new Birthdate(trimmedBirthdate);
     }
@@ -169,10 +167,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the given inputs is invalid.
      */
-    public static LocalDateTime parseRecordDate(String recordDate) throws ParseException {
+    public static LocalDateTime parseDate(String recordDate) throws ParseException {
         requireNonNull(recordDate);
         String trimmedDate = recordDate.trim();
-        if (!isValidDateTimeFormat(trimmedDate)) {
+        if (!Record.isValidDate(trimmedDate)) {
             throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
         }
         return LocalDateTime.parse(trimmedDate, Record.DATE_FORMAT);

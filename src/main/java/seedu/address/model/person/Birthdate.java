@@ -2,23 +2,22 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.util.DateUtil.isNotFutureDate;
-import static seedu.address.model.util.DateUtil.isValidDateFormat;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Person's birthdate in the address book.
- * Guarantees: immutable; is valid.
+ * Guarantees: immutable; is valid as declared in {@link #isValidBirthdate(String)}
  */
 public class Birthdate {
 
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static final DateTimeFormatter DISPLAYED_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
-    public static final String MESSAGE_INVALID_DATE_FORMAT = "Birthdates have to be of format dd-MM-yyyy!";
-    public static final String MESSAGE_FUTURE_DATE = "Birthdates must not be later than the current date!";
+    public static final String MESSAGE_CONSTRAINTS = "Birthdate has to be of format dd-MM-yyyy, "
+        + "and must not be later than the current date!";
     private final LocalDate birthdate;
 
     /**
@@ -28,9 +27,26 @@ public class Birthdate {
      */
     public Birthdate(String birthdate) {
         requireNonNull(birthdate);
-        checkArgument(isValidDateFormat(birthdate), MESSAGE_INVALID_DATE_FORMAT);
-        checkArgument(isNotFutureDate(birthdate), MESSAGE_FUTURE_DATE);
+        checkArgument(isValidBirthdate(birthdate), MESSAGE_CONSTRAINTS);
         this.birthdate = LocalDate.parse(birthdate, DATE_FORMAT);
+    }
+
+    /**
+     * Returns true if the given birthdate is valid.
+     *
+     * @param testDate Birthdate to be tested.
+     * @return true when the given birthdate is valid.
+     */
+    public static boolean isValidBirthdate(String testDate) {
+        LocalDate birthdate;
+        try {
+            birthdate = LocalDate.parse(testDate, DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        LocalDate currDate = LocalDate.now();
+
+        return !birthdate.isAfter(currDate);
     }
 
     /**

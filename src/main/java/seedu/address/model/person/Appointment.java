@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.util.DateUtil.isValidDateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +25,7 @@ public class Appointment {
      */
     private Appointment(String appointmentDate) {
         requireNonNull(appointmentDate);
-        checkArgument(isValidDateTimeFormat(appointmentDate), MESSAGE_INVALID_DATE_FORMAT);
+        checkArgument(isValidDate(appointmentDate), MESSAGE_INVALID_DATE_FORMAT);
         this.appointmentDate = LocalDateTime.parse(appointmentDate, DATE_FORMAT);
     }
 
@@ -38,13 +37,28 @@ public class Appointment {
     }
 
     /**
+     * Returns true if date is valid.
+     *
+     * @param testDate Date to be tested.
+     * @return True if valid.
+     */
+    public static boolean isValidDate(String testDate) {
+        try {
+            LocalDateTime.parse(testDate, DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Returns true is appointment is valid.
      *
      * @param test Input args for appointment test.
      * @return True if valid.
      */
     public static boolean isValidAppointment(String test) {
-        return test.equals(NO_APPOINTMENT_SCHEDULED) || isValidDateTimeFormat(test);
+        return test.equals(NO_APPOINTMENT_SCHEDULED) || isValidDate(test);
     }
 
     /**
