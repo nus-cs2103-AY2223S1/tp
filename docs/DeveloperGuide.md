@@ -260,7 +260,7 @@ Aspect: Class that triggers model and storage update
 
 - Alternative Solution 1 (Current choice):
 - LogicManager::execute() causes both updates
-- Pros: Any error in updating storage or model can be identified within execute() 
+- Pros: Any error in updating storage or model can be identified within execute()
 - Cons: execute command performs two functions, update model and update storage, which is not ideal for separating responsibilities.
 
 - Alternative Solution 2:
@@ -279,11 +279,11 @@ In this proposed feature, the user is provided with  multiple possible prefixes 
 For example, currently we can define a client's birthday using the `b/` prefix.
 However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead (see `addMeeting` command).
 
-Proposed implementation 
+Proposed implementation
 
 AddClientCommandParser depends on multiple Prefix objects such as PREFIX_BIRTHDAY, and PREFIX_DATE to identify each field in an AddClientCommand.
 Currently, Prefix class stores the required prefix word as a String.
-Consider changing the prefix word to a Pattern which can be matched against using Matcher. 
+Consider changing the prefix word to a Pattern which can be matched against using Matcher.
 For all prefixes we are looking for, we first get the matching pattern using getPrefix().
 Then, findPrefixPosition()  validates the presence of a field and also obtain the index of its first occurrence.
 From then on, the AddClientCommand can be built as expected.
@@ -302,11 +302,11 @@ Aspect: How prefixes are stored:
 e.g. String regexForBirthday = "[b|d|birthday|birthdate][\\\\]" is not as clear as Alternative 2
 
 - Alternative Solution 2: Store each possible prefix as a String in a List maintained by Prefix.
-- Pros:   String matches are easier to understand than regexes 
+- Pros:   String matches are easier to understand than regexes
 e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
 - Cons: List of String returned is cumbersome for pattern matching, i.e. Iterate through every String in patternsForBirthday to look for a match.
 
-#### Rationale 
+#### Rationale
 - A single Pattern for each Prefix is more succinct that a List.
 - No need to iterate through a list of Strings to find a match.
 - Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
@@ -319,8 +319,7 @@ Purpose: Adds a meeting with the given information to the internal model and sto
 #### Implementation
 
 In keeping with the command execution structure of the overall program, the command
-specific classes `AddMeetingCommandd` and `AddMeetingCommandParser` were added to the 
-commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
+specific classes `AddMeetingCommand` and `AddMeetingCommandParser` were added to the commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
 to accept the new command word, `addMeeting`.
 
 The following sequence diagram offers a high-level overview of how
@@ -347,7 +346,7 @@ could be referencing more than one client.
 command execution are inside the AddMeetingCommand.
   - Cons: The design of AddMeetingCommand is less intuitive.
 - **Alternative 2:** Accept a completed Meeting.
-  - Pros: The design of AddMeetingCommmand is simpler.
+  - Pros: The design of AddMeetingCommand is simpler.
   - Cons: The parser will need to have access to the model in order to 
 obtain the referenced client.
 
@@ -500,7 +499,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
     * 3a1. System shows an error message.
 
       Use case ends.
-    
+
 
 ### Non-Functional Requirements
 
