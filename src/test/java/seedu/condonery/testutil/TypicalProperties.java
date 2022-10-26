@@ -27,24 +27,24 @@ public class TypicalProperties {
             .withTags("friends").build();
     public static final Property OASIS = new PropertyBuilder().withName("Oasis")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withPrice("1,000,000")
+            .withPrice("2,000,000")
             .withTags("owesMoney", "friends").build();
     public static final Property CARL = new PropertyBuilder().withName("Carl Kurz")
-            .withPrice("1,000,000")
+            .withPrice("3,000,000")
             .withAddress("wall street").build();
     public static final Property DANIEL = new PropertyBuilder().withName("Daniel Meier")
             .withAddress("10th street")
-            .withPrice("1,000,000")
+            .withPrice("4,000,000")
             .withTags("friends").build();
     public static final Property ELLE = new PropertyBuilder().withName("Elle Meyer")
             .withAddress("michegan ave")
-            .withPrice("1,000,000").build();
+            .withPrice("5,000,000").build();
     public static final Property FIONA = new PropertyBuilder().withName("Fiona Kunz")
             .withAddress("little tokyo")
-            .withPrice("1,000,000").build();
+            .withPrice("6,000,000").build();
     public static final Property GEORGE = new PropertyBuilder().withName("George Best")
             .withAddress("4th street")
-            .withPrice("1,000,000").build();
+            .withPrice("7,000,000").build();
 
     // Manually added
     public static final Property HOON = new PropertyBuilder().withName("Hoon Meier")
