@@ -1,16 +1,19 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * A utility class to help with building EditClientDescriptor objects.
@@ -36,7 +39,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
         descriptor.setAddress(client.getAddress());
-        descriptor.setTags(client.getTags());
+        descriptor.setProducts(client.getProducts());
     }
 
     /**
@@ -59,7 +62,7 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(Optional.of(new Email(email)));
         return this;
     }
 
@@ -67,19 +70,28 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(Optional.of(new Address(address)));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditClientDescriptor}
-     * that we are building.
+     * Sets the {@code Birthday} of the {@code EditClientDescriptor} that we are building.
      */
-    public EditClientDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditClientDescriptorBuilder withBirthday(LocalDate birthday) {
+        descriptor.setBirthday(Optional.of(new Birthday(birthday)));
         return this;
     }
+
+    /**
+     * Parses the {@code Products} into a {@code Set<Product>} and set it to the {@code EditClientDescriptor}
+     * that we are building.
+     */
+    public EditClientDescriptorBuilder withProducts(String... products) {
+        Set<Product> productsSet = Stream.of(products).map(Product::new).collect(Collectors.toSet());
+        descriptor.setProducts(productsSet);
+        return this;
+    }
+
 
     public EditClientDescriptor build() {
         return descriptor;

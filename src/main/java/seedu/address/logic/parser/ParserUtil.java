@@ -14,12 +14,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.MeetingTime;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -104,43 +105,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * Parses {@code String date} into a {@code LocalDate}.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
-     * Parses {@code String date} into a {@code MeetingDate}.
-     */
-    public static MeetingDate parseDate(String date) throws ParseException {
+    public static LocalDate parseDate(String date, String type) throws ParseException {
         requireNonNull(date);
-
         try {
-            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMyyyy"));
-            return new MeetingDate(parsedDate);
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMyyyy"));
         } catch (DateTimeParseException e) {
-            throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+            if (type.equals("meeting")) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+            }
         }
     }
 
@@ -175,5 +151,32 @@ public class ParserUtil {
         } catch (DateTimeParseException e) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Parses a {@code String product} into a {@code Product}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code product} is invalid.
+     */
+    public static Product parseProduct(String product) throws ParseException {
+        requireNonNull(product);
+        String trimmedProduct = product.trim();
+        if (!Product.isValidProductName(trimmedProduct)) {
+            throw new ParseException(Product.MESSAGE_CONSTRAINTS);
+        }
+        return new Product(trimmedProduct);
+    }
+
+    /**
+     * Parses {@code Collection<String> products} into a {@code Set<Product>}.
+     */
+    public static Set<Product> parseProducts(Collection<String> products) throws ParseException {
+        requireNonNull(products);
+        final Set<Product> productSet = new HashSet<>();
+        for (String productName : products) {
+            productSet.add(parseProduct(productName));
+        }
+        return productSet;
     }
 }

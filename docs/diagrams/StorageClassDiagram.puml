@@ -19,7 +19,7 @@ Class "<<interface>>\nMyInsuRecStorage" as MyInsuRecStorage
 Class JsonMyInsuRecStorage
 Class JsonSerializableMyInsuRec
 Class JsonAdaptedClient
-Class JsonAdaptedTag
+Class JsonAdaptedProduct
 }
 
 }
@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonMyInsuRecStorage .up.|> MyInsuRecStorage
 JsonMyInsuRecStorage ..> JsonSerializableMyInsuRec
 JsonSerializableMyInsuRec --> "*" JsonAdaptedClient
-JsonAdaptedClient --> "*" JsonAdaptedTag
+JsonAdaptedClient --> "*" JsonAdaptedProduct
 
 @enduml

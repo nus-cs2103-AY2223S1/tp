@@ -74,6 +74,18 @@
                      </padding>
                   </Label>
                </children>
+                <Label fx:id="birthday" prefHeight="20.0" prefWidth="263.0" text="\$birthday" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/birthday.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
+                </Label>
                <padding>
                   <Insets left="10.0" />
                </padding>

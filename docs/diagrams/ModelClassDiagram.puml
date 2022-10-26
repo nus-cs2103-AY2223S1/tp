@@ -18,7 +18,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Product
 
 Class UniqueMeetingList
 Class Meeting
@@ -47,7 +47,7 @@ Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
-Client *--> "*" Tag
+Client *--> "*" Product
 
 MyInsuRec *--> "1" UniqueMeetingList
 UniqueMeetingList --> "~* all" Meeting

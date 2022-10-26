@@ -18,21 +18,21 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_PRODUCT = "#Invalid product";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_PRODUCT_1 = "Product1";
+    private static final String VALID_PRODUCT_2 = "Product2";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -149,48 +149,50 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseProduct_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProduct(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseProduct_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseProduct(INVALID_PRODUCT));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseProduct_validValueWithoutWhitespace_returnsProduct() throws Exception {
+        Product expectedProduct = new Product(VALID_PRODUCT_1);
+        assertEquals(expectedProduct, ParserUtil.parseProduct(VALID_PRODUCT_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseProduct_validValueWithWhitespace_returnsTrimmedProduct() throws Exception {
+        String productWithWhitespace = WHITESPACE + VALID_PRODUCT_1 + WHITESPACE;
+        Product expectedProduct = new Product(VALID_PRODUCT_1);
+        assertEquals(expectedProduct, ParserUtil.parseProduct(productWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseProducts_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseProducts(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseProducts_collectionWithInvalidProducts_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseProducts(Arrays.asList(VALID_PRODUCT_1, INVALID_PRODUCT)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseProducts_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseProducts(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseProducts_collectionWithValidProducts_returnsProductSet() throws Exception {
+        Set<Product> actualProductSet = ParserUtil.parseProducts(Arrays.asList(VALID_PRODUCT_1, VALID_PRODUCT_2));
+        Set<Product> expectedProductSet = new HashSet<>(
+                Arrays.asList(new Product(VALID_PRODUCT_1), new Product(VALID_PRODUCT_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedProductSet, actualProductSet);
     }
 }

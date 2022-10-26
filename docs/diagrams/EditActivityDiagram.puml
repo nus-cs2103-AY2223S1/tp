@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes command;
+
+:EditCommand is created;
+
+:Update model;
+
+:Update storage;
+
+stop
+@enduml

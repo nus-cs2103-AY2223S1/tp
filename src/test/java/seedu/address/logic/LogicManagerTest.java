@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddClientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Client expectedClient = new ClientBuilder(AMY).withTags().build();
+        Client expectedClient = new ClientBuilder(AMY).withProducts().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addClient(expectedClient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -96,6 +96,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredMeetingList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredMeetingList().remove(0));
+    }
+
+    @Test
+    public void getFilteredProductList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredProductList().remove(0));
     }
 
     @Test
