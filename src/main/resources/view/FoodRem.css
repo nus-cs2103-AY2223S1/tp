@@ -23,6 +23,7 @@
   -fx-background-insets: 12 0 0 0;
 }
 
+.item-listview,
 .command-placeholder,
 .command-box > TextField,
 .result-placeholder,
@@ -41,7 +42,7 @@
   -fx-padding: 12;
 
   -fx-min-width: 340;
-  -fx-pref-width: 340;
+  -fx-pref-width: 1000;
 }
 
 .command-placeholder {
@@ -54,8 +55,8 @@
 }
 
 .result-placeholder {
-  -fx-min-height: 100;
-  -fx-pref-height: 100;
+  -fx-min-height: 300;
+  -fx-pref-height: 300;
 }
 
 .command-box > TextField,
@@ -81,4 +82,50 @@
 .result-box > TextArea * {
   -fx-padding: 0;
   -fx-background-color: transparent;
+}
+
+/* ============================ *
+ * ItemView                     *
+ * ============================ */
+.item-detail-name {
+  -fx-font-weight: bold; // TODO
+  -fx-font-size: 16pt;
+}
+
+.item-detail-tag {
+  -fx-font-size: 10pt;
+  -fx-background-color: #f3d3b5;
+  -fx-background-radius: 8;
+
+  -fx-label-padding: 4 6 4 6;
+}
+
+.item-detail-quantity {
+  -fx-font-family: "system-ui";
+  -fx-font-weight: bold; // TODO
+}
+
+/* ============================ *
+ * ItemCard                     *
+ * ============================ */
+.item-listview-tag {
+  -fx-font-size: 8pt;
+  -fx-background-color: #f3d3b5;
+  -fx-background-radius: 4;
+  -fx-label-padding: 2 3 2 3;
+  -fx-text-fill: black;
+}
+
+.item-listview-data {
+  -fx-font-size: 9pt;
+}
+
+.lined-separator {
+  -fx-border-width: 0 0 1px 0;
+  -fx-border-color: lightgray;
+}
+
+.list-view .list-cell:even,
+.list-view .list-cell:odd {
+  -fx-background-radius: 8;
 }

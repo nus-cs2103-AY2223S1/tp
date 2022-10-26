@@ -17,7 +17,7 @@ public class ListTagCommand extends Command {
     private static final String MESSAGE_SUCCESS = "Listed all tags:\n";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTagList(Model.PREDICATE_SHOW_ALL_TAGS);
         List<Tag> allTags = model.getFilteredTagList();
@@ -31,7 +31,7 @@ public class ListTagCommand extends Command {
 
         String tagList = allTagsList.toString();
 
-        return new CommandResult(tagList);
+        return CommandResult.from(tagList);
     }
 
     public static String getUsage() {

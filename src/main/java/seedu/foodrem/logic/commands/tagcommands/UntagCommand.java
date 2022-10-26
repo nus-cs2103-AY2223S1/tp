@@ -3,7 +3,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.UNTAG_COMMAND;
 
-import java.util.List;
 import java.util.Set;
 
 import seedu.foodrem.commons.core.index.Index;
@@ -13,16 +12,13 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Untags an item with a Tag.
  */
 public class UntagCommand extends Command {
-    // TODO: Test this command
-    private static final String MESSAGE_SUCCESS = "Item untagged successfully.\n%1$s";
     private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item is not tagged with this tag";
-    private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
-    private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 
     private final Index index;
     private final Tag tag;
@@ -38,28 +34,18 @@ public class UntagCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (!model.hasTag(tag)) {
-            throw new CommandException(ERROR_NOT_FOUND_TAG);
-        }
-
-        List<Item> lastShownList = model.getCurrentList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(ERROR_NOT_FOUND_ITEM);
-        }
-
-        Item itemToUntag = lastShownList.get(index.getZeroBased());
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
+        Item itemToUntag = TagCommand.validateAndGetTargetItem(model, tag, index);
         Set<Tag> itemTags = itemToUntag.getTagSet();
         if (!itemTags.contains(tag)) {
             throw new CommandException(ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
         }
         itemTags.remove(tag);
         Item newTagSetItem = Item.createItemWithTags(itemToUntag, itemTags);
-
         model.setItem(itemToUntag, newTagSetItem);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newTagSetItem));
+
+        return CommandResult.from(
+                new ItemWithMessage(newTagSetItem, "Item untagged successfully. View updated item below:"));
     }
 
     public static String getUsage() {
