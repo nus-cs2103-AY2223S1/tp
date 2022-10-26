@@ -1,12 +1,21 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_REASON;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.EditLoanCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.LoanHistory;
@@ -15,24 +24,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_AMOUNT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN_REASON;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-
 /**
  * Edits the loan value of an existing person in the address book.
  */
-public class EditLoanCommand extends Command{
+public class EditLoanCommand extends Command {
 
     public static final String COMMAND_WORD = "editLoan";
 
@@ -51,6 +46,11 @@ public class EditLoanCommand extends Command{
     private final Index index;
     private final EditLoanDescriptor editLoanDescriptor;
 
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param editLoanDescriptor details to edit the person with
+     * @param change LoanHistory of the loan change
+     */
     public EditLoanCommand(Index index, EditLoanDescriptor editLoanDescriptor, LoanHistory change) {
         requireNonNull(index);
         requireNonNull(editLoanDescriptor);
@@ -65,7 +65,7 @@ public class EditLoanCommand extends Command{
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if(index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
@@ -97,6 +97,7 @@ public class EditLoanCommand extends Command{
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Birthday updatedBirthday = personToEdit.getBirthday();
         Set<Tag> updatedTags = personToEdit.getTags();
         double val = editLoanDescriptor.getLoan().get().getAmount() + personToEdit.getLoan().getAmount();
         Loan updatedLoan = new Loan(String.valueOf(val));
@@ -106,7 +107,8 @@ public class EditLoanCommand extends Command{
         }
         updatedLoanHistory.add(editLoanDescriptor.getHistory().get());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedLoan, updatedLoanHistory);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                          updatedBirthday, updatedTags, updatedLoan, updatedLoanHistory);
     }
 
     @Override
@@ -132,7 +134,7 @@ public class EditLoanCommand extends Command{
      */
     public static class EditLoanDescriptor {
         private Loan loan;
-        LoanHistory history;
+        private LoanHistory history;
 
         public EditLoanDescriptor() {}
 

@@ -117,6 +117,7 @@ public class PersonTest {
                 new Phone(PersonBuilder.DEFAULT_PHONE),
                 new Email(PersonBuilder.DEFAULT_EMAIL),
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
+                new Birthday(PersonBuilder.DEFAULT_BIRTHDAY),
                 Set.of(tag),
                 new Loan(PersonBuilder.DEFAULT_LOAN),
                 new ArrayList<LoanHistory>());
@@ -142,6 +143,7 @@ public class PersonTest {
                 new Phone(PersonBuilder.DEFAULT_PHONE),
                 new Email(PersonBuilder.DEFAULT_EMAIL),
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
+                new Birthday(PersonBuilder.DEFAULT_BIRTHDAY),
                 tagSet,
                 new Loan(PersonBuilder.DEFAULT_LOAN),
                 new ArrayList<LoanHistory>());
@@ -151,6 +153,7 @@ public class PersonTest {
                 new Phone(PersonBuilder.DEFAULT_PHONE),
                 new Email(PersonBuilder.DEFAULT_EMAIL),
                 new Address(PersonBuilder.DEFAULT_ADDRESS),
+                new Birthday(PersonBuilder.DEFAULT_BIRTHDAY),
                 tagSet,
                 new Loan(PersonBuilder.DEFAULT_LOAN),
                 new ArrayList<LoanHistory>());

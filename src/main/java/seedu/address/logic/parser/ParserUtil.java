@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.note.Content;
 import seedu.address.model.note.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.Name;
@@ -168,6 +169,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String birthday} into a {@code Birthday}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code birthday} is invalid.
+     */
+    public static Birthday parseBirthday(String birthday) throws ParseException {
+        requireNonNull(birthday);
+        String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        return new Birthday(trimmedBirthday);
+    }
+
+    /**
      * Parses a {@code String loanAmout} into a {@code Loan}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -182,6 +198,12 @@ public class ParserUtil {
         return new Loan(trimmedLoan);
     }
 
+    /**
+     * Parses a {@code String reason} into a {@code Reason}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reason} is invalid.
+     */
     public static Reason parseReason(String reason) throws ParseException {
         requireNonNull(reason);
         String trimmedReason = reason.trim();
