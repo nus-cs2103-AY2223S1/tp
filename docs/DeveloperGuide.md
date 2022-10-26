@@ -343,12 +343,12 @@ could be referencing more than one client.
 **Aspect: The parameters that the AddMeetingCommand constructor should accept:**
 
 - **Alternative 1 (current choice):** Accept the parsed command arguments separately.
-  - Pros: The logic and operations on the model that are associated with 
+  - Pros: The logic and operations on the model that are associated with
 command execution are inside the AddMeetingCommand.
   - Cons: The design of AddMeetingCommand is less intuitive.
 - **Alternative 2:** Accept a completed Meeting.
   - Pros: The design of AddMeetingCommmand is simpler.
-  - Cons: The parser will need to have access to the model in order to 
+  - Cons: The parser will need to have access to the model in order to
 obtain the referenced client.
 
 --------------------------------------------------------------------------------------------------------------------
