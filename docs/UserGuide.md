@@ -191,7 +191,7 @@ Adds a staff member info to Project in project list.
 Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER [t/TAGS]`
 
 * All fields for staff member are required, except `TAGS`
-* Adding staff to a staff list that is currently shown will show the staff being added. 
+* To see the updates to the staff list, use the `view` command.  
 
 Examples:
 * `addStaff pn/DUKE sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
