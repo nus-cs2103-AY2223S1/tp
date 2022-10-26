@@ -6,6 +6,7 @@ import nus.climods.logic.commands.PickCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.LessonTypeParameter;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
+import nus.climods.model.module.LessonTypeEnum;
 
 /**
  * Parses input arguments and creates a new PickCommand object
@@ -31,7 +32,7 @@ public class PickCommandParser implements Parser<PickCommand> {
         String mc = mcp.getArgValue();
 
         LessonTypeParameter ltp = new LessonTypeParameter(args);
-        String lt = ltp.getArgValue();
+        LessonTypeEnum lt = ltp.getArgValue();
 
         String classNo = arg[3].trim();
         //TODO: add other parameter

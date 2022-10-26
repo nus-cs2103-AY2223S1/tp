@@ -3,7 +3,7 @@ package nus.climods.model.module;
 /**
  * Module lesson type
  */
-public enum LessonType {
+public enum LessonTypeEnum {
     TUT("Tutorial"),
     LEC("Lecture"),
     LAB("Laboratory"),
@@ -14,28 +14,28 @@ public enum LessonType {
     private final String valueStr;
 
     /**
-     * Creates a LessonType enum
+     * Creates a LessonTypeEnum enum
      *
      * @param valueStr lesson type description
      */
-    LessonType(String valueStr) {
+    LessonTypeEnum(String valueStr) {
         this.valueStr = valueStr;
     }
 
     /**
-     * Creates a LessonType from a given value
+     * Creates a LessonTypeEnum from a given value
      *
      * @param value value
      * @return lesson type
      */
-    public static LessonType fromValue(String value) {
-        for (LessonType l : LessonType.values()) {
-            if (l.valueStr.equals(value)) {
+    public static LessonTypeEnum fromValue(String value) {
+        for (LessonTypeEnum l : LessonTypeEnum.values()) {
+            if (l.name().equals(value)) {
                 return l;
             }
         }
 
-        return LessonType.UNSUPPORTED;
+        return LessonTypeEnum.UNSUPPORTED;
     }
 
     @Override
