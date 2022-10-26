@@ -21,18 +21,12 @@ public class LoanCommandParser implements Parseable<LoanCommand> {
     @Override
     public LoanCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, LoanCommand.MESSAGE_USAGE));
-        }
-
-        if (!trimmedArgs.matches(VALIDATION_REGEX)) {
+        if (trimmedArgs.isEmpty() || !trimmedArgs.matches(VALIDATION_REGEX)) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, LoanCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
-
 
         try {
             String firstIndex = nameKeywords[0];
