@@ -222,7 +222,7 @@ in the app. Below is an activity diagram reflecting this:
 
 <img src="images/DeleteGroupActivityDiagram.png" width="550" />
 
-As a detailed overview, the `deletegroup` command operates via the following sequence diagram:
+For simplicity, only the `deletegroup` command sequence diagram is shown below. Both commands operate via a similar sequence:
 
 <img src="images/DeleteGroupSequenceDiagram.png" width="700" />
 
@@ -241,11 +241,37 @@ Given below is an example usage scenario and how groups are added/deleted at eac
 
 **Step 1.**
 Starting from the default persons, the user has executed `addgroup g/CS2103T` to add a group with
-`GroupName` "CS2103T". The `AddressBook` model is reflected belo:
-<!-- Add/Delete member diagram 1 -->
+`GroupName` "CS2103T". The `AddressBook` model is reflected below:
+
+<img src="images/AddDeleteMemberState0.png" width="300" />
 
 **Step 2.**
-User executes `addmember g/CS2103T n/`
+User executes `addmember g/CS2103T n/Alice` to add `Alice` to the
+group `CS2103T`, as reflected below:
+
+<img src="images/AddDeleteMemberState1.png" width="300" />
+
+**Note:** The command itself `AddGroupMemberCommand` checks that both person `Alice` and group
+`CS2103T` exist in the app, and that `Alice` is not already a member of `CS2103T`.
+
+**Step 3.**
+Suppose the user assigns `Alice` a task under the group. The `AddressBook` model now looks like this:
+
+<img src="images/AddDeleteMemberState2.png" width="300" />
+
+**Step 4.**
+User executes `deletemember g/CS2103T n/Alice`. This removes `Alice` from `CS2103T` and removes any tasks
+associated with the group.
+The `AddressBook` model now looks like this:
+
+<img src="images/AddDeleteMemberState0.png" width="300" />
+
+**Note:** The command itself `DeleteGroupMemberCommand` checks that both person `Alice` and group
+`CS2103T` exist in the app, and that `Alice` is a member of `CS2103T`.
+
+For simplicity, only the `deletemember` command sequence diagram is shown below. Both commands operate via a similar sequence:
+
+<img src="images/DeleteMemberSequenceDiagram.png" width="700" />
 
 
 -----
