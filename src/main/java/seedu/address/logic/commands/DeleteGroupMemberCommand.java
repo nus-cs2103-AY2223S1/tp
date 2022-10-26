@@ -26,7 +26,7 @@ public class DeleteGroupMemberCommand extends Command {
     public static final String COMMAND_WORD = "deletemember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a member from the specified group.\n"
-            + " Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
+            + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " g/Group 1 n/Bobby Chua";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
@@ -68,10 +68,16 @@ public class DeleteGroupMemberCommand extends Command {
         }
 
         if (!groupToDeletePerson.contains(personToGroup)) {
-            throw new CommandException(String.format(MESSAGE_PERSON_NOT_IN_GROUP, this.name));
+            throw new CommandException(String.format(MESSAGE_PERSON_NOT_IN_GROUP, this.name, this.personGroup));
         }
         //change field
         ArrayList<PersonGroup> personGroupArrayList = personToGroup.getPersonGroups();
+        ArrayList<PersonGroup> personGroupArrayListCopy = new ArrayList<>(personGroupArrayList);
+        Person originalPersonBeforeEdit = new Person(
+            personToGroup.getName(), personToGroup.getPhone(), personToGroup.getEmail(),
+            personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
+            personGroupArrayListCopy);
+
         personGroupArrayList.remove(this.personGroup);
 
         Person editedPerson = new Person(
@@ -79,10 +85,11 @@ public class DeleteGroupMemberCommand extends Command {
                 personToGroup.getAddress(), personToGroup.getTags(), personToGroup.getAssignments(),
                 personGroupArrayList);
 
+
         //deletes person from the group
         Set<Person> groupMembers = new HashSet<>();
         groupMembers.addAll(groupToDeletePerson.getMembers());
-        groupMembers.remove(editedPerson);
+        groupMembers.remove(originalPersonBeforeEdit);
         Group editedGroup = new Group(groupToDeletePerson.getName(), groupMembers);
 
 

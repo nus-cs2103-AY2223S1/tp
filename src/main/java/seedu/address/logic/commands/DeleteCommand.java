@@ -24,6 +24,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    public static final String MESSAGE_PERSON_IN_EXISITING_GROUP =
+        "The person specified is still in one or more groups!";
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -40,6 +43,11 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (personToDelete.getPersonGroups().size() > 0) {
+            throw new CommandException(MESSAGE_PERSON_IN_EXISITING_GROUP);
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

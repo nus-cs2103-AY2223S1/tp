@@ -27,7 +27,7 @@ public class AssignTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "assigntask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a user with the given name in a "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns a task to a member with the given name in a "
             + "group.\n"
             + "Workload specified must be low, medium or high.\n"
             + "Deadline must be in yyyy-MM-dd or yyyy-MM-dd HH:mm format\n"
