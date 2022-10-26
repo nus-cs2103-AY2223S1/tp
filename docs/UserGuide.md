@@ -71,9 +71,9 @@ Basic Instructions:
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
-- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
 - Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (e.g.
-  0 times), `t/friend`, `t/friend t/family` etc.
+  0 times), `t/python`, `t/javascript t/react` etc.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
@@ -172,8 +172,9 @@ Edits an existing student in the list.
 - Amount paid
 - Amount owed
 - Additional notes
+- Tag
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow
+1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, Class Date, and Tag follow
 the same convention as [adding a student](#adding-a-student-add).
 
 2. Amount paid:
@@ -197,7 +198,7 @@ Important: Note **at least one** of these fields must exist in order to make the
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [t/TAG]...`
 
 Example:
 
