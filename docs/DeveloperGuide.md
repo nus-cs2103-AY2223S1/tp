@@ -341,7 +341,7 @@ The predicate is used in the Model interface on the `updateViewItem` method
 
 The following sequence diagram shows how the view command works.
 
-TODO: ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 #### Design Considerations
 **How to view the Internship**:
@@ -375,7 +375,7 @@ It implements `Predicate<Internship>` where the test method looks for the exact 
 
 The following sequence diagram shows how the copy command works.
 
-TODO: ![CopySequenceDiagram](images/CopySequenceDiagram.png)
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
 #### Design Considerations
 **How to copy the Internship**:

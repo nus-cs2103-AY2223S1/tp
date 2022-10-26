@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":CopyCommandParser" as CopyCommandParser LOGIC_COLOR
+participant "c:CopyCommand" as CopyCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Toolkit MODEL_COLOR_T1
+participant ":Toolkit" as Toolkit MODEL_COLOR
+end box
+
+box Clipboard LOGIC_COLOR_T1
+participant ":Clipboard" as Clipboard LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("copy 1")
+activate LogicManager
+
+LogicManager -> InternshipBookParser : parseCommand("copy 1")
+activate InternshipBookParser
+
+create CopyCommandParser
+InternshipBookParser -> CopyCommandParser
+activate CopyCommandParser
+
+CopyCommandParser --> InternshipBookParser
+deactivate CopyCommandParser
+
+InternshipBookParser -> CopyCommandParser : parse("1")
+activate CopyCommandParser
+
+create CopyCommand
+CopyCommandParser -> CopyCommand
+activate CopyCommand
+
+CopyCommand --> CopyCommandParser : c
+deactivate CopyCommand
+
+CopyCommandParser --> InternshipBookParser : c
+deactivate CopyCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CopyCommandParser -[hidden]-> InternshipBookParser
+destroy CopyCommandParser
+
+InternshipBookParser --> LogicManager : c
+deactivate InternshipBookParser
+
+LogicManager -> CopyCommand : execute()
+activate CopyCommand
+
+create Toolkit
+CopyCommand -> Toolkit
+activate Toolkit
+
+create Clipboard
+Toolkit -> Clipboard : setContents()
+activate Clipboard
+
+Clipboard --> Toolkit
+deactivate Clipboard
+Toolkit --> CopyCommand
+deactivate Toolkit
+
+create CommandResult
+CopyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CopyCommand
+deactivate CommandResult
+
+CopyCommand --> LogicManager : result
+deactivate CopyCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
