@@ -58,7 +58,7 @@ public class RemoveCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredListForAll_success() {
-        ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder().withName(ALICE.getName().fullName)
+        ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder().withName(ALICE.getName().value)
                 .withPhone(ALICE.getPhone().value).build();
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(descriptor);
@@ -71,7 +71,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_nameSpecifiedUnfilteredListForAll_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withName(ALICE.getName().fullName).build();
+                .withName(ALICE.getName().value).build();
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ALL_SPECIFIER);
@@ -108,7 +108,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_matricNumberSpecifiedUnfilteredListForAll_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withMatricNumber(ALICE.getMatricNumber().matricNumber).build();
+                .withMatricNumber(ALICE.getMatricNumber().value).build();
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ALL_SPECIFIER);
@@ -120,7 +120,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_houseSpecifiedUnfilteredListForAll_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withHouse(ALICE.getHouse().house).build();
+                .withHouse(ALICE.getHouse().value).build();
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ALL_SPECIFIER);
@@ -132,7 +132,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_genderSpecifiedUnfilteredListForAll_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withGender(ALICE.getGender().gender).build();
+                .withGender(ALICE.getGender().value).build();
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ALL_SPECIFIER);
@@ -156,7 +156,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_roomSpecifiedUnfilteredListForAll_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withRoom(ALICE.getRoom().room).build();
+                .withRoom(ALICE.getRoom().value).build();
         AttributesMatchAllKeywordsPredicate predicate =
                 new AttributesMatchAllKeywordsPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ALL_SPECIFIER);
@@ -177,7 +177,7 @@ public class RemoveCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredListForAny_success() {
-        ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder().withName(ALICE.getName().fullName)
+        ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder().withName(ALICE.getName().value)
                 .withPhone(ALICE.getPhone().value).build();
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(descriptor);
@@ -190,7 +190,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_nameSpecifiedUnfilteredListForAny_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withName(ALICE.getName().fullName).build();
+                .withName(ALICE.getName().value).build();
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ANY_SPECIFIER);
@@ -227,7 +227,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_matricNumberSpecifiedUnfilteredListForAny_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withMatricNumber(ALICE.getMatricNumber().matricNumber).build();
+                .withMatricNumber(ALICE.getMatricNumber().value).build();
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ANY_SPECIFIER);
@@ -239,7 +239,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_houseSpecifiedUnfilteredListForAny_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withHouse(ALICE.getHouse().house).build();
+                .withHouse(ALICE.getHouse().value).build();
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ANY_SPECIFIER);
@@ -251,7 +251,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_genderSpecifiedUnfilteredListForAny_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withGender(ALICE.getGender().gender).build();
+                .withGender(ALICE.getGender().value).build();
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ANY_SPECIFIER);
@@ -275,7 +275,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_roomSpecifiedUnfilteredListForAny_success() {
         ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder()
-                .withRoom(ALICE.getRoom().room).build();
+                .withRoom(ALICE.getRoom().value).build();
         AttributesMatchAnyKeywordPredicate predicate =
                 new AttributesMatchAnyKeywordPredicate(descriptor);
         RemoveCommand command = new RemoveCommand(descriptor, ANY_SPECIFIER);
