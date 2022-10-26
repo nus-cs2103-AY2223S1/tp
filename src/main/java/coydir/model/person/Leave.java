@@ -6,6 +6,8 @@ import java.util.Comparator;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 /**
  * Represents a Leave in the database.
  * Guarantees: immutable; name is valid as declared in {@link #isValidLeave}
@@ -96,7 +98,7 @@ public class Leave {
      * Returns number of days
      */
     public int getTotalDays() {
-        return this.endDate.compareTo(this.startDate) + 1;
+        return (int) DAYS.between(startDate, endDate);
     }
 
     @Override
