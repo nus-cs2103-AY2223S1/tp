@@ -33,7 +33,7 @@ public class TuitionClassContainsKeywordsPredicate<T> implements Predicate<T> {
                     .contains(keywords.get(PREFIX_SUBJECT).toLowerCase())
                     && tuitionClass.getLevel().level.toLowerCase()
                     .contains(keywords.get(PREFIX_LEVEL).toLowerCase())
-                    && tuitionClass.getTime().getStartTime().toLowerCase()
+                    && tuitionClass.getTime().toString().toLowerCase()
                     .contains(keywords.get(PREFIX_TIME).toLowerCase())
                     && tuitionClass.getTags().stream().anyMatch(tag -> tag.tagName.toLowerCase()
                     .contains(keywords.get(PREFIX_TAG).toLowerCase()));

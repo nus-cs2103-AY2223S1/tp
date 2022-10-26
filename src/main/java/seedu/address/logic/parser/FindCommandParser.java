@@ -1,7 +1,13 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_PREFIX_SPECIFIED;
+import static seedu.address.commons.core.Messages.MESSAGE_PREFIX_NOT_FOR_STUDENT;
+import static seedu.address.commons.core.Messages.MESSAGE_PREFIX_NOT_FOR_TUITIONCLASS;
+import static seedu.address.commons.core.Messages.MESSAGE_PREFIX_NOT_FOR_TUTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -27,23 +33,6 @@ import seedu.address.model.Model;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
-    private String nameKeywords;
-    private String addressKeywords;
-    private String emailKeywords;
-    private String phoneKeywords;
-
-    private String schoolKeywords;
-    private String levelKeywords;
-
-    private String qualificationKeywords;
-    private String institutionKeywords;
-
-    private String dayKeywords;
-    private String subjectKeywords;
-    private String timeKeywords;
-
-    private String tagKeywords;
-
     private HashMap<Prefix, String> keywords = new HashMap<>();
 
     Model.ListType listType;
@@ -66,12 +55,24 @@ public class FindCommandParser implements Parser<FindCommand> {
                         PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION,
                         PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME);
 
-        if (areAnyPrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
-                PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
-                PREFIX_DAY, PREFIX_TIME)) {
-            throw new ParseException(String.format("Please do not leave prefixes empty!", FindCommand.MESSAGE_USAGE));
-        }
+        validateArguments(argMultimap);
 
+        String nameKeywords;
+        String addressKeywords;
+        String emailKeywords;
+        String phoneKeywords;
+
+        String schoolKeywords;
+        String levelKeywords;
+
+        String qualificationKeywords;
+        String institutionKeywords;
+
+        String dayKeywords;
+        String subjectKeywords;
+        String timeKeywords;
+
+        String tagKeywords;
 
         switch (listType) {
 
@@ -145,11 +146,64 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
 
+    private void validateArguments(ArgumentMultimap argMultimap) throws ParseException {
+        // Check if prefixes specified is relevant to the current list
+        switch (listType) {
+        case STUDENT_LIST:
+            if (areAnyPrefixesPresent(argMultimap, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                    PREFIX_DAY, PREFIX_TIME)) {
+                throw new ParseException(String.format(MESSAGE_PREFIX_NOT_FOR_STUDENT, FindCommand.MESSAGE_USAGE));
+            }
+            break;
+
+        case TUTOR_LIST:
+            if (areAnyPrefixesPresent(argMultimap, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_SUBJECT,
+                    PREFIX_DAY, PREFIX_TIME)) {
+                throw new ParseException(String.format(MESSAGE_PREFIX_NOT_FOR_TUTOR, FindCommand.MESSAGE_USAGE));
+            }
+            break;
+
+        default:
+            if (areAnyPrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SCHOOL,
+                    PREFIX_QUALIFICATION, PREFIX_INSTITUTION)) {
+                throw new ParseException(String.format(MESSAGE_PREFIX_NOT_FOR_TUITIONCLASS, FindCommand.MESSAGE_USAGE));
+            }
+            break;
+        }
+
+        // Check that there are no invalid prefixes
+        if (!areValidPrefixValues(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
+                PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                PREFIX_DAY, PREFIX_TIME)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, FindCommand.MESSAGE_USAGE));
+        }
+
+        // Check that there is at least one prefix is specified
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
+                PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                PREFIX_DAY, PREFIX_TIME)) {
+            throw new ParseException(String.format(MESSAGE_NO_PREFIX_SPECIFIED, FindCommand.MESSAGE_USAGE));
+        }
+
+        // Check that there are no prefixes specified without any keywords
+        if (areAnyPrefixesEmpty(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE,
+                PREFIX_TAG, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION, PREFIX_SUBJECT,
+                PREFIX_DAY, PREFIX_TIME)) {
+            throw new ParseException(String.format(MESSAGE_EMPTY_PREFIX, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
+
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     private static boolean areAnyPrefixesEmpty(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).orElse(" ").equals(""));
+    }
+
+    private static boolean areValidPrefixValues(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap
+                .getValue(prefix).orElse(" ").contains("/"));
     }
 }
