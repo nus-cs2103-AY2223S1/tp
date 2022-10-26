@@ -36,8 +36,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     private Predicate<Set<Tag>> tagPredicate;
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindTagCommand
-     * and returns a FilterNameCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindPatientCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindPatientCommand parse(String args) throws ParseException {
@@ -70,7 +69,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
             String trimmedArgs = argMultimap.getValue(PREFIX_PHONE).get().trim();
 
             if (!trimmedArgs.matches("\\d")) {
-                throw new ParseException("Phone number should only contain numbers");
+                throw new ParseException("Input for finding by phone number should contain only number(s)");
             }
 
             Predicate<Phone> phonePredicate = (phone -> phone.value.contains(trimmedArgs));
@@ -85,7 +84,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
 
             if (trimmedArgs.isEmpty()) {
-                throw new ParseException("Input for finding email should not be empty");
+                throw new ParseException("Input for finding by email should not be empty");
             }
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
@@ -117,7 +116,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
             String trimmedArgs = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()).toString().trim();
 
             if (trimmedArgs.isEmpty()) {
-                throw new ParseException("Input for finding remark should not be empty");
+                throw new ParseException("Input for finding by remark should not be empty");
             }
 
             final String finalPredicateString = createPredicateString(trimmedArgs);
