@@ -3,6 +3,7 @@ package seedu.taassist.model.moduleclass;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -105,7 +106,7 @@ public class ModuleClass implements Identity<ModuleClass> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModuleClass // instanceof handles nulls
-                && className.equals(((ModuleClass) other).className)
+                && caseInsensitiveEquals(className, ((ModuleClass) other).className)
                 && sessions.equals(((ModuleClass) other).sessions));
     }
 
@@ -119,7 +120,7 @@ public class ModuleClass implements Identity<ModuleClass> {
     @Override
     public boolean isSame(ModuleClass otherModule) {
         return otherModule == this
-                || (otherModule != null && otherModule.className.equals(this.className));
+                || (otherModule != null && caseInsensitiveEquals(this.className, otherModule.className));
     }
 
     public boolean hasSession(Session toCheck) {
