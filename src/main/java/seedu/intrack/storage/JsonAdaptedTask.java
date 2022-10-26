@@ -38,8 +38,14 @@ class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Task toModelType() throws IllegalValueException {
+        if (taskName == null) {
+            throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
+        }
         if (!Task.isValidTaskName(taskName)) {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
+        }
+        if (taskTime == null) {
+            throw new IllegalValueException(Task.TIME_CONSTRAINTS);
         }
         if (!Task.isValidTaskTime(taskTime)) {
             throw new IllegalValueException(Task.TIME_CONSTRAINTS);
