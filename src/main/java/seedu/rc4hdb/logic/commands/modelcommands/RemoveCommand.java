@@ -2,6 +2,7 @@ package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_FILTER_ALL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_HOUSE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
@@ -33,8 +34,9 @@ import seedu.rc4hdb.model.resident.predicates.AttributesMatchAnyKeywordPredicate
 public class RemoveCommand implements ModelCommand {
     public static final String COMMAND_WORD = "remove";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": "
-            + "removes the resident book by the attributes specified in the command"
-            + "Parameters:"
+            + "filters the resident book by the attributes specified in the command"
+            + "Parameters: "
+            + "[Specifier (/any or /all)] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -43,11 +45,12 @@ public class RemoveCommand implements ModelCommand {
             + "[" + PREFIX_HOUSE + "HOUSE] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRIC_NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + PREFIX_FILTER_ALL
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
+    public static final String MESSAGE_NOT_REMOVED = "At least one field to filter must be provided.";
+    public static final String MESSAGE_REMOVED_SUCCESS = "%1$d residents deleted!";
 
     /** description to remove the residents with */
     private final ResidentStringDescriptor removePersonDescriptor;
@@ -75,14 +78,21 @@ public class RemoveCommand implements ModelCommand {
             predicate = new AttributesMatchAllKeywordsPredicate(removePersonDescriptor);
         }
 
-        for (int index = 0; index < lastShownList.size(); index++) {
+        int deleted = 0;
+        int index = 0;
+
+        while (index < lastShownList.size()) {
 
             Resident residentToDelete = lastShownList.get(index);
             if (predicate.test(residentToDelete)) {
                 model.deleteResident(residentToDelete);
+                deleted++;
+            }
+            else {
+                index++;
             }
         }
-            return new CommandResult(String.format(String.format(Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1)));
+            return new CommandResult(String.format(MESSAGE_REMOVED_SUCCESS, deleted));
     }
 
 

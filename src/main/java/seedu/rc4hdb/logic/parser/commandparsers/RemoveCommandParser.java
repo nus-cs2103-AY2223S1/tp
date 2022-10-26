@@ -25,15 +25,15 @@ import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 
 
 /**
- * Parses input arguments and creates a new FilterCommand object
+ * Parses input arguments and creates a new RemoveCommand object
  */
 public class RemoveCommandParser implements Parser<RemoveCommand> {
 
     private FilterSpecifier specifier;
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterCommand
-     * and returns a FilterCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the RemoveCommand
+     * and returns a RemoveCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public RemoveCommand parse(String args) throws ParseException {
@@ -52,40 +52,40 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
         try {
             specifier.getSpecifier();
         } catch (NullPointerException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
         }
 
-        ResidentStringDescriptor filterResidentDescriptor = new ResidentStringDescriptor();
+        ResidentStringDescriptor removeResidentDescriptor = new ResidentStringDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            filterResidentDescriptor.setName(argMultimap.getValue(PREFIX_NAME).get());
+            removeResidentDescriptor.setName(argMultimap.getValue(PREFIX_NAME).get());
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            filterResidentDescriptor.setPhone(argMultimap.getValue(PREFIX_PHONE).get());
+            removeResidentDescriptor.setPhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            filterResidentDescriptor.setEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            removeResidentDescriptor.setEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
         if (argMultimap.getValue(PREFIX_ROOM).isPresent()) {
-            filterResidentDescriptor.setRoom(argMultimap.getValue(PREFIX_ROOM).get());
+            removeResidentDescriptor.setRoom(argMultimap.getValue(PREFIX_ROOM).get());
         }
         if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            filterResidentDescriptor.setGender(argMultimap.getValue(PREFIX_GENDER).get());
+            removeResidentDescriptor.setGender(argMultimap.getValue(PREFIX_GENDER).get());
         }
         if (argMultimap.getValue(PREFIX_HOUSE).isPresent()) {
-            filterResidentDescriptor.setHouse(argMultimap.getValue(PREFIX_HOUSE).get());
+            removeResidentDescriptor.setHouse(argMultimap.getValue(PREFIX_HOUSE).get());
         }
         if (argMultimap.getValue(PREFIX_MATRIC_NUMBER).isPresent()) {
-            filterResidentDescriptor.setMatricNumber(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
+            removeResidentDescriptor.setMatricNumber(argMultimap.getValue(PREFIX_MATRIC_NUMBER).get());
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            filterResidentDescriptor.setTags(new HashSet<>(argMultimap.getAllValues(PREFIX_TAG)));
+            removeResidentDescriptor.setTags(new HashSet<>(argMultimap.getAllValues(PREFIX_TAG)));
         }
 
-        if (!filterResidentDescriptor.isAnyFieldNonNull()) {
-            throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
+        if (!removeResidentDescriptor.isAnyFieldNonNull()) {
+            throw new ParseException(RemoveCommand.MESSAGE_NOT_REMOVED);
         }
 
-        return new RemoveCommand(filterResidentDescriptor, specifier);
+        return new RemoveCommand(removeResidentDescriptor, specifier);
     }
 }
 

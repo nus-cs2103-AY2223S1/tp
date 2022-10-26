@@ -1,6 +1,7 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_FILTER_ALL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_HOUSE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
@@ -29,7 +30,8 @@ public class FilterCommand implements ModelCommand {
     public static final String COMMAND_WORD = "filter";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": "
             + "filters the resident book by the attributes specified in the command"
-            + "Parameters:"
+            + "Parameters: "
+            + "[Specifier (/any or /all)] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -38,7 +40,7 @@ public class FilterCommand implements ModelCommand {
             + "[" + PREFIX_HOUSE + "HOUSE] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRIC_NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + PREFIX_FILTER_ALL
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 

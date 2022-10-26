@@ -79,7 +79,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             filterResidentDescriptor.setTags(new HashSet<>(argMultimap.getAllValues(PREFIX_TAG)));
         }
-
         if (!filterResidentDescriptor.isAnyFieldNonNull()) {
             throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
         }
