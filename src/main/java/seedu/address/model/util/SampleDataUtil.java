@@ -53,11 +53,11 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
         for (Appointment appointment : getSampleAppointments()) {
             sampleAb.addAppointment(appointment);
+        }
+        for (Person samplePerson : getSamplePersons()) {
+            sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
     }
