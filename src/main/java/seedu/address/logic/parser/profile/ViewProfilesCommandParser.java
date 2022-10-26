@@ -17,6 +17,8 @@ public class ViewProfilesCommandParser implements Parser<ViewProfilesCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewProfilesCommand parse(String args) throws ParseException {
+        assert args != null;
+
         String trimmedArgs = args.trim();
         String viewProfilesOption = PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION;
 

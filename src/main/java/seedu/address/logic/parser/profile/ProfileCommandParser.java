@@ -30,6 +30,7 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ProfileCommand parse(String args) throws ParseException {
+        assert args != null;
 
         if (!args.matches("\\s+-.*")) {
             Matcher matcher = Pattern.compile("(\\s+-\\S*)").matcher(args);
