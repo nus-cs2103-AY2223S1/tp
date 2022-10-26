@@ -65,9 +65,8 @@ public class InTrackParserTest {
         Internship internship = new InternshipBuilder().build();
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(internship).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_INTERNSHIP.getOneBased() + " "
                 + InternshipUtil.getEditInternshipDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_INTERNSHIP, descriptor), command);
+        assertEquals(new EditCommand(descriptor), command);
     }
 
     @Test

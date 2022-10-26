@@ -36,6 +36,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredInternships = new FilteredList<>(this.inTrack.getInternshipList());
         selectedInternships = new FilteredList<>(this.inTrack.getInternshipList());
+        updateSelectedInternship(a -> false);
     }
 
     public ModelManager() {

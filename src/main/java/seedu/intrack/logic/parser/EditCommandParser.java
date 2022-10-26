@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.logic.commands.EditCommand;
 import seedu.intrack.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.intrack.logic.parser.exceptions.ParseException;
@@ -36,12 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSITION, PREFIX_EMAIL,
                         PREFIX_WEBSITE, PREFIX_SALARY, PREFIX_TAG);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         EditInternshipDescriptor editInternshipDescriptor = new EditInternshipDescriptor();
@@ -66,7 +61,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editInternshipDescriptor);
+        return new EditCommand(editInternshipDescriptor);
     }
 
     /**
