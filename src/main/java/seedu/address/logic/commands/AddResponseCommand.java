@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE_COUNT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -22,7 +24,7 @@ public class AddResponseCommand extends Command {
             + ": adds the number of messages a student sends. "
             + "The student is identified by the index number used "
             + "in the last student listing.\n "
-            + "Example: " + COMMAND_WORD + "1 + m/ 7";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MESSAGE_COUNT + "7 ";
     public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Added response count from Student";
 
     private final Index index;

@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddResponseCommandParser" as AddResponseCommandParser LOGIC_COLOR
+participant "a:AddResponseCommand" as AddResponseCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":InternalList" as InternalList MODEL_COLOR
+participant ":UniqueStudentList" as UniqueStudentList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addresponse 1 m/7")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addresponse 1 m/7")
+activate AddressBookParser
+
+create AddResponseCommandParser
+AddressBookParser -> AddResponseCommandParser
+activate AddResponseCommandParser
+
+AddResponseCommandParser --> AddressBookParser
+deactivate AddResponseCommandParser
+
+AddressBookParser -> AddResponseCommandParser : parse("1 m/7")
+activate AddResponseCommandParser
+
+create AddResponseCommand
+AddResponseCommandParser -> AddResponseCommand
+activate AddResponseCommand
+
+AddResponseCommand --> AddResponseCommandParser : a
+deactivate AddResponseCommand
+
+AddResponseCommandParser --> AddressBookParser : a
+deactivate AddResponseCommandParser
+
+AddResponseCommandParser -[hidden]-> AddressBookParser
+destroy AddResponseCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddResponseCommand : execute()
+activate AddResponseCommand
+
+AddResponseCommand -> Model : setStudent()
+activate Model
+
+Model -> InternalList : setStudent()
+activate InternalList
+
+InternalList -> UniqueStudentList: setStudent()
+activate UniqueStudentList
+
+UniqueStudentList -> UniqueStudentList: set()
+
+UniqueStudentList --> InternalList
+deactivate UniqueStudentList
+
+InternalList --> Model
+deactivate InternalList
+
+Model --> AddResponseCommand
+deactivate Model
+
+AddResponseCommand -> Model : updateFilteredStudentList()
+activate Model
+
+Model --> AddResponseCommand
+deactivate Model
+
+create CommandResult
+AddResponseCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddResponseCommand
+deactivate CommandResult
+
+AddResponseCommand --> LogicManager : result
+deactivate AddResponseCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
