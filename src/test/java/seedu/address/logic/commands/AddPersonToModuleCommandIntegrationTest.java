@@ -38,13 +38,13 @@ public class AddPersonToModuleCommandIntegrationTest {
 
     @Test
     public void execute_addPersonToModuleAtHome_success() {
-        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Module validModule = TypicalModules.CS2106_WITH_ALICE_BENSON;
         Person validPerson = TypicalPersons.ELLE;
 
         ModuleCode validModuleCode = validModule.getModuleCode();
         Name validName = validPerson.getName();
 
-        Set<Person> expectedPersons = new HashSet<>(TypicalModules.CS2106_WITH_TYPICAL_PERSONS.getPersons());
+        Set<Person> expectedPersons = new HashSet<>(TypicalModules.CS2106_WITH_ALICE_BENSON.getPersons());
         expectedPersons.add(validPerson);
         Module expectedModule = new ModuleBuilder(validModule).withPersons(expectedPersons).build();
 
@@ -59,7 +59,7 @@ public class AddPersonToModuleCommandIntegrationTest {
 
     @Test
     public void execute_addPersonToModuleNotAtHome_throwsCommandException() {
-        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Module validModule = TypicalModules.CS2106_WITH_ALICE_BENSON;
         Person validPerson = TypicalPersons.ELLE;
 
         ModuleCode validModuleCode = validModule.getModuleCode();
@@ -73,7 +73,7 @@ public class AddPersonToModuleCommandIntegrationTest {
 
     @Test
     public void execute_personAlreadyAddedToModule_throwsCommandException() {
-        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Module validModule = TypicalModules.CS2106_WITH_ALICE_BENSON;
         Person personAlreadyAddedToModule = validModule.getPersons().stream().findFirst().get();
 
         ModuleCode validModuleCode = validModule.getModuleCode();
@@ -86,7 +86,7 @@ public class AddPersonToModuleCommandIntegrationTest {
 
     @Test
     public void execute_nonexistentPerson_throwsCommandException() {
-        Module validModule = TypicalModules.CS2106_WITH_TYPICAL_PERSONS;
+        Module validModule = TypicalModules.CS2106_WITH_ALICE_BENSON;
         Person nonexistentPerson = TypicalPersons.AMY;
 
         ModuleCode validModuleCode = validModule.getModuleCode();
