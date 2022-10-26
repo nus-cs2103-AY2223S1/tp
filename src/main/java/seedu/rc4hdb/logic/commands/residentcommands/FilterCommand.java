@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.modelcommands;
+package seedu.rc4hdb.logic.commands.residentcommands;
 
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.model.Model;

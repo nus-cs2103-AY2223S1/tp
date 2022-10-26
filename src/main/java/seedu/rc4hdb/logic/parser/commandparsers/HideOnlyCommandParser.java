@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.HideOnlyCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**

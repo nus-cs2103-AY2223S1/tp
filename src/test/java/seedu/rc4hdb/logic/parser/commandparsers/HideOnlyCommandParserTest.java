@@ -1,6 +1,6 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
-import static seedu.rc4hdb.logic.commands.modelcommands.ColumnManipulatorCommand.generateComplementListFrom;
+import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.generateComplementListFrom;
 import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.INTENDED_USAGE_FORMAT;
 import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.INVALID_FIELDS_ENTERED;
 import static seedu.rc4hdb.logic.parser.commandparsers.ColumnManipulatorCommandParser.WHITESPACE;
@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.modelcommands.HideOnlyCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.HideOnlyCommand;
 
 public class HideOnlyCommandParserTest {
 

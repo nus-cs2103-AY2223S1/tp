@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.FilterCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
 import seedu.rc4hdb.logic.parser.FilterSpecifier;
