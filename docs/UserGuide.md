@@ -63,7 +63,7 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 
    * **`delete`**`3` : Deletes the 3rd project shown in the current list.
 
-   * **`clear`** : Deletes all projects currently saved on HR Pro Max++.
+   * **`clear`** : Deletes all data currently saved on HR Pro Max++.
 
    * **`exit`** : Exits the app.
 
