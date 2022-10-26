@@ -1,13 +1,12 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.commission.CommissionContainsAnyTagPredicate;
 import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all commissions under the selected customer in ArtBuddy that includes at least one of the tags.
