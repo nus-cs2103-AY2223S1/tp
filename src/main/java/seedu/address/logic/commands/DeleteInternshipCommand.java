@@ -15,7 +15,7 @@ import seedu.address.model.internship.Internship;
  */
 public class DeleteInternshipCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletei";
+    public static final String COMMAND_WORD = "delete -i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the internship identified by the index number used in the displayed internship list.\n"
