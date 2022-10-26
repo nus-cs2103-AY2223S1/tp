@@ -81,7 +81,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Task` objects residing in the `Model`.
 
 ### Logic component
 
@@ -135,7 +135,9 @@ AddressBook commands:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the task panel data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -153,8 +155,9 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save task panel data, address book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from all of `TaskPanelStorage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated 
+  as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -171,7 +174,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The `delete` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and removing it from the list.
+The `delete` feature is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified 
+by the user, getting the target `Task` at the specified index, and removing it from the list.
 
 #### Example Usage of `task delete`
 
@@ -186,7 +190,9 @@ The `delete` feature is implemented by acting on the current filtered`TaskPanel`
 
 #### Current Implementation
 
-The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of persons is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Person` at the specified index. The selection of person can also be done through specifying the full name of the person, which is matched with the target `Person` in the filtered `AddressBook`. Parameters are available to indicate if a `Person` should be assigned or unassigned.
+The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of persons is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Person` at the specified index. The selection of person can also be done through specifying the full name of the person, which is matched with the target `Person` in the filtered `AddressBook`.
+
+![AssignTaskSequenceDiagram](images/AssignTaskSequenceDiagram.png)
 
 #### Example Usage of `task assign`
 
@@ -197,10 +203,23 @@ The `task assign` feature assigns/unassigns contacts to the task specified by th
 5. The relevant parameters are used to create an instance of a `AssignTaskCommandd`, which is then returned to the `TaskPanelParser`
 6. The `LogicManager` executes the command
 7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
-5. The `Task` to be deleted is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-6. The `Person`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based form, or his full name.
-7. The `Person`s are assigned/unassigned to the `Task`
-8. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
+8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+9. The `Person`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based 
+   form, or through matching his full name.
+10. The `Person`s are assigned/unassigned to the `Task`
+11. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
+
+The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by 
+pre-specified prefixes. The prefix +@ denotes that the contact is to be assigned, while prefix `@ denotes that the 
+contact is to be unassigned from the task's assigned contact list.
+
+#### Design considerations:
+![TaskClassDiagram](images/TaskClassDiagram.png)
+
+The `Task` class composes of the `Contact` class. A `Contact` object is a reference to a `Person` in the `AddressBook`, 
+and contains the name of the `Person`. We chose this implementation over composing `Task` and `Person` directly so 
+that it will be easier to save the `Task`'s assigned contacts in the storage. Furthermore, this prevents duplicated 
+copies of `Person` objects created when we restart the app and populate the `Task`s with their assigned contacts.
 
 ### List Tasks feature
 
@@ -473,14 +492,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add task and provides task name.
+1.  User requests to add task and provides task name, deadline, assigned contacts and project.
 2.  Arrow adds the task to the list of tasks.
 
     Use case ends.
 
 **Extensions**
 
-* 1b. There is no task name provided.
+* 1b. There is no task name or deadline provided.
 
     * 1b1. Arrow shows an error message.
 

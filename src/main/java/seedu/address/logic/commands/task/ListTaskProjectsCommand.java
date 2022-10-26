@@ -27,7 +27,7 @@ public class ListTaskProjectsCommand extends TaskCommand {
     public String printContents(List<Project> projectList) {
         String result = "";
         for (int i = 0; i < projectList.size(); i++) {
-            result = (i + 1) + ". " + projectList.get(i).projectName + "\n";
+            result += (i + 1) + ". " + projectList.get(i).projectName + "\n";
         }
         return result + "\n";
     }
