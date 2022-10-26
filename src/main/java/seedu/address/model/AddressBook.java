@@ -136,6 +136,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
     public void addAppointment(Appointment a) {
+        requireNonNull(a);
         appointments.add(a);
     }
 
