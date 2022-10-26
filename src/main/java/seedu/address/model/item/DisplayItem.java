@@ -1,5 +1,7 @@
 package seedu.address.model.item;
 
+import seedu.address.model.person.Name;
+
 /**
  * Represents a unique item in the addressbook, it can be either a accessable
  * team or an entry
@@ -30,4 +32,6 @@ public interface DisplayItem {
      * Returns true if {@code DisplayItem o} is a parent of this item
      */
     boolean isPartOfContext(DisplayItem o);
+
+    Name getName();
 }

@@ -6,6 +6,7 @@ import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
+import seedu.address.model.person.Name;
 
 /**
  * Stores task details.
@@ -166,6 +167,11 @@ public class Task implements DisplayItem {
             tmp = tmp.getParent();
         }
         return false;
+    }
+
+    @Override
+    public Name getName() {
+        return null;
     }
 
     @Override

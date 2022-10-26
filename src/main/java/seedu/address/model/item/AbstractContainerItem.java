@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
+import seedu.address.model.person.Name;
+import seedu.address.model.tag.UniqueID;
 
 /**
  * Abstract class to represent an item that can contain other items.
@@ -15,12 +17,14 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem> implements DisplayItem {
 
     protected AbstractContainerItem parent = null;
-    protected String name;
+    protected Name name;
     protected String fullPath = null;
+    protected UniqueID uuid;
 
-    protected AbstractContainerItem(String name, AbstractContainerItem parent) {
+    protected AbstractContainerItem(Name name, AbstractContainerItem parent) {
         this.name = name;
         this.parent = parent;
+        uuid.generateUniqueID(this);
     }
 
     @Override
@@ -96,7 +100,7 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
 
     @Override
     public String toString() {
-        return name;
+        return name.toString();
     }
 
     @Override

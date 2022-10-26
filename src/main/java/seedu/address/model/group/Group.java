@@ -3,6 +3,7 @@ package seedu.address.model.group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.item.DisplayItem;
 import seedu.address.model.item.EntryType;
+import seedu.address.model.person.Name;
 import seedu.address.model.task.Task;
 
 /**
@@ -14,11 +15,11 @@ public class Group extends AbstractContainerItem {
     public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
             + "of alphanumeric characters, underscores and hyphens only.\n";
 
-    public Group(String groupName) {
+    public Group(Name groupName) {
         this(groupName, null);
     }
 
-    public Group(String groupName, Group parent) {
+    public Group(Name groupName, Group parent) {
         super(groupName, parent);
     }
 
@@ -29,7 +30,7 @@ public class Group extends AbstractContainerItem {
      * @param groupName for a specific team.
      * @return true if the group name is valid, false otherwise.
      */
-    public static boolean isValidGroupName(String groupName) {
+    public static boolean isValidGroupName(Name groupName) {
         return groupName.matches(VALIDATION_REGEX);
     }
 
@@ -111,5 +112,10 @@ public class Group extends AbstractContainerItem {
             tmp = tmp.getParent();
         }
         return false;
+    }
+
+    @Override
+    public Name getName() {
+        return
     }
 }
