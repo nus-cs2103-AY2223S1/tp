@@ -85,8 +85,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
-
-        helpButton.setId("helpBtn");
     }
 
     public Stage getPrimaryStage() {
@@ -131,16 +129,14 @@ public class MainWindow extends UiPart<Stage> {
      * Opens a particular webpage, if unable to do so, help window will be shown for them to copy the URL.
      */
     public static void openWebpage(String urlString) {
+        if (!Desktop.isDesktopSupported() || !Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            helpWindow.show();
+            return;
+        }
         try {
             Desktop.getDesktop().browse(new URL(urlString).toURI());
         } catch (Exception e) {
-            if (!helpWindow.isShowing()) {
-                helpWindow.show();
-            } else {
-                helpWindow.focus();
-            }
-            e.printStackTrace();
-
+            helpWindow.show();
         }
     }
 

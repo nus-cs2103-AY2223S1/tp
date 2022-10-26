@@ -192,7 +192,6 @@
 
 .result-display .content{
     -fx-background-color: #dedede;
-    -fx-background-radius: 20 20 0 0;
 }
 
 .result-display .scroll-pane .viewport{
@@ -240,14 +239,14 @@
     -fx-background-color: derive(#EDA7A7, 20%);
 }
 
-#helpBtn, #unfocusButton {
+#helpButton, #unfocusButton {
     -fx-font-size: 12pt;
     -fx-font-style: normal;
     -fx-font-weight: 300;
     -fx-padding: 5;
 }
 
-#helpBtn:hover {
+#helpButton:hover {
     -fx-background-color: #fe7f9c;
 }
 
@@ -282,7 +281,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #2a2a2a;
 }
 
 .dialog-pane {
