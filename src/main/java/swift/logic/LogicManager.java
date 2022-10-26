@@ -1,9 +1,5 @@
 package swift.logic;
 
-import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
-import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
-import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;

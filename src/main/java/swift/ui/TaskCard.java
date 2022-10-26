@@ -65,16 +65,16 @@ public class TaskCard extends UiPart<Region> {
                     UUID personId = taskBridge.getPersonId();
                     Person associatedPerson;
 
-            for (Person person : personList) {
-                associatedPerson = person;
-                if (associatedPerson.getId().equals(personId)) {
-                    Label label = new Label(associatedPerson.getName().toString());
-                    setStyle(label);
-                    contacts.getChildren().add(label);
-                    return;
-                }
-            }
-        });
+                    for (Person person : personList) {
+                        associatedPerson = person;
+                        if (associatedPerson.getId().equals(personId)) {
+                            Label label = new Label(associatedPerson.getName().toString());
+                            setStyle(label);
+                            contacts.getChildren().add(label);
+                            return;
+                        }
+                    }
+                });
     }
 
     private void setStyle(Label... labels) {
