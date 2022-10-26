@@ -87,7 +87,7 @@ public class Class {
     /**
      * Checks if class is empty.
      *
-     * @return True if class is empty.
+     * @return true if class is empty.
      */
     public boolean isEmpty() {
         return this.classDateTime.equals("");
@@ -185,7 +185,7 @@ public class Class {
      * Returns true if a given string is a valid input.
      *
      * @param classDateTime String to be validated.
-     * @return True if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
+     * @return true if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
      */
     public static boolean isValidClassString(String classDateTime) {
         if (!classDateTime.matches(VALIDATION_STANDARD_CLASS_REGEX)) {
@@ -201,7 +201,7 @@ public class Class {
      * Returns true if a given string is a valid input.
      *
      * @param classDateTime String to be validated.
-     * @return True if a given string fits the format of 'Day-of-Week 0000-2359'.
+     * @return true if a given string fits the format of 'Day-of-Week 0000-2359'.
      */
     public static boolean isValidFlexibleClassString(String classDateTime) {
         if (!classDateTime.matches(VALIDATION_FLEXIBLE_CLASS_REGEX)) {
@@ -216,7 +216,7 @@ public class Class {
      * Returns true if a given string is a valid date.
      *
      * @param date String object.
-     * @return True if is valid.
+     * @return true if is valid.
      */
     private static boolean isValidDateString(String date) {
         try {
@@ -232,7 +232,7 @@ public class Class {
      * Returns true if a given string is a valid time.
      *
      * @param time String object.
-     * @return True if is valid.
+     * @return true if is valid.
      */
     private static boolean isValidTimeString(String time) {
         Integer hour = Integer.valueOf(time.substring(0, 2));
@@ -273,7 +273,7 @@ public class Class {
      *
      * @param startTime LocalTime object.
      * @param endTime LocalTime object.
-     * @return True if startTime is before endTime.
+     * @return true if startTime is before endTime.
      */
     public static boolean isValidDuration(LocalTime startTime, LocalTime endTime) {
         if (endTime.getHour() == 0 && endTime.getMinute() == 0) {

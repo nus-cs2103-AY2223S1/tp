@@ -141,6 +141,10 @@ public class EditCommand extends Command {
         Money updatedRatesPerClass = editPersonDescriptor.getRatesPerClass().orElse(personToEdit.getRatesPerClass());
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
+        Optional<AdditionalNotes> appendedAdditionalNotes = editPersonDescriptor.getAppendedAdditionalNotes();
+        if (!appendedAdditionalNotes.isEmpty()) {
+            updatedNotes.appendNotes(appendedAdditionalNotes.get());
+        }
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         // Unmodifiable states by the user
@@ -185,6 +189,7 @@ public class EditCommand extends Command {
         private Money moneyPaid;
         private Money ratesPerClass;
         private AdditionalNotes additionalNotes;
+        private AdditionalNotes appendedAdditionalNotes;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -205,6 +210,7 @@ public class EditCommand extends Command {
             setMoneyPaid(toCopy.moneyPaid);
             setRatesPerClass(toCopy.ratesPerClass);
             setAdditionalNotes(toCopy.additionalNotes);
+            setAppendedAdditionalNotes(toCopy.appendedAdditionalNotes);
             setTags(toCopy.tags);
         }
 
@@ -213,7 +219,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid,
-                    ratesPerClass, additionalNotes, tags);
+                    ratesPerClass, additionalNotes, appendedAdditionalNotes, tags);
         }
 
         public void setName(Name name) {
@@ -300,6 +306,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(additionalNotes);
         }
 
+        public void setAppendedAdditionalNotes(AdditionalNotes appendedAdditionalNotes) {
+            this.appendedAdditionalNotes = appendedAdditionalNotes;
+        }
+
+        public Optional<AdditionalNotes> getAppendedAdditionalNotes() {
+            return Optional.ofNullable(appendedAdditionalNotes);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -351,6 +365,7 @@ public class EditCommand extends Command {
                     && getMoneyPaid().equals(e.getMoneyPaid())
                     && getRatesPerClass().equals(e.getRatesPerClass())
                     && getAdditionalNotes().equals(e.getAdditionalNotes())
+                    && getAppendedAdditionalNotes().equals(e.getAppendedAdditionalNotes())
                     && getTags().equals(e.getTags());
         }
     }

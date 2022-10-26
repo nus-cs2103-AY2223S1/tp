@@ -15,6 +15,8 @@ public class Money {
 
     public static final String MESSAGE_AMOUNT_TOO_LARGE = "Amount of money is too large to handle.";
 
+    public static final String MESSAGE_NEGATIVE_AMOUNT = "Amount of money cannot be negative";
+
     public final Integer value;
 
     /**
@@ -50,6 +52,7 @@ public class Money {
      *
      * @param amountToAdd the money to be added.
      * @return Money that consists of the sum of the 2 amounts.
+     * @throws CommandException if an error occurs during addition.
      */
     public Money addTo(Money amountToAdd) throws CommandException {
         try {
@@ -57,6 +60,23 @@ public class Money {
             return new Money(amountSum);
         } catch (ArithmeticException e) {
             throw new CommandException(MESSAGE_AMOUNT_TOO_LARGE);
+        }
+    }
+
+    /**
+     * Computes the subtraction of a predefined value from the current value.
+     *
+     * @param amountToSubtract the money to be subtracted.
+     * @return Money that consists of amount after subtraction.
+     * @throws CommandException if the final value is negative.
+     */
+    public Money subtract(Money amountToSubtract) throws CommandException {
+        Integer finalAmount = this.value - amountToSubtract.value;
+
+        try {
+            return new Money(finalAmount);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(MESSAGE_NEGATIVE_AMOUNT);
         }
     }
 
