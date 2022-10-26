@@ -8,7 +8,8 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
-
+    public static final Email EMPTY_EMAIL = new Email();
+    public static final String EMPTY_EMAIL_STRING = "Unknown";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -42,6 +43,10 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
+    }
+
+    private Email() {
+        value = EMPTY_EMAIL_STRING;
     }
 
     /**
