@@ -290,7 +290,7 @@ We will assist you as soon as possible.
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
 | **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`        |
-| **Remove-i**    | `remove-i`<br/> e.g., `remove-i 3`                                                                                                                                                          |
+| **Remove-i**    | `remove-i INDEX`<br/> e.g., `remove-i 3`                                                                                                                                                    |
 | **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
 | **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
 | **Clear**       | `clear`                                                                                                                                                                                     |
