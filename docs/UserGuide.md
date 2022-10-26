@@ -137,8 +137,8 @@ Format: `find n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)`
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find n/alice bob charlie c/1A s/English` returns `alice` who is in 1A and taking English
+* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Sorting persons by grade: `sort`
@@ -165,6 +165,7 @@ Format: `remark INDEX [REMARK]`
 
 Examples:
 * `remark 1 she is active in class` adds the remark `she is active in class` to the student with index 1 in the list
+ ![add remark example](images/addRemark.png)
 
 ### Deleting a person : `delete`
 
