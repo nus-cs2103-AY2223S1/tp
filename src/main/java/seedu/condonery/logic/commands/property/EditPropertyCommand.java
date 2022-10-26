@@ -7,6 +7,8 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -77,9 +79,15 @@ public class EditPropertyCommand extends Command {
         }
 
         Property propertyToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
+        Path imageDirectoryPath = model.getUserPrefs().getUserImageDirectoryPath();
+        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor, imageDirectoryPath);
         if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+        }
+
+        File existingImage = new File(propertyToEdit.getImagePath().toString());
+        if (existingImage.exists()) {
+            existingImage.renameTo(new File(editedProperty.getImagePath().toString()));
         }
 
         model.setProperty(propertyToEdit, editedProperty);
@@ -92,7 +100,8 @@ public class EditPropertyCommand extends Command {
      * edited with {@code editPropertyDescriptor}.
      */
     private static Property createEditedProperty(Property propertyToEdit,
-                                                 EditPropertyDescriptor editPropertyDescriptor) {
+                                                 EditPropertyDescriptor editPropertyDescriptor,
+                                                 Path imageDirectoryPath) {
         assert propertyToEdit != null;
 
         Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
@@ -100,7 +109,9 @@ public class EditPropertyCommand extends Command {
         Price updatedPrice = editPropertyDescriptor.getPrice().orElse(propertyToEdit.getPrice());
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
-        return new Property(updatedName, updatedAddress, updatedPrice, updatedTags);
+        Property updatedProperty = new Property(updatedName, updatedAddress, updatedPrice, updatedTags);
+        updatedProperty.setImageDirectoryPath(imageDirectoryPath);
+        return updatedProperty;
     }
 
     @Override

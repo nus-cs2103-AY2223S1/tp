@@ -2,6 +2,7 @@ package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.util.List;
 
 import seedu.condonery.commons.core.Messages;
@@ -46,6 +47,8 @@ public class DeletePropertyCommand extends Command {
         }
 
         Property propertyToDelete = lastShownList.get(targetIndex.getZeroBased());
+        File image = new File(propertyToDelete.getImagePath().toString());
+        image.delete();
         model.deleteProperty(propertyToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete));
     }
