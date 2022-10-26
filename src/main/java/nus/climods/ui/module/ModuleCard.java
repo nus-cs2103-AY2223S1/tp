@@ -93,6 +93,10 @@ public class ModuleCard extends UiPart<Region> {
         preclusion.setText(module.getPreclusion());
     }
 
+    private void showLessonInformation() {
+
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
