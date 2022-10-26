@@ -250,6 +250,31 @@ The following diagram illustrates how the edit operation works:
 
 ![EditSequenceDiagram](./images/EditSequenceDiagram.png)
 
+### Setup feature
+
+#### Implementation
+
+The setup mechanism is facilitated by `SetupCommand`, which extends `Command`. It overrides the following 
+operation: 
+
+* `SetupCommand#execute()`: Sets up the user profile.
+
+Given below is an example usage scenario of how the setup mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `Setup`, which calls `LogicManager#execute()`. `NutriGoals#parseCommand()` is called
+subsequently, which then creates an `SetupCommand` object.
+
+Step 3. The `SetupCommand` created is executed by `SetupCommand#execute()`.
+
+Step 4. `SetupCommand#execute()` calls the following methods from `Model`:
+
+* `Model#setUserDetails()`
+* `Model#getUserDetails()`
+
+Step 5. `SetupCommand#execute()` returns a `CommandResult` which displays the user's information.
+
 ### Profile feature
 
 #### Implementation
