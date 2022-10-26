@@ -1,10 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_TITLE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_TAG;
@@ -19,13 +17,11 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**

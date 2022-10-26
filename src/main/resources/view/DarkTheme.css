@@ -368,6 +368,11 @@
     -fx-padding: 1;
 }
 
+
+.list-view .corner{
+    -fx-background-color:transparent;
+}
+
 .scroll-bar:horizontal {
     -fx-pref-height: 13.5;
 }
