@@ -200,36 +200,52 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-### \[Proposed\] Edit an item
+### Edit an item
 
-Items stored in an ItemContainer object can either be stored under the unscheduled or scheduled list.
+Refer above for the class structure of the `Itinerary` ,`Day` and  `item` classes.
 
-Since scheduled items maintain a reference to the day that it is under, the edit behaviour for unscheduled and scheduled items differ.
+Items can be either scheduled or unscheduled. Unscheduled items are stored in an itinerary's unscheduledItemList while scheduled items are stored in the respective days' itemLists. as such, both are handled in slightly different manners.
+
+Given below is a walk-through of the edit item mechanism. We will skip to where the `EditItemCommand#execute()` method is called since the preceding portion is similar to what we have laid out in previous sections.
+
+Step 1. The `EditItemCommand` object's `execute()` method is called.
+
+Step 2. The multiIndex in `EditItemCommand` is checked for a presence of a dayNumber. If dayNumber is absent, follow the steps under Unscheduled Items, else follow the steps under Scheduled Items.
 
 * **Unscheduled Items**
-  * Update the specified fields and re-sort the list.
+  * Step 3. The index is checked to be within bounds of the itinerary's unscheduledItemList. If it is not, a `CommandException` is thrown.
+  * Step 4. A new `Item` object, `editedItem` is created with the edited inputs.
+  * Step 5. A check for duplicates in the unscheduledItemList is done. If there is a duplicate, a `CommandException` is thrown.
+  * Step 6. The original item is replaced with `editedItem`.
+  * Step 7. The unscheduledItemList is re-sorted in order of priority.
 * **Scheduled Items**
-  * If a time related field is edited i.e. day
-or start time, check for time conflicts.
-  * If no conflicts are detected, update the fields.
-    * If time is edited, update the fields and re-sort the list.
-    * If day is edited, place the item in the corresponding Day object and re-sort the list.
-  * If conflicts are detected, throw an exception for the time conflict.
+  * Step 3. The dayNumber and index are checked to be within bounds of the itinerary's duration and unscheduledItemList respectively. If any is not, a `CommandException` is thrown.
+  * Step 4. A new `Item` object, `editedItem` is created with the edited inputs.
+  * Step 5. A check for duplicates in the day's itemList is done. If there is a duplicate, a `CommandException` is thrown.
+  * Step 6. The original item is removed from the day's itemList
+  * Step 7. Attempt to add the `editedItem` into the itemList. If a time conflict is detected, the original item is added back into the itemList and a `CommandException` is thrown.
+  * Step 8. If the `editedItem` is added successfully, the itemList is re-sorted in order of startTime.
 
 ### \[Proposed\] Edit an itinerary
 
 An itinerary's details (description, start date, duration, and budget) can be edited by changing the fields of an Itinerary object.
 
-Given below are some example usage scenarios and how the editing mechanism is carried out.
+Given below are some example usage scenarios and how the editing mechanism is carried out. As per the examples above, we will skip to where the `EditCommand#execute()` method is called.
 
-* Editing an itinerary's description, budget, and start date
-    * Update the specified fields in the Itinerary object.
-* Editing an itinerary's duration
-    * If the duration is extended, add more Day objects to the Itinerary's list and update the duration field.
-    * If the duration is reduced, remove the extra Day objects from the Itinerary's list starting from the back (i.e., the last Day is removed first).
-        Update the duration field. The Items that were scheduled during the corresponding Days would become unscheduled.
+Step 1. The `EditCommand` object's `execute()` method is called.
 
-### \[Proposed\] Export
+* **Editing an itinerary's description, budget, and start date**
+    * Step 2. A new `Itinerary` object, `editedItinerary` is created with the edited inputs.
+    * Step 3. A check for duplicates in model is done. If there is a duplicate, a `CommandException` is thrown.
+    * Step 4. The original itinerary is replaced with `editedItinerary`.
+* **Editing an itinerary's duration**
+  * The steps are similar but with the additional checks below.
+  * If the duration is extended, add more Day objects to the Itinerary's list.
+  * If the duration is reduced, remove the extra Day objects from the Itinerary's list starting from the back (i.e., the last Day is removed first).
+    * The Items that were scheduled in the deleted Days would be unscheduled.
+  * Update the duration field.
+
+### Export
 
 The Export feature is facilitated by accessing the list of items stored in a "Day" object, which is part of a list of "Day" in a "Itinerary" Object.
 
@@ -365,22 +381,6 @@ Use case ends.
   Use case resumes at step 3.
 
 
-**Use case: Add an item to an itinerary**
-
-**MSS**
-
-1. User selects a specific itinerary.
-2. User requests to edit a chosen item.
-3. User enters new details of the item.
-4. Waddle updates the item details and provides confirmation to the user.<br>
-   Use case ends.
-
-**Extensions**
-* 3a. The item details are incomplete.
-    * Waddle shows an error message.<br>
-      Use case resumes at step 3.
-
-
 **Use case: Delete an item from an itinerary**
 
 **MSS**
@@ -415,7 +415,6 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -445,17 +444,15 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an itinerary
 
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Deleting an itinerary while all itineraries are being shown
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First itinerary is deleted from the list. Details of the deleted itinerary shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No itinerary is deleted. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
