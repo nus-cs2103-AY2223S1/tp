@@ -73,7 +73,7 @@ public class SplitDebtCommand extends Command {
             Person debtorToEdit = debtors.get(i);
             Person editedPerson = new Person(
                     debtorToEdit.getName(), debtorToEdit.getPhone(),
-                    debtorToEdit.getEmail(), debtorToEdit.getAddress(),
+                    debtorToEdit.getTelegram(), debtorToEdit.getAddress(),
                     debtorToEdit.getTags(), debtorToEdit.getDebts().addDebt(debt.copyDebt()));
             model.setPerson(debtorToEdit, editedPerson);
 

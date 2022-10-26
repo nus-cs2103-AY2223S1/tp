@@ -18,10 +18,10 @@ import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
 import paymelah.model.person.DebtContainsKeywordsPredicate;
 import paymelah.model.person.DebtGreaterEqualAmountPredicate;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.NameContainsKeywordsPredicate;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -110,18 +110,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String telegram} into an {@code Telegram}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
+        if (!Telegram.isValidHandle(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Telegram(trimmedTelegram);
     }
 
     /**

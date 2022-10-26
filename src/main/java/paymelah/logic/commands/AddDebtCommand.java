@@ -63,7 +63,7 @@ public class AddDebtCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getTelegram(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getDebts().addDebt(debt));
 
         model.setPerson(personToEdit, editedPerson);

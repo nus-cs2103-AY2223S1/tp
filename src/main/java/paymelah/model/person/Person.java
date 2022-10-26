@@ -20,7 +20,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Telegram telegram;
 
     // Data fields
     private final Address address;
@@ -30,11 +30,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, DebtList debts) {
-        requireAllNonNull(name, phone, email, address, tags, debts);
+    public Person(Name name, Phone phone, Telegram telegram, Address address, Set<Tag> tags, DebtList debts) {
+        requireAllNonNull(name, phone, telegram, address, tags, debts);
         this.name = name;
         this.phone = phone;
-        this.email = email;
+        this.telegram = telegram;
         this.address = address;
         this.tags.addAll(tags);
         this.debts = debts;
@@ -48,8 +48,8 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Telegram getTelegram() {
+        return telegram;
     }
 
     public Address getAddress() {
@@ -110,7 +110,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getDebts().equals(getDebts());
@@ -119,7 +119,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, debts);
+        return Objects.hash(name, phone, telegram, address, tags, debts);
     }
 
     @Override
@@ -128,8 +128,8 @@ public class Person {
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
+                .append("; Telegram: ")
+                .append(getTelegram())
                 .append("; Address: ")
                 .append(getAddress());
 

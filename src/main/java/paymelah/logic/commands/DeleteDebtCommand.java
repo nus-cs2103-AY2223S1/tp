@@ -15,10 +15,10 @@ import paymelah.model.Model;
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -111,7 +111,7 @@ public class DeleteDebtCommand extends Command {
 
         Name name = debtorToReduce.getName();
         Phone phone = debtorToReduce.getPhone();
-        Email email = debtorToReduce.getEmail();
+        Telegram telegram = debtorToReduce.getTelegram();
         Address address = debtorToReduce.getAddress();
         Set<Tag> tags = debtorToReduce.getTags();
         DebtList reducedDebts = debtorToReduce.getDebts();
@@ -122,7 +122,7 @@ public class DeleteDebtCommand extends Command {
         }
 
 
-        return new Person(name, phone, email, address, tags, reducedDebts);
+        return new Person(name, phone, telegram, address, tags, reducedDebts);
     }
 
     @Override
