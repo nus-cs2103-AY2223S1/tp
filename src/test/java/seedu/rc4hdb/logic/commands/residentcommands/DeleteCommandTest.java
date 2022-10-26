@@ -2,9 +2,9 @@ package seedu.rc4hdb.logic.commands.residentcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.showResidentAtIndex;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.showResidentAtIndex;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_SECOND_RESIDENT;
 import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;

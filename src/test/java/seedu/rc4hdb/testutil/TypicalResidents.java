@@ -1,22 +1,22 @@
 package seedu.rc4hdb.testutil;
 
 
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_GENDER_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_GENDER_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_HOUSE_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_HOUSE_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_NAME_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_NAME_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_PHONE_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_ROOM_AMY;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_ROOM_BOB;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_GENDER_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_GENDER_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_HOUSE_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_HOUSE_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_NAME_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_NAME_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_PHONE_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_ROOM_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_ROOM_BOB;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
