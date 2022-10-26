@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added functionality to add remarks to students.
   * What it does: Allows users to add comments and notes on their students in addition to their related information.
   * Justification: This feature is significant in improving users' experience with the product because it acts as a centralised hub for users to easily write notes about their students to remind them of their individual circumstances.
-  * Highlights: Initial implementation requires users to type prefix `r/` to indicate the start of the remark comment. 
+  * Highlights: Initial implementation requires users to type prefix `r/` to indicate the start of the remark comment.
   * Credits: This feature was adapted from **[Tutorial 2 - Adding a new Command](https://nus-cs2103-ay2223s1.github.io/tp/tutorials/AddRemark.html)** for **AB3**.
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=howsuen&breakdown=true)

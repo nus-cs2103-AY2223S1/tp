@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ progress, optimized for 
-use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can 
+FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ progress, optimized for
+use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can
 type fast, FRIDAY can get your contact management tasks done faster than traditional GUI apps.
 
 ### Table of Contents
@@ -27,6 +27,7 @@ type fast, FRIDAY can get your contact management tasks done faster than traditi
 5. Find individual student details
 6. View all students
 7. Mark Mastery Checks of students
+8. Unmark Mastery Checks of students
 8. Sort students
 9. Add aliases
 10. Delete aliases
@@ -166,6 +167,16 @@ Format: `mark INDEX`
 The index of the student can be seen from the student list.<br>
 </div>
 
+### Unmarking a student's Mastery Check: `unmark`
+
+Unmarks the Mastery Check of a specified student.
+
+Format: `unmark INDEX`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student can be seen from the student list.<br>
+</div>
+
 ### Sorting students: `sort`
 
 Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
@@ -235,6 +246,7 @@ Format: `help`
 | **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
 | **Find a student's details**                 | `find k/keyword`                                                                                         |
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
+| **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                           |
 | **View all students**                        | `list`                                                                                                   |
 | **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
 | **Add Alias**                                | `alias a/ALIAS k/KEYWORD`                                                                                |

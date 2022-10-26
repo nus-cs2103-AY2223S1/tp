@@ -11,19 +11,19 @@ import friday.model.Model;
 import friday.model.student.Student;
 
 /**
- * Marks the Mastery Check of an existing student in FRIDAY as passed.
+ * Unmarks the Mastery Check of an existing student in FRIDAY.
  */
-public class MarkMasteryCheckCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the Mastery Check of the student identified by"
-            + " the index number as done.\n"
+public class UnmarkMasteryCheckCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks the Mastery Check of the student identified by"
+            + " the index number.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
-    public static final String MESSAGE_ALREADY_MARKED = "'s Mastery Check has already been marked as passed!";
+    public static final String MESSAGE_NOT_MARKED = "Can't unmark as %s's Mastery Check has not been marked as passed!";
 
     private Index index;
 
-    public MarkMasteryCheckCommand(Index index) {
+    public UnmarkMasteryCheckCommand(Index index) {
         this.index = index;
     }
 
@@ -35,18 +35,18 @@ public class MarkMasteryCheckCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToMark = lastShownList.get(index.getZeroBased());
-        if (studentToMark.getMasteryCheck().getIsPassed()) {
-            throw new CommandException(studentToMark.getName() + MESSAGE_ALREADY_MARKED);
+        Student studentToUnmark = lastShownList.get(index.getZeroBased());
+        if (!studentToUnmark.getMasteryCheck().getIsPassed()) {
+            throw new CommandException(String.format(MESSAGE_NOT_MARKED, studentToUnmark.getName()));
         } else {
-            studentToMark.getMasteryCheck().markAsPassed();
+            studentToUnmark.getMasteryCheck().unmark();
         }
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(generateSuccessMessage(studentToMark));
+        return new CommandResult(generateSuccessMessage(studentToUnmark));
     }
 
     private String generateSuccessMessage(Student studentToMark) {
-        return String.format("Marked Mastery Check of Student: %s as passed.", studentToMark.getName());
+        return String.format("Unmarked Mastery Check of Student: %s", studentToMark.getName());
     }
 }

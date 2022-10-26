@@ -23,6 +23,7 @@ import friday.logic.commands.RemarkCommand;
 import friday.logic.commands.SortCommand;
 import friday.logic.commands.UgCommand;
 import friday.logic.commands.UnaliasCommand;
+import friday.logic.commands.UnmarkMasteryCheckCommand;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.Model;
 
@@ -90,6 +91,9 @@ public class FridayParser {
 
         case MarkMasteryCheckCommand.COMMAND_WORD:
             return new MarkMasteryCheckCommandParser().parse(arguments);
+
+        case UnmarkMasteryCheckCommand.COMMAND_WORD:
+            return new UnmarkMasteryCheckCommandParser().parse(arguments);
 
         case AliasCommand.COMMAND_WORD:
             return new AliasCommandParser().parse(arguments);

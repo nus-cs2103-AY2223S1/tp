@@ -36,7 +36,7 @@ Given below are my contributions to the project.
     * Wrote documentation for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
     * Updated command format notes [\#120](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/120)
   * Developer Guide:
-    * Formatted template for team use [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55) 
+    * Formatted template for team use [\#55](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/55)
     * Added target user profile and acknowledgements [\#59](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/59)
     * Added user stories and use case for the `sort` feature [\#107](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/107)
     * Added implementation details and design considerations for the `sort` feature [\#109](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/109)

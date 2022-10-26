@@ -11,13 +11,13 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 - ### Summary of Contributions
     - **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Yuvaraj0702&breakdown=true)
 
-    - **Enhancements implemented**: 
+    - **Enhancements implemented**:
     - Implemented find feature to find an individual student by their name (V1.2)
     - Enhanced find feature to search through all fields and list all matches (V1.3)
     - Assisting in refactoring of code to comply to the needs of this project.
 
     - **Contributions to the UG**:
-    - Editing the find feature in the user guide to reflect how to efficiently and accurately use the command. 
+    - Editing the find feature in the user guide to reflect how to efficiently and accurately use the command.
 
     - **Contributions to the DG**:
     - Add documentation for the find feature.
