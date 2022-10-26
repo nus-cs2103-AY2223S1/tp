@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
 import hobbylist.testutil.Assert;
@@ -58,6 +59,18 @@ public class ModelManagerTest {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
+    }
+
+    @Test
+    public void setAliasSettings_nullAliasSettings_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.setAliasSettings(null));
+    }
+
+    @Test
+    public void setAliasSettings_validAliasSettings_setsAliasSettings() {
+        AliasSettings aliasSettings = new AliasSettings("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11");
+        modelManager.setAliasSettings(aliasSettings);
+        assertEquals(aliasSettings, modelManager.getAliasSettings());
     }
 
     @Test

@@ -26,23 +26,22 @@ import hobbylist.model.tag.Tag;
  * Edits the details of an existing activity in the HobbyList.
  */
 public class EditCommand extends Command {
+    public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Edited Activity: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList.";
 
-    public static final String COMMAND_WORD = "edit";
+    private static String commandWord = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the activity identified "
+    public static final String MESSAGE_USAGE = commandWord + ": Edits the details of the activity identified "
             + "by the index number used in the displayed activity list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
             + "[" + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + CliSyntax.PREFIX_TAG + "TAG] "
+            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "[" + CliSyntax.PREFIX_DATE + "DATE]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + commandWord + " 1 "
             + CliSyntax.PREFIX_DESCRIPTION + "Exercised for 2 hours";
-
-    public static final String MESSAGE_EDIT_ACTIVITY_SUCCESS = "Edited Activity: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList.";
 
     private final Index index;
     private final EditActivityDescriptor editActivityDescriptor;
@@ -57,6 +56,22 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editActivityDescriptor = new EditActivityDescriptor(editActivityDescriptor);
+    }
+
+    /**
+     * Sets the command word for the command.
+     * @param word Word to set command to.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
+    }
+
+    /**
+     * Gets the command word for the command.
+     * @return Command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
     }
 
     @Override
