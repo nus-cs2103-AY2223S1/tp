@@ -41,7 +41,7 @@ If you are an **experienced user**, you can refer to the [Command Summary](#comm
 ### Table of Contents
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
