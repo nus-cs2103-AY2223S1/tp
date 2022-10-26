@@ -38,12 +38,15 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditRemarkCommand;
 import seedu.address.logic.commands.EditTransactionCommand;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Name;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 import seedu.address.testutil.EditTransactionDescriptorBuilder;
+import seedu.address.testutil.RemarkBuilder;
 
 public class EditCommandParserTest {
 
@@ -61,6 +64,10 @@ public class EditCommandParserTest {
 
         // no field specified
         assertParseFailure(parser, "1 m/client", EditClientCommand.MESSAGE_NOT_EDITED);
+
+        assertParseFailure(parser, "1 m/transaction", EditTransactionCommand.MESSAGE_NOT_EDITED);
+
+        assertParseFailure(parser, "1 m/remark", EditRemarkCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -102,7 +109,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parse_clientAllFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_CLIENT;
         String userInput = targetIndex.getOneBased() + " m/client" + TAG_DESC_HUSBAND + ADDRESS_DESC_AMY
                 + NAME_DESC_AMY + TAG_DESC_FRIEND;
@@ -184,8 +191,19 @@ public class EditCommandParserTest {
 
         // No fields
         userInput = targetIndex.getOneBased() + " m/transaction";
-        assertParseFailure(parser, userInput, EditClientCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, userInput, EditTransactionCommand.MESSAGE_NOT_EDITED);
     }
+
+    @Test
+    public void parse_oneFieldRemark_success() {
+        Remark editedRemark = new RemarkBuilder().withText("TestRemark").build();
+        Index targetIndex = INDEX_FIRST_CLIENT;
+        String userInput = targetIndex.getOneBased() + " m/remark " + editedRemark.toString();
+        System.out.println(userInput);
+        EditRemarkCommand expectedCommand = new EditRemarkCommand(targetIndex, editedRemark);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_CLIENT;

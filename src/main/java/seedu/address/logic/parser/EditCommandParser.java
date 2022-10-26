@@ -148,13 +148,13 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditRemarkCommand parseEditRemarkCommand(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODE, PREFIX_TAG);
 
-        String [] arguments = args.split("m/remark");
-        Index index = ParserUtil.parseIndex(arguments[0].split(" ", 2)[1]);
+        String [] arguments = args.split(" m/remark ");
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         if (arguments.length < 2 || arguments[1].isEmpty()) {
-            throw new ParseException(EditRemarkCommand.MESSAGE_REMARK_INVALID);
+            throw new ParseException(EditRemarkCommand.MESSAGE_NOT_EDITED);
         }
 
         Text text = ParserUtil.parseText(arguments[1]);

@@ -20,7 +20,7 @@ import seedu.address.model.remark.UniqueRemarkList;
 public class EditRemarkCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Remark edited successfully: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one word to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one character must be provided as the new remark.";
     public static final String MESSAGE_INVALID_USAGE = "Edit of remark can only happen when remark "
             + "is visible in the application!\n"
             + "Use 'view' command to view a specific client before applying this command\n";
