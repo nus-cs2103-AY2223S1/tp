@@ -39,6 +39,8 @@ Petcode is a **desktop app for coordinating pet sale business, optimized for use
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+Note: unless otherwise specified, the order of prefixes does not matter.
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -75,24 +77,74 @@ Format: `help`
 
 
 ### Adding a person : `add`
-
-Adds a buyer, supplier, or delivery service to the contacts.
 A person can be of three categories: Buyer, Deliverer, and Supplier.
 
 ### Adding a buyer: `add-b`
+Adds a buyer to the contacts. A buyer is a person who would like to buy a pet and places an order describing what kind of pet he/she would like.
 
-
-Format: `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​`
+Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
 
 **:bulb: Tip:** A person can have any number of tags (including 0)
 
+You might just meet a new buyer and would like to add her/him to your list of contacts, and this buyer might have placed an order for you already! For your convenience, we have a nice feature for you to add a buyer and his/her orders in one shot! See this:
+
+Format: `add-b n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ o/add-o(order1 prefixes and fields) o/add-o(order2 prefixes and fields)…​`
+
+Basically, you can input as many `o/add-o` prefixes as you need. After each `add-o`, just enter whatever you need to enter when adding a single order, but you don't have to specify the index of the associated buyer this time. For more information, you can refer to the Add Order section.
+
 </div>
 
 Examples:
-* `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore`
-* `add supplier n/Carol Pet House b/persian cat, pomeranian, ragdoll p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 i/discount for more than one purchase`
+* To add a single buyer: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore`
+* To add a buyer with one order: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore o/add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
+* To add a buyer with two orders: `add-b n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore o/add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_s/Negotiating o_r/add-r o_a/3 o_s/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty `
+
+### Adding a deliverer: `add-d`
+Adds a deliverer to your contact list. A deliverer delivers pets from suppliers to buyers.
+
+Format: `add-d n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+Examples:
+* To add a single deliverer: `add-d n/Hongyi p/11223344 e/email@u.nus.edu a/UTR 138600 t/Singapore`
+
+### Adding a supplier: `add-s`
+Adds a supplier to address book. A supplier feeds, trains, and takes care of pets for sale.
+
+Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+Similarly, you may feel that adding a supplier followed by adding her/his pets one by one is too troublesome. Here is the convenience. You can also add pets when adding a supplier. 
+
+Format: `add-s n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ pt/add-pt(pet1 prefixeds and fields) pt/add-pt(pet2 prefixeds and fields)…​`
+
+you can input as many `pt/add-pt` prefixes as you need. After each `add-pt`, just enter whatever you need to enter when adding a single pet, but you don't have to specify the index of the associated supplier this time. For more information, you can refer to the Add Pet section.
+
+Examples:
+* To add a single supplier: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase`
+* To add a supplier with two pets for sale: `add-s n/Carol Pet House p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 t/discount for more than one purchase pt/add-pt pt_n/Page pt_d/2022-1-1 pt_c/pink pt_cp/pure pink pt_h/41 pt_s/pig pt_cert/US certified pt_v/true pt_w/102 pt_p/270 pt_t/good pt_t/young pt/add-pt pt_n/Snupy pt_d/2021-05-31 pt_c/white pt_cp/dotted pt_h/89.3 pt_cert/US certified pt_s/rabbit pt_v/false pt_w/32 pt_p/330 pt_t/short-sighted`
+
+### Adding an order to a buyer: `add-o`
+Every time a new order is placed, you need to add it to who placed it, don't you? So you can use the following format to add a new order.
+
+Format: `add-o i/INDEX_OF_BUYER o_s/STATUS o_r/add-r o_a/AGE o_s/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
+
+`i/INDEX_OF_BUYER` is the one-based index of the buyer you would like to add this order to. You can find out the index just in the display list. You may want to "reset" the list to find out the buyer you cannot see, if you filtered the list. Please also make sure that `o_r/` is followed by `add-r` immediately and that there are no other prefixes between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_s/`, because they as a whole specify how the requested pet should be like. In the future, you might be able to define your own requests as templates for generating orders.
+
+For more information about the prefixes, kindly navigate to the summary table here.
+
+Examples:
+* `add-o o_s/Pending o_r/add-r o_a/1 o_s/German Shepherd o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery`
+* `add-o  o_s/Negotiating o_r/add-r o_a/3 o_s/Chihuahua o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
+
+### Adding a pet to a supplier: `add-pt`
+When a new pet comes up to stock, you may also want to add it to its supplier/owner. Now it is the time!
+
+Format: `add-pt i/INDEX_OF_SUPPLIER pt_n/PET_NAME pt_d/DATE_OF_BIRTH pt_c/COLOR pt_cp/COLOR_PATTERN pt_h/HEIGHT pt_w/WEIGHT pt_s/SPECIES pt_v/VACCINATION_STATUS pt_p/PRICE [pt_cert/CERTIFICATE]…​ [pt_t/TAG]…​`
+
+`i/INDEX_OF_SUPPLIER` is the one-based index of the supplier you would like to add this pet to. You can find out the index just in the display list. You may want to "reset" the list to find out the supplier you cannot see, if you filtered the list.
+
+For more information about the prefixes, kindly navigate to the summary table here.
 
 ### Adding a person with a pop-up window : `add`
 
