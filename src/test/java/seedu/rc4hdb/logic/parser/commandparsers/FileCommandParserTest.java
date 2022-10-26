@@ -6,18 +6,18 @@ import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_FORWARD_SLASH;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_FULL_STOP;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_WHITESPACE;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
 import static seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
+import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DIR_PATH;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileDeleteCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileDeleteCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileSwitchCommand;
 
 /**
  * Unit tests for {@link FileCommandParser}
@@ -33,19 +33,19 @@ public class FileCommandParserTest {
     @Test
     public void parse_validFileCreateCommand() {
         String fileCreateCommand = FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING;
-        assertParseSuccess(parser, fileCreateCommand, new FileCreateCommand(VALID_FILE_NAME_PATH));
+        assertParseSuccess(parser, fileCreateCommand, new FileCreateCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING));
     }
 
     @Test
     public void parse_validFileDeleteCommand() {
         assertParseSuccess(parser, FileDeleteCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING,
-                new FileDeleteCommand(VALID_FILE_NAME_PATH));
+                new FileDeleteCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING));
     }
 
     @Test
     public void parse_validFileSwitchCommand() {
         assertParseSuccess(parser, FileSwitchCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING,
-                new FileSwitchCommand(VALID_FILE_NAME_PATH));
+                new FileSwitchCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING));
     }
 
     @Test

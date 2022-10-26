@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
+package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
@@ -12,7 +12,7 @@ import seedu.rc4hdb.storage.Storage;
 /**
  * Deletes the file corresponding to the argument.
  */
-public class FileDeleteCommand extends FileCommand implements StorageCommand {
+public class FileDeleteCommand extends JsonFileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -20,8 +20,8 @@ public class FileDeleteCommand extends FileCommand implements StorageCommand {
 
     public static final String MESSAGE_SUCCESS = "%s has been deleted.";
 
-    public FileDeleteCommand(Path filePath) {
-        super(filePath);
+    public FileDeleteCommand(Path dir, String fileName) {
+        super(dir, fileName);
     }
 
     @Override

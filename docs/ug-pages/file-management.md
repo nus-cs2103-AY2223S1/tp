@@ -72,38 +72,43 @@ Examples:
 
 ---
 
-### Importing from CSV file : `import`
+### Importing from CSV file : `file import`
 
-RC4HDB has the ability to import data through .csv files. In order for RC4HDB to find your files, place them in the data directory, `[JAR file location]/data`.
+RC4HDB provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place them in the data folder, `[JAR file location]/data`.
 
-Format: `import FILE_NAME`
+Format: `file import FILE_NAME`
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
 Examples:
-* `import students.csv`
-* `import residents.csv`
+* `file import residents` will import the data from `residents.csv` into a new data file `residents.json`.
 
 ---
 
-### Exporting to CSV file : `export`
+### Exporting to CSV file : `file export`
 
-RC4HDB has the ability to export data to .csv files. The file will be safe to remove from the directory, `[JAR file location]/data`.
+RC4HDB provides users with the ability to export data to `.csv` files. The file will be safe to remove from the `[JAR file location]/data` folder.
 
-Format: `export FILE_NAME`
+Format: `file export FILE_NAME`
 
 :information_source: The csv file will be exported in this [format](#csv-file-format).<br>
 
 Examples:
-* `export students.csv` will export the current data file into a csv file named `students.csv`
+* `file export residents` will export the data from `residents.json` file into a `.csv` file named `residents.csv`.
 
 ---
 
 ### CSV file format
 
-| INDEX | NAME         | PHONE_NUMBER | EMAIL                 | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS   |
-|-------|--------------|--------------|-----------------------|------------|--------|--------|---------------|--------|
-| 1     | John Doe     | 91234567     | johnDoe@gmail.com     |    5-8     | M      | D      | A9876543B     | -      |
-| 2     | Maggie Smith | 98765432     | maggieSmith@gmail.com |    4-1     | F      | A      | A3456789B     | Friend |
+:information_source: All fields must adhere to this [format](modifying-residents.md#format-for-resident-fields).<br>
+
+Format:
+* For clarity, the table column headers have been included. **DO NOT** include them in your `.csv` file.
+* All fields are mandatory, apart from `TAGS`, which requires users to input a `NIL`, which is not case-sensitive.
+
+| NAME         | PHONE_NUMBER | EMAIL                   | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS                |
+|--------------|--------------|-------------------------|------------|--------|--------|---------------|---------------------|
+| John Doe     | 91234567     | johnDoe@example.com     |    5-8     | M      | D      | A9876543B     | NIL                 |
+| Maggie Smith | 98765432     | maggieSmith@example.com |    4-1     | F      | A      | A3456789B     | WelfareHead Captain |
 
 ---

@@ -36,16 +36,17 @@ Test
     * [Resident field format](ug-pages/modifying-residents.md#format-for-resident-fields)
   * [Viewing residents](ug-pages/viewing-residents.md)
     * [Listing all residents `list`](ug-pages/viewing-residents.md#listing-all-residents--list)
+    * [Showing resident fields `show`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly) 
+    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md#hiding-only-some-columns--hideonly) 
+    * [Resetting hidden resident fields `reset`](ug-pages/viewing-residents.md#resetting-hidden-columns--reset)  
     * [Finding residents `find`](ug-pages/viewing-residents.md#locating-residents-by-name--find)
     * [Filtering residents `filter`](ug-pages/viewing-residents.md#filtering-residents-by-field--filter)
-    * [Showing resident fields `show`](ug-pages/viewing-residents.md) <!-- to update -->
-    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md) <!-- to update -->
   * [File management](ug-pages/file-management.md)
     * [Creating a new data file `file create`](ug-pages/file-management.md#creating-a-new-data-file--file-create)
     * [Deleting an existing data file `file delete`](ug-pages/file-management.md#deleting-an-existing-data-file--file-delete)
     * [Switching data file `file switch`](ug-pages/file-management.md#switching-to-a-different-data-file--file-switch)
-    * [Importing from CSV file `import`](ug-pages/file-management.md#importing-from-csv-file--import)
-    * [Exporting to CSV file `export`](ug-pages/file-management.md#exporting-to-csv-file--export)
+    * [Importing from CSV file `import`](ug-pages/file-management.md#importing-from-csv-file--file-import)
+    * [Exporting to CSV file `export`](ug-pages/file-management.md#exporting-to-csv-file--file-export)
     * [CSV file format](ug-pages/file-management.md#csv-file-format)
   * [Data management](ug-pages/data-management.md)
     * [Saving data](ug-pages/data-management.md#saving-the-data)
@@ -55,7 +56,7 @@ Test
     * [Accessing command history](ug-pages/quality-of-life.md#accessing-command-history)
   * [Exiting RC4HDB `exit`](ug-pages/exiting-the-program.md#exiting-the-program--exit)
 * [FAQ](ug-pages/faq.md#faq)
-* [Glossary]()
+* [Glossary](ug-pages/glossary.md)
 * [Authors]()
 * [Command Summary](ug-pages/command-summary.md#command-summary)
 
@@ -78,8 +79,6 @@ RC4HDB is optimized for use via a Command Line Interface (CLI) while still havin
 Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
 workflow as a RC4 housing management staff.
 </div>
-
----
 
 ## Using this guide
 
@@ -140,8 +139,6 @@ Below shows a detailed breakdown of all rules that are applicable to the command
 may have typed a command incorrectly as RC4HDB will step in as and when needed!
 
 <div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
