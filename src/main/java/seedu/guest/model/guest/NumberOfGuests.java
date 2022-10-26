@@ -9,9 +9,14 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  */
 public class NumberOfGuests {
 
+    // value constraints
+    private static final int MIN_NUM_GUESTS = 1;
+    private static final int MAX_NUM_GUESTS = 4;
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Number of Guests should only contain 1 numerical character from 1 to 4.";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+            "Number of Guests should only contain 1 numeric character from " + MIN_NUM_GUESTS + " to "
+                    + MAX_NUM_GUESTS + ".";
+    public static final String VALIDATION_REGEX = String.format("^[%d-%d]$", MIN_NUM_GUESTS, MAX_NUM_GUESTS);
     public final String value;
 
     /**
@@ -29,7 +34,7 @@ public class NumberOfGuests {
      * Returns true if a given string is a valid number of guests.
      */
     public static boolean isValidNumberOfGuests(String test) {
-        return test.matches(VALIDATION_REGEX) && Integer.parseInt(test) >= 1 && Integer.parseInt(test) <= 4;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

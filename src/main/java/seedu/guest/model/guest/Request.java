@@ -11,7 +11,10 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  */
 public class Request {
 
-    public static final String MESSAGE_CONSTRAINTS = "Requests cannot be more than 500 characters long";
+    // length constraints
+    private static final int MAX_LENGTH = 500;
+
+    public static final String MESSAGE_CONSTRAINTS = "Requests cannot be more than " + MAX_LENGTH + " characters long";
     public final String value;
 
     /**
@@ -36,7 +39,7 @@ public class Request {
      * Returns true if a given string is a valid request.
      */
     public static boolean isValidRequest(String inputRequest) {
-        return (inputRequest.length() <= 500);
+        return (inputRequest.length() <= MAX_LENGTH);
     }
 
     /**
