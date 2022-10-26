@@ -9,11 +9,10 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.booking.fields.BookingField;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
 /**
  * Represents a venue in RC4 that can be booked by residents.
@@ -69,13 +68,12 @@ public class Venue implements BookingField {
     }
 
     /**
-     * Removes the booking if there is a booking that matches the {@code bookedPeriod} and {@code bookedDay}.
-     * @param bookedPeriod the booked period of the booking to be removed.
-     * @param bookedDay the booked day of the booking to be removed.
+     * Removes the booking that matches the {@code bookingDescriptor}, if it exists.
+     * @param bookingDescriptor The booking descriptor to match against.
      * @throws BookingNotFoundException if there is no such booking with the same booked period and day in the list.
      */
-    public void removeBooking(HourPeriod bookedPeriod, Day bookedDay) throws BookingNotFoundException {
-        boolean isRemoved = this.bookings.removeIf(booking -> booking.isSameBooking(bookedPeriod, bookedDay));
+    public void removeBooking(BookingDescriptor bookingDescriptor) throws BookingNotFoundException {
+        boolean isRemoved = this.bookings.removeIf(booking -> booking.isSameBooking(bookingDescriptor));
         if (!isRemoved) {
             throw new BookingNotFoundException();
         }

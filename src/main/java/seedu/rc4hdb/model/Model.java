@@ -10,10 +10,9 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -133,12 +132,12 @@ public interface Model {
     void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException, BookingClashesException;
 
     /**
-     * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
-     * the name {@code venueName}.
+     * Removes a booking corresponding to the {@code bookingDescriptor}. Booking descriptor must minimally have
+     * a VenueName, HourPeriod and Day.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
      */
-    void removeBooking(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+    void removeBooking(BookingDescriptor bookingDescriptor)
             throws VenueNotFoundException, BookingNotFoundException;
 
     //=================== UI population methods ============================

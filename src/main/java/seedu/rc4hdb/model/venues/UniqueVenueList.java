@@ -9,10 +9,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
@@ -75,15 +74,19 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
-     * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
-     * the name {@code venueName}.
+     * Removes a booking corresponding to the {@code bookingDescriptor}. Booking descriptor must minimally have
+     * a VenueName, HourPeriod and Day.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
      */
-    public void removeBooking(VenueName otherVenueName, HourPeriod bookingPeriod, Day bookedDay)
+    public void removeBooking(BookingDescriptor bookingDescriptor)
             throws VenueNotFoundException, BookingNotFoundException {
-        requireAllNonNull(otherVenueName, bookingPeriod, bookedDay);
-        getVenueWithName(otherVenueName).removeBooking(bookingPeriod, bookedDay);
+        requireNonNull(bookingDescriptor);
+        if (bookingDescriptor.getVenueName().isEmpty()) {
+            throw new VenueNotFoundException();
+        }
+        getVenueWithName(bookingDescriptor.getVenueName().get())
+                .removeBooking(bookingDescriptor);
     }
 
     /**
