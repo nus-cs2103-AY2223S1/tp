@@ -66,33 +66,88 @@ Petcode is a **desktop app for coordinating pet sale business, optimized for use
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a buyer, supplier, or delivery service to the contacts.
 
 Format: `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary"> 
+
+**:bulb: Tip:** A person can have any number of tags (including 0)
+
 </div>
 
 Examples:
 * `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore`
 * `add supplier n/Carol Pet House b/persian cat, pomeranian, ragdoll p/11223344 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 i/discount for more than one purchase`
 
+### Adding a person with a pop-up window : `add`
 
-### Listing all contacts : `list`
+Adds a person to the contacts with a pop-up window that has prompt texts for what to input without the need to enter any prefixes to reduce memorisation work.
+Given below is the pop-up window for adding a supplier.
 
-Shows a list of all contacts, based on their role as suppliers, buyers, or delivery services.
+![pop up window for adding a supplier](images/AddSupplierWithPopup.png)
 
-Format: `list buyers`, `list suppliers`, `list delivery`
+The followings are two ways to use this command:
+
+* Adds a buyer to the contacts with or without any number of orders.
+
+    Format: `Add buyer`
+
+* Adds a supplier to the contacts with or without any number of pets.
+
+    Format: `Add supplier`
+
+Useful keyboard shortcuts for the pop-up window:
+
+| Keyboard shortcut |                                   Associated action                                    |
+|:-----------------:|:--------------------------------------------------------------------------------------:|
+|      ESCAPE       |                      Closes the pop-up window **without saving**                       |
+|       ENTER       |                           Goes to the next input text field                            |
+|     CTRL + A      |                        Adds an order/pet to the buyer/supplier                         |
+|     CTRL + D      |        Deletes the last order/pet under the buyer/supplier in the pop-up window        |
+|     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
+
+<div markdown="span" class="alert alert-primary"> 
+
+**:bulb: Tip:** If a compulsory text field is ***empty*** during saving, the cursor will be brought be the text field, which will be highlighted in red.
+
+</div>
+
+<div markdown="span" class="alert alert-primary"> 
+
+**:bulb: Tip:** If the input of a text field is in the ***wrong format*** during saving, the person will not be added to the contacts and the pop-up window will not close.
+The error message and the correct format of the input will be shown in the **main window**.
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: This command is only available for **adding a buyer or supplier** for the current version.
+
+</div>
+
+### Listing contacts or items : `list`
+
+Shows a list of all contacts.
+
+Format: `list all`
+
+Shows a list of persons based on their role as suppliers, buyers, or delivery services.
+
+Format: `list buyer`, `list supplier`, `list deliverer`
+
+Shows a list of items.
+
+Format: `list order`, `list pet`
 
 ### Editing a person : `edit`
 
@@ -111,7 +166,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -127,7 +182,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete`
 
@@ -189,7 +245,7 @@ Examples:
 
 ### Find Persons : `find`
 
-Find displays all persons who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+Find displays all persons who match ONE on specific attribute. There are five possible attributes for finding person(s): Address, Email, Location, Name, Phone.
 
 | Attribute | Prefix | Format    | Example                |
 |-----------|--------|-----------|------------------------|
@@ -208,7 +264,7 @@ Examples:
 
 ### Find Buyers : `find-b`
 
-Find displays all buyers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+Find displays all buyers who match ONE on specific attribute. There are five possible attributes for finding buyer(s): Address, Email, Location, Name, Phone.
 
 To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
 
@@ -221,7 +277,7 @@ Examples:
 
 ### Find Deliverers : `find-d`
 
-Find displays all deliverers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+Find displays all deliverers who match ONE on specific attribute. There are five possible attributes for finding deliverer(s): Address, Email, Location, Name, Phone.
 
 To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
 
@@ -234,7 +290,7 @@ Examples:
 
 ### Find Suppliers : `find-s`
 
-Find displays all suppliers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+Find displays all suppliers who match ONE on specific attribute. There are five possible attributes for finding supplier(s): Address, Email, Location, Name, Phone.
 
 To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
 
@@ -278,8 +334,10 @@ PetCode data are saved in the hard disk automatically after any command that cha
 
 PetCode data are saved as a JSON file `[JAR file location]/data/PetCode.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PetCode will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** If your changes to the data file makes its format invalid, PetCode will discard all data and start with an empty data file at the next run.
+
 </div>
 
 ### Archiving data files `[coming in v2.0]`
