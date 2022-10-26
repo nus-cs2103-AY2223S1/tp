@@ -53,7 +53,7 @@
 
                 <GridPane hgap="0.0" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" prefWidth="100.0"/>
+                        <ColumnConstraints prefWidth="450.0"/>
                         <ColumnConstraints hgrow="ALWAYS" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
