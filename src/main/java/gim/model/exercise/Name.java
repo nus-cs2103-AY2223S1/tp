@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents an Exercise's name in the exercise tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements Comparable<Name> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -57,4 +57,8 @@ public class Name {
         return fullName.toLowerCase().replaceAll("\\s", "").hashCode();
     }
 
+    @Override
+    public int compareTo(Name name) {
+        return this.fullName.compareTo(name.fullName);
+    }
 }
