@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import javafx.scene.chart.XYChart;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -167,6 +168,20 @@ public class ModelManagerTest {
             assertEquals(expectedCategory.getName(), actualCategory.getName());
             assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
         }
+    }
+
+    @Test
+    public void getExpenseLineChart_emptyExpensesArray_success() {
+        XYChart.Series<String, Number> expectedExpenseLineChartData = new XYChart.Series<>();
+        XYChart.Series<String, Number> actualExpenseLineChartData = modelManager.getExpenseLineChartData();
+        assertEquals(expectedExpenseLineChartData, actualExpenseLineChartData);
+    }
+
+    @Test
+    public void getIncomeLineChart_emptyIncomeArray_success() {
+        XYChart.Series<String, Number> expectedIncomeLineChartData = new XYChart.Series<>();
+        XYChart.Series<String, Number> actualIncomeLineChartData = modelManager.getIncomeLineChartData();
+        assertEquals(expectedIncomeLineChartData, actualIncomeLineChartData);
     }
 
     @Test
