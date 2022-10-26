@@ -24,6 +24,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
+import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
 import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
 
 /**
@@ -46,21 +47,28 @@ public class FindCommandTest {
         RiskTagContainsKeywordsPredicate fourthPredicate =
                 new RiskTagContainsKeywordsPredicate(Collections.singletonList("medium"));
 
+        PlanTagContainsKeywordsPredicate fifthPredicate =
+                new PlanTagContainsKeywordsPredicate(Collections.singletonList("Savings Plan"));
+
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
         FindCommand findThirdCommand = new FindCommand(thirdPredicate);
         FindCommand findFourthCommand = new FindCommand(fourthPredicate);
+        FindCommand findFifthCommand = new FindCommand(fifthPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
         assertTrue(findThirdCommand.equals(findThirdCommand));
         assertTrue(findFourthCommand.equals(findFourthCommand));
+        assertTrue(findFifthCommand.equals(findFifthCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
         FindCommand findThirdCommandCopy = new FindCommand(thirdPredicate);
         assertTrue(findThirdCommand.equals(findThirdCommandCopy));
+        FindCommand findFifthCommandCopy = new FindCommand(fifthPredicate);
+        assertTrue(findFifthCommand.equals(findFifthCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
@@ -140,6 +148,17 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
+    @Test
+    public void execute_zeroPlanTags_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PlanTagContainsKeywordsPredicate predicate =
+                preparePlanPredicate(" ");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
@@ -160,4 +179,12 @@ public class FindCommandTest {
     private NormalTagContainsKeywordsPredicate prepareNormalPredicate(String userInput) {
         return new NormalTagContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
+    /**
+     * Parses {@code userInput} into a {@code PlanTagContainsKeywordsPredicate}.
+     */
+    private PlanTagContainsKeywordsPredicate preparePlanPredicate(String userInput) {
+        return new PlanTagContainsKeywordsPredicate(Arrays.asList(userInput.split("(?<=\\s\\S{1,100})\\s")));
+    }
+
 }
