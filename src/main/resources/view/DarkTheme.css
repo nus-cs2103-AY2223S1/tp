@@ -144,9 +144,6 @@
     -fx-padding: 10px;
 }
 
-.context-menu {
-    -fx-background-color: #563d4d;
-}
 
 .context-menu .label {
     -fx-text-fill: white;
@@ -165,6 +162,13 @@
 
 .menu .left-container {
     -fx-background-color: #b0b0b0;
+}
+
+/*
+ * CSS for help dropdown
+ */
+.context-menu {
+    -fx-background-color: #313b59;
 }
 
 /*
