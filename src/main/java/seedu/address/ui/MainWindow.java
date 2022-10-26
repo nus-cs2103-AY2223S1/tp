@@ -212,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
         ArrayList<String> oldHelpStyleSheets = new ArrayList<>();
         for (String styleSheet : helpWindow.getRoot().getScene().getStylesheets()) {
             if (Pattern.matches(".*LightTheme.*", styleSheet)) {
-                oldStyleSheets.add(styleSheet);
+                oldHelpStyleSheets.add(styleSheet);
                 String newUrl = styleSheet.replaceAll("LightTheme", "DarkTheme");
                 newStyleSheets.add(newUrl);
             } else if (Pattern.matches(".*DarkTheme.*", styleSheet)) {
@@ -222,7 +222,7 @@ public class MainWindow extends UiPart<Stage> {
             }
         }
         helpWindow.getRoot().getScene().getStylesheets().addAll(newHelpStyleSheets);
-        helpWindow.getRoot().getScene().getStylesheets().removeAll(oldStyleSheets);
+        helpWindow.getRoot().getScene().getStylesheets().removeAll(oldHelpStyleSheets);
 
     }
 
