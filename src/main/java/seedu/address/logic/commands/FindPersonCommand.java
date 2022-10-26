@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameStartsWithKeywordPredicate;
 
 /**
- * Finds and lists all person in Plannit whose name starts with the argument keyword.
+ * Finds and lists all persons in Plannit whose name starts with the argument keyword.
  * Keyword matching is case-insensitive.
  */
 public class FindPersonCommand extends Command {

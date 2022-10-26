@@ -405,7 +405,7 @@ OR
 ```
 find-person Alex
 ```
-In either of the above examples, we find every person whose names starts with Alex in Plannit.
+In either of the above examples, we find every person whose name starts with Alex in Plannit.
 
 #### 2.4.5. List person
 You may obtain the list of every person in Plannit while in the home page.
