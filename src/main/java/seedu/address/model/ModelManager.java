@@ -128,6 +128,10 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * sorts the student list by grade
+     * @param isInAscending if true the list is set to ascending order, else descending
+     */
     @Override
     public void sortListByGrade(boolean isInAscending) {
         this.addressBook.sortByDate(isInAscending);

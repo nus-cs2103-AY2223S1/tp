@@ -5,6 +5,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+/**
+ * Parses input argument and creates a new SortMeetingCommand object
+ */
 public class SortCommandParser implements Parser<SortCommand> {
     @Override
     public SortCommand parse(String userInput) throws ParseException {
