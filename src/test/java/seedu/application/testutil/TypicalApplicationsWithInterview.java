@@ -15,6 +15,7 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_CO
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_BYTEDANCE;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_GOOGLE;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_JANE_STREET;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_SHOPEE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +32,7 @@ public class TypicalApplicationsWithInterview {
     public static final Application SHOPEE = new ApplicationBuilder().withCompany("Shopee")
             .withContact("94201239").withDate("2022-12-31")
             .withEmail("shopee@example.com").withPosition("Frontend Engineer").withTags("consumerTech")
-            .withInterview(INTERVIEW_GOOGLE).build();
+            .withInterview(INTERVIEW_SHOPEE).build();
     public static final Application BYTEDANCE = new ApplicationBuilder().withCompany("ByteDance")
             .withContact("83920382").withDate("2022-08-01")
             .withEmail("bytedance@example.com").withPosition("Backend Engineer").withTags("BytePlus", "TikTok")
