@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddDelivererCommand;
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Deliverer;
@@ -24,14 +23,14 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddDeliverer object
  */
-public class AddDelivererCommandParser extends AddPersonCommandParser implements Parser<AddPersonCommand> {
+public class AddDelivererCommandParser implements Parser<AddDelivererCommand> {
 
     public AddDelivererCommandParser() {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
-     * and returns an AddPersonCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddDelivererCommand
+     * and returns an AddDelivererCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddDelivererCommand parse(String args) throws ParseException {

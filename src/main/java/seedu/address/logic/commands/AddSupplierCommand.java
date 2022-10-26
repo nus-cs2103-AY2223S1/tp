@@ -20,9 +20,9 @@ import seedu.address.model.pet.Pet;
 /**
  * Adds a supplier to the address book.
  */
-public class AddSupplierCommand extends AddPersonCommand {
+public class AddSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "-s";
+    public static final String COMMAND_WORD = "add-s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "

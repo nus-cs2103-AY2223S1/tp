@@ -14,9 +14,9 @@ import seedu.address.model.person.Deliverer;
 /**
  * Adds a deliverer to the address book.
  */
-public class AddDelivererCommand extends AddPersonCommand {
+public class AddDelivererCommand extends Command {
 
-    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "-d";
+    public static final String COMMAND_WORD = "add-d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a deliverer to the address book. "
             + "Parameters: "
