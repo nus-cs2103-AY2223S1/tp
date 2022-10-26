@@ -38,16 +38,19 @@ public class CommandTestUtil {
     public static final String VALID_DESC_LUNCH = "Lunch";
     public static final String VALID_AMT_LUNCH = "5.20";
     public static final String VALID_DATE_LUNCH = "20-08-2022";
+    public static final String VALID_ISO_DATE_LUNCH = "2022-08-20";
     public static final String VALID_TAG_LUNCH = "Food";
 
     public static final String VALID_DESC_MOVIE = "Movie";
     public static final String VALID_AMT_MOVIE = "8.00";
     public static final String VALID_DATE_MOVIE = "21-08-2022";
+    public static final String VALID_ISO_DATE_MOVIE = "2022-08-21";
     public static final String VALID_TAG_MOVIE = "Entertainment";
 
     public static final String VALID_DESC_DINNER = "Dinner";
     public static final String VALID_AMT_DINNER = "4.80";
     public static final String VALID_DATE_DINNER = "24-08-2022";
+    public static final String VALID_ISO_DATE_DINNER = "2022-08-24";
     public static final String VALID_TAG_DINNER = "Food";
 
     public static final String VALID_DESC_TUITION = "Tuition";

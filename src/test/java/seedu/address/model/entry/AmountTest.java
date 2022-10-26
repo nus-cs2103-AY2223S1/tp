@@ -42,4 +42,10 @@ public class AmountTest {
         assertTrue(Amount.isValidAmount(validAmount));
 
     }
+
+    @Test
+    public void toFormattedString() {
+        String amount = "10";
+        assertEquals(new Amount(amount).toFormattedString(), "$10.00");
+    }
 }

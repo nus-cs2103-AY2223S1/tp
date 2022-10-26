@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.AMT_ALLOWANCE;
 import static seedu.address.logic.commands.CommandTestUtil.AMT_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.AMT_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.AMT_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_ALLOWANCE;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ALLOWANCE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MOVIE;
@@ -16,6 +19,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TYPE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_ALLOWANCE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_MOVIE;
@@ -29,6 +33,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_EXPENDITUR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_INCOME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalEntry.ALLOWANCE;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
 import static seedu.address.testutil.TypicalEntry.MOVIE;
 
@@ -48,43 +53,46 @@ public class AddCommandParserTest {
     private EntryType incomeType = new EntryType(VALID_TYPE_INCOME);
     @Test
     public void parse_allFieldsPresent_success() {
-        Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).withTag(VALID_TAG_LUNCH).build();
+        Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).build();
+        Entry expectedIncome = new ExpenditureBuilder(ALLOWANCE).build();
+
         //Waiting for income builder
         // whitespace only preamble
         assertParseSuccess(
                 parser,
                 PREAMBLE_WHITESPACE + TYPE_EXPENDITURE + DESC_LUNCH + AMT_LUNCH + DATE_LUNCH + TAG_LUNCH,
                 new AddCommand(expectedExpenditure, expenditureType));
-        //assertParseSuccess(
-        //        parser,
-        //        PREAMBLE_WHITESPACE + TYPE_INCOME + DESC_ALLOWANCE + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
-        //        new AddCommand(expectedExpenditure, incomeType));
+        assertParseSuccess(
+                parser,
+                PREAMBLE_WHITESPACE + TYPE_INCOME + DESC_ALLOWANCE + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
+                new AddCommand(expectedIncome, incomeType));
 
         // multiple desc - last desc accepted
         assertParseSuccess(
                 parser,
                 TYPE_EXPENDITURE + DESC_DINNER + DESC_LUNCH + AMT_LUNCH + DATE_LUNCH + TAG_LUNCH,
                 new AddCommand(expectedExpenditure, expenditureType));
-        //assertParseSuccess(
-        //        parser,
-        //        TYPE_INCOME + DESC_DINNER + DESC_ALLOWANCE + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
-        //        new AddCommand(expectedExpenditure, incomeType));
+        assertParseSuccess(
+                parser,
+                TYPE_INCOME + DESC_DINNER + DESC_ALLOWANCE + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
+                new AddCommand(expectedIncome, incomeType));
 
         // multiple type - last type accepted
         assertParseSuccess(
                 parser,
                 TYPE_INCOME + TYPE_EXPENDITURE + DESC_LUNCH + AMT_LUNCH + DATE_LUNCH + TAG_LUNCH,
                 new AddCommand(expectedExpenditure, expenditureType));
-        //assertParseSuccess(
-        //        parser,
-        //        TYPE_INCOME + TYPE_INCOME + DESC_ALLOWANCE + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
-        //        new AddCommand(expectedExpenditure, incomeType));
-        // multiple amount - last amount accepted
-        //assertParseSuccess(
-        //        parser,
-        //        PREAMBLE_WHITESPACE + TYPE_INCOME + DESC_ALLOWANCE
-        //                + AMT_DINNER + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
-        //        new AddCommand(expectedExpenditure, expenditureType));
+        assertParseSuccess(
+                parser,
+                TYPE_INCOME + TYPE_INCOME + DESC_ALLOWANCE + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
+                new AddCommand(expectedIncome, incomeType));
+        //  multiple amount - last amount accepted
+
+        assertParseSuccess(
+                parser,
+                PREAMBLE_WHITESPACE + TYPE_INCOME + DESC_ALLOWANCE
+                        + AMT_DINNER + AMT_ALLOWANCE + DATE_ALLOWANCE + TAG_ALLOWANCE,
+                new AddCommand(expectedIncome, expenditureType));
         assertParseSuccess(
                 parser,
                 PREAMBLE_WHITESPACE + TYPE_EXPENDITURE + DESC_LUNCH
@@ -97,11 +105,11 @@ public class AddCommandParserTest {
                 PREAMBLE_WHITESPACE + TYPE_EXPENDITURE + DESC_LUNCH
                         + AMT_LUNCH + DATE_DINNER + DATE_LUNCH + TAG_LUNCH,
                 new AddCommand(expectedExpenditure, expenditureType));
-        // assertParseSuccess(
-        //         parser,
-        //         PREAMBLE_WHITESPACE + TYPE_INCOME + DESC_ALLOWANCE
-        //                 + AMT_ALLOWANCE + DATE_DINNER + DATE_ALLOWANCE + TAG_ALLOWANCE,
-        //         new AddCommand(expectedExpenditure, incomeType));
+        assertParseSuccess(
+                parser,
+                PREAMBLE_WHITESPACE + TYPE_INCOME + DESC_ALLOWANCE
+                        + AMT_ALLOWANCE + DATE_DINNER + DATE_ALLOWANCE + TAG_ALLOWANCE,
+                new AddCommand(expectedIncome, incomeType));
         // multiple tags - last tag accepted
         assertParseSuccess(
                 parser,

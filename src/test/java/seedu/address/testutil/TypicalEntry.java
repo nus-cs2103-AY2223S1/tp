@@ -93,7 +93,24 @@ public class TypicalEntry {
         return ab;
     }
 
+    public static PennyWise getExpenditureFilteredByMonthPennyWise() {
+        PennyWise ab = new PennyWise();
+
+        for (Expenditure expenditure : getFilteredByMonthExpenditure()) {
+            ab.addExpenditure(expenditure);
+        }
+
+        for (Income income: getTypicalIncome()) {
+            ab.addIncome(income);
+        }
+        return ab;
+    }
+
     public static List<Expenditure> getTypicalExpenditure() {
+        return new ArrayList<>(Arrays.asList(LUNCH, DINNER, MOVIE));
+    }
+
+    public static List<Expenditure> getFilteredByMonthExpenditure() {
         return new ArrayList<>(Arrays.asList(LUNCH, DINNER, MOVIE));
     }
 
