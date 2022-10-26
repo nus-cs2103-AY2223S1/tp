@@ -35,7 +35,7 @@ public class MessageTemplateCard extends UiPart<Region> {
         messageText.getChildren().add(new Text(Integer.toString(index) + ". "));
 
         // Italise all instances of "{name}"
-        String[] messageParts = message.getMessage().split(NAME_PLACEHOLDER_REGEX);
+        String[] messageParts = message.getMessage().split(NAME_PLACEHOLDER_REGEX, -1);
         for (String part : messageParts) {
             messageText.getChildren().add(new Text(part));
             if (part != messageParts[messageParts.length - 1]) {
