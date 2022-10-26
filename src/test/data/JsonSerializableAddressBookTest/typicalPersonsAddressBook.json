@@ -47,7 +47,7 @@
     "address" : "michegan ave",
     "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
-    "income": "$1000",
+    "income": "$6000",
     "monthly": "$250",
     "tagged" : [ ],
     "appointments" : [ {
@@ -61,7 +61,7 @@
     "address" : "little tokyo",
     "riskTag": "MEDIUM",
     "planTag": "Savings Plan",
-    "income": "$1000",
+    "income": "$2000",
     "monthly": "$500",
     "tagged" : [ ],
     "appointments" : [ {
@@ -75,7 +75,7 @@
     "address" : "4th street",
     "riskTag": "LOW",
     "planTag": "Savings Plan",
-    "income": "$1000",
+    "income": "$10000",
     "monthly": "$400",
     "tagged" : [ ],
     "appointments" : [ {
