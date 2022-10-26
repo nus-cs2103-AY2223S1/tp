@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * Represents a Person's reward points in bobaBot.
  * Guarantees: immutable; is valid as declared in {@link #isValidReward(String)}
@@ -19,6 +21,7 @@ public class Reward {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
+    public final String displayValue;
 
     /**
      * Constructs an {@code Reward}.
@@ -31,6 +34,11 @@ public class Reward {
         int integerValue = Integer.valueOf(reward);
         checkArgument(integerValue >= 0, MESSAGE_CONSTRAINTS);
         value = String.valueOf(integerValue);
+
+        // Generate reward emoji
+        byte[] emojiByteCode = new byte[] {(byte) 0xF0, (byte) 0x9F, (byte) 0x8E, (byte) 0x81};
+        String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
+        displayValue = emoji + " " + value;
     }
 
     /**

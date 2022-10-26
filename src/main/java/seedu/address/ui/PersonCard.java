@@ -35,6 +35,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label birthdayMonth;
+    @FXML
     private Label reward;
     @FXML
     private Label email;
@@ -49,9 +51,10 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        reward.setText(person.getReward().value);
-        email.setText(person.getEmail().value);
+        phone.setText(person.getPhone().displayValue);
+        birthdayMonth.setText(person.getBirthdayMonth().monthString);
+        reward.setText(person.getReward().displayValue);
+        email.setText(person.getEmail().displayValue);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
