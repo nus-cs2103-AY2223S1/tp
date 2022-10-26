@@ -3,6 +3,9 @@ package gim.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeParseException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import gim.commons.core.index.Index;
 import gim.commons.util.StringUtil;
@@ -115,4 +118,15 @@ public class ParserUtil {
         return parsedDate;
     }
 
+    /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> nameSet = new HashSet<>();
+        for (String name : names) {
+            nameSet.add(parseName(name));
+        }
+        return nameSet;
+    }
 }

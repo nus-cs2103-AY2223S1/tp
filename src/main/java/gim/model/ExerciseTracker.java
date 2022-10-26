@@ -2,11 +2,13 @@ package gim.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gim.model.exercise.Exercise;
 import gim.model.exercise.ExerciseHashMap;
 import gim.model.exercise.ExerciseList;
+import gim.model.exercise.Name;
 import javafx.collections.ObservableList;
 
 /**
@@ -75,6 +77,23 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     }
 
     /**
+     * Returns the Exercise with the highest weight, with Name {@code exercises}.
+     * @param exerciseName Name of exercise.
+     * @return Exercise containing the highest weight.
+     */
+    public Exercise getExercisePR(Name exerciseName) {
+        return exerciseHashMap.getExercisePR(exerciseName);
+    }
+
+    /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    public ArrayList<Exercise> getAllExercisePRs() {
+        return exerciseHashMap.getAllExercisePRs();
+    }
+
+    /**
      * Adds an Exercise to the exercise tracker.
      * The Exercise can already exist in the exercise tracker.
      */
@@ -109,13 +128,41 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
     @Override
     public String toString() {
-        return exerciseList.asUnmodifiableObservableList().size() + " exercises";
+        return exerciseList.asDisplayedList().size() + " exercises";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Exercise> getExerciseList() {
-        return exerciseList.asUnmodifiableObservableList();
+        return exerciseList.asDisplayedList();
+    }
+
+    /**
+     * Returns the internalUnmodifiableList of type ObservableList in ExerciseList.
+     * */
+    public ObservableList<Exercise> getUnmodifiableList() {
+        return exerciseList.asUnmodifiableList();
+    }
+
+    /**
+     * Sorts the displayed exercise list according to chronological order of exercise dates.
+     */
+    public void sortDisplayedList() {
+        exerciseList.sortDisplayedList();
+    }
+
+    /**
+     * Resets the displayed exercise list to the default ordering.
+     */
+    public void resetDisplayedList() {
+        exerciseList.resetDisplayedList();
+    }
+
+    /**
+     * Filters the displayed exercise list.
+     */
+    public void filterDisplayedList(ObservableList<Exercise> filteredList) {
+        exerciseList.filterDisplayedList(filteredList);
     }
 
     @Override

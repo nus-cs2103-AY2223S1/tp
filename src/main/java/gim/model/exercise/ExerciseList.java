@@ -3,6 +3,8 @@ package gim.model.exercise;
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class ExerciseList implements Iterable<Exercise> {
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Exercise> displayedList = FXCollections.observableArrayList(internalUnmodifiableList);
 
     /**
      * Returns true if the list contains an equivalent exercise as the given argument.
@@ -37,6 +40,7 @@ public class ExerciseList implements Iterable<Exercise> {
     public void add(Exercise toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        displayedList.setAll(internalUnmodifiableList);
     }
 
     /**
@@ -51,7 +55,6 @@ public class ExerciseList implements Iterable<Exercise> {
         if (index == -1) {
             throw new ExerciseNotFoundException();
         }
-
         internalList.set(index, editedExercise);
     }
 
@@ -64,11 +67,13 @@ public class ExerciseList implements Iterable<Exercise> {
         if (!internalList.remove(toRemove)) {
             throw new ExerciseNotFoundException();
         }
+        displayedList.setAll(internalUnmodifiableList);
     }
 
     public void setExercises(ExerciseList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        displayedList.setAll(internalUnmodifiableList);
     }
 
     /**
@@ -78,13 +83,21 @@ public class ExerciseList implements Iterable<Exercise> {
     public void setExercises(List<Exercise> exercises) {
         requireAllNonNull(exercises);
         internalList.setAll(exercises);
+        displayedList.setAll(internalUnmodifiableList);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Exercise> asUnmodifiableObservableList() {
+    public ObservableList<Exercise> asUnmodifiableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the displayed list {@code ObservableList}.
+     */
+    public ObservableList<Exercise> asDisplayedList() {
+        return displayedList;
     }
 
     @Override
@@ -104,4 +117,25 @@ public class ExerciseList implements Iterable<Exercise> {
         return internalList.hashCode();
     }
 
+    /**
+     * Sorts the displayedList according to the chronological order of the date field of exercise.
+     */
+    public void sortDisplayedList() {
+        Collections.sort(displayedList, Comparator.comparing(e -> e.getDate().date));
+        Collections.reverse(displayedList);
+    }
+
+    /**
+     * Resets the displayedList to the default order (internalUnmodifiableList).
+     */
+    public void resetDisplayedList() {
+        displayedList.setAll(internalUnmodifiableList);
+    }
+
+    /**
+     * Filters the displayedList based on the filtered list that user filtered.
+     */
+    public void filterDisplayedList(ObservableList<Exercise> filteredList) {
+        displayedList.setAll(filteredList);
+    }
 }

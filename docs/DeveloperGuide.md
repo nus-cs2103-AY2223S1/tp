@@ -182,11 +182,7 @@ gets the list of exercises to be displayed from method `getExerciseList()` in `E
 
 `ExerciseList` contains a `displayedList` of type `ObservableList<Exercise>` and is the list that will be displayed by the `Ui`.
 It is a duplicated copy of the `internalUnmodifiableList` of type `unmodifiableObservableList`. `ExerciseList` has method
-`sortDisplayedList()` which sorts the `displayedList` using the `sort()` method in `java.util.Collections`.
-
-`Exercise` implements `Comparable<Exercise>` and has overridden the method `compareTo` which compares two
-exercises primarily by their respective `Date`. Should the two exercises have the same `Date`, they will then be
-compared lexicographically.
+`sortDisplayedList()` which sorts the `displayedList` by order of date using the `sort()` method in `java.util.Collections` with a `Comparator<Exercise>`.
 
 #### Sorting Execution
 
@@ -215,6 +211,11 @@ The following sequence diagram shows how the sort command is executed.
   `UnmodifiableObservableList` in `ExerciseList` class
     * Rationale: The sort command will sort the `diplayedList`, not affecting the `internalUnmodifiableList`. This allows
       users to view the sorted list of exercises while maintaining a defensive copy of exercises keyed by user.
+
+**Aspect: Open-Closed Principle**
+* **Current choice**: `sortDisplayedList()` in `ExerciseList` sorts the `displayedList` using the `sort()` method in `java.util.Collections` and a `Comparator<Exercise>`.
+    * Rationale: Using a `Comparator<Exercise>` in `sort()` allows one to extend the `sortDisplayedList` method to accommodate other sorting orders
+      by simply changing the `Comparator<Exercise>` used should the sorting criteria change in the future.
 
 ### **Viewing exercises within a date range**
 

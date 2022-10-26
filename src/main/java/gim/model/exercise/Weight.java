@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Represents an Exercise's weight number in the exercise tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
  */
-public class Weight {
+public class Weight implements Comparable<Weight> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -50,4 +50,8 @@ public class Weight {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Weight o) {
+        return (int) Math.ceil(Double.parseDouble(this.value) - Double.parseDouble(o.value));
+    }
 }

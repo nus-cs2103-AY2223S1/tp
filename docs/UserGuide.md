@@ -11,6 +11,7 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 * Adding an exercise **:a**
 * Deleting an exercise **:d**
 * Listing all exercises **:ls**
+* Sorting all exercises **:sort**
 * Viewing help **:help**
 * Exiting the program **:wq**
 #### Command Summary
@@ -64,14 +65,6 @@ Format: `:a n/<exercise name> w/<weight(kg)> s/<sets> r/<reps>`
 * `:a n/Squat w/30 s/3 r/5` Adds a squat exercise of weight 30kg for 3 sets of 5 reps
 
 
-### Listing all exercises : `:ls`
-
-Shows a list of all exercises.
-
-Format: `:ls`
-
-
-
 ### Deleting an exercise : `:d`
 
 Deletes a particular exercise from our list. The index refers to the index number shown in the displayed exercise list.
@@ -83,6 +76,20 @@ Format: `:d <index>`
 
 ##### Examples:
 * `:d 3` Deletes an exercise at index 3 of the list
+
+
+### Listing all exercises : `:ls`
+
+Shows a list of all exercises.
+
+Format: `:ls`
+
+
+### Sorting all exercises : `:sort`
+
+Sorts the list of exercises according to their date of completion, with the latest exercise completed displayed at the top of the list.
+
+Format: `:sort`
 
 
 ### Exiting the program : `:wq`
@@ -108,9 +115,9 @@ Format: `:wq`
 | **Add exercise**    | :a n/<exercise> w/<weight(kg)> s/<sets> r/<reps> | :a n/Squat w/60 s/5 r/5 |
 | **Delete exercise** | :d <index>                                       | :d 3                    |
 | **List exercises**  | :ls                                              | :ls                     |
+| **Sort exercises**  | :sort                                            | :sort                   |
 | **Help menu**       | :help                                            | :help                   |
 | **Exit program**    | :wq                                              | :wq                     |
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of Terminologies
