@@ -53,7 +53,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditClientCommand.MESSAGE_USAGE), pe);
         }
-        String mode = argMultimap.getValue(PREFIX_MODE).orElse("");
+        String mode = argMultimap.getValue(PREFIX_MODE).orElse("").split(" ", 2)[0];
 
         switch (mode) {
         case "client":
@@ -150,21 +150,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
-        Index index;
-        String [] preambles = argMultimap.getPreamble().split(" ", 2);
+        String [] arguments = args.split("m/remark");
+        Index index = ParserUtil.parseIndex(arguments[0].split(" ", 2)[1]);
 
-        try {
-            index = ParserUtil.parseIndex(preambles[0]);
-        } catch (ParseException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditRemarkCommand.MESSAGE_USAGE), ive);
-        }
-
-        if (preambles.length < 2 || preambles[1].isEmpty()) {
+        if (arguments.length < 2 || arguments[1].isEmpty()) {
             throw new ParseException(EditRemarkCommand.MESSAGE_REMARK_INVALID);
         }
 
-        Text text = ParserUtil.parseText(preambles[1]);
+        Text text = ParserUtil.parseText(arguments[1]);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Remark remark = new Remark(text, tagList);
