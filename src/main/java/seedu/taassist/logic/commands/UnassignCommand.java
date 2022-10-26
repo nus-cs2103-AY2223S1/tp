@@ -17,13 +17,13 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
- * Unassigns students from a class.
+ * Unassigns students from a module class.
  */
 public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns students from a class. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns students from a class.\n"
             + "Parameters: INDEX... (must be positive integers) "
             + PREFIX_MODULE_CLASS + "CLASS_NAME (case sensitive)\n"
             + "Example: " + COMMAND_WORD + " "

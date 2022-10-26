@@ -13,8 +13,8 @@ Given below are my contributions to the project.
 * **New Feature**: Integrated the `ModuleClass` class to the project. Implemented features that enables users to add class, delete class, list all classes, assign and unassign students from classes in TA assist. Implemented features to allow users to delete sessions from classes. Implemented feature to export module class data as CSV file.
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Bubbl3T&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 * **Project management**: Created and maintained project milestones.
-* **Enhancements to existing features**: Improved `LogicManager` to allow commands that require access to storage methods. 
-* **Documentation**: Added documentation in Developer Guide regarding implementation of add class, delete class, and assigning students to classes.
+* **Enhancements to existing features**: To be added soon
+* **Documentation**: Added documentation in Developer Guide regarding implementation of add class, delete class, and assigning students to classes. Added documentation in User Guide on class related commands, `clear` and `export`.
 * **Community**: To be added soon
 * **Tools**: To be added soon
 

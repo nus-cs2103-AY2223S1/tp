@@ -7,6 +7,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -149,7 +150,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     /**
      * Finds and returns a module class with equivalent identity to {@code target}.
      */
-    public ModuleClass findModuleClass(ModuleClass target) {
+    public Optional<ModuleClass> findModuleClass(ModuleClass target) {
         requireNonNull(target);
         return moduleClasses.findElement(target);
     }
@@ -208,14 +209,18 @@ public class TaAssist implements ReadOnlyTaAssist {
         for (Student student : students) {
             List<String> row = new ArrayList<>();
             row.add(student.getName().toString());
-            StudentModuleData moduleData = student.findStudentModuleData(moduleClass);
+            Optional<StudentModuleData> moduleDataOptional = student.findStudentModuleData(moduleClass);
+            if (!moduleDataOptional.isPresent()) {
+                continue;
+            }
+            StudentModuleData moduleData = moduleDataOptional.get();
             for (Session s : sessions) {
-                try {
-                    SessionData sessionData = moduleData.findSessionData(s);
-                    row.add(String.valueOf(sessionData.getGrade()));
-                } catch (ElementNotFoundException e) {
+                Optional<SessionData> sessionDataOptional = moduleData.findSessionData(s);
+                if (!sessionDataOptional.isPresent()) {
                     row.add(CSV_EMPTY_GRADE);
+                    continue;
                 }
+                row.add(String.valueOf(sessionDataOptional.get().getGrade()));
             }
             fileData.add(row);
         }

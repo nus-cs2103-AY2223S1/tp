@@ -12,6 +12,7 @@ import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 
 /**
  * A default model stub that has all the methods failing.
@@ -79,6 +80,11 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<Student> getFilteredStudentList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<StudentView> getStudentViewList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -169,6 +175,16 @@ public class ModelStub implements Model {
 
     @Override
     public SimpleStringProperty getFocusLabelProperty() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void querySessionData(Session targetSession) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void resetQueriedSessionData() {
         throw new AssertionError("This method should not be called.");
     }
 }

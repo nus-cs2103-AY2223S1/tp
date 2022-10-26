@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.taassist.model.session.Session;
@@ -51,6 +52,14 @@ public class StudentModuleData implements Identity<StudentModuleData> {
     }
 
     /**
+     * Returns the {@code SessionData} within the module data for the given {@code Session}.
+     */
+    public Optional<SessionData> findSessionData(Session target) {
+        requireNonNull(target);
+        return sessionDataList.findElement(new SessionData(target, 0.0));
+    }
+
+    /**
      * Returns a new {@code StudentModuleData} by removing the given session from the list of session data.
      */
     public StudentModuleData removeSession(Session session) {
@@ -70,14 +79,6 @@ public class StudentModuleData implements Identity<StudentModuleData> {
         StudentModuleData newStudentModuleData = removeSession(session);
         newStudentModuleData.sessionDataList.add(new SessionData(session, grade));
         return newStudentModuleData;
-    }
-
-    /**
-     * Returns the {@code SessionData} for the given {@code Session}.
-     */
-    public SessionData findSessionData(Session session) throws ElementNotFoundException {
-        SessionData match = sessionDataList.findElement(new SessionData(session, DUMMY_GRADE));
-        return match;
     }
 
     @Override
