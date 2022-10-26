@@ -56,8 +56,8 @@ public class PinCard extends UiPart<Region> {
         assert applicant.getPin().getHasPinned();
         email.setText(applicant.getEmailAddress());
         applicant.getMajors().stream()
-                .sorted(Comparator.comparing(major -> major.getName()))
-                .forEach(major -> majors.getChildren().add(new Label(major.getName())));
+                .sorted(Comparator.comparing(major -> major.getMajorName()))
+                .forEach(major -> majors.getChildren().add(new Label(major.getMajorName())));
     }
 
     @Override

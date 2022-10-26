@@ -36,7 +36,10 @@ public class Major {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getName() {
+    /**
+     * Returns name of major taken by applicant.
+     */
+    public String getMajorName() {
         return major;
     }
 

@@ -28,7 +28,7 @@ public class SampleDataUtil {
                 new ApplicationStatus("pending"), getMajorSet("Business", "Accountancy")),
             new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Scholarship("NUS Sports Scholarship"),
-                new ApplicationStatus("accepted"), getMajorSet("Physiotherapy")),
+                new ApplicationStatus("accepted"), getMajorSet()),
             new Applicant(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Scholarship("NUS Performing & Visual Arts Scholarship"),
                 new ApplicationStatus("rejected"), getMajorSet("Psychology")),

@@ -27,11 +27,11 @@ public class JsonAdaptedApplicantTest {
     private static final String INVALID_APPLICATION_STATUS = "failure";
     private static final String INVALID_MAJOR = "#friend";
 
-    private static final String VALID_NAME = ALICE.getName().toString();
-    private static final String VALID_PHONE = ALICE.getPhone().toString();
-    private static final String VALID_EMAIL = ALICE.getEmail().toString();
-    private static final String VALID_SCHOLARSHIP = ALICE.getScholarship().toString();
-    private static final String VALID_APPLICATION_STATUS = ALICE.getApplicationStatus().toString();
+    private static final String VALID_NAME = ALICE.getFullName();
+    private static final String VALID_PHONE = ALICE.getPhoneNumber();
+    private static final String VALID_EMAIL = ALICE.getEmailAddress();
+    private static final String VALID_SCHOLARSHIP = ALICE.getScholarshipName();
+    private static final String VALID_APPLICATION_STATUS = ALICE.getStatusOfApplication();
     private static final String VALID_MAJOR_1 = "Mathematics";
     private static final String VALID_MAJOR_2 = "Computing";
 

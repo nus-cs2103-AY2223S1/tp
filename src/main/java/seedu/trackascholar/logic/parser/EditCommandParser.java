@@ -44,20 +44,20 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditCommand.EditApplicantDescriptor editApplicantDescriptor = new EditCommand.EditApplicantDescriptor();
-        if (hasPrefixPresent(argMultimap, PREFIX_NAME)) {
+        if (isPrefixPresent(argMultimap, PREFIX_NAME)) {
             editApplicantDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (hasPrefixPresent(argMultimap, PREFIX_PHONE)) {
+        if (isPrefixPresent(argMultimap, PREFIX_PHONE)) {
             editApplicantDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (hasPrefixPresent(argMultimap, PREFIX_EMAIL)) {
+        if (isPrefixPresent(argMultimap, PREFIX_EMAIL)) {
             editApplicantDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (hasPrefixPresent(argMultimap, PREFIX_SCHOLARSHIP)) {
+        if (isPrefixPresent(argMultimap, PREFIX_SCHOLARSHIP)) {
             editApplicantDescriptor.setScholarship(ParserUtil
                     .parseScholarship(argMultimap.getValue(PREFIX_SCHOLARSHIP).get()));
         }
-        if (hasPrefixPresent(argMultimap, PREFIX_APPLICATION_STATUS)) {
+        if (isPrefixPresent(argMultimap, PREFIX_APPLICATION_STATUS)) {
             editApplicantDescriptor.setApplicationStatus(ParserUtil
                     .parseApplicationStatus(argMultimap.getValue(PREFIX_APPLICATION_STATUS).get()));
         }
@@ -74,8 +74,9 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Returns true if the prefix does not contain an empty {@code Optional} value in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean hasPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
-        return argumentMultimap.getValue(prefix).isPresent();
+    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        Optional<String> prefixValue = argumentMultimap.getValue(prefix);
+        return prefixValue.isPresent();
     }
 
     /**

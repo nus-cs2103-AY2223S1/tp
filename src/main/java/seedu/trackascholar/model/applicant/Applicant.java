@@ -88,7 +88,7 @@ public class Applicant {
     }
 
     public String getScholarshipName() {
-        return scholarship.getScholarship();
+        return scholarship.getScholarshipName();
     }
 
     public ApplicationStatus getApplicationStatus() {
@@ -96,7 +96,7 @@ public class Applicant {
     }
 
     public String getStatusOfApplication() {
-        return applicationStatus.getApplicationStatus();
+        return applicationStatus.getStatusOfApplication();
     }
 
     public Pin getPin() {
@@ -207,7 +207,7 @@ public class Applicant {
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getScholarship().equals(getScholarship())
-                && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
+                && otherApplicant.getStatusOfApplication().equals(getStatusOfApplication())
                 && otherApplicant.getPin().equals(getPin())
                 && otherApplicant.getMajors().equals(getMajors());
     }
@@ -229,7 +229,7 @@ public class Applicant {
                 .append("; Scholarship: ")
                 .append(getScholarship())
                 .append("; Application Status: ")
-                .append(getApplicationStatus())
+                .append(getStatusOfApplication())
                 .append("; hasPinned: ")
                 .append(getPin().getHasPinned());
 
