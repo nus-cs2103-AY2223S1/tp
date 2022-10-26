@@ -1,6 +1,8 @@
 
 package seedu.address.model.entry;
 
+import java.text.DecimalFormat;
+
 import static java.lang.Double.parseDouble;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -14,6 +16,7 @@ public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Expense amount should only contain positive numbers, "
                     + "and it should be formatted to accept 2 decimal places";
     public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     private final double amount;
     private final String amountString;
 
@@ -26,7 +29,7 @@ public class Amount {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
         this.amount = parseDouble(amount);
-        this.amountString = amount;
+        this.amountString = "$" + df.format(this.amount);
     }
 
     /**
