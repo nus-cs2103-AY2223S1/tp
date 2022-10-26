@@ -78,7 +78,9 @@ public class DebtList {
             index++;
         }
         edited.debts.add(index, toAdd);
-        edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
+        if (!toAdd.isPaid()) {
+            edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
+        }
         return edited;
     }
 
@@ -95,7 +97,9 @@ public class DebtList {
         }
         DebtList edited = new DebtList(this);
         edited.debts.remove(toRemove);
-        edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        if (!toRemove.isPaid()) {
+            edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        }
         return edited;
     }
 
@@ -165,7 +169,9 @@ public class DebtList {
         DebtList debtList = new DebtList();
         for (Debt debt : list) {
             debtList.debts.add(debt);
-            debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
+            if (!debt.isPaid()) {
+                debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
+            }
         }
         return debtList;
     }
