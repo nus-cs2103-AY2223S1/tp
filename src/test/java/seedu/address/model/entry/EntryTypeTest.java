@@ -28,8 +28,12 @@ public class EntryTypeTest {
         assertFalse(EntryType.isValidEntryType(""));
         assertFalse(EntryType.isValidEntryType("c"));
 
-        // valid entry type
+        // valid expenditure type
         String validEntryType = "e";
+        assertTrue(EntryType.isValidEntryType(validEntryType));
+
+        // valid income type
+        validEntryType = "i";
         assertTrue(EntryType.isValidEntryType(validEntryType));
     }
 }
