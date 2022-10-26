@@ -6,7 +6,7 @@ import seedu.condonery.commons.core.Messages;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.model.Model;
-import seedu.condonery.model.property.TagContainsKeywordsPredicate;
+import seedu.condonery.model.property.PropertyTagContainsKeywordsPredicate;
 
 /**
  * Finds and lists all properties in Condonery whose name contains any of the argument keywords.
@@ -21,9 +21,9 @@ public class FilterPropertyCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " high-end";
 
-    private final TagContainsKeywordsPredicate predicate;
+    private final PropertyTagContainsKeywordsPredicate predicate;
 
-    public FilterPropertyCommand(TagContainsKeywordsPredicate predicate) {
+    public FilterPropertyCommand(PropertyTagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

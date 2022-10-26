@@ -9,24 +9,29 @@ import java.util.regex.Pattern;
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.ExitCommand;
-import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.UndoCommand;
 import seedu.condonery.logic.commands.client.AddClientCommand;
+import seedu.condonery.logic.commands.client.FilterClientCommand;
+import seedu.condonery.logic.commands.client.FindClientCommand;
 import seedu.condonery.logic.commands.client.ListClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.commands.property.DeletePropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.FilterPropertyCommand;
+import seedu.condonery.logic.commands.property.FindPropertyCommand;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
+import seedu.condonery.logic.commands.property.RangePropertyCommand;
 import seedu.condonery.logic.parser.client.AddClientCommandParser;
+import seedu.condonery.logic.parser.client.FilterClientCommandParser;
+import seedu.condonery.logic.parser.client.FindClientCommandParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.logic.parser.property.AddPropertyCommandParser;
 import seedu.condonery.logic.parser.property.DeletePropertyCommandParser;
 import seedu.condonery.logic.parser.property.EditPropertyCommandParser;
 import seedu.condonery.logic.parser.property.FilterPropertyCommandParser;
-
-
+import seedu.condonery.logic.parser.property.FindPropertyCommandParser;
+import seedu.condonery.logic.parser.property.RangePropertyCommandParser;
 
 /**
  * Parses user input.
@@ -71,8 +76,20 @@ public class CondoneryParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindPropertyCommand.COMMAND_WORD:
+            return new FindPropertyCommandParser().parse(arguments);
+
+        case FindClientCommand.COMMAND_WORD:
+            return new FindClientCommandParser().parse(arguments);
+
+        case FilterPropertyCommand.COMMAND_WORD:
+            return new FilterPropertyCommandParser().parse(arguments);
+
+        case FilterClientCommand.COMMAND_WORD:
+            return new FilterClientCommandParser().parse(arguments);
+
+        case RangePropertyCommand.COMMAND_WORD:
+            return new RangePropertyCommandParser().parse(arguments);
 
         case ListPropertyCommand.COMMAND_WORD:
             return new ListPropertyCommand();
@@ -86,8 +103,6 @@ public class CondoneryParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case FilterPropertyCommand.COMMAND_WORD:
-            return new FilterPropertyCommandParser().parse(arguments);
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
 

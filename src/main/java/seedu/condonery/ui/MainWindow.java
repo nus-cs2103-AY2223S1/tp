@@ -1,5 +1,9 @@
 package seedu.condonery.ui;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -9,6 +13,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
@@ -155,6 +160,34 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleImageUpload(String name) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload Image");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("All Images", "*.png", "*.jpg", "*.JPG", "*.jpeg", "*.JPEG"),
+            new FileChooser.ExtensionFilter("JPG", "*.jpg", "*.JPG", "*.jpeg", "*.JPEG"),
+            new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            try {
+                Files.copy(
+                    Files.newInputStream(file.toPath()),
+                    logic.getUserImageDirectoryPath().resolve(name),
+                    StandardCopyOption.REPLACE_EXISTING
+                );
+            } catch (IOException ex) {
+                logger.warning("Could not handle file upload: " + name);
+            }
+        }
+        propertyListPanel.refresh();
+    }
+
+    /**
      * Toggles the view to show Properties instead
      */
     @FXML
@@ -207,6 +240,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isImageUpload()) {
+                handleImageUpload(commandResult.getImageToUploadName());
             }
 
             return commandResult;

@@ -2,8 +2,8 @@ package seedu.condonery.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
 import static seedu.condonery.testutil.Assert.assertThrows;
 import static seedu.condonery.testutil.TypicalClients.ALICE_CLIENT;
 import static seedu.condonery.testutil.TypicalClients.BOB_CLIENT;
@@ -29,20 +29,20 @@ public class ClientTest {
 
         // same name, all other attributes different -> returns true
         Client editedAlice = new ClientBuilder().withName("Alice")
-                .withAddress(VALID_ADDRESS_BOB)
+                .withAddress(CLIENT_VALID_ADDRESS_BOB)
                 .withTags("tag1", "tag2").build();
         assertTrue(ALICE_CLIENT.isSameClient(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new ClientBuilder().withName(VALID_NAME_BOB).build();
+        editedAlice = new ClientBuilder().withName(CLIENT_VALID_NAME_BOB).build();
         assertFalse(ALICE_CLIENT.isSameClient(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Client editedBob = new ClientBuilder().withName(VALID_NAME_BOB.toLowerCase()).build();
+        Client editedBob = new ClientBuilder().withName(CLIENT_VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB_CLIENT.isSameClient(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        String nameWithTrailingSpaces = CLIENT_VALID_NAME_BOB + " ";
         editedBob = new ClientBuilder(BOB_CLIENT).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB_CLIENT.isSameClient(editedBob));
     }

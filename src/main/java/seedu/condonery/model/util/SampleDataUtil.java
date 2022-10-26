@@ -11,6 +11,7 @@ import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -21,17 +22,23 @@ public class SampleDataUtil {
     public static Property[] getSampleProperties() {
         return new Property[] {
             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
-                    getTagSet("High-End", "Available")),
+                    new Price("1000000"), getTagSet("High-End", "Available")),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
-                    getTagSet("High-End", "Sold")),
-            new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                    getTagSet("High-End", "Reserved"))
+                    new Price("1000000"), getTagSet("High-End", "Sold")),
+            new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
+                    new Price("1000000"), getTagSet("High-End", "Reserved"))
         };
     }
 
     public static Client[] getSampleClients() {
         // TODO: add sample client data
         return new Client[] {
+            new Client(new Name("Dennis Tan"), new Address("Wall St, #1G, S085301"),
+                    getTagSet("High-End", "Available")),
+            new Client(new Name("Jeremy Tan"), new Address("11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450"),
+                    getTagSet("High-End", "Sold")),
+            new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
+                    getTagSet("High-End", "Reserved"))
         };
     }
 
