@@ -32,7 +32,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
@@ -57,7 +57,7 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);

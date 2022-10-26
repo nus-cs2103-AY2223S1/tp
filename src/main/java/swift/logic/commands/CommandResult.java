@@ -11,52 +11,15 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean isShowHelp;
-
-    /** The application should exit. */
-    private final boolean isExit;
-
-    /** The application should switch to contacts tab. */
-    private final boolean isContactCommand;
-
-    /** The application should switch to tasks tab. */
-    private final boolean isTaskCommand;
+    /** Type of the command. */
+    private final CommandType commandType;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, boolean isContactCommand,
-                         boolean isTaskCommand) {
+    public CommandResult(String feedbackToUser, CommandType commandType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.isShowHelp = isShowHelp;
-        this.isExit = isExit;
-        this.isContactCommand = isContactCommand;
-        this.isTaskCommand = isTaskCommand;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this.feedbackToUser = feedbackToUser;
-        this.isShowHelp = false;
-        this.isExit = false;
-        this.isContactCommand = false;
-        this.isTaskCommand = false;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser, boolean isContactCommand, boolean isTaskCommand) {
-        this.feedbackToUser = feedbackToUser;
-        this.isShowHelp = false;
-        this.isExit = false;
-        this.isContactCommand = isContactCommand;
-        this.isTaskCommand = isTaskCommand;
+        this.commandType = commandType;
     }
 
     public String getFeedbackToUser() {
@@ -64,19 +27,19 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return isShowHelp;
+        return commandType == CommandType.HELP;
     }
 
     public boolean isExit() {
-        return isExit;
+        return commandType == CommandType.EXIT;
     }
 
     public boolean isContactCommand() {
-        return isContactCommand;
+        return commandType == CommandType.CONTACTS;
     }
 
     public boolean isTaskCommand() {
-        return isTaskCommand;
+        return commandType == CommandType.TASKS;
     }
 
     @Override
@@ -92,15 +55,12 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && isShowHelp == otherCommandResult.isShowHelp
-                && isExit == otherCommandResult.isExit
-                && isContactCommand == otherCommandResult.isContactCommand
-                && isTaskCommand == otherCommandResult.isTaskCommand;
+                && commandType == otherCommandResult.commandType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, isShowHelp, isExit);
+        return Objects.hash(feedbackToUser, commandType);
     }
 
 }

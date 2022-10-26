@@ -57,7 +57,7 @@ public class FindTaskCommandTest {
     public void execute_zeroKeywords_noTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         TaskNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindTaskCommand command = new FindTaskCommand(predicate);
@@ -70,7 +70,7 @@ public class FindTaskCommandTest {
     public void execute_multipleKeywords_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         TaskNameContainsKeywordsPredicate predicate = preparePredicate("Milk CS2103T");
         FindTaskCommand command = new FindTaskCommand(predicate);

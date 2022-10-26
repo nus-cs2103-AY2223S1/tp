@@ -36,7 +36,7 @@ public class SelectContactCommandTest {
         SelectContactCommand selectContactCommand = new SelectContactCommand(INDEX_SECOND_PERSON);
         String expectedMessage = SelectContactCommand.MESSAGE_SELECT_CONTACT_SUCCESS;
 
-        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.CONTACTS);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList((p) -> p.getId().equals(UUID.fromString(PERSON2_UUID)));
@@ -61,7 +61,7 @@ public class SelectContactCommandTest {
         SelectContactCommand selectContactCommand = new SelectContactCommand(INDEX_FIRST_PERSON);
         String expectedMessage = SelectContactCommand.MESSAGE_SELECT_CONTACT_SUCCESS;
 
-        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.CONTACTS);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList((p) -> p.getId().equals(UUID.fromString(PERSON1_UUID)));

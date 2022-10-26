@@ -41,7 +41,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         System.out.println(model.getFilteredTaskList());
@@ -63,7 +63,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
@@ -78,7 +78,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -96,7 +96,7 @@ public class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);

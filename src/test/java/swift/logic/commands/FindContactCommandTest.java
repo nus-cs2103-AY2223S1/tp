@@ -57,7 +57,7 @@ public class FindContactCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.CONTACTS);
         PersonNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindContactCommand command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -68,7 +68,7 @@ public class FindContactCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.CONTACTS);
         PersonNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindContactCommand command = new FindContactCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);

@@ -29,16 +29,14 @@ public class ListContactCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false, false,
-                true, false);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, CommandType.CONTACTS);
         assertCommandSuccess(new ListContactCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false, false,
-                true, false);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, CommandType.CONTACTS);
         assertCommandSuccess(new ListContactCommand(), model, expectedCommandResult, expectedModel);
     }
 }

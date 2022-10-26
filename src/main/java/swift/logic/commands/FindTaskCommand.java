@@ -35,7 +35,7 @@ public class FindTaskCommand extends Command {
         model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()),
-                false, true);
+                CommandType.TASKS);
     }
 
     @Override

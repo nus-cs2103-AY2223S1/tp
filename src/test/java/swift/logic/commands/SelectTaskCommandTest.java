@@ -37,7 +37,7 @@ public class SelectTaskCommandTest {
         SelectTaskCommand selectTaskCommand = new SelectTaskCommand(INDEX_THIRD_TASK);
         String expectedMessage = SelectTaskCommand.MESSAGE_SELECT_TASK_SUCCESS;
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList((p) -> p.getId().equals(UUID.fromString(PERSON2_UUID)));
@@ -62,7 +62,7 @@ public class SelectTaskCommandTest {
         SelectTaskCommand selectTaskCommand = new SelectTaskCommand(INDEX_FIRST_TASK);
         String expectedMessage = SelectTaskCommand.MESSAGE_SELECT_TASK_SUCCESS;
 
-        CommandResult commandResult = new CommandResult(expectedMessage, false, true);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.TASKS);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(p -> p.getId().equals(UUID.fromString(PERSON1_UUID)));

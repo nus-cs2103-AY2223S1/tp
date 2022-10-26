@@ -33,7 +33,7 @@ public class DeleteContactCommandTest {
 
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.CONTACTS);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -58,7 +58,7 @@ public class DeleteContactCommandTest {
 
         String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        CommandResult commandResult = new CommandResult(expectedMessage, true, false);
+        CommandResult commandResult = new CommandResult(expectedMessage, CommandType.CONTACTS);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
