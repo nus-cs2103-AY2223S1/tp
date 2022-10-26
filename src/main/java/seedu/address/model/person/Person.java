@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
 
@@ -122,6 +123,14 @@ public class Person {
      */
     public boolean hasFilePath() {
         return !filePath.isEmpty();
+    }
+
+    /**
+     * Deletes meetings with times that are before the local time on machine.
+     */
+    public static void syncMeetingTimes(Person toSync) {
+        Predicate<MeetingTime> predicate = new MeetingTimePastPredicate();
+        toSync.meetingTimes.removeIf(predicate);
     }
 
     /**

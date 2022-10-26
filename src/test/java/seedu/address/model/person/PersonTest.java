@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -97,5 +98,30 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void syncMeetingTimes() {
+
+        //No meetings
+        Person lazyGuy = new PersonBuilder().withMeetingTimes().build();
+        Person.syncMeetingTimes(lazyGuy);
+        assertEquals(lazyGuy, new PersonBuilder().withMeetingTimes().build());
+
+        //Meeting yet to come
+        Person futureGuy = new PersonBuilder().withMeetingTimes("19-11-2024-02:00").build();
+        Person.syncMeetingTimes(futureGuy);
+        assertEquals(futureGuy, new PersonBuilder().withMeetingTimes("19-11-2024-02:00").build());
+
+        //Meetings already passed
+        Person deadGuy = new PersonBuilder().withMeetingTimes("28-07-2020-15:00", "15-06-2022-17:00").build();
+        Person.syncMeetingTimes(deadGuy);
+        assertEquals(deadGuy, new PersonBuilder().withMeetingTimes().build());
+
+        //Multiple meetings
+        Person busyGuy = new PersonBuilder().withMeetingTimes("14-03-2023-16:00", "28-07-2020-15:00",
+                "15-06-2022-17:00", "19-11-2024-02:00").build();
+        Person.syncMeetingTimes(busyGuy);
+        assertEquals(busyGuy, new PersonBuilder().withMeetingTimes("14-03-2023-16:00", "19-11-2024-02:00").build());
     }
 }

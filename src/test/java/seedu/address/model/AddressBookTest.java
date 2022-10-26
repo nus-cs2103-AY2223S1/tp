@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -81,6 +82,21 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void syncMeetingTimes() {
+        Person alpha = new PersonBuilder().withMeetingTimes("28-07-2020-15:00").build();
+        Person beta = new PersonBuilder().withMeetingTimes().build();
+        List<Person> persons = Arrays.asList(CARL, alpha);
+        List<Person> newPersons = Arrays.asList(CARL, beta);
+        AddressBook newAddressBook = new AddressBook();
+        newAddressBook.setPersons(persons);
+        AddressBook expectedAddressBook = new AddressBook();
+        expectedAddressBook.setPersons(newPersons);
+        newAddressBook.syncMeetingTimes();
+
+        assertEquals(newAddressBook, expectedAddressBook);
     }
 
     /**
