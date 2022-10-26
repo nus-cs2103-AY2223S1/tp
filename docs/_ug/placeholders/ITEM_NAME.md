@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 The ITEM_NAME is the name we use to identify an item.
 
-```note
+```info
 - ITEM_NAME is a short text
 - ITEM_NAME should only contain alphanumeric characters and spaces
 - ITEM_NAME has a limit of 200 characters
