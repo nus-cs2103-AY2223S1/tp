@@ -25,7 +25,7 @@ import seedu.address.model.team.Url;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATETIME = "Datetime should have the following format yyyy-MM-dd HH:mm"
+    public static final String MESSAGE_INVALID_DATETIME = "DateTime should have the following format yyyy-MM-dd HH:mm"
             + " (e.g. 2022-01-01 10:01)";
 
     /**
