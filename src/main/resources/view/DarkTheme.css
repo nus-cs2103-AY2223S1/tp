@@ -1,67 +1,70 @@
 @font-face {
-    font-family: NotoSansRegular;
-    src: url("Fonts/NotoSans-Regular.ttf");
+    font-family: Regular;
+    src: url("Fonts/Poppins-Regular.ttf");
 }
 
 @font-face {
-    font-family: NotoSansBold;
-    src: url("Fonts/NotoSans-Bold.ttf");
+    font-family: Bold;
+    src: url("Fonts/Poppins-Bold.ttf");
 }
 
 @font-face {
-    font-family: NotoSansSemiBold;
-    src: url("Fonts/NotoSans-SemiBold.ttf");
+    font-family: SemiBold;
+    src: url("Fonts/Poppins-SemiBold.ttf");
 }
 
 @font-face {
-    font-family: NotoSansLight;
-    src: url("Fonts/NotoSans-Light.ttf");
-}
-
-/* The color palette is adopted from https://colorhunt.co/palette/1f1d363f3351864879e9a6a6 */
-
-.background {
-    -fx-background-color: #1F1D36;
-    background-color: #1F1D36;
+    font-family: Light;
+    src: url("Fonts/Poppins-Light.ttf");
 }
 
 .root {
-    -tab-text-color: #ffffff ;
+    -pw-surface: #1F1D36;
+    -pw-primary: #B42B51;
+    -pw-secondary: #3F3351;
+    -pw-light: #FFC8C8;
+    -pw-white: #FFFFFF;
+    -pw-black: #000000;
+}
+
+.background {
+    -fx-background-color: -pw-surface;
+    background-color: -pw-surface;
 }
 
 .chart-plot-background {
-   -fx-background-color: #1F1D36;
+   -fx-background-color: -pw-surface;
 }
 
 .label {
     -fx-font-size: 16px;
-    -fx-font-family: "NotoSansSemiBold";
-    -fx-text-fill: #555555;
+    -fx-font-family: "SemiBold";
+    -fx-text-fill: -pw-black;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 16px;
-    -fx-font-family: "NotoSansSemiBold";
-    -fx-text-fill: white;
+    -fx-font-family: "SemiBold";
+    -fx-text-fill: -pw-white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32px;
-    -fx-font-family: "NotoSansLight";
-    -fx-text-fill: white;
+    -fx-font-family: "Light";
+    -fx-text-fill: -pw-white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 16px;
-    -fx-font-family: "NotoSansSemiBold";
+    -fx-font-family: "SemiBold";
 }
 
 /* Tab Pane */
 .tab-label {
-    -fx-text-fill: -tab-text-color ;
+    -fx-text-fill: -pw-white;
 }
 
 .tab {
@@ -71,29 +74,30 @@
     -fx-font-size: 24px;
     -fx-padding: 8;
     -fx-border-width: 0 0 4 0;
+    -fx-border-color: transparent;
 }
 
 .tab:hover {
     /* Highlight the bottom border when the tab is hovered */
-    -fx-border-color: derive(#864879, 50%);;
+    -fx-border-color: -pw-secondary;
     -fx-cursor: hand;
 }
 
 .tab:selected {
     /* Highlight the bottom border when the tab is selected */
-    -fx-border-color: #864879;
+    -fx-border-color: -pw-primary;
 }
 
 .tab-pane .tab-header-area .tab-header-background {
     -fx-min-height: 0;
     -fx-max-height: 0;
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .table-view {
-    -fx-base: #1F1D36;
-    -fx-control-inner-background: #1F1D36;
-    -fx-background-color: #1F1D36;
+    -fx-base: -pw-surface;
+    -fx-control-inner-background: -pw-surface;
+    -fx-background-color: -pw-surface;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -117,8 +121,8 @@
 
 .table-view .column-header .label {
     -fx-font-size: 24px;
-    -fx-font-family: "NotoSansLight";
-    -fx-text-fill: white;
+    -fx-font-family: "Light";
+    -fx-text-fill: -pw-white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
 }
@@ -128,19 +132,19 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #1F1D36;
-    -fx-border-color: transparent transparent transparent #E9A6A6;
+    -fx-background-color: -pw-surface;
+    -fx-border-color: transparent transparent transparent -pw-light;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .list-view {
     -fx-background-insets: 8px;
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .list-cell {
@@ -153,45 +157,45 @@
 }
 
 .list-cell:filled {
-    -fx-background-color: #3F3351;
-    -fx-effect: innershadow(gaussian, #000000, 2, 2, 0, 0);
+    -fx-background-color: -pw-primary;
+    -fx-effect: dropshadow(gaussian, -pw-black, 2, 128, 0, 0);
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -pw-white;
 }
 
 .cell_big_label {
-    -fx-font-family: "NotoSansSemiBold";
+    -fx-font-family: "SemiBold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: -pw-white;
 }
 
 .cell_small_label {
-    -fx-font-family: "NotoSansRegular";
+    -fx-font-family: "Regular";
     -fx-font-size: 12px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: -pw-white;
 }
 
 .stack-pane {
-     -fx-background-color: #1F1D36;
+     -fx-background-color: -pw-surface;
 }
 
 .pane-with-border {
-     -fx-background-color: #1F1D36;
-     -fx-border-color: derive(#1F1D36, 20%);
+     -fx-background-color: -pw-surface;
+     -fx-border-color: derive(-pw-surface, 20%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: #3F3351;
+    -fx-background-color: -pw-primary;
 }
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "NotoSansLight";
+    -fx-font-family: "Light";
     -fx-font-size: 16px;
-    -fx-text-fill: white;
+    -fx-text-fill: -pw-white;
 }
 
 .result-display .label {
@@ -199,48 +203,48 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "NotoSansLight";
-    -fx-text-fill: white;
+    -fx-font-family: "Light";
+    -fx-text-fill: -pw-white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: #1F1D36;
-    -fx-border-color: derive(#1F1D36, 20%);
+    -fx-background-color: -pw-surface;
+    -fx-border-color: derive(-pw-surface, 20%);
     -fx-border-width: 1px;
 }
 
 .status-bar-with-border .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -pw-white;
 }
 
 .grid-pane {
-    -fx-background-color: #1F1D36;
-    -fx-border-color: derive(#1F1D36, 20%);
+    -fx-background-color: -pw-surface;
+    -fx-border-color: derive(-pw-surface, 20%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .context-menu {
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .context-menu .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -pw-white;
 }
 
 .menu-bar {
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-primary;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "NotoSansLight";
-    -fx-text-fill: white;
+    -fx-font-family: "Light";
+    -fx-text-fill: -pw-white;
     -fx-opacity: 0.9;
 }
 
@@ -248,13 +252,13 @@
     -fx-background-color: black;
 }
 
-.menu:hover, .menu-item  {
-    -fx-background-color: #864879;
+.menu:hover, .menu-item:hover  {
+    -fx-background-color: -pw-secondary;
     -fx-cursor: hand;
 }
 
-.menu:showing {
-    -fx-background-color: #864879;
+.menu:showing, .menu-item {
+    -fx-background-color: -pw-primary;
 }
 
 /*
@@ -264,27 +268,27 @@
  */
 .button {
     -fx-padding: 5 22 5 22;
-    -fx-border-color: derive(#1F1D36, 20%);
+    -fx-border-color: derive(-pw-surface, 20%);
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1F1D36;
-    -fx-font-family: "NotoSansRegular";
+    -fx-background-color: -pw-surface;
+    -fx-font-family: "Regular";
     -fx-font-size: 16px;
-    -fx-text-fill: #d8d8d8;
+    -fx-text-fill: -pw-white;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
-    -fx-background-color: #864879;
+    -fx-background-color: -pw-secondary;
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1F1D36;
+  -fx-background-color: -pw-white;
+  -fx-text-fill: -pw-surface;
 }
 
 .button:focused {
-    -fx-border-color: white, white;
+    -fx-border-color: -pw-white, white;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
@@ -293,50 +297,50 @@
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1F1D36;
-    -fx-text-fill: white;
+    -fx-background-color: -pw-surface;
+    -fx-text-fill: -pw-white;
 }
 
 .button:default {
     -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: -pw-white;
 }
 
 .button:default:hover {
-    -fx-background-color: #864879;
+    -fx-background-color: -pw-secondary;
 }
 
 .dialog-pane {
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .dialog-pane > *.label.content {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
+    -fx-text-fill: -pw-white;
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: #1F1D36;
+    -fx-background-color: -pw-surface;
 }
 
 .dialog-pane:header *.header-panel *.label {
     -fx-font-size: 16px;
     -fx-font-style: italic;
-    -fx-fill: white;
-    -fx-text-fill: white;
+    -fx-fill: -pw-white;
+    -fx-text-fill: -pw-white;
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1F1D36, 20%);
+    -fx-background-color: derive(-pw-surface, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1F1D36, 50%);
+    -fx-background-color: derive(-pw-surface, 50%);
     -fx-background-insets: 3;
 }
 

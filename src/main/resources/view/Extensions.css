@@ -10,11 +10,57 @@
 
 .tag-selector {
     -fx-border-width: 1;
-    -fx-border-color: white;
+    -fx-border-color: -pw-white;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
 }
 
 .tooltip-text {
-    -fx-text-fill: white;
+    -fx-text-fill: -pw-white;
+}
+
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+/* Command Box */
+#commandTypeLabel {
+    -fx-font-size: 16px;
+    -fx-text-fill: -pw-white;
+}
+
+#commandTextField {
+    -fx-background-color: derive(-pw-surface, 20%);
+    -fx-effect: dropshadow(gaussian, -pw-black, 1, 128, 0, 0);
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-padding: 8px;
+    -fx-background-insets: 0;
+    -fx-border-color: #1F1D36;
+    -fx-border-insets: 0;
+    -fx-border-width: 1;
+    -fx-font-family: "NotoSansLight";
+    -fx-font-size: 16px;
+    -fx-text-fill: -pw-white;
+}
+
+#resultDisplay .content {
+    -fx-background-color: -pw-surface;
+    -fx-background-radius: 0;
+    -fx-font-size: 16px;
+}
+
+#tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#tags .label {
+    -fx-text-fill: -pw-black;
+    -fx-background-color: -pw-light;
+    -fx-padding: 2 4;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 12px;
 }
