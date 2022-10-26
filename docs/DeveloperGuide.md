@@ -309,8 +309,23 @@ Design considerations:
 *to be further updated*
 
 #### 4.2.5 ViewAll command
+Implementation: 
 
-*To be updated*
+The `viewAll` command displays a list of all student records. 
+
+The sequence diagram below illustrates the interaction between the `Logic` and `Model` components. 
+
+*Insert sequence diagram*
+
+Given below is an example usage scenario of how the ViewAll mechanism behaves at each step. 
+
+Step 1. The user executes `viewAll` command. 
+
+Step 2. The `StudentRecordParser` will identify the command and create a `ViewAllCommand` object in the `LogicManager`
+
+Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`
+
+Step 4. Classify updates and displays a list of all student records
 
 #### 4.2.6 ViewClass command
 
@@ -355,11 +370,11 @@ The `ToggleViewCommand` toggles the application to display or hide all students'
 
 The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The `StudentListPanel` is dependent on the toggle status in `FilteredStudent` to display or hide the students' parent details properly in the `StudentCard`.
 
-The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` component. 
+The following sequence diagram shows the interaction between the `UI`, `Logic`, and `Model` components. 
 
 *Insert sequence diagram*
 
-Given below is explains how the toggle view mechanism behaves at each step.
+Given below is an example usage scenario of how the ToggleView mechanism behaves at each step
 
 Step 1. The user enters the command `toggleView`
 
