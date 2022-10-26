@@ -25,9 +25,9 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by email](#)
       * [Find by address](#)
       * [Find by student's contact number](#)
-      * [Find by Next of Kin's contact number](#)
+      * [Find by Next of Kin's contact number](#find-by-next-of-kins-contact-number)
       * [Find by class date](#find-by-class-date)
-      * [Find by tag](#)
+      * [Find by tag](#find-by-tag)
     * [Deleting a student: `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
@@ -283,7 +283,7 @@ Finds an existing student in the list. You can only find by one field at a time.
 - Class Date
 - Tag
 
-### Find by Name:
+#### Find by Name:
 
 Finds all students with names matching the keywords.
 
@@ -302,6 +302,25 @@ Example:
 
 [Back to top](#table-of-contents)
 
+#### Find by Next of Kin's Contact number:
+
+Finds all students with a particular next of kin contact number.
+
+Formats:
+1. `find np/NOKPHONE`
+
+- Only one phone number can be searched at each time.
+```yaml
+❗ Caution: Do not include more than one phone number like `find np/91232323 81231232`
+```
+
+Examples:
+
+`find np/91232323` returns the student with the next of kin phone number of 91232323
+
+[Back to top](#table-of-contents)
+
+
 #### Find by Class Date:
 
 Finds all students with classes on a particular date.
@@ -319,6 +338,26 @@ Examples:
 
 `find dt/2022-10-15` returns all students with classes on 15 October 2022.
 `find dt/Mon` returns all students with classes on the coming monday.
+
+[Back to top](#table-of-contents)
+
+#### Find by Tag:
+
+Finds all students with a particular tag.
+
+Formats:
+1. `find t/tagName`
+
+- Only one tag can be searched at each time
+```yaml
+❗ Caution: Do not include more than one tag like `find t/python java`
+```
+
+Examples:
+
+`find t/python` returns all students who have python as a tag, including students who have other tags on top of the
+python tag.
+`find dt/javascript` returns all students with javascript as a tag and other tags besides javascript.
 
 [Back to top](#table-of-contents)
 
