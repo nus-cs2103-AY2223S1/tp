@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Select the given appointment and filter appointment list by given appointment.
+ * Undo the last command.
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
