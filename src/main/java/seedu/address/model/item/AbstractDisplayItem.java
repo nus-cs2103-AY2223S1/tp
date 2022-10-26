@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
@@ -23,7 +24,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
     protected Name name;
     private int typeFlag;
     private int parentTypeFlag;
-    private List<Attribute<?>> attributes;
+    protected AttributeList attributes;
     private Set<Tag> tags;
 
     protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
@@ -31,7 +32,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         this.name = new Name(name);
         this.typeFlag = typeFlag;
         this.parentTypeFlag = parentTypeFlag;
-        attributes = new ArrayList<>();
+        attributes = new AttributeList();
         tags = new HashSet<>();
     }
 
@@ -81,10 +82,14 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         if (!attribute.isAllFlagMatch(typeFlag)) {
             throw new ItemCannotBeParentException(this);
         }
-        if (!attributes.stream().allMatch(x -> x.equals(attribute))) {
+        if (!attributes.toList().stream().allMatch(x -> x.equals(attribute))) {
             throw new ItemCannotBeParentException(this);
         }
-        attributes.add(attribute);
+        attributes.addAttribute(attribute);
+    }
+
+    public void addAttribute(String attributeName) {
+        attributes.addAttribute(attributeName);
     }
 
     @Override
@@ -94,7 +99,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
 
     @Override
     public void deleteAttribute(String type) {
-        attributes.removeIf(attr -> attr.getAttributeType().equals(type));
+        attributes.deleteAttribute(type);
     }
 
     @Override
@@ -141,7 +146,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
 
     @Override
     public List<Attribute<?>> getAttributes() {
-        return attributes;
+        return attributes.toList();
     }
 
     @Override

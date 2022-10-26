@@ -23,14 +23,13 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 public class Person extends AbstractDisplayItem {
 
     private Set<AbstractSingleItem> parents = new HashSet<>();
-    private AttributeList fields = new AttributeList();
 
     /**
      * Every field must be present and not null.
      */
     public Person(String name) {
         super(name, PERSON, GROUP);
-        requireAllNonNull(name, fields);
+        requireAllNonNull(name);
     }
 
     /**
@@ -39,7 +38,7 @@ public class Person extends AbstractDisplayItem {
     public Person(String name, AttributeList fields) {
         super(name, PERSON, GROUP);
         requireAllNonNull(name, fields);
-        this.fields = fields;
+        attributes = fields;
     }
 
     public Name getName() {
@@ -52,7 +51,7 @@ public class Person extends AbstractDisplayItem {
      * @return the Fields instance of the Person.
      */
     public AttributeList getFields() {
-        return fields;
+        return this.attributes;
     }
 
     /**
@@ -61,7 +60,7 @@ public class Person extends AbstractDisplayItem {
      * @param fieldName the field name to be added.
      */
     public void addField(String fieldName) {
-        fields.addAttribute(fieldName);
+        attributes.addAttribute(fieldName);
     }
 
     /**
@@ -70,7 +69,7 @@ public class Person extends AbstractDisplayItem {
      * @param fieldName the field name to be removed.
      */
     public void removeField(String fieldName) {
-        fields.removeField(fieldName);
+        attributes.removeField(fieldName);
     }
 
     /**

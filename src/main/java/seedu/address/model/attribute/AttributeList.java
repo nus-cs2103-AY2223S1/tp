@@ -54,6 +54,10 @@ public class AttributeList {
         this.addAttribute(attribute);
     }
 
+    public void deleteAttribute(String type) {
+        attributeList.removeIf(attr -> attr.getAttributeType().equals(type));
+    }
+
     /**
      * Removes a field from the list of fields.
      *
