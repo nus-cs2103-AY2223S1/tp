@@ -66,6 +66,14 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void addBirthdayTag() {
+        this.tags.add(new Tag("CAKE"));
+    }
+
+    public void removeBirthdayTag() {
+        this.tags.remove(new Tag("CAKE"));
+    }
+
     /**
      * Returns true if both persons have the same phone number or email address.
      * This defines a weaker notion of equality between two persons.
