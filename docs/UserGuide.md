@@ -145,6 +145,9 @@ Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
+- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
+  for male, `F`/`f`/`Female`/`female` for female.
+- Edits the date of birth of a person in the contact list. Date format accepted is: dd/mm/yyyy.
 
 Examples:
 *  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
@@ -152,34 +155,6 @@ Examples:
 *  `editPerson 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 *  `editPerson 3 n/Charlotte g/F d/3/4/1998` Edits the 3rd person’s contact: edits name to be `Charlotte`,
 edits gender to be `Female` and edits date of birth to be `3.4.1998`.
-
-__Optional Parameter 1: Gender__
-
-Format: `editPerson INDEX [g/GENDER]`
-
-- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
-for male, `F`/`f`/`Female`/`female` for female.
-- `INDEX` must be **a positive integer** (i.e 1,2,3…)
-- `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
-
-Examples:
-* `editPerson 1 g/M`
-* `editPerson 2 g/f`
-* `editPerson 3 g/F`
-
-__Optional Parameter 2: Date of Birth__
-
-Format: `editPerson INDEX [d/DOB]`
-
-- Edits the date of birth of a person in the contact list. Date format accepted is: dd/mm/yyyy.
-- `INDEX` must be **a positive integer** (i.e 1,2,3…)
-- `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
-
-
-Examples:
-* `editPerson 1 d/20/03/2000`
-* `editPerson 2 d/5/4/2000`
-* `editPerson 3 d/23/09/2000`
 
 ### Locating persons by name: `find`
 
