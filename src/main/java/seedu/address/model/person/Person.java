@@ -9,12 +9,12 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.MaximumSortedList;
 
 /**
  * Represents a Person in the address book.

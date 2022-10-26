@@ -11,7 +11,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
@@ -24,6 +23,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
+import seedu.address.model.util.MaximumSortedList;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
