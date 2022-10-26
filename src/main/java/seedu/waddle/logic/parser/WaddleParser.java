@@ -1,6 +1,8 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.waddle.commons.core.Messages.MESSAGE_UNAVAILABLE_COMMAND_HOME;
+import static seedu.waddle.commons.core.Messages.MESSAGE_UNAVAILABLE_COMMAND_ITINERARY;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_STAGE;
 
@@ -26,7 +28,6 @@ import seedu.waddle.logic.commands.HomeCommand;
 import seedu.waddle.logic.commands.ListCommand;
 import seedu.waddle.logic.commands.PlanCommand;
 import seedu.waddle.logic.commands.SelectCommand;
-import seedu.waddle.logic.commands.StageCommand;
 import seedu.waddle.logic.commands.UnplanCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
@@ -109,8 +110,14 @@ public class WaddleParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case PlanCommand.COMMAND_WORD:
+
+        case UnplanCommand.COMMAND_WORD:
+
+        case FreeCommand.COMMAND_WORD:
+
         case ExportCommand.COMMAND_WORD:
-            return new ExportCommand();
+            throw new ParseException(MESSAGE_UNAVAILABLE_COMMAND_HOME);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -130,9 +137,6 @@ public class WaddleParser {
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
-
-        case StageCommand.COMMAND_WORD:
-            return new StageCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -161,6 +165,13 @@ public class WaddleParser {
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
+
+        case ClearCommand.COMMAND_WORD:
+
+        case ListCommand.COMMAND_WORD:
+
+        case SelectCommand.COMMAND_WORD:
+            throw new ParseException(MESSAGE_UNAVAILABLE_COMMAND_ITINERARY);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
