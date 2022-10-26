@@ -16,6 +16,8 @@ Teacher’s Pet can get your contact and class management tasks done faster than
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
     * [Deleting a student: `delete`](#deleting-a-student-delete)
+    * [Undo a command: `undo`](#undo-the-last-command-undo)
+    * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -259,8 +261,39 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
+❗ Caution: Deleting a student by mistake can be reversed by "undo" command.
 ```
+
+[Back to top](#table-of-contents)
+
+---
+
+### Undo the last command: 'undo'
+
+Undoes the last command executed and restores the Teacher's Pet to the previous state.
+
+Format: `undo`
+
+[Back to top](#table-of-contents)
+
+---
+
+### Sort the displayed students: 'sort'
+
+Sort the displayed list of students (in the Student's Details panel) by the given `type` and `order`.
+
+Format: `sort TYPE [ORDER]`
+
+- `TYPE` must be from `NAME`, `CLASS`, and `OWED`.
+- `ORDER`, if present, must be from `ASC` or `DESC`. If it is left blank, it will follow the default order for the type.
+- Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
+- The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
+
+Examples:
+
+- `list` followed by `sort NAME` will list all the students by ascending order of their names.
+- `list` followed by `sort CLASS ASC` will list all the students by ascending order of their upcoming classes.
+- `list` followed by `sort OWED DESC` will list all the students by descending order of how much money they owe.
 
 [Back to top](#table-of-contents)
 
@@ -273,7 +306,7 @@ Clears all students and their details from the list.
 Format: `clear`
 
 ```yaml
-❗ Caution: Clearing all students is irreversible!
+❗ Caution: Clearing all students by mistake can be reversed by "undo" command!
 ```
 
 [Back to top](#table-of-contents)
@@ -322,15 +355,17 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                   |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000`   |
-| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431` |
-| Get help             | `help`                                                                                                                                                                                             |
-| List all students    | `list`                                                                                                                                                                                             |
-| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                    |
-| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                      |
-| Clear all students   | `clear`                                                                                                                                                                                            |
-| Exit the application | `exit`                                                                                                                                                                                             |
+| Action                  | Format, Examples                                                                                                                                                                                   |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a student           | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000`   |
+| Edit a student          | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431` |
+| Get help                | `help`                                                                                                                                                                                             |
+| List all students       | `list`                                                                                                                                                                                             |
+| Find a student          | find NAME `e.g., find John Doe`                                                                                                                                                                    |
+| Delete a student        | delete INDEX `e.g., delete 2`                                                                                                                                                                      |
+| Undo a command          | `undo`                                                                                                                                                                                             |
+| Sort displayed students | `sort` TYPE [ORDER]                                                                                                                                                                                |
+| Clear all students      | `clear`                                                                                                                                                                                            |
+| Exit the application    | `exit`                                                                                                                                                                                             |
 
 [Back to top](#table-of-contents)
