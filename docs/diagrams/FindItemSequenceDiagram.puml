@@ -4,52 +4,70 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TrackOParser" as TrackOParser LOGIC_COLOR
+participant "parser:FindItemCommandParser" as FindItemCommandParser LOGIC_COLOR
+participant "predicate:ItemContainsKeywordsPredicate" as ItemContainsKeywordsPredicate LOGIC_COLOR
 participant "command:FindItemCommand" as FindItemCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant "model:Model" as Model MODEL_COLOR
 
 end box
 
-[-> LogicManager : execute("listi")
+[-> LogicManager : execute("findi chair mattress")
 activate LogicManager
 
-LogicManager -> TrackOParser : parseCommand("listi")
+LogicManager -> TrackOParser : parseCommand("findi chair mattress")
 activate TrackOParser
 
-create ListItemsCommand
-TrackOParser -> ListItemsCommand
-activate ListItemsCommand
+create FindItemCommandParser
+TrackOParser -> FindItemCommandParser
+activate FindItemCommandParser
 
-ListItemsCommand --> TrackOParser : command
-deactivate ListItemsCommand
+FindItemCommandParser --> TrackOParser : parser
+deactivate FindItemCommandParser
+
+TrackOParser -> FindItemCommandParser : parse("chair mattress")
+activate FindItemCommandParser
+
+create ItemContainsKeywordsPredicate
+FindItemCommandParser -> ItemContainsKeywordsPredicate: ItemContainsKeywordsPredicate(["chair", "mattress"])
+activate ItemContainsKeywordsPredicate
+
+ItemContainsKeywordsPredicate --> FindItemCommandParser : predicate
+deactivate ItemContainsKeywordsPredicate
+
+create FindItemCommand
+FindItemCommandParser -> FindItemCommand : FindItemCommand(predicate)
+activate FindItemCommand
+
+FindItemCommand --> FindItemCommandParser : command
+deactivate FindItemCommand
+
+FindItemCommandParser --> TrackOParser : command
+deactivate FindItemCommandParser
+
 
 TrackOParser --> LogicManager : command
 deactivate TrackOParser
 
-LogicManager --> ListItemsCommand : execute()
-activate ListItemsCommand
+LogicManager -> FindItemCommand : execute(model)
+activate FindItemCommand
 
-ListItemsCommand -> Model : updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+FindItemCommand -> Model : updateFilteredItemList(predicate);
 activate Model
 deactivate Model
 
-note right
-PREDICATE_SHOW_ALL_ORDERS:
-Predicate to show all orders
-end note
-
 create CommandResult
-ListItemsCommand -> CommandResult
+FindItemCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ListItemsCommand : result
+CommandResult --> FindItemCommand : result
 deactivate CommandResult
 
-ListItemsCommand --> LogicManager : result
-deactivate ListItemsCommand
+FindItemCommand --> LogicManager : result
+deactivate FindItemCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml

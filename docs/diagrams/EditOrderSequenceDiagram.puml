@@ -12,7 +12,7 @@ participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+participant "model:Model" as Model MODEL_COLOR
 
 end box
 [-> LogicManager : execute("edito 3 n/John Doe i/Banana q/5")
@@ -28,10 +28,10 @@ activate EditOrderCommandParser
 EditOrderCommandParser --> TrackOParser : parser
 deactivate EditOrderCommandParser
 
-TrackOParser -> EditOrderCommandParser : parse("edito 3 n/John Doe i/Banana q/5")
+TrackOParser -> EditOrderCommandParser : parse("3 n/John Doe i/Banana q/5")
 activate EditOrderCommandParser
 
-EditOrderCommandParser -> "ArgumentTokenizer" : tokenize("edito 3 n/John Doe i/Banana q/5",\n "n/", "p/", "e/", "a/", "i/", "q/")
+EditOrderCommandParser -> "ArgumentTokenizer" : tokenize("3 n/John Doe i/Banana q/5",\n "n/", "p/", "e/", "a/", "i/", "q/")
 activate "ArgumentTokenizer"
 
 note right
@@ -79,7 +79,7 @@ deactivate TrackOParser
 
 destroy EditOrderCommandParser
 
-LogicManager -> EditOrderCommand : execute()
+LogicManager -> EditOrderCommand : execute(model)
 activate EditOrderCommand
 
 EditOrderCommand -> Model : getFilteredOrderList()
