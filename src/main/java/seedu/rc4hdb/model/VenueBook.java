@@ -81,10 +81,10 @@ public class VenueBook implements ReadOnlyVenueBook {
     }
 
     /**
-     * Removes {@code key} from this {@code VenueBook}. {@code key} must exist in the venue book.
+     * Deletes the venue corresponding to {@code venueName}. The given venue must exist in the venue book.
      */
-    public void removeVenue(Venue key) {
-        venues.remove(key);
+    public void removeVenue(VenueName venueName) {
+        venues.remove(venueName);
     }
 
     /**

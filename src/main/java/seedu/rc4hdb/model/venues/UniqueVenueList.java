@@ -63,6 +63,17 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
+     * Similar to
+     * @see #remove(Venue) but uses {@code VenueName} as an identifier.
+     */
+    public void remove(VenueName toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.removeIf(venue -> venue.isSameVenue(toRemove))) {
+            throw new VenueNotFoundException();
+        }
+    }
+
+    /**
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */

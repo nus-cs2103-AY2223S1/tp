@@ -116,9 +116,9 @@ public interface Model {
     boolean hasVenue(Venue venue);
 
     /**
-     * Deletes the given venue. {@code venue} must exist in the venue book.
+     * Deletes the venue corresponding to {@code venueName}. The given venue must exist in the venue book.
      */
-    void deleteVenue(Venue venue);
+    void deleteVenue(VenueName venueName);
 
     /**
      * Adds the given venue. {@code venue} must not already exist in the venue book.

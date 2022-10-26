@@ -174,9 +174,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteVenue(Venue target) {
-        requireNonNull(target);
-        venueBook.removeVenue(target);
+    public void deleteVenue(VenueName venueName) {
+        requireNonNull(venueName);
+        venueBook.removeVenue(venueName);
     }
 
     @Override

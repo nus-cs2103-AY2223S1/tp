@@ -23,11 +23,11 @@ public class VenueAddCommand extends VenueCommand implements ModelCommand {
             + "Example: " + COMMAND_WORD + " "
             + "meeting room ";
 
-    public static final String MESSAGE_SUCCESS = "The venue %s was successfully added.";
+    public static final String MESSAGE_SUCCESS = "The following venue was successfully added: %s";
     public static final String MESSAGE_DUPLICATE_VENUE = "The venue %s already exists.";
 
     /**
-     * Creates a VenueAdd to add the specified {@code Venue}
+     * Creates a VenueAddCommand to add the specified {@code Venue}
      */
     public VenueAddCommand(VenueName venueName) {
         super(venueName);
