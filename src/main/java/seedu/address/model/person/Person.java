@@ -11,7 +11,7 @@ import seedu.address.model.internship.InternshipId;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in InterNUS.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -28,7 +28,8 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null except internship.
+     * Everything must be present and not purely null.
+     * However, optional fields can be an object wrapping null.
      */
     public Person(
             PersonId personId,

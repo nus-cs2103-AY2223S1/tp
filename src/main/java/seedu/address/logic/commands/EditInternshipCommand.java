@@ -24,7 +24,7 @@ import seedu.address.model.internship.InterviewDate;
 import seedu.address.model.person.PersonId;
 
 /**
- * Edits the details of an existing internship in the address book.
+ * Edits the details of an existing internship in InterNUS.
  */
 public class EditInternshipCommand extends Command {
 
@@ -43,12 +43,14 @@ public class EditInternshipCommand extends Command {
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in InterNUS.";
 
     private final Index index;
     private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
+     * Creates an EditInternshipCommand to edit an {@code Internship}.
+     *
      * @param index of the internship in the filtered internship list to edit
      * @param editInternshipDescriptor details to edit the internship with
      */
