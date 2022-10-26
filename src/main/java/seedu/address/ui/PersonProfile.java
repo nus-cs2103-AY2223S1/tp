@@ -14,9 +14,9 @@ import seedu.address.model.person.Person;
  */
 public class PersonProfile extends UiPart<Region> {
     public static final String EMPTY_DISPLAY_VALUE = "-";
-    public final Person person;
-
     private static final String FXML = "PersonProfile.fxml";
+
+    public final Person person;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
