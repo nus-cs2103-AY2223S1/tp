@@ -104,7 +104,7 @@ public class TagList implements GenericList<Tag> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        internalTagList.forEach(builder::append);
+        internalTagList.forEach(t -> builder.append("[").append(t).append("]"));
         return builder.toString();
     }
 
