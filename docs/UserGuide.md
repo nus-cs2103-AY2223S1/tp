@@ -232,7 +232,7 @@ NUScheduler keeps track of all the successful commands you've made within each s
 :information_source: **Notes about the command history**:
 
 * Every time NUScheduler is closed, the command history is reset.
-* Edits made on the command history are not tracked,  
+* Edits made on the command history are not tracked.
 
 </div>
 
