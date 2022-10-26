@@ -33,12 +33,16 @@ public class CommandTestUtil {
 
     public static final String VALID_CATEGORY_AMY = "P";
     public static final String VALID_CATEGORY_BOB = "N";
+    public static final String VALID_MISSPELT_CATEGORY_BOB = "Nurse";
+    public static final String INVALID_MISSPELT_CATEGORY_BOB = "Nursey";
     public static final String VALID_UID_AMY = "10";
     public static final String VALID_UID_BOB = "11";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_GENDER_AMY = "F";
     public static final String VALID_GENDER_BOB = "M";
+    public static final String VALID_MISSPELT_GENDER_BOB = "Male";
+    public static final String INVALID_MISSPELT_GENDER_BOB = "maley";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -52,7 +56,6 @@ public class CommandTestUtil {
     public static final String VALID_VISITED_STATUS = "true";
     public static final String VALID_NOT_VISITED_STATUS = "false";
 
-
     public static final String OTHER_DATE_TIME = "2022-11-10T18:00";
     public static final String OTHER_DATE_TIME_TWO = "2022-12-04T17:35";
     public static final String OTHER_DATE_TIME_THREE = "2023-01-14T18:40";
@@ -64,12 +67,18 @@ public class CommandTestUtil {
 
     public static final String CATEGORY_DESC_AMY = " " + PREFIX_CATEGORY + VALID_CATEGORY_AMY;
     public static final String CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY + VALID_CATEGORY_BOB;
+    public static final String VALID_MISSPELT_CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY + VALID_MISSPELT_CATEGORY_BOB;
+    public static final String INVALID_MISSPELT_CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY
+            + INVALID_MISSPELT_CATEGORY_BOB;
     public static final String UID_DESC_AMY = " " + PREFIX_UID + VALID_UID_AMY;
     public static final String UID_DESC_BOB = " " + PREFIX_UID + VALID_UID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String VALID_MISSPELT_GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_MISSPELT_GENDER_BOB;
+    public static final String INVALID_MISSPELT_GENDER_DESC_BOB = " " + PREFIX_GENDER
+            + INVALID_MISSPELT_GENDER_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
