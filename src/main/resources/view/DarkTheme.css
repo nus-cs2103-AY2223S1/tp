@@ -19,7 +19,7 @@
 }
 
 .root {
-    /* Color theme adopted from https://colorhunt.co/palette/2c3333395b64a5c9cae7f6f2 */
+    /* Color theme adapted from https://colorhunt.co/palette/2c3333395b64a5c9cae7f6f2 */
     -pw-surface: #2C3333;
     -pw-primary: #395B64;
     -pw-secondary: #A5C9CA;
@@ -27,7 +27,7 @@
 
     -pw-white: #FFFFFF;
     -pw-black: #000000;
-    -pw-error: #E94560;
+    -pw-error: #A13333;
 
     -pw-shadow: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 8, 0.5, 0.0, 0.0);
 }
@@ -154,7 +154,7 @@
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
+    -fx-graphic-text-gap: 0;
     -fx-background-insets: 8px;
     -fx-background-radius: 16px;
     -fx-border-radius: 16px;

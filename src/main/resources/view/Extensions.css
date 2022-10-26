@@ -24,6 +24,7 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+    -fx-padding: 4px;
 }
 
 /* Command Box */
@@ -37,7 +38,7 @@
     -fx-effect: -pw-shadow;
     -fx-border-radius: 16px;
     -fx-background-radius: 16px;
-    -fx-padding: 8px;
+    -fx-padding: 16px;
     -fx-background-insets: 0;
     -fx-border-color: #1F1D36;
     -fx-border-insets: 0;
