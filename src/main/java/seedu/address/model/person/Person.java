@@ -24,11 +24,14 @@ public class Person {
     private final DateOfBirth dob;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Uid uid;
+
     /**
-     * Overloaded constructor that takes in optional parameter gender
+     * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags, Gender gender) {
-        requireAllNonNull(name, phone, email, address, tags, gender);
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, DateOfBirth dob,
+                  Set<Tag> tags, Uid uid) {
+        requireAllNonNull(name, phone, email, address, tags, gender, uid);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -36,6 +39,7 @@ public class Person {
         this.dob = dob;
         this.gender = gender;
         this.tags.addAll(tags);
+        this.uid = uid;
     }
 
     public Name getName() {
@@ -60,7 +64,9 @@ public class Person {
     public DateOfBirth getDob() {
         return dob;
     }
-
+    public Uid getUid() {
+        return uid;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -85,6 +91,7 @@ public class Person {
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
+     * Uid is not included in equality check.
      */
     @Override
     public boolean equals(Object other) {
