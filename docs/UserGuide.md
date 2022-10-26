@@ -55,6 +55,30 @@ FindMyIntern helps students who are applying for internships keep track of their
 
 ## Features
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Command format**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user<br>
+  * e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Google`
+
+* Items in square brackets are optional<br>
+  * e.g. `c/COMPANY [t/TAG]` can be used as `c/Google t/backend` or as `c/Google`
+
+* Items with `…` after them can be used multiple times, including zero times<br>
+  * e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/backend`, `t/backend t/summer` etc.
+
+* Parameters can be in any order<br>
+  * e.g. if the command specifies `d/DESCRIPTION l/LINK`, `l/LINK d/DESCRIPTION` is also acceptable
+
+* If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the parameter will be taken<br>
+  * e.g. if `c/Google c/TikTok` is entered, only `c/TikTok` will be taken
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored<br>
+  * e.g. if `help 123` is entered, it will be interpreted as `help`
+
+</div>
+
 ### Viewing help: `help`
 
 Shows a message explaning how to access the help page.
