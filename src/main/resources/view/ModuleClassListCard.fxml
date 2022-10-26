@@ -27,7 +27,6 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="classes" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
