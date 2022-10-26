@@ -10,7 +10,7 @@ import static longtimenosee.commons.util.AppUtil.checkArgument;
 public class Title {
 
     public static final String MESSAGE_FORMAT_CONSTRAINTS =
-            "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Titles should only contain a maximum of 40 alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -35,7 +35,7 @@ public class Title {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidTitle(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= 40;
     }
 
 

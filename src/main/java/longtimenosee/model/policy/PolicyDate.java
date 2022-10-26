@@ -21,7 +21,8 @@ public class PolicyDate {
         }
     };
     public static final String STANDARD_DATE = "yyyy-MM-dd";
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Dates must be between 1900 to 2100 and follow Format: "
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Years must be between (including) 1900 "
+            + "to 2100 and follow Format: "
             + STANDARD_DATE;
     private static final String DATE_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
@@ -54,8 +55,8 @@ public class PolicyDate {
             return false;
         }
         LocalDate verifiedDate = LocalDate.parse(date);
-        LocalDate lowerLimit = LocalDate.of(1900, 1, 1);
-        LocalDate upperLimit = LocalDate.of(2099, 12, 31);
+        LocalDate lowerLimit = LocalDate.of(1899, 12, 31);
+        LocalDate upperLimit = LocalDate.of(2101, 1, 1);
         return verifiedDate.isAfter(lowerLimit) && verifiedDate.isBefore(upperLimit);
     }
 
