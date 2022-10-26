@@ -2,7 +2,6 @@
 layout: page
 title: Sheryl-Lynn Tan's Project Portfolio Page
 ---
-
 ### Project: Mass Linkers
 Mass Linkers is a powerful Desktop application tool that provides a centralised platform for Computer Science (CS) students to find study support from batchmates with common modules. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
@@ -35,11 +34,11 @@ Given below are my contributions to the project.
 * Justification: It is crucial for users to be able to add interests without overwriting current interests.
 * Highlights: 
   * Implemented ```AddInterestCommand``` which handles adding a set of interests to a student.
-  * Implemented ```AddInterestPaerserCommand``` to parse ```addInt``` command arguments.
+  * Implemented ```AddInterestParserCommand``` to parse ```addInt``` command arguments.
   * Wrote tests for ```AddInterestCommandTest``` and ```AddInterestParserCommandTest```.
 
 #### Other Modifications: Modify Student Information
-* What it does: Removes ```Address``` field and add ```Telegram```and ```GitHub``` fields to a student.
+* What it does: Removes ```Address``` field and adds ```Telegram```and ```GitHub``` fields to a student.
 * Justification: Since Mass Linkers serves as a CS contact-sharing platform, it would be a value-add to include relevant socials to a batchmate.
 * Highlights:
     * Added private ```Telegram``` and ```GitHub``` fields to ```Student```.
