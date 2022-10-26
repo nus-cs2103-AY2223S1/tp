@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
 import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
 import seedu.address.model.tag.RiskTag;
 
@@ -36,7 +36,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (trimmedArgs.startsWith(PREFIX_RISKTAG.getPrefix())) {
             checkIfRiskTag(keywords);
             return new FindCommand(new RiskTagContainsKeywordsPredicate(Arrays.asList(keywords)));
-        } else if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
+        } else if (trimmedArgs.startsWith(PREFIX_TAG.getPrefix())) {
+            return new FindCommand(new NormalTagContainsKeywordsPredicate(Arrays.asList(keywords)));
+        }
+        else if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         } else {
             throw new ParseException(
