@@ -38,7 +38,7 @@ public class Website {
                 return false;
             }
             return true;
-        } catch (URISyntaxException mue) {
+        } catch (URISyntaxException use) {
             return false;
         }
     }
