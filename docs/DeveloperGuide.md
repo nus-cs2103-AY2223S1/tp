@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="700" />
 
 
 The `Model` component,
@@ -124,6 +124,7 @@ The `Model` component,
 * stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores the task book data i.e., all `Task` objects which are contained in a `TaskList` object
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
@@ -137,11 +138,11 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, task book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `TaskBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -197,6 +198,7 @@ The student attendance feature keeps track of student's attendance. The feature 
 The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram.
 This is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
 
+
 The attendance commands when executed will use methods exposed by the ```Model``` interface and perform the related operations.
 
 **Common steps among the Attendance Commands**
@@ -226,7 +228,7 @@ The following is a more detailed explanation on how `AttendanceMarkCommand` work
 1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceMarkCommandParser``` to further separate user input.
 2. Following which, ```AttendanceMarkCommand#execute(Model model)``` method is called which validates the attendance list.
 3. If the student index, lesson number or attendance value specified is invalid, a ```ParserExeception``` will be thrown and attendance will not be marked.
-4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message. 
+4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message.
 
 **Delete Attendance command**
 Implementation:
@@ -256,6 +258,91 @@ Figure No. Sequence diagram for AttendanceDeleteCommand
 - Current Implementation: Max size of 12
 - Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
 - Cons: Less flexibility in size of attendance list.
+### Upload Student Picture Feature
+The address book is able to have profile pictures assigned to each student. The upload picture feature allows for tutors to add the profile picture corresponding to a student.
+This feature comprises a single ```UploadPictureCommand```
+
+The command when executed uses methods exposed by the ```Model``` interface and ```ImageStorage``` Class.
+
+The following is a more detailed explanation of how the `UploadPictureCommand` works.
+1. After the successful parsing of user input into ```UploadPictureCommandParser```, the ```UploadPictureCommand``` object is created.
+2. Following which, ```UploadPictureCommand#execute(Model model)``` method is called which calls ```ImageStorage#chooseImage()``` to open the file chooser.
+3. The user then selects the picture from their files, and it is checked by ```ImageStorage#isJpgFile()``` for being a file of valid format.
+4. The file is then uploaded via ```ImageStorage#uploadImage(Student student, File file)``` into the images folder in the current working directory which was created upon intialization of GREWZ.
+5. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
+
+![picture upload activity](images/PictureUploadActivityDiagram.png)
+Figure No. Activity diagram for PictureUploadCommand
+![picture upload sequence](images/PictureUploadSequenceDiagram.png)
+Figure No. Sequence diagram for PictureUploadCommand
+
+
+#### Design considerations:
+
+**Aspect: How to select an image**
+- Current implementation: A file chooser window is opened.
+- Pros: User can navigate visually through the files.
+- Cons: User will need to use a mouse instead of typing only.
+- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture. 
+- Pros: Users only needs to type.
+- Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out.
+
+**Aspect: Proccessing of Images**
+- Current Implementation: Handled by functions in the ImageStorage Class.
+- Pros: All operations regarding choosing, uploading and validating the picture is done in the same class.
+- Cons: The ImageStorage Class becomes just a class of static functions which cannot be tested.
+
+**Aspect: Changing an existing Image**
+- Current Implementation: User just uses ```upload-pic``` command for student they want to change the picture of and reselcts the picture.
+- Pros: Single command word to add and edit picture, convenient to use.
+- Cons: Users might accidentally upload the image for the wrong student and there is no way to undo the change.
+- Alternatives considered: We have considered having a separate ```update-pic``` command solely for changing an existing picture of a student.
+- Pros: Clearer instruction and prevents error from user.
+- Cons: User will have to be more familiar with more commands.
+
+### Add/delete Task feature
+The add/delete `Task` feature allows users to create and remove tasks. This feature uses the following commands:
+* `task` t/TITLE d/DESCRIPTION
+* `remove-task` INDEX
+
+which invokes the `TaskCommand` and the `RemoveTaskCommand` respectively.
+These commands when executed will use methods exposed by the `Model` and `TaskBookStorage` interface and perform the related operations.
+
+#### About Task
+Each `Task` has non-optional title and description fields. Future iterations may introduce new types of `Task`, including `Deadline` and `Assignment`.
+Currently, task information is stored in a different file from student information as they are two separate (and unrelated) data types.
+
+The following is a more detailed explanation on how the `TaskCommand` works.
+1. If the title or description fields are missing or invalid, a 'ParserException' will be thrown and the new `Task` will not be added.
+2. After the successful parsing of user input into `TaskCommandParser`, the `TaskCommand` object is created.
+3. Following which, `TaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#add(Task toAdd)` method, adding the new `Task` object to the internal list.
+4. Next, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+Figure No. Sequence diagram for TaskCommand
+
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+Figure No. Activity diagram for TaskCommand
+
+The following is a more detailed explanation on how the `RemoveTaskCommand` works.
+1. If the task index specified is invalid, a `ParserException` will be thrown and the specified `Task` will not be removed.
+2. After the successful parsing of user input into `RemoveTaskCommandParser`, the `RemoveTaskCommand` object is created.
+3. Following which, `RemoveTaskCommand#execute(Model model)` method is called which eventually calls the `TaskList#remove(Task toRemove)` method, removing the specified `Task` object from the internal list.
+4. Next, similar to `TaskCommand`, the `TaskBookStorage#saveTaskBook(ReadOnlyTaskBook taskBook)` method is called, which serializes each `Task` in the updated `TaskBook` and writes them to the `taskbook.json` file at the predefined relative path.
+5. Lastly, if the `TaskBook` has been saved without problems, a new `CommandResult` will be returned with the success message.
+
+#### Design considerations:
+
+**Aspect: Storage for `TaskBook`**
+- Current implementation: A totally new storage class, serializer class and data file specifically for `Task`
+- Pros: Easy to distinguish different classes handling different types of data (`Student` vs `Task`)
+- Cons: Some classes and methods are similar across `AddressBook` and `TaskBook`
+- Alternatives considered: We considered integrating `TaskBook` into the given `AddressBook` infrastructure, meaning that we will be storing `Task` data together with `Student` data into `addressbook.json`
+- Pros: Easier to implement, less code to write
+- Cons: Higher coupling, since any change in `TaskBook` could potentially affect `AddressBookStorage`
 
 ### \[Proposed\] Undo/redo feature
 
@@ -337,9 +424,40 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Enhanced\] ***Add*** Feature
 
-_{Explain here how the data archiving feature will be implemented}_
+This feature was enhanced to help teacher assistants add students' profiles with ease. 
+The feature uses the command : 
+* `add` n/NAME, i/STUDENTID, [p/PHONE], [e/EMAIL], [c/CLASSGROUP], [t/TAGS]
+
+
+#### Feature Updates 
+* ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional).
+* ***Only*** Name and Student ID are a must.
+* Provides a **more flexibly way** of adding students' profiles.
+
+The improved feature allows user to leave certain fields empty if they do not have the information to fill them.
+
+#### The `add` Command Implementation:
+
+The following is a more detailed explanation on how the new `add` feature works.
+
+1. The `AddressBookParser` will select `AddCommandParser` and parse the user input.
+2. `AddCommandParser` checks for optional fields that are not filled in and will automatically set them to 'NA' in the Addressbook.
+3. Following which, `AddCommand#execute(Model model)` method is called which adds the students into the Addressbook.
+4. If the student's data is already there, the input will throw an error saying "This student already exists."
+
+![AddCommand Sequence Diagram](images/AddCommandSequenceDiagram.png)
+Figure No. Sequence Diagram for Improved AddCommand Feature
+![AddCommand Activity Diagram](images/AddCommandActivityDiagram.png)
+Figure No. Activity Diagram for Improved AddCommand Feature
+
+#### Design considerations 
+
+**Aspect: Wrapping 'NA' into Type X**
+* Current implementation : Making 'NA' into a new X type when Information for X is not available where X can be Email, Phone or Class Group Type.
+* Pros: Simple to Store and Understand, works as intended even if users decide to input 'NA' into these optional fields.
+* Cons: Not exactly logically correct as NA is not of Type X.
 
 
 --------------------------------------------------------------------------------------------------------------------

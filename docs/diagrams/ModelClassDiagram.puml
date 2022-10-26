@@ -6,47 +6,74 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaskBook" as ReadOnlyTaskBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
 Class AddressBook
+Class TaskBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
+Class UniqueStudentList
+Class Student
+Class StudentId
 Class Email
 Class ClassGroup
 Class Name
 Class Phone
 Class Tag
 
+Class Task
+Class TaskTitle
+Class TaskDescription
+Class TaskList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+TaskBook .up.|> ReadOnlyTaskBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager .up..|> Model
+Model .down.> ReadOnlyUserPrefs
+Model .right> ReadOnlyAddressBook
+Model .left.> ReadOnlyTaskBook
+ModelManager --> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager --> "1" TaskBook
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> ClassGroup
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueStudentList
+UniqueStudentList --> "~* all" Student
+Student *--> Name
+Student *--> Phone
+Student *--> Email
+Student *--> ClassGroup
+Student *--> StudentId
+Student *--> "*" Tag
+
+TaskBook *--> "1" TaskList
+TaskList --> "~* all" Task
+Task *--> TaskTitle
+Task *--> TaskDescription
+
+ReadOnlyAddressBook -[hidden]right> ReadOnlyUserPrefs
+ReadOnlyUserPrefs -[hidden]right-> ReadOnlyTaskBook
+
+AddressBook -[hidden]right> UserPrefs
+UserPrefs -[hidden]right-> TaskBook
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+StudentId -[hidden]right-> Email
+Email -[hidden]right-> ClassGroup
+ClassGroup -[hidden]right-> Tag
 
-ModelManager -->"~* filtered" Person
+TaskTitle -[hidden]right-> TaskDescription
+
+TaskList -[hidden]right-> UniqueStudentList
+Task -[hidden]right-> Student
+TaskDescription -[hidden]right-> Name
+
+ModelManager -->"~* filtered" Student
 @enduml

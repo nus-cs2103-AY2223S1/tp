@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.ToDoBuilder;
 
 public class TaskCommandParserTest {
 
@@ -20,7 +20,7 @@ public class TaskCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder()
+        Task expectedTask = new ToDoBuilder()
                 .withTitle(VALID_TASK_TITLE)
                 .withDescription(VALID_TASK_DESCRIPTION)
                 .build();

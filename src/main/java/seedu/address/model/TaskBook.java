@@ -71,8 +71,21 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.add(t);
     }
 
+    /**
+     * Deletes given task from task book.
+     */
     public void deleteTask(Task t) {
         tasks.remove(t);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the task book.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
     }
 
     //// util methods

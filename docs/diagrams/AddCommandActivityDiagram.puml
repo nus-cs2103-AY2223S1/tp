@@ -1,0 +1,29 @@
+@startuml
+start
+:User inputs Add command;
+
+:Parses the command;
+
+if() then ([Valid Input])
+    :Executes AddCommand;
+    if() then([Name is Taken])
+            :Shows CommandException:
+           "This student already exist
+            in the address book.";
+    else if() then ([Student ID is taken])
+        :Shows CommandException:
+       "Following student ID already
+        exists...";
+    else([student ID
+    and name is valid])
+        :Shows new student added.
+        Student added into the address
+        book;
+    endif
+else([missing name
+    and Student ID Input])
+    :Show parse error message
+    "Invalid Command Format";
+endif
+stop
+@enduml
