@@ -26,8 +26,8 @@ import swift.logic.parser.Prefix;
 import swift.model.Model;
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.Name;
 import swift.model.person.Person;
+import swift.model.person.PersonName;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
 
@@ -105,7 +105,7 @@ public class EditContactCommand extends Command {
         assert personToEdit != null;
 
         UUID updatedId = personToEdit.getId();
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        PersonName updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
@@ -137,7 +137,7 @@ public class EditContactCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
+        private PersonName name;
         private Phone phone;
         private Email email;
         private Address address;
@@ -164,11 +164,11 @@ public class EditContactCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public void setName(Name name) {
+        public void setName(PersonName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<PersonName> getName() {
             return Optional.ofNullable(name);
         }
 

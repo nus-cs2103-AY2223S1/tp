@@ -3,6 +3,8 @@ package swift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
 import org.junit.jupiter.api.Test;
@@ -25,8 +27,10 @@ public class CommandSuggestorTest {
     @Test
     public void suggestCommand_validCommand_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
-                                        + PREFIX_CONTACT + "<contact_index>" + " "
-                                        + PREFIX_NAME + "<name>";
+                + PREFIX_NAME + "<name> "
+                + PREFIX_DESCRIPTION + "<description> "
+                + PREFIX_CONTACT + "<contact_index> "
+                + PREFIX_DEADLINE + "<deadline>";
         try {
             System.out.println(expectedSuggestion);
             System.out.println(commandSuggestor.suggestCommand("add_t"));
@@ -44,8 +48,10 @@ public class CommandSuggestorTest {
     @Test
     public void suggestCommand_validCommandWithPrefix_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
-                                        + PREFIX_NAME + " "
-                                        + PREFIX_CONTACT + "<contact_index>";
+                + PREFIX_NAME + " "
+                + PREFIX_DESCRIPTION + "<description> "
+                + PREFIX_CONTACT + "<contact_index> "
+                + PREFIX_DEADLINE + "<deadline>";
         try {
             assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("add_task n/ "));
         } catch (CommandException e) {
@@ -57,7 +63,9 @@ public class CommandSuggestorTest {
     public void suggestCommand_validCommandWithPrefixAndValue_success() {
         String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " "
                                         + PREFIX_NAME + "abc "
-                                        + PREFIX_CONTACT + "<contact_index>";
+                                        + PREFIX_DESCRIPTION + "<description> "
+                                        + PREFIX_CONTACT + "<contact_index> "
+                                        + PREFIX_DEADLINE + "<deadline>";
         try {
             assertEquals(expectedSuggestion, commandSuggestor.suggestCommand("add_task n/abc "));
         } catch (CommandException e) {
@@ -83,7 +91,7 @@ public class CommandSuggestorTest {
 
     @Test
     public void autocomplete_validCommandWithPrefix_success() {
-        String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " " + PREFIX_CONTACT;
+        String expectedSuggestion = AddTaskCommand.COMMAND_WORD + " " + PREFIX_NAME;
         try {
             assertEquals(expectedSuggestion, commandSuggestor.autocompleteCommand("add_task ",
                     commandSuggestor.suggestCommand("add_task ")));

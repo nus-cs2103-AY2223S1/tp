@@ -80,6 +80,14 @@ public class CommandTestUtil {
     public static final String VALID_TASK_NAME_1 = "Buy Milk";
     public static final String VALID_TASK_NAME_2 = "CS2103T";
     public static final String VALID_TASK_NAME_3 = "Finish Assignment";
+    public static final String VALID_TASK_NAME_4 = "CS2101";
+    public static final String VALID_TASK_NAME_5 = "CS3230";
+    public static final String VALID_DESCRIPTION_1 = "Finish tutorial";
+    public static final String VALID_DESCRIPTION_2 = "Meeting link: https://www.example.com";
+    public static final String EMPTY_DESCRIPTION = null;
+    public static final String VALID_DEADLINE_1 = "12-12-2022 1200";
+    public static final String VALID_DEADLINE_2 = "12-06-2022 1800";
+    public static final String EMPTY_DEADLINE = null;
 
     public static final EditTaskCommand.EditTaskDescriptor DESC_TASK_1;
     public static final EditTaskCommand.EditTaskDescriptor DESC_TASK_2;

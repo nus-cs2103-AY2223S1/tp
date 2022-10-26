@@ -98,9 +98,9 @@ public class EditTaskCommandTest {
 
     @Test
     public void execute_duplicateTaskUnfilteredList_failure() {
-        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task firstTask = model.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(firstTask).build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_TASK, descriptor);
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK, descriptor);
 
         assertCommandFailure(editTaskCommand, model, EditTaskCommand.MESSAGE_DUPLICATE_TASK);
     }

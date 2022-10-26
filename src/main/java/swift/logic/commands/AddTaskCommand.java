@@ -3,6 +3,8 @@ package swift.logic.commands;
 import static java.util.Map.entry;
 import static swift.commons.util.CollectionUtil.requireAllNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Collection;
@@ -23,15 +25,21 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add_task";
     public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
             Map.ofEntries(entry(PREFIX_NAME, "<name>"),
+                          entry(PREFIX_DESCRIPTION, "<description>"),
+                          entry(PREFIX_DEADLINE, "<deadline>"),
                           entry(PREFIX_CONTACT, "<contact_index>")));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the task list.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_CONTACT + "CONTACT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T Tutorial "
+            + PREFIX_DESCRIPTION + "Finish assignment by then "
+            + PREFIX_DEADLINE + "12/12/2022 1200 "
             + PREFIX_CONTACT + "1 "
             + PREFIX_CONTACT + "2";
 

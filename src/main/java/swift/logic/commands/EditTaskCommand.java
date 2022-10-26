@@ -2,7 +2,8 @@ package swift.logic.commands;
 
 import static java.util.Map.entry;
 import static java.util.Objects.requireNonNull;
-import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -18,6 +19,8 @@ import swift.commons.util.CollectionUtil;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.Prefix;
 import swift.model.Model;
+import swift.model.task.Deadline;
+import swift.model.task.Description;
 import swift.model.task.Task;
 import swift.model.task.TaskName;
 
@@ -29,17 +32,20 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edit_task";
     public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
             Map.ofEntries(entry(PREFIX_NAME, "<name>"),
-                          entry(PREFIX_CONTACT, "<contact>")));
+                    entry(PREFIX_DESCRIPTION, "<description>"),
+                    entry(PREFIX_DEADLINE, "<deadline>")));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
         + "by the index number used in the displayed task list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_CONTACT + "CONTACT] "
+        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+        + "[" + PREFIX_DEADLINE + "DEADLINE] "
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "Finish Assignment "
-        + PREFIX_CONTACT + "2";
+        + PREFIX_DESCRIPTION + "Write your name "
+        + PREFIX_DEADLINE + "12/12/2022 1800";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -90,9 +96,11 @@ public class EditTaskCommand extends Command {
         assert taskToEdit != null;
 
         UUID updatedId = taskToEdit.getId();
-        TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
+        TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getName());
+        Optional<Description> updatedDescription = editTaskDescriptor.getDescription().or(taskToEdit::getDescription);
+        Optional<Deadline> updatedDeadline = editTaskDescriptor.getDeadline().or(taskToEdit::getDeadline);
 
-        return new Task(updatedId, updatedTaskName);
+        return new Task(updatedId, updatedTaskName, updatedDescription, updatedDeadline);
     }
 
     @Override
@@ -119,6 +127,8 @@ public class EditTaskCommand extends Command {
     */
     public static class EditTaskDescriptor {
         private TaskName taskName;
+        private Description description;
+        private Deadline deadline;
         private Index contactIndex;
 
         public EditTaskDescriptor() {}
@@ -129,6 +139,8 @@ public class EditTaskCommand extends Command {
         */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTaskName(toCopy.taskName);
+            setDescription(toCopy.description);
+            setDeadline(toCopy.deadline);
             setContactIndex(toCopy.contactIndex);
         }
 
@@ -136,7 +148,7 @@ public class EditTaskCommand extends Command {
         * Returns true if at least one field is edited.
         */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(taskName, contactIndex);
+            return CollectionUtil.isAnyNonNull(taskName, description, deadline, contactIndex);
         }
 
         public void setTaskName(TaskName taskName) {
@@ -145,6 +157,22 @@ public class EditTaskCommand extends Command {
 
         public Optional<TaskName> getTaskName() {
             return Optional.ofNullable(taskName);
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
         }
 
         public void setContactIndex(Index contactIndex) {
@@ -171,7 +199,9 @@ public class EditTaskCommand extends Command {
             EditTaskDescriptor e = (EditTaskDescriptor) other;
 
             return getTaskName().equals(e.getTaskName())
-                && getContactIndex().equals(e.getContactIndex());
+                    && getDescription().equals(e.getDescription())
+                    && getDeadline().equals(e.getDeadline())
+                    && getContactIndex().equals(e.getContactIndex());
         }
     }
 }
