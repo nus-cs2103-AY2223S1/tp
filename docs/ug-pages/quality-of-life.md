@@ -15,6 +15,7 @@ Key | Functionality
 `F1` | Opens the Help Window if it's not open
 `F2` | Highlights the first row of the displayed list
 `F3` | Quick-access to the command input box
+`Ctrl+Tab` | Allows for quick switching
 
 This feature is especially useful if you want to refer to our Help Window which contains a summary of our commands.
 
