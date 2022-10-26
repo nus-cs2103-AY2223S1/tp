@@ -3,12 +3,14 @@ package seedu.address.ui;
 import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.model.person.Person;
 
-public class MainDisplay extends UiPart<Region>{
+/**
+ * A UI component that displays regions on the main display.
+ */
+public class MainDisplay extends UiPart<Region> {
 
     private static final String FXML = "MainDisplay.fxml";
 
