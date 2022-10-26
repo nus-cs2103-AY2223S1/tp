@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Set;
 
 import seedu.address.model.tag.Medication;
@@ -40,6 +41,18 @@ public class PastAppointment extends Appointment {
      */
     public String getDiagnosis() {
         return this.diagnosis;
+    }
+
+    /**
+     * Returns a string representation of the medications.
+     */
+    public String getMedicationString() {
+        StringBuilder sb = new StringBuilder("Medication: ");
+        getMedication().stream().sorted(Comparator.comparing(medication -> medication.medicationName))
+                .forEach(medication -> sb.append(medication.medicationName).append(", "));
+        // remove trailing comma
+        sb.delete(sb.length() - 2, sb.length());
+        return sb.toString();
     }
 
     @Override
