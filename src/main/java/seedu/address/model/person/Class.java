@@ -52,6 +52,22 @@ public class Class {
      * @param startTime LocalTime object.
      * @param endTime LocalTime object.
      */
+    public Class(LocalDate date, LocalTime startTime, LocalTime endTime) {
+        requireAllNonNull(date, startTime, endTime);
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.classDateTime = this.toString();
+    }
+
+    /**
+     * Constructs a {@code Class}.
+     *
+     * @param date LocalDate object.
+     * @param startTime LocalTime object.
+     * @param endTime LocalTime object.
+     * @param classDateTime String object which is a string representation of the date time.
+     */
     public Class(LocalDate date, LocalTime startTime, LocalTime endTime, String classDateTime) {
         requireAllNonNull(date, startTime, endTime, classDateTime);
         this.date = date;
