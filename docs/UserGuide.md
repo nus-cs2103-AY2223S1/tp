@@ -103,7 +103,7 @@ Format: `add n/COMPANY_NAME p/POSITION s/SALARY e/EMAIL w/WEBSITE [t/TAG]…`
 **:information_source: Note about duplicates:**<br>
 
 An internship application can only be added if it does not currently exist in InTrack. Each internship application is
-uniquely identified by its `COMPANY` and `POSITION` with no regards to case-sensitivity.<br>
+uniquely identified by its `COMPANY_NAME` and `POSITION` with no regards to case-sensitivity.<br>
 
 Example: If an internship application with the parameters `n/Microsoft p/Software Engineer` already exists in InTrack, 
 a new one with `n/MICROSOFT p/Software Engineer` will be treated as a duplicate and will not be added.
@@ -112,18 +112,18 @@ a new one with `n/MICROSOFT p/Software Engineer` will be treated as a duplicate 
 
 | Parameter      | Representation                               | Constraints |
 |----------------|----------------------------------------------|-------------|
-| `COMPANY_NAME` | Company that is offering the internship      |             |
-| `POSITION`     | Position of the internship                   |             |
-| `SALARY `      | Salary of the position                       |             |
-| `EMAIL`        | Email of the hiring team                     |             |
-| `WEBSITE`      | Website containing details of the internship |             |
-| `TAG`          | Tag(s) of the internship application         |             |
+| `COMPANY_NAME` | Company that is offering the internship      | Should only contain alphanumeric characters and spaces, and should not be blank|
+| `POSITION`     | Position of the internship                   | Can take any values, but should not be blank            |
+| `SALARY `      | Salary of the position                       | Must be fully numeric            |
+| `EMAIL`        | Email of the hiring team                     | Should be of the format local-part@domain |
+| `WEBSITE`      | Website containing details of the internship | Should be a valid URL            |
+| `TAG`          | Tag(s) of the internship application         | Should be alphanumeric            |
 
 Examples of usage:
 
-* `add n/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/https://careers.microsoft.com t/Urgent`
+* `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`
 
-* `add n/Apple p/Frontend Developer s/5000 e/hr@apple.com w/https://www.apple.com/careers`
+* `add n/Apple p/Frontend Developer e/hr@apple.com w/https://www.apple.com/careers s/5000`
 
 Expected outcome:
 
@@ -243,6 +243,25 @@ Expected outcome:
 * The first internship application in InTrack is selected and its details are shown on the right panel. 
 
 ### Adding a task to a selected internship application : `addtask`
+
+Adds a task to a selected internship application at the selected `Internship` from InTrack.
+
+Format: `addtask TASKNAME /at TASKTIME`
+
+* `TASKNAME` refers to the name of the task to be added.
+* `TASKNAME` can take any value, but must not be left blank.
+* `TASKTIME` refers to the time the added task is due.
+* `TASKTIME` must be in the format `dd-MM-yyyy HH:mm`
+
+Example of usage:
+
+* `addtask Technical Interview /at 12-01-2023 15:00`
+
+Expected outcome:
+
+* The selected `Internship` would be updated with the new task added in the list in an ascending manner, with the internship with the task that has the earliest date and time that is on or after the current time at the top.
+
+
 
 ### Deleting a task from a selected internship application : `deltask`
 
