@@ -116,12 +116,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteTrip(Trip target) {
         addressBook.removeTrip(target);
+        if (selectedTrip.isEqual(target)) {
+            selectedTrip.resetTrip();
+        }
     }
 
     @Override
     public void deleteEvent(Event e) {
         addressBook.removeEvent(e);
-        updateFilteredEventList(getBucketPredicate());
     }
 
     @Override

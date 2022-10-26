@@ -93,7 +93,8 @@ public class Event {
      */
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
+        builder.append("Title: ")
+                .append(getTitle())
                 .append("; Description: ")
                 .append(getDescription());
         return builder.toString();

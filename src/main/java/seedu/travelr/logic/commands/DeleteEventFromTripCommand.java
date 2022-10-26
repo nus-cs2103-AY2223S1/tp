@@ -22,7 +22,7 @@ public class DeleteEventFromTripCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-et";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to specified trip. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an event from specified trip. "
             + "Parameters: "
             + PREFIX_TITLE + "Event TITLE "
             + PREFIX_TRIP + "TRIP "

@@ -21,7 +21,8 @@ public class DeleteEventCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s \n" 
+            + "at specified index of bucket list";
 
     private final Index targetIndex;
 
@@ -35,7 +36,7 @@ public class DeleteEventCommand extends Command {
         List<Event> lastShownList = model.getBucketList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DELETE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DELETE_DISPLAYED_INDEX_FROM_BUCKET_LIST);
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
