@@ -47,7 +47,7 @@ public class TaskIsDonePredicateTest {
     }
 
     @Test
-    public void isString_validInputs_correctResult() {
+    public void toString_validInputs_correctResult() {
         // Zero keyword predicate
         TaskIsDonePredicate predicate = new TaskIsDonePredicate(Collections.emptyList());
         assertEquals("All tasks", predicate.toString());

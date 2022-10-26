@@ -79,7 +79,7 @@ public class TaskByDeadlinePredicateTest {
     }
 
     @Test
-    public void isString_validInputs_correctResult() {
+    public void toString_validInputs_correctResult() {
         // Zero keyword predicate
         TaskByDeadlinePredicate predicate = new TaskByDeadlinePredicate(Collections.emptyList());
         assertEquals("Tasks due on ''", predicate.toString());

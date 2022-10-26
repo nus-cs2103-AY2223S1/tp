@@ -51,9 +51,10 @@ a graphical user interface.
      Deletes the second task in the list.
    - `edit 3 -n Assignment 2` : 
      Changes the name of the third task in the list to `Assignment 2`.
+   - `find tutorial` :
+     Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
 
    You can also continue reading below to read more about how to use each command!
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,25 +117,37 @@ Format : `tag TASK_NUMBER TAG_NAME`
 
 Example: `tag 2 optional`
 
-### Listing all tasks : `ls -a`
+## List and Find
+
+`list` and `find` are commands that filter the list. There are multiple ways to filter the tasklist, such as
+listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple list commands in one command
+to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
+
+Current filters applied will be shown in the UI at the top bar.
+
+**Note that `find` searches globally, across all of a task's attributes**
+
+### List : `ls`
+
+#### Listing all tasks : `ls -a`
 
 Shows a list of all tasks in the task list.
 
 Format: `ls -a`
 
-### Listing all unmarked tasks : `ls -u`
+#### Listing all unmarked tasks : `ls -u`
 
 Shows a list of all unmarked tasks in the task list, ie shows a list of uncompleted tasks.
 
 Format: `ls -u`
 
-### Listing all marked tasks : `ls -m`
+#### Listing all marked tasks : `ls -m`
 
 Shows a list of all marked tasks in the task list, ie shows a list of completed tasks.
 
 Format: `ls -m`
 
-### Listing all tasks under the same module : `ls --module`
+#### Listing all tasks under the same module : `ls --module`
 
 Shows a list of all tasks under the same module.
 
@@ -143,7 +156,7 @@ Format: `ls --module MODULE`
 
 Example: `ls --module cs2103t`
 
-### Listing all tasks containing the same tag : `ls -t`
+#### Listing all tasks containing the same tag : `ls -t`
 
 Shows a list of all tasks under the same module.
 
@@ -152,7 +165,7 @@ Format: `ls -t TAG_NAME`
 
 Example: `ls -t highPriority`
 
-### Listing all tasks with deadline on or after a date : `ls -d`
+#### Listing all tasks with deadline on or after a date : `ls -d`
 
 Shows a list of all tasks under the same module.
 
@@ -160,6 +173,31 @@ Format: `ls -d DATE`
 * `DATE`: Must be in the format of YYYY-MM-DD.
 
 Example: `ls -d 2022-11-11`
+
+### Find tasks by name : `find`
+
+The `find` command finds the task names which contain the word or words given in the prefix. 
+`find` is not case-sensitive and the keyword being searched does not have to match a whole word
+(Example: searching `tap` in task name `tape` will be shown).
+
+Format: `find WORD [MORE_WORDS]`
+
+Singular word search example: `find tutorial`
+
+Multiple word search example: `find Week tutorial`
+finds **any** task name with either `Week` or `tutorial`.
+
+*Note that this is **NOT** the same as:*
+
+`find Week` followed by `find tutorial`
+
+as it filters the task names with `Week` then filters task names with `tutorial`.
+
+#### Listing all archived tasks : `ls -archive`
+
+Shows a list of all tasks that are archived. 
+
+Format: `ls -archive`
 
 ### Editing a task : `edit`
 
@@ -211,13 +249,17 @@ NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.js
 **Caution:**
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files : `archive`
 
-_Details coming soon ..._
+Allows you to remove a task from task list and store in archived file. 
 
-### Find tasks by name `[coming in v2.0]`
+Format: `archive TASK_NUMBER | DATE`
+* `TASK_NUMBER`: This is the number of the task currently displayed.
+* `DATE`: Must be in the format of YYYY-MM-DD.
 
-_Details coming soon ..._
+Examples: 
+* `archive 1`: archives first task in task list.
+* `archive 2022-10-17`: archives tasks with deadline on and before `DATE`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -228,6 +270,7 @@ To be added..
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 
 Format meanings:
 * `lower_case` text mean that they should be typed as-is
