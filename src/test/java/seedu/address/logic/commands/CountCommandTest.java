@@ -11,10 +11,12 @@ import seedu.address.model.UserPrefs;
 
 class CountCommandTest {
 
+    Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
     @Test
     void execute_countCommand_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        assertCommandSuccess(new CountCommand(), model, CountCommand.UI_CONFIRMATION, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(CountCommand.UI_CONFIRMATION, true);
+        assertCommandSuccess(new CountCommand(), model, expectedCommandResult, expectedModel);
     }
 }
