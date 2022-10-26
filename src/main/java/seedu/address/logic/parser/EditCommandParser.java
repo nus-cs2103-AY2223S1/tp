@@ -21,8 +21,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditRemarkCommand;
 import seedu.address.logic.commands.EditTransactionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,9 +57,11 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         switch (mode) {
         case "client":
-            return parseClientEditCommand(argMultimap, index);
+            return parseEditClientCommand(argMultimap, index);
         case "transaction":
-            return parseTransactionEditCommand(argMultimap, index);
+            return parseEditTransactionCommand(argMultimap, index);
+        case "remark":
+            return parseEditRemarkCommand(args);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
@@ -83,7 +88,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      * and returns an EditClientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public EditClientCommand parseClientEditCommand(ArgumentMultimap argMultimap, Index index) throws ParseException {
+    protected EditClientCommand parseEditClientCommand(ArgumentMultimap argMultimap, Index index)
+            throws ParseException {
 
         EditClientCommand.EditClientDescriptor editClientDescriptor = new EditClientCommand.EditClientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -112,7 +118,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * and returns an EditTransactionCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public EditTransactionCommand parseTransactionEditCommand(ArgumentMultimap argMultimap,
+    protected EditTransactionCommand parseEditTransactionCommand(ArgumentMultimap argMultimap,
                                                               Index index) throws ParseException {
         EditTransactionCommand.EditTransactionDescriptor editTransactionDescriptor =
                 new EditTransactionCommand.EditTransactionDescriptor();
@@ -133,6 +139,37 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditClientCommand.MESSAGE_NOT_EDITED);
         }
         return new EditTransactionCommand(index, editTransactionDescriptor);
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditRemarkCommand
+     * and returns an EditRemarkCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
+    public EditRemarkCommand parseEditRemarkCommand(String args) throws ParseException {
+        requireNonNull(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+
+        Index index;
+        String [] preambles = argMultimap.getPreamble().split(" ", 2);
+
+        try {
+            index = ParserUtil.parseIndex(preambles[0]);
+        } catch (ParseException ive) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditRemarkCommand.MESSAGE_USAGE), ive);
+        }
+
+        if (preambles.length < 2 || preambles[1].isEmpty()) {
+            throw new ParseException(EditRemarkCommand.MESSAGE_REMARK_INVALID);
+        }
+
+        Text text = ParserUtil.parseText(preambles[1]);
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        Remark remark = new Remark(text, tagList);
+
+        return new EditRemarkCommand(index, remark);
     }
 
 }

@@ -88,6 +88,16 @@ public class UniqueRemarkList implements Iterable<Remark> {
         return internalList.remove(index);
     }
 
+    /**
+     * Retrieves a remark at specified index.
+     *
+     * @param index of remark to be retrieved.
+     * @return remark at the index
+     */
+    public Remark getRemark(int index) {
+        return internalList.get(index);
+    }
+
     public void setRemarks(UniqueRemarkList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
