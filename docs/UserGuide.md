@@ -105,11 +105,11 @@ Shows a list of all internships in InterNUS.
 
 Format: `listi`
 
-### Editing a person : `editp`
+### Editing a person : `edit -p`
 
 Edits an existing person in InterNUS.
 
-Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/COMPANY] [t/TAG]…​`
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
@@ -117,8 +117,8 @@ Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-- `listp` followed by `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-- `listp` followed by `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+- `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+- `list -p` followed by `edit -p 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Editing an internship : `edit -i`
 
@@ -263,6 +263,7 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -275,8 +276,8 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **Clear**             | `clear`                                                                                                                                            |
 | **Delete person**     | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                              |
 | **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                          |
-| **Edit person**       | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                   |
-| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`   |
+| **Edit person**       | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [t/TAG]…`<br> e.g.,`edit -p 2 n/James Lee e/jameslee@example.com`                   |
+| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                 |
 | **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                           |
 | **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                                          |
 | **List persons**      | `listp`                                                                                                                                            |
