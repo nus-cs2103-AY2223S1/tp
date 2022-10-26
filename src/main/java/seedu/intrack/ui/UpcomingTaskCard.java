@@ -1,12 +1,13 @@
 package seedu.intrack.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Task;
 
-import java.awt.Label;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -34,11 +35,12 @@ public class UpcomingTaskCard extends UiPart<Region> {
         super(FXML);
 
         this.internship = internship;
-        String nextTask = internship.getTasks().stream()
+        String nextTask = "Upcoming Task: " + internship.getTasks().stream()
                 .filter(task -> task.getTaskTime().isAfter(currentDateTime))
                 .map(Task::toString)
                 .findFirst().orElse("");
 
         upcomingTask.setText(nextTask);
+        upcomingTask.setTextFill(Color.WHITE);
     }
 }
