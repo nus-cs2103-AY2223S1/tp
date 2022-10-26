@@ -269,7 +269,7 @@
 }
 
 .list-title {
-    -fx-font-size: 20;
+    -fx-font-size: 40;
     -fx-text-fill: #e7decd;
     -fx-font-family: "Roboto Mono";
     -fx-padding: 0 0 7 0;
