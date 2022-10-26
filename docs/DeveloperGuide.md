@@ -145,8 +145,12 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from `AddressBookStorage`, `UserPrefStorage` and `ImageStorage`, which means it can be treated as any one of them (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* handles the following image functionality:
+  * loading of [`BufferedImage`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/image/BufferedImage.html) from a specified path in the image directory.
+  * storing a [`BufferedImage`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/image/BufferedImage.html) within the image directory.
+  * :information_source: **Note:** the image directory (in which all images are stored) is defined by `imageBaseDirectoryPath` within [`UserPrefs.java`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/model/UserPrefs.java).
 
 ### Common classes
 
@@ -212,7 +216,7 @@ Commissions are currently stored in the individual `Customer`'s `UniqueCommissio
 Iterations help users keep track of the progress of their commissions. Each commission iteration
 essentially represents a version of the commissioned artwork.
 
-Iterations contain a `Date`, `IterationDescription`, `ImagePath`, and `Feedback`. Since
+Iterations contain a `Date`, `IterationDescription`, `Path` to the image, and `Feedback`. Since
 an iteration must be tied to a commission, this composition is captured by storing the
 iterations in a `UniqueIterationList` inside the associated commission object.
 
