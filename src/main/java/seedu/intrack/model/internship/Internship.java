@@ -20,13 +20,13 @@ public class Internship {
     // Identity fields
     private final Name name;
     private final Position position;
-    private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Status status;
     private final Website website;
     private final List<Task> tasks = new ArrayList<>();
+    private final Salary salary;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
 
@@ -34,16 +34,16 @@ public class Internship {
      * Every field must be present and not null.
      */
 
-    public Internship(Name name, Position position, Status status, Phone phone, Email email, Website website,
-                      List<Task> tasks, Set<Tag> tags, Remark remark) {
-        requireAllNonNull(name, position, phone, email, status, website, tasks, tags, remark);
+    public Internship(Name name, Position position, Status status, Email email, Website website,
+                      List<Task> tasks, Salary salary, Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, position, email, status, website, tasks, salary, tags, remark);
         this.name = name;
         this.position = position;
         this.status = status;
-        this.phone = phone;
         this.email = email;
         this.website = website;
         this.tasks.addAll(tasks);
+        this.salary = salary;
         this.tags.addAll(tags);
         this.remark = remark;
     }
@@ -60,8 +60,8 @@ public class Internship {
         return status;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Salary getSalary() {
+        return salary;
     }
 
     public Email getEmail() {
@@ -124,17 +124,17 @@ public class Internship {
         return otherInternship.getName().equals(getName())
                 && otherInternship.getPosition().equals(getPosition())
                 && otherInternship.getStatus().equals(getStatus())
-                && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getWebsite().equals(getWebsite())
                 && otherInternship.getTasks().equals(getTasks())
+                && otherInternship.getSalary().equals(getSalary())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, position, phone, email, website, tags);
+        return Objects.hash(name, position, email, website, salary, tags);
     }
 
     @Override
@@ -146,12 +146,12 @@ public class Internship {
                 .append(getPosition())
                 .append("; Status: ")
                 .append(getStatus())
-                .append("; Phone: ")
-                .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Website: ")
-                .append(getWebsite());
+                .append(getWebsite())
+                .append("; Salary: ")
+                .append(getSalary());
 
         List<Task> tasks = getTasks();
         if (!tasks.isEmpty()) {

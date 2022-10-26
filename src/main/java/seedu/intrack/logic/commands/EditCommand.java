@@ -3,8 +3,8 @@ package seedu.intrack.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_SALARY;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -23,9 +23,9 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
-import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
+import seedu.intrack.model.internship.Salary;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.internship.Website;
@@ -44,12 +44,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_POSITION + "POSITION] "
-            + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_WEBSITE + "WEBSITE] "
+            + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_SALARY + "200000 "
             + PREFIX_EMAIL + "newemail@example.com";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited internship: %1$s";
@@ -105,15 +105,15 @@ public class EditCommand extends Command {
         Name updatedName = editInternshipDescriptor.getName().orElse(internshipToEdit.getName());
         Position updatedPosition = editInternshipDescriptor.getPosition().orElse(internshipToEdit.getPosition());
         Status updatedStatus = internshipToEdit.getStatus(); // edit command does not allow editing status
-        Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
+        Salary updatedSalary = editInternshipDescriptor.getSalary().orElse(internshipToEdit.getSalary());
         Website updatedWebsite = editInternshipDescriptor.getWebsite().orElse(internshipToEdit.getWebsite());
         List<Task> updatedTasks = internshipToEdit.getTasks();
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
         Remark updatedRemark = internshipToEdit.getRemark(); // edit command does not allow editing remarks
 
-        return new Internship(updatedName, updatedPosition, updatedStatus, updatedPhone, updatedEmail, updatedWebsite,
-                updatedTasks, updatedTags, updatedRemark);
+        return new Internship(updatedName, updatedPosition, updatedStatus, updatedEmail, updatedWebsite,
+                updatedTasks, updatedSalary, updatedTags, updatedRemark);
     }
 
     @Override
@@ -141,8 +141,8 @@ public class EditCommand extends Command {
     public static class EditInternshipDescriptor {
         private Name name;
         private Position position;
-        private Phone phone;
         private Email email;
+        private Salary salary;
         private Website website;
         private Set<Tag> tags;
 
@@ -155,9 +155,9 @@ public class EditCommand extends Command {
         public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
             setName(toCopy.name);
             setPosition(toCopy.position);
-            setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setWebsite(toCopy.website);
+            setSalary(toCopy.salary);
             setTags(toCopy.tags);
         }
 
@@ -165,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, position, phone, email, website, tags);
+            return CollectionUtil.isAnyNonNull(name, position, email, website, salary, tags);
         }
 
         public void setName(Name name) {
@@ -184,20 +184,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(position);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
         public void setEmail(Email email) {
             this.email = email;
         }
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setSalary(Salary salary) {
+            this.salary = salary;
+        }
+
+        public Optional<Salary> getSalary() {
+            return Optional.ofNullable(salary);
         }
 
         public void setWebsite(Website website) {
@@ -242,9 +242,9 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPosition().equals(e.getPosition())
-                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getWebsite().equals(e.getWebsite())
+                    && getSalary().equals(e.getSalary())
                     && getTags().equals(e.getTags());
         }
     }

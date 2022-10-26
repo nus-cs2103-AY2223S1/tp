@@ -42,9 +42,9 @@ public class SelectedInternshipCard extends UiPart<Region> {
     @FXML
     private FlowPane status;
     @FXML
-    private Label phone;
-    @FXML
     private Label email;
+    @FXML
+    private Label salary;
     @FXML
     private TextFlow website;
     @FXML
@@ -71,8 +71,8 @@ public class SelectedInternshipCard extends UiPart<Region> {
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         status.getChildren().add(lab);
 
-        phone.setText(internship.getPhone().value);
         email.setText(internship.getEmail().value);
+        salary.setText("$" + internship.getSalary().value);
 
         Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
         website.getChildren().add(hyperlink);
