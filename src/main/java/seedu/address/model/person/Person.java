@@ -32,7 +32,8 @@ public class Person implements seedu.address.model.DeepCopyable {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags, Loan loan, List<LoanHistory> history) {
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags,
+                  Loan loan, List<LoanHistory> history) {
         requireAllNonNull(name, phone, email, address, tags, loan, birthday, history);
         this.name = name;
         this.phone = phone;
