@@ -116,7 +116,7 @@ public interface Model {
      * Sort reminders by priority. Reminders with the same priority will be sorted lexicographically by their names.
      */
     void sortReminderByPriority();
-    
+
     /**
      * Sort reminders by deadline. Reminders with the same deadline will be sorted lexicographically by their names.
      */

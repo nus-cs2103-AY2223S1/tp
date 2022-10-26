@@ -179,6 +179,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void sortReminderByDeadline() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Reminder> getFilteredReminderList() {
             throw new AssertionError("This method should not be called.");
         }

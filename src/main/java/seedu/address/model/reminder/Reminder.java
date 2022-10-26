@@ -3,7 +3,6 @@ package seedu.address.model.reminder;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.Objects;
 
 import seedu.address.model.datetime.Datetime;
