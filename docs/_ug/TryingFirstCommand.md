@@ -2,7 +2,7 @@
 
 Now, let us try out a command.
 
-The format for commands are not identical. 
+The format for commands are not identical.
 
 One of the available commands in FoodRem is the command to create a new item.
 

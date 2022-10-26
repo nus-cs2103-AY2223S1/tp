@@ -10,7 +10,7 @@
     "style": "one"
   },
   "MD033": { // Inline HTML
-    "allowed_elements": ["sub", "sup", "br"]
+    "allowed_elements": ["sub", "sup", "br", "kbd"]
   },
   "MD035": { // Horizontal rule style
     "style": "---"

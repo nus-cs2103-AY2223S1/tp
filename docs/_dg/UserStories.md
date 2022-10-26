@@ -42,7 +42,6 @@
 1. As a purchasing manager, I can remove a tag from an item.
 1. As a purchasing manager, I can search for items based on the tags they have.
 
-
 **Miscellaneous:**
 
 <!--- To be added if any, else remove -->

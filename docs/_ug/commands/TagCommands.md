@@ -51,7 +51,7 @@ Carrots
 
 #### Tag an item: `tag`
 
-**Format**: `tag INDEX n/TAG_NAME `
+**Format**: `tag INDEX n/TAG_NAME`
 
 > Tags the item at the specified index
 
@@ -173,11 +173,13 @@ filtertag n/fruits
 Command Output Box:
 
 ```text
-Items filtered by tag: fruits
+Filtered by tag: fruits
+2 items left after filtering!
 ```
 
 List Box:
 
 ```text
 1. Apples 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
+2. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
 ```

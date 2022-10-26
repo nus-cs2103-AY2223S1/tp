@@ -13,10 +13,12 @@ The TAG_NAME is the term we use to identify an item.
 ```
 
 **Valid Examples:**
-- Vegetables
-- Fruits 8
+
+* Vegetables
+* Fruits 8
 
 **Invalid Examples:**
-- Одноразовый
-- Fruits & Vegetables
-- Fruit's
+
+* Одноразовый
+* Fruits & Vegetables
+* Fruit's

@@ -9,10 +9,12 @@ The UNIT is a text indicating the unit of an item.
 ```
 
 **Valid Examples:**
-- Kg
-- Packets 8
+
+* Kg
+* Packets 8
 
 **Invalid Examples:**
-- キロ
-- Kg & Grams
-- Kilogram's
+
+* キロ
+* Kg & Grams
+* Kilogram's

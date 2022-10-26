@@ -8,10 +8,12 @@ The KEYWORD is the text we use search for an item.
 ```
 
 **Valid Examples:**
-- Potatoes
-- Tomatoes
+
+* Potatoes
+* Tomatoes
 
 **Invalid Examples:**
-- 黃瓜
-- Carrots & Cucumbers
-- Carrot's
+
+* 黃瓜
+* Carrots & Cucumbers
+* Carrot's
