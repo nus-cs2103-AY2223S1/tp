@@ -7,6 +7,7 @@ import static java.lang.Boolean.parseBoolean;
  */
 public class Status {
 
+    public static final String MESSAGE_STRING_CONSTRAINTS = "Status should be completed or incomplete.";
     /**
      * Represents and empty Issue status.
      */
@@ -67,6 +68,18 @@ public class Status {
             return "Status: Completed";
         } else {
             return "Status: Incomplete";
+        }
+    }
+
+    /**
+     * Returns the String representation of only the completion status.
+     * @return String representing whether the issue is completed.
+     */
+    public String getCompletionStatus() {
+        if (this.completed) {
+            return "Completed";
+        } else {
+            return "Incomplete";
         }
     }
 
