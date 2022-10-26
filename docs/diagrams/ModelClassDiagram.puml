@@ -5,15 +5,15 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyMassLinkers" as ReadOnlyMassLinkers
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class MassLinkers
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniqueStudentList
+Class Student
 Class Address
 Class Email
 Class Name
@@ -26,30 +26,30 @@ Class Mod
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+MassLinkers .up.|> ReadOnlyMassLinkers
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyMassLinkers
+ModelManager -left-> "1" MassLinkers
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+MassLinkers *--> "1" UniqueStudentList
 
-UniquePersonList --> "~* all" Person
+UniqueStudentList --> "~* all" Student
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Interest
-Person *--> "*" Mod
+Student *--> Name
+Student *--> Phone
+Student *--> Email
+Student *--> Address
+Student *--> "*" Interest
+Student *--> "*" Mod
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager --> Person: " * filtered"
+ModelManager --> Student: " * filtered"
 
 @enduml
