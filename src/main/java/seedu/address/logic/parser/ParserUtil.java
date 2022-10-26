@@ -206,7 +206,7 @@ public class ParserUtil {
     public static UpcomingAppointment parseUpcomingAppointment(String upcomingAppointment) throws ParseException {
         if (upcomingAppointment == null) {
             return new UpcomingAppointment((LocalDate) null);
-        } else if (!Appointment.isValidDate(upcomingAppointment)) {
+        } else if (!UpcomingAppointment.isValidDate(upcomingAppointment)) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
         return new UpcomingAppointment(upcomingAppointment);
