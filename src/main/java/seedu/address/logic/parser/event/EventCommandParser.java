@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.event.AddProfilesToEventCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.DeleteProfilesFromEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.FindEventCommand;
@@ -69,6 +70,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return new ViewEventsCommandParser().parse(args);
         case AddProfilesToEventCommand.COMMAND_OPTION:
             return new AddProfilesToEventCommandParser().parse(args);
+        case DeleteProfilesFromEventCommand.COMMAND_OPTION:
+            return new DeleteProfilesFromEventCommandParser().parse(args);
         default:
             throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
@@ -94,6 +97,8 @@ public class EventCommandParser implements Parser<EventCommand> {
                         + ViewUpcomingEventsCommand.COMMAND_OPTION, ViewUpcomingEventsCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
                         + AddProfilesToEventCommand.COMMAND_OPTION, AddProfilesToEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
+                        + DeleteProfilesFromEventCommand.COMMAND_OPTION, DeleteProfilesFromEventCommand.MESSAGE_HELP);
             }
         };
     }

@@ -159,6 +159,12 @@ public class ModelManager implements Model {
         addressBook.addEventAttendees(event, profilesToAdd);
     }
 
+    @Override
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        addressBook.deleteEventAttendees(event, profilesToDelete);
+    }
+
     //=========== Filtered Profile List Accessors =============================================================
 
     /**

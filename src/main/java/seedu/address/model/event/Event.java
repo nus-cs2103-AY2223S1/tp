@@ -90,6 +90,28 @@ public class Event implements Comparable<Event> {
     }
 
     /**
+     * Deletes the profiles in {@code profilesToDelete} from the event's list of attendees if
+     * they have not already been deleted.
+     */
+    public void deleteAttendees(List<Profile> profilesToDelete) {
+        requireNonNull(profilesToDelete);
+
+        profilesToDelete.forEach(profile -> {
+            if (attendees.hasAttendee(profile)) {
+                attendees.remove(profile);
+            }
+        });
+    }
+
+    public int numberOfAttendees() {
+        return attendees.size();
+    }
+
+    public Profile getAttendee(int index) {
+        return attendees.getAttendee(index);
+    }
+
+    /**
      * Returns true if the specified profile is in the event's list of attendees.
      */
     public boolean hasAttendee(Profile profile) {

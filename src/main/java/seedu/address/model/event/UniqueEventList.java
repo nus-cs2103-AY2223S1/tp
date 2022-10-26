@@ -105,6 +105,21 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.get(index).addAttendees(profilesToAdd);
     }
 
+    /**
+     * Deletes profiles in {@code profilesToDelete} from the given event.
+     * The event must exist in the list.
+     */
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+
+        int index = internalList.indexOf(event);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).deleteAttendees(profilesToDelete);
+    }
+
     public void setEvents(UniqueEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

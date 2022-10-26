@@ -128,10 +128,18 @@ public interface Model {
 
     /**
      * Adds the given list of profiles {@code profilesToAdd} to the given event's list of attendees.
-     * {@code event} must exist in the address book .
-     * Profiles in {@profilesToAdd} must also exist in the address book.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToAdd} must also exist in the address book.
      */
     void addEventAttendees(Event event, List<Profile> profilesToAdd);
+
+    /**
+     * Deletes the given list of profiles {@code profilesToDelete} from the given event's list of attendees.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToDelete} must also exist in the address book.
+     */
+
+    void deleteEventAttendees(Event event, List<Profile> profilesToDelete);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

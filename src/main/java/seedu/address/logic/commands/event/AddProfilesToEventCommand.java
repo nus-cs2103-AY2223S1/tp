@@ -38,7 +38,7 @@ public class AddProfilesToEventCommand extends EventCommand {
             + "attendees in NUScheduler.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " EVENT_INDEX "
             + PREFIX_PROFILE + "PROFILE_INDEX...\n";
-    public static final String MESSAGE_NOT_ADDED = "At least one profile to add must be specified.";
+    public static final String MESSAGE_ATTENDEES_NOT_ADDED = "At least one profile to add must be specified.";
     public static final String MESSAGE_INVALID_PROFILE_INDEX = "One or more profile indexes specified are invalid.";
 
     private final Index eventIndex;

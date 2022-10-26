@@ -170,11 +170,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds profiles in {@code profilesToAdd} to the given event.
      * {@code event} must exist in the address book.
-     * Profiles in {@profilesToAdd} must also exist in the address book.
+     * Profiles in {@code profilesToAdd} must also exist in the address book.
      */
     public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
         requireAllNonNull(event, profilesToAdd);
         events.addEventAttendees(event, profilesToAdd);
+    }
+
+    /**
+     * Deletes profiles in {@code profilesToDelete} from the given event.
+     * {@code event} must exist in the address book.
+     * Profiles in {@code profilesToDelete} must also exist in the address book.
+     */
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        events.deleteEventAttendees(event, profilesToDelete);
     }
 
     //// util methods

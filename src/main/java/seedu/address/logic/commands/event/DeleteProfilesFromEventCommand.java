@@ -3,12 +3,18 @@ package seedu.address.logic.commands.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.profile.Profile;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,7 +37,7 @@ public class DeleteProfilesFromEventCommand extends EventCommand {
     public static final String MESSAGE_HELP = "Deletes attendees from an existing event in NUScheduler.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " EVENT_INDEX "
             + PREFIX_PROFILE + "PROFILE_INDEX...\n";
-    public static final String MESSAGE_NOT_ADDED = "At least one profile to delete must be specified.";
+    public static final String MESSAGE_ATTENDEES_NOT_DELETED = "At least one profile to delete must be specified.";
     public static final String MESSAGE_INVALID_PROFILE_INDEX = "One or more profile indexes specified are invalid.";
 
     private final Index eventIndex;
@@ -47,6 +53,27 @@ public class DeleteProfilesFromEventCommand extends EventCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+        List<Event> lastShownEventList = model.getFilteredEventList();
+
+        if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        }
+
+        Event event = lastShownEventList.get(eventIndex.getZeroBased());
+
+        List<Profile> profilesToDelete = new ArrayList<>();
+
+        for (Index profileIndex : profileIndexes) {
+            if (profileIndex.getZeroBased() >= event.numberOfAttendees()) {
+                throw new CommandException(Messages.MESSAGE_MULTIPLE_INVALID_PROFILE_DISPLAYED_INDEX);
+            }
+            Profile p = event.getAttendee(profileIndex.getZeroBased());
+            profilesToDelete.add(p);
+        }
+
+        model.deleteEventAttendees(event, profilesToDelete);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_ATTENDEES_SUCCESS, event));
     }
 }

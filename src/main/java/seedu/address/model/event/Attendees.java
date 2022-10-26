@@ -55,6 +55,14 @@ public class Attendees {
         return this.attendees.contains(profile);
     }
 
+    public int size() {
+        return this.attendees.size();
+    }
+
+    public Profile getAttendee(int index) {
+        return this.attendees.get(index);
+    }
+
     public boolean isEmpty() {
         return this.attendees.isEmpty();
     }
