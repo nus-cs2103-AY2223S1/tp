@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Represents the in-memory model of the mass linkers data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final MassLinkers massLinkers;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
 
     /**
      * Initializes a ModelManager with the given massLinkers and userPrefs.
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.massLinkers = new MassLinkers(massLinkers);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.massLinkers.getPersonList());
+        filteredStudents = new FilteredList<>(this.massLinkers.getStudentList());
     }
 
     public ModelManager() {
@@ -88,43 +88,43 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return massLinkers.hasPerson(person);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return massLinkers.hasStudent(student);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        massLinkers.removePerson(target);
+    public void deleteStudent(Student target) {
+        massLinkers.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        massLinkers.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addStudent(Student student) {
+        massLinkers.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
 
-        massLinkers.setPerson(target, editedPerson);
+        massLinkers.setStudent(target, editedStudent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Student List Accessors =============================================================
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedMassLinkers}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return massLinkers.equals(other.massLinkers)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents);
     }
 
 }

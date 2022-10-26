@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.getTypicalMassLinkers;
+import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import java.util.HashSet;
 
@@ -19,8 +19,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.interest.Interest;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 public class AddInterestCommandTest {
     private static final Interest VALID_INTEREST_TENNIS = new Interest("tennis");
@@ -50,33 +50,33 @@ public class AddInterestCommandTest {
     }
 
     /**
-     * Test the {@code execute} method to add interests to a person.
+     * Test the {@code execute} method to add interests to a student.
      */
     @Test
     public void execute_saveToModels_success() throws CommandException {
 
-        // adds a test person to model
-        Person toAdd = new PersonBuilder(BOB).withInterests(VALID_INTEREST_TENNIS.interestName).build();
-        model.addPerson(toAdd);
+        // adds a test student to model
+        Student toAdd = new StudentBuilder(BOB).withInterests(VALID_INTEREST_TENNIS.interestName).build();
+        model.addStudent(toAdd);
 
-        // execute AddInterestCommand on the test person
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        // execute AddInterestCommand on the test student
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> currentInterestSet = new HashSet<>();
         currentInterestSet.add(VALID_INTEREST_TENNIS);
-        AddInterestCommand commandToExecute = new AddInterestCommand(indexLastPerson,
+        AddInterestCommand commandToExecute = new AddInterestCommand(indexLastStudent,
                 currentInterestSet);
         CommandResult commandResult = commandToExecute.execute(model);
-        // get the edited person from AddInterestCommand
-        Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        // get the edited student from AddInterestCommand
+        Student editedStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
-        // expected edited person
-        Person editedPersonExpected = new PersonBuilder(BOB)
+        // expected edited student
+        Student editedStudentExpected = new StudentBuilder(BOB)
                 .withInterests(VALID_INTEREST_TENNIS.interestName, VALID_INTEREST_TENNIS.interestName)
                 .build();
 
-        assertEquals(String.format(AddInterestCommand.MESSAGE_SUCCESS, editedPerson),
+        assertEquals(String.format(AddInterestCommand.MESSAGE_SUCCESS, editedStudent),
                 commandResult.getFeedbackToUser());
-        assertEquals(editedPerson, editedPersonExpected);
+        assertEquals(editedStudent, editedStudentExpected);
     }
 
     /**
@@ -85,28 +85,28 @@ public class AddInterestCommandTest {
     @Test
     public void execute_saveDuplicateInterests_success() throws CommandException {
 
-        // adds a test person to model
-        Person toAdd = new PersonBuilder(BOB).withInterests(VALID_INTEREST_ANIME.interestName).build();
-        model.addPerson(toAdd);
+        // adds a test student to model
+        Student toAdd = new StudentBuilder(BOB).withInterests(VALID_INTEREST_ANIME.interestName).build();
+        model.addStudent(toAdd);
 
-        // execute AddInterestCommand on the test person with existing mod
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        // execute AddInterestCommand on the test student with existing mod
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> currentInterestSet = new HashSet<>();
         currentInterestSet.add(VALID_INTEREST_ANIME);
-        AddInterestCommand commandToExecute = new AddInterestCommand(indexLastPerson,
+        AddInterestCommand commandToExecute = new AddInterestCommand(indexLastStudent,
                 currentInterestSet);
         CommandResult commandResult = commandToExecute.execute(model);
-        // get the edited person from AddInterestCommand
-        Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        // get the edited student from AddInterestCommand
+        Student editedStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
-        // expected edited person
-        Person editedPersonExpected = new PersonBuilder(BOB)
+        // expected edited student
+        Student editedStudentExpected = new StudentBuilder(BOB)
                 .withInterests(VALID_INTEREST_ANIME.interestName)
                 .build();
 
-        assertEquals(String.format(AddInterestCommand.MESSAGE_SUCCESS, editedPerson),
+        assertEquals(String.format(AddInterestCommand.MESSAGE_SUCCESS, editedStudent),
                 commandResult.getFeedbackToUser());
-        assertEquals(editedPerson, editedPersonExpected);
+        assertEquals(editedStudent, editedStudentExpected);
     }
 
     /**
@@ -115,7 +115,7 @@ public class AddInterestCommandTest {
      */
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() {
-        Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index indexOutOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         HashSet<Interest> currentInterestSet = new HashSet<>();
         currentInterestSet.add(VALID_INTEREST_ANIME);
         AddInterestCommand invalidCommand = new AddInterestCommand(indexOutOfBounds,

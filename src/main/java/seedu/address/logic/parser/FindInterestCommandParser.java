@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindInterestCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.PersonContainsInterestPredicate;
+import seedu.address.model.student.StudentContainsInterestPredicate;
 
 /**
  * Parses input arguments and creates a new FindInterestCommandParser object
@@ -27,7 +27,7 @@ public class FindInterestCommandParser implements Parser<FindInterestCommand> {
 
         String[] interestNameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindInterestCommand(new PersonContainsInterestPredicate(Arrays.asList(interestNameKeywords)));
+        return new FindInterestCommand(new StudentContainsInterestPredicate(Arrays.asList(interestNameKeywords)));
     }
 
 }

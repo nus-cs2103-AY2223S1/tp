@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalMassLinkers;
+import static seedu.address.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import org.junit.jupiter.api.Test;
 

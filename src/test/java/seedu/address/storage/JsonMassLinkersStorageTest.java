@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalMassLinkers;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.HOON;
+import static seedu.address.testutil.TypicalStudents.IDA;
+import static seedu.address.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonMassLinkersStorageTest {
     }
 
     @Test
-    public void readMassLinkers_invalidPersonMassLinkers_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMassLinkers("invalidPersonMassLinkers.json"));
+    public void readMassLinkers_invalidStudentMassLinkers_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMassLinkers("invalidStudentMassLinkers.json"));
     }
 
     @Test
-    public void readMassLinkers_invalidAndValidPersonMassLinkers_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMassLinkers("invalidAndValidPersonMassLinkers.json"));
+    public void readMassLinkers_invalidAndValidStudentMassLinkers_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMassLinkers("invalidAndValidStudentMassLinkers.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonMassLinkersStorageTest {
         assertEquals(original, new MassLinkers(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
         jsonMassLinkersStorage.saveMassLinkers(original, filePath);
         readBack = jsonMassLinkersStorage.readMassLinkers(filePath).get();
         assertEquals(original, new MassLinkers(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(IDA);
         jsonMassLinkersStorage.saveMassLinkers(original); // file path not specified
         readBack = jsonMassLinkersStorage.readMassLinkers().get(); // file path not specified
         assertEquals(original, new MassLinkers(readBack));

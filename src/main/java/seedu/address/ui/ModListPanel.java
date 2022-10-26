@@ -8,15 +8,15 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.Student;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of students.
  */
 public class ModListPanel extends UiPart<Region> {
     private static final String FXML = "ModListPanel.fxml";
-    private Person currentPerson;
+    private Student currentStudent;
     private final Logger logger = LogsCenter.getLogger(ModListPanel.class);
 
     @FXML
@@ -29,24 +29,24 @@ public class ModListPanel extends UiPart<Region> {
         super(FXML);
     }
 
-    public void setPersonModList(Person person) {
-        if (person != null) {
-            currentPerson = person;
-            ObservableList<Mod> moduleList = person.getMods();
+    public void setStudentModList(Student student) {
+        if (student != null) {
+            currentStudent = student;
+            ObservableList<Mod> moduleList = student.getMods();
             modListView.setItems(moduleList);
             modListView.setCellFactory(listView -> new ModListViewCell());
         }
     }
 
     /**
-     * Returns the current {@code Person}.
+     * Returns the current {@code Student}.
      */
-    public Person getCurrentPerson() {
-        return this.currentPerson;
+    public Student getCurrentStudent() {
+        return this.currentStudent;
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class ModListViewCell extends ListCell<Mod> {
         @Override

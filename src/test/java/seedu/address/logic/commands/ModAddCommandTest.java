@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.getTypicalMassLinkers;
+import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,9 +17,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 public class ModAddCommandTest {
 
@@ -49,30 +49,30 @@ public class ModAddCommandTest {
     }
 
     /**
-     * Test the {@code execute} method to add mods to a person.
+     * Test the {@code execute} method to add mods to a student.
      */
     @Test
     public void execute_saveToModels_success() throws CommandException {
 
-        // adds a test person to model
-        Person toAdd = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
-        model.addPerson(toAdd);
+        // adds a test student to model
+        Student toAdd = new StudentBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
+        model.addStudent(toAdd);
 
-        // execute ModAddCommand on the test person
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        ModAddCommand commandToExecute = new ModAddCommand(indexLastPerson,
+        // execute ModAddCommand on the test student
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        ModAddCommand commandToExecute = new ModAddCommand(indexLastStudent,
                 FXCollections.singletonObservableList(VALID_MOD_CS2101));
         CommandResult commandResult = commandToExecute.execute(model);
-        // get the edited person from ModAddCommand
-        Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        // get the edited student from ModAddCommand
+        Student editedStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
-        // expected edited person
-        Person editedPersonExpected = new PersonBuilder(BOB)
+        // expected edited student
+        Student editedStudentExpected = new StudentBuilder(BOB)
                 .withMods(VALID_MOD_CS2100.getModName(), VALID_MOD_CS2101.getModName())
                 .build();
 
-        assertEquals(String.format(ModAddCommand.MESSAGE_SUCCESS, editedPerson), commandResult.getFeedbackToUser());
-        assertEquals(editedPerson, editedPersonExpected);
+        assertEquals(String.format(ModAddCommand.MESSAGE_SUCCESS, editedStudent), commandResult.getFeedbackToUser());
+        assertEquals(editedStudent, editedStudentExpected);
     }
 
     /**
@@ -81,25 +81,25 @@ public class ModAddCommandTest {
     @Test
     public void execute_saveDuplicateMods_success() throws CommandException {
 
-        // adds a test person to model
-        Person toAdd = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
-        model.addPerson(toAdd);
+        // adds a test student to model
+        Student toAdd = new StudentBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
+        model.addStudent(toAdd);
 
-        // execute ModAddCommand on the test person with existing mod
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        ModAddCommand commandToExecute = new ModAddCommand(indexLastPerson,
+        // execute ModAddCommand on the test student with existing mod
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        ModAddCommand commandToExecute = new ModAddCommand(indexLastStudent,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
         CommandResult commandResult = commandToExecute.execute(model);
-        // get the edited person from ModAddCommand
-        Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        // get the edited student from ModAddCommand
+        Student editedStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
-        // expected edited person
-        Person editedPersonExpected = new PersonBuilder(BOB)
+        // expected edited student
+        Student editedStudentExpected = new StudentBuilder(BOB)
                 .withMods(VALID_MOD_CS2100.getModName())
                 .build();
 
-        assertEquals(String.format(ModAddCommand.MESSAGE_SUCCESS, editedPerson), commandResult.getFeedbackToUser());
-        assertEquals(editedPerson, editedPersonExpected);
+        assertEquals(String.format(ModAddCommand.MESSAGE_SUCCESS, editedStudent), commandResult.getFeedbackToUser());
+        assertEquals(editedStudent, editedStudentExpected);
     }
 
     /**
@@ -108,7 +108,7 @@ public class ModAddCommandTest {
      */
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() {
-        Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index indexOutOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         ModAddCommand invalidCommand = new ModAddCommand(indexOutOfBounds,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
         assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

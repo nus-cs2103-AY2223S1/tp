@@ -18,7 +18,7 @@ package "MassLinkers Storage" #F4F6F6{
 Class "<<interface>>\nMassLinkersStorage" as MassLinkersStorage
 Class JsonMassLinkersStorage
 Class JsonSerializableMassLinkers
-Class JsonAdaptedPerson
+Class JsonAdaptedStudent
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> MassLinkersStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonMassLinkersStorage .up.|> MassLinkersStorage
 JsonMassLinkersStorage ..> JsonSerializableMassLinkers
-JsonSerializableMassLinkers --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableMassLinkers --> "*" JsonAdaptedStudent
+JsonAdaptedStudent --> "*" JsonAdaptedTag
 
 @enduml

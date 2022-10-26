@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.model.MassLinkers;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * A utility class to help with building massLinkers objects.
  * Example usage: <br>
- *     {@code MassLinkers ab = new MassLinkersBuilder().withPerson("John", "Doe").build();}
+ *     {@code MassLinkers ab = new MassLinkersBuilder().withStudent("John", "Doe").build();}
  */
 public class MassLinkersBuilder {
 
@@ -21,10 +21,10 @@ public class MassLinkersBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code MassLinkers} that we are building.
+     * Adds a new {@code Student} to the {@code MassLinkers} that we are building.
      */
-    public MassLinkersBuilder withPerson(Person person) {
-        massLinkers.addPerson(person);
+    public MassLinkersBuilder withStudent(Student student) {
+        massLinkers.addStudent(student);
         return this;
     }
 

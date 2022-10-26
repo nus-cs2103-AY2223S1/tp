@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonContainsInterestPredicate;
+import seedu.address.model.student.StudentContainsInterestPredicate;
 
 /**
  * Lists batchmates that match all interests specified by the user.
@@ -17,19 +17,19 @@ public class FindInterestCommand extends Command {
             + "Parameters: INTEREST [MORE_INTERESTS]...\n"
             + "Example: " + COMMAND_WORD + " tennis netflix";
 
-    private final PersonContainsInterestPredicate predicate;
+    private final StudentContainsInterestPredicate predicate;
 
-    public FindInterestCommand(PersonContainsInterestPredicate predicate) {
+    public FindInterestCommand(StudentContainsInterestPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
         return new CommandResult(
             String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                model.getFilteredPersonList().size()), false, false, true, false);
+                model.getFilteredStudentList().size()), false, false, true, false);
     }
 
     @Override

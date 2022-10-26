@@ -37,7 +37,7 @@ public class CommandResultTest {
         // different resetModel value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, false)));
 
-        // different updatedPersonPanel value -> returns false
+        // different updatedStudentPanel value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, true)));
     }
 

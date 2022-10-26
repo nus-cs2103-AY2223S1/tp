@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ModListPanel modListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -47,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private Label noSelectedText;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane modListPanelPlaceholder;
@@ -121,9 +121,9 @@ public class MainWindow extends UiPart<Stage> {
         modListPanel = new ModListPanel();
         modListPanelPlaceholder.getChildren().add(modListPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), modListPanel);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        personListPanel.handlePersonClick();
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), modListPanel);
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanel.handleStudentClick();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -175,8 +175,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
     }
 
     /**
@@ -190,8 +190,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isUpdatePersonPanel()) {
-                personListPanel.setPersonPanel(logic.getFilteredPersonList());
+            if (commandResult.isUpdateStudentPanel()) {
+                studentListPanel.setStudentPanel(logic.getFilteredStudentList());
             }
 
             if (commandResult.isResetModPanel()) {
@@ -199,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (!commandResult.isResetModPanel()) {
-                modListPanel.setPersonModList(modListPanel.getCurrentPerson());
+                modListPanel.setStudentModList(modListPanel.getCurrentStudent());
             }
 
             if (commandResult.isShowHelp()) {

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-import seedu.address.model.person.Mod;
+import seedu.address.model.student.Mod;
 
 /**
  * Comparator to compare order for mods.

@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.getTypicalMassLinkers;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.BENSON;
+import static seedu.address.testutil.TypicalStudents.DANIEL;
+import static seedu.address.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PersonContainsInterestPredicate;
+import seedu.address.model.student.StudentContainsInterestPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindInterestCommandTest}.
@@ -30,10 +30,10 @@ public class FindInterestCommandTest {
 
     @Test
     public void equals() {
-        PersonContainsInterestPredicate firstPredicate =
-                new PersonContainsInterestPredicate(Collections.singletonList("first"));
-        PersonContainsInterestPredicate secondPredicate =
-                new PersonContainsInterestPredicate(Collections.singletonList("second"));
+        StudentContainsInterestPredicate firstPredicate =
+                new StudentContainsInterestPredicate(Collections.singletonList("first"));
+        StudentContainsInterestPredicate secondPredicate =
+                new StudentContainsInterestPredicate(Collections.singletonList("second"));
 
         FindInterestCommand findInterestFirstCommand = new FindInterestCommand(firstPredicate);
         FindInterestCommand findInterestSecondCommand = new FindInterestCommand(secondPredicate);
@@ -56,53 +56,53 @@ public class FindInterestCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noStudentFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonContainsInterestPredicate predicate = preparePredicate(" ");
+        StudentContainsInterestPredicate predicate = preparePredicate(" ");
         FindInterestCommand command = new FindInterestCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel,
                 false, false, true, false);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
     @Test
-    public void execute_oneKeyword_multiplePersonsFound() {
+    public void execute_oneKeyword_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsInterestPredicate predicate = preparePredicate("tennis");
+        StudentContainsInterestPredicate predicate = preparePredicate("tennis");
         FindInterestCommand command = new FindInterestCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel,
                 false, false, true, false);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredStudentList());
     }
 
     @Test
-    public void execute_multipleKeywords_onePersonFound() {
+    public void execute_multipleKeywords_oneStudentFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        PersonContainsInterestPredicate predicate = preparePredicate("tennis netflix");
+        StudentContainsInterestPredicate predicate = preparePredicate("tennis netflix");
         FindInterestCommand command = new FindInterestCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel,
                 false, false, true, false);
-        assertEquals(List.of(BENSON), model.getFilteredPersonList());
+        assertEquals(List.of(BENSON), model.getFilteredStudentList());
     }
 
     @Test
-    public void execute_multipleCasingKeywords_multiplePersonsFound() {
+    public void execute_multipleCasingKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsInterestPredicate predicate = preparePredicate("tennis TENNIS TenNiS");
+        StudentContainsInterestPredicate predicate = preparePredicate("tennis TENNIS TenNiS");
         FindInterestCommand command = new FindInterestCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel,
                 false, false, true, false);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredStudentList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code PersonContainsInterestPredicate}.
+     * Parses {@code userInput} into a {@code StudentContainsInterestPredicate}.
      */
-    private PersonContainsInterestPredicate preparePredicate(String userInput) {
-        return new PersonContainsInterestPredicate(Arrays.asList(userInput.split("\\s+")));
+    private StudentContainsInterestPredicate preparePredicate(String userInput) {
+        return new StudentContainsInterestPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

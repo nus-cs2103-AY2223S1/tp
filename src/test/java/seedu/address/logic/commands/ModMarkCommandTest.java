@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalPersons.getTypicalMassLinkers;
+import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,9 +18,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 /**
  * Test class for ModMarkCommand.
@@ -66,11 +66,11 @@ public class ModMarkCommandTest {
     @Test
     public void execute_markOneMod_success() throws CommandException {
 
-        Person batchmate = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
-        model.addPerson(batchmate);
+        Student batchmate = new StudentBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
+        model.addStudent(batchmate);
 
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        ModMarkCommand commandToExecute = new ModMarkCommand(indexLastStudent,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
         CommandResult commandResult = commandToExecute.execute(model);
 
@@ -90,15 +90,15 @@ public class ModMarkCommandTest {
     @Test
     public void execute_markMultipleMod_success() throws CommandException {
 
-        Person batchmate = new PersonBuilder(BOB).withMods(
+        Student batchmate = new StudentBuilder(BOB).withMods(
                 VALID_MOD_CS2100.getModName(),
                 VALID_MOD_CS2103.getModName(),
                 VALID_MOD_CS2101.getModName())
                 .build();
-        model.addPerson(batchmate);
+        model.addStudent(batchmate);
 
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        ModMarkCommand commandToExecute = new ModMarkCommand(indexLastStudent,
                 FXCollections.observableArrayList(VALID_MOD_CS2101, VALID_MOD_CS2100));
         CommandResult commandResult = commandToExecute.execute(model);
 
@@ -120,17 +120,17 @@ public class ModMarkCommandTest {
     @Test
     public void execute_markNonExistingMod1_throwsCommandException() {
 
-        Person batchmate = new PersonBuilder(BOB).withMods(
+        Student batchmate = new StudentBuilder(BOB).withMods(
                         VALID_MOD_CS2100.getModName(),
                         VALID_MOD_CS2103.getModName(),
                         VALID_MOD_CS2101.getModName())
                 .build();
-        model.addPerson(batchmate);
+        model.addStudent(batchmate);
 
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
 
         try {
-            ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+            ModMarkCommand commandToExecute = new ModMarkCommand(indexLastStudent,
                     FXCollections.observableArrayList(MOD_NOT_FOUND_CS2105));
             commandToExecute.execute(model);
             fail(); // Test should not reach this line.
@@ -147,17 +147,17 @@ public class ModMarkCommandTest {
     @Test
     public void execute_markNonExistingMod2_throwsCommandException() {
 
-        Person batchmate = new PersonBuilder(BOB).withMods(
+        Student batchmate = new StudentBuilder(BOB).withMods(
                         VALID_MOD_CS2100.getModName(),
                         VALID_MOD_CS2103.getModName(),
                         VALID_MOD_CS2101.getModName())
                 .build();
-        model.addPerson(batchmate);
+        model.addStudent(batchmate);
 
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
 
         try {
-            ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+            ModMarkCommand commandToExecute = new ModMarkCommand(indexLastStudent,
                     FXCollections.observableArrayList(VALID_MOD_CS2101, VALID_MOD_CS2103, MOD_NOT_FOUND_CS2105));
             commandToExecute.execute(model);
             fail(); // Test should not reach this line.
@@ -174,7 +174,7 @@ public class ModMarkCommandTest {
      */
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() throws CommandException {
-        Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index indexOutOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         ModMarkCommand invalidCommand = new ModMarkCommand(indexOutOfBounds,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
         assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

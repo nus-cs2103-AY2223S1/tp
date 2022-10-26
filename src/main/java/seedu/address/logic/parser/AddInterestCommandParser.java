@@ -56,10 +56,10 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
     }
 
     /**
-     * Extracts out the index of the person specified in the user command.
+     * Extracts out the index of the student specified in the user command.
      *
      * @param args The user command.
-     * @return The index of the person in String.
+     * @return The index of the student in String.
      */
     private String getIndexFromCommand(String args) throws ParseException {
         String[] splittedArgs = args.split(" ");

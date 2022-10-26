@@ -18,10 +18,10 @@ import seedu.address.logic.commands.ModDeleteCommand;
 import seedu.address.logic.commands.ModFindCommand;
 import seedu.address.logic.commands.ModMarkCommand;
 import seedu.address.logic.commands.ModUnmarkCommand;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.ModContainsKeywordsPredicate;
-import seedu.address.model.person.ModTakenContainsKeywordsPredicate;
-import seedu.address.model.person.ModTakingContainsKeywordsPredicate;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.ModContainsKeywordsPredicate;
+import seedu.address.model.student.ModTakenContainsKeywordsPredicate;
+import seedu.address.model.student.ModTakingContainsKeywordsPredicate;
 
 public class ModCommandParserTest {
     private static final String INVALID_MOD_COMMAND = "bad";

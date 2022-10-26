@@ -24,10 +24,10 @@ import seedu.address.logic.commands.ModMarkAllCommand;
 import seedu.address.logic.commands.ModMarkCommand;
 import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.ModContainsKeywordsPredicate;
-import seedu.address.model.person.ModTakenContainsKeywordsPredicate;
-import seedu.address.model.person.ModTakingContainsKeywordsPredicate;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.ModContainsKeywordsPredicate;
+import seedu.address.model.student.ModTakenContainsKeywordsPredicate;
+import seedu.address.model.student.ModTakingContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ModCommand object.
@@ -239,10 +239,10 @@ public class ModCommandParser implements Parser<ModCommand> {
     }
 
     /**
-     * Extracts out the index of the person specified in the user command.
+     * Extracts out the index of the student specified in the user command.
      *
      * @param args The user command.
-     * @return The index of the person in String.
+     * @return The index of the student in String.
      */
     private String getIndexFromCommand(String args) throws ParseException {
         String[] splittedArgs = args.split(" ");
@@ -255,10 +255,10 @@ public class ModCommandParser implements Parser<ModCommand> {
     }
 
     /**
-     * Extracts out the word after mod mark, which could be the index of the person or "all".
+     * Extracts out the word after mod mark, which could be the index of the student or "all".
      *
      * @param args The user command.
-     * @return The index of the person in String or the word "all".
+     * @return The index of the student in String or the word "all".
      */
     private String getModMarkIndexOrAll(String args) throws ParseException {
         String[] splittedArgs = args.split(" ");

@@ -7,8 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.Student;
 
 /**
  * Marks mods of all batchmates as taken.
@@ -45,14 +45,14 @@ public class ModMarkAllCommand extends ModCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         String message = "";
         int markedModsCount = 0;
 
         for (Mod mod : mods) {
             int markedModCount = 0;
-            for (Person person : lastShownList) {
-                markedModCount = markedModCount + person.markModIfExist(mod);
+            for (Student student : lastShownList) {
+                markedModCount = markedModCount + student.markModIfExist(mod);
             }
 
             if (markedModCount == 0) {

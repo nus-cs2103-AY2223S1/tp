@@ -16,13 +16,13 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.interest.Interest;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Telegram;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -60,9 +60,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        Person person = new Person(name, phone, email, handle, gitHub, interestSet, modList);
+        Student student = new Student(name, phone, email, handle, gitHub, interestSet, modList);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
     /**

@@ -34,68 +34,68 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.interest.Interest;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.GitHub;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Telegram;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.GitHub;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
+import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withInterests(VALID_INTEREST_TENNIS).build();
+        Student expectedStudent = new StudentBuilder(BOB).withInterests(VALID_INTEREST_TENNIS).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple telegram - last telegram accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_AMY
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedStudent));
 
         // multiple interests - all accepted
-        Person expectedPersonMultipleInterests = new PersonBuilder(BOB)
+        Student expectedStudentMultipleInterests = new StudentBuilder(BOB)
                 .withInterests(VALID_INTEREST_TENNIS, VALID_INTEREST_NETFLIX)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
                 + GITHUB_DESC_BOB + INTEREST_DESC_NETFLIX + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
-                new AddCommand(expectedPersonMultipleInterests));
+                new AddCommand(expectedStudentMultipleInterests));
 
         // multiple mods - all accepted
-        Person expectedPersonMultipleMods = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100, VALID_MOD_CS2103)
+        Student expectedStudentMultipleMods = new StudentBuilder(BOB).withMods(VALID_MOD_CS2100, VALID_MOD_CS2103)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
                         + GITHUB_DESC_BOB + INTEREST_DESC_NETFLIX + INTEREST_DESC_TENNIS
                         + MOD_DESC_CS2100 + MOD_DESC_CS2103,
-                new AddCommand(expectedPersonMultipleMods));
+                new AddCommand(expectedStudentMultipleMods));
     }
 
     @Test

@@ -9,8 +9,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Mod;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Mod;
+import seedu.address.model.student.Student;
 
 /**
  * Unmarks mods of the batchmate specified as not taken.
@@ -48,22 +48,22 @@ public class ModUnmarkCommand extends ModCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
+        Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        if (personToEdit.canEditMods(mods)) {
-            personToEdit.unmarkMods(mods);
+        if (studentToEdit.canEditMods(mods)) {
+            studentToEdit.unmarkMods(mods);
         } else {
             throw new CommandException(MESSAGE_INVALID_MOD);
         }
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, personToEdit),
+                String.format(MESSAGE_SUCCESS, studentToEdit),
                 false,
                 false,
                 false, false);

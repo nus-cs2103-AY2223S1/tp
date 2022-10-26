@@ -20,18 +20,18 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    private final boolean updatePersonPanel;
+    private final boolean updateStudentPanel;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean resetModPanel, boolean updatePersonPanel) {
+                         boolean resetModPanel, boolean updateStudentPanel) {
         this.resetModPanel = resetModPanel;
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.updatePersonPanel = updatePersonPanel;
+        this.updateStudentPanel = updateStudentPanel;
     }
 
     /**
@@ -58,8 +58,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isUpdatePersonPanel() {
-        return updatePersonPanel;
+    public boolean isUpdateStudentPanel() {
+        return updateStudentPanel;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && resetModPanel == otherCommandResult.resetModPanel
-                && updatePersonPanel == otherCommandResult.updatePersonPanel;
+                && updateStudentPanel == otherCommandResult.updateStudentPanel;
     }
 
     @Override
