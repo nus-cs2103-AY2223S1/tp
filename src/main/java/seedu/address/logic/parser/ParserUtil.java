@@ -183,7 +183,7 @@ public class ParserUtil {
     }
 
     /**
-     * Returns the String eventTitle passed to it.
+     * Parses {@code eventTitle} into a {@code EventTitle}.
      */
     public static EventTitle parseEventTitle(String eventTitle) throws ParseException {
         requireNonNull(eventTitle);
@@ -221,7 +221,7 @@ public class ParserUtil {
     }
 
     /**
-     * Returns the String purpose passed to it.
+     * Parses {@code purpose} into a {@code Purpose}.
      */
     public static Purpose parsePurpose(String purpose) throws ParseException {
         requireNonNull(purpose);
