@@ -448,7 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Lazy User | open github profile page of my tutors/professor/ friends with a command | view my friends/Teaching Assistants/Professors github projects easily |
 | `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                       |
 | `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                   |
-
+| `* * *`  | Student   | visualise my contact list in a pie chart                                | have a quick overview of my network                                   |
 
 *{More to be added}*
 

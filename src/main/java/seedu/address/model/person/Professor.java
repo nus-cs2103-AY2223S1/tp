@@ -106,7 +106,7 @@ public class Professor extends Person {
         }
 
         if (!getOfficeHour().value.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
-            builder.append("Office hour: ")
+            builder.append("; Office hour: ")
                     .append(getOfficeHour());
         }
 
