@@ -20,6 +20,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
 /**
@@ -43,6 +44,11 @@ public class FindCommandTest {
                 new PhoneContainsNumberPredicate("94351253");
         PhoneContainsNumberPredicate phoneTwoPredicate =
                 new PhoneContainsNumberPredicate("98765432");
+        NokPhoneContainsNumberPredicate nokPhoneOnePredicate =
+                new NokPhoneContainsNumberPredicate("94351253");
+        NokPhoneContainsNumberPredicate nokPhoneTwoPredicate =
+                new NokPhoneContainsNumberPredicate("98765432");
+
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -50,11 +56,14 @@ public class FindCommandTest {
         FindCommand findClassTwoCommand = new FindCommand(classTwoPredicate);
         FindCommand findPhoneOneCommand = new FindCommand(phoneOnePredicate);
         FindCommand findPhoneTwoCommand = new FindCommand(phoneTwoPredicate);
+        FindCommand findNokPhoneOneCommand = new FindCommand(nokPhoneOnePredicate);
+        FindCommand findNokPhoneTwoCommand = new FindCommand(nokPhoneTwoPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
         assertTrue(findClassOneCommand.equals(findClassOneCommand));
         assertTrue(findPhoneOneCommand.equals(findPhoneOneCommand));
+        assertTrue(findNokPhoneOneCommand.equals(findNokPhoneOneCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
@@ -63,6 +72,8 @@ public class FindCommandTest {
         assertTrue(findClassOneCommand.equals(findClassOneCommandCopy));
         FindCommand findPhoneOneCommandCopy = new FindCommand(phoneOnePredicate);
         assertTrue(findPhoneOneCommand.equals(findPhoneOneCommandCopy));
+        FindCommand findNokPhoneOneCommandCopy = new FindCommand(nokPhoneOnePredicate);
+        assertTrue(findNokPhoneOneCommand.equals(findNokPhoneOneCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
@@ -72,6 +83,7 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(null));
         assertFalse(findClassOneCommand.equals(null));
         assertFalse(findPhoneOneCommand.equals(null));
+        assertFalse(findNokPhoneOneCommand.equals(null));
 
         // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
@@ -81,6 +93,9 @@ public class FindCommandTest {
 
         // different phone -> returns false
         assertFalse(findPhoneOneCommand.equals(findPhoneTwoCommand));
+
+        // different phone -> returns false
+        assertFalse(findNokPhoneOneCommand.equals(findNokPhoneTwoCommand));
     }
 
     @Test
@@ -107,6 +122,16 @@ public class FindCommandTest {
     public void execute_zeroPhoneKeyword_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         PhoneContainsNumberPredicate predicate = new PhoneContainsNumberPredicate("81234567");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_zeroNokPhoneKeyword_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        NokPhoneContainsNumberPredicate predicate = new NokPhoneContainsNumberPredicate("81234566");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
