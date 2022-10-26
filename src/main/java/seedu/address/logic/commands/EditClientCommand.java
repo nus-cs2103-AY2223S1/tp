@@ -29,7 +29,8 @@ import seedu.address.model.transaction.TransactionLog;
 public class EditClientCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one Client field to edit must be provided. "
+            + "E.g. [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
 
     private final Index index;
