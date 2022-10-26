@@ -7,7 +7,7 @@ import static seedu.address.model.Model.COMPARATOR_UNGROUP_PATIENTS;
 import seedu.address.model.Model;
 
 /**
- * Ungroup all persons or appointments in the address book to the user.
+ * Ungroup all persons or appointments in idENTify to the user.
  */
 public class UngroupCommand extends Command {
 
