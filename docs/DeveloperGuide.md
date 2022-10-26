@@ -209,9 +209,9 @@ The following sequence diagram shows how the github feature works.
 #### Implementation
 
 The Open Github Profile Page Feature is facilitated by `GithubCommand`. It extends 'Command' with an `Index` class field that stores the target index. The target index refers to the index of the Address that users want to execute the Github command on. Additonally, it implements the following operations:
-- GithubCommand#execute() - Executes the github command.
+- GithubCommand#execute() - Executes the GitHub command.
 
-Given below is an example usage scenario and how the github operation mechanism behaves at each step.
+Given below is an example usage scenario and how the GitHub operation mechanism behaves at each step.
 
 Step 1. The user types `github 1` and presses enter.
 
@@ -222,31 +222,31 @@ Step 3. The `GithubCommandParser` will parse `1` using `parse()`. This will retu
 Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()`.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** executes() checks if the github username field of target person is empty. If it is empty an exception will be thrown.
+:information_source: **Note:** executes() checks if the GitHub username field of target person is empty. If it is empty an exception will be thrown.
 </div>
 
 Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
 
 Step 6. A `CommandResult` indicating successful completion of the command will be returned.
 
-The following sequence diagram shows how the github feature works.
+The following sequence diagram shows how the GitHub feature works.
 
 ![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new Github command:
+The following activity diagram summarizes what happens when a user executes a new GitHub command:
 
 ![GithubSequenceDiagram](images/GithubCommandActivityDiagram.png)
 
 #### Design considerations:
 
-**Aspect: How open github profile page feature executes:**
+**Aspect: How open GitHub profile page feature executes:**
 
-* **Alternative 1 (current choice):** Opens github profile page through user's default browser.
+* **Alternative 1 (current choice):** Opens GitHub profile page through user's default browser.
     * Pros: Easy to implement.
     * Cons: Users will be redirected to their default browser.
 
-* **Alternative 2:** Opens github profile page through in-built browser.
-    * Pros: Users will be able to see the github profile page from the app itself
+* **Alternative 2:** Opens GitHub profile page through in-built browser.
+    * Pros: Users will be able to see the GitHub profile page from the app itself
     * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
 
 ### Find Contact
@@ -589,7 +589,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `github 2`<br>
        Expected: No GitHub Profile page will be opened. Error details shown in the status message.
 
-    5. Other incorrect github commands to try: `github`, `github x`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect GitHub commands to try: `github`, `github x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Saving data
