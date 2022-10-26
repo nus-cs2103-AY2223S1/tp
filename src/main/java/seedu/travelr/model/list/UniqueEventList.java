@@ -3,6 +3,7 @@ package seedu.travelr.model.list;
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -152,6 +153,11 @@ public class UniqueEventList extends EventList {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+    
+    @Override
+    public void sort(Comparator<Event> comp) {
+        internalList.sort(comp);
     }
 
     /**

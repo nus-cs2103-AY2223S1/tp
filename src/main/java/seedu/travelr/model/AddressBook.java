@@ -227,4 +227,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return trips.hashCode();
     }
 
+    public void sortEvents(Comparator<Event> comp) {
+        allEventsList.sort(comp);
+    }
 }

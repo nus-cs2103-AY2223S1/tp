@@ -247,5 +247,10 @@ public class ModelManager implements Model {
     public void sortTripsByComparator(Comparator<Trip> comp) {
         addressBook.sortTrips(comp);
     }
+    
+    @Override
+    public void sortEvents(Comparator<Event> comp) {
+        addressBook.sortEvents(comp);
+    }
 
 }

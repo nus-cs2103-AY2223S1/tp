@@ -99,5 +99,9 @@ public class Event {
                 .append(getDescription());
         return builder.toString();
     }
+    
+    public int compareTo(Event other) {
+        return title.compareTo(other.title);
+    }
 
 }
