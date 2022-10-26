@@ -126,7 +126,6 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -381,4 +380,17 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.pane-with-header {
+    -fx-border-color: black;
+    -fx-background-color: white;
+}
+
+.pane-with-header .grid-pane {
+    -fx-background-color: white;
+}
+
+.pane-with-header .list-view {
+    -fx-background-color: white;
 }
