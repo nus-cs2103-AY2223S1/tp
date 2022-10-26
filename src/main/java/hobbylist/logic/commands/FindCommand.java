@@ -12,7 +12,8 @@ import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
  */
 public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = "find"; 
+    
+    public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions"
             + "contain any of "
