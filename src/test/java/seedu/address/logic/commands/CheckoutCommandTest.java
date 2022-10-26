@@ -15,9 +15,19 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.storage.*;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 
 class CheckoutCommandTest {
 

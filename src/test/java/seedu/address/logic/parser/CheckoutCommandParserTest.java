@@ -1,16 +1,15 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CheckoutCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 
 class CheckoutCommandParserTest {
     private CheckoutCommandParser parser = new CheckoutCommandParser();
