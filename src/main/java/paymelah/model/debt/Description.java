@@ -7,7 +7,7 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  * Represents a Debt's description in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
-public class Description {
+public class Description implements Comparable<Description> {
     public static final String MESSAGE_CONSTRAINTS =
             "Descriptions should not be blank or whitespace";
 
@@ -55,5 +55,10 @@ public class Description {
     @Override
     public int hashCode() {
         return description.hashCode();
+    }
+
+    @Override
+    public int compareTo(Description o) {
+        return this.description.toLowerCase().compareTo(o.description.toLowerCase());
     }
 }
