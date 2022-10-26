@@ -114,6 +114,6 @@ public class FileUtil {
     public static boolean checkValidPdfFilePath(FilePath filePath) {
         String path = filePath.value;
         File pdfFile = new File(path);
-        return pdfFile.exists() && path.contains(".pdf");
+        return pdfFile.exists() && path.matches(FilePath.VALIDATION_REGEX);
     }
 }

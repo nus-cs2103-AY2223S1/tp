@@ -10,7 +10,7 @@ import seedu.address.logic.commands.SetPersonFileCommand;
  */
 public class FilePath {
 
-    public static final String EMPTY_FILEPATH = "";
+    public static final String VALIDATION_REGEX = ".+\\.pdf$";
 
     public static final String MESSAGE_EMPTY_FILEPATH = "File Path has not been initiated\n"
             + "Set a file path for the client by using the command " + SetPersonFileCommand.COMMAND_WORD;
