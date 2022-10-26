@@ -20,6 +20,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
+import seedu.address.model.person.predicate.TagContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -115,6 +116,18 @@ public class FindCommandParserTest {
     public void parse_validNokPhonePrefix_returnsFindCommand() {
         // TODO: Update test case with np/ prefix
         assertParseFailure(parser, NOK_PHONE_DESC_AMY, "np/ search not implemented yet.");
+    }
+
+    @Test
+    public void parse_validTagPrefix_returnsFindCommand() {
+        FindCommand expectedFindCommand =
+                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("Python")));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " t/Python", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " t/   Python  ", expectedFindCommand);
     }
 
     @Test
