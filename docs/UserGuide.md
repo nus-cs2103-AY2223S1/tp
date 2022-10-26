@@ -224,7 +224,7 @@ Examples:
 Edit an existing link in the user's currently selected team.
 
 Format:
-* `edit link INDEX [-n NAME] [-l URL]`
+* `edit link LINK_INDEX [-n NAME] [-l URL]`
 
 Examples:
 * `edit link 1 -n facebook -l "https://facebook.com`
@@ -234,7 +234,7 @@ Examples:
 Delete the specified link from the user's currently selected team.
 
 Format:
-* `delete link INDEX`
+* `delete link LINK_INDEX`
 
 Examples:
 * `delete link 1`

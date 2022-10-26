@@ -38,16 +38,16 @@ public class AddPersonCommand extends Command {
             + FLAG_PHONE_STR + " PHONE "
             + FLAG_EMAIL_STR + " EMAIL "
             + FLAG_ADDRESS_STR + " ADDRESS "
-            + FLAG_TAG_STR + " [TAG]...\n"
+            + "[" + FLAG_TAG_STR + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + FLAG_NAME_STR + " \"John Doe\" "
             + FLAG_PHONE_STR + " 98765432 "
             + FLAG_EMAIL_STR + " johnd@example.com "
             + FLAG_ADDRESS_STR + " \"311, Clementi Ave 2, #02-25\" "
-            + FLAG_TAG_STR + " friends "
-            + FLAG_TAG_STR + " owesMoney";
+            + FLAG_TAG_STR + " UX Designer "
+            + FLAG_TAG_STR + " CSS Expert";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the contacts list";
 
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, description = "Name of person")
     private Name name;
