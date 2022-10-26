@@ -32,7 +32,7 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 class HelpCommandParserTest {
     private static final String EXPECTED_ALL_COMMANDS = "exit, help, reset, " // General commands
             + "dec, del, edit, find, inc, list, new, rmk, sort, view, " // Item commands
-            + "deletetag, listtag, newtag, renametag, tag, untag"; // Tag commands
+            + "filtertag, deletetag, listtag, newtag, renametag, tag, untag"; // Tag commands
 
 
     private final HelpCommandParser parser = new HelpCommandParser();
@@ -53,7 +53,7 @@ class HelpCommandParserTest {
 
         Thank you :D
         */
-        int numberOfCommands = 20; // equal to total number of commands + 1 for invalid command
+        int numberOfCommands = 21; // equal to total number of commands + 1 for invalid command
         assertEquals(numberOfCommands, CommandType.values().length);
     }
 
