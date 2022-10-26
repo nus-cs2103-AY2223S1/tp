@@ -30,8 +30,11 @@ but it also has a Graphical User Interface for simpler and quicker task.
 
 --------------------------------------------------------------------------------------------------------------------
 # 1. About the User Guide
+
 This section will explain the parameters and the format of commands.
+
 ## 1.1 Parameters
+
 | Prefix | Parameter    | Meaning                                         |
 |--------|--------------|-------------------------------------------------|
 | n/     | NAME         | Name of person                                  |
