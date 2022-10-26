@@ -32,7 +32,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStudentList(predicate);
+        model.andFilteredListPredicate(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }

@@ -71,6 +71,30 @@ public class ModuleClass implements Identity<ModuleClass> {
     }
 
     /**
+     * Returns a new {@code ModuleClass} by adding the provided {@code Session} to this {@code ModuleClass}.
+     * If the session already exists, this {@code ModuleClass} is returned.
+     */
+    public ModuleClass addSession(Session session) {
+        requireNonNull(session);
+        if (hasSession(session)) {
+            return this;
+        }
+        List<Session> newSessions = new ArrayList<>(sessions);
+        newSessions.add(session);
+        return new ModuleClass(className, newSessions);
+    }
+
+    /**
+     * Returns a new {@code ModuleClass} by removing the {@code session}.
+     */
+    public ModuleClass removeSession(Session session) {
+        requireNonNull(session);
+        List<Session> newSessions = new ArrayList<>(sessions);
+        newSessions.remove(session);
+        return new ModuleClass(className, newSessions);
+    }
+
+    /**
      * Returns true if both modules have the same name and session list.
      * This defines a stronger notion of equality between two module classes.
      *
@@ -113,4 +137,5 @@ public class ModuleClass implements Identity<ModuleClass> {
     public String toString() {
         return '[' + className + ']';
     }
+
 }

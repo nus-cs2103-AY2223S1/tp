@@ -23,10 +23,10 @@ public class ListCommand extends Command {
         if (model.isInFocusMode()) {
             ModuleClass focusedClass = model.getFocusedClass();
             IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
-            model.updateFilteredStudentList(predicate);
+            model.setFilteredListPredicate(predicate);
             return new CommandResult(String.format(MESSAGE_CLASS_STUDENTS_SUCCESS, focusedClass));
         }
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(MESSAGE_ALL_STUDENTS_SUCCESS);
     }
 }

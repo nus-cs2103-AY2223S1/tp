@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.IsPartOfClassPredicate;
 import seedu.taassist.model.student.Student;
 
@@ -106,7 +108,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudent(Student target) {
+    public void removeStudent(Student target) {
         requireNonNull(target);
         taAssist.removeStudent(target);
     }
@@ -115,7 +117,7 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         requireNonNull(student);
         taAssist.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
@@ -137,11 +139,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteModuleClass(ModuleClass target) {
+    public void removeModuleClass(ModuleClass target) {
         requireNonNull(target);
         taAssist.removeModuleClass(target);
 
-        // TODO: Should an Exception be thrown instead?
         if (target.isSame(focusedClass)) {
             exitFocusMode();
         }
@@ -158,11 +159,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+    public void removeModuleClasses(Collection<ModuleClass> moduleClasses) {
         requireAllNonNull(moduleClasses);
-        for (ModuleClass moduleClass : moduleClasses) {
-            deleteModuleClass(moduleClass);
+        moduleClasses.forEach(this::removeModuleClass);
+    }
+
+    @Override
+    public void removeSession(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
+        taAssist.removeSession(moduleClass, session);
+
+        if (moduleClass.isSame(focusedClass)) {
+            enterFocusMode(moduleClass);
         }
+    }
+
+    @Override
+    public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        sessions.forEach(session -> removeSession(moduleClass, session));
     }
 
     @Override
@@ -193,9 +208,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredStudentList(Predicate<Student> predicate) {
+    public void setFilteredListPredicate(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void andFilteredListPredicate(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(filteredStudents.getPredicate() == null
+                ? predicate
+                : predicate.and(filteredStudents.getPredicate()));
     }
 
     @Override
@@ -231,14 +254,14 @@ public class ModelManager implements Model {
 
         focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
-        updateFilteredStudentList(predicate);
+        setFilteredListPredicate(predicate);
     }
 
     @Override
     public void exitFocusMode() {
         focusedClass = null;
         focusLabelProperty.set(DEFAULT_FOCUS_LABEL);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
