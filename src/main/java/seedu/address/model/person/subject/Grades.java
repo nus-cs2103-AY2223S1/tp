@@ -4,6 +4,7 @@ package seedu.address.model.person.subject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -18,13 +19,13 @@ public class Grades {
 
     // the double array contains 3 values: the score for the assessment,
     // the total score for the assessment, and the weightage of the assessment
-    private final HashMap<String, double[]> assessmentMarks;
+    private final LinkedHashMap<String, double[]> assessmentMarks;
 
     /**
      * Constructs a {@code Grades}.
      */
     public Grades() {
-        assessmentMarks = new HashMap<>();
+        assessmentMarks = new LinkedHashMap<>();
     }
 
     /**
@@ -34,10 +35,11 @@ public class Grades {
      */
     public void updateAssessment(Assessment updatedAssessment) {
         if (assessmentMarks.containsKey(updatedAssessment.getAssessmentName())) {
-            double[] updatedMarks = new double[3];
+            double[] updatedMarks = new double[4];
             updatedMarks[0] = updatedAssessment.getAssessmentScore();
             updatedMarks[1] = updatedAssessment.getAssessmentTotalScore();
             updatedMarks[2] = updatedAssessment.getAssessmentWeightage();
+            updatedMarks[3] = updatedAssessment.getAssessmentDifficulty();
             assessmentMarks.put(updatedAssessment.getAssessmentName(), updatedMarks);
         } else {
             assessmentMarks.put(updatedAssessment.getAssessmentName(), updatedAssessment.getScoreArray());
@@ -78,15 +80,15 @@ public class Grades {
      * @return a String which represents the data of the grades of the individual subject taken by the person.
      */
     public String dataString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         Set<String> keys = assessmentMarks.keySet();
         for (String key : keys) {
             String keyValue = Arrays.toString(assessmentMarks.get(key));
-            str += key + ":" + keyValue + ", ";
+            str.append(key).append(":").append(keyValue).append(", ");
         }
         int stringLength = str.length();
-        str = str.substring(0, stringLength - 2);
-        return str;
+        str = new StringBuilder(str.substring(0, stringLength - 2));
+        return str.toString();
     }
 
     @Override

@@ -32,14 +32,14 @@ public class Assessment {
      * @param assessmentScore the student's score of the assessment
      * @param assessmentTotalScore the total score of the assessment
      */
-    public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore,
-        double assessmentTotalScore, double assessmentDifficulty) {
+    public Assessment(String assessmentName, double assessmentScore,
+        double assessmentTotalScore, double assessmentWeightage, double assessmentDifficulty) {
         checkArgument(isValidAssessment(assessmentName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidScore(assessmentScore, assessmentTotalScore), MESSAGE_CONSTRAINTS_MARKS);
         this.assessmentName = assessmentName;
-        this.assessmentWeightage = assessmentWeightage;
         this.assessmentScore = assessmentScore;
         this.assessmentTotalScore = assessmentTotalScore;
+        this.assessmentWeightage = assessmentWeightage;
         this.assessmentDifficulty = assessmentDifficulty;
     }
 
