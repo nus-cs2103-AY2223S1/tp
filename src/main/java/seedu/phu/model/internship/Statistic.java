@@ -14,7 +14,7 @@ public class Statistic {
     private ObservableList<Internship> internships;
 
     /**
-     * Constructs a Statistinc instance representing the
+     * Constructs a Statistic instance representing the
      * list of internships.
      *
      * @param internships an ObservableList.
