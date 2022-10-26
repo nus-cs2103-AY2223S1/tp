@@ -43,6 +43,11 @@ public class Person {
         this.email = email;
         this.address = address;
         this.appointments.addAll(listOfAppointments);
+        for (Appointment appointment : listOfAppointments) {
+            if (appointment.getPatient() != this) {
+                appointment.setPatient(this);
+            }
+        }
         this.appointments.addListener((ListChangeListener<Appointment>) c -> {
             while (c.next()) {
                 if (c.wasUpdated()) {
