@@ -34,8 +34,8 @@ public class JsonAdaptedModule {
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("lectureDetails") String lectureDetails,
-                             @JsonProperty("moduleCode") String moduleCode,
+    public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
+                             @JsonProperty("lectureDetails") String lectureDetails,
                              @JsonProperty("tutorialDetails") String tutorialDetails,
                              @JsonProperty("lectureZoomLink") String lectureZoomLink,
                              @JsonProperty("tutorialZoomLink") String tutorialZoomLink,

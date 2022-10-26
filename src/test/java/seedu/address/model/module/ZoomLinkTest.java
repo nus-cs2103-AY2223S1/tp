@@ -9,7 +9,6 @@ public class ZoomLinkTest {
 
     @Test
     public void isValidZoomLink() {
-
         // invalid zoom link
         assertFalse(ZoomLink.isValidUrl("")); // empty string
         assertFalse(ZoomLink.isValidUrl(" ")); // spaces only

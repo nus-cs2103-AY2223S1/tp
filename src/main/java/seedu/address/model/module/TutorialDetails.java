@@ -8,7 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TutorialDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tutorial Details can take any values";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tutorial Details are optional but cannot take empty values";
     public static final String EMPTY_TUTORIAL_DETAILS = "";
 
     /*
