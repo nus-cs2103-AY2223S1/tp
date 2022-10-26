@@ -8,12 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
+import java.time.LocalDate;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TaskEditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Name;
-
-import java.time.LocalDate;
 
 /**
  * Parses input arguments and creates a new TaskEditCommand object
@@ -29,7 +29,8 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX, PREFIX_TASK_NAME, PREFIX_TASK_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX,
+                        PREFIX_TASK_NAME, PREFIX_TASK_DEADLINE);
 
         Index taskIndex;
         Index teamIndex;

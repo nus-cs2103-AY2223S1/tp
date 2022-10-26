@@ -265,7 +265,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline) {
+        public void editTask(Index teamIndex, Index taskIndex,
+                             seedu.address.model.task.Name newName, LocalDate newDeadline) {
             throw new AssertionError("This method should not be called.");
         }
     }

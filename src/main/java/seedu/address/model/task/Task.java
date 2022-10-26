@@ -47,9 +47,15 @@ public class Task {
         return this.name;
     }
 
+    /**
+     * Edits the taskname and deadline of the Task
+     *
+     * @param newName The new task name.
+     * @param newDeadline The new deadline provided.
+     */
     public void editTaskDesc(Name newName, LocalDate newDeadline) {
         this.name = newName;
-        if(!isNull(newDeadline)) {
+        if (!isNull(newDeadline)) {
             this.deadline = Optional.ofNullable(newDeadline);
         }
         else {
