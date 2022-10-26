@@ -37,10 +37,10 @@ public class UntagCommand extends Command {
      *  %2$s - The names of removed tags
      *  %3$s - Eatery name
      */
-    public static final String MESSAGE_UNTAG_EATERY_SUCCESS = "Removed tag%1$s %2$s\nfrom Eatery %3$s";
-    public static final String MESSAGE_NOT_UNTAGGED = "At least one tag must be provided.";
-    public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide.";
-    public static final String MESSAGE_TAG_NOT_FOUND = "Didn't find tag %1$s at eatery %2$s.";
+    public static final String MESSAGE_UNTAG_EATERY_SUCCESS = "Removed tag%1$s %2$s\nfrom %3$s";
+    public static final String MESSAGE_NOT_UNTAGGED = "At least one tag must be provided";
+    public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide";
+    public static final String MESSAGE_TAG_NOT_FOUND = "Didn't find tag %1$s at eatery %2$s";
 
     private final Index index;
     private final Set<Tag> tagsToRemove;
