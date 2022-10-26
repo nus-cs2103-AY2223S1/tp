@@ -33,7 +33,7 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "I successfully edited the task: %1$s!";
 
-    @Parameter(description = "Index of the task to edit", required = true, converter = IndexConverter.class)
+    @Parameter(description = "<task index>", required = true, converter = IndexConverter.class)
     private Index targetIndex;
 
     @Parameter(names = "-c", description = "New module code for the task",

@@ -42,12 +42,12 @@ public class ModuleCard extends UiPart<Region> {
 
         if (module.isDone()) {
             // Add the `done` badge if the module is done.
-            Label doneBadge = new Label("DONE");
+            Label doneBadge = new Label("done");
             this.badges.getChildren().add(doneBadge);
         }
 
         if (module.getIsCurrentModule()) {
-            Label currentBadge = new Label("Selected");
+            Label currentBadge = new Label("selected");
             this.badges.getChildren().add(currentBadge);
         }
     }
