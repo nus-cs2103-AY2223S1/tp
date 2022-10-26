@@ -1,5 +1,8 @@
 package bookface.model.book;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import bookface.commons.util.CollectionUtil;
@@ -15,13 +18,27 @@ public class Book {
     private final Author author;
     private Person loanee = null;
 
+    private Date returnDate = null;
+
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. This is an overloaded constructor used in JsonAdaptedBook
+     * if book does not have return date.
      */
     public Book(Title title, Author author) {
         CollectionUtil.requireAllNonNull(title, author);
         this.title = title;
         this.author = author;
+    }
+
+    /**
+     * Every field must be present and not null. This is an overloaded constructor used in JsonAdaptedBook
+     * if book has a return date.
+     */
+    public Book(Title title, Author author, Date returnDate) {
+        CollectionUtil.requireAllNonNull(title, author, returnDate);
+        this.title = title;
+        this.author = author;
+        this.returnDate = returnDate;
     }
 
     public Title getTitle() {
@@ -31,6 +48,22 @@ public class Book {
     public Author getAuthor() {
         return author;
     }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
+    }
+    public String getReturnDateString() {
+        if (isLoaned()) {
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+            return "Return by: " + formatter.format(returnDate);
+        }
+        return null;
+    }
+
 
     public Person getLoanee() {
         return loanee;
@@ -53,9 +86,11 @@ public class Book {
      *
      * @param loanee the person borrowing this book
      */
-    public void loanTo(Person loanee) {
+    public void loanTo(Person loanee, Date returnDate) {
         this.loanee = loanee;
+        this.returnDate = returnDate;
     }
+
 
     /**
      * Return this loaned book .
@@ -107,8 +142,9 @@ public class Book {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
                 .append("; Author: ")
-                .append(getAuthor());
-
+                .append(getAuthor())
+                .append("; ")
+                .append(getReturnDateString());
         return builder.toString();
     }
 }
