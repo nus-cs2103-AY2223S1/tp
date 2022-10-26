@@ -73,9 +73,12 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
-
+### Adding a person:
 Adds a buyer, supplier, or delivery service to the contacts.
+A person can be of three categories: Buyer, Deliverer, and Supplier.
+
+### Adding a buyer: `add-b`
+
 
 Format: `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​`
 
