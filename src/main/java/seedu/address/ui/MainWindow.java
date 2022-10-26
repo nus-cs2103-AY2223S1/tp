@@ -131,7 +131,6 @@ public class MainWindow extends UiPart<Stage> {
     private void registerShortcut(TabPane tabPane, Tab tab, KeyCombination combination) {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (combination.match(event)) {
-                System.out.println("select");
                 tabPane.getSelectionModel().select(tab);
                 event.consume();
             }
