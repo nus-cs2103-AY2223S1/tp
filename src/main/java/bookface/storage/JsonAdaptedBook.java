@@ -1,9 +1,13 @@
 package bookface.storage;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bookface.commons.exceptions.IllegalValueException;
+import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
@@ -18,13 +22,20 @@ class JsonAdaptedBook {
     private final String title;
     private final String author;
 
+    private final String returnDate;
+
+    private final boolean isLoaned;
+
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
-    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author) {
+    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author,
+                           @JsonProperty("returnDate") String returnDate, @JsonProperty("isLoaned") boolean isLoaned) {
         this.title = title;
         this.author = author;
+        this.returnDate = returnDate;
+        this.isLoaned = isLoaned;
     }
 
     /**
@@ -33,6 +44,13 @@ class JsonAdaptedBook {
     public JsonAdaptedBook(Book source) {
         title = source.getTitle().bookTitle;
         author = source.getAuthor().bookAuthor;
+        isLoaned = source.isLoaned();
+        if (isLoaned) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            returnDate = formatter.format(source.getReturnDate());
+        } else {
+            returnDate = null;
+        }
     }
 
     /**
@@ -57,7 +75,20 @@ class JsonAdaptedBook {
         }
         final Author modelAuthor = new Author(author);
 
-        return new Book(modelTitle, modelAuthor);
+        if (isLoaned && returnDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "return date"));
+        }
+
+        if (isLoaned) {
+            try {
+                final Date modelDate = new SimpleDateFormat("yyyy-MM-dd").parse(returnDate);
+                return new Book(modelTitle, modelAuthor, modelDate);
+            } catch (java.text.ParseException pe) {
+                throw new ParseException(String.valueOf(pe));
+            }
+        } else {
+            return new Book(modelTitle, modelAuthor);
+        }
     }
 }
 

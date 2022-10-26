@@ -29,6 +29,7 @@
             <FlowPane fx:id="tags" />
             <Label fx:id="author" styleClass="cell_small_label" text="\$author" wrapText="true"/>
             <Label fx:id="loanStatus" styleClass="cell_small_label" text="Loan Status: \$loanstatus" wrapText="true"/>
+            <Label fx:id="returnBy" styleClass="cell_small_label" text="Return by: \$returnBy" wrapText="true"/>
         </VBox>
     </GridPane>
 </HBox>
