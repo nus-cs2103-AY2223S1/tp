@@ -43,7 +43,7 @@ public class FindCommandTest {
         NormalTagContainsKeywordsPredicate thirdPredicate =
                 new NormalTagContainsKeywordsPredicate(Collections.singletonList("friends"));
 
-        RiskTagContainsKeywordsPredicate fourthPredicate=
+        RiskTagContainsKeywordsPredicate fourthPredicate =
                 new RiskTagContainsKeywordsPredicate(Collections.singletonList("medium"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
@@ -130,7 +130,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleNormalTags_3PersonFound() {
+    public void execute_multipleNormalTags_threePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NormalTagContainsKeywordsPredicate predicate =
                 prepareNormalPredicate("friends");
