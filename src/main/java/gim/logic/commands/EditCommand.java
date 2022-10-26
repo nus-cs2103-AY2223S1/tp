@@ -32,7 +32,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exercise identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " -> Edits the details of the exercise identified "
             + "by the index number used in the displayed exercise list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -40,8 +40,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_SETS + "SETS] "
             + "[" + PREFIX_REPS + "REP] "
-            + "[" + PREFIX_DATE + "DATE]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "[" + PREFIX_DATE + "DATE]\n"
+            + "Example usage: " + COMMAND_WORD + " 1 "
             + PREFIX_WEIGHT + "91234567 "
             + PREFIX_SETS + "johndoe@example.com";
 
