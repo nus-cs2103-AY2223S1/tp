@@ -19,7 +19,7 @@ public class EmailContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getEmail().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsSubstringIgnoreCase(person.getEmail().value, keyword));
     }
 
     @Override
