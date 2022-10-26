@@ -29,11 +29,15 @@ public class Class {
             + " " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
     public static final String VALIDATION_FLEXIBLE_CLASS_REGEX =
             "(?i)(Mon|Tue|Wed|Thu|Fri|Sat|Sun) " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
+    public static final String INVALID_FIND_COMMAND_MESSAGE =
+            "Please include a date either in the format of yyyy-MM-dd or Day-of-Week"
+            + "\nExamples: 2022-10-15, Mon, tue"
+            + "\nDay-of-Week must be 3 letters and is case-insensitive";
 
     public final LocalDate date;
     public final LocalTime startTime;
     public final LocalTime endTime;
-    // yyyy-MM-dd eg. 2022-05-05 1200-1500
+    // yyyy-MM-dd 0000-2359 eg. 2022-05-05 1200-1500
     public final String classDateTime;
 
     /**
@@ -59,6 +63,25 @@ public class Class {
         this.startTime = startTime;
         this.endTime = endTime;
         this.classDateTime = classDateTime;
+    }
+
+    /**
+     * Overloaded constructor that generates the date in a String format to construct a {@code Class}
+     *
+     * @param date LocalDate object.
+     * @param startTime LocalTime object.
+     * @param endTime LocalTime object.
+     */
+    public Class(LocalDate date, LocalTime startTime, LocalTime endTime) {
+        requireAllNonNull(date, startTime, endTime);
+        String stringOfDateTime = String.format("%s %s-%s", date.toString(),
+                startTime.format(DateTimeFormatter.ofPattern("HHmm")),
+                endTime.format(DateTimeFormatter.ofPattern("HHmm")));
+
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.classDateTime = stringOfDateTime;
     }
 
     /**
@@ -220,6 +243,29 @@ public class Class {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns a Class that has a predefined number of days ahead of the current class date, with the same starting and
+     * ending timing.
+     *
+     * @param numberOfDays to be added to the current class date.
+     * @return a class with numberOfDays ahead.
+     */
+    public Class addDays(int numberOfDays) {
+        assert(numberOfDays >= 0);
+        LocalDate updatedDate = this.date.plusDays(numberOfDays);
+        return new Class(updatedDate, this.startTime, this.endTime);
+    }
+
+    /**
+     * Checks if both dates are the same.
+     *
+     * @param date to be checked against.
+     * @return true if the dates are the same.
+     */
+    public boolean isSameDateAs(LocalDate date) {
+        return this.date.equals(date);
     }
 
     /**

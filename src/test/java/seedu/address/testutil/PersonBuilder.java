@@ -9,6 +9,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -30,6 +31,7 @@ public class PersonBuilder {
     public static final Integer DEFAULT_MONEY_PAID = 0;
     public static final Integer DEFAULT_RATES_PER_CLASS = 40;
     public static final String DEFAULT_ADDITIONAL_NOTES = "";
+    public static final Boolean DEFAULT_ATTENDANCE_STATUS = Boolean.FALSE;
 
     private Name name;
     private Phone phone;
@@ -42,6 +44,8 @@ public class PersonBuilder {
     private AdditionalNotes additionalNotes;
     private Class aClass;
     private Set<Tag> tags;
+    private Class displayedClass;
+    private Mark mark;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -58,6 +62,8 @@ public class PersonBuilder {
         ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONAL_NOTES);
         tags = new HashSet<>();
+        displayedClass = aClass;
+        mark = new Mark(DEFAULT_ATTENDANCE_STATUS);
     }
 
     /**
@@ -75,6 +81,8 @@ public class PersonBuilder {
         ratesPerClass = personToCopy.getRatesPerClass();
         additionalNotes = personToCopy.getAdditionalNotes();
         tags = new HashSet<>(personToCopy.getTags());
+        displayedClass = personToCopy.getDisplayedClass();
+        mark = personToCopy.getMarkStatus();
     }
 
     /**
@@ -166,11 +174,28 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code displayedClass} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDisplayDate(String displayClass) throws ParseException {
+        this.displayedClass = displayedClass;
+        return this;
+    }
+
+    /**
+     * Sets the {@code mark} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMark(Boolean attended) {
+        this.mark = new Mark(attended);
+        return this;
+    }
+
+    /**
      * Returns Person object with the fields initialised.
      * @return Person object.
      */
     public Person build() {
-        return new Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
-                additionalNotes, tags);
+        return new
+                Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
+                additionalNotes, tags, mark, displayedClass);
     }
 }
