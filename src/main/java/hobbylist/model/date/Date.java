@@ -85,4 +85,8 @@ public class Date {
         return this.getOrginString().split("-")[0];
     }
 
+    public String toDisplayedString() {
+        return this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
 }

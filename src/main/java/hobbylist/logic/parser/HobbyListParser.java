@@ -19,6 +19,7 @@ import hobbylist.logic.commands.HelpCommand;
 import hobbylist.logic.commands.ListCommand;
 import hobbylist.logic.commands.RateAboveCommand;
 import hobbylist.logic.commands.RateCommand;
+import hobbylist.logic.commands.SelectCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,6 +75,8 @@ public class HobbyListParser {
             return new HelpCommand();
         } else if (commandWord.equals(RateCommand.getCommandWord())) {
             return new RateCommandParser().parse(arguments);
+        } else if (commandWord.equals(SelectCommand.getCommandWord())) {
+            return new SelectCommandParser().parse(arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

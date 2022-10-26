@@ -174,6 +174,16 @@ public class AddCommandTest {
         public void updateFilteredActivityList(Predicate<Activity> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Activity> getSelectedActivity() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void selectActivity(Activity activity) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

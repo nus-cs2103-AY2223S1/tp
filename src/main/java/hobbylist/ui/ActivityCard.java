@@ -88,7 +88,7 @@ public class ActivityCard extends UiPart<Region> {
 
     }
 
-    public void setStatusLabel(Label label, Status status) {
+    public static void setStatusLabel(Label label, Status status) {
         label.setText("Status: " + status.toString());
 
         switch (status.toString()) {

@@ -16,6 +16,10 @@ public class HobbyList implements ReadOnlyHobbyList {
 
     private final UniqueActivityList activities;
 
+    private final UniqueActivityList selectedActivityList;
+
+    private Activity selectedActivity;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -25,6 +29,8 @@ public class HobbyList implements ReadOnlyHobbyList {
      */
     {
         activities = new UniqueActivityList();
+        selectedActivityList = new UniqueActivityList();
+        selectedActivity = null;
     }
 
     public HobbyList() {}
@@ -84,6 +90,9 @@ public class HobbyList implements ReadOnlyHobbyList {
         requireNonNull(editedActivity);
 
         activities.setActivity(target, editedActivity);
+        if (selectedActivityList.contains(target)) {
+            selectedActivityList.setActivity(target, editedActivity);
+        }
     }
 
     /**
@@ -92,6 +101,25 @@ public class HobbyList implements ReadOnlyHobbyList {
      */
     public void removeActivity(Activity key) {
         activities.remove(key);
+        if (selectedActivityList.contains(key)) {
+            selectedActivityList.remove(key);
+        }
+    }
+
+    /**
+     * Set selected activity to be {@code key}
+     * {@code key} must exist in the HobbyList
+     */
+    public void selectActivity(Activity key) {
+        if (selectedActivity != null) {
+            selectedActivityList.remove(selectedActivity);
+        }
+        selectedActivity = key;
+        selectedActivityList.add(key);
+    }
+
+    public ObservableList<Activity> getSelectedActivity() {
+        return selectedActivityList.asUnmodifiableObservableList();
     }
 
     //// util methods

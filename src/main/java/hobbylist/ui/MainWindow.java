@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        activityListPanel = new ActivityListPanel(logic.getFilteredActivityList());
+        activityListPanel = new ActivityListPanel(logic.getFilteredActivityList(), logic.getSelectedActivity());
         activityListPanelPlaceholder.getChildren().add(activityListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
