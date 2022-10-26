@@ -9,17 +9,17 @@ import static seedu.clinkedin.testutil.Assert.assertThrows;
 import static seedu.clinkedin.testutil.TypicalPersons.ALICE;
 import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.person.exceptions.DuplicatePersonException;
+import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -97,6 +97,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public Map<Prefix, TagType> getPrefixMap() {
+            return UniqueTagTypeMap.getPrefixMap();
         }
 
         @Override
