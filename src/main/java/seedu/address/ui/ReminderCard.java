@@ -51,8 +51,7 @@ public class ReminderCard extends UiPart<Region> {
         assert person.getName() != null : "Something went wrong in UI ReminderCard name";
         assert reminder.task != null : "Something went wrong in UI ReminderCard task";
         assert reminder.date != null : "Something went wrong in UI ReminderCard date";
-        
-      id.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         reminderTask.setText(reminder.task);
         reminderDate.setText(reminder.date

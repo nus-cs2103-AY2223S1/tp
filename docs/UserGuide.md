@@ -220,8 +220,8 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 | **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                                   |
 | **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                        |
 | **List**   | `list`                                                                                                                                                   |
-| **Remind** | `remind` 
+| **Remind** | `remind`
 |
-| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`      
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`
 |
 | **Help**   | `help`                                                                                                                                                   |
