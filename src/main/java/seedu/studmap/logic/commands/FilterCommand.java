@@ -28,21 +28,25 @@ public class FilterCommand extends Command {
 
     private final AssignmentContainsKeywordsPredicate aPredicate;
 
-    public FilterCommand(TagContainsKeywordsPredicate tPredicate,
-                         ModuleContainsKeywordsPredicate mPredicate,
+    /**
+     * Constructor for FilterCommand
+     * @param tPredicate
+     * @param mPredicate
+     * @param aPredicate
+     */
+    public FilterCommand(TagContainsKeywordsPredicate tPredicate, ModuleContainsKeywordsPredicate mPredicate,
                          AssignmentContainsKeywordsPredicate aPredicate) {
         this.tPredicate = tPredicate;
         this.mPredicate = mPredicate;
         this.aPredicate = aPredicate;
     }
 
-
     @Override
     public CommandResult execute(Model model) {
         if (tPredicate == null && aPredicate == null) {
             requireNonNull(mPredicate);
             model.filterStudentListWithModule(mPredicate);
-        } else if (mPredicate == null && aPredicate == null){
+        } else if (mPredicate == null && aPredicate == null) {
             requireNonNull(tPredicate);
             model.filterStudentListWithTag(tPredicate);
         } else {

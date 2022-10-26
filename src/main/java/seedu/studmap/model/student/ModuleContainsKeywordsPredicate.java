@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import seedu.studmap.commons.util.StringUtil;
 
+/**
+ * Tests that a {@code Student}'s {@code Module} matches any of the keywords given.
+ */
 public class ModuleContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 

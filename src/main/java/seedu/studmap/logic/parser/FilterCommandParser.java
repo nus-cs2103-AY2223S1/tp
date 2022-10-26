@@ -36,7 +36,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (prefix.equals("t/")) {
             return new FilterCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
                     null, null);
-        } else if (prefix.equals("m/")){
+        } else if (prefix.equals("m/")) {
             return new FilterCommand(null,
                     new ModuleContainsKeywordsPredicate(Arrays.asList(nameKeywords)), null);
         }

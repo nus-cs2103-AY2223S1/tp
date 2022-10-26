@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 
 import seedu.studmap.commons.util.StringUtil;
 
+/**
+ * Tests that a {@code Student}'s {@code Assignment} matches any of the keywords given.
+ */
 public class AssignmentContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
@@ -18,7 +21,7 @@ public class AssignmentContainsKeywordsPredicate implements Predicate<Student> {
         Set<Assignment> assignmentSet = student.getAssignments();
         for (Assignment assignment : assignmentSet) {
             if (keywords.stream().anyMatch(keywords ->
-                    StringUtil.containsWordIgnoreCase(assignment.assignmentName, keywords))){
+                    StringUtil.containsWordIgnoreCase(assignment.assignmentName, keywords))) {
                 return true;
             }
         }
