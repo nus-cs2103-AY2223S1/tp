@@ -245,17 +245,18 @@ Step 1. The `EditCommand` object's `execute()` method is called.
     * The Items that were scheduled in the deleted Days would be unscheduled.
   * Update the duration field.
 
-### Export
+### \[Proposed\] Export
 
-The Export feature is facilitated by accessing the list of items stored in a "Day" object, which is part of a list of "Day" in a "Itinerary" Object.
+The Export feature is facilitated by the pdfbox library. 
 
-The items in each day are converted to string by calling the toString() method.
+The conversion from Objects to a text output can be done by calling the `getTextRepresentation()` method of the `Itinerary` ,`Day` and  `item` classes in a cascading manner.
 
-The generated string is appended to a newly created blank pdf.
+`Itinerary#getTextRepresentation()` will call and append `Day#getTextRepresentation()` of the `Day`s in its `days` list.  `Day#getTextRepresentation()` then calls and append `Item#getTextRepresentation()` of the `Item`s in its `itemList`.
+The output will be the itinerary fully represented in text form and written to a newly created blank pdf.
 
 PDF is then exported.
 
-PDF will be stored under "./exports".
+PDF will be stored as "data/<itinerary name>.pdf".
 
 --------------------------------------------------------------------------------------------------------------------
 
