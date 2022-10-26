@@ -1,6 +1,5 @@
 package swift.ui;
 
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -51,26 +50,29 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getTaskName().fullName);
+        setAssociatedContacts(personTaskBridgeList, personList);
+    }
 
-        List<PersonTaskBridge> taskBridgeList = personTaskBridgeList.stream()
+    private void setAssociatedContacts(ObservableList<PersonTaskBridge> personTaskBridgeList,
+                                       ObservableList<Person> personList) {
+        personTaskBridgeList.stream()
                 .filter(bridge -> bridge.getTaskId().equals(task.getId()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                .forEach(taskBridge -> {
+                    UUID personId = taskBridge.getPersonId();
+                    Person associatedPerson;
 
-        taskBridgeList.forEach(taskBridge -> {
-            UUID personId = taskBridge.getPersonId();
-            Person associatedPerson;
-
-            for (Person person : personList) {
-                associatedPerson = person;
-                if (associatedPerson.getId().equals(personId)) {
-                    Label label = new Label(associatedPerson.getName().toString());
-                    setStyle(label);
-                    contacts.getChildren().add(label);
-                    dueDate.setText("No due date");
-                    return;
-                }
-            }
-        });
+                    for (Person person : personList) {
+                        associatedPerson = person;
+                        if (associatedPerson.getId().equals(personId)) {
+                            Label label = new Label(associatedPerson.getName().toString());
+                            setStyle(label);
+                            contacts.getChildren().add(label);
+                            dueDate.setText("No due date");
+                            return;
+                        }
+                    }
+                });
     }
 
     private void setStyle(Label... labels) {
