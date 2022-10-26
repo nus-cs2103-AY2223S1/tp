@@ -5,6 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,8 +15,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 
-import java.lang.reflect.Member;
-import java.util.List;
 
 /**
  * Adds a person to the address book.
