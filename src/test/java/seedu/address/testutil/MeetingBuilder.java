@@ -6,7 +6,6 @@ package seedu.address.testutil;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
