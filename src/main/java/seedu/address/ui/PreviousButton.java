@@ -31,7 +31,7 @@ public class PreviousButton extends CalendarButton {
 
     @FXML
     private void handleOnKeyPressed(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER) || event.getCode().equals(KeyCode.B)) {
+        if (event.getCode().equals(KeyCode.B)) {
             calendarLogic.previous();
             previousButton.requestFocus();
         } else if (event.getCode().equals(KeyCode.N)) {
