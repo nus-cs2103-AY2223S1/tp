@@ -3,9 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
+import static seedu.address.logic.parser.ParserUtil.parseIndexValidity;
 import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ParserUtil.parseRepositoryValidity;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_LABEL;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
@@ -249,9 +251,10 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
     private FindProjectCommand parseFindProjectCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY, PREFIX_CLIENT_ID,
+                        PREFIX_CLIENT_LABEL);
 
-        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REPOSITORY)
+        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REPOSITORY, PREFIX_CLIENT_ID, PREFIX_CLIENT_LABEL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE));
@@ -267,9 +270,18 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             parseRepositoryValidity(argMultimap.getValue(PREFIX_REPOSITORY).get());
         }
 
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_LABEL)) {
+            parseNameValidity(argMultimap.getValue(PREFIX_CLIENT_LABEL).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        }
+
         ProjectContainsKeywordsPredicate predicate =
                 new ProjectContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME),
-                        argMultimap.getAllValues(PREFIX_REPOSITORY));
+                        argMultimap.getAllValues(PREFIX_REPOSITORY), argMultimap.getAllValues(PREFIX_CLIENT_LABEL),
+                        argMultimap.getAllValues(PREFIX_CLIENT_ID));
 
 
         return new FindProjectCommand(predicate);

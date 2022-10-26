@@ -2,6 +2,7 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_LABEL;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
@@ -26,13 +27,13 @@ public class FindProjectCommand extends ProjectCommand {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_REPOSITORY + "REPOSITORY "
-            + PREFIX_NAME + "CLIENT NAME "
+            + PREFIX_CLIENT_LABEL + "CLIENT LABEL "
             + PREFIX_CLIENT_ID + "CLIENT ID \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "DevEnable "
             + PREFIX_REPOSITORY + "tp/devenable "
-            + PREFIX_NAME + "Amy "
+            + PREFIX_CLIENT_LABEL + "Amy "
             + PREFIX_CLIENT_ID + "1 ";
 
     private static ProjectContainsKeywordsPredicate predicate;
