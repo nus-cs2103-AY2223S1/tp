@@ -7,11 +7,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.ALLOWANCE;
 import static seedu.address.testutil.TypicalEntry.DINNER;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
+import static seedu.address.testutil.TypicalEntry.getExpenditureFilteredByMonthPennyWise;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +24,7 @@ import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PennyWiseBuilder;
+import seedu.address.testutil.TypicalLineChartData;
 
 public class ModelManagerTest {
 
@@ -93,7 +96,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasExpenditure_expenditurenInPennyWise_returnsTrue() {
+    public void hasExpenditure_expenditureInPennyWise_returnsTrue() {
         modelManager.addExpenditure(LUNCH);
         assertTrue(modelManager.hasExpenditure(LUNCH));
     }
@@ -182,6 +185,26 @@ public class ModelManagerTest {
         XYChart.Series<String, Number> expectedIncomeLineChartData = new XYChart.Series<>();
         XYChart.Series<String, Number> actualIncomeLineChartData = modelManager.getIncomeLineChartData();
         assertEquals(expectedIncomeLineChartData.getData(), actualIncomeLineChartData.getData());
+    }
+
+    @Test
+    public void getExpenseLineChartData_validExpenseArray_success() {
+        PennyWise filteredPennyWise = getExpenditureFilteredByMonthPennyWise();
+        modelManager.setPennyWise(filteredPennyWise);
+        ObservableList<XYChart.Data<String, Number>> expectedExpenseLineChartData =
+                new TypicalLineChartData().getExpenditureLineChartData();
+
+        ObservableList<XYChart.Data<String, Number>> actualExpenseLineChartData =
+                modelManager.getExpenseLineChartData().getData();
+        actualExpenseLineChartData.sort(Comparator.comparing(XYChart.Data::getXValue));
+
+        modelManager.setPennyWise(new PennyWise());
+        for (int i = 0; i < 31; i++) {
+            assertEquals(expectedExpenseLineChartData.get(i).getXValue(),
+                    actualExpenseLineChartData.get(i).getXValue());
+            assertEquals(expectedExpenseLineChartData.get(i).getYValue(),
+                    actualExpenseLineChartData.get(i).getYValue());
+        }
     }
 
     @Test

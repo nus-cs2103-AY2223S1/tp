@@ -296,7 +296,7 @@ public class ModelManager implements Model {
         date = date.withDayOfMonth(1);
         int daysInMonth = date.lengthOfMonth();
         for (int i = 0; i < daysInMonth; i++) {
-            dateToExpenditureMap.put(date.format(ISO_LOCAL_DATE), 0);
+            dateToExpenditureMap.put(date.format(ISO_LOCAL_DATE), 0.00);
             date = date.plusDays(1);
         }
 
