@@ -5,7 +5,6 @@ import static seedu.studmap.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.studmap.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.studmap.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.studmap.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.studmap.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import java.util.HashSet;
@@ -19,7 +18,6 @@ import seedu.studmap.commons.core.index.SingleIndexGenerator;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
 import seedu.studmap.model.UserPrefs;
-import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.testutil.StudentBuilder;
@@ -52,25 +50,6 @@ class UnmarkCommandTest {
         assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void execute_validIndexUnfilteredListAssignment_success() {
-        Student studentToUnmark = model.getFilteredStudentList().get(INDEX_THIRD_STUDENT.getZeroBased());
-        Assignment assignment = new Assignment("A01", Assignment.Status.NEW);
-        UnmarkCommand unmarkCommand = new UnmarkCommand(new SingleIndexGenerator(INDEX_THIRD_STUDENT),
-                new UnmarkCommand.UnmarkCommandStudentEditor(assignment));
-
-        Set<Assignment> assignmentSet = new HashSet<>(studentToUnmark.getAssignments());
-        assignmentSet.remove(assignment);
-        Student unmarkedStudent = new StudentBuilder(studentToUnmark).setAssigned(assignmentSet).build();
-
-        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SINGLE_ASSIGNMENT_SUCCESS,
-                assignment.getAssignmentName(), unmarkedStudent);
-
-        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
-        expectedModel.setStudent(model.getFilteredStudentList()
-                .get(INDEX_THIRD_STUDENT.getZeroBased()), unmarkedStudent);
-        assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
-    }
 
     @Test
     public void execute_filteredList_success() {
