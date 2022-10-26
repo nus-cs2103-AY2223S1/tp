@@ -33,7 +33,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             String[] nameKeywords = argMultiMap.getValue(CliSyntax.PREFIX_STUDENT_NAME).get().split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultiMap.getValue(CliSyntax.PREFIX_ID).isPresent()) {
-            return new FindCommand(new IdPredicate(new Id(argMultiMap.getValue(CliSyntax.PREFIX_ID).get())));
+            return new FindCommand(
+                    new IdPredicate(ParserUtil.parseId(argMultiMap.getValue(CliSyntax.PREFIX_ID).get())));
         } else {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
