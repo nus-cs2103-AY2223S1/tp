@@ -12,6 +12,10 @@ import seedu.travelr.model.event.Event;
  */
 public class SortEventsCommandParser implements Parser<SortEventsCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the SortTripsCommand
+     * and returns an SortTripsCommand object for execution.
+     */
     public SortEventsCommand parse(String args) {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_REVERSE_ORDER);
