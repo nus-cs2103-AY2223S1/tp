@@ -11,9 +11,11 @@ import swift.commons.util.StringUtil;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.Address;
 import swift.model.person.Email;
-import swift.model.person.Name;
+import swift.model.person.PersonName;
 import swift.model.person.Phone;
 import swift.model.tag.Tag;
+import swift.model.task.Deadline;
+import swift.model.task.Description;
 import swift.model.task.TaskName;
 
 /**
@@ -55,13 +57,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static PersonName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new PersonName(trimmedName);
     }
 
     /**
@@ -146,8 +148,39 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!TaskName.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
         }
         return new TaskName(trimmedName);
     }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline);
+    }
+
 }

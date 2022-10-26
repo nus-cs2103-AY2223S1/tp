@@ -61,12 +61,26 @@
     {
       "id": "bfbf250c-fd58-49b4-be15-ca12095ca2ee",
       "taskName": "Buy Milk",
-      "contactIndex": 0
+      "description": null,
+      "deadline": "12-12-2022 1200"
     },
     {
       "id": "41478d11-dbba-441f-ab0f-99ddf097eac1",
       "taskName": "CS2103T",
-      "contactIndex": 0
+      "description": "Finish tutorial",
+      "deadline": "12-06-2022 1800"
+    },
+    {
+      "id": "384308a6-6c01-4e7a-a9eb-8147f6502764",
+      "taskName": "CS2101",
+      "description": "Meeting link: https://www.example.com",
+      "deadline": null
+    },
+    {
+      "id": "8aa2ee94-728a-47b5-8864-474ea71612fb",
+      "taskName": "CS3230",
+      "description": null,
+      "deadline": null
     }
   ],
   "bridges": []

@@ -16,7 +16,7 @@
 
 <fx:root maxWidth="1600.0" minHeight="600" minWidth="1200.0" onCloseRequest="#handleExit" title="Swift+" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/swift.png" />
   </icons>
   <scene>
     <Scene>

@@ -49,7 +49,7 @@ public class PersonTaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(task.getTaskName().fullName);
+        name.setText(task.getName().fullName);
         setAssociatedContacts(personTaskBridgeList, personList);
     }
 

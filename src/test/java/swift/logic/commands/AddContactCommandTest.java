@@ -25,7 +25,7 @@ import swift.model.person.Person;
 import swift.model.task.Task;
 import swift.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddContactCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {

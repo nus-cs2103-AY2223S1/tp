@@ -7,7 +7,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `jason.qiu@u.nus.edu`
 
-## Project team
+## **Project team**
 
 ### Jason Qiu
 
