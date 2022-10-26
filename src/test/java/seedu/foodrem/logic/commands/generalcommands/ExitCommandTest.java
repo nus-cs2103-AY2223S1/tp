@@ -23,4 +23,11 @@ class ExitCommandTest {
         assertTrue(commandResult.shouldExit());
         assertEquals(commandResult.getOutput(), "Exiting FoodRem as requested ...");
     }
+
+    @Test
+    void testCommandResultEquals() {
+        CommandResult<?> firstResult = new ExitCommand().execute(model);
+        CommandResult<?> secondResult = new ExitCommand().execute(model);
+        assertEquals(firstResult, secondResult);
+    }
 }
