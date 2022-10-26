@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setResidentBookFilePath(Paths.get("rc4hdb/book/file/path"));
+        userPrefs.setDataStorageFilePath(Paths.get("rc4hdb/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setResidentBookFilePath(Paths.get("new/rc4hdb/book/file/path"));
+        userPrefs.setDataStorageFilePath(Paths.get("new/rc4hdb/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -62,14 +62,14 @@ public class ModelManagerTest {
 
     @Test
     public void setResidentBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setResidentBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefDataFilePath(null));
     }
 
     @Test
     public void setResidentBookFilePath_validPath_setsResidentBookFilePath() {
         Path path = Paths.get("rc4hdb/book/file/path");
-        modelManager.setResidentBookFilePath(path);
-        assertEquals(path, modelManager.getResidentBookFilePath());
+        modelManager.setUserPrefDataFilePath(path);
+        assertEquals(path, modelManager.getUserPrefDataFilePath());
     }
 
     @Test
@@ -97,11 +97,13 @@ public class ModelManagerTest {
     public void equals() {
         ResidentBook residentBook = new ResidentBookBuilder().withResident(ALICE).withResident(BENSON).build();
         ResidentBook differentResidentBook = new ResidentBook();
+        VenueBook venueBook = new VenueBook(); //Todo add venues to this venueBook
+        VenueBook differentVenueBook = new VenueBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(residentBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(residentBook, userPrefs);
+        modelManager = new ModelManager(residentBook, venueBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(residentBook, venueBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,19 +116,24 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different residentBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentResidentBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentResidentBook, venueBook, userPrefs)));
+
+        /* Todo comment out when differentVenueBook is different.
+        // different venueBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(residentBook, differentVenueBook, userPrefs)));
+         */
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ALICE.getName().value.split("\\s+");
         modelManager.updateFilteredResidentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(residentBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(residentBook, venueBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setResidentBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(residentBook, differentUserPrefs)));
+        differentUserPrefs.setDataStorageFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(residentBook, venueBook, differentUserPrefs)));
     }
 }
