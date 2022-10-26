@@ -178,7 +178,8 @@ the same convention as [adding a student](#adding-a-student-add).
         2. `Day-of-Week 0000-2359`
     - End time must be after the start time.
     - If the Day-of-Week is today, executing `edit INDEX dt/Day-of-Week 0000-2359` will set the date to today only
-      if the start time of the class is later than the current time. Else, the date will be set to 1 week later.
+      if the start time of the class is later than the current time. Else, the date will be set to the specified Day-of-Week
+      in the following week.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
@@ -198,7 +199,7 @@ Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
       They are modified independent of each other.
 ```
 
-6. Additional notes:
+6. Additional Notes:
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
     - Use `nt/` to set the additional notes.
