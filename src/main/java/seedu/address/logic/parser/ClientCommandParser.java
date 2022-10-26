@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.ParserUtil.parseEmailValidity;
 import static seedu.address.logic.parser.ParserUtil.parseName;
 import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ParserUtil.parseMobile;
-import static seedu.address.logic.parser.ParserUtil.parsePhoneValidity;
+import static seedu.address.logic.parser.ParserUtil.parseMobileValidity;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.ArrayList;
@@ -217,7 +217,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
-            parsePhoneValidity(argMultimap.getValue(PREFIX_MOBILE).get());
+            parseMobileValidity(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {

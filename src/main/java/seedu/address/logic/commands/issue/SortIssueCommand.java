@@ -68,7 +68,7 @@ public class SortIssueCommand extends IssueCommand {
 
         if (sortKey.equals(PREFIX_URGENCY)) {
             model.sortIssuesByUrgency(sortOrder);
-            sortKeyString = "priority.";
+            sortKeyString = "urgency.";
         }
 
         ui.showIssues();

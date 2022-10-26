@@ -203,9 +203,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String title} into a {@code Description}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
-     * It is an overloaded method that doesn't return a Description object.
+     * It is an overloaded method that doesn't return a Title object.
      * @throws ParseException if the given {@code title} is invalid.
      */
     public static void parseTitleValidity(String title) throws ParseException {
@@ -265,10 +265,10 @@ public class ParserUtil {
      */
     public static void parseStatusValidity(String status) throws ParseException {
         requireNonNull(status);
-        String trimmedPriority = status.trim();
+        String trimmedStatus = status.trim();
         boolean isValidStringCounterpart =
-                trimmedPriority.equalsIgnoreCase("completed")
-                        || trimmedPriority.equalsIgnoreCase("incomplete");
+                trimmedStatus.equalsIgnoreCase("completed")
+                        || trimmedStatus.equalsIgnoreCase("incomplete");
         if (!isValidStringCounterpart) {
             throw new ParseException(Status.MESSAGE_STRING_CONSTRAINTS);
         }

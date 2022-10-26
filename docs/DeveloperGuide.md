@@ -264,7 +264,7 @@ Example Use: `project -e p/1 n/Jeff c/1 r/Jeffrey/tp d/2022-07-05`
 
 #### Edit Issue Command
 Compulsory prefix: i/<valid issue id>
-Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, p/<valid urgency>
+Optional prefixes (at least one to be included): t/<valid title>, d/<valid deadline>, u/<valid urgency>
 Example Use: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
 
 #### Edit Client Command
