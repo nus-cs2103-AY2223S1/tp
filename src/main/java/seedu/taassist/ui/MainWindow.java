@@ -123,16 +123,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens a particular webpage, if unable to do so, help window will be shown for them to copy the URL.
+     * Opens a particular webpage. If unable to do so, help window will be shown for them to copy the URL.
      */
     public static void openWebpage(String urlString) {
-        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            try {
-                Desktop.getDesktop().browse(new URL(urlString).toURI());
-            } catch (Exception e) {
-                helpWindow.show();
-            }
-        } else {
+        if (!Desktop.isDesktopSupported() || !Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            helpWindow.show();
+            return;
+        }
+        try {
+            Desktop.getDesktop().browse(new URL(urlString).toURI());
+        } catch (Exception e) {
             helpWindow.show();
         }
     }
