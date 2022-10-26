@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
  */
 public class TaskListPanel extends UiPart<Region> {
     private static final String FXML = "TaskListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
     private ListView<Task> taskListView;
@@ -24,9 +24,10 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Task> personList) {
+    public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
-        taskListView.setItems(personList);
+
+        taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 

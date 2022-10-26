@@ -137,4 +137,5 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortingCriteria(Comparator<Task> comparator);
+
 }

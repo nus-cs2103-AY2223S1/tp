@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
+
 
 /**
  * Adds a person to the address book.
@@ -52,6 +54,16 @@ public class AddCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        for (Task task : model.getFilteredTaskList()) {
+            if (task.getPersonEmailAddress().equals(toAdd.getEmail())) {
+                Task editedTask = task.copy();
+                editedTask.setPersonEmailAddress(toAdd.getEmail());
+                editedTask.setPersonName(toAdd.getName());
+                model.deleteTask(task);
+                model.addTask(editedTask);
+            }
         }
 
         model.addPerson(toAdd);
