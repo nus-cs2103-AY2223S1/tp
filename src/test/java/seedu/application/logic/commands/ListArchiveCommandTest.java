@@ -1,5 +1,6 @@
 package seedu.application.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.application.logic.commands.CommandTestUtil.showApplicationAtIndex;
 import static seedu.application.logic.commands.CommandTestUtil.showApplicationByArchiveStatus;
@@ -15,10 +16,9 @@ import seedu.application.model.ModelManager;
 import seedu.application.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListArchiveCommand.
  */
-public class ListCommandTest {
-
+public class ListArchiveCommandTest {
     private Model model;
     private Model modelWithArchivedApplication;
     private Model expectedModel;
@@ -34,26 +34,41 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listHasNoArchived_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_listHasNoArchived_showEmptyList() {
+        showNoApplication(expectedModel);
+        assertCommandSuccess(new ListArchiveCommand(), model,
+                ListArchiveCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_listIsFilteredWithNoArchived_showsEverything() {
+    public void execute_listIsFilteredWithNoArchived_showEmptyList() {
         showApplicationAtIndex(model, INDEX_FIRST_APPLICATION);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        showNoApplication(expectedModel);
+        assertCommandSuccess(new ListArchiveCommand(), model,
+                ListArchiveCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_listHasArchived_showsListWithoutArchived() {
-        assertCommandSuccess(new ListCommand(), modelWithArchivedApplication,
-                ListCommand.MESSAGE_SUCCESS, expectedModelWithArchivedApplication);
+    public void execute_listHasArchived_showsListWithArchived() {
+        showApplicationByArchiveStatus(expectedModelWithArchivedApplication, true);
+        assertCommandSuccess(new ListArchiveCommand(), modelWithArchivedApplication,
+                ListArchiveCommand.MESSAGE_SUCCESS, expectedModelWithArchivedApplication);
     }
 
     @Test
-    public void execute_listIsFilteredInArchiveList_showsListWithoutArchived() {
+    public void execute_listIsFilteredInArchiveList_showsSameList() {
+        showApplicationByArchiveStatus(expectedModelWithArchivedApplication, true);
         showApplicationByArchiveStatus(modelWithArchivedApplication, true);
-        assertCommandSuccess(new ListCommand(), modelWithArchivedApplication,
-                ListCommand.MESSAGE_SUCCESS, expectedModelWithArchivedApplication);
+        assertCommandSuccess(new ListArchiveCommand(), modelWithArchivedApplication,
+                ListArchiveCommand.MESSAGE_SUCCESS, expectedModelWithArchivedApplication);
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show no application.
+     */
+    private void showNoApplication(Model model) {
+        model.updateFilteredApplicationList(p -> false);
+
+        assertTrue(model.getFilteredApplicationList().isEmpty());
     }
 }

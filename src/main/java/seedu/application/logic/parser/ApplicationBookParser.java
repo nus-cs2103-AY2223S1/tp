@@ -20,6 +20,7 @@ import seedu.application.logic.commands.HelpCommand;
 import seedu.application.logic.commands.ListArchiveCommand;
 import seedu.application.logic.commands.ListCommand;
 import seedu.application.logic.commands.RedoCommand;
+import seedu.application.logic.commands.RemindCommand;
 import seedu.application.logic.commands.RetrieveCommand;
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.commands.UndoCommand;
@@ -89,6 +90,9 @@ public class ApplicationBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand();
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);

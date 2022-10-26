@@ -11,11 +11,14 @@ title: User Guide
     * [Getting help: `help`](#getting-help-help)
     * [Adding an internship application: `add`](#adding-an-internship-application-add)
     * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
+    * [Listing all archived internship application: `list-archive`](#listing-all-archived-internship-applications)
     * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
     * [Finding an internship application: `find`](#finding-an-internship-application-find)
     * [Editing an internship application: `edit`](#editing-an-internship-application-edit)
     * [Adding or editing an interview: `interview`](#adding--editing-an-interview-interview)
     * [Removing an interview: `remove-i`](#removing-an-interview-remove-i)
+    * [Archiving an internship application: `archive`](#archiving-an-internship-application-archive)
+    * [Retrieving an internship application from archives: `retrieve`](#retrieving-an-internship-application-from-archives-retrieve)
     * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -41,6 +44,8 @@ title: User Guide
    
     * **`list`** : Displays internship application.
 
+    * **`list-archive`** : Displays archived internship application.
+   
     * **`add`**`c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` : Adds an internship application that was submitted on `2022-01-01` to `Google` with contact number `11111111` and email `google@example.com` for the role of `Software Engineer` to **CinternS**.
 
     * **`delete`**`2` : Deletes the 2nd application shown in the current list.
@@ -52,6 +57,10 @@ title: User Guide
     * **`interview`**`5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`: Adds interview to the 5th application in the displayed application list / Edits existing interview in the 5th displayed application.
 
     * **`remove-i`**`3`: Removes the 3rd interview in the displayed interview list.
+
+    * **`archive`**`3`: Archives the 3rd application shown in the current list. The application must be unarchived.
+   
+    * **`retrieve`**`1`: Retrieves the 1st application shown in the current list. The application must be archived.
 
     * **`clear`**: Clears CinternS data.
 
@@ -113,6 +122,12 @@ Displays all the internship applications in the list.
 
 Format: `list`
 
+### Listing all archived internship applications:
+
+Displays all the archived internship applications in the list.
+
+Format: `list-archive`
+
 ### Deleting an internship application: `delete`
 
 Deletes the specified internship application from the list.
@@ -124,7 +139,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index must be within the range of available internships in the application list.
 
-Examples:
+Example:
 * `list` followed by `delete 2` deletes the 2nd internship application in the list.
 
 ### Finding an internship application: `find`
@@ -197,6 +212,36 @@ Example:
 
 * `remove-i 3` removes the interview in the interview list with display index `i3`.
 
+### Archiving an internship application: `archive`
+
+Archives the specified internship application from the list.
+
+Format: `archive INDEX`
+
+* Archives the internship application at the specified `INDEX`.
+* The application specified must be unarchived.
+* The index refers to the index number shown in the displayed internship application list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available internships in the shown application list.
+
+Example:
+* `list` followed by `archive 2` archives the 2nd internship application in the list.
+
+### Retrieving an internship application from archives: `retrieve`
+
+Retrieves the specified internship application from the list.
+
+Format: `retrieve INDEX`
+
+* Retrieves the internship application at the specified `INDEX`.
+* The application specified must be archived, `list-archive` command is recommended to be used before using this command.
+* The index refers to the index number shown in the displayed internship application list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be within the range of available internships in the shown application list.
+
+Example:
+* `list-archive` followed by `retrieve 1` retrieves the 1st internship application in the list.
+
 ### Clearing all entries: `clear`
 Clears all entries from CinternS.
 
@@ -233,17 +278,20 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                                            |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**      | `help`                                                                                                                                                                                      |
-| **Add**       | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
-| **List**      | `list`                                                                                                                                                                                      |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
-| **Edit**      | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
-| **Interview** | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`        |
-| **Remove-i**  | `remove-i`<br/> e.g., `remove-i 3`                                                                                                                                                          |
-| **Clear**     | `clear`                                                                                                                                                                                     |
-| **Exit**      | `exit`                                                                                                                                                                                      |
+| Action          | Format, Examples                                                                                                                                                                            |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**        | `help`                                                                                                                                                                                      |
+| **Add**         | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE_APPLIED e/EMAIL p/POSITION [t/TAG]...` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer t/preferred` |
+| **List**        | `list`                                                                                                                                                                                      |
+| **ListArchive** | `list-archive`                                                                                                                                                                              |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                                         |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                                                    |
+| **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
+| **Interview**   | `interview INDEX ir/ROUND id/INTERVIEW_DATE it/INTERVIEW_TIME il/LOCATION`<br> e.g., `interview 5 ir/Technical interview id/2024-09-16 it/1400 il/11, Kallang Way 2, #08-15, 119546`        |
+| **Remove-i**    | `remove-i`<br/> e.g., `remove-i 3`                                                                                                                                                          |
+| **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
+| **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
+| **Clear**       | `clear`                                                                                                                                                                                     |
+| **Exit**        | `exit`                                                                                                                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
