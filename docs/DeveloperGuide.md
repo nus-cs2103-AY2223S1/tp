@@ -8,14 +8,14 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Introduction**
+## **1. Introduction**
 
-### **Purpose**
+### **1.1 Purpose**
 This document describes the architecture and software design decisions for our CLI-based task management app notionUS.
 While the document is in general for anyone who wants to understand the system, it is primarily targeted towards the
 designers, developers and software testers of notionUS.
 
-### **Scope**
+### **1.2 Scope**
 As the goal of this document is to cover and explain the architecture and design decisions, we first discuss
 the high-level architecture and software design under the "Design" section. Then we go into details of 
 implementation of our features in the "Implementation" section. 
@@ -227,10 +227,6 @@ will be given. Model will not be updated.
 Below is the sequence diagram for an execution of `archive <index>`, assuming `<index>` is not out of bound.
 
 ![Sequence diagram when command `archive 1` is executed](images/HideSequenceDiagram.png)
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### 5.2 Mark/unmark feature
 
@@ -553,7 +549,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **8 Appendix: Instructions for manual testing**
+## **8. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
