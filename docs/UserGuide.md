@@ -126,6 +126,7 @@ Note: Address cannot be empty. It must contain at least 1 character.
 5. Email:
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
+      - Consecutive special characters are not supported.
       - Domain address should be least 2 characters long.
 
 ```yaml
