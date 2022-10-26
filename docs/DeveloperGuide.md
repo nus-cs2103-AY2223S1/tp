@@ -436,19 +436,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                                            | So that I can…​                                                       |
-|----------|-----------|-------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | Student   | add contacts of my tutors/professors/friends                            | keep track of my social network                                       |
-| `* * *`  | Student   | remove unnecessary contacts from my address book                        | manage my social network                                              |
-| `* * *`  | Student   | find contacts based on name                                             | look up a person’s contact easily                                     |
-| `* * *`  | Student   | edit contacts in  address book                                          | make changes if that a person’s contact changed                       |
-| `* * *`  | Student   | display all the contacts in my list                                     | see all the contacts that I have added so far                         |
-| `* * *`  | New User  | clear all examples sample address                                       | start using the application quickly                                   |
-| `* * *`  | Student   | keep track of my tutors/professors/friend's github username             | find their github username easily                                     |
-| `* * *`  | Lazy User | open github profile page of my tutors/professor/ friends with a command | view my friends/Teaching Assistants/Professors github projects easily |
-| `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                       |
-| `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                   |
-| `* * *`  | Student   | visualise my contact list in a pie chart                                | have a quick overview of my network                                   |
+
+| Priority | As a …​   | I want to …​                                                            | So that I can…​                                                                                           |
+|----------|-----------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `* * *`  | Student   | add contacts of my tutors/professors/friends                            | keep track of my social network                                                                           |
+| `* * *`  | Student   | remove unnecessary contacts from my address book                        | manage my social network                                                                                  |
+| `* * *`  | Student   | find contacts based on name                                             | look up a person’s contact easily                                                                         |
+| `* * *`  | Student   | edit contacts in  address book                                          | make changes if that a person’s contact changed                                                           |
+| `* * *`  | Student   | display all the contacts in my list                                     | see all the contacts that I have added so far                                                             |
+| `* * *`  | New User  | clear all examples sample address                                       | start using the application quickly                                                                       |
+| `* * *`  | Student   | keep track of my tutors/professors/friend's github username             | find their github username easily                                                                         |
+| `* * *`  | Lazy User | open github profile page of my tutors/professor/ friends with a command | view my friends/Teaching Assistants/Professors github projects easily                                     |
+| `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                                                           |
+| `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                                                       |
+| `* * *`  | Student   | keep track of my contact's location                                     | know where I should approach for help / to meet                                                           |
+| `* * *`  | New User  | get a template command for adding a tutor / professor / friend          | start using the application quickly without having to constantly look up the User Guide on all the fields |
+| `* * *`  | Student   | visualise my contact list in a pie chart                                | have a quick overview of my network                                                                       |
 
 *{More to be added}*
 
@@ -518,6 +521,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+  
+
+**Use case: Get Template for adding a Person**
+
+**MSS**
+
+1.  User requests for a template for a specific type of Person. i.e. prof / ta / student.
+2.  SoConnect pastes the template on the CLI.
+3.  User fills in the template with the right information and presses enter.
+4.  SoConnect adds the person into storage.
+
+    Use case ends.
+
+**Extensions**
+* 1a. SoConnect detects an error in specified person entered.
+
+    * 1a1. SoConnect shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. SoConnect detects an error in the entered information.
+
+    * 3a1. SoConnect shows an error message.
+
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
