@@ -64,10 +64,6 @@ public class InventoryItem implements Item {
         return totalQuantity;
     }
 
-    public Integer getTotalQuantityValue() {
-        return totalQuantity.getValue();
-    }
-
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
