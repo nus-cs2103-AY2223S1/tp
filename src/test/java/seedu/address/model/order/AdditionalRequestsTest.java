@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class AdditionalRequestsTest {
     @Test
     public void constructor_invalidAdditionalRequest_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AdditionalRequests(Arrays.asList(null)));
+        assertThrows(NullPointerException.class, () -> new AdditionalRequests(Arrays.asList((String[]) null)));
     }
 
     @Test
