@@ -4,7 +4,7 @@
 skinparam SequenceReferenceBackgroundColor White
 box Logic LOGIC_COLOR_T1
 participant ":Logic\nManager" as LogicManager LOGIC_COLOR
-participant ":AddressBook\nParser" as AddressBookParser LOGIC_COLOR
+participant ":MassLinkers\nParser" as MassLinkersParser LOGIC_COLOR
 participant ":AddInterest\nCommandParser" as AddInterestCommandParser LOGIC_COLOR
 participant ":AddInterest\nCommand" as AddInterestCommand LOGIC_COLOR
 end box
@@ -18,16 +18,16 @@ end box
 [-> LogicManager : execute\n("addInt 1 anime")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand\n("addInt 1 anime")
-activate AddressBookParser
+LogicManager -> MassLinkersParser : parseCommand\n("addInt 1 anime")
+activate MassLinkersParser
 
 create AddInterestCommandParser
-AddressBookParser -> AddInterestCommandParser
+MassLinkersParser -> AddInterestCommandParser
 activate AddInterestCommandParser
-AddInterestCommandParser --> AddressBookParser
+AddInterestCommandParser --> MassLinkersParser
 deactivate AddInterestCommandParser
 
-AddressBookParser -> AddInterestCommandParser : parse\n("1 anime")
+MassLinkersParser -> AddInterestCommandParser : parse\n("1 anime")
 activate AddInterestCommandParser
 create Interest
 AddInterestCommandParser -> Interest
@@ -43,14 +43,14 @@ activate AddInterestCommand
 AddInterestCommand --> AddInterestCommandParser
 deactivate AddInterestCommand
 
-AddInterestCommandParser --> AddressBookParser
+AddInterestCommandParser --> MassLinkersParser
 deactivate AddInterestCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddInterestCommandParser -[hidden]-> AddressBookParser
+AddInterestCommandParser -[hidden]-> MassLinkersParser
 destroy AddInterestCommandParser
 
-AddressBookParser --> LogicManager
-deactivate AddressBookParser
+MassLinkersParser --> LogicManager
+deactivate MassLinkersParser
 
 LogicManager -> AddInterestCommand : execute()
 activate AddInterestCommand
