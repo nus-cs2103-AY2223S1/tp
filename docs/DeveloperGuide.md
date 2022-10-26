@@ -214,7 +214,7 @@ will be given. Model will not be updated.
 
 Below is the sequence diagram for an execution of `archive <index>`, assuming `<index>` is not out of bound.
 
-![Sequence diagram when command `archive 1` is executed](images/HideSequenceDiagram-0.png)
+![Sequence diagram when command `archive 1` is executed](images/HideSequenceDiagram.png)
 
 ### \[Proposed\] Data archiving
 
