@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox style="-fx-background-color: #7B7D7D;" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox style="-fx-background-radius: 30px;" styleClass="context-menu">
+         <children>
+            <Label text="Adding an order">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox>
+         <children>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <TextField fx:id="speciesField" promptText="Species" style="-fx-background-radius: 30px;" />
+                  <TextField fx:id="colorField" promptText="Color" style="-fx-background-radius: 30px;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="colorPatternField" promptText="Color pattern" style="-fx-background-radius: 30px;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <TextField fx:id="ageField" promptText="Pet age" style="-fx-background-radius: 30px;">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="priceRangeField" promptText="Price range: low, high" style="-fx-background-radius: 30px;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></TextField>
+                  <TextField fx:id="byDateField" promptText="Find match by: yyyy-MM-dd" style="-fx-background-radius: 30px;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets left="15.0" right="15.0" top="5.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox>
+         <VBox.margin>
+            <Insets bottom="10.0" left="15.0" right="15.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <TextArea fx:id="additionalRequestsField" promptText="Additional requests..." />
+         </children>
+      </HBox>
+   </children>
+</VBox>

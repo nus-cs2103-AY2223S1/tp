@@ -53,8 +53,8 @@ public class CheckCommand extends Command {
         default:
             //Do nothing
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, checkType, index.getOneBased()),
-                true, checkType, index);
+        return CommandResult.createCheckCommandResult(String.format(MESSAGE_SUCCESS, checkType, index.getOneBased()),
+                checkType, index);
     }
 
     private void checkInvalidIndexThrowException(ObservableList<? extends Object> list) throws CommandException {
