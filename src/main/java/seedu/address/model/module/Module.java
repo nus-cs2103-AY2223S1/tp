@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
  * Represents a Module in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Module {
+public class Module implements Comparable<Module> {
 
     // Default value for empty module title
     public static final String EMPTY_MODULE_TITLE = "";
@@ -222,4 +222,8 @@ public class Module {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Module other) {
+        return moduleCode.compareTo(other.moduleCode);
+    }
 }
