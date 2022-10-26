@@ -16,6 +16,7 @@ import java.util.List;
 
 import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
+import gim.logic.generators.ValidLevel;
 import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.exercise.Exercise;
@@ -37,6 +38,9 @@ public class CommandTestUtil {
     public static final String VALID_SETS_BENCH_PRESS = "5";
     public static final String VALID_REPS_ARM_CURLS = "1";
     public static final String VALID_REPS_BENCH_PRESS = "2";
+    public static final ValidLevel VALID_LEVEL_EASY = ValidLevel.EASY;
+    public static final ValidLevel VALID_LEVEL_MEDIUM = ValidLevel.MEDIUM;
+    public static final ValidLevel VALID_LEVEL_HARD = ValidLevel.HARD;
     public static final String VALID_DATE = "02/05/2022";
     public static final String VALID_DATE_2 = "12/01/2007";
 
