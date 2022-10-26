@@ -1,7 +1,9 @@
 package seedu.address.model.person;
 
 import seedu.address.commons.util.StringUtil;
+
 import java.util.function.Predicate;
+
 import java.util.Arrays;
 
 
