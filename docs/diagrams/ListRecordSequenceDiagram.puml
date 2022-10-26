@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ListRecordCommandParser" as ListRecordCommandParser LOGIC_COLOR
+participant "r:ListRecordCommand" as ListRecordCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("rlist 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("rlist 1")
+activate AddressBookParser
+
+create ListRecordCommandParser
+AddressBookParser -> ListRecordCommandParser
+activate ListRecordCommandParser
+
+ListRecordCommandParser --> AddressBookParser
+deactivate ListRecordCommandParser
+
+AddressBookParser -> ListRecordCommandParser : parse("1")
+activate ListRecordCommandParser
+
+create ListRecordCommand
+ListRecordCommandParser -> ListRecordCommand
+activate ListRecordCommand
+
+ListRecordCommand --> ListRecordCommandParser : r
+deactivate ListRecordCommand
+
+ListRecordCommandParser --> AddressBookParser : r
+deactivate ListRecordCommandParser
+
+ListRecordCommandParser -[hidden]-> AddressBookParser
+destroy ListRecordCommandParser
+
+AddressBookParser --> LogicManager : r
+deactivate AddressBookParser
+
+LogicManager -> ListRecordCommand : execute()
+activate ListRecordCommand
+
+ListRecordCommand -> Model : setPersonWithRecords()
+ListRecordCommand -> Model : setRecordListDisplayed()
+ListRecordCommand -> Model : setFilteredRecordList()
+ListRecordCommand -> Model : updateFilteredRecordList()
+
+create CommandResult
+ListRecordCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListRecordCommand
+deactivate CommandResult
+
+ListRecordCommand --> LogicManager : result
+deactivate ListRecordCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
