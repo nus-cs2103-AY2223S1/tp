@@ -38,9 +38,9 @@ public class CommandBox extends UiPart<Region> {
     private CommandHistory commandHistoryStorage = new CommandHistory();
 
     // Autocomplete
-    // Command list to check with
+    // Command list to check with.
     private final SortedSet<String> commandList;
-    // Pop up list with suggestions
+    // Pop up list with suggestions.
     private final ContextMenu suggestionsList;
     @FXML
     private TextField commandTextField;
@@ -51,8 +51,8 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        commandList = new TreeSet<>(Arrays.asList("add ", "delete ", "ls -a", "ls -m",
-                "ls -u", "ls -t ", "ls --module ", "mark ", "unmark ", "find ", "edit ", "clear ", "exit", "help"));
+        commandList = new TreeSet<>(Arrays.asList("add ", "delete ", "ls -a", "ls -m", "ls -u", "ls -t ",
+                "ls --module ", "ls -n ", "mark ", "unmark ", "find ", "edit ", "clear ", "exit", "help"));
         suggestionsList = new ContextMenu();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
@@ -148,30 +148,39 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Filters the results for the suggestions list.
+     * @param currentText Current text in commandTextArea
+     * @return results
+     */
+    private LinkedList<String> filterList(String currentText) {
+        return commandList.stream()
+                .filter(a -> a.startsWith(currentText.toLowerCase().trim()))
+                .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    /**
      * Handles the autocomplete function by filtering the command list.
      */
     @FXML
     private void handleAutoComplete() {
         String currentText = commandTextField.getText();
-        if (currentText.equalsIgnoreCase("")) {
+        if (currentText.trim().equals("")) {
             suggestionsList.hide();
         } else {
-            LinkedList<String> searchResult = commandList.stream()
-                    .filter(a -> a.startsWith(currentText.toLowerCase().trim()))
-                    .collect(Collectors.toCollection(LinkedList::new));
+            LinkedList<String> searchResult = filterList(currentText);
+            // If current text matches the only result in the list, close list.
             if (searchResult.size() == 1 && searchResult.get(0).equalsIgnoreCase(currentText)) {
                 suggestionsList.hide();
+                // Else, show all results.
             } else if (searchResult.size() > 0) {
                 populatePopup(searchResult);
-                if (!suggestionsList.isShowing()) {
-                    suggestionsList.show(commandTextField, Side.BOTTOM, 14, -10);
-                }
+                suggestionsList.hide();
+                suggestionsList.show(commandTextField, Side.BOTTOM, 10 + currentText.length() * 10, -10);
             } else {
                 suggestionsList.hide();
             }
         }
     }
-
     /**
      * Sets the command box style to use the default style.
      */

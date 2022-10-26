@@ -73,7 +73,7 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void isString_validInputs_correctResult() {
+    public void toString_validInputs_correctResult() {
         // Zero keyword predicate
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
         assertEquals("Names containing ''", predicate.toString());

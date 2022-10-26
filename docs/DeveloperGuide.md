@@ -122,11 +122,11 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+1. When `Logic` is called upon to execute a command, it uses the `TaskListParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a task).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
@@ -142,9 +142,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `TaskListParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaskListParser` returns back as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
@@ -173,7 +173,7 @@ The `Model` component,
 ### Storage component
 
 **
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -181,14 +181,14 @@ The `Storage` component,
 
 * can save both address book data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.TaskList.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -293,16 +293,42 @@ selection.
 The mechanism works by firstly having a list of possible commands. This list is then filtered with the condition 
 of whether any of them contain the text that the user is inputting at real-time. This filtered list is then shown as a 
 JXML context menu below the command box.
+
 It adds the following methods in CommandBox.java:
 
 * `CommandBox#handleAutoComplete` – Handles the filtering of the command list and showing the suggestions list.
 * `CommandHistory#populatePopUp` – Populates the suggestions list popup with the filtered list.
 
-Usage Scenario (Work in Progress)
+Below is an example usage scenario for autocomplete:
+
+Step 1. The user opens the app, which initialises the `CommandBox` which then initialises the `ContextMenu` and a
+`CommandList` of all the possible commands that be used in the app.
+
+Step 2. The user would like to edit a task that has in NotionUS, and knows that the command begins with an `e`, typing 
+it into the command box. A list of possible commands appears as a popup `ContextMenu` below the
+command box, containing the commands of `edit` and `exit`.
+
+Step 3. When the popup appears, the user can use the `up` and `down` key to traverse the list to the command of choice.
+Once the user would like to use that command, the user hits `Enter` and the command is filled into the command box. 
+This closes the popup.
+
+Step 4. The user adds the required additional information if required and then hits `Enter` to perform the command as 
+per normal.
+
+Below is an activity diagram to display how the feature works:
+![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
 
 #### Design considerations:
 
-(Work in Progress)
+##### Aspect: Filtering commandList to find matching commands:
+
+* **Alternative 1: (current implementation)** Filters command list down everytime the user input changes:
+  * Pros: Easy to implement
+  * Cons: Inefficient as full list is filtered every time
+* **Alternative 2:** Filter the current command list if the start of current input matches start of commands already 
+in previous list
+  * Pros: Harder to implement
+  * Cons: Efficient especially when command list is large
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -339,35 +365,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *Core Functionalities*
 
 | Priority | As a …​        | I want to …​                                                              | So that I can…​                             |
-|--------|----------------|---------------------------------------------------------------------------|---------------------------------------------|
-| `* * *` | beginner user  | add tasks                                                                 | keep track of the tasks on hand             |
-| `* * *` | beginner user  | delete tasks                                                              | remove tasks that are no longer relevant    |
-| `* * *` | beginner user  | tag my tasks to a specific module or commitment                           | organise them better                        |
-| `* * *` | beginner user  | keep track of deadlines related to added tasks                            | complete tasks on time                      |
-| `* * *` | beginner user  | see all the tasks I have that have yet to be completed                    | easily identify tasks to work on            |
-| `* *`  | potential user | see example tasks that show how the app displays tasks and their statuses | have a better idea of how the app functions |
-| `* *`  | beginner user  | edit the task names                                                       | rectify mistakes                            |
-| `* *`  | familiar user  | sort my tasks by due date                                                 | easily see which are the most urgent        |
+|----------|----------------|---------------------------------------------------------------------------|---------------------------------------------|
+| `* * *`  | beginner user  | add tasks                                                                 | keep track of the tasks on hand             |
+| `* * *`  | beginner user  | delete tasks                                                              | remove tasks that are no longer relevant    |
+| `* * *`  | beginner user  | tag my tasks to a specific module or commitment                           | organise them better                        |
+| `* * *`  | beginner user  | keep track of deadlines related to added tasks                            | complete tasks on time                      |
+| `* * *`  | beginner user  | see all the tasks I have that have yet to be completed                    | easily identify tasks to work on            |
+| `* *`    | potential user | see example tasks that show how the app displays tasks and their statuses | have a better idea of how the app functions |
+| `* *`    | beginner user  | edit the task names                                                       | rectify mistakes                            |
+| `* *`    | familiar user  | sort my tasks by due date                                                 | easily see which are the most urgent        |
 
 *{More to be added}*
 
 ### Use cases
 
-Unless specified otherwise, the **System** is the `NotioNUS` application and the **Actor** is the `user`.
+Unless specified otherwise, the **System** is the `NotionUS` application and the **Actor** is the `user`.
 
 **Use Case: UC1 - Add a task**
 
 **MSS:**
 
 1. User requests to add a task into the task list
-2. NotioNUS adds task into task list and displays it
+2. NotionUS adds task into task list and displays it
 
    Use case ends.
 
 **Extensions:**
 
 * 1a. User does not provide the required information for the task
-    * 1a1. NotioNUS shows an error, requesting the user re-enter their task
+    * 1a1. NotionUS shows an error, requesting the user re-enter their task
 
       Use case ends.
 
@@ -377,20 +403,20 @@ Unless specified otherwise, the **System** is the `NotioNUS` application and the
 
 1. User finds the id associated with the task
 2. User requests to edit the task
-3. NotioNUS edits the task and displays it
+3. NotionUS edits the task and displays it
 
    Use case ends.
 
 **Extensions:**
 
 * 2a. User provides an invalid ID
-    * 2a1. NotioNUS shows an error, requesting the user check the task id
+    * 2a1. NotionUS shows an error, requesting the user check the task id
 
       Use case starts from 1.
 
 
 * 2b. User does not provide any changes
-    * 2b1. NotioNUS provides a note that nothing was changed
+    * 2b1. NotionUS provides a note that nothing was changed
 
       Use case ends
 
@@ -400,14 +426,14 @@ Unless specified otherwise, the **System** is the `NotioNUS` application and the
 
 1. User finds the id associated with the task
 2. User requests to delete the task
-3. NotioNUS deletes the task and updates the view
+3. NotionUS deletes the task and updates the view
 
    Use case ends.
 
 **Extensions:**
 
 * 2a. User provides an invalid ID
-    * 2a1. NotioNUS shows an error, requesting the user check the task id
+    * 2a1. NotionUS shows an error, requesting the user check the task id
 
       Use case starts from 1.
 
@@ -417,15 +443,72 @@ Unless specified otherwise, the **System** is the `NotioNUS` application and the
 
 1. User creates a task (UC1)
 2. With the task id, user requests to tag the task
-3. NotioNUS tags the task and displays it
+3. NotionUS tags the task and displays it
    Use case ends.
 
 **Extensions:**
 
 * 2a. User provides an invalid ID
-    * 2a1. NotioNUS shows an error, requesting the user check the task id
+    * 2a1. NotionUS shows an error, requesting the user check the task id
 
       Use case starts from 1.
+
+**Use Case: UC4 - Tag a task**
+
+**MSS:**
+
+1. User creates a task (UC1)
+2. With the task id, user requests to tag the task
+3. NotionUS tags the task and displays it
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User provides an invalid ID
+    * 2a1. NotionUS shows an error, requesting the user check the task id
+
+      Use case starts from 1.
+
+**Use Case: UC5 - Finding a word in task attributes**
+
+**MSS:**
+
+1. User would like to perform a global search to find a keyword
+2. User requests find the keyword
+3. NotionUS updates the view with the tasks which attributes contain the keyword
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User provides a keyword that does not exist
+    * 2a1. NotionUS displays an empty page
+
+      Use case ends.
+
+**Use Case: UC6 - Autocompleting commands**
+
+**MSS:**
+
+1. User would to find a command for listing marked tasks
+2. User types `l` in the command box
+3. NotionUS displays a popup menu displaying the possible commands that begin with `l`
+4. User uses the arrow keys to select through the possible commands
+5. User clicks enter to fill the command box with the highlighted command
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User uses a letter that does not match any commands
+    * 2a1. NotionUS does not display a popup
+
+      Use case ends.
+  
+* 2b. User inputs a command that matches a command in the popup
+    * 2b1. NotionUS closes the popup as suggestions are not required
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -492,17 +575,17 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
+    2. Test case: `delete 1`<br>
        Expected: First tasj is deleted from the list. Details of the deleted task shown in the status message.
        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
        Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -510,4 +593,4 @@ testers are expected to do more *exploratory* testing.
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_

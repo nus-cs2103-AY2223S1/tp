@@ -73,7 +73,7 @@ public class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void isString_validInputs_correctResult() {
+    public void toString_validInputs_correctResult() {
         // Zero keyword predicate
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
         assertEquals("Tag(s) containing ''", predicate.toString());

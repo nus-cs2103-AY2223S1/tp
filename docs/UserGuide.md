@@ -80,14 +80,13 @@ Example: `tag 2 optional`
 
 ## List and Find
 
-`list` and `find` are commands that filter the list according to the prefix used. There are multiple ways to filter the tasklist, such as
-listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple filter commands (both `list` and `find`) to filter a list
-down to the results you are looking for. To reset the list, use the command `ls -a`.
+`list` and `find` are commands that filter the list. There are multiple ways to filter the tasklist, such as
+listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple list commands in one command
+to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
 
 Current filters applied will be shown in the UI at the top bar.
 
-**Note that using two `find` commands in succession is different from using one `find` command searching either of two words. Refer to the usage 
-of the `find` command below.**
+**Note that `find` searches globally, across all of a task's attributes**
 
 ### Listing all tasks : `ls -a`
 

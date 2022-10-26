@@ -94,6 +94,27 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void updateFilterStatus_updatingFilters_isCorrect() {
+        // Replaces string when filter is empty.
+        modelManager.updateFilterStatus("");
+        modelManager.updateFilterStatus("Filter 1");
+        assertEquals("Filter 1", modelManager.getFilterStatus());
+        // Replaces string shown when filter is "Showing all tasks".
+        modelManager.updateFilterStatus("Showing all tasks", true);
+        modelManager.updateFilterStatus("Filter 1");
+        assertEquals("Filter 1", modelManager.getFilterStatus());
+        // Tests adding on a filter.
+        modelManager.updateFilterStatus("Additional filter");
+        assertEquals("Filter 1, Additional filter", modelManager.getFilterStatus());
+        // Tests new filter set when isNewFilterSet is set to true.
+        modelManager.updateFilterStatus("Replacement filter", true);
+        assertEquals("Replacement filter", modelManager.getFilterStatus());
+        // Tests filter set when isNewFilterSet is set to false, even if filter is "Showing all tasks".
+        modelManager.updateFilterStatus("Showing all tasks", false);
+        assertEquals("Replacement filter, Showing all tasks", modelManager.getFilterStatus());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
