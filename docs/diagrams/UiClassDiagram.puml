@@ -15,6 +15,12 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+Class CalendarDisplay
+Class "{abstract}\nCalendarButton" as CalendarButton
+Class EventButton
+Class NextButton
+Class PreviousButton
+Class RefreshButton
 }
 
 package Model <<Rectangle>> {
@@ -35,8 +41,10 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" CalendarDisplay
 
-PersonListPanel -down-> "*" PersonCard
+PersonListPanel -down> "*" PersonCard
+CalendarDisplay -down--> "*" CalendarButton
 
 MainWindow -left-|> UiPart
 
@@ -46,15 +54,24 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+CalendarDisplay --|> UiPart
+CalendarButton --|> UiPart
+EventButton -up|> CalendarButton
+NextButton -up-|> CalendarButton
+PreviousButton -up-|> CalendarButton
+RefreshButton -up-|> CalendarButton
 
+CalendarButton ..> Model
 PersonCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
+CalendarDisplay -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml
