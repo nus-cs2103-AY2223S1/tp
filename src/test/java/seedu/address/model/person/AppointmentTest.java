@@ -48,7 +48,7 @@ class AppointmentTest {
 
     @Test
     public void isFutureDate() {
-        assertThrows(NullPointerException.class, () -> Appointment.isValidDate(null)); // null date
+        assertThrows(NullPointerException.class, () -> Appointment.isValidDateFormat(null)); // null date
 
         // invalid dates
         assertFalse(Appointment.isFutureDate(LocalDateTime.now()
