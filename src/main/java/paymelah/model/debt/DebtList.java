@@ -13,7 +13,7 @@ import paymelah.model.debt.exceptions.DebtNotFoundException;
 
 /**
  * Represents a list of a person's {@link Debt} in the address book.
- * Guarantees: debts are null, field values are validated, immutable.
+ * Guarantees: debts are not null, field values are validated, immutable.
  */
 public class DebtList {
     private final List<Debt> debts = new ArrayList<>();
