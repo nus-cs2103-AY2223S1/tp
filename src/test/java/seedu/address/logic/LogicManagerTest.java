@@ -23,7 +23,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListPersonsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -31,7 +31,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.SortField;
+import seedu.address.model.person.PersonSortField;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -69,9 +69,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        SortField dummySortField = SortField.sortByNoField();
-        String successMessage = String.format(ListCommand.MESSAGE_SUCCESS, dummySortField.getField());
+        String listCommand = ListPersonsCommand.COMMAND_WORD;
+        PersonSortField dummySortField = PersonSortField.sortByNoField();
+        String successMessage = String.format(ListPersonsCommand.MESSAGE_SUCCESS, dummySortField.getField());
 
         assertCommandSuccess(listCommand, successMessage, model);
     }
