@@ -13,6 +13,7 @@ import java.time.format.ResolverStyle;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateRange(String)}
  */
 public class DateRange {
+
     public static final String MESSAGE_CONSTRAINTS =
             "DateRanges should contain only numbers, hyphens, backslashes, and spaces.\n"
                     + "They must follow the format \"dd/MM/yy - dd/MM/yy\" and the second date "

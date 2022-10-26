@@ -8,15 +8,14 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidRoom(String)}
  */
 public class Room {
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Room should only contain alphanumeric characters and a hyphen. "
-            + "Should it contain a hyphen, it must be in between 2 alphanumeric characters. "
-            + "There should also be no spacings in between. "
-            + "E.g 05-73 or Aloha-5 are accepted.";
+            "Rooms should only contain alphanumeric characters and hyphens (-). "
+            + "They cannot start or end with a hyphen.";
 
     // Room contains alphanumeric characters with an optional hyphen only in between, and don't start with a hyphen
     // It can also accept a hyphen as long as it is in between 2 alphanumeric characters
-    private static final String VALIDATION_REGEX = "^[A-Za-z0-9]+(?:-?[A-Za-z0-9]+)+$";
+    private static final String VALIDATION_REGEX = "^[A-Za-z0-9]+(-?[A-Za-z0-9])+$";
 
     public final String value;
 

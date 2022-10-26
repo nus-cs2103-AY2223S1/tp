@@ -20,6 +20,7 @@ import seedu.guest.model.guest.Guest;
 class JsonSerializableGuestBook {
 
     public static final String MESSAGE_DUPLICATE_GUEST = "Guests list contains duplicate guest(s).";
+    public static final String MESSAGE_DUPLICATE_ROOM = "Guests list contains two or more guests with the same room.";
 
     private final List<JsonAdaptedGuest> guests = new ArrayList<>();
 
@@ -51,6 +52,8 @@ class JsonSerializableGuestBook {
             Guest guest = jsonAdaptedGuest.toModelType();
             if (guestBook.hasGuest(guest)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_GUEST);
+            } else if (guestBook.hasSameRoom(guest)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
             }
             guestBook.addGuest(guest);
         }
