@@ -21,7 +21,8 @@ public class PrCommand extends Command {
 
     public static final String COMMAND_WORD = ":pr";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " -> Find the personal record of each inputted exercise.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " -> Find the personal record of each inputted exercise.\n"
             + "Parameters: " + PREFIX_NAME
             + "NAME " + "[" + PREFIX_NAME
             + "NAME2" + " + " + PREFIX_NAME
