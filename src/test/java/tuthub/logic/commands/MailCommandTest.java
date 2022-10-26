@@ -22,6 +22,18 @@ public class MailCommandTest {
     private Model model = new ModelManager(getTypicalTuthub(), new UserPrefs());
 
     @Test
+    public void constructor_nullTarget_throwsNullPointerException() {
+        String target = null;
+        assertThrows(NullPointerException.class, () -> new MailCommand(target));
+    }
+
+    @Test
+    public void constructor_nullTargetIndex_throwsNullPointerException() {
+        Index targetIndex = null;
+        assertThrows(NullPointerException.class, () -> new MailCommand(targetIndex));
+    }
+
+    @Test
     public void checkValidTarget() {
         // Invalid word
         String invalidWord = "a";
@@ -44,7 +56,7 @@ public class MailCommandTest {
                 Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX, () -> mailCommand1.checkValidIndex(
                         model.getFilteredTutorList()));
 
-        // valid index
+        // Valid index
         Index validIndex = Index.fromZeroBased(1);
         MailCommand mailCommand2 = new MailCommand(validIndex);
         assertAll(() -> mailCommand2.checkValidIndex(model.getFilteredTutorList()));
