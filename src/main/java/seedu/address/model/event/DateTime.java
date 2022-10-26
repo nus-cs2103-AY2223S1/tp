@@ -187,6 +187,9 @@ public class DateTime {
         LocalDateTime startTime = start.date.atTime(start.time.orElse(LocalTime.MIDNIGHT));
         LocalDateTime endTime = end.date.atTime(end.time.orElse(LocalTime.MIDNIGHT));
         long days = ChronoUnit.DAYS.between(startTime, endTime);
+        if (start.time.isEmpty() && end.time.isEmpty()) {
+            days += 1;
+        }
         long hours = ChronoUnit.HOURS.between(startTime, endTime) % 24;
         long minutes = ChronoUnit.MINUTES.between(startTime, endTime) % 60;
         String res = "";
