@@ -6,7 +6,6 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
@@ -56,25 +55,6 @@ public class PortfolioWindow extends UiPart<Region> {
         portfolio.getPlans().stream()
                 .sorted(Comparator.comparing(plan -> plan.value))
                 .forEach(plan -> plans.getChildren().add(new Label(plan.value)));
-    }
-
-    /**
-     * Blurs plans and risk data.
-     */
-    public void hide() {
-        BoxBlur boxBlur = new BoxBlur(10, 0, 10);
-        plans.setEffect(boxBlur);
-        risk.setEffect(boxBlur);
-    }
-
-    /**
-     * Removes blur from plans and risk data.
-     */
-    public void show() {
-        BoxBlur boxBlur = new BoxBlur(0, 0, 0);
-        plans.setEffect(boxBlur);
-        risk.setEffect(boxBlur);
-
     }
 
 }
