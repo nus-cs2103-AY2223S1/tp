@@ -140,6 +140,29 @@ public class Internship {
     }
 
     /**
+     * Adds a tag to the set of existing tags.
+     * @param tag to be added.
+     */
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
+
+    /**
+     * Deletes a tag from the set of existing tags.
+     * @param tag to be deleted.
+     */
+    public void deleteTag(Tag tag) {
+        tags.remove(tag);
+    }
+
+    /**
+     * Deletes all tags from the set of existing tags.
+     */
+    public void clearTag() {
+        tags.clear();
+    }
+
+    /**
      * Returns the date and time of the task with the furthest date and time to the current time
      * @return LocalDateTime of the furthest date and time
      */
