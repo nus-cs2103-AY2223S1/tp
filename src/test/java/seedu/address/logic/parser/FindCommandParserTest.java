@@ -19,6 +19,7 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NokPhoneContainsNumberPredicate;
 import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
 public class FindCommandParserTest {
@@ -55,6 +56,10 @@ public class FindCommandParserTest {
 
         // Name, phone and email prefixes parsed
         assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY, ONLY_ONE_PREFIX_MESSAGE);
+
+        // Name, phone, nokPhone and email prefixes parsed
+        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY + NOK_PHONE_DESC_AMY + EMAIL_DESC_AMY,
+                ONLY_ONE_PREFIX_MESSAGE);
     }
 
     @Test
@@ -113,8 +118,31 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validNokPhonePrefix_returnsFindCommand() {
-        // TODO: Update test case with np/ prefix
-        assertParseFailure(parser, NOK_PHONE_DESC_AMY, "np/ search not implemented yet.");
+        FindCommand expectedFindCommand =
+                new FindCommand(new NokPhoneContainsNumberPredicate("81234564"));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, " np/81234564", expectedFindCommand);
+
+        // trailing whitespaces
+        assertParseSuccess(parser, " np/81234564  ", expectedFindCommand);
+
+        // leading whitespaces
+        assertParseSuccess(parser, " np/   81234564  ", expectedFindCommand);
+
+        // leading and trailing whitespaces
+        assertParseSuccess(parser, " np/   81234564  ", expectedFindCommand);
+    }
+    @Test
+    public void parse_invalidNokPhone() {
+        // phone number not 8 digits long
+        assertParseFailure(parser, " p/8123", Phone.MESSAGE_CONSTRAINTS);
+
+        // phone number does not start with 6/8/9
+        assertParseFailure(parser, " p/12345678", Phone.MESSAGE_CONSTRAINTS);
+
+        // empty
+        assertParseFailure(parser, " p/", Phone.MESSAGE_CONSTRAINTS);
     }
 
     @Test
