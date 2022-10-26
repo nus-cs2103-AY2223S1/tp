@@ -50,8 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_RECORD_DATA = "fever";
     public static final String VALID_RECORD_DATA_2 = "abdominal pain";
     public static final String VALID_RECORD_MEDICATION = "Paracetamol 250mg";
-    public static final String VALID_APPOINTMENT_DATE_AMY = "01-01-2023 1200";
-    public static final String VALID_APPOINTMENT_DATE_BOB = "02-02-2023 1300";
+    public static final String VALID_APPOINTMENT_DATE_AMY = "01-01-2024 1200";
+    public static final String VALID_APPOINTMENT_DATE_BOB = "02-02-2024 1300";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

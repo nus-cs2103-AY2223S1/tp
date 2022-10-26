@@ -8,7 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "recordList" : [],
-    "appointment": "01-01-2000 0000"
+    "appointment": "01-01-2024 0000"
   }, {
     "name" : "Benson Meier",
     "birthdate" : "08-08-1988",
@@ -17,7 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "recordList" : [],
-    "appointment" : "05-05-2023 1200"
+    "appointment" : "05-05-2024 1200"
   }, {
     "name" : "Carl Kurz",
     "birthdate" : "02-02-2002",
