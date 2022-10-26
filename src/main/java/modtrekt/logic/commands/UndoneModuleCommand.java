@@ -16,9 +16,10 @@ import modtrekt.model.module.Module;
  */
 @Parameters(commandDescription = "Marks a module as done.")
 public class UndoneModuleCommand extends Command {
-    public static final String COMMAND_WORD = "undone";
+    public static final String COMMAND_WORD = "undone module";
+    public static final String COMMAND_ALIAS = "undone mod";
 
-    @Parameter(names = "-c", description = "Module code of the module to mark undone",
+    @Parameter(description = "<module code>",
             required = true, converter = ModCodeConverter.class)
 
     private ModCode moduleCode;

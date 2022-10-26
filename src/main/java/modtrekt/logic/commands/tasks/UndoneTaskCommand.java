@@ -20,7 +20,7 @@ import modtrekt.model.task.Task;
 public class UndoneTaskCommand extends Command {
     public static final String COMMAND_WORD = "undone task";
 
-    @Parameter(description = "Index of the task to mark as undone", required = true,
+    @Parameter(description = "<task index>", required = true,
             converter = IndexConverter.class)
     private Index index;
 

@@ -16,9 +16,10 @@ import modtrekt.model.module.Module;
  */
 @Parameters(commandDescription = "Marks a module as done.")
 public class DoneModuleCommand extends Command {
-    public static final String COMMAND_WORD = "done";
+    public static final String COMMAND_WORD = "done module";
+    public static final String COMMAND_ALIAS = "done mod";
 
-    @Parameter(names = "-c", description = "Module code of the module to mark done",
+    @Parameter(description = "<module code>",
             required = true, converter = ModCodeConverter.class)
 
     private ModCode moduleCode;

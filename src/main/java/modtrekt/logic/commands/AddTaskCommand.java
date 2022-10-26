@@ -31,7 +31,7 @@ public class AddTaskCommand extends Command {
             + "[" + "-d " + "<YYYY-MM-DD>] "
             + "-c" + " <MODULE CODE> ";
 
-    @Parameter(description = "Description of the task", required = true, converter = DescriptionConverter.class)
+    @Parameter(description = "<description>", required = true, converter = DescriptionConverter.class)
     private Description description;
 
     @Parameter(names = "-c", description = "Module code of the task", converter = ModCodeConverter.class)

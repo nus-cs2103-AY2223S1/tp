@@ -17,11 +17,9 @@ import modtrekt.model.module.Module;
 /**
  * Deletes a module identified using it's displayed index from the module list.
  */
-public class RemoveCommand extends Command {
+public class RemoveModuleCommand extends Command {
     public static final String COMMAND_WORD = "remove module";
-    public static final String COMMAND_WORD_SHORTHAND = "remove mod";
-    public static final String COMMAND_WORD_SHORTHAND_2 = "rm module";
-    public static final String COMMAND_WORD_SHORTHAND_3 = "rm mod";
+    public static final String[] COMMAND_ALIASES = {"remove mod", "rm module", "rm mod"};
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task/module identified by the index number.\n"
@@ -37,9 +35,9 @@ public class RemoveCommand extends Command {
     /**
      *     Empty constructor that instantiates a RemoveCommand object, for use with JCommander.
      */
-    public RemoveCommand() {}
+    public RemoveModuleCommand() {}
 
-    public RemoveCommand(Index targetIndex) {
+    public RemoveModuleCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -61,7 +59,7 @@ public class RemoveCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RemoveCommand // instanceof handles nulls
-                && targetIndex.equals(((RemoveCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveModuleCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveModuleCommand) other).targetIndex)); // state check
     }
 }
