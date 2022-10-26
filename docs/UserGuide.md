@@ -2,11 +2,16 @@
 layout: page
 title: User Guide
 ---
-
-TutHub is a **desktop app for NUS School of Computing professors who have to keep track of hundreds of teaching assistant/tutor profiles and monitor their performance and track records but have little time to spare for tedious administrative work. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Introduction 
+Hi Prof, welcome to the User Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA)!
+
+TutHub is a desktop app for NUS professors who wish to choose their next batch of teaching assistants/tutors based on their past performance and track records but have little time to spare for tedious administrative work. If you can type fast, Tuthub helps you find the best TAs faster than traditional Graphical User Interface (GUI) apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,7 +24,7 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
 1. Copy the file to the folder you want to use as the _home folder_ for Tuthub.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/user-guide/start.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -28,42 +33,86 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
 
    * **`view`**`3` : Displays full details of the 3rd tutor shown in the current list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2103T y/3 s/A1234567X tn/3 r/5.0` : Adds a tutor named `John Doe` to Tuthub.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
+
+   * **`find`**`n/alex` : Finds all tutors with names containing alex.
 
    * **`delete`**`3` : Deletes the 3rd tutor shown in the current list.
-
-   * **`save`** : Saves the data to your local device.
-
+   
    * **`clear`** : Deletes all tutors.
 
    * **`exit`** : Exits the TutHub app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to [4. Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
-## Features
+## About this Document
 
+This section will introduce you to the symbols and terms frequently used in this User Guide/Tuthub to aid your understanding of the document. 
+
+### Symbols and Syntax
+
+| Symbol                  | What it means                                                                 | 
+|-------------------------|-------------------------------------------------------------------------------|
+| `highlights`            | 	Executable commands or possible parameters that can be entered into the CLI. |
+| :information_source:    | Additional information that may be useful to know                             |
+| :bulb:                  | Tips to improve the Tuthub experience                                         |
+| :exclamation:           | Things to be cautious of and should be followed closely                       |
+
+### Layout of Tuthub Application Window
+
+The image below shows a Tuthub Application Window (with a tutor profile selected) with all its sections labelled.
+
+![Layout](images/user-guide/layout.png)
+
+The following table describes the sections in detail:
+
+| **No.**  | **Section**           | **Description**                                                                     |
+|----------|-----------------------|-------------------------------------------------------------------------------------|
+| 1        | Toolbars              | Click on the respective buttons to exit the app/view help.                          |
+| 2        | Command Box           | Type in your commands here.                                                         |
+| 3        | Result Display Box    | Displays various messages (e.g. success/error messages) after commands are entered. |
+| 4        | Tutor List Card       | Displays condensed information of a tutor saved in Tuthub.                          |
+| 5        | Tutor List Panel      | Displays the entire/filtered list of tutors saved in Tuthub.                        |    
+| 6        | Tutor Details Pane    | Displays full details of a tutor saved in Tuthub.                                   |
+| 7        | Storage File Location | Displays the location of your Tuthub data file.                                     |          
+
+### Notes About Command Format
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+:information_source: **Some general rules that Tuthub commands follow:**
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/good` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/senior`, `t/senior t/great` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+* Items with `…` after them can be used as many times as the user would like.<br>
+  e.g. `[t/TAG]…` can be used multiple times like `t/good` or `t/good t/highRatings`, or can be omitted altogether.
 
 </div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips:**
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* Commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will ignore follow-up inputs.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Features
 
 ### Viewing help : `help`
 
@@ -106,6 +155,8 @@ Format: `view INDEX`
 Examples:
 * `view 2` displays the full details of the 2nd person in Tuthub.
 
+:bulb: **Tip:** You may also click on a tutor list card to execute a 'view' command instead
+
 ### Commenting on a tutor : `comment`
 
 Adds a comment on the specified tutor.
@@ -143,13 +194,13 @@ Examples:
 
 Finds tutor(s) whose specific profile attribute contains any of the given keywords.
 
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]`
+Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 * The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the attribute that corresponds to the prefix entered is searched.
 * Partial words will be matched e.g. Han will match Hans
-* Tutors matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* Tutors with attributes being searched that match at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
 Examples:
 * `find n/John` returns all tutors with names that contains `John`.
@@ -162,6 +213,18 @@ Examples:
 * `find tn/3` returns all tutors that have `3` teaching nominations.
 * `find r/4.0` returns all tutors that have rating of `4.0`.
 * `find t/friends` returns all tutors that have tag of `friends`.
+
+### Contacting tutors via email: `mail`
+
+Contacting targeted tutors is made easy with the mail command. The command opens the user's default mail client and specifies the "to" section in emails with the targeted tutors.
+
+Format: `mail INDEX or "all"`
+* `INDEX` refers to any index in range of the tutor list.
+* `"all"` allows you to email all the current tutors displayed in the tutor list.
+
+Examples:
+* `mail 3` opens the user's default mail client with the "to" specified as the third tutor's email.
+* `mail all` opens the user's default mail client with the "to" specified as all the currently displayed tutors' emails.
 
 ### Sorting tutors by quantitative measures: `sort`
 
@@ -194,7 +257,9 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-[coming soon]
+Clears all entries from the address book.
+
+Format: `clear`
 
 ### Saving the data
 
@@ -207,6 +272,7 @@ Exits TutHub app.
 Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -217,15 +283,30 @@ Format: `exit`
 
 ## Command summary
 
-| Action      | Format, Examples                                                                                                                                                                                                                 |
-|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**    | `help`                                                                                                                                                                                                                           |
-| **List**    | `list`                                                                                                                                                                                                                           |
-| **View**    | `view` <br> e.g., `view 1`                                                                                                                                                                                                       |
-| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
-| **Comment** | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                                                                                            |
-| **Edit**    | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                                                          |
-| **Find**    | `find [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]` <br> e.g., `find n/Alex`                                                                                      |
-| **Sort**    | `sort ORDER PREFIX` <br> e.g., `sort a r/`                                                                                                                                                                                       |
-| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
-| **Exit**    | `exit`                                                                                                                                                                                                                           |
+| Action                     | Format                                                                                                                                                                                                          | Examples (if any)                                                                                          |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| See **Help**               | `help`                                                                                                                                                                                                          |                                                                                                            |
+| **List** All Tutors        | `list`                                                                                                                                                                                                          |                                                                                                            |
+| **View** a Tutor           | `view`                                                                                                                                                                                                          | `view 1`                                                                                                   |
+| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`                                                                                                      | `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                                                                                                       | `comment 1 c/Tasks not Finished`                                                                           |
+| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​`                                                                                      | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                          |
+| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                                                                                               | `find n/Alex`                                                                                              |
+| **Mail**                   | `mail INDEX or "all"`                                                                                                                                                                                           | `mail 3`                                                                                                   |
+| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                                                                                             | `sort a r/`                                                                                                |
+| **Delete** a Tutor         | `delete INDEX`                                                                                                                                                                                                  | `delete 3`                                                                                                 |
+| **Clear** Tutor List       | `clear`                                                                                                                                                                                                         |                                                                                                            |
+| **Exit** Tuthub            | `exit`                                                                                                                                                                                                          |                                                                                                            |
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Glossary
+
+| **Term**                              | **Definition**                                                                                                                    |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**      | A text-based interface where users may interact with the system by typing in commands.                                            |
+| **Graphical User Interface (GUI)**    | A graphic-based interface where users may interact with graphical components (e.g. icons and menus) to interact with the system.  |
+| **JAR File**                          | Java Archive File with multiple files compressed into one and may be an executable.                                               |                     
+| **Java**                              | A widely used programming language.                                                                                               |                    
+| **Javascript Object Notation (JSON)** | A lightweight format for storing and transporting data.                                                                           |                   

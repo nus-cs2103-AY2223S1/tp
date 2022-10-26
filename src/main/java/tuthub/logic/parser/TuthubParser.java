@@ -16,6 +16,7 @@ import tuthub.logic.commands.ExitCommand;
 import tuthub.logic.commands.FindByPrefixCommand;
 import tuthub.logic.commands.HelpCommand;
 import tuthub.logic.commands.ListCommand;
+import tuthub.logic.commands.MailCommand;
 import tuthub.logic.commands.SortCommand;
 import tuthub.logic.commands.ViewCommand;
 import tuthub.logic.parser.exceptions.ParseException;
@@ -73,6 +74,9 @@ public class TuthubParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case MailCommand.COMMAND_WORD:
+            return new MailCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
