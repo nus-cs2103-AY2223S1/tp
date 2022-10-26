@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
  * Represents a Module in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Module {
+public class Module implements Comparable<Module> {
 
     // Default value for empty module title
     public static final String EMPTY_MODULE_TITLE = "";
@@ -40,7 +40,7 @@ public class Module {
                   List<Task> tasks,
                   Set<Link> links,
                   Set<Person> persons) {
-        requireAllNonNull(moduleCode, moduleTitle, tasks, links);
+        requireAllNonNull(moduleCode, moduleTitle, tasks, links, persons);
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
@@ -77,7 +77,6 @@ public class Module {
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
         this(moduleCode, moduleTitle, new TreeSet<>());
     }
-
     public ModuleCode getModuleCode() {
         return moduleCode;
     }
@@ -163,6 +162,18 @@ public class Module {
     }
 
     /**
+     * Replaces the person {@code target} in the module's set of persons with {@code editedPerson}.
+     *
+     * @param target The person in the module's set to be replaced.
+     * @param editedPerson The person to replace {@code target} in the module's set.
+     */
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        persons.remove(target);
+        persons.add(editedPerson);
+    }
+
+    /**
      * Removes the specified person from the module's set of persons.
      *
      * @param person The person to be removed from the module's set of persons.
@@ -224,4 +235,8 @@ public class Module {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Module other) {
+        return moduleCode.compareTo(other.moduleCode);
+    }
 }

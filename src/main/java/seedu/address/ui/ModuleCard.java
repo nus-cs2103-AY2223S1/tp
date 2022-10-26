@@ -59,14 +59,11 @@ public class ModuleCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label moduleTitle;
-    @FXML
-    private FlowPane tasks;
-    @FXML
-    private FlowPane links;
-    // Independent UI parts
     private TaskListPanel taskListPanel;
     @FXML
     private StackPane taskListPanelPlaceholder;
+    @FXML
+    private FlowPane links;
 
     /**
      * Creates a {@code ModuleCode} with the given {@code Module} and index to
