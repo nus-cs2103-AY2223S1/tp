@@ -14,6 +14,21 @@
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+
+.label {
+-fx-font-family: "segoe ui semibold";
+-fx-font-weight: 600;
+-fx-text-fill: white
+}
+
+#firstHalfCommands {
+-fx-background-color: derive(#2d2d30, 15%);
+}
+
+#secondHalfCommands {
+-fx-background-color: derive(#2A61EF, 35%);
+}
+
+#helpLinkContainer {
+-fx-background-color: #329BFF
 }
