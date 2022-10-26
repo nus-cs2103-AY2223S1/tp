@@ -107,8 +107,9 @@ will delete all data stored locally and this action is irreversible. You will lo
   e.g. For the `viewClass` command, the command format is `viewClass CLASS`<br>
   `CLASS` refers to the user input which can be `viewClass 17S68`.
   * Parameters can be written in any order
+  e.g. `edit 1 nm/Jack id/111A` is the same as `edit 1 id/111A nm/Jack`.
   * Additional parameters for commands that do not require parameters will be ignored.<br>
-  e.g. `exit hello123` will be accepted as the `exit` command
+  e.g. `exit hello123` will be accepted as the `exit` command.
   * Optional parameters are indicated by square brackets `[]`. <br>
   e.g. For the `addStud` command, the command format is `addStud nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
   `[pn/PARENTNAME]` and `[hp/PHONENUMBER]` refer to optional parameters that can be supplied by the user.
