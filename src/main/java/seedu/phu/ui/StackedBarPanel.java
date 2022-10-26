@@ -21,6 +21,8 @@ import seedu.phu.model.internship.Statistic;
 public class StackedBarPanel extends UiPart<Node> {
     private static final String NO_DATA_MESSAGE = "No Data Found";
     private static final String FXML = "StackedBarPanel.fxml";
+    private static final ApplicationProcess.ApplicationProcessState[] states =
+            ApplicationProcess.ApplicationProcessState.values();
     private final ObservableList<Internship> internships;
     private final Statistic statistic;
     private final HashMap<ApplicationProcess.ApplicationProcessState, ColumnConstraints> constraints;
@@ -122,8 +124,6 @@ public class StackedBarPanel extends UiPart<Node> {
     private void updateWidth() {
         Map<ApplicationProcess.ApplicationProcessState, Double> width = statistic.getWidth();
 
-        ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
-
         for (ApplicationProcess.ApplicationProcessState s : states) {
             constraints.get(s).setPercentWidth(width.get(s));
         }
@@ -133,8 +133,6 @@ public class StackedBarPanel extends UiPart<Node> {
     }
 
     private void handleNoData() {
-        ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
-
         for (ApplicationProcess.ApplicationProcessState s : states) {
             constraints.get(s).setPercentWidth(0);
             labels.get(s).setText("");
@@ -147,8 +145,6 @@ public class StackedBarPanel extends UiPart<Node> {
 
     private void updateText() {
         Map<ApplicationProcess.ApplicationProcessState, Integer> num = statistic.getGroupedData();
-
-        ApplicationProcess.ApplicationProcessState[] states = ApplicationProcess.ApplicationProcessState.values();
 
         for (ApplicationProcess.ApplicationProcessState s : states) {
             int amount = num.get(s);
