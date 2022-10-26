@@ -32,7 +32,8 @@
             <Label fx:id="description" styleClass="display_content" text="\$description" />
             <Label styleClass="display_label" text="Net Worth" />
             <Label fx:id="netWorth" styleClass="display_content" text="\$netWorth" />
-            <Button fx:id="personFileButton" styleClass="display_Button" onMouseClicked="#openPersonFile" text="Client Information" />
+            <Button fx:id="personFileButton" styleClass="display_button" onMouseClicked="#openPersonFile" text="Client Information" />
+            <Label fx:id="buttonErrorMessage" styleClass="error_message" managed="false" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

@@ -21,7 +21,11 @@ import javax.swing.*;
 public class PersonProfile extends UiPart<Region> {
     public static final String EMPTY_DISPLAY_VALUE = "-";
     private static final String FXML = "PersonProfile.fxml";
-    private static final String NO_FILE_EXISTS =
+    private static final String FILE_EXISTS = "Client Information";
+    private static final String NO_FILE_EXISTS = "No File Exists";
+    private static final String VALID_BUTTON_BGCOLOUR =
+            "-fx-background-color: -fx-background-color: #1d1d1d;";
+    private static final String INVALID_BUTTON_BGCOLOUR =
             "-fx-background-color: derive(red, 30%);";
     public final Person person;
 
@@ -53,6 +57,8 @@ public class PersonProfile extends UiPart<Region> {
     private FlowPane meetingTimes;
     @FXML
     private Button personFileButton;
+    @FXML
+    private Label buttonErrorMessage;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -81,12 +87,34 @@ public class PersonProfile extends UiPart<Region> {
     private void openPersonFile() {
         try {
             FileUtil.openPdfFile(person.getFilePath().toString());
+            showValidFilePathButton();
+            if (buttonErrorMessage.isManaged()) {
+                hideButtonErrorMessage();
+            }
         }
         catch (IOException e) {
-            personFileButton.setDisable(true);
-            personFileButton.setStyle(NO_FILE_EXISTS);
-            personFileButton.setText(e.getMessage());
+            showInvalidFilePathButton();
+            showButtonErrorMessage(e);
         }
+    }
+
+    private void showValidFilePathButton() {
+        personFileButton.setStyle(VALID_BUTTON_BGCOLOUR);
+        personFileButton.setText(FILE_EXISTS);
+    }
+
+    private void showInvalidFilePathButton() {
+        personFileButton.setStyle(INVALID_BUTTON_BGCOLOUR);
+        personFileButton.setText(NO_FILE_EXISTS);
+    }
+
+    private void hideButtonErrorMessage() {
+        buttonErrorMessage.setManaged(false);
+    }
+
+    private void showButtonErrorMessage(IOException e) {
+        buttonErrorMessage.setText("Error: " + e.getMessage());
+        buttonErrorMessage.setManaged(true);
     }
 
     @Override
