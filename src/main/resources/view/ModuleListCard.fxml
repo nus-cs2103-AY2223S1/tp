@@ -41,7 +41,7 @@
                     <Label id="lectureLabel" styleClass="field_label" text="Lecture: "/>
                     <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>
                 </HBox>
-                <HBox>
+                <HBox fx:id="lectureZoomLinkContainer">
                     <Label fx:id="lectureZoomLink" styleClass="cell_small_label" text="\$zoomLink"/>
                     <Button fx:id="lectureCopyButton" styleClass="copyButton" mnemonicParsing="false"
                             onAction="#copyLectureZoomUrl">
@@ -59,7 +59,7 @@
                     <Label fx:id="tutorialLabel" styleClass="field_label" text="Tutorial: "/>
                     <Label fx:id="tutorialDetails" styleClass="cell_small_label" text="\$tutorialDetails"/>
                 </HBox>
-                <HBox>
+                <HBox fx:id="tutorialZoomLinkContainer">
                     <Label fx:id="tutorialZoomLink" styleClass="cell_small_label" text="\$zoomLink"/>
                     <Button fx:id="tutorialCopyButton" styleClass="copyButton" mnemonicParsing="false"
                             onAction="#copyTutorialZoomUrl">
