@@ -109,20 +109,19 @@ public class AddCommandTest {
         }
 
         @Override
-<<<<<<< HEAD
         public ThemeSettings getThemeSettings() {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
+
         public AliasSettings getAliasSettings() {
->>>>>>> team/master
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-<<<<<<< HEAD
         public void setThemeSettings(ThemeSettings themeSettings) {
-=======
+            throw new AssertionError("This method should not be called.");
+        }
         public void setAliasSettings(AliasSettings aliasSettings) {
->>>>>>> team/master
             throw new AssertionError("This method should not be called.");
         }
 
