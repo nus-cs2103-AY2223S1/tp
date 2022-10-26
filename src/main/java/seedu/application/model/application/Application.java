@@ -2,6 +2,7 @@ package seedu.application.model.application;
 
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -129,6 +130,10 @@ public class Application {
 
     public boolean isArchived() {
         return isArchived;
+    }
+
+    public Optional<LocalDateTime> getInterviewDateTime() {
+        return interview.map(Interview::getInterviewDateTime);
     }
 
     public boolean hasInterview() {

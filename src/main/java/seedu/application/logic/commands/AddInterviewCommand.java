@@ -37,8 +37,8 @@ public class AddInterviewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New interview added to application: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview has clashed with another interview "
-            + "exists in CinternS. Please ensure the interview you add is at least 1 hour before or after another"
-            + "interview.";
+            + "currently stored in CinternS. Please ensure the interview you add is at least 1 hour before or after any"
+            + " other interview.";
     public static final String MESSAGE_INVALID_INTERVIEW = "This interview date is before the application's "
             + "applied date.";
 

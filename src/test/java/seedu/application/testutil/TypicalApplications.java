@@ -28,7 +28,7 @@ import seedu.application.model.application.Application;
 public class TypicalApplications {
 
     public static final Application SHOPEE = new ApplicationBuilder().withCompany("Shopee")
-            .withContact("94201239").withDate("2022-12-31").withStatus("pending")
+            .withContact("94201239").withDate("2022-12-31").withStatus("interview")
             .withEmail("shopee@example.com").withPosition("Frontend Engineer").withTags("consumerTech").build();
 
     public static final Application BYTEDANCE = new ApplicationBuilder().withCompany("ByteDance")
@@ -37,8 +37,13 @@ public class TypicalApplications {
 
     // Manually added
     public static final Application JANE_STREET = new ApplicationBuilder().withCompany("Jane Street")
-            .withContact("91420834").withDate("2022-01-01").withStatus("rejected")
+            .withContact("91420834").withDate("2022-01-01").withStatus("pending")
             .withEmail("janestreet@example.com").withPosition("Software Engineer").withTags("fintech").build();
+
+    public static final Application INTEL = new ApplicationBuilder().withCompany("Intel")
+            .withContact("84893063").withDate("2022-05-06").withEmail("intel@recruitment.com")
+            .withPosition("Software Developer").withStatus("rejected")
+            .withArchiveStatus(true).build();
 
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
@@ -65,7 +70,19 @@ public class TypicalApplications {
         return ab;
     }
 
+    public static ApplicationBook getTypicalApplicationBookWithArchive() {
+        ApplicationBook ab = new ApplicationBook();
+        for (Application application : getTypicalApplicationsWithArchive()) {
+            ab.addApplication(application);
+        }
+        return ab;
+    }
+
     public static List<Application> getTypicalApplications() {
         return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET));
+    }
+
+    public static List<Application> getTypicalApplicationsWithArchive() {
+        return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET, INTEL));
     }
 }

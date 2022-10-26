@@ -1,6 +1,7 @@
 package seedu.application.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
@@ -13,6 +14,8 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_ROUND;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.application.model.Model.HIDE_ARCHIVE_IN_LIST;
+import static seedu.application.model.Model.SHOW_ARCHIVE_ONLY;
 import static seedu.application.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -68,6 +71,10 @@ public class CommandTestUtil {
     public static final String VALID_INTERVIEW_DATE_GOOGLE = "2024-10-12";
     public static final String VALID_INTERVIEW_TIME_GOOGLE = "1100";
     public static final String VALID_LOCATION_GOOGLE = "11, Kallang Way 6, 118436";
+    public static final String VALID_ROUND_FACEBOOK = "Online assessment";
+    public static final String VALID_INTERVIEW_DATE_FACEBOOK = "2023-12-25";
+    public static final String VALID_INTERVIEW_TIME_FACEBOOK = "1700";
+    public static final String VALID_LOCATION_FACEBOOK = "Skype";
     public static final String ROUND_DESC_GOOGLE = " " + PREFIX_ROUND + VALID_ROUND_GOOGLE;
     public static final String INTERVIEW_DATE_DESC_GOOGLE = " " + PREFIX_INTERVIEW_DATE + VALID_INTERVIEW_DATE_GOOGLE;
     public static final String INTERVIEW_TIME_DESC_GOOGLE = " " + PREFIX_INTERVIEW_TIME + VALID_INTERVIEW_TIME_GOOGLE;
@@ -83,8 +90,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "senior referral"; // space not allowed in tags
 
     //Invalid Interview fields
-    public static final String INVALID_ROUND_DESC = " " + PREFIX_ROUND
-            + "Google&"; // empty string not allowed for rounds
+    public static final String INVALID_ROUND_DESC = " " + PREFIX_ROUND + "     "; // empty string not allowed for rounds
     public static final String INVALID_INTERVIEW_DATE_DESC = " " + PREFIX_INTERVIEW_DATE
             + "01/09/2022"; // invalid date format
     public static final String INVALID_INTERVIEW_TIME_DESC = " " + PREFIX_INTERVIEW_TIME + "5678"; //invalid time format
@@ -166,5 +172,27 @@ public class CommandTestUtil {
         model.updateFilteredApplicationList(new PositionContainsKeywordsPredicate(Arrays.asList(splitPosition[0])));
 
         assertEquals(1, model.getFilteredApplicationList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the application at the given {@code archiveStatus} in the
+     * {@code model}'s application book.
+     */
+    public static void showApplicationByArchiveStatus(Model model, boolean isListRequiredArchived) {
+        if (isListRequiredArchived) {
+            model.updateFilteredApplicationList(SHOW_ARCHIVE_ONLY);
+            for (Application app : model.getFilteredApplicationList()) {
+                //filtered list should not have unarchived applications
+                assertTrue(app.isArchived());
+            }
+        } else {
+            model.updateFilteredApplicationList(HIDE_ARCHIVE_IN_LIST);
+            for (Application app : model.getFilteredApplicationList()) {
+                //filtered list should not have archived applications
+                assertFalse(app.isArchived());
+            }
+        }
+        //ensure filtered application has at least one application for testing
+        assert model.getFilteredApplicationList().size() != 0;
     }
 }

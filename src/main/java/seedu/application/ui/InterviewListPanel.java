@@ -10,7 +10,6 @@ import javafx.scene.layout.Region;
 import seedu.application.commons.core.LogsCenter;
 import seedu.application.model.application.Application;
 
-
 /**
  * Panel containing the list of interviews.
  */
@@ -33,12 +32,12 @@ public class InterviewListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of an {@code Interview} using an {@code InterviewCard}.
      */
-    class InterviewListViewCell extends ListCell<Application> {
+    static class InterviewListViewCell extends ListCell<Application> {
         @Override
         protected void updateItem(Application application, boolean empty) {
             super.updateItem(application, empty);
 
-            if (empty || application == null) {
+            if (empty || application == null || !application.hasInterview()) {
                 setGraphic(null);
                 setText(null);
             } else {

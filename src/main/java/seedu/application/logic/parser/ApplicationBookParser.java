@@ -12,7 +12,6 @@ import seedu.application.logic.commands.ArchiveCommand;
 import seedu.application.logic.commands.ClearCommand;
 import seedu.application.logic.commands.Command;
 import seedu.application.logic.commands.DeleteCommand;
-import seedu.application.logic.commands.DeleteInterviewCommand;
 import seedu.application.logic.commands.EditCommand;
 import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
@@ -20,6 +19,8 @@ import seedu.application.logic.commands.HelpCommand;
 import seedu.application.logic.commands.ListArchiveCommand;
 import seedu.application.logic.commands.ListCommand;
 import seedu.application.logic.commands.RedoCommand;
+import seedu.application.logic.commands.RemindCommand;
+import seedu.application.logic.commands.RemoveInterviewCommand;
 import seedu.application.logic.commands.RetrieveCommand;
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.commands.UndoCommand;
@@ -63,8 +64,8 @@ public class ApplicationBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case DeleteInterviewCommand.COMMAND_WORD:
-            return new DeleteInterviewCommandParser().parse(arguments);
+        case RemoveInterviewCommand.COMMAND_WORD:
+            return new RemoveInterviewCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -89,6 +90,9 @@ public class ApplicationBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand();
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
