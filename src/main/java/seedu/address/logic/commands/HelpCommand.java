@@ -10,27 +10,25 @@ import seedu.address.model.Model;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the usage of commands"
-            + "Usage: help [COMMAND]\n"
-            + "Examples:\n"
-            + "- help\n"
-            + "- help add";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the usage of commands\n"
+            + "Parameters: [COMMAND]\n"
+            + "Example: help add";
 
     // All commands summary
     public static final String ALL_COMMANDS_MESSAGE = "Here are all the valid commands:\n"
             + "1. add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...\n"
-            + "2. buy INDEX q/QUANTITY g/GOODS price/PRICE\n"
-            + "3. sell INDEX q/QUANTITY g/GOODS price/PRICE\n"
+            + "2. buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]\n"
+            + "3. sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]\n"
             + "4. edit INDEX m/MODE FIELDS [MORE_FIELDS]... (MODE must be 'client', 'remark' or 'transaction')\n"
             + "5. view INDEX\n"
             + "6. delete INDEX m/MODE (MODE must be 'client', 'remark' or 'transaction')\n"
             + "7. find KEYWORD [MORE_KEYWORDS]...\n"
-            + "8. filter [buy]/[sell]\n"
+            + "8. filter TYPE (TYPE must be 'buy' or 'sell')\n"
             + "9. exit\n"
-            + "10. help\n"
+            + "10. help [COMMAND]\n"
             + "11. list\n"
             + "12. remark INDEX REMARK\n"
-            + "13. sort INDEX [latest]/[oldest]\n"
+            + "13. sort INDEX ORDER (ORDER must be 'latest' or 'oldest')\n"
             + "14. user_guide\n"
             + "15. clear";
 

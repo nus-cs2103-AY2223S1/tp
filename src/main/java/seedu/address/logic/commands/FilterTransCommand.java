@@ -13,7 +13,7 @@ public class FilterTransCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters buy or sell transactions.\n"
-            + "Parameters: [buy]/[sell].\n"
+            + "Parameters: TYPE (Must be either 'buy' or 'sell')\n"
             + "Example: " + COMMAND_WORD + " buy";
 
     public static final String MESSAGE_SUCCESS = "Filtered all %1$s transactions.";
