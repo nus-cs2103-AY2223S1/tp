@@ -124,7 +124,7 @@ public class AddProfileCommandTest {
         @Override
         public boolean hasTelegram(Profile profile) {
             requireNonNull(profile);
-            return profilesAdded.stream().anyMatch(profile::isSameTelegram);
+            return profilesAdded.stream().anyMatch(profile::isSameTelegramNotEmpty);
         }
 
         @Override

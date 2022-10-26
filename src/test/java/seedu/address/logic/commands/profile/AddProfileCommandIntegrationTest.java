@@ -64,7 +64,6 @@ public class AddProfileCommandIntegrationTest {
 
     @Test
     public void execute_similarTelegram_throwsCommandException() {
-        Profile profileInList = model.getAddressBook().getProfileList().get(0);
         Profile newProfile = new ProfileBuilder(AMY).withTelegram(FIRST_INDEX_TELEGRAM)
                 .build();
         assertCommandFailure(

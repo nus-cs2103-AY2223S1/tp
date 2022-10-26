@@ -13,7 +13,7 @@ import seedu.address.model.profile.UniqueProfileList;
 
 /**
  * Wraps all data at the address-book level
- * Similar Profiles are not allowed (by .isSameEmail, .isSamePhone and .isSameTelegram comparison)
+ * Similar Profiles are not allowed (by .isSameEmail, .isSamePhone and .isSameTelegramNotEmpty comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 

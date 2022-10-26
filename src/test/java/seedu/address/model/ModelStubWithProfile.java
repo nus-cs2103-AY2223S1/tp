@@ -32,6 +32,6 @@ public class ModelStubWithProfile extends ModelStub {
     @Override
     public boolean hasTelegram(Profile profile) {
         requireNonNull(profile);
-        return this.profile.isSameTelegram(profile);
+        return this.profile.isSameTelegramNotEmpty(profile);
     }
 }
