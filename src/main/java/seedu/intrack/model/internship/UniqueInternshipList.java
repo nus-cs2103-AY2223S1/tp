@@ -149,10 +149,10 @@ public class UniqueInternshipList implements Iterable<Internship> {
 
     /**
      * Sorts all the {@code internships} in the list by their respective tasks
-     * with the furthest date and time in descending order
+     * with the nearest date and time in descending order
      */
     public void dateSortDescending() {
-        internalList.sort(Comparator.comparing(o -> o.getFurthestTaskDate()));
+        internalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
         Collections.reverse(internalList);
     }
 }

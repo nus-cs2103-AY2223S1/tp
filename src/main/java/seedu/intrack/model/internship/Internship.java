@@ -122,13 +122,13 @@ public class Internship {
         Collections.sort(tasksDates);
         LocalDateTime currentDate = LocalDateTime.now();
         LocalDateTime nearestDate = tasksDates.get(i);
-        while (nearestDate.isAfter(currentDate)) {
+        while (nearestDate.isBefore(currentDate)) {
             if (i == tasksDates.size() - 1) {
                 //just gets the latest task u got, even if expired
                 nearestDate = tasksDates.get(i);
                 break;
             }
-            if (nearestDate.isAfter(currentDate)) {
+            if (nearestDate.isAfter(currentDate) || nearestDate.isEqual(currentDate)) {
                 //once gets nearest time, breaks
                 nearestDate = tasksDates.get(i);
                 break;

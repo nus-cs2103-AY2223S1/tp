@@ -148,7 +148,46 @@ Expected outcome:
 
 ### Updating status of an internship application : `status`
 
+Updates the status of the internship application at the specified `INDEX` from InTrack with 3 possible statuses
+, `p` for "Progress", `r` for "Rejected" and `o` for "Offered".
+`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+
+Format: `status INDEX STATUS`, where `STATUS` must be either `p`, `o` or `r`
+
+Example of usage:
+
+* `status 1 o`
+
+Expected outcome:
+
+* The status of the first internship application in InTrack will be updated to 'Offered' inside a small green box.
+
 ### Adding a remark to an internship application : `remark`
+
+Adds a `remark` to the internship application at the specified `INDEX` from InTrack.
+`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+
+Format: `remark INDEX [r/REMARK]`
+
+* If the `REMARK` field in the command is empty and there is an existing remark in the internship application, the 
+remark will be cleared.
+
+Example of usage:
+
+* `remark 1 r/This is a hard one`
+
+Expected outcome:
+
+* The input remark `This is a hard one` will appear at the bottom of the internship application
+panel with the selected input `INDEX`.
+
+Example of usage:
+
+* `remark 1 r/`
+
+Expected outcome:
+
+* The remark field at the bottom of the internship application panel with the selected input `INDEX` will be cleared.
 
 ### Finding internship applications by company name : `findn`
 
@@ -157,6 +196,34 @@ Expected outcome:
 ### Filtering internship applications by status : `filter`
 
 ### Sorting internship applications: `sort`
+
+Sorts the list of internship applications on the left panel by the date and time of their tasks by `ORDER`, where 
+`ORDER` is either `a` for ascending or `d` for descending.
+
+Format: `sort ORDER`
+
+* The internships are also sorted with the current date and time taken into consideration.
+* The date of the task that is the earliest and is on or after the current date(if any) in the internship will be used
+as the factor in sorting, if there aren't any, the date of the task with  the
+earliest date will be used instead for that internship.
+* `sort a`  will sort all internships in an ascending manner, with the
+internship with the task that has the earliest date and time that is on or after the current time at the top. 
+* If an internship only have one task however, only that task's date and time is taken into consideration, so even if 
+that task is before the current date but has the earliest date and time, it will still be at the top.
+* `sort d`  will sort all internships in a descending manner, with the
+    internship with the task that has the earliest date and time that is on or after the current time at the bottom.
+* If an internship only have one task however, only that task's date and time is taken into consideration, so even if
+  that task is before the current date but has the earliest date and time, it will still be at the bottom.
+
+
+Example of usage:
+
+* `sort a`
+
+Expected outcome:
+
+* The list of internships are sorted in an ascending manner,
+with the internship with the task with the earliest date and time that is after the current date and time at the top.
 
 ### Viewing statistics of all internship applications : `stats`
 
@@ -179,6 +246,45 @@ Expected outcome:
 
 ### Deleting a task from a selected internship application : `deltask`
 
+### Adding a tag to an internship application : `addtag`
+Adds one or more `Tag`s to the internship application at the specified `INDEX` from InTrack.
+`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+
+Format: `addtag INDEX TAG [MORE_TAGS]`
+
+Example of usage:
+
+* `addtag 1 Urgent`
+
+Expected outcome:
+
+* The `Urgent` tag will appear on the internship application panel with the selected `INDEX`.
+
+### Deleting a tag from an internship application : `deltag`
+Deletes one or more existing `Tag`s from the internship application at the specified `INDEX` from InTrack.
+`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+
+Format: `deltag INDEX TAG [MORE_TAGS]` 
+
+* Apart from the standard format, the user can also input `deltag clear` to clear all tags in the internship application
+with the selected `INDEX`.
+
+Example of usage:
+
+* `deltag 1 Urgent`
+
+Expected outcome:
+
+* The `Urgent` tag will disappear on the internship application panel with the selected `INDEX`, if it exists.
+
+Example of usage:
+
+* `deltag clear`
+
+Expected outcome:
+
+* All tags from that internship with the selected `INDEX` will disappear.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -190,23 +296,25 @@ Expected outcome:
 
 ## Command summary
 
-| Action               | Format, Examples |
-|----------------------|------------------|
-| **Help**             | `help`           |
-| **List**             | `list`           |
-| **Clear**            | `clear`          |
-| **Exit**             | `exit`           |
-| **Add**              |                  |
-| **Delete**           |                  |
-| **Edit**             |                  |
-| **Status**           |                  |
-| **Remark**           |                  |
-| **Find by Company**  |                  |
-| **Find by Position** |                  |
-| **Filter**           |                  |
-| **Sort**             |                  |
-| **Stats**            |                  |
-| **Select**           |                  |
-| **Add Task**         |                  |
-| **Delete Task**      |                  |
+| Action               | Format, Examples              |
+|----------------------|-------------------------------|
+| **Help**             | `help`                        |
+| **List**             | `list`                        |
+| **Clear**            | `clear`                       |
+| **Exit**             | `exit`                        |
+| **Add**              |                               |
+| **Delete**           |                               |
+| **Edit**             |                               |
+| **Status**           | `status`, `status 1 o`        |
+| **Remark**           | `remark`, `remark 1 r/ hello` |
+| **Find by Company**  |                               |
+| **Find by Position** |                               |
+| **Filter**           |                               |
+| **Sort**             | `sort`, `sort a`. `sort b`    |
+| **Stats**            |                               |
+| **Select**           |                               |
+| **Add Task**         |                               |
+| **Delete Task**      |                               |
+| **Add Tag**          | `addtag`, `addtag 1 Urgent`   |
+| **Delete Tag**       | `deltag`, `deltag 1 Urgent`   |
 
