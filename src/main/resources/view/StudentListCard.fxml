@@ -9,8 +9,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<HBox id="cardPane" fx:id="cardPane" prefWidth="150.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane prefWidth="150.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150" />
@@ -26,14 +27,57 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="studentName" styleClass="cell_big_label" text="\$studentName" />
+        <Label fx:id="studentName" prefWidth="200.0" styleClass="cell_big_label" text="\$studentName" />
+         <Label fx:id="studentId" styleClass="cell_big_label" text="\$studentId">
+               <graphic>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="ID:" />
+               </graphic>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
       </HBox>
-      <FlowPane fx:id="tags" prefWidth="130.0" />
-      <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
-      <Label fx:id="className" styleClass="cell_small_label" text="\$className" />
-      <Label fx:id="parentName" styleClass="cell_small_label" text="\$parentName" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+      <Label fx:id="className" alignment="CENTER" styleClass="cell_big_label" text="\$className">
+            <graphic>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="Class:" />
+            </graphic>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </Label>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Grades" underline="true">
+            <VBox.margin>
+               <Insets top="5.0" />
+            </VBox.margin>
+         </Text>
+        <FlowPane fx:id="exams" prefWidth="130.0">
+            <padding>
+                <Insets top="4.0" />
+            </padding>
+        </FlowPane>
+         <VBox fx:id="parentDetailsContainer">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Parent Details" underline="true" />
+            <Label fx:id="parentName" alignment="CENTER" styleClass="cell_small_label" text="\$parentName">
+                  <graphic>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Name:" />
+                  </graphic>
+               </Label>
+            <Label fx:id="phone" alignment="CENTER" styleClass="cell_small_label" text="\$phone">
+                  <graphic>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Phone:" />
+                  </graphic>
+               </Label>
+            <Label fx:id="email" alignment="CENTER" styleClass="cell_small_label" text="\$email">
+                  <graphic>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Email:" />
+                  </graphic>
+               </Label>
+            </children>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </VBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
