@@ -103,12 +103,15 @@ public class UniqueScheduleList implements Iterable<Person> {
     }
 
     /**
-     *  Returns a {@code List<Person>} which contains the filtered person list.
+     *  Updates the {@code List<Person>} to ensure they have the correct display class date
+     *  and returns a {@code List<Person>} which contains the filtered person list.
      */
     private List<Person> getScheduleList() {
-        return internalList
-                .stream()
-                .filter(person -> LocalDate.now().equals(person.getAClass().date))
+        internalList.stream()
+                .forEach(person -> person.updateDisplayClass(LocalDate.now()));
+
+        return internalList.stream()
+                .filter(person -> LocalDate.now().equals(person.getDisplayedClass().date))
                 .sorted(Person::compareTo)
                 .collect(Collectors.toList());
     }

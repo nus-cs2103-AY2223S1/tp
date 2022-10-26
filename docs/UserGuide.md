@@ -297,7 +297,7 @@ Example:
 
 Deletes the specified person from the student list.
 
-Format: `delete INDEX`
+Format: `delete INDEX ...`
 
 - Deletes the person at the specified `INDEX`.
 - The index refers to the index number shown in the Student's Details panel (bottom left).
@@ -308,7 +308,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
+❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
 ```
 
 [Back to top](#table-of-contents)

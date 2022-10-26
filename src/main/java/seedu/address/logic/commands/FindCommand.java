@@ -2,9 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Finds and lists all students in student list whose details contain any of the argument keywords/number in a prefix.
@@ -23,9 +25,9 @@ public class FindCommand extends Command {
     public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
             + "either n/, p/, np/, e/, a/ or dt/";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Person> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
