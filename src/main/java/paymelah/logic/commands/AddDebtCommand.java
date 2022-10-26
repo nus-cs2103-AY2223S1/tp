@@ -66,6 +66,8 @@ public class AddDebtCommand extends Command {
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getDebts().addDebt(debt));
 
+        model.saveAddressBook();
+        model.saveCommandMessage(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, editedPerson.getName()));
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, editedPerson.getName()));
     }
