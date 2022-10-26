@@ -9,8 +9,11 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Internship;
 
@@ -20,6 +23,8 @@ import seedu.address.model.internship.Internship;
 public class InternshipCard extends UiPart<Region> {
 
     private static final String FXML = "InternshipListCard.fxml";
+
+    private static final int MAX_TAGS = 5;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -34,15 +39,21 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox contents;
+    @FXML
     private Label company;
     @FXML
     private Label id;
     @FXML
     private Button linkButton;
     @FXML
+    private HBox appliedDateLine;
+    @FXML
     private Label appliedDateLabel;
     @FXML
     private Label appliedDate;
+    @FXML
+    private HBox interviewDateTimeLine;
     @FXML
     private Label interviewDateTimeLabel;
     @FXML
@@ -52,7 +63,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private VBox tags;
+    private HBox tags;
 
     /**
      * Creates a {@code InternshipCard} with the given {@code Internship} and index to display.
@@ -67,32 +78,22 @@ public class InternshipCard extends UiPart<Region> {
 
         company.setText(internship.getCompany().value);
         linkButton.setText(internship.getLink().value);
+
         appliedDateLabel.setText("Applied:");
-
-        interviewDateTimeLabel.setText("Interview date/time:");
-        interviewDateTimeLabel.setMinWidth(Region.USE_PREF_SIZE);
-        if (internship.getInterviewDateTime() == null) {
-            interviewDateTime.setText("");
-        } else {
-            interviewDateTime.setText(internship.getInterviewDateTime().value);
-        }
-        interviewDateTime.setMinWidth(Region.USE_PREF_SIZE);
-
+        appliedDateLabel.setMinWidth(Region.USE_PREF_SIZE);
         appliedDate.setText(internship.getAppliedDate().value);
+        appliedDate.setMinWidth(Region.USE_PREF_SIZE);
+
         applicationStatus.setText(applicationStatusString);
         description.setText(internship.getDescription().value);
 
-        internship.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        linkButton.setTooltip(new Tooltip("Copy link"));
+        handleTags();
+        handleInterviewDateTimeLine();
+        handleLinkTooltip();
+        handleApplicationStatusTooltip();
 
         applicationStatus.getStyleClass().add(applicationStatusString.toLowerCase());
         applicationStatus.setMinWidth(Region.USE_PREF_SIZE);
-        if (internship.getApplicationStatus() == ApplicationStatus.Shortlisted) {
-            applicationStatus.setTooltip(new Tooltip("Shortlisted for interview"));
-        }
     }
 
     /**
@@ -104,6 +105,105 @@ public class InternshipCard extends UiPart<Region> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(linkButton.getText());
         clipboard.setContent(url);
+    }
+
+    /**
+     * Formats tag into a {@code Label} and adds a {@code Tooltip} with full tag name.
+     * @param tagName The tag name.
+     */
+    private void formatAndAddTag(String tagName) {
+        Tooltip tagTooltip = new Tooltip(tagName);
+        tagTooltip.setShowDelay(Duration.millis(250));
+
+        Label l = new Label(tagName);
+        l.setTooltip(tagTooltip);
+
+        tags.getChildren().add(l);
+    }
+
+    /**
+     * Removes extra tags if more than max tags allowed, and show a count of extra tags with a Tooltip on hover.
+     */
+    private void consolidateExtraTags() {
+        int count = 0;
+        StringBuilder tooltipText = new StringBuilder();
+
+        while (tags.getChildren().size() > MAX_TAGS) {
+            int lastChildIndex = tags.getChildren().size() - 1;
+
+            // ok to cast since all children of tags are Labels
+            Label lastTag = (Label) tags.getChildren().get(lastChildIndex);
+
+            tags.getChildren().remove(lastChildIndex);
+            count++;
+
+            tooltipText.append("[").append(lastTag.getText()).append("]");
+        }
+
+        Tooltip moreTagsTooltip = new Tooltip(tooltipText.toString());
+        moreTagsTooltip.setShowDelay(Duration.millis(250));
+
+        Label moreTagsLabel = new Label("+" + count);
+        moreTagsLabel.setTooltip(moreTagsTooltip);
+        moreTagsLabel.getStyleClass().add("more-tags-label");
+        moreTagsLabel.setMinWidth(Region.USE_PREF_SIZE);
+
+        tags.getChildren().add(moreTagsLabel);
+    }
+
+    /**
+     * Adds tags to be displayed.
+     */
+    private void handleTags() {
+        internship.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> formatAndAddTag(tag.tagName));
+
+        if (tags.getChildren().size() > MAX_TAGS) {
+            consolidateExtraTags();
+        }
+    }
+
+    /**
+     * Handles the cases for null and non-null {@code InterviewDateTime}.
+     */
+    private void handleInterviewDateTimeLine() {
+        if (internship.getInterviewDateTime() == null) {
+            contents.getChildren().remove(interviewDateTimeLine);
+
+            Pane spacerPane = new Pane();
+            spacerPane.maxWidth(Double.POSITIVE_INFINITY);
+            spacerPane.maxHeight(Double.NEGATIVE_INFINITY);
+            HBox.setHgrow(spacerPane, Priority.ALWAYS);
+
+            appliedDateLine.getChildren().addAll(spacerPane, tags);
+        } else {
+            interviewDateTimeLabel.setText("Interview date/time:");
+            interviewDateTimeLabel.setMinWidth(Region.USE_PREF_SIZE);
+
+            interviewDateTime.setText(internship.getInterviewDateTime().value);
+            interviewDateTime.setMinWidth(Region.USE_PREF_SIZE);
+        }
+    }
+
+    /**
+     * Adds tooltip to internship link.
+     */
+    private void handleLinkTooltip() {
+        Tooltip linkTooltip = new Tooltip("Copy link");
+        linkTooltip.setShowDelay(Duration.millis(250));
+        linkButton.setTooltip(linkTooltip);
+    }
+
+    /**
+     * Adds tooltip to {@code ApplicationStatus} Shortlisted.
+     */
+    private void handleApplicationStatusTooltip() {
+        if (internship.getApplicationStatus() == ApplicationStatus.Shortlisted) {
+            Tooltip shortlistedTooltip = new Tooltip("Shortlisted for interview");
+            shortlistedTooltip.setShowDelay(Duration.millis(250));
+            applicationStatus.setTooltip(shortlistedTooltip);
+        }
     }
 
     @Override

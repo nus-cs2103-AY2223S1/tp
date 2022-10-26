@@ -11,6 +11,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -50,7 +51,7 @@ public class HelpWindow extends UiPart<Stage> {
         userGuideLabel.setText(USERGUIDE_LABEL);
 
         userGuideUrl.setText(USERGUIDE_URL);
-        userGuideUrl.setTooltip(new Tooltip("Copy link"));
+        handleTooltips();
 
         saveLocationLabel.setText(SAVE_LOCATION_LABEL);
 
@@ -120,5 +121,14 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Adds tooltips to links.
+     */
+    private void handleTooltips() {
+        Tooltip userGuideUrlTooltip = new Tooltip("Copy link");
+        userGuideUrlTooltip.setShowDelay(Duration.millis(250));
+        userGuideUrl.setTooltip(userGuideUrlTooltip);
     }
 }
