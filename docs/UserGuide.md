@@ -337,7 +337,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Add Appointment** | `aa d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 **Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-Jan-2023 12:30 PM l/NUS, TechnoEdge`
 **Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
