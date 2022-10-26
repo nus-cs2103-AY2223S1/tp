@@ -62,9 +62,6 @@ public class Name {
         return properCaseName.toString();
     }
 
-    public String getLowerCaseName() {
-        return lowerCaseName;
-    }
 
     @Override
     public String toString() {
