@@ -50,7 +50,7 @@ public class TaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        taskName.setText(task.getTaskName().fullName);
+        taskName.setText(task.getName().fullName);
 
         List<PersonTaskBridge> taskBridgeList = personTaskBridgeList.stream()
                 .filter(bridge -> bridge.getTaskId().equals(task.getId()))
