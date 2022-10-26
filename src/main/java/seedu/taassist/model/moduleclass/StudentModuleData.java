@@ -58,20 +58,25 @@ public class StudentModuleData implements Identity<StudentModuleData> {
     }
 
     /**
-     * Returns a list of module data by updating {@code oldModuleData} by changing the grade of
-     * {@code session} in {@code moduleClass} to the new {@code grade}.
+     * Returns a new {@code StudentModuleData} by removing the given session from the list of session data.
      */
-    public static List<StudentModuleData> getUpdatedModuleDataList(List<StudentModuleData> oldModuleData,
-            ModuleClass moduleClass, Session session, double grade) {
-        requireAllNonNull(oldModuleData, moduleClass, session);
-        return oldModuleData.stream().map(moduleData -> {
-            if (moduleData.getModuleClass().isSame(moduleClass)) {
-                return new StudentModuleData(moduleClass, SessionData.getUpdatedSessionDataList(
-                        moduleData.getSessionDataList(), session, grade));
-            } else {
-                return moduleData;
-            }
-        }).collect(Collectors.toList());
+    public StudentModuleData removeSession(Session session) {
+        requireNonNull(session);
+        List<SessionData> newSessionDataList = sessionDataList.asUnmodifiableObservableList().stream()
+                .filter(sessionData -> !sessionData.getSession().equals(session))
+                .collect(Collectors.toList());
+        return new StudentModuleData(moduleClass, newSessionDataList);
+    }
+
+    /**
+     * Returns a new {@code StudentModuleData} by updating the grade in the given {@code session}.
+     * If the session does not exist in the list of session data, a new session data is added.
+     */
+    public StudentModuleData updateGrade(Session session, double grade) {
+        requireAllNonNull(session);
+        StudentModuleData newStudentModuleData = removeSession(session);
+        newStudentModuleData.sessionDataList.add(new SessionData(session, grade));
+        return newStudentModuleData;
     }
 
     @Override

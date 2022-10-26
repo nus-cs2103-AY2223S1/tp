@@ -5,9 +5,11 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -147,12 +149,30 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     /**
-     * Removes {@code moduleClass} from this {@code TaAssist}.
-     * {@code moduleClass} must exist in TA-Assist.
+     * Removes {@code moduleClass} from this {@code TaAssist} and unassigns all students in the class.
+     * The {@code moduleClass} must exist in TA-Assist.
      */
     public void removeModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
         moduleClasses.remove(moduleClass);
+        List<Student> updatedStudents = students.asUnmodifiableObservableList().stream()
+                .map(student -> student.removeModuleClass(moduleClass))
+                .collect(Collectors.toList());
+        setStudents(updatedStudents);
+    }
+
+
+    /**
+     * Removes the {@code session} from the {@code moduleClass}
+     * as well as all students in the {@code moduleClass}.
+     */
+    public void removeSession(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
+        List<Student> updatedStudents = students.asUnmodifiableObservableList().stream()
+                .map(student -> student.removeSession(moduleClass, session))
+                .collect(Collectors.toList());
+        setStudents(updatedStudents);
+        setModuleClass(moduleClass, moduleClass.removeSession(session));
     }
 
     //// util methods
@@ -185,4 +205,5 @@ public class TaAssist implements ReadOnlyTaAssist {
     public int hashCode() {
         return students.hashCode();
     }
+
 }

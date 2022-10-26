@@ -1,10 +1,11 @@
 package seedu.taassist.ui;
 
+import java.awt.Desktop;
+import java.net.URL;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.KeyCombination;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.taassist.commons.core.GuiSettings;
@@ -16,11 +17,15 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 
 /**
  * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
+ * a button bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static HelpWindow helpWindow;
+
     private static final String FXML = "MainWindow.fxml";
+
+    private static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t12-1.github.io/tp/UserGuide.html";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -28,18 +33,21 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private ModuleClassListPanel moduleClassListPanel;
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private Button helpButton;
 
     @FXML
     private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane moduleClassListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -60,25 +68,13 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
-
         helpWindow = new HelpWindow();
+
+        helpButton.setId("helpBtn");
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
-    }
-
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
-
-    /**
-     * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
-    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
-        menuItem.setAccelerator(keyCombination);
     }
 
     /**
@@ -88,8 +84,10 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getStudentViewList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
+        moduleClassListPanel = new ModuleClassListPanel(logic.getModuleClassList());
+        moduleClassListPanelPlaceholder.getChildren().add(moduleClassListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
-        resultDisplay.bindFocusLabel(logic.getFocusLabelProperty());
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaAssistFilePath());
@@ -112,15 +110,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens a particular webpage, if unable to do so, help window will be shown for them to copy the URL.
+     */
+    public static void openWebpage(String urlString) {
+        try {
+            Desktop.getDesktop().browse(new URL(urlString).toURI());
+        } catch (Exception e) {
+            if (!helpWindow.isShowing()) {
+                helpWindow.show();
+            } else {
+                helpWindow.focus();
+            }
+            e.printStackTrace();
+
+        }
+    }
+
+    /**
+     * Opens the weblink to user guide using user's default browser.
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
-        }
+        openWebpage(USERGUIDE_URL);
     }
 
     void show() {
@@ -141,6 +152,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
+    }
+
+    public ModuleClassListPanel getModuleClassListPanel() {
+        return moduleClassListPanel;
     }
 
     /**

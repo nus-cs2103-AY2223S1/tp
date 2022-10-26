@@ -1,5 +1,6 @@
 package seedu.taassist.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -22,10 +23,10 @@ public class Student implements Identity<Student> {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
 
     // Data fields
+    private final Phone phone;
+    private final Email email;
     private final Address address;
     private final UniqueList<StudentModuleData> moduleDataList = new UniqueList<>();
 
@@ -76,7 +77,7 @@ public class Student implements Identity<Student> {
     /**
      * Returns true if the Student is assigned to the provided {@code moduleClass}.
      */
-    public boolean isInModuleClass(ModuleClass moduleClass) {
+    private boolean isInModuleClass(ModuleClass moduleClass) {
         return moduleDataList.contains(new StudentModuleData(moduleClass));
     }
 
@@ -96,20 +97,53 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns a student by updating {@code oldStudent}'s grade for the given {@code session} in {@code moduleClass}.
+     * Returns a new student by adding the given {@code moduleClass} to the student's module data.
+     * If the student is already enrolled in the module class, the same student is returned.
      */
-    public static Student getUpdatedStudent(Student oldStudent,
-            ModuleClass moduleClass, Session session, double grade) {
-        requireAllNonNull(oldStudent, moduleClass, session);
-        List<StudentModuleData> oldModuleDataList = oldStudent.getModuleDataList();
-        List<StudentModuleData> newModuleDataList =
-                StudentModuleData.getUpdatedModuleDataList(oldModuleDataList, moduleClass, session, grade);
-        return new Student(
-                oldStudent.getName(),
-                oldStudent.getPhone(),
-                oldStudent.getEmail(),
-                oldStudent.getAddress(),
-                newModuleDataList);
+    public Student addModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        if (isInModuleClass(moduleClass)) {
+            return this;
+        }
+        Student newStudent = new Student(name, phone, email, address, moduleDataList.asUnmodifiableObservableList());
+        newStudent.moduleDataList.add(new StudentModuleData(moduleClass));
+        return newStudent;
+    }
+
+    /**
+     * Returns a new student by removing the {@code StudentModuleData}
+     * of this student for the given {@code ModuleClass}.
+     */
+    public Student removeModuleClass(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
+                .filter(data -> !data.getModuleClass().isSame(moduleClass))
+                .collect(Collectors.toList());
+        return new Student(name, phone, email, address, updatedModuleData);
+    }
+
+    /**
+     * Returns a new student by removing this student's data for the given
+     * {@code session} in {@code moduleClass}.
+     */
+    public Student removeSession(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
+        List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
+            .map(d -> d.getModuleClass().isSame(moduleClass) ? d.removeSession(session) : d)
+            .collect(Collectors.toList());
+        return new Student(name, phone, email, address, updatedModuleData);
+    }
+
+    /**
+     * Returns a new student by updating this student's grade for the
+     * given {@code session} in {@code moduleClass}.
+     */
+    public Student updateGrade(ModuleClass moduleClass, Session session, double grade) {
+        requireAllNonNull(moduleClass, session);
+        List<StudentModuleData> updatedModuleData = moduleDataList.asUnmodifiableObservableList().stream()
+                .map(d -> d.getModuleClass().isSame(moduleClass) ? d.updateGrade(session, grade) : d)
+                .collect(Collectors.toList());
+        return new Student(name, phone, email, address, updatedModuleData);
     }
 
     /**
