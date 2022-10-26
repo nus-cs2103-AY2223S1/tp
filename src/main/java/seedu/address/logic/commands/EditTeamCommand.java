@@ -171,9 +171,10 @@ public class EditTeamCommand extends Command {
             }
 
             // state check
-            EditTeamDescriptor e = (EditTeamDescriptor) other;
+            EditTeamDescriptor descriptor = (EditTeamDescriptor) other;
 
-            return getName().equals(e.getName()) && getDescription().equals(e.getDescription());
+            return getName().equals(descriptor.getName())
+                    && getDescription().equals(descriptor.getDescription());
         }
 
     }
