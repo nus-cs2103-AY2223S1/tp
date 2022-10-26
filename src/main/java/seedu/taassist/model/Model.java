@@ -2,7 +2,6 @@ package seedu.taassist.model;
 
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -148,13 +147,6 @@ public interface Model {
      */
     void addModuleClass(ModuleClass moduleClass);
 
-    /**
-     * Exports the given class as a CSV file.
-     * The class must exist in TA-Assist.
-     * Returns the CSV file created.
-     */
-    List<List<String>> exportModuleClassToStringList(ModuleClass moduleClass);
-
     /** Returns an unmodifiable view of the module class list */
     ObservableList<ModuleClass> getModuleClassList();
 
@@ -173,9 +165,9 @@ public interface Model {
     SimpleStringProperty getFocusLabelProperty();
 
     /** Queries {@code SessionData} within studentViewList with the provided {@code Session} */
-    public void querySessionData(Session targetSession);
+    void querySessionData(Session targetSession);
 
     /** Removes queried {@code SessionData} within the studentViewList */
-    public void resetQueriedSessionData();
+    void resetQueriedSessionData();
 
 }

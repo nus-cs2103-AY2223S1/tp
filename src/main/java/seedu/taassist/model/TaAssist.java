@@ -1,21 +1,15 @@
 package seedu.taassist.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.csv.CsvConfig.CSV_EMPTY_GRADE;
-import static seedu.taassist.commons.core.csv.CsvConfig.CSV_NAME_COLUMN_HEADER;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.session.SessionData;
-import seedu.taassist.model.student.IsPartOfClassPredicate;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -179,51 +173,6 @@ public class TaAssist implements ReadOnlyTaAssist {
                 .collect(Collectors.toList());
         setStudents(updatedStudents);
         setModuleClass(moduleClass, moduleClass.removeSession(session));
-    }
-
-    /**
-     * Exports the {@code moduleClass} from this {@code TaAssist} as a CSV file.
-     * {@code moduleClass} must exist in TA-Assist.
-     * @return The CSV file object created.
-     */
-    public List<List<String>> exportModuleClassToStringList(ModuleClass moduleClass) {
-        requireNonNull(moduleClass);
-
-        IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(moduleClass);
-        List<Student> students = getStudentList().stream().filter(predicate).collect(Collectors.toList());
-
-        List<List<String>> fileData = new ArrayList<>();
-
-        // Header row
-        List<String> headerRow = new ArrayList<>();
-        headerRow.add(CSV_NAME_COLUMN_HEADER);
-        // Column header for each session
-        List<Session> sessions = moduleClass.getSessions();
-        for (Session s : sessions) {
-            headerRow.add(s.getSessionName());
-        }
-        fileData.add(headerRow);
-
-        // Row for each student
-        for (Student student : students) {
-            List<String> row = new ArrayList<>();
-            row.add(student.getName().toString());
-            Optional<StudentModuleData> moduleDataOptional = student.findStudentModuleData(moduleClass);
-            if (!moduleDataOptional.isPresent()) {
-                continue;
-            }
-            StudentModuleData moduleData = moduleDataOptional.get();
-            for (Session s : sessions) {
-                Optional<SessionData> sessionDataOptional = moduleData.findSessionData(s);
-                if (!sessionDataOptional.isPresent()) {
-                    row.add(CSV_EMPTY_GRADE);
-                    continue;
-                }
-                row.add(String.valueOf(sessionDataOptional.get().getGrade()));
-            }
-            fileData.add(row);
-        }
-        return fileData;
     }
 
     //// util methods
