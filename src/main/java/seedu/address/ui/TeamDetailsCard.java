@@ -41,7 +41,7 @@ public class TeamDetailsCard extends UiPart<Region> {
 
         TaskListPanel tasks = new TaskListPanel(team.getTaskList());
         taskListPanel.getChildren().add(tasks.getRoot());
-    
+
         LinkListPanel links = new LinkListPanel(team.getLinkList(), resultDisplay);
         linkListPanel.getChildren().add(links.getRoot());
 

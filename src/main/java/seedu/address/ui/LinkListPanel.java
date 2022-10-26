@@ -15,12 +15,12 @@ import seedu.address.model.team.Link;
 public class LinkListPanel extends UiPart<Region> {
 
     private static final String FXML = "LinkListPanel.fxml";
+    private static ResultDisplay resultDisplay;
     private final Logger logger = LogsCenter.getLogger(LinkListPanel.class);
 
     @javafx.fxml.FXML
     private ListView<Link> linkListView;
 
-    private static ResultDisplay resultDisplay;
 
     /**
      * Creates a {@code LinkListPanel} with the given {@code ObservableList}.

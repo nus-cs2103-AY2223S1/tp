@@ -197,12 +197,12 @@ public class MainWindow extends UiPart<Stage> {
         for (String styleSheet : primaryStage.getScene().getStylesheets()) {
             if (Pattern.matches(".*LightTheme.*", styleSheet)) {
                 oldStyleSheets.add(styleSheet);
-                String newURL = styleSheet.replaceAll("LightTheme", "DarkTheme");
-                newStyleSheets.add(newURL);
+                String newUrl = styleSheet.replaceAll("LightTheme", "DarkTheme");
+                newStyleSheets.add(newUrl);
             } else if (Pattern.matches(".*DarkTheme.*", styleSheet)) {
                 oldStyleSheets.add(styleSheet);
-                String newURL = styleSheet.replaceAll("DarkTheme", "LightTheme");
-                newStyleSheets.add(newURL);
+                String newUrl = styleSheet.replaceAll("DarkTheme", "LightTheme");
+                newStyleSheets.add(newUrl);
             }
         }
         primaryStage.getScene().getStylesheets().addAll(newStyleSheets);
@@ -213,12 +213,12 @@ public class MainWindow extends UiPart<Stage> {
         for (String styleSheet : helpWindow.getRoot().getScene().getStylesheets()) {
             if (Pattern.matches(".*LightTheme.*", styleSheet)) {
                 oldStyleSheets.add(styleSheet);
-                String newURL = styleSheet.replaceAll("LightTheme", "DarkTheme");
-                newStyleSheets.add(newURL);
+                String newUrl = styleSheet.replaceAll("LightTheme", "DarkTheme");
+                newStyleSheets.add(newUrl);
             } else if (Pattern.matches(".*DarkTheme.*", styleSheet)) {
                 oldStyleSheets.add(styleSheet);
-                String newURL = styleSheet.replaceAll("DarkTheme", "LightTheme");
-                newStyleSheets.add(newURL);
+                String newUrl = styleSheet.replaceAll("DarkTheme", "LightTheme");
+                newStyleSheets.add(newUrl);
             }
         }
         helpWindow.getRoot().getScene().getStylesheets().addAll(newHelpStyleSheets);
