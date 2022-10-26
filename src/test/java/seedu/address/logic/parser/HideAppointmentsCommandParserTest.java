@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HideAppointmentsCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -17,14 +20,18 @@ public class HideAppointmentsCommandParserTest {
 
     @Test
     public void parse_validReasonArgs_returnHideCommand() {
+        List<String> l = new ArrayList<>();
+        l.add("ear");
         assertParseSuccess(parser, " r/ear", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.KEYWORD, "ear")));
+                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.KEYWORD, l)));
     }
 
     @Test
     public void parse_validIsMarkedArgs_returnHideCommand() {
+        List<String> l = new ArrayList<>();
+        l.add("marked");
         assertParseSuccess(parser, " s/marked", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.IS_MARKED, "marked")));
+                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.IS_MARKED, l)));
     }
 
     @Test
