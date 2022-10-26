@@ -301,12 +301,10 @@ Step 3. Classify returns a filtered list of students whose names contain `Alex`.
 
 The following activity diagram summarizes what happens when a user executes the find command. 
 
-*Insert activity diagram*
+<img src="images/FindCommandActivityDiagram.png" />
 
 Design considerations:
 1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
-
-*to be further updated*
 
 #### 4.2.5 ViewAll command
 
