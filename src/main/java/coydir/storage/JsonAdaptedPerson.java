@@ -46,12 +46,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
-                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                             @JsonProperty("position") String position, @JsonProperty("department") String department,
-                             @JsonProperty("address") String address, @JsonProperty("leave") String leave,
-                             @JsonProperty("leaveLeft") String leaveLeft,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
+         @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+         @JsonProperty("position") String position, @JsonProperty("department") String department,
+         @JsonProperty("address") String address, @JsonProperty("leave") String leave,
+         @JsonProperty("leaveLeft") String leaveLeft,
+         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+         @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
+
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
