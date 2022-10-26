@@ -98,6 +98,17 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
     -fx-background-color: ivory;
+    /*
+    rounded edges for foodcard
+    */
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    /*
+    margin for foodcard
+    */
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }
 
 .list-cell:filled:even {
