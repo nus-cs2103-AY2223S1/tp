@@ -79,9 +79,11 @@ Format: `help`
 
 Adds a task to the task list.
 
-Format: `add TASK_NAME -m MODULE [-d YYYY-MM-DD] [--tag TAG_NAME]...`
+Format: `add TASK_NAME -m MODULE [-d DATE] [--tag TAG_NAME]...`
 * `TASK_NAME` can contain spaces
-* `MODULE` must not contain spaces 
+* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
+* `DATE`: Must be in the format of YYYY-MM-DD.
+* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Examples:
 * `add Task 1 -m CS2103T -d 2022-10-15 --tag homework`
@@ -110,7 +112,7 @@ Allows you to tag a task.
 
 Format : `tag TASK_NUMBER TAG_NAME`
 * `TASK_NUMBER`: This is the number of the task currently displayed.
-* `TAG_NAME`: The word to tag the task with
+* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Example: `tag 2 optional`
 
@@ -122,13 +124,13 @@ Format: `ls -a`
 
 ### Listing all unmarked tasks : `ls -u`
 
-Shows a list of all unmarked tasks in the task list.
+Shows a list of all unmarked tasks in the task list, ie shows a list of uncompleted tasks.
 
 Format: `ls -u`
 
 ### Listing all marked tasks : `ls -m`
 
-Shows a list of all marked tasks in the task list.
+Shows a list of all marked tasks in the task list, ie shows a list of completed tasks.
 
 Format: `ls -m`
 
@@ -136,7 +138,8 @@ Format: `ls -m`
 
 Shows a list of all tasks under the same module.
 
-Format: `ls --module <module>`
+Format: `ls --module MODULE`
+* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
 
 Example: `ls --module cs2103t`
 
@@ -144,7 +147,8 @@ Example: `ls --module cs2103t`
 
 Shows a list of all tasks under the same module.
 
-Format: `ls -t <tag>`
+Format: `ls -t TAG_NAME`
+* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Example: `ls -t highPriority`
 
@@ -152,47 +156,46 @@ Example: `ls -t highPriority`
 
 Shows a list of all tasks under the same module.
 
-Format: `ls -d <date>`
-
-* `Date` must be in the format of YYYY-MM-DD
+Format: `ls -d DATE`
+* `DATE`: Must be in the format of YYYY-MM-DD.
 
 Example: `ls -d 2022-11-11`
 
 ### Editing a task : `edit`
 
-Edits an existing task in the task list.
+Edits an existing task in the task list, at least one field needs to be edited. 
 
-Format: `edit <taskId> <module> <taskname>`
+Format: `edit TASK_NUMBER [-n TASK_NAME] [-m MODULE] [-d DATE] [-t TAG_NAME]...`
 
-* Edits the task at the specified `taskId`. The taskId refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
-* All fields must be provided.
-* Existing values will be updated to the input values.
+* `TASK_NUMBER`: This is the number of the task currently displayed.
+* `MODULE`: Should be alphanumeric, ie must not contain any spaces.
+* `DATE`: Must be in the format of YYYY-MM-DD.
+* `TAG_NAME`: The word to tag the task with, should be alphanumeric, ie must not contain any spaces.
 
 Examples:
-*  `edit 1 CS2103T ip` Edits the taskName to ip.
+*  `edit 1 -m CS2103T -n ip` Edits the taskName to ip.
 
 ### Deleting a task : `delete`
 
-Deletes a task from the task list.
+Allows user to delete a task from task list. 
 
-Format: `delete <taskId>`
-
-* `taskId` refers to the index number shown in the displayed task list. This value should be a non-zero positive integer.
+Format: `delete TASK_NUMBER`
+* `TASK_NUMBER`: This is the number of the task currently displayed.
 
 Examples: 
 * `delete 1`
-  * Deletes 1st task in the task list.
-  * Remaining tasks’ taskId will be automatically updated. 
+  * Deletes first task in the task list.
+  * Remaining tasks’ `TASK_NUMBER` will be automatically updated. 
   
 ### Clearing all entries : `clear`
 
-Clears all entries from the task list.
+Clears all entries of tasks in the task list. 
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Terminates and exits the program.  
 
 Format: `exit`
 
@@ -200,13 +203,10 @@ Format: `exit`
 Loads previous command into the text input box. 
 
 ### Saving the data
-
 NotionUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
-
 NotionUS data are saved as a JSON file `[JAR file location]/data/notionusdata.json`. Advanced users are welcome to update data directly by editing that data file.
-
 
 **Caution:**
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
