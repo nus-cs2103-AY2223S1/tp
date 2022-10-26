@@ -38,7 +38,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Features syntax
 
 <div markdown="block" class="alert alert-info">
 
@@ -64,6 +64,9 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Features in Property Directory
 
 ### Viewing help : `help`
 
@@ -73,47 +76,46 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a property: `add -p`
 
-### Adding a person: `add`
+Adds a property to the property directory.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add -p n/NAME a/ADDRESS p/PRICE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A property can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/PINNACLE@DUXTON a/John street, block 123, #01-01 p/1,000,000`
+* `add n/SESAME STREET a/John street, block 123, #01-01 p/1,000,000 t/high-end`
 
-### Listing all persons : `list`
+### Listing all properties : `list -p`
 
-Shows a list of all persons in the address book.
+Shows a list of all properties in the address book.
 
-Format: `list`
+Format: `list -p`
 
-### Editing a person : `edit`
+### Editing a property : `edit -p`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed property list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* You can remove all the property’s tags by typing `t/` without
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` Edits the price and address of the 1st person to be `1,000,000` and `11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450` respectively.
+*  `edit 2 n/Cinammon College t/` Edits the name of the 2nd property to be `Cinammon College` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating properties by name: `find -p`
 
-Finds persons whose names contain any of the given keywords.
+Finds properties whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -125,27 +127,44 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find -p Wall Street` returns `Wall Street` and `Wall Street Prime`
+* `find -p Pinnacle@Duxton Sesame Street` returns `Pinnacle@Duxton`, `Sesame Street`<br>
 
-### Deleting a person : `delete`
+[//]: # (Image to be added later)
+[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
 
-Deletes the specified person from the address book.
+### Deleting a property : `delete -p`
 
-Format: `delete INDEX`
+Deletes the specified property from the address book.
 
-* Deletes the person at the specified `INDEX`.
+Format: `delete -p INDEX`
+
+* Deletes the property at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list -p` followed by `delete -p 2` deletes the 2nd person in the address book.
+* `find -p Wall Street` followed by `delete -p 1` deletes the 1st person in the results of the `find -p` command.
+
+### Filtering profiles: `filter -p`
+
+Returns a filtered list of properties that fulfil the filter conditions for tags only.
+Format: `filter -p TAG...`
+Examples:
+* `filter -p high-end` returns all properties with the `high-end` tag.
+* `filter -p available` returns all properties with the `available` tag.
+
+### Filtering properties within price range: `range -p`
+
+Returns a filtered list of clients that fulfil the filter conditions.
+Format: `range -p l/100,000 u/1,000,000`
+Examples:
+* `range -p l/100,000 u/1,000,000` returns all properties within the price range of 100,000 and 1,000,000 inclusive.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all properties from the property directory.
 
 Format: `clear`
 
@@ -179,7 +198,7 @@ Adds a client profile to the client directory.
 Format: `add -c [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
 Tips:
 * At least one of the optional fields must be provided.
-Examples:
+  Examples:
 * `add -c n/Bob p/91234567 e/bobthebuilder@gmail.com`
 
 ### Editing a client profile: `edit`
@@ -188,12 +207,12 @@ Edits a client profile already existing in the client directory.
 Format: `edit -c INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
 Tips:
 * Edits the client profile at the specified INDEX. The index refers to the index numebr shown
-in the displayed person list. The index must be a positive integer 1, 2, 3, ...
+  in the displayed person list. The index must be a positive integer 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the listing will be removed i.e. adding of tags is not cumulative.
 * You can remove all the listing's tags b
-Examples:
+  Examples:
 * `edit -c 5 n/Bob p/91234567 e/bobthebuilder@gmail.com`
 
 ### Listing all client profiles: `list`
@@ -207,15 +226,15 @@ Gives a label for a client at the specified INDEX.
 Format: `label INDEX l/LABEL`
 Examples:
 * `list -c` followed by `label 3 l/urgent-buyer` labels the third client in the address book
-as an `urgent-buyer`
+  as an `urgent-buyer`
 
 ### Filtering client profiles: `filter`
 
 Returns a filtered list of clients that fulfil the filter conditions.
-Format: `filter -c [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]...`
+Format: `filter -c TAG...`
 Examples:
-* filter -c n/Biden
-* filter -c p/999
+* `filter -c high-end`
+* `filter -c squatter`
 
 <img src="images/client-profile_filter_mockup.png" width="200px">
 
@@ -225,10 +244,10 @@ Deletes the unique client profile at the specified INDEX.
 Format: `delete INDEX`
 Tips:
 * The INDEX must be a positive integer 1, 2, 3...
-Examples:
+  Examples:
 * `list -c` followed by `delete 2` deletes the second client in the address book
 * `filter -c Lee` followed by `delete 1` deletes the first client in the results of the
-`filter` command
+  `filter` command
 
 --------------------------------------------------------------------------------------------------------------------
 
