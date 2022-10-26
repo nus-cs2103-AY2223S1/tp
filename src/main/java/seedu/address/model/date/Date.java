@@ -12,7 +12,6 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date implements Comparable<Date> {
-
     public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
 
     //for checking if valid input date format
@@ -27,6 +26,7 @@ public class Date implements Comparable<Date> {
 
     public final LocalDate date;
 
+
     /**
      * Constructs a {@code Date}.
      *
@@ -34,7 +34,6 @@ public class Date implements Comparable<Date> {
      */
     public Date(String date) {
         requireNonNull(date);
-        assert !date.isBlank();
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
     }
