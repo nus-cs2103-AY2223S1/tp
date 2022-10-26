@@ -22,7 +22,6 @@ import seedu.foodrem.testutil.MessageToUser;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
 class IncrementCommandTest {
-
     private static final String EXPECTED_SUCCESS_MESSAGE = "Incremented successfully and updated item as follows:";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
@@ -30,10 +29,7 @@ class IncrementCommandTest {
     @Test
     public void execute_success() {
         Item originalItem = model.getCurrentList().get(0);
-
-        Item expectedItem = new ItemBuilder(originalItem)
-                .withItemQuantity("20")
-                .build();
+        Item expectedItem = new ItemBuilder(originalItem).withItemQuantity("20").build();
 
         IncrementCommand incrementCommand = new IncrementCommand(INDEX_FIRST_ITEM,
                 new ItemQuantity("10"));
@@ -51,7 +47,7 @@ class IncrementCommandTest {
         assertCommandFailure(new IncrementCommand(INDEX_FIRST_ITEM,
                 new ItemQuantity("999999")), model, MessageToUser.MESSAGE_FOR_FINAL_QUANTITY_TOO_LARGE);
 
-        // Index out of bound
+        // Index out of bounds
         assertCommandFailure(new IncrementCommand(Index.fromOneBased(100),
                 new ItemQuantity("11")), model, Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
     }
@@ -80,13 +76,10 @@ class IncrementCommandTest {
 
         // Exactly the same
         assertEquals(incrementCommandSameFirst, incrementCommandSameSecond);
-
         // Same quantity different index
         assertNotEquals(incrementCommandSameQuantityFirst, incrementCommandSameQuantitySecond);
-
         // Same index different quantity
         assertNotEquals(incrementCommandSameIndexFirst, incrementCommandSameIndexSecond);
-
         // Different index different quantity
         assertNotEquals(incrementCommandDifferentFirst, incrementCommandDifferentSecond);
     }
