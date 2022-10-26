@@ -29,19 +29,21 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final List<JsonAdaptedModuleCode> moduleCodes = new ArrayList<>();
 
+    private final String year;
+
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student's details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("type") String type, @JsonProperty("name") String name,
-                              @JsonProperty("moduleCode") String moduleCode,
                               @JsonProperty("moduleCodes") List<JsonAdaptedModuleCode> moduleCodes,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                               @JsonProperty("gender") String gender,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("location") String location,
                               @JsonProperty("username") String username, @JsonProperty("year") String year) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, "", year, "", "");
+        super(type, name, phone, email, gender, tagged, location, username);
+        this.year = year;
         if (moduleCodes != null) {
             this.moduleCodes.addAll(moduleCodes);
         }
@@ -52,9 +54,14 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
      */
     public JsonAdaptedStudent(Student source) {
         super(source);
+        this.year = source.getYear().value;
         this.moduleCodes.addAll(source.getModuleCodes().stream()
                 .map(JsonAdaptedModuleCode::new)
                 .collect(Collectors.toList()));
+    }
+
+    public String getYear() {
+        return this.year;
     }
 
     /**

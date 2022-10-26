@@ -49,23 +49,37 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label number;
     @FXML
+    private ImageView phoneImage;
+    @FXML
     private Label phone;
     @FXML
     private FlowPane moduleCodes;
     @FXML
     private ImageView gender;
     @FXML
+    private ImageView emailImage;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
     @FXML
+    private ImageView locationImage;
+    @FXML
     private Label locationAt;
+    @FXML
+    private HBox gitHubPanel;
+    @FXML
+    private ImageView githubImage;
     @FXML
     private Label githubUsername;
     @FXML
     private Label year;
     @FXML
     private Label specialisation;
+    @FXML
+    private HBox officeHourPanel;
+    @FXML
+    private ImageView officeHourImage;
     @FXML
     private Label officeHour;
 
@@ -78,10 +92,15 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        phoneImage.setImage(new Image(this.getClass().getResourceAsStream("/images/telephoneblack.png")));
         setUsername();
         gender.setImage(getGenderImage(person));
         email.setText(person.getEmail().value);
+        emailImage.setImage(new Image(this.getClass().getResourceAsStream("/images/email.png")));
         locationAt.setText(person.getLocation().value);
+        locationImage.setImage(new Image(this.getClass().getResourceAsStream("/images/locationbig2.png"),
+                16, 16, true, true));
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -101,7 +120,7 @@ public class PersonCard extends UiPart<Region> {
             renderRating(ta.getRating());
             year.setManaged(false);
             specialisation.setManaged(false);
-            officeHour.setManaged(false);
+            officeHourPanel.setManaged(false);
         }
         if (person instanceof Student) {
             Student student = (Student) person;
@@ -110,7 +129,7 @@ public class PersonCard extends UiPart<Region> {
             title.setText("Student");
             setYear(student);
             specialisation.setManaged(false);
-            officeHour.setManaged(false);
+            officeHourPanel.setManaged(false);
         }
     }
 
@@ -137,20 +156,22 @@ public class PersonCard extends UiPart<Region> {
     private void setUsername() {
         String username = person.getUsername().value;
         if (!username.equals(GithubUsername.DEFAULT_USERNAME)) {
-            officeHour.setManaged(true);
+            gitHubPanel.setManaged(true);
+            githubImage.setImage(new Image(this.getClass().getResourceAsStream("/images/GitHub.png")));
             githubUsername.setText("@" + person.getUsername().value);
         } else {
-            githubUsername.setManaged(false);
+            gitHubPanel.setManaged(false);
         }
     }
 
     private void setOfficeHour(Professor professor) {
         String profOfficeHour = professor.getOfficeHour().value;
         if (!profOfficeHour.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
-            officeHour.setManaged(true);
+            officeHourPanel.setManaged(true);
+            officeHourImage.setImage(new Image(this.getClass().getResourceAsStream("/images/clock.png")));
             officeHour.setText(profOfficeHour);
         } else {
-            officeHour.setManaged(false);
+            officeHourPanel.setManaged(false);
         }
     }
 

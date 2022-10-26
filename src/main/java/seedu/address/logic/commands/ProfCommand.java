@@ -58,6 +58,7 @@ public class ProfCommand extends Command {
     public static final String PROF_TEMPLATE = new StringJoiner(" ").add(COMMAND_WORD)
         .add(PREFIX_NAME.getPrefix())
         .add(PREFIX_MODULE_CODE.getPrefix())
+        .add(PREFIX_SPECIALISATION.getPrefix())
         .add(PREFIX_PHONE.getPrefix())
         .add(PREFIX_EMAIL.getPrefix())
         .add(PREFIX_GENDER.getPrefix())
@@ -87,6 +88,7 @@ public class ProfCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updatePieChart();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

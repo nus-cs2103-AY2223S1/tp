@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.filename.FileName;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.order.Order;
 import seedu.address.commons.util.StringUtil;
@@ -335,4 +336,18 @@ public class ParserUtil {
         return new OfficeHour(formattedOfficeHour, true);
     }
 
+    /**
+     * Parses a {@code String fileName} into an {@code FileName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code FileName} is invalid.
+     */
+    public static FileName parseFileName(String fileName) throws ParseException {
+        requireNonNull(fileName);
+        String trimmedFileName = fileName.trim();
+        if (!FileName.isValidFileName(trimmedFileName)) {
+            throw new ParseException(FileName.MESSAGE_CONSTRAINTS);
+        }
+        return new FileName(trimmedFileName);
+    }
 }

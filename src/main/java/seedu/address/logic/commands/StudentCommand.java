@@ -61,6 +61,7 @@ public class StudentCommand extends Command {
         .add(PREFIX_TAG.getPrefix())
         .add(PREFIX_LOCATION.getPrefix())
         .add(PREFIX_GITHUBUSERNAME.getPrefix())
+        .add(PREFIX_YEAR.getPrefix())
         .toString();
 
     private final Person toAdd;
@@ -82,6 +83,7 @@ public class StudentCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updatePieChart();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

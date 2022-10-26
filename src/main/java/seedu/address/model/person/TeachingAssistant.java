@@ -87,6 +87,11 @@ public class TeachingAssistant extends Person {
     }
 
     @Override
+    public String getFullTypeString() {
+        return "Teaching Assistant";
+    }
+
+    @Override
     public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
         if (modulesSet.size() > 1 && needsAllModules) {
             return false;
@@ -142,4 +147,8 @@ public class TeachingAssistant extends Person {
         return false;
     }
 
+    @Override
+    public boolean doesOfficeHourMatch(List<String> officeHoursList) {
+        return false;
+    }
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -106,7 +107,7 @@ public class Professor extends Person {
         }
 
         if (!getOfficeHour().value.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
-            builder.append("Office hour: ")
+            builder.append("; Office hour: ")
                     .append(getOfficeHour());
         }
 
@@ -145,6 +146,11 @@ public class Professor extends Person {
     }
 
     @Override
+    public String getFullTypeString() {
+        return "Professor";
+    }
+
+    @Override
     public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
         if (modulesSet.size() > 1 && needsAllModules) {
             return false;
@@ -168,5 +174,18 @@ public class Professor extends Person {
     public boolean doesSpecialisationMatch(List<String> specList) {
         return specList.stream().anyMatch(specialisation
                 -> specialisation.equals(this.getSpecialisation().value.toLowerCase()));
+    }
+
+    @Override
+    public boolean doesOfficeHourMatch(List<String> officeHoursList) {
+        return officeHoursList.stream().anyMatch(officeHours
+                -> {
+            try {
+                return officeHours.equals(this.getOfficeHour().getUserInput());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return false;
+        });
     }
 }
