@@ -51,7 +51,7 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/client`, `t/client t/deadline` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `client -t PROJECT_ID n/CLIENT_NAME [m/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, `client -t PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [p/CLIENT_CONTACT_NUMBER]` are both acceptable.
+  e.g. if the command specifies `client -a PROJECT_ID n/CLIENT_NAME [m/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, `client -a PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [m/CLIENT_CONTACT_NUMBER]` are both acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `m/12341234 m/56785678`, only `m/56785678` will be taken.
@@ -71,7 +71,7 @@ Format: `help`
 
 Adds a project to the list of projects. A unique project ID will be automatically generated.
 
-Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME] [c/CLIENT_ID] [d/PROJECT_DEADLINE]…​`
+Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME] [c/CLIENT_ID] [d/DEADLINE]…​`
 
 * Adds the project to the `ProjectList`.
 * * `DEADLINE` must be in the format yyyy-mm-dd
@@ -337,16 +337,18 @@ _Details coming soon ..._
 | **Add Project**    | `project -a`     |
 | **Edit Project**   | `project -e`     |
 | **Delete Project** | `project -d`     |
+| **List Projects**  | `project -l`     |
 | **Find Project**   | `project -f`     |
 | **Add Client**     | `client -a`      |
 | **Edit Client**    | `client -e`      |
 | **Delete Client**  | `client -d`      |
+| **List Clients**   | `client -l`      |
 | **Find Client**    | `client -f`      |
-| **Tag Issue**      | `issue -a`       |
+| **Add Issue**      | `issue -a`       |
 | **Edit Issue**     | `issue -e`       |
 | **Delete Issue**   | `issue -d`       |
+| **List Issues**    | `issue -l`       |
 | **Find Issue**     | `issue -f`       |
 | **Clear**          | `clear`          |
-| **List**           | `list`           |
 | **Help**           | `help`           |
 
