@@ -46,10 +46,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static Appointment[] getSampleAppointments() {
+        return new Appointment[] {appointmentAlex1};
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Appointment appointment : getSampleAppointments()) {
+            sampleAb.addAppointment(appointment);
         }
         return sampleAb;
     }
