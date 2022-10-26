@@ -46,11 +46,10 @@ title: User Guide
 
 {% include note.html content="
 
-Shows a message explaining how to access the help page.
-
+Redirects to the user guide page to provide help for the users. If attempt unsuccessful, the following help window appears.
 " %}
 
-![help message](images/helpMessage.png)
+- ![help message](images/helpMessage.png)
 
 Format: `help`
 
@@ -124,8 +123,9 @@ Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS...]`
 
-- The search is case-insensitive, i.e. `John` will match with `john` and `JOHN`.
-- Only full words are matched, i.e. the search `Joh` will not match with a student named `John Doe`.
+- The search is case-insensitive, i.e. `Joh` will match with `john` and `JOHN`.
+- The search is performed on the current displayed list of students. 
+- To clear the current search, use the `list` command.
 
 Examples:
 
