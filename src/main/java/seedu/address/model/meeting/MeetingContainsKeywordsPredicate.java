@@ -39,7 +39,8 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Meeting> {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof MeetingContainsKeywordsPredicate
-                && keywords.equals(((MeetingContainsKeywordsPredicate) other).keywords));
+                && keywords.equals(((MeetingContainsKeywordsPredicate) other).keywords)
+                && meetingField.equals(((MeetingContainsKeywordsPredicate) other).meetingField));
     }
 
 }
