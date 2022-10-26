@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor black
+skinparam classBackgroundColor white
+skinparam Class {
+    FontColor black
+    BorderThickness 1
+    BorderColor black
+    StereotypeFontColor black
+    FontName Arial
+}
+show footbox
+show members
+
+
+Package Itinerary <<Rectangle>>{
+Class Itinerary {
+    -name: Name
+    -country: Country
+    -startDate: Date
+    -duration: Duration
+    -people: People
+    -budget: Budget
+    -priorityComparator: Comparator<Item>
+
+    +planItem(Index, DayNumber, LocalTime): Item
+    +unplanItem(MultiIndex): Item
+}
+Class Item {
+    -description: String
+    -priority: Priority
+    -cost: Cost
+    -duration: Duration
+    -startTime: LocalTime
+    -endTime: LocalTime
+
+    +getStartTime(): LocalTime
+    +getEndTime(): LocalTime
+}
+Class Day {
+    -dayNumber: int
+    -startTimeComparator: Comparator<Item>
+
+    +addItem(Item)
+    +removeItem(Index): Item
+    -getConflictingItems(Item): ArrayList<Item>
+}
+
+Itinerary *-down-> "~* unscheduledItemList"Item
+Itinerary *-down-> "~* days" Day
+Day -left-> "~* " Item :itemList
+@enduml

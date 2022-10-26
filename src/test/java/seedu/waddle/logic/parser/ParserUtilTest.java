@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
-import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.People;
 
 public class ParserUtilTest {
@@ -50,25 +50,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
     }
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        Description expectedName = new Description(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseDescription(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        Description expectedName = new Description(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseDescription(nameWithWhitespace));
     }
 
     @Test

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.waddle.testutil.Assert.assertThrows;
@@ -49,9 +49,9 @@ public class CommandTestUtil {
     public static final String VALID_BUDGET_WINTER = "200";
     public static final String VALID_BUDGET_TEST = "970.00";
 
-    public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_NAME_SUMMER;
-    public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_NAME_WINTER;
-    public static final String NAME_DESC_TEST = " " + PREFIX_NAME + VALID_NAME_TEST;
+    public static final String NAME_DESC_SUMMER = " " + PREFIX_DESCRIPTION + VALID_NAME_SUMMER;
+    public static final String NAME_DESC_WINTER = " " + PREFIX_DESCRIPTION + VALID_NAME_WINTER;
+    public static final String NAME_DESC_TEST = " " + PREFIX_DESCRIPTION + VALID_NAME_TEST;
 
     public static final String COUNTRY_DESC_SUMMER = " " + PREFIX_COUNTRY + VALID_COUNTRY_SUMMER;
     public static final String COUNTRY_DESC_WINTER = " " + PREFIX_COUNTRY + VALID_COUNTRY_WINTER;
@@ -72,7 +72,7 @@ public class CommandTestUtil {
     public static final String BUDGET_DESC_WINTER = " " + PREFIX_BUDGET + VALID_BUDGET_WINTER;
     public static final String BUDGET_DESC_TEST = " " + PREFIX_BUDGET + VALID_BUDGET_TEST;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Family Trip&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip&"; // '&' not allowed
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
     // only numbers allowed for duration
@@ -149,7 +149,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredItineraryList().size());
 
         Itinerary itinerary = model.getFilteredItineraryList().get(targetIndex.getZeroBased());
-        final String[] splitName = itinerary.getName().fullName.split("\\s+");
+        final String[] splitName = itinerary.getName().description.split("\\s+");
         model.updateFilteredItineraryList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredItineraryList().size());

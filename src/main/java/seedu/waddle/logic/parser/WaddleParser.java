@@ -1,6 +1,8 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.waddle.commons.core.Messages.MESSAGE_UNAVAILABLE_COMMAND_HOME;
+import static seedu.waddle.commons.core.Messages.MESSAGE_UNAVAILABLE_COMMAND_ITINERARY;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_STAGE;
 
@@ -20,12 +22,12 @@ import seedu.waddle.logic.commands.EditItemCommand;
 import seedu.waddle.logic.commands.ExitCommand;
 import seedu.waddle.logic.commands.ExportCommand;
 import seedu.waddle.logic.commands.FindCommand;
+import seedu.waddle.logic.commands.FreeCommand;
 import seedu.waddle.logic.commands.HelpCommand;
 import seedu.waddle.logic.commands.HomeCommand;
 import seedu.waddle.logic.commands.ListCommand;
 import seedu.waddle.logic.commands.PlanCommand;
 import seedu.waddle.logic.commands.SelectCommand;
-import seedu.waddle.logic.commands.StageCommand;
 import seedu.waddle.logic.commands.UnplanCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
@@ -108,8 +110,14 @@ public class WaddleParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case PlanCommand.COMMAND_WORD:
+
+        case UnplanCommand.COMMAND_WORD:
+
+        case FreeCommand.COMMAND_WORD:
+
         case ExportCommand.COMMAND_WORD:
-            return new ExportCommand();
+            throw new ParseException(MESSAGE_UNAVAILABLE_COMMAND_HOME);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -127,16 +135,14 @@ public class WaddleParser {
     public Command parseWishCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
-        //TODO: ADD, DEL, EDIT, FIND, SORT, CLEAR (activities)
-
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
 
-        case StageCommand.COMMAND_WORD:
-            return new StageCommandParser().parse(arguments);
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case FreeCommand.COMMAND_WORD:
+            return new FreeCommand();
 
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
@@ -160,36 +166,12 @@ public class WaddleParser {
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
-    }
+        case ClearCommand.COMMAND_WORD:
 
-    /**
-     * Parses user input into command for execution.
-     *
-     * @param commandWord The command word.
-     * @param arguments The arguments.
-     * @return The command.
-     * @throws ParseException ParseException.
-     */
-    public Command parseScheduleCommand(String commandWord, String arguments) throws ParseException {
-        switch (commandWord) {
+        case ListCommand.COMMAND_WORD:
 
-        //TODO: need to discuss what commands should be available here
-
-        case HomeCommand.COMMAND_WORD:
-            return new HomeCommand();
-
-        case StageCommand.COMMAND_WORD:
-            return new StageCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        //TODO: help commands must change here
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case SelectCommand.COMMAND_WORD:
+            throw new ParseException(MESSAGE_UNAVAILABLE_COMMAND_ITINERARY);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

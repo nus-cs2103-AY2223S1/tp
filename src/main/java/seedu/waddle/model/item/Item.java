@@ -4,22 +4,25 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
 
+import seedu.waddle.model.itinerary.Description;
+
 /**
  * Represents an item in the itinerary.
  */
 public class Item {
-    private final String description;
+    private final Description description;
     private final Priority priority;
     private final Cost cost;
     private final Duration duration;
     private LocalTime startTime;
+    private LocalTime endTime;
 
     /**
      * Constructor for an item.
      *
      * @param description description of the item
      */
-    public Item(String description, Priority priority, Cost cost, Duration duration) {
+    public Item(Description description, Priority priority, Cost cost, Duration duration) {
         requireAllNonNull(description, priority);
         this.description = description;
         this.priority = priority;
@@ -27,7 +30,7 @@ public class Item {
         this.duration = duration;
     }
 
-    public String getDescription() {
+    public Description getDescription() {
         return description;
     }
 
@@ -52,7 +55,12 @@ public class Item {
     }
 
     public LocalTime getEndTime() {
-        return this.startTime.plusMinutes(this.duration.getDuration());
+        LocalTime end = this.startTime.plusMinutes(this.duration.getDuration());
+        // if the time overflows to next day (including 00:00), set to 23:59
+        if (end.isBefore(this.startTime) || end.equals(LocalTime.MIDNIGHT)) {
+            return LocalTime.parse("23:59");
+        }
+        return end;
     }
 
     public String getTimeString() {

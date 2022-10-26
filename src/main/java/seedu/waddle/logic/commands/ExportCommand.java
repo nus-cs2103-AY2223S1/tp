@@ -50,7 +50,7 @@ public class ExportCommand extends Command {
             contentStream.showText(itinerary.toString());
             contentStream.endText();
             contentStream.close();
-            doc.save("./data/" + itinerary.getName().fullName + ".pdf");
+            doc.save("./data/" + itinerary.getName().description + ".pdf");
             doc.close();
         } catch (IOException e) {
             return new CommandResult(MESSAGE_EXPORT_FAILURE);

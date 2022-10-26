@@ -24,7 +24,7 @@ import seedu.waddle.model.item.UniqueItemList;
 public class Itinerary {
 
     // Details field
-    private final Name name;
+    private final Description name;
     private final Country country;
     private final Date startDate;
     private final ItineraryDuration duration;
@@ -42,7 +42,7 @@ public class Itinerary {
     /**
      * Every field must be present and not null.
      */
-    public Itinerary(Name name, Country country, Date startDate, ItineraryDuration duration,
+    public Itinerary(Description name, Country country, Date startDate, ItineraryDuration duration,
                      People people, Budget budget) {
         requireAllNonNull(name, startDate, duration);
         this.name = name;
@@ -59,7 +59,7 @@ public class Itinerary {
         }
     }
 
-    public Name getName() {
+    public Description getName() {
         return name;
     }
 
@@ -235,6 +235,14 @@ public class Itinerary {
             itemGroups.add(itemList);
         }
         return FXCollections.unmodifiableObservableList(itemGroups);
+    }
+
+    public String getVacantSlots() {
+        StringBuilder vacantSlots = new StringBuilder();
+        for (Day day : this.days) {
+            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
+        }
+        return vacantSlots.toString();
     }
 
     /**
