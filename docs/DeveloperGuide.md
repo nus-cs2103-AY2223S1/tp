@@ -484,7 +484,7 @@ unless specified otherwise)
 
 **MSS**
 
-1. User requests to <u>view the list patients (UC01)</u>.
+1. User requests to <u>view the list of patients (UC01)</u>.
 2. User requests to edit a patient profile with the information that they want to change.
 3. UniNurse edits the patient.
 
@@ -516,7 +516,7 @@ unless specified otherwise)
 
 **MSS**
 
-1. User requests to <u>view the list patients (UC01)</u>.
+1. User requests to <u>view the list of patients (UC01)</u>.
 2. User requests to delete a specific patient in the list.
 3. UniNurse deletes the patient.
 
@@ -555,7 +555,7 @@ unless specified otherwise)
 
 **MSS**
 
-1. User requests to <u>view the list patients (UC01)</u>.
+1. User requests to <u>view the list of patients (UC01)</u>.
 2. User requests to add a task with its description to a specific patient.
 3. UniNurse adds the task to a patient.
    
@@ -581,7 +581,7 @@ unless specified otherwise)
 
 **MSS**
 
-1. User requests to <u>view the list patients (UC01)</u>.
+1. User requests to <u>view the list of patients (UC01)</u>.
 2. User requests to edit a task with its description they want to change, by specifying the specific patient and specific task.
 3. UniNurse edits the task description of the chosen task of the specified patient.
 
@@ -612,7 +612,7 @@ unless specified otherwise)
 **Use case: UC08 - Delete a task associated with a specified patient**
 
 **MSS**
-1. User requests to <u>view the list patients (UC01)</u>.
+1. User requests to <u>view the list of patients (UC01)</u>.
 2. User requests to delete a task by specifying the specific patient and specific task.
 3. UniNurse deletes the task of the specified patient.
 
@@ -755,6 +755,174 @@ unless specified otherwise)
     * 1a1. UniNurse shows an error message.
 
       Use case ends.
+    
+
+---
+
+**Use case: UC15 - Add a medical condition to a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to add a medical condition with its details to a specific patient.
+3. UniNurse adds the medical condition to a patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medical condition details are invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC16 - Edit a medical condition associated with a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to edit a medical condition with the details they want to change, by specifying the patient and medical condition.
+3. UniNurse edits the details of the chosen condition of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medical condition index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given medical condition details are invalid.
+
+    * 2c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC17 - Delete a medical condition associated with a specified patient**
+
+**MSS**
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to delete a medical condition by specifying the patient and medical condition .
+3. UniNurse deletes the medical condition of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given medical condition index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+
+---
+
+**Use case: UC18 - Add a tag to a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to add a tag with its details to a specific patient.
+3. UniNurse adds the tag to a patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given tag details are invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC19 - Edit a tag associated with a specified patient**
+
+**MSS**
+
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to edit a tag with the details they want to change, by specifying the patient and tag.
+3. UniNurse edits the details of the chosen tag of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given tag index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The given tag details are invalid.
+
+    * 2c1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case: UC20 - Delete a tag associated with a specified patient**
+
+**MSS**
+1. User requests to <u>view the list of patients (UC01)</u>.
+2. User requests to delete a tag by specifying the patient and tag.
+3. UniNurse deletes the tag of the specified patient.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given patient index is invalid.
+
+    * 2a1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. The given tag index of the specified patient is invalid.
+
+    * 2b1. UniNurse shows an error message.
+
+      Use case resumes at step 2.
 
 *{More to be added}*
 
