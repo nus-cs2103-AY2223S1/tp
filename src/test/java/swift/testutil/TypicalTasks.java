@@ -46,7 +46,7 @@ public class TypicalTasks {
             .withDescription(VALID_DESCRIPTION_2)
             .withDeadline(EMPTY_DEADLINE).build();
 
-   public static final Task CS3230 = new TaskBuilder()
+    public static final Task CS3230 = new TaskBuilder()
            .withId(TASK_ID_4)
            .withTaskName(VALID_TASK_NAME_5)
            .withDescription(EMPTY_DESCRIPTION)
