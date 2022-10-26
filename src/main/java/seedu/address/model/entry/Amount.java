@@ -1,10 +1,10 @@
 package seedu.address.model.entry;
 
-import java.text.DecimalFormat;
-
 import static java.lang.Double.parseDouble;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.text.DecimalFormat;
 
 /**
  * Represents an Entry's amount in the penny wise application.
@@ -13,7 +13,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Amount {
 
     public static final String MESSAGE_CONSTRAINTS = "Expense amount should only contain positive numbers, "
-            + "and it should be formatted to accept 2 decimal places";
+        + "and it should be formatted to accept 2 decimal places";
     public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private final double amount;
@@ -50,7 +50,7 @@ public class Amount {
     public String toString() {
         return amountString;
     }
-    
+
     public String toFormattedString() {
         return "$" + df.format(this.amount);
     }
@@ -58,8 +58,8 @@ public class Amount {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Amount // instanceof handles nulls
-                && this.amount == (((Amount) other).amount)); // state check
+            || (other instanceof Amount // instanceof handles nulls
+            && this.amount == (((Amount) other).amount)); // state check
     }
 
     @Override
