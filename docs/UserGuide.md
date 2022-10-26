@@ -86,21 +86,19 @@ Examples:
 
 ### Listing all Contacts : `contact list`
 
-Shows a list of all contacts in the Task Book in the order they were added.<br> 
-[coming soon!]: Methods for specific forms of listing. For now, use a sort command after listing.
+Shows a list of all contacts in the task book in the order they were added.<br> 
 
 Format: `contact list`
 
 ### Listing all Tasks : `task list`
 
-Shows a list of all assigned tasks in the Task Book in the order they were added.<br>
-[coming soon!]: Methods to list the tasks separately. For now, use a sort command after listing.
+Shows a list of all assigned tasks in the task book in the order they were added.<br>
 
 Format: `task list`
 
 ### Adding a contact : `contact add`
 
-Adds a contact to the Task Book.
+Adds a contact to the task book.
 
 Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 

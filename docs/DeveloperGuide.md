@@ -6,7 +6,7 @@ title: Developer Guide
 
 TaskBook is a **desktop app for managing contacts and tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TaskBook can get your contact and task management tasks done faster than traditional GUI apps.
 
-This developer's guide consists of the following sections. Note that Task Book is developed with Java 11.
+This developer's guide consists of the following sections. Note that TaskBook is developed with Java 11.
 * Table of Contents
 {:toc}
 
@@ -246,7 +246,7 @@ Step 1: The user launches the application, which already contains a task list fr
 
 Step 2: The user executes `task sort s/a` command to sort the tasks descriptions in alphabetical order. The `TaskSortCommandParser` uses `s/a` to determine that the command is a `TaskSortDescriptionAlphabeticalCommand`. This command calls `Model#updateSortedTaskList(Comparator<Task> comparator)`, which sets the comparator in `sortedTasks` to one that compares the strings of tasks, and the `Ui` displays the new ordering of the tasks given by `sortedTasks`, where tasks are alphabetically ordered by their descriptions.
 
-Step 3: The user executes `task sort s/ca` command to sort the tasks by when they were added in Task Book. The `TaskSortCommandParser` uses `s/ca` to determine that the command is a `TaskSortAddedChronologicalCommand`. This command calls `Model#resetSortedTaskList()`, which sets the comparator in `sortedTasks` to null, and the `Ui` displays the new ordering of the tasks given by `sortedTasks`, which will be the same ordering as the one that would be given by `filteredTasks`.
+Step 3: The user executes `task sort s/ca` command to sort the tasks by when they were added in task book. The `TaskSortCommandParser` uses `s/ca` to determine that the command is a `TaskSortAddedChronologicalCommand`. This command calls `Model#resetSortedTaskList()`, which sets the comparator in `sortedTasks` to null, and the `Ui` displays the new ordering of the tasks given by `sortedTasks`, which will be the same ordering as the one that would be given by `filteredTasks`.
 
 The following sequence diagram shows how a sort by description alphabetical command is executed:
 
