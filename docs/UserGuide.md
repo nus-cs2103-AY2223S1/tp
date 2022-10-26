@@ -26,7 +26,7 @@ Petcode is a **desktop app for coordinating pet sale business, optimized for use
 
    * **`list buyer/supplier/delivery`** : Lists buyer/supplier/delivery.
 
-   * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
+   * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colour:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
 
    * **`delete-b 1`** : Deletes the first contact from the buyer contacts list.
 
@@ -73,9 +73,14 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
+
 ### Adding a person : `add`
 
 Adds a buyer, supplier, or delivery service to the contacts.
+A person can be of three categories: Buyer, Deliverer, and Supplier.
+
+### Adding a buyer: `add-b`
+
 
 Format: `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​`
 
@@ -306,7 +311,7 @@ Examples:
 
 Sort the contacts based on given list type and attributes in ascending order.
 
-Format: `sort LIST_PARAMETER, [ATTRIBUTES...]`
+Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
 
 **Note Different list could have different supported sort attributes.**
 
@@ -425,19 +430,27 @@ _Details coming soon ..._
 
 ## Command summary
 
-|        Action       | Format, Examples                                                                                                                                                                                             |
-|:-------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+## List of Prefixes
+These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
+
+| Prefix | Category | Meaning |
+|--------|----------|---------|
+
+
+|        Action         | Format, Examples                                                                                                                                                                                             |
+|:---------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add** (need change) | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-|        **Add**      | `add buyer`, `add supplier`                                                                                                                                                                                  |
-|       **Clear**     | `clear`                                                                                                                                                                                                      |
-|      **Delete**     | `delete-KEY INDEX` e.g., `delete-b 1`, `delete-d 2`, `delete-s 1`, `delete-o 2`, `delete-p 1`                                                                                                                |
-|       **Find**      | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                         |
-|    **Find Buyer**   | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                                     |
-|  **Find Deliverer** | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                                     |
-|   **Find Supplier** | `find-s PREFIX/KEYWORD` <br> e.g., `find-s n/James Jake`                                                                                                                                                     |
-|      **Filter**     | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                      |
-|   **Filter Orders** | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                               |
-|    **Filter Pets**  | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                            |
-|       **Help**      | `help`                                                                                                                                                                                                       |
-|       **List**      | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                         |
-|       **Sort**      | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                                 |
+|        **Add**        | `add buyer`, `add supplier`                                                                                                                                                                                  |
+|       **Clear**       | `clear`                                                                                                                                                                                                      |
+|      **Delete**       | `delete-KEY INDEX` e.g., `delete-b 1`, `delete-d 2`, `delete-s 1`, `delete-o 2`, `delete-p 1`                                                                                                                                                |
+|       **Find**        | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                         |
+|    **Find Buyer**     | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                                     |
+|  **Find Deliverer**   | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                                     |
+|   **Find Supplier**   | `find-s PREFIX/KEYWORD` <br> e.g., `find-s n/James Jake`                                                                                                                                                     |
+|      **Filter**       | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                      |
+|   **Filter Orders**   | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                               |
+|    **Filter Pets**    | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                            |
+|       **Help**        | `help`                                                                                                                                                                                                       |
+|       **List**        | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                         |
+|       **Sort**        | `sort LIST_PARAMETER, [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                              |
+|       **Check**       | `check LIST_TYPE INDEX` <br> e.g., `check buyer 1`                                                                                                                                                           |
