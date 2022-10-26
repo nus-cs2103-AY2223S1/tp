@@ -15,13 +15,12 @@ public class Time {
     public static final String MESSAGE_CONSTRAINTS =
             "time should only take certain format, and it should not be blank";
 
-    /*
-     * The first character of the time must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    //public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-//    public static final String VALIDATION_REGEX = "[^\\s].*";
-    // I still don't understand what it means right now, and I will find out and change it later.
+    public static final String VALIDATION_PATTERN = "yyyy-MM-dd HHmm";
+
+    public static final String TIME_MEMORY_PATTERN = "HHmm";
+
+    public static final String TIME_UI_PATTERN = "h:mma";
+    public static final String DATE_UI_PATTERN = "dd MMM yyyy";
 
     public final LocalDateTime dateTime;
 
@@ -32,26 +31,51 @@ public class Time {
      */
     public Time(String dateTime) {
         requireNonNull(dateTime);
-
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-            this.dateTime = LocalDateTime.parse(dateTime);
-        } catch (DateTimeParseException e) {
-            checkArgument(false, MESSAGE_CONSTRAINTS);
-        }
+        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VALIDATION_PATTERN);
+        LocalDateTime localDateTime = LocalDateTime.parse(dateTime, formatter);
+        this.dateTime = localDateTime;
     }
 
-//    /**
-//     * Returns true if a given string is a valid time.
-//     */
-//    public static boolean isValidTime(String test) {
-//        return test.matches(VALIDATION_REGEX);
-//    }
+    /**
+     * Returns date in a format that will be used in the Ui.
+     */
+    public String getUiStringDate() {
+        return dateTime.toLocalDate().format(DateTimeFormatter.ofPattern(DATE_UI_PATTERN));
+    }
 
+    /**
+     * Returns time in a format that will be used in the Ui.
+     */
+    public String getUiStringTime() {
+        return dateTime.toLocalTime().format(DateTimeFormatter.ofPattern(TIME_UI_PATTERN));
+    }
+
+    /**
+     * Returns true if a given string is a valid date and time.
+     */
+    public static boolean isValidDateTime(String dateTime) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(VALIDATION_PATTERN);
+            LocalDateTime localDateTime = LocalDateTime.parse(dateTime, formatter);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public String toString() {
-        return this.dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyy h:mma"));
+        return getUiStringDate() + " " + getUiStringTime();
+    }
+
+    /**
+     * Returns date and time in a format that will be saved to {@code addressbook.json}.
+     */
+    public String toMemoryString() {
+        return dateTime.toLocalDate()
+                + " "
+                + dateTime.toLocalTime().format(DateTimeFormatter.ofPattern(TIME_MEMORY_PATTERN));
     }
 
     @Override
