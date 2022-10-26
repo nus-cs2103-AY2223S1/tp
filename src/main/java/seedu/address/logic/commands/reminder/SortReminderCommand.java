@@ -12,12 +12,13 @@ public class SortReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "sort reminder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts reminder by their priority level ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort reminders by their priority level ";
 
     public static final String MESSAGE_SUCCESS = "Reminders sorted";
-    
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        model.sortReminderByPriority();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

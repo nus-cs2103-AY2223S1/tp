@@ -197,6 +197,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortReminderByPriority() {
+        addressBook.sortRemindersByPriority();
+        updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
+    }
+
+    @Override
     public void resetReminders() {
         addressBook.setReminders(new ArrayList<>());
     }

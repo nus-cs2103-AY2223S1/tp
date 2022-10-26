@@ -3,6 +3,7 @@ package seedu.address.model.reminder;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -57,6 +58,13 @@ public class UniqueReminderList implements Iterable<Reminder> {
         if (!internalList.remove(toRemove)) {
             throw new ReminderNotFoundException();
         }
+    }
+
+    /**
+     * Sorts reminder by priority in the list. Reminders with the same priority will be sorted lexicographically.
+     */
+    public void sortRemindersByPriority() {
+        Collections.sort(internalList);
     }
 
     /**

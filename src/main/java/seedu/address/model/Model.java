@@ -112,6 +112,11 @@ public interface Model {
      */
     void deleteReminder(Reminder reminder);
 
+    /**
+     * Sort reminders by priority. Reminders with the same priority will be sorted lexicographically.
+     */
+    void sortReminderByPriority();
+
     /** Returns an unmodifiable view of the filtered reminder list */
     ObservableList<Reminder> getFilteredReminderList();
 
