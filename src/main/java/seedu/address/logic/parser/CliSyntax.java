@@ -10,8 +10,8 @@ public class CliSyntax {
     public static final String FLAG_ADDRESS_STR_LONG = "--address";
     public static final String FLAG_COMPLETE_TASKS_STR = "-c";
     public static final String FLAG_COMPLETE_TASKS_STR_LONG = "--complete";
-    public static final String FLAG_DESCRIPTION_STR = "d";
-    public static final String FLAG_DESCRIPTION_LONG = "description";
+    public static final String FLAG_DESCRIPTION_STR = "-d";
+    public static final String FLAG_DESCRIPTION_LONG = "--description";
     public static final String FLAG_EMAIL_STR = "-e";
     public static final String FLAG_EMAIL_STR_LONG = "--email";
     public static final String FLAG_FILTER_STR = "-f";
