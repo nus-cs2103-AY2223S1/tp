@@ -107,34 +107,19 @@ public class UniqueProfileList implements Iterable<Profile> {
     }
 
     /**
-     * Adds profiles in {@code profilesToAdd} to the given event.
-     * The event must exist in the list.
-     */
-    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
-        requireAllNonNull(event, profilesToAdd);
-
-        int index = internalList.indexOf(event);
-        if (index == -1) {
-            throw new EventNotFoundException();
-        }
-
-        //internalList.get(index).addAttendees(profilesToAdd);
-    }
-
-    /**
      * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
      * The event must exist in the list.
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
 
-        int index = internalList.indexOf(event);
-        if (index == -1) {
-            throw new EventNotFoundException();
+        for (Profile p : profilesToAddEventTo) {
+            int index = internalList.indexOf(p);
+            if (index == -1) {
+                throw new ProfileNotFoundException();
+            };
+            p.addEventsAttending(List.of(event));
         }
-
-        //Event e = internalList.get(index);
-
     }
 
     public void setProfiles(UniqueProfileList replacement) {

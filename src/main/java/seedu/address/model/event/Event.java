@@ -95,6 +95,20 @@ public class Event implements Comparable<Event> {
     }
 
     /**
+     * Removes the profiles in {@code profilesToRemove} from the event's list of attendees if
+     * they exist.
+     */
+    public void removeAttendees(List<Profile> profilesToRemove) {
+        requireNonNull(profilesToRemove);
+
+        profilesToRemove.forEach(profile -> {
+            if (attendees.hasAttendee(profile)) {
+                attendees.remove(profile);
+            }
+        });
+    }
+
+    /**
      * Returns true if the specified profile is in the event's list of attendees.
      */
     public boolean hasAttendee(Profile profile) {

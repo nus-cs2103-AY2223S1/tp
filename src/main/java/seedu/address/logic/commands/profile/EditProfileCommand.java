@@ -95,12 +95,9 @@ public class EditProfileCommand extends ProfileCommand {
             throw new CommandException(MESSAGE_DUPLICATE_PROFILE);
         }
 
+        model.setProfileForEventsAttending(profileToEdit, editedProfile, profileToEdit.getEventsToAttend().getEventsList());
         model.setProfile(profileToEdit, editedProfile);
         model.updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
-        for (Event e : profileToEdit.getEventsToAttend().getEventsList()) {
-            e.getAttendees().remove(profileToEdit);
-            e.getAttendees().add(editedProfile);
-        }
         return new CommandResult(String.format(MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile));
     }
 

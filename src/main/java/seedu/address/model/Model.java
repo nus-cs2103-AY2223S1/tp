@@ -91,6 +91,12 @@ public interface Model {
      */
     void addEventsAttending(Profile profile, List<Event> eventsToAdd);
 
+    /**
+     * Updates the target profile {@code target} in the given list of events {@code eventsToSet} to the new
+     * edited profile {@code editedProfile}
+     */
+    void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet);
+
     /** Returns an unmodifiable view of the filtered profile list */
     ObservableList<Profile> getFilteredProfileList();
 

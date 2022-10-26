@@ -9,8 +9,10 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.UniqueProfileList;
+import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -154,6 +156,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
+     * {@code editedProfile}.
+     */
+    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
+        requireAllNonNull(target, editedProfile, eventsToSet);
+        if (!profiles.contains(target)) {
+            throw new ProfileNotFoundException();
+        }
+
+        events.setProfileForEventsAttending(target, editedProfile, eventsToSet);
+    }
+
+    /**
      * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
      * {@code event} must exist in the address book.
      * Profiles in {@profilesToAddEventTo} must also exist in the address book.
@@ -161,9 +176,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
         if (!events.contains(event)) {
-            // throw error?
+            throw new EventNotFoundException();
         }
-        events.addEventToAttendees(event, profilesToAddEventTo);
+        profiles.addEventToAttendees(event, profilesToAddEventTo);
     }
 
     /**
