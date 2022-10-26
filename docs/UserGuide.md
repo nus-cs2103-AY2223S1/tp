@@ -52,7 +52,7 @@ Symbol/Syntax        | Meaning
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low s/1000` : Adds a contact named `John Doe` to the list of clients.
 
-   * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date and location of the appointment.
+   * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date, time and location of the appointment.
    
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -160,13 +160,6 @@ Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only full words will be matched e.g. Han will not match Hans
@@ -209,13 +202,13 @@ Types of `KEYWORD`: name
 
   ![result for 'sort name'](images/sortAlphabetResult.png)
 
-#### 4.2.8 Clearing all entries : `clear`
+#### 4.1.8 Clearing all entries : `clear`
 
 Clears all entries from the list of clients.
 
 Format: `clear`
 
-#### 4.2.9 Exiting the program : `exit`
+#### 4.1.9 Exiting the program : `exit`
 
 Exits the program.
 
@@ -225,15 +218,15 @@ Format: `exit`
 
 #### 4.2.1 Adding an appointment : `aa`
 
-Adds an appointment at the input date(s) and time(s) for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+Adds an appointment at the input DATE_AND_TIME for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
-Format: `aa [INDEX] [d/DATE AND TIME] [l/LOCATION]`
+Format: `aa [INDEX] [d/DATE_AND_TIME] [l/LOCATION]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-DATE AND TIME has the format `d-MMM-yyyy hh:mm a` </div>
+DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE AND TIME(s) must be valid in order for the command to be executed.
-<br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE AND TIME in the overall list of appointments.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
+<br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
 </div>
 
 Examples:
@@ -264,19 +257,19 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinancialAdvisorPlanner home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Command summary
+## 6. Command summary
 
 Action | Format, Examples
 --------|------------------
 **Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Add Appointment** | `aa INDEX d/DATE AND TIME l/LOCATION` <br> e.g., `e.g., aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+**Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `e.g., aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
