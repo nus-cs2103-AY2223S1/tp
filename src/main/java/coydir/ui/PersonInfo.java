@@ -50,6 +50,8 @@ public class PersonInfo extends UiPart<Region> {
     @FXML
     private TableView<Leave> leaveTable;
 
+    private Person current;
+
     /**
      * Creates a {@code PersonInfo} to display the {@code Person} particulars.
      */
@@ -69,11 +71,18 @@ public class PersonInfo extends UiPart<Region> {
     }
 
     /**
+     * Update the information on the display panel if any changes were made.
+     */
+    public void update() {
+        update(current);
+    }
+
+    /**
      * Update the person particulars in the {@code PersonInfo} panel.
-     * @param person
+     * @param person the person to be displayed
      */
     public void update(Person person) {
-        this.person = person;
+        this.current = person;
         name.setText(person.getName().fullName);
         employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
         phone.setText("Phone number:  " + person.getPhone().value);

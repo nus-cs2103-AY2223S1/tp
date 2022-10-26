@@ -34,7 +34,7 @@ public class Leave {
         this.startDate = LocalDate.parse(startDate, FORMAT);
         this.endDate = LocalDate.parse(endDate, FORMAT);
         this.col1 = new SimpleStringProperty(this.startDate.format(FORMAT));
-        this.col2 = new SimpleStringProperty((this.endDate.format(FORMAT)));
+        this.col2 = new SimpleStringProperty(this.endDate.format(FORMAT));
         if (getTotalDays() <= 1) {
             this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " day");
         }
@@ -98,7 +98,7 @@ public class Leave {
      * Returns number of days
      */
     public int getTotalDays() {
-        return (int) DAYS.between(startDate, endDate);
+        return (int) DAYS.between(startDate, endDate) + 1;
     }
 
     @Override

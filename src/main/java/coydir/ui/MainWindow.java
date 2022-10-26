@@ -212,6 +212,12 @@ public class MainWindow extends UiPart<Stage> {
         personInfoPanelPlaceholder.getChildren().set(0, personInfo.getRoot());
     }
 
+    private void handleUpdate() {
+        personInfo.update();
+        personInfoPanelPlaceholder.getChildren().removeAll();
+        personInfoPanelPlaceholder.getChildren().set(0, personInfo.getRoot());
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -237,6 +243,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isView()) {
                 handleView(commandResult.getViewIndex());
+            }
+
+            if (commandResult.isUpdate()) {
+                handleUpdate();
             }
 
             return commandResult;
