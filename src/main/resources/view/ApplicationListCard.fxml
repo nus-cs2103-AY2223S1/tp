@@ -27,6 +27,8 @@
           </minWidth>
         </Label>
         <Label fx:id="company" styleClass="cell_big_label" text="\$company" />
+        <Label alignment="CENTER" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+        <Label fx:id="status" text="\$status" />
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="contact" styleClass="cell_small_label" text="\$contact" />

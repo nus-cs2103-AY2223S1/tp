@@ -6,6 +6,7 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -19,6 +20,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.Status;
 import seedu.application.model.tag.Tag;
 
 /**
@@ -33,10 +35,10 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL,
-                PREFIX_POSITION, PREFIX_DATE, PREFIX_TAG);
+                PREFIX_POSITION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_POSITION, PREFIX_DATE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_POSITION, PREFIX_DATE,
+                PREFIX_STATUS) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCommand.MESSAGE_USAGE));
         }
@@ -46,9 +48,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Application application = new Application(company, contact, email, position, date, tagList);
+        Application application = new Application(company, contact, email, position, date, status, tagList);
 
         return new AddCommand(application);
     }

@@ -42,7 +42,7 @@ public class UniqueApplicationList implements Iterable<Application> {
     /**
      * Returns true if the list contains an equivalent interview in the {@code toCheck} as the given argument.
      */
-    public boolean hasSameInterviewTimeAs(Application toCheck) {
+    public boolean hasSameInterviewTime(Application toCheck) {
         requireNonNull(toCheck);
         if (toCheck.getInterview().isEmpty()) {
             return false;
@@ -61,7 +61,7 @@ public class UniqueApplicationList implements Iterable<Application> {
     /**
      * Returns true if the list contains an equivalent {@code interview} as the given argument.
      */
-    public boolean hasSameInterviewTimeAs(Interview toCheck) {
+    public boolean hasSameInterviewTime(Interview toCheck) {
         requireNonNull(toCheck);
         for (int i = 0; i < internalList.size() - 1; i++) {
             if (internalList.get(i).getInterview().isEmpty()) {
@@ -79,7 +79,7 @@ public class UniqueApplicationList implements Iterable<Application> {
      * It excludes the check of the {@code application} itself in order to allow the modification of
      * {@code application}.
      */
-    public boolean hasSameInterviewTimeAsExcludeSelf(Interview interview, Application application) {
+    public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
         requireAllNonNull(interview, application);
         if (application.getInterview().isEmpty()) {
             return false;
@@ -103,7 +103,7 @@ public class UniqueApplicationList implements Iterable<Application> {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateApplicationException();
-        } else if (hasSameInterviewTimeAs(toAdd)) {
+        } else if (hasSameInterviewTime(toAdd)) {
             throw new DuplicateInterviewException();
         }
         internalList.add(toAdd);
@@ -128,7 +128,7 @@ public class UniqueApplicationList implements Iterable<Application> {
             // check if applications other than target are equivalent to editedApplication
             throw new DuplicateApplicationException();
         } else if (!target.getInterview().flatMap(x -> editedApplication.getInterview().map(y -> x.isOnSameTime(y)))
-                .orElse(false) && hasSameInterviewTimeAs(editedApplication) && hasSameArchiveStatus) {
+                .orElse(false) && hasSameInterviewTime(editedApplication) && hasSameArchiveStatus) {
             // check if applications other than target happen at the same time as editedApplication
             throw new DuplicateInterviewException();
         }
