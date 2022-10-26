@@ -31,6 +31,15 @@ public class MainWindow extends UiPart<Stage> {
     private static final String EXPAND_MENUITEM_TEXT = "Expanded Cards";
     private static final String LIGHT_THEME_MENUITEM_TEXT = "Light Theme";
     private static final String DARK_THEME_MENUITEM_TEXT = "Dark Theme";
+    private static final String ADD_COMMAND_SHORTCUT_TEXT = "add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/";
+    private static final String EDIT_COMMAND_SHORTCUT_TEXT = "edit ";
+    private static final String DELETE_COMMAND_SHORTCUT_TEXT = "delete ";
+    private static final String CLONE_COMMAND_SHORTCUT_TEXT = "clone ";
+    private static final String VIEW_COMMAND_SHORTCUT_TEXT = "view ";
+    private static final String UNDO_COMMAND_SHORTCUT_TEXT = "undo ";
+    private static final String MARK_COMMAND_SHORTCUT_TEXT = "mark ";
+    private static final String UNMARK_COMMAND_SHORTCUT_TEXT = "unmark ";
+
 
     private final String lightTheme = getClass().getResource("/view/LightTheme.css").toExternalForm();
     private final String darkTheme = getClass().getResource("/view/DarkTheme.css").toExternalForm();
@@ -99,6 +108,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setCommandBoxText(ADD_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+A"));
+        setCommandBoxText(EDIT_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+E"));
+        setCommandBoxText(DELETE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+D"));
+        setCommandBoxText(CLONE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+L"));
+        setCommandBoxText(VIEW_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+I"));
+        setCommandBoxText(UNDO_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+Z"));
+        setCommandBoxText(MARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+M"));
+        setCommandBoxText(UNMARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+U"));
     }
 
     /**
@@ -126,6 +143,22 @@ public class MainWindow extends UiPart<Stage> {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
                 menuItem.getOnAction().handle(new ActionEvent());
+                event.consume();
+            }
+        });
+    }
+
+    /**
+     * Sets the text of command box.
+     * @param text The text to be added to the command box.
+     * @param keyCombination the KeyCombination value of the accelerator.
+     */
+    private void setCommandBoxText(String text, KeyCombination keyCombination) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (keyCombination.match(event)) {
+                CommandBox commandBox = new CommandBox(this::executeCommand, text);
+                commandBoxPlaceholder.getChildren().clear();
+                commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
                 event.consume();
             }
         });
@@ -282,5 +315,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void setHelpMenuItem(MenuItem helpMenuItem) {
+        this.helpMenuItem = helpMenuItem;
     }
 }

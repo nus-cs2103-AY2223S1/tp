@@ -153,7 +153,7 @@ Example:
 
 ### Clone a person : `clone`
 
-Clones an existing person in Survin with updated details.
+Creates a new person with updated details based on an existing person in Survin, the new person created will be added to end of existing address book.
 
 Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY] [t/TAG]…`
 
@@ -220,6 +220,19 @@ Compacted Mode:<br>
 
 Format: `toggle-list-mode`
 
+### Shortcut keys 
+These shortcut keys will add texts to the command box, this helps the users to enter the commands faster.
+
+- `CTRL + A` adds `add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/` to the command box.
+- `CTRL + E` adds `edit` to the command box.
+- `CTRL + D` adds `delete` to the command box.
+- `CTRL + M` adds `mark` to the command box.
+- `CTRL + U` adds `unmark` to the command box.
+- `CTRL + Z` adds `undo` to the command box.
+- `CTRL + L` adds `clone` to the command box.
+- `CTRL + I` adds `view` to the command box.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the app.
@@ -259,13 +272,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                                                    |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Action                  | Format, Examples                                                                                                                                                   |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**               | `clear`                                                                                                                                                             |
-| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                 |
-| **Delete by attribute** | `delete [ra/RACE] [re/RELIGION]`<br> e.g. `delete ra/Chinese`,                                                                                                      |
-| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                          |
-| **List**                | `list`                                                                                                                                                              |
-| **Help**                | `help`                                                                                                                                                              |
+| **Clear**               | `clear`                                                                                                                                                            |
+| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Delete by attribute** | `delete [ra/RACE] [re/RELIGION]`<br> e.g. `delete ra/Chinese`,                                                                                                     |
+| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
+| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                         |
+| **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                |
+| **List**                | `list`                                                                                                                                                             |
+| **Help**                | `help`                                                                                                                                                             |
