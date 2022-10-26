@@ -147,7 +147,7 @@ public class CommandTestUtil {
             " " + PREFIX_RELATIONSHIP + "stranger";
 
     public static final String INVALID_SUBJECT_DESC =
-            " " + PREFIX_SUBJECT_OR_SCHOOL + "Philosophy"; //outside set subjects not allowed
+            " " + PREFIX_SUBJECT_OR_SCHOOL + "Social Studies"; //outside set subjects not allowed
     public static final String INVALID_DAY_DESC =
             " " + PREFIX_DAY + "Newday"; // only allow 'monday' to 'sunday'
     public static final String INVALID_TIME1_DESC =
