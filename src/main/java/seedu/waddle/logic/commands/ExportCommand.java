@@ -1,11 +1,8 @@
 package seedu.waddle.logic.commands;
+
 import java.io.IOException;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-
+import seedu.waddle.logic.PdfFiller;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.Stages;
 import seedu.waddle.logic.commands.exceptions.CommandException;
@@ -39,23 +36,12 @@ public class ExportCommand extends Command {
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         try {
-            PDDocument doc = new PDDocument();
-            PDPage myPage = new PDPage();
-            doc.addPage(myPage);
-            PDPage page = doc.getPage(0);
-            PDPageContentStream contentStream = new PDPageContentStream(doc, page);
-            contentStream.beginText();
-            contentStream.setFont(PDType1Font.TIMES_BOLD_ITALIC, 14);
-            contentStream.newLineAtOffset(0, 700);
-            contentStream.showText(itinerary.toString());
-            contentStream.endText();
-            contentStream.close();
-            doc.save("./data/" + itinerary.getName().description + ".pdf");
-            doc.close();
+            String exportTemplate = "./src/main/resources/template/waddle_template.pdf";
+            PdfFiller pdfFiller = new PdfFiller(itinerary, exportTemplate);
+            pdfFiller.fillItinerary();
         } catch (IOException e) {
             return new CommandResult(MESSAGE_EXPORT_FAILURE);
         }
-
         return new CommandResult(MESSAGE_EXPORT_SUCCESS);
     }
 
