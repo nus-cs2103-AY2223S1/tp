@@ -18,7 +18,6 @@ import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.student.IsPartOfClassPredicate;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
-import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 
 /**
  * Wraps all data at the address-book level

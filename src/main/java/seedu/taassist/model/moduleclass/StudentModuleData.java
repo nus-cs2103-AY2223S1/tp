@@ -12,7 +12,6 @@ import seedu.taassist.model.session.Session;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
-import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 
 /**
  * Represents a student's data for a module.
