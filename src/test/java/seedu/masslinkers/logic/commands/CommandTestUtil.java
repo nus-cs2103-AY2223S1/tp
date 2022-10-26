@@ -66,7 +66,7 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB;
     // empty string not allowed for GitHub usernames
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM; // empty string not allowed for telegram
-    public static final String INVALID_INTEREST_DESC = " " + PREFIX_INTEREST + "tennis*"; //'*' not allowed in interests
+    public static final String INVALID_INTEREST_DESC = " " + PREFIX_INTEREST + "AI*"; //'*' not allowed in interests
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
