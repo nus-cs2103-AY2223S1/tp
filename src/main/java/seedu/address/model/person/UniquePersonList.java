@@ -3,13 +3,18 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.timeRange.TimeRange;
+import seedu.address.storage.ClassStorage;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -110,6 +115,162 @@ public class UniquePersonList implements Iterable<Person> {
     public ObservableList<Person> getInternalList() {
         return internalList;
     }
+
+    /**
+     * Returns the next first available class.
+     *
+     * @param tr a timeRange object containing the {@code startTime}, {@code endTime} and {@code duration}.
+     * @return the next first available Class.
+     */
+    public Class getAvailableClass(TimeRange tr) {
+        LocalDate currDate = LocalDate.now();
+        List<Person> list = internalList
+                .stream()
+                .filter(person -> person.getAClass().startTime != null
+                        && person.getAClass().endTime != null
+                        && person.getAClass().date != null
+                        && person.getAClass().date.compareTo(currDate) >= 0)
+                .sorted(Person::compareTo)
+                .collect(Collectors.toList());
+        Class newClass = new Class();
+        if (list.size() == 0) {
+            newClass = new Class(currDate, tr.startTimeRange,
+                    tr.startTimeRange.plusMinutes(tr.duration));
+            return newClass;
+        }
+
+        if (list.size() == 1) {
+            Class classToCompare = list.get(0).getAClass();
+            // When the startTimeRange is before the earliest slot
+            assert classToCompare.endTime != null;
+            assert classToCompare.startTime != null;
+
+            if (classToCompare.endTime.compareTo(tr.startTimeRange) <= 0
+                    || (classToCompare.startTime.compareTo(tr.startTimeRange) >= 0
+                    && tr.startTimeRange.plusMinutes(tr.duration).compareTo(classToCompare.startTime) <= 0)) {
+                newClass = new Class(currDate, tr.startTimeRange,
+                        tr.startTimeRange.plusMinutes(tr.duration));
+            } else if (classToCompare.startTime.compareTo(tr.endTimeRange) >= 0
+                    || (classToCompare.endTime.plusMinutes(tr.duration).compareTo(tr.endTimeRange) <= 0)) {
+                // When the startTimeRange is after the earliest slot
+                newClass = new Class(currDate, classToCompare.endTime,
+                        classToCompare.endTime.plusMinutes(tr.duration));
+            } else {
+                // Else go to the next day and find the next available slot
+                newClass = new Class(currDate.plusDays(1), tr.startTimeRange,
+                        tr.startTimeRange.plusMinutes(tr.duration));
+            }
+            return newClass;
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            Class aFirstClass = list.get(i).getAClass();
+            if (i == list.size() - 1) {
+                /*
+                    if the list.size() - 1, that means that you are only looking at one element in the list.
+                    in which case, you are looking at a few cases
+                    Case 1: The startTimeRange is before the startTime of the class, in which case, you should
+                            create a class from the start time and check to see if it exceeds the startTime of the
+                            original class.
+                    Case 2: If the startTimeRange is not before the startTime of the class, then it is either the same
+                            or after the class. So you can try to create a class, from the end of the class.
+                    Case 3: If it exceeds the endTimeRange then you look at the next day, but will be handled by next
+                            iteration
+                 */
+                assert aFirstClass.endTime != null;
+                assert aFirstClass.startTime != null;
+                if (tr.startTimeRange.compareTo(aFirstClass.startTime) < 0) {
+                    newClass = new Class(aFirstClass.date, tr.startTimeRange,
+                            tr.startTimeRange.plusMinutes(tr.duration));
+                    assert newClass.endTime != null;
+                    if (newClass.endTime.compareTo(aFirstClass.startTime) <= 0) {
+                        break;
+                    }
+                } else {
+                    newClass = new Class(aFirstClass.date, aFirstClass.endTime,
+                            aFirstClass.endTime.plusMinutes(tr.duration));
+                    assert newClass.endTime != null;
+                    if (newClass.endTime.compareTo(tr.endTimeRange) <= 0) {
+                        break;
+                    }
+                }
+
+                newClass = new Class(aFirstClass.date, aFirstClass.endTime,
+                        aFirstClass.endTime.plusMinutes(tr.duration));
+                assert newClass.endTime != null;
+                if (newClass.endTime.compareTo(tr.endTimeRange) > 0) {
+                    assert aFirstClass.date != null;
+                    newClass = new Class(aFirstClass.date.plusDays(1),
+                            tr.startTimeRange, tr.startTimeRange.plusMinutes(tr.duration));
+                }
+                break;
+            }
+            Class aSecondClass = list.get(i + 1).getAClass();
+
+            // check whether a class before the first class is possible
+            Class fromTrStartTime = new Class(aFirstClass.date, tr.startTimeRange,
+                    tr.startTimeRange.plusMinutes(tr.duration));
+            if (!ClassStorage.hasConflict(fromTrStartTime.startTime, fromTrStartTime.endTime,
+                    aFirstClass.startTime, aFirstClass.endTime)
+                    && !ClassStorage.hasConflict(fromTrStartTime.startTime, fromTrStartTime.endTime,
+                    aSecondClass.startTime, aSecondClass.endTime)) {
+                assert fromTrStartTime.endTime != null;
+                if (fromTrStartTime.endTime.compareTo(tr.endTimeRange) <= 0) {
+                    newClass = fromTrStartTime;
+                    break;
+                }
+            }
+
+            assert aFirstClass.date != null;
+            if (aFirstClass.date.equals(aSecondClass.date)) {
+                /*
+                 * That means they are on the same day
+                 * 1st case: When they are side by side. Since the case where it is before the class has been handled,
+                 *           we try finding a slot after the end of the secondClass.
+                 * 2nd case: When there is a gap, but it is not big enough. If there is a gap, then it is actually
+                 *           the same situation as the first case so, it becomes <= tr.duration rather than just == 0
+                 *           for the initial first case.
+                 * 3rd case: When there is a gap just nice or too big
+                 */
+                assert aFirstClass.endTime != null;
+                assert aSecondClass.startTime != null;
+                if (aFirstClass.endTime.until(aSecondClass.startTime, ChronoUnit.MINUTES) > tr.duration) {
+                    // you are now handling the 3rd case, the 1st case does not matter since if it is outside of the
+                    // duration, it is the next iteration's problem
+                    newClass = new Class(aFirstClass.date, aFirstClass.endTime,
+                            aFirstClass.endTime.plusMinutes(tr.duration));
+                    break;
+                }
+            } else {
+                /*
+                 * That means they are not on the same day.
+                 * Case 1: In which case, you try creating a class which starts after the end of the same class,
+                 *         since there wouldn't be a conflict between the 2 class dates.
+                 * Case 2: If there are a number of days gap, more than 1, and the timing clashes, then you can
+                 *         definitely go to the next day.
+                 */
+                assert aFirstClass.endTime != null;
+                newClass = new Class(aFirstClass.date, aFirstClass.endTime,
+                        aFirstClass.endTime.plusMinutes(tr.duration));
+                assert newClass.endTime != null;
+                if (newClass.endTime.compareTo(tr.endTimeRange) <= 0) {
+                    break;
+                } else {
+                    assert newClass.date != null;
+                    assert aSecondClass.date != null;
+                    if (newClass.date.until(aSecondClass.date, ChronoUnit.DAYS) > 1) {
+                        newClass = new Class(aFirstClass.date.plusDays(1), tr.startTimeRange,
+                                tr.startTimeRange.plusMinutes(tr.duration));
+                        break;
+                    }
+                }
+            }
+        }
+
+        return newClass;
+    }
+
+
 
     @Override
     public Iterator<Person> iterator() {
