@@ -94,6 +94,16 @@ public class CliSyntax {
     }
 
     /**
+     * Adds a tag prefix to the list of prefixes if it does not already exist in the prefixes list.
+     * @param pref List of prefixes to be added.
+     */
+    public static void setTagPrefix(List<Prefix> pref) {
+        prefixes.removeAll(prefixTags);
+        prefixTags = new ArrayList<>(pref);
+        prefixes.addAll(prefixTags);
+    }
+
+    /**
      * Removes a tag prefix from the list of prefixes.
      * @param pref Prefix to be removed.
      * @throws PrefixNotFoundException If the prefix doesn't exist in the list of
