@@ -72,8 +72,7 @@ public class PetGrader {
                 * colorPatternScoreWeight;
         double speciesScore = (order.getRequest().getRequestedSpecies().equals(pet.getSpecies()) ? 1 : 0)
                 * speciesScoreWeight;
-
-
+        return ageScore + colorScore + colorPatternScore + speciesScore;
     }
 
     public double getAgeScoreWeight() {

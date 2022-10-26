@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 Given below is a partial class diagram of the `Ui` component.
 
-<img src="images/UiClassDiagram.png" width="600"/>
+<img src="images/UiClassDiagram.png" width="700"/>
 
 The UI consists of a `MainWindow` that is made up of parts including `CommandBox`, `ResultDisplay`, `StatusBarFooter`.
 The `mainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
@@ -86,7 +86,7 @@ Each list panel can have any number of the corresponding card. For example, `Buy
 All the list panels and cards inherit from the abstract `UiPart`, but **not shown** in the diagram below to reduce graph complexity.
 Detailed implementation of the list panel can be found [here](#display-of-person-list).
 
-<img src="images/UiClassDiagram1.png" width="600"/>
+<img src="images/UiClassDiagram1.png" width="700"/>
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -155,7 +155,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="750" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -268,21 +268,33 @@ We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least sig
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
 
 ### Display of person list
-Initially, there is only one `PersonListPanel` that displays the person list in the ui. However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`.
 
-In addition, buyers, suppliers and deliverers have comprehensive details on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
+Given below is a partial class diagram of the **old UI**.
 
-In the implementation, we have a `personListPanelPlaceholder` in the `MainWindow`, which can be filled by one of the followings depending on the `Command` executed:
+<img src="images/OldUiClassDiagram.png" width="500" height="400" />
+
+Initially, there is only one `PersonListPanel` that displays the person list using `PersonCard`.
+However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`.
+
+In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
+
+In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings depending on the `Command` executed:
 * `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
 * `SupplierListPanel`: displays information about each `Supplier` using a `SupplierCard` in a `ListView`.
 * `DelivererListPanel`: displays information about each `Deliverer` using a `DelivererCard` in a `ListView`.
-* `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` n a `ListView`.
+* `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` In a `ListView`.
+* `OrderListPanel`: displays information about each `Order` using an `OrderCard` in a `ListView`.
+* `PetListPanel`: displays information about each `Pet` using a `PetCard` in a `ListView`.
 
-By having a display panel for each of the three `Person` categories, as well as the panel that displays all, it will be easier to customise the display of different `Person` types if required by future features and ui improvements.
+<img src="images/UiClassDiagram1.png" width="700"/>
 
-In each `BuyerCard`, the buyer's `Name` will be shown together with an `Index` and a label indicating he or she is a `Buyer`.
+By having separate list panels, it will be easier to customise the display of different `Person` types as well as `Order` and `Pet` if required by future features and ui improvements.
+
+In each `BuyerCard` as seen in the graph below, the buyer's `Name` will be shown together with an index and a label indicating he or she is a `Buyer`.
 The left side displays the contact information of the `Buyer`, including `Phone`, `Email`, `Location`, and `Address`.
 The right side of the card is visually enhanced by adding a `ListView` of `OrderCard`, which displays the information of each of the `Order` that the `Buyer` makes with an index in a list.
+
+<img src="images/BuyerCard.png" width="700"/>
 
 The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
 
@@ -292,8 +304,6 @@ Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which d
 By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the height of each card within a reasonable range
 (e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched vertically, potentially to an extent that the whole window can only show information of one single buyer).
 
-Given below is a scenario that shows how the new ui responds to a `ListCommand`.
-// TODO: add description here
 
 ### Pop-up window for add command
 
