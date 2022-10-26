@@ -25,13 +25,17 @@ but it also has a Graphical User Interface for simpler and quicker task.
         * [3.3.2 List contact](#332-list-contact)
     - [3.4 Github-Related Commands](#34-github-related-commands)
         * [3.4.1 Open a person's github profile page](#341-opening-a-persons-github-profile-page-github)
+    - [3.5 Fast Template Command](#35-fast-template-command)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 # 1. About the User Guide
+
 This section will explain the parameters and the format of commands.
+
 ## 1.1 Parameters
+
 | Prefix | Parameter    | Meaning                                         |
 |--------|--------------|-------------------------------------------------|
 | n/     | NAME         | Name of person                                  |
@@ -40,6 +44,7 @@ This section will explain the parameters and the format of commands.
 | e/     | EMAIL        | Email address of person                         |
 | m/     | MODULE       | Module that person is participating in          |
 | t/     | TAG          | Tag person (i.e tag as friend)                  |
+| r/     | RATING       | Rate person (on a scale of 0 to 5)              |
 | []()   | INDEX        | Index of item in the recent displayed item list |
 
 ## 1.2 Format
@@ -88,18 +93,66 @@ This section will explain the parameters and the format of commands.
 # 3. Features
 
 ## 3.1 Add-Related Commands
-The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding new person to the database.
+The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding a new person to the database.
 
 ### 3.1.1 Adding a new Student Contact: `student`<a id="311-add-student"></a>
-[coming soon]
-### 3.1.2 Add a new Prof Contact: `prof`<a id="312-add-prof"></a>
-[coming soon]
+
+Adds a new Student contact to your contacts list.
+
+Format: `student n/NAME [y/YEAR] m/MODULE_CODE... p/PHONE e/EMAIL g/GENDER [t/TAG]... [l/LOCATION] git/GITHUB_USERNAME`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A student can have multiple module codes and tags.
+</div>
+
+Examples:
+* `student n/John Doe y/1 m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M t/friends t/owesMoney l/UTown Residences git/johnnyd`
+* `add n/Betsy Crowe t/friend m/CS2100 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### 3.1.2 Add a new Professor Contact: `prof`<a id="312-add-prof"></a>
+
+Adds a new Professor contact to your contacts list.
+
+Format: `prof n/NAME m/MODULE_CODE [s/SPECIALISATION] p/PHONE e/EMAIL g/GENDER [t/TAG]... l/LOCATION git/GITHUB_USERNAME [r/RATING]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When adding a Professor, you can enter multiple module codes in the same command, but only the last module code will be taken.
+</div>
+
+Examples:
+* `prof n/Hartin Menz m/CS1101s s/Discrete Math p/98765432 e/HMenz@example.com g/M t/friends l/COM2 LT4 git/hartinmenz r/5 o/2-12:00-2`
+* `prof n/Koro Sensei m/CS3230 p/98663357 e/KoroSensei@gmail.com g/M t/wanted git/senseikoro`
+
 ### 3.1.3 Add a new TA Contact: `ta`<a id="313-add-ta"></a>
-[coming soon]
+
+Adds a new Teaching Assistant contact to your contacts list.
+
+Format: `ta n/NAME m/MODULE_CODE p/PHONE e/EMAIL g/GENDER [t/TAG]... l/LOCATION git/GITHUB_USERNAME [r/RATING]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Similar to professor, when adding a Teaching Assistant, you can enter multiple module codes in the same command, but only the last module code will be taken.
+</div>
+
+Examples:
+* `ta n/Alice Doe m/CS2100 p/98765432 e/AliceD@example.com g/F t/friends t/owesMoney l/COM1-0203 git/alicyD r/5`
+* `ta n/Pablo Escobar m/CS2040 p/99982344 e/Pablo@hotmail.com g/M t/entrepreneur git/pabbyescobar` 
+
 --------------------------------------------------------------------------------------------------------------------
 ## 3.2 Editing-Related Commands
 ### 3.2.1 Delete a person<a id="321-delete-person"></a>
-[coming soon]
+
+Deletes one or more contacts from the contacts list.
+
+Format: `delete INDEX1 INDEX2...`
+
+* Deletes the person(s) at the specified `INDEX`.
+* Multiple contacts can be deleted at once by entering multiple indexes.
+* The indexes **must be a positive integer** 1, 2, 3...
+* The order of the indexes does not matter as long as they are valid i.e. they are not out of bounds.
+
+Example:
+* `Delete 1 2 3`
+
 ### 3.2.2 Edit contact<a id="322-edit-contact"></a>
 [coming soon]
 
@@ -107,12 +160,79 @@ The Add-Related commands include `student`, `prof` and `ta`. These are the comma
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3.3 Searching-Related Commands
-### 3.3.1 Locate contact<a id="331-locate-contact"></a>
-[coming soon]
-### 3.3.2 List contact<a id="332-list-contact"></a>
-[coming soon]
+### Finding a contact: `find`
+
+Finds all contacts based on the fields provided.
+
+A list of keywords can be entered under each field
+
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Find can be used with any number of fields as long at least one field is provided.
+* The search is case-insensitive. e.g. `bob` will match `Bob`
+* Keywords for all fields (except specialisation) are separated by spaces. e.g. `find n/bob alex joe`
+* For fields `name` and `location`, only one of the keywords need to fully match. e.g. `find n/alex bob` can return contacts `Alex Hunter` and `Bob Jones`.
+* Keywords for specialisation must be a full match and are separated by `,`. e.g. `find s/discrete math, networks` will return contacts with specialisation `Discrete Math` AND/OR `Networks`, but NOT `Discrete`.
+* The order of the keywords for any field does not matter. e.g. `find n/Hans Bo` will match `find n/Bo Hans`
+* For all fields, only full keywords will be matched e.g. `Bob` will not match `Bobby`
+* Persons matching at least one of the fields (as well one of the keywords in the field) will be returned (i.e. `OR` search).
+  e.g. `find n/alex bob t/friends` can return `Alex James`, `Bob Hunt` AND/OR all contacts with the tag `friends` (case-insensitive).
+
+Examples:
+*  `find m/CS2103T t/friends goodCoder` Returns contacts who take module `CS2103T` OR have the tags `friends` OR `goodCoder`
+*  `find n/wong leong m/CS1231S l/COM3` Returns all contacts whose names have `wong` OR `leong` in them, OR take the module `CS1231S`, OR have the location `COM3` 
+
+#### `ALL` search for `module` and `tag` fields
+
+Finds all contacts who have ALL the module codes provided or ALL the tags provided.
+
+Format: `find [m/all/LIST OF MODULES] [t/all/LIST OF TAGS]`
+
+* Other fields can still be provided with this search mode, and they will still be OR search (but module/ tag will be ALL).
+* This is not case-sensitive.
+* `OR` search is still supported for modules and tags (omit the `all/`).
+
+Examples 
+*  `find n/wong m/all/CS2100 CS2103T CS2109S` Returns all contacts who have `wong` in their name OR (take the modules: `CS2100` AND `CS2103T` and `CS2109S`).
+*  `find l/NUS t/all/friends owesMoney smart` Returns all contacts who have the location `NUS` OR (have the tags: `friends` AND `owesMoney` AND `smart`).
+
+#### Type search
+
+Find contacts by type: `Student` `Professor` `Teaching Assistant`
+
+Format: `find [typ/TYPE]`
+
+Only the following are accepted:
+* `stu` for Student
+* `prof` for Professor
+* `ta` for Teaching Assisstant
+* All are case-insensitive
+* More than one type can be provided
+
+Example:
+*  `find typ/stu ta` will return contacts who are students or teaching assistants.
+
+#### Office Hour search
+
+Find contacts by their office hours.
+
+Format: `find [o/OFFICE HOURS]`
+
+* keywords must be in the same format as office hour input. e.g. To find office hour `MONDAY, 03:00 PM - 05:00 PM` enter `find o/1-15:00-2`.
+* More than office hour can be provided.
+* Office hours must be separated by spaces.
+* A full match to each office hour is required.
+
+Example:
+* `find o/1-15:00-2 2-12:00-2` Returns all contacts with office time `MONDAY, 03:00 PM - 05:00 PM` OR `TUESDAY, 12:00 PM - 02:00 PM`.
 <div style="page-break-after: always;"></div>
 
+
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
 --------------------------------------------------------------------------------------------------------------------
 ## 3.4 Github-Related Commands
 ### 3.4.1 Opening a person's github profile page: `github`
@@ -127,3 +247,37 @@ Format: `github INDEX`
 Example command: `github 1`
 
 --------------------------------------------------------------------------------------------------------------------
+## 3.5 Fast Template Command
+
+Returns a template with all the fields of a Person on the CLI.
+
+Format: `tt PERSON`
+* PERSON can be `prof`, `student`, or `ta`.
+
+Example:
+`tt prof` -> the template `prof n/ m/ s/ p/ e/ g/ t/ l/ r/ o/` will be on the CLI.
+
+`tt student` -> the template `prof n/ m/ p/ e/ g/ t/ l/ git/ y/` will be on the CLI.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install SoConnect in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action           | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a Person** | `PERSON n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> where PERSON is `prof / student / ta`  <br><br> e.g. Adding student `student n/James Ho m/CS1231 p/12345678 e/jamesho@example.com g/M t/bestfriend t/colleague l/UTown Residences git/jamesho y/2` <br><br> e.g. Adding prof `prof n/Wong Tin Lok m/CS1231S s/Discrete Math p/98765432 e/WongTK@example.com g/M t/greatVoice git/WongExample l/COM2 LT4 r/5 o/2-12:00-2` <br><br> e.g. Adding TA `ta n/Danny m/CS2103T p/67598442 e/Danny@example.com g/M t/Korean l/COM2-0204 git/DannyTA r/5` |
+| **Clear**        | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **List**         | `list`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Help**         | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Template**     | `tt PERSON` where PERSON is `prof / student / ta` <br> e.g., `tt prof`, `tt ta`, `tt student`                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |

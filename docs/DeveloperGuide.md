@@ -163,8 +163,6 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.
 </div>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.</div>
-
 
 ### Fast Template Feature
 
@@ -438,18 +436,26 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                                            | So that I can…​                                                       |
-|----------|-----------|-------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| `* * *`  | Student   | add contacts of my tutors/professors/friends                            | keep track of my social network                                       |
-| `* * *`  | Student   | remove unnecessary contacts from my address book                        | manage my social network                                              |
-| `* * *`  | Student   | find contacts based on name                                             | look up a person’s contact easily                                     |
-| `* * *`  | Student   | edit contacts in  address book                                          | make changes if that a person’s contact changed                       |
-| `* * *`  | Student   | display all the contacts in my list                                     | see all the contacts that I have added so far                         |
-| `* * *`  | New User  | clear all examples sample address                                       | start using the application quickly                                   |
-| `* * *`  | Student   | keep track of my tutors/professors/friend's github username             | find their github username easily                                     |
-| `* * *`  | Lazy User | open github profile page of my tutors/professor/ friends with a command | view my friends/Teaching Assistants/Professors github projects easily |
-| `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                       |
-| `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                   |
+| Priority | As a …​   | I want to …​                                                            | So that I can…​                                                                                           |
+|----------|-----------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `* * *`  | Student   | add contacts of my tutors/professors/friends                            | keep track of my social network                                                                           |
+| `* * *`  | Student   | remove unnecessary contacts from my address book                        | manage my social network                                                                                  |
+| `* * *`  | Student   | find contacts based on name                                             | look up a person’s contact easily                                                                         |
+| `* * *`  | Student   | edit contacts in  address book                                          | make changes if that a person’s contact changed                                                           |
+| `* * *`  | Student   | display all the contacts in my list                                     | see all the contacts that I have added so far                                                             |
+| `* * *`  | New User  | clear all examples sample address                                       | start using the application quickly                                                                       |
+| `* * *`  | Student   | keep track of my tutors/professors/friend's github username             | find their github username easily                                                                         |
+| `* * *`  | Lazy User | open github profile page of my tutors/professor/ friends with a command | view my friends/Teaching Assistants/Professors github projects easily                                     |
+| `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                                                           |
+| `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                                                       |
+| `* * *`  | Student   | keep track of my contact's location                                     | know where I should approach for help / to meet                                                           |
+| `* * *`  | New User  | get a template command for adding a tutor / professor / friend          | start using the application quickly without having to constantly look up the User Guide on all the fields |
+| `* * *`  | Student   | visualise my contact list in a pie chart                                | have a quick overview of my network                                                                       |
+| `* * *`  | Student   | search by module code                                                   | so that I can see all my peers, profs and TAs for a certain module                                        |
+| `* * *`  | Student   | find the consultation timing of tutors/professors                       | so I know when I can approach a professor for help                                                        |
+| `* * *`  | Student   | find the location for a specific module                                 | know where my class is                                                                                    |
+| `* * *`  | Student   | find my friends or peers doing the same mod as me                       | know who to ask for help or who to form groups with                                                       |
+| `* * *`  | Student   | filter through the contacts shown in GUI                                | I can search quickly for any contact I want to find                                                       |
 
 
 *{More to be added}*
@@ -458,14 +464,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SoConnect` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a student**
+
+**MSS**
+
+1. User requests to list persons.
+2. SoConnect shows a list of persons.
+3. User requests to add a student to the list.
+4. SoConnect adds the student to the list.
+
+**Extensions**
+
+* 3a. The student specified by the user is invalid.
+  * 3a1. SoConnect shows an error message.
+    
+    Use case resumes at step 2.  
+
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons.
 2.  SoConnect shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  SoConnect deletes the person.
+3.  User requests to delete multiple people in the list.
+4.  SoConnect deletes the all the people specified by the user.
 
     Use case ends.
 
@@ -475,11 +497,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. At least one of the given indexes is invalid.
 
     * 3a1. SoConnect shows an error message.
 
       Use case resumes at step 2.
+
 
 **Use case: Open a person's GitHub profile page**
 
@@ -503,6 +526,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+  
+
+**Use case: Get Template for adding a Person**
+
+**MSS**
+
+1.  User requests for a template for a specific type of Person. i.e. prof / ta / student.
+2.  SoConnect pastes the template on the CLI.
+3.  User fills in the template with the right information and presses enter.
+4.  SoConnect adds the person into storage.
+
+    Use case ends.
+
+**Extensions**
+* 1a. SoConnect detects an error in specified person entered.
+
+    * 1a1. SoConnect shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. SoConnect detects an error in the entered information.
+
+    * 3a1. SoConnect shows an error message.
+
+      Use case resumes at step 3.
+
+**Use case: Find person for any desired action**
+
+**MSS**
+
+1.  User enters details to filter list by.
+2.  SoConnect returns the list of persons matching the details provided.
+3.  User performs desired action on contact(s) shown.
+
+    Use case ends.
+
+**Extensions**
+* 1a. SoConnect detects an error with the details entered.
+
+    * 1a1. SoConnect shows an error message.
+    * 1a2. User enters new data.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+  
+      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 

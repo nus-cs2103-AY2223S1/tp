@@ -63,17 +63,31 @@ public class EditCommand extends Command {
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_TAG + "TAG]..."
         + "[" + PREFIX_LOCATION + "LOCATION] "
-        + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME]"
-        + "[" + PREFIX_RATING + "RATING]\n"
+        + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME] "
+        + "[" + PREFIX_RATING + "RATING] "
+        + "[" + PREFIX_OFFICEHOUR + "RATING]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
-        + PREFIX_EMAIL + "johndoe@example.com"
-        + PREFIX_OFFICEHOUR + "2/23:00/2";
+        + PREFIX_EMAIL + "johndoe@example.com ";
 
-
+    public static final String SPACING = " ";
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    private static final String STUDENT_FIELD_CONSTRAINT_MESSAGE = "Field that you wish to edit does not exist in"
+            + " Student. Student only have the following fields:\n"
+            + PREFIX_NAME + SPACING + PREFIX_PHONE + SPACING + PREFIX_EMAIL + SPACING + PREFIX_GENDER + SPACING
+            + PREFIX_MODULE_CODE + SPACING + PREFIX_TAG + SPACING + PREFIX_LOCATION + SPACING + PREFIX_GITHUBUSERNAME;
+    private static final String PROF_FIELD_CONSTRAINT_MESSAGE = "Field that you wish to edit does not exist in"
+            + " Professor. Professor only have the following fields:\n"
+            + PREFIX_NAME + SPACING + PREFIX_PHONE + SPACING + PREFIX_EMAIL + SPACING + PREFIX_GENDER + SPACING
+            + PREFIX_MODULE_CODE + SPACING + PREFIX_TAG + SPACING + PREFIX_LOCATION + SPACING + PREFIX_GITHUBUSERNAME
+            + PREFIX_OFFICEHOUR + SPACING + PREFIX_RATING + SPACING + PREFIX_SPECIALISATION;
+    private static final String TA_FIELD_CONSTRAINT_MESSAGE = "Field that you wish to edit does not exist in"
+            + " Teaching Assistant. Teaching Assistant only have the following fields:\n"
+            + PREFIX_NAME + SPACING + PREFIX_PHONE + SPACING + PREFIX_EMAIL + SPACING + PREFIX_GENDER + SPACING
+            + PREFIX_MODULE_CODE + SPACING + PREFIX_TAG + SPACING + PREFIX_LOCATION + SPACING + PREFIX_GITHUBUSERNAME
+            + SPACING + PREFIX_RATING;;
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -126,9 +140,14 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Student personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Student personToEdit,
+                                             EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
+        if (CollectionUtil.isAnyNonNull(editPersonDescriptor.rating, editPersonDescriptor.specialisation,
+                editPersonDescriptor.moduleCode, editPersonDescriptor.officeHour)) {
+            throw new CommandException(STUDENT_FIELD_CONSTRAINT_MESSAGE);
+        }
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
 
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
@@ -148,8 +167,13 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Professor personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Professor personToEdit,
+                                             EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
+
+        if (CollectionUtil.isAnyNonNull(editPersonDescriptor.year, editPersonDescriptor.moduleCodes)) {
+            throw new CommandException(PROF_FIELD_CONSTRAINT_MESSAGE);
+        }
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         ModuleCode updatedModuleCode = editPersonDescriptor.getModuleCode().orElse(personToEdit.getModuleCode());
@@ -173,8 +197,13 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     private static Person createEditedPerson(TeachingAssistant personToEdit,
-                                             EditPersonDescriptor editPersonDescriptor) {
+                                             EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
+
+        if (CollectionUtil.isAnyNonNull(editPersonDescriptor.year, editPersonDescriptor.specialisation,
+                editPersonDescriptor.moduleCodes, editPersonDescriptor.officeHour)) {
+            throw new CommandException(TA_FIELD_CONSTRAINT_MESSAGE);
+        }
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         ModuleCode updatedModuleCode = editPersonDescriptor.getModuleCode().orElse(personToEdit.getModuleCode());
