@@ -411,7 +411,7 @@
      -fx-font-size: 20px;
 }
 
-#personDetails, #personDetails2, #riskLevel, #currentPlans {
+#personDetails, #personDetails2, #riskLevel, #currentPlans, #notesBox {
     -fx-background-color: #EEF4ED;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
@@ -461,6 +461,10 @@
 
 #personDetailsSplitPane {
     -fx-background-color: -white-background;
+}
+
+#note {
+    -fx-padding: 16px;
 }
 
 

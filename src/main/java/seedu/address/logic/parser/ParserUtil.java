@@ -22,6 +22,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Risk;
 import seedu.address.model.tag.Tag;
@@ -257,6 +258,24 @@ public class ParserUtil {
             planSet.add(parsePlan(planName));
         }
         return planSet;
+    }
+
+    /**
+     * Parses a {@code String note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     * Note can be null.
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        if (note != null) {
+            String trimmedNote = note.trim();
+            if (!Note.isValidNote(note)) {
+                throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+            }
+            return new Note(trimmedNote);
+        } else {
+            return new Note(null);
+        }
     }
 
     /**

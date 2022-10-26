@@ -16,6 +16,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -48,6 +49,8 @@ public class CsvAdaptedPerson {
     @CsvBindAndSplitByName(column = "plans",
             elementType = Plan.class, splitOn = ",", converter = StringToPlan.class, writeDelimiter = ",")
     private final List<Plan> planned = new ArrayList<>();
+    @CsvBindByName(column = "note")
+    private final String note;
 
     /**
      * OpenCSV requires a public nullary constructor
@@ -60,6 +63,7 @@ public class CsvAdaptedPerson {
         this.income = null;
         this.meetingDate = null;
         this.risk = null;
+        this.note = null;
     }
 
     /**
@@ -71,7 +75,8 @@ public class CsvAdaptedPerson {
                             String meetingDate,
                             List<Tag> tagged,
                             String risk,
-                            List<Plan> planned) {
+                            List<Plan> planned,
+                            String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -93,6 +98,11 @@ public class CsvAdaptedPerson {
         if (planned != null) {
             this.planned.addAll(planned);
         }
+        if (note != null) {
+            this.note = note;
+        } else {
+            this.note = "";
+        }
     }
 
     /**
@@ -109,6 +119,7 @@ public class CsvAdaptedPerson {
         tagged.addAll(source.getTags());
         risk = portfolio.getRisk().value;
         planned.addAll(portfolio.getPlans());
+        note = portfolio.getNote().value;
     }
 
     /**
@@ -193,11 +204,22 @@ public class CsvAdaptedPerson {
             modelRisk = new Risk("");
         }
 
+        if (note != null && !Note.isValidNote(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        }
+        final Note modelNote;
+
+        if (note != null) {
+            modelNote = new Note(note);
+        } else {
+            modelNote = new Note("");
+        }
+
         final Set<Plan> modelPlan = new HashSet<>(personPlans);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags,
-                modelRisk, modelPlan);
+                modelRisk, modelPlan, modelNote);
     }
 
 }

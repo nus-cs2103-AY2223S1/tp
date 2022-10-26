@@ -17,6 +17,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -38,6 +39,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String risk;
     private final List<JsonAdaptedPlan> planned = new ArrayList<>();
+    private final String note;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -49,7 +51,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("meetingDate") String meetingDate,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("risk") String risk,
-                             @JsonProperty("plan") List<JsonAdaptedPlan> planned) {
+                             @JsonProperty("plan") List<JsonAdaptedPlan> planned,
+                             @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -71,6 +74,11 @@ class JsonAdaptedPerson {
         if (planned != null) {
             this.planned.addAll(planned);
         }
+        if (note != null) {
+            this.note = note;
+        } else {
+            this.note = "";
+        }
     }
 
     /**
@@ -91,6 +99,7 @@ class JsonAdaptedPerson {
         planned.addAll(portfolio.getPlans().stream()
                 .map(JsonAdaptedPlan::new)
                 .collect(Collectors.toList()));
+        note = portfolio.getNote().value;
     }
 
     /**
@@ -171,11 +180,22 @@ class JsonAdaptedPerson {
             modelRisk = new Risk("");
         }
 
+        if (note != null && !Note.isValidNote(note)) {
+            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
+        }
+        final Note modelNote;
+
+        if (note != null) {
+            modelNote = new Note(note);
+        } else {
+            modelNote = new Note("");
+        }
+
         final Set<Plan> modelPlans = new HashSet<>(personPlans);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMeetingDate, modelTags,
-                modelRisk, modelPlans);
+                modelRisk, modelPlans, modelNote);
     }
 
 }

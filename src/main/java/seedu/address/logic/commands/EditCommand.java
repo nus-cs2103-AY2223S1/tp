@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -30,6 +31,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -54,7 +56,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_MEETING_DATE + "MEETINGDATE] "
             + "[" + PREFIX_TAG + "TAG]..."
             + "[" + PREFIX_RISK + "RISK] "
-            + "[" + PREFIX_PLAN + "PLAN] \n"
+            + "[" + PREFIX_PLAN + "PLAN] "
+            + "[" + PREFIX_NOTE + "NOTE] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -122,10 +125,11 @@ public class EditCommand extends Command {
         } else {
             plans = portfolio.getPlans();
         }
+        Note note = editPersonDescriptor.getNote().orElse(portfolio.getNote());
 
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncome,
-                updatedMeetingDate, updatedTags, risk, plans);
+                updatedMeetingDate, updatedTags, risk, plans, note);
     }
 
     @Override
@@ -160,6 +164,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Risk risk;
         private Set<Plan> plans;
+        private Note note;
 
         public EditPersonDescriptor() {}
 
@@ -177,13 +182,14 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setRisk(toCopy.risk);
             setPlans(toCopy.plans);
+            setNote(toCopy.note);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags, risk, plans);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, income, meetingDate, tags, risk, plans, note);
         }
 
         public void setName(Name name) {
@@ -267,6 +273,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setNote(Note note) {
+            this.note = (note != null) ? note : null;
+        }
+
+        public Optional<Note> getNote() {
+            return (note != null) ? Optional.ofNullable(note) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -290,7 +304,8 @@ public class EditCommand extends Command {
                     && getMeetingDate().equals(e.getMeetingDate())
                     && getTags().equals(e.getTags())
                     && getRisk().equals(e.getRisk())
-                    && getPlans().equals(e.getPlans());
+                    && getPlans().equals(e.getPlans())
+                    && getNote().equals(e.getNote());
         }
     }
 }
