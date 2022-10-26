@@ -158,6 +158,23 @@ How the parsing works:
 - When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+#### Tasks
+
+Commands for tasks (e.g., `AddTaskCommand`, `MarkTaskCommand`, ...) follow a similar sequence of interactions within
+the `Logic` component as the other commands described above.
+
+However, during execution, tasks commands may update the context of the current tasks of a team. To understand tasks better,
+it should be understood that Tasks are an attribute of a Teams object, which is used to indicate if a tasks is done (also known as marked),
+or not (also known as unmarked).
+
+
+The Sequence Diagram below shows the interaction between `Logic` and `Model` components when `execute("at ..")` is called.
+
+[insert Sequence Diagram]
+
+This way of implementation of maintains abstraction of details of the `Logic` component, in the `Model` component.
+
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -214,6 +231,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Custom Fields feature
+
+#### Implementation
+
+The Custom Fields mechanism is facilitated by the creation of a new `Field` that is stored within the `Fields` object 
+that each `Person` object has. 
+
+To add a custom field, the user should also provide a unique prefix for the `Field`. The prefix is parsed as a `Prefix`
+object by `AddFieldCommandParser`, and then matched with the known `Prefix` objects stored in `FieldPrefixes`.
+If the `Prefix` and field name has not been stored previously, then the `AddFieldCommand` is executed and the `Fields`
+object of each `Person` is updated accordingly.
+
+The following sequence diagram shows how the add field operation works:
+
+![Sequence Diagram adding a field to the Model](images/AddFieldSequenceDiagram.png)
+
+#### Design Considerations
+
+* **Alternative 1 (current choice)**: Stores each `Field` in a `Fields` object within each `Person` or `Task'
+  * Pros: Adheres to object-oriented principles, as each `Person` or `Task` has `Fields`
+  * Cons: Needs an additional class `FieldPrefixes` to store the known `Prefix` objects that was
+    added by the user. <br><br>
+* **Alternative 2**: Stores the known `Fields` in a separate static class
+  * Pros: All `Field`-related operations are stored within one accessible component
+  * Cons: Might violate composition and encapsulation relationships in the object-oriented design.
+
+*{more alternatives to be added soon}*
 
 ### \[Proposed\] Undo/redo feature
 
