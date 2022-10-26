@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import com.beust.jcommander.Parameter;
+
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.CliSyntax;
+import modtrekt.logic.parser.converters.IndexConverter;
 import modtrekt.model.Model;
 import modtrekt.model.task.Task;
 
@@ -16,7 +19,7 @@ import modtrekt.model.task.Task;
  */
 public class RemoveTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "remove";
+    public static final String COMMAND_WORD = "remove task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task/module identified by the index number.\n"
@@ -25,7 +28,14 @@ public class RemoveTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "I successfully deleted the task: %1$s!";
 
-    private final Index targetIndex;
+    @Parameter(description = "index", required = true,
+            converter = IndexConverter.class)
+    private Index targetIndex;
+
+    /**
+     * Creates an instance of RemoveTaskCommand, for use with JCommander.
+     */
+    public RemoveTaskCommand() {};
 
     public RemoveTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

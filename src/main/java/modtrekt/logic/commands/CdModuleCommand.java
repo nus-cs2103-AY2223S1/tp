@@ -21,8 +21,7 @@ public class CdModuleCommand extends Command {
     /**
      * Creates an instance of CdModuleCommand, for use with JCommander.
      */
-    public CdModuleCommand() {
-    }
+    public CdModuleCommand() {}
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

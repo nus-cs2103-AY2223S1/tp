@@ -23,6 +23,7 @@ import modtrekt.logic.commands.EditTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveCommand;
+import modtrekt.logic.commands.RemoveTaskCommand;
 import modtrekt.logic.commands.UndoneModuleCommand;
 import modtrekt.logic.commands.tasks.DoneTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
@@ -63,6 +64,9 @@ public class ModtrektParser {
                 .addCommand(AddModuleCommand.COMMAND_WORD, new AddModuleCommand())
                 .addCommand(AddModuleCommand.COMMAND_WORD_SHORTHAND, new AddModuleCommand())
                 .addCommand(CdModuleCommand.COMMAND_WORD, new CdModuleCommand())
+                .addCommand(RemoveCommand.COMMAND_WORD, new RemoveCommand())
+                .addCommand(RemoveCommand.COMMAND_WORD_SHORTHAND, new RemoveCommand())
+                .addCommand(RemoveTaskCommand.COMMAND_WORD, new RemoveTaskCommand())
                 .build();
         try {
             // Get the tokens from the user input.
@@ -125,8 +129,6 @@ public class ModtrektParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
