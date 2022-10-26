@@ -621,7 +621,23 @@ Use case ends.
     * Repeat steps until data is correct
     Use case resumes in step 2
 
-**Use case: UC09 - Adding a Deadline Task**
+**Use case: UC09 - Add a ToDo Task**
+
+**Guarantees:** A tutor can add a ToDo task to the TaskBook with a given title and description.
+
+**MSS**
+1. Tutor enters correct command with title and description into the command input.
+2. GREWZ adds the ToDo task to the TaskBook and displays it.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in the given command format.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User re-enters the command with title and description
+    * Repeat steps until command input is correct
+    Use case resumes in step 2
+
+**Use case: UC10 - Add a Deadline Task**
 
 **Guarantees:**  A tutor can add a task to the TaskBook along with a given deadline.
 
@@ -637,6 +653,20 @@ Use case ends.
     * Repeat steps until data is correct
       Use case resumes in step 2
 
+**Use case: UC11 - Remove a Task**
+
+**Guarantees:** A tutor can remove a task from the TaskBook with the given index.
+
+**MSS**
+1. Tutor removes task from TaskBook by entering command with given task index.
+2. GREWZ removes the specified task from TaskBook.
+
+**Extensions**
+* 1a. GREWZ detects an invalid task index.
+  * 1a1. GREWZ responds with an error message
+  * 1a2. User enters command with correct task index
+  * Repat steps until index is valid
+  Use case resumes in step 2
 
 *{More to be added}*
 
