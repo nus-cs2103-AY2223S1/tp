@@ -221,7 +221,7 @@ Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples: 
+Examples:
 * `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
 * `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 item list to be `3` and `100` respectively.
 
