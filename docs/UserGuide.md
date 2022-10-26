@@ -167,7 +167,7 @@ Examples:
 
 Contacting targeted tutors is made easy with the mail command. The command opens the user's default mail client and specifies the "to" section in emails with the targeted tutors.
 
-Format: `mail INDEX/"all"`
+Format: `mail INDEX or "all"`
 * `INDEX` refers to any index in range of the tutor list.
 * `"all"` allows you to email all the current tutors displayed in the tutor list.
 
@@ -240,6 +240,8 @@ Format: `exit`
 | **Comment** | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                                                                                            |
 | **Edit**    | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                                                          |
 | **Find**    | `find [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]` <br> e.g., `find n/Alex`                                                                                      |
+| **Mail**    | `mail INDEX or "all"`<br> e.g., `mail 3`                                                                                                                                                                                         |
 | **Sort**    | `sort ORDER PREFIX` <br> e.g., `sort a r/`                                                                                                                                                                                       |
 | **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                              |
+| **Clear**   | `clear`                                                                                                                                                                                                                          |
 | **Exit**    | `exit`                                                                                                                                                                                                                           |
