@@ -152,6 +152,7 @@ public class ModelManager implements Model {
         filteredActivities.setPredicate(predicate);
     }
 
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

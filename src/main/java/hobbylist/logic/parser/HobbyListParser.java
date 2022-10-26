@@ -17,6 +17,7 @@ import hobbylist.logic.commands.FilterTagCommand;
 import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.commands.HelpCommand;
 import hobbylist.logic.commands.ListCommand;
+import hobbylist.logic.commands.RateAboveCommand;
 import hobbylist.logic.commands.RateCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
 
@@ -55,6 +56,10 @@ public class HobbyListParser {
             return new DeleteCommandParser().parse(arguments);
         } else if (commandWord.equals(ClearCommand.getCommandWord())) {
             return new ClearCommand();
+        } else if (commandWord.equals(FindCommand.getCommandWord())) {
+            return new FindCommandParser().parse(arguments);
+        } else if (commandWord.equals(RateAboveCommand.COMMAND_WORD)) {
+            return new RateAboveCommandParser().parse(arguments);
         } else if (commandWord.equals(FindCommand.getCommandWord())) {
             return new FindCommandParser().parse(arguments);
         } else if (commandWord.equals(FilterTagCommand.getCommandWord())) {
