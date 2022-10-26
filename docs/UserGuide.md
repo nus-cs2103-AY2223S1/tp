@@ -239,17 +239,58 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### Finding a Task : `findtask`
 
+Finds a specified Task in Task list.
+
+Format: `findtask TASK_DESCRIPTION`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search returns the task if word in task description matches search term e.g. `CS2103T` matches `CS2103T Project`
+
+Examples:
+* `findtask CS2103` returns `CS2103` and `Todo CS2103`
+
 --------------------------------------------------------------------------------------------------------------------
 ### Sorting the Task list : `sorttask`
+
+Sort tasks in task list by deadline. Earlier deadlines will be placed first.
+
+Format: `sorttask`
 
 --------------------------------------------------------------------------------------------------------------------
 ### Filtering the Task list : `filtertask`
 
---------------------------------------------------------------------------------------------------------------------
-### Marking a Task as done : `mark`
+Show Tasks in Task List that are not done at the top of list.
+
+Format: `filtertask`
 
 --------------------------------------------------------------------------------------------------------------------
-### Marking a Task as Undone : `unmark`
+### Marking a Task as done : `marktask`
+
+Marks a Task in Task list as done.
+
+Format: `marktask INDEX`
+
+* Marks the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed Task list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `marktask 1` Marks the first task as done.
+
+--------------------------------------------------------------------------------------------------------------------
+### Marking a Task as Undone : `unmarktask`
+
+Marks a Task in Task list as not done.
+
+Format: `unmarktask INDEX`
+
+* Marks the task at the specified `INDEX` as not done.
+* The index refers to the index number shown in the displayed Task list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `unmarktask 2` Marks the second task as not done.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Exiting the program : `exit`
