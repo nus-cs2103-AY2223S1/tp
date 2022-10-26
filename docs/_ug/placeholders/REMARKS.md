@@ -9,8 +9,10 @@ The REMARKS of an item is a remark/note that the user can add to an item.
 ```
 
 **Valid Examples:**
-- Expiring soon
-- Need 10 more
+
+* Expiring soon
+* Need 10 more
 
 **INVALID EXAMPLES:**
-- 多10个
+
+* 多10个
