@@ -538,8 +538,6 @@ the data of your previous PetCode home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
 ## List of Prefixes
 
 These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
@@ -576,6 +574,7 @@ These prefixes are for you to indicate different fields when you add a new perso
 | `pt_cert/` | Pet             | Certificate                      | A string of any characters. Other certificates this pet holds. Optional. Can have multiple.                                                                                                                                                                                                                                        | `pt_cert/US certified`, `pt_cert/noble blood`    |
 | `pt_t/`    | Pet             | Tag                              | A string of any characters. Optional. Can have multiple.                                                                                                                                                                                                                                                                           | `pt_t/good`, `pt_t/naughty`, `pt_t/fast growing` |
 
+## Command summary
 
 |        Action         | Format, Examples                                                                                                                                                                                            |
 |:---------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
