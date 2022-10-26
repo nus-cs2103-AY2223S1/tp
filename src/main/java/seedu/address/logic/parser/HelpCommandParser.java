@@ -12,6 +12,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -55,6 +56,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
             return new HelpCommand(RemarkCommand.MESSAGE_USAGE);
         case "sell":
             return new HelpCommand(SellCommand.MESSAGE_USAGE);
+        case "sort":
+            return new HelpCommand(SortCommand.MESSAGE_USAGE);
         case "user_guide":
             return new HelpCommand(UserGuideCommand.MESSAGE_USAGE);
         case "view":

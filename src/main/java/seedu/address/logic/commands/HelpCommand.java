@@ -21,16 +21,18 @@ public class HelpCommand extends Command {
             + "1. add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]\n"
             + "2. buy INDEX q/QUANTITY g/GOODS price/PRICE\n"
             + "3. sell INDEX q/QUANTITY g/GOODS price/PRICE\n"
-            + "4. edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]\n"
+            + "4. edit INDEX m/MODE (MODE must be 'client', 'remark' or 'transaction')\n"
             + "5. view INDEX\n"
-            + "6. delete INDEX\n"
+            + "6. delete INDEX m/MODE (MODE must be 'client', 'remark' or 'transaction')\n"
             + "7. find KEYWORD\n"
-            + "8. exit\n"
-            + "9. help\n"
-            + "10. list\n"
-            + "11. remark INDEX REMARK\n"
-            + "12. user_guide\n"
-            + "13. clear";
+            + "8. filter [buy]/[sell]\n"
+            + "9. exit\n"
+            + "10. help\n"
+            + "11. list\n"
+            + "12. remark INDEX REMARK\n"
+            + "13. sort INDEX [latest]/[oldest]\n"
+            + "14. user_guide\n"
+            + "15. clear";
 
     private final String helpMessage;
 
