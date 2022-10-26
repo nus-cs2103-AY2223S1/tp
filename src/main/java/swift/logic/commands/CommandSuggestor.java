@@ -153,9 +153,9 @@ public class CommandSuggestor {
             }
         }
 
-        for (Prefix key : argPrompt.keySet()) {
-            if (argumentMultimap.getValue(key).isEmpty()) {
-                argumentSuggestion += " " + key + argPrompt.get(key);
+        for (Prefix prefix : argPrefixes) {
+            if (argumentMultimap.getValue(prefix).isEmpty()) {
+                argumentSuggestion += " " + prefix + prefix.getUserPrompt();
             }
         }
         return argumentSuggestion;
