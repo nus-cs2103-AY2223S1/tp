@@ -33,7 +33,7 @@ public class SortPersonCommand extends Command {
             this.name = name;
         }
 
-        private String getName() {
+        String getName() {
             return name;
         }
     }
