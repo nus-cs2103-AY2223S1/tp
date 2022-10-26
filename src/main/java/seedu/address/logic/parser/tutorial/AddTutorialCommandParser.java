@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.tutorial;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -40,7 +39,8 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
                 PREFIX_TIMESLOT, PREFIX_DAY);
 
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
+            String s = argMultimap.getPreamble();
+            throw new ParseException(String.format(argMultimap.getPreamble(), AddTutorialCommand.MESSAGE_USAGE));
         }
 
         TutorialName name = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());

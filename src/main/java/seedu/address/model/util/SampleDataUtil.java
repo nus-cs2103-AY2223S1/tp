@@ -86,11 +86,14 @@ public class SampleDataUtil {
 
     public static Reminder[] getSampleReminders() {
         return new Reminder[] {
-            new Reminder(new ReminderName("Mark Midterms"), Datetime.fromFormattedString("20:00"),
+            new Reminder(new ReminderName("Mark Midterms"),
+                    Datetime.fromFormattedString("2022-10-26 20:00"),
                     new ReminderPriority("HIGH"), new ReminderDescription("300 papers to mark")),
-            new Reminder(new ReminderName("Send email to TAs"), Datetime.fromFormattedString("21:00"),
+            new Reminder(new ReminderName("Send email to TAs"),
+                    Datetime.fromFormattedString("2022-10-14 21:00"),
                     new ReminderPriority("MEDIUM"), new ReminderDescription("Erratum in midterms")),
-            new Reminder(new ReminderName("Meeting with Prof Lee"), Datetime.fromFormattedString("22:00"),
+            new Reminder(new ReminderName("Meeting with Prof Lee"),
+                    Datetime.fromFormattedString("2022-10-15 22:00"),
                     new ReminderPriority("LOW"), new ReminderDescription("Discuss incoming finals for CS2201")),
         };
     }
