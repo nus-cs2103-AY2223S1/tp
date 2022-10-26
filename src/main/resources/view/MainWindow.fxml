@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextArea?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-         title="TA Assist" minWidth="900" minHeight="670" resizable="false" onCloseRequest="#handleExit">
+         title="TA Assist" minWidth="900" minHeight="670" onCloseRequest="#handleExit">
   <scene>
     <Scene>
       <stylesheets>
@@ -36,24 +36,24 @@
           </buttons>
         </ButtonBar>
 
-        <HBox fx:id="studentList" minHeight="435" prefHeight="435" HBox.hgrow="ALWAYS">
+        <HBox fx:id="studentList" minHeight="435" prefHeight="435" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="25" bottom="10" left="25" />
           </padding>
-          <VBox>
+          <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" right="12.5" bottom="10"/>
             </padding>
             <TextArea styleClass="class-title" prefHeight="50" editable="false">Classes</TextArea>
-            <StackPane fx:id="moduleClassListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="moduleClassListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox>
+          <VBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
             <padding>
               <Insets top="10" bottom="10" left="12.5" />
             </padding>
             <TextArea styleClass="student-title" prefHeight="50" editable="false">Students</TextArea>
-            <StackPane fx:id="studentListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+            <StackPane fx:id="studentListPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
           </VBox>
 
         </HBox>
