@@ -23,9 +23,14 @@ but it also has a Graphical User Interface for simpler and quicker task.
     - [3.3 Searching-Related Commands](#33-searching-related-commands)
         * [3.3.1 Locate contact](#331-locate-contact)
         * [3.3.2 List contact](#332-list-contact)
+        * [3.3.3 Sort contact](#333-sort-contact)
+          * [3.3.3.1 Sort by name](#3331-sort-by-name)
+          * [3.3.3.2 Sort by moduleCode](#3332-sort-by-moduleCode)
     - [3.4 Github-Related Commands](#34-github-related-commands)
         * [3.4.1 Open a person's github profile page](#341-opening-a-persons-github-profile-page-github)
     - [3.5 Fast Template Command](#35-fast-template-command)
+    - [3.6 Sharing-Related Commands](#36-share-commands)
+        * [3.6.1 Export Contact](#361-export-contact)
 
 <div style="page-break-after: always;"></div>
 
@@ -159,6 +164,45 @@ Example:
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+## 3.3 Searching-Related Commands<a id="33-searching-related-commands"></a>
+### 3.3.1 Locate contact<a id="331-locate-contact"></a>
+[coming soon]
+### 3.3.2 List contact<a id="332-list-contact"></a>
+[coming soon]
+### 3.3.3 Sort contact<a id="333-sort-contact"></a>
+
+Sort the contact list in either ascending `A-Z` or descending `Z-A` order by name or module code.
+
+#### 3.3.3.1 Sort by name<a id="3331-sort-by-name"></a>
+
+Sort the contact list by name in either ascending `A-Z` or descending `Z-A` order.
+
+Format: `sort A-Z n/name`
+
+Before executing the above command: ![before sorting](images/BeforeSort.png)
+After executing the command: ![after sorting](images/AfterNameAscendingSort.png)
+NOTE: contact sorted by name in `A-Z` order
+
+Format: `sort Z-A n/name`
+
+After executing the command: ![after sorting descending](images/AfterNameDescendingSort.png)
+NOTE: contact sorted by name in `Z-A` order
+
+#### 3.3.3.2 Sort by moduleCode<a id="3332-sort-by-moduleCode"></a>
+
+Sort the contact list by moduleCode in either ascending `A-Z` or descending `Z-A` order.
+
+Format: `sort Z-A m/moduleCode`
+
+After executing the above command: ![after sorting](images/SortModuleCodeAscending.png)
+NOTE: moduleCode sorted in order of CS1231S>CS2100>CS2103T>CS5000, lower level modules will appear higher.
+
+Format: `sort A-Z m/moduleCode`
+
+After executing the above command: ![after sorting](images/SortModuleCodeDescending.png)
+NOTE: moduleCode sorted in order of CS5000>CS2103T>CS2100>CS1231S, higher level modules will appear higher.
+=======
 ## 3.3 Searching-Related Commands
 ### Finding a contact: `find`
 
@@ -225,6 +269,7 @@ Format: `find [o/OFFICE HOURS]`
 
 Example:
 * `find o/1-15:00-2 2-12:00-2` Returns all contacts with office time `MONDAY, 03:00 PM - 05:00 PM` OR `TUESDAY, 12:00 PM - 02:00 PM`.
+
 <div style="page-break-after: always;"></div>
 
 
@@ -260,8 +305,25 @@ Example:
 `tt student` -> the template `prof n/ m/ p/ e/ g/ t/ l/ git/ y/` will be on the CLI.
 
 --------------------------------------------------------------------------------------------------------------------
+## 3.6 Sharing-Related Commands<a id="36-share-commands"></a>
 
+Allow users to share the current state of their contact list.
 
+### 3.6.1 Export Contact as CSV<a id="361-export-contact"></a>
+
+User can export the current state of his/ her contact list into a CSV file.
+
+Format: `export filename`
+
+NOTE: filename cannot contain any of `$%&` symbols
+
+Upon successfully exporting, users will see the CSV file:
+![after export](images/CSVfile.png)
+
+Also the directory where the exported file is located at will be displayed:
+![file directory](images/ExportSuccessful.png)
+
+--------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
