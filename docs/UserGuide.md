@@ -245,7 +245,7 @@ The followings are two ways to use this command:
 
   Format: `add supplier`
 
-:information_source:**Useful keyboard shortcuts for the pop-up window:**
+:information_source: **Useful keyboard shortcuts for the pop-up window:**
 
 | Keyboard shortcut |                                   Associated action                                    |
 |:-----------------:|:--------------------------------------------------------------------------------------:|
@@ -567,7 +567,6 @@ the data of your previous PetCode home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
 ## Summaries
 
 ### List of Prefixes
