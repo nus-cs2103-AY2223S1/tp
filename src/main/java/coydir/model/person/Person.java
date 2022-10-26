@@ -31,7 +31,7 @@ public class Person {
     private final int totalNumberOfLeaves;
     private int leavesLeft = 0;
     private ArrayList<Rating> performanceHistory = new ArrayList<>();
-    private final Rating rating;
+    private Rating rating;
 
     /**
      * Every field must be present and not null.
@@ -114,6 +114,10 @@ public class Person {
 
     public void addRating(Rating toAdd) {
         this.performanceHistory.add(toAdd);
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 
     public Rating getRating() {

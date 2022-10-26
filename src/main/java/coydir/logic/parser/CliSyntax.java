@@ -14,6 +14,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_LEAVE = new Prefix("l/");
+    public static final Prefix PREFIX_ID = new Prefix("id/");
+    public static final Prefix PREFIX_INDEX = new Prefix("i/");
+    public static final Prefix PREFIX_RATE = new Prefix("r/");
 
     public static final Prefix[] PREFIX_LIST = {
         PREFIX_NAME,
@@ -23,6 +26,9 @@ public class CliSyntax {
         PREFIX_DEPARTMENT,
         PREFIX_ADDRESS,
         PREFIX_LEAVE,
-        PREFIX_TAG
+        PREFIX_TAG,
+        PREFIX_RATE,
+        PREFIX_ID,
+        PREFIX_INDEX
     };
 }

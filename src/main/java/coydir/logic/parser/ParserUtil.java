@@ -15,6 +15,7 @@ import coydir.model.person.Email;
 import coydir.model.person.Name;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
+import coydir.model.person.Rating;
 import coydir.model.tag.Tag;
 
 /**
@@ -139,6 +140,23 @@ public class ParserUtil {
             throw new ParseException(Department.MESSAGE_CONSTRAINTS);
         }
         return new Department(trimmedDepartment);
+    }
+
+    /**
+     * Parses a {@code String Rating} into an {@code Leave}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the  given {@code leave period} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+  
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Rating(trimmedRating);
     }
 
     /**
