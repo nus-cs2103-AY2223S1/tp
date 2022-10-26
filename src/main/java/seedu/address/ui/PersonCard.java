@@ -80,18 +80,14 @@ public class PersonCard extends UiPart<Region> {
         assert person.getCriticalIllnessInsurance() != null
                 : "Something went wrong in UI PersonCard critical illness insurance";
         assert person.getLifeInsurance() != null : "Something went wrong in UI PersonCard life insurance";
-        healthInsurance.setText(
-                (person.getHealthInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
-                        "Health Policy");
-        disabilityInsurance.setText(
-                (person.getDisabilityInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
-                        "Disability Policy");
-        criticalIllnessInsurance.setText(
-                (person.getCriticalIllnessInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
-                        "Critical Illness Policy");
-        lifeInsurance.setText(
-                (person.getLifeInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t") +
-                "Life Policy");
+        healthInsurance.setText((person.getHealthInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t")
+                + "Health Policy");
+        disabilityInsurance.setText((person.getDisabilityInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t")
+                + "Disability Policy");
+        criticalIllnessInsurance.setText((person.getCriticalIllnessInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t")
+                 + "Critical Illness Policy");
+        lifeInsurance.setText((person.getLifeInsurance().getHasInsurance() ? "\u2705\t" : "\u274c\t")
+                 + "Life Policy");
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
