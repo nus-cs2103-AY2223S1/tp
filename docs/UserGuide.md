@@ -35,7 +35,7 @@ Whether you’re new to Rapportbook, or just want to learn more about the detail
 ### What is Rapportbook?
 Rapporbook is a free, and open-source application designed for financial advisors for client information management.
 
-If you’re working with a lot of people, you’ll eventually have too much information to stay on top of. For example, what appointments do I have tomorrow? Which client should I prioritize? How should I approach this client? What are his contacts?
+If you’re working with a lot of people, you’ll eventually have too much information to stay on top of. For example, what appointments do you have tomorrow? Which client should you prioritize? How should you approach this client? What are his contacts?
 
 Rapportbook is designed specifically to improve your workflow, and helps you manage all this information and “understand” your clients better. It can be used to offload information, categorize them more meaningfully, and set reminders so you don’t ever miss an appointment.
 
