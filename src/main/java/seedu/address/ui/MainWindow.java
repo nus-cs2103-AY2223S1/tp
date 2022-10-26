@@ -35,12 +35,16 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private MainDisplay mainDisplay;
     private final HelpWindow helpWindow;
+    private final MeetingsWindow meetingsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem meetingsMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -69,6 +73,8 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        meetingsWindow = new MeetingsWindow();
+
         helpWindow = new HelpWindow();
     }
 
@@ -78,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        // setAccelerator(meetingsMenuItem,KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -155,6 +162,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the meetings window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleMeetings() {
+        if (!meetingsWindow.isShowing()) {
+            // meetingsWindow.getMeetings();
+            meetingsWindow.show();
+        } else {
+            meetingsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -167,6 +187,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        meetingsWindow.hide();
         helpWindow.hide();
         primaryStage.hide();
     }
