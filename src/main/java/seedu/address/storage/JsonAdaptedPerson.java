@@ -152,7 +152,8 @@ class JsonAdaptedPerson {
         }
         final Loan modelLoan = new Loan(loan);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelLoan, modelHistory);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
+                          modelTags, modelLoan, modelHistory);
     }
 
 }
