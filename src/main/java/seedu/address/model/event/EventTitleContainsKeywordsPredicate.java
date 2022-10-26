@@ -17,7 +17,7 @@ public class EventTitleContainsKeywordsPredicate implements Predicate<Event> {
     }
 
     //TODO: Once EventTitle class is added, we need to change this to
-    //TODO: StringUtil.containsWordIgnoreCase(event.getEventTitle().fullEventTitle, kewyord));
+    //TODO: StringUtil.containsWordIgnoreCase(event.getEventTitle().toString(), kewyord));
     @Override
     public boolean test(Event event) {
         return keywords.stream()
