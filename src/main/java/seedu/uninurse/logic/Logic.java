@@ -7,8 +7,10 @@ import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.person.Patient;
+
 
 /**
  * API of the Logic component
@@ -52,4 +54,9 @@ public interface Logic {
      * Returns the patient of interest.
      */
     Patient getPatientOfInterest();
+
+    /**
+     * Returns the saved PatientListTracker.
+     */
+    public PatientListTracker getSavedPatientListTracker();
 }

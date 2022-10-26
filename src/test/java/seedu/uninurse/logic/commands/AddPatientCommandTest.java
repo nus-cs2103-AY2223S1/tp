@@ -8,6 +8,7 @@ import static seedu.uninurse.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.ReadOnlyUserPrefs;
 import seedu.uninurse.model.UninurseBook;
@@ -133,6 +135,11 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public void clearPersons(List<Patient> targets) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Patient target, Patient editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -178,7 +185,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void makeSnapshot(CommandResult commandResult) {
+        public void makeSnapshot(PatientListTracker patientListTracker) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveCurrentPatientListTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PatientListTracker getSavedPatientListTracker() {
             throw new AssertionError("This method should not be called.");
         }
     }
