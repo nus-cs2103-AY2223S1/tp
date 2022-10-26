@@ -125,22 +125,24 @@ class JsonAdaptedPerson {
         final EmployeeId modelEmployeeId = new EmployeeId(employeeId);
 
         final Phone modelPhone;
-        if (this.phone.equals("N/A")) {
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        } else if (phone.equals("N/A")) {
             modelPhone = new Phone();
+        } else if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         } else {
-            if (!Phone.isValidPhone(phone)) {
-                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-            }
             modelPhone = new Phone(phone);
         }
 
         final Email modelEmail;
-        if (email.equals("N/A")) {
+        if (email == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        } else if (email.equals("N/A")) {
             modelEmail = new Email();
+        } else if (!Email.isValidEmail(email)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         } else {
-            if (!Email.isValidEmail(email)) {
-                throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-            }
             modelEmail = new Email(email);
         }
 
@@ -164,12 +166,18 @@ class JsonAdaptedPerson {
 
         final Address modelAddress;
         if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
+        } else if (address.equals("N/A")) {
             modelAddress = new Address();
+        } else if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         } else {
-            if (!Address.isValidAddress(address)) {
-                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-            }
             modelAddress = new Address(address);
+        }
+
+        if (leave == null) {
+            throw new IllegalValueException("Invalid");
         }
 
         final int modelLeave = Integer.valueOf(leave);
