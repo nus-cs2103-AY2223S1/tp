@@ -8,15 +8,15 @@ import java.util.List;
 
 import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.commons.exceptions.IllegalValueException;
-import seedu.intrack.logic.commands.AddTagCommand;
 import seedu.intrack.logic.commands.DeleteTagCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new {@code AddTagCommand} object
+ * Parses input arguments and creates a new {@code DeleteTagCommand} object
  */
 public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code DeleteTagCommand}
      * and returns a {@code DeleteTagCommand} object for execution.
@@ -27,11 +27,9 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         String trimArgs = args.trim();
         if (trimArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
 
-        // split the index and commands
-        // this is the index
         String[] splitCommand = trimArgs.split("\\s+", 2);
         if (splitCommand.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -49,7 +47,8 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         try {
             index = ParserUtil.parseIndex(splitCommand[0]);
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE),
+                    ive);
         }
 
         String clearCommand = tags[0].toUpperCase();

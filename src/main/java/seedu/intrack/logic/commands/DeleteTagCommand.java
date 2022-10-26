@@ -1,5 +1,6 @@
 package seedu.intrack.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -20,7 +21,7 @@ public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "deltag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes one or more tags of the internship"
-            + " with the " + "selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
+            + " with the selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
             + " or to delete all tags, use the Parameters: clear\n"
             + "Example 1: " + COMMAND_WORD + " 1 URGENT\n"
             + "Example 2: " + COMMAND_WORD + " 1 clear.";
@@ -39,8 +40,7 @@ public class DeleteTagCommand extends Command {
     private final String command;
 
     /**
-     * Generates a command execution success message based on whether a tag is added deleted/cleared to the taglist
-     * {@code internshipToEdit}.
+     * Creates an DeleteTagCommand to delete one or more existing tags from the specified {@code Internship}
      */
     public DeleteTagCommand(Index index, List<Tag> tags, String command) {
         requireAllNonNull(index, tags);
@@ -52,8 +52,12 @@ public class DeleteTagCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        final String deleteSuccess = "deleted tag/tags of internship at INDEX "
+                + index.toString() + " successfully";
+        final String clearSuccess = "cleared tag/tags of internship at INDEX "
+                + index.toString() + " successfully";
+        requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
@@ -84,9 +88,9 @@ public class DeleteTagCommand extends Command {
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
         if (command.equals("CLEAR")) {
-            return new CommandResult(MESSAGE_CLEAR_TAGS_SUCCESS);
+            return new CommandResult(clearSuccess);
         } else {
-            return new CommandResult(MESSAGE_DELETE_TAG_SUCCESS);
+            return new CommandResult(deleteSuccess);
         }
     }
 

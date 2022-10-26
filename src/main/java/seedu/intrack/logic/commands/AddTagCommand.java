@@ -1,5 +1,6 @@
 package seedu.intrack.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -20,20 +21,21 @@ public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "addtag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to the internship application "
-            + "with the " + "selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
+            + "with the selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
             + "Example: " + COMMAND_WORD + " 1 URGENT\n"
             + "or " + COMMAND_WORD + " 1 URGENT HARD HELP";
 
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to internship successfully";
+
     public static final String ADD_TAG_CONSTRAINTS = "No tag detected, please include a tag to add to the indicated"
             + " internship";
+
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to internship successfully";
 
     private final Index index;
     private final List<Tag> tags;
 
     /**
-     * Generates a command execution success message based on whether a tag is added successfully to the taglist
-     * {@code internshipToEdit}.
+     * Creates an AddTagCommand to add one or more tags to the specified {@code Internship}
      */
     public AddTagCommand(Index index, List<Tag> tags) {
         requireAllNonNull(index, tags);
@@ -44,8 +46,10 @@ public class AddTagCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        final String messageSuccess = "Added tag/tags to internship at INDEX "
+                + index.toString() + " successfully";
+        requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
@@ -64,7 +68,7 @@ public class AddTagCommand extends Command {
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
-        return new CommandResult(MESSAGE_ADD_TAG_SUCCESS);
+        return new CommandResult(messageSuccess);
     }
 
     @Override

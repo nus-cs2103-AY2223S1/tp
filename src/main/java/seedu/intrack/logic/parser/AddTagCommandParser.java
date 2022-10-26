@@ -11,10 +11,12 @@ import seedu.intrack.commons.exceptions.IllegalValueException;
 import seedu.intrack.logic.commands.AddTagCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.tag.Tag;
+
 /**
  * Parses input arguments and creates a new {@code AddTagCommand} object
  */
 public class AddTagCommandParser implements Parser<AddTagCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AddTagCommand}
      * and returns a {@code AddTagCommand} object for execution.
@@ -29,8 +31,6 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
-        // split the index and commands
-        // this is the index
         String[] splitCommand = trimArgs.split("\\s+", 2);
 
         if (splitCommand.length != 2) {
@@ -47,6 +47,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         }
 
         Index index;
+
         try {
             index = ParserUtil.parseIndex(splitCommand[0]);
         } catch (IllegalValueException ive) {
