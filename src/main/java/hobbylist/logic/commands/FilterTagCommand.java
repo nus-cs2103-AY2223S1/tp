@@ -12,17 +12,33 @@ import hobbylist.model.activity.TagMatchesKeywordPredicate;
  */
 public class FilterTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "filterTag";
+    private static String commandWord = "filterTag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose tags match"
+    public static final String MESSAGE_USAGE = commandWord + ": Finds all activities whose tags match"
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "sport";
+            + "Example: " + commandWord + "sport";
 
     private final TagMatchesKeywordPredicate predicate;
 
     public FilterTagCommand(TagMatchesKeywordPredicate predicate) {
         this.predicate = predicate;
+    }
+
+    /**
+     * Sets the command word for the command.
+     * @param word Word to set command to.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
+    }
+
+    /**
+     * Gets the command word for the command.
+     * @return Command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
     }
 
     @Override

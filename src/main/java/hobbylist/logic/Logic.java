@@ -2,6 +2,7 @@ package hobbylist.logic;
 
 import java.nio.file.Path;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.logic.commands.CommandResult;
 import hobbylist.logic.commands.exceptions.CommandException;
@@ -48,4 +49,14 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' Alias settings.
+     */
+    AliasSettings getAliasSettings();
+
+    /**
+     * Set the user prefs' Alias settings.
+     */
+    void setAliasSettings(AliasSettings aliasSettings);
 }

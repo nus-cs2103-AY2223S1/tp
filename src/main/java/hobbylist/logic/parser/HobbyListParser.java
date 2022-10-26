@@ -45,44 +45,32 @@ public class HobbyListParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
+        System.out.println(ExitCommand.getCommandWord());
 
-        case AddCommand.COMMAND_WORD:
+        if (commandWord.equals(AddCommand.getCommandWord())) {
             return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
+        } else if (commandWord.equals(EditCommand.getCommandWord())) {
             return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
+        } else if (commandWord.equals(DeleteCommand.getCommandWord())) {
             return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
+        } else if (commandWord.equals(ClearCommand.getCommandWord())) {
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
+        } else if (commandWord.equals(FindCommand.getCommandWord())) {
             return new FindCommandParser().parse(arguments);
-
-        case FilterTagCommand.COMMAND_WORD:
+        } else if (commandWord.equals(FilterTagCommand.getCommandWord())) {
             return new FilterTagCommandParser().parse(arguments);
-
-        case FilterStatusCommand.COMMAND_WORD:
-            return new FilterStatusCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
+        } else if (commandWord.equals(ListCommand.getCommandWord())) {
             return new ListCommand();
-
-        case RateCommand.COMMAND_WORD:
-            return new RateCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
+        } else if (commandWord.equals(FilterStatusCommand.getCommandWord())) {
+            return new FilterStatusCommandParser().parse(arguments);
+        } else if (commandWord.equals(ExitCommand.getCommandWord())) {
             return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
+        } else if (commandWord.equals(HelpCommand.getCommandWord())) {
             return new HelpCommand();
-
-        default:
+        } else if (commandWord.equals(RateCommand.getCommandWord())) {
+            return new RateCommandParser().parse(arguments);
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

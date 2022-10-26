@@ -17,7 +17,7 @@ public class ActivityUtil {
      * Returns an add command string for adding the {@code activity}.
      */
     public static String getAddCommand(Activity activity) {
-        return AddCommand.COMMAND_WORD + " " + getActivityDetails(activity);
+        return AddCommand.getCommandWord() + " " + getActivityDetails(activity);
     }
 
     /**
