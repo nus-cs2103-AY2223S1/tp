@@ -7,5 +7,5 @@ import javafx.stage.Stage;
  */
 public interface Ui {
     /** Starts the UI (and the App).  */
-    void start(Stage primaryStage);
+    void start(Stage primaryStage, String initialMessage);
 }

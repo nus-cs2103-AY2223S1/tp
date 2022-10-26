@@ -139,7 +139,7 @@ public class ModelManager implements Model {
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
-        foodRem.setTag(target, editedTag);
+        foodRem.renameTag(target, editedTag);
     }
 
     //=========== Item List Accessors =============================================================
