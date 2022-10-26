@@ -13,11 +13,11 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
-import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
+import seedu.address.model.issue.Title;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -203,32 +203,32 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String description} into a {@code Description}.
+     * Parses a {@code String title} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      * It is an overloaded method that doesn't return a Description object.
-     * @throws ParseException if the given {@code description} is invalid.
+     * @throws ParseException if the given {@code title} is invalid.
      */
-    public static void parseDescriptionValidity(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+    public static void parseTitleValidity(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
     }
 
     /**
-     * Parses a {@code String description} into a {@code Description}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code description} is invalid.
+     * @throws ParseException if the given {@code title} is invalid.
      */
-    public static Description parseDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedDescription);
+        return new Title(trimmedTitle);
     }
 
     /**
@@ -273,19 +273,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String priority} into a {@code Priority}.
+     * Parses a {@code String urgency} into a {@code Priority}.
      * Leading and trailing whitespaces will be trimmed.
      * It is an overloaded method that doesn't return a Priority object.
-     * @throws ParseException if the given {@code priority} is invalid.
+     * @throws ParseException if the given {@code urgency} is invalid.
      */
-    public static void parsePriorityValidity(String priority) throws ParseException {
-        requireNonNull(priority);
-        String trimmedPriority = priority.trim();
+    //TODO: Rename priority to urgency once class has been renamed in the next PR
+    public static void parseUrgencyValidity(String urgency) throws ParseException {
+        requireNonNull(urgency);
+        String trimmedUrgency = urgency.trim();
         boolean isValidStringCounterpart =
-                trimmedPriority.equalsIgnoreCase("high")
-                        || trimmedPriority.equalsIgnoreCase("low")
-                        || trimmedPriority.equalsIgnoreCase("medium")
-                        || trimmedPriority.equalsIgnoreCase("none");
+                trimmedUrgency.equalsIgnoreCase("high")
+                        || trimmedUrgency.equalsIgnoreCase("low")
+                        || trimmedUrgency.equalsIgnoreCase("medium")
+                        || trimmedUrgency.equalsIgnoreCase("none");
         if (!isValidStringCounterpart) {
             throw new ParseException(Priority.MESSAGE_STRING_CONSTRAINTS);
         }
@@ -382,7 +383,7 @@ public class ParserUtil {
      * @param key is the value entered by the user for sort by name.
      * @return Integer of 0 or 1 which specifies the alphabetical order of sorting.
      */
-    public static Integer parseNameSort(String key) throws ParseException {
+    public static Integer parseProjectNameSort(String key) throws ParseException {
         requireNonNull(key);
         String trimmedKey = key.trim();
         if (!Project.isValidNameSortKey(trimmedKey)) {
@@ -406,7 +407,6 @@ public class ParserUtil {
         return Integer.parseInt(trimmedKey);
     }
 
-
     /**
      * Parses a {@code String key} into an {@code Integer}.
      *
@@ -418,6 +418,66 @@ public class ParserUtil {
         String trimmedKey = key.trim();
         if (!Issue.isValidDeadlineSortKey(trimmedKey)) {
             throw new ParseException(Issue.MESSAGE_INVALID_DEADLINE_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by name.
+     * @return Integer of 0 or 1 which specifies the alphabetical order of sorting.
+     */
+    public static Integer parseClientNameSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Client.isValidNameSortKey(trimmedKey)) {
+            throw new ParseException(Client.MESSAGE_INVALID_NAME_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by project id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseProjectIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Project.isValidProjectIdSortKey(trimmedKey)) {
+            throw new ParseException(Project.MESSAGE_INVALID_PROJECT_ID_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by issue id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseIssueIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Issue.isValidIssueIdSortKey(trimmedKey)) {
+            throw new ParseException(Issue.MESSAGE_INVALID_ISSUE_ID_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by client id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseClientIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Client.isValidClientIdSortKey(trimmedKey)) {
+            throw new ParseException(Client.MESSAGE_INVALID_CLIENT_ID_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }

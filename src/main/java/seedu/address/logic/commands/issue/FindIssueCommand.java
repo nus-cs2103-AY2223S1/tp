@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
@@ -25,15 +25,15 @@ public class FindIssueCommand extends IssueCommand {
             + "from the "
             + "address book. "
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_TITLE + "TITLE "
             + PREFIX_STATUS + "STATUS "
-            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_URGENCY + "URGENCY "
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
-            + PREFIX_DESCRIPTION + "This is an issue "
+            + PREFIX_TITLE + "This is an issue "
             + PREFIX_STATUS + "COMPLETED "
-            + PREFIX_PRIORITY + "HIGH "
+            + PREFIX_URGENCY + "HIGH "
             + PREFIX_PROJECT_NAME + "DevEnable ";
 
     private final IssueContainsKeywordsPredicate predicate;

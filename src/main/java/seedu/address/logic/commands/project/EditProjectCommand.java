@@ -30,13 +30,13 @@ public class EditProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Edits a project in the address book. "
+            + ": Edits a project in the address book. \n"
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_ID + "CLIENT_ID "
             + PREFIX_REPOSITORY + "REPOSITORY "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_PROJECT_ID + "1 "
@@ -82,7 +82,10 @@ public class EditProjectCommand extends ProjectCommand {
         if (newClientId != null) {
             try {
                 Client newClient = model.getClientById(newClientId.getIdInt());
+                Client oldClient = toEditProject.getClient();
                 toEditProject.setClient(newClient);
+                oldClient.removeProject(toEditProject);
+                newClient.addProjects(toEditProject);
             } catch (NotFoundException e) {
                 throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         EditProjectCommand.MESSAGE_INVALID_CLIENT));

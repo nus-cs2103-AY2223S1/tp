@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
@@ -23,14 +23,14 @@ public class FindClientCommand extends ClientCommand {
     public static final String MESSAGE_FIND_CLIENT_USAGE = COMMAND_WORD + ": Finds and filters clients by keyword "
             + "address book. "
             + "Parameters: "
-            + PREFIX_CLIENT_NAME + "NAME "
-            + PREFIX_CLIENT_EMAIL + "EMAIL "
-            + PREFIX_CLIENT_PHONE + "PHONE "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_MOBILE + "PHONE "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
-            + PREFIX_CLIENT_NAME + "John "
-            + PREFIX_CLIENT_EMAIL + "john@gmail.com "
-            + PREFIX_CLIENT_PHONE + "12345678 ";
+            + PREFIX_NAME + "John "
+            + PREFIX_EMAIL + "john@gmail.com "
+            + PREFIX_MOBILE + "12345678 ";
 
     private final ClientContainsKeywordsPredicate predicate;
     public FindClientCommand(ClientContainsKeywordsPredicate predicate) {

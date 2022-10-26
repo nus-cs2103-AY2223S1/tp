@@ -1,7 +1,8 @@
 package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
@@ -20,16 +21,20 @@ public class SortIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted issues";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort issues in address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort issues in address book. \n"
+            + "Sort by issue id: "
+            + PREFIX_DEADLINE + "0 (ascending) or "
+            + PREFIX_DEADLINE + "1 (descending). "
             + "Sort by deadline: "
             + PREFIX_DEADLINE + "0 (chronological) or "
             + PREFIX_DEADLINE + "1 (reverse chronological). "
             + "Sort by priority: "
-            + PREFIX_PRIORITY + "0 (lowest) or "
-            + PREFIX_PRIORITY + "1 (highest). "
+            + PREFIX_URGENCY + "0 (lowest) or "
+            + PREFIX_URGENCY + "1 (highest). \n"
             + "Example: "
             + COMMAND_WORD + " "
-            + PREFIX_PRIORITY + "0";
+            + COMMAND_FLAG + " "
+            + PREFIX_URGENCY + "0";
 
     private final Prefix sortKey;
     private final int sortOrder;
@@ -50,12 +55,17 @@ public class SortIssueCommand extends IssueCommand {
         requireNonNull(model);
         String sortKeyString = "";
 
+        if (sortKey.equals(PREFIX_ISSUE_ID)) {
+            model.sortIssuesById(sortOrder);
+            sortKeyString = "issue id.";
+        }
+
         if (sortKey.equals(PREFIX_DEADLINE)) {
             model.sortIssuesByDeadline(sortOrder);
             sortKeyString = "deadline.";
         }
 
-        if (sortKey.equals(PREFIX_PRIORITY)) {
+        if (sortKey.equals(PREFIX_URGENCY)) {
             model.sortIssuesByPriority(sortOrder);
             sortKeyString = "priority.";
         }

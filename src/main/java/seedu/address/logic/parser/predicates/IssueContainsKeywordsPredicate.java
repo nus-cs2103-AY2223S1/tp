@@ -55,7 +55,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
             return true;
         } else {
             return descriptionKeywords.stream().anyMatch(
-                    desc -> testDescription(desc, issue.getDescription().toString()));
+                    desc -> testDescription(desc, issue.getTitle().toString()));
         }
     }
 

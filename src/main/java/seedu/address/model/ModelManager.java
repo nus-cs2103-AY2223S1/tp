@@ -302,6 +302,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortProjectsById(int key) {
+        addressBook.sortProjectsById(key);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void sortIssuesById(int key) {
+        addressBook.sortIssuesById(key);
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    @Override
     public void sortIssuesByDeadline(int key) {
         addressBook.sortIssuesByDeadline(key);
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
@@ -311,5 +323,17 @@ public class ModelManager implements Model {
     public void sortIssuesByPriority(int key) {
         addressBook.sortIssuesByPriority(key);
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    @Override
+    public void sortClientsById(int key) {
+        addressBook.sortClientsById(key);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
+    public void sortClientsByName(int key) {
+        addressBook.sortClientsByName(key);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
 }

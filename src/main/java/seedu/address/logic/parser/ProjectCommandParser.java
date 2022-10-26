@@ -93,7 +93,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
      * Verifies only one valid user input argument
      * Length of a valid command for sort key for project by deadline, issue count and name e.g.d/1
      *
-     * @param arguments user input for key for sort by deadline
+     * @param arguments user input for key for sort
      * @return true if there is only one valid input
      */
     private boolean hasOneArgumentOfLengthThree(String arguments) {
@@ -203,11 +203,17 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME,
+                        PREFIX_PROJECT_ID);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME, PREFIX_PROJECT_ID)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortProjectCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
+            sortPrefix = PREFIX_PROJECT_ID;
+            key = ParserUtil.parseProjectIdSort(argMultimap.getValue(PREFIX_PROJECT_ID).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
@@ -222,7 +228,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             sortPrefix = PREFIX_NAME;
-            key = ParserUtil.parseNameSort(argMultimap.getValue(PREFIX_NAME).get());
+            key = ParserUtil.parseProjectNameSort(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         return new SortProjectCommand(sortPrefix, key);

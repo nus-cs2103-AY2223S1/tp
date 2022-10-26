@@ -26,7 +26,7 @@ public class IssueCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label description;
+    private Label title;
     @FXML
     private Label id;
     @FXML
@@ -44,7 +44,8 @@ public class IssueCard extends UiPart<Region> {
     public IssueCard(Issue issue, int displayedIndex) {
         super(FXML);
         this.issue = issue;
-        description.setText(issue.getDescription().uiRepresentation() + " " + issue.getIssueId().uiRepresentation());
+        title.setText(displayedIndex + ". " + issue.getTitle().uiRepresentation()
+                + " " + issue.getIssueId().uiRepresentation());
         deadline.setText(issue.getDeadline().uiRepresentation());
         priority.setText(issue.getPriority().uiRepresentation());
         project.setText("Project: " + issue.getProject().toString());

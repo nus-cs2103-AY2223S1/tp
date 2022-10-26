@@ -3,6 +3,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
+
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="issueListView" VBox.vgrow="ALWAYS" />
+    <Label styleClass="list-panel-name" fx:id="issueListViewName" VBox.vgrow="NEVER" />
+    <ListView styleClass="list-panel" fx:id="issueListView" VBox.vgrow="ALWAYS" />
 </VBox>
