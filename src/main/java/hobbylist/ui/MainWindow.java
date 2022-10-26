@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.LogsCenter;
+import hobbylist.commons.core.ThemeSettings;
 import hobbylist.logic.Logic;
 import hobbylist.logic.commands.CommandResult;
 import hobbylist.logic.commands.exceptions.CommandException;
@@ -28,6 +29,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private ThemeSettings.Theme theme = ThemeSettings.Theme.DARK;
+
     private Stage primaryStage;
     private Logic logic;
 
@@ -35,12 +38,16 @@ public class MainWindow extends UiPart<Stage> {
     private ActivityListPanel activityListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private EditAliasesWindow editAliasesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem editAliasesItem;
 
     @FXML
     private StackPane activityListPanelPlaceholder;
@@ -65,10 +72,26 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        ThemeSettings.Theme theme = logic.getThemeSettings().getTheme();
+        switch (theme) {
+        case SKY:
+            handleSky();
+            break;
+        case STAR:
+            handleStar();
+            break;
+        case LIGHT:
+            handleLight();
+            break;
+        default:
+            handleDark();
+        }
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        editAliasesWindow = new EditAliasesWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -77,6 +100,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(editAliasesItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -160,8 +184,9 @@ public class MainWindow extends UiPart<Stage> {
     public void handleStar() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/SkyTheme.css", "view/DarkTheme.css",
-                        "view/LightTheme.css", "view/StarTheme.css");
+                        "view/LightTheme.css", "view/StarTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/StarTheme.css");
+        theme = ThemeSettings.Theme.STAR;
     }
     /**
      * Change primaryStage to dark theme.
@@ -170,9 +195,9 @@ public class MainWindow extends UiPart<Stage> {
     public void handleDark() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/StarTheme.css", "view/SkyTheme.css",
-                        "view/LightTheme.css", "view/DarkTheme.css");
+                        "view/LightTheme.css", "view/DarkTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/DarkTheme.css");
-
+        theme = ThemeSettings.Theme.DARK;
     }
     /**
      * Change primaryStage to sky theme.
@@ -181,9 +206,9 @@ public class MainWindow extends UiPart<Stage> {
     public void handleSky() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/StarTheme.css", "view/DarkTheme.css",
-                        "view/LightTheme.css", "view/SkyTheme.css");
+                        "view/LightTheme.css", "view/SkyTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/SkyTheme.css");
-
+        theme = ThemeSettings.Theme.SKY;
     }
     /**
      * Change primaryStage to light theme.
@@ -192,13 +217,35 @@ public class MainWindow extends UiPart<Stage> {
     public void handleLight() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/StarTheme.css", "view/DarkTheme.css",
-                        "view/SkyTheme.css", "view/LightTheme.css");
+                        "view/SkyTheme.css", "view/LightTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/LightTheme.css");
+        theme = ThemeSettings.Theme.LIGHT;
+    }
+    /**
+     * Change primaryStage to tree theme.
+     */
+    @FXML
+    public void handleTree() {
+        primaryStage.getScene().getStylesheets()
+                .removeAll("view/StarTheme.css", "view/DarkTheme.css",
+                        "view/SkyTheme.css", "view/LightTheme.css", "view/TreeTheme.css");
+        primaryStage.getScene().getStylesheets().add("view/TreeTheme.css");
 
     }
 
-    void show() {
+    /**
+     * Opens the edit aliases window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEditAliases() {
+        if (!editAliasesWindow.isShowing()) {
+            editAliasesWindow.show();
+        } else {
+            editAliasesWindow.focus();
+        }
+    }
 
+    void show() {
         primaryStage.show();
     }
 
@@ -210,7 +257,10 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        ThemeSettings themeSettings = new ThemeSettings(theme);
+        logic.setThemeSettings(themeSettings);
         helpWindow.hide();
+        editAliasesWindow.hide();
         primaryStage.hide();
     }
 

@@ -13,6 +13,12 @@ public class UserPrefsTest {
     }
 
     @Test
+    public void setAliasSettings_nullAliasSettings_throwsNullPointerException() {
+        UserPrefs userPref = new UserPrefs();
+        Assert.assertThrows(NullPointerException.class, () -> userPref.setAliasSettings(null));
+    }
+
+    @Test
     public void setHobbyListFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
         Assert.assertThrows(NullPointerException.class, () -> userPrefs.setHobbyListFilePath(null));

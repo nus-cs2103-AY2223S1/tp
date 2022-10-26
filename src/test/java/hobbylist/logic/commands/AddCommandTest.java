@@ -12,7 +12,9 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
+import hobbylist.commons.core.ThemeSettings;
 import hobbylist.logic.commands.exceptions.CommandException;
 import hobbylist.model.HobbyList;
 import hobbylist.model.Model;
@@ -49,6 +51,13 @@ public class AddCommandTest {
 
         Assert.assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_ACTIVITY, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void setCommandWord_validWord_success() {
+        AddCommand.setCommandWord("test");
+        assertEquals(AddCommand.getCommandWord(), "test");
+        AddCommand.setCommandWord("add");
     }
 
     @Test
@@ -96,6 +105,23 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ThemeSettings getThemeSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public AliasSettings getAliasSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setThemeSettings(ThemeSettings themeSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+        public void setAliasSettings(AliasSettings aliasSettings) {
             throw new AssertionError("This method should not be called.");
         }
 
