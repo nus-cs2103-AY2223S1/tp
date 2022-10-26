@@ -412,11 +412,15 @@ Ministry of Education (MOE) Teachers who:
 * Manages about 60 to 100 students with varying needs
 * Finds paperwork time-consuming and messy
 * Finds it difficult to keep track of the academic progress of each individual student
+* Finds it tedious to calculate and generate exam statistics for a class
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
 
-**Value proposition**: an all-in-one platform to view and organize students’ details. The teacher can keep track
-of class statistics / progress. Manage student details faster than a typical mouse/GUI driven app.
+**Value proposition**:
+Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to
+monitor their student's academic progress easily. Teachers can generate exam statistics for each class,
+and Class-ify quickly flags out students who require more support for contacting.
+
 
 ### 6.2 User stories
 
@@ -571,28 +575,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 6.4 Non-Functional Requirements
 - **Technical Requirement**:
-  - Application should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
+  - Class-ify should work on any mainstream operating system (OS) as long as it has Java version 11 or above installed.
+  - Class-ify should work on both 32-bit and 64-bit environments.
 - **Quality Requirement**:
-  - Display of information on the application should not feel cluttered.
+  - Display of information on the application should not feel disorganised or cluttered.
+  - Colour scheme of Class-ify should be pleasant for most users and not cause a strain to the eye.
 - **Performance Requirement**:
-  - Should be able to process any command within two seconds - response of application should not feel laggy.
+  - Class-ify should be able to process any command within two seconds.
+  - Class-ify Should be able to hold up to 200 students in the student record without a noticeable lag in performance.
 - **Project Scope**:
-  - Application does not offer student or parent accounts, and hence no communication with students or their guardians via the product.
-  - Application does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
-
-*More to be added*
+  - Class-ify does not offer student or parent accounts, and hence no communication with students or their guardians via the application.
+  - Class-ify does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
+- **Others**:
+  - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Student**: a person studying in a secondary school. A student typically takes up to 8 subjects and thus, may be taught by up to 8 teachers.
-* **MOE Teacher**: a person teaching a subject in a secondary school. A teacher usually teaches 3 to 5 classes. Each class has roughly 20 students.
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs.
 Through the CLI, users interact with the application by typing in text commands
+* **GUI**: Graphical User Interface (GUI) is an interface that allows the user to interact with through various visual graphics.
 * **MSS**: Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, 
 which assumes that nothing goes wrong
-
-*More to be added*
+* **32-bit/64-bit environment**: Refers to systems that use a 32-bit/64-bit processor respectively.
 
 --------------------------------------------------------------------------------------------------------------------
 
