@@ -30,37 +30,37 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEMBER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalCustomers.AMY;
+import static seedu.address.testutil.TypicalCustomers.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.BirthdayMonth;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Reward;
+import seedu.address.model.customer.BirthdayMonth;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Email;
+import seedu.address.model.customer.Name;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.customer.Reward;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CustomerBuilder;
 
 public class AddCommandParserTest {
     private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_MEMBER).build();
+        Customer expectedCustomer = new CustomerBuilder(BOB).withTags(VALID_TAG_MEMBER).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedPerson));
+            + BIRTHDAY_MONTH_DESC_BOB + REWARD_DESC_BOB + TAG_DESC_MEMBER, new AddCommand(expectedCustomer));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_MEMBER, VALID_TAG_GOLD)
+        Customer expectedCustomerMultipleTags = new CustomerBuilder(BOB).withTags(VALID_TAG_MEMBER, VALID_TAG_GOLD)
             .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + BIRTHDAY_MONTH_DESC_BOB
-            + REWARD_DESC_BOB + TAG_DESC_GOLD + TAG_DESC_MEMBER, new AddCommand(expectedPersonMultipleTags));
+            + REWARD_DESC_BOB + TAG_DESC_GOLD + TAG_DESC_MEMBER, new AddCommand(expectedCustomerMultipleTags));
     }
 
     @Test
@@ -91,10 +91,10 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Customer expectedCustomer = new CustomerBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
             NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + BIRTHDAY_MONTH_DESC_AMY + REWARD_DESC_AMY,
-            new AddCommand(expectedPerson));
+            new AddCommand(expectedCustomer));
     }
 
     @Test

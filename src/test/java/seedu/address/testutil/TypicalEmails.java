@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.Email;
+import seedu.address.model.customer.Email;
 
 /**
  * A utility class containing a list of {@code Email} objects to be used in tests.

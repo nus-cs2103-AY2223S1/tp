@@ -98,7 +98,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns if the phone number of a person exists as an identifier.
+     * Returns if the phone number of a customer exists as an identifier.
      *
      * @return whether phone number exists as an identifier.
      */
@@ -107,7 +107,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns if the email address of a person exists as an identifier.
+     * Returns if the email address of a customer exists as an identifier.
      *
      * @return whether email address exists as an identifier.
      */

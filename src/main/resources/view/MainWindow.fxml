@@ -32,7 +32,7 @@
           </Menu>
         </MenuBar>
 
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" style="-fx-background-color: #e6ccb2;" VBox.vgrow="ALWAYS">
+        <VBox fx:id="customerList" minWidth="340" prefWidth="340" style="-fx-background-color: #e6ccb2;" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="5" left="10" right="10" top="10" />
           </padding>
