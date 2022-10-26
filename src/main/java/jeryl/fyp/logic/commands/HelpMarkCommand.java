@@ -17,6 +17,6 @@ public class HelpMarkCommand extends HelpCommand {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MARK_MESSAGE, false, false);
+        return new CommandResult(SHOWING_HELP_MARK_MESSAGE, false, false, false , false);
     }
 }

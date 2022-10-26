@@ -17,6 +17,6 @@ public class HelpFindCommand extends HelpCommand {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_FIND_MESSAGE, false, false);
+        return new CommandResult(SHOWING_HELP_FIND_MESSAGE, false, false, false , false);
     }
 }

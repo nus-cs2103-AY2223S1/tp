@@ -33,6 +33,14 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
+    /** Returns an unmodifiable view of the sorted list of students according to specialisation */
+    ObservableList<Student> getSortedBySpecialisationStudentList();
+
+    /** Returns an unmodifiable view of the sorted list of students according to project status
+     * followed by alphabetical order
+     */
+    ObservableList<Student> getSortedByProjectStatusStudentList();
+
     /**
      * Returns the user prefs' FYP manager file path.
      */

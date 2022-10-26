@@ -121,19 +121,17 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
+    /** Returns an unmodifiable view of the sorted student list by specalisation */
+    ObservableList<Student> getSortedBySpecialisationStudentList();
+
+    /** Returns an unmodifiable view of the sorted student list by project status
+     * followed by alphabetical order
+     */
+    ObservableList<Student> getSortedByProjectStatusStudentList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
-
-    /**
-     * Sorts projects based on specialisation then by alphabetical order
-     */
-    void sortFilteredStudentListBySpecialisation();
-
-    /**
-     * Sorts projects based on project Status
-     */
-    void sortFilteredStudentListByProjectStatus();
 }

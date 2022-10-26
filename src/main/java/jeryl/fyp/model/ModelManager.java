@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.commons.core.index.Index;
@@ -25,6 +26,8 @@ public class ModelManager implements Model {
     private final FypManager fypManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final SortedList<Student> sortedBySpecialisationStudents;
+    private final SortedList<Student> sortedByProjectStatusStudents;
 
     /**
      * Initializes a ModelManager with the given fypManager and userPrefs.
@@ -37,6 +40,8 @@ public class ModelManager implements Model {
         this.fypManager = new FypManager(fypManager);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.fypManager.getStudentList());
+        sortedBySpecialisationStudents = new SortedList<>(this.fypManager.getSortedBySpecialisationStudentList());
+        sortedByProjectStatusStudents = new SortedList<>(this.fypManager.getSortedByProjectStatusStudentList());
     }
 
     public ModelManager() {
@@ -153,18 +158,6 @@ public class ModelManager implements Model {
         return fypManager.getIndexByStudentId(studentId);
     }
 
-    @Override
-    public void sortFilteredStudentListBySpecialisation() {
-        fypManager.sortFilteredStudentListBySpecialisation();
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-    }
-
-    @Override
-    public void sortFilteredStudentListByProjectStatus() {
-        fypManager.sortFilteredStudentListByProjectStatus();
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-    }
-
 
 
     //=========== Filtered Student List Accessors =============================================================
@@ -176,6 +169,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
+    }
+
+    @Override
+    public ObservableList<Student> getSortedBySpecialisationStudentList() {
+        return sortedBySpecialisationStudents;
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusStudentList() {
+        return sortedByProjectStatusStudents;
     }
 
     @Override

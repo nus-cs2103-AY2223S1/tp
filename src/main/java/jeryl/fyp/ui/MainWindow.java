@@ -72,6 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -116,6 +117,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -130,6 +132,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -177,6 +180,30 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Outputs the sorted list of projects by specialisation
+     */
+    private void handleSortBySpecialisation() {
+        studentListPanel = new StudentListPanel(logic.getSortedBySpecialisationStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    /**
+     * Outputs the sorted list of projects by project status followed by alphabetical order
+     */
+    private void handleSortByProjectStatus() {
+        studentListPanel = new StudentListPanel(logic.getSortedByProjectStatusStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    /**
+     * Reverts the UI back to the Filtered Student List
+     */
+    private void revertStudentListPanel() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see jeryl.fyp.logic.Logic#execute(String)
@@ -193,6 +220,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isSortBySpecialisation()) {
+                handleSortBySpecialisation();
+            } else if (commandResult.isSortByProjectStatus()) {
+                handleSortByProjectStatus();
+            } else {
+                revertStudentListPanel();
             }
 
             return commandResult;

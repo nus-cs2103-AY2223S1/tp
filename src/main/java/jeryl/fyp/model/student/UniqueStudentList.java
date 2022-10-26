@@ -107,6 +107,7 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalUnmodifiableList;
     }
 
+
     @Override
     public Iterator<Student> iterator() {
         return internalList.iterator();
@@ -164,16 +165,16 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Sorts our student list by specialisation (which naturally sorts it by alphabetical order as well)
      */
-    public void sortFilteredStudentListBySpecialisation() {
-        Collections.sort(internalList, (Student a, Student b) -> a.getProjectName().toString().toLowerCase()
+    public ObservableList<Student> sortFilteredStudentListBySpecialisation() {
+        return internalList.sorted((Student a, Student b) -> a.getProjectName().toString().toLowerCase()
                 .compareTo(b.getProjectName().toString().toLowerCase()));
     }
 
     /**
      * Sorts our student list by project Status(YTS, IP then DONE) then by alphabetical order
      */
-    public void sortFilteredStudentListByProjectStatus() {
-        Collections.sort(internalList, new Comparator<Student>() {
+    public ObservableList<Student> sortFilteredStudentListByProjectStatus() {
+        return internalList.sorted(new Comparator<Student>() {
 
             public int compare(Student a, Student b) {
                 int statusComp = b.getProjectStatus().toString().toLowerCase()

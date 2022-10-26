@@ -65,6 +65,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Student> getSortedBySpecialisationStudentList() {
+        return model.getSortedBySpecialisationStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusStudentList() {
+        return model.getSortedByProjectStatusStudentList();
+    }
+
+    @Override
     public Path getFypManagerFilePath() {
         return model.getFypManagerFilePath();
     }

@@ -20,6 +20,7 @@ public class FypManager implements ReadOnlyFypManager {
 
     private final UniqueStudentList students;
 
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -115,7 +116,6 @@ public class FypManager implements ReadOnlyFypManager {
 
     /**
      * Sorts our project list by specialisation (which naturally sorts it by alphabetical order as well)
-     * Returns our old List to revert back to after showing the sorted List
      */
     public void sortFilteredStudentListBySpecialisation() {
         students.sortFilteredStudentListBySpecialisation();
@@ -123,11 +123,12 @@ public class FypManager implements ReadOnlyFypManager {
 
     /**
      * Sorts our project list by project status fist, followed by alphabetical order
-     * Returns our old List to revert back to after showing the sorted List
      */
     public void sortFilteredStudentListByProjectStatus() {
         students.sortFilteredStudentListByProjectStatus();
     }
+
+
 
     //// deadline-level operations
     /**
@@ -174,6 +175,16 @@ public class FypManager implements ReadOnlyFypManager {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedBySpecialisationStudentList() {
+        return students.sortFilteredStudentListBySpecialisation();
+    }
+
+    @Override
+    public ObservableList<Student> getSortedByProjectStatusStudentList() {
+        return students.sortFilteredStudentListByProjectStatus();
     }
 
     @Override
