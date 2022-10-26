@@ -12,23 +12,23 @@ import hobbylist.model.activity.Activity;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String MESSAGE_SUCCESS = "New activity added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an activity to the HobbyList. "
+    private static String commandWord = "add";
+
+    public static final String MESSAGE_USAGE = commandWord + ": Adds an activity to the HobbyList. "
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
             + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + commandWord + " "
             + CliSyntax.PREFIX_NAME + "And Then There Were None "
             + CliSyntax.PREFIX_DESCRIPTION + "mystery book by Agatha Christie "
             + CliSyntax.PREFIX_TAG + "book "
             + CliSyntax.PREFIX_TAG + "entertainment"
             + CliSyntax.PREFIX_DATE + "2003-03-03"
             + CliSyntax.PREFIX_STATUS + "upcoming";
-
-    public static final String MESSAGE_SUCCESS = "New activity added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList";
 
     private final Activity toAdd;
 
@@ -38,6 +38,22 @@ public class AddCommand extends Command {
     public AddCommand(Activity activity) {
         requireNonNull(activity);
         toAdd = activity;
+    }
+
+    /**
+     * Sets the command word for the command.
+     * @param word Word to set command to.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
+    }
+
+    /**
+     * Gets the command word for the command.
+     * @return Command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
     }
 
     @Override

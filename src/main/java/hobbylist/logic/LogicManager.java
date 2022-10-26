@@ -4,10 +4,22 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.LogsCenter;
+import hobbylist.commons.core.ThemeSettings;
+import hobbylist.logic.commands.AddCommand;
+import hobbylist.logic.commands.ClearCommand;
 import hobbylist.logic.commands.Command;
 import hobbylist.logic.commands.CommandResult;
+import hobbylist.logic.commands.DeleteCommand;
+import hobbylist.logic.commands.EditCommand;
+import hobbylist.logic.commands.ExitCommand;
+import hobbylist.logic.commands.FilterStatusCommand;
+import hobbylist.logic.commands.FilterTagCommand;
+import hobbylist.logic.commands.FindCommand;
+import hobbylist.logic.commands.HelpCommand;
+import hobbylist.logic.commands.ListCommand;
 import hobbylist.logic.commands.exceptions.CommandException;
 import hobbylist.logic.parser.HobbyListParser;
 import hobbylist.logic.parser.exceptions.ParseException;
@@ -35,6 +47,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         hobbyListParser = new HobbyListParser();
+        setCommandWords(model.getAliasSettings());
     }
 
     @Override
@@ -82,5 +95,39 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ThemeSettings getThemeSettings() {
+        return model.getThemeSettings();
+    }
+
+    @Override
+    public void setThemeSettings(ThemeSettings themeSettings) {
+        model.setThemeSettings(themeSettings);
+    }
+
+    @Override
+    public AliasSettings getAliasSettings() {
+        return model.getAliasSettings();
+    }
+
+    @Override
+    public void setAliasSettings(AliasSettings aliasSettings) {
+        model.setAliasSettings(aliasSettings);
+        setCommandWords(aliasSettings);
+    }
+
+    private void setCommandWords(AliasSettings aliasSettings) {
+        AddCommand.setCommandWord(aliasSettings.getAdd());
+        ClearCommand.setCommandWord(aliasSettings.getClear());
+        DeleteCommand.setCommandWord(aliasSettings.getDelete());
+        EditCommand.setCommandWord(aliasSettings.getEdit());
+        ExitCommand.setCommandWord(aliasSettings.getExit());
+        FilterTagCommand.setCommandWord(aliasSettings.getFilterTag());
+        FilterStatusCommand.setCommandWord(aliasSettings.getFilterStatus());
+        FindCommand.setCommandWord(aliasSettings.getFind());
+        ListCommand.setCommandWord(aliasSettings.getList());
+        HelpCommand.setCommandWord(aliasSettings.getHelp());
     }
 }

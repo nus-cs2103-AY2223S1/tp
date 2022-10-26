@@ -14,12 +14,12 @@ import hobbylist.model.activity.Activity;
  * Select an activity in the current list by its index to display all details about it
  */
 public class SelectCommand extends Command {
-    public static final String COMMAND_WORD = "select";
+    private static final String commandWord = "select";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Select an activity in the current list "
+    public static final String MESSAGE_USAGE = commandWord + ": Select an activity in the current list "
             + "by the index number used in the displayed list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + commandWord + " 1";
 
     private static final String MESSAGE_SELECT_ACTIVITY_SUCCESS = "Selected activity: %1$s";
 
@@ -27,6 +27,14 @@ public class SelectCommand extends Command {
 
     public SelectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    /**
+     * Returns the command word.
+     * @return the command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
     }
 
     @Override

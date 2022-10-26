@@ -65,6 +65,24 @@ public class Status {
         return status != State.NONE;
     }
 
+    /**
+     * Return true if the current status matches the given String
+     * @param status
+     * @return
+     */
+    public boolean match(String status) {
+        String state = status.toUpperCase();
+        if (state.equals("UPCOMING")) {
+            return this.status.equals(State.UPCOMING);
+        } else if (state.equals("ONGOING")) {
+            return this.status.equals(State.ONGOING);
+        } else if (state.equals("COMPLETED")) {
+            return this.status.equals(State.COMPLETED);
+        } else {
+            return this.status.equals(State.NONE);
+        }
+    }
+
     @Override
     public String toString() {
         return status.toString();

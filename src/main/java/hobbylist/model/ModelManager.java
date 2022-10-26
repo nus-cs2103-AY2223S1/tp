@@ -6,8 +6,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.LogsCenter;
+import hobbylist.commons.core.ThemeSettings;
 import hobbylist.commons.util.CollectionUtil;
 import hobbylist.model.activity.Activity;
 import javafx.collections.ObservableList;
@@ -64,6 +66,28 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ThemeSettings getThemeSettings() {
+        return userPrefs.getThemeSettings();
+    }
+
+    @Override
+    public void setThemeSettings(ThemeSettings themeSettings) {
+        requireNonNull(themeSettings);
+        userPrefs.setThemeSettings(themeSettings);
+    }
+
+    @Override
+    public AliasSettings getAliasSettings() {
+        return userPrefs.getAliasSettings();
+    }
+
+    @Override
+    public void setAliasSettings(AliasSettings aliasSettings) {
+        requireNonNull(aliasSettings);
+        userPrefs.setAliasSettings(aliasSettings);
     }
 
     @Override

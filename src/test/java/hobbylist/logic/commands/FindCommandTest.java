@@ -72,6 +72,13 @@ public class FindCommandTest {
                 TypicalActivities.ACTIVITY_F), model.getFilteredActivityList());
     }
 
+    @Test
+    public void setCommandWord_validWord_success() {
+        FindCommand.setCommandWord("test");
+        assertEquals(FindCommand.getCommandWord(), "test");
+        FindCommand.setCommandWord("find");
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
