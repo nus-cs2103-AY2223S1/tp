@@ -87,10 +87,10 @@ public class FinancialAdvisorIncome {
                         || policy.getEndDate().getDate().equals(fullYear))
                         && (policy.getStartDate().getDate().isBefore(fullYear)
                         || policy.getStartDate().getDate().equals(fullYear))) {
-                    // for case that year falls within
-                    int months = duration.getMonths(); //why 0 months?
+
+                    int months = duration.getMonths();
                     if (months == 0) {
-                        if (duration.getYears() > 1) {
+                        if (duration.getYears() >= 1) {
                             months = 12;
                         }
                     }

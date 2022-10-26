@@ -33,7 +33,7 @@
           </Menu>
         </MenuBar>
 
-        <StackPane style="-fx-background-color: white;" fx:id="resultDisplayPlaceholder" mouseTransparent="false" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane style="-fx-background-color: white;" fx:id="resultDisplayPlaceholder" mouseTransparent="false" minHeight="150" prefHeight="120" styleClass="pane-with-border" VBox.vgrow="NEVER">
         </StackPane>
 
         <VBox fx:id="personList"  prefWidth="540" style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
