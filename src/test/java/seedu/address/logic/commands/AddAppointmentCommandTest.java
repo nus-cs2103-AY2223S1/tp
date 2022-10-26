@@ -26,15 +26,17 @@ class AddAppointmentCommandTest {
 
     @Test
     public void execute_validIndexValidDate_success() {
+        String appointmentDate = "01-01-2000 1200";
         Person personToAddAppointment = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
         AddAppointmentCommand addAppointmentCommand =
-                new AddAppointmentCommand(FIRST_INDEX, "01-01-2000 1200");
+                new AddAppointmentCommand(FIRST_INDEX, appointmentDate);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, personToAddAppointment);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS,
+                personToAddAppointment.getName().toString()) + ": " + appointmentDate;
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person expectedPersonToAddAppointment =
-                new PersonBuilder(personToAddAppointment).withAppointment("01-01-2000 1200").build();
+                new PersonBuilder(personToAddAppointment).withAppointment(appointmentDate).build();
         expectedModel.setPerson(expectedModel.getFilteredPersonList().get(0), expectedPersonToAddAppointment);
 
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
@@ -44,16 +46,18 @@ class AddAppointmentCommandTest {
     @Test
     public void execute_validIndexValidDateFilteredList_success() {
         showPersonAtIndex(model, FIRST_INDEX);
+        String appointmentDate = "01-01-2000 1200";
 
         Person personToAddAppointment = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
         AddAppointmentCommand addAppointmentCommand =
-                new AddAppointmentCommand(FIRST_INDEX, "01-01-2000 1200");
+                new AddAppointmentCommand(FIRST_INDEX, appointmentDate);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, personToAddAppointment);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS,
+                personToAddAppointment.getName().toString()) + ": " + appointmentDate;
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person expectedPersonToAddAppointment =
-                new PersonBuilder(personToAddAppointment).withAppointment("01-01-2000 1200").build();
+                new PersonBuilder(personToAddAppointment).withAppointment(appointmentDate).build();
         expectedModel.setPerson(expectedModel.getFilteredPersonList().get(0), expectedPersonToAddAppointment);
 
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
