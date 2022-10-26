@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="300.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" percentWidth="50.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" percentWidth="50.0" prefWidth="300.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="350.0" minHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <HBox alignment="CENTER_LEFT" GridPane.columnSpan="2">
@@ -33,7 +33,7 @@
             </Label>
          </children>
          <GridPane.margin>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            <Insets />
          </GridPane.margin>
       </HBox>
       <VBox GridPane.rowIndex="1">
@@ -46,6 +46,7 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -73,6 +74,11 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
+                  <Label text="Products:" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -83,14 +89,21 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </GridPane.margin>
       </VBox>
-      <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
-            <Label styleClass="label-subheader" text="Upcoming meeting:" />
-            <VBox fx:id="meetings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <VBox spacing="10.0">
+               <children>
+                  <Label styleClass="label-subheader" text="Upcoming meeting:" />
+                  <VBox fx:id="meetings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+               </children>
+            </VBox>
          </children>
          <GridPane.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </GridPane.margin>
       </VBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </GridPane>
