@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.ArgumentMultimap.DOES_NOT_EXIST;
 
 /**
  * Represents a Person's address in the address book.
@@ -34,6 +35,9 @@ public class Address {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
+        if (test.equals(DOES_NOT_EXIST)) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

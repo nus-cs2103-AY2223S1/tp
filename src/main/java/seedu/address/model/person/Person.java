@@ -33,7 +33,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Module> modules,
                   Github githubProfile, Telegram telegramUsername) {
-        requireAllNonNull(name, phone, email, address, tags, modules, githubProfile, telegramUsername);
+        requireAllNonNull(name, phone);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -148,7 +148,7 @@ public class Person {
 
         builder.append("\nGithub profile: ")
                 .append(getGithub())
-                .append("\nTelegram Username: @")
+                .append("\nTelegram Username: ")
                 .append(getTelegram());
 
         return builder.toString();
