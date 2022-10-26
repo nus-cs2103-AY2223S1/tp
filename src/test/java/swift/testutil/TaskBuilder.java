@@ -63,7 +63,7 @@ public class TaskBuilder {
      * Sets the {@code Description} of the {@code Task} that we are building.
      */
     public TaskBuilder withDescription(String description) {
-        this.description = Optional.of(new Description(description));
+        this.description = Optional.ofNullable(description).map(Description::new);
         return this;
     }
 
@@ -71,7 +71,7 @@ public class TaskBuilder {
      * Sets the {@code Deadline} of the {@code Task} that we are building.
      */
     public TaskBuilder withDeadline(String deadline) {
-        this.deadline = Optional.of(new Deadline(deadline));
+        this.deadline = Optional.ofNullable(deadline).map(Deadline::new);
         return this;
     }
 
