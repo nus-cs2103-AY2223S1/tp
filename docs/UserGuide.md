@@ -69,7 +69,7 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -103,7 +103,6 @@ Format: `radd d/DATE r/DATA [m/MEDICATION]…`
 * The command is only valid after using `rlist PATIENT_INDEX`.
 * Adds a new record to the patient with given `DATE`, `DATA` and `MEDICATION` information.
 
-* 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Dates must be given in DD-MM-YYYY HHmm format!
 </div>
@@ -173,6 +172,10 @@ Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TA
 * You can remove all the patient’s tags by typing `t/` without
     specifying any tags after it.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Birthdate must be given in DD-MM-YYYY HHmm format!
+</div>
+
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
@@ -189,6 +192,10 @@ Format: `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`
 * When editing medication, the existing medication in the record will be removed i.e adding of tags is not cumulative.
 * You can remove all the specific record’s medications by typing `t/` without
   specifying any tags after it.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Record date must be given in DD-MM-YYYY HHmm format!
+</div>
 
 Examples:
 *  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
@@ -252,6 +259,10 @@ Format: `appt INDEX d/DATE`
 * The appointment is created with the given date.
 * If a pre-existing appointment is present, it will be overriden by the new appointment.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Appointment dates must be given in DD-MM-YYYY HHmm format!
+</div>
+
 ### Clearing an appointment: `apptcl`
 
 Clears the appointment for a specified patient. This command is only valid in the patient list view.
@@ -294,18 +305,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                               |
-|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/DustAllergy` |
-| **Add Record**    | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                |
-| **Clear**         | `clear`                                                                                                                                                        |
-| **Clear Records** | `rclear`                                                                                                                                                       |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
-| **Delete Record** | `rdelete INDEX`                                                                                                                                                |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
-| **Edit Record**   | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                  |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                     |
-| **Find Record**   | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                      |
-| **List**          | `list`                                                                                                                                                         |
-| **List Records**  | `rlist`                                                                                                                                                        |
-| **Help**          | `help`                                                                                                                                                         |
+| Action                | Format, Examples                                                                                                                                               |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**       | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/DustAllergy` |
+| **Add Record**        | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                |
+| **Clear**             | `clear`                                                                                                                                                        |
+| **Clear Records**     | `rclear`                                                                                                                                                       |
+| **Delete**            | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
+| **Delete Record**     | `rdelete INDEX`                                                                                                                                                |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                    |
+| **Edit Record**       | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                  |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                     |
+| **Find Record**       | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                      |
+| **List**              | `list`                                                                                                                                                         |
+| **List Records**      | `rlist`                                                                                                                                                        |
+| **Add Appointment**   | `appt INDEX [d/DATE]` <br> e.g., `appt 1 d/01-01-2000 1230`                                                                                                    |
+| **Clear Appointment** | `apptcl`                                                                                                                                                       |
+| **Help**              | `help`                                                                                                                                                         |
