@@ -127,21 +127,22 @@ Examples:
 
 Edits an existing order in the order list.
 
-Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]`
+Format: `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME q/QUANTITY]`
 
 * Edits the order at the specified `INDEX`.
 * This feature is case-insensitive.
 * The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Every field is optional, but if you were to include `i/ITEM_NAME`, you must also include 
-  `q/QUANTITY`. Both fields need to be present to update the customer's ordered items.
-* You can only edit the customer's ordered items list to consist of items that exists in your inventory. <br> 
-  e.g. If your inventory does not have `Apples`, then you cannot edit your customer's order list to have `Apples`.
-* Editing an item that does not exist in your customer's order list, but exists in your inventory 
-  will add the item to the order list. <br> e.g. Your inventory has `Apples` and `Bananas`. <br>
-  Right now, the third customer's ordered item list only has `Apples`.
-  `edito 3 i/Bananas q/3` will add `3` `Bananas` to the customer's ordered item list.
-* Setting `q/0` to a customer's ordered item list will remove the item from the list.
+  `q/QUANTITY`. Both fields need to be present to update an order's list of ordered items.
+* You can only edit an order's list of ordered items to consist of items that exists in your inventory. <br> 
+  e.g. If your inventory does not have `Apples`, then you cannot edit any of your order's list of ordered items to `Apples`.
+* Editing an item that does not exist in your order's list of ordered items, but exists in your inventory 
+  will add the item to the order's list of ordered items. <br> e.g. Your inventory has `Apples` and `Bananas`. Right now, the third order's list of ordered items only has `Apples`.
+  `edito 3 i/Bananas q/3` will add `3` `Bananas` to the third order's list of ordered items.
+* Setting `q/0` to any item in the order's list of ordered items will remove the item from the list. <br> e.g. The fourth order's list of ordered items has
+`2` `Apples` and `3` `Bananas`. Inputting `edito 4 i/Bananas q/0` will remove the `Bananas` from the fourth order's list of ordered items, leaving only
+the `2` `Apples`.
 
 Note:
 * The order's created time cannot be edited.
