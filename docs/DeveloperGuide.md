@@ -513,7 +513,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
       design principles.
 
 Rationale behind current choice:
-1. Despite the additional complexities, it is good practise to adhere with the 
+1. Despite the additional complexities, it is good practice to adhere with the 
 SOLID design principles. 
 2. Furthermore, the additional complexities and potential for new bugs can
    be mitigated by robust unit and integration testing.
@@ -800,7 +800,7 @@ Use case ends.
 
   Use case ends.
 
-* 1b. The given task index is invalid.
+* 1b. The given task number is invalid.
 
     * 1b1. Plannit displays an error message.
 
@@ -808,16 +808,26 @@ Use case ends.
 
 #### Use case: UC06 - Swap task
 **Precondition**
-* User has applied [UC13](#use-case-uc13---navigate-to-module) to navigate to a module.
+* User has completed [UC01](#use-case-uc01---add-a-module).
+* Module list is not empty.
+* Task list of module has at least two tasks.
 
 **Main Success Scenario (MSS)**
-1. User requests to swap the order of two tasks.
+1. User requests to swap the order of two tasks belonging to a module in the 
+   list.
 2. Plannit displays to the user the list of tasks with the order of the two 
    tasks swapped.
 
 **Extensions**
-* 1a. User inputs empty search keyword.
+* 1a. The given module is invalid.
+
     * 1a1. Plannit displays an error message.
+
+  Use case ends.
+
+* 1b. The given task number is invalid.
+
+    * 1b1. Plannit displays an error message.
 
   Use case ends.
 
