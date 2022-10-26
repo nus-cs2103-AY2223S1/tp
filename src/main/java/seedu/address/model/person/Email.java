@@ -68,6 +68,13 @@ public class Email {
         return value == EMPTY_EMAIL ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
+    /**
+     * Returns true if value is empty.
+     */
+    public boolean isEmpty() {
+        return value.equals(EMPTY_EMAIL);
+    }
+
     @Override
     public String toString() {
         return value;
