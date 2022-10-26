@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEntry.ALLOWANCE;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
@@ -45,7 +46,7 @@ public class PennyWiseTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyPennyWise_replacesData() {
         PennyWise newData = getTypicalPennyWise();
         pennyWise.resetData(newData);
         assertEquals(newData, pennyWise);
@@ -77,21 +78,28 @@ public class PennyWiseTest {
         assertFalse(pennyWise.hasExpenditure(LUNCH));
     }
 
-    // @Test
-    // public void hasIncome_incomeNotInAddressBook_returnsFalse() {
-    //     assertFalse(pennyWise.hasIncome());
-    // }
+    @Test
+    public void hasIncome_incomeNotInPennyWise_returnsFalse() {
+        assertFalse(pennyWise.hasIncome(ALLOWANCE));
+    }
+
     @Test
     public void hasExpenditure_expenditureInPennyWise_returnsTrue() {
         pennyWise.addExpenditure(LUNCH);
         assertTrue(pennyWise.hasExpenditure(LUNCH));
     }
+
+    @Test
+    public void hasIncome_incomeInPennyWise_returnsTrue() {
+        pennyWise.addIncome(ALLOWANCE);
+        assertTrue(pennyWise.hasIncome(ALLOWANCE));
+    }
     // @Test
-    // public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-    //     addressBook.addPerson(ALICE);
+    // public void hasPerson_personWithSameIdentityFieldsInPennyWise_returnsTrue() {
+    //     pennyWise.addPerson(ALICE);
     //     Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
     //             .build();
-    //     assertTrue(addressBook.hasPerson(editedAlice));
+    //     assertTrue(pennyWise.hasPerson(editedAlice));
     // }
     @Test
     public void getExpenditureList_modifyList_throwsUnsupportedOperationException() {
@@ -103,7 +111,7 @@ public class PennyWiseTest {
         assertThrows(UnsupportedOperationException.class, () -> pennyWise.getIncomeList().remove(0));
     }
     // /**
-    //  * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+    //  * A stub ReadOnlyPennyWise whose persons list can violate interface constraints.
     //  */
     private static class PennyWiseStub implements ReadOnlyPennyWise {
         private final ObservableList<Entry> expenditureList = FXCollections.observableArrayList();

@@ -48,4 +48,12 @@ public class DeleteCommandParserTest {
                 invalidUserInput,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_emptyInput_throwsParseException() {
+        String invalidUserInput = "";
+        assertParseFailure(parser,
+                invalidUserInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
 }
