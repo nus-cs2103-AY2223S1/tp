@@ -11,6 +11,7 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Marking trips as done: `mark`](#marking-trips-as-done-mark)
   * [Marking trips as not done: `unmark`](#marking-trips-as-not-done-unmark)
   * [Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`](#adding-events-to-trips-add-et-nevent-name-ttrip-name)
+  * [Removing events from trips: `delete-et n/EVENT NAME T/TRIP NAME`](#removing-events-from-trips-delete-et-nevent-name-ttrip-name)
   * [Saving data](#saving-data)
   * [Exiting the program: `bye`](#exiting-the-program-bye)
 
@@ -51,38 +52,52 @@ E.g. in `add-e n/TITLE d/DESCRIPTION`, ‘n/’  and 'd/' are two designated use
 Extraneous parameters for commands that do not take in parameters (such as bye) will be ignored.
 e.g. if the command specifies `bye 123`, it will be interpreted as `bye`.
 
-### Adding events: `add-e n/TITLE d/DESCRIPTION`
+### Adding events: `add-e`
 Adds an event to the events list.
 
-Format: `add-e n/TITLE d/DESCRIPTION`
+Format: `add-e n/TITLE d/DESCRIPTION `
 
 Examples:
 - `add-e n/Skydiving d/Skydiving with crew`
 - `add-e n/Sailing d/Sail in the Danube River`
 
-### Deleting events: `delete -e`
-Deletes the specified person from the events list.
+### Deleting events: `delete-e`
+Deletes the specified event from the bucket list.
 
-Format: `delete -e INDEX`
-- Deletes the person at the specified INDEX.
-- The index refers to the index number shown in the events list.
+Format: `delete-e INDEX`
+- Deletes the event at the specified INDEX.
+- The index refers to the index number shown in the bucket list.
 - The index must be a positive integer 1, 2, 3, …
 
 Examples:
-- `list -e` followed by `delete 2` deletes the 2nd event in the events list.
+- `list-e` followed by `delete-e 2` deletes the 2nd event in the bucket list.
 
 ### Viewing events list: `list-e`
 Shows a list of all events added.
 
 Format: `list-e`
 
-### Adding trips: `add n/TITLE d/DESCRIPTION`
+### Adding trips: `add`
 Adds a trip to the trip list.
 
-Format: `add -t TITLE`
+Format: `add n/TITLE d/DESCRIPTION l/LOCATION D/DATE `
+- Location and Date are optional fields
+- Date must follow the format {dd-mm-yyyy}
+- If you do not specify a location, it will be set to the value "Default"
+- If you do not specify a date, it will be set to the value "01-01-0000"
+- Hence, any trip with the above location or date values will be assumed to have an unspecified   
+  location or date, and it will be reflected as such in the UI
 
 Examples:
-- `add -t Trip to Iceland`
+- `add n/Trip to Iceland d/Skiing in Iceland l/Iceland D/26-12-2023`
+
+### Delete trips: `delete`
+Deletes a trip at the specified INDEX of the trip list.
+
+Format: `delete INDEX`
+
+Examples:
+- `add Trip to Iceland`
 
 ### Viewing trips list: `list`
 Shows a list of all trips added.
@@ -98,29 +113,42 @@ Format: `mark INDEX`
 - The index must be a positive integer 1, 2, 3, …
 
 Examples:
-- `mark 1`
+- `mark 1` marks the first trip in the trip list as done.
 
 ### Marking trips as not done: `unmark`
 Mark the trip in the specified INDEX as not done
 
-Format: `mark INDEX`
+Format: `unmark INDEX`
 - Marks the trip at the specified INDEX as not done.
 - The index refers to the index number shown in the trip list.
 - The index must be a positive integer 1, 2, 3, …
-- 
-Examples:
-- `mark 1`
 
-### Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`
-Adds the specified event to the specified trip.
+Examples:
+- `unmark 1` marks the first trip in the trip list as not done.
+
+### Adding events to trips: `add-et`
+Adds the specified event from the bucketList to the specified trip.
 
 Format: `add-et n/EVENT NAME T/TRIP NAME`
 - Adds the event with the specified EVENT NAME
 - Event is added to the trip at the specified TRIP NAME
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the events list.
+
 Examples:
-- `add -et 2 3` adds the 2nd event in the events list to the 3rd trip in the trips list.
+- `add -et n/asd t/qwe` adds the event titled asd in the bucketList to the itinerary of the trip with the title qwe 
+
+### Removing events from trips: `delete-et`
+Remove the specified event from the specified trip to the bucketList.
+
+Format: `delete-et n/EVENT NAME T/TRIP NAME`
+- Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME 
+- Event is added to the bucketList.
+- The TRIP NAME must exist in the trips list.
+- The EVENT NAME must exist in the trip itinerary.
+
+Examples:
+- `delete -et n/asd t/qwe` remove the event titled asd from the trip titled qwe's itinerary to the bucketList.
 
 ### Sorting trips: `sort by/FACTOR r/`
 Sorts the trips according to the provided factor.
