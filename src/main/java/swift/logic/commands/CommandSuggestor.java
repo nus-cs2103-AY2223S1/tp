@@ -129,6 +129,7 @@ public class CommandSuggestor {
         String[] userInputArray = userInput.split(" ");
         Prefix currPrefix = null;
         boolean isIndexRequired = argPrefixes.contains(new Prefix(""));
+        boolean hasPrefix = (!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1));
 
         // Check if user input for index is valid (only if required)
         if (isIndexRequired) {
@@ -142,10 +143,10 @@ public class CommandSuggestor {
         }
 
         // Check if user is trying to autocomplete a prefix
-        if ((!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1))
-                && !userInputArray[userInputArray.length - 1].contains("/")) {
+        if (hasPrefix && !userInputArray[userInputArray.length - 1].contains("/")) {
             currPrefix = new Prefix(userInputArray[userInputArray.length - 1] + "/");
             argumentMultimap.put(currPrefix, "");
+
             if (argPrefixes.contains(currPrefix)) {
                 argumentSuggestion += "/ ";
             } else if (!userInput.contains("/")) {
