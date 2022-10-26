@@ -449,6 +449,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                       |
 | `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                   |
 | `* * *`  | Student   | visualise my contact list in a pie chart                                | have a quick overview of my network                                   |
+| `* * *`  | Student   | search by module code                                                   | so that I can see all my peers, profs and TAs for a certain module    |
+| `* * *`  | Student   | find the consultation timing of tutors/professors                       | so I know when I can approach a professor for help                    |
+| `* * *`  | Student   | find the location for a specific module                                 | know where my class is                                                |
+| `* * *`  | Student   | find my friends or peers doing the same mod as me                       | know who to ask for help or who to form groups with                   |
+| `* * *`  | Student   | filter through the contacts shown in GUI                                | I can search quickly for any contact I want to find                   |
 
 *{More to be added}*
 
@@ -518,6 +523,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Find person for any desired action**
+
+**MSS**
+
+1.  User enters details to filter list by.
+2.  SoConnect returns the list of persons matching the details provided.
+3.  User performs desired action on contact(s) shown.
+
+    Use case ends.
+
+**Extensions**
+* 1a. SoConnect detects an error with the details entered.
+
+    * 1a1. SoConnect shows an error message.
+    * 1a2. User enters new data.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+  
+      Use case resumes from step 2.
 
 ### Non-Functional Requirements
 
