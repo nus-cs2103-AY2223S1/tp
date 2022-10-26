@@ -40,29 +40,29 @@ public class TaskListCard extends UiPart<Region> {
         taskname.setText(task.getTaskDescription());
         DateTime dateTime = task.getDateTime();
         date.setText(getDateString(dateTime));
-        time.setText(String.format("Time: %s", dateTime.getTime()));
+        time.setText(String.format("%s", dateTime.getTime()));
     }
 
     /**
      * Returns the date and the numbers of days from today based on {@code dateTime}.
      */
-    public String getDateString(DateTime dateTime) {
+    private String getDateString(DateTime dateTime) {
         String dateString = dateTime.getDate();
         int daysFromToday = dateTime.getDaysFromToday();
         if (daysFromToday == 0) {
-            return String.format("Date: %s (Today)", dateString);
+            return String.format("%s (Today)", dateString);
         }
         if (daysFromToday == 1) {
-            return String.format("Date: %s (Tommorow)", dateString);
+            return String.format("%s (Tommorow)", dateString);
         }
         if (daysFromToday < 0) {
             if (daysFromToday == -1) {
-                return String.format("Date: %s (Overdue by 1 day)", dateString);
+                return String.format("%s (Overdue by 1 day)", dateString);
             } else {
-                return String.format("Date: %s (Overdue by %s days)", dateString, Math.abs(daysFromToday));
+                return String.format("%s (Overdue by %s days)", dateString, Math.abs(daysFromToday));
             }
         }
-        return String.format("Date: %s (in %s days)", dateString, daysFromToday);
+        return String.format("%s (in %s days)", dateString, daysFromToday);
     }
 
     @Override
