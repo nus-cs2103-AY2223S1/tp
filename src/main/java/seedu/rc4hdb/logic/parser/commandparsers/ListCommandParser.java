@@ -1,25 +1,26 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.COMMAND_WORD;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.EXCLUDE_SPECIFIER;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.INCLUDE_SPECIFIER;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.parser.Parser;
+import seedu.rc4hdb.logic.commands.residentcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
 
 /**
- * Parses input arguments and creates a new ListCommand object
+ * Parses user input for a ListCommand.
  */
-public class ListCommandParser implements Parser<ListCommand> {
-    public static final char INCLUDE_SPECIFIER = 'i';
-    public static final char EXCLUDE_SPECIFIER = 'e';
+public class ListCommandParser extends ColumnManipulatorCommandParser {
 
-    public static final String INTENDED_USAGE = "Please include a specifier [/i] or [/e]"
-            + " followed by the fields to include or exclude";
+    public static final List<String> LIST_OF_SPECIFIERS = List.of(INCLUDE_SPECIFIER, EXCLUDE_SPECIFIER);
+
+    public static final String INTENDED_SPECIFIER_USAGE_MESSAGE = "Please enter the " + COMMAND_WORD
+            + " command without any specifiers, or use either " + COMMAND_WORD + " " + INCLUDE_SPECIFIER
+            + " or " + COMMAND_WORD + " " + EXCLUDE_SPECIFIER + " followed by at least one column"
+            + " to include or exclude.";
 
     @Override
     public ListCommand parse(String args) throws ParseException {
@@ -27,63 +28,28 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (args.isEmpty()) {
             return new ListCommand();
         }
-        if (hasInvalidSpecifier(args)) {
-            throw new ParseException(INTENDED_USAGE);
-        }
 
-        // Process global list of fields into lowercase list first
-        List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
+        String listSpecifier = getSpecifierIfPresent(args, LIST_OF_SPECIFIERS, INTENDED_SPECIFIER_USAGE_MESSAGE);
+        String stringOfFieldsToProcess = getArgumentsAfterSpecifierIfPresent(args, LIST_OF_SPECIFIERS,
+                INTENDED_SPECIFIER_USAGE_MESSAGE);
 
-        // Create one list for each specifier
-        List<String> fieldsToIncludeFromHiding = new ArrayList<>(allFields);
-        List<String> fieldsToExcludeFromShowing = new ArrayList<>();
+        List<String> fieldsToShow = getBaseFieldList(stringOfFieldsToProcess);
+        List<String> fieldsToHide = getComplementFieldList(stringOfFieldsToProcess);
 
-        String[] specifiedFields = getSpecifiedFields(args);
-
-        populateFieldLists(specifiedFields, fieldsToIncludeFromHiding, fieldsToExcludeFromShowing, allFields);
-
-        if (getListSpecifier(args) == INCLUDE_SPECIFIER) {
-            return new ListCommand(fieldsToIncludeFromHiding);
+        if (listSpecifier.equals(INCLUDE_SPECIFIER)) {
+            return new ListCommand(fieldsToShow, fieldsToHide);
         } else {
-            return new ListCommand(fieldsToExcludeFromShowing);
+            return new ListCommand(fieldsToHide, fieldsToShow);
         }
     }
 
-    private boolean hasInvalidSpecifier(String args) {
-        if (hasInvalidSpecifierLength(args)) {
-            return true;
-        }
-        char specifier = getListSpecifier(args);
-        return specifier != INCLUDE_SPECIFIER && specifier != EXCLUDE_SPECIFIER;
+    @Override
+    public String getCommandWord() {
+        return ListCommand.COMMAND_WORD;
     }
 
-    private boolean hasInvalidSpecifierLength(String args) {
-        int nextIndex = args.indexOf("/") + 2;
-        if (nextIndex < args.length()) {
-            return args.charAt(nextIndex) != ' ';
-        }
-        return false;
-    }
-
-    private char getListSpecifier(String args) {
-        return args.charAt(args.indexOf("/") + 1);
-    }
-
-    private String[] getSpecifiedFields(String args) {
-        String fieldsString = args.toLowerCase().substring(args.indexOf("/") + 2).trim();
-        if (fieldsString.isEmpty()) {
-            return new String[] {};
-        }
-        return fieldsString.split(" ");
-    }
-
-    private void populateFieldLists(String[] specifiedFields, List<String> fieldsToInclude,
-                                    List<String> fieldsToExclude, List<String> allFields) {
-        for (String field : specifiedFields) {
-            fieldsToInclude.remove(field);
-            if (allFields.contains(field)) {
-                fieldsToExclude.add(field);
-            }
-        }
+    @Override
+    public String getCommandPresentTense() {
+        return ListCommand.COMMAND_PRESENT_TENSE;
     }
 }

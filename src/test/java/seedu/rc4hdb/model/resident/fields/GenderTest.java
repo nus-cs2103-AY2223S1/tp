@@ -6,6 +6,9 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for {@link Gender}.
+ */
 public class GenderTest {
 
     @Test
@@ -17,6 +20,11 @@ public class GenderTest {
     public void constructor_invalidGender_throwsIllegalArgumentException() {
         String invalidGender = "m";
         assertThrows(IllegalArgumentException.class, () -> new Gender(invalidGender));
+    }
+
+    @Test
+    public void constructor_validGender_constructGender() {
+        assertTrue(new Gender("M") instanceof Gender);
     }
 
     @Test

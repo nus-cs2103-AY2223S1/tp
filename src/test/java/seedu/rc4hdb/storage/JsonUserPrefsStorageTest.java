@@ -16,7 +16,11 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 
+/**
+ * Unit tests for {@link JsonUserPrefsStorage}.
+ */
 public class JsonUserPrefsStorageTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
@@ -74,7 +78,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setResidentBookFilePath(Paths.get("rc4hdb.json"));
+        userPrefs.setDataStorageFilePath(Paths.get("data", "rc4hdb"));
         return userPrefs;
     }
 
@@ -106,8 +110,8 @@ public class JsonUserPrefsStorageTest {
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
 
-        Path pefsFilePath = testFolder.resolve("TempPrefs.json");
-        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
+        Path prefsFilePath = testFolder.resolve("TempPrefs.json");
+        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(prefsFilePath);
 
         //Try writing when the file doesn't exist
         jsonUserPrefsStorage.saveUserPrefs(original);
