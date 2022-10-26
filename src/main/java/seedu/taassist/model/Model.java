@@ -132,11 +132,6 @@ public interface Model {
     void removeModuleClasses(Collection<ModuleClass> moduleClasses);
 
     /**
-     * Removes the specified {@code session} from the specified {@code moduleClass}.
-     */
-    void removeSession(ModuleClass moduleClass, Session session);
-
-    /**
      * Removes the specified {@code sessions} from the specified {@code moduleClass}.
      */
     void removeSessions(ModuleClass moduleClass, Set<Session> sessions);
@@ -149,6 +144,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the module class list */
     ObservableList<ModuleClass> getModuleClassList();
+
+    /** Returns an unmodifiable view of the session list */
+    ObservableList<Session> getSessionList();
 
     /** Enters focus mode. */
     void enterFocusMode(ModuleClass classToFocus);
@@ -169,5 +167,4 @@ public interface Model {
 
     /** Removes queried {@code SessionData} within the studentViewList */
     void resetQueriedSessionData();
-
 }

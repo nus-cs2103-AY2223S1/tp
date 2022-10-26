@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -163,20 +164,31 @@ public class TaAssist implements ReadOnlyTaAssist {
 
 
     /**
-     * Removes the {@code session} from the {@code moduleClass}
-     * as well as all students in the {@code moduleClass}.
+     * Removes the {@code sessions} from the {@code moduleClass} as well as all students in the {@code moduleClass} and
+     * returns the new module class with the sessions removed.
      */
-    public void removeSession(ModuleClass moduleClass, Session session) {
+    public ModuleClass removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
+        requireAllNonNull(moduleClass, sessions);
+        ModuleClass oldModuleClass = moduleClass;
+        for (Session session: sessions) {
+            // Update student data
+            removeSessionFromStudents(moduleClass, session);
+            // Update module class data
+            moduleClass = moduleClass.removeSession(session);;
+        }
+        setModuleClass(oldModuleClass, moduleClass);
+        return moduleClass;
+    }
+
+    private void removeSessionFromStudents(ModuleClass moduleClass, Session session) {
         requireAllNonNull(moduleClass, session);
         List<Student> updatedStudents = students.asUnmodifiableObservableList().stream()
                 .map(student -> student.removeSession(moduleClass, session))
                 .collect(Collectors.toList());
         setStudents(updatedStudents);
-        setModuleClass(moduleClass, moduleClass.removeSession(session));
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";
