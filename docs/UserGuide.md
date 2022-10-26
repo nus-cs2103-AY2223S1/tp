@@ -245,3 +245,4 @@ Action | Format, Examples
 **Unschedule Item** | `unplan INDEX`<br> e.g., `unplan 3.2`
 **View Vacant Slots** | `free`
 **Return to Home Page** | `home`
+**Export to PDF** | `export`
