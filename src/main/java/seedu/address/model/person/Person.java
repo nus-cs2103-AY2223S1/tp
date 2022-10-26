@@ -113,8 +113,7 @@ public class Person {
      */
     public boolean hasSimilarName(Person otherPerson) {
         return otherPerson != null
-                && otherPerson.getName().getLowerCaseName()
-                .equals(getName().getLowerCaseName());
+                && otherPerson.getName().equals(getName());
     }
 
     /**

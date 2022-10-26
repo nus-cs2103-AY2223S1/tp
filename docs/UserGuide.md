@@ -15,14 +15,14 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `OmniHealth.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-3/tp/releases).
+2. Download the latest `OmniHealth.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for OmniHealth.
+3. Copy the file to the folder you want to use as the _home folder_ for OmniHealth.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all patients.
@@ -37,7 +37,7 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -229,8 +229,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 
 ### Locating records by keyword: `rfind`
 

@@ -61,15 +61,17 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE);
         }
 
-        model.addPerson(toAdd);
-
-        String feedbackToUser = MESSAGE_SIMILAR_NAME + "\n" + String.format(MESSAGE_SUCCESS, toAdd);
+        String feedbackToUser;
 
         if (model.hasSimilarName(toAdd)) {
-            return new CommandResult(feedbackToUser);
+            feedbackToUser = MESSAGE_SIMILAR_NAME + "\n" + String.format(MESSAGE_SUCCESS, toAdd);
         } else {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            feedbackToUser = String.format(MESSAGE_SUCCESS, toAdd);
         }
+
+        model.addPerson(toAdd);
+
+        return new CommandResult(feedbackToUser);
     }
 
     @Override
