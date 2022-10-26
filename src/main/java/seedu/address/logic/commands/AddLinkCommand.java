@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_URL;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class AddLinkCommand extends Command {
             + "a 'l/' flag should be appended to the front of each link URL;\n"
             + "a 'la/' flag should be appended to the front of each link alias.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
-            + PREFIX_MODULE_LINK_URL + "coursemology.org";
+            + PREFIX_MODULE_LINK_ALIAS + "coursemo " + PREFIX_MODULE_LINK_URL + "coursemology.org";
 
     public static final String MESSAGE_ADD_LINK_SUCCESS = "Successfully added link/s to module code [%1$s]!";
     public static final String MESSAGE_NOT_EDITED = "At least one link url and alias must be added.";
