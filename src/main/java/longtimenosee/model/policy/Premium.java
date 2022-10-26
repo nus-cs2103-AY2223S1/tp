@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents what a policy premium is.
+ * Represents what a policy's yearly premium is.
  * Guarantees: immutable; name is valid as declared in {@link #isValidPremium(String)}
  */
 public class Premium {
