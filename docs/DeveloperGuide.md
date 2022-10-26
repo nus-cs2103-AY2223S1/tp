@@ -214,7 +214,7 @@ Optional prefixes: cid/<valid client id>, r/<valid repository>, d/<valid deadlin
 Example Use: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
 
 #### Add Issue Command
-Compulsory prefixes: pid/<valid project id>, desc/<valid description>
+Compulsory prefixes: pid/<valid project id>, desc/<valid title>
 Optional prefixes: d/<valid deadline> p/<valid priority>
 Example Use: `issue pid/1 desc/To create a person class which stores all relevant person data d/2022-12-10 p/0`
 
@@ -264,7 +264,7 @@ Example Use: `project -e pid/1 n/Jeff cid/1 r/Jeffrey/tp d/2022-07-05`
 
 #### Edit Issue Command
 Compulsory prefix: iid/<valid issue id>
-Optional prefixes (at least one to be included): desc/<valid description>, d/<valid deadline>, p/<valid priority>
+Optional prefixes (at least one to be included): desc/<valid title>, d/<valid deadline>, p/<valid priority>
 Example Use: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
 
 #### Edit Client Command

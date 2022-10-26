@@ -26,8 +26,8 @@ public class DeleteProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Deletes the project identified by the index number used in the displayed project list.\n"
-            + "Parameters: LIST INDEX (must be a positive integer)\n"
+            + ": Deletes the project by its id. Id must be positive and valid \n"
+            + "Parameters: PROJECT ID \n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_FLAG + " 1";
 
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";

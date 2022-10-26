@@ -22,8 +22,8 @@ public class DeleteIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Deletes the issue identified by the issue id. \n"
-            + "Parameters: ISSUE_ID (must be a positive integer) \n"
+            + ": Deletes the issue by its id. Id must be positive and valid \n"
+            + "Parameters: ISSUE_ID \n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_FLAG + " 1";
 
     public static final String MESSAGE_SUCCESS = "Deleted Issue: %1$s";
