@@ -19,24 +19,31 @@ public class CommandResult {
 
     private final boolean showCount;
 
+    private final boolean viewPerson;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showCount, boolean viewPerson) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showCount = showCount;
+        this.viewPerson = viewPerson;
+    }
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.showCount = false;
+        this(feedbackToUser, showHelp, exit, false, false);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showCount) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = false;
-        this.exit = false;
-        this.showCount = showCount;
+        this(feedbackToUser, false, false, showCount, false);
     }
 
     /**
@@ -61,6 +68,10 @@ public class CommandResult {
 
     public boolean isShowCount() {
         return showCount;
+    }
+
+    public boolean isViewPerson() {
+        return viewPerson;
     }
 
     @Override

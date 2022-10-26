@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Person getCurrentlyViewedPerson() {
+        return model.getCurrentlyViewedPerson();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

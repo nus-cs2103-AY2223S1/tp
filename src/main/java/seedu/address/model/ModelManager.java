@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Person currentlyViewedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +35,11 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        if (filteredPersons.size() > 0) {
+            currentlyViewedPerson = filteredPersons.get(0);
+        } else {
+            currentlyViewedPerson = null;
+        }
     }
 
     public ModelManager() {
@@ -126,6 +132,18 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Currently Viewed Person Accessors =============================================================
+    @Override
+    public Person getCurrentlyViewedPerson() {
+        return currentlyViewedPerson;
+    }
+
+    @Override
+    public void updateCurrentlyViewedPerson(Person person) {
+        requireNonNull(person);
+        currentlyViewedPerson = person;
     }
 
     @Override
