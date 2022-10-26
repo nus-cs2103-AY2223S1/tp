@@ -8,19 +8,17 @@ import hobbylist.model.activity.RatePredicate;
 
 
 /**
- * Finds and lists all activities in HobbyList whose name or description contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Lists all activities in HobbyList whose rate is above certain value.
+ * The required bound should within 0-5(inclusive).
  */
 public class RateAboveCommand extends Command {
 
     public static final String COMMAND_WORD = "r/above";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions"
-            + "contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " sleep exercise code";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all activities whose rate is above certain value\n"
+            + "Parameters: int rateBound...\n"
+            + "Example: " + COMMAND_WORD + " 3";
+    public static final String RESPOND_MESSAGE = "List all activities whose rate is above ";
     private final RatePredicate predicate;
     private int bound;
     /**
@@ -40,7 +38,7 @@ public class RateAboveCommand extends Command {
         requireNonNull(model);
         model.updateFilteredActivityList(predicate);
         return new CommandResult(
-                "Messages.MESSAGE_ACTIVITIES_LISTED_OVERVIEW");
+                RESPOND_MESSAGE + this.bound + ".");
     }
 
     @Override
