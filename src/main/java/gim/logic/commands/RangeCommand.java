@@ -14,17 +14,23 @@ public class RangeCommand extends Command {
 
     public static final String COMMAND_WORD = ":range";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + " displays all exercises with dates that are within "
-            + "the specified start date and end date.\n\n"
-            + "Parameters: \nKEYWORD d/START_DATE e/END_DATE\n\n"
-            + "Example: \n" + COMMAND_WORD + " d/10/10/2022 e/22/10/2022";
+    public static final String MESSAGE_USAGE = "The range feature has two variations: \n\n"
+            + COMMAND_WORD + " d/START_DATE e/END_DATE\n"
+            + "displays all exercises with dates that are within "
+            + "the specified start date and end date.\n"
+            + "Example: \n" + COMMAND_WORD + " d/10/10/2022 e/22/10/2022\n\n"
+            + COMMAND_WORD + " last/DAYS\n"
+            + "displays all exercises within the last DAYS days and and today's exercises.\n"
+            + "Example: \n" + COMMAND_WORD + " last/7";
 
-    public static final String ADVANCED_MESSAGE_USAGE =
-            "This is an advanced feature of " + COMMAND_WORD
-            + ": displays all exercises within the last VAL days (not including today's exercises).\n\n"
-            + "Parameters: \nKEYWORD l/VAL\n\n"
-            + "Example: \n" + COMMAND_WORD + " l/7";
+    public static final String MESSAGE_USAGE_TWO = "The range feature has two variations: \n\n"
+            + COMMAND_WORD + " last/DAYS\n"
+            + "displays all exercises within the last DAYS days and and today's exercises.\n"
+            + "Example: \n" + COMMAND_WORD + " last/7\n\n"
+            + COMMAND_WORD + " d/START_DATE e/END_DATE\n"
+            + "displays all exercises with dates that are within "
+            + "the specified start date and end date.\n"
+            + "Example: \n" + COMMAND_WORD + " d/10/10/2022 e/22/10/2022";
 
     public final boolean isAdvanced;
     private final DateWithinRangePredicate predicate;
@@ -57,14 +63,14 @@ public class RangeCommand extends Command {
 
         // Display different message to user when command used is the advanced version
         if (isAdvanced && rangeInDays == 0) {
-            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_ADVANCED_TODAY);
+            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_TWO_TODAY);
         } else if (isAdvanced && rangeInDays == 1) {
-            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_ADVANCED_YESTERDAY);
+            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_TWO_YESTERDAY);
         } else if (isAdvanced && rangeInDays == 7) {
-            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_ADVANCED_WEEK);
+            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_TWO_WEEK);
         } else if (isAdvanced && rangeInDays > 1) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_RANGE_COMMAND_ADVANCED, rangeInDays));
+                    String.format(Messages.MESSAGE_RANGE_COMMAND_TWO, rangeInDays));
         }
 
         // Display different message to user when command used is the basic version
