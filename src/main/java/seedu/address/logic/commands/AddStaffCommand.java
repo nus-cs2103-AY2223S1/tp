@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
@@ -27,9 +28,9 @@ import seedu.address.model.staff.Staff;
 public class AddStaffCommand extends Command {
     public static final String COMMAND_WORD = "addstaff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the specified project.\n"
-            + "Parameters: "
-            + PREFIX_PROJECT_NAME + "PROJECT_NAME "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the project"
+            + "by the index number used in the displayed list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_STAFF_NAME + "STAFF_NAME "
             + PREFIX_STAFF_CONTACT + "STAFF_PHONE "
             + PREFIX_STAFF_LEAVE + "LEAVE_STATUS "
@@ -37,7 +38,7 @@ public class AddStaffCommand extends Command {
             + PREFIX_STAFF_DEPARTMENT + "STAFF_DEPARTMENT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT_NAME + "CS2103T TP "
+            + "1 "
             + PREFIX_STAFF_NAME + "John Doe "
             + PREFIX_STAFF_CONTACT + "98765432 "
             + PREFIX_STAFF_LEAVE + "true "
@@ -46,56 +47,40 @@ public class AddStaffCommand extends Command {
 
     public static final String MESSAGE_ADD_STAFF_SUCCESS = "New staff added to %2$s: %1$s\n"
             + "Displaying all staff in project: %2$s";
-    public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project: %1$s";
+    public static final String MESSAGE_DUPLICATE_STAFF = "Staff already exists in the project: %1$s";
 
     private final Staff toAdd;
-    private final ProjectName addTo;
+    private final Index index;
 
-    /**
-     * Creates an AddStaffCommand to add the specified {@code Staff} to the
+    /** Creates an AddStaffCommand to add the specified {@code Staff} to the
      * {@code Project} with specified {@code pname}.
      */
-    public AddStaffCommand(Staff staff, ProjectName pname) {
+    public AddStaffCommand(Staff staff, Index index) {
         requireNonNull(staff);
         toAdd = staff;
-        addTo = pname;
+        this.index= index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireNonNull(model);;
         List<Project> lastShownList = model.getFilteredProjectList();
-        int projectIndex = 0;
 
-        if (lastShownList.size() == 0) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, addTo.fullName));
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX));
         }
 
-        for (int i = 0; i < lastShownList.size(); ++i) {
-            if (lastShownList.get(i).getProjectName().equals(addTo)) {
-                projectIndex = i;
-            }
+        Project targetProject = lastShownList.get(index.getZeroBased());
+        ProjectName projectName = targetProject.getProjectName();
+
+        if (targetProject.getStaffList().contains(toAdd)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_STAFF, projectName));
         }
 
-        Index index = Index.fromZeroBased(projectIndex);
-
-        ProjectName projectName = lastShownList.get(index.getZeroBased()).getProjectName();
-        if (!projectName.equals(addTo)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, addTo.fullName));
-        }
-
-        Project projectToAdd = lastShownList.get(index.getZeroBased());
-        assert projectToAdd != null;
-
-        if (projectToAdd.getStaffList().contains(toAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_STAFF, addTo));
-        }
-
-        projectToAdd.getStaffList().add(toAdd);
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        model.setFilteredStaffList(projectToAdd);
+        targetProject.getStaffList().add(toAdd);
+        model.setFilteredStaffList(targetProject);
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd, addTo));
+        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd, projectName));
     }
 
     @Override
@@ -103,7 +88,7 @@ public class AddStaffCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddStaffCommand // instanceof handles nulls
                 && toAdd.equals(((AddStaffCommand) other).toAdd)
-                && addTo.equals(((AddStaffCommand) other).addTo));
+                && index.equals(((AddStaffCommand) other).index));
     }
 
 }

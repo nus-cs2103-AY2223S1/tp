@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
@@ -85,6 +86,7 @@ public class EditStaffCommand extends Command {
         requireNonNull(model);
 
         List<Project> lastShownList = model.getFilteredProjectList();
+        List<Staff> lastShownStaffList = model.getFilteredStaffList();
         int projectIndex = 0;
 
         if (lastShownList.size() == 0) {
@@ -106,15 +108,19 @@ public class EditStaffCommand extends Command {
 
         Project toFindIn = lastShownList.get(index.getZeroBased());
 
-        if (staffIndex.getZeroBased() >= toFindIn.getStaffList().size()) {
+        if (staffIndex.getZeroBased() >= lastShownStaffList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STAFF_DISPLAYED_INDEX);
         }
 
-        Staff toEdit = toFindIn.getStaffList().getStaff(staffIndex);
+        Staff toEdit = lastShownStaffList.get(staffIndex.getZeroBased());
         Staff editedStaff = createEditedStaff(toEdit, editStaffDescriptor);
 
         if (!toEdit.isSameStaff(editedStaff) && toFindIn.getStaffList().contains(editedStaff)) {
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
+        }
+
+        if (!toFindIn.getStaffList().contains(toEdit)) {
+            throw new CommandException(String.format(MESSAGE_INVALID_STAFF, toEdit.getStaffName()));
         }
 
         toFindIn.getStaffList().setStaff(toEdit, editedStaff);
