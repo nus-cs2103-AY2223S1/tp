@@ -38,29 +38,19 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                  PREFIX_EMAIL, PREFIX_DOB, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_GENDER); // add gender prefix
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_DOB)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER,
+                PREFIX_DOB) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
-        } // gender prefix not checked since it's optional
+        }
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         DateOfBirth dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        // add gender in parser
-        Gender gender;
-        if (!arePrefixesPresent(argMultimap, PREFIX_GENDER)) {
-            gender = Gender.getNoGender();
-        } else {
-            gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get(), Boolean.FALSE);
-        }
-
         Uid uid = new Uid();
-        Person person = new Person(name, phone, email, dob, address, tagList, gender, uid);
-
+        Person person = new Person(name, phone, email, address, gender, dob, tagList, uid);
         return new AddPersonCommand(person);
     }
 
