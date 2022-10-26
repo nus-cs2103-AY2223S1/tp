@@ -36,11 +36,8 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         List<Internship> lastShownList = model.getSelectedInternship();
-        Internship internship = lastShownList.get(0);
-        System.out.println(internship.getTags().size());
-
         if (orderType.equals("a")) {
             model.ascendSort();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
