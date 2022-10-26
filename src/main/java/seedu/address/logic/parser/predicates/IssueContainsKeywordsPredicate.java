@@ -137,7 +137,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
 
     @Override
     public boolean test(Issue issue) {
-            return testTitle(issue) && testUrgency(issue) && testStatus(issue) && testProjectName(issue);
+        return testTitle(issue) && testUrgency(issue) && testStatus(issue) && testProjectName(issue);
     }
 
     @Override

@@ -9,10 +9,10 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ParserUtil.parseEmail;
 import static seedu.address.logic.parser.ParserUtil.parseEmailValidity;
-import static seedu.address.logic.parser.ParserUtil.parseName;
-import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ParserUtil.parseMobile;
 import static seedu.address.logic.parser.ParserUtil.parseMobileValidity;
+import static seedu.address.logic.parser.ParserUtil.parseName;
+import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.ArrayList;
@@ -34,7 +34,6 @@ import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientMobile;
 import seedu.address.model.client.ClientWithoutModel;
-import seedu.address.model.client.predicates.MobileContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**
