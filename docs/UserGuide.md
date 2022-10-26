@@ -138,8 +138,10 @@ Examples:
 ### Listing all patients: `list`
 
 Shows a list of all patients in the patient database.
+* Not to be confused with the `showall` command.
 
 Format: `list`
+* To be used only when the list of records is displayed, in order to return to the main display.
 
 ### Listing all record(s) for the specified patient : `rlist
 
@@ -163,7 +165,9 @@ Edits an existing person in the address book.
 Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least one of the optional fields must be provided 
+  * if the same field is specified more than once, only the latest instance of the field is used.
+  * eg. edit 1 n/Johnny n/Becky -> Person's name is edited to Becky.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
@@ -181,6 +185,8 @@ Format: `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`
 
 * Edits the record at the specified `INDEX`. The index refers to the index number shown in the displayed record list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+  * if the same field is specified more than once, only the latest instance of the field is used.
+  * eg. redit 1 r/Cold r/Flu -> Record's data is edited to Flu.
 * Existing values will be updated to the input values.
 * When editing medication, the existing medication in the record will be removed i.e adding of tags is not cumulative.
 * You can remove all the specific record’s medications by typing `t/` without
@@ -213,17 +219,26 @@ Examples:
 
 Finds records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the rlist command to list out the records for a specified patient.
 
-Format: `rfind KEYWORD [MORE_KEYWORDS]`
-* The search is case-insensitive. e.g `hello` will `match HELLO`
-* The order of the keywords does not matter. e.g. `Hello World` will match `World Hello`
-* Only the description of the record will be searched.
-* Only full words will be matched e.g. `Hell` will not match `Hello`.
-* Records with a description matching at least one keyword will be returned (i.e. OR search). e.g. `Hello World` will return `Hello Hello`, `World World`.
+Format: `rfind [d/DATA] [r/DATA] [m/MEDICATION]`
+* The search is case-insensitive. e.g `h1n1` will match `H1N1`
+* The order of the keywords does not matter. e.g. `r/Has SARS` will match `SARS Has` stored in record data
+* Only full words will be matched e.g. `Covid` will not match `Covid-19`.
+* The order that the fields are specified does not matter. eg. `r/SARS m/Panadol` is equivalent to `m/Panadol r/SARS`
+* Records with fields matching at least one keyword will be returned (i.e. OR search **within** the specified prefix). 
+  * e.g. `r/Hello World` will return records with data of `Hello Hello`, `World World`.
+* Records with that matches at least one keyword from each field specified will be returned (i.e. AND search **between** all specified prefixes)
+  * eg. `r/Hello` `m/cold`will return only records that match both `Hello` in record data and `cold` in record medication.
 
 Examples:
-* `rfind hello` returns `hello` and `Hello World`
-* `rfind foo bar` returns `foo bar`, `bar null`
+* `rfind r/hello` returns a record with `hello` and `Hello World` stored in its record data field.
+* `rfind r/cold d/10-2022` returns a record that matches both `cold` in record data field, and has a date within Oct 2022.
+### Displaying the full list : `showall`
 
+Displays the full list of patients when the patient list is displayed, or
+the full list of records when the record list is displayed.
+* Not to be confused with `list` command.
+
+Format: `showall`
 
 ### Clearing all entries : `clear`
 
@@ -290,18 +305,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                                      |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient**   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Record**    | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                       |
-| **Clear**         | `clear`                                                                                                                                                               |
-| **Clear Records** | `rclear`                                                                                                                                                              |
-| **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Delete Record** | `rdelete INDEX`                                                                                                                                                       |
-| **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Edit Record**   | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                         |
-| **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **Find Record**   | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                             |
-| **List**          | `list`                                                                                                                                                                |
-| **List Records**  | `rlist`                                                                                                                                                               |
-| **Help**          | `help`                                                                                                                                                                |
+| Action                   | Format, Examples                                                                                                                                                      |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Record**           | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                       |
+| **Clear**                | `clear`                                                                                                                                                               |
+| **Clear Records**        | `rclear`                                                                                                                                                              |
+| **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Delete Record**        | `rdelete INDEX`                                                                                                                                                       |
+| **Edit**                 | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Edit Record**          | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                         |
+| **Find**                 | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Find Record**          | `rfind [r/DATA] [d/DATE] [m/MEDICATION]`<br> e.g., `rfind r/foo m/bar d/10-2000`                                                                                      |
+| **List**                 | `list`                                                                                                                                                                |
+| **List Records**         | `rlist`                                                                                                                                                               |
+| **Show Unfiltered List** | `showall`                                                                                                                                                             |
+| **Help**                 | `help`                                                                                                                                                                |

@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -30,27 +29,32 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_RECORD, PREFIX_MEDICATION);
 
-        if (!somePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_RECORD, PREFIX_MEDICATION)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
         }
 
         String recordDate = ParserUtil.parseDateKeyword(
                 argMultimap.getValue(PREFIX_DATE).orElse(PREFIX_NOT_SPECIFIED));
-        List<String> recordkeywords = ParserUtil.parseKeywords(
+        List<String> recordKeywords = ParserUtil.parseKeywords(
                 argMultimap.getValue(PREFIX_RECORD).orElse(PREFIX_NOT_SPECIFIED));
-        List<String> medications = ParserUtil.parseKeywords(
+        List<String> medicationKeywords = ParserUtil.parseKeywords(
                 argMultimap.getValue(PREFIX_MEDICATION).orElse(PREFIX_NOT_SPECIFIED));
 
-        return new FindRecordCommand(new RecordContainsKeywordsPredicate(recordkeywords, medications, recordDate));
+        if (noPrefixesPresent(recordKeywords, medicationKeywords, recordDate)) {
+            throw new ParseException(FindRecordCommand.MESSAGE_NOTHING_TO_FIND);
+        }
+
+        return new FindRecordCommand(
+                new RecordContainsKeywordsPredicate(recordKeywords, medicationKeywords, recordDate));
     }
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean somePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean noPrefixesPresent(
+            List<String> recordKeywords, List<String> medicationKeywords, String date) {
+        return recordKeywords.isEmpty() && medicationKeywords.isEmpty() && date.isBlank();
     }
 
     /**
