@@ -322,6 +322,17 @@ obtaining the module code, the argument would be passed to static method `Module
 the module details from NUSMods and return a `Module`. The module would be used to instantiate an `AddCommand`. When the
 `AddCommand` is executed, the `Model` would add the module to the `ModuleList`.
 
+In the event that the HTTP request made to NUSMods fails when fetching, a fallback data file is present to provide the
+module data. The fallback data file is a JSON file that contains the module data of all the modules in NUS as of AY22/23.
+The fallback data file is located in `src/main/modrekt/logic/parser/modules/data/modules.json`.
+
+Additionally, the endpoint used to fetch from NUSMods is currently set to only fetch the modules in the academic year 
+of 2022-2033 (AY22/23). This is an intended effect, as a collaboration with NUS is something we hope to seek in the 
+future to provide a more robust module data fetching system. As such, if utilised in years beyond AY22/23, 
+the module data obtained may be out of date. 
+To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code 
+and credits, without any reliance on NUSMods.
+
 ### Remove Module
 
 In this section, the functionality of `remove` module feature, expected execution path, and the interactions between the

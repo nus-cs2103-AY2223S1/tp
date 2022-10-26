@@ -126,6 +126,7 @@ public class Module {
 
         return otherModule != null
                 && otherModule.getName().equals(getName())
+                && otherModule.getCode().equals(getCode())
                 && otherModule.isDone() == this.isDone();
     }
 
