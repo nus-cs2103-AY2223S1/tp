@@ -104,6 +104,22 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        taskList.forEach(task-> {
+            if (task.isLinked() && task.getExam().equals(previousExam)) {
+                Task editedTask = task.linkTask(newExam);
+                replaceTask(task, editedTask, true);
+            }
+        });
+    }
+
+    /**
      * Removes the equivalent task from the tasklist.
      * The task must exist in the list.
      */
@@ -114,15 +130,26 @@ public class DistinctTaskList implements Iterable<Task> {
         }
     }
 
-    public int getNumOfTasksCompleted(Module module) {
+    public int getNumOfCompletedModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
             .filter(module::isSameModule).count();
     }
 
-    public int getTotalNumOfTasks(Module module) {
+    public int getTotalNumOfModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
+    }
+
+    public int getNumOfCompletedExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getExam)
+            .filter(exam::isSameExam).count();
+    }
+
+    public int getTotalNumOfExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().map(Task::getExam).filter(exam::isSameExam).count();
     }
 
     /**

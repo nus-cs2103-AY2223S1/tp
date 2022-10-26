@@ -10,8 +10,10 @@ import seedu.address.model.module.Module;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExist;
 import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
 import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.PriorityTagDoesNotExist;
 import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
 
 /**
@@ -157,6 +159,18 @@ public class Task {
         return new Task(module, description, status, tag, deadlineTag, linkedExam);
     }
 
+    /**
+     * Deletes the deadline tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deletePriorityTag() {
+        if (priorityTag == null) {
+            throw new PriorityTagDoesNotExist();
+        }
+        return new Task(module, description, status, null, deadlineTag, linkedExam);
+    }
+
     public boolean hasPriorityTag() {
         return priorityTag != null;
     }
@@ -195,6 +209,18 @@ public class Task {
         return new Task(module, description, status, priorityTag, tag, linkedExam);
     }
 
+    /**
+     * Deletes the priority tag stored in the task.
+     *
+     * @return The task which contains no deadline tag.
+     */
+    public Task deleteDeadlineTag() {
+        if (deadlineTag == null) {
+            throw new DeadlineTagDoesNotExist();
+        }
+        return new Task(module, description, status, priorityTag, null, linkedExam);
+    }
+
     public boolean isLinked() {
         return linkedExam != null;
     }
@@ -220,7 +246,13 @@ public class Task {
 
         Module updatedModule = editTaskDescriptor.getModule().orElse(module);
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
-        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+
+        if (editTaskDescriptor.getModule().isPresent()
+            && !editTaskDescriptor.getModule().get().equals(module)) {
+            return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        }
+
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
     }
 
     /**
