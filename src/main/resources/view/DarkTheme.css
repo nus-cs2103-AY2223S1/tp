@@ -291,6 +291,11 @@
     -fx-background-insets: 2 0 0 0;
 }
 
+.more-tags-label {
+    -fx-background-color: #333335 !important;
+    -fx-text-fill: #c7c7cc !important;
+}
+
 .applicationStatus_label {
     -fx-font-family: 'IBM Plex Sans SemiBold';
     -fx-font-size: 16px;
