@@ -120,7 +120,7 @@ Item List Box:
 
 #### Sort all items by an attribute: `sort`
 
-**Format:**: `sort [n/] [qty/] [u/] [bgt/] [exp/] [p/] [r/]`
+**Format:** `sort [n/] [qty/] [u/] [bgt/] [exp/] [p/] [r/]`
 
 > Sorts the list of currently displayed items by the provided criteria
 

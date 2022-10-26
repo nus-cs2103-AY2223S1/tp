@@ -21,6 +21,7 @@ The COMMAND_WORD is a text indicating a command word of a command. Refer to the 
 * sort
 * view
 * deletetag
+* filtertag
 * listtag
 * newtag
 * renametag
