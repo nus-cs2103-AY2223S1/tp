@@ -13,12 +13,15 @@ while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, GuestBook can get your
 guest management tasks done faster than traditional GUI apps.
 
-You can use GuestBook to track guests and their details including name, email address, phone number, room number, 
-dates of stay, number of guests, bill, request, and whether their room has been cleaned. By allowing you to add, edit, 
-delete, and filter guests, GuestBook can fulfill all your hotel management needs.
+You can use GuestBook to track guests and their details including name, email address, phone number, 
+room number, dates of stay, number of guests, bill, request, and whether their room has been cleaned. 
+By allowing you to add, edit, delete, and filter guests, GuestBook can fulfill all your hotel management needs.
 
 This user guide provides in-depth descriptions of all the available features in GuestBook and how to use them.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -29,6 +32,8 @@ This user guide provides in-depth descriptions of all the available features in 
 * To see the amazing features that GuestBook provides and how to use them, you can visit the [Features](#features) section.
 * Having issues? You can check out the [FAQ](#faq) section to see find solutions to your issues.
 * Have a question for us? Feel free to [contact us](#contact-us) and we will do our best to assist you.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,20 +46,23 @@ This user guide provides in-depth descriptions of all the available features in 
 * Guest Card: This is where all your guest information will be shown.
 * Status Bar: This is where your saved file is stored.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br>
-   ![Ui](images/DownloadInstruction.png)
-1. Copy the file to the folder you want to use as the _home folder_ for your GuestBook. <br>
-   ![Ui](images/GuestBookIcon.png)
-1. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+2. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br> <br>
+   ![Ui](images/DownloadInstruction.png) <br><br>
+3. Copy the file to the folder you want to use as the _home folder_ for your GuestBook. <br> <br>
+   ![Ui](images/GuestBookIcon.png) <br><br>
+4. Double-click on the file to start the app. The GUI, similar to the image below, should pop up in a few seconds. 
+Note that the app contains sample data.<br><br>
+   ![Ui](images/Ui.png) <br><br>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to GuestBook.
@@ -73,23 +81,27 @@ This user guide provides in-depth descriptions of all the available features in 
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. You can refer to the [Features](#features) below for details of each command.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
-| Term             | Definition                                                                                                                                            |
-|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Alphanumeric** | `Refers to characters that are numbers 0-9 and alphabets A-Z, both uppercase and lowercase.`                                                          |
-| **dd/MM/yy**     | `Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year and they must be separated by a "/".` |
-| **CLI**          | `Stands for Command Line Interface, it refers to a text-based interface used to execute opertaions of the system.`                                    |
-| **Guest**        | `A guest staying at the hotel.`                                                                                                                       |
-| **GUI**          | `Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.`              |
-| **Hard disk**    | `A data storage device used to store and retrieve data.`                                                                                              |
-| **Index**        | `The number that corresponds to the position of the Guest in the list.`                                                                               |
-| **Java**         | `A programming language used to run GuestBook.`                                                                                                       |
-| **JSON file**    | `Stands for JavaScript Object Notation. It refers to a file format to store data.`                                                                    |
+| Term             | Definition                                                                                                                                          |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | Refers to characters that are numbers 0-9 and alphabets A-Z, both uppercase and lowercase.                                                          |
+| **dd/MM/yy**     | Refers to the date format, where dd stands for 2 digit days, 2 digit months and the last 2 digits for the year and they must be separated by a "/". |
+| **CLI**          | Stands for Command Line Interface, it refers to a text-based interface used to execute opertaions of the system.                                    |
+| **Guest**        | A guest staying at the hotel.                                                                                                                       |
+| **GUI**          | Stands for Graphical User Interface, it refers to an interface that allows users to interact with the system through friendly visuals.              |
+| **Hard disk**    | A data storage device used to store and retrieve data.                                                                                              |
+| **Index**        | The number that corresponds to the position of the Guest in the list. The index **must be a positive integer** like 1, 2 or 3.                      |
+| **Java**         | A programming language used to run GuestBook.                                                                                                       |
+| **JSON file**    | Stands for JavaScript Object Notation. It refers to a file format to store data.                                                                    |
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,7 +128,7 @@ This user guide provides in-depth descriptions of all the available features in 
   e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
@@ -127,12 +139,11 @@ This user guide provides in-depth descriptions of all the available features in 
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+This command shows a message explaining how to access the help page, which is this user guide you are reading.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a guest : `add`
 
@@ -150,7 +161,6 @@ Constraints of parameters:
 * `ROOM` should only contain alphanumeric characters and a hyphen. A hyphen can only be added if it is in between 2 alphanumeric characters.
 * `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
-* `IS_ROOM_CLEAN` should only contain case insensitive 'yes', 'no', 'y', 'n'.
 * `REQUEST` is an optional field, and it should be at most 500 characters long.
 
 Examples:
@@ -167,33 +177,34 @@ Format: `list`
 
 This command edits an existing guest in GuestBook.
 
+The guest specified at the `INDEX` is the guest you wish to edit. The existing values will be updated to the values
+that you have inputted.
+
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`
 
-* Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
-
-* Existing values will be updated to the input values.
+Constraints of parameters:
+* Identical to the constraints of the `add` feature from above.
+* `IS_ROOM_CLEAN` should only contain 'yes', 'no', 'y' or 'n' insensitive of case.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower` Edits the name of the 2nd guest to be `Betsy Crower`.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the first guest to `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower` Edits the name of the second guest to `Betsy Crower`.
 
 ### Billing a guest : `bill`
 
 This command updates the bill of a guest in GuestBook.
 
+This command updates the bill of the guest at the specified `INDEX`. The existing bill value will be increased 
+by the input value.
+
 Format: `bill INDEX b/BILL`
 
-* Updates the bill of the guest at the specified `INDEX`.
-
-* The index **must be a positive integer** 1, 2, 3, …​
-
-* The existing bill value will be increased by the input value.
-
-* The bill value **must be either an integer or a double with up to 2 decimal places.**
+Constraints of parameters:
+* The bill value **must be either an whole number or a whole number with up to 2 decimal places.**
 
 Examples:
-* `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the 1st guest.
-* `bill 2 b/-10` Subtracts 10 from the bill of the 2nd guest.
+* `bill 1 b/+99.99` or `bill 1 b/99.99` Adds 99.99 to the bill of the first guest.
+* `bill 2 b/-10` Subtracts 10 from the bill of the second guest.
 
 Common mistakes:
 * Missing out the b/ prefix in the bill command.
@@ -201,12 +212,16 @@ Common mistakes:
 
 ### Locating guests : `find`
 
-This command locates guests whose details contain any of the given keywords.
+This command locates guests whose details contain any of the given keywords. This allows the user to search for a 
+guest with any of the specific guest's field.
 
-This command is typically used when searching for a guest of a specific characteristic.
+This command is typically used when searching for a guest of a specific characteristic. This command also allows for
+filtering of the guest list displayed. For example, the command `find no` will display all the rooms that have yet to be
+cleaned.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+Constraints of parameters:
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -216,9 +231,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro` (refer to the image below for the details of the guests)<br>
-
+<br>
 
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)
+
+Common mistakes:
+* Searching for guests using partial field characteristics e.g. `170` will not match `170.00`.
 
 ### Deleting a guest : `delete`
 
@@ -231,7 +249,6 @@ command with caution.
 Format: `delete INDEX`
 
 * Deletes the guest at the specified `INDEX`.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd guest in GuestBook.
@@ -280,6 +297,8 @@ GuestBook data are saved as a JSON file `[JAR file location]/data/guestbook.json
 If your changes to the data file makes its format invalid, GuestBook will discard all data and start with an empty data file at the next run.
 </div>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -301,6 +320,8 @@ Listed here are some frequently asked questions. Should you require any other as
 **Q**: Why are there no guests in my GuestBook?<br>
 **A**: If you didn't enter the `clear` command, it is likely that your `guestbook.json` file is corrupted, causing GuestBook to reset it to prevent any malicious files from being used.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -308,16 +329,23 @@ Listed here are some frequently asked questions. Should you require any other as
 | Action                 | Format, Examples                                                                                                                                                                               |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**                | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3`            |
+| **Bill**               | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
 | **Clear**              | `clear`                                                                                                                                                                                        |
 | **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
 | **Edit**               | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/4` |
-| **Bill**               | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
-| **Mark Rooms Unclean** | `markRoomsUnclean`                                                                                                                                                                             |
-| **List**               | `list`                                                                                                                                                                                         |
 | **Help**               | `help`                                                                                                                                                                                         |
+| **List**               | `list`                                                                                                                                                                                         |
+| **Mark Rooms Unclean** | `markRoomsUnclean`                                                                                                                                                                             |
 | **Undo**               | `undo`                                                                                                                                                                                         |
 | **Redo**               | `redo`                                                                                                                                                                                         |
 
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Contact Us
 For enquiries or feedback, feel free to let us know at [guestbook.enquiries@gmail.com](mailto:guestbook.enquiries@gmail.com).
+
+[Return to Table of Contents](#table-of-contents)
+

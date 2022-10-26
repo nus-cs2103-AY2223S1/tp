@@ -154,52 +154,13 @@ Classes used by multiple components are in the `seedu.guest.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### DateRange Field
-
-#### Implementation:
-
-* The `DateRange` class holds the period of stay of a `Guest`.
-* Its constructor takes in a string representing a check-in date and a check-out date.
-
-#### Design Considerations:
-
-**Aspect: How to represent dates**
-* **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
-  * Pros: Easier to parse and edit dates separately.
-  * Cons: Depend on each other for validation (check-in must be earlier than check-out), which increases coupling.
-* **Alternative 2 (current choice):** Single class representing both dates.
-  * Pros: Validation can be done within the class itself, which reduces coupling. More intuitive as the dates are often displayed together.
-  * Cons: Parsing, editing, and other operations on the dates are more complex.
-
-Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
-
-### Bill Field
-
-#### Implementation:
-
-* The `Bill` class holds the value that a `Guest` owes.
-* Its constructor takes in a string representing a signed `double` with up to 2 decimal places.
-
-#### Design Considerations:
-
-**Aspect: `add()` method of the `Bill` class**
-* As `Bill`s can be added to each other, we abstracted this behaviour into the `add` method.
-
-**Aspect: How to deduct from bills**
-* **Alternative 1:** Create a `subtract` method.
-  * Pros: More understandable code.
-  * Cons: Requires knowledge of which method to call (`add` or `subtract`).
-* **Alternative 2 (current choice):** Use `add()` with a negative `Bill`.
-  * Pros: Less code, more flexibility.
-  * Cons: `Bill` must be allowed to hold negative values, but `Guest`s cannot (more checks required).
-
-Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
-
 ### Add Command
 
 #### Implementation:
 
-* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number of Guests`) and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields from their respective prefixes.
+* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number Of Guests`) 
+and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields 
+from their respective prefixes.
 
 The following activity diagram summarizes what happens when a user enters an `add` command.
 
@@ -232,22 +193,28 @@ the initial bill to be 0 and chose to remove `Bill` as it would make the `add` c
 * As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
 we chose to make `Request` optional and default it as blank should it not be provided.
 
-### Edit Command
+### Bill Field
 
 #### Implementation:
-* The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Is Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
-The following activity diagrams summarizes what happens when a user enters an `edit` command.
-
-![EditActivityDiagram](images/EditActivityDiagram.png)
+* The `Bill` class holds the value that a `Guest` is required to pay to the hotel.
+* Its constructor takes in a string representing a signed `double` with up to 2 decimal places.
 
 #### Design Considerations:
 
-**Aspect: Allowing only specific fields provided to be edited**
-* As the edit command is usually used when there is a change or error in the information provided, it makes more sense for the user to be able to change only selected fields.
+**Aspect: `add()` method of the `Bill` class**
+* As `Bill`s can be added to each other, we abstracted this behaviour into the `add` method.
 
-**Aspect: Excluding `Bill` in the `edit` command**
-* As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace the `Bill` by accident.
+**Aspect: How to deduct from bills**
+* **Alternative 1:** Create a `subtract` method.
+    * Pros: More understandable code.
+    * Cons: Requires knowledge of which method to call (`add` or `subtract`).
+* **Alternative 2 (current choice):** Use `add()` with a negative `Bill`.
+    * Pros: Less code, more flexibility.
+    * Cons: `Bill` must be allowed to hold negative values, but the bill field for each `Guest`
+      cannot, thus requires more checks.
+
+Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
 
 ### Bill Command
 
@@ -279,6 +246,46 @@ and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE
 
 **Aspect: Using the `b/` prefix**
 * To standardise the formatting and testing for field inputs, we decided to include the `b/` prefix in the command syntax.
+
+### DateRange Field
+
+#### Implementation:
+
+* The `DateRange` class holds the period of stay of a `Guest`.
+* Its constructor takes in a string representing a check-in date and a check-out date.
+
+#### Design Considerations:
+
+**Aspect: How to represent dates**
+* **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
+    * Pros: Easier to parse and edit dates separately.
+    * Cons: Depend on each other for validation (check-in must be earlier than check-out), which increases coupling.
+* **Alternative 2 (current choice):** Single class representing both dates.
+    * Pros: Validation can be done within the class itself which reduces coupling. More intuitive as the dates
+      are often displayed together.
+    * Cons: Parsing, editing, and other operations on the dates are more complex.
+
+Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
+
+### Edit Command
+
+#### Implementation:
+* The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1)
+  and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number Of Guests`, `Is Room Clean` and `Request`)
+  and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
+
+The following activity diagrams summarizes what happens when a user enters an `edit` command.
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: Allowing only specific fields provided to be edited**
+* As the edit command is usually used when there is a change or error in the information provided, it makes more sense for the user to be able to change only selected fields.
+
+**Aspect: Excluding `Bill` in the `edit` command**
+* As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and
+  may cause user error if they were to replace the `Bill` by accident.
 
 ### MarkRoomsUnclean Command
 
@@ -398,8 +405,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 As the users of this application would be hotel mangers of small hotels, there would not a massive list of guests. Hence, we think that memory usage would not be an issue, and proceeded with Alternative 1.
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -435,7 +440,7 @@ As the users of this application would be hotel mangers of small hotels, there w
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                  | I want to …​                                                       | So that I can…​                                                                           |
+| Priority | As a…                    | I want to…                                                         | So that I can…                                                                            |
 |----------|--------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
 | `* * *`  | first time hotel manager | know the available commands                                        | use the application to its full capabilities                                              |
 | `* * *`  | hotel manager            | view a list of all the guests                                      | browse all my guests' data at once                                                        |
@@ -470,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `     | hotel manager            | get the details of how many guests are eating dinner               | prepare the appropriate amount of food                                                    |
 
 
-*{More to be added}*
+[//]: # (*{More to be added}*)
 
 ### Use cases
 
@@ -658,7 +663,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+[//]: # (1. _{ more test cases …​ }_)
 
 ### Deleting a guest
 
@@ -675,7 +680,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+[//]: # (1. _{ more test cases …​ }_)
 
 ### Saving data
 
@@ -683,7 +688,7 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+[//]: # (1. _{ more test cases …​ }_)
 
 ### Adding a guest
 
@@ -736,7 +741,7 @@ testers are expected to do more *exploratory* testing.
 
    10. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
                    dr/13/09/22 - 15/09/23 ng/5 rq/Kill the insect `<br>
-       Expected: No guest is added, because the number of guest is invalid(>4).
+       Expected: No guest is added, because the number of guest is invalid (>4).
        Error details shown in the status message.
           Status bar remains the same.
 
@@ -745,19 +750,19 @@ testers are expected to do more *exploratory* testing.
        Expected: No guest is added, because the is room clean is invalid. Error details shown in the status message.
        Status bar remains the same.
 
-   let INVALID_REQUEST be a string of 501 characters long.
-   11. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+   
+   12. Let INVALID_REQUEST be a string of 501 characters long. <br>
+       Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
        dr/13/09/22 - 15/09/23 ng/1 rq/INVALID_REQUEST `<br>
-       Expected: No guest is added, because the request is invalid(>500 characters).
+       Expected: No guest is added, because the request is invalid (>500 characters).
        Status bar remains the same.
 
 ### Editing a guest
 
 1. Editing a guest
    
-   1. Prerequisite: Only 1 guest to be edited; the guest's index should exist.
-   The guest should exist in GuestBook.
-   The format and content of the command should be valid.
+   1. Prerequisite: Only 1 guest to be edited. The guest's index should exist.
+   The guest should exist in GuestBook. The format and content of the command should be valid.
 
    2. Test case: `edit 1 n/Johnny`<br>
       Expected: Guest edit successfully, the first guest's name will change from "John Doe" to "Johnny"
@@ -769,5 +774,6 @@ testers are expected to do more *exploratory* testing.
       Expected: No guest is edited, because the name is invalid. Error details shown in the status message.
       Status bar remains the same.
 
-   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `...`<br>
-      Expected: Similar to previous.
+   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`<br>
+      Expected: No guest is edited, because the name is invalid. Error details shown in the status message.
+      Status bar remains the same.
