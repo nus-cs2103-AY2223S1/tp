@@ -600,12 +600,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `RC4HDB` and the **Actor** is the `user`, unless specified otherwise)
+[comment]: <> (&#40;For all use cases below, the **System** is the `RC4HDB` and the **Actor** is the `user`, unless specified otherwise&#41;)
 
+System: RC4HDB <br>
+Use case: UC1 - Getting help with the application <br>
+Actor: User <br>
+MSS:
 
-**Use case: UC1. Getting help with the application**
-
-**MSS**
 1. User needs help related to RC4HDB.
 2. User requests for help in RC4HDB.
 3. RC4HDB displays a message that directs the user to our user guide.
@@ -614,54 +615,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC2. Add a single resident**
+System: RC4HDB <br>
+Use case: UC2 - Add a single resident <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. New resident moves into [**RC4**](#glossary).
 2. User has the personal details of a resident they wish to add.
 3. User adds the resident to RC4HDB.
 4. RC4HDB adds the resident to the data file.
-5. RC4HDB displays the name and other information of the resident.
+5. RC4HDB displays the name and other information of the resident. <br>
+   Use case ends.
 
-    Use case ends.
+Extensions:
 
-**Extensions**
-
-* 3a. User enters resident information in an invalid format.
-
-    * 3a1. RC4HDB shows an error message.
-
-    Use case resumes at step 3.
+&ensp; 3a. User enters resident information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 3.
 
 <br>
 
-**Use case: UC3. Listing out information of all residents**
+System: RC4HDB <br>
+Use case: UC3 - Listing out information of all residents <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants to see the full list of residents in [**RC4**](#glossary).
 2. User requests for the list of residents from RC4HDB.
 3. RC4HDB displays the details of all residents in [**RC4**](#glossary).
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 1a. The user wants to view only certain fields in the list.
-
-  * 1a1. The user specifies which fields he wants to see or hide.
-
-  Use case resumes at step 2.
+&ensp; 1a. The user wants to view only certain fields in the list. <br>
+&ensp; &emsp; &nbsp; 1a1. The user specifies which fields he wants to see or hide. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 
-* 2a. The list is empty.
-
-    Use case ends.
+&ensp; 2a. The list is empty. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
 <br>
 
-**Use case: UC4. Editing a single resident’s information**
-
-**MSS**
+System: RC4HDB <br>
+Use case: UC4 - Editing a single resident’s information <br>
+Actor: User <br>
+MSS:
 
 1. Resident has a specific change in personal information.
 2. User edits the resident's information in RC4HDB.
@@ -670,25 +670,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. There is no relevant category for that information.
-  * 2a1. RC4HDB shows an error message.
+&ensp; 2a. There is no relevant category for that information. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
-  Use case ends.
 
-
-* 2b. User enters resident information in an invalid format.
-
-    * 2b1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2b. User enters resident information in an invalid format. <br>
+&ensp; &emsp; &nbsp; 2b1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC5. Finding a resident’s information by their name**
+System: RC4HDB <br>
+Use case: UC5 - Finding a resident’s information by their name <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants to search for a resident’s information.
 2. User makes a request to RC4HDB to find a resident by their name.
 3. RC4HDB searches the database for the given name.
@@ -696,66 +695,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 3a. RC4HDB cannot find any resident matching the user input.
-
-    * 3a1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 3a. RC4HDB cannot find any resident matching the user input. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 
-* 4b. RC4HDB finds multiple residents matching the user input.
-
-    * 4b1. RC4HDB shows a list of all matching residents.
-
-    Use case ends.
+&ensp; 3b. RC4HDB finds multiple residents matching the user input. <br>
+&ensp; &emsp; &nbsp; 3b1. RC4HDB shows a list of all matching residents. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
 <br>
 
-**Use case: UC6. Filtering the list of all residents by specific fields**
+System: RC4HDB <br>
+Use case: UC6 - Filtering the list of all residents by specific fields <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants to see a list of residents that fall under a certain category.
 2. User requests for a filtered list from RC4HDB based on the relevant categories.
 3. RC4HDB shows the filtered list.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`.
-
-    * 2a1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2a. User enters an invalid specifier i.e. one that is not `/all` or `/any`. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 
-* 2b. User enters multiple specifiers i.e. both `/all` and `/any`.
-
-    * 2b1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2b. User enters multiple specifiers i.e. both `/all` and `/any`. <br>
+&ensp; &emsp; &nbsp; 2b1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 
-* 2c. User enters a category that does not exist.
-
-    * 2c1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2c. User enters a category that does not exist. <br>
+&ensp; &emsp; &nbsp; 2c1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 
-* 2d. User enters a value that does not exist in the category.
-
-    * 2d1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2d. User enters a value that does not exist in the category. <br>
+&ensp; &emsp; &nbsp; 2d1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC7. Deleting a single resident**
+System: RC4HDB <br>
+Use case: UC7 - Deleting a single resident <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. Resident moves out of [**RC4**](#glossary).
 2. User deletes the resident from RC4HDB.
 3. RC4HDB removes the corresponding resident from the database.
@@ -763,19 +754,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. User enters an invalid input.
-
-    * 2a1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 2a. User enters an invalid input. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC8. Clearing all data**
+System: RC4HDB <br>
+Use case: UC8 - Clearing all data <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants to clear all data from the current working file.
 2. RC4HDB clears all data from the current working file.
 3. RC4HDB shows a success message.
@@ -784,28 +775,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC9. Exiting the application**
+System: RC4HDB <br>
+Use case: UC9 - Exiting the application <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User has completed his/her tasks and wants to exit the application.
 2. User exits the application.
 3. RC4HDB application closes.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
-* 2a. User clicks on the exit button.
-
-    * 2a1. RC4HDB application closes.
-
-    Use case ends.
+&ensp; 2a. User clicks on the exit button. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB application closes. <br>
+&ensp; &emsp; &nbsp; Use case ends.
 
 <br>
 
-**Use case: UC10. Importing data from [CSV](#glossary) file**
+System: RC4HDB <br>
+Use case: UC10 - Importing data from [CSV](#glossary) file <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User has a data file with resident’s information, and wants to view it in RC4HDB.
 2. User imports the file.
 3. RC4HDB reads the file.
@@ -814,25 +807,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
-* 2a. Information in the [**CSV**](#glossary) file has not been stored in the proper format.
+Extensions:
 
-    * 2a1. RC4HDB shows an error message.
+&ensp; 2a. Information in the [**CSV**](#glossary) file has not been stored in the proper format. <br>
+&ensp; &emsp; &nbsp; 2a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
-    Use case resumes at step 2.
 
-
-* 3a. No file could be found at the specified file path.
-
-    * 3a1. RC4HDB shows an error message.
-
-    Use case resumes at step 2.
+&ensp; 3a. No file could be found at the specified file path. <br>
+&ensp; &emsp; &nbsp; 3a1. RC4HDB shows an error message. <br>
+&ensp; &emsp; &nbsp; Use case resumes at step 2.
 
 <br>
 
-**Use case: UC11. Exporting data to [CSV](#glossary) file**
+System: RC4HDB <br>
+Use case: UC11 - Exporting data to [CSV](#glossary) file <br>
+Actor: User <br>
+MSS:
 
-**MSS**
 1. User wants the data in a [**CSV**](#glossary) file.
 2. User exports the file.
 3. RC4HDB creates a new [**CSV**](#glossary) file using user input.
@@ -840,7 +832,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
+<br> 
+
+[comment]: <> (*{More to be added}*)
 
 ### Non-Functional Requirements
 
