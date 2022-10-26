@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.Property;
 
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
     private final ReadOnlyPropertyDirectory initialPropertyDirectory;
     private final ReadOnlyClientDirectory initialClientDirectory;
 
+    private final CommandQueue commandQueue = new CommandQueue();
     /**
      * Initializes a ModelManager with the given propertyDirectory and userPrefs.
      */
@@ -239,4 +242,15 @@ public class ModelManager implements Model {
                 && filteredClients.equals(other.filteredClients);
     }
 
+
+    //=========== CommandQueue =============================================================
+    @Override
+    public void addCommand(Command cmd) {
+        this.commandQueue.addCommand(cmd);
+    }
+
+    @Override
+    public CommandQueue getCommandQueue() {
+        return this.commandQueue;
+    }
 }

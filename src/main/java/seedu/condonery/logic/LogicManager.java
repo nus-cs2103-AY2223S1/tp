@@ -37,7 +37,6 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final CondoneryParser condoneryParser;
 
-    private final CommandQueue commandQueue;
     private final Collection<Class<? extends Command>> commandsToIgnore =
             Arrays.asList(ClearCommand.class, HelpCommand.class, ExitCommand.class, UndoCommand.class);
 
@@ -48,7 +47,6 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         condoneryParser = new CondoneryParser();
-        commandQueue = new CommandQueue();
     }
 
     @Override
@@ -58,16 +56,9 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = condoneryParser.parseCommand(commandText);
         if (!commandsToIgnore.contains(command.getClass())) {
-            System.out.println("hello!");
-            System.out.println(command.getClass());
-            commandQueue.addCommand(command);
+            model.addCommand(command);
         }
 
-        if (command instanceof UndoCommand) {
-            //CHECKSTYLE.OFF: SeparatorWrap
-            ((UndoCommand) command).setCommandQueue(commandQueue);
-            //CHECKSTYLE.ON: SeparatorWrap
-        }
         commandResult = command.execute(model);
 
         try {

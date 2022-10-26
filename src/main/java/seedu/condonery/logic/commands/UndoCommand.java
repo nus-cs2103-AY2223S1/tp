@@ -15,16 +15,10 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Successfully undid previous command.";
 
-    private CommandQueue commandQueue;
-
-    public void setCommandQueue(CommandQueue commandQueue) {
-        this.commandQueue = commandQueue;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireNonNull(commandQueue); // Make sure to inject commandQueue before executing the command!
+        CommandQueue commandQueue = model.getCommandQueue();
         try {
             Command previousCommand = commandQueue.popCommand();
             model.resetPropertyDirectory();

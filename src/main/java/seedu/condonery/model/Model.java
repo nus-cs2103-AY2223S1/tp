@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.Property;
 
@@ -149,4 +151,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    //=========== CommandQueue =============================================================
+    void addCommand(Command cmd);
+
+    CommandQueue getCommandQueue();
 }
