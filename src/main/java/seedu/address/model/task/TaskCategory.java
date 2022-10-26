@@ -8,24 +8,15 @@ import seedu.address.model.task.exceptions.LevelOutOfRangeException;
  * Represents the category of a task.
  */
 public class TaskCategory {
-    public static final Integer TASK_CATEGORY_LEVEL_LOWER_BOUND = 0;
-    public static final Integer TASK_CATEGORY_LEVEL_UPPER_BOUND = 5;
     public static final String MESSAGE_CONSTRAINTS =
-            "Category name must be one of the following: " + TaskCategoryType.getValidTaskCategories()
-            + " and category level must be >= " + TASK_CATEGORY_LEVEL_LOWER_BOUND
-            + " and <= " + TASK_CATEGORY_LEVEL_UPPER_BOUND;
-    private final Integer level;
+            "Category name must be one of the following: " + TaskCategoryType.getValidTaskCategories();
     private final TaskCategoryType taskCategoryType;
 
     /**
      * Constructor for TaskCategory
      */
-    public TaskCategory(Integer level, TaskCategoryType taskCategoryType) throws LevelOutOfRangeException {
-        if (level < TASK_CATEGORY_LEVEL_LOWER_BOUND || level > TASK_CATEGORY_LEVEL_UPPER_BOUND) {
-            throw new LevelOutOfRangeException();
-        }
+    public TaskCategory(TaskCategoryType taskCategoryType) {
         requireNonNull(taskCategoryType);
-        this.level = level;
         this.taskCategoryType = taskCategoryType;
     }
 
@@ -36,15 +27,6 @@ public class TaskCategory {
      */
     public TaskCategoryType getTaskCategoryType() {
         return this.taskCategoryType;
-    }
-
-    /**
-     * Returns the level of a task.
-     *
-     * @return The task level.
-     */
-    public int getLevel() {
-        return this.level;
     }
 
 
@@ -79,19 +61,7 @@ public class TaskCategory {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskCategory // instanceof handles nulls
-                && ((TaskCategory) other).level == this.level
                 && ((TaskCategory) other).taskCategoryType.equals(this.taskCategoryType));
-    }
-
-    /**
-     * Returns true if task category level is valid.
-     *
-     * @param test int to test.
-     * @return Whether the int is a valid task category level.
-     */
-    public static boolean isValidTaskCategoryLevel(String test) {
-        Integer value = Integer.parseInt(test);
-        return value >= TASK_CATEGORY_LEVEL_LOWER_BOUND && value <= TASK_CATEGORY_LEVEL_UPPER_BOUND;
     }
 
     /**

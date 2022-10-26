@@ -317,7 +317,7 @@ public class Task {
 
     public Task copy() {
         TaskName copyName = new TaskName(this.name.toString());
-        TaskCategory copyCat = new TaskCategory(this.category.getLevel(), this.category.getTaskCategoryType());
+        TaskCategory copyCat = new TaskCategory(this.category.getTaskCategoryType());
         Description copyDescription = new Description(this.description.toString());
         Priority copyPriority = new Priority(this.getPriority().getPriority());
         TaskDeadline copyDeadline = new TaskDeadline(this.deadline.getDeadline());

@@ -41,4 +41,9 @@ public enum PriorityEnum {
                 .filter(priority -> priority.name.equals(priorityName))
                 .findFirst();
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
