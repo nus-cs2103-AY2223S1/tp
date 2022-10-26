@@ -1,18 +1,24 @@
 package seedu.address.model.entry;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.entry.exceptions.DuplicateEntryException;
-import seedu.address.model.entry.exceptions.EntryNotFoundException;
-import seedu.address.testutil.ExpenditureBuilder;
-import seedu.address.testutil.IncomeBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalEntry.ALLOWANCE;
+import static seedu.address.testutil.TypicalEntry.DINNER;
+import static seedu.address.testutil.TypicalEntry.INVESTMENT;
+import static seedu.address.testutil.TypicalEntry.LUNCH;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntry.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.entry.exceptions.DuplicateEntryException;
+import seedu.address.model.entry.exceptions.EntryNotFoundException;
+import seedu.address.testutil.ExpenditureBuilder;
+import seedu.address.testutil.IncomeBuilder;
 
 public class UniqueEntryListTest {
     private final UniqueEntryList uniqueExpenditureList = new UniqueEntryList();
