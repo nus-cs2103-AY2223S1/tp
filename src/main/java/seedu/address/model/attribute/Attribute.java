@@ -46,6 +46,17 @@ public interface Attribute<T> {
      */
     boolean isAnyFlagMatch(int flag);
 
+    /** 
+     * Returns true of any of the bits of the style flag settings is true
+     */
+    boolean isAnyStyleMatch(int flag);
+
+    /** 
+     * Returns true of all of the bits of the style flag settings is true
+     */
+    boolean isAllStyleMatch(int flag);
+
+
     /**
      * Returns the UI representation of the attribute to be added into the Javafx
      * parent.

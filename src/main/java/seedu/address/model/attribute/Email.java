@@ -55,17 +55,4 @@ public class Email extends AbstractAttribute<String> {
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
-    @Override
-    public Node getJavaFxRepresentation() {
-        Label ret = new Label();
-        ret.setText(value);
-        return ret;
-    }
-
-    @Override
-    public Map<String, Object> toSaveableData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

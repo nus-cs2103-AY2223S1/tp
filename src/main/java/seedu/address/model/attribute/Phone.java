@@ -35,15 +35,4 @@ public class Phone extends AbstractAttribute<String> {
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
-    public Map<String, Object> toSaveableData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

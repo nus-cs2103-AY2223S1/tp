@@ -4,9 +4,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Map;
 
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-
 /**
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in
@@ -40,18 +37,4 @@ public class Address extends AbstractAttribute<String> {
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
-    @Override
-    public Node getJavaFxRepresentation() {
-        Label ret = new Label();
-        ret.setText(value);
-        return ret;
-    }
-
-    @Override
-    public Map<String, Object> toSaveableData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }
