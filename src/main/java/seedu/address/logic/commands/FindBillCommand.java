@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
