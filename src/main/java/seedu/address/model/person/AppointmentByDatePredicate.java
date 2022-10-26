@@ -43,13 +43,11 @@ public class AppointmentByDatePredicate implements Predicate<Person> {
     }
 
     private boolean isPresentUpcomingAppointment(Person person) {
-        return !appointments.stream().anyMatch(keyword
-                -> person.getUpcomingAppointment().get().value == null);
+        return person.getUpcomingAppointment().get().value != null;
     }
 
     private boolean isPresentPastAppointment(Person person) {
-        return appointments.stream().anyMatch(keyword
-                -> person.getPastAppointments().size() != 0);
+        return person.getPastAppointments().size() != 0;
     }
 
     /**

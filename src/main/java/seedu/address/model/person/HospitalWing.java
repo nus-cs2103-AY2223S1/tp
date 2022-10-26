@@ -5,6 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 
+import seedu.address.commons.util.StringUtil;
+
 /**
  * Represents an inpatient's currently located hospital wing in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidHospitalWing(String)}
@@ -25,27 +27,27 @@ public class HospitalWing {
         SOUTH {
             @Override
             public String toString() {
-                return "south";
+                return "S";
             }
         },
         NORTH {
             @Override
             public String toString() {
-                return "north";
+                return "N";
             }
         },
         EAST {
             @Override
             public String toString() {
-                return "east";
+                return "E";
             }
         },
         WEST {
             @Override
             public String toString() {
-                return "west";
+                return "W";
             }
-        },
+        }
     }
 
     /**
@@ -63,8 +65,9 @@ public class HospitalWing {
      * Returns true if a given string is a valid hospital wing.
      */
     public static boolean isValidHospitalWing(String test) {
-        return Arrays.stream(HospitalWingTypes.values()).anyMatch(hospitalwingtype ->
-                test.toLowerCase().equals(hospitalwingtype.toString()));
+        String[] enumArr = Arrays.stream(HospitalWingTypes.values())
+                .map(HospitalWingTypes::name).toArray(String[]::new);
+        return StringUtil.containsWordIgnoreCase(String.join(" ", enumArr), test);
     }
 
     @Override

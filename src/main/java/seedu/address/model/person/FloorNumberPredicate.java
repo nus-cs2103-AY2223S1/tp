@@ -18,7 +18,7 @@ public class FloorNumberPredicate implements Predicate<Person> {
         Boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
         if (isInpatient) {
             return floorNumbers.stream()
-                    .anyMatch(floorNumber -> person.getHospitalWing().get().value.equals(floorNumber));
+                    .anyMatch(floorNumber -> person.getFloorNumber().get().value.equals(floorNumber));
         }
         return false;
     }
