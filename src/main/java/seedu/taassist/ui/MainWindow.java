@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.net.URL;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -14,6 +15,8 @@ import seedu.taassist.logic.Logic;
 import seedu.taassist.logic.commands.CommandResult;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.exceptions.ParseException;
+import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ModuleClassListPanel moduleClassListPanel;
+    private SessionListPanel sessionListPanel;
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
 
@@ -48,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane moduleClassListPanelPlaceholder;
+
+    @FXML
+    private StackPane sessionListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,6 +117,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Fills up session placeholder of the focus window based on module class provided.
+     */
+    void setSessionListPanelPlaceholder(ModuleClass moduleClass) {
+        sessionListPanel = new SessionListPanel((ObservableList<Session>) moduleClass.getSessions());
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+    }
+
+    /**
      * Opens a particular webpage, if unable to do so, help window will be shown for them to copy the URL.
      */
     public static void openWebpage(String urlString) {
@@ -152,6 +167,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
+    }
+
+    public SessionListPanel getSessionListPanel() {
+        return sessionListPanel;
     }
 
     public ModuleClassListPanel getModuleClassListPanel() {

@@ -252,6 +252,7 @@ public class ModelManager implements Model {
         // As it's taAssist's module class that contains the actual Session content.
         this.focusedClass = taAssist.findModuleClass(classToFocus);
 
+
         focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
         setFilteredListPredicate(predicate);
