@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import nus.climods.model.module.predicate.ModulesByCodesPredicate;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -121,6 +123,11 @@ public class ModelManager implements Model {
         moduleInFocus = module;
 
         setFilteredModuleList(new ViewModulePredicate(module.getCode()));
+    }
+
+    @Override
+    public void showModules(List<String> moduleCodes) {
+        this.setFilteredModuleList(new ModulesByCodesPredicate(moduleCodes));
     }
 
     @Override
