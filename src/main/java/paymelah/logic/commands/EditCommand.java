@@ -6,7 +6,6 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Set;
@@ -82,7 +81,6 @@ public class EditCommand extends Command {
         model.saveAddressBook();
         model.saveCommandMessage(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
