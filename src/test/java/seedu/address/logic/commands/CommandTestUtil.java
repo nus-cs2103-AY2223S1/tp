@@ -78,8 +78,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_REMINDER1 = "Set HW 1";
     public static final String VALID_NAME_REMINDER2 = "Mark Finals";
-    public static final String VALID_DEADLINE_REMINDER1 = "14:00";
-    public static final String VALID_DEADLINE_REMINDER2 = "17:00";
+    public static final String VALID_DEADLINE_REMINDER1 = "2000-03-22 14:00";
+    public static final String VALID_DEADLINE_REMINDER2 = "2000-03-23 17:00";
     public static final String VALID_PRIORITY_REMINDER1 = "MEDIUM";
     public static final String VALID_PRIORITY_REMINDER2 = "HIGH";
     public static final String VALID_DESCRIPTION_REMINDER1 = "5 questions to set";
