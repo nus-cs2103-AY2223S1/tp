@@ -63,8 +63,10 @@ public class TypicalPersons {
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withInterests(VALID_INTEREST_TENNIS)
-            .withGitHub(VALID_GITHUB_AMY).withMods("CS2100").build();
+            .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withGitHub(VALID_GITHUB_AMY)
+            .withInterests(VALID_INTEREST_TENNIS).withMods("CS2100")
+            .build();
+
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withGitHub(VALID_GITHUB_BOB)
             .withInterests(VALID_INTEREST_NETFLIX, VALID_INTEREST_TENNIS).withMods("CS2100")
