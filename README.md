@@ -12,5 +12,5 @@
 * It is **written in OOP fashion**. It provides a **reasonably well-written** code base.
 * It comes with a **reasonable level of user and developer documentation**.
 * It is named `LongTimeNoSee` (`LTNS` for short) as a play on how financial advisors often use the infamous line to start a conversation with someone they haven’t spoken to for a long while.
-* For the detailed documentation of this project, see the **[LongTimeNoSee Product Website](https://nus-cs2103-ay2223s1.github.io/tp/)**.
+* For the detailed documentation of this project, see the **[LongTimeNoSee Product Website](https://ay2223s1-cs2103t-w13-2.github.io/tp/)**.
   This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

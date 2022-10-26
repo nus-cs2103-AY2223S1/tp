@@ -178,6 +178,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String Title} into a {@code Title}.
+     * Checks if the title is a valid title.
      * Leading and trailing whitespaces will be trimmed.
      */
     public static Title parseTitle(String title) throws ParseException {

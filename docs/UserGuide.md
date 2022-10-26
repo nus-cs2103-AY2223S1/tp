@@ -67,8 +67,8 @@ As such, the features available to you are split into **4** main features:
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `n…` after them can be used multiple times and at least n times.<br>
+  e.g. `[t/TAG]0…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` (i.e. 2 times) etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -241,17 +241,88 @@ An existing client in your Client Book can be assigned to an Event or Policy.<br
 To find out how to do so, you can refer to the [Adding an Event](#adding-an-event) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client) guide to find out how you can assign a Client to a Policy.
 
 ## Policy Features
+Store policies from a large assortment of companies, with different coverages and customised customisable commissions! Assign them to a client when you secure a deal with ease.
 
-### Adding a policy 
+### Adding a policy: `addPolicy`
+
+Adds a policy to the address book.
+
+Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% [cov/COVERAGE]1...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A policy can one or more coverages (including 0).
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+These are the valid coverages and their corresponding codes.
+</div>
+
+| Coverage Code | Coverage Name        |
+|---------------|----------------------|
+| LIFE          | Life Insurance       |
+| MOTOR         | Motor Insurance      |
+| HEALTH        | Health Insurance     |
+| TRAVEL        | Travel Insurance     |
+| PROPERTY      | Property Insurance   |
+| MOBILE        | Mobile Insurance     |
+| BITE          | Bite-sized Insurance |
+| INVESTMENT    | Investment based     |
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+These are the valid companies and their corresponding codes.
+</div>
+
+| Company Code | Company Name                       |
+|--------------|------------------------------------|
+| MNF          | Manulife Financial Private Limited |
+| PRU          | Prudential Assurance Company       |
+| AXA          | AXA Insurance Private Limited      |
+| GEL          | Great Eastern Life                 |
+| NTU          | NTUC Income Insurance              |
+| ETQ          | Etiqa Insurance                    |
+| TML          | Tokio Marine Life Insurance        |
+| AIA          | AIA Singapore Private Limited      |
+| AVI          | Aviva Limited                      |
+| FWD          | Singapore Private Limited          |
+
+Examples:
+* `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE`
+* `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
 
-### Viewing all policies: `allPolicies` [Coming soon]
-* Format: `allPolicies`
-* Description: In v1.3, we will allow the user to view all available policies in a list format.
-* Example Usage: `allPolicies`
-* Example Result: Shows a list of all policies stored on the page
+### Switching to the view of currently listed policies: `policies`
+Switches the display to show the current list of policies.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you previously filtered the policy list and switched to view events/contacts/income, this command will allow you to return to the filtered list of policies. 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to view the **full** list of policies, you may do so with the command `allPolicies`. 
+</div>
+
+Format: `policies`
+Example Usage: `policies`
+Example Result: Shows the currently listed policies on the screen.
+
+
+### Viewing all policies in the address book: `allPolicies`
+Switches the display to show **all** the policies stored in the address book.
+
+Format: `allPolicies`
+Example Usage: `allPolicies`
+Example Result: Shows all policies stored in the address book, on the screen.
 
 ### Deleting a policy
+* Format: `deletePolicy INDEX`
+
+* Deletes the policy at the specified `INDEX`.
+* The index refers to the index number shown in the displayed list of policies.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the address book.
+* `findPolicy PruShield` followed by `delete 1` deletes the 1st policy in the results of the `findPolicy` command.
+
 
 ### Search for a policy: `findPolicy`
 
@@ -274,20 +345,52 @@ Examples:
 * `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
 * `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
 
-### Assigning a Policy to a Client 
+### Assigning a Policy to a Client: `assign` 
 
 If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
 
 If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client-add) or [Adding a Policy](#adding-a-policy) guides.
 
-### Tracking your Income  : `viewIncome`
+Format: `assign INDEXOFCLIENT INDEXOFPOLICY pr/PREMIUM sd/STARTDATE ed/ENDDATE
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
+</div>`
+
+Example Usage:
+
+* Step 1: `findPolicy cmp/PRU` to filter the list of policies that belong to Prudential Assurance Company.
+* Step 2: `findClient n/John Doe` to filter the list of clients to find 'John Doe'.
+* Step 3: `assign 1 1 pr/2000 sd/2010-10-10 ed/2021-10-12` to assign the first policy in the list from Step 1, to the 
+first client in the list from Step 2, with the following details:
+  1. Yearly premium of $2000
+  2. Start date of 10th October 2010
+  3. End date of 12th October 2021
+
+###Listing out policies assigned to a client:`listAssigned`
+
+If you'd like to recall which policies a client has taken up this command lists out, in the command box, the policies 
+that have been assigned to a specific client.
+
+Format: `listAssigned INDEXOFCLIENT`
+
+Example Usage:
+
+1. `findClient n/John Doe` to filter the list of clients to find `John Doe`.
+2. `listAssigned INDEXOFCLIENT` to list out the policies assigned to the first client in the list from Step 1.
+
+###Deleting assigned policies from a client: `deleteAssigned`
+
+Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
+in the address book using this command.
+
+Format: `deleteAssigned INDEXOFCLIENT INDEXOFASSIGNEDPOLICY`
+
+Example Usage:
+1. Similar to [listAssigned](#listing-out-policies-assigned-to-a-clientlistassigned), filter the list for the desired client and find out which policies they have been assigned to.
+2. `deleteAssigned 1 1` to delete the first assigned policy in the assigned policy list from Step 1, of the first client obtained from filtering the client list.
 
 This allows you to sort your clients in the address book based on a specified metric.
-
-Format: `viewIncome <year>`
-
-* Automatically calculates your 3 year expected income (with selected year as starting year)
-
 
 ### Adding an Event : `addEvent`
 * Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME d/EVENT_DATE s/START_TIME e/END_TIME`
@@ -298,6 +401,13 @@ Format: `viewIncome <year>`
     * If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
 * Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation,
+
+
+### Tracking your Income  : `viewIncome`
+
+Format: `viewIncome <year>`
+
+* Automatically calculates your 3 year expected income (with selected year as starting year)
 
 Rules:
 * Year must be between 1900 and 2200

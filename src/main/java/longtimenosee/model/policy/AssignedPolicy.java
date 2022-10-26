@@ -22,7 +22,7 @@ public class AssignedPolicy {
     /**
      * Construct an AssignedPolicy object.
      * @param policy
-     * @param premium Must be a valid premium.
+     * @param premium Must be a valid yearly premium.
      * @param startDate Must be a valid date, after 1900, and before 2100.
      * @param endDate Must be a valid date, after startDate and 1900, and before 2100.
      */
