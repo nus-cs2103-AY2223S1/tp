@@ -119,6 +119,7 @@ Examples:
 Adds a task under specific module.
 - User must be within a module page.
 - User may optionally include a deadline for the task by specifying the -d flag along with the deadline in DD/MM/YYYY format.
+- Description of a task can **only** contain American Standard Code for Information Interchange (ASCII) characters
 
 Format: `add task <task> [-d <deadline>]`
 
