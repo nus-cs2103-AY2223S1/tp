@@ -40,7 +40,7 @@ class JsonAdaptedDate {
      */
     public Date toModelType() throws IllegalValueException {
         if (!Date.isValidDateByRegex(dateString)) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS_FORMAT);
         }
         return new Date(dateString);
     }

@@ -12,12 +12,12 @@ import gim.model.exercise.NameContainsKeywordsPredicate;
  */
 public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = ":find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exercises whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " -> Finds all exercises whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bench press charlie";
+            + "Parameters: KEYWORD [MORE_KEYWORDS]\n"
+            + "Example usage:\n" + COMMAND_WORD + " Bench press Squat Deadlift";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -28,7 +28,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredExerciseList(predicate);
+        model.filterFilteredExerciseList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW, model.getFilteredExerciseList().size()));
     }

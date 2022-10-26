@@ -3,6 +3,9 @@ package gim.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.format.DateTimeParseException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import gim.commons.core.index.Index;
 import gim.commons.util.StringUtil;
@@ -101,18 +104,30 @@ public class ParserUtil {
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
+        // Remove beginning or trailing whitespaces
         String trimmedDate = date.trim();
         if (!Date.isValidDateByRegex(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_FORMAT);
         }
         Date parsedDate;
         // Prevent non-existent dates that follow the format from being added
         try {
             parsedDate = new Date(trimmedDate);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        } catch (DateTimeParseException | IllegalArgumentException e) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_INVALID);
         }
         return parsedDate;
     }
 
+    /**
+     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
+     */
+    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<Name> nameSet = new HashSet<>();
+        for (String name : names) {
+            nameSet.add(parseName(name));
+        }
+        return nameSet;
+    }
 }

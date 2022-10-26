@@ -65,11 +65,43 @@ public class ExerciseHashMap {
     }
 
     /**
-     * Returns true if the Exercise in the given argument has a Name equal to a Name in the exerciseHashMap key-set.
+     * Returns true if Exercise {@code toCheck} has a Name equal to a Name in the exerciseHashMap key-set.
      */
     public boolean contains(Exercise toCheck) {
         requireNonNull(toCheck);
         return exerciseHashMap.containsKey(toCheck.getName());
+    }
+
+    /**
+     * Returns true if Name {@code exerciseNameToCheck} is equal to a Name in the exerciseHashMap key-set.
+     */
+    public boolean containsName(Name exerciseNameToCheck) {
+        requireNonNull(exerciseNameToCheck);
+        return exerciseHashMap.containsKey(exerciseNameToCheck);
+    }
+
+    /**
+     * Returns the Exercise with the highest weight, with Name {@code exercises}.
+     * @param exerciseName Name of exercise.
+     * @return Exercise containing the highest weight.
+     */
+    public Exercise getExercisePR(Name exerciseName) {
+        if (!containsName(exerciseName)) {
+            return null;
+        }
+        return Collections.max(exerciseHashMap.get(exerciseName));
+    }
+
+    /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    public ArrayList<Exercise> getAllExercisePRs() {
+        ArrayList<Exercise> returnList = new ArrayList<>();
+        for (Name name : exerciseHashMap.keySet()) {
+            returnList.add(getExercisePR(name));
+        }
+        return returnList;
     }
 
     /**
