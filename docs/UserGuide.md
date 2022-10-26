@@ -92,7 +92,7 @@ There is no need to save manually.
 
 Adds a new internship application to InTrack.
 
-Format: `add n/COMPANY_NAME p/POSITION s/SALARY e/EMAIL w/WEBSITE [t/TAG]…`
+Format: `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** An internship can have any number of tags (including 0).
@@ -321,19 +321,19 @@ Expected outcome:
 | **List**             | `list`                           |
 | **Clear**            | `clear`                          |
 | **Exit**             | `exit`                           |
-| **Add**              |                                  |
+| **Add**              | `add n/COMPANY_NAME p/POSITION e/EMAIL w/WEBSITE s/SALARY [t/TAG]… `, e.g. `add n/Microsoft p/Software Engineer e/hr@microsoft.com w/https://careers.microsoft.com s/5000 t/Urgent`                                 |
 | **Delete**           |                                  |
 | **Edit**             |                                  |
-| **Status**           | `status`, `status 1 o`           |
-| **Remark**           | `remark`, `remark 1 r/ hello`    |
+| **Status**           | `status`, e.g. `status 1 o`           |
+| **Remark**           | `remark`, e.g. `remark 1 r/ hello`    |
 | **Find by Company**  |                                  |
 | **Find by Position** |                                  |
 | **Filter**           |                                  |
 | **Sort**             | `sort ORDER`<br> e.g.`, `sort a` |
 | **Stats**            |                                  |
 | **Select**           |                                  |
-| **Add Task**         |                                  |
+| **Add Task**         | `addtask TASKNAME /at TASKTIME`, e.g. `addtask Technical Interview /at 28-10-2022 17:00`                                  |
 | **Delete Task**      |                                  |
-| **Add Tag**          | `addtag`, `addtag 1 Urgent`      |
-| **Delete Tag**       | `deltag`, `deltag 1 Urgent`      |
+| **Add Tag**          | `addtag`, e.g. `addtag 1 Urgent`      |
+| **Delete Tag**       | `deltag`, e.g. `deltag 1 Urgent`      |
 
