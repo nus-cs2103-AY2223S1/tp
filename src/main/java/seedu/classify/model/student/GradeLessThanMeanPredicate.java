@@ -29,4 +29,13 @@ public class GradeLessThanMeanPredicate implements Predicate<Student> {
     public boolean test(Student student) {
         return (student.getClassName().equals(className)) && (student.getExamScore(exam) < mean);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof GradeLessThanMeanPredicate // instanceof handles nulls
+                && className.equals(((GradeLessThanMeanPredicate) other).className)
+                && mean == ((GradeLessThanMeanPredicate) other).mean
+                && exam.equals(((GradeLessThanMeanPredicate) other).exam)); // state check
+    }
 }

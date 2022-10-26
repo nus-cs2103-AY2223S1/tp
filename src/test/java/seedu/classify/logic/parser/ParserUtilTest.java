@@ -1,6 +1,7 @@
 package seedu.classify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.classify.testutil.Assert.assertThrows;
@@ -193,5 +194,20 @@ public class ParserUtilTest {
         Set<Exam> expectedTagSet = new HashSet<>(Arrays.asList(new Exam(VALID_TAG_1), new Exam(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFilter_invalidFilter_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilter("sdfsdf"));
+    }
+
+    @Test
+    public void parseFilter_validFilterValue_returnsTrue() throws ParseException {
+        assertTrue(ParserUtil.parseFilter("ON"));
+    }
+
+    @Test
+    public void parseFilter_validFilterValue_returnsFalse() throws ParseException {
+        assertFalse(ParserUtil.parseFilter("OFF"));
     }
 }

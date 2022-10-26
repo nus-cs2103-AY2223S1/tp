@@ -21,6 +21,7 @@ import seedu.classify.model.UserPrefs;
 import seedu.classify.model.student.Class;
 import seedu.classify.model.student.ClassPredicate;
 import seedu.classify.model.student.GradeComparator;
+import seedu.classify.model.student.GradeLessThanMeanPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ViewStatsCommand}.
@@ -62,7 +63,16 @@ class ViewStatsCommandTest {
     }
 
     @Test
-    public void execute_validArgs_success() {
+    public void execute_gradesMissing_throwsCommandException() {
+        String expectedMessage = "There are missing grades for this particular exam"
+                + "\nMean cannot be calculated, class will be sorted by alphabetical order";
+        ViewStatsCommand command = new ViewStatsCommand(
+                new Class("3A1"), "SA1", false);
+        assertCommandFailure(command, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_validArgsUnfilterGrades_success() {
         String expectedMessage = String.format(MESSAGE_CLASS_SORTED_BY_GRADE, "4A1")
                 + String.format(MESSAGE_DISPLAY_MEAN, "SA1", "4A1", 60.00);
         ViewStatsCommand command = new ViewStatsCommand(
@@ -71,6 +81,20 @@ class ViewStatsCommandTest {
         expectedModel.sortStudentRecord(new GradeComparator("SA1", new Class("4A1")));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_validArgsFilteredGrades_success() {
+        String expectedMessage = String.format(MESSAGE_CLASS_SORTED_BY_GRADE, "4A1")
+                + String.format(MESSAGE_DISPLAY_MEAN, "SA1", "4A1", 60.00);
+        ViewStatsCommand command = new ViewStatsCommand(
+                new Class("4A1"), "SA1", true);
+        expectedModel.updateFilteredStudentList(new ClassPredicate(new Class("4A1")));
+        expectedModel.sortStudentRecord(new GradeComparator("SA1", new Class("4A1")));
+        expectedModel.updateFilteredStudentList(
+                new GradeLessThanMeanPredicate(new Class("4A1"), 60.00, "SA1"));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(), model.getFilteredStudentList());
     }
 
 }
