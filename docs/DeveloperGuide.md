@@ -385,16 +385,6 @@ Use case ends.
 
 Use case ends.
 
-**Use case: UC04 - Filter Buyers**
-
-**MSS**
-1. User specifies a tag with which all buyers shall show
-2. PetCode searches for the tag
-3. PetCode searches for all buyers with the tag
-4. PetCode outputs these buyers
-
-Use case ends.
-
 **Use case: UC04 - Find a Buyer, Supplier or Deliverer**
 
 **MSS**

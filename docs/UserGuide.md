@@ -215,16 +215,6 @@ Examples:
 * `delete c/Deliverer i/2` will delete the contact at index 2 of the Deliverer contacts list, if index is found.
 * `delete c/Supplier i/3` will delete the contact at index 3 of the Supplier contacts list, if index is found.
 
-### Filter contacts : `filter`
-
-Filter display only buyers or suppliers based on the given tag(s).
-
-Format: `filter t/INPUT`
-
-Examples:
-* `filter t/cat`
-* `filter t/dog t/second-hand`
-
 ### Filter orders : `filter-o`
 
 Filter display only Orders based on the given attribute(s). There are three possible attributes to filter: Additional requests, Order status, Price range.
