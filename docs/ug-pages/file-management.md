@@ -25,10 +25,11 @@ All file commands have a `FILE_NAME` field that requires you to input a name for
 
 <details close>
 <summary> Examples </summary>
-<br>
 
 * `rc4_data_2022` is a valid `FILE_NAME`.
+  
 * `rc4_data_2022.json` is an invalid `FILE_NAME` due to the inclusion of the file type, `.json`.
+  
 * The following are invalid `FILE_NAME` due to the inclusion of restricted symbols.
     * `rc4 data 2022` has empty spaces.
     * `rc4.data.2022` has dots.
