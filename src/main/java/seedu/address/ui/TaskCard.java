@@ -3,7 +3,6 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -54,15 +53,12 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        //Reused from https://stackoverflow.com/questions/56104276 with minor modifications
-        status.textProperty().addListener((ObservableValue<? extends String> st, String old, String curr) -> {
-            if (!isStatusComplete(curr)) {
-                status.setStyle("-fx-text-fill: #D7504D;");
-            } else {
-                status.setStyle("-fx-text-fill: #96D294;");
-            }
-        });
         status.setText(task.getStatusForDisplay());
+        if (!isStatusComplete(task.getStatusForDisplay())) {
+            status.setStyle("-fx-text-fill: #D7504D;");
+        } else {
+            status.setStyle("-fx-text-fill: #96D294;");
+        }
     }
 
     /**
