@@ -5,10 +5,13 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import modtrekt.commons.util.FileUtil;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.Module;
 
@@ -19,6 +22,7 @@ import modtrekt.model.module.Module;
  */
 public class ModuleParser {
 
+    private static final Path backupFilePath = Paths.get("src/main/java/modtrekt/logic/parser/module/modules.json");
 
     private static final HttpClient httpClient = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
@@ -34,13 +38,23 @@ public class ModuleParser {
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
+        /* A non-200 response code indicates that our request has failed, hence we use fallback data files. */
         if (response.statusCode() != 200) {
-            return null;
+            try {
+                return parseModuleFromFile(code);
+            } catch (IOException e) {
+                return null;
+            }
         }
         String res = response.body();
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readValue(res, JsonNode.class);
+        Module module = parseJsonNodeFromResponse(node, code);
+        return module;
+    }
+
+    private static Module parseJsonNodeFromResponse(JsonNode node, String code) {
         String moduleCredit = (node.get("moduleCredit")).toString();
         String moduleName = (node.get("title")).toString();
         moduleCredit = moduleCredit.substring(1, moduleCredit.length() - 1);
@@ -48,6 +62,20 @@ public class ModuleParser {
                 .replaceAll("[^a-zA-Z0-9\\s]", " ")
                 .trim().replaceAll(" +", " ");
 
+        return new Module(code, moduleName, moduleCredit, "0");
+    }
+
+    private static Module parseModuleFromFile(String code) throws IOException {
+        JsonNode fallbackData = new ObjectMapper().readValue(
+                FileUtil.readFromFile(backupFilePath), JsonNode.class);
+        String moduleData = fallbackData.get(code).toString();
+        JsonNode moduleNode = new ObjectMapper().readValue(moduleData, JsonNode.class);
+        String moduleName = moduleNode.get("title").toString();
+        moduleName = moduleName.substring(1, moduleName.length() - 1)
+                .replaceAll("[^a-zA-Z0-9\\s]", " ")
+                .trim().replaceAll(" +", " ");
+        String moduleCredit = moduleNode.get("moduleCredit").toString();
+        moduleCredit = moduleCredit.substring(1, moduleCredit.length() - 1);
         return new Module(code, moduleName, moduleCredit, "0");
     }
 
