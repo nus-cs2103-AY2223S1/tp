@@ -39,7 +39,7 @@ public class EditTaskDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(description, isDone, tags);
+        return CollectionUtil.isAnyNonNull(description, deadline, isDone, tags);
     }
 
     public void setDescription(Description description) {
