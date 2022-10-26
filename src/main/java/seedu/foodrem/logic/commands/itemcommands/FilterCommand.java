@@ -21,10 +21,10 @@ public abstract class FilterCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredItemList(pred);
-        return new CommandResult(String.format(this.getSuccessMessage(),
+        return CommandResult.from(String.format(this.getSuccessMessage(),
                 model.getCurrentList().size()));
     }
 
