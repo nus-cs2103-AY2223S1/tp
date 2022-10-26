@@ -363,11 +363,11 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ---
 ## Glossary
 
-| Terms       | Definition                                                   |
-|-------------|--------------------------------------------------------------|
-| Class Date  | The 1-1 tutoring time slot of a student                      |
-| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON       |
-| INDEX       | The number beside the student's name on the left-panel list. |
+| Terms       | Definition                                                              |
+|-------------|-------------------------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                                 |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                  |
+| INDEX       | The number beside the student's name inthe Student's Details panel list |
 
 
 ## Command Summary
