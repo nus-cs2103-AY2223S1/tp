@@ -13,7 +13,6 @@ Class HelpWindow
 Class ResultDisplay
 Class InternshipListPanel
 Class InternshipCard
-Class StatusBarFooter
 Class CommandBox
 }
 
@@ -33,7 +32,6 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" InternshipListPanel
-MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 InternshipListPanel -down-> "*" InternshipCard
@@ -44,7 +42,6 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 InternshipListPanel --|> UiPart
 InternshipCard --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
 InternshipCard ..> Model
@@ -54,7 +51,6 @@ MainWindow -left-> Logic
 InternshipListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml
