@@ -178,6 +178,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     private void removeSessionFromStudents(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
         List<Student> updatedStudents = students.asUnmodifiableObservableList().stream()
                 .map(student -> student.removeSession(moduleClass, session))
                 .collect(Collectors.toList());
@@ -185,6 +186,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     }
 
     private ModuleClass removeSessionFromModuleClass(ModuleClass moduleClass, Session session) {
+        requireAllNonNull(moduleClass, session);
         ModuleClass newModuleClass = moduleClass.removeSession(session);
         setModuleClass(moduleClass, newModuleClass);
         return newModuleClass;
