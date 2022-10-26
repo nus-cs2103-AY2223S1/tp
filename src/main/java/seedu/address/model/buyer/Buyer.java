@@ -85,7 +85,8 @@ public class Buyer {
         }
 
         return otherBuyer != null
-                && otherBuyer.getName().equals(getName());
+                && otherBuyer.getName().equals(getName())
+                && otherBuyer.getPhone().equals(getPhone());
     }
 
     /**
