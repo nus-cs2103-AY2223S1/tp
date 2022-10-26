@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class PersonCard extends UiPart<Region> {
     private static final String PHONE_IMAGE_PATH = "/images/phone.png";
-    private static final String LOAN_IMAGE_PATH = "/images/mail.png";
+    private static final String LOAN_IMAGE_PATH = "/images/loan.png";
 
     private static final String FXML = "PersonListCard.fxml";
 

@@ -136,8 +136,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        // we removed the status bar
+        // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand,
                 windowAnchorPane.getPersonListPanel().getListView(),
@@ -211,7 +212,8 @@ public class MainWindow extends UiPart<Stage> {
                     + "perhaps you would like to filter away some persons first?");
         }
 
-        personListView.getSelectionModel().select(personsArray[0]);
+        int index = personListView.getItems().indexOf(personsArray[0]);
+        personListView.getSelectionModel().select(index);
     }
 
     private boolean matches(String currentName, String[] matching) {

@@ -53,20 +53,7 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
-        System.out.println(Font.loadFont(
-                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Medium.otf")).toExternalForm(),
-                10
-        ));
-
-        Font.loadFonts(
-                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Semibold.otf")).toExternalForm(),
-                10
-        );
-
-        Font.loadFonts(
-                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Bold.otf")).toExternalForm(),
-                10
-        );
+        loadFonts();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
@@ -83,6 +70,38 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+    }
+
+    private void loadFonts() {
+        Font.loadFont(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Bold.otf")).toExternalForm(),
+                10
+        );
+
+        Font.loadFont(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Medium.otf")).toExternalForm(),
+                10
+        );
+
+        Font.loadFont(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/MinionPro-Semibold.otf")).toExternalForm(),
+                10
+        );
+
+        Font.loadFont(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/Bender.otf")).toExternalForm(),
+                10
+        );
+
+        Font.loadFonts(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/Bender-Bold.otf")).toExternalForm(),
+                10
+        );
+
+        Font.loadFonts(
+                Objects.requireNonNull(MainApp.class.getResource("/fonts/Bender-Light.otf")).toExternalForm(),
+                10
+        );
     }
 
     /**

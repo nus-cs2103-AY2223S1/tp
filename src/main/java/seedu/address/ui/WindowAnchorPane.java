@@ -16,7 +16,7 @@ import seedu.address.logic.Logic;
 public class WindowAnchorPane extends UiPart<Region> {
     private static final double HORIZONTAL_DIVIDER = 0.45;
     private static final double VERTICAL_DIVIDER = 0.65;
-    private static final double DISTANCE_BOTTOM = 25;
+    private static final double DISTANCE_BOTTOM = 0;
 
     private static final String FXML = "WindowAnchorPane.fxml";
     private final Logger logger = LogsCenter.getLogger(WindowAnchorPane.class);
@@ -88,13 +88,13 @@ public class WindowAnchorPane extends UiPart<Region> {
         //set anchors of inspectPanel
 
         AnchorPane.setLeftAnchor(inspectionSection, 0.0);
-        AnchorPane.setRightAnchor(inspectionSection, (1 - VERTICAL_DIVIDER * 0.95) * stageWidth);
+        AnchorPane.setRightAnchor(inspectionSection, (1 - VERTICAL_DIVIDER) * stageWidth);
         AnchorPane.setTopAnchor(inspectionSection, HORIZONTAL_DIVIDER * stageHeight);
         AnchorPane.setBottomAnchor(inspectionSection, DISTANCE_BOTTOM);
 
 
         //set anchors of noteListPanel
-        AnchorPane.setLeftAnchor(noteList, (VERTICAL_DIVIDER - 0.03) * stageWidth);
+        AnchorPane.setLeftAnchor(noteList, (VERTICAL_DIVIDER) * stageWidth);
         AnchorPane.setRightAnchor(noteList, 25.0);
         AnchorPane.setTopAnchor(noteList, 10.0);
         AnchorPane.setBottomAnchor(noteList, DISTANCE_BOTTOM);

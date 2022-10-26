@@ -19,7 +19,7 @@
       <Insets top="10" bottom="5"/>
     </padding>
   </Separator>
-  <Label id="invertedScheme" text="Inspect" styleClass="label-header">
+  <Label id="normalScheme" text="Inspect" styleClass="label-header">
     <padding>
       <Insets left="20" top="5" bottom="5" right="10"/>
     </padding>

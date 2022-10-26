@@ -13,7 +13,7 @@
       <Insets top="10" bottom="5"/>
     </padding>
   </Separator>
-  <Label id="invertedScheme" text="People" styleClass="label-header">
+  <Label id="normalScheme" text="People" styleClass="label-header">
     <padding>
       <Insets left="20" top="5" bottom="5" right="10"/>
     </padding>
@@ -24,6 +24,6 @@
     </padding>
   </Separator>
   <ListView fx:id="personListView" HBox.hgrow="ALWAYS" orientation="HORIZONTAL" styleClass="person-list"
-            maxHeight="170">
+            maxHeight="200">
   </ListView>
 </VBox>

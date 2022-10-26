@@ -37,17 +37,31 @@ public class PersonListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
+
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
+            System.out.println("Updated " + getIndex());
 
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
+                if (personListView.getSelectionModel().getSelectedIndex() != getIndex()) {
+                    setOpacity(0.7);
+                }
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
+
+            focusedProperty().addListener((ob, o, n) -> setOpacity(1));
+
+            setOnMouseEntered(e -> setOpacity(1));
+            setOnMouseClicked(e -> setOpacity(1));
+            setOnMouseExited(e -> {
+                if (personListView.getSelectionModel().getSelectedIndex() != getIndex()) {
+                    setOpacity(0.7);
+                }
+            });
         }
     }
-
 }

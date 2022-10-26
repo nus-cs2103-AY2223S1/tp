@@ -17,7 +17,7 @@
   </Separator>
   <Label id="normalScheme" text="Notes" styleClass="label-header" translateX="10">
     <padding>
-      <Insets left="20" top="2" bottom="2" right="5"/>
+      <Insets left="20" top="2" bottom="2" right="10"/>
     </padding>
   </Label>
   <Separator translateX="10" maxWidth="100">
