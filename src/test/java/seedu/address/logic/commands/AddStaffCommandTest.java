@@ -43,6 +43,7 @@ public class AddStaffCommandTest {
         Project expectedProject = new ProjectBuilder().build();
         expectedProject.getStaffList().add(validStaff);
         expectedModel.addProject(expectedProject);
+        expectedModel.setFilteredStaffList(expectedProject);
 
         assertCommandSuccess(addStaffCommand, model, expectedMessage, expectedModel);
     }
