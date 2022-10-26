@@ -25,7 +25,7 @@ public class PrCommandParser implements Parser<PrCommand> {
     public PrCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ALL);
         if (arePrefixesPresent(argMultimap, PREFIX_ALL)) {
-            return new PrCommand(new HashSet<Name>());
+            return new PrCommand(new HashSet<>());
         }
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrCommand.MESSAGE_USAGE));
