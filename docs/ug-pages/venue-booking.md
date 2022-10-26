@@ -7,6 +7,8 @@ Along with the ability to manage residents, we have also provided you with the a
 the venues in RC4HDB through a booking system. This will allow you to add, remove available venues, as well as
 add, remove bookings for those venues.
 
+---
+
 ### Viewing the bookings
 
 To view the bookings, you will have to click on the tab labelled as bookings. 
@@ -21,7 +23,7 @@ automatically switch to that venue's booking. Alternatively, you can use the `ve
 to switch manually.
 </div>
 
-
+---
 
 ### Adding a venue : `venue add`
 
@@ -33,6 +35,8 @@ Examples:
 * `venue add Meeting Room 3`
 * `venue add Multi-purpose Hall `
 
+---
+
 ### Deleting a venue : `venue delete`
 
 Deletes a venue from the database.
@@ -42,6 +46,8 @@ Format: `venue delete VENUE_NAME`
 Examples:
 * `venue delete Meeting Room`
 * `venue delete Hall`
+
+---
 
 ### Viewing a venue : `venue view`
 
@@ -53,6 +59,7 @@ Examples:
 * `venue view Meeting Room`
 * `venue view Hall`
 
+---
 
 ### Adding a booking: `venue book`
 
@@ -68,6 +75,7 @@ Examples:
 * `venue book 2 v/Meeting Room tp/8-9 d/TUE`
 * `venue book 1 v/Hall tp/13-14 d/WED`
 
+---
 
 ### Deleting a booking: `venue unbook`
 
@@ -79,6 +87,7 @@ Examples:
 * `venue unbook v/Meeting Room tp/8-9 d/TUE`
 * `venue unbook v/Hall tp/13-18 d/WED`
 
+---
 
 ### Format for Venue fields
 
@@ -99,3 +108,4 @@ Examples:
 * Must be the first three characters of a day *i.e. Monday must be indicated as mon*
 * Case-insensitive *i.e. tUe, TUE, tue are all valid*
 
+---
