@@ -144,7 +144,7 @@ public class JsonAdaptedApplicantTest {
     }
 
     @Test
-    public void toModelType_numOfMajorExceedConstraint_throwsIllegalValueException() {
+    public void toModelType_numOfMajorsExceedConstraint_throwsIllegalValueException() {
         List<JsonAdaptedMajor> invalidMajors = new ArrayList<>(VALID_MAJORS);
         invalidMajors.add(new JsonAdaptedMajor(VALID_MAJOR_1));
         invalidMajors.add(new JsonAdaptedMajor(VALID_MAJOR_2));
