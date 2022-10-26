@@ -6,7 +6,9 @@ title: User Guide
 <div class="subtitle">Explore our guide to use Arrow.</div>
 
 [**AddressBook**](#addressbook-commands)<br>
-[**Task Management**](#taskpanel-commands)
+[**Task Management**](#taskpanel-commands)<br>
+[**FAQ**](#faq)<br>
+[**Command Summary**](#command-summary)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
