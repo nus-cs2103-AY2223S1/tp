@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
  */
 public class PersonCard extends UiPart<Region> {
 
-    final public Person person;
+    public final Person person;
 
     private static final String FXML = "PersonListCard.fxml";
     private MainDisplay mainDisplayListener;
