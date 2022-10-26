@@ -65,7 +65,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -87,7 +87,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -135,7 +135,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -160,7 +160,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -185,7 +185,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -210,7 +210,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -236,7 +236,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -265,7 +265,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -293,7 +293,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }
@@ -321,7 +321,7 @@ public class ListTasksCommandTest {
         assertCommandSuccess(
                 command,
                 model,
-                command.getSuccessMessage(model),
+                command.getSuccessMessage(),
                 expectedModel
         );
     }

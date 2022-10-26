@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
@@ -33,7 +34,7 @@ public class AddTaskCommand extends TaskCommand {
             + PREFIX_CONTACT + "2 ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task panel";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task with the name '%s' already exists.";
 
     private final Task toAdd;
 
@@ -50,7 +51,8 @@ public class AddTaskCommand extends TaskCommand {
         requireNonNull(model);
 
         if (model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_TASK, toAdd.getTitle()));
         }
 
         model.addTask(toAdd);

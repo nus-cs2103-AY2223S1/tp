@@ -44,7 +44,6 @@ public class CommandBox extends UiPart<Region> {
      * Load objects and data.
      */
     private void load() {
-        pointer = -1;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleNavigationKeysPressed);
