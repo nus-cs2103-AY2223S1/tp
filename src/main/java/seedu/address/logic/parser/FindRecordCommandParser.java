@@ -5,9 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,6 +18,7 @@ import seedu.address.model.record.RecordContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindRecordCommandParser implements Parser<FindRecordCommand> {
+    public static final String PREFIX_NOT_SPECIFIED = "@#$fIndREC%^&orDiNPUtVALid*()";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -27,22 +29,47 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_RECORD, PREFIX_MEDICATION);
 
-        if (!somePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_RECORD, PREFIX_MEDICATION)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
         }
 
-        Optional<String> recordDate = ParserUtil.parseDateKeyword(argMultimap.getAllValues(PREFIX_DATE));
-        List<String> recordkeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_RECORD).orElse(""));
-        List<String> medications = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
-        return new FindRecordCommand(new RecordContainsKeywordsPredicate(recordkeywords, medications, recordDate));
+        String recordDate = ParserUtil.parseDateKeyword(
+                argMultimap.getValue(PREFIX_DATE).orElse(PREFIX_NOT_SPECIFIED));
+        List<String> recordKeywords = ParserUtil.parseKeywords(
+                argMultimap.getValue(PREFIX_RECORD).orElse(PREFIX_NOT_SPECIFIED));
+        List<String> medicationKeywords = ParserUtil.parseKeywords(
+                argMultimap.getValue(PREFIX_MEDICATION).orElse(PREFIX_NOT_SPECIFIED));
+
+        if (noPrefixesPresent(recordKeywords, medicationKeywords, recordDate)) {
+            throw new ParseException(FindRecordCommand.MESSAGE_NOTHING_TO_FIND);
+        }
+
+        return new FindRecordCommand(
+                new RecordContainsKeywordsPredicate(recordKeywords, medicationKeywords, recordDate));
     }
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean somePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean noPrefixesPresent(
+            List<String> recordKeywords, List<String> medicationKeywords, String date) {
+        return recordKeywords.isEmpty() && medicationKeywords.isEmpty() && date.isBlank();
     }
+
+    /**
+     * Returns true if find date is a valid month and date
+     * @param date date to be validated
+     */
+    public static boolean isValidFindDate(String date) {
+        DateTimeFormatter validateDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        try {
+            LocalDateTime.parse("01-" + date + " 1400", validateDate);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
 }
+
