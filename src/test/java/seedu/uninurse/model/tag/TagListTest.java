@@ -6,9 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalTags.TAG_ELDERLY;
+import static seedu.uninurse.testutil.TypicalTags.TAG_FALL_RISK;
 import static seedu.uninurse.testutil.TypicalTags.TAG_NURSING_HOME;
 import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_ELDERLY;
-import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_NURSING_HOME;
+import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_FALL_RISK;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +22,9 @@ import seedu.uninurse.model.tag.exceptions.TagNotFoundException;
 public class TagListTest {
     private final TagList emptyTagList = new TagList();
     private final TagList tagListElderly = new TagList(List.of(TAG_ELDERLY));
-    // TAG_NURSING_HOME is lexicographically < TAG_ELDERLY
-    private final TagList sortedTagList = new TagList(Arrays.asList(TAG_NURSING_HOME, TAG_ELDERLY));
+    private final TagList tagListFallRisk= new TagList(List.of(TAG_FALL_RISK));
+    // TAG_NURSING_HOME is lexicographically < TAG_ELDERLY < TAG_FALL_RISK
+    private final TagList sortedTagList = new TagList(Arrays.asList(TAG_ELDERLY, TAG_FALL_RISK));
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -31,7 +33,7 @@ public class TagListTest {
 
     @Test
     public void constructor_unsortedTagList_returnsSortedTagList() {
-        TagList tagList = new TagList(Arrays.asList(TAG_ELDERLY, TAG_NURSING_HOME));
+        TagList tagList = new TagList(Arrays.asList(TAG_FALL_RISK, TAG_ELDERLY));
         assertEquals(tagList, sortedTagList);
     }
 
@@ -53,7 +55,7 @@ public class TagListTest {
 
     @Test
     public void add_returnsSortedTagList() {
-        TagList tagList = tagListElderly.add(TAG_NURSING_HOME);
+        TagList tagList = tagListFallRisk.add(TAG_ELDERLY);
         assertEquals(tagList, sortedTagList);
     }
 
@@ -69,18 +71,45 @@ public class TagListTest {
 
     @Test
     public void delete_validIndex_success() {
-        TagList updatedTagList = tagListElderly.delete(0);
+        TagList updatedTagList = tagListFallRisk.delete(0);
         assertEquals(updatedTagList, emptyTagList);
     }
 
     @Test
     public void delete_indexOutOfBounds_throwsTagNotFoundException() {
-        assertThrows(TagNotFoundException.class, () -> tagListElderly.delete(1));
+        assertThrows(TagNotFoundException.class, () -> tagListFallRisk.delete(1));
     }
 
     @Test
-    public void edit_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> emptyTagList.edit(0, TAG_ELDERLY));
+    public void edit_emptyList_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> emptyTagList.edit(0, TAG_FALL_RISK));
+    }
+
+    @Test
+    public void edit_invalidIndex_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> emptyTagList.edit(-1, TAG_FALL_RISK));
+    }
+
+    @Test
+    public void edit_indexOutOfBounds_throwsTagNotFoundException() {
+        assertThrows(TagNotFoundException.class, () -> tagListFallRisk.edit(1, TAG_ELDERLY));
+    }
+
+    @Test
+    public void edit_duplicateTag_throwsDuplicateTagException() {
+        assertThrows(DuplicateTagException.class, () -> sortedTagList.edit(0, TAG_FALL_RISK));
+    }
+
+    @Test
+    public void edit_validArgs_success() {
+        TagList updatedTagList = tagListFallRisk.edit(0, TAG_ELDERLY);
+        assertEquals(updatedTagList, tagListElderly);
+    }
+
+    @Test
+    public void edit_returnsSortedTagList() {
+        TagList tagList = new TagList(Arrays.asList(TAG_NURSING_HOME, TAG_ELDERLY)).edit(0, TAG_FALL_RISK);
+        assertEquals(tagList, sortedTagList);
     }
 
     @Test
@@ -95,12 +124,12 @@ public class TagListTest {
 
     @Test
     public void get_indexOutOfBounds_throwsTagNotFoundException() {
-        assertThrows(TagNotFoundException.class, () -> tagListElderly.get(1));
+        assertThrows(TagNotFoundException.class, () -> tagListFallRisk.get(1));
     }
 
     @Test
     public void get_validIndex_success() {
-        assertEquals(tagListElderly.get(0), TAG_ELDERLY);
+        assertEquals(tagListFallRisk.get(0), TAG_FALL_RISK);
     }
 
     @Test
@@ -110,7 +139,7 @@ public class TagListTest {
 
     @Test
     public void size_nonEmptyList_returnsNonZero() {
-        assertNotEquals(tagListElderly.size(), 0);
+        assertNotEquals(tagListFallRisk.size(), 0);
     }
 
     @Test
@@ -120,13 +149,13 @@ public class TagListTest {
 
     @Test
     public void isEmpty_nonEmptyList_returnsFalse() {
-        assertFalse(tagListElderly.isEmpty());
+        assertFalse(tagListFallRisk.isEmpty());
     }
 
     @Test
     public void getInternalList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> tagListElderly.getInternalList().remove(0));
+                -> tagListFallRisk.getInternalList().remove(0));
     }
 
     @Test
@@ -136,26 +165,26 @@ public class TagListTest {
 
     @Test
     public void toString_nonEmptyList() {
-        String expectedString = "[" + TYPICAL_TAG_NURSING_HOME + "][" + TYPICAL_TAG_ELDERLY + "]";
+        String expectedString = "[" + TYPICAL_TAG_ELDERLY + "][" + TYPICAL_TAG_FALL_RISK + "]";
         assertEquals(sortedTagList.toString(), expectedString);
     }
 
     @Test
     public void equals() {
         // same object -> returns true
-        assertEquals(tagListElderly, tagListElderly);
+        assertEquals(tagListFallRisk, tagListFallRisk);
 
         // same internal list -> returns true
-        TagList tagListElderlyCopy = new TagList(List.of(TAG_ELDERLY));
-        assertEquals(tagListElderly, tagListElderlyCopy);
+        TagList tagListFallRiskCopy = new TagList(List.of(TAG_FALL_RISK));
+        assertEquals(tagListFallRisk, tagListFallRiskCopy);
 
         // different types -> returns false
-        assertNotEquals(1, tagListElderly);
+        assertNotEquals(1, tagListFallRisk);
 
         // null -> returns false
-        assertNotEquals(null, tagListElderly);
+        assertNotEquals(null, tagListFallRisk);
 
         // different internal list -> returns false
-        assertNotEquals(tagListElderly, sortedTagList);
+        assertNotEquals(tagListFallRisk, sortedTagList);
     }
 }
