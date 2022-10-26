@@ -75,6 +75,11 @@ public interface Model {
      */
     boolean hasEvent(Event event);
 
+
+    /**
+     * Returns true if the bucketlist has event in Travelr.
+     */
+    boolean bucketlistHasEvent(Event event);
     /**
      * Deletes the given person.
      * The person must exist in the address book.

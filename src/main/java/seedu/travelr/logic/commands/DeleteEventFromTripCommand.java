@@ -31,7 +31,8 @@ public class DeleteEventFromTripCommand extends Command {
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s \nThe specified event has been returned "
+    public static final String MESSAGE_SUCCESS = "Event removed from trip: %1$s \n"
+            + "The specified event has been returned "
             + "to the bucket list. Current bucket list:";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
 
@@ -60,7 +61,7 @@ public class DeleteEventFromTripCommand extends Command {
         Trip toDeleteFrom = model.getTrip(new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>()));
 
 
-        if (!toDeleteFrom.contains(new Event((eventToDelete)))) {
+        if (!toDeleteFrom.containsEvent(new Event((eventToDelete)))) {
             throw new CommandException("Please enter a valid Event");
         }
 

@@ -108,7 +108,7 @@ public class Trip {
         events.remove(event);
     }
 
-    public boolean contains(Event event) {
+    public boolean containsEvent(Event event) {
         return events.contains(event);
     }
 

@@ -142,6 +142,12 @@ public class AddCommandTest {
         public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean bucketlistHasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deleteEvent(Event event) {
             throw new AssertionError("This method should not be called.");

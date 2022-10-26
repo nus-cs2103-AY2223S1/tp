@@ -114,11 +114,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean bucketlistHasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.bucketlistHasEvent(event);
+    }
+
+    @Override
     public void deleteTrip(Trip target) {
         addressBook.removeTrip(target);
-        if (selectedTrip.isEqual(target)) {
-            selectedTrip.resetTrip();
-        }
     }
 
     @Override
@@ -129,7 +132,7 @@ public class ModelManager implements Model {
     @Override
     public void addTrip(Trip trip) {
         addressBook.addTrip(trip);
-        updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
+        // updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
     /**
@@ -219,6 +222,9 @@ public class ModelManager implements Model {
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+        //        if (!(predicate instanceof EventInItineraryPredicate)) {
+        //            resetSelectedTrip();
+        //        }
     }
 
     @Override

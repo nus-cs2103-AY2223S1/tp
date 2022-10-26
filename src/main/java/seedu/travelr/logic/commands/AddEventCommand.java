@@ -25,7 +25,7 @@ public class AddEventCommand extends Command {
             + PREFIX_DESC + "Going on a honeymoon with my prof.";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TRIP = "This event already exists in Travelr";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in Travelr";
 
     private final Event toAdd;
 
@@ -42,7 +42,7 @@ public class AddEventCommand extends Command {
         requireNonNull(model);
 
         if (model.hasEvent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TRIP);
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
         model.addEvent(toAdd);
