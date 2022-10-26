@@ -1,8 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
-#### UC1: Add Item to Inventory
-
-**Use Case: UC1 - Add Item to Inventory**
+#### Use Case 1: Add Item to Inventory
 
 Preconditions: Item to add does not yet exist in inventory.
 
@@ -26,9 +24,7 @@ Extensions:
 
 ---
 
-#### UC2: Update Item in Inventory
-
-**Use Case: UC2 - Update Item in Inventory**
+#### Use Case 2: Update Item in Inventory
 
 Preconditions: Item to edit exists in inventory.
 
@@ -54,9 +50,7 @@ Extensions:
 
 ---
 
-#### UC3: Delete Item from Inventory
-
-**Use Case: UC3 - Delete Item from Inventory**
+#### Use Case 3: Delete Item from Inventory
 
 Preconditions: Item to delete exists in inventory.
 
@@ -76,9 +70,7 @@ Extensions:
 
 ---
 
-#### UC4: Create Tag
-
-**Use Case: UC4 - Create Tag**
+#### Use Case 4: Create Tag
 
 Preconditions: Tag does not yet exist in FoodRem.
 
@@ -102,9 +94,7 @@ Extensions:
 
 ---
 
-#### UC5: Find Item
-
-**Use Case: UC5 - Find Item**
+#### Use Case 5: Find Item
 
 MSS:
 
@@ -121,9 +111,7 @@ MSS:
 
 ---
 
-#### UC6: Add Tag to Item
-
-**Use Case: UC6 - Add Tag to an Item**
+#### Use Case 6: Add Tag to Item
 
 Preconditions: Tag has been created in FoodRem.
 
@@ -145,9 +133,7 @@ Extensions:
 
 ---
 
-#### UC7: Rename a tag
-
-**Use Case: UC7 - Rename a tag**
+#### Use Case 7: Rename a tag
 
 Preconditions: Tag has been created in FoodRem.
 
@@ -169,9 +155,7 @@ Extensions:
 
 ---
 
-#### UC8: Removing a tag from an item
-
-**Use Case: UC8 - Removing a tag from an item**
+#### Use Case 8: Removing a tag from an item
 
 Preconditions: The tag to be removed is tagged to the item currently.
 
@@ -193,9 +177,7 @@ Extensions:
 
 ---
 
-#### UC9: Increment/Decrement Quantity of Item
-
-**Use Case: UC9 - Increment/Decrement Quantity of Item**
+#### Use Case 9: Increment/Decrement Quantity of Item
 
 MSS:
 
@@ -214,9 +196,7 @@ Extensions:
 
 ---
 
-#### UC10: Sorting List of Items by Criteria
-
-**Use Case: UC10 - Sorting List of Items by Criteria**
+#### Use Case 10: Sorting List of Items by Criteria
 
 MSS:
 
