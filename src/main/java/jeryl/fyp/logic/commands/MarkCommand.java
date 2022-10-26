@@ -25,14 +25,13 @@ public class MarkCommand extends Command {
             + "by the student ID given in the command "
             + "Existing statuses will be updated by the input.\n"
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student id that is already in the FYP manager) "
+            + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student ID that is already in the FYP manager) "
             + PREFIX_PROJECT_STATUS + "STATUS\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_PROJECT_STATUS + "DONE";
 
-    public static final String MESSAGE_ADD_PROJECT_STATUS_SUCCESS = "Added ProjectStatus to Student: %1$s";
-    public static final String MESSAGE_DELETE_PROJECT_STATUS_SUCCESS = "Removed ProjectStatus from Student: %1$s";
+    public static final String MESSAGE_MARK_PROJECT_STATUS_SUCCESS = "Marked ProjectStatus to Student: %1$s";
 
     private final StudentId studentId;
     private final ProjectStatus projectStatus;
@@ -56,7 +55,8 @@ public class MarkCommand extends Command {
         }
 
         Student editedStudent = new Student(oldStudent.getStudentName(), oldStudent.getStudentId(),
-                oldStudent.getEmail(), oldStudent.getProjectName(), projectStatus, oldStudent.getTags());
+                oldStudent.getEmail(), oldStudent.getProjectName(), projectStatus,
+                oldStudent.getDeadlineList(), oldStudent.getTags());
 
         model.setStudent(oldStudent, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -70,9 +70,7 @@ public class MarkCommand extends Command {
      * {@code studentToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = !projectStatus.projectStatus.isEmpty() ? MESSAGE_ADD_PROJECT_STATUS_SUCCESS
-                : MESSAGE_DELETE_PROJECT_STATUS_SUCCESS;
-        return String.format(message, studentToEdit);
+        return String.format(MESSAGE_MARK_PROJECT_STATUS_SUCCESS, studentToEdit);
     }
 
     @Override

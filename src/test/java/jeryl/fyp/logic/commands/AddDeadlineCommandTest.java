@@ -144,6 +144,11 @@ public class AddDeadlineCommandTest {
         public Iterator<Deadline> iterator() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int size() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

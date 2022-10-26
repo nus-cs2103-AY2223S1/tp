@@ -44,7 +44,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | RuntimeException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -79,7 +79,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see jeryl.fyp.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, RuntimeException;
     }
 
 }

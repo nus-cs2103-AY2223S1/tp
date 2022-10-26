@@ -107,7 +107,6 @@ public class StudentCard extends UiPart<Region> {
             deadlineList.getChildren().add(new Label("No deadline at the moment!"));
         } else {
             student.getDeadlineList().asUnmodifiableObservableList().stream()
-                    .sorted(Comparator.comparing(ddl -> ddl.fullDeadlineDateTime))
                     .forEach(ddl -> deadlineList.getChildren().add(new Label(index.incrementAndGet() + ". " + ddl)));
         }
         deadlineList.getChildren().stream().forEach(child -> child.setStyle("-fx-font-size: 12"));
