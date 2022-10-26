@@ -252,7 +252,7 @@ _Details coming soon ..._
 | **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                |
 | **Find tasks**     | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`                                                             
 | **List tasks**     | `list` / `list time`                                                                                                                                      |
-| **Add contact**    | `addc {name} p/ {phone_number} [e/ {email}] [m/{module1} {module2}] [t/{tag1}]` <br> e.g., `addc n/ Bob Martin  p/ 98765432 m/ CS1101S CS1231S t/ friend` |
+| **Add contact**    | `addc {name} p/ {phone_number} [e/ {email}] [a/ {address}] [t/ {tag}...] [m/ {module}...] [gh/ {github}] [tele/ {telegram}]` <br> e.g., `addc n/ Bob Martin  p/ 98765432 tele/bobmartin00 m/ CS1101S CS1231S t/ friend` |
 | **Clear contacts** | `clear`                                                                                                                                                   |
 | **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`                                                                                                               |
 | **Edit contact**   | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                 |
