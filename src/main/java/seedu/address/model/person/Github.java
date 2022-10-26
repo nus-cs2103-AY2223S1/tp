@@ -35,6 +35,9 @@ public class Github {
      * Returns true if a given string is a valid GitHub profile type (username or website link).
      */
     public static boolean isValidGh(String test) {
+        if (test.equals("-")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

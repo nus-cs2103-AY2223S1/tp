@@ -65,7 +65,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.moduleName))
                 .forEach(module -> modules.getChildren().add(new Label(module.moduleName)));
         github.setText("Github Profile: " + person.getGithub().value);
-        telegram.setText("Telegram Username: @" + person.getTelegram().telehandle);
+        telegram.setText("Telegram username: @" + person.getTelegram().telehandle);
     }
 
     @Override

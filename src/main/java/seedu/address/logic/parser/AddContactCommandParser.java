@@ -40,20 +40,19 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                         PREFIX_MODULE, PREFIX_GITHUB, PREFIX_TELEGRAM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                                PREFIX_GITHUB, PREFIX_TELEGRAM)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValueOptional(PREFIX_EMAIL).get());
+        Address address = ParserUtil.parseAddress(argMultimap.getValueOptional(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
-        Github gitHubProfile = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).get());
-        Telegram telegramUsername = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        Github gitHubProfile = ParserUtil.parseGithub(argMultimap.getValueOptional(PREFIX_GITHUB).get());
+        Telegram telegramUsername = ParserUtil.parseTelegram(argMultimap.getValueOptional(PREFIX_TELEGRAM).get());
 
         Person person = new Person(name, phone, email, address, tagList, moduleList, gitHubProfile, telegramUsername);
 

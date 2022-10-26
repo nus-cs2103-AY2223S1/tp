@@ -73,6 +73,9 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
             .withModules(VALID_MODULE_CS1101)
             .withGithub(VALID_GITHUB_AMY).withTelegram(VALID_TELEGRAM_AMY).build();
+    public static final Person EMPTY_OPTIONAL_AMY = new PersonBuilder().withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY).withEmail("-").withAddress("-").withTags()
+            .withModules().withGithub("-").withTelegram("-").build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withModules(VALID_MODULE_CS2030S)

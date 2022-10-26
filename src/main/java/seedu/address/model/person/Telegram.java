@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames can take any values, "
+    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames can take any values, `"
             + "and it should only be one word";
 
     /*
@@ -35,12 +35,15 @@ public class Telegram {
      * Returns true if a given string is a valid GitHub profile type (username or website link).
      */
     public static boolean isValidTele(String test) {
+        if (test.equals("-")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return telehandle;
+        return telehandle.equals("-") ? telehandle : "@" + telehandle;
     }
 
     @Override
