@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.PetGrader;
 
 /**
  * Matches pets given an order.
@@ -25,6 +27,7 @@ public class MatchCommand extends Command {
             + "match " + PREFIX_INDEX + " INDEX\n"
             + "Example: "
             + "match " + PREFIX_INDEX + " 1\n";
+    public static final String MESSAGE_SUCCESS = "Matched pets given the order. ";
 
     private final Index index;
 
@@ -46,15 +49,20 @@ public class MatchCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Order> orderList = model.getFilteredOrderList();
+        ObservableList<Pet> petList = model.getFilteredPetList();
 
         if (index.getZeroBased() >= orderList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Order order = orderList.get(index.getZeroBased());
+        PetGrader grader = new PetGrader(order);
         Map<Pet, Double> petScoreMap = new HashMap<>();
+        petList.forEach(x -> petScoreMap.put(x, grader.evaluate(x)));
+        Comparator<Pet> comparator = (x, y) -> Double.compare(petScoreMap.getOrDefault(y, 0.0),
+                        petScoreMap.getOrDefault(x, 0.0));
+        model.sortPet(comparator);
 
-
-        return null;
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
