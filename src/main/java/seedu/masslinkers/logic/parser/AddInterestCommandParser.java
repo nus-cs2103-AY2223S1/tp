@@ -1,6 +1,7 @@
 package seedu.masslinkers.logic.parser;
 
 import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.masslinkers.commons.core.Messages.MESSAGE_INVALID_INTERESTS;
 import static seedu.masslinkers.logic.parser.ParserUtil.parseIndex;
 
 import java.util.Arrays;
@@ -39,7 +40,14 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
         }
 
         String indexFromCommand = getIndexFromCommand(trimmedArgs);
-        Set<Interest> interestList = getInterestsFromCommand(trimmedArgs);
+        Set<Interest> interestSet;
+
+        try {
+            interestSet = getInterestsFromCommand(trimmedArgs);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_INTERESTS,
+                    AddInterestCommand.MESSAGE_USAGE), e);
+        }
 
         try {
             index = parseIndex(indexFromCommand);
@@ -48,11 +56,11 @@ public class AddInterestCommandParser implements Parser<AddInterestCommand> {
                     AddInterestCommand.MESSAGE_USAGE), pe);
         }
 
-        if (interestList.isEmpty()) {
+        if (interestSet.isEmpty()) {
             throw new ParseException(MESSAGE_INTERESTS_EMPTY);
         }
 
-        return new AddInterestCommand(index, interestList);
+        return new AddInterestCommand(index, interestSet);
     }
 
     /**
