@@ -23,7 +23,7 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " n/alice bob charlie";
 
     public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
-            + "either n/, p/, np/, e/, a/ or dt/";
+            + "either n/, p/, np/, e/, a/, dt/ or t/";
 
     private final Predicate<Person> predicate;
 
