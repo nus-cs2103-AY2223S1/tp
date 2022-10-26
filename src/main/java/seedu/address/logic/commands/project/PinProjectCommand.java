@@ -29,6 +29,10 @@ public class PinProjectCommand extends ProjectCommand {
 
     private ProjectId toPinProjectId;
 
+    /**
+     * Constructor for a command to pin a project to the list.
+     * @param toPinProjectId The ID of the project to be pinned.
+     */
     public PinProjectCommand(ProjectId toPinProjectId) {
         requireNonNull(toPinProjectId);
         this.toPinProjectId = toPinProjectId;
