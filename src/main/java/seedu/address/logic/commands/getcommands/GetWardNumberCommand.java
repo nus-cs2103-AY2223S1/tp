@@ -29,7 +29,7 @@ public class GetWardNumberCommand extends GetCommand {
             + "Example: "
             + COMMAND_WORD + " "
             + WARD_NUMBER_PREFIX
-            + " D312 T36";
+            + " D312 T369";
 
     private final WardNumberPredicate predicate;
 
