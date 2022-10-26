@@ -41,6 +41,7 @@ title: User Guide
 | `listc`    | `listc`                                  |
 | `exit`     | `exit`                                   |
 | `focus`    | `focus c/CLASS_NAME`                     |
+| `clear`    | `clear`                                  |
 
 ### Viewing help : `help`
 
@@ -250,6 +251,18 @@ Example:
 
 - `class CS1231S` will enter focus mode to the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
 
+### Clear all existing data: `clear`
+
+<div markdown="block" class="alert alert-info">
+
+Clears all existing data in TA Assist.
+
+</div>
+
+Format: `clear`
+
+* Clears all existing data in TA Assist.
+
 ## Features Available in Focus Mode
 
 The following commands are only available in **focus mode.**
@@ -262,6 +275,7 @@ The following commands are only available in **focus mode.**
 | `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
 | `view`    | `view INDEX s/SESSION_NAME`          |
 | `lists`   | `lists`                              |
+| `export`  | `export`                             |
 | `unfocus` | `unfocus`                            |
 
 ### List all students in the class: `list`
@@ -353,6 +367,16 @@ List the sessions that have been created for the class.
 Format: `lists`
 
 - List the sessions that have been created for the class.
+
+### Export class data: `export`
+
+<div markdown="block" class="alert alert-info">
+
+Export the class as a CSV file containing grade information of the class's students on all sessions of the class.
+
+</div>
+
+Format: `export`
 
 ### Exit focus mode: `unfocus`
 
