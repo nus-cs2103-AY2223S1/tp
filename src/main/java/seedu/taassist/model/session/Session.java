@@ -3,6 +3,7 @@ package seedu.taassist.model.session;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.taassist.commons.util.StringUtil.caseInsensitiveEquals;
 
 import java.time.LocalDate;
 
@@ -68,7 +69,7 @@ public class Session implements Identity<Session> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Session // instanceof handles nulls
-                && sessionName.equals(((Session) other).sessionName) // state check
+                && caseInsensitiveEquals(sessionName, ((Session) other).sessionName) // state check
                 && date.equals(((Session) other).date));
     }
 
@@ -82,7 +83,7 @@ public class Session implements Identity<Session> {
     @Override
     public boolean isSame(Session otherSession) {
         return otherSession == this
-                || (otherSession != null && otherSession.sessionName.equals(sessionName));
+                || (otherSession != null && caseInsensitiveEquals(sessionName, otherSession.sessionName));
     }
 
     @Override

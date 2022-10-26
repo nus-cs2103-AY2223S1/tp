@@ -33,6 +33,13 @@ public class StringUtil {
     }
 
     /**
+     * Compares two strings case insensitively to see if they are equal.
+     */
+    public static boolean caseInsensitiveEquals(String string1, String string2) {
+        return string1.toLowerCase().equals(string2.toLowerCase());
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
