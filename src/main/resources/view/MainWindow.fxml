@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -15,15 +16,15 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
-<fx:root maxHeight="620.0" maxWidth="950.0" minHeight="620.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="670.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/myStudent_icon.png" />
     </icons>
     <scene>
         <Scene>
 
-            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="950.0" styleClass="background">
-                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="950.0" styleClass="background">
+                <MenuBar fx:id="menuBar" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="    File    ">
                   <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -35,16 +36,25 @@
                   <Insets />
                </VBox.margin>
                 </MenuBar>
-            <HBox minWidth="-Infinity" prefHeight="571.0" prefWidth="950.0">
+            <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="950.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox minWidth="-Infinity" prefHeight="460.0" prefWidth="500.0">
+                  <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="500.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label id="title" prefHeight="44.0" prefWidth="500.0" text="myStudent">
-                           <font>
-                              <Font name="American Typewriter" size="43.0" />
-                           </font>
-                        </Label>
-                        <VBox id="resultDisplayHolder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="149.0" prefWidth="500.0">
+                        <HBox prefHeight="22.0" prefWidth="500.0">
+                           <children>
+                              <ImageView fitHeight="43.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../images/myStudent_big_icon.png" />
+                                  </image>
+                              </ImageView>
+                              <Label id="title" prefHeight="44.0" prefWidth="500.0" text="myStudent">
+                                 <font>
+                                    <Font name="American Typewriter" size="43.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox id="resultDisplayHolder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="149.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                            <children>
                                                     <StackPane id="commandBox" fx:id="commandBoxPlaceholder" minWidth="-Infinity" prefWidth="450.0" VBox.vgrow="NEVER">
                                       <padding>
@@ -64,7 +74,7 @@
                               <Insets />
                            </VBox.margin>
                         </VBox>
-                        <StackPane id="entityDescriptionPanel" fx:id="entityDescriptionPlaceholder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="500.0">
+                        <StackPane id="entityDescriptionPanel" fx:id="entityDescriptionPlaceholder" maxHeight="320.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="500.0" VBox.vgrow="NEVER">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -73,12 +83,15 @@
                            </VBox.margin>
                         </StackPane>
                      </children>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
                   </VBox>
-                  <VBox minWidth="-Infinity" prefHeight="520.0" prefWidth="430.0">
+                  <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="430.0" HBox.hgrow="ALWAYS">
                      <children>
-                            <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="40.0" minHeight="30.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="370.0" styleClass="background">
+                            <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="61.0" minHeight="28.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="390.0" styleClass="background" VBox.vgrow="NEVER">
                                 <children>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" spacing="10.0">
+                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="390.0" spacing="10.0">
                                         <children>
                                     <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStudentList" prefHeight="30.0" prefWidth="90.0">
                                        <graphic>
@@ -117,21 +130,21 @@
                               <Insets />
                            </VBox.margin>
                             </StackPane>
-                                  <VBox id="entityList" fx:id="personList" minWidth="-Infinity" prefHeight="483.0" prefWidth="390.0">
-                                <padding>
-                                    <Insets bottom="10" left="10" right="10" top="10" />
-                                </padding>
+                                  <VBox id="entityList" fx:id="personList" minWidth="-Infinity" prefHeight="483.0" prefWidth="390.0" VBox.vgrow="ALWAYS">
                                 <StackPane fx:id="entityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                             </VBox>
                      </children>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                      <padding>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="20.0" />
                      </padding>
                   </VBox>
                </children>
@@ -139,11 +152,11 @@
                   <Insets />
                </VBox.margin>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" />
+                  <Insets left="20.0" />
                </padding>
             </HBox>
 
-                            <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" VBox.vgrow="NEVER" />
+                            <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" />
             </VBox>
          <stylesheets>
             <URL value="@LightTheme.css" />
