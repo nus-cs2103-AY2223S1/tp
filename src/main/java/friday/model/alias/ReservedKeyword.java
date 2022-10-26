@@ -20,6 +20,8 @@ import friday.logic.commands.RemarkCommand;
 import friday.logic.commands.SortCommand;
 import friday.logic.commands.UgCommand;
 import friday.logic.commands.UnaliasCommand;
+import friday.logic.commands.UnmarkMasteryCheckCommand;
+
 
 /**
  * Represents a ReservedKeyword in friday.
@@ -31,7 +33,7 @@ public class ReservedKeyword {
             DeleteCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
             GradeCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
             MarkMasteryCheckCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD, SortCommand.COMMAND_WORD,
-            UgCommand.COMMAND_WORD, UnaliasCommand.COMMAND_WORD);
+            UgCommand.COMMAND_WORD, UnaliasCommand.COMMAND_WORD, UnmarkMasteryCheckCommand.COMMAND_WORD);
 
     public static final String MESSAGE_CONSTRAINTS = "Reserved keyword given is not in the list of reserved keywords";
 

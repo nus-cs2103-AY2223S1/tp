@@ -1,7 +1,5 @@
 package friday.logic.commands;
 
-import static friday.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
-
 import java.util.List;
 
 import friday.commons.core.Messages;
@@ -42,7 +40,6 @@ public class UnmarkMasteryCheckCommand extends Command {
             studentToUnmark.getMasteryCheck().unmark();
         }
 
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(generateSuccessMessage(studentToUnmark));
     }
 
