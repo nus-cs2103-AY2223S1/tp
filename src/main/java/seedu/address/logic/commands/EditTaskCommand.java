@@ -102,7 +102,7 @@ public class EditTaskCommand extends Command {
             Deadline deadlineTaskToEdit = (Deadline) taskToEdit;
             FormatDate updatedDate = editTaskDescriptor.getDate().orElse(deadlineTaskToEdit.getDate());
             return new Deadline(updatedTitle, updatedDescription, updatedDate);
-        } else if (taskToEdit instanceof Deadline && !inputDate.isPresent()) {
+        } else if (taskToEdit instanceof Assignment && !inputDate.isPresent()) {
             Assignment assignmentTaskToEdit = (Assignment) taskToEdit;
             if (editTaskDescriptor.getStudentsToAdd().isPresent()) {
                 assignmentTaskToEdit.addStudent(editTaskDescriptor.getStudentsToAdd().get());
