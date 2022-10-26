@@ -10,27 +10,27 @@ Class Order {
     - isDelivered: boolean
     + isCompleted(): boolean
 }
-Class Name
-Class Phone
-Class Email
-Class Address
-Class ItemQuantityPair
 Class LocalDateTime
-Class Quantity
+Class Name
+Class ItemQuantityPair
 Class "<<interface>>\nItem" as Item
 Class RecordedItem implements Item
 Class InventoryItem implements Item
+Class Quantity
+Class Address
+Class Phone
+Class Email
 
-Order *-left> "1" Name: by >
-Order *--> "1" Phone: contacted at >
-Order *--> "1" Email: contacted at >
-Order *--> "1" Address: to deliver to >
+Order *--> "1" Name: by customer >
+Order *--> "1" Phone: customer contactable at >
+Order *--> "1" Email: customer contactable at >
+Order *--right> "1" Address: to deliver to >
 Order *--> "1" LocalDateTime: created at >
 Order *---> "*" ItemQuantityPair : consists of >
 ItemQuantityPair --> "1" Item
 ItemQuantityPair --> "1" Quantity
 
-note right of Order::"isCompleted()"
+note left of Order::"isCompleted()"
     This method returns true if and only if both isPaid and isDelivered are true
 end note
 @enduml
