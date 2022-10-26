@@ -97,7 +97,6 @@ in their address.
 <br><br/>
 * The search keywords used are case-insensitive. e.g. `keychain` will match `Keychain`
 * The order of the keywords does not matter. e.g. `apple keychain` will match `Keychain Apple`
-* Only the name is searched.
 * Only full words will be matched e.g. `keychains` will not match `keychain`
 * Orders matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `apple keychain` will return `apple painting`, `banana keychain`
