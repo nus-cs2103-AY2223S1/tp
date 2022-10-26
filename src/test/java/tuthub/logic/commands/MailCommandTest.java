@@ -20,7 +20,6 @@ import tuthub.model.UserPrefs;
 public class MailCommandTest {
 
     private Model model = new ModelManager(getTypicalTuthub(), new UserPrefs());
-    private Model expectedModel = new ModelManager(model.getTuthub(), new UserPrefs());
 
     @Test
     public void checkValidTarget() {

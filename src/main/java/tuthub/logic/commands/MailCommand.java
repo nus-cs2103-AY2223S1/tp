@@ -41,6 +41,7 @@ public class MailCommand extends Command {
      * Creates a MailCommand to email all tutors.
      */
     public MailCommand(String target) {
+        requireNonNull(target);
         this.target = target;
         this.isAll = true;
         this.targetIndex = Index.fromZeroBased(0);
@@ -50,6 +51,7 @@ public class MailCommand extends Command {
      * Creates a MailCommand to email the tutor at {@code targetIndex}.
      */
     public MailCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.target = "";
         this.isAll = false;
         this.targetIndex = targetIndex;
@@ -57,7 +59,7 @@ public class MailCommand extends Command {
 
     /**
      * Checks if the {@code target} is valid or not.
-     * {@code target} is valid if and only if it is equal to "add"
+     * {@code target} is valid if and only if it is equal to "all"
      *
      * @throws CommandException If {@code target} is not valid.
      */
