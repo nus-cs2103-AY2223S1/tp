@@ -2,12 +2,6 @@ package tracko.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static tracko.testutil.TypicalOrders.ORDER_11;
-
-import org.junit.jupiter.api.Test;
-
 import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -17,6 +11,7 @@ import static tracko.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static tracko.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static tracko.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static tracko.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -24,11 +19,16 @@ import static tracko.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static tracko.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static tracko.logic.commands.CommandTestUtil.QUANTITY_DESC_AMY;
-import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static tracko.testutil.TypicalOrders.ORDER_11;
+
+import org.junit.jupiter.api.Test;
+
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.logic.parser.order.AddOrderCommandParser;
