@@ -172,7 +172,9 @@ public class EditMeetingCommand extends Command {
             this.people = people;
         }
 
-        public Optional<ArrayList<Person>> getPeople() { return Optional.ofNullable(people); }
+        public Optional<ArrayList<Person>> getPeople() {
+            return Optional.ofNullable(people);
+        }
 
         @Override
         public boolean equals(Object other) {
