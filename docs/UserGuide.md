@@ -29,7 +29,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add n/'Japan Trip' c/Japan s/04-04-2023 du/14`** : Adds an itinerary for a 14-day trip to Japan named "Japan Trip".
+   * **`add d/Japan Trip c/Japan s/2023-01-04 du/14`** : Adds an itinerary for a 14-day trip to Japan named "Japan Trip".
 
    * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
 
@@ -223,17 +223,25 @@ _Details coming soon ..._
 
 ## Command summary
 
+### Home Page Commands
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME [c/COUNTRY] du/DURATION s/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `new n/Germanyyyy c/Germany d/14 s/05/10/22 e/19/10/22 p/4 b/7000`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/04/10/22`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`
-**List** | `list`
+**Add Itinerary** | `add d/DESCRIPTION [c/COUNTRY] du/DURATION s/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add n/Germanyyyy c/Germany du/14 s/2022-05-10 p/4 b/7500`
+**Clear Itineraries** | `clear`
+**Delete Itinerary** | `delete INDEX`<br> e.g., `delete 3`
+**Edit Itinerary** | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/2022-04-10`
+**Find Itinerary** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`
+**List Itineraries** | `list`
 **Help** | `help`
+**Select Itinerary** | `select INDEX`<br> e.g., `select 3`
+
+### Itinerary Page Commands
+Action | Format, Examples
 --------|------------------
-**Add** | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`
-**Delete** | `delete INDEX`
-**Edit** | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
-**List** | `list`
+**Add Item** | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180`
+**Delete Item** | `delete INDEX`<br> e.g., `delete 3`
+**Edit Item** | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`
+**Schedule Item** | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`
+**Unschedule Item** | `unplan INDEX`<br> e.g., `unplan 3.2`
+**View Vacant Slots** | `free`
+**Return to Home Page** | `home`
