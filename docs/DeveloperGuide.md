@@ -286,6 +286,42 @@ The following sequence diagram shows how the date range process (variant of sort
       potential bug that may arise in the future, caused by the assumption that `internalUnmodifiableList` preserves 
       the original ordered state.
 
+### **Listing of Personal Records**
+
+#### **Implementation**
+
+The mechanism for listing Exercise personal record(s) is facilitated by `PrCommand`, which extends from `Command`.
+
+It implements the following operations:
+
+* `PrCommand#execute()`Executes and coordinates the necessary objects and methods to list personal record(s).
+* `PrCommandParser#parse()`Parses user input from UI and initialises a PrCommand object.
+
+The user can choose to view personal record(s) for specific exercises with the 'n/' prefix:
+* `:pr n/NAME1 [n/NAME2 n/NAME3 ...]`
+
+The user can also choose to view personal records for ALL exercises with the 'all/ prefix':
+* `:pr all/`
+
+Given below is an example usage scenario for how the mechanism for listing Exercise personal record(s) behaves at each step.
+
+Step 1. The user launches the application and already has 4 Exercise instances, with two unique Exercises (Squat and Deadlift), in the exercise tracker.
+
+Step 2: The user enters the command `:pr n/Squat` to view their personal record for the exercise 'Squat'.
+
+![ListPersonalRecord](images/ListPersonalRecord.png)
+
+#### Design considerations:
+
+**Aspect: Type of arguments to accept:**
+* **Alternative 1 (current choice)**: Accept exercise names.
+    * Pros: Being able to view and list personal records by Exercise name is more intuitive and convenient, especially since all unique Exercises are listed in the UI (bottom right).
+    * Cons: Would require users to type more characters; also require users to enter exercise names accurately.
+  
+* **Alternative 2**: Accept index as arguments.
+    * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition.
+    * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow.
+
 ### \[Proposed\] Generating a suggested workout routine
 
 #### Proposed Implementation
