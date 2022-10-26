@@ -20,17 +20,18 @@ import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
  */
 public class EditTagCommand extends EditGenericCommand {
     // tentative syntax; TODO: Integrate with EditGenericCommand
+    // remove after integration; use "edit" from EditGenericCommand
     public static final String COMMAND_WORD = "editTag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the tag identified by the index number in the tag list of the patient "
-            + "identified by the index number used in the last patient listing.\n"
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: PATIENT_INDEX (must be a positive integer) "
-            + "TAG_INDEX (must be a positive integer) "
-            + PREFIX_TAG + "TAG\n"
-            + "Example: " + COMMAND_WORD + " 2 " + " 1 "
-            + PREFIX_TAG + "Hypertension";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a tag of a patient.\n"
+            + "Format: " + COMMAND_WORD + " PATIENT_INDEX TAG_INDEX " + PREFIX_TAG + "TAG\n"
+            + "Example: " + COMMAND_WORD + " 2 1 " + PREFIX_TAG + "fall-risk";
+
+    /* use this after integration with EditGenericCommand
+    public static final String MESSAGE_USAGE = "Command: Edit a tag of a patient.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " PATIENT_INDEX "
+            + PREFIX_OPTION_TAG_INDEX + " TAG_INDEX " + PREFIX_TAG + "fall-risk";
+     */
 
     public static final String MESSAGE_EDIT_TAG_SUCCESS = "Edited tag %1$d of %2$s:\n"
             + "Before: %3$s\n"
