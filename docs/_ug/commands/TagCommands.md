@@ -51,7 +51,7 @@ Carrots
 
 #### Tag an item: `tag`
 
-**Format**: `tag INDEX n/TAG_NAME `
+**Format**: `tag INDEX n/TAG_NAME`
 
 > Tags the item at the specified index
 
