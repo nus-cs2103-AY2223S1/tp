@@ -145,10 +145,11 @@ public class ParserUtil {
         String regexPattern = "^[A-za-z0-9-_]{1,255}$";
         String messageConstraints = "File name is limited to alphanumeric characters, '-' and '_'";
         String trimmedTag = newName.trim();
-        if (!trimmedTag.matches(regexPattern)) {
+        String lowerCase = trimmedTag.toLowerCase();
+        if (!lowerCase.matches(regexPattern)) {
             throw new ParseException(messageConstraints);
         }
-        return trimmedTag;
+        return lowerCase;
     }
 
 }
