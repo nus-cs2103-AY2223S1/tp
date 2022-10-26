@@ -17,8 +17,8 @@ public class JsonAdaptedSubject {
      * Constructs a {@code JsonAdaptedSubject} with the given {@code Subject}.
      */
     @JsonCreator
-    public JsonAdaptedSubject(String remark) {
-        this.subjectName = remark;
+    public JsonAdaptedSubject(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     /**
@@ -29,7 +29,7 @@ public class JsonAdaptedSubject {
     }
 
     @JsonValue
-    public String getRemark() {
+    public String getSubjectName() {
         return subjectName;
     }
 

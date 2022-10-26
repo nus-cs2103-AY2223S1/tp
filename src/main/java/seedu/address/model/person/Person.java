@@ -36,7 +36,8 @@ public class Person {
      * Every field must be present and not null (except attendance, remark and grade).
      */
     public Person(Name name, Phone phone, Email email, Address address, StudentClass studentClass,
-        Attendance attendance, Set<Remark> remarksList, Set<Subject> subjectsTaken, Set<Tag> tags) {
+                  Attendance attendance, Set<Remark> remarksList, SubjectHandler subjectsTaken,
+                  Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, studentClass, attendance, remarksList, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
@@ -48,7 +49,7 @@ public class Person {
         this.studentClass = studentClass;
         this.attendance = attendance;
         this.remarksList = remarksList;
-        this.subjectHandler = new SubjectHandler(subjectsTaken);
+        this.subjectHandler = subjectsTaken;
     }
 
     public Name getName() {
