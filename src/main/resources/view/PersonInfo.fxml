@@ -32,6 +32,7 @@
             <Label fx:id="email" styleClass="info_small_label" text="\$email" />
             <Label fx:id="phone" styleClass="info_small_label" text="\$phone" />
             <Label fx:id="address" styleClass="info_small_label" text="\$address" />
+            <Label fx:id="onLeave" styleClass="info_small_label" text="\$onLeave" />
             <Label fx:id="totalLeave" styleClass="info_small_label" text="\$totalLeave" />
             <Label fx:id="leaveLeft" styleClass="info_small_label" text="\$leaveLeft" />
             <HBox>

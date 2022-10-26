@@ -114,6 +114,20 @@ public class Person {
         this.leavesLeft = leavesLeft;
     }
 
+
+    /**
+     * Check whether a person is currently on leave
+     * @return a string representation of "true" if the person is currently on leave, "false" otherwise.
+     */
+    public String onLeaveStatus() {
+        for (Leave leave: leaves) {
+            if (leave.isOnLeave()) {
+                return "True";
+            }
+        }
+        return "False";
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

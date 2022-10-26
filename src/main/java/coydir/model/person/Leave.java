@@ -28,9 +28,15 @@ public class Leave {
     public Leave(String startDate, String endDate) {
         this.startDate = LocalDate.parse(startDate, FORMAT);
         this.endDate = LocalDate.parse(endDate, FORMAT);
-        this.col1 = new SimpleStringProperty(this.startDate.toString());
-        this.col2 = new SimpleStringProperty((this.endDate.toString()));
-        this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()));
+        this.col1 = new SimpleStringProperty(this.startDate.format(FORMAT));
+        this.col2 = new SimpleStringProperty((this.endDate.format(FORMAT)));
+        if (getTotalDays() <= 1) {
+            this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " day");
+        }
+        else {
+            this.col3 = new SimpleStringProperty(String.valueOf(getTotalDays()) + " days");
+        }
+
     }
 
     public String getCol1() {
@@ -43,6 +49,15 @@ public class Leave {
 
     public String getCol3() {
         return this.col3.get();
+    }
+
+    /**
+     * Check whether current date falls under this leave time frame.
+     * @return true if current date falls under this leave time frame, false otherwise.
+     */
+    public boolean isOnLeave() {
+        LocalDate currentDate = LocalDate.now();
+        return !(currentDate.isBefore(startDate) || currentDate.isAfter(endDate));
     }
 
     /**

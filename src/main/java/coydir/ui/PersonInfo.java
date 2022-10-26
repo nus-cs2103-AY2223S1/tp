@@ -36,6 +36,8 @@ public class PersonInfo extends UiPart<Region> {
     @FXML
     private Label position;
     @FXML
+    private Label onLeave;
+    @FXML
     private Label department;
     @FXML
     private Label address;
@@ -81,6 +83,7 @@ public class PersonInfo extends UiPart<Region> {
         address.setText("Address:  " + person.getAddress().value);
         totalLeave.setText("Total Leaves: " + person.getTotalNumberOfLeaves());
         leaveLeft.setText("Leaves Left: " + person.getLeavesLeft());
+        onLeave.setText("On leave: " + person.onLeaveStatus());
         tags.getChildren().clear();
         leaveTable.setItems(person.getObservableListLeaves());
         TableColumn<Leave, String> startDate = new TableColumn<>("Start Date");
