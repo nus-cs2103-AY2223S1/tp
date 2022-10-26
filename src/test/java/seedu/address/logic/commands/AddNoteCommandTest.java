@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,7 +60,8 @@ public class AddNoteCommandTest {
         AddNoteCommand addNoteCommand = new AddNoteCommand(validNote);
         ModelStub modelStub = new ModelStubWithNote(validNote);
 
-        assertThrows(CommandException.class, AddNoteCommand.MESSAGE_DUPLICATE_NOTE, () -> addNoteCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddNoteCommand.MESSAGE_DUPLICATE_NOTE, () ->
+                addNoteCommand.execute(modelStub));
     }
 
     @Test
