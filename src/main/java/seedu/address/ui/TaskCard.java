@@ -29,8 +29,6 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label taskName;
     @FXML
-    private Label taskDescription;
-    @FXML
     private Label taskDeadline;
     @FXML
     private FlowPane taskMark;
@@ -45,7 +43,6 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getTaskDescription().toString());
-        taskDescription.setText("Description : " + task.getTaskDescription().toString());
         taskDeadline.setText("Deadline : " + task.getTaskDeadline().toString());
 
         Label label = new Label((task.getTaskMark().toString().equals("true")) ? "Completed" : "Not Completed");
