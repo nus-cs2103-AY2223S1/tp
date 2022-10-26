@@ -271,44 +271,13 @@ Examples:
 * `find e/blackball@furry.com`
 * `find p/98986668`
 
-### Find Buyers : `find-b`
+In order to Find a particular category of persons, use the following command words instead:
 
-Find displays all buyers who match ONE on specific attribute. There are five possible attributes for finding buyer(s): Address, Email, Location, Name, Phone.
-
-To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
-
-Format: `find-b [PREFIX]/INPUT`
-
-Examples:
-* `find-b a/6th College Ave. West`
-* `find-b e/blackball@furry.com`
-* `find-b p/98986668`
-
-### Find Deliverers : `find-d`
-
-Find displays all deliverers who match ONE on specific attribute. There are five possible attributes for finding deliverer(s): Address, Email, Location, Name, Phone.
-
-To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
-
-Format: `find-d [PREFIX]/INPUT`
-
-Examples:
-* `find-d a/6th College Ave. West`
-* `find-d e/blackball@furry.com`
-* `find-d p/98986668`
-
-### Find Suppliers : `find-s`
-
-Find displays all suppliers who match ONE on specific attribute. There are five possible attributes for finding supplier(s): Address, Email, Location, Name, Phone.
-
-To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
-
-Format: `find-s [PREFIX]/INPUT`
-
-Examples:
-* `find-s a/6th College Ave. West`
-* `find-s e/blackball@furry.com`
-* `find-s p/98986668`
+| Person Category | Command Word | Usage                  | Example                              |
+|-----------------|--------------|------------------------|--------------------------------------|
+| Buyer           | find-b       | find-b [PREFIX]/INPUT  | find-b a/6th College Ave. West |
+| Deliverer | find-d | find-d [PREFIX]/INPUT | find-d e/blackball@furry.com |
+| Supplier | find-s | find-s [PREFIX]/INPUT | find-s p/98986668 |
 
 ### Sort contacts : `sort`
 
