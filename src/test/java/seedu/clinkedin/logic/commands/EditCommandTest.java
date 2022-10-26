@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.clinkedin.commons.core.Messages;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ModelManager;
@@ -35,14 +36,17 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_THIRD_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model actualModel = model;
         expectedModel.setPerson(model.getFilteredPersonList().get(2), editedPerson);
+        CommandResult expectedRes = new CommandResult(expectedMessage);
+        CommandResult actualRes = editCommand.execute(model);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

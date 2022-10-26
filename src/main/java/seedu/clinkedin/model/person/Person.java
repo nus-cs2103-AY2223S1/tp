@@ -15,7 +15,7 @@ import seedu.clinkedin.model.tag.UniqueTagList;
 
 
 /**
- * Represents a Person in the clinkedin book.
+ * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -30,7 +30,7 @@ public class Person {
     private UniqueTagTypeMap tagTypeMap;
     private final Status status;
     private final Note note;
-
+    private final Rating rating;
     private final Set<Link> links = new HashSet<>();
 
     /**
@@ -45,6 +45,7 @@ public class Person {
         this.tagTypeMap = tagTypeMap;
         this.status = status;
         this.note = new Note("");
+        this.rating = new Rating("0");
     }
 
     /**
@@ -60,9 +61,42 @@ public class Person {
         this.tagTypeMap = tagTypeMap;
         this.status = status;
         this.note = note;
+        this.rating = new Rating("0");
         this.links.addAll(links);
     }
 
+    /**
+     * Overloaded constructor for Person when rating is provided.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap,
+                  Status status, Rating rating) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status, rating);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tagTypeMap = tagTypeMap;
+        this.status = status;
+        this.note = new Note("");
+        this.rating = rating;
+    }
+
+    /**
+     * Overloaded constructor for Person when note and rating is provided.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap,
+                  Status status, Note note, Rating rating, Set<Link> links) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status, note, rating);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tagTypeMap = tagTypeMap;
+        this.status = status;
+        this.note = note;
+        this.rating = rating;
+        this.links.addAll(links);
+    }
     public Name getName() {
         return name;
     }
@@ -93,6 +127,10 @@ public class Person {
 
     public Status getStatus() {
         return status;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
     public int getTagCount() {
@@ -142,18 +180,20 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getNote().equals(getNote())
                 && otherPerson.getStatus().equals(getStatus())
+                && otherPerson.getRating().equals(getRating())
                 && otherPerson.getLinks().equals(getLinks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tagTypeMap, status, note, links);
+        return Objects.hash(name, phone, email, address, tagTypeMap, status, note, rating,
+                           links);
     }
 
     public String getDetailsAsString() {
-        return String.format("%s %s %s %s %s %s %s", name, phone, email, address, status,
-                tagTypeMap, note, links);
+        return String.format("%s %s %s %s %s %s %s %s %s", name, phone, email, address, status,
+                tagTypeMap, note, rating, links);
     }
 
     @Override
@@ -179,6 +219,9 @@ public class Person {
 
         builder.append("; Note: ")
                 .append(getNote());
+
+        builder.append("; Rating: ")
+                .append(getRating());
 
         Set<Link> links = getLinks();
         if (!links.isEmpty()) {

@@ -6,6 +6,7 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.Arrays;
@@ -23,6 +24,7 @@ import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 
 /**
@@ -48,8 +50,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             Set<Note> noteList = ParserUtil.parseNotes(argMultimap.getAllValues(PREFIX_NOTE));
             Map<Prefix, List<String>> prefToStrings = new HashMap<>();
             CliSyntax.getPrefixTags().stream().forEach(pref -> prefToStrings.put(pref, argMultimap.getAllValues(pref)));
+            Set<Rating> ratingList = ParserUtil.parseRatings(argMultimap.getAllValues(PREFIX_RATING));
             return new FindCommand(new DetailsContainKeywordsPredicate(nameList,
-                    phoneList, emailList, addressList, statusList, noteList, prefToStrings));
+                    phoneList, emailList, addressList, statusList, noteList, ratingList, prefToStrings));
 
         }
 

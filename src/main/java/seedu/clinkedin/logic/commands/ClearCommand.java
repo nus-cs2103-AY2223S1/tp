@@ -6,7 +6,7 @@ import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.Model;
 
 /**
- * Clears the clinkedin book.
+ * Clears the address book.
  */
 public class ClearCommand extends Command {
 
