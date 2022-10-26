@@ -10,10 +10,10 @@ import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -38,7 +38,7 @@ public class PersonDescriptorBuilder {
         descriptor = new PersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
+        descriptor.setTelegram(person.getTelegram());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
@@ -62,8 +62,8 @@ public class PersonDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code PersonDescriptor} that we are building.
      */
-    public PersonDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public PersonDescriptorBuilder withTelegram(String telegram) {
+        descriptor.setTelegram(new Telegram(telegram));
         return this;
     }
 

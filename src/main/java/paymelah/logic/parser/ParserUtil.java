@@ -369,7 +369,8 @@ public class ParserUtil {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldSet() {
-            return CollectionUtil.isAnyNonNull(name, phone, telegram, address, tags, descriptions, monies, dates, times);
+            return CollectionUtil.isAnyNonNull(name, phone, telegram, address,
+                                                tags, descriptions, monies, dates, times);
         }
 
         public void setName(Name name) {
