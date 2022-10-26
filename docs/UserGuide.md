@@ -177,9 +177,11 @@ the same convention as [adding a student](#adding-a-student-add).
         1. `yyyy-MM-dd 0000-2359`
         2. `Day-of-Week 0000-2359`
     - End time must be after the start time.
+    - If the Day-of-Week is today, executing `edit INDEX dt/Day-of-Week 0000-2359` will set the date to today only
+      if the start time of the class is later than the current time. Else, the date will be set to 1 week later.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
-   
+
 ```yaml
 ❗Caution: If a chosen date is occupied by another student, a class conflict error will arise.
 ```
