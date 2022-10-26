@@ -28,6 +28,7 @@ public class PinCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_PIN_APPLICANT_SUCCESS = "Pinned Applicant: %1$s";
+    public static final String MESSAGE_APPLICANT_ALREADY_PINNED = "Applicant is already pinned.";
 
     private final Index index;
 
@@ -45,6 +46,9 @@ public class PinCommand extends Command {
         }
 
         Applicant applicantToPin = lastShownList.get(index.getZeroBased());
+        if (applicantToPin.getPin().isPinned()) {
+            throw new CommandException(MESSAGE_APPLICANT_ALREADY_PINNED);
+        }
         Applicant pinnedApplicant = createPinnedApplicant(applicantToPin);
 
         model.setApplicant(applicantToPin, pinnedApplicant);

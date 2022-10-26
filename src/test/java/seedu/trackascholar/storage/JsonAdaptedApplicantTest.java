@@ -33,7 +33,7 @@ public class JsonAdaptedApplicantTest {
     private static final String VALID_SCHOLARSHIP = BENSON.getScholarship().toString();
     private static final String VALID_APPLICATION_STATUS = BENSON.getApplicationStatus().toString();
 
-    private static final boolean VALID_HAS_PINNED = BENSON.getPin().getHasPinned();
+    private static final boolean VALID_HAS_PINNED = BENSON.getPin().isPinned();
     private static final List<JsonAdaptedMajor> VALID_MAJORS = BENSON.getMajors().stream()
             .map(JsonAdaptedMajor::new)
             .collect(Collectors.toList());

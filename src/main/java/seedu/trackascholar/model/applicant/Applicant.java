@@ -211,7 +211,7 @@ public class Applicant {
                 .append("; Application Status: ")
                 .append(getApplicationStatus())
                 .append("; hasPinned: ")
-                .append(getPin().getHasPinned());
+                .append(getPin().isPinned());
 
         Set<Major> majors = getMajors();
         if (!majors.isEmpty()) {

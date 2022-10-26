@@ -27,6 +27,7 @@ public class UnPinCommand extends Command {
             + "Example: " + COMMAND_WORD + " John Doe";
     public static final String MESSAGE_UNPIN_APPLICANT_SUCCESS = "Unpinned Applicant: %1$s";
     public static final String MESSAGE_NO_SUCH_APPLICANT_FOUND = "Given applicant does not exist.";
+    public static final String MESSAGE_APPLICANT_ALREADY_UNPINNED = "Applicant is already unpinned.";
 
     private final Name name;
 
@@ -41,10 +42,13 @@ public class UnPinCommand extends Command {
 
         int indexOfApplicant = getApplicantIndex(lastShownList, name);
 
-        Applicant applicantToUnpin = lastShownList.get(indexOfApplicant);
-        Applicant unPinnedApplicant = createUnPinnedApplicant(applicantToUnpin);
+        Applicant applicantToUnPin = lastShownList.get(indexOfApplicant);
+        if (!applicantToUnPin.getPin().isPinned()) {
+            throw new CommandException(MESSAGE_APPLICANT_ALREADY_UNPINNED);
+        }
+        Applicant unPinnedApplicant = createUnPinnedApplicant(applicantToUnPin);
 
-        model.setApplicant(applicantToUnpin, unPinnedApplicant);
+        model.setApplicant(applicantToUnPin, unPinnedApplicant);
         return new CommandResult(String.format(MESSAGE_UNPIN_APPLICANT_SUCCESS, unPinnedApplicant));
     }
 
