@@ -218,7 +218,7 @@ Below is a comparison between when the store at ID 50 is `tag[ged]` _(left)_ the
 The commands used are shown on the command line. <br>
 Note how the blue "cafe" tag on store 50 disappears after the untag command.
 ![Ui](images/user-guide/UgTagUntagComparison.png)
-<br>
+<br><br>
 
 ### Add eatery: `add`
 
@@ -254,7 +254,7 @@ Below is a comparison between when the store at ID 70 is `add[ed]` _(left)_ then
 The commands used are shown on the command line. <br>
 Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
-<br>
+<br><br>
 
 ### Favourite/Unfavourite `[coming in later versions]`
 
