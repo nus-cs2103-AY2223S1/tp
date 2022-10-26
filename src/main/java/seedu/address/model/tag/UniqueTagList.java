@@ -140,12 +140,14 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Takes a given tag and looks for the matching tag in the list, then adds 1 to its count.
      * Since tags are unique, there should only be 1 match.
-     * @param tag chosen tag
+     * @param toAdd chosen tag
      */
-    public void addTagCount(Tag tag) {
-        for (Tag currTag: internalList) {
-            if (tag.equals(currTag)) {
+    public void addTagCount(Tag toAdd) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Tag currTag = internalList.get(i);
+            if (toAdd.equals(currTag)) {
                 currTag.addToCount();
+                internalList.set(i, currTag);
                 break;
             }
         }
