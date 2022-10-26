@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TeachersPetParser" as TeachersPetParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "e:EditCommand" as EditCommand LOGIC_COLOR
 participant "<<class>> ClassStorage" as ClassStorage CLASS_STORAGE_COLOR
@@ -17,17 +17,17 @@ end box
 [-> LogicManager : execute("edit 1 dt/2022-09-15 1000-1300")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("edit 1 dt/2022-09-15 1000-1300")")
-activate AddressBookParser
+LogicManager -> TeachersPetParser : parseCommand("edit 1 dt/2022-09-15 1000-1300")")
+activate TeachersPetParser
 
 create EditCommandParser
-AddressBookParser -> EditCommandParser
+TeachersPetParser -> EditCommandParser
 activate EditCommandParser
 
-EditCommandParser --> AddressBookParser
+EditCommandParser --> TeachersPetParser
 deactivate EditCommandParser
 
-AddressBookParser -> EditCommandParser : parse(" 1 dt/2022-09-15 1000-1300")")
+TeachersPetParser -> EditCommandParser : parse(" 1 dt/2022-09-15 1000-1300")")
 activate EditCommandParser
 
 create EditCommand
@@ -37,14 +37,14 @@ activate EditCommand
 EditCommand --> EditCommandParser : e
 deactivate EditCommand
 
-EditCommandParser --> AddressBookParser : e
+EditCommandParser --> TeachersPetParser : e
 deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditCommandParser -[hidden]-> AddressBookParser
+EditCommandParser -[hidden]-> TeachersPetParser
 destroy EditCommandParser
 
-AddressBookParser --> LogicManager : e
-deactivate AddressBookParser
+TeachersPetParser --> LogicManager : e
+deactivate TeachersPetParser
 
 LogicManager -> EditCommand : execute()
 activate EditCommand

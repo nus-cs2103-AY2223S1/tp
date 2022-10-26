@@ -11,7 +11,7 @@ title: Developer Guide
     * [Design Considerations](#design-considerations)
   * [Statistics Display Feature](#statistics-display-feature)
   * [Schedule List Feature](#schedule-list-feature)
-  * [[Proposed] Sort-by](#proposed-sort-by-feature)
+  * [Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
@@ -159,7 +159,7 @@ The features covered in this guide are:
 
 * [Edit Class Feature](#edit-class-feature)
 * [Statistics Display Feature](#statistics-display-feature)
-* [[Proposed] Sort-by feature](#proposed-sort-by-feature)
+* [Sort-by feature](#sort-by-feature)
 * [[Proposed] Find-by feature](#proposed-find-by-feature)
 
 ### Edit Class Feature
@@ -283,11 +283,12 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
-### [Proposed] Sort-by feature
+### Sort-by feature
 
-This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
+This feature allows the user (teacher) to sort the students from Teacher's Pet by specified `TYPE` and `ORDER`. `ORDER` is optional
+and will be `ASC` when `TYPE` is `NAME` or `CLASS` and `DESC` when `TYPE` is `OWED`.
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
@@ -301,9 +302,6 @@ The following diagram illustrates how the operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
-<<<<<<< HEAD
---------------------------------------------------------------------------------------------------------------------
-=======
 
 ### [Proposed] Find-by feature
 
@@ -338,7 +336,8 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
->>>>>>> 3edb1f6263bbc24dff50228e6030932fe15223be
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
 
