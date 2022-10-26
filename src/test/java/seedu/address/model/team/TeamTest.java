@@ -17,10 +17,6 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TeamBuilder;
 
-
-
-
-
 public class TeamTest {
 
     @Test
@@ -68,7 +64,7 @@ public class TeamTest {
         // different type -> returns false
         assertFalse(FRONTEND.equals(5));
 
-        // different person -> returns false
+        // different team -> returns false
         assertFalse(FRONTEND.equals(BACKEND));
 
         // different name -> returns false

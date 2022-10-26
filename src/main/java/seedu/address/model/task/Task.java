@@ -107,7 +107,8 @@ public class Task {
         return other == this // short circuit if same object
                 || (other instanceof Task // instanceof handles nulls
                 && name.equals(((Task) other).getName())
-                && getDeadline().equals(((Task) other).getDeadline())); // state check
+                && getDeadline().equals(((Task) other).getDeadline()))
+                && getIsDone() == ((Task) other).getIsDone(); // state check
     }
 
     @Override

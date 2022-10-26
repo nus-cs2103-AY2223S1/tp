@@ -57,6 +57,11 @@ public class CommandTestUtil {
     public static final String VALID_TEAM_NAME_FRONTEND = "Frontend";
     public static final String VALID_TEAM_NAME_BACKEND = "Backend (payment system)";
 
+    public static final String VALID_TASK_NAME_STUDY = "Study for exam";
+    public static final String VALID_TASK_NAME_COOK = "Cook for 4 people";
+    public static final String VALID_TASK_DEADLINE_COOK = "24-10-2022";
+
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

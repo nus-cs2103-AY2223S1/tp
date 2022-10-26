@@ -7,7 +7,6 @@ import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 
-
 /**
  * A utility class to help with building Team objects.
  */
