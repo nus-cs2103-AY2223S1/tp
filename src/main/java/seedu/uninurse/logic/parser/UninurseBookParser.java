@@ -9,15 +9,18 @@ import java.util.regex.Pattern;
 import seedu.uninurse.logic.commands.AddConditionCommand;
 import seedu.uninurse.logic.commands.AddGenericCommand;
 import seedu.uninurse.logic.commands.AddMedicationCommand;
+import seedu.uninurse.logic.commands.AddRemarkCommand;
 import seedu.uninurse.logic.commands.AddTagCommand;
 import seedu.uninurse.logic.commands.ClearCommand;
 import seedu.uninurse.logic.commands.Command;
 import seedu.uninurse.logic.commands.DeleteConditionCommand;
 import seedu.uninurse.logic.commands.DeleteGenericCommand;
 import seedu.uninurse.logic.commands.DeleteMedicationCommand;
+import seedu.uninurse.logic.commands.DeleteRemarkCommand;
 import seedu.uninurse.logic.commands.DeleteTagCommand;
 import seedu.uninurse.logic.commands.EditGenericCommand;
 import seedu.uninurse.logic.commands.EditMedicationCommand;
+import seedu.uninurse.logic.commands.EditRemarkCommand;
 import seedu.uninurse.logic.commands.ExitCommand;
 import seedu.uninurse.logic.commands.FindCommand;
 import seedu.uninurse.logic.commands.HelpCommand;
@@ -90,6 +93,15 @@ public class UninurseBookParser {
 
         case DeleteMedicationCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
             return new DeleteMedicationCommandParser().parse(arguments);
+
+        case AddRemarkCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
+            return new AddRemarkCommandParser().parse(arguments);
+
+        case EditRemarkCommand.COMMAND_WORD: // TODO: integrate with EditGenericCommand
+            return new EditRemarkCommandParser().parse(arguments);
+
+        case DeleteRemarkCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
+            return new DeleteRemarkCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

@@ -26,6 +26,7 @@
       "taskDescription" : "Check vitals",
       "dateTime" : "16-10-2022 1015"
     } ],
+    "remarks" : [ "Allergic to Amoxicillin" ],
     "tagged" : [ "high-risk", "2A nursing home" ]
   }, {
     "name" : "Carl Kurz",
@@ -38,6 +39,7 @@
       "taskDescription" : "Update health records",
       "dateTime": "28-10-2022 1730"
     } ],
+    "remarks" : [ "Requires wheelchair to move around" ],
     "tagged" : [ "high-risk" ]
   }, {
     "name" : "Daniel Meier",

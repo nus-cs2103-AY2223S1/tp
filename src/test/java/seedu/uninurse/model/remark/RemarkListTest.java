@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
 import seedu.uninurse.model.remark.exceptions.RemarkNotFoundException;
-import seedu.uninurse.model.remark.exceptions.UnmodifiedRemarkException;
 import seedu.uninurse.testutil.TypicalRemarks;
 
 public class RemarkListTest {
@@ -64,9 +63,9 @@ public class RemarkListTest {
     }
 
     @Test
-    public void edit_sameRemark_throwsUnmodifiedRemarkException() {
+    public void edit_sameRemark_throwsDuplicateRemarkException() {
         RemarkList updatedRemarkList = remarkList.add(TypicalRemarks.REMARK_MEDICAL_ALLERGY);
-        assertThrows(UnmodifiedRemarkException.class, () -> updatedRemarkList
+        assertThrows(DuplicateRemarkException.class, () -> updatedRemarkList
                 .edit(0, TypicalRemarks.REMARK_MEDICAL_ALLERGY));
     }
 

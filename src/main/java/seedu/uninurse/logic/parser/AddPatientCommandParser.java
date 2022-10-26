@@ -7,6 +7,7 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
@@ -21,6 +22,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
@@ -52,8 +54,10 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         ConditionList conditionList = ParserUtil.parseConditions(argMultimap.getAllValues(PREFIX_CONDITION));
         MedicationList medicationList = ParserUtil.parseMedications(argMultimap.getAllValues(PREFIX_MEDICATION));
         TaskList taskList = ParserUtil.parseTasks(argMultimap.getAllValues(PREFIX_TASK_DESCRIPTION));
+        RemarkList remarkList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK));
 
-        Patient person = new Patient(name, phone, email, address, tagList, conditionList, medicationList, taskList);
+        Patient person =
+                new Patient(name, phone, email, address, tagList, conditionList, medicationList, taskList, remarkList);
 
         return new AddPatientCommand(person);
     }

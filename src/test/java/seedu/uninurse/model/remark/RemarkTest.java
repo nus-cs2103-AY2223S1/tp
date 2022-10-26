@@ -36,7 +36,7 @@ public class RemarkTest {
         assertTrue(Remark.isValidRemark("@!#$%^&*()-=+_[];.,`~:<>?/"));
 
         // valid remark -> returns true
-        assertTrue(Remark.isValidRemark(TypicalRemarks.TYPICAL_MEDICAL_ALLERGY));
+        assertTrue(Remark.isValidRemark(TypicalRemarks.TYPICAL_REMARK_MEDICAL_ALLERGY));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class RemarkTest {
 
     @Test
     public void testToString() {
-        String expectedRemarkString = TypicalRemarks.TYPICAL_MEDICAL_ALLERGY;
+        String expectedRemarkString = TypicalRemarks.TYPICAL_REMARK_MEDICAL_ALLERGY;
         assertEquals(TypicalRemarks.REMARK_MEDICAL_ALLERGY.toString(), expectedRemarkString);
     }
 
@@ -60,7 +60,7 @@ public class RemarkTest {
         assertEquals(TypicalRemarks.REMARK_MEDICAL_ALLERGY, TypicalRemarks.REMARK_MEDICAL_ALLERGY);
 
         // same values -> returns true
-        Remark medicalAllergyRemarkCopy = new Remark(TypicalRemarks.TYPICAL_MEDICAL_ALLERGY);
+        Remark medicalAllergyRemarkCopy = new Remark(TypicalRemarks.TYPICAL_REMARK_MEDICAL_ALLERGY);
         assertEquals(TypicalRemarks.REMARK_MEDICAL_ALLERGY, medicalAllergyRemarkCopy);
 
         // different types -> returns false

@@ -22,6 +22,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
+import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
@@ -109,9 +110,12 @@ public class EditPatientCommand extends EditGenericCommand {
         // editPatient command does not allow editing tasks
         TaskList updatedTasks = patientToEdit.getTasks();
 
+        // editPatient command does not allow editing remarks
+        RemarkList updatedRemarks = patientToEdit.getRemarks();
+
 
         return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedConditions,
-                updatedMedications, updatedTasks);
+                updatedMedications, updatedTasks, updatedRemarks);
     }
 
     @Override
