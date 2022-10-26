@@ -227,6 +227,24 @@ Examples:
 * `addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`
 * `addEvent n/Banana Discount 10% d/20-04-2022 t/14:00 p/10% discount on all bananas`
 
+### Locating events by event title: `findEvents`
+
+Finds events whose event titles contain any of the given keywords.
+
+Format: `findEvents KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the event title is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Events matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findEvents Sale` returns `sale` and `Marketing Sale`
+* `findEvents sports car` returns `Sports Festival`, `Car Sale`<br>
+  ![result for 'findEvents Sports Car'](images/findEventsSportsCar.png)
+
 ### Deleting an event: `deleteEvent`
 
 Deletes an existing event in the application.
@@ -325,6 +343,7 @@ _Details coming soon ..._
 | **List**         | `list  [s/FIELD]` <br> e.g., `list s/n`                                                                                                                                                |
 | **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
+| **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                              |
 | **ListEvents**   | `listEvents`                                                                                                                                                                           |
 | **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
 | **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
