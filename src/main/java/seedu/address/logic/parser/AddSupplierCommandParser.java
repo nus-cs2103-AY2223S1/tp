@@ -4,18 +4,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -30,7 +26,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddSupplierCommand object
  */
-public class AddSupplierCommandParser extends AddPersonCommandParser implements Parser<AddPersonCommand> {
+public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
 
     public AddSupplierCommandParser() {
     }
@@ -44,16 +40,16 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_PERSON_CATEGORY,
-                        PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_NAME,
+                        PREFIX_PHONE,
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
                         PREFIX_TAG,
                         PREFIX_PET);
 
         if (!arePrefixesPresent(argMultimap,
-                PREFIX_PERSON_CATEGORY,
-                PREFIX_NAME, PREFIX_ADDRESS,
+                PREFIX_NAME,
+                PREFIX_ADDRESS,
                 PREFIX_PHONE,
                 PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -65,10 +61,9 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Supplier supplier = new Supplier(PersonCategory.BUYER, name, phone, email, address, tagList, null);
+        Supplier supplier = new Supplier(PersonCategory.SUPPLIER, name, phone, email, address, tagList, null);
 
-        List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_ORDER), supplier);
-        supplier.addPets(pets.stream().map(Pet::getId).collect(Collectors.toList()));
+        List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_PET), false);
 
         return new AddSupplierCommand(supplier, pets);
     }

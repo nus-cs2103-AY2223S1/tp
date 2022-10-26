@@ -39,7 +39,6 @@ MainWindow --> "0..1" HelpWindow
 PersonListPanel -down-> "*" PersonCard
 
 MainWindow -left-|> UiPart
-
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart

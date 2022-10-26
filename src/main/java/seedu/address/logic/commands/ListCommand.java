@@ -11,7 +11,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed %1$s";
 
     public static final String MESSAGE_SUCCESS_EMPTY = "Listed";
 
@@ -39,10 +39,10 @@ public class ListCommand extends Command {
         model.updateFilteredDelivererList(Model.PREDICATE_SHOW_ALL_DELIVERERS);
         model.updateFilteredPetList(Model.PREDICATE_SHOW_ALL_PETS);
         model.updateFilteredOrderList(Model.PREDICATE_SHOW_ALL_ORDERS);
-        if (this.listType == ListCommand.LIST_EMPTY) {
-            return new CommandResult(MESSAGE_SUCCESS_EMPTY, true, listType);
+        if (this.listType.equals(ListCommand.LIST_EMPTY)) {
+            return CommandResult.createListCommandResult(MESSAGE_SUCCESS_EMPTY, listType);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, listType), true, listType);
+        return CommandResult.createListCommandResult(String.format(MESSAGE_SUCCESS, listType), listType);
     }
 
     @Override

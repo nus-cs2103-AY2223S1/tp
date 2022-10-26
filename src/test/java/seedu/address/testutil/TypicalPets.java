@@ -1,43 +1,25 @@
 package seedu.address.testutil;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.order.Price;
-import seedu.address.model.person.Name;
-import seedu.address.model.pet.Color;
-import seedu.address.model.pet.ColorPattern;
-import seedu.address.model.pet.DateOfBirth;
-import seedu.address.model.pet.Height;
 import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.Species;
-import seedu.address.model.pet.VaccinationStatus;
-import seedu.address.model.pet.Weight;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Pets} objects to be used in tests.
  */
 public class TypicalPets {
-    public static final Pet DOJA = new Pet(new Name("Doja"), TypicalSuppliers.ALICE,
-            new Color("white"),
-            new ColorPattern("white and brown"),
-            new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),
-            new Height(100.5), new VaccinationStatus(true), new Price(66.66), getTagSet("cat"),
-            new HashSet<>());
+    public static final Pet DOJA = new PetBuilder().withName("Doja").withSupplier(TypicalSuppliers.ALICE)
+            .withColor("white").withColorPattern("none").withDateOfBirth(2022, 10, 10)
+            .withSpecies("cat").withWeight(10.05).withHeight(50).withVaccinationStatus(true).withPrice(100.00)
+            .withTags("cat").build();
 
-    public static final Pet PLUM = new Pet(new Name("Plum"), TypicalSuppliers.CARL,
-            new Color("brown"),
-            new ColorPattern("grey and brown"),
-            new DateOfBirth(LocalDate.parse("2020-10-10")), new Species("cat"), new Weight(10.75),
-            new Height(110.1), new VaccinationStatus(true), new Price(66.66), getTagSet("cat"),
-            new HashSet<>());
+    public static final Pet PLUM = new PetBuilder().withName("Plum").withSupplier(TypicalSuppliers.CARL)
+            .withColor("brown").withColorPattern("striped").withDateOfBirth(2022, 1, 20)
+            .withSpecies("cat").withWeight(12.00).withHeight(25.00).withVaccinationStatus(true).withPrice(600.00)
+            .withTags("cat").build();
 
     private TypicalPets() {}
 
@@ -55,11 +37,4 @@ public class TypicalPets {
     public static List<Pet> getTypicalPets() {
         return new ArrayList<>(Arrays.asList(DOJA, PLUM));
     }
-
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
 }

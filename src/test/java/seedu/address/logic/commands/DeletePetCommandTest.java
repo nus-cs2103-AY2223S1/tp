@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showPetAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showPetAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPets.getTypicalPetsAddressBook;
@@ -48,34 +48,34 @@ public class DeletePetCommandTest {
         assertCommandFailure(deletePetCommand, modelForPets, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    //    @Test
-    //    public void execute_validIndexFilteredPetList_success() {
-    //        showPetAtIndex(modelForPets, INDEX_FIRST);
-    //
-    //        Pet personToDelete = modelForPets.getFilteredPetList().get(INDEX_FIRST.getZeroBased());
-    //        DeletePetCommand deletePetCommand = new DeletePetCommand(INDEX_FIRST);
-    //
-    //        String expectedMessage = String.format(DeletePetCommand.MESSAGE_DELETE_PET_SUCCESS, personToDelete);
-    //
-    //        Model expectedModel = new ModelManager(modelForPets.getAddressBook(), new UserPrefs());
-    //        expectedModel.deletePet(personToDelete);
-    //        showNoPet(expectedModel);
-    //
-    //        assertCommandSuccess(deletePetCommand, modelForPets, expectedMessage, expectedModel);
-    //    }
-    //
-    //    @Test
-    //    public void execute_invalidIndexFilteredPetList_throwsCommandException() {
-    //        showPetAtIndex(modelForPets, INDEX_FIRST);
-    //
-    //        Index outOfBoundIndex = INDEX_SECOND;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.getZeroBased() < modelForPets.getAddressBook().getPetList().size());
-    //
-    //        DeletePetCommand deletePetCommand = new DeletePetCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deletePetCommand, modelForPets, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
+    @Test
+    public void execute_validIndexFilteredPetList_success() {
+        showPetAtIndex(modelForPets, INDEX_FIRST);
+
+        Pet personToDelete = modelForPets.getFilteredPetList().get(INDEX_FIRST.getZeroBased());
+        DeletePetCommand deletePetCommand = new DeletePetCommand(INDEX_FIRST);
+
+        String expectedMessage = String.format(DeletePetCommand.MESSAGE_DELETE_PET_SUCCESS, personToDelete);
+
+        Model expectedModel = new ModelManager(modelForPets.getAddressBook(), new UserPrefs());
+        expectedModel.deletePet(personToDelete);
+        showNoPet(expectedModel);
+
+        assertCommandSuccess(deletePetCommand, modelForPets, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredPetList_throwsCommandException() {
+        showPetAtIndex(modelForPets, INDEX_FIRST);
+
+        Index outOfBoundIndex = INDEX_SECOND;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < modelForPets.getAddressBook().getPetList().size());
+
+        DeletePetCommand deletePetCommand = new DeletePetCommand(outOfBoundIndex);
+
+        assertCommandFailure(deletePetCommand, modelForPets, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
 
     @Test
     public void equals_pet() {

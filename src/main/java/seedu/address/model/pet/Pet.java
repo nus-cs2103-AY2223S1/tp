@@ -12,7 +12,6 @@ import seedu.address.commons.core.index.UniqueId;
 import seedu.address.commons.core.index.UniqueIdGenerator;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
@@ -24,8 +23,8 @@ public class Pet {
     private static final UniqueIdGenerator PET_ID_GENERATOR = new UniqueIdGenerator();
 
     private final UniqueId id;
-    private final Name name;
-    private final Supplier supplier;
+    private final PetName name;
+    private Supplier supplier;
     private final Color color;
     private final ColorPattern colorPattern;
     private final DateOfBirth dateOfBirth;
@@ -53,7 +52,7 @@ public class Pet {
      * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
-    public Pet(Name name,
+    public Pet(PetName name,
                Supplier supplier,
                Color color,
                ColorPattern colorPattern,
@@ -95,7 +94,7 @@ public class Pet {
      * @param tags Its tags that describe its traits.
      * @param certificates Its certificates, for example, noble blood.
      */
-    public Pet(Name name,
+    public Pet(PetName name,
                Color color,
                ColorPattern colorPattern,
                String dateOfBirthString,
@@ -131,7 +130,7 @@ public class Pet {
      * @param height Its height (or length if it walks on fours).
      * @param price Its price for sale.
      */
-    public Pet(Name name,
+    public Pet(PetName name,
                Color color,
                ColorPattern colorPattern,
                DateOfBirth dateOfBirth,
@@ -164,7 +163,7 @@ public class Pet {
      * @param weight Its weight.
      * @param height Its height (or length if it walks on fours).
      */
-    public Pet(Name name,
+    public Pet(PetName name,
                Color color,
                ColorPattern colorPattern,
                String dateOfBirthString,
@@ -263,8 +262,7 @@ public class Pet {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(name, color, dateOfBirth, species, weight, height, vaccinationStatus, tags,
-                certificates, supplier);
+        return Objects.hash(id);
     }
 
     /**
@@ -286,7 +284,7 @@ public class Pet {
                 && otherPet.getDateOfBirth().equals(getDateOfBirth());
     }
 
-    public Name getName() {
+    public PetName getName() {
         return name;
     }
 
@@ -344,6 +342,10 @@ public class Pet {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     /**

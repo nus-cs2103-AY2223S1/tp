@@ -9,16 +9,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Deliverer;
 
 /**
  * Adds a deliverer to the address book.
  */
 public class AddDelivererCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-d";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a deliverer to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -36,27 +36,26 @@ public class AddDelivererCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New deliverer added: %1$s";
     public static final String MESSAGE_DUPLICATE_DELIVERER = "This deliverer already exists in the address book";
 
-    private final Person toAdd;
+    private final Deliverer toAdd;
 
     /**
      * Creates an AddDelivererCommand to add the specified {@code Deliverer}.
      */
-    public AddDelivererCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddDelivererCommand(Deliverer toAdd) {
+        requireNonNull(toAdd);
+        this.toAdd = toAdd;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //TODO
-        //        if (model.hasPerson(toAdd)) {
-        //            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        //        }
-        //TODO
-        //        model.addPerson(toAdd);
-        //        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        return null;
+
+        if (model.hasDeliverer(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DELIVERER);
+        }
+
+        model.addDeliverer(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

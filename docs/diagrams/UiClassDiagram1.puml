@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+Class MainListPanel
+Class BuyerListPanel
+Class DelivererListPanel
+Class SupplierListPanel
+Class OrderListPanel
+Class PetListPanel
+Class BuyerCard
+Class DelivererCard
+Class SupplierCard
+Class OrderCard
+Class PetCard
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager --> Logic
+MainWindow -left-> Logic
+
+UiManager .left.|> Ui
+UiManager --> "1" MainWindow
+MainWindow *-down-> "1" MainListPanel
+MainWindow *-down-> "1" BuyerListPanel
+MainWindow *-down-> "1" DelivererListPanel
+MainWindow *-down-> "1" SupplierListPanel
+MainWindow *-down-> "1" OrderListPanel
+MainWindow *-down-> "1" PetListPanel
+
+/'MainWindow --|> UiPart
+BuyerListPanel --|> UiPart
+DelivererListPanel --|> UiPart
+SupplierListPanel --|> UiPart
+OrderListPanel --|> UiPart
+PetListPanel --|> UiPart
+BuyerCard --|> UiPart
+SupplierCard --|> UiPart
+DelivererCard --|> UiPart
+OrderCard --|> UiPart
+PetCard --|> UiPart'/
+
+MainListPanel --> "*" BuyerCard
+MainListPanel --> "*" DelivererCard
+MainListPanel --> "*" SupplierCard
+BuyerListPanel --> "*" BuyerCard
+DelivererListPanel --> "*" DelivererCard
+SupplierListPanel --> "*" SupplierCard
+OrderListPanel --> "*" OrderCard
+PetListPanel --> "*" PetCard
+BuyerCard --> "*" OrderCard
+DelivererCard --> "*" OrderCard
+SupplierCard --> "*" PetCard
+
+BuyerCard ..> Model
+DelivererCard ..> Model
+SupplierCard ..> Model
+OrderCard ..> Model
+PetCard ..> Model
+
+@enduml

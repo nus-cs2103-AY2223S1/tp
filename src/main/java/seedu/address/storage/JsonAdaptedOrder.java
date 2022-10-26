@@ -62,7 +62,7 @@ class JsonAdaptedOrder {
         this.buyer = new JsonAdaptedBuyer(order.getBuyer());
         this.requestedPriceRange = new JsonAdaptedPriceRange(order.getRequestedPriceRange());
         this.request = new JsonAdaptedRequest(order.getRequest());
-        this.additionalRequests.addAll(order.getAdditionalRequests().getAdditionalRequests());
+        this.additionalRequests.addAll(order.getAdditionalRequests().getAdditionalRequestsToString());
         this.byDate = order.getByDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         this.settledPrice = order.getSettledPrice().getPrice();
         this.status = order.getOrderStatus().getStatus();

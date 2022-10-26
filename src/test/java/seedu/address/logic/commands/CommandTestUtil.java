@@ -15,15 +15,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-//import seedu.address.commons.core.index.UniqueId;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-//import seedu.address.model.order.Order;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.predicates.UniqueOrderIdPredicate;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.predicates.UniquePetIdPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -178,18 +181,31 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredDelivererList().size());
     }
 
-    //    /**
-    //     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
-    //     * {@code model}'s address book.
-    //     */
-    // TODO: for DeleteOrderCommandTest
-    //    public static void showOrderAtIndex(Model model, Index targetIndex) {
-    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
-    //
-    //        Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
-    //        final UniqueId orderId = order.getId();
-    //        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Arrays.asList(orderId)));
-    //
-    //        assertEquals(1, model.getFilteredOrderList().size());
-    //    }
+    /**
+     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showOrderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
+
+        Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
+        final UniqueId orderId = order.getId();
+        model.updateFilteredOrderList(new UniqueOrderIdPredicate(orderId));
+
+        assertEquals(1, model.getFilteredOrderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the pet at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showPetAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPetList().size());
+
+        Pet pet = model.getFilteredPetList().get(targetIndex.getZeroBased());
+        final UniqueId petId = pet.getId();
+        model.updateFilteredPetList(new UniquePetIdPredicate(petId));
+
+        assertEquals(1, model.getFilteredPetList().size());
+    }
 }

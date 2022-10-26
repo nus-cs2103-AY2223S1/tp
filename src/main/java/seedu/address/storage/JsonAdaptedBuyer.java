@@ -69,7 +69,7 @@ class JsonAdaptedBuyer {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         ids.addAll(source.getOrderIds().stream()
-                .map(UniqueId::getId)
+                .map(UniqueId::getIdToString)
                 .collect(Collectors.toList()));
     }
 

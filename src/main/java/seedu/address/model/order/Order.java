@@ -17,7 +17,7 @@ public class Order {
     private static final UniqueIdGenerator ORDER_ID_GENERATOR = new UniqueIdGenerator();
 
     private final UniqueId id;
-    private final Buyer buyer;
+    private Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
     private final AdditionalRequests additionalRequests;
@@ -148,6 +148,10 @@ public class Order {
         return id;
     }
 
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
+    }
+
     /**
      * Updates the price range changed during negotiation.
      *
@@ -190,8 +194,7 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(buyer, requestedPriceRange, request,
-                additionalRequests, byDate, settledPrice, status);
+        return Objects.hash(id);
     }
 
     @Override

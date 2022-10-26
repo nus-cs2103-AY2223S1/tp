@@ -25,6 +25,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
+import seedu.address.ui.popupwindow.AddCommandPopupWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,18 +38,20 @@ public class MainWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    private Logic logic;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BuyerListPanel buyerListPanel;
-    private SupplierListPanel supplierListPanel;
-    private DelivererListPanel delivererListPanel;
-    private OrderListPanel orderListPanel;
+
     private MainListPanel mainListPanel;
+    private BuyerListPanel buyerListPanel;
+    private DelivererListPanel delivererListPanel;
+    private SupplierListPanel supplierListPanel;
+    private OrderListPanel orderListPanel;
     private PetListPanel petListPanel;
 
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AddCommandPopupWindow addCommandPopupWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -188,6 +191,9 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        if (addCommandPopupWindow != null) {
+            addCommandPopupWindow.close();
+        }
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -243,9 +249,9 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Handles the window display behaviour for list command.
      */
-    public void handleList(String list) {
-        list = list.trim().toUpperCase();
-        switch(list) {
+    public void handleList(String listType) {
+        listType = listType.trim().toUpperCase();
+        switch (listType) {
         case ListCommand.LIST_BUYER:
             showBuyer();
             break;
@@ -265,10 +271,20 @@ public class MainWindow extends UiPart<Stage> {
             showAll();
             break;
         case ListCommand.LIST_EMPTY:
-            //Fall through
+            // Fall through
         default:
-            //Do nothing
+            // Do nothing
         }
+    }
+
+    /**
+     * Creates a pop-up window.
+     *
+     * @param addType Typo of person to be added.
+     */
+    public void handleAddByPopup(String addType) {
+        addCommandPopupWindow = new AddCommandPopupWindow(logic, addType, resultDisplay);
+        addCommandPopupWindow.show();
     }
 
     /**
@@ -312,7 +328,6 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
-
     /**
      * Executes the command and returns the result.
      *
@@ -336,12 +351,16 @@ public class MainWindow extends UiPart<Stage> {
                 handleList(commandResult.getListType());
             }
 
+            if (commandResult.isAddByPopup()) {
+                handleAddByPopup(commandResult.getAddType());
+            }
             if (commandResult.isCheck()) {
                 Index index = commandResult.getIndex();
                 handleCheck(commandResult.getCheckType(), index.getZeroBased());
             }
 
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

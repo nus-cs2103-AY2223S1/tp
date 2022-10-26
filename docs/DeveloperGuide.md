@@ -112,6 +112,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* Some Commands have multiple parsers for the same Command (FindCommand has 3 different parsers - FindBuyerCommandParser
+, FindSupplierCommandParser and FindDelivererCommandParser, all of which return a FindCommand)
+* Some parsers can return different Commands (eg. SortCommandParser can return a SortBuyerCommand, SortDelivererCommand
+etc.)
+* Some Commands are similar but have their own Parsers and behave distinctly. (eg. AddDelivererCommand vs AddBuyerCommand).
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -135,7 +140,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -250,9 +255,9 @@ We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least sig
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
 
 ### Display  of person list
-Initially, there is only one `PersonListPanel` that displays the person list in the ui. However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`. 
+Initially, there is only one `PersonListPanel` that displays the person list in the ui. However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`.
 
-In addition, buyers, suppliers and deliverers have comprehensive details on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in obtaining information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
+In addition, buyers, suppliers and deliverers have comprehensive details on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
 
 In the implementation, we have a `personListPanelPlaceholder` in the `MainWindow`, which can be filled by one of the followings depending on the `Command` executed:
 * `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
@@ -268,10 +273,10 @@ The right side of the card is visually enhanced by adding a `ListView` of `Order
 
 The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
 
-In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card. 
+In each `SupplierCard`, the structure is similar to that of the `BuyerCard` except the right side of the card.
 Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which displays the information of each of the `Pet` that the `Supplier` sells with an index in a list.
 
-By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the height of each card within a reasonable range 
+By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the height of each card within a reasonable range
 (e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched vertically, potentially to an extent that the whole window can only show information of one single buyer).
 
 Given below is a scenario that shows how the new ui responds to a `ListCommand`.
@@ -348,7 +353,7 @@ Use case ends.
 
   1a. PetCode detects that the list being specified by the user does not exist <br>
   &nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the list does not exist.
-    
+
 Use case ends.
 
 **Use case: UC02 - Add an Inquiry from a Buyer**
@@ -409,9 +414,9 @@ Use case ends.
 **Use case: UC05 - Sort**
 
 **MSS**
-1. User specifies the list to sort and the attribute to sort by
-2. PetCode sorts the specified list in ascending chronological order according to the specified attribute
-3. User could <u>list the summary(UC01)</u> to see the outcome 
+1. User specifies the list to sort and the attribute(s) to sort by
+2. PetCode sorts the specified list in ascending chronological order according to the specified attribute(s)
+3. User could <u>list the summary(UC01)</u> to see the outcome
 
 Use case ends.
 
@@ -422,8 +427,8 @@ Use case ends.
 
 Use case ends.
 
-  1b. The PetCode detects that the specified attribute does not exist <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;  1b1. PetCode notifies user that the attribute does not exist and sort the list by its default attribute
+  1b. The PetCode detects that the specified attribute(s) does not exist <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;  1b1. PetCode notifies user that the attribute(s) does not exist
 
 Use case ends.
 
@@ -454,6 +459,22 @@ Use case ends.
 **Extensions**
 
 1a. The arguments are empty or invalid.
+
+Use case ends.
+
+**Use case: UC08 - Check for the buyer of an order**
+
+**MSS**
+1. User specifies the order list and the index of the order to be checked.
+2. PetCode searches for the order at the specified index.
+3. PetCode outputs all the buyer of that Order.
+
+Use case ends.
+
+**Extensions**
+
+1a. The index is not a valid index.
+&nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the index is invalid.
 
 Use case ends.
 
