@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
+
 /**
  * Hides all persons and their appointments in idENTify whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.

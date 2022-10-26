@@ -4,13 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.model.person.predicates.HideAppointmentPredicate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HideAppointmentsCommandParserTest {
 
