@@ -160,7 +160,7 @@
 }
 
 .list-cell:filled {
-    -fx-background-color: black;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
     -fx-background-insets: 4px ;
 }
 
@@ -180,7 +180,7 @@
 
 
 .list-cell:filled:selected {
-    -fx-background-color: derive(black, 20%);
+    -fx-background-color: rgba(0, 0, 0, 0.8);
     -fx-border-radius: 0px;
 }
 

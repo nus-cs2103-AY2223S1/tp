@@ -71,7 +71,7 @@ public class InspectionPanel extends UiPart<Region> {
                     InspectionPanel.this.email.setText(n.getEmail().value);
                     InspectionPanel.this.phone.setText(n.getPhone().value);
                     InspectionPanel.this.address.setText(n.getAddress().value);
-                    InspectionPanel.this.birthday.setText("NONE");
+                    InspectionPanel.this.birthday.setText(n.getBirthday().value);
                 });
 
         personListView.getSelectionModel().select(0);

@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -44,12 +47,20 @@ public class NoteCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(note.getTitle().fullTitle);
         content.setText(note.getContent().fullContent);
-
-        /* Not Implemented
-        person.getTags().stream()
+        note.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        */
+    }
+
+    /**
+     * Binds the width of the contents of this card to the width of the list view
+     * @param listView the list view to bind to
+     * @param ratio the ratio of the width property to use
+     * @param padding the padding applied after the ratio
+     */
+    public void bindWidth(ListView<Note> listView, double ratio, double padding) {
+        getRoot().maxWidthProperty().bind(listView.widthProperty()
+                .multiply(ratio).subtract(padding));
     }
 
     @Override

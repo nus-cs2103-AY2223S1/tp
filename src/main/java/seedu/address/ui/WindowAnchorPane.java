@@ -98,8 +98,6 @@ public class WindowAnchorPane extends UiPart<Region> {
         AnchorPane.setRightAnchor(noteList, 25.0);
         AnchorPane.setTopAnchor(noteList, 10.0);
         AnchorPane.setBottomAnchor(noteList, DISTANCE_BOTTOM);
-
-        System.out.println("Height " + stageHeight + " Width " + stageWidth);
     }
 
     public PersonListPanel getPersonListPanel() {

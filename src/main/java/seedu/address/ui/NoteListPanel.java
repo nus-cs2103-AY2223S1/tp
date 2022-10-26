@@ -49,20 +49,10 @@ public class NoteListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (noteListView.getSelectionModel().getSelectedIndex() != getIndex()) {
-                    setOpacity(0.7);
-                }
-                setGraphic(new NoteCard(note, getIndex() + 1).getRoot());
+                NoteCard noteCard = new NoteCard(note, getIndex() + 1);
+                noteCard.bindWidth(noteListView, 0.95, 20);
+                setGraphic(noteCard.getRoot());
             }
-
-            focusedProperty().addListener((ob, o, n) -> setOpacity(1));
-
-            setOnMouseEntered(e -> setOpacity(1));
-            setOnMouseExited(e -> {
-                if (noteListView.getSelectionModel().getSelectedIndex() != getIndex()) {
-                    setOpacity(0.7);
-                }
-            });
         }
     }
 
