@@ -8,11 +8,18 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - [Adding task functions](#adding-task-functions-coming-soon-in-v12)
-  - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
-  - [List](#list-coming-soon-in-v12)
-  - [Marking a task as complete](#marking-a-task-as-complete-coming-soon-in-v12)
-  - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
+  - [Modules-Related Features](#modules-related-features)
+  - [Tasks-Related Features](#tasks-related-features)
+    - [Adding task functions](#adding-task-functions-coming-soon-in-v12)
+    - [Tagging priority of task](#tagging-priority-of-task-coming-soon-in-v12)
+    - [List](#list-coming-soon-in-v12)
+    - [Editing a task](#editing-a-task)
+    - [Marking a task](#marking-a-task)
+    - [Unmarking a task](#unmarking-a-task)
+    - [Deleting task function](#deleting-task-function-coming-soon-in-v12)
+  - [Exams-Related Features](#exams-related-features)
+- [Summary Of Commands](#summary-of-commands)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,7 +85,7 @@ Examples:
 ### Editing a task
 Edits the specified task with the given fields
 
-Format: `edit INDEX [m/MODULE] [d/DESCRIPTION]`
+Format: `t edit INDEX [m/MODULE] [d/DESCRIPTION]`
 * Edits the task at the specified INDEX in the task list. 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -94,7 +101,7 @@ Examples:
 ### Marking a task
 Indicates the specified task is completed
 
-Format: `mark INDEX`
+Format: `t mark INDEX`
 * Indicates the task at the specified INDEX in the task list is completed. 
 * The index refers to the index number shown in the task list. 
 * The index must be a positive integer 1, 2, 3, …​
@@ -102,14 +109,14 @@ Format: `mark INDEX`
 
 Examples:
 
-`mark 1` indicates the first task in the task list is completed.
+`t mark 1` indicates the first task in the task list is completed.
 
-`mark 3` indicates the third task in the task list is completed.
+`t mark 3` indicates the third task in the task list is completed.
 
 ### Unmarking a task
 Indicates the specified task is not completed
 
-Format: `unmark INDEX`
+Format: `t unmark INDEX`
 * Indicates the task at the specified INDEX in the task list is not completed. 
 * The index refers to the index number shown in the task list. 
 * The index must be a positive integer 1, 2, 3, …​
@@ -117,9 +124,9 @@ Format: `unmark INDEX`
 
 Examples:
 
-`unmark 1` indicates the first task in the task list is not completed.
+`t unmark 1` indicates the first task in the task list is not completed.
 
-`unmark 3` indicates the third task in the task list is not completed.
+`t unmark 3` indicates the third task in the task list is not completed.
 
 ### Deleting task function [Coming Soon in v1.2]
 Deletes the specified task according to the index given
@@ -181,6 +188,6 @@ Format: `exit`
 | **E unlink**  | **Format**: `e unlink INDEX`<br/> **Example**:`e unlink 1`                                                                        |
 | **E showT**   | **Format**: `e showT INDEX`<br/> **Example**:`e showT 1`                                                                          |
 | **Others**    |                                                                                                                                   |
-| **clearAll**  |                                                                                                                                   |
-| **Help**      |                                                                                                                                   |
-| **Exit**      |                                                                                                                                   |
+| **clearAll**  | **Format**: `clearAll`<br/> **Example**:`clearAll`                                                                                |
+| **Help**      | **Format**: `help`<br/> **Example**:`help`                                                                                        |
+| **Exit**      | **Format**: `exit`<br/> **Example**:`exit`                                                                                       |
