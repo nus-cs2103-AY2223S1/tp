@@ -66,10 +66,16 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Adds a birthday tag to a Customer.
+     */
     public void addBirthdayTag() {
         this.tags.add(new Tag("CAKE"));
     }
 
+    /**
+     * Removes the birthday tag from a Customer (if any).
+     */
     public void removeBirthdayTag() {
         this.tags.remove(new Tag("CAKE"));
     }
