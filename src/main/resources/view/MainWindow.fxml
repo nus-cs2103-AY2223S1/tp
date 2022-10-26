@@ -10,9 +10,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="1100" minHeight="600" onCloseRequest="#handleExit">
   <icons>
