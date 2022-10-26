@@ -91,10 +91,11 @@ public class DateTimeProcessor {
         DateFormat outputTimeFormat = new SimpleDateFormat("hh:mm aa"); // aa for AM/ PM
 
         if (Objects.equals(dueTime, "")) {
-            return dayAndDate;
+            throw new ParseException("Meeting time cannot be empty");
 
-        } else if (!isTimeValid(dueTime)) {
-            throw new ParseException("Meeting Time is not in HHmm format");
+        }
+        if (!isTimeValid(dueTime)) {
+            throw new ParseException("Meeting time is not in HHmm format");
         }
 
         Date inputTime = inputTimeFormat.parse(dueTime);
