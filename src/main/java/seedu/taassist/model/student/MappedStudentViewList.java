@@ -12,7 +12,7 @@ import seedu.taassist.model.session.Session;
 
 /*
   Adapted from James_D's answer on Stack Overflow, see
-  https://stackoverflow.com/questions/32294055/mirror-one-observablelist-to-another.
+  https://stackoverflow.com/a/32297235.
 */
 
 /**

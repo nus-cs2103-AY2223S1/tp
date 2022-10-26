@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.taassist.model.session.Session;
@@ -51,7 +52,8 @@ public class StudentModuleData implements Identity<StudentModuleData> {
     /**
      * Returns the {@code SessionData} within the module data for the given {@code Session}.
      */
-    public SessionData findSessionData(Session target) {
+    public Optional<SessionData> findSessionData(Session target) {
+        requireNonNull(target);
         return sessionDataList.findElement(new SessionData(target, 0.0));
     }
 

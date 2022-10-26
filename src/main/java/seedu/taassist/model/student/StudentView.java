@@ -25,7 +25,7 @@ public class StudentView {
     private final Optional<SessionData> sessionData;
 
     /**
-     * Construct a {@code StudentView} with the provided {@code Student}.
+     * Constructs a {@code StudentView} with the provided {@code Student}.
      *
      * @param student the student.
      */
@@ -35,14 +35,14 @@ public class StudentView {
     }
 
     /**
-     * Construct a {@code StudentView} with the provided {@code Student} and {@code SessionData}.
+     * Constructs a {@code StudentView} with the provided {@code Student} and {@code Optional<SessionData>}.
      *
      * @param student the student.
-     * @param sessionData the session data.
+     * @param sessionData the (optional) session data.
      */
-    private StudentView(Student student, SessionData sessionData) {
+    private StudentView(Student student, Optional<SessionData> sessionData) {
         this.student = student;
-        this.sessionData = Optional.ofNullable(sessionData);
+        this.sessionData = sessionData;
     }
 
     public Student getStudent() {
@@ -52,7 +52,7 @@ public class StudentView {
     /**
      * Returns true if {@code StudentView} has been queried with a session data.
      *
-     * @return
+     * @return true if and only if session data was queried.
      */
     public boolean hasSession() {
         return sessionData != null;
@@ -82,7 +82,7 @@ public class StudentView {
      */
     public StudentView withSession(ModuleClass targetClass, Session targetSession) {
         requireAllNonNull(targetClass, targetSession);
-        return new StudentView(student, student.findNullableSessionData(targetClass, targetSession));
+        return new StudentView(student, student.findSessionData(targetClass, targetSession));
     }
 
     /**

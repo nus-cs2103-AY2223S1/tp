@@ -35,7 +35,7 @@ class ScoresCommandTest {
     }
 
     @Test
-    void execute_sessionNotExist_throwsException() {
+    void execute_sessionDoesNotExist_throwsException() {
         // Focused class has no sessions.
         ScoresCommand scoresCommand = new ScoresCommand(new Session(VALID_SESSION_LAB1));
         ModelStubInFocusMode modelStub = new ModelStubInFocusMode();

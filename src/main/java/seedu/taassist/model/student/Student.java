@@ -4,6 +4,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -12,7 +13,6 @@ import seedu.taassist.model.session.Session;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
-import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 
 /**
  * Represents a Student in TA-Assist.
@@ -83,7 +83,7 @@ public class Student implements Identity<Student> {
     /**
      * Returns the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
      */
-    public StudentModuleData findStudentModuleData(ModuleClass targetClass) {
+    public Optional<StudentModuleData> findStudentModuleData(ModuleClass targetClass) {
         return moduleDataList.findElement(new StudentModuleData(targetClass));
     }
 
@@ -91,12 +91,8 @@ public class Student implements Identity<Student> {
      * Returns the {@code SessionData} of a student for the given {@code ModuleClass} and {@code Session}.
      * Returns null if ModuleClass or Session doesn't exist in Student.
      */
-    public SessionData findNullableSessionData(ModuleClass targetClass, Session targetSession) {
-        try {
-            return findStudentModuleData(targetClass).findSessionData(targetSession);
-        } catch (ElementNotFoundException e) {
-            return null;
-        }
+    public Optional<SessionData> findSessionData(ModuleClass targetClass, Session targetSession) {
+        return findStudentModuleData(targetClass).flatMap(x -> x.findSessionData(targetSession));
     }
 
     /**

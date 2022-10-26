@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -140,7 +141,7 @@ public class TaAssist implements ReadOnlyTaAssist {
     /**
      * Finds and returns a module class with equivalent identity to {@code target}.
      */
-    public ModuleClass findModuleClass(ModuleClass target) {
+    public Optional<ModuleClass> findModuleClass(ModuleClass target) {
         requireNonNull(target);
         return moduleClasses.findElement(target);
     }
