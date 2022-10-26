@@ -1,6 +1,6 @@
 # SOCompiler - User Guide
 
-* Table of Contents
+## Table of Contents
   - [Overview](#welcome-to-socompliers-user-guide)
   - [Quick Start](#quick-start)
   - [Things to note](#things-to-note)
@@ -15,10 +15,12 @@
       - [Add](#adding-a-contact-addp)
       - [Edit](#editing-a-contact--editp)
       - [Delete](#deleting-a-contact--deletep)
+      - [Find](#finding-a-contact--findp)
     - [Modules](#Modules)
       - [Add](#adding-a-module-addm)
       - [Edit](#editing-a-module--editm)
       - [Delete](#deleting-a-module--deletem)
+      - [Find](#finding-a-module--findm)
   - [FAQ](#faq)
   - [Command Summary](#command-summary)
 
@@ -86,20 +88,21 @@ Format: `list`
 
 Finds modules and contacts whose fields contain any of the given keywords.
 
-Format: find `KEYWORD [ANOTHER_KEYWORD]…​`
+Format: `find KEYWORD [ANOTHER_KEYWORD]…​`
 
 * The search is case-insensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
-* The order of the keywords does not matter; e.g. `Bob McGhee` will match `mcghee bob`.
+* The order of the keywords does not matter; e.g. `Bob McGhee` will match `McGhee Bob`.
 * Any field associated with the contact or module can be found using this command.
 * Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
+* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only match `Friday` and not `Friday,`
 * Modules or contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will return `Bob McGhee` and `Seaward Broad`.
 
 Examples:
 
 * `find CS2030S` returns `cs2030s`
 * `find bob jessica` returns `Bob McGhee` and `Jessica Lim`
-//TODO Put screenshot here
 
+![Ui](images/Find.png)
 ### Clearing all contacts and modules : `clear`
 
 Clears all entries from both the contact and module list.
@@ -159,9 +162,12 @@ Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`
 
 Examples:
 
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567`
+* `editp 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567`
   and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+* `editp 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+
+<img src="images/editp1.png" width="300" /> 
+<img src="images/editp2.png" width="300" />
 
 ### Deleting a contact : `deletep`
 
@@ -175,8 +181,26 @@ Format: `deletep CONTACT_INDEX`
 
 Examples:
 
-* `list` followed by `deletep 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `deletep 1` deletes the 1st contact in the results of the `find` command.
+* `findp Betsy` followed by `deletep 1` deletes the 1st contact in the results of the `findp` command.
+* `list` followed by `deletep 5` deletes the 5th contact in the address book.
+
+<img src="images/deletep1.png" width="300" /> 
+<img src="images/deletep2.png" width="300" />
+
+### Finding a contact : `findp`
+Find contacts whose fields contain any of the given keywords.
+
+Format: `findp KEYWORD [ANOTHER_KEYWORD]…​`
+
+* The search is case-insensitive; e.g. `alex` will match `Alex`, or `ALEX`.
+* The order of the keywords does not matter; e.g. `Bob McGhee` will match `McGhee Bob`.
+* Any field associated with the contact can be found using this command.
+* Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
+* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only match `Friday` and not `Friday,`
+* Contacts matching at least one keyword will be returned (i.e. `OR` search); e.g. `mcghee broad` will return `Bob McGhee` and `Seaward Broad`.
+
+Examples:
+* `findp bob jessica` returns `Bob McGhee` and `Jessica Lim`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -235,6 +259,23 @@ Examples:
 * `list` followed by `deletem 2` deletes the 2nd module in the address book.
 * `find CS2030S` followed by `deletem 1` deletes the 1st module in the results of the `find` command.
 
+### Finding a module : `findm`
+
+Find modules whose fields contain any of the given keywords.
+
+Format: `findm KEYWORD [ANOTHER_KEYWORD]…​`
+
+* The search is case-insensitive; e.g. `cs2030s` will match `CS2030S`, or `Cs2030s`.
+* The order of the keywords does not matter; e.g. `cs2100 cs2109s` will match `cs2109s cs2100`.
+* Any field associated with the module can be found using this command.
+* Only full words will be matched; e.g. `Cs2030` will not match `Cs2030S`.
+* Full words are characterized by having an empty space before and after the word; eg. Searching `Friday 10am` will only match `Friday` and not `Friday,`
+* Modules matching at least one keyword will be returned (i.e. `OR` search); e.g. `cs2109s cs2100` will return `CS2109s` and `CS2100`.
+
+Examples:
+
+* `findm CS2030S` returns `cs2030s`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -255,6 +296,8 @@ the data of your previous SOCompiler home folder.
 | Edit   | Contact        | `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE_CODE] [t/TAG]…​`                                                                           |
 | Delete | Module         | `deletem MODULE_INDEX`                                                                                                                         |
 | Delete | Contact        | `deletep CONTACT_INDEX`                                                                                                                        |                                                                                                                                           |
+| Find   | Module         | `findm KEYWORD [ANOTHER_KEYWORD]…​`                                                                                                            |                                   |
+| Find   | Contact        | `findp KEYWORD [ANOTHER_KEYWORD]…​`                                                                                                            |                          |
 | Clear  | Both           | `clear`                                                                                                                                        |
 | List   | Both           | `list`                                                                                                                                         |
 | Find   | Both           | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                 |
