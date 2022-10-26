@@ -2,8 +2,6 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.task.exceptions.LevelOutOfRangeException;
-
 /**
  * Represents the category of a task.
  */

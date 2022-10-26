@@ -60,9 +60,9 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         name = source.getName().getTaskName();
-        categoryName = source.getCategory().getCategoryName();
+        categoryName = source.getCategory().getTaskCategoryType().toString();
         description = source.getDescription().toString();
-        priority = source.getPriority().toString();
+        priority = source.getPriority().getPriority().toString();
         deadline = source.getDeadline().toString();
         email = source.getPersonEmailAddress().toString();
         isDone = Task.convertIsDoneFromBooleanToString(source.isDone());
