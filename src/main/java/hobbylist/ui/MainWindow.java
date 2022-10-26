@@ -167,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleStar() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/SkyTheme.css", "view/DarkTheme.css",
-                        "view/LightTheme.css", "view/StarTheme.css");
+                        "view/LightTheme.css", "view/StarTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/StarTheme.css");
     }
     /**
@@ -177,7 +177,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleDark() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/StarTheme.css", "view/SkyTheme.css",
-                        "view/LightTheme.css", "view/DarkTheme.css");
+                        "view/LightTheme.css", "view/DarkTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/DarkTheme.css");
 
     }
@@ -188,7 +188,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleSky() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/StarTheme.css", "view/DarkTheme.css",
-                        "view/LightTheme.css", "view/SkyTheme.css");
+                        "view/LightTheme.css", "view/SkyTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/SkyTheme.css");
 
     }
@@ -199,8 +199,19 @@ public class MainWindow extends UiPart<Stage> {
     public void handleLight() {
         primaryStage.getScene().getStylesheets()
                 .removeAll("view/StarTheme.css", "view/DarkTheme.css",
-                        "view/SkyTheme.css", "view/LightTheme.css");
+                        "view/SkyTheme.css", "view/LightTheme.css", "view/TreeTheme.css");
         primaryStage.getScene().getStylesheets().add("view/LightTheme.css");
+
+    }
+    /**
+     * Change primaryStage to tree theme.
+     */
+    @FXML
+    public void handleTree() {
+        primaryStage.getScene().getStylesheets()
+                .removeAll("view/StarTheme.css", "view/DarkTheme.css",
+                        "view/SkyTheme.css", "view/LightTheme.css", "view/TreeTheme.css");
+        primaryStage.getScene().getStylesheets().add("view/TreeTheme.css");
 
     }
 

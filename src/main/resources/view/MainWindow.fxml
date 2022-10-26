@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
@@ -12,18 +11,16 @@
 <?import javafx.stage.Stage?>
 <?import javafx.scene.image.ImageView?>
 
+
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="HobbyList" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/hobby_list.png" />
   </icons>
-
   <scene>
-
     <Scene>
-      <VBox styleClass="pic">
 
-      <VBox>
+      <VBox styleClass="pic">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -41,33 +38,31 @@
             <MenuItem mnemonicParsing="false" onAction="#handleStar" text="Star" />
             <MenuItem mnemonicParsing="false" onAction="#handleSky" text="Sky" />
             <MenuItem mnemonicParsing="false" onAction="#handleLight" text="Light" />
+            <MenuItem mnemonicParsing="false" onAction="#handleTree" text="Tree" />
           </Menu>
         </MenuBar>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+
+            <Insets top="10" right="20" bottom="15" left="20" />
           </padding>
         </StackPane>
-
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder"
+                   minHeight="100" prefHeight="100" maxHeight="100">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets top="5" right="25" bottom="5" left="25" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="activityList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="activityList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
           <StackPane fx:id="activityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
+        <StackPane fx:id="statusbarPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
-
   </scene>
-
 </fx:root>
