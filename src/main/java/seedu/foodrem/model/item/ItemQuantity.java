@@ -51,6 +51,14 @@ public class ItemQuantity {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return Double.hashCode(itemQuantity);
+    }
+
+    /**
      * Compares two item quantities. The method returns 0 if the quantity is equal to the other quantity.
      * A value less than 0 is returned if the quantity is less than the other quantity and
      * a value greater than 0 if the quantity is greater than the other quantity.
