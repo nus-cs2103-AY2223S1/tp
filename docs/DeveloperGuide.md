@@ -502,19 +502,22 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
    1. Download the jar file and copy into an empty folder
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file
+
+Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+
+Expected: The most recent window size and location is retained.
 
 ### 7.2 Adding a new student record
 
 Prerequisites: Existing student records do not have the names or IDs that will be added.
 1. Test case: `addstud nm/Peter Tan id/452B class/1F`
    
-Expected: A new student recordord with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
+Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
 
 2. Test case: `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 
