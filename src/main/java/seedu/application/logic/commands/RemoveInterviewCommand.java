@@ -12,9 +12,9 @@ import seedu.application.model.application.Application;
 import seedu.application.model.application.interview.Interview;
 
 /**
- * Deletes an interview identified using its displayed index on the CinternS interview list interface.
+ * Removes an interview identified using its displayed index on the CinternS interview list interface.
  */
-public class DeleteInterviewCommand extends Command {
+public class RemoveInterviewCommand extends Command {
 
     public static final String COMMAND_WORD = "remove-i";
 
@@ -23,11 +23,11 @@ public class DeleteInterviewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_APPLICATION_SUCCESS = "Removed Interview: %1$s";
+    public static final String MESSAGE_REMOVE_INTERVIEW_SUCCESS = "Removed Interview: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteInterviewCommand(Index targetIndex) {
+    public RemoveInterviewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,13 +47,13 @@ public class DeleteInterviewCommand extends Command {
 
         assert applicationToRemoveInterview.getInterview().isPresent();
         Interview removedInterview = applicationToRemoveInterview.getInterview().get();
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, removedInterview));
+        return new CommandResult(String.format(MESSAGE_REMOVE_INTERVIEW_SUCCESS, removedInterview));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteInterviewCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteInterviewCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveInterviewCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveInterviewCommand) other).targetIndex)); // state check
     }
 }
