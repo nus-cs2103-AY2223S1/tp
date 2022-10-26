@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.datetime.Datetime;
+
 /**
  * Represents a Reminder in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -13,17 +15,17 @@ public class Reminder {
     // Identity fields
     private final ReminderName name;
 
-    // Data fields
-    private final ReminderDeadline deadline;
-    private final ReminderPriority priority;
+    //Data fields
+    private final Datetime deadline;
     private final ReminderDescription description;
+    private final ReminderPriority priority;
     private ReminderStatus isDone;
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderPriority priority,
-                    ReminderDescription description) {
+    public Reminder(ReminderName name, Datetime deadline, ReminderPriority priority,
+                ReminderDescription description) {
         requireAllNonNull(name, deadline, priority);
         this.name = name;
         this.deadline = deadline;
@@ -35,7 +37,7 @@ public class Reminder {
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderPriority priority,
+    public Reminder(ReminderName name, Datetime deadline, ReminderPriority priority,
                     ReminderDescription description, ReminderStatus status) {
         requireAllNonNull(name, deadline, priority);
         this.name = name;
@@ -53,7 +55,7 @@ public class Reminder {
         return name;
     }
 
-    public ReminderDeadline getDeadline() {
+    public Datetime getDeadline() {
         return deadline;
     }
 

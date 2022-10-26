@@ -182,6 +182,26 @@ public interface Model {
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
+    /**
+     * Clears all existing consultations.
+     */
+    void resetStudents();
+
+    /**
+     * Clears all existing consultations.
+     */
+    void resetConsultations();
+
+    /**
+     * Clears all existing consultations.
+     */
+    void resetTutorials();
+
+    /**
+     * Clears all existing consultations.
+     */
+    void resetReminders();
+
     void markReminder(Reminder reminderToMark);
 
     boolean reminderIsMarked(Reminder reminderToMark);

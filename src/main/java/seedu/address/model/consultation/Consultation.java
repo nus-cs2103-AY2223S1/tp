@@ -1,7 +1,10 @@
 package seedu.address.model.consultation;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.datetime.DatetimeRange;
 
 /**
  * Represents a Consultation in the ModQuik.
@@ -14,14 +17,14 @@ public class Consultation {
     private final ConsultationVenue venue;
 
     //Data fields
-    private final ConsultationTimeslot timeslot;
+    private final DatetimeRange timeslot;
     private final ConsultationDescription description;
 
     /**
      * Every field must be present and not null.
      */
     public Consultation(ConsultationName name, ConsultationModule module, ConsultationVenue venue,
-                        ConsultationTimeslot timeslot, ConsultationDescription description) {
+                        DatetimeRange timeslot, ConsultationDescription description) {
         requireAllNonNull(name, module, venue, timeslot, description);
         this.name = name;
         this.module = module;
@@ -42,7 +45,7 @@ public class Consultation {
         return venue;
     }
 
-    public ConsultationTimeslot getTimeslot() {
+    public DatetimeRange getTimeslot() {
         return timeslot;
     }
 

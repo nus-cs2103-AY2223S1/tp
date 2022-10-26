@@ -236,12 +236,32 @@ public class AddReminderCommandTest {
         }
 
         @Override
+        public void resetConsultations() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetTutorials() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetReminders() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Consultation> getFilteredConsultationList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetStudents() {
             throw new AssertionError("This method should not be called.");
         }
 
