@@ -71,21 +71,29 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
 
 * Default application status is "Applied".
 * `INTERVIEW_DATE_TIME` is optional, but if included, will automatically change application status to "Shortlisted".
-* The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
 * `TAG` is optional, but can be used multiple times.
 
 <div markdown="block" class="alert alert-warning">
 
 :warning: **Date/time formats**
 
-* `APPLIED_DATE` must be one of these formats:
-  * `d MMM yyyy` (7 Oct 2022)
-  * `d/M/yyyy` (7/10/2022)
-* `INTERVIEW_DATE_TIME` must be one of these formats:
-    * `d MMM yyyy HH:mm` (7 Oct 2022 15:00)
-    * `d/M/yyyy HH:mm` (7/10/2022 15:00)
-    * `d MMM yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
-    * `d/M/yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
+The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
+
+For `APPLIED_DATE`, the formats allowed:
+
+| Format       | Input      |
+|--------------|------------|
+| `d MMM yyyy` | 7 Oct 2022 |
+| `d/M/yyyy`   | 7/10/2022  |
+
+For `INTERVIEW_DATE_TIME`, the formats allowed:
+
+| Format               | Input               |
+|----------------------|---------------------|
+| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |
+| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |
+| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm |
+| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  |
   
 </div>
 
@@ -110,14 +118,23 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 
 :warning: **Date/time formats**
 
-* `APPLIED_DATE` must be one of these formats:
-    * `d MMM yyyy` (7 Oct 2022)
-    * `d/M/yyyy` (7/10/2022)
-* `INTERVIEW_DATE_TIME` must be one of these formats:
-    * `d MMM yyyy HH:mm` (7 Oct 2022 15:00)
-    * `d/M/yyyy HH:mm` (7/10/2022 15:00)
-    * `d MMM yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
-    * `d/M/yyyy, h:mm a` (7 Oct 2022, 3:00 pm)
+The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
+
+For `APPLIED_DATE`, the formats allowed:
+
+| Format       | Input      |
+|--------------|------------|
+| `d MMM yyyy` | 7 Oct 2022 |
+| `d/M/yyyy`   | 7/10/2022  |
+
+For `INTERVIEW_DATE_TIME`, the formats allowed:
+
+| Format               | Input               |
+|----------------------|---------------------|
+| `d MMM yyyy HH:mm`   | 7 Oct 2022 15:00    |
+| `d/M/yyyy HH:mm`     | 7/10/2022 15:00     |
+| `d MMM yyyy, h:mm a` | 7 Oct 2022, 3:00 pm |
+| `d/M/yyyy, h:mm a`   | 7/10/2022, 3:00 pm  |
 
 </div>
 
