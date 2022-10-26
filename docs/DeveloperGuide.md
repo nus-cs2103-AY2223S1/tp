@@ -551,7 +551,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User realises staff detail is wrong.
 4. User delete staff detail.
 5. User add staff with updated detail.
-6. HR Pro Max++ displays updated staff member added and stores them. 
+6. HR Pro Max++ displays updated staff member added and stores them.
 
     Steps 3-6 are repeated until staff member detail is correct.
 
@@ -559,15 +559,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given project is invalid.
     * 1a1. HR Pro Max++ shows error.
-    
+
       Use case resume at step 1.
 * 4a. The given project is invalid.
     * 4a1 HR Pro Max++ shows error.
-  
+
       Use case resume at step 4.
 * 4b. The given staff is invalid.
     * 4b1 HR Pro Max++ shows error.
-  
+
       Use case resume at step 4.
 * 5a. The given project is invalid.
     * 5a1. HR Pro Max++ shows error.
@@ -595,7 +595,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resume at step 2.
 
-    
+
 ### Non-Functional Requirements
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.

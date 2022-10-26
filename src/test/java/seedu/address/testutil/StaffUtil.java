@@ -7,8 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.AddStaffCommand;
+import seedu.address.logic.commands.EditStaffCommand;
 import seedu.address.model.staff.Staff;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for test cases.
@@ -40,8 +44,33 @@ public class StaffUtil {
     /**
      * Returns the part of command string for the given {@code EditProjectDescriptor}'s details.
      */
-    public static String getEditStaffDescriptorDetails() {
-        //todo
-        return new String();
+    public static String getEditStaffDescriptorDetails(EditStaffCommand.EditStaffDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+
+        descriptor.getStaffName().ifPresent(staffName -> sb.append(PREFIX_STAFF_NAME)
+                .append(staffName).append(" "));
+
+        descriptor.getStaffDepartment().ifPresent(staffDepartment -> sb.append(PREFIX_STAFF_DEPARTMENT)
+                .append(staffDepartment).append(" "));
+
+        descriptor.getStaffContact().ifPresent(staffContact -> sb.append(PREFIX_STAFF_CONTACT)
+                .append(staffContact).append(" "));
+
+        descriptor.getStaffLeave().ifPresent(staffLeave -> sb.append(PREFIX_STAFF_LEAVE)
+                .append(staffLeave).append(" "));
+
+        descriptor.getStaffTitle().ifPresent(staffTitle -> sb.append(PREFIX_STAFF_TITLE)
+                .append(staffTitle).append(" "));
+
+        if (descriptor.getTags().isPresent()) {
+            Set<Tag> tags = descriptor.getTags().get();
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_TAG);
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+
+        return sb.toString();
     }
 }
