@@ -16,7 +16,7 @@ import seedu.address.model.property.Property;
 /**
  * Filters and lists all properties in the property list that have a price that is within the given price,
  * contains all the characteristics in the given characteristics list, or have the given seller.
- * More than one filtering criteria can be accepted,  properties matching any or all of the given criteria can be
+ * More than one filtering criteria can be accepted, properties matching any OR all of the given criteria can be
  * returned based on whether the user passes in the 'PREFIX_MATCH_ALL' flag.
  * Keyword matching is case-insensitive.
  */

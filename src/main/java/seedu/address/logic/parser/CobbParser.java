@@ -15,6 +15,7 @@ import seedu.address.logic.commands.DeletePropertyCommand;
 import seedu.address.logic.commands.EditBuyerCommand;
 import seedu.address.logic.commands.EditPropertyCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.commands.FilterPropertiesCommand;
 import seedu.address.logic.commands.FindBuyerCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
@@ -22,7 +23,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
 import seedu.address.logic.commands.MatchPropertyCommand;
-import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

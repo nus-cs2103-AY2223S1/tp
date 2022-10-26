@@ -22,6 +22,7 @@ public class MatchPropertyCommandParser extends Parser<MatchPropertyCommand> {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STRICT);
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
             boolean isMatchingAll = arePrefixesPresent(argMultimap, PREFIX_STRICT);
+
             return new MatchPropertyCommand(index, isMatchingAll);
         } catch (ParseException pe) {
             throw new ParseException(
