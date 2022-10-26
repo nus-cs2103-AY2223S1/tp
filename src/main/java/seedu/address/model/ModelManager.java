@@ -168,8 +168,6 @@ public class ModelManager implements Model {
         return true;
     }
 
-
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
