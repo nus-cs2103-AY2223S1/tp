@@ -128,6 +128,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return addressBook.hasEvent(event);
+    }
+
+    @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
 

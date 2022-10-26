@@ -122,12 +122,29 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// event-level operations
 
+    /**
+     * Adds an event to the address book.
+     * The event must not already exist in the address book.
+     */
     public void addEvent(Event e) {
         this.events.add(e);
     }
 
+
+    /**
+     * Removes {@code e} from this {@code AddressBook}.
+     * {@code e} must exist in the address book.
+     */
     public void deleteEvent(Event e) {
         this.events.remove(e);
+    }
+
+    /**
+     * Returns true if {@code event} exists in this {@code AddressBook}.
+     */
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return events.contains(event);
     }
 
     public void setEvent(Event target, Event editedEvent) {
