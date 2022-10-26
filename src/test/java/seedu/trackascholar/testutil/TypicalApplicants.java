@@ -28,11 +28,11 @@ public class TypicalApplicants {
     public static final Applicant ALICE = new ApplicantBuilder().withName("Alice Pauline")
             .withPhone("94351253").withEmail("alice@example.com")
             .withScholarship("Global Merit").withApplicationStatus("pending")
-            .withMajors("friends").build();
+            .withMajors("Business").build();
     public static final Applicant BENSON = new ApplicantBuilder().withName("Benson Meier")
             .withPhone("98765432").withEmail("johnd@example.com")
             .withScholarship("Merit").withApplicationStatus("accepted")
-            .withMajors("owesMoney", "friends").build();
+            .withMajors("Computer Science", "Mathematics").build();
     public static final Applicant CARL = new ApplicantBuilder().withName("Carl Kurz")
             .withPhone("95352563").withEmail("heinz@example.com")
             .withScholarship("Sports").withApplicationStatus("pending").build();

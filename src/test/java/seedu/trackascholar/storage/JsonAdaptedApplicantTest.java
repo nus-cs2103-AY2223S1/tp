@@ -3,7 +3,7 @@ package seedu.trackascholar.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.trackascholar.storage.JsonAdaptedApplicant.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
-import static seedu.trackascholar.testutil.TypicalApplicants.BENSON;
+import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,21 +27,23 @@ public class JsonAdaptedApplicantTest {
     private static final String INVALID_APPLICATION_STATUS = "failure";
     private static final String INVALID_MAJOR = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_SCHOLARSHIP = BENSON.getScholarship().toString();
-    private static final String VALID_APPLICATION_STATUS = BENSON.getApplicationStatus().toString();
+    private static final String VALID_NAME = ALICE.getName().toString();
+    private static final String VALID_PHONE = ALICE.getPhone().toString();
+    private static final String VALID_EMAIL = ALICE.getEmail().toString();
+    private static final String VALID_SCHOLARSHIP = ALICE.getScholarship().toString();
+    private static final String VALID_APPLICATION_STATUS = ALICE.getApplicationStatus().toString();
+    private static final String VALID_MAJOR_1 = "Mathematics";
+    private static final String VALID_MAJOR_2 = "Computing";
 
-    private static final boolean VALID_HAS_PINNED = BENSON.getPin().getHasPinned();
-    private static final List<JsonAdaptedMajor> VALID_MAJORS = BENSON.getMajors().stream()
+    private static final boolean VALID_HAS_PINNED = ALICE.getPin().getHasPinned();
+    private static final List<JsonAdaptedMajor> VALID_MAJORS = ALICE.getMajors().stream()
             .map(JsonAdaptedMajor::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validApplicantDetails_returnsApplicant() throws Exception {
-        JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(BENSON);
-        assertEquals(BENSON, applicant.toModelType());
+        JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(ALICE);
+        assertEquals(ALICE, applicant.toModelType());
     }
 
     @Test
@@ -136,6 +138,16 @@ public class JsonAdaptedApplicantTest {
     public void toModelType_invalidMajors_throwsIllegalValueException() {
         List<JsonAdaptedMajor> invalidMajors = new ArrayList<>(VALID_MAJORS);
         invalidMajors.add(new JsonAdaptedMajor(INVALID_MAJOR));
+        JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidMajors, VALID_HAS_PINNED);
+        assertThrows(IllegalValueException.class, applicant::toModelType);
+    }
+
+    @Test
+    public void toModelType_numOfMajorExceedConstraint_throwsIllegalValueException() {
+        List<JsonAdaptedMajor> invalidMajors = new ArrayList<>(VALID_MAJORS);
+        invalidMajors.add(new JsonAdaptedMajor(VALID_MAJOR_1));
+        invalidMajors.add(new JsonAdaptedMajor(VALID_MAJOR_2));
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
                 VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidMajors, VALID_HAS_PINNED);
         assertThrows(IllegalValueException.class, applicant::toModelType);

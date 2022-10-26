@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "scholarship" : "Global Merit",
     "applicationStatus": "pending",
-    "majors" : [ "friends" ],
+    "majors" : [ "Business" ],
     "hasPinned" : false
   }, {
     "name" : "Benson Meier",
@@ -14,7 +14,7 @@
     "email" : "johnd@example.com",
     "scholarship" : "Merit",
     "applicationStatus": "accepted",
-    "majors" : [ "owesMoney", "friends" ],
+    "majors" : [ "Computer Science", "Mathematics" ],
     "hasPinned" : false
   }, {
     "name" : "Carl Kurz",
