@@ -38,17 +38,11 @@
                  maxWidth="Infinity">
             Tasks
           </Label>
-          <padding>
-            <Insets top="0" right="0" bottom="0" left="0" />
-          </padding>
           <StackPane fx:id="taskListPanelPlaceholder" />
         </VBox>
         <!--        prefWidth of 200 is half of module list's width. -->
         <VBox styleClass="pane-with-border" minWidth="170"
               prefWidth="200" HBox.hgrow="ALWAYS">
-          <padding>
-            <Insets top="0" right="0" bottom="0" left="0" />
-          </padding>
           <Label alignment="CENTER" styleClass="underlined-text"
                  maxWidth="Infinity">
             Links
