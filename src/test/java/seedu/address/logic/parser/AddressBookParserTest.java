@@ -146,6 +146,7 @@ public class AddressBookParserTest {
                 UnassignCommand.COMMAND_WORD + " 1" + " n/p1math", listType) instanceof UnassignCommand);
     }
 
+    @Test
     public void parseCommand_nok() throws Exception {
         //without any arguments
         assertTrue(parser.parseCommand(NextOfKinCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), listType)
