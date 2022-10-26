@@ -13,6 +13,8 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
     - [Listing all employees](#listing-all-employees--list)
     - [View details of an employee](#view-details-of-an-employee-view)
     - [Deleting an employee](#deleting-an-employee--delete)
+    - [Adding a leave period for an employee](#adding-a-leave-period-for-an-employee-addleave)
+    - [Deleting a leave period for an employee](#deleting-a-leave-period-for-an-employee-deleteleave)
     - [Exiting the program](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
@@ -152,6 +154,47 @@ Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
+### Adding a leave period for an employee: `addleave`
+
+Adds a leave period to an employee given the employee ID and a start and end date.
+
+This command results in one of two cases below:
+
+**Case 1: Valid ID, date and sufficient leaves**
+
+If the employee exists, the leave date given is valid,
+and the employee has sufficient leaves, the leave period will be added and the total leaves remaining will be deducted accordingly.
+
+**Case 2: Invalid ID, date or insufficient leaves**
+
+If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
+
+Format: `addleave id/ID sd/START_DATE ed/END_DATE`
+
+Example:
+
+- `addleave id/1 sd/01-01-2022 ed/02-01-2022` adds a leave period to an employee of ID 1 with a leave period from 01-01-2022 to 02-01-2022 of 2 days.
+
+### Deleting a leave period for an employee: `deleteleave`
+
+Removes a leave period for an employee given the employee ID and index of leave in the list.
+
+This command results in one of two cases below:
+
+**Case 1: Valid ID and index of leave**
+
+If the employee exists, the index given is valid, the leave period at that index of the list of leaves will be removed for the particular employee.
+
+**Case 2: Invalid ID, or index**
+
+If the employee ID, or the index is invalid, Coydir will prompt the users accordingly, and the command will not execute.
+
+Format: `deleteleave id/ID i/INDEX`
+
+Example:
+
+- `deleteleave id/1 i/3` deletes the third leave period for an employee of ID 1 in the list of leaves.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -191,5 +234,7 @@ _Details coming soon ..._
 | **Batch Add** | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                         |
 | **View Details** | `view ID` <br> e.g. `view 1`                                                                                                                                                    |
 | **Delete**       | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                   |
+| **Add leave**       | `addleave id/ID sd/START_DATE ed/END_DATE`<br> e.g. `addleave id/1 sd/01-01-2022 ed/02-01-2022`                                                                                                                                   |
+| **Delete leave**       | `deleteleave id/ID i/INDEX`<br> e.g. `deleteleave id/1 i/3`                                                                                                                                 |
 | **List**         | `list`                                                                                                                                                                |
 | **Help**         | `help`                                                                                                                                                                |

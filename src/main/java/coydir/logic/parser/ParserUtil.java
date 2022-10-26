@@ -1,5 +1,6 @@
 package coydir.logic.parser;
 
+import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -12,6 +13,7 @@ import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Address;
 import coydir.model.person.Department;
 import coydir.model.person.Email;
+import coydir.model.person.Leave;
 import coydir.model.person.Name;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
@@ -24,6 +26,7 @@ import coydir.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_ARGUMENT = "Keyword argument cannot be empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -39,6 +42,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a user-specified keyword into an {@code String} and returns it trimmed and in lower-case.
+     * @throws ParseException if the specified keyword is empty.
+     */
+    public static String parseKeyword(String keyword) throws ParseException {
+        String trimmedKeyword = keyword.trim();
+        if (trimmedKeyword.equals("")) {
+            throw new ParseException(MESSAGE_INVALID_ARGUMENT);
+        }
+        return trimmedKeyword;
+    }
+
+    /**
      * Parses {@code oneBasedIndex} into an {@code int} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
@@ -50,7 +65,6 @@ public class ParserUtil {
         }
         return trimmedIndex;
     }
-
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -143,7 +157,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Rating} into an {@code Leave}.
+     * Parses a {@code String Rating} into an {@code Rating}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the  given {@code leave period} is invalid.
@@ -158,6 +172,21 @@ public class ParserUtil {
         return new Rating(trimmedRating);
     }
 
+    /**
+     * Parses a {@code String leave period} into an {@code Leave}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the  given {@code leave period} is invalid.
+     */
+    public static Leave parseLeave(String leaveStart, String leaveEnd) throws ParseException {
+        requireAllNonNull(leaveStart, leaveEnd);
+        String start = leaveStart.trim();
+        String end = leaveEnd.trim();
+        if (!Leave.isValidLeave(start, end)) {
+            throw new ParseException(Leave.MESSAGE_CONSTRAINTS);
+        }
+        return new Leave(start, end);
+    }
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.

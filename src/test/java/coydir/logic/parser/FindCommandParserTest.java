@@ -4,12 +4,10 @@ import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static coydir.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import coydir.logic.commands.FindCommand;
-import coydir.model.person.NameContainsKeywordsPredicate;
+import coydir.model.person.PersonMatchesKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -24,11 +22,11 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new PersonMatchesKeywordsPredicate("Prittam", "Intern", "Board"));
+        assertParseSuccess(parser, " n/Prittam j/Intern d/Board", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n n/Prittam \n j/Intern \t d/Board  \t", expectedFindCommand);
     }
 
 }

@@ -3,22 +3,24 @@ package coydir.logic.commands;
 import static coydir.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.testutil.TypicalPersons.CARL;
+import static coydir.testutil.TypicalPersons.DANIEL;
 import static coydir.testutil.TypicalPersons.ELLE;
-import static coydir.testutil.TypicalPersons.FIONA;
 import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import coydir.model.Model;
 import coydir.model.ModelManager;
 import coydir.model.UserPrefs;
-import coydir.model.person.NameContainsKeywordsPredicate;
+import coydir.model.person.PersonMatchesKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +31,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PersonMatchesKeywordsPredicate firstPredicate =
+                new PersonMatchesKeywordsPredicate("one", "two", "three");
+        PersonMatchesKeywordsPredicate secondPredicate =
+                new PersonMatchesKeywordsPredicate("four", "five", "six");
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -55,29 +57,44 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_oneKeyword_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesKeywordsPredicate predicate = preparePredicate("el");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(DANIEL, ELLE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        PersonMatchesKeywordsPredicate predicate = preparePredicate("Kurz Fire Operations");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_mismatchedKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PersonMatchesKeywordsPredicate predicate = preparePredicate("Alice Fire");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-    }
-
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PersonMatchesKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PersonMatchesKeywordsPredicate preparePredicate(String userInput) {
+        List<String> keywords = new ArrayList<>(Arrays.asList(userInput.split("\\s+")));
+        while (keywords.size() < 3) {
+            keywords.add("");
+        }
+
+        return new PersonMatchesKeywordsPredicate(keywords.get(0), keywords.get(1), keywords.get(2));
     }
 }
