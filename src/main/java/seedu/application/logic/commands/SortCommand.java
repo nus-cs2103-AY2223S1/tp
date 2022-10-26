@@ -16,13 +16,9 @@ public abstract class SortCommand extends Command {
             + "Parameters: [" + PREFIX_ORDER + "ORDER] [" + PREFIX_REVERSE + "]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "date " + PREFIX_REVERSE;
 
-    private final boolean shouldReverse;
+    protected final boolean shouldReverse;
 
     public SortCommand(boolean shouldReverse) {
         this.shouldReverse = shouldReverse;
-    }
-
-    boolean shouldReverse() {
-        return shouldReverse;
     }
 }

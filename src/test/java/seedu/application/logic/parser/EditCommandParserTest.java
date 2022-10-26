@@ -13,9 +13,12 @@ import static seedu.application.logic.commands.CommandTestUtil.INVALID_CONTACT_D
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
+import static seedu.application.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.application.logic.commands.CommandTestUtil.POSITION_DESC_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.POSITION_DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.STATUS_DESC_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.STATUS_DESC_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.TAG_DESC_TECH_COMPANY;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
@@ -27,6 +30,8 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_FACEB
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_STATUS_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
@@ -46,6 +51,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.Status;
 import seedu.application.model.tag.Tag;
 import seedu.application.testutil.EditApplicationDescriptorBuilder;
 
@@ -92,6 +98,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_POSITION_DESC, Position.MESSAGE_CONSTRAINTS); // invalid position
+        assertParseFailure(parser, "1" + INVALID_STATUS_DESC, Status.MESSAGE_CONSTRAINTS); // invalid status
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid contact followed by valid email
@@ -114,19 +121,22 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC + INVALID_EMAIL_DESC + VALID_DATE_FACEBOOK
-                + VALID_CONTACT_FACEBOOK + VALID_POSITION_FACEBOOK, Company.MESSAGE_CONSTRAINTS);
+                + VALID_CONTACT_FACEBOOK + VALID_POSITION_FACEBOOK + VALID_STATUS_FACEBOOK,
+                Company.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_APPLICATION;
-        String userInput = targetIndex.getOneBased() + CONTACT_DESC_GOOGLE + POSITION_DESC_GOOGLE + TAG_DESC_PREFERRED
-                + EMAIL_DESC_FACEBOOK + DATE_DESC_FACEBOOK + COMPANY_DESC_FACEBOOK + TAG_DESC_TECH_COMPANY;
+        String userInput = targetIndex.getOneBased() + CONTACT_DESC_GOOGLE + POSITION_DESC_GOOGLE
+                + TAG_DESC_PREFERRED + EMAIL_DESC_FACEBOOK + DATE_DESC_FACEBOOK + COMPANY_DESC_FACEBOOK
+                + STATUS_DESC_GOOGLE + TAG_DESC_TECH_COMPANY;
 
         EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder()
                 .withCompany(VALID_COMPANY_FACEBOOK).withContact(VALID_CONTACT_GOOGLE)
                 .withEmail(VALID_EMAIL_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
-                .withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
+                .withPosition(VALID_POSITION_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
+                .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -178,6 +188,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // status
+        userInput = targetIndex.getOneBased() + STATUS_DESC_FACEBOOK;
+        descriptor = new EditApplicationDescriptorBuilder().withStatus(VALID_STATUS_FACEBOOK).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_TECH_COMPANY;
         descriptor = new EditApplicationDescriptorBuilder().withTags(VALID_TAG_TECH_COMPANY).build();
@@ -190,12 +206,13 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_APPLICATION;
         String userInput = targetIndex.getOneBased() + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK + TAG_DESC_PREFERRED
                 + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK
-                + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
-                + TAG_DESC_TECH_COMPANY + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE + TAG_DESC_PREFERRED;
+                + STATUS_DESC_FACEBOOK + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK + CONTACT_DESC_GOOGLE
+                + DATE_DESC_GOOGLE + STATUS_DESC_GOOGLE + TAG_DESC_TECH_COMPANY + EMAIL_DESC_GOOGLE
+                + POSITION_DESC_GOOGLE + TAG_DESC_PREFERRED;
 
         EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder().withContact(VALID_CONTACT_GOOGLE)
                 .withEmail(VALID_EMAIL_GOOGLE).withDate(VALID_DATE_GOOGLE).withPosition(VALID_POSITION_GOOGLE)
-                .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
+                .withStatus(VALID_STATUS_GOOGLE).withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

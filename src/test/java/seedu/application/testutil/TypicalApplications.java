@@ -10,6 +10,8 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_FACEB
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_STATUS_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
 
@@ -26,33 +28,32 @@ import seedu.application.model.application.Application;
 public class TypicalApplications {
 
     public static final Application SHOPEE = new ApplicationBuilder().withCompany("Shopee")
-            .withContact("94201239").withDate("2022-12-31")
-            .withEmail("shopee@example.com").withPosition("Frontend Engineer").withTags("consumerTech")
-            .build();
+            .withContact("94201239").withDate("2022-12-31").withStatus("interview")
+            .withEmail("shopee@example.com").withPosition("Frontend Engineer").withTags("consumerTech").build();
+
     public static final Application BYTEDANCE = new ApplicationBuilder().withCompany("ByteDance")
-            .withContact("83920382").withDate("2022-08-01")
-            .withEmail("bytedance@example.com").withPosition("Backend Engineer").withTags("BytePlus", "TikTok")
-            .build();
+            .withContact("83920382").withDate("2022-08-01").withStatus("offered")
+            .withEmail("bytedance@example.com").withPosition("Backend Engineer").withTags("BytePlus", "TikTok").build();
 
     // Manually added
     public static final Application JANE_STREET = new ApplicationBuilder().withCompany("Jane Street")
-            .withContact("91420834").withDate("2022-01-01")
-            .withEmail("janestreet@example.com").withPosition("Software Engineer").withTags("fintech")
-            .build();
+            .withContact("91420834").withDate("2022-01-01").withStatus("pending")
+            .withEmail("janestreet@example.com").withPosition("Software Engineer").withTags("fintech").build();
 
     public static final Application INTEL = new ApplicationBuilder().withCompany("Intel")
             .withContact("84893063").withDate("2022-05-06").withEmail("intel@recruitment.com")
-            .withPosition("Software Developer").withArchiveStatus(true).build();
+            .withPosition("Software Developer").withStatus("rejected")
+            .withArchiveStatus(true).build();
 
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
-            .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE)
+            .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
             .withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_TECH_COMPANY).build();
 
     public static final Application FACEBOOK = new ApplicationBuilder().withCompany(VALID_COMPANY_FACEBOOK)
             .withContact(VALID_CONTACT_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
             .withEmail(VALID_EMAIL_FACEBOOK).withPosition(VALID_POSITION_FACEBOOK)
-            .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
+            .withStatus(VALID_STATUS_FACEBOOK).withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
 
     public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches GOOGLE
 

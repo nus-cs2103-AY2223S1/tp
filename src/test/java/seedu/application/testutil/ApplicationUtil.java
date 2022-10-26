@@ -5,6 +5,7 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -36,6 +37,7 @@ public class ApplicationUtil {
         sb.append(PREFIX_EMAIL + application.getEmail().value + " ");
         sb.append(PREFIX_POSITION + application.getPosition().value + " ");
         sb.append(PREFIX_DATE + application.getDate().toCommandString() + " ");
+        sb.append(PREFIX_STATUS + application.getStatus().getValue() + " ");
         application.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -52,6 +54,7 @@ public class ApplicationUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getPosition().ifPresent(position -> sb.append(PREFIX_POSITION).append(position.value).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.toCommandString()).append(" "));
+        descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.getValue()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

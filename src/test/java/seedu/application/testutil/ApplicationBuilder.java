@@ -10,6 +10,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.Status;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.tag.Tag;
 import seedu.application.model.util.SampleDataUtil;
@@ -24,6 +25,7 @@ public class ApplicationBuilder {
     public static final String DEFAULT_DATE = "2022-01-01";
     public static final String DEFAULT_EMAIL = "google@gmail.com";
     public static final String DEFAULT_POSITION = "Software Engineer";
+    public static final String DEFAULT_STATUS = "pending";
     public static final boolean DEFAULT_ARCHIVE_STATUS = false;
 
     private Company company;
@@ -31,6 +33,7 @@ public class ApplicationBuilder {
     private Date date;
     private Email email;
     private Position position;
+    private Status status;
     private Set<Tag> tags;
     private boolean isArchived;
     private Optional<Interview> interview;
@@ -44,6 +47,7 @@ public class ApplicationBuilder {
         date = new Date(DEFAULT_DATE);
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
+        status = Status.getStatus(DEFAULT_STATUS);
         tags = new HashSet<>();
         isArchived = DEFAULT_ARCHIVE_STATUS;
         interview = Optional.empty();
@@ -58,6 +62,7 @@ public class ApplicationBuilder {
         date = applicationToCopy.getDate();
         email = applicationToCopy.getEmail();
         position = applicationToCopy.getPosition();
+        status = applicationToCopy.getStatus();
         tags = new HashSet<>(applicationToCopy.getTags());
         isArchived = applicationToCopy.isArchived();
         if (applicationToCopy.getInterview().isPresent()) {
@@ -108,6 +113,14 @@ public class ApplicationBuilder {
     }
 
     /**
+     * Sets the {@code Status} of the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withStatus(String status) {
+        this.status = Status.getStatus(status);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Application} that we are building.
      */
     public ApplicationBuilder withTags(String ... tags) {
@@ -138,15 +151,16 @@ public class ApplicationBuilder {
     public Application build() {
         if (isArchived) {
             if (this.interview.isPresent()) {
-                return new Application(new Application(company, contact, email, position, date, tags),
+                return new Application(new Application(company, contact, email, position, date, status, tags),
                         interview.get()).setToArchive();
             }
-            return new Application(company, contact, email, position, date, tags).setToArchive();
+            return new Application(company, contact, email, position, date, status, tags).setToArchive();
         } else {
             if (this.interview.isPresent()) {
-                return new Application(new Application(company, contact, email, position, date, tags), interview.get());
+                return new Application(new Application(company, contact, email, position, date, status, tags),
+                        interview.get());
             } else {
-                return new Application(company, contact, email, position, date, tags);
+                return new Application(company, contact, email, position, date, status, tags);
             }
         }
     }

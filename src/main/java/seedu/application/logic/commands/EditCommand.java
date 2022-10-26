@@ -6,6 +6,7 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
@@ -25,6 +26,7 @@ import seedu.application.model.application.Contact;
 import seedu.application.model.application.Date;
 import seedu.application.model.application.Email;
 import seedu.application.model.application.Position;
+import seedu.application.model.application.Status;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.tag.Tag;
 
@@ -43,7 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_POSITION + "POSITION] "
-            + "[" + PREFIX_DATE + "DATE_APPLIED]..\n"
+            + "[" + PREFIX_DATE + "DATE_APPLIED] "
+            + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CONTACT + "91234567 "
@@ -113,13 +116,15 @@ public class EditCommand extends Command {
         Email updatedEmail = editApplicationDescriptor.getEmail().orElse(applicationToEdit.getEmail());
         Position updatedPosition = editApplicationDescriptor.getPosition().orElse(applicationToEdit.getPosition());
         Date updatedDate = editApplicationDescriptor.getDate().orElse(applicationToEdit.getDate());
+        Status updatedStatus = editApplicationDescriptor.getStatus().orElse(applicationToEdit.getStatus());
         Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(applicationToEdit.getTags());
 
         if (applicationToEdit.isArchived()) {
             return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition,
-                    updatedDate, updatedTags).setToArchive();
+                    updatedDate, updatedStatus, updatedTags).setToArchive();
         }
-        return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition, updatedDate, updatedTags);
+        return new Application(updatedCompany, updatedContact, updatedEmail, updatedPosition, updatedDate,
+                updatedStatus, updatedTags);
     }
 
     @Override
@@ -150,6 +155,7 @@ public class EditCommand extends Command {
         private Email email;
         private Position position;
         private Date date;
+        private Status status;
         private Set<Tag> tags;
 
         public EditApplicationDescriptor() {}
@@ -164,6 +170,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setPosition(toCopy.position);
             setDate(toCopy.date);
+            setStatus(toCopy.status);
             setTags(toCopy.tags);
         }
 
@@ -171,7 +178,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, contact, email, position, date, tags);
+            return CollectionUtil.isAnyNonNull(company, contact, email, position, date, status, tags);
         }
 
         public void setCompany(Company company) {
@@ -214,6 +221,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -251,6 +266,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getPosition().equals(e.getPosition())
                     && getDate().equals(e.getDate())
+                    && getStatus().equals(e.getStatus())
                     && getTags().equals(e.getTags());
         }
     }

@@ -6,6 +6,7 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.application.logic.commands.exceptions.CommandException;
@@ -26,6 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_POSITION + "POSITION "
             + PREFIX_DATE + "DATE_APPLIED "
+            + PREFIX_STATUS + "STATUS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "ByteDance "

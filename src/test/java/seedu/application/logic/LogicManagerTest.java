@@ -8,6 +8,7 @@ import static seedu.application.logic.commands.CommandTestUtil.CONTACT_DESC_GOOG
 import static seedu.application.logic.commands.CommandTestUtil.DATE_DESC_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.EMAIL_DESC_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.POSITION_DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.STATUS_DESC_GOOGLE;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalApplications.GOOGLE;
 
@@ -81,7 +82,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_GOOGLE + CONTACT_DESC_GOOGLE + DATE_DESC_GOOGLE
-                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE;
+                + EMAIL_DESC_GOOGLE + POSITION_DESC_GOOGLE + STATUS_DESC_GOOGLE;
         Application expectedApplication = new ApplicationBuilder(GOOGLE).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addApplication(expectedApplication);

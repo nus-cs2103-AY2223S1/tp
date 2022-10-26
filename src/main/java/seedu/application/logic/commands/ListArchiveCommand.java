@@ -16,7 +16,7 @@ public class ListArchiveCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicationList(model.SHOW_ARCHIVE_ONLY);
+        model.updateFilteredApplicationList(Model.SHOW_ARCHIVE_ONLY);
         model.updateApplicationListWithInterview();
         return new CommandResult(MESSAGE_SUCCESS);
     }

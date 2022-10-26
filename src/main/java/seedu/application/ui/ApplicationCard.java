@@ -27,9 +27,9 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label company;
-    @FXML
     private Label id;
+    @FXML
+    private Label company;
     @FXML
     private Label contact;
     @FXML
@@ -38,6 +38,8 @@ public class ApplicationCard extends UiPart<Region> {
     private Label email;
     @FXML
     private Label date;
+    @FXML
+    private Label status;
     @FXML
     private FlowPane tags;
 
@@ -49,6 +51,8 @@ public class ApplicationCard extends UiPart<Region> {
         this.application = application;
         id.setText(displayedIndex + ". ");
         company.setText(application.getCompany().company);
+        status.setText(application.getStatus().getValue());
+        status.setStyle("-fx-background-color: " + application.getStatus().getColor());
         contact.setText(application.getContact().value);
         position.setText(application.getPosition().value);
         email.setText(application.getEmail().value);

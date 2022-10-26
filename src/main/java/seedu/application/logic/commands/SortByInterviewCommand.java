@@ -20,14 +20,14 @@ public class SortByInterviewCommand extends SortCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.sortApplicationListByInterview(shouldReverse());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse() ? " reverse" : ""));
+        model.sortApplicationListByInterview(shouldReverse);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse ? " reverse" : ""));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortByInterviewCommand // instanceof handles nulls
-                && shouldReverse() == ((SortByInterviewCommand) other).shouldReverse()); // state check
+                && shouldReverse == ((SortByInterviewCommand) other).shouldReverse); // state check
     }
 }

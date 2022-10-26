@@ -20,14 +20,14 @@ public class SortByPositionCommand extends SortCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.sortApplicationListByPosition(shouldReverse());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse() ? " reverse" : ""));
+        model.sortApplicationListByPosition(shouldReverse);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, shouldReverse ? " reverse" : ""));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortByPositionCommand // instanceof handles nulls
-                && shouldReverse() == ((SortByPositionCommand) other).shouldReverse()); // state check
+                && shouldReverse == ((SortByPositionCommand) other).shouldReverse); // state check
     }
 }

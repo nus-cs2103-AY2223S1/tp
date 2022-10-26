@@ -12,6 +12,7 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_INTERVIEW_TIME;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_ROUND;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.application.model.Model.HIDE_ARCHIVE_IN_LIST;
 import static seedu.application.model.Model.SHOW_ARCHIVE_ONLY;
@@ -45,6 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_FACEBOOK = "facebook@example.com";
     public static final String VALID_POSITION_GOOGLE = "Software Engineer";
     public static final String VALID_POSITION_FACEBOOK = "Backend Engineer";
+    public static final String VALID_STATUS_GOOGLE = "interview";
+    public static final String VALID_STATUS_FACEBOOK = "pending";
     public static final String VALID_TAG_PREFERRED = "preferred";
     public static final String VALID_TAG_TECH_COMPANY = "techCompany";
 
@@ -58,6 +61,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_FACEBOOK = " " + PREFIX_EMAIL + VALID_EMAIL_FACEBOOK;
     public static final String POSITION_DESC_GOOGLE = " " + PREFIX_POSITION + VALID_POSITION_GOOGLE;
     public static final String POSITION_DESC_FACEBOOK = " " + PREFIX_POSITION + VALID_POSITION_FACEBOOK;
+    public static final String STATUS_DESC_GOOGLE = " " + PREFIX_STATUS + VALID_STATUS_GOOGLE;
+    public static final String STATUS_DESC_FACEBOOK = " " + PREFIX_STATUS + VALID_STATUS_FACEBOOK;
     public static final String TAG_DESC_PREFERRED = " " + PREFIX_TAG + VALID_TAG_PREFERRED;
     public static final String TAG_DESC_TECH_COMPANY = " " + PREFIX_TAG + VALID_TAG_TECH_COMPANY;
 
@@ -81,6 +86,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01/09/2022"; // invalid date format
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "facebook!yahoo"; // missing '@' symbol
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION; // empty string not allowed for positions
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "applied"; // not one of the allowed statuses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "senior referral"; // space not allowed in tags
 
     //Invalid Interview fields
@@ -97,19 +103,14 @@ public class CommandTestUtil {
     public static final EditCommand.EditApplicationDescriptor DESC_FACEBOOK;
 
     static {
-        /*
-        Interview interview = new InterviewBuilder().withRound(VALID_ROUND_GOOGLE)
-                .withInterviewDate(VALID_INTERVIEW_DATE_GOOGLE).withInterviewDate(VALID_INTERVIEW_TIME_GOOGLE)
-                .withLocation(VALID_LOCATION_GOOGLE).build();
-
-         */
         DESC_GOOGLE = new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_GOOGLE)
                 .withContact(VALID_CONTACT_GOOGLE).withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE)
-                .withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_TECH_COMPANY).build();
+                .withDate(VALID_DATE_GOOGLE).withStatus(VALID_STATUS_GOOGLE)
+                .withTags(VALID_TAG_TECH_COMPANY).build();
         DESC_FACEBOOK = new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_FACEBOOK)
                 .withContact(VALID_CONTACT_FACEBOOK).withEmail(VALID_EMAIL_FACEBOOK)
                 .withPosition(VALID_POSITION_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
-                .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
+                .withStatus(VALID_STATUS_FACEBOOK).withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
     }
 
     /**
@@ -193,16 +194,5 @@ public class CommandTestUtil {
         }
         //ensure filtered application has at least one application for testing
         assert model.getFilteredApplicationList().size() != 0;
-    }
-
-    /**
-     * Executes the given {@code command} to be used for other tests.
-     */
-    public static void executeCommand(Command command, Model model) {
-        try {
-            command.execute(model);
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
     }
 }
