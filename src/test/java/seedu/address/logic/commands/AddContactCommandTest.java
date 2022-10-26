@@ -208,6 +208,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void deleteCompletedTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int indexOf(Task task) {
             throw new AssertionError("This method should not be called.");
         }
