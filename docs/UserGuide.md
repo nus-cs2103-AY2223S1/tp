@@ -366,9 +366,9 @@ Allows cycling through those commands to reduce the need of retyping similar com
 Every new input will reset the index back to the most recent command.
 
 Controls: 
-* `Up Arrow` : Cycle to next command
-* `Down Arrow`: Cycle to previous command
-* `Control`: Toggle history
+* `Up Arrow` on keyboard: Cycle to next command
+* `Down Arrow` on keyboard: Cycle to previous command
+* `Control` on keyboard: Toggle history
 
 #### Exiting the program : `exit`
 
