@@ -9,6 +9,8 @@ public class TypicalTags {
     // Sample tags should be declared in lexicographical order
     public static final Tag TAG_NURSING_HOME = new Tag("A14 nursing home");
     public static final Tag TAG_ELDERLY = new Tag("elderly");
+    public static final Tag TAG_FALL_RISK = new Tag("fall-risk");
     public static final String TYPICAL_TAG_NURSING_HOME = "A14 nursing home";
     public static final String TYPICAL_TAG_ELDERLY = "elderly";
+    public static final String TYPICAL_TAG_FALL_RISK = "fall-risk";
 }
