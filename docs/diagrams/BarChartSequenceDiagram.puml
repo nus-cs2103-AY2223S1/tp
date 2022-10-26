@@ -26,7 +26,7 @@ else Data Found
     StackedBarPanel -> Statistic : getWidth()
     activate Statistic
 
-    Statistic -> StackedBarPanel
+    Statistic --> StackedBarPanel
     deactivate Statistic
 
     StackedBarPanel -> StackedBarPanel
@@ -38,7 +38,7 @@ else Data Found
     StackedBarPanel -> Statistic : getGroupedData()
     activate Statistic
 
-   Statistic -> StackedBarPanel
+   Statistic --> StackedBarPanel
    deactivate Statistic
 
    StackedBarPanel -> StackedBarPanel

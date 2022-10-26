@@ -53,7 +53,7 @@ create Predicate
 ViewCommand -> Predicate
 activate Predicate
 
-Predicate -> ViewCommand : p
+Predicate --> ViewCommand : p
 deactivate Predicate
 
 ViewCommand -> Model : updateViewItem(p)

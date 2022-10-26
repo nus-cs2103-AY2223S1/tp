@@ -62,6 +62,7 @@ activate Clipboard
 
 Clipboard --> Toolkit
 deactivate Clipboard
+Toolkit --> CopyCommand
 deactivate Toolkit
 
 create CommandResult
