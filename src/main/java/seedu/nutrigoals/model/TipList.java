@@ -16,31 +16,31 @@ public class TipList {
      * Constructs a {@code TipList} with a default list of tips.
      */
     public TipList() {
-        Tip tip1 = new Tip("Opt for unsweetened versions of your favourite beverages!\n"
-                + "Drink stalls in canteens around NUS will readily provide 'siew dai'\n"
+        Tip tip1 = new Tip("Opt for unsweetened versions of your favourite beverages! "
+                + "Drink stalls in canteens around NUS will readily provide 'siew dai' "
                 + "(less sugar) versions of your go-to drinks!");
-        Tip tip2 = new Tip("NUS offers a total of 44 sport CCAs! Join one (or more) to get your\n"
+        Tip tip2 = new Tip("NUS offers a total of 44 sport CCAs! Join one (or more) to get your "
                 + "weekly fix of exercise and make new friends!");
-        Tip tip3 = new Tip("NUS boasts a host of sports facilities - from a swimming pool\n"
-                + "to badminton courts! Use the REBOKS system to book a sports facility\n"
+        Tip tip3 = new Tip("NUS boasts a host of sports facilities - from a swimming pool "
+                + "to badminton courts! Use the REBOKS system to book a sports facility "
                 + "and get active!");
-        Tip tip4 = new Tip("Occupying an area of 1.7 square kilometers, NUS' Kent Ridge Campus\n"
-                + "is rather small... Opt to walk to your destinations to beat the traffic\n"
+        Tip tip4 = new Tip("Occupying an area of 1.7 square kilometers, NUS' Kent Ridge Campus "
+                + "is rather small... Opt to walk to your destinations to beat the traffic "
                 + "and get your steps in!");
-        Tip tip5 = new Tip("Don't like to run on a track? Fret not - NUS' Kent Ridge campus\n"
-                + "has a perimeter that is approximately 4.5km long! Add in the hilly terrain\n"
+        Tip tip5 = new Tip("Don't like to run on a track? Fret not - NUS' Kent Ridge campus "
+                + "has a perimeter that is approximately 4.5km long! Add in the hilly terrain "
                 + "and you've got a route for your weekly run!");
-        Tip tip6 = new Tip("Tummy growling for some food? Look out for the healthier choice logo\n"
+        Tip tip6 = new Tip("Tummy growling for some food? Look out for the healthier choice logo "
                 + "at stalls across NUS canteens for a healthier diet!");
-        Tip tip7 = new Tip("Want to add on a few pounds of muscle? NUS has a total of 4 gyms\n"
+        Tip tip7 = new Tip("Want to add on a few pounds of muscle? NUS has a total of 4 gyms "
                 + "that are free-to-use for NUS students and staff!");
-        Tip tip8 = new Tip("More than sports, NUS offers a wide variety of services from\n"
-                + "health check-ups to mental wellness events. Make use of these services\n"
+        Tip tip8 = new Tip("More than sports, NUS offers a wide variety of services from "
+                + "health check-ups to mental wellness events. Make use of these services "
                 + "for a better you!");
-        Tip tip9 = new Tip("Like how NUS is partially situated on a hill, your classes might\n"
-                + "be at the upper floors of your faculties. Take the stairs instead of the\n"
+        Tip tip9 = new Tip("Like how NUS is partially situated on a hill, your classes might "
+                + "be at the upper floors of your faculties. Take the stairs instead of the "
                 + "elevator for a short workout before your next lesson!");
-        Tip tip10 = new Tip("Did you know that there are 159 water coolers on NUS' Kent Ridge\n"
+        Tip tip10 = new Tip("Did you know that there are 159 water coolers on NUS' Kent Ridge "
                 + "campus (and counting!)? Use these to stay hydrated throughout the day!");
         listOfTips.add(tip1);
         listOfTips.add(tip2);

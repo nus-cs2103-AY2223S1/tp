@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.Food;
@@ -126,8 +127,10 @@ public interface Model {
     /** Returns the {@code Map} of food items and their calorie content */
     Map<Name, Calorie> getFoodCalorieList();
 
-    /**
-     * Retrieves and returns a random tip from TIpList
-     */
+    /** Retrieves and returns a random tip from TipList */
     Tip getTip();
+
+    double calculateCalorieIntakeProgress();
+
+    DoubleProperty getCalorieIntakeProgress();
 }
