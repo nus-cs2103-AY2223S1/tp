@@ -139,7 +139,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Utilizes Person's compareTo() function provide a comparator for ObservableList<>.sort
      * @param isInAscending sorts by ascending if true, descending otherwise
      */
-    public void sortByDate(boolean isInAscending) {
+    public void sortByGrade(boolean isInAscending) {
         internalList.sort((Person p1, Person p2) -> isInAscending
                 ? p1.compareTo(p2)
                 : -p1.compareTo(p2));

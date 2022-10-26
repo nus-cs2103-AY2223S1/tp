@@ -134,7 +134,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void sortListByGrade(boolean isInAscending) {
-        this.addressBook.sortByDate(isInAscending);
+        this.addressBook.sortByGrade(isInAscending);
     }
 
     @Override

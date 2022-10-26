@@ -18,6 +18,9 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Sorted students by grades";
     private final boolean isInAscending;
 
+    /**
+     * Creates a sort command to sort by grade.
+     */
     public SortCommand(boolean isInAscending) {
         this.isInAscending = isInAscending;
     }
