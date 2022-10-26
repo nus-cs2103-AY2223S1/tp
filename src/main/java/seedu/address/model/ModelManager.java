@@ -154,6 +154,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Client getClient(Client client) {
+        return addressBook.getClient(client);
+    }
+
+    @Override
     public void deleteProject(Project target) {
         addressBook.removeProject(target);
     }

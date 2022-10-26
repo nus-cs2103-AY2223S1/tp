@@ -217,7 +217,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @return String for display in the UI
      */
     public String uiRepresentation() {
-        return this.name.toString() + " (" + this.mobile.toString() + ")";
+
+        return this.name.toString() + "(" + this.mobile.toString() + ")";
     }
 
     public void removeProject(Project p) {

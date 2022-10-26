@@ -60,6 +60,8 @@ public interface ReadOnlyAddressBook {
     Client getClientById(int id);
 
 
+    Client getClient(Client client);
+
     /**
      * Generate the next client id
      * @return id

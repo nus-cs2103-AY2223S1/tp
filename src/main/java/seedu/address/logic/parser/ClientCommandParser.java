@@ -3,11 +3,17 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.ParserUtil.parseEmail;
+import static seedu.address.logic.parser.ParserUtil.parseEmailValidity;
+import static seedu.address.logic.parser.ParserUtil.parseName;
+import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
+import static seedu.address.logic.parser.ParserUtil.parseMobile;
+import static seedu.address.logic.parser.ParserUtil.parsePhoneValidity;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -17,22 +23,18 @@ import seedu.address.logic.commands.client.AddClientCommand;
 import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
+import seedu.address.logic.commands.client.FindClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
 import seedu.address.logic.commands.client.SortClientCommand;
-import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
-import seedu.address.logic.commands.client.find.FindClientByMobileCommand;
-import seedu.address.logic.commands.client.find.FindClientByNameCommand;
-import seedu.address.logic.commands.client.find.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientMobile;
 import seedu.address.model.client.ClientWithoutModel;
-import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.client.predicates.MobileContainsKeywordsPredicate;
-import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -108,7 +110,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                     AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name = parseName(argMultimap.getValue(PREFIX_NAME).get());
+
 
         ClientMobile mobile = ClientMobile.EmptyClientMobile.EMPTY_MOBILE;
         if (arePrefixesPresent(argMultimap, PREFIX_MOBILE)) {
@@ -117,7 +120,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            email = parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, mobile, email, new ArrayList<>());
@@ -154,15 +157,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
-            newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            newName = parseName(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
-            newMobile = ParserUtil.parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
+            newMobile = parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-            newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            newEmail = parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
         return new EditClientCommand(newClientId, newName, newEmail, newMobile);
@@ -197,38 +200,36 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         return new SetClientDefaultViewCommand();
     }
     private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
-        try {
 
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE);
 
-            String trimmedArgs = arguments.trim();
-
-            if (trimmedArgs.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
-            }
-
-
-            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-                return new FindClientByNameCommand(new NameContainsKeywordsPredicate(
-                        argMultimap.getAllValues(PREFIX_NAME)));
-            }
-
-            if (arePrefixesPresent(argMultimap, PREFIX_EMAIL)) {
-                return new FindClientByEmailCommand(new EmailContainsKeywordsPredicate(
-                        argMultimap.getAllValues(PREFIX_EMAIL)));
-            }
-
-            //implies arePrefixesPresent(argMultimap, PREFIX_MOBILE) is true
-            return new FindClientByMobileCommand(new MobileContainsKeywordsPredicate(
-                    argMultimap.getAllValues(PREFIX_MOBILE)));
-
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_FIND_CLIENT_USAGE), pe);
+        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
         }
 
+        //check for validity of arguments
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+            parseNameValidity(argMultimap.getValue(PREFIX_NAME).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
+            parsePhoneValidity(argMultimap.getValue(PREFIX_MOBILE).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            parseEmailValidity(argMultimap.getValue(PREFIX_EMAIL).get());
+        }
+
+        ClientContainsKeywordsPredicate predicate =
+                new ClientContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME),
+                        argMultimap.getAllValues(PREFIX_EMAIL),
+                        argMultimap.getAllValues(PREFIX_MOBILE));
+
+        return new FindClientCommand(predicate);
     }
 
     public FindClientCommand parseFindClientCommands(String flag, String arguments) throws ParseException {
@@ -263,6 +264,13 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         return new SortClientCommand(sortPrefix, key);
+    }
+
+    /**
+     * Returns true if there are no prefixes present in the given {@code ArgumentMultimap}.
+     */
+    private static boolean noPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
     }
 
     /**

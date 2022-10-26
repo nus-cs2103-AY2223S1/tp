@@ -100,3 +100,8 @@
 #repository {
     -fx-padding: 0;
 }
+
+#projects {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
