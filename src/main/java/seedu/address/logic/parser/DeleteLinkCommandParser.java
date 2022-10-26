@@ -14,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.link.Link;
 
 /**
- * Parses input arguments and creates a new {@code DeleteLinkCommand} object
+ * Parses input arguments and creates a new {@code DeleteLinkCommand} object.
  */
 public class DeleteLinkCommandParser implements Parser<DeleteLinkCommand> {
     /**

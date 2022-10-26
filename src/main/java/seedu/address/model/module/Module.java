@@ -39,7 +39,7 @@ public class Module {
                   List<Task> tasks,
                   Set<Link> links,
                   Set<Person> persons) {
-        requireAllNonNull(moduleCode, moduleTitle, tasks, links);
+        requireAllNonNull(moduleCode, moduleTitle, tasks, links, persons);
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
@@ -76,7 +76,6 @@ public class Module {
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
         this(moduleCode, moduleTitle, new HashSet<>());
     }
-
     public ModuleCode getModuleCode() {
         return moduleCode;
     }

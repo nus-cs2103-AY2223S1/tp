@@ -29,6 +29,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AddTaskToModuleDescriptorBuilder;
 import seedu.address.testutil.DeleteTaskFromModuleDescriptorBuilder;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.SwapTaskNumbersDescriptorBuilder;
 
@@ -38,6 +39,7 @@ import seedu.address.testutil.SwapTaskNumbersDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String EMPTY_STRING = "";
+    public static final String EXTRANEOUS_PARAM = "Dummy";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -117,6 +119,10 @@ public class CommandTestUtil {
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2106;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_MA2001;
+
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_A;
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_B;
     public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_ONE;
@@ -124,6 +130,11 @@ public class CommandTestUtil {
     public static final SwapTaskNumbersCommand.SwapTaskNumbersDescriptor DESC_CS2106_SWAP_TASKS_ONE_AND_TWO;
 
     static {
+        DESC_CS2106 = new EditModuleDescriptorBuilder().withModuleCode(VALID_CS2106_MODULE_CODE)
+                .withModuleTitle(VALID_CS2106_MODULE_TITLE).build();
+        DESC_MA2001 = new EditModuleDescriptorBuilder().withModuleCode(VALID_MA2001_MODULE_CODE)
+                .withModuleTitle(VALID_MA2001_MODULE_TITLE).build();
+
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withEmail(VALID_EMAIL_AMY)
                 .withPhone(VALID_PHONE_AMY).build();
