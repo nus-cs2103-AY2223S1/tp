@@ -15,6 +15,10 @@ public class RepoList {
      */
     public RepoList() {}
 
+    public RepoList(List<Repo> repoList) {
+        this.repoList = repoList;
+    }
+
     public List<String> getRepoNames() {
         return repoList.stream().map(repo -> repo.getRepoName()).collect(Collectors.toList());
     }
@@ -22,4 +26,24 @@ public class RepoList {
     public int getNumberOfRepos() {
         return repoList.size();
     }
+
+    /**
+     * Method to add new Repo to Existing RepoList.
+     * @param nextRepo the next Repo Object to be added.
+     * @return the same repolist with updated new repository.
+     */
+    public RepoList addRepo(Repo nextRepo) {
+        this.repoList.add(nextRepo);
+        return this;
+    }
+
+    /**
+     * Empties all the repositories in the given repository list.
+     * @return Same Repolist after clearing out all the repositories.
+     */
+    public RepoList clearRepoList() {
+        this.repoList.clear();
+        return this;
+    }
+
 }
