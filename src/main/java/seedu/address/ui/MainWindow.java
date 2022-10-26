@@ -222,10 +222,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowCount()) {
                 handleCount();
             }
-
-            if (commandResult.isViewPerson()) {
-                handleView();
-            }
+            handleView();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
