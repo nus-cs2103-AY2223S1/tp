@@ -97,11 +97,11 @@ Examples:
 
 Adds a contact to the contact list.
 
-Format: `addc {name} e/ {email} p/ {phone number} [m/ {module1} {module2}] [t/ {tag1}]`
+Format: `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module1} [{module2} ]...] gh/ {github} tele/ {telegram}`
 
 Examples:
-* `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S`
-* `addc Betsy Crowe e/ betsycrowe@gmail.com p/ 89985432 t/ friend`
+* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com a/ 1 Computing Dr, NUS m/ CS1101S CS1231S gh/ bobby tele/ bmartin`
+* `addc n/ Betsy Crowe p/ 89985432 e/ betsycrowe@gmail.com a/ Blk 30 Geylang Street 29 t/ Friend gh/ betsycrowe tele/ croweybetty`
 
 ### Deleting a contact: `delc`
 

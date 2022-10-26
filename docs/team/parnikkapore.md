@@ -20,6 +20,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Natural date parsing for task deadlines (using [JChronic](https://mvnrepository.com/artifact/com.rubiconproject.oss/jchronic))
+  * Space-separated modules for `addc` and `editc` commands
 
 * **Documentation**:
   * User Guide:
