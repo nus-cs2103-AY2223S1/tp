@@ -5,7 +5,7 @@
 <!-- TODO: ACTIVITY DIAGRAM -->
 <!-- TODO: Short Description of Command -->
 
-##### `tag item` Feature Details
+##### Feature Details
 
 <!-- TODO: SEQUENCE DIAGRAM -->
 <!-- TODO: Description of how Command works -->
@@ -22,7 +22,7 @@
 
 The `tag item` command tags an item with the provided tag name in FoodRem. If both the item and the tag are valid, the item will be tagged successfully.
 
-##### `tag item` Feature Details
+##### Feature Details
 
 ![TagSequenceDiagram](images/TagSequenceDiagram.png)
 
@@ -44,7 +44,7 @@ The `tag item` command tags an item with the provided tag name in FoodRem. If bo
 <!-- TODO: ACTIVITY DIAGRAM -->
 <!-- TODO: Short Description of Command -->
 
-##### `filtertag` Feature Details
+##### Feature Details
 
 <!-- TODO: SEQUENCE DIAGRAM -->
 <!-- TODO: Description of how Command works -->

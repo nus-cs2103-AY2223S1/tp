@@ -2,25 +2,25 @@
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Item-related Features
+### `Item`-related Features
 
 {% include_relative _dg/implementations/ItemFeaturesDescription.md %}
 
 {% include_relative _dg/implementations/ItemFeatures.md %}
 
-### Tagging-related Features
+### `Tag`-related Features
 
 {% include_relative _dg/implementations/TaggingFeaturesDescription.md %}
 
 {% include_relative _dg/implementations/TaggingFeatures.md %}
 
-### Statistics-related Features
+### Statistics Features
 
 {% include_relative _dg/implementations/StatisticsFeaturesDescription.md %}
 
 {% include_relative _dg/implementations/StatisticsFeatures.md %}
 
-### General-related Features
+### General Features
 
 {% include_relative _dg/implementations/GeneralFeaturesDescription.md %}
 

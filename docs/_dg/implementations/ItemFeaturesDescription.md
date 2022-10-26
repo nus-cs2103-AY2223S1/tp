@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
-#### Implementation Details
+#### General Implementation Details
 
 <!-- TODO: ADD ITEM CLASS DIAGRAM -->
 
-#### Design Considerations
+#### General Design Considerations

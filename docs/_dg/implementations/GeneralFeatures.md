@@ -4,7 +4,7 @@
 
 The `help` feature provides a user with instructions of how to use certain commands.
 
-##### `help` Feature Details
+##### Feature Details
 
 1. The user specifies a specific command that they need help with. This is done using the word needed to execute a particular command in FoodRem.
 1. If this is not provided, a general help message will be shown.

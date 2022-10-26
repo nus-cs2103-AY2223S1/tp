@@ -5,7 +5,7 @@
 <!-- TODO: ACTIVITY DIAGRAM -->
 <!-- TODO: Short Description of Command -->
 
-##### `statistics` Feature Details
+##### Feature Details
 
 <!-- TODO: SEQUENCE DIAGRAM -->
 <!-- TODO: Description of how Command works -->

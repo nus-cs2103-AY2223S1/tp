@@ -5,7 +5,7 @@
 <!-- TODO: ACTIVITY DIAGRAM -->
 <!-- TODO: Short Description of Command -->
 
-##### `new item` Feature Details
+##### Feature Details
 
 <!-- TODO: SEQUENCE DIAGRAM -->
 <!-- TODO: Description of how Command works -->
@@ -21,7 +21,7 @@
 <!-- TODO: ACTIVITY DIAGRAM -->
 <!-- TODO: Short Description of Command -->
 
-##### `edit item` Feature Details
+##### Feature Details
 
 <!-- TODO: SEQUENCE DIAGRAM -->
 <!-- TODO: Description of how Command works -->
@@ -47,7 +47,7 @@ The `sort` feature sorts the list of items currently displayed to the user by sp
 
 Currently, sorting is performed ascendingly. A future implementation will allow sorting either ascendingly or descendingly.
 
-##### `sort item` Feature Details
+##### Feature Details
 
 1. The user can perform other commands that modifies the presented item list, such as the `find` command.
 1. The user specifies one or more criteria used for sorting. Available criteria for sorting are listed above.

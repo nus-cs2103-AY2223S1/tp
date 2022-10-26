@@ -1,6 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
-#### Implementation Details
+#### General Implementation Details
 
 <!-- TODO: ADD TAG CLASS DIAGRAM -->
 
@@ -13,7 +13,7 @@ Tagging/untagging a `Tag` to an `Item` will add/remove the corresponding `Tag` o
 Given below is an UML diagram of `Tag` and the classes related to it:
 ![model_diagram](images/BetterModelClassDiagram.png)
 
-#### Design Considerations
+#### General Design Considerations
 
 When storing a tag, these are the alternatives to consider.
 
