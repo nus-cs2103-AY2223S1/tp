@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
