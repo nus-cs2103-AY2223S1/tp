@@ -2,7 +2,11 @@ package seedu.intrack.logic.commands;
 
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
+import java.util.List;
+
+import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
+import seedu.intrack.model.internship.Internship;
 
 /**
  * Sorts all the internships in the internship list by the dates and time of their respective tasks
@@ -23,6 +27,8 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_D = "Sorted all internships in descending order";
 
+    public static final String MISSING_TASKLIST = "One or more of the internships have no tasks! Cannot be sorted.";
+
     private final String orderType; //will be either A, a, D or d
 
     public SortCommand(String orderType) {
@@ -30,15 +36,24 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
-        if (orderType == "a") {
+    public CommandResult execute(Model model) throws CommandException {
+        List<Internship> lastShownList = model.getSelectedInternship();
+        for (int i = 0; i < lastShownList.size(); i++) {
+            Internship internship = lastShownList.get(i);
+            if (internship.isTaskListEmpty()) {
+                throw new CommandException(MISSING_TASKLIST);
+            }
+        }
+        if (orderType.equals("a")) {
             model.ascendSort();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
             return new CommandResult(String.format(MESSAGE_SUCCESS_A, model.getFilteredInternshipList().size()));
-        } else {
+        } else if (orderType.equals("d")) {
             model.descendSort();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
             return new CommandResult(String.format(MESSAGE_SUCCESS_D, model.getFilteredInternshipList().size()));
+        } else {
+            throw new CommandException(SORT_COMMAND_CONSTRAINTS);
         }
     }
 
