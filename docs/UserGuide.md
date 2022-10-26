@@ -222,6 +222,7 @@ Allows the user to view students and their information which includes:
 - Amount paid
 - Amount owed
 - Additional notes
+- Tag
 
 Format: `list`
 
