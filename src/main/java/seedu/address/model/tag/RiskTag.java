@@ -6,10 +6,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a RiskTag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class RiskTag extends NormalTag {
+public class RiskTag extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Risk tag name should be [LOW], [MEDIUM], or [HIGH]";
     public static final String VALIDATION_REGEX = "(HIGH|MEDIUM|LOW)";
+    public static final String HIGH = "HIGH";
+    public static final String LOW = "LOW";
+    public static final String MEDIUM = "MEDIUM";
 
     private int risk;
 
@@ -32,18 +35,29 @@ public class RiskTag extends NormalTag {
     public int setRisk(String tagName) {
         switch (tagName) {
 
-        case "HIGH":
+        case HIGH:
             return this.risk = 3;
 
-        case "MEDIUM":
+        case MEDIUM:
             return this.risk = 2;
 
-        case "LOW":
+        case LOW:
             return this.risk = 1;
 
         default:
             return this.risk = 0;
         }
+    }
+
+    /**
+     * check if tag is a risk tag
+     * @param tag
+     * @return true if its a risk tag, false if otherwise
+     */
+    public static boolean isRiskTag(String tag) {
+        return HIGH.equalsIgnoreCase(tag)
+                || MEDIUM.equalsIgnoreCase(tag)
+                || LOW.equalsIgnoreCase(tag);
     }
 
     /**
