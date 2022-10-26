@@ -51,9 +51,10 @@ a graphical user interface.
      Deletes the second task in the list.
    - `edit 3 -n Assignment 2` : 
      Changes the name of the third task in the list to `Assignment 2`.
+   - `find tutorial` :
+     Finds anything with the keyword 'tutorial' (not case-sensitive or strictly matched words)
 
    You can also continue reading below to read more about how to use each command!
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -116,8 +117,18 @@ Format : `tag TASK_NUMBER TAG_NAME`
 
 Example: `tag 2 optional`
 
+## List and Find
+
+`list` and `find` are commands that filter the list. There are multiple ways to filter the tasklist, such as
+listing all tasks, unmarked tasks, all tasks under a module name etc. You may apply multiple list commands in one command
+to filter a list down to the results you are looking for. To reset the list, use the command `ls -a`.
+
+Current filters applied will be shown in the UI at the top bar.
+
+**Note that `find` searches globally, across all of a task's attributes**
 
 ### List : `ls`
+
 #### Listing all tasks : `ls -a`
 
 Shows a list of all tasks in the task list.
@@ -162,6 +173,25 @@ Format: `ls -d DATE`
 * `DATE`: Must be in the format of YYYY-MM-DD.
 
 Example: `ls -d 2022-11-11`
+
+### Find tasks by name : `find`
+
+The `find` command finds the task names which contain the word or words given in the prefix. 
+`find` is not case-sensitive and the keyword being searched does not have to match a whole word
+(Example: searching `tap` in task name `tape` will be shown).
+
+Format: `find WORD [MORE_WORDS]`
+
+Singular word search example: `find tutorial`
+
+Multiple word search example: `find Week tutorial`
+finds **any** task name with either `Week` or `tutorial`.
+
+*Note that this is **NOT** the same as:*
+
+`find Week` followed by `find tutorial`
+
+as it filters the task names with `Week` then filters task names with `tutorial`.
 
 #### Listing all archived tasks : `ls -archive`
 
@@ -231,10 +261,6 @@ Examples:
 * `archive 1`: archives first task in task list.
 * `archive 2022-10-17`: archives tasks with deadline on and before `DATE`.
 
-### Find tasks by name `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -244,6 +270,7 @@ To be added..
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 
 Format meanings:
 * `lower_case` text mean that they should be typed as-is
