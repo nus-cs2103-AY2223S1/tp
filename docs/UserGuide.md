@@ -60,7 +60,7 @@ GithubContact is an address book **integrated with Github's Public API**, target
 
 </div>
 
-### Adding a person : `add`
+### Add a person : `add`
 
 Adds person to list and shows contact information page, where attributes can be added and set.
 
@@ -131,6 +131,17 @@ Find person and displays the persons that match the keyword.
 
 Format: `find KEYWORD`
 
+### Sort Persons : `sort`
+
+Sort persons in the list.
+
+Format: `sort [name|address|role][/desc]`
+
+Example:
+
+- Sort name in descending order: `sort name/desc`
+- Sort role in ascending order: `sort role`
+
 ### Back to previous page : `back` or `<ESC>`
 
 Back to previous page
@@ -139,9 +150,9 @@ Format: `back` or `<ESC>`
 
 ### Show help : `help`
 
-Shows help page.
+Shows help page or usage instruction of specified command.
 
-Format: `help`
+Format: `help [add|back|clear|delete|exit|find|help|reset|set|sort]`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,12 +165,13 @@ Format: `help`
 
 ## Command summary
 
-| Action              | Format, Examples                                                                                                                                                                    |
-|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**             | `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `add name/John Doe address/27 Clementi` |
-| **delete person**   | `delete INDEX` <br> `delete 1, delete 2`                                                                                                                                            |
-| **delete attribute** | `delete ATTRIBUTE` <br> `delete name, delete slack, delete twitter`                                                                                                                 |
-| **set**             | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`     |
-| **find**            | `find` <br> `find Tex, find Engineer`                                                                                                                                               |
-| **back**            | `back` or `<ESC>` key                                                                                                                                                               |
-| **help**            | `help`                                                                                                                                                                              |
+| Action               | Format, Examples                                                                                                                                                                    |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**              | `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `add name/John Doe address/27 Clementi` |
+| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                                                                                                                                          |
+| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter`                                                                                                             |
+| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`     |
+| **sort**             | `sort` <br> `sort name`, `sort name/desc`                                                                                                                                           |
+| **find**             | `find` <br> `find Tex`, `find Engineer`                                                                                                                                             |
+| **back**             | `back` or `<ESC>` key                                                                                                                                                               |
+| **help**             | `help` <br> `help`, `help add`                                                                                                                                                       |
