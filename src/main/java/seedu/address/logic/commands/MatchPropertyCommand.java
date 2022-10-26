@@ -23,7 +23,7 @@ public class MatchPropertyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             // TODO: Change description?
-            + ": Matches a property with all buyers who are most likely to purchase the property\n"
+            + ": Matches a property with all buyers who are most suitable to purchase the property\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

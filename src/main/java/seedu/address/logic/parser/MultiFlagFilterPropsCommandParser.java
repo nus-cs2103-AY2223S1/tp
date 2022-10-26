@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FilterPropsCommand;
@@ -64,10 +65,9 @@ public class MultiFlagFilterPropsCommandParser extends Parser<MultiFlagFilterPro
         }
 
         // Get logical OR of all predicates
-        for (int i = 1; i < predicatesList.size(); i++) {
-            predicatesList.set(0, predicatesList.get(0).or(predicatesList.get(i)));
-        }
+        Optional<Predicate<Property>> logicalOrPredicate = predicatesList.stream().reduce(Predicate::or);
 
-        return new MultiFlagFilterPropsCommand(predicatesList.get(0));
+        // Is it now possible to get a NoSuchElementException?
+        return new MultiFlagFilterPropsCommand(logicalOrPredicate.get());
     }
 }
