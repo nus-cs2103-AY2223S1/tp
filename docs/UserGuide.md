@@ -3,14 +3,38 @@ layout: page
 title: User Guide
 ---
 
-Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## 1. Introduction
+Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps.
 
-## Quick start
+## 2. About
+
+### 2.1 Navigating the User Guide
+
+This section aims to help you navigate the user guide.
+
+1. The next subsection [Section 2.2, Tips for reading the User Guide](#22-tips-for-reading-the-user-guide), provides some tips on reading this document.
+2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up Financial Advisor Planner.
+3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented. 
+
+### 2.2 Tips for reading the User Guide
+
+#### 2.2.1 General Symbols and Syntax
+
+Symbol/Syntax        | Meaning 
+---------------------|------------------
+`command`            | indicates commands or keywords related to commands that can be executed by the application.
+:bulb:               | indicates that the enclosed text is a tip
+:exclamation:        | indicates that the enclosed text is a warning and usually gives details about potential errors.
+:information_source: | indicates that the enclosed text are extra notes and information regarding the topic. 
+
+#### 2.2.1 General Symbols and Syntax
+
+## 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -28,7 +52,7 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/60000 r/Low s/1000` : Adds a contact named `John Doe` to the list of clients.
 
-   * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the person in index 1 of the contact book with the date and location of the appointment.
+   * **`aa`** `1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks` : Adds an appointment to the client in index 1 of the contact book with the date and location of the appointment.
    
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -40,11 +64,13 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 4. Features
+
+This section contains all the information pertaining to the features of *Financial Advisor Planner*
 
 <div markdown="block" class="alert alert-info">
 
@@ -71,23 +97,32 @@ Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) t
 
 </div>
 
-### Viewing help : `help`
+<div markdown="block" class="alert alert-warning">
 
-Shows a message explaning how to access the help page.
+**:warning: Warning regarding the use of the application:**<br>
+
+Other crucial files will be created and stored in the same folder that contains **FinancialAdvisorPlanner.jar**. These files are responsible for storing your data, hence it is advised to not delete or modify these files.
+</div>
+
+### 4.1 General command features
+
+#### 4.1.1 Viewing help : `help`
+
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add`
+#### 4.1.2 Adding a client: `add`
 
-Adds a person to the list of clients.
+Adds a client to the list of clients.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0) </div>
+A client can have any number of tags (including 0) </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** RISK_APPETITE can only have the values ‘High’, ‘Medium’ or ‘Low’
 </div>
@@ -96,32 +131,32 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/200000 r/Medium s/5000`
 * `Add n/Betsy Crowe t/friend i/0 r/High e/betsycrow@example.com a/Newgate Prison p/1234567 s/0`
 
-### Listing all persons : `list`
+#### 4.1.3 Listing all clients : `list`
 
-Shows a list of all persons in the client list.
+Shows a list of all clients in the client list.
 
 Format: `list`
 
-### Editing a person : `edit`
+#### 4.1.4 Editing a client : `edit`
 
-Edits an existing person in the list of clients.
+Edits an existing client in the list of clients.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,…​
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+#### 4.1.5 Locating clients by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -129,13 +164,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only full words will be matched e.g. Han will not match Hans
-* Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 * The search also applies to other information available such as mobile number or policy numbers.
   E.g John Doe has the mobile number 87438807
     * find 87438807 will return John Doe
@@ -147,37 +182,21 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+#### 4.1.6 Deleting a client : `delete`
 
-Deletes the specified person from the list of clients.
+Deletes the specified client from the list of clients.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the list of clients.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the list of clients.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Adding an appointment : `aa`
-
-Adds an appointment at the input date(s) and time(s) for an existing person in the list of clients.
-
-Format: `aa [INDEX] [d/DATE AND TIME] [l/LOCATION]`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-DATE_TIME has the format `d-MMM-yyyy hh:mm a` </div>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** All input DATE_TIME(s) must be valid in order for the command to be executed. 
-</div>
-
-Examples:
-
-* `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
-
-### Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
+#### 4.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
 
 Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
 You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
@@ -187,26 +206,49 @@ Format: sort `KEYWORD` / sort `KEYWORD desc`
 Types of `KEYWORD`: name
 
 * Returns all the contacts sorted by the given `KEYWORD`
+
   ![result for 'sort name'](images/sortAlphabetResult.png)
 
-
-### Clearing all entries : `clear`
+#### 4.2.8 Clearing all entries : `clear`
 
 Clears all entries from the list of clients.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### 4.2.9 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+ 
+### 4.2 Appointment command features
 
-### Saving the data
+#### 4.2.1 Adding an appointment : `aa`
+
+Adds an appointment at the input date(s) and time(s) for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
+
+Format: `aa [INDEX] [d/DATE AND TIME] [l/LOCATION]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+DATE AND TIME has the format `d-MMM-yyyy hh:mm a` </div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE AND TIME(s) must be valid in order for the command to be executed.
+<br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE AND TIME in the overall list of appointments.
+</div>
+
+Examples:
+
+* `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+
+### 4.3 Calendar features
+
+### 4.4 Miscellaneous commands
+
+#### 4.4.1 Saving the data
 
 FinancialAdvisorPlanner data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### 4.4.2 Editing the data file
 
 FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/FinancialAdvisorPlanner.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -214,25 +256,27 @@ FinancialAdvisorPlanner data are saved as a JSON file `[JAR file location]/data/
 If your changes to the data file makes its format invalid, FinancialAdvisorPlanner will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### 4.5 Future features
+
+#### 4.5.1 Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinancialAdvisorPlanner home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 7. Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
-**Addappt** | `aa [INDEX] [d/DATE AND TIME] [l/LOCATION]…​ ` <br> e.g., `e.g., aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
+**Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE s/MONTHLY_SAVINGS [t/TAG]…​ ` <br> e.g., `e.g., add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
+**Add Appointment** | `aa INDEX d/DATE AND TIME l/LOCATION` <br> e.g., `e.g., aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [s/MONTHLY_SAVINGS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
