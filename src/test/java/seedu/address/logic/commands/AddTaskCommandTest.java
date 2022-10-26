@@ -38,7 +38,7 @@ import seedu.address.model.task.TaskName;
 public class AddTaskCommandTest {
     private final TaskList testList = new TaskList();
     private final TaskName testName = new TaskName("Test");
-    private final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private final Description testDisc = new Description("Test");
     private final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());

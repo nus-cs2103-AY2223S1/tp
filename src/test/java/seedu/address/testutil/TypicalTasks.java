@@ -28,7 +28,7 @@ import seedu.address.model.task.TaskName;
 public class TypicalTasks {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-    private static final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private static final TaskCategory testCat = new TaskCategory(TaskCategoryType.OTHERS);
     private static final Description testDisc = new Description("Test");
     private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
