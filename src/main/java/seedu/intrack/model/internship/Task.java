@@ -17,7 +17,6 @@ public class Task {
 
     public static final String MESSAGE_CONSTRAINTS = "Task names can take any values, but should not be blank";
     public static final String TIME_CONSTRAINTS = "Time must be in the format dd-MM-yyyy HH:mm";
-    public static final String DEFAULT_TASK_NAME = "Application submitted";
 
     /*
      * The first character of the task must not be a whitespace,
@@ -31,14 +30,6 @@ public class Task {
     public final LocalDateTime taskTime;
 
     /**
-     * Constructs an {@code Task}
-     */
-    public Task() {
-        this.taskName = DEFAULT_TASK_NAME;
-        this.taskTime = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-    }
-
-    /**
      * Constructs an {@code Task}.
      *
      * @param taskName A valid task name.
@@ -50,7 +41,7 @@ public class Task {
         checkArgument(isValidTaskName(taskName), MESSAGE_CONSTRAINTS);
         checkArgument(isValidTaskTime(taskTime), TIME_CONSTRAINTS);
         this.taskName = taskName;
-        this.taskTime = LocalDateTime.parse(taskTime, FORMATTER);
+        this.taskTime = LocalDateTime.parse(taskTime, FORMATTER).truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**

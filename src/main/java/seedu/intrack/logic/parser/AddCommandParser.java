@@ -52,7 +52,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Website website = ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get());
         List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
