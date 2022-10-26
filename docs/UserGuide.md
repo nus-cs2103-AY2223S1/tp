@@ -183,7 +183,45 @@ Clears all student records from local storage.
 
 Format: `clear`
 
+<<<<<<< Updated upstream
 ### 3.9 Help : `help`
+=======
+### 4.2.3 Viewing all student records : `viewAll`
+
+Shows a list of all student records in Classify.
+
+Format: `viewAll`
+
+### 4.2.4 Viewing student records from a class : `viewClass`
+
+Shows a list of all students in the specified class.
+
+Format: `viewClass [class name]`
+
+<div markdown="span" class="alert alert-info">:information_source:
+   **Note:** Class name is case-insensitive.
+</div><br>
+
+Examples:
+* `viewClass 2A`
+* `viewClass Loyalty1`
+
+## 4.3 Exam statistics
+
+### 4.3.1 Getting exam statistics: `viewStats`
+
+*To be updated* 
+
+## 4.4 Miscellaneous
+
+### 4.4.1 Exiting the application : `exit`
+
+Exits the application.
+
+Format: `exit`
+
+### 4.4.2 Viewing help : `help`
+>>>>>>> Stashed changes
 
 Shows a summary of all commands available.
 
@@ -219,6 +257,7 @@ Click <a href="#top">here</a> to return to the top.
 
 ## 5. **Command summary**
 
+<<<<<<< Updated upstream
 |              Action               | Format                                                                                                                                                    | Example                                                                      |  
 |:---------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|
 |     Add a new student record      | `addstud nm/[name of student] id/[id of student] class/[class of student] pn/[name of parent] hp/[mobile number of parent] exam/[name of exam and score]` | _addstud nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90 |
@@ -231,6 +270,21 @@ Click <a href="#top">here</a> to return to the top.
 |     Clear all student records     | `clear`                                                                                                                                                   | _clear_                                                                      |
 |    View command summary table     | `help`                                                                                                                                                    | _help_                                                                       |
 |         Exit application          | `exit`                                                                                                                                                    | _exit_                                                                       |
+=======
+|              Action               | Format                                                                                                                    | Example                                                                       |  
+|:---------------------------------:|:--------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|
+|     Add a new student record      | `addstud nm/[STUDENT-NAME] id/[STUDENT-ID] class/[CLASS] exam/[EXAM, SCORE] pn/[PARENT-NAME] hp/[PHONE-NUMBER] e/[EMAIL]` | _addstud nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90_ |
+|     View all student records      | `viewAll`                                                                                                                 | _viewAll_                                                                     |
+| View student records from a class | `viewClass [CLASS]`                                                                                                       | _viewClass 1A_                                                                |
+|       Edit a student record       | `edit [INDEX] nm/[STUDENT-NAME] id/[ID] exam/[NAME SCORE] pn/[PARENT-NAME]...`                                            | _edit 1 nm/Alexander Yeoh_                                                    |
+|      Delete a student record      | `delete nm/[STUDENT-NAME]` or `delete id/[STUDENT-ID]`                                                                    | _delete nm/Jonathan Tan or delete id/123A_                                    |
+|       Find a student record       | `find nm/[STUDENT-NAME]` or `find id/[STUDENT-ID]`                                                                        | _find nm/Jonathan Tan or find id/123A_                                        |
+| View exam statistics for a class  | `viewStats class/[CLASS] exam/[EXAM] filter/[BOOLEAN]`                                                                    | _viewStats class/1A exam/CA1 filter/on_                                       |
+|            Toggle view            | `toggleView`                                                                                                              | _toggleView_                                                                  |
+|     Clear all student records     | `clear`                                                                                                                   | _clear_                                                                       |
+|    View command summary table     | `help`                                                                                                                    | _help_                                                                        |
+|         Exit application          | `exit`                                                                                                                    | _exit_                                                                        |
+>>>>>>> Stashed changes
 
 Click <a href="#top">here</a> to return to the top.
 
