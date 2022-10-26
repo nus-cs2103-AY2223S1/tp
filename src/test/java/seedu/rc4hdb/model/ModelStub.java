@@ -105,7 +105,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deleteVenue(Venue target) {
+    public void deleteVenue(VenueName venueName) {
         throw new AssertionError("This method should not be called.");
     }
 

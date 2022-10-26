@@ -41,10 +41,9 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
-     * Adds a resident to the list.
-     * The resident must not already exist in the list.
+     * Adds a venue to the list. The venue must not already exist in the list.
      */
-    public void add(Venue toAdd) {
+    public void add(Venue toAdd) throws DuplicateVenueException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateVenueException();
@@ -59,6 +58,17 @@ public class UniqueVenueList implements Iterable<Venue> {
     public void remove(Venue toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
+            throw new VenueNotFoundException();
+        }
+    }
+
+    /**
+     * Similar to
+     * @see #remove(Venue) but uses {@code VenueName} as an identifier.
+     */
+    public void remove(VenueName toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.removeIf(venue -> venue.isSameVenue(toRemove))) {
             throw new VenueNotFoundException();
         }
     }
