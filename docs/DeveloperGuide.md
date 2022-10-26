@@ -1,10 +1,8 @@
 ---
-layout: page
-title: Developer Guide
+layout: page title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+- Table of Contents {:toc}
 
 ---
 
@@ -177,8 +175,6 @@ If the team name provided is invalid, an appropriate exception will be thrown an
 The following activity diagram summarises the action taken when the `AddTeamCommand` is executed.
 ![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
 
-
-
 ### Add a Task Feature
 
 #### Implementation
@@ -235,8 +231,7 @@ The following activity diagram summarizes the action taken when `MarkCommand` is
 
 _Activity diagram of marking task as done_
 
-In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses
-the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
 `MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. A
 `CommandResult` is generated with `isCompleted` boolean value being true.
 
@@ -249,12 +244,11 @@ _Sequence diagram of marking tasks as done_
 
 #### Implementation
 
-The add member to team feature allows users to add a user to the current team using the person's name. 
+The add member to team feature allows users to add a user to the current team using the person's name.
 
 The following is an example usage scenario of how a member is added to a team:
 
-Precondition: Name provided is valid and the current working team is set to the team that the member should 
-be added to.
+Precondition: Name provided is valid and the current working team is set to the team that the member should be added to.
 
 1. User keys in `add_member` command with the person's name.
 2. The person with the specified name in the list is added to the team.
@@ -274,8 +268,7 @@ The following activity diagram summarizes the action taken when the `AddMemberCo
 _Activity diagram of adding member to team_
 
 In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `AddMemberCommandParser`
-parses the index of the person in the user input, and generates a `AddMemberCommand` object. `LogicManager` then
-executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
+parses the index of the person in the user input, and generates a `AddMemberCommand` object. `LogicManager` then executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
 `CommandResult` is generated with a message indicating the person being added to the team.
 
 ### List Members Feature
@@ -284,17 +277,14 @@ executes the `AddMemberCommand` object, which adds the person to the current tea
 
 The list members feature allows users to view the members in their current team.
 
-The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in
-the current team.
+The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in the current team.
 
 Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the
 `filteredPersons` in `ModelManager`.
 
-Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding
-members of the team is shown.
+Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding members of the team is shown.
 
-The following sequence diagram illustrates what happens within the `Logic` component when the list members command is
-executed:
+The following sequence diagram illustrates what happens within the `Logic` component when the list members command is executed:
 ![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
 
 ### Randomly Assign Task Feature
@@ -310,15 +300,11 @@ Step 1. The user launches the application and adds multiple users into the curre
 
 ![RandomlyAssignTaskState0](images/RandomlyAssignTaskState0.png)
 
-Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team member.
-As none of the team members have been added, all of them are candidates for random assignment.
-One of them will be randomly assigned the task.
+Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team member. As none of the team members have been added, all of them are candidates for random assignment. One of them will be randomly assigned the task.
 
 ![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
 
-Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again.
-The team member who has previously been allocated will not be considered.
-Similar to above, one more team member will be randomly allocated the task.
+Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again. The team member who has previously been allocated will not be considered. Similar to above, one more team member will be randomly allocated the task.
 
 ![RandomlyAssignTaskState2](images/RandomlyAssignTaskState2.png)
 
@@ -424,12 +410,12 @@ Preconditions: The current working team is set to the team that the member shoul
 
 **MSS**
 
-1.  User requests to list members
-2.  TruthTable shows a list of members
-3.  User requests to delete a specific member in the list
-4.  TruthTable deletes the member
+1. User requests to list members
+2. TruthTable shows a list of members
+3. User requests to delete a specific member in the list
+4. TruthTable deletes the member
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -449,10 +435,10 @@ Preconditions: The current working team is set to the team that the members shou
 
 **MSS**
 
-1.  User requests to list members
-2.  TruthTable shows a list of members belonging to the team
+1. User requests to list members
+2. TruthTable shows a list of members belonging to the team
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -466,10 +452,10 @@ Preconditions: The current working team is set to the team that the task should 
 
 **MSS**
 
-1.  User requests to add task member and provides task name and task deadline
-2.  TruthTable adds the task to the list of tasks
+1. User requests to add task member and provides task name and task deadline
+2. TruthTable adds the task to the list of tasks
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -497,12 +483,12 @@ Preconditions: The current working team is set to the team that the task should 
 
 **MSS**
 
-1.  User requests to list tasks
-2.  TruthTable shows a list of tasks
-3.  User requests to delete a specific task in the list
-4.  TruthTable deletes the task
+1. User requests to list tasks
+2. TruthTable shows a list of tasks
+3. User requests to delete a specific task in the list
+4. TruthTable deletes the task
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -522,10 +508,10 @@ Preconditions: The current working team is set to the team that the member shoul
 
 **MSS**
 
-1.  User requests to list tasks
-2.  TruthTable shows a list of tasks belonging to the team
+1. User requests to list tasks
+2. TruthTable shows a list of tasks belonging to the team
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -539,12 +525,12 @@ Preconditions: The current working team is set to the team that has the existing
 
 **MSS**
 
-1.  User requests to list tasks
-2.  TruthTable shows a list of tasks
-3.  User requests to add deadline to specific task in the list
-4.  TruthTable adds deadline to task
+1. User requests to list tasks
+2. TruthTable shows a list of tasks
+3. User requests to add deadline to specific task in the list
+4. TruthTable adds deadline to task
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -568,10 +554,10 @@ Preconditions: The current working team is set to the team that has the existing
 
 **MSS**
 
-1.  User requests create new team and provides new team name
-2.  TruthTable creates a new team and sets current working team to new team
+1. User requests create new team and provides new team name
+2. TruthTable creates a new team and sets current working team to new team
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -591,10 +577,10 @@ Preconditions: The current working team is set to the team that has the existing
 
 **MSS**
 
-1.  User requests to change current working team
-2.  TruthTable sets current working team to specified team
+1. User requests to change current working team
+2. TruthTable sets current working team to specified team
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
