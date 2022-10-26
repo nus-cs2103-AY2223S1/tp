@@ -50,7 +50,7 @@ public class TaskPanelParser implements Parser<TaskCommand> {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        switch (commandWord) {
+        switch (commandWord.toLowerCase()) {
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
