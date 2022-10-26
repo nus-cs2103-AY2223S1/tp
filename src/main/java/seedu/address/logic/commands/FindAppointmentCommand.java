@@ -35,7 +35,8 @@ public class FindAppointmentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAppointmentList(this.predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
+                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, model.getFilteredAppointmentList()
+                        .size()));
     }
 
     @Override
