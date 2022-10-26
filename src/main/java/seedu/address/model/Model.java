@@ -94,6 +94,18 @@ public interface Model {
     void deleteEvent(Event event);
 
     /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The event title of {@code editedEvent} must not be the same as another existing event in the address book.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Returns true if an event with the same identity as {@code target} exists in the address book.
+     */
+    boolean hasEvent(Event target);
+
+    /**
      * Sorts all the persons in the address book by the given {@code sortField}.
      */
     void sortPersons(SortField sortField);
@@ -115,4 +127,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the reference to Persons from Events.
+     */
+    void updateEventPersonReference();
 }

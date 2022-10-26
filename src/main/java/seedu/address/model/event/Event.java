@@ -1,6 +1,7 @@
 package seedu.address.model.event;
 
 import seedu.address.model.date.Date;
+import seedu.address.model.person.Person;
 
 /**
  * Event represents a marketing events in the application.
@@ -11,6 +12,8 @@ public class Event {
     private final StartTime startTime;
     private final String purpose;
 
+    //add a list of Customers here
+    private final UidList uids;
 
     /**
      * Constructor to create new Event object
@@ -24,6 +27,30 @@ public class Event {
         this.startDate = startDate;
         this.startTime = startTime;
         this.purpose = purpose;
+        this.uids = new UidList();
+    }
+
+    /**
+     * Overloaded constructor to create new Event object
+     * @param eventToCopy event to copy
+     * @param uids new uid list
+     */
+    public Event(Event eventToCopy, UidList uids) {
+        this.eventTitle = eventToCopy.eventTitle;
+        this.startDate = eventToCopy.startDate;
+        this.startTime = eventToCopy.startTime;
+        this.purpose = eventToCopy.purpose;
+        this.uids = uids;
+    }
+    /**
+     * Overloaded constructor to create new Event object
+     */
+    public Event(String eventTitle, Date startDate, StartTime startTime, String purpose, UidList uids) {
+        this.eventTitle = eventTitle;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.purpose = purpose;
+        this.uids = uids;
     }
 
     public String getEventTitle() {
@@ -41,6 +68,29 @@ public class Event {
     public String getPurpose() {
         return this.purpose;
     }
+    public UidList getUids() {
+        return this.uids;
+    }
+
+    /**
+     * Returns true if both events have the same eventTitle.
+     * Serves as a weaker notion of equality between two events.
+     */
+    public boolean isSameEvent(Event otherEvent) {
+        if (otherEvent == this) {
+            return true;
+        }
+
+        return otherEvent != null
+                && otherEvent.getEventTitle().equals(getEventTitle());
+    }
+
+    /**
+     * Returns true if the person is tagged to the event.
+     */
+    public boolean containsPerson(Person person) {
+        return uids.contains(person.getUid());
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -56,7 +106,8 @@ public class Event {
         return otherEvent.getEventTitle().equals(this.getEventTitle())
                 && otherEvent.getStartDate().equals(this.getStartDate())
                 && otherEvent.getStartTime().equals(this.getStartTime())
-                && otherEvent.getPurpose().equals(this.getPurpose());
+                && otherEvent.getPurpose().equals(this.getPurpose())
+                && otherEvent.getUids().equals(this.getUids()); //add customers in equals method
     }
 
     @Override
@@ -73,5 +124,4 @@ public class Event {
 
         return builder.toString();
     }
-
 }

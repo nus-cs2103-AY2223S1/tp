@@ -2,8 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -18,6 +21,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.SortField;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -122,16 +126,12 @@ public class ParserUtil {
      * Parses a {@code String gender} into an {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
      * @param gender string containing gender.
-     * @param isNaAllowed boolean value, true represents NA value is considered a valid gender, false otherwise.
-     *                    For Edit gender command, NA value is considered a valid gender;
-     *                    for Add gender command, NA value is considered an invalid gender.
      * @throws ParseException if the given {@code gender} is invalid.
      */
-    public static Gender parseGender(String gender, Boolean isNaAllowed) throws ParseException {
+    public static Gender parseGender(String gender) throws ParseException {
         requireNonNull(gender);
-        requireNonNull(isNaAllowed);
         String trimmedGender = gender.trim();
-        if (!Gender.isValidGender(trimmedGender, isNaAllowed)) {
+        if (!Gender.isValidGender(trimmedGender)) {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
@@ -206,5 +206,22 @@ public class ParserUtil {
         requireNonNull(purpose);
 
         return purpose;
+    }
+
+    /**
+     * Returns the uid list passed to it.
+     */
+    public static List<Index> parseIndexes(String indexes) throws ParseException {
+        requireNonNull(indexes);
+        String trimmedIndexes = indexes.trim();
+        List<String> strIndexes = Arrays.asList(trimmedIndexes.split("\\s+"));
+        List<Index> indexList = new ArrayList<>();
+        for (String index : strIndexes) {
+            if (!StringUtil.isNonZeroUnsignedInteger(index)) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+            indexList.add(Index.fromOneBased(Integer.parseInt(index)));
+        }
+        return indexList;
     }
 }
