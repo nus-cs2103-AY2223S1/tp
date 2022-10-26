@@ -44,6 +44,11 @@ public class TypicalApplications {
             .withContact("84893063").withDate("2022-05-06").withEmail("intel@recruitment.com")
             .withPosition("Software Developer").withArchiveStatus(true).build();
 
+    public static final Application WISE = new ApplicationBuilder().withCompany("Wise")
+            .withContact("88228822").withDate("2022-08-28")
+            .withEmail("wise@example.com").withPosition("Software Engineer").withTags("financialService")
+            .withInterview(new InterviewBuilder().withInterviewDate("2022-10-28").build()).build();
+
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE)
@@ -69,6 +74,14 @@ public class TypicalApplications {
         return ab;
     }
 
+    public static ApplicationBook getTypicalApplicationBookWithUpcomingInterview() {
+        ApplicationBook ab = new ApplicationBook();
+        for (Application application : getTypicalApplicationsWithUpcomingInterview()) {
+            ab.addApplication(application);
+        }
+        return ab;
+    }
+
     public static ApplicationBook getTypicalApplicationBookWithArchive() {
         ApplicationBook ab = new ApplicationBook();
         for (Application application : getTypicalApplicationsWithArchive()) {
@@ -79,6 +92,10 @@ public class TypicalApplications {
 
     public static List<Application> getTypicalApplications() {
         return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET));
+    }
+
+    public static List<Application> getTypicalApplicationsWithUpcomingInterview() {
+        return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET, WISE));
     }
 
     public static List<Application> getTypicalApplicationsWithArchive() {
