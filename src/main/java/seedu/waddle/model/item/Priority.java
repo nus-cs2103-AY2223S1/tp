@@ -5,7 +5,7 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Item's priority in the Itinerary.
- * Guarantees: number between 1 and 5, default is 1; is valid as declared in {@link #isValidPriority(String)}
+ * Guarantees: number between 1 and 5, default is 1; is valid as declared in {@link #isValidPriority(Integer)}
  */
 public class Priority {
 

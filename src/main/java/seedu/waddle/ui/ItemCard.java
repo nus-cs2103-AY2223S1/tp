@@ -42,7 +42,7 @@ public class ItemCard extends UiPart<Region> {
         } else {
             this.id.setText(displayedIndex + ". ");
         }
-        this.description.setText(item.getDescription());
+        this.description.setText(item.getDescription().description);
         this.priority.setText("★".repeat(item.getPriority().getStars()));
         this.duration.setText("Duration: " + item.getDuration() + " mins");
         this.time.setText("Time: " + item.getTimeString());

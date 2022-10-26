@@ -16,8 +16,8 @@ import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.DayNumber;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
 
@@ -62,18 +62,18 @@ public class ParserUtil {
 
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static Description parseDescription(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!Description.isValidDescription(trimmedName)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Description(trimmedName);
     }
 
     /**
@@ -151,23 +151,6 @@ public class ParserUtil {
         return new Budget(trimmedBudget);
     }
 
-    /**
-     * Parses a {@code String description}.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static String parseDescription(String description) {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        // TODO: implement Description class
-        /*
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
-        }
-
-        return new Description(trimmedDescription);
-         */
-        return trimmedDescription;
-    }
 
     /**
      * Parses a {@code String priority} into a {@code Priority}.
