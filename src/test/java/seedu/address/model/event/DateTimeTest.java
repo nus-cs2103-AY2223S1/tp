@@ -191,7 +191,7 @@ public class DateTimeTest {
         DateTime dateEight = new DateTime("23/02/2022 07:30");
         DateTime dateNine = new DateTime("23-02-2022 07:30");
         // same time
-        assertEquals(DateTime.getDifferenceString(dateOne, dateOne), "");
+        assertEquals(DateTime.getDifferenceString(dateOne, dateOne), "No Duration");
         // same day, same hour, different minute
         assertEquals(DateTime.getDifferenceString(dateOne, dateTwo), "30 minutes");
         // same day, different hour, same minute
