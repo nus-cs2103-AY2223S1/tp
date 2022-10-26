@@ -15,7 +15,7 @@ import tracko.logic.parser.TrackOParser;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.order.Order;
 import tracko.storage.Storage;
 
@@ -99,7 +99,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Item> getFilteredItemList() {
+    public ObservableList<InventoryItem> getFilteredItemList() {
         return model.getFilteredItemList();
     }
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.exceptions.ItemNotFoundException;
 
 /**
@@ -47,6 +48,10 @@ public class OrderList implements Iterable<Order> {
     public void setOrders(List<Order> orders) {
         requireAllNonNull(orders);
         internalList.setAll(orders);
+    }
+
+    public boolean containsOrderWithItem(InventoryItem inventoryItem) {
+        return internalList.stream().anyMatch(order -> order.containsItem(inventoryItem));
     }
 
     /**

@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import tracko.logic.commands.item.EditItemCommand.EditItemDescriptor;
 import tracko.model.item.Description;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
@@ -30,7 +30,7 @@ public class EditItemDescriptorBuilder {
     /**
      * Returns an {@code EditOrderDescriptor} with fields containing {@code Order}'s details
      */
-    public EditItemDescriptorBuilder(Item item) {
+    public EditItemDescriptorBuilder(InventoryItem item) {
         descriptor = new EditItemDescriptor();
         descriptor.setItemName(item.getItemName());
         descriptor.setQuantity(item.getTotalQuantity());

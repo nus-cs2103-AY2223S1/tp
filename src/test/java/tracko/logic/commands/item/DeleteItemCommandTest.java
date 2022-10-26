@@ -1,7 +1,10 @@
-package tracko.logic.commands;
+package tracko.logic.commands.item;
+
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
+import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalItems.getTrackOWithTypicalItems;
@@ -10,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.item.DeleteItemCommand;
+import tracko.logic.commands.CommandTestUtil;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.UserPrefs;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -26,15 +29,15 @@ public class DeleteItemCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = model.getInventoryList().get(INDEX_FIRST.getZeroBased());
+        InventoryItem inventoryItemToDelete = model.getInventoryList().get(INDEX_FIRST.getZeroBased());
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        expectedModel.deleteItem(itemToDelete);
+        expectedModel.deleteItem(inventoryItemToDelete);
 
-        CommandTestUtil.assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -42,23 +45,23 @@ public class DeleteItemCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getInventoryList().size() + 1);
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         CommandTestUtil.showItemAtIndex(model, INDEX_FIRST);
 
-        Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        InventoryItem inventoryItemToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, inventoryItemToDelete);
 
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        expectedModel.deleteItem(itemToDelete);
+        expectedModel.deleteItem(inventoryItemToDelete);
         showNoItem(expectedModel);
 
-        CommandTestUtil.assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -72,7 +75,7 @@ public class DeleteItemCommandTest {
 
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(outOfBoundIndex);
 
-        CommandTestUtil.assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteItemCommand, model, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 
     @Test

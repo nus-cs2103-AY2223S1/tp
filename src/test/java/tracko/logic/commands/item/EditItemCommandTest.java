@@ -1,4 +1,4 @@
-package tracko.logic.commands;
+package tracko.logic.commands.item;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,22 +18,22 @@ import org.junit.jupiter.api.Test;
 
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
-import tracko.logic.commands.item.EditItemCommand;
+import tracko.logic.commands.ClearCommand;
 import tracko.logic.commands.item.EditItemCommand.EditItemDescriptor;
 import tracko.model.Model;
 import tracko.model.ModelManager;
 import tracko.model.TrackO;
 import tracko.model.UserPrefs;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.testutil.EditItemDescriptorBuilder;
-import tracko.testutil.ItemBuilder;
+import tracko.testutil.InventoryItemBuilder;
 
 class EditItemCommandTest {
     private Model model = new ModelManager(getTrackOWithTypicalOrders(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Item editedItem = new ItemBuilder().build();
+        InventoryItem editedItem = new InventoryItemBuilder().build();
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(editedItem).build();
         EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST, descriptor);
 
@@ -48,10 +48,10 @@ class EditItemCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
-        Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
+        InventoryItem lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
 
-        ItemBuilder itemInList = new ItemBuilder(lastItem);
-        Item editedItem = itemInList.withItemName(VALID_ITEM_NAME_ERASER).withQuantity(VALID_ITEM_QUANTITY_ERASER)
+        InventoryItemBuilder itemInList = new InventoryItemBuilder(lastItem);
+        InventoryItem editedItem = itemInList.withItemName(VALID_ITEM_NAME_ERASER).withQuantity(VALID_ITEM_QUANTITY_ERASER)
                 .withSellPrice(VALID_ITEM_SELL_PRICE_ERASER).build();
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_ERASER)
@@ -69,7 +69,7 @@ class EditItemCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST, new EditItemDescriptor());
-        Item editedItem = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        InventoryItem editedItem = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
@@ -80,7 +80,7 @@ class EditItemCommandTest {
 
     @Test
     public void execute_duplicateItemUnfilteredList_failure() {
-        Item firstItem = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        InventoryItem firstItem = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
         EditItemCommand editItemCommand = new EditItemCommand(INDEX_SECOND, descriptor);
 
@@ -92,7 +92,7 @@ class EditItemCommandTest {
         showItemAtIndex(model, INDEX_FIRST);
 
         // edit item in filtered inventory list into a duplicate in the inventory list
-        Item itemInList = model.getTrackO().getInventoryList().get(INDEX_SECOND.getZeroBased());
+        InventoryItem itemInList = model.getTrackO().getInventoryList().get(INDEX_SECOND.getZeroBased());
         EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST,
                 new EditItemDescriptorBuilder(itemInList).build());
 
