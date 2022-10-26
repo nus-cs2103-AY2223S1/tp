@@ -16,7 +16,7 @@ public class ListArchiveCommand extends ListCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.getArchivedAddressBook();
+        model.updateFilteredArchivedTaskList(model.PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 
