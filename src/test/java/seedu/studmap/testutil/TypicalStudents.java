@@ -77,7 +77,8 @@ public class TypicalStudents {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalStudents() {} // prevents instantiation
+    private TypicalStudents() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code StudMap} with all the typical students.
