@@ -2,8 +2,8 @@
 The EXPIRY_DATE is the date indicating when an item will expire.
 
 ```info
-- EXPIRY_DATE must be in the following format (dd-mm-yyyy)
-- EXPIRY_DATE can only have years between 1900 and 2300 inclusive
+* EXPIRY_DATE must be in the following format (dd-mm-yyyy)
+* EXPIRY_DATE can only have years between 1900 and 2300 inclusive
 ```
 
 **Valid Examples:**
