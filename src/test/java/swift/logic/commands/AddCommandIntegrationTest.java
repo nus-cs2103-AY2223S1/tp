@@ -7,15 +7,11 @@ import static swift.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import swift.commons.core.index.Index;
 import swift.model.Model;
 import swift.model.ModelManager;
 import swift.model.UserPrefs;
 import swift.model.person.Person;
 import swift.testutil.PersonBuilder;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
