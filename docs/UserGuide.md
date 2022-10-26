@@ -56,7 +56,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/42km run`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG] [date/DATE] ` can be used as `n/42km run t/sport` or as `n/42km run`.
+  e.g. `n/NAME [t/TAG] [date/DATE] [s/STATUS] ` can be used as `n/42km run t/sport` or as `n/42km run`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/sport`, `t/sport t/cardio` etc.
@@ -84,11 +84,14 @@ Format: `help`.
 
 Adds a hobby activity to HobbyList.
 
-Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]`
+Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE] [s/STATUS]`
+
+* `[s/STATUS]` only accepts **upcoming, ongoing or completed** as STATUS. e.g. `s/ongoing`.
+* If status is not specified, it will be displayed as **Status: NONE** by default.
 
 Examples:
 * `add n/42km run d/NUS Run event t/sport`
-* `add n/Badminton d/play badminton t/sport date/2022-10-19`
+* `add n/Badminton d/play badminton t/sport date/2022-10-19 s/completed`
 
 ### Listing all hobby activities : `list`
 
@@ -148,13 +151,14 @@ Example:
 
 Edits a specified activity from HobbyList.
 
-Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS] [date/DATE]`
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE] [s/STATUS]`
 
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
 * You can remove all the activity's tags by typing `t/` without specifying any tags after it.
+* `[s/STATUS]` only accepts **upcoming, ongoing or completed** as STATUS. e.g. `s/ongoing`.
 
 Examples:
 
