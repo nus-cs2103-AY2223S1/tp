@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class SortTaskCommand extends Command {
     public static final String COMMAND_WORD = "sorttask";
-    public static final String MESSAGE_SUCCESS = "Tasks are now sorted!";
+    public static final String MESSAGE_SUCCESS = "Tasks are now sorted by deadline!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

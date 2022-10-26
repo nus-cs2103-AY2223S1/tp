@@ -51,9 +51,9 @@ public class StaffCard extends UiPart<Region> {
         this.staff = staff;
         id.setText(displayedIndex + ". ");
         staffName.setText(staff.getStaffName().toString());
-        staffTitle.setText("Title : " + staff.getStaffTitle().toString());
-        staffDepartment.setText("Department : " + staff.getStaffDepartment().toString());
-        staffContact.setText("Phone Number : " + staff.getStaffContact());
+        staffTitle.setText("Title: " + staff.getStaffTitle().toString());
+        staffDepartment.setText("Department: " + staff.getStaffDepartment().toString());
+        staffContact.setText("Phone Number: " + staff.getStaffContact());
         boolean isOnLeave = staff.getStaffLeave().staffLeave.equals("true");
         if (isOnLeave) {
             staffLeave.getChildren().add(new Label("On Leave"));

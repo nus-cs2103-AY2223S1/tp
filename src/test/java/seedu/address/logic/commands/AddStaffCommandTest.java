@@ -37,7 +37,8 @@ public class AddStaffCommandTest {
         Staff validStaff = new StaffBuilder().build();
         AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff, validProject.getProjectName());
 
-        String expectedMessage = String.format(AddStaffCommand.MESSAGE_ADD_STAFF_SUCCESS, validStaff);
+        String expectedMessage = String.format(
+                AddStaffCommand.MESSAGE_ADD_STAFF_SUCCESS, validStaff, validProject.getProjectName().toString());
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Project expectedProject = new ProjectBuilder().build();

@@ -10,7 +10,8 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid!";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects listed!";
-    public static final String MESSAGE_INVALID_PROJECT = "The project %s does not exist currently in HR Pro Max++!";
+    public static final String MESSAGE_INVALID_PROJECT =
+            "The project %s either does not currently exist in HR Pro Max++ or is not displayed!";
 
     public static final String MESSAGE_INVALID_STAFF_DISPLAYED_INDEX = "The staff index provided is invalid!";
     public static final String MESSAGE_STAFFS_LISTED_OVERVIEW = "%1$d staffs listed!";

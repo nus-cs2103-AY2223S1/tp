@@ -29,7 +29,8 @@ public class DeleteStaffCommand extends Command {
             + PREFIX_STAFF_NAME + "STAFF_NAME\n"
             + "Example: " + COMMAND_WORD + " pn/CS2103T TP sn/Andy Lee";
 
-    public static final String MESSAGE_DELETE_STAFF_SUCCESS = "Deleted Staff: %1$s";
+    public static final String MESSAGE_DELETE_STAFF_SUCCESS = "Deleted Staff from %2$s: %1$s\n"
+            + "Displaying all staff in project: %2$s ";
 
     private String projectName;
 
@@ -75,7 +76,7 @@ public class DeleteStaffCommand extends Command {
         staffList.remove(staff);
         model.setFilteredStaffList(project);
         model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName));
+        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, projectName));
     }
 
     @Override

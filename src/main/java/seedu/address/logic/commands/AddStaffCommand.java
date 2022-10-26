@@ -31,7 +31,7 @@ public class AddStaffCommand extends Command {
             + "Parameters: "
             + PREFIX_PROJECT_NAME + "PROJECT_NAME "
             + PREFIX_STAFF_NAME + "STAFF_NAME "
-            + PREFIX_STAFF_CONTACT + "PHONE_NUMBER "
+            + PREFIX_STAFF_CONTACT + "STAFF_PHONE "
             + PREFIX_STAFF_LEAVE + "LEAVE_STATUS "
             + PREFIX_STAFF_TITLE + "STAFF_TITLE "
             + PREFIX_STAFF_DEPARTMENT + "STAFF_DEPARTMENT "
@@ -44,7 +44,8 @@ public class AddStaffCommand extends Command {
             + PREFIX_STAFF_TITLE + "Accountant "
             + PREFIX_STAFF_DEPARTMENT + "Accounting";
 
-    public static final String MESSAGE_ADD_STAFF_SUCCESS = "New staff added: %1$s";
+    public static final String MESSAGE_ADD_STAFF_SUCCESS = "New staff added to %2$s: %1$s\n"
+            + "Displaying all staff in project: %2$s";
     public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project: %1$s";
 
     private final Staff toAdd;
@@ -94,7 +95,7 @@ public class AddStaffCommand extends Command {
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.setFilteredStaffList(projectToAdd);
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
-        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd, addTo));
     }
 
     @Override
