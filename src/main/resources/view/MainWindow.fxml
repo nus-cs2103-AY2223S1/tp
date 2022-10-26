@@ -48,53 +48,47 @@
         </StackPane>
 
 
-        <SplitPane dividerPositions="0.50" prefHeight="160" prefWidth="700" VBox.vgrow="ALWAYS">
-          <items>
-            <SplitPane dividerPositions="0.50" prefHeight="160" prefWidth="700" VBox.vgrow="ALWAYS" orientation ="VERTICAL">
-              <items>
-                <AnchorPane minHeight="160" minWidth="200">
-                  <children>
-                    <VBox fx:id="projectList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                          AnchorPane.topAnchor="0.0">
-                      <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
-                      </padding>
-                      <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                    </VBox>
-                  </children>
-                </AnchorPane>
+        <SplitPane dividerPositions="0.333" prefHeight="160" prefWidth="700" VBox.vgrow="ALWAYS">
 
-                <AnchorPane minHeight="160" minWidth="200">
-                  <children>
-                    <VBox fx:id="staffList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                          AnchorPane.topAnchor="0.0">
-                      <padding>
-                        <Insets top="10" right="10" bottom="10" left="10" />
-                      </padding>
-                      <StackPane fx:id="staffListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                    </VBox>
-                  </children>
-                </AnchorPane>
+          <AnchorPane minHeight="160" minWidth="200">
+            <children>
+              <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="160" prefWidth="200"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </children>
+          </AnchorPane>
 
-              </items>
-            </SplitPane>
+          <AnchorPane minHeight="160" minWidth="200">
+            <children>
+              <VBox fx:id="projectList" styleClass="pane-with-border" minWidth="160" prefWidth="200"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </children>
+          </AnchorPane>
 
-            <AnchorPane minHeight="160" minWidth="200">
-              <children>
-                <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                      AnchorPane.topAnchor="0.0">
-                  <padding>
-                    <Insets top="10" right="10" bottom="10" left="10" />
-                  </padding>
-                  <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
-              </children>
-            </AnchorPane>
+          <AnchorPane minHeight="160" minWidth="200">
+            <children>
+              <VBox fx:id="staffList" styleClass="pane-with-border" minWidth="160" prefWidth="200"
+                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="staffListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              </VBox>
+            </children>
+          </AnchorPane>
 
-          </items>
         </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
