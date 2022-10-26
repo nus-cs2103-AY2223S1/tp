@@ -2,6 +2,9 @@
 layout: page
 title: User Guide
 ---
+<div style="text-align:center;">
+<img src="images/classifyLogo.png">
+</div>
 
 * Table of Contents
 {:toc}
@@ -12,9 +15,9 @@ title: User Guide
 
 ### 1.1 What is Class-ify?
 
-Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor 
-their students’ academic progress. Teachers can generate exam statistics for each class, and Class-ify quickly flags out
-students who require more support for contacting.
+Class-ify is a **class management application** built specially for **Ministry of Education (MOE) teachers** to easily
+**monitor their students’ academic progress**. Teachers can **generate exam statistics** for each class, 
+and Class-ify quickly **flags out students** who require more support for contacting.
 
 ### 1.2 Who is this guide for?
 
@@ -25,7 +28,7 @@ guide, head over to [Quick Start](#2-quick-start) or to learn about Class-ify's 
 
 ## 2 How to use this user guide
 
-Class-ify uses a command line interface, which may be new to some users. We strongly recommend new users to look through
+Class-ify uses a Command Line Interface (CLI), which may be new to some users. We strongly recommend new users to look through
 the user guide thoroughly to understand how to use Class-ify. We have also included some links to navigate around the
 user guide more easily for related information. This guide also contains some tips and cautions for you to take note of
 when using our application. Additionally, we have provided a link back to the table of contents at the end of each
@@ -77,7 +80,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 3. Copy the file to the folder you want to use as the **home folder** for *Class-ify*.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -205,13 +208,12 @@ Shows a list of all students in the specified class.
 
 Format: `viewClass [class name]`
 
-<div markdown="span" class="alert alert-info">:information_source:
-   **Note:** Class name is case-insensitive.
-</div><br>
+* Class name can only contain alphanumeric characters.
+* Class name is case-insensitive.
 
 Examples:
-* `viewClass 2A`
-* `viewClass Loyalty1`
+* `viewClass 2A` Displays the list of students with the class '2A'.
+* `viewClass Loyalty1` Displays the list of students with the class 'LOYALTY1'.
 
 ## 4.3 Exam statistics
 
@@ -278,8 +280,10 @@ Click <a href="#top">here</a> to return to the top.
 
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs. Through the CLI,
 users interact with the application by typing in text commands.
-* **Student**: a person studying in a secondary school. A student typically takes up to 8 subjects and thus, may be
-taught by up to 8 teachers.
-* **MOE Teacher**: a person teaching a subject in a secondary school. A teacher usually teaches 3 to 5 classes. Each
-class has roughly 20 students.
+* **GUI**: Graphical User Interface (GUI) is an interface that allows the user to interact with through various visual
+graphics.
+* **Home folder**: The home folder refers to the folder on your device that stores the Class-ify application.
+* **Alphanumeric characters**: Refers to characters made up of a combination of letters and/or numbers.
+* **Local storage**: Local storage refers to the data that is stored on your physical device.
+
 
