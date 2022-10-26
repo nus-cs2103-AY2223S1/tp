@@ -47,7 +47,7 @@
           </padding>
         </StackPane>
 
-        <HBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" HBox.hgrow="ALWAYS" spacing="20">
+        <HBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" HBox.hgrow="ALWAYS" spacing="20" VBox.vgrow="ALWAYS">
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
           <StackPane fx:id="internshipListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
         </HBox>
