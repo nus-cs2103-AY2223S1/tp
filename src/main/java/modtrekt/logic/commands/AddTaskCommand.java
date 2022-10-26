@@ -25,7 +25,7 @@ import modtrekt.model.task.Task;
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add task";
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_SUCCESS = "I added a new task: %1$s! Good Luck!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. \n"
             + COMMAND_WORD + " <DESCRIPTION> "
             + "[" + "-d " + "<YYYY-MM-DD>] "

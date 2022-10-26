@@ -63,6 +63,6 @@ public class DoneTaskCommand extends Command {
 
         // Mark the task as done.
         model.setTask(target, target.setAsDone());
-        return new CommandResult("Marked the task as done.");
+        return new CommandResult("Yay! I successfully marked this task as done!");
     }
 }

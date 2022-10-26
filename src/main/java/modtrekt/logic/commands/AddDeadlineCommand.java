@@ -30,7 +30,8 @@ public class AddDeadlineCommand extends Command {
             + "Parameters: "
             + CliSyntax.PREFIX_TASK + "Description "
             + CliSyntax.PREFIX_DEADLINE + "YYYY-MM-DD ";
-    public static final String MESSAGE_SUCCESS = "New deadline added: %1$s";
+
+    public static final String MESSAGE_SUCCESS = "I added a new deadline: %1$s! Good Luck!";
 
     @Parameter(names = "-t", description = "Deadline description",
         converter = DescriptionConverter.class)

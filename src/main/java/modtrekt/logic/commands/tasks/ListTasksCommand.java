@@ -32,10 +32,10 @@ public class ListTasksCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         if (areDoneTasksShown) {
             model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult("Listed all tasks, including those done.");
+            return new CommandResult("Here is the list of all tasks, including those marked as done!");
         } else {
             model.updateFilteredTaskList(Model.PREDICATE_HIDE_DONE_TASKS);
-            return new CommandResult("Listed all undone tasks.");
+            return new CommandResult("Here is the list of all active tasks!");
         }
     }
 

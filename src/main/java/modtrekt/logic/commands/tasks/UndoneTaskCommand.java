@@ -63,6 +63,6 @@ public class UndoneTaskCommand extends Command {
 
         // Mark the task as undone..
         model.setTask(target, target.setAsUndone());
-        return new CommandResult("Marked the task as undone.");
+        return new CommandResult("I successfully marked this task as not done!");
     }
 }

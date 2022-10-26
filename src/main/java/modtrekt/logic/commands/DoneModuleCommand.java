@@ -63,6 +63,6 @@ public class DoneModuleCommand extends Command {
         // Done the module.
         model.setModule(target, target.done());
         model.setDoneModuleTasksAsDone(moduleCode);
-        return new CommandResult("Marked module as done.");
+        return new CommandResult("Yay! I successfully marked this module as done!");
     }
 }

@@ -19,9 +19,9 @@ public class SampleDataUtil {
     public static Module[] getSampleModules() {
         return new Module[]{
             new Module(new ModCode("CS2109S"), new ModName("Intro to AI and machine learning"), new ModCredit("4"),
-                new ModTaskCount("0")),
+                new ModTaskCount("2")),
             new Module(new ModCode("CS2040S"), new ModName("Data Structures and Algorithms"), new ModCredit("4"),
-                    new ModTaskCount("0"))
+                    new ModTaskCount("2"))
         };
     }
 
