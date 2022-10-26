@@ -9,9 +9,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.PredictionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ModelManager;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.subject.Subject;
 
 /**
@@ -34,7 +32,7 @@ public class PredictionCommandParser implements Parser<PredictionCommand> {
                 PREFIX_FUTURE_ASSESSMENT_DIFFICULTY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUBJECT,
-                PREFIX_FUTURE_ASSESSMENT_DIFFICULTY)
+            PREFIX_FUTURE_ASSESSMENT_DIFFICULTY)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PredictionCommand.MESSAGE_USAGE));
         }

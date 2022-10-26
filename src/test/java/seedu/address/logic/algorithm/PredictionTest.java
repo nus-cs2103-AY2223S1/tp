@@ -12,18 +12,17 @@ import seedu.address.model.person.subject.Grades;
 
 public class PredictionTest {
 
-    private final double EXPECTED = 78.90970887629169;
+    private final double expectedResult = 78.90970887629169;
 
     @Test
     public void execute_validGradeInput_prediction() {
         double testResult = PredictionUtil.predictGrade(new GradeStub(), new AttendanceStub(), 2.5);
-        assertEquals(EXPECTED, testResult);
+        assertEquals(expectedResult, testResult);
     }
 
     static class GradeStub extends Grades {
 
-        private final ArrayList<String> assessments
-            = new ArrayList<>(Set.of("FirstTest", "SecondTest", "ThirdTest"));
+        private final ArrayList<String> assessments = new ArrayList<>(Set.of("FirstTest", "SecondTest", "ThirdTest"));
 
         @Override
         public ArrayList<String> getAllAssessments() {
@@ -47,7 +46,7 @@ public class PredictionTest {
             } else if (assessment.equals("SecondTest")) {
                 return new double[]{78, 100, 0.3, 2.5};
             } else {
-              return new double[]{69, 80, 0.1, 2.0};
+                return new double[]{69, 80, 0.1, 2.0};
             }
         }
     }

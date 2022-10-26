@@ -1,6 +1,7 @@
 package seedu.address.logic.algorithm;
 
 import java.util.Arrays;
+
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.subject.Grades;
 

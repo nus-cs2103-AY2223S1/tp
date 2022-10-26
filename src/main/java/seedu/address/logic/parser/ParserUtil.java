@@ -196,7 +196,7 @@ public class ParserUtil {
      * @throws NumberFormatException if the given {@code String} is invalid.
      */
     public static double parseFutureAssessmentDifficulty(String difficulty)
-        throws NumberFormatException {
+            throws NumberFormatException {
         requireNonNull(difficulty);
         String trimmedSubject = difficulty.trim();
         double parsedDifficulty = Double.parseDouble(trimmedSubject);
