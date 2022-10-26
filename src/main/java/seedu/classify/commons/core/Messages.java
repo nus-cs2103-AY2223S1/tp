@@ -16,4 +16,6 @@ public class Messages {
     public static final String MESSAGE_SINGLE_PERSON_LISTED_IN_CLASS = "There is %1$d student in this class!";
     public static final String MESSAGE_CLASS_SORTED_BY_GRADE = "Students of class %s sorted by grade!\n";
     public static final String MESSAGE_DISPLAY_MEAN = "Mean of %s for class %s is %.2f";
+    public static final String MESSAGE_DELETE_COMMAND_DOUBLE_INPUT = "Name and ID inputs detected. "
+            + "Please specify either name or ID only.";
 }

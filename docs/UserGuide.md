@@ -11,7 +11,7 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. **Introduction**
+## **1 Introduction**
 
 ### 1.1 What is Class-ify?
 
@@ -26,7 +26,7 @@ get you started in no time and be your guiding light as you navigate through Cla
 guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's features, head over to
 [Features](#4-features) for more information.
 
-## 2. How to use this user guide
+## **2 How to use this user guide**
 
 Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
 the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
@@ -38,7 +38,7 @@ the user guide from start to end to fully understand how to use Class-ify. Howev
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Quick start**
+## **3 Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -66,7 +66,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Features**
+## **4 Features**
 Before you begin reading, here are some special notations to help you along the way!
 
 **Tips**
@@ -94,7 +94,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 :exclamation: Stop and read carefully when you see this!
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source:
+<div markdown="block" class="alert alert-info">:information_source:
 **Notes on the Command Format:** <br>
 
 * **Command Words**
@@ -115,9 +115,9 @@ will delete all data stored locally and this action is irreversible. You will lo
   `[pn/PARENTNAME]` and `[hp/PHONENUMBER]` refer to optional parameters that can be supplied by the user.
 </div><br>
 
-## 4.1 Managing student records
+### 4.1 Managing student records
 
-### 4.1.1 Adding a new student record : `addstud`
+#### 4.1.1 Adding a new student record : `addstud`
 
 Creates a new student record with the following details:
 
@@ -145,13 +145,13 @@ Examples:
 * `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 * `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
-### 4.1.2 Clearing all student records : `clear`
+#### 4.1.2 Clearing all student records : `clear`
 
 Clears all student records from local storage.
 
 Format: `clear`
 
-### 4.1.3 Deleting a student record : `delete`
+#### 4.1.3 Deleting a student record : `delete`
 
 Deletes an existing student record from the class list, using the student’s name or the student’s ID.
 
@@ -161,7 +161,7 @@ Examples:
 * `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
 * `delete id/123A` deletes student record with student ID as '123A'.
 
-### 4.1.4 Editing a student record : `edit`
+#### 4.1.4 Editing a student record : `edit`
 
 Edits the respective details of an existing student.
 
@@ -175,14 +175,14 @@ Examples:
 *  `edit 1 exam/CA2 70 exam/SA1 60` Adds or updates the CA2 and SA1 exam grades of the 1st student to be `70` and `60` respectively.
 *  `edit 2 nm/Jacob Teo` Edits the name of the 2nd student to `Jacob Teo`.
 
-## 4.2 Managing display of student records
+### 4.2 Managing display of student records
 <div markdown="span" class="alert alert-info">:information_source:
    **Note:**
    The default display, when starting the application, shows all student records in Classify.
    Commands related to managing display are not saved upon exiting the application.
 </div>
 
-### 4.2.1 Finding a student record : `find`
+#### 4.2.1 Finding a student record : `find`
 
 Shows a full record, including all stored details, using the input student's name or student's id. Search for multiple
 students by including more keywords
@@ -197,7 +197,7 @@ Examples:
 * `view nm/John` returns the record for the student named `john`
 * `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
-### 4.2.2 Toggling view : `toggleView`
+#### 4.2.2 Toggling view : `toggleView`
 
 Toggles the display between showing and hiding the students' parent details. 
 
@@ -209,13 +209,13 @@ Format: `toggleView`
    **Tip:** The default display renders the students' parent details as a reminder that these optional fields exists.    
 </div>
 
-### 4.2.3 Viewing all student records : `viewAll`
+#### 4.2.3 Viewing all student records : `viewAll`
 
 Shows a list of all student records in Classify.
 
 Format: `viewAll`
 
-### 4.2.4 Viewing student records from a class : `viewClass`
+#### 4.2.4 Viewing student records from a class : `viewClass`
 
 Shows a list of all students in the specified class.
 
@@ -225,30 +225,30 @@ Format: `viewClass CLASS`
 * Class name is case-insensitive.
 
 Examples:
-* `viewClass 2A` Displays the list of students with the class '2A'.
-* `viewClass Loyalty1` Displays the list of students with the class 'LOYALTY1'.
+* `viewClass 2A` Displays the list of students with the class `2A`.
+* `viewClass Loyalty1` Displays the list of students with the class `LOYALTY1`.
 
-## 4.3 Exam statistics
+### 4.3 Exam statistics
 
-### 4.3.1 Getting exam statistics: `statistics`
+#### 4.3.1 Getting exam statistics: `statistics`
 
 *To be updated* 
 
-## 4.4 Miscellaneous
+### 4.4 Miscellaneous
 
-### 4.4.1 Exiting the application : `exit`
+#### 4.4.1 Exiting the application : `exit`
 
 Exits the application.
 
 Format: `exit`
 
-### 4.4.2 Viewing help : `help`
+#### 4.4.2 Viewing help : `help`
 
 Shows a summary of all commands available.
 
 Format: `help`
 
-### 4.4.3 Saving the data
+#### 4.4.3 Saving the data
 
 Student records are saved locally after any command that changes the data. There is no need to save manually.
 
@@ -256,7 +256,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. **FAQ**
+## **5 FAQ**
 
 **Q**: Where can I locate my data file?  
 **A**: You can locate the JSON file in the path `[JAR file location]/data/classify.json`.
@@ -270,7 +270,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. **Command summary**
+## **6 Command summary**
 
 |              Action               | Format                                                                                                           | Example                                                                       |  
 |:---------------------------------:|:-----------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------|
@@ -289,7 +289,7 @@ Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. **Glossary**
+## **7 Glossary**
 
 * **CLI**: Command Line Interface (CLI) is a text-based User Interface (UI) used to run programs. Through the CLI,
 users interact with the application by typing in text commands.
