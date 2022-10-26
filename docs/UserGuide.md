@@ -92,7 +92,17 @@ Examples:
 
 Shows a list of all contacts, based on their role as suppliers, buyers, deliverer, order or pet.
 
-Format: `list LIST_PARAMETER`
+Format: `list [LIST_PARAMETER]`
+
+#### List Parameter Table
+
+| List type | Acceptable Parameters            |
+|-----------|----------------------------------|
+| Buyer     | buyers, buyer, b, -b, /b         |
+| Supplier  | suppliers, supplier, s, -s, /s   |
+| Deliverer | deliverers, deliverer, d, -d, /d |
+| Order     | orders, order, o, -o, /o         |
+| Pet       | pets, pet, p, -p, /p             |
 
 ### Editing a person : `edit`
 
@@ -247,16 +257,85 @@ Examples:
 
 ### Sort contacts : `sort`
 
-Sort the contacts based on given tag(s) and order(s).
+Sort the contacts based on given list type and attributes in ascending order.
 
-Format: `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`
+Format: `sort LIST_PARAMETER, [ATTRIBUTES...]`
 
-* The order can be either ascending `Asc` or descending `Desc`.
-* The provided category can be one or more than one.
+**Note Different list could have different supported sort attributes.**
+
+[Check all list parameters](#list-parameter-table)
+
+#### List Attribute Table
+
+| List type | Attributes                                                                                                                       |
+|-----------|----------------------------------------------------------------------------------------------------------------------------------|
+| Buyer     | <u>Number of Order</u>, Name, Phone, Email, Location, Address                                                                    |
+| Supplier  | <u>Number of Pet On sale</u>, Name, Phone, Email, Location, Address                                                              |
+| Deliverer | <u>Number of Order</u>, Name, Phone, Email, Location, Address                                                                    |
+| Order     | <u>Due Date</u>, Price Range, Price, Status                                                                                      |
+| Pet       | <u>Price</u>, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
+
+> The underlined attribute represents the default sorting attribute for each list. <br>
+> For Example: `sort pet` will sort the pet list in default by the price attribute. 
+
+#### Attribute Parameter Table
+
+| Attribute             | Acceptable Parameters                        |
+|-----------------------|----------------------------------------------|
+| Name                  | name, na, n, -n, /n                          |
+| Phone                 | phone, ph, p, -p, /p                         |
+| Email                 | email, ema, em, e, -e, /e                    |
+| Location              | location, loc, l, -l, /l                     |
+| Address               | address, addr, a, -a, /a                     |
+| Number of Order       | orders, order                                |
+| Number of Pet On Sale | pets, pet                                    |
+| Due Date              | duedate, due, by, date, bydate, d, -d, /d    |
+| Price Range           | pricerange, prange, pricer, pr, -pr, /pr     |
+| Price                 | price, p, -p, /p                             |
+| Status                | orderstatus, status, os, s, -s, /s           |
+| Color                 | color, c, -c, /c                             |
+| Color Pattern         | colorpattern, cpattern, colorp, cp, -cp, /cp |
+| Birth Date            | birthdate, bdate, birthd, date, bd, -bd, /bd |
+| Species               | species, s, -s, /s                           |
+| Height                | height, h, -h, /h                            |
+| Weight                | weight, w, -w, /w                            |
+| Vaccination Status    | vaccinationstatus, vstatus, vs, -vs, /vs     |
+| Characteristics       | characteristics, chara, cha, ch, -ch, /ch    |
+| Certificates          | certificate, cert, -cert, /cert              |
 
 Examples:
-* `Sort t/country Asc`
-* `Sort t/priority Desc, t/country Desc`
+* `sort buyer`
+* `sort pet price height weight`
+* `sort s n /loc`
+* `sort -o pr s p`
+
+### Check : `check`
+
+Checks a contact at specific index, the Ui will display different windows for list input.
+
+Format: `check LIST_TYPE INDEX`
+
+**Note that this check command does not support deliverer list.**
+
+**Note that the input index has to be a valid index**
+
+[Check all list parameters](#list-parameter-table)
+
+#### UI behaviour for the check command
+
+| List type | UI behaviour                                                              |
+|-----------|---------------------------------------------------------------------------|
+| Buyer     | shows only the list of orders from the buyer at specified index.          |
+| Supplier  | shows only the list of pets on sale from the supplier at specified index. |
+| Order     | shows the Buyer of the order at specified index.                          |
+| Pet       | shows the Supplier of the pet at specified index.                         |
+
+Examples: (Assuming all are valid indexes)
+* `check buyer 1`
+* `check -s 3`
+* `sort o 2`
+* `sort /p 4`
+
 
 ### Clearing all entries : `clear`
 
@@ -301,7 +380,7 @@ _Details coming soon ..._
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**            | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
 | **Delete**         | `delete c/PERSON_CATEGORY i/INDEX` e.g., `delete c/Buyer i/1`                                                                                                                                                |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                         |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                           b             |
 | **Find**           | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                         |
 | **Find Buyer**     | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                                     |
 | **Find Deliverer** | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                                     |
@@ -309,7 +388,8 @@ _Details coming soon ..._
 | **Filter**         | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                      |
 | **Filter Orders**  | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                               |
 | **Filter Pets**    | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                            |
-| **Sort**           | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                                 |
-| **List**           | `list buyers`, `list suppliers`, `list delivery`                                                                                                                                                             |
+| **Sort**           | `sort LIST_PARAMETER, [ATTRIBUTES...]`<br> e.g., `sort pet price height weight`                                                                                                                              |
+| **List**           | `list [LIST_PARAMETER]` <br> e.g., `list buyer`                                                                                                                                                              |
+| **Check**          | `check LIST_TYPE INDEX` <br> e.g., `check buyer 1`                                                                                                                                                           |
 | **Clear**          | `clear`                                                                                                                                                                                                      |
 | **Help**           | `help`                                                                                                                                                                                                       |
