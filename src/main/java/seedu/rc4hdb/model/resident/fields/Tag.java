@@ -31,19 +31,4 @@ public class Tag extends ResidentField {
         return test.matches(VALIDATION_REGEX);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && value.equals(((Tag) other).value)); // state check
-    }
-
-    /**
-     * Format state as text for viewing.
-     */
-    @Override
-    public String toString() {
-        return '[' + value + ']';
-    }
-
 }
