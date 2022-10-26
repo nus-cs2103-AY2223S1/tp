@@ -5,24 +5,24 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT_STATUS;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindBillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.bill.Bill;
-import seedu.address.model.bill.NameContainsKeywordsPredicateBill;
-import seedu.address.model.bill.PaymentStatusPredicate;
+import seedu.address.model.bill.PaymentStatus;
+import seedu.address.model.patient.Name;
 
 /**
  * Parses input arguments and creates a new FindAppointmentCommand object
  */
 public class FindBillCommandParser implements Parser<FindBillCommand> {
-    private Predicate<Bill> predicate = null;
+    private Predicate<Name> namePredicate;
+    private Predicate<PaymentStatus> paymentStatusPredicate;
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindBillCommand
-     * and returns a FindBillCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindBillCommand parse(String args) throws ParseException {
@@ -50,8 +50,13 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
                 predicateName += " " + nameKeywords[i];
             }
 
-            this.predicate = new NameContainsKeywordsPredicateBill(predicateName);
+            final String finalPredicateName = predicateName;
+
+            this.namePredicate = (name -> name.fullName.toLowerCase()
+                    .contains(finalPredicateName.toLowerCase()));
         }
+
+        Optional<Predicate<Name>> finalNamePredicate = Optional.ofNullable(this.namePredicate);
 
         if (argMultimap.getValue(PREFIX_PAYMENT_STATUS).isPresent()) {
             String trimmedArgs = ParserUtil.parsePaymentStatus(argMultimap
@@ -61,10 +66,13 @@ public class FindBillCommandParser implements Parser<FindBillCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBillCommand.MESSAGE_USAGE));
             }
 
-            this.predicate = new PaymentStatusPredicate(trimmedArgs);
+            this.paymentStatusPredicate = (paymentStatus -> paymentStatus.toString().equals(trimmedArgs));
         }
 
-        return new FindBillCommand(this.predicate);
+        Optional<Predicate<PaymentStatus>> finalPaymentStatusPredicate =
+                Optional.ofNullable(this.paymentStatusPredicate);
+
+        return new FindBillCommand(finalNamePredicate, finalPaymentStatusPredicate);
     }
 
     /**
