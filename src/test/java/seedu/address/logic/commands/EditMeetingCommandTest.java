@@ -1,3 +1,4 @@
+/*
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -29,9 +30,11 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
 
+*/
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMeetingCommand.
- */
+ *//*
+
 public class EditMeetingCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingList(), new UserPrefs());
@@ -135,10 +138,12 @@ public class EditMeetingCommandTest {
         assertCommandFailure(editMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
-    /**
+    */
+/**
      * Edit filtered list where index is larger than size of filtered list,
      * but smaller than size of address book
-     */
+     *//*
+
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showMeetingAtIndex(model, INDEX_FIRST_PERSON);
@@ -178,3 +183,4 @@ public class EditMeetingCommandTest {
     }
 
 }
+*/

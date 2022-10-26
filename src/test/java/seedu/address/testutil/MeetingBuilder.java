@@ -21,7 +21,7 @@ public class MeetingBuilder {
     public static final Person DEFAULT_PERSON_IN_MEETING_BUILDER_TWO = new PersonBuilder()
         .withTags("Classmate", "Dalao").build();
     public static final String DEFAULT_DESCRIPTION_TW0 = "Do CS2103 Project";
-    public static final String DEFAULT_DATE_AND_TIME_TWO = "16-10-2022 1530";
+    public static final String DEFAULT_DATE_AND_TIME_TWO = "Monday, 20 November 2000 03:30 pm";
     public static final String DEFAULT_LOCATION_TWO = "University Town";
 
     private ArrayList<Person> personsToMeetArray = new ArrayList<>();
