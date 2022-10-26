@@ -2,21 +2,27 @@
 > :warning: Prerequisite:
 > * This guide assumes that the reader is familiar with using [Java](https://www.java.com/)
 
-
 # Table of Contents
-1. [Introduction](#introduction)
-2. [Quick Start](#quick-start)
-3. [Features](#features)
-   1. [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`]()
-   2. [Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-spendings-del--s-index_of_spendings)
-   3. [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#adding-income-add--i-number-date)
-   4. [Summary of entries : `summary [mo/MONTH]`](#deleting-income-del--i-number-index_of_income)
-   5. [View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`](#view-total-summary-of-spending-view--s-month)
-   6. [View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`](#view-total-summary-of-income-view--i-month)
-   7. [Clearing all entries : `clear`]()
-   8. [Exiting the program : `exit`]()
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
+<!-- TOC -->
+* [PennyWise User Guide](#pennywise-user-guide)
+* [Table of Contents](#table-of-contents)
+  * [Introduction](#introduction)
+  * [Quick start](#quick-start)
+  * [Features](#features)
+  * [Before Using](#before-using)
+    * [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`](#adding-entries--add-tentry_type-ddescription-aamount-dadate-ccategory)
+    * [Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-entries--del-index_of_entry-tentry_type)
+    * [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category)
+    * [Summary of entries : `summary [mo/MONTH]`](#summary-of-entries--summary-momonth)
+    * [View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`](#view-entries-by-category--view-tentry_type-ggraph_type)
+    * [View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`](#view-entries-by-month--view-tentry_type-ggraph_type-momonth)
+    * [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+  * [FAQ](#faq)
+  * [Command summary](#command-summary)
+<!-- TOC -->
 
 ## Introduction
 
@@ -101,7 +107,8 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
 - For **ALL** entries, 2 entries are considered duplicates <ins>IF</ins> both entries have exactly the same:
   `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
-  of one another, as it would be easier to simply use the `edit` command to alter the original entry's specifications.
+  of one another, as it would be easier to simply use the [edit](#editing-entries--edit-index_of_entry-tentry_type-dedited_description-aedited_amount-daedited_date-cedited_category) 
+  command to alter the original entry's specifications.
   e.g. Executing the following 2 commands one after another, PennyWise will recognise (2) as a duplicate entry. 
   <pre>
     <code>
@@ -112,7 +119,7 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
 </div>
 
-### Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`
+### Adding entries : `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`
 Adds an entry to the specified list. <br>
 1. Add expense <br>
    - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`<br>
@@ -122,7 +129,7 @@ Adds an entry to the specified list. <br>
    - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`<br>
    - An income of 40.00 on 10/10/2022 will be added to the Income list, under the Salary category.
 
-### Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`
+### Deleting entries : `del INDEX_OF_ENTRY t/ENTRY_TYPE`
 Deletes an entry.
 1. Example: `del 2 t/e` deletes the 2nd item on the expenditure list 
    Expenditure list:
@@ -137,7 +144,7 @@ Deletes an entry.
    Expected: `Deleted Entry: Allowance; Date: 12-09-2022; Amount: 100.00 Tag: Allowance`
 
 
-### Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`
+### Editing entries : `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`
 Edits an entry, at least **1** of the optional fields must be present.
 
 1. Edits expenditure with specified fields
@@ -169,7 +176,7 @@ The default date is the current date on your computer!
 * Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the current month.
 
-### View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`
+### View entries by category : `view t/ENTRY_TYPE g/GRAPH_TYPE`
 
 1. View a PieChart of all expenditures by categories
     * Examples: `view t/e g/c`
@@ -178,7 +185,7 @@ The default date is the current date on your computer!
    * Examples: `view t/i g/c`
    * Expected: `Show graphically all income by category` and a PieChart on the right of the application
 
-### View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
+### View entries by month : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
 1. View a LineGraph of all expenditures in a specified month
    * Examples: `view t/e g/m mo/2022-10`
    * Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
