@@ -73,6 +73,7 @@ management tasks done faster than traditional GUI apps.
 1. Refer to the [Commands](#commands) Section below for details of each command.
 
 [Go back to [Table of Contents](#table-of-contents)]
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
@@ -627,6 +628,7 @@ start with an empty data file at the next run.
 _Details coming soon ..._
 
 [Go back to [Table of Contents](#table-of-contents)]
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -636,6 +638,7 @@ _Details coming soon ..._
 the data of your previous PetCode home folder.
 
 [Go back to [Table of Contents](#table-of-contents)]
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Summaries
