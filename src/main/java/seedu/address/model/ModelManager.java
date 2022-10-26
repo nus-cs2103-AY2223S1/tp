@@ -130,12 +130,6 @@ public class ModelManager implements Model {
         addressBook.setProfileForEventsAttending(target, editedProfile, eventsToSet);
     }
 
-    @Override
-    public void addEventsAttending(Profile profile, List<Event> eventsToAdd) {
-        requireAllNonNull(profile, eventsToAdd);
-        addressBook.addEventsAttending(profile, eventsToAdd);
-    }
-
     //========== Events ======================================================================================
 
     @Override

@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -71,6 +69,18 @@ public interface Model {
     void deleteProfile(Profile target);
 
     /**
+     * Updates the target event {@code target} in the given list of profiles {@code profilesToEdit} to the new
+     * edited event {@code editedEvent}
+     */
+    void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit);
+
+    /**
+     * Updates the target profile {@code target} in the given list of events {@code eventsToSet} to the new
+     * edited profile {@code editedProfile}
+     */
+    void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet);
+
+    /**
      * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
      */
     void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit);
@@ -88,19 +98,6 @@ public interface Model {
      * profile in the address book.
      */
     void setProfile(Profile target, Profile editedProfile);
-
-    /**
-     * Adds the given list of events {@code eventsToAdd} to the given profile's list of eventsAttending.
-     * {@code profile} must exist in the address book .
-     * Events in {@eventsToAdd} must also exist in the address book.
-     */
-    void addEventsAttending(Profile profile, List<Event> eventsToAdd);
-
-    /**
-     * Updates the target profile {@code target} in the given list of events {@code eventsToSet} to the new
-     * edited profile {@code editedProfile}
-     */
-    void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet);
 
     /** Returns an unmodifiable view of the filtered profile list */
     ObservableList<Profile> getFilteredProfileList();
@@ -123,11 +120,6 @@ public interface Model {
     void deleteEvent(Event target);
 
     /**
-     * Deletes the event {@code target} from list of profiles {@code profilesToEdit}.
-     */
-    void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit);
-
-    /**
      * Adds the given event.
      * {@code event} must not already exist in the address book.
      */
@@ -142,12 +134,6 @@ public interface Model {
     void setEvent(Event target, Event editedEvent);
 
     /**
-     * Updates the target event {@code target} in the given list of profiles {@code profilesToEdit} to the new
-     * edited event {@code editedEvent}
-     */
-    void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit);
-
-    /**
      * Adds the given list of profiles {@code profilesToAdd} to the given event's list of attendees.
      * {@code event} must exist in the address book.
      * Profiles in {@profilesToAdd} must also exist in the address book.
@@ -160,6 +146,11 @@ public interface Model {
      * Profiles in {@profilesToAddEventTo} must also exist in the address book.
      */
     void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo);
+
+    /**
+     * Deletes the event {@code target} from list of profiles {@code profilesToEdit}.
+     */
+    void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

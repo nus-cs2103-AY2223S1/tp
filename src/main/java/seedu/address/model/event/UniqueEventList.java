@@ -97,41 +97,7 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
-     * {@code editedProfile}.
-     */
-    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
-        requireAllNonNull(target, editedProfile, eventsToSet);
-
-        for (Event e : eventsToSet) {
-            int index = internalList.indexOf(e);
-            if (index == -1) {
-                throw new EventNotFoundException();
-            }
-            e.removeAttendees(List.of(target));
-            e.addAttendees(List.of(editedProfile));
-        }
-    }
-
-    /**
-     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
-     * Events in {@code eventsToEdit} must exist in the address book.
-     */
-    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
-        requireAllNonNull(target, eventsToEdit);
-
-        for (Event e : eventsToEdit) {
-            int index = internalList.indexOf(e);
-            if (index == -1) {
-                throw new EventNotFoundException();
-            }
-            e.removeAttendees(List.of(target));
-        }
-    }
-
-    /**
      * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
-     * The event must exist in the list.
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
@@ -141,8 +107,38 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        Event e = internalList.get(index);
+        internalList.get(index).addAttendees(profilesToAddEventTo);
+    }
 
+    /**
+     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
+     * Profiles in {@code profilesToEdit} must exist in the address book.
+     */
+    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).removeAttendees(profilesToEdit);
+    }
+
+    /**
+     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
+     * {@code editedEvent}.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, editedEvent, profilesToEdit);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        target.addAttendees(profilesToEdit);
+        editedEvent.addAttendees(profilesToEdit);
     }
 
     public void setEvents(UniqueEventList replacement) {
@@ -200,4 +196,30 @@ public class UniqueEventList implements Iterable<Event> {
         }
         return true;
     }
+
+    /**
+     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
+     * {@code editedProfile}.
+     */
+    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
+        requireAllNonNull(target, editedProfile, eventsToSet);
+
+        for (Event e : eventsToSet) {
+            e.removeAttendees(List.of(target));
+            e.addAttendees(List.of(editedProfile));
+        }
+    }
+
+    /**
+     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
+     * Events in {@code eventsToEdit} must exist in the address book.
+     */
+    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
+        requireAllNonNull(target, eventsToEdit);
+
+        for (Event e : eventsToEdit) {
+            e.removeAttendees(List.of(target));
+        }
+    }
 }
+

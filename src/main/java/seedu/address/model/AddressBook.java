@@ -9,10 +9,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
-import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.UniqueProfileList;
-import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -97,7 +95,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireNonNull(editedProfile);
-
         profiles.setProfile(target, editedProfile);
     }
 
@@ -110,15 +107,37 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
+     * {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The profiles in list of profiles {@code profilesToEdit} must also exist in the address book.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, editedEvent, profilesToEdit);
+        //events.setEventForAttendees(target, editedEvent, profilesToEdit);
+        profiles.setEventForAttendees(target, editedEvent, profilesToEdit);
+    }
+
+    /**
+     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
+     * {@code editedProfile}.
+     * {@code target} must exist in the address book.
+     * Events in {@code eventsToEdit} must also exist in the address book.
+     */
+    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
+        requireAllNonNull(target, editedProfile, eventsToSet);
+        //profiles.setProfileForEventsAttending(target, editedProfile, eventsToSet);
+        events.setProfileForEventsAttending(target, editedProfile, eventsToSet);
+    }
+
+    /**
      * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
      * {@code target} must exist in the address book.
      * Events in {@code eventsToEdit} must also exist in the address book.
      */
     public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
         requireAllNonNull(target, eventsToEdit);
-        if (!profiles.contains(target)) {
-            throw new ProfileNotFoundException();
-        }
+        //profiles.removeProfileFromEventsAttending(target, eventsToEdit);
         events.removeProfileFromEventsAttending(target, eventsToEdit);
     }
 
@@ -151,33 +170,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
-     * {@code editedEvent}.
-     */
-    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, editedEvent, profilesToEdit);
-        profiles.setEventForAttendees(target, editedEvent, profilesToEdit);
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeEvent(Event key) {
         events.remove(key);
-    }
-
-    /**
-     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
-     * {@code target} must exist in the address book.
-     * Profiles in {@code profilesToEdit} must also exist in the address book.
-     */
-    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, profilesToEdit);
-        if (!events.contains(target)) {
-            throw new EventNotFoundException();
-        }
-        profiles.removeEventsFromAttendeesList(target, profilesToEdit);
     }
 
     /**
@@ -188,19 +185,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
         requireAllNonNull(event, profilesToAdd);
         events.addEventAttendees(event, profilesToAdd);
-    }
-
-    /**
-     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
-     * {@code editedProfile}.
-     */
-    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
-        requireAllNonNull(target, editedProfile, eventsToSet);
-        if (!profiles.contains(target)) {
-            throw new ProfileNotFoundException();
-        }
-
-        events.setProfileForEventsAttending(target, editedProfile, eventsToSet);
+        //profiles.addEventAttendees(event, profilesToAdd);
     }
 
     /**
@@ -210,20 +195,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
-        if (!events.contains(event)) {
-            throw new EventNotFoundException();
-        }
+        //events.addEventToAttendees(event, profilesToAddEventTo);
         profiles.addEventToAttendees(event, profilesToAddEventTo);
     }
 
     /**
-     * Adds events in {@code eventsToAdd} to the given profile.
-     * {@code profile} must exist in the address book.
-     * Events in {@eventsToAdd} must also exist in the address book.
+     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
+     * {@code target} must exist in the address book.
+     * Profiles in {@code profilesToEdit} must also exist in the address book.
      */
-    public void addEventsAttending(Profile profile, List<Event> eventsToAdd) {
-        requireAllNonNull(profile, eventsToAdd);
-        profiles.addEventsAttending(profile, eventsToAdd);
+    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+        //events.removeEventsFromAttendeesList(target, profilesToEdit);
+        profiles.removeEventsFromAttendeesList(target, profilesToEdit);
     }
 
     //// util methods
