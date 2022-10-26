@@ -51,7 +51,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`add`**`add n/Alice a/311 Clementi Ave 2 p/9191919 e/alice@gmail.com t/friends` : Adds a client named `Alice` into the address book.
 
-   * **`delete`**`delete 1` : Deletes the client at the first index together with all their contacts and transactions in the current list.
+   * **`delete`**`delete 1 m/client` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
    * **`find`**`James` : Finds `James` from the list of clients and display all clients with name containing `James`.
 
