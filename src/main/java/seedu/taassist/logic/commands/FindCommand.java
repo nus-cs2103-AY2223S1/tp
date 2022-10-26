@@ -8,7 +8,7 @@ import seedu.taassist.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all students in TaAssist whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
