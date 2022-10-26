@@ -48,7 +48,7 @@ class JsonAdaptedReminder {
         deadline = new JsonAdaptedDatetime(source.getDeadline());
         priority = source.getPriority().priority;
         description = source.getDescription().description;
-        isDone = source.getStatus();
+        isDone = source.getCompletionStatus();
     }
 
     /**

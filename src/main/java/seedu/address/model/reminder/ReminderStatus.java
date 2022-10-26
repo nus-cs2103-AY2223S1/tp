@@ -1,7 +1,7 @@
 package seedu.address.model.reminder;
 
 /**
- * Represents a Reminder's status in ModQuik.
+ * Represents a Reminder's completion status in ModQuik.
  */
 public class ReminderStatus {
     private boolean isDone;
@@ -20,10 +20,14 @@ public class ReminderStatus {
 
     @Override
     public String toString() {
-        if (isDone) {
-            return "Reminder is done.";
-        } else {
-            return "Reminder is not done yet.";
-        }
+        return "Reminder is " + (isDone ? "done" : "not done") + " yet.";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReminderStatus // instanceof handles nulls
+                && isDone == ((ReminderStatus) other).isDone); // state check
+    }
+
 }

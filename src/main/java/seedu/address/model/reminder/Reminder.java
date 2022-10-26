@@ -18,9 +18,9 @@ public class Reminder {
 
     //Data fields
     private final Datetime deadline;
-    private final ReminderDescription description;
     private final ReminderPriority priority;
-    private ReminderStatus isDone;
+    private final ReminderDescription description;
+    private final ReminderStatus status;
 
     /**
      * Every field must be present and not null.
@@ -32,7 +32,7 @@ public class Reminder {
         this.deadline = deadline;
         this.priority = priority;
         this.description = description;
-        this.isDone = new ReminderStatus(false);
+        this.status = new ReminderStatus(false);
     }
 
     /**
@@ -45,11 +45,11 @@ public class Reminder {
         this.deadline = deadline;
         this.priority = priority;
         this.description = description;
-        this.isDone = status;
+        this.status = status;
     }
 
     public void setStatus(boolean status) {
-        isDone.mark(status);
+        this.status.mark(status);
     }
 
     public ReminderName getName() {
@@ -68,16 +68,20 @@ public class Reminder {
         return description;
     }
 
-    public boolean getStatus() {
-        return isDone.getStatus();
+    public ReminderStatus getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getDatetime() {
+        return deadline.getDatetime();
     }
 
     public int getPriorityValue() {
         return priority.getPriorityValue();
     }
 
-    public LocalDateTime getDatetime() {
-        return deadline.getDatetime();
+    public boolean getCompletionStatus() {
+        return status.getStatus();
     }
 
     /**
@@ -108,7 +112,11 @@ public class Reminder {
         }
 
         Reminder otherReminder = (Reminder) other;
-        return otherReminder.getName().equals(getName());
+        return otherReminder.getName().equals(getName())
+                && otherReminder.getDeadline().equals(getDeadline())
+                && otherReminder.getDescription().equals(getDescription())
+                && otherReminder.getPriority().equals(getPriority())
+                && otherReminder.getStatus().equals(getStatus());
     }
 
     @Override
