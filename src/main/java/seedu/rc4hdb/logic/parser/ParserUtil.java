@@ -197,7 +197,7 @@ public class ParserUtil {
         if (!HourPeriod.isValidHourPeriod(trimmedHourPeriod)) {
             throw new ParseException(HourPeriod.MESSAGE_CONSTRAINTS);
         }
-        return new HourPeriod(hourPeriod);
+        return new HourPeriod(trimmedHourPeriod);
     }
 
     /**
@@ -209,7 +209,7 @@ public class ParserUtil {
         if (!Day.isValidDay(trimmedDay)) {
             throw new ParseException(Day.MESSAGE_CONSTRAINTS);
         }
-        return new Day(day);
+        return new Day(trimmedDay);
     }
 
 }
