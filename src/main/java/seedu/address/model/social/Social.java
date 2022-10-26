@@ -127,7 +127,7 @@ public class Social {
      * @return Whatsapp link of the person.
      */
     public String getWhatsapp() {
-            return links[0].trim();
+        return links[0].trim();
     }
 
     /**
