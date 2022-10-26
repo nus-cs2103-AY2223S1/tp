@@ -38,6 +38,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setEmail(internship.getEmail());
         descriptor.setStage(internship.getStage());
         descriptor.setDate(internship.getDateTime());
+        descriptor.setLanguageTags(internship.getLanguageTags());
         descriptor.setTags(internship.getTags());
     }
 
@@ -80,6 +81,15 @@ public class EditInternshipDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code languageTags} into a {@code Set<Tag>} and set it to the {@code EditInternshipDescriptor}
+     * that we are building.
+     */
+    public EditInternshipDescriptorBuilder withLanguageTags(String... languageTags) {
+        Set<Tag> languageTagSet = Stream.of(languageTags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setLanguageTags(languageTagSet);
+        return this;
+    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditInternshipDescriptor}

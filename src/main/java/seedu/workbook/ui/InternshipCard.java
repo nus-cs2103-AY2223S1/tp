@@ -76,6 +76,9 @@ public class InternshipCard extends UiPart<Region> {
         email.setText(internship.getEmail().value);
         stage.setText(internshipStage.value);
         dateTime.setText(internship.getDateTime().value);
+        internship.getLanguageTags().stream()
+                .sorted(Comparator.comparing(languageTag -> languageTag.tagName))
+                .forEach(languageTag -> tags.getChildren().add(new LanguageTagLabel(languageTag.tagName)));
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

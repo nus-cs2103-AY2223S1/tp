@@ -5,6 +5,7 @@ import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_LANGUAGE_TAG;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_ROLE,
-                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_DATETIME, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_DATETIME, PREFIX_LANGUAGE_TAG, PREFIX_TAG);
 
         Index index;
 
@@ -61,6 +62,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editInternshipDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get()));
         }
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_LANGUAGE_TAG))
+            .ifPresent(editInternshipDescriptor::setLanguageTags);
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editInternshipDescriptor::setTags);
 

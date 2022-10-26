@@ -23,12 +23,12 @@ public class InternshipBuilder {
     public static final String DEFAULT_STAGE = "Technical Interview";
     public static final String DEFAULT_DATETIME = "";
 
-
     private Company company;
     private Role role;
     private Email email;
     private Stage stage;
     private DateTime dateTime;
+    private Set<Tag> languageTags;
     private Set<Tag> tags;
 
     /**
@@ -40,6 +40,7 @@ public class InternshipBuilder {
         email = new Email(DEFAULT_EMAIL);
         stage = new Stage(DEFAULT_STAGE);
         dateTime = new DateTime(DEFAULT_DATETIME);
+        languageTags = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -52,6 +53,7 @@ public class InternshipBuilder {
         email = internshipToCopy.getEmail();
         stage = internshipToCopy.getStage();
         dateTime = internshipToCopy.getDateTime();
+        languageTags = new HashSet<>(internshipToCopy.getLanguageTags());
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -72,13 +74,22 @@ public class InternshipBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Internship} that we are building.
+     * Parses the {@code languageTags} into a {@code Set<Tag>} and set it to the
+     * {@code Internship} that we are building.
      */
-    public InternshipBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public InternshipBuilder withLanguageTags(String... languageTags) {
+        this.languageTags = SampleDataUtil.getTagSet(languageTags);
         return this;
     }
 
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Internship} that we are building.
+     */
+    public InternshipBuilder withTags(String... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
 
     /**
      * Sets the {@code Email} of the {@code Internship} that we are building.
@@ -105,7 +116,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, role, email, stage, dateTime, tags);
+        return new Internship(company, role, email, stage, dateTime, languageTags, tags);
     }
 
 }
