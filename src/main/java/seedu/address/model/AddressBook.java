@@ -280,12 +280,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         questions.setQuestion(target, editedQuestion);
     }
 
+    /**
+     * Marks the question with the given index {@code index} in the question list as important.
+     * {@code index} must be a valid index.
+     */
     public void markQuestion(Index index) {
         requireAllNonNull(index);
 
         questions.markQuestion(index);
     }
 
+    /**
+     * Marks the question with the given index {@code index} in the question list as unimportant.
+     * {@code index} must be a valid index.
+     */
     public void unmarkQuestion(Index index) {
         requireAllNonNull(index);
 
