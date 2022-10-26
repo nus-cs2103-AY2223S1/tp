@@ -54,18 +54,24 @@ public class AttendanceListTest {
 
     @Test
     public void getSize() {
-
+        assertEquals(EMPTY_ATTENDANCE.getSize(), 0);
+        assertEquals(TEST_ATTENDANCE.getSize(), 12);
     }
 
     @Test
     public void getAttendanceList() {
+        assertEquals(new AttendanceList().getAttendanceList(),EMPTY_ATTENDANCE.getAttendanceList());
     }
 
     @Test
     public void getMod() {
+        assertEquals(EMPTY_ATTENDANCE.getMod(), "NA");
+        assertEquals(TEST_ATTENDANCE.getMod(), "CS2040");
     }
 
     @Test
     public void mark() {
+        TEST_ATTENDANCE.mark("1", new Attendance("1"));
+        assertEquals(TEST_ATTENDANCE.toString(), "(CS2040)[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]");
     }
 }
