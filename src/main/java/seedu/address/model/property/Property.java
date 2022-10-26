@@ -87,7 +87,7 @@ public class Property {
 
         return otherProperty != null
                 && otherProperty.getPropertyName().equals(getPropertyName())
-                && otherProperty.getPrice().equals(getPrice());
+                && otherProperty.getAddress().equals(getAddress());
     }
 
     /**
