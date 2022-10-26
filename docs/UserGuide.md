@@ -2,9 +2,15 @@
 layout: page
 title: User Guide
 ---
-Teacher’s Pet is a desktop application for managing contacts of students and classes, optimised for use via a
+**Teacher’s Pet** is a desktop application for managing contacts of students and classes, optimised for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
+
+**Teacher’s Pet** allows you to manage your schedule and keep track of your students.
+The app stores basic information about your students, such as `Name`, `Contact Number`, `Money Owed`, `Class Date` and more.
+
+To get started with using our application, jump straight to the [Quick Start](#quick-start) section.
+For a full list of commands and detailed instructions, head to the [Features](#features) section.
 
 ## Table of contents
 * [Quick Start](#quick-start)
@@ -12,9 +18,16 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
     * [Adding a student: `add`](#adding-a-student-add)
-    * [Editing student details: `edit`](#editing-student-details-edit)
+    * [Editing a student's details: `edit`](#editing-student-details-edit)
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
+      * [Find by name](#find-by-name)
+      * [Find by email](#)
+      * [Find by address](#)
+      * [Find by student's contact number](#)
+      * [Find by Next of Kin's contact number](#)
+      * [Find by class date](#find-by-class-date)
+      * [Find by tag](#)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
     * [Deleting a student: `delete`](#deleting-a-student-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
@@ -56,7 +69,7 @@ Basic Instructions:
 1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
    the help window. Some example commands you can try:
     - `list`: Lists all students.
-    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
+    - `add n/John Doe p/98765432 np/81239090 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
       `John Doe` to the student list.
     - `delete 3`: Deletes the 3rd student shown in the current list.
     - `clear`: Deletes all students.
@@ -168,46 +181,71 @@ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `e
 Edits an existing student in the list.
 
 - Student’s Name
-- Phone number
-- Next of Kin’s phone number
+- Student's Contact Number
+- Next of Kin’s Contact Number
 - Address
+- Email
 - Class Date
-- Amount paid
-- Amount owed
-- Additional notes
+- Amount Paid
+- Amount Owed
+- Additional Notes
 - Tag
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, Class Date, and Tag follow
+1. Student's Name, Student's Contact Number, Next of Kin’s Contact Number, Email, Address and Tag follow
 the same convention as [adding a student](#adding-a-student-add).
 
-2. Amount paid:
+2. Class Date:
+    - Class date can be left empty.
+    - Formats: `dt/` must be followed by either one of the below options.
+        1. `yyyy-MM-dd 0000-2359`
+        2. `Day-of-Week 0000-2359`
+    - End time must be after the start time.
+    - If the Day-of-Week is today, executing `edit INDEX dt/Day-of-Week 0000-2359` will set the date to today only
+      if the start time of the class is later than the current time. Else, the date will be set to the specified Day-of-Week
+      in the following week.
+    - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
+    - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
+
+```yaml
+❗Caution: If a chosen date is occupied by another student, a class conflict error will arise.
+```
+
+4. Amount Paid:
     - Amount paid can be an integer or a double.
     - Amount paid must be non-negative.
 
-3. Amount owed:
+5. Amount Owed:
     - Amount owed can be an integer or a double.
     - Amount owed must be non-negative.
-    - Amount owed and Amount paid are modified independent of each other.
-
 ```yaml
-Note: Amount paid, Amount owed can only be between $0 and $2147483647.
+Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
+      They are modified independent of each other.
 ```
 
-4. Additional notes:
+6. Additional Notes:
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
+    - Use `nt/` to set the additional notes.
+    - Use `nt-a/` to append the additional notes.
+```yaml
+Note: Using both nt/ and nt-a/ in a single command will set the content
+      of Additional Notes to the content behind both nt/ and nt-a/ parameters.
+```
+
 ```yaml
 Important: Note **at least one** of these fields must exist in order to make the `edit` command valid.
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [t/TAG]…`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
 
-Example:
+Examples:
 
 - `edit 1 e/Ben2022@gmail.com`
 
 ![UiEdit](images/UG-screenshots/UiEdit.png)
+
+- `edit 1 dt/tue 1100-1200`
 
 [Back to top](#table-of-contents)
 
@@ -217,14 +255,14 @@ Example:
 
 Allows the user to view students and their information which includes:
 
-- Phone number
-- Next of Kin’s number
+- Contact Number
+- Next of Kin’s Number
 - Address
 - Email
 - Class Date
-- Amount paid
-- Amount owed
-- Additional notes
+- Amount Paid
+- Amount Owed
+- Additional Notes
 - Tag
 
 Format: `list`
@@ -237,17 +275,19 @@ Format: `list`
 
 ### Finding a student: `find`
 
-Finds an existing student in the list. You can only find by one field at a time. Fields supported in find:
+Finds an existing student in the list. You can only find by one field at a time. Fields supported in `find`:
 
 - Name
 - Email
 - Address
-- Phone number
-- Next of Kin's Phone number
+- Student's Contact Number
+- Next of Kin's Contact number
 - Class Date
 - Tag
 
-### Find by name:
+### Find by Name:
+
+Finds all students with names matching the keywords.
 
 Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
@@ -258,12 +298,29 @@ Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-`find tan` returns `Tan Xiao Ming` and `John Tan`.
+`find n/tan` returns `Tan Xiao Ming` and `John Tan`.
 
 ![UiFind](images/UG-screenshots/UiFind.png)
 
-Replace the prefix `n/` with the corresponding prefixes (`p/`, `np/`, `e/`, `a/`, `dt/` or `t/`) for find by other fields.
-The same rules apply as per find by name.
+[Back to top](#table-of-contents)
+
+#### Find by Class Date:
+
+Finds all students with classes on a particular date.
+
+Formats:
+    1. `find dt/yyyy-MM-dd`
+    2. `find dt/Day-of-Week`
+
+- Only the date is searched.
+```yaml
+❗ Caution: Do not include class timing.
+```
+
+Examples:
+
+`find dt/2022-10-15` returns all students with classes on 15 October 2022.
+`find dt/Mon` returns all students with classes on the coming monday.
 
 [Back to top](#table-of-contents)
 
@@ -375,20 +432,27 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 [Back to top](#table-of-contents)
 
 ---
+## Glossary
 
-## Command summary
+| Terms       | Definition                                                              |
+|-------------|-------------------------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                                 |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                  |
+| INDEX       | The number beside the student's name inthe Student's Details panel list |
 
-| Action                  | Format, Examples                                                                                                                                                                                   |
-|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student           | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000`   |
-| Edit a student          | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431` |
-| Get help                | `help`                                                                                                                                                                                             |
-| List all students       | `list`                                                                                                                                                                                             |
-| Find a student          | find NAME `e.g., find John Doe`                                                                                                                                                                    |
-| Delete a student        | delete INDEX `e.g., delete 2`                                                                                                                                                                      |
-| Undo a command          | `undo`                                                                                                                                                                                             |
-| Sort displayed students | `sort` TYPE [ORDER]                                                                                                                                                                                |
-| Clear all students      | `clear`                                                                                                                                                                                            |
-| Exit the application    | `exit`                                                                                                                                                                                             |
+## Command Summary
+
+| Action               | Format, Examples                                                                                                                                                                                                                  |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
+| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
+| Get help             | `help`                                                                                                                                                                                                                            |
+| List all students    | `list`                                                                                                                                                                                                                            |
+| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                                                   |
+| Sort displayed students | `sort` TYPE [ORDER]                                                                                                                                                                                                            |
+| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
+| Clear all students   | `clear`                                                                                                                                                                                                                           |
+| Undo a command          | `undo`                                                                                                                                                                                                                         |
+| Exit the application | `exit`                                                                                                                                                                                                                            |
 
 [Back to top](#table-of-contents)
