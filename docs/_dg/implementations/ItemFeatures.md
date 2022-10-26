@@ -1,34 +1,33 @@
+<!-- markdownlint-disable-file first-line-h1 -->
+
+{% comment %}
+<!-- ===================================================================== -->
+<!-- TODO: Copy and paste this template, and add/remove sections as needed -->
+<!-- ===================================================================== -->
+##### Overview
+<!-- ACTIVITY DIAGRAM -->
+<!-- Short Description of Command -->
+##### Feature Details
+<!-- SEQUENCE DIAGRAM -->
+<!-- Description of how Command works -->
+##### Feature Considerations
+<!-- Command Considerations -->
+<!-- ===================================================================== -->
+{% endcomment %}
+
+#### General Implementation Details
+
+<!-- TODO: ADD ITEM CLASS DIAGRAM -->
+
+#### General Design Considerations
+
 #### Creating an Item
 
-##### Overview
-
-<!-- TODO: ACTIVITY DIAGRAM -->
-<!-- TODO: Short Description of Command -->
-
-##### Feature Details
-
-<!-- TODO: SEQUENCE DIAGRAM -->
-<!-- TODO: Description of how Command works -->
-
-##### Feature Considerations
-
-<!-- TODO: Command Considerations -->
+<!-- TODO: Fill up -->
 
 #### Editing an Item
 
-##### Overview
-
-<!-- TODO: ACTIVITY DIAGRAM -->
-<!-- TODO: Short Description of Command -->
-
-##### Feature Details
-
-<!-- TODO: SEQUENCE DIAGRAM -->
-<!-- TODO: Description of how Command works -->
-
-##### Feature Considerations
-
-<!-- TODO: Command Considerations -->
+<!-- TODO: Fill up -->
 
 #### Sorting an Item
 

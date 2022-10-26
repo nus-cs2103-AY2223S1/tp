@@ -4,8 +4,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### `Item`-related Features
 
-{% include_relative _dg/implementations/ItemFeaturesDescription.md %}
-
 {% include_relative _dg/implementations/ItemFeatures.md %}
 
 ### `Tag`-related Features
