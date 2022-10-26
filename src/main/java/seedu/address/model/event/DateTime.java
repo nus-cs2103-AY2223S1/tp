@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * Represents an Event's start or end datetime in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
 
     public static final String RECOMMENDED_DATE_FORMAT = "dd/MM/yyyy";
     public static final String RECOMMENDED_TIME_FORMAT = "HH:mm";
@@ -243,4 +243,30 @@ public class DateTime {
         return date.hashCode() ^ time.hashCode();
     }
 
+    /**
+     * Compares object with another DateTime object other.
+     * A DateTime with empty time field is deemed earlier than a DateTime of the same date with a time field.
+     * If a clear ordering exist, return -1 if object is earlier than other, and 1 if object is later than other.
+     * If both have same date and no time, return 0.
+     */
+    @Override
+    public int compareTo(DateTime other) {
+        int compareValue = this.date.compareTo(other.date);
+
+        if (compareValue == 0) {
+            boolean objectTimePresent = this.time.isPresent();
+            boolean otherTimePresent = other.time.isPresent();
+            if (!objectTimePresent && !otherTimePresent) {
+                compareValue = 0;
+            } else if (objectTimePresent && otherTimePresent) {
+                compareValue = this.time.get().compareTo(other.time.get());
+            } else if (objectTimePresent) {
+                compareValue = 1;
+            } else {
+                compareValue = -1;
+            }
+        }
+
+        return compareValue;
+    }
 }
