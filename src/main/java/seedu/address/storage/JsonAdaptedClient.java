@@ -115,6 +115,10 @@ class JsonAdaptedClient {
         }
 
         Pin modelPin;
+        if (pin == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Pin.class.getSimpleName()));
+        }
         if (!Pin.isValidPin(pin)) {
             throw new IllegalValueException(Pin.MESSAGE_CONSTRAINTS);
         }
