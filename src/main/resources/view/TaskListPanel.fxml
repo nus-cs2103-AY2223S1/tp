@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="heading" styleClass="sub_heading" text="TASKS">
-        <VBox.margin>
-            <Insets bottom="5.0" />
-        </VBox.margin>
-    </Label>
-    <ListView fx:id="personTaskListView" VBox.vgrow="ALWAYS" />
+   <Label fx:id="listPanelHeading" styleClass="sub_heading" text="ALL TASKS">
+      <VBox.margin>
+         <Insets bottom="5.0" />
+      </VBox.margin>
+   </Label>
+  <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
 </VBox>

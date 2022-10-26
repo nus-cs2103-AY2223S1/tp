@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -25,15 +26,33 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" prefHeight="17.0" prefWidth="450.0" styleClass="cell_big_label" text="\$first">
+                <Label fx:id="name" prefHeight="17.0" prefWidth="400.0" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS">
                     <padding>
-                        <Insets right="10.0" />
+                        <Insets bottom="5.0" right="10.0" />
                     </padding>
                 </Label>
+            <FlowPane fx:id="tags" alignment="TOP_RIGHT" columnHalignment="RIGHT" prefHeight="18.0" prefWidth="116.0" />
             </HBox>
             <HBox prefHeight="18.0" prefWidth="130.0">
-                <children>
-                </children>
+            <children>
+               <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
+                  <HBox.margin>
+                     <Insets right="5.0" />
+                  </HBox.margin>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+               </Label>
+               <Label fx:id="email" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$email">
+                  <HBox.margin>
+                     <Insets right="5.0" />
+                  </HBox.margin>
+               </Label>
+               <Label fx:id="address" layoutX="40.0" layoutY="10.0" styleClass="cell_small_label" text="\$address" />
+            </children>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
             </HBox>
         </VBox>
         <rowConstraints>
