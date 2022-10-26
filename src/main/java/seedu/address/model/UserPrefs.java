@@ -88,7 +88,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         } else {
             String newBookName;
             if (allAddressBookFilePath.size() != 0) {
-                newBookName = DEFAULT_ADDRESS_BOOK_NAME + allAddressBookFilePath.size() + ".json";
+                newBookName = DEFAULT_ADDRESS_BOOK_NAME + System.currentTimeMillis() + ".json";
             } else {
                 newBookName = DEFAULT_ADDRESS_BOOK_NAME + ".json";
             }
