@@ -39,16 +39,16 @@ public class CheckCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         switch (checkType) {
         case CHECK_BUYER:
-            invalidIndexThrowException(model.getFilteredBuyerList());
+            checkInvalidIndexThrowException(model.getFilteredBuyerList());
             break;
         case CHECK_SUPPLIER:
-            invalidIndexThrowException(model.getFilteredSupplierList());
+            checkInvalidIndexThrowException(model.getFilteredSupplierList());
             break;
         case CHECK_ORDER:
-            invalidIndexThrowException(model.getFilteredOrderList());
+            checkInvalidIndexThrowException(model.getFilteredOrderList());
             break;
         case CHECK_PET:
-            invalidIndexThrowException(model.getFilteredPetList());
+            checkInvalidIndexThrowException(model.getFilteredPetList());
             break;
         default:
             //Do nothing
@@ -57,7 +57,7 @@ public class CheckCommand extends Command {
                 checkType, index);
     }
 
-    private void invalidIndexThrowException(ObservableList<? extends Object> list) throws CommandException {
+    private void checkInvalidIndexThrowException(ObservableList<? extends Object> list) throws CommandException {
         if (index.getZeroBased() >= list.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

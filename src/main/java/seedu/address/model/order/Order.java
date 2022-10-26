@@ -17,7 +17,7 @@ public class Order {
     private static final UniqueIdGenerator ORDER_ID_GENERATOR = new UniqueIdGenerator();
 
     private final UniqueId id;
-    private final Buyer buyer;
+    private Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
     private final AdditionalRequests additionalRequests;
@@ -146,6 +146,10 @@ public class Order {
 
     public UniqueId getId() {
         return id;
+    }
+
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
     }
 
     /**
