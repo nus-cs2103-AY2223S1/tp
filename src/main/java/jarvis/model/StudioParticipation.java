@@ -27,6 +27,10 @@ public class StudioParticipation {
         }
     }
 
+    public StudioParticipation(TreeMap<Student, Integer> participation) {
+        this.participation = participation;
+    }
+
     public void setParticipationForStudent(Student student, int i) {
         assert i >= 0 && i <= 500 : "Participation value must be between 0 and 500 inclusive";
         if (!participation.containsKey(student)) {
@@ -46,6 +50,10 @@ public class StudioParticipation {
         int studentParticipation = participation.get(targetStudent);
         participation.remove(targetStudent);
         participation.put(editedStudent, studentParticipation);
+    }
+
+    public Map<Student, Integer> getParticipation() {
+        return participation;
     }
 
     @Override

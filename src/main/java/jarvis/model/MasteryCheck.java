@@ -19,8 +19,8 @@ public class MasteryCheck extends Lesson {
     }
 
     public MasteryCheck(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
-                        LessonNotes notes) {
-        super(lessonDesc, timePeriod, students, notes);
+                        LessonAttendance attendance, LessonNotes notes) {
+        super(lessonDesc, timePeriod, students, attendance, notes);
     }
 
     /**

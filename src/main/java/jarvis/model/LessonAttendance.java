@@ -76,6 +76,10 @@ public class LessonAttendance {
         return studentsNameBuilder.toString();
     }
 
+    public Map<Student, Boolean> getAttendance() {
+        return attendance;
+    }
+
     public void setStudent(Student targetStudent, Student editedStudent) {
         boolean b = attendance.get(targetStudent);
         attendance.remove(targetStudent);
@@ -89,17 +93,6 @@ public class LessonAttendance {
             sb.append(entry.getKey());
             sb.append(": ");
             sb.append(entry.getValue() ? "PRESENT" : "ABSENT");
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
-
-    public String toFullString() {
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<Student, Boolean> entry : attendance.entrySet()) {
-            sb.append(entry.getKey().toString());
-            sb.append(": ");
-            sb.append(entry.getValue());
             sb.append("\n");
         }
         return sb.toString();

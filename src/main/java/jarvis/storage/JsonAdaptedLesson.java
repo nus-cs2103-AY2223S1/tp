@@ -1,19 +1,21 @@
 package jarvis.storage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Set;
+import java.util.TreeMap;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jarvis.commons.core.index.Index;
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.model.Consult;
@@ -24,6 +26,7 @@ import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Studio;
+import jarvis.model.Student;
 import jarvis.model.TimePeriod;
 
 /**
@@ -40,11 +43,12 @@ public abstract class JsonAdaptedLesson {
     private final String lessonDesc;
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
-    private final Set<Integer> studentIndexList;
+    private final List<JsonAdaptedStudent> studentList;
 
     // Data fields
-    private final String attendance;
+    private final Map<Integer, Boolean> attendance;
     private final ArrayList<String> generalNotes;
+    private final Map<Integer, ArrayList<String>> studentNotes;
     private final boolean isCompleted;
 
     /**
@@ -54,28 +58,35 @@ public abstract class JsonAdaptedLesson {
     public JsonAdaptedLesson(@JsonProperty("lessonDesc") String lessonDesc,
                              @JsonProperty("startDateTime") LocalDateTime startDateTime,
                              @JsonProperty("endDateTime") LocalDateTime endDateTime,
-                             @JsonProperty("studentIndexList") Set<Integer> studentIndexList,
-                             @JsonProperty("attendance") String attendance,
+                             @JsonProperty("studentList") List<JsonAdaptedStudent> studentList,
+                             @JsonProperty("attendance") Map<Integer, Boolean> attendance,
                              @JsonProperty("generalNotes") ArrayList<String> generalNotes,
+                             @JsonProperty("studentNotes") Map<Integer, ArrayList<String>> studentNotes,
                              @JsonProperty("isCompleted") boolean isCompleted) {
         this.lessonDesc = lessonDesc;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-        this.studentIndexList = studentIndexList;
+        this.studentList = studentList;
         this.attendance = attendance;
         this.generalNotes = generalNotes;
+        this.studentNotes = studentNotes;
         this.isCompleted = isCompleted;
     }
 
-    public JsonAdaptedLesson(LessonDesc lessonDesc, TimePeriod timePeriod, Set<Integer> studentIndexList,
-                             LessonAttendance attendance, ArrayList<String> generalNotes,
-                             boolean isCompleted) throws JsonProcessingException {
+    public JsonAdaptedLesson(LessonDesc lessonDesc, TimePeriod timePeriod, List<Student> studentList,
+                             Map<Integer, Boolean> attendance, ArrayList<String> generalNotes,
+                             Map<Integer, ArrayList<String>> studentNotes, boolean isCompleted) {
         this.lessonDesc = lessonDesc == null ? null : lessonDesc.lessonDesc;
         this.startDateTime = timePeriod.getStart();
         this.endDateTime = timePeriod.getEnd();
-        this.studentIndexList = studentIndexList;
-        this.attendance = attendance.toFullString();
+        List<JsonAdaptedStudent> jsonAdaptedStudentList = new ArrayList<>();
+        for (Student student : studentList) {
+            jsonAdaptedStudentList.add(new JsonAdaptedStudent(student));
+        }
+        this.studentList = jsonAdaptedStudentList;
+        this.attendance = attendance;
         this.generalNotes = generalNotes;
+        this.studentNotes = studentNotes;
         this.isCompleted = isCompleted;
     }
 
@@ -86,8 +97,9 @@ public abstract class JsonAdaptedLesson {
      * @param lesson The given lesson, which could be a {@code Consult}, {@code MasteryCheck} or {@code Studio}.
      * @return The Jackson-friendly version of the lesson.
      */
-    public static JsonAdaptedLesson createLesson(Lesson lesson, ReadOnlyStudentBook studentBook) throws JsonProcessingException {
+    public static JsonAdaptedLesson createLesson(Lesson lesson, ReadOnlyStudentBook studentBook) {
         CollectionUtil.requireAllNonNull(lesson);
+        assert (lesson instanceof Consult || lesson instanceof MasteryCheck) || lesson instanceof Studio;
         if (lesson instanceof Consult) {
             Consult consult = (Consult) lesson;
             return new JsonAdaptedConsult(consult, studentBook);
@@ -114,16 +126,20 @@ public abstract class JsonAdaptedLesson {
         return endDateTime;
     }
 
-    protected Set<Integer> getStudentIndexList() {
-        return studentIndexList;
+    protected List<JsonAdaptedStudent> getStudentList() {
+        return studentList;
     }
 
-    protected String getAttendance() {
+    protected Map<Integer, Boolean> getAttendance() {
         return attendance;
     }
 
     protected ArrayList<String> getGeneralNotes() {
         return generalNotes;
+    }
+
+    protected Map<Integer, ArrayList<String>> getStudentNotes() {
+        return studentNotes;
     }
 
     protected boolean isCompleted() {

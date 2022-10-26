@@ -6,7 +6,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
@@ -44,13 +48,14 @@ public abstract class Lesson {
         this.notes = new LessonNotes(students);
     }
 
-    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students, LessonNotes notes) {
-        requireAllNonNull(timePeriod, students, notes);
+    public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
+                  LessonAttendance attendance, LessonNotes notes) {
+        requireAllNonNull(timePeriod, students, attendance, notes);
         this.lessonDesc = lessonDesc;
         this.timePeriod = timePeriod;
         this.studentList = new ArrayList<>(students);
         this.observableStudentList = FXCollections.observableArrayList(studentList);
-        this.attendance = new LessonAttendance(students);
+        this.attendance = attendance;
         this.notes = notes;
     }
 
@@ -74,8 +79,8 @@ public abstract class Lesson {
         return studentList.get(index);
     }
 
-    public Set<Student> getStudents() {
-        return attendance.getAllStudents();
+    public List<Student> getStudentList() {
+        return studentList;
     }
 
     public ObservableList<Student> getObservableStudentList() {
@@ -131,12 +136,16 @@ public abstract class Lesson {
         return timePeriod;
     }
 
-    public LessonAttendance getAttendance() {
-        return attendance;
+    public Map<Integer, Boolean> getAttendance() {
+        Map<Integer, Boolean> resMap = new TreeMap<>();
+        for (Student student : attendance.getAttendance().keySet()) {
+            resMap.put(studentList.indexOf(student), attendance.getAttendance().get(student));
+        }
+        return resMap;
     }
 
-    public String getStudentNotes(Student student) {
-        return notes.getStudentNotes(student);
+    public String getStudentNotesString(Student student) {
+        return notes.getStudentNotesString(student);
     }
 
     public String getGeneralNotesString() {
@@ -145,6 +154,14 @@ public abstract class Lesson {
 
     public ArrayList<String> getGeneralNotes() {
         return notes.getGeneralNotes();
+    }
+
+    public Map<Integer, ArrayList<String>> getStudentNotes() {
+        TreeMap<Integer, ArrayList<String>> resMap = new TreeMap<>();
+        for (Student student: notes.getStudentNotes().keySet()) {
+            resMap.put(studentList.indexOf(student), notes.getStudentNotes().get(student));
+        }
+        return resMap;
     }
 
     public abstract LessonType getLessonType();

@@ -19,8 +19,8 @@ public class Consult extends Lesson {
     }
 
     public Consult(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
-                   LessonNotes notes) {
-        super(lessonDesc, timePeriod, students, notes);
+                   LessonAttendance attendance, LessonNotes notes) {
+        super(lessonDesc, timePeriod, students, attendance, notes);
     }
 
     /**

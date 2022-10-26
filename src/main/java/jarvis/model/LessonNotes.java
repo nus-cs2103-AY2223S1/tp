@@ -29,12 +29,10 @@ public class LessonNotes {
         }
     }
 
-    public LessonNotes(Collection<Student> students, ArrayList<String> generalNotes) {
+    public LessonNotes(Collection<Student> students, ArrayList<String> generalNotes,
+                       TreeMap<Student, ArrayList<String>> studentNotes) {
         this.generalNotes = generalNotes;
-        this.studentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
-        for (Student stu : students) {
-            studentNotes.put(stu, new ArrayList<>());
-        }
+        this.studentNotes = studentNotes;
     }
 
     /**
@@ -99,7 +97,7 @@ public class LessonNotes {
         return formattedGeneralNotes.toString();
     }
 
-    public String getStudentNotes(Student student) {
+    public String getStudentNotesString(Student student) {
         if (!studentNotes.containsKey(student)) {
             throw new StudentNotFoundException();
         }
@@ -119,7 +117,7 @@ public class LessonNotes {
         for (Student student: studentNotes.keySet()) {
             formattedAllNotes.append(student.toString());
             formattedAllNotes.append(":\n");
-            formattedAllNotes.append(getStudentNotes(student));
+            formattedAllNotes.append(getStudentNotesString(student));
             formattedAllNotes.append("\n");
         }
         return formattedAllNotes.toString();
@@ -127,6 +125,10 @@ public class LessonNotes {
 
     public ArrayList<String> getGeneralNotes() {
         return generalNotes;
+    }
+
+    public TreeMap<Student, ArrayList<String>> getStudentNotes() {
+        return studentNotes;
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {

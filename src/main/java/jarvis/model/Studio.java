@@ -1,7 +1,10 @@
 package jarvis.model;
 
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 import jarvis.storage.JsonAdaptedStudio;
 import jarvis.storage.JsonAdaptedTimePeriod;
@@ -21,9 +24,10 @@ public class Studio extends Lesson {
         this.participation = new StudioParticipation(students);
     }
 
-    public Studio(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students, LessonNotes notes) {
-        super(lessonDesc, timePeriod, students, notes);
-        this.participation = new StudioParticipation(students);
+    public Studio(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
+                  LessonAttendance attendance, LessonNotes notes, StudioParticipation participation) {
+        super(lessonDesc, timePeriod, students, attendance, notes);
+        this.participation = participation;
     }
 
     public void setParticipationForStudent(Student student, int i) {
@@ -34,8 +38,12 @@ public class Studio extends Lesson {
         return participation.getParticipationForStudent(student);
     }
 
-    public StudioParticipation getParticipation() {
-        return participation;
+    public Map<Integer, Integer> getParticipation() {
+        Map<Integer, Integer> resMap = new TreeMap<>();
+        for (Student student : participation.getParticipation().keySet()) {
+            resMap.put(getStudentList().indexOf(student), participation.getParticipation().get(student));
+        }
+        return resMap;
     }
 
     @Override

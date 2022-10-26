@@ -3,6 +3,7 @@ package jarvis.storage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -40,16 +41,19 @@ public class JsonSerializableLessonBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableLessonBook}.
      */
-    public JsonSerializableLessonBook(ReadOnlyLessonBook source, ReadOnlyStudentBook studentBook) throws JsonProcessingException {
+    public JsonSerializableLessonBook(ReadOnlyLessonBook source, ReadOnlyStudentBook studentBook) {
         lessons.addAll(source.getLessonList().stream()
-                .map(x -> {
-                    try {
-                        return JsonAdaptedLesson.createLesson(x, studentBook);
-                    } catch (JsonProcessingException e) {
-                        return null;
-                    }
-                })
+                .map(x -> JsonAdaptedLesson.createLesson(x, studentBook))
                 .collect(Collectors.toList()));
+        assert lessons.stream().allMatch(new Predicate<JsonAdaptedLesson>() {
+            @Override
+            public boolean test(JsonAdaptedLesson jsonAdaptedLesson) {
+                if (jsonAdaptedLesson == null) {
+                    return false;
+                }
+                return true;
+            }
+        });
     }
 
     /**
