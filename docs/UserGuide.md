@@ -261,6 +261,10 @@ Example:
 
 ## Section 3: Labels
 
+### Listing all labels: `listL`
+
+Shows a list of all existing labels in the address book.
+
 ### Adding a label to a contact/task: `addL`
 
 Adds a label to an existing contact/task in YellowBook. Each contact/task can have multiple labels. 
