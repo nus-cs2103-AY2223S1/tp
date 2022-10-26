@@ -6,7 +6,7 @@ import static seedu.masslinkers.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
@@ -45,11 +45,11 @@ public class EditCommandTest {
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
         Student editedStudent = studentInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB)
-                .withInterests(VALID_INTEREST_NETFLIX).build();
+                .withInterests(VALID_INTEREST_SWE).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
-                .withGitHub(VALID_GITHUB_BOB).withInterests(VALID_INTEREST_NETFLIX).build();
+                .withGitHub(VALID_GITHUB_BOB).withInterests(VALID_INTEREST_SWE).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
@@ -68,10 +68,10 @@ public class EditCommandTest {
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
         Student editedStudent = studentInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withInterests(VALID_INTEREST_NETFLIX).build();
+                .withInterests(VALID_INTEREST_SWE).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withInterests(VALID_INTEREST_NETFLIX).build();
+                .withPhone(VALID_PHONE_BOB).withInterests(VALID_INTEREST_SWE).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);

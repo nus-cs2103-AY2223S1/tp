@@ -23,8 +23,8 @@ import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
 
 public class AddInterestCommandTest {
-    private static final Interest VALID_INTEREST_TENNIS = new Interest("tennis");
-    private static final Interest VALID_INTEREST_ANIME = new Interest("anime");
+    private static final Interest VALID_INTEREST_AI = new Interest("AI");
+    private static final Interest VALID_INTEREST_SWE = new Interest("SWE");
     private static Model model;
 
     @BeforeEach
@@ -56,13 +56,13 @@ public class AddInterestCommandTest {
     public void execute_saveToModels_success() throws CommandException {
 
         // adds a test student to model
-        Student toAdd = new StudentBuilder(BOB).withInterests(VALID_INTEREST_TENNIS.interestName).build();
+        Student toAdd = new StudentBuilder(BOB).withInterests(VALID_INTEREST_AI.interestName).build();
         model.addStudent(toAdd);
 
         // execute AddInterestCommand on the test student
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> currentInterestSet = new HashSet<>();
-        currentInterestSet.add(VALID_INTEREST_TENNIS);
+        currentInterestSet.add(VALID_INTEREST_AI);
         AddInterestCommand commandToExecute = new AddInterestCommand(indexLastStudent,
                 currentInterestSet);
         CommandResult commandResult = commandToExecute.execute(model);
@@ -71,7 +71,7 @@ public class AddInterestCommandTest {
 
         // expected edited student
         Student editedStudentExpected = new StudentBuilder(BOB)
-                .withInterests(VALID_INTEREST_TENNIS.interestName, VALID_INTEREST_TENNIS.interestName)
+                .withInterests(VALID_INTEREST_AI.interestName, VALID_INTEREST_AI.interestName)
                 .build();
 
         assertEquals(String.format(AddInterestCommand.MESSAGE_SUCCESS, editedStudent),
@@ -86,13 +86,13 @@ public class AddInterestCommandTest {
     public void execute_saveDuplicateInterests_success() throws CommandException {
 
         // adds a test student to model
-        Student toAdd = new StudentBuilder(BOB).withInterests(VALID_INTEREST_ANIME.interestName).build();
+        Student toAdd = new StudentBuilder(BOB).withInterests(VALID_INTEREST_SWE.interestName).build();
         model.addStudent(toAdd);
 
         // execute AddInterestCommand on the test student with existing mod
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> currentInterestSet = new HashSet<>();
-        currentInterestSet.add(VALID_INTEREST_ANIME);
+        currentInterestSet.add(VALID_INTEREST_SWE);
         AddInterestCommand commandToExecute = new AddInterestCommand(indexLastStudent,
                 currentInterestSet);
         CommandResult commandResult = commandToExecute.execute(model);
@@ -101,7 +101,7 @@ public class AddInterestCommandTest {
 
         // expected edited student
         Student editedStudentExpected = new StudentBuilder(BOB)
-                .withInterests(VALID_INTEREST_ANIME.interestName)
+                .withInterests(VALID_INTEREST_SWE.interestName)
                 .build();
 
         assertEquals(String.format(AddInterestCommand.MESSAGE_SUCCESS, editedStudent),
@@ -117,7 +117,7 @@ public class AddInterestCommandTest {
     public void execute_indexOutOfBounds_throwsCommandException() {
         Index indexOutOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         HashSet<Interest> currentInterestSet = new HashSet<>();
-        currentInterestSet.add(VALID_INTEREST_ANIME);
+        currentInterestSet.add(VALID_INTEREST_SWE);
         AddInterestCommand invalidCommand = new AddInterestCommand(indexOutOfBounds,
                 currentInterestSet);
         assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

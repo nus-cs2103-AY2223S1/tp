@@ -15,7 +15,7 @@ public class FindInterestCommand extends Command {
     public static final String COMMAND_WORD = "findInt";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists batchmates that match all interests specified\n"
             + "Parameters: INTEREST [MORE_INTERESTS]...\n"
-            + "Example: " + COMMAND_WORD + " tennis netflix";
+            + "Example: " + COMMAND_WORD + " AI SWE";
 
     private final StudentContainsInterestPredicate predicate;
 

@@ -5,8 +5,8 @@ import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
-import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_AI;
+import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_INTEREST_SWE;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -28,18 +28,18 @@ public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withTelegram("alice").withEmail("alice@example.com")
-            .withPhone("94351253").withGitHub("alifur").withInterests("tennis")
+            .withPhone("94351253").withGitHub("alifur").withInterests("AI")
             .withMods("CS2100", "CS1231S").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withTelegram("bensonhaha").withGitHub("benji")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withInterests("tennis", "netflix").withMods("CS2100", "CS1231S").build();
+            .withInterests("AI", "SWE").withMods("CS2100", "CS1231S").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withGitHub("carl69")
             .withTelegram("magcarlsen").withMods("CS2100").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withTelegram("dannylim").withGitHub("dashi")
-            .withInterests("tennis").withMods("CS2100").build();
+            .withInterests("AI").withMods("CS2100").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withGitHub("goldl8ol").withTelegram("ellie")
             .withMods("CS2100", "CS1231S").build();
@@ -64,12 +64,12 @@ public class TypicalStudents {
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withGitHub(VALID_GITHUB_AMY)
-            .withInterests(VALID_INTEREST_TENNIS).withMods("CS2100")
+            .withInterests(VALID_INTEREST_AI).withMods("CS2100")
             .build();
 
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withGitHub(VALID_GITHUB_BOB)
-            .withInterests(VALID_INTEREST_NETFLIX, VALID_INTEREST_TENNIS).withMods("CS2100")
+            .withInterests(VALID_INTEREST_SWE, VALID_INTEREST_AI).withMods("CS2100")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

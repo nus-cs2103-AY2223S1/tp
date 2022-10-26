@@ -22,7 +22,7 @@ public class AddInterestCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds interest(s) to the batchmate identified by the index number used in the displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer) INTEREST [MORE_INTERESTS]...\n"
-            + "Example: " + COMMAND_WORD + " 1 tennis netflix";
+            + "Example: " + COMMAND_WORD + " 1 AI SWE";
     public static final String MESSAGE_SUCCESS = "Interest(s) added successfully!";
 
     private final Index targetIndex;
