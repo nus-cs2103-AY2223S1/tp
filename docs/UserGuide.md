@@ -253,7 +253,7 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 Action | Format, Examples
 --------|------------------
-**Add person** | `add n/<name> p/<phone number> tele/<teelgram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add person** | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add debt** | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`
 **Clear** | `clear`
 **Delete** | `delete <index>`<br> e.g., `delete 3`
