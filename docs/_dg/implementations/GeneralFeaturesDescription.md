@@ -1,5 +1,4 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-### General Features Implementation
 
 #### Implementation Details
 
