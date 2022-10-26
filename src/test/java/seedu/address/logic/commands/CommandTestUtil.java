@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -17,15 +20,26 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public static final String VALID_NAME_MEETING_1 = "Test 1";
+    public static final String VALID_NAME_MEETING_2 = "Test 2";
+    public static final String VALID_LOCATION_MEETING_1 = "Location 1";
+    public static final String VALID_LOCATION_MEETING_2 = "Location 2";
+    public static final String VALID_DATE_MEETING_1 = "23-09-2022 2359";
+    public static final String VALID_DATE_MEETING_2 = "24-09-2022 2359";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -38,6 +52,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String DESCRIPTION_DESC_MEETING_1 = " " + PREFIX_DESCRIPTION + VALID_NAME_MEETING_1;
+    public static final String DESCRIPTION_DESC_MEETING_2 = " " + PREFIX_DESCRIPTION + VALID_NAME_MEETING_2;
+    public static final String LOCATION_DESC_MEETING_1 = " " + PREFIX_LOCATION + VALID_LOCATION_MEETING_1;
+    public static final String LOCATION_DESC_MEETING_2 = " " + PREFIX_LOCATION + VALID_LOCATION_MEETING_2;
+    public static final String DATE_DESC_MEETING_1 = " " + PREFIX_DATE + VALID_DATE_MEETING_1;
+    public static final String DATE_DESC_MEETING_2 = " " + PREFIX_DATE + VALID_DATE_MEETING_2;
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -48,6 +69,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "GG";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -61,6 +84,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditMeetingCommand.EditMeetingDescriptor MEETING_1;
+    public static final EditMeetingCommand.EditMeetingDescriptor MEETING_2;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -68,6 +94,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        MEETING_1 = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1)
+                .withLocation(VALID_LOCATION_MEETING_1).withDate(VALID_DATE_MEETING_1).build();
+        MEETING_2 = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_2)
+                .withLocation(VALID_LOCATION_MEETING_2).withDate(VALID_DATE_MEETING_2).build();
     }
 
     /**
@@ -97,6 +130,15 @@ public class CommandTestUtil {
     }
 
     /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, actualModel);
+    }
+
+    /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
@@ -107,10 +149,14 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        MeetingList expectedMeetingList = new MeetingList(actualModel.getMeetingList());
+        List<Meeting> expectedFilteredMeetingList = new ArrayList<>(actualModel.getFilteredMeetingList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedMeetingList, actualModel.getMeetingList());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
@@ -124,6 +170,21 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the meeting at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = meeting.getDescription().split("\\s+");
+        model.updateFilteredMeetingList(new MeetingContainsKeywordsPredicate(Arrays.asList(splitDescription[0]),
+                Meeting::getDescription));
+
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 
 }

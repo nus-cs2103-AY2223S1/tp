@@ -131,6 +131,13 @@ public interface Model {
     void addMeeting(Meeting newMeeting);
 
     /**
+     * Adds a new meeting to the address book to the specified index.
+     *
+     * @param newMeeting the new meeting to add to address book
+     */
+    void addMeeting(Meeting newMeeting, int idx);
+
+    /*
      * Replaces the given meeting {@code target} with {@code editedMeeting}.
      * {@code target} must exist in the address book.
      * The meeting identity of {@code editedMeeting} must not be the same as
