@@ -33,6 +33,7 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
           - [Sorting the Task list](#sorting-the-task-list--sorttask)
           - [Filtering the Task list](#filtering-the-task-list--filtertask)
           - [Marking a Task as Done](#marking-a-task-as-done--mark)
+          - [Marking a Task as Undone](#marking-a-task-as-done--unmark)
         - [Exiting the Program](#exiting-the-program--exit)
         - [Clearing all data](#clearing-all-data--clear)
         - [Saving the data](#saving-the-data)
@@ -182,7 +183,7 @@ Examples:
 * `edit 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
 
 --------------------------------------------------------------------------------------------------------------------
-##Staff Commands
+## Staff Commands
 ### Adding a Staff member to Project : `addstaff`
 
 Adds a staff member info to Project in project list.
@@ -248,7 +249,9 @@ Examples:
 ### Marking a Task as done : `mark`
 
 --------------------------------------------------------------------------------------------------------------------
+### Marking a Task as Undone : `unmark`
 
+--------------------------------------------------------------------------------------------------------------------
 ### Exiting the program : `exit`
 
 Exits the program.
