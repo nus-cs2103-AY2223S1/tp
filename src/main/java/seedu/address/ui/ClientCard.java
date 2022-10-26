@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.client.Client;
+import seedu.address.model.product.Product;
 
 /**
  * An UI component that displays information of a {@code Client}.
@@ -48,7 +49,8 @@ public class ClientCard extends UiPart<Region> {
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         email.setText(client.getEmail().get().toString());
-        products.setText(client.getProducts().stream().collect(Collectors.toList()).toString());
+        String productStr = client.getProducts().toString();
+        products.setText(productStr.substring(1, productStr.length() - 1));
     }
 
     @Override
