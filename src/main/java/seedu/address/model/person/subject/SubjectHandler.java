@@ -144,14 +144,15 @@ public class SubjectHandler {
      * @return a String which represents the data of the subjects taken by the person.
      */
     public String dataString() {
-        String str = "";
-        Set<String> keys = subjectsTaken.keySet();
-        for (String key : keys) {
-            Subject keyValue = subjectsTaken.get(key);
-            str += keyValue.dataString();
+        StringBuilder str = new StringBuilder();
+        if (subjectsTaken.isEmpty()) {
+            return "";
         }
-        str = str.substring(0, str.length() - 2);
-        return str;
+        for (Subject subject : subjectsTaken.values()) {
+            str.append(subject.toString());
+        }
+        str = new StringBuilder(str.substring(0, str.length() - 2));
+        return str.toString();
     }
 
     @Override

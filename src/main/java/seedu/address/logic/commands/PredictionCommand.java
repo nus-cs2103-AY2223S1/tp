@@ -8,6 +8,7 @@ import seedu.address.logic.algorithm.PredictionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.subject.Subject;
 
 /**
@@ -26,24 +27,26 @@ public class PredictionCommand extends Command {
 
     public static final String SHOWING_PREDICTION_MESSAGE = "Opened prediction window.";
 
-    private static final String MESSAGE_FORMAT = "Grade prediction for %s is %.2f";
+    private static final String MESSAGE_FORMAT = "Grade prediction for %s for their next %s assessment is %.2f percent";
 
     private final Name name;
-    private final Subject subject;
+    private final String subjectName;
 
     /**
      * Creates a PredictionCommand to get the predicted score for a given student's next assessment
      */
-    public PredictionCommand(Name name, Subject subject) {
+    public PredictionCommand(Name name, String subjectName) {
         this.name = name;
-        this.subject = subject;
+        this.subjectName = subjectName;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        double gradePredicted = PredictionUtil.predictGrade(subject.getGrades());
+        Person target = model.getPersonByName(name);
+        Subject targetSubject = target.getSubjectHandler().getSubject(subjectName);
+        double gradePredicted = PredictionUtil.predictGrade(targetSubject.getGrades());
         return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true,
-            String.format(MESSAGE_FORMAT, name, 76.5));
+            String.format(MESSAGE_FORMAT, name, targetSubject.subjectName, gradePredicted));
     }
 }

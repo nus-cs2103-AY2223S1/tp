@@ -91,7 +91,7 @@ public class Subject {
 
     @Override
     public String toString() {
-        return subjectName;
+        return dataString();
     }
 
 }
