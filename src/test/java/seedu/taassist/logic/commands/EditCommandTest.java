@@ -83,8 +83,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        // Simulate focus mode: shows filtered list
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
-
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_STUDENT,
@@ -93,7 +93,9 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new TaAssist(model.getTaAssist()), new UserPrefs());
-        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
+        // Expect to remain showing filtered list
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+        expectedModel.setStudent(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased()), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
