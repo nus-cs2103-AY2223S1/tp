@@ -11,7 +11,8 @@ public class Room {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Rooms should only contain alphanumeric characters and hyphens (-). "
-            + "They cannot start or end with a hyphen.";
+            + "They cannot start or end with a hyphen. "
+            + "Hyphens can only be used between 2 alphanumeric characters.";
 
     // Room contains alphanumeric characters with an optional hyphen only in between, and don't start with a hyphen
     // It can also accept a hyphen as long as it is in between 2 alphanumeric characters
