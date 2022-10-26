@@ -33,7 +33,7 @@ RC4HDB currently supports the following file management functionalities:
 
 ### Creating a new data file : `file create`
 
-Creates a new folder with the specified `FOLDER_NAME`, if such a folder does not exist. RC4HDB will then create fresh data files for both the **venue** and **resident** data.
+Creates a new folder with the specified `FOLDER_NAME`, if such a folder does not exist. After creating a new folder, RC4HDB will then create [fresh data files]() to store **venue** and **resident** data.
 
 Format: `file create FOLDER_NAME`
 * Does not create a new folder if the folder already exists.
@@ -41,8 +41,7 @@ Format: `file create FOLDER_NAME`
 :information source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
-* `file create rc4_data_2022` will create a new file named `rc4_data_2022.json`.
-* `file create rc4_data_2022.json` will create a new file named `rc4_data_2022.json.json`.
+* `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data files.
 
 ---
 
@@ -50,15 +49,13 @@ Examples:
 
 Deletes the specified data file if it exists.
 
-Format: `file delete FILE_NAME`
+Format: `file delete FOLDER_NAME`
 * Does not delete the file if it is the data file that is currently open. You may switch to a different file before deleting the previously open data file.
-* The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](#file-command-format).
+:information source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
-* `file delete rc4_data_2022` will delete the `rc4_data_2022.json` file.
-* `file delete rc4_data_2022.json` will delete the `rc4_data_2022.json.json` file.
+* `file delete rc4_data_2022` will delete the `rc4_data_2022` folder and all it's contents.
 
 ---
 
