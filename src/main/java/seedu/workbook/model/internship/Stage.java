@@ -42,7 +42,7 @@ public class Stage {
     }
 
     /**
-     * Returns true if a given stage has curated tips.
+     * Returns true if a given stage does not have curated tips.
      */
     public boolean hasNoTips() {
         return !StageUtil.stageHasTips(this);

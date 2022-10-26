@@ -1,8 +1,10 @@
 package seedu.workbook.ui;
 
-import java.util.Comparator;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,8 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Stage;
+import seedu.workbook.model.internship.util.StageUtil;
 
 /**
  * An UI component that displays information of a {@code Internship}.
@@ -35,7 +39,6 @@ public class InternshipCard extends UiPart<Region> {
     private TipsWindow tipsWindow;
 
     private final Stage internshipStage;
-    private final boolean stageHasTips;
 
     @FXML
     private HBox cardPane;
@@ -64,10 +67,9 @@ public class InternshipCard extends UiPart<Region> {
         super(FXML);
         this.internship = internship;
         this.internshipStage = internship.getStage();
-        //this.stageHasTips = Stage.hasTips(this.internshipStage);
-        this.stageHasTips = true;
+        boolean hasNoTips = internshipStage.hasNoTips();
 
-        if(!stageHasTips) {
+        if(hasNoTips) {
             tipsButton.setVisible(false);
         }
 
@@ -107,30 +109,15 @@ public class InternshipCard extends UiPart<Region> {
      */
     @FXML
     private void showTips() {
-        if (!this.stageHasTips) {
+        //Do not populate tips window for stages that have no stage-specific tips.
+        if (this.internshipStage.hasNoTips()) {
             return;
         }
 
         //Set header of tips to be name of stage.
         tipsWindow.setTipsHeader(this.internshipStage.value);
 
-        List<String> tips = new ArrayList<String>();
-
-        //Dummy tips for testing purposes.
-        tips.add("Contact the hiring manager/recruitment by submitting a short follow-up email to "
-            + "show interest in the company and stand out!");
-
-        tips.add("Keep a copy of your resume by the phone so that you can refer to them and answer"
-            + " questions if the company were to call you for a short interview!");
-
-        tips.add("Conduct a detailed research on the organisation you applied for, especially their"
-            + "mission statement, policies, initiatives and programmes to prepare for a potential interview!");
-
-        tips.add("Prepare for interviews and assessment by brushing up on your interview and coding"
-            + "skills! Refer to our tips included in “Online Assessment”, “Technical Interview” and"
-            + "“Behavioural Interview” for more advice!");
-
-        tips.add("Short tip formatting test");
+        List<String> tips = StageUtil.getStageSpecificTips(this.internshipStage);
 
         tipsWindow.populateTips(tips);
 
