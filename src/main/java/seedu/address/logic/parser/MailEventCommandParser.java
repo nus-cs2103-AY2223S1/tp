@@ -14,7 +14,7 @@ public class MailEventCommandParser implements Parser<MailEventCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the MailEventCommand
      * and returns a MailEventCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public MailEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
