@@ -11,7 +11,12 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers. They can be at least 3 digits and at most 15 digits long.";
-    public static final String VALIDATION_REGEX = "\\d{3,15}";
+
+    // length constraints
+    private static final int MIN_LENGTH = 3;
+    private static final int MAX_LENGTH = 15;
+
+    public static final String VALIDATION_REGEX = String.format("\\d{%d,%d}", MIN_LENGTH, MAX_LENGTH);
     public final String value;
 
     /**
