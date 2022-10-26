@@ -22,11 +22,9 @@
 #### General Design Considerations
 
 #### Creating an Item
-
 <!-- TODO: Fill up -->
 
 #### Editing an Item
-
 <!-- TODO: Fill up -->
 
 #### Sorting an Item
