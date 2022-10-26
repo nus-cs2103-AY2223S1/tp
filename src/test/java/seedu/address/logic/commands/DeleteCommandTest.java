@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_INCOME;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExpenditureAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showIncomeAtIndex;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
@@ -74,10 +75,60 @@ public class DeleteCommandTest {
         showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
         Index outOfBoundIndex = INDEX_SECOND_ENTRY;
-        // ensures that outOfBoundIndex is still in bounds of penny wise list
+        // ensures that outOfBoundIndex is still in bounds of expenditure list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPennyWise().getExpenditureList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, this.expenditureType);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredIncomeList_success() {
+        Entry incomeToDelete = model.getFilteredIncomeList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY, this.incomeType);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, incomeToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getPennyWise(), new UserPrefs());
+        expectedModel.deleteIncome(incomeToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexUnfilteredIncomeList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIncomeList().size() + 1);
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, this.incomeType);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validIndexFilteredIncomeList_success() {
+        showIncomeAtIndex(model, INDEX_FIRST_ENTRY);
+
+        Entry incomeToDelete = model.getFilteredIncomeList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY, this.incomeType);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, incomeToDelete);
+
+        Model expectedModel = new ModelManager(model.getPennyWise(), new UserPrefs());
+        expectedModel.deleteIncome(incomeToDelete);
+        showNoIncome(expectedModel);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredIncomeList_throwsCommandException() {
+        showIncomeAtIndex(model, INDEX_FIRST_ENTRY);
+
+        Index outOfBoundIndex = INDEX_SECOND_ENTRY;
+        // ensures that outOfBoundIndex is still in bounds of income list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPennyWise().getIncomeList().size());
+
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, this.incomeType);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
     }
@@ -109,7 +160,7 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no expenditure.
      */
     private void showNoExpenditure(Model model) {
-        model.updateFilteredEntryList(e -> false);
+        model.updateFilteredExpenditureList(e -> false);
 
         assertTrue(model.getFilteredExpenditureList().isEmpty());
     }
@@ -118,7 +169,7 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no income.
      */
     private void showNoIncome(Model model) {
-        model.updateFilteredEntryList(e -> false);
+        model.updateFilteredIncomeList(e -> false);
 
         assertTrue(model.getFilteredIncomeList().isEmpty());
     }

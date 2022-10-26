@@ -4,15 +4,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEntry.ALLOWANCE;
 import static seedu.address.testutil.TypicalEntry.DINNER;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
+import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PennyWiseBuilder;
 
 public class ModelManagerTest {
@@ -91,8 +98,97 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasIncome_incomeNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasIncome(ALLOWANCE));
+    }
+
+    @Test
+    public void hasIncome_incomeInAddressBook_returnsTrue() {
+        modelManager.addIncome(ALLOWANCE);
+        assertTrue(modelManager.hasIncome(ALLOWANCE));
+    }
+
+    @Test
     public void getFilteredExpenditureList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredExpenditureList().remove(0));
+    }
+
+    @Test
+    public void getExpensePieChart_emptyExpensesArray_success() {
+        ObservableList<PieChart.Data> expectedExpensePieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Food", 0.00), new PieChart.Data("Groceries", 0.00),
+                new PieChart.Data("Entertainment", 0.00), new PieChart.Data("Education", 0.00),
+                new PieChart.Data("Housing", 0.00), new PieChart.Data("Others", 0.00));
+
+        ObservableList<PieChart.Data> actualExpensePieChartData = modelManager.getExpensePieChartData();
+
+        for (int i = 0; i < 6; i++) {
+            PieChart.Data expectedCategory = expectedExpensePieChartData.get(i);
+            PieChart.Data actualCategory = actualExpensePieChartData.get(i);
+
+            assertEquals(expectedCategory.getName(), actualCategory.getName());
+            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
+        }
+    }
+
+    @Test
+    public void getExpensePieChart_validExpensesArray_success() {
+        ObservableList<PieChart.Data> expectedExpensePieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Food", 10.00), new PieChart.Data("Groceries", 0.00),
+                new PieChart.Data("Entertainment", 8.00), new PieChart.Data("Education", 0.00),
+                new PieChart.Data("Housing", 0.00), new PieChart.Data("Others", 0.00));
+
+        PennyWise typicalPennyWise = getTypicalPennyWise();
+        modelManager.setPennyWise(typicalPennyWise);
+
+        ObservableList<PieChart.Data> actualExpensePieChartData = modelManager.getExpensePieChartData();
+
+        for (int i = 0; i < 6; i++) {
+            PieChart.Data expectedCategory = expectedExpensePieChartData.get(i);
+            PieChart.Data actualCategory = actualExpensePieChartData.get(i);
+
+            assertEquals(expectedCategory.getName(), actualCategory.getName());
+            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
+        }
+    }
+
+    @Test
+    public void getIncomePieChart_emptyIncomeArray_success() {
+        ObservableList<PieChart.Data> expectedIncomePieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Salary", 0.0), new PieChart.Data("Allowance", 0.0),
+                new PieChart.Data("Profit", 0.0), new PieChart.Data("Investment", 0.0),
+                new PieChart.Data("Gifts", 0.0), new PieChart.Data("Others", 0.0));
+
+        ObservableList<PieChart.Data> actualIncomePieChartData = modelManager.getIncomePieChartData();
+
+        for (int i = 0; i < 6; i++) {
+            PieChart.Data expectedCategory = expectedIncomePieChartData.get(i);
+            PieChart.Data actualCategory = actualIncomePieChartData.get(i);
+
+            assertEquals(expectedCategory.getName(), actualCategory.getName());
+            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
+        }
+    }
+
+    @Test
+    public void getIncomePieChart_validIncomeArray_success() {
+        ObservableList<PieChart.Data> expectedIncomePieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Salary", 0.0), new PieChart.Data("Allowance", 300.0),
+                new PieChart.Data("Profit", 0.0), new PieChart.Data("Investment", 40.80),
+                new PieChart.Data("Gifts", 0.0), new PieChart.Data("Others", 0.0));
+
+        PennyWise typicalPennyWise = getTypicalPennyWise();
+        modelManager.setPennyWise(typicalPennyWise);
+
+        ObservableList<PieChart.Data> actualIncomePieChartData = modelManager.getIncomePieChartData();
+
+        for (int i = 0; i < 6; i++) {
+            PieChart.Data expectedCategory = expectedIncomePieChartData.get(i);
+            PieChart.Data actualCategory = actualIncomePieChartData.get(i);
+
+            assertEquals(expectedCategory.getName(), actualCategory.getName());
+            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
+        }
     }
 
     @Test
@@ -119,9 +215,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPennyWise, userPrefs)));
 
         // different filteredList -> returns false
-        // String[] keywords = LUNCH.getName().fullName.split("\\s+");
-        // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        // assertFalse(modelManager.equals(new ModelManager(pennyWise, userPrefs)));
+        String[] keywords = LUNCH.getDescription().fullDescription.split("\\s+");
+        modelManager.updateFilteredExpenditureList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(pennyWise, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredExpenditureList(Model.PREDICATE_SHOW_ALL_ENTRIES);
@@ -131,4 +227,5 @@ public class ModelManagerTest {
         differentUserPrefs.setPennyWiseFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(pennyWise, differentUserPrefs)));
     }
+
 }

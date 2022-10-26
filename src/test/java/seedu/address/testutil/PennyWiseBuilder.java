@@ -7,7 +7,8 @@ import seedu.address.model.entry.Income;
 /**
  * A utility class to help with building PennyWise objects.
  * Example usage: <br>
- *     {@code PennyWise ab = new PennyWiseBuilder().withPerson("John", "Doe").build();}
+ *     {@code PennyWise pennywise = new PennyWiseBuilder().withIncome(
+ *          new Expenditure("Lunch", "10-10-2022", "7.20", "Food")).build();}
  */
 public class PennyWiseBuilder {
 
@@ -24,7 +25,6 @@ public class PennyWiseBuilder {
     /**
      * Adds a new {@code Expenditure} to the {@code PennyWise} that we are building.
      */
-
     public PennyWiseBuilder withExpenditure(Expenditure expenditure) {
         pennyWise.addExpenditure(expenditure);
         return this;

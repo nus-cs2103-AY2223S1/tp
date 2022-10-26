@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEntry.ALLOWANCE;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
@@ -77,14 +78,21 @@ public class PennyWiseTest {
         assertFalse(pennyWise.hasExpenditure(LUNCH));
     }
 
-    // @Test
-    // public void hasIncome_incomeNotInPennyWise_returnsFalse() {
-    //     assertFalse(pennyWise.hasIncome());
-    // }
+    @Test
+    public void hasIncome_incomeNotInPennyWise_returnsFalse() {
+        assertFalse(pennyWise.hasIncome(ALLOWANCE));
+    }
+
     @Test
     public void hasExpenditure_expenditureInPennyWise_returnsTrue() {
         pennyWise.addExpenditure(LUNCH);
         assertTrue(pennyWise.hasExpenditure(LUNCH));
+    }
+
+    @Test
+    public void hasIncome_incomeInPennyWise_returnsTrue() {
+        pennyWise.addIncome(ALLOWANCE);
+        assertTrue(pennyWise.hasIncome(ALLOWANCE));
     }
     // @Test
     // public void hasPerson_personWithSameIdentityFieldsInPennyWise_returnsTrue() {
