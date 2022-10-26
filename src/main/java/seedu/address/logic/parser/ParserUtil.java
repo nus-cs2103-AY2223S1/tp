@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
@@ -26,20 +27,35 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        oneBasedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(oneBasedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        return Index.fromOneBased(Integer.parseInt(oneBasedIndex));
+    }
+
+    /**
+     * Parses {@code trimmedField} and returns it if valid.
+     *
+     * @throws ParseException if the specified field is invalid.
+     */
+    public static String parseField(String trimmedField) throws ParseException {
+        if (StringUtil.isEmptyString(trimmedField)) {
+            return null;
+        } else if (!StringUtil.isValidField(trimmedField)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return trimmedField;
     }
 
     /**
      * Parses {@code social} into a String and returns it
+     *
      * @param social
      * @return String
      * @throws ParseException
@@ -55,6 +71,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code occupation} into an {@code Occupation} and returns it
+     *
      * @param occupation
      * @return Occupation
      * @throws ParseException
@@ -67,6 +84,7 @@ public class ParserUtil {
         }
         return new Occupation(trimmedOccupation);
     }
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -125,6 +143,23 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String tutorial} into an {@code Tutorial}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param tutorial tutorial
+     * @return a valid tutorial
+     * @throws ParseException if the given {@code tutorial} is invalid.
+     */
+    public static Tutorial parseTutorial(String tutorial) throws ParseException {
+        requireNonNull(tutorial);
+        String trimmedTutorial = tutorial.trim();
+        if (!Tutorial.isValidTutorial(trimmedTutorial)) {
+            throw new ParseException(Tutorial.MESSAGE_CONSTRAINTS);
+        }
+        return new Tutorial(trimmedTutorial);
     }
 
     /**

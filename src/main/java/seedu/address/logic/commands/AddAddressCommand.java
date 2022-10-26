@@ -20,6 +20,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
@@ -90,12 +91,13 @@ public class AddAddressCommand extends Command {
         Name updatedName = personToAddAddress.getName();
         Phone updatedPhone = personToAddAddress.getPhone();
         Email updatedEmail = personToAddAddress.getEmail();
+        Tutorial updatedTutorial = personToAddAddress.getTutorial();
         Address updatedAddress = addAddressDescriptor.getAddress().orElse(personToAddAddress.getAddress());
         Set<Tag> updatedTags = personToAddAddress.getTags();
         Set<Group> updatedGroups = personToAddAddress.getGroups();
         Social updatedSocial = personToAddAddress.getSocial();
 
-        return new Person(updatedOccupation, updatedName, updatedPhone, updatedEmail,
+        return new Person(updatedOccupation, updatedName, updatedPhone, updatedEmail, updatedTutorial,
                 updatedAddress, updatedTags, updatedSocial, updatedGroups);
     }
 

@@ -66,6 +66,13 @@ public class Occupation {
         return Occupations.NONE;
     }
 
+    /**
+     * Returns true if the value is the deleted placeholder.
+     */
+    public boolean isDeleted() {
+        return this.s.equals("NONE");
+    }
+
     public String getString() {
         return this.o.toString();
     }

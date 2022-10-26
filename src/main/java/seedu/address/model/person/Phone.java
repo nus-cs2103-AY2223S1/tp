@@ -30,7 +30,14 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) | test.equals("NO NUMBER SET");
+    }
+
+    /**
+     * Returns true if a given string is the deleted placeholder.
+     */
+    public boolean isDeleted() {
+        return this.value.equals("NO NUMBER SET");
     }
 
     @Override

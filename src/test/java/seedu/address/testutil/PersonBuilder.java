@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_TUTORIAL = "T08";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Occupation occupation;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Tutorial tutorial;
     private Set<Tag> tags;
     private Social social;
     private Set<Group> groups;
@@ -43,6 +46,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        tutorial = new Tutorial(DEFAULT_TUTORIAL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         social = new Social();
@@ -57,6 +61,7 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        tutorial = personToCopy.getTutorial();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         social = personToCopy.getSocial();
@@ -119,8 +124,20 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Tutorial} of the {@code Person} that we are building.
+     *
+     * @param tutorial input tutorial
+     * @return person with tutorial
+     */
+    public PersonBuilder withTutorial(String tutorial) {
+        this.tutorial = new Tutorial(tutorial);
+        return this;
+    }
+
     public Person build() {
         return new Person(occupation, name, phone, email, address, tags, social, groups);
+        return new Person(occupation, name, phone, email, tutorial, address, tags, social, groups);
     }
 
 }

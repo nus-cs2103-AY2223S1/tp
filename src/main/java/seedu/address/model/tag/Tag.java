@@ -29,7 +29,14 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) | test.equals("No Tags Set");
+    }
+
+    /**
+     * Returns true if the value is the deleted placeholder.
+     */
+    public boolean isDeleted() {
+        return this.tagName.equals("No Tags Set");
     }
 
     @Override

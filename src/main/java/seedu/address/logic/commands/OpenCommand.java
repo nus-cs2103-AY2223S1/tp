@@ -41,6 +41,8 @@ public class OpenCommand extends Command {
     public static final String MESSAGE_BAD_LINK =
             "The link at the specified location does not work, try entering a new link";
 
+    private static final String SCHEME = "http://";
+    private static final String SCHEMES = "https://";
 
     private final Index index;
     private final String social;
@@ -97,21 +99,48 @@ public class OpenCommand extends Command {
     public String getLink(Person p, Socials s) throws CommandException {
         switch(s) {
 
-        case WHATSAPP:
-            return p.getSocial().getWhatsapp();
+        case WHATSAPP: {
+            String link = p.getSocial().getWhatsapp();
+            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
+                return link;
+            } else {
+                System.out.println(SCHEME + link);
+                return SCHEME + link;
+            }
+        }
 
-        case TELEGRAM:
-            return p.getSocial().getTelegram();
+        case TELEGRAM: {
+            String link = p.getSocial().getTelegram();
+            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
+                return link;
+            } else {
+                System.out.println(SCHEME + link);
+                return SCHEME + link;
+            }
+        }
 
         case EMAIL:
             return p.getSocial().getEmail();
 
-        case INSTAGRAM:
-            return p.getSocial().getInstagram();
+        case INSTAGRAM: {
+            String link = p.getSocial().getInstagram();
+            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
+                return link;
+            } else {
+                System.out.println(SCHEME + link);
+                return SCHEME + link;
+            }
+        }
 
-        case PREFERRED:
-            return p.getSocial().getPreferredLink();
-
+        case PREFERRED: {
+            String link = p.getSocial().getPreferredLink();
+            if (link.startsWith(SCHEME) || link.startsWith(SCHEMES)) {
+                return link;
+            } else {
+                System.out.println(SCHEME + link);
+                return SCHEME + link;
+            }
+        }
         default:
             throw new CommandException(MESSAGE_WRONG_SOCIAL);
         }
