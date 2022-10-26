@@ -73,6 +73,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return getName().fullName + "\n" + matricNum.toString() + "\n" + gradeProfile.toString();
+        return getName().fullName;
     }
 }
