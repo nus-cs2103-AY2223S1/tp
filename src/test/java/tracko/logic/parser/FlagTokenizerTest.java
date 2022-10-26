@@ -1,4 +1,4 @@
-package logic.parser;
+package tracko.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,11 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import tracko.logic.parser.ArgumentMultimap;
-import tracko.logic.parser.ArgumentTokenizer;
-import tracko.logic.parser.Flag;
-import tracko.logic.parser.FlagTokenizer;
 
 public class FlagTokenizerTest {
 

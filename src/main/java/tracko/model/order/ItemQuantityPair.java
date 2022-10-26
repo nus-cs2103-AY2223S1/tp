@@ -3,6 +3,7 @@ package tracko.model.order;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import tracko.model.item.Item;
+import tracko.model.item.Price;
 import tracko.model.item.Quantity;
 
 /**
@@ -64,6 +65,15 @@ public class ItemQuantityPair {
      */
     public Integer getQuantityValue() {
         return quantity.getQuantity();
+    }
+
+    /**
+     * Calculates the selling price of an ItemQuantityPair.
+     */
+    public Double calculatePrice() {
+        Price singleItemPrice = this.item.getSellPrice();
+        double itemPrice = singleItemPrice.multiply(quantity.getQuantity());
+        return itemPrice;
     }
 
     @Override

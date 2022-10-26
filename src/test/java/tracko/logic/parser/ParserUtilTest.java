@@ -1,4 +1,4 @@
-package logic.parser;
+package tracko.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.order.Address;
 import tracko.model.order.Email;

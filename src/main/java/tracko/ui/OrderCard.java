@@ -46,6 +46,8 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label deliveryStatus;
     @FXML
+    private Label totalOrderPrice;
+    @FXML
     private VBox items;
     @FXML
     private HBox dateContainer;
@@ -80,6 +82,10 @@ public class OrderCard extends UiPart<Region> {
         email.setText(order.getEmail().value);
         email.setWrapText(true);
         email.setPadding(new Insets(0, 10, 0, 0));
+
+        totalOrderPrice.setText("$" + String.format("%.2f", order.calculateTotalOrderPrice()));
+        totalOrderPrice.setWrapText(true);
+        totalOrderPrice.setPadding(new Insets(0, 10, 0, 0));
 
         if (order.getPaidStatus()) {
             paidStatus.setText("Paid");

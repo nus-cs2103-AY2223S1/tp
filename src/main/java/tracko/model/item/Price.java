@@ -51,6 +51,21 @@ public class Price {
         return bigDecimalPrice.doubleValue();
     }
 
+    /**
+     * Multiplies price with an integer value. Used to multiply the cost of an individual type
+     * of ordered items with its quantity.
+     *
+     * @param quantity The quantity of items ordered.
+     * @return The total price of one single type of ordered item.
+     */
+    public Double multiply(Integer quantity) {
+        BigDecimal bigDecimalPrice = new BigDecimal(price);
+        BigDecimal bigDecimalQuantity = new BigDecimal(quantity);
+        BigDecimal multipliedValue = bigDecimalPrice.multiply(bigDecimalQuantity);
+        multipliedValue.setScale(2, RoundingMode.HALF_UP);
+        return multipliedValue.doubleValue();
+    }
+
     @Override
     public String toString() {
         return String.format("%.2f", price);

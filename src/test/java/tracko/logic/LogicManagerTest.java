@@ -1,4 +1,4 @@
-package logic;
+package tracko.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 // import static tracko.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
@@ -18,8 +18,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 // import tracko.logic.commands.order.AddOrderCommand;
-import tracko.logic.Logic;
-import tracko.logic.LogicManager;
 import tracko.logic.commands.CommandResult;
 // import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.exceptions.CommandException;

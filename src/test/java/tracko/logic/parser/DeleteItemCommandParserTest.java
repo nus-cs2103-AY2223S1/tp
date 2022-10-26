@@ -1,8 +1,8 @@
 package tracko.logic.parser;
 
-import static logic.parser.CommandParserTestUtil.assertParseFailure;
-import static logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
