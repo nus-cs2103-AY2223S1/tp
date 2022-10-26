@@ -18,7 +18,7 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
   - [Adding a member to a group: `addmember`](#adding-a-member-to-a-group-addmember)
   - [Deleting a member from a group: `deletemember`](#deleting-a-member-from-a-group-deletemember)
   - [Display a group: `displaygroup`](#display-a-group-displaygroup)
-  - [Listing all groups: `listgroups`](#listing-all-persons-listpersons)
+  - [Listing all groups: `listgroups`](#listing-all-groups-listgroups)
   - [Assigning a task to a member: `assigntask`](#assigning-a-task-to-a-member-assigntask)
   - [Deleting a task from a member: `deletetask`](#deleting-a-task-from-a-member-deletetask)
   - [Assigning a task to all members: `assigntaskall`](#assigning-a-task-to-all-members-assigntaskall)
