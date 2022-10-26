@@ -18,6 +18,7 @@ import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
+import seedu.foodrem.views.StringView;
 import seedu.foodrem.views.UiView;
 
 /**
@@ -110,7 +111,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         uiView = new UiView(resultDisplay);
-        // TODO: resultDisplay.setFeedbackToUser(initialMessage);
+        resultDisplay.place(StringView.from(initialMessage));
         place(resultDisplayPlaceholder, resultDisplay);
 
         place(statusbarPlaceholder, new StatusBarFooter(logic.getFoodRemFilePath()));
