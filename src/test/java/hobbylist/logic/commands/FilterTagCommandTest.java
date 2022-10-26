@@ -63,9 +63,9 @@ public class FilterTagCommandTest {
 
     @Test
     public void setCommandWord_validWord_success() {
-        FindTagCommand.setCommandWord("test");
-        assertEquals(FindTagCommand.getCommandWord(), "test");
-        FindTagCommand.setCommandWord("filter");
+        FilterTagCommand.setCommandWord("test");
+        assertEquals(FilterTagCommand.getCommandWord(), "test");
+        FilterTagCommand.setCommandWord("filter");
     }
 
     /**

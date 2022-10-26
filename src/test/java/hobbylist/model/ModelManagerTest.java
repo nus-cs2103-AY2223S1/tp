@@ -68,7 +68,7 @@ public class ModelManagerTest {
 
     @Test
     public void setAliasSettings_validAliasSettings_setsAliasSettings() {
-        AliasSettings aliasSettings = new AliasSettings("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+        AliasSettings aliasSettings = new AliasSettings("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11");
         modelManager.setAliasSettings(aliasSettings);
         assertEquals(aliasSettings, modelManager.getAliasSettings());
     }
