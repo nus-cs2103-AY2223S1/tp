@@ -252,6 +252,10 @@ public class StringUtilTest {
         assertThrows(ParseException.class, () -> StringUtil.formatTime("10"));
         assertThrows(ParseException.class, () -> StringUtil.formatTime("13am"));
         assertThrows(ParseException.class, () -> StringUtil.formatTime("13pm"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("13:00am"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("13:00pm"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("1300am"));
+        assertThrows(ParseException.class, () -> StringUtil.formatTime("1300pm"));
     }
 
     @Test
@@ -263,6 +267,7 @@ public class StringUtilTest {
         assertEquals("10:30", StringUtil.formatTime("10:30"));
         assertEquals("10:30", StringUtil.formatTime("1030"));
         assertEquals("01:30", StringUtil.formatTime("130"));
+        assertEquals("01:30", StringUtil.formatTime("1:30"));
 
         //formatTime not meant to catch these as its only a format converter
         assertEquals("10:99", StringUtil.formatTime("10:99"));
