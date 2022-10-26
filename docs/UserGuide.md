@@ -160,7 +160,7 @@ Format: `createteam n/TEAM-NAME`
 Examples:
 * `createteam n/Team1` Adds a team with the name Team1.
 
-### Deleting a team: `deleteteam`
+### Deleting a team: `delteam`
 
 Deletes the given team from EZLead.
 
@@ -203,5 +203,5 @@ Coming Soon!
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME` <br> e.g. `taskedit t/1 task/1 n/Finish assignment`                                                    |
 | **Team Add**        | `createteam n/TEAM-NAME` <br> e.g. `createteam n/TEAM1`                                                                                                        |
-| **Team Delete**     | `deleteteam t/TEAM-INDEX` <br> e.g. `deleteteam t/1`                                                                                                           |
+| **Team Delete**     | `delteam t/TEAM-INDEX` <br> e.g. `deleteteam t/1`                                                                                                              |
 | **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
