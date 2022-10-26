@@ -54,6 +54,14 @@ class CheckoutCommandTest {
     }
 
     @Test
+    public void execute_sameBook_throwsCommandException() {
+        Model validModel = new ModelManager();
+        validModel.setAddressBookFilePath(validPath);
+        assertThrows(CommandException.class, () ->
+            new CheckoutCommand(validPath).execute(validModel, storageStub));
+    }
+
+    @Test
     public void execute_allValidParameters_checkoutSuccessful() throws CommandException {
         Storage validStorage = new StorageManager(new JsonAddressBookStorage(validPath), validUserPrefsStorage);
         Model validModel = new ModelManager();

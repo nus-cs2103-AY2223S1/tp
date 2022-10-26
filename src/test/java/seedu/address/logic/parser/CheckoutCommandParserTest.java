@@ -25,6 +25,11 @@ class CheckoutCommandParserTest {
     }
 
     @Test
+    void parse_invalidString_throwsParseException() {
+        assertThrows(ParseException.class, () -> new CheckoutCommandParser().parse("*/?#"));
+    }
+
+    @Test
     void parse_validString_parseSuccessful() {
         String validString = "test";
         Path validPath = Paths.get("data", "test.json");
