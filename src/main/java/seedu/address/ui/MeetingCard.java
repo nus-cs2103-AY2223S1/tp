@@ -21,6 +21,8 @@ public class MeetingCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label time;
+    @FXML
+    private Label name;
 
     /**
      * Creates a {@code MeetingCard} with the given {@code Meeting} and index to display.
@@ -32,6 +34,7 @@ public class MeetingCard extends UiPart<Region> {
         description.setText(meeting.getDescription().toString());
         date.setText(meeting.getMeetingDate().toString());
         time.setText(meeting.getMeetingStartTime().toString() + " - " + meeting.getMeetingEndTime().toString());
+        name.setText(meeting.getClientName().toString());
     }
 
     @Override

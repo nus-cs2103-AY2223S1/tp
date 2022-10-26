@@ -12,9 +12,10 @@
    <GridPane prefHeight="0.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
       <columnConstraints>
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="10.0" prefWidth="150" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="150.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="150.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="150.0" />
       </columnConstraints>
       <rowConstraints>
          <RowConstraints />
@@ -26,9 +27,10 @@
                      <Region fx:constant="USE_PREF_SIZE" />
                  </minWidth>
              </Label>
-             <Label fx:id="description" styleClass="cell_big_label" text="\$desc" GridPane.columnIndex="1" />
-            <Label fx:id="date" styleClass="cell_big_label" text="\$date" GridPane.columnIndex="2" />
-            <Label fx:id="time" styleClass="cell_big_label" text="\$time" GridPane.columnIndex="3" />
+             <Label fx:id="description" styleClass="cell_big_label" text="\$desc" GridPane.columnIndex="2" />
+            <Label fx:id="date" styleClass="cell_big_label" text="\$date" GridPane.columnIndex="3" />
+            <Label fx:id="time" styleClass="cell_big_label" text="\$time" GridPane.columnIndex="4" />
+         <Label fx:id="name" styleClass="cell_big_label" text="\$name" GridPane.columnIndex="1" />
       </children>
       <HBox.margin>
          <Insets />
