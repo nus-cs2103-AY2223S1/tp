@@ -14,15 +14,8 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.issue.AddIssueCommand;
-import seedu.address.logic.commands.issue.DeleteIssueCommand;
-import seedu.address.logic.commands.issue.EditIssueCommand;
-import seedu.address.logic.commands.issue.IssueCommand;
-import seedu.address.logic.commands.issue.ListIssueCommand;
-import seedu.address.logic.commands.issue.MarkIssueCommand;
-import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
-import seedu.address.logic.commands.issue.SortIssueCommand;
-import seedu.address.logic.commands.issue.UnmarkIssueCommand;
+import seedu.address.logic.commands.client.PinClientCommand;
+import seedu.address.logic.commands.issue.*;
 import seedu.address.logic.commands.issue.find.FindIssueByDescriptionCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByPriorityCommand;
 import seedu.address.logic.commands.issue.find.FindIssueByProjectCommand;
@@ -30,6 +23,7 @@ import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
 import seedu.address.logic.commands.issue.find.FindIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
+import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.IssueWithoutModel;
@@ -74,6 +68,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseSetIssueDefaultViewCommand(arguments);
         case FindIssueCommand.COMMAND_FLAG:
             return parseFindIssueCommand(arguments);
+        case PinIssueCommand.COMMAND_FLAG:
+            return parsePinIssueCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -257,6 +253,17 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         return new SortIssueCommand(sortPrefix, key);
+    }
+
+    private PinIssueCommand parsePinIssueCommand(String arguments) throws ParseException {
+        try {
+            IssueId pinnedIssueId = ParserUtil.parseIssueId(arguments);
+            return new PinIssueCommand(pinnedIssueId);
+        } catch (ParseException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinIssueCommand.MESSAGE_USAGE), e);
+        }
+
     }
 
     private ListIssueCommand parseListIssueCommand(String arguments) {

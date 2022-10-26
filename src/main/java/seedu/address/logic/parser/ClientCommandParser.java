@@ -13,23 +13,15 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.client.AddClientCommand;
-import seedu.address.logic.commands.client.ClientCommand;
-import seedu.address.logic.commands.client.DeleteClientCommand;
-import seedu.address.logic.commands.client.EditClientCommand;
-import seedu.address.logic.commands.client.ListClientCommand;
-import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
-import seedu.address.logic.commands.client.SortClientCommand;
+import seedu.address.logic.commands.client.*;
 import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
 import seedu.address.logic.commands.client.find.FindClientByNameCommand;
 import seedu.address.logic.commands.client.find.FindClientByPhoneCommand;
 import seedu.address.logic.commands.client.find.FindClientCommand;
+import seedu.address.logic.commands.issue.MarkIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
-import seedu.address.model.client.ClientEmail;
-import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
-import seedu.address.model.client.ClientWithoutModel;
+import seedu.address.model.client.*;
 import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
@@ -65,6 +57,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             return parseSortClientCommand(arguments);
         case FindClientCommand.COMMAND_FLAG:
             return parseFindClientCommand(arguments);
+        case PinClientCommand.COMMAND_FLAG:
+            return parsePinClientCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -258,6 +252,17 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         return new SortClientCommand(sortPrefix, key);
+    }
+
+    private PinClientCommand parsePinClientCommand(String arguments) throws ParseException {
+        try {
+            ClientId pinnedClientId = ParserUtil.parseClientId(arguments);
+            return new PinClientCommand(pinnedClientId);
+        } catch (ParseException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinClientCommand.MESSAGE_USAGE), e);
+        }
+
     }
 
     /**

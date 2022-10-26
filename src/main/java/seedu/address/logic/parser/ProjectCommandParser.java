@@ -15,13 +15,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.project.AddProjectCommand;
-import seedu.address.logic.commands.project.DeleteProjectCommand;
-import seedu.address.logic.commands.project.EditProjectCommand;
-import seedu.address.logic.commands.project.ListProjectCommand;
-import seedu.address.logic.commands.project.ProjectCommand;
-import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
-import seedu.address.logic.commands.project.SortProjectCommand;
+import seedu.address.logic.commands.client.PinClientCommand;
+import seedu.address.logic.commands.project.*;
 import seedu.address.logic.commands.project.find.FindProjectByNameCommand;
 import seedu.address.logic.commands.project.find.FindProjectByRepositoryCommand;
 import seedu.address.logic.commands.project.find.FindProjectCommand;
@@ -66,12 +61,23 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             return parseSetProjectDefaultViewCommand(arguments);
         case FindProjectCommand.COMMAND_FLAG:
             return parseFindProjectCommand(arguments);
+        case PinProjectCommand.COMMAND_FLAG:
+            return parsePinProjectCommand(arguments);
 
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
 
+    private ProjectCommand parsePinProjectCommand(String arguments) throws ParseException {
+        try {
+            ProjectId pinnedProjectId = ParserUtil.parseProjectId(arguments);
+            return new PinProjectCommand(pinnedProjectId);
+        } catch (ParseException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinProjectCommand.MESSAGE_USAGE), e);
+        }
+    }
 
 
     /**

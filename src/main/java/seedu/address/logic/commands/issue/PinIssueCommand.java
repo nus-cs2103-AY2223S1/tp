@@ -4,6 +4,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
 import seedu.address.ui.Ui;
 
 public class PinIssueCommand extends IssueCommand {
@@ -11,11 +12,17 @@ public class PinIssueCommand extends IssueCommand {
     public static final String COMMAND_FLAG = "-p";
 
     public static final String MESSAGE_SUCCESS = "Issue pinned: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+            + ": Pins the issue identified by the issue id \n"
+            + "Parameters: ISSUE_ID (must be a positive integer) "
+            + "Example: " + COMMAND_WORD + " "
+            + COMMAND_FLAG + " 1";
 
-    public Issue toPinIssue;
+    public IssueId toPinIssueId;
 
-    public PinIssueCommand(Issue toPinIssue) {
-        this.toPinIssue = toPinIssue;
+    public PinIssueCommand(IssueId toPinIssueId) {
+        this.toPinIssueId = toPinIssueId;
     }
 
     /**
@@ -28,7 +35,8 @@ public class PinIssueCommand extends IssueCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
-        this.toPinIssue.togglePin();
+        Issue toPinIssue = model.getIssueById(this.toPinIssueId.getIdInt());
+        toPinIssue.togglePin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinIssue));
     }
 }

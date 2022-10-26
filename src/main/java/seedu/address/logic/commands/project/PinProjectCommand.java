@@ -4,6 +4,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 import seedu.address.ui.Ui;
 
 public class PinProjectCommand extends ProjectCommand {
@@ -11,11 +12,17 @@ public class PinProjectCommand extends ProjectCommand {
     public static final String COMMAND_FLAG = "-p";
 
     public static final String MESSAGE_SUCCESS = "Project pinned: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+            + ": Pins the project identified by the project id \n"
+            + "Parameters: PROJECT_ID (must be a positive integer) "
+            + "Example: " + COMMAND_WORD + " "
+            + COMMAND_FLAG + " 1";
 
-    public Project toPinProject;
+    public ProjectId toPinProjectId;
 
-    public PinProjectCommand(Project toPinProject) {
-        this.toPinProject = toPinProject;
+    public PinProjectCommand(ProjectId toPinProjectId) {
+        this.toPinProjectId = toPinProjectId;
     }
 
     /**
@@ -28,7 +35,8 @@ public class PinProjectCommand extends ProjectCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
-        this.toPinProject.togglePin();
+        Project toPinProject = model.getProjectById(this.toPinProjectId.getIdInt());
+        toPinProject.togglePin();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toPinProject));
     }
 }
