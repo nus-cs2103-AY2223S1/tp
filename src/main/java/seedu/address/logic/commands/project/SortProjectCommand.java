@@ -22,7 +22,7 @@ public class SortProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted projects";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort projects in address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort projects in address book. \n"
             + "Sort by project id: "
             + PREFIX_PROJECT_ID + "0 (ascending) or "
             + PREFIX_PROJECT_ID + "1 (descending). "
@@ -34,7 +34,7 @@ public class SortProjectCommand extends ProjectCommand {
             + PREFIX_ISSUE_COUNT + "1 (incomplete). "
             + "Sort by name count: "
             + PREFIX_NAME + "0 (alphabetical) or "
-            + PREFIX_NAME + "1 (reverse alphabetical). "
+            + PREFIX_NAME + "1 (reverse alphabetical). \n"
             + "Example: "
             + COMMAND_WORD + " "
             + COMMAND_FLAG + " "

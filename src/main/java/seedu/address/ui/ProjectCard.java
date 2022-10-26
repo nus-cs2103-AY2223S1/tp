@@ -60,7 +60,7 @@ public class ProjectCard extends UiPart<Region> {
                 : project.getDeadline().uiRepresentation());
         client.setText(project.getClient().isEmpty()
                 ? "No Client Set"
-                : "Client In Charge: " + project.getClient().uiRepresentation());
+                : "Client in charge: " + project.getClient().uiRepresentation());
         issueCount.setText(project.getIssueList().size() + " issues ("
                 + project.getCompletedIssueCount() + " complete, "
                 + project.getIncompleteIssueCount() + " incomplete)");

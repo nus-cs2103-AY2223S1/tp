@@ -21,7 +21,7 @@ public class SortIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted issues";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort issues in address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort issues in address book. \n"
             + "Sort by issue id: "
             + PREFIX_DEADLINE + "0 (ascending) or "
             + PREFIX_DEADLINE + "1 (descending). "
@@ -30,7 +30,7 @@ public class SortIssueCommand extends IssueCommand {
             + PREFIX_DEADLINE + "1 (reverse chronological). "
             + "Sort by priority: "
             + PREFIX_URGENCY + "0 (lowest) or "
-            + PREFIX_URGENCY + "1 (highest). "
+            + PREFIX_URGENCY + "1 (highest). \n"
             + "Example: "
             + COMMAND_WORD + " "
             + COMMAND_FLAG + " "

@@ -21,7 +21,7 @@ public class UnmarkIssueCommand extends IssueCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Marks the issue identified by the issue id as incomplete \n"
-            + "Parameters: ISSUE_ID (must be a positive integer) "
+            + "Parameters: ISSUE_ID (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 

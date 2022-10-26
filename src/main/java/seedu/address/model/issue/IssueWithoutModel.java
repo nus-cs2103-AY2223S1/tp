@@ -15,7 +15,7 @@ import seedu.address.model.project.ProjectId;
  */
 public class IssueWithoutModel implements Function<Model, Issue> {
 
-    private final Description description;
+    private final Title title;
     private final Deadline deadline;
     private final Status status;
     private final Priority priority;
@@ -23,15 +23,15 @@ public class IssueWithoutModel implements Function<Model, Issue> {
 
     /**
      * Partially initialise an issue without access to a Model object.
-     * @param description description of issue
+     * @param title title of issue
      * @param deadline deadline of isseu
      * @param priority priority of issue
      * @param status status of issue
      * @param projectId projectId of project that issue is attached to.
      */
-    public IssueWithoutModel(Description description, Deadline deadline,
+    public IssueWithoutModel(Title title, Deadline deadline,
                              Priority priority, Status status, ProjectId projectId) {
-        this.description = description;
+        this.title = title;
         this.deadline = deadline;
         this.priority = priority;
         this.status = status;
@@ -41,7 +41,7 @@ public class IssueWithoutModel implements Function<Model, Issue> {
 
     @Override
     public Issue apply(Model model) {
-        return new Issue(description,
+        return new Issue(title,
                 deadline,
                 priority,
                 status,
@@ -57,7 +57,7 @@ public class IssueWithoutModel implements Function<Model, Issue> {
         }
         IssueWithoutModel i = (IssueWithoutModel) o;
         return i == this || (
-                this.description.equals(i.description)
+                this.title.equals(i.title)
                         && this.deadline.equals(i.deadline)
                         && this.priority.equals(i.priority)
                         && this.status.equals(i.status)

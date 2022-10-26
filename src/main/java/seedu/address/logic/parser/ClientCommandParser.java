@@ -3,12 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID_ID;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -137,17 +136,17 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      */
     private EditClientCommand parseEditClientCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_ID_ID, PREFIX_NAME,
+                ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_ID, PREFIX_NAME,
                         PREFIX_EMAIL, PREFIX_MOBILE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID_ID) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditClientCommand.MESSAGE_USAGE));
         }
         Name newName = null;
         ClientEmail newEmail = null;
         ClientPhone newPhone = null;
-        ClientId newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID_ID).get());
+        ClientId newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,

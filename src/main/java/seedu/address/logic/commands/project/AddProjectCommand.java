@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID_ID;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
@@ -24,16 +24,16 @@ public class AddProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-            + ": Adds a project to the address book. "
+            + ": Adds a project to the address book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_CLIENT_ID_ID + "CLIENT_ID "
+            + PREFIX_CLIENT_ID + "CLIENT_ID "
             + PREFIX_REPOSITORY + "REPOSITORY "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "
-            + PREFIX_CLIENT_ID_ID + "1 "
+            + PREFIX_CLIENT_ID + "1 "
             + PREFIX_REPOSITORY + "JohnDoe/tp "
             + PREFIX_DEADLINE + "2022-03-05 ";
 
