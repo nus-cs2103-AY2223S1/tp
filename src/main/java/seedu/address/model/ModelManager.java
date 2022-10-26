@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -168,9 +169,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName) {
+    public void editTask(Index teamIndex, Index taskIndex, seedu.address.model.task.Name newName, LocalDate newDeadline) {
         requireAllNonNull(teamIndex, taskIndex, newName);
-        addressBook.editTask(teamIndex, taskIndex, newName);
+        addressBook.editTask(teamIndex, taskIndex, newName, newDeadline);
         updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }

@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.isNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -46,8 +47,14 @@ public class Task {
         return this.name;
     }
 
-    public void editName(Name newName) {
+    public void editTaskDesc(Name newName, LocalDate newDeadline) {
         this.name = newName;
+        if(!isNull(newDeadline)) {
+            this.deadline = Optional.ofNullable(newDeadline);
+        }
+        else {
+            this.deadline = this.deadline;
+        }
     }
 
     public Optional<LocalDate> getDeadline() {

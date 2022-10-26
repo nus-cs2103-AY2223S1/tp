@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
@@ -11,6 +12,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TaskEditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Name;
+
+import java.time.LocalDate;
 
 /**
  * Parses input arguments and creates a new TaskEditCommand object
@@ -26,11 +29,12 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX, PREFIX_TASK_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX, PREFIX_TASK_NAME, PREFIX_TASK_DEADLINE);
 
         Index taskIndex;
         Index teamIndex;
         Name newName;
+        LocalDate newDeadline;
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX, PREFIX_TASK_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskEditCommand.MESSAGE_USAGE));
@@ -45,7 +49,10 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
         }
 
         newName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
-        return new TaskEditCommand(teamIndex, taskIndex, newName);
+        newDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null))
+                .orElse(null);
+
+        return new TaskEditCommand(teamIndex, taskIndex, newName, newDeadline);
     }
 
 }
