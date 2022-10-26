@@ -107,16 +107,17 @@ Note: Multiple students may share the same name.
 2. Student’s Contact Number:
    - Student’s contact number must not be empty. 
    - Student’s contact number must only contain numerical digits between `0` and `9`.
+   - Student's contact number must begin with `6`, `8` or `9`. 
 ```yaml
-Note: Contact number must contain at least 3 digits. Contact number must be unique.
+Note: Contact number must contain exactly 8 digits. Contact number must be unique.
 ```
 
 3. Next of Kin’s Contact Number:
     - Next of Kin’s contact number must not be empty.
-    - Next of Kin’s contact number must contain 8 numerical digits between `0` and `9`.
+    - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`. 
 ```yaml
-Note: Next of Kin’s contact number cannot be empty. It must contain at least 3 digits.
+Note: Next of Kin’s contact number must contain exactly 8 digits.
 ```
 
 4. Address:
@@ -131,10 +132,6 @@ Note: Address cannot be empty. It must contain at least 1 character.
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
       - Domain address should be least 2 characters long.
-
-```yaml
-Note: Email cannot be empty. It must fulfil the above requirements.
-```
 
 4. Tags:
     - Tags are optional.
