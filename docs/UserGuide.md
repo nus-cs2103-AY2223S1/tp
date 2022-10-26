@@ -203,7 +203,7 @@ Sorts the list of internship applications on the left panel by the date and time
 Format: `sort ORDER`
 
 * The internships are also sorted with the current date and time taken into consideration.
-* The date of the task that is the earliest and is on or after the current date(if any) in the internship will be used
+* The date of the task that is the earliest and is on or after the current date (if any) in the internship will be used
 as the factor in sorting, if there aren't any, the date of the task with  the
 earliest date will be used instead for that internship.
 * `sort a`  will sort all internships in an ascending manner, with the
@@ -296,25 +296,25 @@ Expected outcome:
 
 ## Command summary
 
-| Action               | Format, Examples              |
-|----------------------|-------------------------------|
-| **Help**             | `help`                        |
-| **List**             | `list`                        |
-| **Clear**            | `clear`                       |
-| **Exit**             | `exit`                        |
-| **Add**              |                               |
-| **Delete**           |                               |
-| **Edit**             |                               |
-| **Status**           | `status`, `status 1 o`        |
-| **Remark**           | `remark`, `remark 1 r/ hello` |
-| **Find by Company**  |                               |
-| **Find by Position** |                               |
-| **Filter**           |                               |
-| **Sort**             | `sort`, `sort a`. `sort b`    |
-| **Stats**            |                               |
-| **Select**           |                               |
-| **Add Task**         |                               |
-| **Delete Task**      |                               |
-| **Add Tag**          | `addtag`, `addtag 1 Urgent`   |
-| **Delete Tag**       | `deltag`, `deltag 1 Urgent`   |
+| Action               | Format, Examples                 |
+|----------------------|----------------------------------|
+| **Help**             | `help`                           |
+| **List**             | `list`                           |
+| **Clear**            | `clear`                          |
+| **Exit**             | `exit`                           |
+| **Add**              |                                  |
+| **Delete**           |                                  |
+| **Edit**             |                                  |
+| **Status**           | `status`, `status 1 o`           |
+| **Remark**           | `remark`, `remark 1 r/ hello`    |
+| **Find by Company**  |                                  |
+| **Find by Position** |                                  |
+| **Filter**           |                                  |
+| **Sort**             | `sort ORDER`<br> e.g.`, `sort a` |
+| **Stats**            |                                  |
+| **Select**           |                                  |
+| **Add Task**         |                                  |
+| **Delete Task**      |                                  |
+| **Add Tag**          | `addtag`, `addtag 1 Urgent`      |
+| **Delete Tag**       | `deltag`, `deltag 1 Urgent`      |
 

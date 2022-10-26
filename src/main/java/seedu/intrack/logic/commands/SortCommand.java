@@ -2,6 +2,8 @@ package seedu.intrack.logic.commands;
 
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.intrack.logic.commands.exceptions.CommandException;
@@ -48,10 +50,12 @@ public class SortCommand extends Command {
             model.ascendSort();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
             return new CommandResult(String.format(MESSAGE_SUCCESS_A, model.getFilteredInternshipList().size()));
-        } else {
+        } else if (orderType.equals("d")) {
             model.descendSort();
             model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
             return new CommandResult(String.format(MESSAGE_SUCCESS_D, model.getFilteredInternshipList().size()));
+        } else {
+            throw new CommandException(SORT_COMMAND_CONSTRAINTS);
         }
     }
 
