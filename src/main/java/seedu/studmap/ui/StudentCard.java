@@ -67,12 +67,12 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        email.setText(student.getEmail().value);
-        module.setText(student.getModule().value);
-        studentId.setText(student.getId().value);
-        gitName.setText("Github: " + student.getGitName().value);
-        handle.setText("Telegram: " + student.getTeleHandle().value);
+        phone.setText(student.getPhone().toString());
+        email.setText(student.getEmail().toString());
+        module.setText(student.getModule().toString());
+        studentId.setText(student.getId().toString());
+        gitName.setText("Github: " + student.getGitName().toString());
+        handle.setText("Telegram: " + student.getTeleHandle().toString());
 
         Label attendanceRateName = new Label("Attendance: ");
         attendanceRateName.setId("info");
