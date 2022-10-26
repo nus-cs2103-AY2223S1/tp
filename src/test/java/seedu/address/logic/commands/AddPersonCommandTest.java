@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -108,6 +109,11 @@ public class AddPersonCommandTest {
 
         @Override
         public void setTeam(Team teamToSet) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTeams(List<Team> teams) {
             throw new AssertionError("This method should not be called.");
         }
 

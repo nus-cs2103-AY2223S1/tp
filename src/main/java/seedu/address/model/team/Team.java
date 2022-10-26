@@ -20,8 +20,10 @@ public class Team {
 
     public static final String MESSAGE_CONSTRAINTS = "Team names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String DESCRIPTION_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private final String teamName;
+    private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
     private final TaskList taskList = new TaskList();
     private final UniqueLinkList links = new UniqueLinkList();
@@ -29,22 +31,26 @@ public class Team {
     /**
      * Constructs a {@code Team}.
      *
-     * @param teamName A valid team name.
+     * @param teamName    A valid team name.
+     * @param description A valid team description.
      */
-    public Team(String teamName) {
+    public Team(String teamName, String description) {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTeamDescription(description), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
+        this.description = description;
     }
 
     /**
      * Constructs a {@code Team}.
      *
      * @param teamName    A valid team name.
+     * @param description A valid team description.
      * @param teamMembers A list of persons to be added as members.
      */
-    public Team(String teamName, List<Person> teamMembers) {
-        this(teamName);
+    public Team(String teamName, String description, List<Person> teamMembers) {
+        this(teamName, description);
         this.teamMembers.setPersons(teamMembers);
     }
 
@@ -52,11 +58,12 @@ public class Team {
      * Constructs a {@code Team}
      *
      * @param teamName    A valid team name
+     * @param description A valid team description.
      * @param teamMembers A list of persons to be added as members
      * @param tasks       A list of tasks for the team to do
      */
-    public Team(String teamName, List<Person> teamMembers, List<Task> tasks) {
-        this(teamName, teamMembers);
+    public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks) {
+        this(teamName, description, teamMembers);
         this.taskList.setTasks(tasks);
     }
 
@@ -64,28 +71,30 @@ public class Team {
      * Constructs a {@code Team}
      *
      * @param teamName    A valid team name
+     * @param description A valid team description.
      * @param teamMembers A list of persons to be added as members
      * @param tasks       A list of tasks for the team to do
      * @param links       A list of links that the team should keep track of
      */
-    public Team(String teamName, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
-        this(teamName, teamMembers, tasks);
+    public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
+        this(teamName, description, teamMembers, tasks);
         this.links.setLinks(links);
     }
 
-    public static Team createDefaultTeam() {
-        return new Team("default", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-    }
-
     /**
-     * Returns true if a given string is a valid tag name.
+     * This method creates a default team in TruthTable.
      */
-    public static boolean isValidTeamName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static Team createDefaultTeam() {
+        return new Team("default", "A default team created just for you",
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     public String getTeamName() {
         return teamName;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     /**
@@ -172,6 +181,20 @@ public class Team {
     }
 
     /**
+     * Returns true if a given string is a valid tag name.
+     */
+    public static boolean isValidTeamName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid description name.
+     */
+    public static boolean isValidTeamDescription(String test) {
+        return test.matches(DESCRIPTION_VALIDATION_REGEX);
+    }
+
+    /**
      * Returns true if both teams have the same name.
      */
     public boolean isSameTeam(Team otherTeam) {
@@ -234,7 +257,8 @@ public class Team {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTeamName());
-
+        builder.append("; Description: ");
+        builder.append(getDescription());
         List<Person> members = getTeamMembers();
         if (!members.isEmpty()) {
             builder.append("; Members: ");

@@ -61,12 +61,14 @@ Format:
 Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name.
 
 Format:
-* `add team TEAM_NAME`
+* `add team -n TEAM_NAME [-d TEAM_DESCRIPTION]`
 
 Examples:
-* `add team CS2103` will create a new team by the name of "CS2103"
+* `add team -n CS2103` will create a new team by the name of "CS2103"
+* `add team -n CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems" 
+  as description
 
-### Set a new team `set team`
+### Set a new team `set_team`
 
 Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
 
@@ -75,6 +77,16 @@ Format:
 
 Examples:
 * `set team CS2103` will change the current working team to be the "CS2103" team.
+
+### Edit current team `edit team`
+
+Format:
+* `edit team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
+* 
+Examples:
+* `edit team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description 
+  to "Software Engineering"
+
 
 ### Delete an existing team `delete team`
 
@@ -93,12 +105,12 @@ Examples:
 Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
 
 Format:
-* `add member TASK_INDEX`
+* `add_member TASK_INDEX`
 
 Examples:
 * `add member 1` will add the first person in the list of people as a member of the current team.
 
-### Delete a member from team `delete member`
+### Delete a member from team `delete_member`
 
 Delete a team member from the user’s team. Will throw an error if no member with that name is found. Take note that
 names are case-sensitive.
@@ -116,7 +128,7 @@ View all the members currently in the team, in the form of a list.
 Format:
 * `list members`
 
-### Add task to team : `add task`
+### Add task to team : `add_task`
 
 Add a new task to the current team.
 

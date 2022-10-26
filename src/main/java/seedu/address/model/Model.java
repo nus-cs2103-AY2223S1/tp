@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
@@ -70,6 +71,9 @@ public interface Model {
 
     /** Sets the current team to an existing team */
     void setTeam(Team teamToSet);
+
+    /** Sets the current list of teams to a new list */
+    void setTeams(List<Team> teams);
 
     /** Adds a new team */
     void addTeam(Team teamToAdd);
