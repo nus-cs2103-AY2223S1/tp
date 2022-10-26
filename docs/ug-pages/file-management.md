@@ -53,15 +53,16 @@ Examples:
 
 ### Deleting an existing data file : `file delete`
 
-Deletes the specified folder if it exists.
+RC4HDB provides users with the ability to delete their data folders when they no longer require them.
 
 Format: `file delete FOLDER_NAME`
-* Does not delete the file if it is the data file that is currently open. You may switch to a different file before deleting the previously open data file.
+* Does not delete the folder if it is currently in use. You may [switch](#switching-to-a-different-data-file--file-switch) to a different folder before deleting the data folder in use.
+* Does not delete the folder if it contains files other than the **resident** and **venue** data files. Refer to this section on [finding your data files](data-management.md#finding-your-data-file) to find the data folder and manually delete any foreign files in the folder.
 
 :information source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
-* `file delete rc4_data_2022` will delete the `rc4_data_2022` folder and all it's contents.
+* `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
 
 [Back to Top](#back-to-menuuserguidemd)
 
@@ -69,17 +70,15 @@ Examples:
 
 ### Switching to a different data file : `file switch`
 
-Switches the current data file to the file specified.
+RC4HDB provides users with the ability to switch between different data folders.
 
 Format: `file switch FOLDER_NAME`
-* Does not create a new file if the specified file does not exist.
-* The file must be a `.json` file.
+* Does not create a new file if the specified folder does not exist.
 
 :information source: `FOLDER_NAME` must follow this [format](#file-command-format).
 
 Examples:
-* `file switch rc4_data_2022` will switch the current data file to `rc4_data_2022.json`.
-* `file switch rc4_data_2022.json` will switch the current data file to `rc4_data_2022.json.json`.
+* `file switch rc4_data_2022` will switch the current data folder to `rc4_data_2022`.
 
 [Back to Top](#back-to-menuuserguidemd)
 
@@ -87,14 +86,14 @@ Examples:
 
 ### Importing from CSV file : `file import`
 
-RC4HDB provides users with the ability to import data from `.csv` files. In order for RC4HDB to find your files, place them in the data folder, `[JAR file location]/data`.
+RC4HDB provides users with the ability to import data from [CSV](glossary.md#csv) files. In order for RC4HDB to find your files, place them in the [main data folder](data-management.md#finding-your-data-file).
 
 Format: `file import FOLDER_NAME`
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
 Examples:
-* `file import residents` will import the data from `residents.csv` into a new data file `residents.json`.
+* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the main data folder.
 
 [Back to Top](#back-to-menuuserguidemd)
 
@@ -105,8 +104,8 @@ Examples:
 :information_source: All fields must adhere to this [format](modifying-residents.md#format-for-resident-fields).<br>
 
 Format:
-* For clarity, the table column headers have been included. **DO NOT** include them in your `.csv` file.
-* All fields are mandatory, apart from `TAGS`, which requires users to input a `NIL`, which is not case-sensitive.
+* For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
+* All fields are mandatory, apart from `TAGS`, where users to input a `NIL`, which is **not** case-sensitive.
 
 | NAME         | PHONE_NUMBER | EMAIL                   | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS                |
 |--------------|--------------|-------------------------|------------|--------|--------|---------------|---------------------|

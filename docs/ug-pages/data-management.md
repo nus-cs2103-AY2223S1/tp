@@ -7,9 +7,11 @@ title: Data Management
 
 ### Finding your data file
 
-RC4HDB **resident** and **venue** data is all stored locally on your hard disk in the `[JAR file location]/data` folder. This folder contains all the data folders which store the **resident** and **venue** data files. The default data folder that all copies of RC4HDB start out with is the `rc4hdb` folder.
+RC4HDB **resident** and **venue** data is all stored locally on your hard disk in the main data folder at `[JAR file location]/data`. This folder contains all the data folders which store the **resident** and **venue** data files. The default data folder that all copies of RC4HDB start out with is the `rc4hdb` folder.
 
 Inside your data folder, there should be two [JSON](glossary.md#json) files, `resident_data.json` and `venue_data.json`, which store your **resident** and **venue** data respectively.
+
+---
 
 ### Editing the data file
 
