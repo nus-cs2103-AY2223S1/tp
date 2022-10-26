@@ -41,15 +41,18 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private StackPane resultDisplayPlaceholder;
     @FXML private StackPane statusbarPlaceholder;
 
+    private final String initialMessage;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, String message) {
         super("MainWindow.fxml", primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.initialMessage = message;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -107,6 +110,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         uiView = new UiView(resultDisplay);
+        // TODO: resultDisplay.setFeedbackToUser(initialMessage);
         place(resultDisplayPlaceholder, resultDisplay);
 
         place(statusbarPlaceholder, new StatusBarFooter(logic.getFoodRemFilePath()));

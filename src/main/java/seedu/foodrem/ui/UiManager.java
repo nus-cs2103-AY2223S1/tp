@@ -48,7 +48,7 @@ public class UiManager implements Ui {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage, String message) {
         logger.info("Starting UI...");
 
         // Set the application icon.
@@ -56,10 +56,9 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(icon);
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic, message);
             mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

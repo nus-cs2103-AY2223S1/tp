@@ -36,34 +36,16 @@ public class TagCommand extends Command {
         this.tag = new Tag(tagName);
     }
 
-    /**
-     * Creates and returns a {@code Item} with the tagSet of {@code itemToEdit}
-     * edited
-     */
-    private static Item createTaggedItem(Item itemToTag, Tag tag) {
-        assert itemToTag != null;
-
-        itemToTag.addItemTag(tag);
-        Set<Tag> newTagSet = itemToTag.getTagSet();
-
-        return new Item(itemToTag.getName(),
-                itemToTag.getQuantity(),
-                itemToTag.getUnit(),
-                itemToTag.getBoughtDate(),
-                itemToTag.getExpiryDate(),
-                itemToTag.getPrice(),
-                itemToTag.getRemarks(),
-                newTagSet);
-    }
-
     @Override
     public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         Item itemToTag = validateAndGetTargetItem(model, tag, index);
-        if (itemToTag.containsTag(tag)) {
+        Set<Tag> itemTags = itemToTag.getTagSet();
+        if (itemTags.contains(tag)) {
             throw new CommandException(ERROR_DUPLICATE);
         }
+        itemTags.add(tag);
+        Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
 
-        Item newTagSetItem = createTaggedItem(itemToTag, tag);
         model.setItem(itemToTag, newTagSetItem);
 
         return CommandResult.from(

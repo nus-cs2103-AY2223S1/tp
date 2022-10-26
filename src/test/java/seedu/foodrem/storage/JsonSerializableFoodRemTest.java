@@ -53,14 +53,6 @@ public class JsonSerializableFoodRemTest {
     }
 
     @Test
-    public void toModelType_duplicateTags_throwsIllegalValueException() throws Exception {
-        JsonSerializableFoodRem dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TAG_FILE,
-                JsonSerializableFoodRem.class).get();
-        assertThrows(IllegalArgumentException.class, JsonSerializableFoodRem.MESSAGE_DUPLICATE_TAGS,
-                dataFromFile::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidTagFile_throwsIllegalValueException() throws Exception {
         JsonSerializableFoodRem dataFromFile = JsonUtil.readJsonFile(INVALID_TAG_FILE,
                 JsonSerializableFoodRem.class).get();

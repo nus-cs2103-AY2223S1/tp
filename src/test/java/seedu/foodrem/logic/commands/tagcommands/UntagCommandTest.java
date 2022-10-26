@@ -11,6 +11,8 @@ import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
@@ -38,7 +40,9 @@ public class UntagCommandTest {
         // Creating a copy of first item of model (with tag removed)
         Item editedItem = new ItemBuilder(model.getCurrentList().get(0)).build();
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
-        editedItem.removeItemTag(tag);
+        Set<Tag> tagSet = editedItem.getTagSet();
+        tagSet.remove(tag);
+        editedItem = Item.createItemWithTags(editedItem, tagSet);
 
         // The initial model does not have the tag in its UniqueTagList
 
@@ -53,13 +57,13 @@ public class UntagCommandTest {
 
         assertCommandSuccess(untagItemCommand, model,
                 new ItemWithMessage(editedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
-        assertFalse(model.getCurrentList().get(0).containsTag(tag));
+        assertFalse(model.getCurrentList().get(0).getTagSet().contains(tag));
     }
 
     @Test
     public void execute_untagItemWithoutExistingTagInModel_throwsCommandException() {
         final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
-        Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
+        Tag tag = new TagBuilder().withTagName("NON EXISTENT").build();
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
         assertCommandFailure(untagItemCommand, model, ERROR_NOT_FOUND_TAG);
@@ -80,7 +84,10 @@ public class UntagCommandTest {
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
         // Manually remove tag from typical FoodRem item
-        model.getCurrentList().get(0).removeItemTag(tag);
+        Item item = model.getCurrentList().get(0);
+        Set<Tag> tagSet = item.getTagSet();
+        tagSet.remove(tag);
+        model.setItem(item, Item.createItemWithTags(item, tagSet));
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
         assertCommandFailure(untagItemCommand, model, ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
