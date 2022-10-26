@@ -11,7 +11,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Name;
 
 /**
- * Parses input arguments and creates a new {@code DeletePersonFromModuleCommand} object
+ * Parses input arguments and creates a new {@code DeletePersonFromModuleCommand} object.
  */
 public class DeletePersonFromModuleCommandParser implements Parser<DeletePersonFromModuleCommand> {
 
