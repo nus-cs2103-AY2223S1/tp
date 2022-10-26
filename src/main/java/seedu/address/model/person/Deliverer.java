@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -12,7 +13,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Deliverer extends Person {
 
-    private final List<UniqueId> orders;
+    private final List<UniqueId> orders = new ArrayList<>();
 
     /**
      * Constructs a deliverer object.
@@ -30,9 +31,12 @@ public class Deliverer extends Person {
                      Phone phone,
                      Email email,
                      Address address,
-                     Set<Tag> tags, List<UniqueId> orders) {
+                     Set<Tag> tags,
+                     List<UniqueId> orders) {
         super(PersonCategory.DELIVERER, name, phone, email, address, tags);
-        this.orders = orders;
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
     }
 
     /**
@@ -50,9 +54,12 @@ public class Deliverer extends Person {
                      Phone phone,
                      Email email,
                      Address address,
-                     Set<Tag> tags, List<UniqueId> orders) {
+                     Set<Tag> tags,
+                     List<UniqueId> orders) {
         super(PersonCategory.DELIVERER, name, phone, email, address, tags);
-        this.orders = orders;
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
     }
 
     /**

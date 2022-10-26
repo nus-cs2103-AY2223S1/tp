@@ -215,7 +215,7 @@ public class SampleDataUtil {
         for (int i = 0; i < buyers.length; i++) {
             List<UniqueId> tmp = new ArrayList<>();
             tmp.add(orders[i].getId());
-            buyers[i].addOrder(tmp);
+            buyers[i].addOrders(tmp);
         }
 
         for (int i = 0; i < suppliers.length; i++) {
