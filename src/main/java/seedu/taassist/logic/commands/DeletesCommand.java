@@ -40,6 +40,7 @@ public class DeletesCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
         requireNonNull(model);
 
         if (!model.isInFocusMode()) {
@@ -55,7 +56,6 @@ public class DeletesCommand extends Command {
         }
 
         model.removeSessions(focusedClass, sessions);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessions));
     }
 
@@ -65,5 +65,4 @@ public class DeletesCommand extends Command {
                 || (other instanceof DeletesCommand // instanceof handles nulls
                 && sessions.equals(((DeletesCommand) other).sessions));
     }
-
 }

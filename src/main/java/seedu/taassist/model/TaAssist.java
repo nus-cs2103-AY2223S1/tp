@@ -175,7 +175,6 @@ public class TaAssist implements ReadOnlyTaAssist {
             moduleClass = removeSessionFromModuleClass(moduleClass, session);
         }
         return moduleClass;
-
     }
 
     private void removeSessionFromStudents(ModuleClass moduleClass, Session session) {
