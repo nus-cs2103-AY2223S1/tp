@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
+import seedu.address.model.Pin;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -20,6 +21,7 @@ public class IssueWithoutModel implements Function<Model, Issue> {
     private final Status status;
     private final Priority priority;
     private final ProjectId projectId;
+    private final Pin pin;
 
     /**
      * Partially initialise an issue without access to a Model object.
@@ -30,12 +32,13 @@ public class IssueWithoutModel implements Function<Model, Issue> {
      * @param projectId projectId of project that issue is attached to.
      */
     public IssueWithoutModel(Description description, Deadline deadline,
-                             Priority priority, Status status, ProjectId projectId) {
+                             Priority priority, Status status, ProjectId projectId, Pin pin) {
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
         this.status = status;
         this.projectId = projectId;
+        this.pin = pin;
 
     }
 
@@ -46,7 +49,8 @@ public class IssueWithoutModel implements Function<Model, Issue> {
                 priority,
                 status,
                 model.getProjectById(projectId.getIdInt()),
-                new IssueId(model.generateIssueId())
+                new IssueId(model.generateIssueId()),
+                pin
         );
     }
 

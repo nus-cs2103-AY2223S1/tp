@@ -23,6 +23,7 @@ import seedu.address.logic.commands.issue.find.FindIssueByStatusCommand;
 import seedu.address.logic.commands.issue.find.FindIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
+import seedu.address.model.Pin;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.IssueId;
@@ -129,7 +130,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         Status status = Status.EmptyStatus.EMPTY_STATUS;
         ProjectId projectid = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
-        IssueWithoutModel issueWithoutModel = new IssueWithoutModel(description, deadline, priority, status, projectid);
+        IssueWithoutModel issueWithoutModel = new IssueWithoutModel(description, deadline,
+                priority, status, projectid, new Pin(false));
 
         return new AddIssueCommand(issueWithoutModel, projectid);
     }

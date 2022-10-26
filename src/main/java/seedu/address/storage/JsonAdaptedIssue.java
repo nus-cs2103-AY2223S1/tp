@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
+import seedu.address.model.Pin;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
@@ -29,6 +30,7 @@ class JsonAdaptedIssue {
     private final String status;
     private final String issueId;
     private final String project;
+    private final String pin;
 
     /**
      * Constructs a {@code JsonAdaptedIssue} with the given issue details.
@@ -39,12 +41,14 @@ class JsonAdaptedIssue {
                              @JsonProperty("deadline") String deadline,
                             @JsonProperty("status") String status,
                             @JsonProperty("issueId") String issueId,
-                            @JsonProperty("project") String project) {
+                            @JsonProperty("project") String project,
+                            @JsonProperty("pin") String pin) {
         this.description = description;
         this.priority = priority;
         this.deadline = deadline;
         this.status = status;
         this.project = project;
+        this.pin = pin;
         this.issueId = issueId;
     }
 
@@ -58,6 +62,7 @@ class JsonAdaptedIssue {
         status = source.getStatus().toString();
         issueId = source.getIssueId().toString();
         project = source.getProject().getProjectId().toString();
+        pin = String.valueOf(source.isPinned());
     }
 
     /**
@@ -123,6 +128,12 @@ class JsonAdaptedIssue {
             throw new IllegalValueException(ProjectId.MESSAGE_CONSTRAINTS);
         }
 
+        Pin modelPin;
+        if (!Pin.isValidPin(pin)) {
+            throw new IllegalValueException(Pin.MESSAGE_CONSTRAINTS);
+        }
+        modelPin = new Pin(Boolean.parseBoolean(pin));
+
         if (issueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IssueId.class.getSimpleName()));
         }
@@ -133,7 +144,8 @@ class JsonAdaptedIssue {
 
         assert modelIssueId.getIdInt() >= 0 : "Issue ID should be positive";
 
-        return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus, modelProject, modelIssueId);
+        return new Issue(modelDescription, modelDeadline, modelPriority, modelStatus,
+                modelProject, modelIssueId, modelPin);
     }
 
 }
