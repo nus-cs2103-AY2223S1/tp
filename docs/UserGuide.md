@@ -28,32 +28,32 @@ contains some sample data.<br>
    [image coming soon]
 
 5. Type the command in the command box and press Enter to execute it. e.g.
-   `add-module`. For more commands, you may refer to the [command summary](#11-command-summary)
+   `add-module m/CS2103T`. For more commands, you may refer to the [command summary](#11-command-summary)
 
 6. Refer to the [Features](#2-features) for details of each command.
 
 ### 1.1. Command summary
 
-| Action                                  | Format                                                                  | Short Description                                                               |
-|-----------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
+| Action                                  | Format                                                                    | Short Description                                                               |
+|-----------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                          | Add module with a module code and optional module title                         |
+| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                           | Delete module by module code                                                    |
 | [`edit-module`](#213-edit-module)       | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
-| [`find-module`](#214-find-module)       | `find-module     KEYWORD`                            <br/>                   | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#215-list-module)       | `list-module`                                        <br/>                   | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
-| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
-| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
-| [`list-person`](#245-list-person)       | `list-person`                                                           | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)         | `home`                                                                  | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)       | `exit`                                                                  | Exit the program                                                                |
+| [`find-module`](#214-find-module)       | `find-module     KEYWORD`                            <br/>                | Find module that starts with specified keyword in home page                     |
+| [`list-module`](#215-list-module)       | `list-module`                                        <br/>                | List all modules in home page after finding                                     |
+| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                       | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                            | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`   | Swaps the order of tasks in the task list of a specified module                 |
+| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                        | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                        | Delete link URL from a module by its displayed index                            |
+| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                     | Add contact with specified name, email, and phone number                        |
+| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                  | Delete contact belonging to the specified name                                  |
+| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`            | Edit contact belonging to the specified index currently displayed on the screen |
+| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                                 | Find contacts that starts with specified keyword                                |
+| [`list-person`](#245-list-person)       | `list-person`                                                             | List all contacts                                                               |
+| [`home`](#251-navigate-to-home)         | `home`                                                                    | Navigate to the home page                                                       |
+| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                        | Navigate to specified module page                                               |
+| [`exit`](#26-exiting-the-program)       | `exit`                                                                    | Exit the program                                                                |
 
 ## 2. Features
 
