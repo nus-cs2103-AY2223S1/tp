@@ -385,6 +385,54 @@ Design considerations:
 
 #### 4.2.8 ViewStats command
 
+`ViewStatsCommand` is a `Command` to present summary statistics for an `Exam` taken by a particular class of students. 
+In particular, the command in implemented to generate the mean score of the `Exam`. The entire process of generating summary statistics is executed in 2 steps. 
+
+**Step 1: Parsing the command**
+
+The user input is first parsed, in the same way as other commands. After the command is identified to be a viewStats 
+command, a `ViewStatsCommandParser` instance will parse the inputs to retrieve the class and exam of interest.
+
+Furthermore, the user input will be parsed to retrieve an additional `Prefix` filter/, which will indicate if the list 
+returned should be flagged. A flagged list contains only students whose score for that particular `Exam` falls below the 
+mean.
+
+**Step 2: Executing the command**
+
+The `ViewStatsCommand` then interacts with `ModelManager` to execute the command, which is again done in 2 steps.
+
+Step 1: A ViewClassCommand is executed, depending mainly on `Model#updateFilteredStudentList(Predicate<Student)`, in order to
+to retrieve the class of interest.
+
+Step 2: The mean of the class is calculated using `Model#calculateMean(String exam)`. 
+
+Depending on the boolean value parsed using the filter prefix, the class list is further filtered using
+`Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
+
+The whole list is sorted according to the score of the particular exam, before it is returned and displayed to the user.
+
+The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
+
+*insert sequence diagram*
+
+Design Considerations:
+1. Sorting the list of students according to grade
+- Option 1: sort the filtered list of students after retrieving the class
+  - Pros:
+    - Will not modify the current `StudentRecord`
+    - Will not unnecessarily sort students not in the class of interest
+  - Cons:
+    - `FilteredStudents` is meant to be unmodifiable, and sorting potentially breaks this behaviour
+    - `FilteredStudents` is implemented with `FilteredList<Student>` which does not maintain sorting, so additional wrapping
+    needs to be done to sort the filtered list
+- Option 2 (current choice): sort the entire student record, then filter to retrieve class
+  - Pros:
+    - Can maintain sorting even beyond the command, ie. maintaining a sorted list of students, sorted by name,
+    each time an `addStudent` command or `edit` command is run
+  - Cons:
+    - Reorders the whole `StudentRecord` each time the sorting is done
+  
+
 *To be updated*
 
 --------------------------------------------------------------------------------------------------------------------
