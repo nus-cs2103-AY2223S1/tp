@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CreateMeetingCommandParser" as CreateMeetingCommandParser LOGIC_COLOR
+participant "cm:CreateMeetingCommand" as CreateMeetingCommand LOGIC_COLOR
+participant ":Meeting\n<<class>>" as MeetingStatic LOGIC_COLOR
+participant "m:Meeting" as Meeting LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("meet Alex }} Yu ;;;\nDo CS2103 Project ;;;\n16-10-2022 1530 ;;;\nUniversity Town")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(\n"meet Alex }} Yu ;;;\nDo CS2103 Project ;;;\n16-10-2022 1530 ;;;\nUniversity Town")
+activate AddressBookParser
+
+create CreateMeetingCommandParser
+AddressBookParser -> CreateMeetingCommandParser
+activate CreateMeetingCommandParser
+
+AddressBookParser <-- CreateMeetingCommandParser
+deactivate CreateMeetingCommandParser
+
+AddressBookParser -> CreateMeetingCommandParser : parse(arguments)
+activate CreateMeetingCommandParser
+
+create CreateMeetingCommand
+CreateMeetingCommandParser -> CreateMeetingCommand
+activate CreateMeetingCommand
+destroy CreateMeetingCommandParser
+
+'
+'CreateMeetingCommand --> CreateMeetingCommandParser : cm
+'deactivate CreateMeetingCommand
+
+'CreateMeetingCommandParser --> AddressBookParser : cm
+'deactivate CreateMeetingCommandParser
+''Hidden arrow to position the destroy marker below the end of the activation bar.
+'CreateMeetingCommandParser -[hidden]-> AddressBookParser
+
+LogicManager -> CreateMeetingCommand : execute(model)
+CreateMeetingCommand --> LogicManager : cm
+
+CreateMeetingCommand -> MeetingStatic : convertNameToPerson(model, peopleToMeet)
+CreateMeetingCommand <-- MeetingStatic :
+CreateMeetingCommand -> Model : createNewMeeting(\n arrayOfPeopleToMeet,\n meetingTitle, \n meetingDateAndTime, \n meetingLocation)
+activate Model
+CreateMeetingCommand -> Model : addMeeting(newMeeting)
+Model -> Meeting : Meeting(\n arrayOfPeopleToMeet,\n meetingTitle, \n meetingDateAndTime, \n meetingLocation)
+Model <-- Meeting
+
+deactivate Model
+
+create CommandResult
+CreateMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CreateMeetingCommand
+deactivate CommandResult
+
+CreateMeetingCommand --> LogicManager : result
+deactivate CreateMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
