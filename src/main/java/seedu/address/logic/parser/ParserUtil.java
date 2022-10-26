@@ -17,6 +17,7 @@ import seedu.address.model.client.ClientPhone;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
@@ -60,6 +61,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} to check if it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't return a Name object.
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static void parseNameValidity(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -98,6 +113,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String repository} and checks its validity.
+     * Leading a trailing whitespaces will be trimmed.
+     * It is an overloaded method that does not return a Repository object
+     * @param repository string argument input
+     * @throws ParseException if the given {@code repository} is invalid.
+     */
+    public static void parseRepositoryValidity(String repository) throws ParseException {
+        requireNonNull(repository);
+        String trimmedRepository = repository.trim();
+        if (!Repository.isValidRepository(trimmedRepository)) {
+            throw new ParseException(Repository.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String deadline} into a {@code Deadline}.
      * Leading a trailing whitespaces will be trimmed.
      *
@@ -113,6 +143,7 @@ public class ParserUtil {
         }
         return new Deadline(trimmedDeadline);
     }
+
 
     /**
      * Parses a {@code String phone} into a {@code ClientPhone}.
@@ -130,6 +161,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String phone} to check if it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't return a ClientPhone object.
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static void parsePhoneValidity(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!ClientPhone.isValidClientPhone(trimmedPhone)) {
+            throw new ParseException(ClientPhone.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String email} into an {@code ClientEmail}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -142,6 +187,34 @@ public class ParserUtil {
             throw new ParseException(ClientEmail.MESSAGE_CONSTRAINTS);
         }
         return new ClientEmail(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String email} to check if it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't return a ClientEmail object.
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static void parseEmailValidity(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!ClientEmail.isValidEmail(trimmedEmail)) {
+            throw new ParseException(ClientEmail.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String title} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't return a Description object.
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static void parseTitleValidity(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -180,6 +253,43 @@ public class ParserUtil {
             return Priority.HIGH;
         default:
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String status} to check if it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static void parseStatusValidity(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedPriority = status.trim();
+        boolean isValidStringCounterpart =
+                trimmedPriority.equalsIgnoreCase("completed")
+                        || trimmedPriority.equalsIgnoreCase("incomplete");
+        if (!isValidStringCounterpart) {
+            throw new ParseException(Status.MESSAGE_STRING_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String urgency} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't return a Priority object.
+     * @throws ParseException if the given {@code urgency} is invalid.
+     */
+    //TODO: Rename priority to urgency once class has been renamed in the next PR
+    public static void parseUrgencyValidity(String urgency) throws ParseException {
+        requireNonNull(urgency);
+        String trimmedUrgency = urgency.trim();
+        boolean isValidStringCounterpart =
+                trimmedUrgency.equalsIgnoreCase("high")
+                        || trimmedUrgency.equalsIgnoreCase("low")
+                        || trimmedUrgency.equalsIgnoreCase("medium")
+                        || trimmedUrgency.equalsIgnoreCase("none");
+        if (!isValidStringCounterpart) {
+            throw new ParseException(Priority.MESSAGE_STRING_CONSTRAINTS);
         }
     }
 

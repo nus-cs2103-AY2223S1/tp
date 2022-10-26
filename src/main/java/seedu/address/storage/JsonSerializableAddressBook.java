@@ -82,6 +82,7 @@ class JsonSerializableAddressBook {
         }
 
         addressBook.sortAllLists();
+
         return addressBook;
     }
 
