@@ -117,7 +117,7 @@ public class DebtList {
 
         DebtList edited = new DebtList(this);
         edited.debts.remove(toMark);
-        edited.debts.add(toMark.setPaid(true));
+        edited = edited.addDebt(toMark.setPaid(true));
         edited.totalDebt = totalDebt.subtract(toMark.getMoney().getValue());
         return edited;
     }
@@ -140,7 +140,7 @@ public class DebtList {
 
         DebtList edited = new DebtList(this);
         edited.debts.remove(toUnmark);
-        edited.debts.add(toUnmark.setPaid(false));
+        edited = edited.addDebt(toUnmark.setPaid(false));
         edited.totalDebt = totalDebt.add(toUnmark.getMoney().getValue());
         return edited;
     }
