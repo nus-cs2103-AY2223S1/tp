@@ -299,7 +299,7 @@ Each ```Student``` has a ```Set``` of ```Interest``` and adding an ```Interest``
 The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
 ```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
 
-####Steps:
+#### Steps:
 1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```MassLinkersParser``` to parse the command.
 2. A new ```AddInterestCommandParser``` object is constructed.
 3. ```AddInterestCommandParser#parse``` parses the command arguments and returns a set of Interests. A new ```AddInterestCommand``` is constructed.
