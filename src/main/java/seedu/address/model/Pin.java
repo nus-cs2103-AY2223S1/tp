@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static java.lang.Boolean.parseBoolean;
-
 /**
  * Represents whether an entity is pinned.
  */
@@ -27,9 +25,9 @@ public class Pin {
      */
     public static boolean isValidPin(String pinString) {
         if (pinString.toUpperCase().equals("FALSE") || pinString.toUpperCase().equals("TRUE")) {
-            return !parseBoolean(pinString);
+            return true;
         } else {
-            return parseBoolean(pinString);
+            return false;
         }
     }
 
