@@ -197,9 +197,9 @@ Format: `delProduct i/INDEX`
 * The index refers to the index number shown in the displayed product list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-<div markdown="block" class="alert alert-danger">
+<div markdown="block" class="alert alert-danger">:exclamation: **Caution:**
 
-* This feature should only be used if there is a need to delete a product, which is unlikely in most conceivable scenario! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
+This feature should only be used if there is a need to delete a product, which is unlikely in most conceivable scenario! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
 
 </div>
 
