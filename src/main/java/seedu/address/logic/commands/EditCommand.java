@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -27,6 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TUTORIAL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -104,12 +107,14 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Tutorial updatedTutorial = editPersonDescriptor.getTutorial().orElse(personToEdit.getTutorial());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Social updatedSocial = editPersonDescriptor.getSocial().orElse(personToEdit.getSocial());
 
         return new Person(updatedOccupation, updatedName, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags, updatedSocial);
+                updatedEmail,
+                updatedTutorial, updatedAddress, updatedTags, updatedSocial);
     }
 
     @Override
@@ -140,6 +145,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Tutorial tutorial;
         private Address address;
         private Set<Tag> tags;
 
@@ -155,6 +161,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setTutorial(toCopy.tutorial);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -207,6 +214,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setTutorial(Tutorial tutorial) {
+            this.tutorial = tutorial;
+        }
+
+        public Optional<Tutorial> getTutorial() {
+            return Optional.ofNullable(tutorial);
+        }
+
         public void setAddress(Address address) {
             this.address = address;
         }
@@ -251,6 +266,7 @@ public class EditCommand extends Command {
                     && getOccupation().equals(e.getOccupation())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getTutorial().equals(e.getTutorial())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
