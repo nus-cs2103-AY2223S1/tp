@@ -473,7 +473,7 @@ Use case ends.
 
 **Extensions**
 
-1a. The index is not a valid index.
+1a. The index is not a valid index. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the index is invalid.
 
 Use case ends.
