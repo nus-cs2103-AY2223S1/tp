@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
 import seedu.address.model.task.ToDo;
@@ -28,13 +27,10 @@ public class ToDoBuilder {
     /**
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
-    public ToDoBuilder(Task taskToCopy) {
-        if (taskToCopy instanceof ToDo) {
-            ToDo toDo = (ToDo) taskToCopy;
-            title = toDo.getTitle();
-            description = toDo.getDescription();
-        }
-
+    public ToDoBuilder(ToDo todoToCopy) {
+        ToDo toDo = todoToCopy;
+        title = toDo.getTitle();
+        description = toDo.getDescription();
     }
 
     /**
@@ -53,7 +49,7 @@ public class ToDoBuilder {
         return this;
     }
 
-    public Task build() {
+    public ToDo build() {
         return new ToDo(title, description);
     }
 }

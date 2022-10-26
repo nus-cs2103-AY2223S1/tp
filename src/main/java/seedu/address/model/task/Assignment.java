@@ -63,4 +63,21 @@ public class Assignment implements Task {
         }
         return builder.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Assignment)) {
+            return false;
+        }
+
+        Assignment otherStudent = (Assignment) other;
+
+        return otherStudent.getTitle().equals(getTitle())
+                && otherStudent.getDescription().equals(getDescription())
+                && otherStudent.getStudents().equals(getStudents());
+    }
 }
