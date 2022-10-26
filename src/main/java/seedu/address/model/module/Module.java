@@ -3,6 +3,8 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents a Task's module code in the task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
@@ -35,6 +37,9 @@ public class Module {
      * Returns true if a given string is a valid module code.
      */
     public static boolean isValidModule(String test) {
+        if (Objects.equals(test, "-")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

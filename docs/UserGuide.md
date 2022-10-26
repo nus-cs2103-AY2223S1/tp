@@ -80,11 +80,11 @@ Format: `help`
 Adds a task to the task list.
 
 Format:
-`add {task_name} by/{deadline} m/{module_code}`
+`add {task_name} by/{deadline} [m/{module_code}]`
 
 Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
-* `add finish SEP application by/2022-12-25 23:59 m/SEP`
+* `add finish SEP application by/2022-12-25 23:59`
 
 #### Editing a task: `edit`
 
@@ -153,11 +153,11 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module1} [{module2} ]...] gh/ {github} tele/ {telegram}`
+Format: `addc n/ {name} p/ {phone_number} [e/ {email}] [a/ {address}] [t/ {tag}]... [m/ {module1} [{module2} ]...] [gh/ {github}] [tele/ {telegram}]`
 
 Examples:
-* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com a/ 1 Computing Dr, NUS m/ CS1101S CS1231S gh/ bobby tele/ bmartin`
-* `addc n/ Betsy Crowe p/ 89985432 e/ betsycrowe@gmail.com a/ Blk 30 Geylang Street 29 gh/ betsycrowe tele/ croweybetty`
+* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S CS1231S gh/ bobby tele/ bmartin`
+* `addc n/ Betsy Crowe p/ 89985432 tele/croweybetty`
 
 #### Listing all contact : `listc`
 
@@ -245,16 +245,17 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add task** | `add {task_name} by/{deadline} m/{module_code}` <br> e.g. `add finish problem set 5 by/Week 6 Sunday m/CS2040S`
-**Delete task** | `del {task_index}` <br> e.g. `delete 5`
-**Mark task** | `mark {task_index}` <br> e.g. `mark 3`
-**Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
-**Find tasks** | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`
-**List tasks** | `list` / `list time`
-**Add contact** | `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module_1} {module_2}...] gh/ {github} tele/ {telegram}` <br> e.g., `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com a/ 1 Computing Dr, NUS m/ CS1101S gh/ bobby tele/ bmartin`
+| **Add task**       | `add {task_name} by/{deadline} [m/{module_code}]` <br> e.g. `add finish problem set 5 by/Week 6 Sunday m/CS2040S`                                         |
+| **Edit task**      | `edit {task_index} {field prefix + field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                             |
+| **Delete task**    | `del {task_index}` <br> e.g. `delete 5`                                                                                                                   |
+| **Mark task**      | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                    |
+| **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                |
+| **Find tasks**     | `find n/ {task}` <br> `find m/ {module}`<br> e.g., `find n/ homework`, <br> `find m/ CS1101S`                                                             
+| **List tasks**     | `list` / `list time`                                                                                                                                      |
+**Add contact** | `addc n/ {name} p/ {phone_number} [e/ {email}] [a/ {address}] [t/ {tag}]... [m/ {module_1} {module_2}...] [gh/ {github}] [tele/ {telegram}]` <br> e.g., `addc n/ Bob Martin p/ 98765432 tele/bobmartin00 m/ CS1101S CS1231S t/ friend`
 **Clear contacts** | `clear`
 **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
 **Edit contact** | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`        
-**Find contacts** | `findc n/ {name}` <br> `findc m/ {module}`<br> e.g., `findc n/ John`, <br> `findc m/ CS1231S`
+**Find contacts** | `findc n/ {name}` <br> `findc m/ {module}`<br> `findc ts/ {task_index}` <br> e.g., `findc /n John`, `findc /m CS1231S`, `findc ts/ 3`             
 **List contacts** | `listc`
 **Help** | `help`

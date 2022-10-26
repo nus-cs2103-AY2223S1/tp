@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DefaultComparator;
 import seedu.address.model.task.Task;
@@ -148,6 +149,14 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        // If the predicate is a `CanHelpWithTaskPredicate`,
+        // get the current task's module and add it to the predicate.
+        if (predicate instanceof CanHelpWithTaskPredicate) {
+            CanHelpWithTaskPredicate taskPredicate = (CanHelpWithTaskPredicate) predicate;
+            int taskIndex = taskPredicate.getTaskIndex();
+            Task taskInQuestion = filteredTasks.get(taskIndex - 1);
+            taskPredicate.setTask(taskInQuestion);
+        }
         filteredPersons.setPredicate(predicate);
     }
 
@@ -172,6 +181,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskList.removeTask(target);
+    }
+
+    @Override
+    public void deleteCompletedTasks() {
+        taskList.removeCompletedTasks();
     }
 
     @Override

@@ -18,21 +18,22 @@ public class ModuleTakenPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        boolean flag = false;
         Set<Module> personMods = person.getModules();
+
         for (Module mod : modules) {
-            for (Module pmod : personMods) {
-                if (mod.equals(pmod)) {
-                    flag = true;
+            for (Module takenModule : personMods) {
+                if (mod.equals(takenModule)) {
+                    return true;
                 }
             }
         }
-        return flag;
+
+        return false;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
+        return other == this // short circuit if same instance
                 || (other instanceof ModuleTakenPredicate// instanceof handles nulls
                 && modules.equals(((ModuleTakenPredicate) other).modules)); // state check
     }

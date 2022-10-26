@@ -118,6 +118,11 @@ public interface Model {
     void deleteTask(Task target);
 
     /**
+     * Deletes tasks that are marked as complete.
+     */
+    void deleteCompletedTasks();
+
+    /**
      * Adds the given task.
      * {@code task} must not already exist in the task list.
      */

@@ -28,14 +28,14 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE, PREFIX_MODULE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_MODULE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         TaskName name = ParserUtil.parseTaskName(argMultimap.getPreamble());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+        Module module = ParserUtil.parseModule(argMultimap.getValueOptional(PREFIX_MODULE).get());
         Status status = new Status(false);
 
         Task task = new Task(name, module, deadline, status);

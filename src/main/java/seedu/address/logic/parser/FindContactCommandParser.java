@@ -3,14 +3,15 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.List;
 
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -25,39 +26,65 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindContactCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_TASK);
+        Prefix searchPrefix = getSearchPrefix(argMultimap);
 
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
-        }
+        if (searchPrefix.equals(PREFIX_NAME)) {
 
-        Scanner argScanner = new Scanner(trimmedArgs);
-        Prefix prefix = new Prefix(argScanner.next());
-
-        if (prefix.equals(PREFIX_NAME)) {
-
-            String trimmedKeywords = argScanner.nextLine().trim();
-            String[] nameKeywords = trimmedKeywords.split("\\s+");
-            return new FindContactCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
-        } else if (prefix.equals(PREFIX_MODULE)) {
-
-            String trimmedModules = argScanner.nextLine().trim();
-            String[] modKeywords = trimmedModules.split("\\s+");
-            ArrayList<Module> mods = new ArrayList<>();
-            for (String modName : modKeywords) {
-                mods.add(new Module(modName));
+            List<String> strings = argMultimap.getAllValues(PREFIX_NAME);
+            List<String> keywordsSpaceSeperated = new ArrayList<>();
+            for (String string : strings) {
+                for (String keyword : string.split("\\s+")) {
+                    keywordsSpaceSeperated.add(keyword);
+                }
             }
-            return new FindContactCommand(new ModuleTakenPredicate(mods));
+            // ["name", "name name"] -> ["name", "name", "name"]
+            return new FindContactCommand(new NameContainsKeywordsPredicate(keywordsSpaceSeperated));
+
+        } else if (searchPrefix.equals(PREFIX_MODULE)) {
+
+            List<String> strings = argMultimap.getAllValues(PREFIX_MODULE);
+            List<Module> modules = new ArrayList<>();
+            for (String string : strings) {
+                for (String keyword : string.split("\\s+")) {
+                    modules.add(new Module(keyword));
+                }
+            }
+            // ["mod1", "mod2 mod3"] -> ["mod1", "mod2", "mod3"]
+            return new FindContactCommand(new ModuleTakenPredicate(modules));
+
+        } else if (searchPrefix.equals(PREFIX_TASK)) {
+
+            int taskIndex = Integer.parseInt(argMultimap.getValue(PREFIX_TASK).get());
+            return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
 
         } else {
 
-            String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new FindContactCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
 
         }
+    }
 
+    private static Prefix getSearchPrefix(ArgumentMultimap argumentMultimap) throws ParseException {
+        List<Prefix> searchablePrefixes = new ArrayList<>();
+        searchablePrefixes.add(PREFIX_NAME);
+        searchablePrefixes.add(PREFIX_MODULE);
+        searchablePrefixes.add(PREFIX_TASK);
+
+        List<Prefix> prefixesInArgs = new ArrayList<>();
+
+        for (Prefix prefix : searchablePrefixes) {
+            if (!argumentMultimap.getAllValues(prefix).isEmpty()) {
+                prefixesInArgs.add(prefix);
+            }
+        }
+
+        // if number of prefixes in arguments is not 1, the arguments are invalid
+        if (prefixesInArgs.size() != 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+        }
+
+        return prefixesInArgs.get(0);
     }
 
 }
