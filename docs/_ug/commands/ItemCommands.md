@@ -116,7 +116,7 @@ List Box:
 
 > Sorts the list of currently displayed items by the provided criteria
 
-**Note:**
+
 * Only one of the sorting criteria must be provided.
 
 **Example Input:**
@@ -245,7 +245,6 @@ Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE
 
 **Note:**
 * All fields are optional. However, you need to include at least one parameter.
-* The `BOUGHT_DATE` ideally should not be after the `EXPIRY_DATE` but we will allow that.
 * The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
   * dd: Day of the month. For example, "10" would represent the 10th day of the month.
   * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
@@ -298,7 +297,7 @@ rmk 1 r/For Party
 
 Command Output Box:
 ```text
-Deleted Item:
+Remark Added:
 Name: Onions
 Quantity: 100 kg
 Bought Date: 10-10-2022
