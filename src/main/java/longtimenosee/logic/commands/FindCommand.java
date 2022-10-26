@@ -34,14 +34,16 @@ public class FindCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]…"
+            + "[" + PREFIX_TAG + "TAG]… "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_INCOME + "INCOME] "
             + "[" + PREFIX_RISK_APPETITE + "RISK_APPETITE] "
             + "[" + PREFIX_TITLE + "POLICY_TITLE] "
             + "[" + PREFIX_COVERAGES + "POLICY_COVERAGE]… "
             + "[" + PREFIX_COMPANY + "POLICY_COMPANY]\n"
-            + "Example: " + COMMAND_WORD + " n/alice p/12341234";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "alice "
+            + PREFIX_PHONE + "12341234";
 
     private final List<Predicate<Person>> predicates;
 
