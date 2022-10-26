@@ -1,9 +1,9 @@
 package seedu.travelr.model.list;
 
+import java.util.Comparator;
+
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
-
-import java.util.Comparator;
 
 /**
  * Represents the EventList interface.

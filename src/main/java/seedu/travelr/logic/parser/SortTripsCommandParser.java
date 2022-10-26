@@ -18,7 +18,7 @@ import seedu.travelr.model.trip.Trip;
 
 
 /**
- * Parses input arguments and creates a new SortTripsCommand object
+ * Parses input arguments and creates a new SortTripsCommand object.
  */
 public class SortTripsCommandParser implements Parser<SortTripsCommand> {
 
@@ -65,7 +65,7 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
             if (COMPARE_BY_COMPLETION.compare(x, y) != 0) {
                 return COMPARE_BY_COMPLETION.compare(x, y);
             }
-            return (reverse ? -1 : 1) * comp.compare(x,y);
+            return (reverse ? -1 : 1) * comp.compare(x, y);
         };
     }
 }

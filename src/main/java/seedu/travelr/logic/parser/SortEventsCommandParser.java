@@ -1,12 +1,15 @@
 package seedu.travelr.logic.parser;
 
-import seedu.travelr.logic.commands.SortEventsCommand;
-import seedu.travelr.model.event.Event;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
 
 import java.util.Comparator;
 
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
+import seedu.travelr.logic.commands.SortEventsCommand;
+import seedu.travelr.model.event.Event;
 
+/**
+ * Parses input arguments and creates a new SortEventsCommand object.
+ */
 public class SortEventsCommandParser implements Parser<SortEventsCommand> {
 
     public SortEventsCommand parse(String args) {

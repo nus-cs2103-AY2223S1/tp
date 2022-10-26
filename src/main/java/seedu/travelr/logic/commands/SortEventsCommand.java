@@ -1,12 +1,16 @@
 package seedu.travelr.logic.commands;
 
-import seedu.travelr.model.Model;
-import seedu.travelr.model.event.Event;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
 
 import java.util.Comparator;
 
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.event.Event;
 
+
+/**
+ * Sorts the Events within Bucket List.
+ */
 public class SortEventsCommand extends Command {
     public static final String COMMAND_WORD = "sort-e";
 

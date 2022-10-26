@@ -227,6 +227,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return trips.hashCode();
     }
 
+    /**
+     * Sorts the BucketList according to provided Comparator.
+     * @param comp
+     */
     public void sortBucketList(Comparator<Event> comp) {
         bucketList.sort(comp);
         comp = this.makeBucketComparator(comp);
