@@ -142,7 +142,8 @@ public class ModelManager implements Model {
         userPrefs.setApplicationBookFilePath(applicationBookFilePath);
     }
 
-    private SortSetting getSortSetting() {
+    @Override
+    public SortSetting getSortSetting() {
         return userPrefs.getSortSetting();
     }
 
