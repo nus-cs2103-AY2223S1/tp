@@ -75,4 +75,18 @@ public class Date {
                 || (other instanceof Date // instanceof handles nulls
                 && date.equals(((Date) other).date)); // state check
     }
+
+    public LocalDate getLocalDate() {
+        return this.date;
+    }
+
+
+    /**
+     * Compares current transaction's date with another date.
+     * @param date Another chosen date.
+     * @return True if current date is older than other date.
+     */
+    public boolean isOlderThan(Date date) {
+        return this.date.isBefore(date.date);
+    }
 }
