@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.StackPane?>
+<VBox>
+    <Accordion fx:id="allLessons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@OneDarkTheme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+        <panes/>
+    </Accordion>
+</VBox>
 
-<Accordion id="allLessons" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@OneDarkTheme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
-  <panes>
-    <TitledPane id="lessonPane" animated="false" stylesheets="@OneDarkTheme.css" text="untitled 1">
-         <content>
-                  <FlowPane id="lessonSlots" prefHeight="262.0" prefWidth="600.0" stylesheets="@OneDarkTheme.css" />
-         </content>
-    </TitledPane>
-  </panes>
-</Accordion>

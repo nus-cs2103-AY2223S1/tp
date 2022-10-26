@@ -6,11 +6,10 @@ import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import nus.climods.ui.UiPart;
+import nus.climods.ui.module.components.LessonPill;
 
 /**
  * Displays the lesson type of a specific module
@@ -21,21 +20,17 @@ public class ViewLesson extends UiPart<Node> {
     private static final String FXML = "ViewLesson.fxml";
 
     private static final String TITLED_PANE_ID = "lessonPane";
-    private static final String ANCHOR_PANE_ID = "anchorPane";
 
     private static final String LESSON_SLOTS_ID = "lessonSlots";
 
     private static final String PANE_HEADER = "%s : %s";
 
+    private static final int VGAP = 8;
 
+    private static final int HGAP = 4;
     private final ModuleStub module;
-
     @FXML
-    private Label title = new Label();
-    @FXML
-    private Label moduleCode = new Label();
-    @FXML
-    private Accordion allLessons = new Accordion();
+    private Accordion allLessons;
 
     /**
      * Inialise Lesson View of the corresponding module
@@ -44,8 +39,6 @@ public class ViewLesson extends UiPart<Node> {
     public ViewLesson(ModuleStub module) {
         super(FXML);
         this.module = module;
-        moduleCode.setText(module.getCode());
-        title.setText(module.getTitle());
         // Add timeslots for each lesson type
         allLessons.getPanes()
                 .addAll(module.getLessons().entrySet().stream()
@@ -55,12 +48,9 @@ public class ViewLesson extends UiPart<Node> {
 
     private TitledPane addLessonType(String lessonType, List<String []> slots) {
         TitledPane pane = new TitledPane();
-        AnchorPane ac = new AnchorPane();
-        ac.setId(ANCHOR_PANE_ID);
         pane.setId(TITLED_PANE_ID);
-        pane.setText(String.format(PANE_HEADER, moduleCode, lessonType));
-        ac.getChildren().add(addLessonSlot(slots));
-        pane.setContent(ac);
+        pane.setText(String.format(PANE_HEADER, module.getCode(), lessonType));
+        pane.setContent(addLessonSlot(slots));
         return pane;
     }
 
@@ -69,12 +59,12 @@ public class ViewLesson extends UiPart<Node> {
         fc.setId(LESSON_SLOTS_ID);
         fc.getChildren().addAll(slots.stream().map(slot -> addSlot(slot))
                 .collect(Collectors.toList()));
+        fc.setHgap(HGAP);
+        fc.setVgap(VGAP);
         return fc;
     }
 
-    private Label addSlot(String[] slot) {
-        Label l = new Label();
-        l.setText(String.format("%s : [%s]", slot[0], slot[1]));
-        return l;
+    private LessonPill addSlot(String[] slot) {
+        return new LessonPill(String.format("%s : %s", slot[0], slot[1]));
     }
 }
