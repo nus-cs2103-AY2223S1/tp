@@ -191,8 +191,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseHospitalWing_invalidValue_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-                () -> ParserUtil.parseHospitalWing(INVALID_HOSPITAL_WING));
+        assertThrows(IllegalArgumentException.class, (
+                ) -> ParserUtil.parseHospitalWing(INVALID_HOSPITAL_WING));
     }
 
     @Test
