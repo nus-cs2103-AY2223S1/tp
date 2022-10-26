@@ -1,5 +1,6 @@
 package gim.logic.commands;
 
+import static gim.logic.parser.CliSyntax.PREFIX_ALL;
 import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static gim.logic.parser.CliSyntax.PREFIX_REPS;
@@ -55,6 +56,8 @@ public class CommandTestUtil {
     public static final String INVALID_REPS_DESC = " " + PREFIX_REPS; // empty string not allowed for reps
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "02/05/2022z"; // 'z' not allowed in date
     // date can be empty, it will default to today's date
+
+    public static final String DESC_PREFIX_ALL = " " + PREFIX_ALL;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
