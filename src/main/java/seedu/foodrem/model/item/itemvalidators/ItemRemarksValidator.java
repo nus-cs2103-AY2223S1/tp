@@ -10,8 +10,8 @@ import seedu.foodrem.commons.util.StringUtil;
 public class ItemRemarksValidator implements Validator {
     // Validation for characters in remarks
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_REMARKS =
-            "The item remark should only contain alphanumeric characters and spaces. "
-                    + "It should not start with a blank space.";
+            "The item remark should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
 
     // Validation for remarks length
     private static final int MAX_LENGTH = 1000;

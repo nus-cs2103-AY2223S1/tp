@@ -11,8 +11,8 @@ import seedu.foodrem.commons.util.StringUtil;
  */
 public class TagName {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters, spaces, and the following symbols "
-                    + "()[]{}-+*=.,_'\"^$?@!#%&:;. ";
+            "The tag name should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
 
     private final String fullName;
 

@@ -10,7 +10,8 @@ import seedu.foodrem.commons.util.StringUtil;
 public class ItemUnitValidator implements Validator {
     // Validation for characters used in unit
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =
-            "The item unit should only contain alphanumeric characters and spaces.";
+            "The item unit should only contain alphanumeric characters, spaces and the following symbols "
+                    + "[]{}()-+*=.,_'\"^$?@!#%&:;";
 
     // Validation for unit length
     private static final int MAX_LENGTH = 10;

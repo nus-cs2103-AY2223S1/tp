@@ -13,8 +13,7 @@ import java.util.Arrays;
 public class StringUtil {
 
     /*
-     * Only alphanumeric characters, whitespaces and the following symbols are allowed in the tag name.
-     * []{}()-+*=.,_'"^$?@!#%&:;
+     * Alphanumeric characters, whitespaces and the following symbols []{}()-+*=.,_'"^$?@!#%&:;
      */
     public static final String VALIDATION_REGEX = "[A-Za-z0-9()\\[\\]{}\\-+*=.,_'\"^$?@!#%&:; ]*";
 

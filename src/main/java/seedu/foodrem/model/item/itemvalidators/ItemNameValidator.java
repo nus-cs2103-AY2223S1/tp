@@ -10,8 +10,8 @@ import seedu.foodrem.commons.util.StringUtil;
 public class ItemNameValidator implements Validator {
     // Validation for characters in name
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME =
-            "The item name should only contain alphanumeric characters and spaces. "
-                    + "It should not start with a blank space.";
+            "The item name should only contain alphanumeric characters, spaces and the following symbols "
+                   + "[]{}()-+*=.,_'\"^$?@!#%&:;";
     private static final String MESSAGE_FOR_NAME_IS_BLANK =
             "The item name should not be blank.";
 
