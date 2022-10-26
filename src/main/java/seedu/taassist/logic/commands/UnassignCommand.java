@@ -6,7 +6,6 @@ import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.taassist.commons.core.index.Index;
@@ -15,7 +14,6 @@ import seedu.taassist.logic.parser.ParserStudentIndexUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -64,18 +62,7 @@ public class UnassignCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        for (Student student : studentsToUnassign) {
-            List<StudentModuleData> newModuleData = student.getModuleDataList().stream()
-                    .filter(moduleData -> !moduleData.getModuleClass().isSame(moduleClassToUnassign))
-                    .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-            Student editedStudent = new Student(
-                    student.getName(),
-                    student.getPhone(),
-                    student.getEmail(),
-                    student.getAddress(),
-                    newModuleData);
-            model.setStudent(student, editedStudent);
-        }
+        studentsToUnassign.forEach(s -> model.setStudent(s, s.removeModuleClass(moduleClassToUnassign)));
 
         String indexOrIndices = indices.size() == 1 ? "index" : "indices";
         return new CommandResult(String.format(MESSAGE_SUCCESS, indexOrIndices, indices, moduleClassToUnassign));

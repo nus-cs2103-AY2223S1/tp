@@ -6,6 +6,10 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.taassist.commons.core.Config;
 import seedu.taassist.commons.core.LogsCenter;
@@ -48,9 +52,8 @@ public class MainApp extends Application {
     protected Config config;
 
     @Override
-    public void init() throws Exception {
+    public void start(Stage primaryStage) {
         logger.info("=============================[ Initializing TaAssist ]===========================");
-        super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
@@ -64,10 +67,11 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-
         logic = new LogicManager(model, storage);
-
         ui = new UiManager(logic);
+
+        logger.info("Starting TaAssist " + MainApp.VERSION);
+        ui.start(primaryStage);
     }
 
     /**
@@ -85,10 +89,12 @@ public class MainApp extends Application {
             }
             initialData = taAssistOptional.orElseGet(SampleDataUtil::getSampleTaAssist);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty TaAssist");
+            logger.warning("Data file not in the correct format. Alerting user.");
+            confirmOrExit("Data file not in the correct format. Do you want to continue with an empty data file?");
             initialData = new TaAssist();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TaAssist");
+            logger.warning("Problem while reading from the file. Alerting user.");
+            confirmOrExit("Problem while reading from the file. Do you want to continue with an empty data file?");
             initialData = new TaAssist();
         }
 
@@ -97,6 +103,25 @@ public class MainApp extends Application {
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
+    }
+
+    /**
+     * Shows an error alert with the given {@code message} and gets the user's confirmation.
+     * If the user does not confirm, then the application will exit.
+     */
+    private void confirmOrExit(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Error");
+
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        alert.getDialogPane().setMinWidth(Region.USE_PREF_SIZE);
+        alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.NO) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     /**
@@ -167,11 +192,6 @@ public class MainApp extends Application {
         return initializedPrefs;
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        logger.info("Starting TaAssist " + MainApp.VERSION);
-        ui.start(primaryStage);
-    }
 
     @Override
     public void stop() {

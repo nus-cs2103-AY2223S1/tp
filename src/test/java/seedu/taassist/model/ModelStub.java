@@ -2,6 +2,7 @@ package seedu.taassist.model;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.Set;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -9,6 +10,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -66,7 +68,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deleteStudent(Student target) {
+    public void removeStudent(Student target) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -86,7 +88,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredStudentList(Predicate<Student> predicate) {
+    public void setFilteredListPredicate(Predicate<Student> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void andFilteredListPredicate(Predicate<Student> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -101,7 +108,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deleteModuleClass(ModuleClass moduleClass) {
+    public void removeModuleClass(ModuleClass moduleClass) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -111,7 +118,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deleteModuleClasses(Collection<ModuleClass> moduleClass) {
+    public void removeModuleClasses(Collection<ModuleClass> moduleClass) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeSession(ModuleClass moduleClass, Session session) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeSessions(ModuleClass moduleClass, Set<Session> sessions) {
         throw new AssertionError("This method should not be called.");
     }
 
