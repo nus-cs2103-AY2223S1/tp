@@ -49,6 +49,11 @@ public class RiskTag extends Tag {
         }
     }
 
+    /**
+     * check if tag is a risk tag
+     * @param tag
+     * @return true if its a risk tag, false if otherwise
+     */
     public static boolean isRiskTag(String tag) {
         return HIGH.equalsIgnoreCase(tag)
                 || MEDIUM.equalsIgnoreCase(tag)

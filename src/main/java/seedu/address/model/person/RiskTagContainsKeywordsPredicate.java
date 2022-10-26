@@ -13,7 +13,7 @@ public class RiskTagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> riskTags;
 
     public RiskTagContainsKeywordsPredicate(List<String> riskTags) {
-        this.riskTags= riskTags;
+        this.riskTags = riskTags;
     }
 
     @Override

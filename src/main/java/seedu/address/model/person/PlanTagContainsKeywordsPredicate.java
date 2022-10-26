@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.Tag;
 
 /**

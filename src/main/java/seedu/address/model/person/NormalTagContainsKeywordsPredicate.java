@@ -13,7 +13,7 @@ public class NormalTagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> tags;
 
     public NormalTagContainsKeywordsPredicate(List<String> tags) {
-        this.tags= tags;
+        this.tags = tags;
     }
 
     @Override

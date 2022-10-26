@@ -1,13 +1,20 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
+import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
 
 import java.util.function.Predicate;
+import seedu.address.commons.core.Messages;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
