@@ -48,8 +48,7 @@ public class RenameTagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                // instanceof handles nulls
+        return other == this
                 || (other instanceof RenameTagCommand
                 && originalTag.equals(((RenameTagCommand) other).originalTag)
                 && renamedTag.equals(((RenameTagCommand) other).renamedTag));

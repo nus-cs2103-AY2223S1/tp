@@ -41,8 +41,7 @@ public class NewTagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                // instanceof handles nulls
+        return other == this
                 || (other instanceof NewTagCommand
                 && toAdd.equals(((NewTagCommand) other).toAdd));
     }

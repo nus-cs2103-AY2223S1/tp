@@ -52,8 +52,7 @@ public class UntagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                // instanceof handles nulls
+        return other == this
                 || (other instanceof UntagCommand
                 && index.equals(((UntagCommand) other).index)
                 && tag.equals(((UntagCommand) other).tag));
