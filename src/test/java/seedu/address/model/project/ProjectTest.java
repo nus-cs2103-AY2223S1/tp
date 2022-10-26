@@ -10,16 +10,19 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.Client;
 
 
 public class ProjectTest {
 
     private static final Project defaultProject = new Project(new Name("default"), new Repository("default/default"),
-            new Deadline("2022-03-05"), new Client(new Name("default")), new ArrayList<>(), new ProjectId(1));
+            new Deadline("2022-03-05"), new Client(new Name("default")),
+            new ArrayList<>(), new ProjectId(1), new Pin(false));
 
     private static final Project otherProject = new Project(new Name("test"), new Repository("test/test"),
-            new Deadline("2022-03-05"), new Client(new Name("test")), new ArrayList<>(), new ProjectId(1));
+            new Deadline("2022-03-05"), new Client(new Name("test")),
+            new ArrayList<>(), new ProjectId(1), new Pin(false));
 
     public static Project getDefaultProject() {
         return defaultProject;
@@ -32,7 +35,8 @@ public class ProjectTest {
     @Test
     public void constructor_nullParam_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Project(null, new Repository("tom/tp"),
-                new Deadline("2022-03-05"), new Client(new Name("default")), new ArrayList<>(), new ProjectId(1)));
+                new Deadline("2022-03-05"), new Client(new Name("default")),
+                new ArrayList<>(), new ProjectId(1), new Pin(false)));
     }
 
     @Test
@@ -40,7 +44,7 @@ public class ProjectTest {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Project(new Name(invalidName),
                 new Repository("tom/tp"), new Deadline("2022-03-05"), new Client(new Name("default")),
-                new ArrayList<>(), new ProjectId(1)));
+                new ArrayList<>(), new ProjectId(1), new Pin(false)));
     }
 
     @Test

@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
+import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
+import static seedu.address.logic.parser.ParserUtil.parseRepositoryValidity;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
@@ -18,23 +20,22 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.logic.commands.project.DeleteProjectCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
+import seedu.address.logic.commands.project.FindProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
+import seedu.address.logic.commands.project.PinProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
 import seedu.address.logic.commands.project.SortProjectCommand;
-import seedu.address.logic.commands.project.find.FindProjectByNameCommand;
-import seedu.address.logic.commands.project.find.FindProjectByRepositoryCommand;
-import seedu.address.logic.commands.project.find.FindProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.predicates.ProjectContainsKeywordsPredicate;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.model.project.Repository;
-import seedu.address.model.project.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.project.predicates.RepositoryContainsKeywordsPredicate;
 
 
 /**
@@ -66,12 +67,23 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             return parseSetProjectDefaultViewCommand(arguments);
         case FindProjectCommand.COMMAND_FLAG:
             return parseFindProjectCommand(arguments);
+        case PinProjectCommand.COMMAND_FLAG:
+            return parsePinProjectCommand(arguments);
 
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
 
+    private ProjectCommand parsePinProjectCommand(String arguments) throws ParseException {
+        try {
+            ProjectId pinnedProjectId = ParserUtil.parseProjectId(arguments);
+            return new PinProjectCommand(pinnedProjectId);
+        } catch (ParseException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinProjectCommand.MESSAGE_USAGE), e);
+        }
+    }
 
 
     /**
@@ -138,7 +150,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         List<Issue> issueList = new ArrayList<>();
 
         ProjectWithoutModel projectWithoutModel =
-                new ProjectWithoutModel(name, repository, deadline, clientId, issueList);
+                new ProjectWithoutModel(name, repository, deadline, clientId, issueList, new Pin(false));
 
         return new AddProjectCommand(projectWithoutModel);
     }
@@ -236,33 +248,31 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
     }
 
     private FindProjectCommand parseFindProjectCommand(String arguments) throws ParseException {
-        try {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY);
 
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY);
-
-            String trimmedArgs = arguments.trim();
-
-            if (trimmedArgs.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE));
-            }
-
-
-            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-                return new FindProjectByNameCommand(new NameContainsKeywordsPredicate(
-                        argMultimap.getAllValues(PREFIX_NAME)));
-            }
-
-            //implies rePrefixesPresent(argMultimap, PREFIX_REPOSITORY) is true
-            return new FindProjectByRepositoryCommand(new RepositoryContainsKeywordsPredicate(
-                    argMultimap.getAllValues(PREFIX_REPOSITORY)));
-
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE), pe);
+        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REPOSITORY)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE));
         }
 
+        //check for validity of arguments
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+            parseNameValidity(argMultimap.getValue(PREFIX_NAME).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_REPOSITORY)) {
+            parseRepositoryValidity(argMultimap.getValue(PREFIX_REPOSITORY).get());
+        }
+
+        ProjectContainsKeywordsPredicate predicate =
+                new ProjectContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_NAME),
+                        argMultimap.getAllValues(PREFIX_REPOSITORY));
+
+
+        return new FindProjectCommand(predicate);
     }
 
     private FindProjectCommand parseFindIssueCommand(String flag, String arguments) throws ParseException {
@@ -275,5 +285,12 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
     private ProjectCommand parseSetProjectDefaultViewCommand(String arguments) {
         return new SetProjectDefaultViewCommand();
+    }
+
+    /**
+     * Returns true if there are no prefixes present in the given {@code ArgumentMultimap}.
+     */
+    private static boolean noPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
     }
 }

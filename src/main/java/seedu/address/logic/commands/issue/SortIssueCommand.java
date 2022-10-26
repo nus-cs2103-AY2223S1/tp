@@ -21,7 +21,8 @@ public class SortIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted issues";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort issues in address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
+            + ": Sort issues in address book. \n"
             + "Sort by issue id: "
             + PREFIX_DEADLINE + "0 (ascending) or "
             + PREFIX_DEADLINE + "1 (descending). "
@@ -69,6 +70,8 @@ public class SortIssueCommand extends IssueCommand {
             model.sortIssuesByPriority(sortOrder);
             sortKeyString = "priority.";
         }
+
+        model.sortIssuesByPin();
 
         ui.showIssues();
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
