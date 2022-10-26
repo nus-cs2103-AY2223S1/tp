@@ -134,7 +134,7 @@ Format: `addstudent s/NAME m/MATRIC_NUM`
 
 Examples:
 * `addstudent s/John Doe m/A0123459G`
-* `addstudent s/Alex Yeoh m/A012345A`
+* `addstudent s/Alex Yeoh m/A0123456A`
 
 ### Deleting a student : `deletestudent`
 
@@ -152,7 +152,7 @@ Examples:
 
 Edits an existing student in JARVIS.
 
-Format: `edit INDEX [s/NAME] [m/MATRIC_NUM]`
+Format: `editstudent INDEX [s/NAME] [m/MATRIC_NUM]`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -166,7 +166,7 @@ Examples:
 
 Finds students whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findstudent KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -176,7 +176,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
+* `findstudent John` returns `john` and `John Doe`
 
 ### Adding grades to a student : `grade`
 
@@ -275,7 +275,7 @@ Format: `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/
 * `l/LESSON_DESC` is optional
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
-* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as START_DATE
+* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 
 Examples:
 * `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00`
@@ -289,7 +289,7 @@ Format: `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et
 * `l/LESSON_DESC` is optional
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
-* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as START_DATE
+* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 
 Examples:
@@ -304,7 +304,7 @@ Format: `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_
 * `l/LESSON_DESC` is optional
 * `sd/START_DATE` and `ed/END_DATE` should be in the format `yyyy-MM-dd`.
 * `st/START_TIME` and `et/END_TIME` should be in the format `hh:mm`.
-* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as START_DATE
+* `ed/END_DATE` is optional, if unspecified `END_DATE` will be assumed to be the same as `START_DATE`
 * `si/STUDENT_INDEX` can be specified one or more times according to the number of attending students.
 
 Examples:
@@ -409,7 +409,7 @@ Adds participation for a student in a lesson.
 
 Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 
-* `PARTICIPATION` **must be a positive integer** from 0 to 500.
+* `PARTICIPATION` **must be a non-negative integer** from 0 to 500.
 * `LESSON_INDEX` refers to the index number shown in the displayed list of lessons.
 * `LESSON_INDEX` must refer to a studio (not a consult or mastery check lesson).
 * `STUDENT_INDEX` refers to the index number shown in the student list for the specified lesson. (use `listlesson` to view the student list for lessons)
@@ -456,8 +456,8 @@ Action | Format                                                                 
 **Clear** | `clear`                                                                                           |
 **Add student** | `addstudent s/NAME m/MATRIC_NUM`                                                                  | `addstudent s/John Doe m/A0123459G`
 **Delete student** | `deletestudent INDEX`                                                                             | `deletestudent 2`
-**Edit student** | `edit INDEX [s/NAME] [m/MATRIC_NUM]`                                                              | `editstudent 1 s/John Do`
-**Find student** | `find KEYWORD [MORE_KEYWORDS]`                                                                    | `find John`
+**Edit student** | `editstudent INDEX [s/NAME] [m/MATRIC_NUM]`                                                       | `editstudent 1 s/John Do`
+**Find student** | `findstudent KEYWORD [MORE_KEYWORDS]`                                                             | `findstudent John`
 **Add grade** | `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`                            | `grade 1 ra1/17 mt/55`
 **Set mastery check result** | `mc INDEX num/MC_NUM r/MC_RESULT`                                                                 | `mc 1 num/1 r/PASS`
 **Add task** | `addtask t/TASK_DESC [d/DEADLINE]`                                                                | `addtask t/Prepare tutorial slides d/2022-11-01`
@@ -467,8 +467,8 @@ Action | Format                                                                 
 **Add studio** | `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`                 | `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4`
 **Add mastery check** | `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...` | `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2`
 **Delete lesson** | `deletelesson INDEX`                                                                              | `deletelesson 2`
-**Mark lesson** | `marklesson INDEX`                                                                      | `marklesson 2`
-**Unmark lesson** | `unmarklesson INDEX`                                                                    | `unmarklesson 2`
+**Mark lesson** | `marklesson INDEX`                                                                                | `marklesson 2`
+**Unmark lesson** | `unmarklesson INDEX`                                                                              | `unmarklesson 2`
 **Mark student** | `markstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                    | `markstudent li/2 si/3`
 **Unmark student** | `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                  | `unmarkstudent li/2 si/3`
 **Add note** | `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`                                               | `addnote n/Get back to jeff on streams li/1 si/2`
