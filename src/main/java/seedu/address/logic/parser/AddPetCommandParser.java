@@ -32,13 +32,15 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER));
         }
 
         String indexStr = argMultimap.getValue(PREFIX_INDEX).orElse("");
         Index index = ParserUtil.parseIndex(indexStr);
-
         Pet pet = ParserUtil.parsePet(args, true);
+
+        return new AddPetCommand(index, pet);
     }
 
     /**

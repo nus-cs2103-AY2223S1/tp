@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_CERTIFICATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
@@ -12,6 +13,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
+
+import java.util.Collections;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.pet.Pet;
 
 /**
  * Adds a pet to the address book.
@@ -65,4 +76,46 @@ public class AddPetCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the buyer list";
 
+    public static final String MESSAGE_SUCCESS = "Added Pet: %1$s";
+
+    public static final String MESSAGE_FAILURE = "Unable to execute AddPetCommand.";
+
+    private final Index index;
+    private final Pet toAdd;
+
+    /**
+     * Constructs a new AddPetCommand object.
+     *
+     * @param index The index of the associated supplier.
+     * @param pet The pet to be added.
+     */
+    public AddPetCommand(Index index, Pet pet) {
+        this.index = index;
+        this.toAdd = pet;
+    }
+
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        ObservableList<Supplier> lastShownList = model.getFilteredSupplierList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Supplier affiliatedSupplier = lastShownList.get(index.getZeroBased());
+
+        affiliatedSupplier.addPets(Collections.singletonList(toAdd.getId()));
+        toAdd.setSupplier(affiliatedSupplier);
+        model.addPet(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
 }
