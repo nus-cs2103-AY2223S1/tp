@@ -27,8 +27,12 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
 
+    private final String moduleCode;
+
+    private final String rating;
+
     /**
-     * Constructs a {@code JsonAdaptedTeachingAssistant} with the given person details.
+     * Constructs a {@code JsonAdaptedTeachingAssistant} with the given Teaching Assistant's details.
      */
     @JsonCreator
     public JsonAdaptedTeachingAssistant(@JsonProperty("type") String type, @JsonProperty("name") String name,
@@ -38,10 +42,10 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
                                         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                         @JsonProperty("location") String location,
                                         @JsonProperty("username") String username,
-                                        @JsonProperty("rating") String rating,
-                                        @JsonProperty("specialisation") String specialisation) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "",
-                specialisation, "");
+                                        @JsonProperty("rating") String rating) {
+        super(type, name, phone, email, gender, tagged, location, username);
+        this.moduleCode = moduleCode;
+        this.rating = rating;
     }
 
     /**
@@ -49,6 +53,16 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
      */
     public JsonAdaptedTeachingAssistant(TeachingAssistant source) {
         super(source);
+        this.rating = source.getRating().value;
+        this.moduleCode = source.getModuleCode().value;
+    }
+
+    public String getModuleCode() {
+        return this.moduleCode;
+    }
+
+    public String getRating() {
+        return this.rating;
     }
 
     /**

@@ -16,6 +16,9 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private int studentCount;
+    private int profCount;
+    private int taCount;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

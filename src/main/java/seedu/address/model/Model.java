@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.order.Order;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
+import seedu.address.ui.PersonPieChart;
 
 /**
  * The API of the Model component.
@@ -56,6 +57,21 @@ public interface Model {
 
     /** Returns the size of AddressBook */
     int getAddressBookSize();
+
+    /**
+     * Returns the pieChart stored in the model
+     */
+    PersonPieChart getPieChart();
+
+    /**
+     * Sets the pieChart stored in the model
+     */
+    void setPieChart(PersonPieChart personPieChart);
+
+    /**
+     * Updates pieChart based on addressBook.
+     */
+    void updatePieChart();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.

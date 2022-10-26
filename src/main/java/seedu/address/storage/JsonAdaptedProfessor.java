@@ -28,8 +28,13 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
+    private final String rating;
+    private final String specialisation;
+    private final String officeHour;
+    private final String moduleCode;
+
     /**
-     * Constructs a {@code JsonAdaptedProfessor} with the given person details.
+     * Constructs a {@code JsonAdaptedProfessor} with the given professor's details.
      */
     @JsonCreator
     public JsonAdaptedProfessor(@JsonProperty("type") String type, @JsonProperty("name") String name,
@@ -40,8 +45,11 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
                                 @JsonProperty("username") String username, @JsonProperty("rating") String rating,
                                 @JsonProperty("specialisation") String specialisation,
                                 @JsonProperty("officeHour") String officeHour) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "",
-                specialisation, officeHour);
+        super(type, name, phone, email, gender, tagged, location, username);
+        this.rating = rating;
+        this.specialisation = specialisation;
+        this.officeHour = officeHour;
+        this.moduleCode = moduleCode;
     }
 
     /**
@@ -49,7 +57,25 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
      */
     public JsonAdaptedProfessor(Professor source) {
         super(source);
+        this.officeHour = source.getOfficeHour().value;
+        this.rating = source.getRating().value;
+        this.moduleCode = source.getModuleCode().value;
+        this.specialisation = source.getSpecialisation().value;
     }
+
+    public String getRating() {
+        return this.rating;
+    }
+    public String getModuleCode() {
+        return this.moduleCode;
+    }
+    public String getSpecialisation() {
+        return this.specialisation;
+    }
+    public String getOfficeHour() {
+        return this.officeHour;
+    }
+
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Professor} object.
