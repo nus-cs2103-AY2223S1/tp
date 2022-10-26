@@ -2,6 +2,7 @@ package swift.logic.commands;
 
 import static swift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static swift.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static swift.logic.commands.ListContactCommand.MESSAGE_SUCCESS;
 import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
 import static swift.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -28,12 +29,16 @@ public class ListContactCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListContactCommand(), model, ListContactCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false, false,
+                true, false, false);
+        assertCommandSuccess(new ListContactCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListContactCommand(), model, ListContactCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false, false,
+                true, false, false);
+        assertCommandSuccess(new ListContactCommand(), model, expectedCommandResult, expectedModel);
     }
 }

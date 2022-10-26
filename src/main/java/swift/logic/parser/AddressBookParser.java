@@ -21,6 +21,7 @@ import swift.logic.commands.HelpCommand;
 import swift.logic.commands.ListContactCommand;
 import swift.logic.commands.ListTaskCommand;
 import swift.logic.commands.SelectContactCommand;
+import swift.logic.commands.SelectTaskCommand;
 import swift.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,6 +75,8 @@ public class AddressBookParser {
             return new DeleteTaskCommandParser().parse(arguments);
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);
+        case SelectTaskCommand.COMMAND_WORD:
+            return new SelectTaskCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:

@@ -11,8 +11,8 @@ import swift.logic.parser.Prefix;
  * Suggests a command based on the user input.
  */
 public class CommandSuggestor {
-    private ArrayList<String> commandList;
-    private ArrayList<ArrayList<Prefix>> argPrefixList;
+    private final ArrayList<String> commandList;
+    private final ArrayList<ArrayList<Prefix>> argPrefixList;
 
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
@@ -80,7 +80,7 @@ public class CommandSuggestor {
             }
         }
 
-        if (suggestedCommand == "" && commandWord != "") {
+        if (suggestedCommand.equals("") && !commandWord.equals("")) {
             throw new CommandException("Invalid command");
         }
         ArrayList<Prefix> argPrefixes = argPrefixList.get(commandList.indexOf(suggestedCommand));
@@ -153,9 +153,9 @@ public class CommandSuggestor {
             }
         }
 
-        for (Prefix prefix : argPrefixes) {
-            if (!argumentMultimap.getValue(prefix).isPresent()) {
-                argumentSuggestion += " " + prefix + prefix.getUserPrompt();
+        for (Prefix key : argPrompt.keySet()) {
+            if (argumentMultimap.getValue(key).isEmpty()) {
+                argumentSuggestion += " " + key + argPrompt.get(key);
             }
         }
         return argumentSuggestion;

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="cardPane" fx:id="cardPane" minWidth="750.0" prefHeight="95.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <Pane prefHeight="200.0" prefWidth="1.0"/>
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" maxWidth="900.0" minHeight="90.0" minWidth="650.0" prefHeight="90.0" prefWidth="789.0" GridPane.columnIndex="0">
+            <padding>
+                <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" prefHeight="18.0" spacing="5">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="taskName" minWidth="600.0" prefHeight="17.0" styleClass="cell_big_label" text="\$first">
+                    <padding>
+                        <Insets bottom="5.0" right="10.0" top="5.0" />
+                    </padding>
+               <font>
+                  <Font name="Trebuchet MS Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="dueDate" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="160.0" prefHeight="17.0" styleClass="due_date_label" textAlignment="RIGHT" translateY="-5.0" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Bodoni 72 Book" size="13.0" />
+               </font>
+               <padding>
+                  <Insets right="6.0" />
+               </padding></Label>
+            </HBox>
+            <HBox prefHeight="18.0">
+                <children>
+                   <FlowPane fx:id="contacts" alignment="CENTER_LEFT" prefHeight="18.0" translateX="20.0" HBox.hgrow="ALWAYS">
+                       <padding>
+                           <Insets right="10.0" />
+                       </padding>
+                   </FlowPane>
+                </children>
+            </HBox>
+         <GridPane.margin>
+            <Insets top="5.0" />
+         </GridPane.margin>
+        </VBox>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</HBox>

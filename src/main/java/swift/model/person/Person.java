@@ -18,7 +18,7 @@ public class Person {
     private final UUID id;
 
     // Identity fields
-    private final Name name;
+    private final PersonName name;
     private final Phone phone;
     private final Email email;
 
@@ -29,7 +29,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(UUID id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(UUID id, PersonName name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(id, name, phone, email, address, tags);
         this.id = id;
         this.name = name;
@@ -43,7 +43,7 @@ public class Person {
         return id;
     }
 
-    public Name getName() {
+    public PersonName getName() {
         return name;
     }
 

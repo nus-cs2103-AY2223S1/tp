@@ -2,6 +2,8 @@ package swift.logic.commands;
 
 import static swift.commons.util.CollectionUtil.requireAllNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
@@ -20,15 +22,19 @@ import swift.model.task.Task;
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add_task";
-    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(PREFIX_NAME, PREFIX_CONTACT));
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_CONTACT));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the task list.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_CONTACT + "CONTACT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T Tutorial "
+            + PREFIX_DESCRIPTION + "Finish assignment by then "
+            + PREFIX_DEADLINE + "12/12/2022 1200 "
             + PREFIX_CONTACT + "1 "
             + PREFIX_CONTACT + "2";
 
@@ -63,7 +69,7 @@ public class AddTaskCommand extends Command {
 
         model.hotUpdateAssociatedContacts();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, false, true);
     }
 
     @Override
