@@ -190,12 +190,10 @@ public class BookFace implements ReadOnlyBookFace {
     private void updateLoanAssociationForEditedBook(Book currentBook, Book newBook) {
         CollectionUtil.requireAllNonNull(currentBook, newBook);
         Optional<Person> loanee = currentBook.getLoanee();
-        System.out.println(loanee);
         loanee.ifPresent((p) -> {
-            newBook.loanTo(p);
-            System.out.println(p);
+            newBook.loanTo(p, currentBook.getReturnDate());
             p.returnLoanedBook(currentBook);
-            p.addLoanedBook(newBook);
+            p.addLoanedBook(newBook, currentBook.getReturnDate());
         });
     }
 
@@ -206,7 +204,7 @@ public class BookFace implements ReadOnlyBookFace {
         CollectionUtil.requireAllNonNull(currentPerson, newPerson);
         Set<Book> updatedLoanedBook = currentPerson.getLoanedBooksSet();
         for (Book book : updatedLoanedBook) {
-            book.loanTo(newPerson);
+            book.loanTo(newPerson, book.getReturnDate());
         }
     }
 

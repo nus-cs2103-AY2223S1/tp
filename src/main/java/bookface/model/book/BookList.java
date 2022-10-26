@@ -93,7 +93,6 @@ public class BookList implements Iterable<Book> {
      */
     public void refreshBookListAfterEditingPerson(Person person) {
         requireNonNull(person);
-        System.out.println(person.getLoanedBooksDisplayString());
         for (Book book : person.getLoanedBooksSet()) {
             int index = internalList.indexOf(book);
             internalList.set(index, book);
