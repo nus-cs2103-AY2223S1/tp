@@ -26,7 +26,9 @@ public class Datetime {
         this.datetime = datetime;
     }
 
-
+    public LocalDateTime getDatetime() {
+        return datetime;
+    }
 
     /**
      * Checks whether datetime string is of valid format.

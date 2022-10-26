@@ -2,6 +2,7 @@ package seedu.address.model.reminder;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.model.datetime.Datetime;
@@ -10,7 +11,7 @@ import seedu.address.model.datetime.Datetime;
  * Represents a Reminder in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Reminder implements Comparable<Reminder> {
+public class Reminder {
 
     // Identity fields
     private final ReminderName name;
@@ -75,6 +76,10 @@ public class Reminder implements Comparable<Reminder> {
         return priority.getPriorityValue();
     }
 
+    public LocalDateTime getDatetime() {
+        return deadline.getDatetime();
+    }
+
     /**
      * Returns true if both reminders have the same name.
      * This defines a weaker notion of equality between two reminders.
@@ -86,22 +91,6 @@ public class Reminder implements Comparable<Reminder> {
 
         return otherReminder != null
                 && otherReminder.getName().equals(getName());
-    }
-
-    /*
-     * This is where we write the logic to sort. This method sort
-     * automatically by the first name in case that the last name is
-     * the same.
-     */
-    @Override
-    public int compareTo(Reminder other) {
-        int otherPriorityValue = other.getPriorityValue();
-        int thisPriorityValue = this.getPriorityValue();
-        if (otherPriorityValue == thisPriorityValue) {
-            return this.getName().fullName.compareTo(other.getName().fullName);
-        } else {
-            return thisPriorityValue - otherPriorityValue;
-        }
     }
 
     /**
