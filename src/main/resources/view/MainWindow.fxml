@@ -30,7 +30,7 @@
                 </MenuBar>
 
 
-                <HBox VBox.vgrow="ALWAYS">
+                <HBox VBox.vgrow="ALWAYS" fx:id="container">
                     <VBox fx:id="entryList" minWidth="340" prefWidth="340" styleClass="pane-with-border"
                           VBox.vgrow="ALWAYS">
                         <padding>

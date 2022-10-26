@@ -1,6 +1,10 @@
 #copyButton, #helpMessage {
-    -fx-text-fill: white;
     -fx-font-size: 16px;
+    -fx-font-family: "Regular";
+}
+
+#helpMessage {
+    -fx-text-fill: -pw-white;
 }
 
 #copyButton {
@@ -17,5 +21,6 @@
 }
 
 #helpMessageContainer {
+    -fx-padding: 8px;
     -fx-background-color: -pw-surface;
 }
