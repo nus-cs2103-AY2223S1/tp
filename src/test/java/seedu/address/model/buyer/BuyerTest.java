@@ -33,7 +33,7 @@ public class BuyerTest {
         // null -> returns false
         assertFalse(ALICE.isSameBuyer(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Buyer editedAlice = new PersonBuilder(ALICE)
                 .withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB)
@@ -41,10 +41,29 @@ public class BuyerTest {
                 .withPriceRange(VALID_PRICE_RANGE_BOB)
                 .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
                 .withPriority(VALID_PRIORITY_HIGH).build();
+        assertFalse(ALICE.isSameBuyer(editedAlice));
+
+        // same phone, all other attributes different -> returns false
+        editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withPriceRange(VALID_PRICE_RANGE_BOB)
+                .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
+                .withPriority(VALID_PRIORITY_HIGH).build();
+        assertFalse(ALICE.isSameBuyer(editedAlice));
+
+        // same name, same phone, all other attributes different -> returns true
+        editedAlice = new PersonBuilder(ALICE)
+                .withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withPriceRange(VALID_PRICE_RANGE_BOB)
+                .withDesiredCharacteristics(VALID_DESIRED_CHARACTERISTICS_BOB)
+                .withPriority(VALID_PRIORITY_HIGH).build();
         assertTrue(ALICE.isSameBuyer(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different name, different phone, all other attributes same -> returns false
+        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.isSameBuyer(editedAlice));
 
         // name differs in case, all other attributes same -> returns false

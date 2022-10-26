@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_HOME;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_DESCRIPTION_HOME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProperties.HOME;
 import static seedu.address.testutil.TypicalProperties.PEAKRESIDENCE;
@@ -42,7 +43,7 @@ public class UniquePropertyListTest {
     public void contains_propertyWithSameIdentityFieldsInList_returnsTrue() {
         uniquePropertyList.add(PEAKRESIDENCE);
         Property editedPeakResidence = new PropertyBuilder(PEAKRESIDENCE)
-                .withAddress(VALID_ADDRESS_HOME)
+                .withDescription(VALID_DESCRIPTION_HOME)
                 .build();
         assertTrue(uniquePropertyList.contains(editedPeakResidence));
     }
