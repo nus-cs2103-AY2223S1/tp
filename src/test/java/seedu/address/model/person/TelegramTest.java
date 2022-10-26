@@ -9,11 +9,6 @@ import org.junit.jupiter.api.Test;
 public class TelegramTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Telegram(null));
-    }
-
-    @Test
     public void constructor_invalidTelegram_throwsIllegalArgumentException() {
         String invalidTelegram = "";
         assertThrows(IllegalArgumentException.class, () -> new Telegram(invalidTelegram));
@@ -27,9 +22,6 @@ public class TelegramTest {
         // parts consisted of handles with less than 5 characters, non-alphanumeric and uppercase handles.
         // The tests for valid handles consisted of handles with exactly 5 characters,
         // more than 5 characters and handles with underscores.
-
-        // null telegram
-        assertThrows(NullPointerException.class, () -> Telegram.isValidTelegram(null));
 
         // blank telegram
         assertFalse(Telegram.isValidTelegram("")); // empty string

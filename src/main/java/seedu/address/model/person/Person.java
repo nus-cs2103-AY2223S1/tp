@@ -20,7 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    // private final Telegram telegram;
+    private final Telegram telegram;
 
     // Data fields
     private final ModuleCode moduleCode;
@@ -29,17 +29,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email,
-                  //Telegram telegram,
+    public Person(Name name, Phone phone, Email email, Telegram telegram,
                   ModuleCode moduleCode, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email,
-            //telegram,
-            moduleCode, tags);
+        requireAllNonNull(name, phone, email, telegram,
+                moduleCode, tags);
         assert name.fullName != null;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        // this.telegram = telegram;
+        this.telegram = telegram;
         this.moduleCode = moduleCode;
         this.tags.addAll(tags);
     }
@@ -56,9 +54,9 @@ public class Person {
         return email;
     }
 
-    // public Telegram getTelegram() {
-    //     return telegram;
-    // }
+    public Telegram getTelegram() {
+        return telegram;
+    }
 
     public ModuleCode getModuleCode() {
         return moduleCode;
@@ -101,44 +99,31 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-            && otherPerson.getPhone().equals(getPhone())
-            && otherPerson.getEmail().equals(getEmail())
-            // && otherPerson.getTelegram().equals(getTelegram())
-            && otherPerson.getModuleCode().equals(getModuleCode())
-            && otherPerson.getTags().equals(getTags());
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getTelegram().equals(getTelegram())
+                && otherPerson.getModuleCode().equals(getModuleCode())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email,
-            //telegram,
-            moduleCode, tags);
+        return Objects.hash(name, phone, email, telegram, moduleCode, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        System.out.println("the string is" + getPhone());
-        builder.append(getName());
-        if (!(getPhone().toString().equals(""))) {
-            builder.append("; Phone: ")
-                .append(getPhone());
-        }
-        if (!(getEmail().toString().equals(""))) {
-            builder.append("; Email: ")
-                .append(getEmail());
-        }
-        /*
-        if (getTelegram() != null) {
-            builder.append("; Telegram: ")
-                .append(getTelegram());
-        }
-        */
-        if (!(getModuleCode().toString().equals(""))) {
-            builder.append("; Module Code: ")
+        builder.append(getName())
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail())
+                 .append("; Telegram: ")
+                 .append(getTelegram())
+                .append("; Module Code: ")
                 .append(getModuleCode());
-        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

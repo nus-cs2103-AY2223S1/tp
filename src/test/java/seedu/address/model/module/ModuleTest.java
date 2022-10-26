@@ -44,6 +44,7 @@ public class ModuleTest {
         editedCS2103T = new ModuleBuilder(CS2103T).withModuleCode(VALID_MODULE_CODE_CS2100).build();
         assertFalse(CS2103T.isSameModule(editedCS2103T));
 
+
         // name differs in case, all other attributes same -> returns false
         //Module editedCS2100 = new ModuleBuilder(CS2100)
         //.withModuleCode(VALID_MODULE_CODE_CS2100.toLowerCase()).build();

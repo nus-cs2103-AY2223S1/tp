@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +28,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+    private final String telegram;
     private final String moduleCode;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -35,11 +37,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("moduleCode") String moduleCode,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
+            @JsonProperty("moduleCode") String moduleCode, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.telegram = telegram;
         this.moduleCode = moduleCode;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        telegram = source.getTelegram().value;
         moduleCode = source.getModuleCode().moduleCode;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -88,13 +92,18 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (!Telegram.isValidTelegram(telegram)) {
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        final Telegram modelTelegram = new Telegram(telegram);
+
         if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelModuleCode, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelTelegram, modelModuleCode, modelTags);
     }
 
 }

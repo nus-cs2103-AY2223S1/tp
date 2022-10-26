@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -26,7 +25,6 @@ public class Telegram {
      * @param telegram A valid telegram handle.
      */
     public Telegram(String telegram) {
-        requireNonNull(telegram);
         checkArgument(isValidTelegram(telegram), MESSAGE_CONSTRAINTS);
         value = telegram;
     }
@@ -35,6 +33,9 @@ public class Telegram {
      * Returns if a given string is a valid telegram handle.
      */
     public static boolean isValidTelegram(String test) {
+        if (test == null) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
