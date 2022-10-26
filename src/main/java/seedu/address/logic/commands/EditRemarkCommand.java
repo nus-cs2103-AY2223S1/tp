@@ -63,7 +63,7 @@ public class EditRemarkCommand extends EditCommand {
         remarkList.replaceRemark(remarkToEdit, editedRemark);
 
         model.updateFilteredClientList(new NameEqualsKeywordPredicate(currentClient));
-        return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, remarkToEdit));
+        return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedRemark));
     }
 
     @Override
