@@ -9,7 +9,7 @@ import static paymelah.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
     public static final Phone EMPTY_PHONE = new Phone();
-    public static final String EMPTY_PHONE_STRING = "Unknown";
+    public static final String EMPTY_PHONE_STRING = "Phone unknown";
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
