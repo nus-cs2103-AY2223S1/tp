@@ -334,6 +334,11 @@ public class Person {
         }
     }
 
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     * @param person
+     * @return
+     */
     public int compareToByDisplayClass(Person person) {
         requireAllNonNull(this.displayedClass, person.displayedClass);
         return this.displayedClass.compareToByStartTime(person.displayedClass);

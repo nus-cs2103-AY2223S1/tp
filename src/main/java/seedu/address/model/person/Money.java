@@ -5,8 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 
-import java.util.Comparator;
-
 /**
  * Represents a Person's Money in the Address Book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMoney(Integer)}
