@@ -102,7 +102,7 @@ Examples:
 * `find CS2030S` returns `cs2030s`
 * `find bob jessica` returns `Bob McGhee` and `Jessica Lim`
 
-<img src="images/Find.png" width="600" />
+<img src="images/Find.png" width="700" />
 
 ### Clearing all contacts and modules : `clear`
 
@@ -167,8 +167,8 @@ Examples:
   and `johndoe@example.com` respectively.
 * `editp 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 <p float="left">
-<img src="images/editp1.png" width="600" /> 
-<img src="images/editp2.png" width="600" />
+<img src="images/editp1.png" width="700" /> 
+<img src="images/editp2.png" width="700" />
 </p>
 
 
@@ -188,8 +188,8 @@ Examples:
 * `list` followed by `deletep 5` deletes the 5th contact in the address book.
 
 <p float="left">
-<img src="images/deletep1.png" width="600" /> 
-<img src="images/deletep2.png" width="600" />
+<img src="images/deletep1.png" width="700" /> 
+<img src="images/deletep2.png" width="700" />
 </p>
 
 ### Finding a contact : `findp`
