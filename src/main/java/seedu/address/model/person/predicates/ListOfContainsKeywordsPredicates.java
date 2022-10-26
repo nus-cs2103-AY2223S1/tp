@@ -12,9 +12,9 @@ import seedu.address.model.person.Person;
  * List to store all fieldContainsPredicate to be tested on a {@code Person}'s various {@code fields}
  */
 public class ListOfContainsKeywordsPredicates {
-    private final ArrayList<Predicate<Person>> predicates;
+    private final List<Predicate<Person>> predicates;
 
-    private ListOfContainsKeywordsPredicates(List<Predicate<Person>> predicates) {
+    public ListOfContainsKeywordsPredicates(List<Predicate<Person>> predicates) {
         this.predicates = predicates;
     }
 
