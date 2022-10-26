@@ -13,7 +13,7 @@ import seedu.travelr.model.component.Title;
  */
 public class Event {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "An event need to have title and description";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final Title title;
@@ -27,7 +27,6 @@ public class Event {
      */
     public Event(Title title, Description description) {
         requireAllNonNull(title, description);
-        //checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.title = title;
         this.description = description;
     }

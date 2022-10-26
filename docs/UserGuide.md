@@ -8,7 +8,10 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
   * [Viewing events list: `list-e`](#viewing-events-list-list-e)
   * [Adding trips: `add n/TITLE d/DESCRIPTION`](#adding-trips-add-ntitle-ddescription)
   * [Viewing trips list: `list`](#viewing-trips-list-list)
+  * [Marking trips as done: `mark`](#marking-trips-as-done-mark)
+  * [Marking trips as not done: `unmark`](#marking-trips-as-not-done-unmark)
   * [Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`](#adding-events-to-trips-add-et-nevent-name-ttrip-name)
+  * [Removing events from trips: `delete-et n/EVENT NAME T/TRIP NAME`](#removing-events-from-trips-delete-et-nevent-name-ttrip-name)
   * [Saving data](#saving-data)
   * [Exiting the program: `bye`](#exiting-the-program-bye)
 
@@ -101,16 +104,51 @@ Shows a list of all trips added.
 
 Format: `list`
 
+### Marking trips as done: `mark`
+Mark the trip in the specified INDEX as done
+
+Format: `mark INDEX`
+- Marks the trip at the specified INDEX as done.
+- The index refers to the index number shown in the trip list.
+- The index must be a positive integer 1, 2, 3, …
+
+Examples:
+- `mark 1` marks the first trip in the trip list as done.
+
+### Marking trips as not done: `unmark`
+Mark the trip in the specified INDEX as not done
+
+Format: `unmark INDEX`
+- Marks the trip at the specified INDEX as not done.
+- The index refers to the index number shown in the trip list.
+- The index must be a positive integer 1, 2, 3, …
+
+Examples:
+- `unmark 1` marks the first trip in the trip list as not done.
+
 ### Adding events to trips: `add-et`
-Adds the specified event to the specified trip.
+Adds the specified event from the bucketList to the specified trip.
 
 Format: `add-et n/EVENT NAME T/TRIP NAME`
 - Adds the event with the specified EVENT NAME
 - Event is added to the trip at the specified TRIP NAME
 - The TRIP NAME must exist in the trips list.
 - The EVENT NAME must exist in the events list.
+
 Examples:
-- `add -et 2 3` adds the 2nd event in the events list to the 3rd trip in the trips list.
+- `add -et n/asd t/qwe` adds the event titled asd in the bucketList to the itinerary of the trip with the title qwe 
+
+### Removing events from trips: `delete-et`
+Remove the specified event from the specified trip to the bucketList.
+
+Format: `delete-et n/EVENT NAME T/TRIP NAME`
+- Remove the event with the specified event titled EVENT NAME from the specified trip titled TRIP NAME 
+- Event is added to the bucketList.
+- The TRIP NAME must exist in the trips list.
+- The EVENT NAME must exist in the trip itinerary.
+
+Examples:
+- `delete -et n/asd t/qwe` remove the event titled asd from the trip titled qwe's itinerary to the bucketList.
 
 ### Sorting trips: `sort by/FACTOR r/`
 Sorts the trips according to the provided factor.
