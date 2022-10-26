@@ -54,4 +54,13 @@ public class PastAppointment extends Appointment {
         }
         return builder.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PastAppointment // instanceof handles nulls
+                && getDate().equals(((PastAppointment) other).getDate())
+                && getMedication().equals(((PastAppointment) other).getMedication())
+                && getDiagnosis().equals(((PastAppointment) other).getDiagnosis())); // state check
+    }
 }
