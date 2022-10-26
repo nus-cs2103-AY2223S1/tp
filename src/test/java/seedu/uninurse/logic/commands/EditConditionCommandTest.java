@@ -2,6 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.logic.commands.EditConditionCommand.EDIT_CONDITION_COMMAND_TYPE;
@@ -9,20 +11,23 @@ import static seedu.uninurse.logic.commands.EditConditionCommand.MESSAGE_EDIT_CO
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_OSTEOPOROSIS;
+import static seedu.uninurse.testutil.TypicalConditions.TYPICAL_CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.uninurse.commons.core.Messages;
+import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.ModelManager;
 import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.condition.Condition;
-import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.PersonBuilder;
 
@@ -59,21 +64,16 @@ public class EditConditionCommandTest {
 
     @Test
     public void execute_validArgsUnfilteredList_success() {
-        // Use second patient as the first patient in typical persons does not have a condition
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // Use third patient in typical persons because it only has one condition, so we only have to
+        // replace it rather than retrieve the other unedited conditions
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
-        ConditionList editedConditionList = patientToEdit.getConditions()
-                .edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), CONDITION_DIABETES);
 
-        // convert condition list to array of strings
-        String[] editedConditionListStrings = editedConditionList.getInternalList().stream()
-                .map(Condition::toString).toArray(String[]::new);
-
-        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(editedConditionListStrings).build();
+        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
 
         EditConditionCommand editConditionCommand =
-                new EditConditionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
+                new EditConditionCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONDITION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), initialCondition, CONDITION_DIABETES);
@@ -87,40 +87,21 @@ public class EditConditionCommandTest {
 
     @Test
     public void execute_invalidPatientIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundPatientIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        EditConditionCommand editConditionCommand =
+                new EditConditionCommand(outOfBoundPatientIndex, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
 
+        assertCommandFailure(editConditionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-
-    @Test
-    public void execute_invalidConditionIndexUnfilteredList_throwsCommandException() {
-
-    }
-
-    @Test
-    public void execute_invalidConditionUnfilteredList_throwsCommandException() {
-
-    }
-
-    @Test
-    public void execute_duplicateConditionUnfilteredList_throwsCommandException() {
-
-    }
-
 
     @Test
     public void execute_validArgsFilteredList_success() {
-        // Use second patient in typical persons since there is a condition to edit
-        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+        showPersonAtIndex(model, INDEX_THIRD_PERSON);
         Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         Condition initialCondition = patientToEdit.getConditions().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
-        ConditionList editedConditionList = patientToEdit.getConditions()
-                .edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), CONDITION_DIABETES);
 
-        // convert condition list to array of strings
-        String[] editedConditionListStrings = editedConditionList.getInternalList().stream()
-                .map(Condition::toString).toArray(String[]::new);
-
-        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(editedConditionListStrings).build();
+        Patient editedPatient = new PersonBuilder(patientToEdit).withConditions(TYPICAL_CONDITION_DIABETES).build();
 
         EditConditionCommand editConditionCommand =
                 new EditConditionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
@@ -129,7 +110,8 @@ public class EditConditionCommandTest {
                 editedPatient.getName(), initialCondition, CONDITION_DIABETES);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
+
+        showPersonAtIndex(expectedModel, INDEX_THIRD_PERSON);
         expectedModel.setPerson(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
@@ -138,22 +120,36 @@ public class EditConditionCommandTest {
 
     @Test
     public void execute_invalidPatientIndexFilteredList_throwsCommandException() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
 
+        // ensures that outOfBoundIndex is still in bounds of uninurse book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
+
+        EditConditionCommand editConditionCommand =
+                new EditConditionCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE, CONDITION_DIABETES);
+
+        assertCommandFailure(editConditionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_invalidConditionIndexFilteredList_throwsCommandException() {
-
+    public void execute_duplicateCondition_throwsCommandException() {
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Condition condition = new Condition("H1N1");
+        EditConditionCommand editConditionCommand =
+                new EditConditionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, condition);
+        assertCommandFailure(editConditionCommand, model,
+                String.format(EditConditionCommand.MESSAGE_EDIT_DUPLICATE_CONDITION, patientToEdit.getName()));
     }
 
     @Test
-    public void execute_invalidConditionFilteredList_throwsCommandException() {
+    public void execute_invalidConditionIndex_throwsCommandException() {
+        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Index outOfBoundConditionIndex = Index.fromOneBased(patient.getConditions().size() + 1);
+        EditConditionCommand editConditionCommand =
+                new EditConditionCommand(INDEX_FIRST_PERSON, outOfBoundConditionIndex, CONDITION_DIABETES);
 
-    }
-
-    @Test
-    public void execute_duplicateConditionFilteredList_throwsCommandException() {
-
+        assertCommandFailure(editConditionCommand, model, Messages.MESSAGE_INVALID_CONDITION_INDEX);
     }
 
     @Test
