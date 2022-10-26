@@ -48,7 +48,7 @@ Format: `file delete FILE_NAME`
 * Does not delete the file if it is the data file that is currently open. You may switch to a different file before deleting the previously open data file.
 * The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](FileCommands.html#format).
+:information source: `FILE_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022.json` file.
@@ -64,7 +64,7 @@ Format: `file switch FILE_NAME`
 * Does not create a new file if the specified file does not exist.
 * The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](FileCommands.html#format).
+:information source: `FILE_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file switch rc4_data_2022` will switch the current data file to `rc4_data_2022.json`.
