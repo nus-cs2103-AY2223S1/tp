@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.internship.Internship;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of findMyIntern
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyFindMyIntern {
 
     /**
      * Returns an unmodifiable view of the internships list.

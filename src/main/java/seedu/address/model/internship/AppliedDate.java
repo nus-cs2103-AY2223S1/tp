@@ -11,7 +11,7 @@ import java.time.temporal.ChronoField;
 import java.util.Comparator;
 
 /**
- * Represents an Internship's applied date in the address book.
+ * Represents an Internship's applied date in findMyIntern.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppliedDate(String)}
  */
 public class AppliedDate {

@@ -16,22 +16,22 @@ public class SortCriteriaTest {
     }
 
     @Test
-    public void constructor_invalidApplicationStatus_throwsParseException() {
+    public void constructor_invalidSortCriteria_throwsParseException() {
         String invalidSortCriteria = "";
         assertThrows(ParseException.class, () -> SortCriteria.parse(invalidSortCriteria));
     }
 
     @Test
-    public void isValidApplicationStatus() {
-        // null address
-        assertThrows(NullPointerException.class, () -> ApplicationStatus.isValidApplicationStatus(null));
+    public void isValidSortCriteria() {
+        // null sort criteria
+        assertThrows(NullPointerException.class, () -> SortCriteria.isValidSortCriteria(null));
 
-        // invalid addresses
+        // invalid sort criteria
         assertFalse(SortCriteria.isValidSortCriteria("")); // empty string
         assertFalse(SortCriteria.isValidSortCriteria(" ")); // spaces only
         assertFalse(SortCriteria.isValidSortCriteria("shortlisted")); // invalid status
 
-        // valid addresses
+        // valid sort criteria
         assertTrue(SortCriteria.isValidSortCriteria("applied"));
         assertTrue(SortCriteria.isValidSortCriteria("interview"));
     }

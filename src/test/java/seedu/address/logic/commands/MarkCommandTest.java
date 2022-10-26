@@ -6,13 +6,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
-import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalInternships.getTypicalFindMyIntern;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.FindMyIntern;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,7 +22,7 @@ import seedu.address.testutil.InternshipBuilder;
 
 public class MarkCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -36,7 +36,7 @@ public class MarkCommandTest {
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FindMyIntern(model.getFindMyIntern()), new UserPrefs());
         expectedModel.markInternship(lastInternship, editedInternship);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);

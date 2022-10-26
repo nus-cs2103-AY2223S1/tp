@@ -16,22 +16,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.FindMyIntern;
+import seedu.address.model.ReadOnlyFindMyIntern;
 
-public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+public class JsonFindMyInternStorageTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFindMyInternStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readFindMyIntern_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readFindMyIntern(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyFindMyIntern> readFindMyIntern(String filePath) throws Exception {
+        return new JsonFindMyInternStorage(Paths.get(filePath)).readFindMyIntern(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -42,22 +42,22 @@ public class JsonAddressBookStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readFindMyIntern("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readFindMyIntern("notJsonFormatFindMyIntern.json"));
     }
 
     @Test
-    public void readAddressBook_invalidInternshipAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidInternshipAddressBook.json"));
+    public void readFindMyIntern_invalidFindMyIntern_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFindMyIntern("invalidFindMyIntern.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidInternshipAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidInternshipAddressBook.json"));
+    public void readFindMyIntern_invalidAndValidFindMyIntern_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readFindMyIntern("invalidAndValidFindMyIntern.json"));
     }
 
     /* Passes locally but not on GitHub Actions
@@ -89,24 +89,24 @@ public class JsonAddressBookStorageTest {
      */
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveFindMyIntern_nullFindMyIntern_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFindMyIntern(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code findMyIntern} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
+    private void saveFindMyIntern(ReadOnlyFindMyIntern findMyIntern, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonFindMyInternStorage(Paths.get(filePath))
+                    .saveFindMyIntern(findMyIntern, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
+    public void saveFindMyIntern_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveFindMyIntern(new FindMyIntern(), null));
     }
 }

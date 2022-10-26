@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.ContainsKeywordsPredicate;
 
 /**
- * Finds and lists all internships in address book whose company or tags contains any of the argument keywords.
+ * Finds and lists all internships in findMyIntern whose company or tags contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {

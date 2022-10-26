@@ -20,7 +20,7 @@ import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 /**
- * Marks the status of an existing internship in the address book.
+ * Marks the status of an existing internship in findMyIntern.
  */
 public class MarkCommand extends Command {
 
