@@ -284,6 +284,10 @@ Examples:
 * `viewIncome 2000` will display the expected income for years 2000, 2001 and 2002
 * `viewIncome 1899` will not be allowed since 1899 is not between 1900 and 2200
 
+<img src=".\images\viewIncome.png">
+
+(Result after typing the command `viewIncome 2000`, which displays three year expected income starting from year 2000)
+
 ## Event Features 
 
 ### Adding an Event 
