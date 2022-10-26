@@ -2,12 +2,46 @@
 layout: page
 title: User Guide
 ---
-
+#Introduction
 HR Pro Max++ is a **desktop app for team leads in SMEs to manage projects and staff members under them. It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, HR Pro Max++ can get your project management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
+## Table of Contents
+- [Introduction](#introduction)
+    - [Table of Contents](#table-of-contents)
+    - [Quick start](#quick-start)
+    - [Features](#features)
+        - [Help](#help--help)
+        - [Project Commands](#project-commands)
+          - [Adding a Project](#adding-a-project-add)
+          - [Deleting a Project](#deleting-a-project--delete)
+          - [Listing all Projects](#listing-all-projects--list)
+          - [Locating Project by name](#locating-project-by-name-find)
+          - [Sorting the Project List](#sorting-the-project-list--sort)
+          - [Editing a Project](#editing-a-project--edit)
+        - [Staff Commands](#staff-commands)
+          - [Adding a Staff Member to Project](#adding-a-staff-member-to-project--addstaff)
+          - [Deleting a Staff Member from Project](#deleting-a-staff-member-from-project--delstaff)
+          - [View the Staff list within a Project](#view-the-staff-list-within-a-project-view)
+          - [Editing a Staff Member within a Project](#editing-a-staff-member-within-a-project--editstaff)
+          - [Finding a Staff Member within a Project](#finding-a-staff-member-within-a-project--findstaff)
+        - [Task Commands](#task-commands)
+          - [Adding a Task](#adding-a-task--addtask)
+          - [Deleting a Task](#deleting-a-task--deltask)
+          - [Finding a Task](#finding-a-task--findtask)
+          - [Sorting the Task list](#sorting-the-task-list--sorttask)
+          - [Filtering the Task list](#filtering-the-task-list--filtertask)
+          - [Marking a Task as Done](#marking-a-task-as-done--mark)
+        - [Exiting the Program](#exiting-the-program--exit)
+        - [Clearing all data](#clearing-all-data--clear)
+        - [Saving the data](#saving-the-data)
+    - [User interface](#user-interface)
+    - [FAQ](#faq)
+    - [Command Summary](#command-summary)
+    - [Prefix Summary](#prefix-summary)
 
+--------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -62,14 +96,17 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 
 </div>
 
-### Viewing help : `help`
+--------------------------------------------------------------------------------------------------------------------
+### Help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+--------------------------------------------------------------------------------------------------------------------
+## Project Commands
 ### Adding a Project: `add`
 
 Adds a project to Project list.
@@ -84,6 +121,7 @@ Examples:
 * `add pn/2103T_TP pb/100000 pd/2022-01-01`
 * `add pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime`
 
+--------------------------------------------------------------------------------------------------------------------
 ### Deleting a Project : `delete`
 
 Deletes the specified Project from Project list.
@@ -98,13 +136,54 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd project in Project list.
 * `find 2103T_TP` followed by `delete 1` deletes the 1st project in the results of the `find` command.
 
+--------------------------------------------------------------------------------------------------------------------
 ### Listing all projects : `list`
 
 Show all the Projects in the Projects list.
 
 Format: `list`
 
-### Adding a staff member to Project : `addstaff`
+--------------------------------------------------------------------------------------------------------------------
+### Locating Project by Name: `find`
+
+Finds all projects whose names contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+
+Examples:
+* `find CS2103` returns `CS2103` and `CS2103 TP`
+
+--------------------------------------------------------------------------------------------------------------------
+### Sorting the Project list : `sort`
+
+Sorts the Project list according to deadline.
+
+Format: `sort`
+
+--------------------------------------------------------------------------------------------------------------------
+### Editing a Project : `edit`
+
+Edits an existing Project in the Project list.
+
+Format: `edit INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLINES] [t/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+* `edit 1 pb/5000` Edits the project budget of the 1st project to be `5000`.
+* `edit 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
+
+--------------------------------------------------------------------------------------------------------------------
+##Staff Commands
+### Adding a Staff member to Project : `addstaff`
 
 Adds a staff member info to Project in project list.
 
@@ -116,7 +195,8 @@ Examples:
 * `addStaff pn/DUKE sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
 * `addStaff pn/ROOFUS sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false` Adds staff member named `Betsy Crown` to the project ROOFUS.
 
-### Deleting a staff member from Project : `delstaff`
+--------------------------------------------------------------------------------------------------------------------
+### Deleting a Staff member from Project : `delstaff`
 
 Deletes a staff member and all its info inside a project in the project list.
 
@@ -127,7 +207,8 @@ Examples:
 * `delstaff pn/2103 sn/John` Delete staff member named `John` from project `2103`.
 * `delstaff pn/DUKE sn/Betty` Delete staff member named `Betty` from project `DUKE`.
 
-### View the staff list within a project: `view`
+--------------------------------------------------------------------------------------------------------------------
+### View the Staff list within a project: `view`
 
 Views the staff list of a specified project in Project list.
 
@@ -141,40 +222,32 @@ Examples:
 * `list` followed by `view 2` displays the staff list of the 2nd project in Project list on the bottom right.
 * `find 2103T_TP` followed by `view 1` display the staff list of the 1st project from the result of the `find` command.
 
-### Locating Project by Name: `find`
+--------------------------------------------------------------------------------------------------------------------
+### Editing a Staff member within a Project : `editstaff`
 
-Finds a specified Project in Project list.
+--------------------------------------------------------------------------------------------------------------------
+### Finding a Staff member within a Project : `findstaff`
 
-Format: `find pn/PROJECT_NAME`
+--------------------------------------------------------------------------------------------------------------------
+## Task Commands
+### Adding a Task : `addtask`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
+--------------------------------------------------------------------------------------------------------------------
+### Deleting a Task : `deltask`
 
-Examples:
-* `find CS2103` returns `CS2103` and `CS2103 TP`
+--------------------------------------------------------------------------------------------------------------------
+### Finding a Task : `findtask`
 
-### Editing a Project : `edit`
+--------------------------------------------------------------------------------------------------------------------
+### Sorting the Task list : `sorttask`
 
-Edits an existing Project in the Project list.
+--------------------------------------------------------------------------------------------------------------------
+### Filtering the Task list : `filtertask`
 
-Format: `edit INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLINES] [t/TAG]…​`
+--------------------------------------------------------------------------------------------------------------------
+### Marking a Task as done : `mark`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-* `edit 1 pb/5000` Edits the project budget of the 1st project to be `5000`.
-* `edit 2 pn/CS2103 t/` Edits the name of the 2nd person to be `CS2103` and clears all existing tags.
-
-### Clearing all Projects : `clear`
-
-Clears all Projects from the Project list.
-
-Format: `clear`
+--------------------------------------------------------------------------------------------------------------------
 
 ### Exiting the program : `exit`
 
@@ -182,18 +255,47 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-Project data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+--------------------------------------------------------------------------------------------------------------------
+### Clearing all Data : `clear`
+
+Clears all data from HR Pro Max++.
+
+Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
+### Saving the data
+Project data is saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
 
+--------------------------------------------------------------------------------------------------------------------
+## User Interface
+The user interface is divided into 3 main parts: the command box, the result display and the List panel.
+### Command Box
+The command box is where you can type in your commands. You can press the `Enter` key to execute the command.
+
+![Command Box](images/CommandBox.png)
+
+### Result Display
+The result display is where the output of your commands will be shown. 
+For example, entering an incorrect add command like shown below will cause an error message to be displayed in the result display.
+
+![Result Display](images/ResultDisplay.png)
+
+### List Panel
+Clicking on a `Task`, `Project`, or `Staff` card will cause the respective box to be highlighted in green. 
+All `Task` and `Project` cards will be displayed in the `List Panel`.  
+By default, the `Staff` members of the first project are displayed. 
+To see how to view the `Staff` list of other projects, you can check [this](#view-the-staff-list-within-a-project-view) segment of the user guide.
+
+![List Panel](images/ListPanel.png)
+
+--------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 
 
