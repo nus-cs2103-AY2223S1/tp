@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -15,8 +16,11 @@ import seedu.address.model.student.Student;
  */
 public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "StudentListPanel.fxml";
+    private static final String STUDENT_HEADER = "Students";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
+    @FXML
+    private Label header;
     @FXML
     private ListView<Student> studentListView;
 
@@ -25,6 +29,7 @@ public class StudentListPanel extends UiPart<Region> {
      */
     public StudentListPanel(ObservableList<Student> studentList) {
         super(FXML);
+        header.setText(STUDENT_HEADER);
         studentListView.setItems(studentList);
         studentListView.setCellFactory(listView -> new StudentListViewCell());
     }
