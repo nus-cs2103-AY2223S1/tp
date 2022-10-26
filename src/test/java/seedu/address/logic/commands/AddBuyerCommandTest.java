@@ -109,22 +109,22 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public Path getPersonModelFilePath() {
+        public Path getPersonBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPersonModelFilePath(Path addressBookFilePath) {
+        public void setPersonBookFilePath(Path personBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Path getPropertyModelFilePath() {
+        public Path getPropertyBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPropertyModelFilePath(Path addressBookFilePath) {
+        public void setPropertyBookFilePath(Path personBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,12 +134,12 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public void setPersonModel(ReadOnlyPersonBook newData) {
+        public void setPersonBook(ReadOnlyPersonBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPersonBook getPersonModel() {
+        public ReadOnlyPersonBook getPersonBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -189,12 +189,12 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public void setPropertyModel(ReadOnlyPropertyBook newData) {
+        public void setPropertyBook(ReadOnlyPropertyBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyPropertyBook getPropertyModel() {
+        public ReadOnlyPropertyBook getPropertyBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -262,7 +262,7 @@ public class AddBuyerCommandTest {
         }
 
         @Override
-        public ReadOnlyPersonBook getPersonModel() {
+        public ReadOnlyPersonBook getPersonBook() {
             return new PersonBook();
         }
     }

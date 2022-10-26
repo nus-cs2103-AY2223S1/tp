@@ -24,10 +24,10 @@ import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonPersonBookStorage;
 import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PersonBookStorage;
 import seedu.address.storage.PropertyBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -60,9 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getPersonBookFilePath());
+        PersonBookStorage personBookStorage = new JsonPersonBookStorage(userPrefs.getPersonBookFilePath());
         PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
-        storage = new StorageManager(addressBookStorage, propertyBookStorage, userPrefsStorage);
+        storage = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,28 +74,29 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s person book, property book and
+     * {@code userPrefs}. <br> The data from the sample person book and property book will be used instead if those in
+     * {@code storage} cannot be found, or an empty person book and property book will be used instead if errors
+     * occur when reading those in {@code storage}.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPersonBook> personModelOptional;
-        ReadOnlyPersonBook personModel;
+        Optional<ReadOnlyPersonBook> personBookOptional;
+        ReadOnlyPersonBook personBook;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
         ReadOnlyPropertyBook propertyBook;
 
         try {
-            personModelOptional = storage.readAddressBook();
-            if (!personModelOptional.isPresent()) {
+            personBookOptional = storage.readPersonBook();
+            if (!personBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PersonBook");
             }
-            personModel = personModelOptional.orElseGet(SampleDataUtil::getSamplePersonModel);
+            personBook = personBookOptional.orElseGet(SampleDataUtil::getSamplePersonBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PersonBook");
-            personModel = new PersonBook();
+            personBook = new PersonBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
-            personModel = new PersonBook();
+            personBook = new PersonBook();
         }
 
         try {
@@ -103,7 +104,7 @@ public class MainApp extends Application {
             if (!propertyBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PropertyBook");
             }
-            propertyBook = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyModel);
+            propertyBook = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PropertyBook");
             propertyBook = new PropertyBook();
@@ -112,7 +113,7 @@ public class MainApp extends Application {
             propertyBook = new PropertyBook();
         }
 
-        return new ModelManager(personModel, propertyBook, userPrefs);
+        return new ModelManager(personBook, propertyBook, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -196,7 +197,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Cobb ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

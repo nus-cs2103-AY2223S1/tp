@@ -22,10 +22,10 @@ import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListBuyersCommand;
 import seedu.address.logic.commands.ListPropertiesCommand;
-import seedu.address.logic.commands.SortBuyersCommand;
 import seedu.address.logic.commands.MatchPropertyCommand;
 import seedu.address.logic.commands.MultiFlagFilterBuyersCommand;
 import seedu.address.logic.commands.MultiFlagFilterPropsCommand;
+import seedu.address.logic.commands.SortBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

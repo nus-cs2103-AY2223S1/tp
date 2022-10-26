@@ -50,34 +50,34 @@ public interface Model {
     /**
      * Returns the user prefs' buyer model file path.
      */
-    Path getPersonModelFilePath();
+    Path getPersonBookFilePath();
 
     /**
      * Sets the user prefs' buyer model file path.
      */
-    void setPersonModelFilePath(Path addressBookFilePath);
+    void setPersonBookFilePath(Path personBookFilePath);
 
     /**
-     * Returns the user prefs' property model file path.
+     * Returns the user prefs' property book file path.
      */
-    Path getPropertyModelFilePath();
+    Path getPropertyBookFilePath();
 
     /**
-     * Sets the user prefs' property model file path.
+     * Sets the user prefs' property book file path.
      */
-    void setPropertyModelFilePath(Path addressBookFilePath);
+    void setPropertyBookFilePath(Path propertyBookFilePath);
 
     //=========== PersonBook ================================================================================
 
     /**
      * Replaces buyer model data with the data in {@code personModel}.
      */
-    void setPersonModel(ReadOnlyPersonBook personModel);
+    void setPersonBook(ReadOnlyPersonBook personBook);
 
     /**
      * Returns the PersonBook
      */
-    ReadOnlyPersonBook getPersonModel();
+    ReadOnlyPersonBook getPersonBook();
 
     /**
      * Returns true if a buyer with the same identity as {@code buyer} exists in the address book.
@@ -139,35 +139,35 @@ public interface Model {
     //=========== PropertyBook ================================================================================
 
     /**
-     * Replaces property model data with the data in {@code propertyModel}.
+     * Replaces property book data with the data in {@code propertyBook}.
      */
-    void setPropertyModel(ReadOnlyPropertyBook propertyModel);
+    void setPropertyBook(ReadOnlyPropertyBook propertyBook);
 
     /**
      * Returns the PropertyBook
      */
-    ReadOnlyPropertyBook getPropertyModel();
+    ReadOnlyPropertyBook getPropertyBook();
 
     /**
-     * Returns true if a property with the same identity as {@code property} exists in the address book.
+     * Returns true if a property with the same identity as {@code property} exists in the property book.
      */
     boolean hasProperty(Property property);
 
     /**
      * Deletes the given property.
-     * The property must exist in the address book.
+     * The property must exist in the property book.
      */
     void deleteProperty(Property target);
 
     /**
      * Adds the given property.
-     * {@code property} must not already exist in the address book.
+     * {@code property} must not already exist in the property book.
      */
     void addProperty(Property property);
 
     /**
      * Replaces the given property {@code target} with {@code editedProperty}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the property book.
      * The property identity of {@code editedProperty} must not be the same as another existing property in the address
      * book.
      */

@@ -48,8 +48,8 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getPersonModel());
-            storage.savePropertyBook(model.getPropertyModel());
+            storage.savePersonBook(model.getPersonBook());
+            storage.savePropertyBook(model.getPropertyBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -58,8 +58,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPersonBook getPersonModel() {
-        return model.getPersonModel();
+    public ReadOnlyPersonBook getPersonBook() {
+        return model.getPersonBook();
     }
 
     @Override
@@ -67,14 +67,13 @@ public class LogicManager implements Logic {
         return model.getFilteredPersonList();
     }
 
-    @Override
     public ObservableList<Buyer> getSortedPersonList() {
         return model.getSortedPersonList();
     }
 
     @Override
-    public ReadOnlyPropertyBook getPropertyModel() {
-        return model.getPropertyModel();
+    public ReadOnlyPropertyBook getPropertyBook() {
+        return model.getPropertyBook();
     }
 
     @Override
@@ -83,13 +82,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getPersonModelFilePath() {
-        return model.getPersonModelFilePath();
+    public Path getPersonBookFilePath() {
+        return model.getPersonBookFilePath();
     }
 
     @Override
-    public Path getPropertyModelFilePath() {
-        return model.getPropertyModelFilePath();
+    public Path getPropertyBookFilePath() {
+        return model.getPropertyBookFilePath();
     }
 
     @Override

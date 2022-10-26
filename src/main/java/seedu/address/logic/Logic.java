@@ -28,9 +28,9 @@ public interface Logic {
     /**
      * Returns the PersonBook.
      *
-     * @see seedu.address.model.Model#getPersonModel()
+     * @see seedu.address.model.Model#getPersonBook()
      */
-    ReadOnlyPersonBook getPersonModel();
+    ReadOnlyPersonBook getPersonBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Buyer> getFilteredPersonList();
@@ -41,9 +41,9 @@ public interface Logic {
     /**
      * Returns the PropertyBook.
      *
-     * @see seedu.address.model.Model#getPropertyModel()
+     * @see seedu.address.model.Model#getPropertyBook()
      */
-    ReadOnlyPropertyBook getPropertyModel();
+    ReadOnlyPropertyBook getPropertyBook();
 
     /** Returns an unmodifiable view of the filtered list of properties */
     ObservableList<Property> getFilteredPropertyList();
@@ -51,12 +51,12 @@ public interface Logic {
     /**
      * Returns the user prefs' buyer model file path.
      */
-    Path getPersonModelFilePath();
+    Path getPersonBookFilePath();
 
     /**
-     * Returns the user prefs' property model file path.
+     * Returns the user prefs' property book file path.
      */
-    Path getPropertyModelFilePath();
+    Path getPropertyBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

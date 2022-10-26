@@ -34,7 +34,7 @@ public class DeleteBuyerCommandTest {
         String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, buyerToDelete);
 
         ModelManager expectedModel = new ModelManager(
-                model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
+                model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
         expectedModel.deletePerson(buyerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

@@ -14,8 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path personBookFilePath = Paths.get("data" , "personmodel.json");
-    private Path propertyBookFilePath = Paths.get("data", "propertymodel.json");
+    private Path personBookFilePath = Paths.get("data" , "personbook.json");
+    private Path propertyBookFilePath = Paths.get("data", "propertybook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
