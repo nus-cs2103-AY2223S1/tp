@@ -2,6 +2,7 @@ package seedu.rc4hdb.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,24 +55,6 @@ public class BookingTableView extends UiPart<Region> {
         configureTableProperties();
 
         updateTable(bookingList);
-    }
-
-    /**
-     * Builds a list of daily schedules, corresponding to a week.
-     */
-    public List<DailySchedule> buildWeeklySchedule(List<Booking> bookingList) {
-        List<DailySchedule> weeklySchedule = new ArrayList<>();
-        List<Day> days = Day.DAYS_OF_WEEK.stream().map(Day::new).collect(Collectors.toList());
-        for (Day day : days) {
-            List<Booking> dailyBooking = new ArrayList<>();
-            for (Booking booking : bookingList) {
-                if (booking.getDayOfWeek().equals(day)) {
-                    dailyBooking.add(booking);
-                }
-            }
-            weeklySchedule.add(DailySchedule.of(dailyBooking, day));
-        }
-        return weeklySchedule;
     }
 
     private void addColumns() {
