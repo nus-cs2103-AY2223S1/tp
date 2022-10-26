@@ -31,7 +31,6 @@ public class ScheduleListPanel extends UiPart<Region> {
         super(FXML);
         this.scheduleListView.setItems(schedule.getObservableList());
         this.scheduleListView.setCellFactory(listview -> new ScheduleListViewCell());
-        this.scheduleListView.prefWidthProperty().bind(this.getRoot().widthProperty());
 
         if (schedule.isToday()) {
             this.header.setText(String.format("Tasks for Today (%s):", schedule.getDate()));
@@ -46,8 +45,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     class ScheduleListViewCell extends ListCell<PatientTaskListPair> {
         ScheduleListViewCell() {
             super();
-            this.setStyle("-fx-padding: 0px");
-            this.prefWidthProperty().bind(scheduleListView.widthProperty());
+            setStyle("-fx-padding: 0 5 0 0");
         }
 
         @Override

@@ -110,5 +110,4 @@ public class OutputPanel extends UiPart<Region> {
         RedoCard redoCard = new RedoCard(patientListTracker);
         outputView.getChildren().add(redoCard.getRoot());
     }
-
 }

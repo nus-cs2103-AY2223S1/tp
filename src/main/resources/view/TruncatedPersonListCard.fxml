@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" layoutX="10.0" layoutY="10.0" minHeight="100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
- <VBox alignment="CENTER_LEFT">
-   <HBox alignment="CENTER_LEFT" spacing="5">
-     <Label fx:id="id" styleClass="cell_big_label" />
-     <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-         <opaqueInsets>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </opaqueInsets>
-   </HBox>
-   <FlowPane fx:id="tags" />
-      <padding>
-         <Insets left="15.0" />
-      </padding>
- </VBox>
-   <stylesheets>
-      <URL value="@Fonts.css" />
-      <URL value="@Theme.css" />
-      <URL value="@Extensions.css" />
-   </stylesheets>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-</HBox>
+<VBox fx:id="cardPane" alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane hgap="5.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label fx:id="id" />
+               </children></VBox>
+            <VBox fx:id="namePane" GridPane.columnIndex="1">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <FlowPane fx:id="tags" prefWrapLength="100.0" />
+               </children>
+            </VBox>
+            <VBox fx:id="taskNumberPane" alignment="CENTER" GridPane.columnIndex="2" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
+      </GridPane>
+   </children>
+</VBox>
