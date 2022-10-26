@@ -7,12 +7,14 @@
 1. [Introduction](#introduction)
 2. [Quick Start](#quick-start)
 3. [Features](#features)
-   1. [Adding spendings: `add -s  number [DATE]`](#adding-spendings-add--s--number-date)
-   2. [Deleting spendings: `del -s index_of_spendings`](#deleting-spendings-del--s-index_of_spendings)
-   3. [Adding income: `add -i number [DATE]`](#adding-income-add--i-number-date)
-   4. [Deleting income: `del -i number index_of_income`](#deleting-income-del--i-number-index_of_income)
-   5. [View total summary of spending: `view -s [MONTH]`](#view-total-summary-of-spending-view--s-month)
-   6. [View total summary of income: `view -i [MONTH]`](#view-total-summary-of-income-view--i-month)
+   1. [Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`]()
+   2. [Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`](#deleting-spendings-del--s-index_of_spendings)
+   3. [Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`](#adding-income-add--i-number-date)
+   4. [Summary of entries : `summary [mo/MONTH]`](#deleting-income-del--i-number-index_of_income)
+   5. [View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`](#view-total-summary-of-spending-view--s-month)
+   6. [View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`](#view-total-summary-of-income-view--i-month)
+   7. [Clearing all entries : `clear`]()
+   8. [Exiting the program : `exit`]()
 4. [FAQ](#faq)
 5. [Command Summary](#command-summary)
 
@@ -47,6 +49,10 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
     - **`delete`**`3 t/e` : Deletes the 3rd contact shown in the expenditure.
 
+    - **`view`**`t/e g/c` : View a PieChart of all expenses.
+
+    - **`view`**`t/e g/m mo/2022-08` : View a LineGraph of all expenses on August 2022.
+
     - **`clear`** : Deletes all entries.
 
     - **`exit`** : Exits the app.
@@ -76,6 +82,35 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
   e.g `view t/ENTRY_TYPE g/GRAPH_TYPE [MONTH]` can be used as `view t/e g/c [mo/2022-05]` or as `view t/e g/c`.
 </div>
 
+## Before Using
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the application:**<br>
+- For **ALL** entries, categories are <ins>compulsory</ins> and every entry can only contain <ins>one</ins> category. 
+  The following table shows the`Expenditure` and `Income` entries categories.
+
+|   `Expenditure`   |    `Income`     |
+|:-----------------:|:---------------:|
+|     **Food**      |   **Salary**    |
+|   **Groceries**   |  **Allowance**  |
+| **Entertainment** |   **Profit**    |
+|   **Education**   | **Investments** |
+|    **Housing**    |    **Gifts**    |
+|    **Others**     |   **Others**    |
+
+- For **ALL** entries, 2 entries are considered duplicates <ins>IF</ins> both entries have exactly the same:
+  `description`, `date` `amount` and `category`. We do not want PennyWise to be managing entries which are a repeat,
+  of one another, as it would be easier to simply use the `edit` command to alter the original entry's specifications.
+  e.g. Executing the following 2 commands one after another, PennyWise will recognise (2) as a duplicate entry. 
+  <pre>
+    <code>
+        1. add t/e d/TehBeng a/1.50 da/22-10-2022 c/Food 
+        2. add t/e d/TehBeng a/1.50 da/22-10-2022 c/Food
+    </code>
+  </pre>
+
+</div>
 
 ### Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`
 Adds an entry to the specified list. <br>
@@ -118,19 +153,23 @@ Edits an entry, at least **1** of the optional fields must be present.
 The default date is the current date on your computer!
 </div>
 
-### Viewing total summary of spendings : `view -s [MONTH]`
+### Summary of entries : `summary [mo/MONTH]`
 
-1. View a summary of all spending
-   * Examples: `view -s`
-   * Expected: A summary of total spending: `Total amount spent: $125.30`
-2. View a summary of all spending the specified month
-    * Examples: `view -s 09-2022`
-    * Expected: A summary of spendings in September 2022: `Total amount spent in September 2022: $37.70`
+1. View a summary of all entires
+   * Examples: `summary`
+     * Expected: <br/>
+       Financials Summarized <br/>
+       Total Expenditure: 154.40 <br/>
+       Total Income: 150.00 <br/>
+       Total Balance: -4.40 <br/>
+2. View a summary of all entires the specified month
+    * Examples: `summary mo/2022-09`
+    * Expected: A summary of entries in September 2022: `Total amount spent in September 2022: $37.70`
 
-* View all spending recorded by the user in a month. The month refers to the month that is displayed to the user.
+* Provides a financial summary recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the current month.
 
-### Viewing total summary of income : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
+### View entries by category: `view t/ENTRY_TYPE g/GRAPH_TYPE`
 
 1. View a PieChart of all expenditures by categories
     * Examples: `view t/e g/c`
@@ -138,6 +177,8 @@ The default date is the current date on your computer!
 1. View a PieChart of all incomes by categories
    * Examples: `view t/i g/c`
    * Expected: `Show graphically all income by category` and a PieChart on the right of the application
+
+### View entries by month: `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
 1. View a LineGraph of all expenditures in a specified month
    * Examples: `view t/e g/m mo/2022-10`
    * Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
@@ -148,18 +189,6 @@ The default date is the current date on your computer!
 * View all entries recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is required for the LineGraph, if no month is specified, the application displays an error.
 
-
-### Summarise financials : `summary [MONTH]`
-
-1. Summarise all financial records
-    * Examples: `summary`
-    * Expected: A summary of all financials:
-2. Summarise financial records for a specific month
-    * Examples: `summary 08-2022`
-    * Expected: A summary of all financials for August 2022
-
-* Summarise all income / expenditure recorded by the user in a month. The month refers to the month that is displayed to the user.
-* The `MONTH` field is optional, if no month is specified, the application summarises all records.
 
 ### Clearing all entries : `clear`
 
@@ -185,13 +214,6 @@ PennyWise data are saved as a JSON file `[JAR file location]/data/addressbook.js
 If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 
-### Tagging of Income `[coming in v1.3]`
-### Tagging of Spending `[coming in v1.3]`
-### Filtering of Income/Spendings `[coming in v1.3]`
-### Filtering by Dates `[coming in v1.3]`
-
-_Details coming soon ..._
-
 ---
 
 ## FAQ
@@ -205,12 +227,13 @@ the data of your previous AddressBook home folder.
 ## Command summary
 
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action              | Format, Examples                                                                                                                                        |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g., `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                  |
+| **Delete**          | `del INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g., `del 2 t/e`                                                                                                |
+| **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g.,`edit 2 t/i a/150.00 da/22-10-2022` |
+| **Summary**         | `summary [mo/MONTH]`<br> e.g., `summary mo/2022-09`                                                                                                     |
+| **View (Category)** | `view t/ENTRY_TYPE g/GRAPH_TYPE` <br> e.g,, `view t/e g/c`                                                                                              |
+| **View (Month)**    | `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]` <br> e.g., `view t/i g/m mo/2022-10`                                                                        |
+| **Clear**           | `clear`                                                                                                                                                 |
+| **Exit**            | `exit`                                                                                                                                                  |
