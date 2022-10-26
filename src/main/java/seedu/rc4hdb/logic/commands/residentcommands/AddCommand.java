@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.modelcommands;
+package seedu.rc4hdb.logic.commands.residentcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -11,6 +11,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;

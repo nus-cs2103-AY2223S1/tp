@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.modelcommands;
+package seedu.rc4hdb.logic.commands.residentcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.fields.ResidentField;

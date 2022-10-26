@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.modelcommands;
+package seedu.rc4hdb.logic.commands.residentcommands;
 
 import static java.util.Objects.requireNonNull;
 

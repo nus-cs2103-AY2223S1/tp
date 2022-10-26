@@ -1,8 +1,9 @@
-package seedu.rc4hdb.logic.commands.modelcommands;
+package seedu.rc4hdb.logic.commands.residentcommands;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.ModelCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ResidentBook;
 

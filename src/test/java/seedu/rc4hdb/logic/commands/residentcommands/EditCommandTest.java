@@ -1,15 +1,15 @@
-package seedu.rc4hdb.logic.commands.modelcommands;
+package seedu.rc4hdb.logic.commands.residentcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.DESC_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.showResidentAtIndex;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.DESC_BOB;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_NAME_BOB;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.showResidentAtIndex;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_SECOND_RESIDENT;
 import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
