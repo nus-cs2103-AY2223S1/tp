@@ -48,7 +48,8 @@ public class ProjectCard extends UiPart<Region> {
         super(FXML);
         this.project = project;
         name.setText(project.getProjectName().toString()
-                + " " + project.getProjectId().uiRepresentation());
+                + " " + project.getProjectId().uiRepresentation()
+                + (project.isPinned() ? " \uD83D\uDCCC" : ""));
         repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
                 : project.getRepository().getUiRepresentation());
         repository.setOnMouseClicked(e -> copyRepoUrl(project.getRepository().isEmpty() ? ""

@@ -45,7 +45,8 @@ public class IssueCard extends UiPart<Region> {
         super(FXML);
         this.issue = issue;
         title.setText(issue.getTitle().uiRepresentation()
-                + " " + issue.getIssueId().uiRepresentation());
+                + " " + issue.getIssueId().uiRepresentation()
+                + (issue.isPinned() ? " \uD83D\uDCCC" : ""));
         deadline.setText(issue.getDeadline().uiRepresentation());
         priority.setText(issue.getPriority().uiRepresentation());
         project.setText("Project: " + issue.getProject().toString());
