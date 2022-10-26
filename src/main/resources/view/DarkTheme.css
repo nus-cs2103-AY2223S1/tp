@@ -23,10 +23,24 @@
     -fx-opacity: 1;
 }
 
+.label-blue {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #2f3b54;
+    -fx-opacity: 1;
+}
+
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-header-blue {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #2f3b54;
     -fx-opacity: 1;
 }
 
@@ -83,7 +97,7 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#d7dce2, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
@@ -145,6 +159,12 @@
 .pane-with-border {
      -fx-background-color: derive(#2f3b54, 20%);
      -fx-border-color: derive(#2f3b54, 10%);
+     -fx-border-top-width: 0px;
+}
+
+.pane-with-border-alt {
+     -fx-background-color: derive(#d7dce2, 20%);
+     -fx-border-color: derive(#d7dce2, 10%);
      -fx-border-top-width: 0px;
 }
 

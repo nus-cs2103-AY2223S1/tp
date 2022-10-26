@@ -60,7 +60,7 @@
                   </VBox>
                 </children>
               </VBox>
-              <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="340.0">
+              <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="340.0" styleClass="pane-with-border">
                 <children>
                   <StackPane VBox.vgrow="ALWAYS" fx:id="infoDisplayPlaceholder" styleClass="pane-with-border">
                     <padding>
