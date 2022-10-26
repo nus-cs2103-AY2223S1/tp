@@ -22,6 +22,7 @@ public class PickCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_MODULE_MISSING = "This module is not in your module list";
+    public static final String MESSAGE_INVALID_LESSONTYPE = "This Lesson Type is not offered in this module";
     public static final String MESSAGE_INVALID_CLASSNO = "This class is not offered or an invalid one";
     public static final String MESSAGE_DUPLICATE_CLASSNO = "This class already exist in your current module";
 
@@ -49,9 +50,19 @@ public class PickCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_MISSING);
         }
 
+        //check if lesson type is offered
+        if (!model.isModuleLessonOffered(toPick, toUpdate.get().getSelectedSemester(), lessonType)) {
+            throw new CommandException(MESSAGE_INVALID_LESSONTYPE);
+        }
+
+        //check if lesson class code is offered
+        if (!model.isModuleLessonClassOffered(toPick, toUpdate.get().getSelectedSemester(), lessonType, classNo)) {
+            throw new CommandException(MESSAGE_INVALID_CLASSNO);
+        }
+
+        // if everything correct then set accordingly in hashmap in UserModule
         toUpdate.get().setLessons(lessonType, classNo);
 
-        //TODO: Update lesson details for correct UserModule in the list
         String addedDetails = String.format("%s %s %s", toPick, lessonType, classNo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()),
                 COMMAND_WORD, model);

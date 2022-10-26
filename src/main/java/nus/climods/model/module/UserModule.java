@@ -11,23 +11,16 @@ public class UserModule {
 
     private String code;
     private SemestersEnum selectedSemester;
+
+    /**
+     * The Tutorial and Lecture attributes will be stored in lessons hashmap instead, since there can be other types
+     * of lessons.
+     */
     private String tutorial = "<Not Selected>"; // TODO placeholder
     private String lecture = "<Not Selected>"; // TODO placeholder
 
     //Hashmap to store Lesson Data
     private HashMap<LessonTypeEnum, String> lessons = new HashMap<>();
-
-
-    /**
-     * Creates a UserModule with null selectedSemester to use it for
-     * comparing in @UniqueUserModuleList.
-     *
-     * @param moduleCode module code
-     */
-    public UserModule(String moduleCode) {
-        this.code = moduleCode;
-        this.selectedSemester = null;
-    }
 
     /**
      * Creates a UserModule
@@ -104,6 +97,8 @@ public class UserModule {
         }
         return str;
     }
+
+    //TODO: Can remove all these afterwards if we can display with hashmap, gotta check with Chengyi
 
     // TEMP
     public String getTutorial() {

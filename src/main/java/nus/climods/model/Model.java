@@ -2,17 +2,16 @@ package nus.climods.model;
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
+import nus.climods.model.module.*;
+import nus.climods.model.module.Module;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
-import nus.climods.model.module.Module;
-import nus.climods.model.module.ReadOnlyModuleList;
-import nus.climods.model.module.UniqueUserModuleList;
-import nus.climods.model.module.UserModule;
 
 /**
  * The API of the Model component.
@@ -47,20 +46,77 @@ public interface Model {
     ReadOnlyModuleList getModuleList();
 
     /**
-     * Returns Optional Module corresponding to the supplied module code
+     * Returns Optional Module corresponding to the supplied module code.
      */
     Optional<Module> getListModule(String moduleCode);
 
+    /**
+     * Returns set of unselectableLessonType.
+     * @param moduleCode
+     * @param semester
+     * @return
+     */
+    Set<LessonTypeEnum> unselectableLessonType(String moduleCode, SemestersEnum semester);
+
+    /**
+     * Check if Module is offered / module code is valid.
+     * @param moduleCode
+     * @return boolean
+     */
     boolean isModuleOffered(String moduleCode);
 
+    /**
+     * Check if Module is offered in semester
+     * @param moduleCode
+     * @param semester
+     * @return boolean
+     */
     boolean isModuleOfferedInSemester(String moduleCode, SemestersEnum semester);
 
+    /**
+     * Check if lesson type is offered in the module in the semester.
+     * @param moduleCode
+     * @param semester
+     * @param lessonType
+     * @return boolean
+     */
+    boolean isModuleLessonOffered(String moduleCode, SemestersEnum semester,
+                                         LessonTypeEnum lessonType);
+
+    /**
+     * Check if lesson code is offered in the module in the semester based on lesson type.
+     * @param moduleCode
+     * @param semester
+     * @param lessonType
+     * @param classCode
+     * @return boolean
+     */
+    boolean isModuleLessonClassOffered(String moduleCode, SemestersEnum semester,
+                                         LessonTypeEnum lessonType, String classCode);
+
+    /**
+     * Getter method that gets Optional Module by checking String moduleCode input.
+     * @param moduleCode
+     * @return Optional with Module inside
+     */
     Optional<Module> getModule(String moduleCode);
 
+    /**
+     * Getter method that gets FilteredModulelist
+     * @return ObservableList
+     */
     ObservableList<Module> getFilteredModuleList();
 
+    /**
+     * Set new predicate for FilteredModuleList.
+     * @param predicate
+     */
     void setFilteredModuleList(Predicate<Module> predicate);
 
+    /**
+     * Set new predicate for FilteredModuleList with comparator.
+     * @param predicate
+     */
     void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator);
 
     /**

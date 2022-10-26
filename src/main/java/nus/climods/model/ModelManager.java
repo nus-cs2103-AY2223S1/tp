@@ -5,9 +5,12 @@ import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import nus.climods.model.module.*;
+import nus.climods.model.module.Module;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -16,11 +19,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
-import nus.climods.model.module.Module;
-import nus.climods.model.module.ModuleList;
-import nus.climods.model.module.ReadOnlyModuleList;
-import nus.climods.model.module.UniqueUserModuleList;
-import nus.climods.model.module.UserModule;
 import nus.climods.model.module.predicate.ViewModulePredicate;
 
 /**
@@ -90,6 +88,41 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Set<LessonTypeEnum> unselectableLessonType(String moduleCode, SemestersEnum semester) {
+        Optional<Module> module = getModule(moduleCode);
+        if (module.isEmpty()) {
+            return null;
+        }
+
+        return module.get().getUnselectableLessonTypeEnums(semester);
+    }
+
+    @Override
+    public boolean isModuleLessonOffered(String moduleCode, SemestersEnum semester,
+                                         LessonTypeEnum lessonType) {
+        Optional<Module> module = getModule(moduleCode);
+        if (module.isEmpty()) {
+            return false;
+        }
+
+        // TODO: Change this back into hasLessonTypeEnum
+        Set<LessonTypeEnum> test = module.get().getLessonTypeEnums(semester);
+        return test.contains(lessonType);
+    }
+
+    @Override
+    public boolean isModuleLessonClassOffered(String moduleCode, SemestersEnum semester,
+                                         LessonTypeEnum lessonType, String classCode) {
+        Optional<Module> module = getModule(moduleCode);
+        if (module.isEmpty()) {
+            return false;
+        }
+
+        return module.get().hasLessonId(classCode, semester, lessonType);
+    }
+
+
+    @Override
     public Optional<Module> getModule(String moduleCode) {
         return this.moduleList.getModule(moduleCode);
     }
@@ -130,6 +163,7 @@ public class ModelManager implements Model {
         }
         moduleInFocus = null;
     }
+
 
     //=========== UserModule ==================================================================================
 

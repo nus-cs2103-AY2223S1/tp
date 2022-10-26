@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import nus.climods.model.module.exceptions.DuplicateUserModuleException;
 import nus.climods.model.module.exceptions.UserModuleNotFoundException;
+import org.openapitools.client.model.SemestersEnum;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls. A module is considered
@@ -53,7 +54,8 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
      * Gets the UserModule in the list based on String to be compared with.
      */
     public Optional<UserModule> get(String moduleCodeToGet) {
-        UserModule toGet = new UserModule(moduleCodeToGet);
+        //TODO: check this again later
+        UserModule toGet = new UserModule(moduleCodeToGet, SemestersEnum.S1);
 
         return internalList.stream().filter(toGet::isSameUserModule).findFirst();
     }
