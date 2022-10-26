@@ -35,8 +35,8 @@ public class SortCommand extends Command {
 
 
     /**
-     * @param index of the client in the client list to sort
-     * @param isLatest checks if transactions sort by latest or oldest
+     * @param index of the client in the client list to sort.
+     * @param isLatest checks if transactions sort by latest or oldest.
      */
     public SortCommand(Index index, boolean isLatest) {
         requireNonNull(index);
