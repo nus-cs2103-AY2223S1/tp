@@ -318,4 +318,22 @@ public class ModelManager implements Model {
         addressBook.sortClientsByName(key);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
     }
+
+    @Override
+    public void sortClientsByPin() {
+        addressBook.sortClientsByPin();
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
+    public void sortProjectsByPin() {
+        addressBook.sortProjectsByPin();
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void sortIssuesByPin() {
+        addressBook.sortIssuesByPin();
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
 }

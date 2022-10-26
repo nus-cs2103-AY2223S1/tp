@@ -143,4 +143,10 @@ public interface Model {
     void sortClientsByName(int sortClientsByName);
 
     void setDefaultView(DefaultView defaultView);
+
+    void sortClientsByPin();
+
+    void sortProjectsByPin();
+
+    void sortIssuesByPin();
 }

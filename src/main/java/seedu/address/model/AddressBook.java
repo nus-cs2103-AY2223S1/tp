@@ -337,6 +337,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         setClients(sortedClientsByName);
     }
 
+    public void sortClientsByPin() {
+        ObservableList<Client> sortedClientsByPin;
+        sortedClientsByPin = getModifiableClientList().sorted(Comparator.comparing(c -> c.isPinned()));
+        setClients(sortedClientsByPin);
+    }
+
+    public void sortProjectsByPin() {
+        ObservableList<Project> sortedProjectsByPin;
+        sortedProjectsByPin = getModifiableProjectList().sorted(Comparator.comparing(p -> p.isPinned()));
+        setProjects(sortedProjectsByPin);
+    }
+
+    public void sortIssuesByPin() {
+        ObservableList<Issue> sortedIssuesByPin;
+        sortedIssuesByPin = getModifiableIssueList().sorted(Comparator.comparing(i -> i.isPinned()));
+        setIssues(sortedIssuesByPin);
+    }
+
     //// util methods
 
     @Override
