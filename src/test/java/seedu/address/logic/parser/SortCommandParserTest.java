@@ -22,6 +22,12 @@ public class SortCommandParserTest {
         assertParseSuccess(parser, " NAME ASC", new SortCommand(Type.NAME, Order.ASC));
         assertParseSuccess(parser, " NAME", new SortCommand(Type.NAME, Order.ASC));
         assertParseSuccess(parser, " NAME DESC", new SortCommand(Type.NAME, Order.DESC));
+        assertParseSuccess(parser, " CLASS ASC", new SortCommand(Type.CLASS, Order.ASC));
+        assertParseSuccess(parser, " CLASS", new SortCommand(Type.CLASS, Order.ASC));
+        assertParseSuccess(parser, " CLASS DESC", new SortCommand(Type.CLASS, Order.DESC));
+        assertParseSuccess(parser, " OWED ASC", new SortCommand(Type.OWED, Order.ASC));
+        assertParseSuccess(parser, " OWED", new SortCommand(Type.OWED, Order.ASC));
+        assertParseSuccess(parser, " OWED DESC", new SortCommand(Type.OWED, Order.DESC));
     }
 
     @Test
