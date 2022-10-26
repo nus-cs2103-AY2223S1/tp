@@ -39,10 +39,13 @@ MyInsuRec is a **desktop app for financial advisors, optimized for use via a Com
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `addClient n/NAME ...`, `NAME` is a parameter which can be used as `addClient n/John Tan ...`.
+  e.g. in `addClient n/NAME p/PHONE_NUMBER`, `NAME` and `PHONE_NUMBER` are parameters which can be used as `addClient n/John Tan p/12345678`.
 
 * Items in square brackets are optional, while those not in square brackets are compulsory.<br>
-  e.g `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` can be used as `addClient i/1 p/12345678 e/John@abc.com a/123 Avenue b/12122000` or as `addClient n/John Tan p/12345678`.
+  e.g. `addClient` can be used as `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY]` for example `addClient n/John p/12345678 e/John@abc.com b/12122000` or `addClient n/NAME p/PHONE_NUMBER` for example `addClient n/John Tan p/12345678`.<br>
+
+* This symbol `||` indicates that only one of the optional parameters can be used. Using more than one optional parameter is strictly not allowed.
+  e.g. `listClient` can be used as either `listClient pd/[PRODUCT]` for example `listClient pd/Product1` or `listClient bd/BIRTHDAY` for example `listClient bd/week`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -50,7 +53,7 @@ MyInsuRec is a **desktop app for financial advisors, optimized for use via a Com
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/28092022 d/30092022`, only `d/30092022` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `exit`, `listClient` and `listMeeting`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `exit` and `help`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
@@ -68,15 +71,15 @@ Format: `help`
 
 Adds a new client to MyInsuRec.
 
-Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY]`
+Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY]`
 
-* Adds a client having name `NAME`.
-* A client must have a NAME and a PHONE_NUMBER.
-* EMAIL and BIRTHDAY is optional.
+* A client must have a `NAME` and a `PHONE_NUMBER`.
+* `EMAIL`, `BIRTHDAY` and `ADDRESS` are optional.
 
 Examples:
-* `addClient n/John Tan p/0123456789 b/12122000`
-* `addClient n/John Tan p/0123456789 e/johntan@insurec.com`
+* `addClient n/John Tan p/12345678`
+* `addClient n/John Tan p/12345678 b/12122000`
+* `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01`
 
 ### Listing all clients : `listClient`
 
@@ -104,8 +107,8 @@ Deletes the specified client from MyInsuRec.
 Format: `delClient i/INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed clients' list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refers to the index number shown by executing [`listClient`](#listing-all-clients-listclient) command.
+* `Index` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delClient i/2`
@@ -149,8 +152,8 @@ Deletes a meeting from MyInsuRec.
 Format: `delMeeting i/INDEX`
 
 * Deletes the meeting at the specified `INDEX`.
-* The index refers to the index number shown in the displayed meeting list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refers to the index number shown by executing [`listMeeting`](#listing-meetings-listmeeting) command.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `delMeeting i/2`
