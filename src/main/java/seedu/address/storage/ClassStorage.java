@@ -35,6 +35,29 @@ public class ClassStorage {
     }
 
     /**
+     * Updates the person in the List of Person in the HashMap classes.
+     *
+     * @param personToEdit Person object without the edited fields.
+     * @param editedPerson Person object with the edited fields.
+     */
+    public static void updatePerson(Person personToEdit, Person editedPerson) {
+        if (!personToEdit.hasEmptyClass()) {
+            classes.get(personToEdit.getAClass().date).remove(personToEdit);
+            classes.get(personToEdit.getAClass().date).add(editedPerson);
+        }
+    }
+
+    /**
+     * Gets a list of persons who are attending classes on a particular date.
+     *
+     * @param date LocalDate object.
+     * @return List of Person objects.
+     */
+    public static List<Person> getListOfPerson(LocalDate date) {
+        return classes.get(date);
+    }
+
+    /**
      * Initialises HashMap classes field.
      *
      * @return HashMap object.

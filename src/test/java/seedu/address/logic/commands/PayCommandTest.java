@@ -43,7 +43,8 @@ public class PayCommandTest {
         Person personPaying = new PersonBuilder(AMY).withMoneyOwed(VALID_MONEY.value).build();
         Person expectedPaidPerson = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(0),
-                AMY.getMoneyPaid().addTo(VALID_MONEY), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags());
+                AMY.getMoneyPaid().addTo(VALID_MONEY), AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
+                AMY.getMarkStatus(), AMY.getDisplayedClass());
 
         Person paidPerson = PayCommand.createPaidPerson(personPaying, VALID_MONEY);
         assertEquals(expectedPaidPerson, paidPerson);
@@ -53,7 +54,8 @@ public class PayCommandTest {
     public void create_paidPersonWithMaximumPaidAmount_failure() {
         Person person = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(Integer.MAX_VALUE),
-                VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags());
+                VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
+                AMY.getMarkStatus(), AMY.getDisplayedClass());
 
         assertThrows(CommandException.class, () -> PayCommand.createPaidPerson(person, new Money(Integer.MAX_VALUE)));
     }
@@ -62,7 +64,8 @@ public class PayCommandTest {
     public void create_paidPersonWithZeroDebt_failure() {
         Person person = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(0),
-                VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags());
+                VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
+                AMY.getMarkStatus(), AMY.getDisplayedClass());
 
         assertThrows(CommandException.class, () -> PayCommand.createPaidPerson(person, VALID_MONEY));
     }
@@ -71,7 +74,8 @@ public class PayCommandTest {
     public void create_paidPersonWithLowDebt_failure() {
         Person person = new Person(AMY.getName(), AMY.getPhone(), AMY.getNokPhone(), AMY.getEmail(),
                 AMY.getAddress(), AMY.getAClass(), new Money(299),
-                VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags());
+                VALID_MONEY, AMY.getRatesPerClass(), AMY.getAdditionalNotes(), AMY.getTags(),
+                AMY.getMarkStatus(), AMY.getDisplayedClass());
 
         assertThrows(CommandException.class, () -> PayCommand.createPaidPerson(person, VALID_MONEY));
     }

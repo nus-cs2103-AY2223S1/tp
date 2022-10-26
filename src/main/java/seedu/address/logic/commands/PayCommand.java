@@ -10,14 +10,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.*;
 import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +87,8 @@ public class PayCommand extends Command {
         Money currentRatesPerClass = personPaying.getRatesPerClass();
         AdditionalNotes currentNotes = personPaying.getAdditionalNotes();
         Set<Tag> currentTags = personPaying.getTags();
+        Mark currentMarkStatus = personPaying.getMarkStatus();
+        Class displayedClassDate = personPaying.getDisplayedClass();
 
         Money updatedMoneyPaid;
         Money updatedMoneyOwed;
@@ -111,7 +107,7 @@ public class PayCommand extends Command {
 
         return new Person(currentName, currentPhone, currentNokPhone, currentEmail, currentAddress,
                 currentClassDateTime, updatedMoneyOwed, updatedMoneyPaid, currentRatesPerClass, currentNotes,
-                currentTags);
+                currentTags, currentMarkStatus, displayedClassDate);
     }
 
     @Override

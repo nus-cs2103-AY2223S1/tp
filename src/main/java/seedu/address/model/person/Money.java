@@ -13,7 +13,7 @@ public class Money {
     public static final String MESSAGE_CONSTRAINTS = "Money can take any positive integer values,"
             + " and its default value is 0";
 
-    public static final String MESSAGE_AMOUNT_TOO_LARGE = "Amount of money is too large to handle";
+    public static final String MESSAGE_AMOUNT_TOO_LARGE = "Amount of money is too large to handle.";
 
     public static final String MESSAGE_NEGATIVE_AMOUNT = "Amount of money cannot be negative";
 
