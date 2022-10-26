@@ -1,13 +1,10 @@
 package seedu.address.logic.commands;
 
-//import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
+
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +13,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.EntryInYearMonthPredicate;
-
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
-//import seedu.address.model.entry.EntryType;
-//import seedu.address.model.entry.Expenditure;
 
 public class SummaryCommandTest {
     private Model model = new ModelManager(getTypicalPennyWise(), new UserPrefs());

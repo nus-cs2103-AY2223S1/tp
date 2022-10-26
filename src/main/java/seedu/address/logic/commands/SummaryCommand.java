@@ -1,10 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,7 +29,6 @@ public class SummaryCommand extends Command {
             + "Total Income: %.2f\n"
             + "Total Balance: %.2f";
 
-//    private final Optional<EntryInYearMonthPredicate> predicate;
     private final Predicate<Entry> predicate;
 
     public SummaryCommand(EntryInYearMonthPredicate predicate) {
