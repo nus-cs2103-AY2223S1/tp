@@ -4,10 +4,7 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EVENT;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.Set;
-
 import seedu.travelr.logic.commands.AddCommand;
-import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
