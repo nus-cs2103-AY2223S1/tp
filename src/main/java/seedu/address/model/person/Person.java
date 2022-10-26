@@ -91,7 +91,7 @@ public class Person implements Comparable<Person> {
         return subjectHandler.getSubjectsTaken();
     }
 
-   // public String getGrades() {return getSubjectsTaken().getGrades();}
+    // public String getGrades() {return getSubjectsTaken().getGrades();}
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

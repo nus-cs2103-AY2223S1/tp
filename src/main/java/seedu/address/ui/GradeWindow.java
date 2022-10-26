@@ -4,17 +4,13 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.EventHandler;
-
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-
 import javafx.stage.Stage;
-
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.subject.Assessment;

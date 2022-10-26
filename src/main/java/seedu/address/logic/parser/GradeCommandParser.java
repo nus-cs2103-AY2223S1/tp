@@ -24,8 +24,8 @@ public class GradeCommandParser implements Parser<GradeCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }
-            String subject = args.split("_")[0].trim();
-            return new GradeCommand(subject, args.trim());
+        String subject = args.split("_")[0].trim();
+        return new GradeCommand(subject, args.trim());
 
     }
 
