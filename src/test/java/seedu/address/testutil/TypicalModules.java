@@ -4,14 +4,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_TITLE;
-<<<<<<< HEAD
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
-=======
 import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
->>>>>>> master
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
 
 import java.util.ArrayList;
