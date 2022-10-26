@@ -3,18 +3,18 @@ layout: page
 title: User Guide
 ---
 
-Arrow will help software project managers keep track of their members’ tasks and deliverables. By associating tasks to specific team members, users can keep track of what needs to be done and have quick access to contact information should they wish to reach out to the member.
+<div class="subtitle">Explore our guide to use Arrow.</div>
 
-* Table of Contents
-{:toc}
+[**AddressBook**](#addressbook-commands)<br>
+[**Task Management**](#taskpanel-commands)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp).
+2. Download the latest `arrow.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Arrow.
 
@@ -36,11 +36,13 @@ Arrow will help software project managers keep track of their members’ tasks a
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Read the [Notes](#notes) on the command format
+7. Refer to [AddressBook](#addressbook-commands) for details of AddressBook commands.
+8. Refer to [TaskPanel](#taskpanel-commands) for details of Task commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Notes
 
 <div markdown="block" class="alert alert-info">
 
@@ -66,6 +68,8 @@ Arrow will help software project managers keep track of their members’ tasks a
 
 </div>
 
+## AddressBook Commands
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -73,8 +77,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-### Addressbook Commands
 
 ### Adding a person: `add`
 
@@ -149,65 +151,83 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 
-### Task Management Commands
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+
+## TaskPanel Commands
 
 ### Adding a task: `task add`
 
 Adds a task to the task panel.
 
-Format: `task add DESC`
+Format: `task add TITLE by/DEADLINE [#/PROJECT] [@/PERSON_INDEX]...`
 
-* DESC refers to the description of the task.
-* DESC cannot be empty.
+* `TITLE` refers to the task and **cannot be empty**.
+* You can use English to describe the deadline (e.g. `today`, `tomorrow`, `next thursday`, `14 november`)
+* If task does not have a deadline, you can put `by/?` and there will be no deadline.
+* `PERSON_INDEX` refers to the index number shown in the displayed person list.
 
 Examples:
-* `task add Task 1`
-* `task add Another task`
+* `task add Task 1 by/next friday #/CS2103T @/1`
+* `task add Finish GUI by/sunday #/CS2100 @/2`
 
 
-### Viewing tasks of a person: `tasks`
+### Viewing tasks of a contact: `task list @`
 
 Lists all the task(s) that have been assigned to the specified person.
 
-Format: `tasks INDEX`
-* Views the tasks of the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Format: `task list @PERSON_INDEX`
+* Shows the tasks of the specified `PERSON_INDEX`. 
+* The contact refers to the index number shown in the displayed person list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `tasks 2` shows the task assigned to the 2nd person in the address book.
-* `find Betsy` followed by `tasks 1` shows the tasks assigned to the 1st person in the result of the `find` command.
+* `list` followed by `task list @2` shows the incomplete tasks assigned to the 2nd person in the address book.
+* `find Betsy` followed by `task list @1` shows the incomplete tasks assigned to the 1st person in the result of the `find` command.
 
 
-### Marking tasks of a person: `task mark`
+### Marking tasks: `task mark`
 
-Marks a task of a person as complete
+Marks a task as complete.
 
 Format: `task mark TASK_INDEX`
-* Marks the task at the specified TASK_INDEX in `task list`.
+* Marks the task at the specified `TASK_INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
 
 
-### Unmarking tasks of a person: `task unmark`
+### Unmarking tasks: `task unmark`
 
-Marks a task of a person as incomplete
+Unmarks a task and sets it as incomplete.
 
 Format: `task unmark TASK_INDEX`
-* Unmarks the task at the specified TASK_INDEX in `task list`.
+* Unmarks the task at the specified `TASK_INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `task list` followed by `task unmark 1` marks the 1st task in the task list as incomplete.
+* `task list` followed by `task unmark 1` unmarks the 1st task in the task list and sets it as incomplete.
 
 
-### Deleting tasks from Task Panel: `task delete`
+### Deleting tasks: `task delete`
 
-Deletes the specified task from overall tasks list.
+Deletes the specified task from the task panel.
 
 Format: `task delete TASK_INDEX`
-* Deletes the task at the specified TASK_INDEX from `task list`.
+
+* Deletes the task at the specified `TASK_INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `task list` followed by `task delete 1` delete the 1st task from task list.
+* `task list` followed by `task delete 2` deletes the 2nd task in the task panel.
 
 
 ### Setting deadlines to a task: `task do ... by/`
@@ -217,7 +237,7 @@ You can use the `task do ... by/` command to set (or remove) a deadline for some
 Format: `task do TASK_INDEX [by/DATE]...`
 - The `task do` command sets the deadline specified by `DATE` to the task at the specified `TASK_INDEX` from the task list.
 - You can use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
-- If the application is unable to determine a date from your input, an error message will be displayed and you will be prompted to try a different input.
+- If the application is unable to determine a date from your input, an error message will be displayed, and you will be prompted to try a different input.
 - To **remove** the deadline from a task, you can use the special character `?`.
 
 Examples:
@@ -230,7 +250,7 @@ You can use the `task list` command to focus only on tasks that match your speci
 
 Format: `task list [KEYWORD] [#PROJECT]... [@PERSON_INDEX]... [before/ DATE] [after/ DATE]`
 - The `task list` command accepts **optional** parameters that can filter tasks by their description, project, due date or assigned contacts.
-- If you do not specify any filters (i.e. `task list`), the command returns **all** tasks. You may find this useful to reset the task list after performing some filtering.
+- If you do not specify any filters (i.e. `task list`), the command returns **all incomplete** tasks.
 
 #### Filtering by Description
 - The `KEYWORD` parameter allows you to search for tasks that contain `KEYWORD`.
@@ -241,7 +261,7 @@ Format: `task list [KEYWORD] [#PROJECT]... [@PERSON_INDEX]... [before/ DATE] [af
   - For example, `task list #CS2101 #CS2103T` returns all **incomplete** tasks that are **either** under the project `CS2101` **or** `CS2103T`.
 
 #### Filtering by Assigned Contact(s)
-- The `@` parameter allows you to search for tasks that are assigned to **all** of the contact(s) you specify.
+- The `@` parameter allows you to search for tasks that are assigned to **all** the contact(s) you specify.
     - For example, `task list @1 @2` returns all **incomplete** tasks that are assigned to **both** the 1st and 2nd persons from the address book.
 
 #### Filtering by Deadline
@@ -259,41 +279,38 @@ Format: `task list [KEYWORD] [#PROJECT]... [@PERSON_INDEX]... [before/ DATE] [af
 
 Assigns or unassigns the specified persons from address book to a task from task panel.
 
-Format: `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`
-* ca/: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
-* cd/: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
+Format: `task assign TASK_INDEX [+@/PERSON_INDEX]…​ [+@/PERSON_NAME]…​ [-@/PERSON_INDEX]…​ [-@/PERSON_NAME]…​`
+* +@/: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
+* -@/: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of assigned contacts (including 0)
 </div>
 
 Examples:
-* `task assign 1 ca/1 ca/Alex Yeoh cd/Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
+* `task assign 1 +@/1 +@/Alex Yeoh -@/Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
 
 ### Editing a task: `task edit`
 
 Edits an existing task in the task list.
 
-Format: `task edit INDEX [ti/TITLE]`
+Format: `task edit TASK_INDEX [ti/TITLE]`
 
-* Edits the task at the specified `INDEX`.  The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the task at the specified `TASK_INDEX`.
+* The index refers to the index number shown in the displayed task list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * Replacement for previous title should be inputted.
 
 Examples:
 * `task edit 1 ti/go back home` Edits the title to `go back home`
+
 
 ### Listing all projects : `task project`
 
 You can use the `task project` command to focus on all projects that are open.
 
 Format: `task project`
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -321,6 +338,18 @@ _Details coming soon ..._
 
 ## FAQ
 
+**Q**: How do I check my Java version?<br>
+**A**:
+
+**Q**: What if the app does not open when I double-click it?<br>
+**A**: Follow the steps listed to open the app.
+1. Ensure that you have done Step 1 to 3 in the Quick Start.
+2. Open Terminal app if you are on a Mac or the Command Prompt if you are on Windows.
+3. Type "java -jar " into Terminal or Command Prompt (do not do anything else). 
+4. Go to the folder where you just copied `arrow.jar` to.
+5. Drag `arrow.jar` and drop anywhere into Terminal or Command Prompt.
+6. Press Enter and the command will run, the GUI will pop up.
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
@@ -331,12 +360,12 @@ _Details coming soon ..._
 | Action          | Format, Examples                                                                                                                                                      |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Task add**    | `task add DESC`<br> e.g., `task add Title of task`                                                                                                                    |
+| **Task add**    | ``task add TITLE by/DEADLINE [#/PROJECT] [@/PERSON_INDEX]...``<br> e.g., `task add Task 1 by/next friday #/CS2103T @/1`                                               |
 | **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`                                                                                         |
+| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`               |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
