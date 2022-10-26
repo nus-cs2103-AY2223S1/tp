@@ -100,7 +100,7 @@ public class Session implements Identity<Session> {
 
     @Override
     public int compareTo(Session other) {
-        if (date != other.date) {
+        if (!date.equals(other.date)) {
             return date.compareTo(other.date);
         } else {
             return sessionName.compareTo(other.sessionName);

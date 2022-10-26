@@ -82,6 +82,7 @@ public class ModuleClass implements Identity<ModuleClass> {
         }
         List<Session> newSessions = new ArrayList<>(sessions);
         newSessions.add(session);
+        Collections.sort(newSessions);
         return new ModuleClass(className, newSessions);
     }
 
