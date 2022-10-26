@@ -165,7 +165,6 @@ public class MainWindow extends UiPart<Stage> {
     public void focusTaskTab() {
         SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
         selectionModel.select(1);
-
     }
 
     /**
@@ -174,7 +173,6 @@ public class MainWindow extends UiPart<Stage> {
     public void focusPersonTab() {
         SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
         selectionModel.select(0);
-
     }
 
     void show() {

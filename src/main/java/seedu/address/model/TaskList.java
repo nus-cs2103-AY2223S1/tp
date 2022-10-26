@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -91,6 +92,23 @@ public class TaskList implements ReadOnlyTaskList {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+    }
+
+    /**
+     * Removes tasks in the list that are already completed.
+     */
+    public void removeCompletedTasks() {
+        List<Task> completedTasks = new ArrayList<>();
+
+        for (Task task : tasks) {
+            if (task.isTaskComplete()) {
+                completedTasks.add(task);
+            }
+        }
+
+        for (Task task : completedTasks) {
+            tasks.remove(task);
+        }
     }
 
     /**

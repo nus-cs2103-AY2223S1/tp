@@ -42,7 +42,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns the last value of {@code prefix} for optional fields else return NIL
+     * Returns the last value of {@code prefix} for optional fields, else return "-".
      */
     public Optional<String> getValueOptional(Prefix prefix) {
         List<String> values = getAllValues(prefix);
