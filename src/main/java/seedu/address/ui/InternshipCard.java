@@ -6,12 +6,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.person.PersonId;
 
 /**
  * An UI component that displays information of a {@code Internship}.
  */
 public class InternshipCard extends UiPart<Region> {
 
+    static final String NO_CONTACT_PERSON = "No contact person.";
     private static final String FXML = "InternshipListCard.fxml";
 
     /**
@@ -27,6 +29,8 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label name;
+    @FXML
     private Label companyName;
     @FXML
     private Label id;
@@ -35,7 +39,9 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private FlowPane status;
     @FXML
-    private Label contactPersonId;
+    private Label contactPerson;
+    @FXML
+    private Label interviewDate;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
@@ -44,14 +50,24 @@ public class InternshipCard extends UiPart<Region> {
         super(FXML);
         this.internship = internship;
         id.setText(displayedIndex + ". ");
+        name.setText(internship.getDisplayName());
         companyName.setText(internship.getCompanyName().fullName);
         role.setText(internship.getInternshipRole().roleName);
         status.getChildren().add(new Label(internship.getInternshipStatus().toString()));
-        if (internship.getContactPersonId() == null) {
-            contactPersonId.setText("No contact person.");
+        contactPerson.setText(NO_CONTACT_PERSON); // dummy value
+    }
+
+    public PersonId getContactPersonId() {
+        return internship.getContactPersonId();
+    }
+
+    public void setContactPerson(String contactPersonName) {
+        if (contactPersonName == null) {
+            contactPerson.setText(NO_CONTACT_PERSON);
         } else {
-            contactPersonId.setText(internship.getContactPersonId().id.toString());
+            contactPerson.setText("Contact Person: " + contactPersonName);
         }
+        interviewDate.setText("Interview on: " + internship.getInterviewDate().toString());
     }
 
     @Override

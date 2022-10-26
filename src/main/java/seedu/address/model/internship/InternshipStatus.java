@@ -12,21 +12,36 @@ public class InternshipStatus {
     /**
      * Represents the possible states of an InternshipStatus.
      */
-    public enum State { PENDING, REJECTED, ACCEPTED, COMPLETED }
+    public enum State {
+        REJECTED(0),
+        PENDING(1),
+        ACCEPTED(2),
+        COMPLETED(3);
+
+        private final int level;
+
+        State(int level) {
+            this.level = level;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+    }
 
     public final State currentState;
 
     /**
      * Constructs a {@code InternshipStatus}.
      *
-     * @param state A valid state as defined in the {@Code State} enum.
+     * @param state A valid state as defined in the {@code State} enum.
      */
     public InternshipStatus(State state) {
         this.currentState = state;
     }
 
     /**
-     * Returns true if the given String can be parsed to a valid state as defined in the {@Code State} enum.
+     * Returns true if the given String can be parsed to a valid state as defined in the {@code State} enum.
      */
     public static boolean isValidStatus(String test) {
         switch (test) {

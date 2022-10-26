@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -201,6 +202,16 @@ public class AddPersonCommandTest {
         public Internship findInternshipById(InternshipId internshipId) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortPersonList(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortInternshipList(Comparator<Internship> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -228,6 +239,11 @@ public class AddPersonCommandTest {
         @Override
         public int getNextPersonId() {
             return 0;
+        }
+
+        @Override
+        public ObservableList<Internship> getFilteredInternshipList() {
+            return null;
         }
     }
 
@@ -267,6 +283,11 @@ public class AddPersonCommandTest {
         @Override
         public int getNextPersonId() {
             return nextPersonId;
+        }
+
+        @Override
+        public ObservableList<Internship> getFilteredInternshipList() {
+            return null;
         }
     }
 
