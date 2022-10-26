@@ -27,9 +27,12 @@ public class ListModuleCommandParser implements Parser<ListModuleCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, Module.MESSAGE_CONSTRAINTS));
         }
 
-        ParserUtil.parseModule(listTypes[1]);
-
-        return new ListModuleCommand(new ModuleContainsKeywordsPredicate(List.of(listTypes[1])));
+        return new ListModuleCommand(getPredicate(listTypes[1]));
     }
 
+    public ModuleContainsKeywordsPredicate getPredicate(String keywords) throws ParseException {
+        ParserUtil.parseModule(keywords);
+
+        return new ModuleContainsKeywordsPredicate(List.of(keywords));
+    }
 }

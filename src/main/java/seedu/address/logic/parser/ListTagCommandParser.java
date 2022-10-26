@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.logic.commands.list.ListTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.TagContainsKeywordsPredicate;
 
 /**
@@ -27,8 +28,12 @@ public class ListTagCommandParser implements Parser<ListTagCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, Tag.MESSAGE_CONSTRAINTS));
         }
 
-        ParserUtil.parseTag(listTypes[1]);
+        return new ListTagCommand(getPredicate(listTypes[1]));
+    }
 
-        return new ListTagCommand(new TagContainsKeywordsPredicate(List.of(listTypes[1])));
+    public TagContainsKeywordsPredicate getPredicate(String keywords) throws ParseException {
+        ParserUtil.parseTag(keywords);
+
+        return new TagContainsKeywordsPredicate(List.of(keywords));
     }
 }

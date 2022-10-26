@@ -23,5 +23,3 @@ public class ListAllCommand extends ListCommand {
         return new CommandResult(ListCommand.MESSAGE_SUCCESS);
     }
 }
-
-
