@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":InternshipBook" as InternshipBook MODEL_COLOR
+end box
+[-> LogicManager : execute("add n/Grab p/SWE")
+activate LogicManager
+
+LogicManager -> InternshipBookParser : parseCommand("add n/Grab p/SWE")
+activate InternshipBookParser
+
+create AddCommandParser
+InternshipBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> InternshipBookParser
+deactivate AddCommandParser
+
+InternshipBookParser -> AddCommandParser : parse("n/Gojek p/SWE")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> InternshipBookParser
+deactivate AddCommandParser
+
+InternshipBookParser --> LogicManager
+deactivate InternshipBookParser
+
+LogicManager -> AddCommand : execute(model, commandHistory)
+activate AddCommand
+
+AddCommand -> Model : addInternship(toAdd)
+activate Model
+
+'ADD MORE HERE
+Model -> InternshipBook : addInternship(internship)
+activate InternshipBook
+InternshipBook --> Model
+deactivate InternshipBook
+
+Model --> AddCommand
+deactivate Model
+
+AddCommand --> LogicManager
+deactivate AddCommand
+
+[<--LogicManager
+@enduml

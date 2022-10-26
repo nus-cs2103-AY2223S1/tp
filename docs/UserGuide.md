@@ -158,7 +158,7 @@ Format: `help`
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
 - Press <kbd>esc</kbd> to close the Help window <br>
-- Press <kbd>C</kbd> to copy the User Guide url in the Help window 
+- Press <kbd>C</kbd> to copy the User Guide url into the clipboard when the Help window is opened
 </div>
 
 ### Adding an internship: `add`
@@ -369,7 +369,7 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Undo Compatibility | Format, Examples                                                                                                                                                                                               |
+| Action     | Undo               | Format, Examples                                                                                                                                                                                               |
 |------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
 | **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
