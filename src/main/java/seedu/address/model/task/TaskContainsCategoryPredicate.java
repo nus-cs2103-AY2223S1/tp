@@ -8,6 +8,10 @@ import java.util.function.Predicate;
 public class TaskContainsCategoryPredicate implements Predicate<Task> {
     private final TaskCategory category;
 
+    /**
+     * Constructor method for {@code TaskContainsCategoryPredicate} class.
+     * @param category the TaskCategory to be used as comparison
+     */
     public TaskContainsCategoryPredicate(TaskCategory category) {
         this.category = category;
     }

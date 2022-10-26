@@ -115,6 +115,10 @@ public class FilterTaskCommand extends Command {
         return filterTaskDescriptor.equals(f.filterTaskDescriptor);
     }
 
+    /**
+     * Stores the details to filter the task list with.
+     * Each non-empty field value will contribute to the corresponding task fields for filtering.
+     */
     public static class FilterTaskDescriptor {
         private TaskCategory category;
         private TaskDeadline date;

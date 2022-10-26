@@ -10,6 +10,11 @@ public class TaskCategoryAndDeadlinePredicate implements Predicate<Task> {
     private final TaskCategory category;
     private final TaskDeadline date;
 
+    /**
+     * Constructor method for {@code TaskCategoryAndDeadlinePredicate} class.
+     * @param category the TaskCategory to be used as comparison
+     * @param date the TaskDeadline to be used as comparison
+     */
     public TaskCategoryAndDeadlinePredicate(TaskCategory category, TaskDeadline date) {
         this.category = category;
         this.date = date;

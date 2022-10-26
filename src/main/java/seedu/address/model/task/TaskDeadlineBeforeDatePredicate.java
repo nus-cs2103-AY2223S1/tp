@@ -8,6 +8,10 @@ import java.util.function.Predicate;
 public class TaskDeadlineBeforeDatePredicate implements Predicate<Task> {
     private final TaskDeadline date;
 
+    /**
+     * Constructor method for {@code TaskDeadlineBeforeDatePredicate} class.
+     * @param date the TaskDeadline to be used as comparison
+     */
     public TaskDeadlineBeforeDatePredicate(TaskDeadline date) {
         this.date = date;
     }
