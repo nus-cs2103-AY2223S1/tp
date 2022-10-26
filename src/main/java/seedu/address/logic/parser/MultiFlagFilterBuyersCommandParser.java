@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATCH_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
@@ -21,9 +22,6 @@ import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.property.Price;
 
-
-
-
 /**
  * Parses user input to create a {@code FilterBuyersCommand}.
  */
@@ -39,7 +37,7 @@ public class MultiFlagFilterBuyersCommandParser extends Parser<MultiFlagFilterBu
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CHARACTERISTICS, PREFIX_PRICE,
-                PREFIX_PRIORITY);
+                PREFIX_PRIORITY, PREFIX_MATCH_ALL);
 
         if (!isAnyPrefixPresent(argMultimap, PREFIX_PRICE, PREFIX_CHARACTERISTICS, PREFIX_PRIORITY)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -67,10 +65,15 @@ public class MultiFlagFilterBuyersCommandParser extends Parser<MultiFlagFilterBu
             predicatesList.add(new FilterBuyerByPriorityPredicate(priority));
         }
 
-        // Get logical OR of all predicates
-        Optional<Predicate<Buyer>> logicalOrPredicate = predicatesList.stream().reduce(Predicate::or);
+        Optional<Predicate<Buyer>> combinedPredicate;
+        if (arePrefixesPresent(argMultimap, PREFIX_MATCH_ALL)) {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
+        } else {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::or);
+        }
 
-        // Is it now possible to get a NoSuchElementException?
-        return new MultiFlagFilterBuyersCommand(logicalOrPredicate.get());
+        // combinedPredicate must exist, since predicatesList should contain at least one predicate
+        assert(combinedPredicate.isPresent());
+        return new MultiFlagFilterBuyersCommand(combinedPredicate.get());
     }
 }

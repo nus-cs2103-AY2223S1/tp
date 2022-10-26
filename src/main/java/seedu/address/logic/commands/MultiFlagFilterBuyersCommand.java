@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATCH_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
@@ -13,9 +14,10 @@ import seedu.address.model.buyer.Buyer;
 
 
 /**
- * Filters and lists all buyers in the buyer list that either have a price range that accepts the given price,
+ * Filters and lists all buyers in the buyer list that have a price range that accepts the given price,
  * characteristics that match the given characteristics list, or have the given tag.
- * More than one filtering criteria can be accepted, buyers matching any of the given criteria are returned.
+ * More than one filtering criteria can be accepted, buyers matching any or all of the given criteria can be returned
+ * based on whether the user passes in the 'PREFIX_MATCH_ALL' flag.
  * Keyword matching is case-insensitive.
  */
 public class MultiFlagFilterBuyersCommand extends Command {
@@ -23,11 +25,14 @@ public class MultiFlagFilterBuyersCommand extends Command {
     public static final String COMMAND_WORD = "multifilterbuyers";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all buyers in the database who"
-            + " either have a price range that accepts the given price, characteristics that match the given"
+            + " either has a price range that accepts the given price, contains all characteristics in the given"
             + " characteristics list, or has the given tag. You can pass in more than one criteria at a time.\n"
+            + " Pass in " + PREFIX_MATCH_ALL + " for strict filtering, i.e. filtered buyers will satisfy"
+            + " all the conditions specified.i \n"
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
-            + "[" + PREFIX_PRIORITY + " <HIGH/LOW>]\n"
+            + "[" + PREFIX_PRIORITY + " <HIGH/LOW>]"
+            + "[" + PREFIX_MATCH_ALL + "]\n"
             + "Example: " + COMMAND_WORD + " -c bright; sunny";
 
     private final Predicate<Buyer> predicate;
