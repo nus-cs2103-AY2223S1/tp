@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+
+start
+:User inputs addstud command;
+:Parse user input;
+
+if () then ([valid command])
+    if () then ([student in student record])
+        :Display duplicate student message;
+    else ([else])
+        :Save student in student record;
+        :Display success message;
+    endif
+else ([else])
+    :Display invalid command message;
+endif
+
+stop
+@enduml

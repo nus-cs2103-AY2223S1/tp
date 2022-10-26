@@ -7,10 +7,8 @@
 ![Ui](docs/images/Ui.png)
 
 ## Description
-Class-ify is a class management application built specifically for teachers to handle all administrative-related matters.
-
-It is an all-in-one platform to view and organize your students’ details, and categorize them accordingly.
-You can keep track of class statistics such as quiz or homework submissions, as well as view the overall progress of the class across the academic year.
+Class-ify is a class management application built specially for Ministry of Education (MOE) teachers to easily monitor their students’ academic progress.
+Teachers can generate exam statistics for each class, and Class-ify quickly flags out students who require more support for contacting.
 
 ## Credits
 **This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).**

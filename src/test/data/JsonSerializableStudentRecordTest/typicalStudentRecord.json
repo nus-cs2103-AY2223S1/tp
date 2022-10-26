@@ -1,0 +1,60 @@
+{
+  "_comment": "Class-ify save file which contains the same Student values as in TypicalStudents#getTypicalStudent()",
+  "students" : [ {
+    "studentName" : "Alice Pauline",
+    "id": "123A",
+    "className" : "4A1",
+    "parentName": "May Pauline",
+    "phone" : "94351253",
+    "email" : "alice.pauline@gmail.com",
+    "exams" : [ "CA2 90", "SA1 60" ]
+  }, {
+    "studentName" : "Benson Meier",
+    "id": "345B",
+    "className" : "4A2",
+    "parentName": "Johnson Meier",
+    "phone" : "98765432",
+    "email" : "bensonmeier@gmail.com",
+    "exams" : [ "CA1 90", "SA2 60" ]
+  }, {
+    "studentName" : "Carl Kurz",
+    "id": "567F",
+    "className" : "4B1",
+    "parentName": "Kenn Kurz",
+    "phone" : "95352563",
+    "email" : "carl@hotmail.com",
+    "exams" : [ ]
+  }, {
+    "studentName" : "Daniel Meier",
+    "id": "678D",
+    "className" : "3A1",
+    "parentName": "Benn Meier",
+    "phone" : "87652533",
+    "email" : "daniel.meier@gmail.com",
+    "exams" : [ "CA1 50", "CA2 70", "SA1 90", "SA2 60" ]
+  }, {
+    "studentName" : "Elle Meyer",
+    "id": "890A",
+    "className" : "3A1",
+    "parentName": "James Meyer",
+    "phone" : "9482224",
+    "email" : "elle@gmail.com",
+    "exams" : [ ]
+  }, {
+    "studentName" : "Fiona Kunz",
+    "id": "789C",
+    "className" : "Charity 1",
+    "parentName": "Gordon Kunz",
+    "phone" : "9482427",
+    "email" : "kunz.fiona@gmail.com",
+    "exams" : [ ]
+  }, {
+    "studentName" : "George Best",
+    "id": "912B",
+    "className" : "17S68",
+    "parentName": "Henry Best",
+    "phone" : "9482442",
+    "email" : "georgebest@example.com",
+    "exams" : [ ]
+  } ]
+}
