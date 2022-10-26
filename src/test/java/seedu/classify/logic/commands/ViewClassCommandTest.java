@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.commons.core.Messages.MESSAGE_PERSONS_LISTED_IN_CLASS;
 import static seedu.classify.commons.core.Messages.MESSAGE_SINGLE_PERSON_LISTED_IN_CLASS;
 import static seedu.classify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.classify.testutil.Assert.assertThrows;
 import static seedu.classify.testutil.TypicalStudents.DANIEL;
 import static seedu.classify.testutil.TypicalStudents.ELLE;
 import static seedu.classify.testutil.TypicalStudents.GEORGE;

@@ -28,7 +28,7 @@ public class ViewClassCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         int numberOfStudents = model.getFilteredStudentList().size();
-        if(numberOfStudents == 1) {
+        if (numberOfStudents == 1) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_SINGLE_PERSON_LISTED_IN_CLASS, numberOfStudents));
         } else {

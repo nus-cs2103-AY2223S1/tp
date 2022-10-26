@@ -3,7 +3,6 @@ package seedu.classify.logic.parser;
 import static seedu.classify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.classify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.classify.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.classify.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 

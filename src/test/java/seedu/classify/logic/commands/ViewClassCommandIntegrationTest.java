@@ -2,8 +2,8 @@ package seedu.classify.logic.commands;
 
 import static seedu.classify.commons.core.Messages.MESSAGE_PERSONS_LISTED_IN_CLASS;
 import static seedu.classify.commons.core.Messages.MESSAGE_SINGLE_PERSON_LISTED_IN_CLASS;
-import static seedu.classify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.classify.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.classify.testutil.TypicalStudents.ALICE;
 import static seedu.classify.testutil.TypicalStudents.getTypicalStudentRecord;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@ import seedu.classify.model.student.Class;
 import seedu.classify.model.student.ClassPredicate;
 import seedu.classify.model.student.Student;
 import seedu.classify.testutil.StudentBuilder;
-import static seedu.classify.testutil.TypicalStudents.ALICE;
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ViewClassCommand}.
