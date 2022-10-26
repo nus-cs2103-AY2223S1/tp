@@ -27,7 +27,8 @@ public class AddCommand extends Command {
             + CliSyntax.PREFIX_DESCRIPTION + "mystery book by Agatha Christie "
             + CliSyntax.PREFIX_TAG + "book "
             + CliSyntax.PREFIX_TAG + "entertainment"
-            + CliSyntax.PREFIX_DATE + "2003-03-03";;
+            + CliSyntax.PREFIX_DATE + "2003-03-03"
+            + CliSyntax.PREFIX_STATUS + "upcoming";
 
     private final Activity toAdd;
 

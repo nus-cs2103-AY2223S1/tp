@@ -20,7 +20,7 @@ import hobbylist.testutil.TypicalActivities;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTagCommand}.
  */
-public class FindTagCommandTest {
+public class FilterTagCommandTest {
     private Model model = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
     private Model expectedModel = new ModelManager(TypicalActivities.getTypicalHobbyList(), new UserPrefs());
 
@@ -31,14 +31,14 @@ public class FindTagCommandTest {
         TagMatchesKeywordPredicate secondPredicate =
                 new TagMatchesKeywordPredicate(Collections.singletonList("second"));
 
-        FindTagCommand findTagFirstCommand = new FindTagCommand(firstPredicate);
-        FindTagCommand findTagSecondCommand = new FindTagCommand(secondPredicate);
+        FilterTagCommand findTagFirstCommand = new FilterTagCommand(firstPredicate);
+        FilterTagCommand findTagSecondCommand = new FilterTagCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findTagFirstCommand.equals(findTagFirstCommand));
 
         // same values -> returns true
-        FindTagCommand findFirstCommandCopy = new FindTagCommand(firstPredicate);
+        FilterTagCommand findFirstCommandCopy = new FilterTagCommand(firstPredicate);
         assertTrue(findTagFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -55,7 +55,7 @@ public class FindTagCommandTest {
     public void execute_zeroKeywords_noActivityFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 0);
         TagMatchesKeywordPredicate predicate = preparePredicate(" ");
-        FindTagCommand command = new FindTagCommand(predicate);
+        FilterTagCommand command = new FilterTagCommand(predicate);
         expectedModel.updateFilteredActivityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredActivityList());

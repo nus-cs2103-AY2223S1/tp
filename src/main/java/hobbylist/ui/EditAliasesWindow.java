@@ -22,31 +22,24 @@ public class EditAliasesWindow extends UiPart<Stage> {
 
     @FXML
     private TextField add;
-
     @FXML
     private TextField clear;
-
     @FXML
     private TextField delete;
-
     @FXML
     private TextField edit;
-
     @FXML
     private TextField exit;
-
     @FXML
-    private TextField filter;
-
+    private TextField filterStatus;
+    @FXML
+    private TextField filterTag;
     @FXML
     private TextField find;
-
     @FXML
     private TextField list;
-
     @FXML
     private TextField help;
-
     @FXML
     private TextField rate;
 
@@ -123,7 +116,8 @@ public class EditAliasesWindow extends UiPart<Stage> {
             return;
         }
         AliasSettings newSettings = new AliasSettings(add.getText(), clear.getText(), delete.getText(), edit.getText(),
-                exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText(), rate.getText());
+                exit.getText(), filterTag.getText(), find.getText(), list.getText(), help.getText(), rate.getText(),
+                filterStatus.getText());
         logic.setAliasSettings(newSettings);
         this.hide();
     }
@@ -135,7 +129,8 @@ public class EditAliasesWindow extends UiPart<Stage> {
         delete.setText(settings.getDelete());
         edit.setText(settings.getEdit());
         exit.setText(settings.getExit());
-        filter.setText(settings.getFilter());
+        filterStatus.setText(settings.getFilterStatus());
+        filterTag.setText(settings.getFilterTag());
         find.setText(settings.getFind());
         list.setText(settings.getList());
         help.setText(settings.getHelp());
@@ -144,7 +139,8 @@ public class EditAliasesWindow extends UiPart<Stage> {
 
     private boolean isValidAliases() {
         String[] arr = {add.getText(), clear.getText(), delete.getText(), edit.getText(),
-                exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText(), rate.getText()};
+                exit.getText(), filterTag.getText(), find.getText(), list.getText(), help.getText(), rate.getText(),
+                filterStatus.getText()};
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].equals("")) {
                 return false;

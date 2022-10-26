@@ -96,15 +96,6 @@ Format: `list`
 Example:
 * `list`
 
-### Editing an existed activity : `edit`
-
-Edit tag/date/description/name of a certain activity.
-
-Format: `edit INDEX n/NAME` `edit INDEX d/DESCRIPTION` `edit INDEX t/TAG` `edit INDEX date/DATE`
-
-Example:
-* `edit 1 date/2003-03-03`
-
 ### Finding a command with keywords: `find`
 
 Shows a list of all hobby activities whose names or descriptions contain any of the specified keywords.
