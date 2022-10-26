@@ -199,6 +199,16 @@ Examples:
 * `task list` followed by `task unmark 1` marks the 1st task in the task list as incomplete.
 
 
+### Clearing all tasks from Task Panel: `task clear`
+
+Clears the tasks from tasks list.
+
+Format: `task clear`
+* Clear the `task list` and create a new empty one.
+
+Examples:
+* `task list` followed by `task clear` clear the entire task list.
+
 ### Deleting tasks from Task Panel: `task delete`
 
 Deletes the specified task from overall tasks list.
@@ -335,8 +345,9 @@ _Details coming soon ..._
 | **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
+| **Task clear**  | `task clear`<br> e.g., `task clear`                                                                                                                                   |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`                                                                                         |
+| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`               |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
