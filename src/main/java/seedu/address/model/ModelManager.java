@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given database and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDatabase addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -78,12 +78,12 @@ public class ModelManager implements Model {
     //=========== Database ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyDatabase getAddressBook() {
         return database;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setAddressBook(ReadOnlyDatabase addressBook) {
         this.database.resetData(addressBook);
     }
 

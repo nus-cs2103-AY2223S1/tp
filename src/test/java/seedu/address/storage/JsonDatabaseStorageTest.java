@@ -17,7 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.Database;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDatabase;
 
 public class JsonDatabaseStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDatabaseStorageTest");
@@ -30,7 +30,7 @@ public class JsonDatabaseStorageTest {
         assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyDatabase> readAddressBook(String filePath) throws Exception {
         return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -68,7 +68,7 @@ public class JsonDatabaseStorageTest {
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        ReadOnlyDatabase readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new Database(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -94,7 +94,7 @@ public class JsonDatabaseStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
+    private void saveAddressBook(ReadOnlyDatabase addressBook, String filePath) {
         try {
             new JsonAddressBookStorage(Paths.get(filePath))
                 .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));

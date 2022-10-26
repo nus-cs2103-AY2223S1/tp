@@ -49,7 +49,7 @@ public class DatabaseTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                                                      .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        DatabaseStub newData = new DatabaseStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> database.resetData(newData));
     }
@@ -84,12 +84,12 @@ public class DatabaseTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyDatabase whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class DatabaseStub implements ReadOnlyDatabase {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        DatabaseStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 
