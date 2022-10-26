@@ -35,7 +35,7 @@ public class EditContactCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_contact";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(
-        List.of(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG));
+        List.of(new Prefix("", "contact_index"), PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
