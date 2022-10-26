@@ -26,7 +26,7 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 
    * **`list`** : Lists all contacts.
 
-   * **`create`**`name:John Doe num:98765432 address:John street, block 123, #01-01` : Adds a contact named `John Doe` to the FABook.
+   * **`create`**`n/John Doe p/98765432 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FABook.
 
    * **`exit`** : Exits the app.
 
@@ -41,19 +41,22 @@ FABook is a **desktop app for managing contacts, optimized for a financial advis
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `create name:NAME`, `NAME` is a parameter which can be used as `create name:John Doe`.
+  e.g. in `create n/NAME`, `NAME` is a parameter which can be used as `create n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `name:NAME [num:HP_NUMBER]` can be used as `name:John Doe num:90338099` or as `name:John Doe`.
+  e.g `n/NAME [p/HP_NUMBER]` can be used as `n/John Doe p/90338099` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times.<br>
   e.g. `NAME…​` can be used as `Jon`, `Jon Jack` etc.
 
+* `INDEX` represents the index of a specific person in the FABook
+  e.g. `delete INDEX` can be used as `delete 2`.
+
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `name:NAME num:HP_NUMBER`, `num:HP_NUMBER name:NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/HP_NUMBER`, `p/HP_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `num:12341234 num:56785678`, only `num:56785678` will be taken.
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -69,18 +72,18 @@ Format: `help`
 
 Creates a contact that is stored in the FABook and contains their contact information. Any contact information that is not available can be updated later.
 
-Format: `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
+Format: `create n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [nw/NETWORTH] [mt/TIME] [d/description]...`
 
 :bulb: **Note:**
-Name is the only compulsory input. Parameters not provided will be left blank.
+Name and Phone number are the only compulsory inputs. Parameters not provided will be left blank.
 
 Examples:
-* `create name:John Doe num:98765432 address:John street, block 123, #01-01`
-* `create name:Betsy Crowe address:Newgate Prison num:1234567`
+* `create n/John Doe p/98765432 a/John street, block 123, #01-01`
+* `create n/Betsy Crowe a/Newgate Prison p/1234567`
 
 :white_check_mark: **Tip:**
 Input shortcut: `c` can be used in place of `create`.
-Format: `c name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
+Format: `c n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [nw/NETWORTH] [mt/TIME] [d/description]...`
 
 
 ### Listing all persons : `list`
@@ -93,21 +96,22 @@ Format: `list`
 
 Searches for a contact that is stored in the FABook and updates its contact information.
 
-Format: `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
+Format: `update INDEX n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [nw/NETWORTH] [mt/TIME] [d/description]...`
 
 :bulb: **Note:**
-Name is the only compulsory input. Parameters not provided will be stay unchanged.
+Parameters not provided will stay unchanged.
 
 * Edits the person with the provided name.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* INDEX needs to be a current index in the person list
 
 Examples:
-*  `update name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` Updates the phone number and address of the `John Doe` to be `91234567` and `21 Lower Kent Ridge Rd` respectively.
+*  `update 2 n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` Updates the phone number and address of the `John Doe` to be `91234567` and `21 Lower Kent Ridge Rd` respectively.
 
 :white_check_mark: **Tip:**
 Input shortcut: `u` can be used in place of `update`.
-Format: `u name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`
+Format: `u INDEX n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`
 
 ### Locating persons by name: `find`
 
@@ -172,16 +176,41 @@ Examples:
 Input shortcut: `f` can be used in place of `find`.
 Format: `f a/ADDRESS…`
 
+### Assigning PDF file to a person: `filepath`
+
+Assigns a PDF file to a person in the FABook.
+
+Format: `filepath INDEX f/FILEPATH`
+
+* The filepath is the absolute path of the PDF on the local disk of the computer. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
+* Only file paths that lead to a PDF is allowed. e.g. `C:/Users/Ryzen/Downloads/CS2103T-T08-3.docx`
+* Moving or renaming the PDF file in the local disk does not change the person's assigned file path, so you would have to assign it manually.
+
+Examples:
+* `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf` assigns second person in displayed list with the PDF file located at the absolute path `C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
+
+### Opening PDF file of a person: `file`
+
+Opens a person's assigned PDF file in user's PDF file viewer.
+
+Format: `file INDEX`
+
+* The index is the index of the person in the currently displayed list
+* Moving or renaming the PDF file in the local disk will cause the command to not work, will require you to reassign a file path to the person again.
+
+Examples:
+* `file 2` opens the PDF file assigned to the second person in the displayed list.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the FABook.
 
-Format: `delete NAME`
+Format: `delete INDEX`
 
-* Deletes the person with the specified `NAME`.
+* Deletes the person with the specified index in the FABook.
 
 Examples:
-* `delete Aaron Judge` deletes `Aaron Judge` in the FABook.
+* `delete 2` deletes the second person in the FABook.
 
 ### Clearing all entries : `clear`
 
@@ -211,10 +240,6 @@ FABook data are saved as a text file `[JAR file location]/data/FABook.text`. Adv
 If your changes to the data file makes its format invalid, FABook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -226,13 +251,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                         | Shortcut |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
-| **Create** | `create name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME] `<br> e.g., `create name:Betsy Crowe address:Newgate Prison num:1234567`      | c        |
-| **Clear**  | `clear`                                                                                                                                                  | cl       |
-| **Delete** | `delete NAME`<br> e.g., `delete Aaron Judge`                                                                                                             | d        |
-| **Update** | `update name:NAME [num:PHONE_NUMBER] [address:ADDRESS] [meeting_time:TIME]`<br> e.g.,`edit name:John Doe number:91234567 address:21 Lower Kent Ridge Rd` | u        |
-| **Find**   | `find NAME…`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222`                                                                     | f        |
-| **List**   | `list`                                                                                                                                                   | l        |
-| **Help**   | `help`                                                                                                                                                   |          |
-| **Exit**   | `exit`                                                                                                                                                   | e        |
+| Action          | Format, Examples                                                                                                                                         | Shortcut |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| **Create**      | `create n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`      | c        |
+| **Clear**       | `clear`                                                                                                                                                  | cl       |
+| **Delete**      | `delete NAME`<br> e.g., `delete Aaron Judge`                                                                                                             | d        |
+| **Update**      | `update n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`<br> e.g.,`edit n/John Doe p/91234567 a/21 Lower Kent Ridge Rd` | u        |
+| **Find**        | `find NAME…`__or__ `find NUMBER` <br> e.g., `find James Jake` __or__ `find 09122222`                                                                     | f        |
+| **List**        | `list`                                                                                                                                                   | l        |
+| **Open File**   | `file [INDEX]`<br/> e.g. `file 2`                                                                                                                        |          |
+| **Assign File** | `filepath INDEX f/FILEPATH`<br/> e.g. `find 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                              |          |
+| **Help**        | `help`                                                                                                                                                   |          |
+| **Exit**        | `exit`                                                                                                                                                   | e        |
