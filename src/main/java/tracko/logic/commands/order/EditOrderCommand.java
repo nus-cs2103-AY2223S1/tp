@@ -16,7 +16,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
 import tracko.model.item.exceptions.ItemNotFoundException;
 import tracko.model.order.Address;
@@ -106,15 +106,15 @@ public class EditOrderCommand extends Command {
         Optional<Pair<String, Integer>> unlinkedItem = editOrderDescriptor.getUnlinkedItemToEdit();
         if (!unlinkedItem.equals(Optional.empty())) {
             Pair<String, Integer> itemToCompare = unlinkedItem.get();
-            Item item;
+            InventoryItem inventoryItem;
 
             try {
-                item = model.getItem(itemToCompare.getKey());
+                inventoryItem = model.getItem(itemToCompare.getKey());
             } catch (ItemNotFoundException e) {
                 throw new CommandException(MESSAGE_NONEXISTENT_ITEM);
             }
 
-            ItemQuantityPair itemToEdit = new ItemQuantityPair(item, new Quantity(itemToCompare.getValue()));
+            ItemQuantityPair itemToEdit = new ItemQuantityPair(inventoryItem, new Quantity(itemToCompare.getValue()));
             editOrderDescriptor.updateItemList(orderToEdit, itemToEdit);
         }
 

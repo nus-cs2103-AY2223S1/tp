@@ -1,29 +1,29 @@
 package tracko.logic.parser;
 
-import static logic.commands.CommandTestUtil.COST_PRICE_DESC_DEFAULT;
-import static logic.commands.CommandTestUtil.COST_PRICE_DESC_SECOND;
-import static logic.commands.CommandTestUtil.INVALID_COST_PRICE_DESC;
-import static logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
-import static logic.commands.CommandTestUtil.INVALID_ITEM_NAME_DESC;
-import static logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
-import static logic.commands.CommandTestUtil.INVALID_SELL_PRICE_DESC;
-import static logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_DEFAULT;
-import static logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_SECOND;
-import static logic.commands.CommandTestUtil.ITEM_NAME_DESC_AMY;
-import static logic.commands.CommandTestUtil.ITEM_NAME_DESC_DEFAULT;
-import static logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static logic.commands.CommandTestUtil.QUANTITY_DESC_AMY;
-import static logic.commands.CommandTestUtil.QUANTITY_DESC_DEFAULT;
-import static logic.commands.CommandTestUtil.SELL_PRICE_DESC_DEFAULT;
-import static logic.commands.CommandTestUtil.SELL_PRICE_DESC_SECOND;
-import static logic.commands.CommandTestUtil.VALID_DEFAULT_COST_PRICE;
-import static logic.commands.CommandTestUtil.VALID_DEFAULT_DESCRIPTION;
-import static logic.commands.CommandTestUtil.VALID_DEFAULT_ITEM_NAME;
-import static logic.commands.CommandTestUtil.VALID_DEFAULT_QUANTITY;
-import static logic.commands.CommandTestUtil.VALID_DEFAULT_SELL_PRICE;
-import static logic.parser.CommandParserTestUtil.assertParseFailure;
-import static logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static tracko.logic.commands.CommandTestUtil.COST_PRICE_DESC_DEFAULT;
+import static tracko.logic.commands.CommandTestUtil.COST_PRICE_DESC_SECOND;
+import static tracko.logic.commands.CommandTestUtil.INVALID_COST_PRICE_DESC;
+import static tracko.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static tracko.logic.commands.CommandTestUtil.INVALID_ITEM_NAME_DESC;
+import static tracko.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static tracko.logic.commands.CommandTestUtil.INVALID_SELL_PRICE_DESC;
+import static tracko.logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_DEFAULT;
+import static tracko.logic.commands.CommandTestUtil.ITEM_DESCRIPTION_DESC_SECOND;
+import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_DESC_AMY;
+import static tracko.logic.commands.CommandTestUtil.ITEM_NAME_DESC_DEFAULT;
+import static tracko.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static tracko.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static tracko.logic.commands.CommandTestUtil.QUANTITY_DESC_AMY;
+import static tracko.logic.commands.CommandTestUtil.QUANTITY_DESC_DEFAULT;
+import static tracko.logic.commands.CommandTestUtil.SELL_PRICE_DESC_DEFAULT;
+import static tracko.logic.commands.CommandTestUtil.SELL_PRICE_DESC_SECOND;
+import static tracko.logic.commands.CommandTestUtil.VALID_DEFAULT_COST_PRICE;
+import static tracko.logic.commands.CommandTestUtil.VALID_DEFAULT_DESCRIPTION;
+import static tracko.logic.commands.CommandTestUtil.VALID_DEFAULT_ITEM_NAME;
+import static tracko.logic.commands.CommandTestUtil.VALID_DEFAULT_QUANTITY;
+import static tracko.logic.commands.CommandTestUtil.VALID_DEFAULT_SELL_PRICE;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import org.junit.jupiter.api.Test;
@@ -31,18 +31,19 @@ import org.junit.jupiter.api.Test;
 import tracko.logic.commands.item.AddItemCommand;
 import tracko.logic.parser.item.AddItemCommandParser;
 import tracko.model.item.Description;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.Item;
 import tracko.model.item.ItemName;
 import tracko.model.item.Price;
 import tracko.model.item.Quantity;
-import tracko.testutil.ItemBuilder;
+import tracko.testutil.InventoryItemBuilder;
 
 public class AddItemCommandParserTest {
     private AddItemCommandParser parser = new AddItemCommandParser();
 
     @Test
     public void parseInitial_allFieldsPresent_success() {
-        Item expectedItem = new ItemBuilder().build();
+        InventoryItem expectedItem = new InventoryItemBuilder().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ITEM_NAME_DESC_DEFAULT + QUANTITY_DESC_DEFAULT

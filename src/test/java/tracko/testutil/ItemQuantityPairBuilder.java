@@ -1,6 +1,6 @@
 package tracko.testutil;
 
-import tracko.model.item.Item;
+import tracko.model.item.InventoryItem;
 import tracko.model.item.Quantity;
 import tracko.model.order.ItemQuantityPair;
 
@@ -8,33 +8,33 @@ import tracko.model.order.ItemQuantityPair;
  * A utility class to help with building {@code ItemQuantityPair} objects.
  */
 public class ItemQuantityPairBuilder {
-    public static final Item DEFAULT_ITEM = new ItemBuilder().build();
+    public static final InventoryItem DEFAULT_INVENTORY_ITEM = new InventoryItemBuilder().build();
     public static final Integer DEFAULT_QUANTITY = 3;
 
-    private Item item;
+    private InventoryItem inventoryItem;
     private Quantity quantity;
 
     /**
      * Creates a {@code ItemQuantityPairBuilder} with the default details.
      */
     public ItemQuantityPairBuilder() {
-        item = DEFAULT_ITEM;
+        inventoryItem = DEFAULT_INVENTORY_ITEM;
         quantity = new Quantity(DEFAULT_QUANTITY);
     }
 
-    /**
-     * Initializes the {@code ItemBuilder} with the data of {@code pairToCopy}.
-     */
-    public ItemQuantityPairBuilder(ItemQuantityPair pairToCopy) {
-        item = pairToCopy.getItem();
-        quantity = pairToCopy.getQuantity();
-    }
+    // /**
+    //  * Initializes the {@code ItemBuilder} with the data of {@code pairToCopy}.
+    //  */
+    // public ItemQuantityPairBuilder(ItemQuantityPair pairToCopy) {
+    //     inventoryItem = pairToCopy.getItem();
+    //     quantity = pairToCopy.getQuantity();
+    // }
 
     /**
      * Sets the {@code Item} of the {@code ItemQuantityPair} that we are building.
      */
-    public ItemQuantityPairBuilder withItem(Item item) {
-        this.item = item;
+    public ItemQuantityPairBuilder withItem(InventoryItem inventoryItem) {
+        this.inventoryItem = inventoryItem;
         return this;
     }
 
@@ -47,6 +47,6 @@ public class ItemQuantityPairBuilder {
     }
 
     public ItemQuantityPair build() {
-        return new ItemQuantityPair(item, quantity);
+        return new ItemQuantityPair(inventoryItem, quantity);
     }
 }
