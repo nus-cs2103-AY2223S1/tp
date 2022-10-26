@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -36,6 +37,7 @@ public class ModelManager implements Model {
 
     private final FilteredList<Student> filteredStudents;
     private final MappedStudentViewList studentViewList;
+    private final ObservableList<Session> sessionList;
 
     private final SimpleStringProperty focusLabelProperty;
 
@@ -54,6 +56,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taAssist.getStudentList());
         studentViewList = new MappedStudentViewList(filteredStudents);
+        sessionList = FXCollections.observableArrayList();
         focusLabelProperty = new SimpleStringProperty(DEFAULT_FOCUS_LABEL);
 
         studentViewList.addListener((ListChangeListener.Change<? extends StudentView> change) -> {
@@ -195,6 +198,11 @@ public class ModelManager implements Model {
         return taAssist.getModuleClassList();
     }
 
+    @Override
+    public ObservableList<Session> getSessionList() {
+        return sessionList;
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -262,9 +270,10 @@ public class ModelManager implements Model {
         this.focusedClass = taAssist.findModuleClass(classToFocus).orElseThrow(AssertionError::new);
 
 
-        focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
+        focusLabelProperty.set(focusedClass.getClassName());
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
         resetQueriedSessionData();
+        sessionList.setAll(this.focusedClass.getSessions());
         setFilteredListPredicate(predicate);
     }
 

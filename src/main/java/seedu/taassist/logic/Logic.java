@@ -10,6 +10,7 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.model.student.StudentView;
 
@@ -41,6 +42,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the list of module classes */
     ObservableList<ModuleClass> getModuleClassList();
+
+    /** Returns an unmodifiable view of the list of sessions */
+    ObservableList<Session> getSessionList();
 
     /**
      * Returns the user prefs' TaAssist file path.
