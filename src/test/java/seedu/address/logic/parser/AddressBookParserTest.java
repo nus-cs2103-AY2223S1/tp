@@ -18,7 +18,9 @@ import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTuitionClassDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -30,14 +32,15 @@ import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ClassUtil;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.EditTuitionClassDescriptorBuilder;
+import seedu.address.testutil.EditTutorDescriptorBuilder;
 import seedu.address.testutil.NextOfKinBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
@@ -60,7 +63,7 @@ public class AddressBookParserTest {
         assertEquals(AddCommand.of(tutor), command);
 
         TuitionClass tuitionClass = new TuitionClassBuilder().build();
-        command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(tuitionClass), listType);
+        command = (AddCommand) parser.parseCommand(ClassUtil.getAddCommand(tuitionClass), listType);
         assertEquals(AddCommand.of(tuitionClass), command);
     }
 
@@ -86,12 +89,38 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
+        /*
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor),
                 listType);
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        */
+
+
+        Student student = new StudentBuilder().build();
+        EditStudentDescriptor studentDescriptor = new EditStudentDescriptorBuilder(student).build();
+        EditCommand studentCommand = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + PersonUtil.getEditStudentDescriptorDetails(studentDescriptor),
+                listType);
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, studentDescriptor), studentCommand);
+
+        Tutor tutor = new TutorBuilder().build();
+        EditTutorDescriptor tutorDescriptor = new EditTutorDescriptorBuilder(tutor).build();
+        EditCommand tutorCommand = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditTutorDescriptorDetails(tutorDescriptor),
+                Model.ListType.TUTOR_LIST);
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, tutorDescriptor), tutorCommand);
+
+        TuitionClass tuitionClass = new TuitionClassBuilder().build();
+        EditTuitionClassDescriptor tuitionClassDescriptor = new EditTuitionClassDescriptorBuilder(tuitionClass).build();
+        EditCommand tuitionClassCommand = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + ClassUtil.getEditTuitionClassDescriptorDetails(tuitionClassDescriptor),
+                Model.ListType.TUITIONCLASS_LIST);
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, tuitionClassDescriptor), tuitionClassCommand);
     }
 
     @Test

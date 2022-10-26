@@ -206,6 +206,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+        Person editedPerson = null;
+
         if (editPersonDescriptor instanceof EditStudentDescriptor && personToEdit instanceof Student) {
             EditStudentDescriptor editStudentDescriptor = (EditStudentDescriptor) editDescriptor;
             Student studentToEdit = (Student) personToEdit;
@@ -214,8 +216,8 @@ public class EditCommand extends Command {
             Level updatedLevel = editStudentDescriptor.getLevel().orElse(studentToEdit.getLevel());
             NextOfKin updatedNextOfKin = studentToEdit.getNextOfKin();
             List<TuitionClass> tuitionClasses = studentToEdit.getTuitionClasses();
-            return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSchool,
-                    updatedLevel, updatedNextOfKin, tuitionClasses);
+            editedPerson = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedSchool, updatedLevel, updatedNextOfKin, tuitionClasses);
 
         } else if (editPersonDescriptor instanceof EditTutorDescriptor && personToEdit instanceof Tutor) {
             EditTutorDescriptor editTutorDescriptor = (EditTutorDescriptor) editDescriptor;
@@ -225,11 +227,13 @@ public class EditCommand extends Command {
             Qualification updatedQualification =
                     editTutorDescriptor.getQualification().orElse(tutorToEdit.getQualification());
             List<TuitionClass> tuitionClasses = tutorToEdit.getTuitionClasses();
-            return new Tutor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedQualification,
-                    updatedInstitution, tuitionClasses);
+            editedPerson = new Tutor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    updatedQualification, updatedInstitution, tuitionClasses);
+        } else {
+            assert false;
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return editedPerson;
     }
 
     private static TuitionClass createEditedClass(TuitionClass classToEdit, EditDescriptor editDescriptor) {

@@ -109,7 +109,4 @@ public class PersonBuilder {
         return tags;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
-    }
 }
