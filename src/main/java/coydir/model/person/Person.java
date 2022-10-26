@@ -5,6 +5,8 @@ import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 
 import coydir.model.tag.Tag;
@@ -26,7 +28,7 @@ public class Person {
     private final Department department;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Leave> leaves = new HashSet<>();
+    private final Queue<Leave> leaves = new PriorityQueue<>(Leave.COMPARATOR);
     private final int totalNumberOfLeaves;
     private int leavesLeft = 0;
 
@@ -92,8 +94,8 @@ public class Person {
         this.leaves.remove(toDelete);
     }
 
-    public Set<Leave> getLeaves() {
-        return Collections.unmodifiableSet(leaves);
+    public Queue<Leave> getLeaves() {
+        return this.leaves;
     }
 
     public int getTotalNumberOfLeaves() {
@@ -121,6 +123,21 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    private boolean isSameLeaves(Queue<Leave> queue) {
+        Queue<Leave> copy1 = new PriorityQueue<>(this.leaves);
+        Queue<Leave> copy2 = new PriorityQueue<>(queue);
+        if (!(this.leaves.size() == queue.size())) {
+            return false;
+        } else {
+            for (Leave leave: copy1) {
+                if (copy1.poll() != copy2.poll()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -144,7 +161,7 @@ public class Person {
                 && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getLeaves().equals(getLeaves())
+                && this.isSameLeaves(otherPerson.getLeaves())
                 && otherPerson.getTotalNumberOfLeaves() == getTotalNumberOfLeaves()
                 && otherPerson.getLeavesLeft() == getLeavesLeft();
     }
@@ -183,7 +200,7 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        Set<Leave> leaves = getLeaves();
+        Queue<Leave> leaves = getLeaves();
         if (!leaves.isEmpty()) {
             builder.append("; Leaves: ");
             leaves.forEach(builder::append);
