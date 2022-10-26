@@ -415,3 +415,10 @@
     -fx-background-radius: 2;
     -fx-font-size: 15;
 }
+
+#mainDisplay #buttonErrorMessage {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 16px;
+    -fx-text-fill: red;
+    -fx-padding: 0 0 5 0;
+}
