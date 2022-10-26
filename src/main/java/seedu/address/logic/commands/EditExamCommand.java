@@ -81,13 +81,12 @@ public class EditExamCommand extends Command {
         boolean isEditedExamOfSameModule = examToEdit.getModule().isSameModule(editedExam.getModule());
 
         try {
+            model.replaceExam(examToEdit, editedExam, false);
             if (!isEditedExamOfSameModule && model.isExamLinkedToTask(examToEdit)) {
-                model.replaceExam(examToEdit, editedExam, false);
                 model.unlinkTasksFromExam(examToEdit);
                 return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n"
                         + "All the tasks previously linked to this exam are now unlinked.");
             } else {
-                model.replaceExam(examToEdit, editedExam, false);
                 model.updateExamFieldForTask(examToEdit, editedExam);
             }
         } catch (DuplicateExamException e) {
