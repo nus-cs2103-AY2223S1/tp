@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
+import hobbylist.commons.core.ThemeSettings;
 
 /**
  * Represents User's preferences.
@@ -15,7 +16,11 @@ import hobbylist.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
+
+    private ThemeSettings themeSettings = new ThemeSettings();
+
     private AliasSettings aliasSettings = new AliasSettings();
+
     private Path hobbyListFilePath = Paths.get("data" , "hobbylist.json");
 
     /**
@@ -37,6 +42,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
+        setThemeSettings(newUserPrefs.getThemeSettings());
         setAliasSettings(newUserPrefs.getAliasSettings());
         setHobbyListFilePath(newUserPrefs.getHobbyListFilePath());
     }
@@ -52,6 +58,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
+    }
+
+    public ThemeSettings getThemeSettings() {
+        return themeSettings;
+    }
+
+    public void setThemeSettings(ThemeSettings themeSettings) {
+        requireNonNull(themeSettings);
+        this.themeSettings = themeSettings;
     }
 
     public void setAliasSettings(AliasSettings aliasSettings) {
@@ -93,7 +108,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("Alias Settings : " + aliasSettings);
+        sb.append("\nTheme Settings : " + themeSettings);
+        sb.append("\nAlias Settings : " + aliasSettings);
         sb.append("\nLocal data file location : " + hobbyListFilePath);
         return sb.toString();
     }

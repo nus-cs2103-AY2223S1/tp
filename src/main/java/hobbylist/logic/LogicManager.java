@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.LogsCenter;
+import hobbylist.commons.core.ThemeSettings;
 import hobbylist.logic.commands.AddCommand;
 import hobbylist.logic.commands.ClearCommand;
 import hobbylist.logic.commands.Command;
@@ -89,6 +90,16 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ThemeSettings getThemeSettings() {
+        return model.getThemeSettings();
+    }
+
+    @Override
+    public void setThemeSettings(ThemeSettings themeSettings) {
+        model.setThemeSettings(themeSettings);
     }
 
     @Override
