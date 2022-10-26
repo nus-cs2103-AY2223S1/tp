@@ -9,6 +9,7 @@ import static seedu.studmap.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+    public static final String NO_EMAIL_STRING = "No Email";
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -29,9 +30,17 @@ public class Email {
             + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
+
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
     public final String value;
+
+    /**
+     * Constructs an empty {@code Email}.
+     */
+    public Email() {
+        value = "";
+    }
 
     /**
      * Constructs an {@code Email}.
@@ -48,12 +57,14 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.isEmpty() || test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return value.isEmpty()
+                ? NO_EMAIL_STRING
+                : value;
     }
 
     @Override

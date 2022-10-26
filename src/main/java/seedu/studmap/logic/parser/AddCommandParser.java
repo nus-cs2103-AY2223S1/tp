@@ -10,6 +10,7 @@ import static seedu.studmap.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.studmap.logic.commands.AddCommand;
@@ -49,18 +50,45 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         StudentData studentData = new StudentData();
 
-        studentData.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        studentData.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        studentData.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        studentData.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
-        studentData.setId(ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get()));
-        studentData.setGitUser(ParserUtil.parseGitName(argMultimap.getValue(PREFIX_GIT).get()));
-        studentData.setTeleHandle(ParserUtil.parseHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
+        Optional<String> nameString = argMultimap.getValue(PREFIX_NAME);
+        if (nameString.isPresent()) {
+            studentData.setName(ParserUtil.parseName(nameString.get()));
+        }
+
+        Optional<String> phoneString = argMultimap.getValue(PREFIX_PHONE);
+        if (phoneString.isPresent()) {
+            studentData.setPhone(ParserUtil.parsePhone(phoneString.get()));
+        }
+
+        Optional<String> emailString = argMultimap.getValue(PREFIX_EMAIL);
+        if (emailString.isPresent()) {
+            studentData.setEmail(ParserUtil.parseEmail(emailString.get()));
+        }
+
+        Optional<String> moduleString = argMultimap.getValue(PREFIX_MODULE);
+        if (moduleString.isPresent()) {
+            studentData.setModule(ParserUtil.parseModule(moduleString.get()));
+        }
+
+        Optional<String> idString = argMultimap.getValue(PREFIX_ID);
+        if (idString.isPresent()) {
+            studentData.setId(ParserUtil.parseId(idString.get()));
+        }
+
+        Optional<String> gitUserString = argMultimap.getValue(PREFIX_GIT);
+        if (gitUserString.isPresent()) {
+            studentData.setGitUser(ParserUtil.parseGitName(gitUserString.get()));
+        }
+
+        Optional<String> teleHandleString = argMultimap.getValue(PREFIX_HANDLE);
+        if (teleHandleString.isPresent()) {
+            studentData.setTeleHandle(ParserUtil.parseHandle(teleHandleString.get()));
+        }
+
         studentData.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
         Student student = new Student(studentData);
 
         return new AddCommand(student);
     }
-
 }
