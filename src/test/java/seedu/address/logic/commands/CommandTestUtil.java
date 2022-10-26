@@ -62,6 +62,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String MODULE_DESC_CS1101 = " " + PREFIX_MODULE + VALID_MODULE_CS1101;
     public static final String MODULE_DESC_CS2030S = " " + PREFIX_MODULE + VALID_MODULE_CS2030S;
+    public static final String MODULE_DESC_COMBINED = " " + PREFIX_MODULE + VALID_MODULE_CS1101
+            + "  \t " + VALID_MODULE_CS2030S;
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
     public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;

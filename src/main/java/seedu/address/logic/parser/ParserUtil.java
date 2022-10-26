@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -145,7 +147,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String mods} into an {@code Set<Mods>}.
+     * Parses a collection of whitespace-separated module strings into a Set of Modules.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code mods} is invalid.
@@ -153,7 +155,11 @@ public class ParserUtil {
     public static Set<Module> parseModules(Collection<String> mods) throws ParseException {
         requireNonNull(mods);
         final Set<Module> moduleSet = new HashSet<>();
-        for (String moduleName: mods) {
+        final List<String> moduleStringSet = new LinkedList<>();
+        for (String moduleNames: mods) {
+            moduleStringSet.addAll(List.of(moduleNames.split("\\s+")));
+        }
+        for (String moduleName: moduleStringSet) {
             moduleSet.add(parseModule(moduleName));
         }
         return moduleSet;

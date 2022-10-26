@@ -14,8 +14,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_COMBINED;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS1101;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CS2030S;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -29,6 +31,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS1101;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS2030S;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -223,6 +226,25 @@ public class EditContactCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    /** m/A B m/C -> m == [A,B,C] */
+    @Test
+    public void parse_spaceSeparatedAndMultipleModules_acceptsAll() {
+        Index targetIndex = INDEX_FIRST;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + MODULE_DESC_COMBINED + ADDRESS_DESC_AMY
+                + EMAIL_DESC_AMY + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+                + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + MODULE_DESC_FINISH_TP
+                + TAG_DESC_HUSBAND;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withModules(VALID_MODULE_CS2030S, VALID_MODULE_CS1101, VALID_MODULE_FINISH_TP).build();
+        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
