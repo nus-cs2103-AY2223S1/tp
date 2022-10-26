@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.nio.charset.StandardCharsets;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -35,7 +37,11 @@ public class BirthdayMonth {
 
         assert integerValue > 0 && integerValue < 13;
 
-        monthString = monthStrings[integerValue - 1];
+        // Generate birthday cake emoji
+        byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x8E, (byte)0x82};
+        String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
+
+        monthString = emoji + " " + monthStrings[integerValue - 1];
         value = String.valueOf(integerValue);
     }
 

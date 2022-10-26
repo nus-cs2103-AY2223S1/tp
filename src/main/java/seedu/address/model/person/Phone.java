@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.nio.charset.StandardCharsets;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,6 +16,7 @@ public class Phone {
             "Phone numbers should only contain numbers, and it should be at least 8 digits long";
     public static final String VALIDATION_REGEX = "\\d{8,}";
     public final String value;
+    public final String displayValue;
 
     /**
      * Constructs a {@code Phone}.
@@ -24,6 +27,11 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
+
+        // Generate phone emoji
+        byte[] emojiByteCode = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x93, (byte)0xB1};
+        String emoji = new String(emojiByteCode, StandardCharsets.UTF_8);
+        displayValue = emoji + " " + value;
     }
 
     /**
