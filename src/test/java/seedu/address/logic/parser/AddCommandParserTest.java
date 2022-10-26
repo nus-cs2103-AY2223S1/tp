@@ -155,7 +155,7 @@ public class AddCommandParserTest {
         // invalid tutorial
         assertParseFailure(parser, OCCUPATION_DESC + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + INVALID_TUTORIAL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Tutorial.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, OCCUPATION_DESC + NAME_DESC_BOB + PHONE_DESC_BOB
