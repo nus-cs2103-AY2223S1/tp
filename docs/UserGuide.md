@@ -145,11 +145,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05, i/50000, ra/L`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H`
 
-### Listing all clients : `listClients`
+### Listing all clients : `allClients`
 
 Shows a list of all clients in the address book.
 
-Format: `list`
+Format: `allClients`
 
 ### Editing a client : `editClient`
 
@@ -257,10 +257,10 @@ To find out how to do so, you can refer to the [Adding an Event](#adding-an-even
 ### Adding a policy 
 
 
-### Viewing all policies: `policies` [Coming soon]
-* Format: `policies`
-* Description: In v1.2, we will allow the user to view all available policies in a list format.
-* Example Usage: `policies`
+### Viewing all policies: `allPolicies` [Coming soon]
+* Format: `allPolicies`
+* Description: In v1.3, we will allow the user to view all available policies in a list format.
+* Example Usage: `allPolicies`
 * Example Result: Shows a list of all policies stored on the page
 
 
@@ -329,12 +329,12 @@ Format: `deleteEvent INDEX`
 * Example Result: deletes the 2nd event from the list.
 
 
-### Viewing all Events : `events`
+### Viewing all Events : `allEvents`
 
 This allows you to view all Events that have been previously added.
 * Note that events are automatically sorted in chronological order.
 
-Format: `events`
+Format: `allEvents`
 
 ![result for 'listEventsSample'](images/listEventsExample.png)
 

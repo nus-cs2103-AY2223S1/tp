@@ -35,7 +35,6 @@ import longtimenosee.logic.commands.SortCommand;
 import longtimenosee.logic.commands.ViewIncomeCommand;
 import longtimenosee.logic.commands.ViewPinCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
-import longtimenosee.model.event.exceptions.EventNotFoundException;
 
 
 /**
