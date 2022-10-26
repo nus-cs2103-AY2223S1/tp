@@ -61,7 +61,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    public void setArchivedTaskBookFilePath (Path archivedTaskBookFilePath) {
+    public void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath) {
         requireNonNull(archivedTaskBookFilePath);
         this.addressBookFilePath = archivedTaskBookFilePath;
     }

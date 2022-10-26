@@ -26,7 +26,7 @@ public class Task {
      * Every field must be present and not null.
      */
     public Task(Name name, Module module, Deadline deadline, Set<Tag> tags) {
-        this(name, module, deadline, tags, false );
+        this(name, module, deadline, tags, false);
     }
 
     /**

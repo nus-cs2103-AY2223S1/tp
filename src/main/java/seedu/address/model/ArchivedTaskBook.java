@@ -1,14 +1,18 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.UniquePersonList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.UniquePersonList;
 
+/**
+ * Wraps all data at ArchivedTaskBook level
+ * Duplicates are not allowed (by .isSamePerson comparison)
+ */
 public class ArchivedTaskBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList archivedTasks;
@@ -17,6 +21,9 @@ public class ArchivedTaskBook implements ReadOnlyAddressBook {
         archivedTasks = new UniquePersonList();
     }
 
+    /**
+     * Creates an ArchivedTaskBook using the Persons in the {@code toBeCopied}
+     */
     public ArchivedTaskBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -26,16 +33,28 @@ public class ArchivedTaskBook implements ReadOnlyAddressBook {
         this.archivedTasks.setPersons(archivedTasks);
     }
 
+    /**
+     * Resets the existing data of this {@code ArchivedTaskBook} with {@code newData}.
+     */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setArchivedTasks(newData.getPersonList());
     }
 
+    //// task-level operations
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the ArchivedTaskBook.
+     */
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return archivedTasks.contains(task);
     }
 
+    /**
+     * Adds a task to the ArchivedTaskBook.
+     * The task must not already exist in the ArchivedTaskBook.
+     */
     public void addTask(Task task) {
         archivedTasks.add(task);
     }

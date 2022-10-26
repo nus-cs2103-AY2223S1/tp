@@ -5,7 +5,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.List;
 
-import seedu.address.logic.commands.list.*;
+import seedu.address.logic.commands.list.ListAllCommand;
+import seedu.address.logic.commands.list.ListArchiveCommand;
+import seedu.address.logic.commands.list.ListCommand;
+import seedu.address.logic.commands.list.ListModuleCommand;
+import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleIsDonePredicate;

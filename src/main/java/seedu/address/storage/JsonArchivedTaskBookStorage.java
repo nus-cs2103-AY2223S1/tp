@@ -1,18 +1,18 @@
 package seedu.address.storage;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.FileUtil;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.FileUtil;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.ReadOnlyAddressBook;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -23,7 +23,7 @@ public class JsonArchivedTaskBookStorage implements ArchivedTaskBookStorage {
 
     private Path filePath;
 
-    public JsonArchivedTaskBookStorage (Path filePath) {
+    public JsonArchivedTaskBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -43,7 +43,8 @@ public class JsonArchivedTaskBookStorage implements ArchivedTaskBookStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyAddressBook> readArchivedTaskBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readArchivedTaskBook(Path filePath)
+            throws DataConversionException, IOException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableArchivedTaskBook> jsonTaskBook = JsonUtil.readJsonFile(

@@ -103,7 +103,7 @@ public interface Model {
 
     void updateFilteredArchivedTaskList(Predicate<Task> predicate);
 
-    void setArchivedTaskBook (ReadOnlyAddressBook addressBook);
+    void setArchivedTaskBook(ReadOnlyAddressBook addressBook);
 
     void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath);
 

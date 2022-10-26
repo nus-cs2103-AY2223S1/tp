@@ -1,15 +1,24 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.list.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.List;
+
+import seedu.address.logic.commands.list.ListAllCommand;
+import seedu.address.logic.commands.list.ListArchiveCommand;
+import seedu.address.logic.commands.list.ListArchivedModuleCommand;
+import seedu.address.logic.commands.list.ListArchivedUnmarkedCommand;
+import seedu.address.logic.commands.list.ListCommand;
+import seedu.address.logic.commands.list.ListModuleCommand;
+import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
 import seedu.address.model.task.ModuleIsDonePredicate;
 
-import java.util.List;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
+/**
+ * Parse input for listArchive command.
+ */
 public class ListArchivedCommandParser {
 
     /**

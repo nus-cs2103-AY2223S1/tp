@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.list;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * List all archived tasks.

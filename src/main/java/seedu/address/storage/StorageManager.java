@@ -91,7 +91,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readArchivedTaskBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyAddressBook> readArchivedTaskBook(Path filePath)
+            throws DataConversionException, IOException {
         return archivedTaskBookStorage.readArchivedTaskBook(filePath);
     }
 

@@ -23,16 +23,17 @@ public class ModelManager implements Model {
     private final ArchivedTaskBook archivedTaskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
-    private final FilteredList<Task> filteredArchivedTasks;;
+    private final FilteredList<Task> filteredArchivedTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyAddressBook archivedTaskBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook,
+                        ReadOnlyAddressBook archivedTaskBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, archivedTaskBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook +
-                "Archived Task Book: " + archivedTaskBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + "Archived Task Book: " + archivedTaskBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -88,7 +89,7 @@ public class ModelManager implements Model {
     @Override
     public void setArchivedTaskBookFilePath(Path archivedTaskBookFilePath) {
         requireNonNull(archivedTaskBookFilePath);
-       userPrefs.setArchivedTaskBookFilePath(archivedTaskBookFilePath);
+        userPrefs.setArchivedTaskBookFilePath(archivedTaskBookFilePath);
     }
 
     //=========== AddressBook ================================================================================

@@ -1,24 +1,21 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Module;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
 
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Archives a task identified using it's displayed index from the task list.
+ */
 public class ArchiveCommand extends Command {
 
     public static final String COMMAND_WORD = "archive";
-    private final Index index;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": archives the task identified by the index number used in the displayed task list.\n"
@@ -33,8 +30,12 @@ public class ArchiveCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the archives. Removing task.";
 
+    private final Index index;
 
-    public ArchiveCommand (Index index) {
+    /**
+     * @param index displayed index from the task list.
+     */
+    public ArchiveCommand(Index index) {
         requireNonNull(index);
         this.index = index;
     }

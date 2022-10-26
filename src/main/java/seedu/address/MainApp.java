@@ -15,7 +15,13 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.ArchivedTaskBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.ArchivedTaskBookStorage;
@@ -54,7 +60,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        ArchivedTaskBookStorage archivedTaskBookStorage = new JsonArchivedTaskBookStorage(userPrefs.getArchivedTaskBookFilePath());
+        ArchivedTaskBookStorage archivedTaskBookStorage =
+                new JsonArchivedTaskBookStorage(userPrefs.getArchivedTaskBookFilePath());
         storage = new StorageManager(addressBookStorage, archivedTaskBookStorage, userPrefsStorage);
 
         initLogging(config);
