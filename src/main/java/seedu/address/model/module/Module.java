@@ -1,11 +1,5 @@
 package seedu.address.model.module;
 
-// Module has a zoom link, tutorial venue and timing, lecture venue and timing, assignment name and deadline
-// Add /m CS1101S /l I3-AUDI Monday 12:00 /t COM1 B1-103 Tuesday 14:00
-// /a Functional Expressionism ONLY ONE WEEK /z https://www.zoom.sg/12891
-// Module has ModuleCode, LectureDetails, TutorialDetails, AssignmentDetails, ZoomLink
-// Only AssignmentDetails are optional, the rest should be provided by the user.
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
