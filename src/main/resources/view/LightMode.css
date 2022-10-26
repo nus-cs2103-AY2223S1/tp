@@ -1,20 +1,11 @@
-.background {
-    -fx-background-color: #FEFAF5;
-    background-color: #FEFAF5; /* Used in the default.html file */
-}
-
-.label {
-    -fx-text-fill: #fff;
-}
-
 .list-cell:filled {
-    -fx-background-color: #FCF2E4;
-    -fx-border-color: #FCF2E4;
+    -fx-background-color: #4bbfd0;
+    -fx-border-color: #4bbfd0;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #FAE9CF;
-    -fx-border-color: #FAE9CF;
+    -fx-background-color: #89d5db;
+    -fx-border-color: #89d5db;
 }
 
 .list-cell .label {
@@ -22,73 +13,81 @@
 }
 
 #personListView .list-cell:filled:selected {
-    -fx-border-color: #E27C26;
+    -fx-border-color: #10aec2;
 }
 
 .result-display {
-    -fx-background-color: #FCF2E4;
+    -fx-background-color: #89d5db;
     -fx-text-fill: #222;
-    -fx-border-color: #FCF2E4;
+    -fx-border-color: #89d5db;
 }
 
 .result-display .content, .result-display .scroll-bar {
-    -fx-background-color: #FCF2E4;
+    -fx-background-color: #89d5db;
 }
 
 .status-bar .label {
+    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: #333;
+    -fx-padding: 10px;
+    -fx-pref-height: 30px;
 }
 
 .pane-with-border, .status-bar, .scroll-bar, .list-view, .list-cell {
-    -fx-background-color: #FEFAF5;
+    -fx-background-color: #c6e6e8;
 }
 
 .menu-bar, .context-menu, .menu-item:focused {
-    -fx-background-color: #AA9F92;
+    -fx-background-color: #10aec2;
 }
 
 .menu:hover, .menu:showing, .menu-item:hover {
-    -fx-background-color: #435D66;
+    -fx-background-color: #c6e6e8;
+}
+
+.menu-item, .menu-bar .label {
+    -fx-text-fill: #333
 }
 
 .thumb {
-    -fx-background-color: #E27C26;
+    -fx-background-color: #10aec2;
 }
 
 #resultPane {
-    -fx-border-color: #FCF2E4;
+    -fx-border-color: #10aec2;
 }
 
 #commandTextField {
-    -fx-background-color: #FEFAF5;
-    -fx-border-color: #986544;
+    -fx-prompt-text-fill: #949494;
+    -fx-background-color: #89d5db;
+    -fx-border-color: #10aec2;
     -fx-text-fill: #333;
 }
 
 #commandTextField:focused {
-    -fx-border-color: #E27C26;
-}
-
-#tags .label, #memberships .label {
-    -fx-text-fill: white;
+    -fx-border-color: #10aec2;
 }
 
 #tags .label {
-    -fx-background-color: #E27C26;
+    -fx-background-color: #10aec2;
 }
 
-#gold {
-    -fx-background-color: #CEAA54;
-}
-
-#silver {
-    -fx-background-color: #AAA9AD;
-}
-
-#bronze {
-    -fx-background-color: #A97142;
-}
-
-#optionalFields .label {
+#copyButton, #helpMessage {
     -fx-text-fill: #333;
+}
+
+#copyButton {
+    -fx-background-color: #10aec2;
+}
+
+#copyButton:hover {
+    -fx-background-color: #4bbfd0;
+}
+
+#copyButton:armed {
+    -fx-background-color: #89d5db;
+}
+
+#helpMessageContainer {
+    -fx-background-color: #c6e6e8;
 }

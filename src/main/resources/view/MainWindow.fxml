@@ -37,10 +37,10 @@
         </MenuBar>
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="20" right="20" top="5" />
+            <Insets bottom="5" left="20" right="20" top="10" />
           </padding>
         </StackPane>
-        <StackPane fx:id="resultDisplayPlaceholder" minHeight="130" prefHeight="130" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" minHeight="150" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
@@ -48,14 +48,14 @@
         <HBox prefHeight="500.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
           <VBox fx:id="personList" minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets bottom="15" left="10" right="10" top="15" />
+              <Insets bottom="15" left="10" right="10" top="10" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
           <VBox fx:id="appointmentList" minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border"
                 HBox.hgrow="ALWAYS">
             <padding>
-              <Insets bottom="15" left="10" right="10" top="15" />
+              <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
             <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>

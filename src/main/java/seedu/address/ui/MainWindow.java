@@ -73,6 +73,9 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        helpWindow.getRoot().getScene().getStylesheets()
+                .add(logic.getGuiSettings().getStylesheet());
     }
 
     public Stage getPrimaryStage() {
@@ -158,6 +161,11 @@ public class MainWindow extends UiPart<Stage> {
             scene.getStylesheets().remove(darkThemeUrl);
             scene.getStylesheets().add(lightThemeUrl);
         }
+        Scene helpScene = helpWindow.getRoot().getScene();
+        if (helpScene.getStylesheets().contains(darkThemeUrl)) {
+            helpScene.getStylesheets().remove(darkThemeUrl);
+            helpScene.getStylesheets().add(lightThemeUrl);
+        }
     }
 
     /**
@@ -171,6 +179,11 @@ public class MainWindow extends UiPart<Stage> {
         if (scene.getStylesheets().contains(lightThemeUrl)) {
             scene.getStylesheets().remove(lightThemeUrl);
             scene.getStylesheets().add(darkThemeUrl);
+        }
+        Scene helpScene = helpWindow.getRoot().getScene();
+        if (helpScene.getStylesheets().contains(lightThemeUrl)) {
+            helpScene.getStylesheets().remove(lightThemeUrl);
+            helpScene.getStylesheets().add(darkThemeUrl);
         }
     }
 

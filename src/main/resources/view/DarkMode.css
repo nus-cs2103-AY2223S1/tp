@@ -1,12 +1,3 @@
-.background {
-    -fx-background-color: #2A2A2A;
-    background-color: #2A2A2A; /* Used in the default.html file */
-}
-
-.label {
-    -fx-text-fill: #EAEAEA;
-}
-
 .list-cell:filled {
     -fx-background-color: #333;
     -fx-border-color: #333;
@@ -18,7 +9,7 @@
 }
 
 #personListView .list-cell:filled:selected {
-    -fx-border-color: #BA6C41;
+    -fx-border-color: #10aec2;
 }
 
 .list-cell .label {
@@ -47,51 +38,56 @@
 }
 
 .menu-bar, .context-menu, .menu-item:focused {
-    -fx-background-color: #9C6451;
+    -fx-background-color: #10aec2;
 }
 
 .menu:hover, .menu:showing, .menu-item:hover {
-    -fx-background-color: #49829C;
+    -fx-background-color: #2A2A2A;
+}
+
+.menu-item, .menu-bar .label {
+    -fx-text-fill: #EAEAEA
 }
 
 .thumb {
-    -fx-background-color: #BA6C41;
+    -fx-background-color: #10aec2;
 }
 
 #resultPane {
-    -fx-border-color: #333;
+    -fx-border-color: #10aec2;
 }
 
 #commandTextField {
+    -fx-prompt-text-fill: #949494;
     -fx-background-color: #2A2A2A;
-    -fx-border-color: transparent transparent #333 transparent;
+    -fx-border-color: transparent transparent #10aec2 transparent;
     -fx-text-fill: #EAEAEA;
 }
 
 #commandTextField:focused {
-    -fx-border-color: transparent transparent #BA6C41 transparent;
-}
-
-#tags .label, #memberships .label {
-    -fx-text-fill: white;
+    -fx-border-color: transparent transparent #10aec2 transparent;
 }
 
 #tags .label {
-    -fx-background-color: #BA6C41;
+    -fx-background-color: #10aec2;
 }
 
-#gold {
-    -fx-background-color: #CEAA54;
-}
-
-#silver {
-    -fx-background-color: #AAA9AD;
-}
-
-#bronze {
-    -fx-background-color: #A97142;
-}
-
-#optionalFields .label {
+#copyButton, #helpMessage {
     -fx-text-fill: #EAEAEA;
+}
+
+#copyButton {
+    -fx-background-color: #333;
+}
+
+#copyButton:hover {
+    -fx-background-color: #474747;
+}
+
+#copyButton:armed {
+    -fx-background-color: #949494;
+}
+
+#helpMessageContainer {
+    -fx-background-color: #2A2A2A;
 }

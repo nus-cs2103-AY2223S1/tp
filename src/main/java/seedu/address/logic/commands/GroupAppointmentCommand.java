@@ -20,7 +20,7 @@ public class GroupAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + DESCRIPTOR_WORD
             + ": Group all appointments by their tags or patients or mark status.\n"
-            + "Parameters: KEY (must be either \"tag\" or \"patient\") "
+            + "Parameters: KEY (must be \"tag\"(\"t\"), \"patient\"(\"p\") or \"mark\"(\"m\")) "
             + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " "
             + PREFIX_KEY + "tag ";
 
