@@ -283,7 +283,7 @@ Figure No. Sequence diagram for PictureUploadCommand
 - Current implementation: A file chooser window is opened.
 - Pros: User can navigate visually through the files.
 - Cons: User will need to use a mouse instead of typing only.
-- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture. 
+- Alternatives considered: We considered passing in a ```String``` for the file path that indicates the location of the picture to upload as a way of selecting the picture.
 - Pros: Users only needs to type.
 - Cons: File paths can be very lengthy and if their file names are similar it is very easy to make a mistake when typing it out.
 
@@ -426,12 +426,12 @@ _{more aspects and alternatives to be added}_
 
 ### \[Enhanced\] ***Add*** Feature
 
-This feature was enhanced to help teacher assistants add students' profiles with ease. 
-The feature uses the command : 
+This feature was enhanced to help teacher assistants add students' profiles with ease.
+The feature uses the command :
 * `add` n/NAME, i/STUDENTID, [p/PHONE], [e/EMAIL], [c/CLASSGROUP], [t/TAGS]
 
 
-#### Feature Updates 
+#### Feature Updates
 * ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional).
 * ***Only*** Name and Student ID are a must.
 * Provides a **more flexibly way** of adding students' profiles.
@@ -452,7 +452,7 @@ Figure No. Sequence Diagram for Improved AddCommand Feature
 ![AddCommand Activity Diagram](images/AddCommandActivityDiagram.png)
 Figure No. Activity Diagram for Improved AddCommand Feature
 
-#### Design considerations 
+#### Design considerations
 
 **Aspect: Wrapping 'NA' into Type X**
 * Current implementation : Making 'NA' into a new X type when Information for X is not available where X can be Email, Phone or Class Group Type.
@@ -567,9 +567,9 @@ Use case ends.
     Use case resumes in step 2
 
 **Use case: UC05 - Delete attendance of a Student**
- 
+
 **Guarantees:**  An attendance is deleted from the Student.
- 
+
 **MSS**
 1. Tutor deletes attendance to student by entering command with student index.
 2. GREWZ deletes the attendance of the student.
@@ -580,7 +580,7 @@ Use case ends.
     * 1a2. User enters command with correct student index and command
     * Repeat steps until data is correct
     Use case resumes in step 2
- 
+
 **Use case: UC06 - Mark attendance of Student**
 
 **Guarantees:**  An attendance is deleted from the Student.
