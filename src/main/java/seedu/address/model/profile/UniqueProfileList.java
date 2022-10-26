@@ -3,15 +3,16 @@ package seedu.address.model.profile;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
@@ -32,14 +33,13 @@ public class UniqueProfileList implements Iterable<Profile> {
     private final ObservableList<Profile> internalList = FXCollections.observableArrayList();
     private final ObservableList<Profile> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final SortedList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(
+    private final ObservableList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(
             new Comparator<Profile>() {
                 @Override
                 public int compare(Profile p1, Profile p2) {
                     return p1.compareTo(p2);
                 }
             });
-
     /**
      * Returns true if the list contains an equivalent profile as the given argument.
      */
@@ -119,6 +119,22 @@ public class UniqueProfileList implements Iterable<Profile> {
         }
 
         //internalList.get(index).addAttendees(profilesToAdd);
+    }
+
+    /**
+     * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
+     * The event must exist in the list.
+     */
+    public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+
+        int index = internalList.indexOf(event);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        //Event e = internalList.get(index);
+
     }
 
     public void setProfiles(UniqueProfileList replacement) {

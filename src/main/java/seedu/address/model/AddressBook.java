@@ -160,6 +160,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
+        if (!events.contains(event)) {
+            // throw error?
+        }
         events.addEventToAttendees(event, profilesToAddEventTo);
     }
 
