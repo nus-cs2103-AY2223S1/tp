@@ -1,0 +1,22 @@
+@startuml
+start
+:User executes mark command;
+
+if () then ([valid find command])
+
+    if () then ([index is out of range])
+        :Display invalid
+        index message;
+
+        else ([else])
+          :Find tasks with matching keywords;
+            :Update model with new filtered task list;
+            :Display list of matching task(s) if any;
+        endif
+
+else ([else])
+    :Display unknown
+    command message;
+endif
+stop
+@enduml

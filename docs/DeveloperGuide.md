@@ -295,7 +295,7 @@ This feature allows the teacher to mark a student as present for class, which in
 This command executes 3 main actions, they are:
 1. Display a cross beside the student's name in the Schedule list.
    - `ScheduleCard.java` contains a `Label` called `markStatus` to display the cross if the student is marked.
-   - `ScheduleCard#setMarkStatus(Person person)` sets the text of markStatus to be `[X]` if the `person` is marked, else `[ ]`.
+   - `ScheduleCard#setMarkStatus(Person person)` sets the text of `markStatus` to be `[X]` if the `person` is marked, else `[ ]`.
 
 2. Increment the money owed by the student.
    - This action will add `ratesPerClass` field to `MoneyOwed` field in `Person`.
@@ -307,6 +307,8 @@ This command executes 3 main actions, they are:
    - Addition of days to the current `Class` date is called through `Class#addDays(int numberOfDays)` method.
    - The next `Class` will be checked if it clashes with another `Class`. If it does not, it will be saved in `ClassStorage`. All these are called through `ClassStorage#saveClass()`.
    - The marked `Class` will be deleted from `ClassStorage`.
+
+
 
 
 ---

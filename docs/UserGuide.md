@@ -207,9 +207,9 @@ The application will increase the student's owed amount by the rates per class.
 A cross will be displayed beside the student's name indicating that the student has attended the class.
 The student's next class will be set a week later at the same time, provided if there is a free time slot.
 
-Format: `mark INDEX`
+Format: `mark INDEX-s`
 
-- Marks the person as present at the specified `INDEX`.
+- Marks the person as present at the specified `INDEX-s`.
 - The index refers to the index number shown in the Schedule panel (bottom right).
 - The index must be a positive integer. e.g. `1, 2, 3, ...`.
 
@@ -232,15 +232,17 @@ Allows the user to indicate that a student has paid a certain amount of money.
 
 The application will reduce the student's owed amount by the amount paid.
 
-Format: `pay INDEX AMOUNT_PAID`
+Format: `pay INDEX-s AMOUNT_PAID`
 
-- Marks the person as present at the specified `INDEX`.
+- Marks the person as present at the specified `INDEX-s`.
 - The index refers to the index number shown in the Schedule panel (bottom right).
 - The index must be a positive integer. e.g. `1, 2, 3, ...`.
 - The amount paid must be an integer and cannot be negative. e.g. `0, 1, 2, ...`.
 
 Example:
 - `pay 2 40` indicates that the 2nd person in the Schedule panel has paid $40.
+
+![UiPay](images/UG-screenshots/UiPay.png)
 
 ```yaml
 Note: The student cannot pay more than what he/she owes. There is also a maximum cap of $2147483647 for every payment.
