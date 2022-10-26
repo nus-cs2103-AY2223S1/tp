@@ -3,6 +3,7 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
+import seedu.address.model.Pin;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
@@ -29,13 +30,14 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     private Status status;
     private Project project;
     private IssueId issueId;
+    private Pin pin;
 
     /**
      * Title field and project field must be present and not null, but all other fields are optional.
      */
     public Issue(Title title, Deadline deadline, Priority priority,
-                 Status status, Project project, IssueId issueId) {
-        requireAllNonNull(title, deadline, priority, status, project, issueId);
+                 Status status, Project project, IssueId issueId, Pin pin) {
+        requireAllNonNull(title, deadline, priority, status, project, issueId, pin);
         this.title = title;
         this.deadline = deadline;
         this.priority = priority;
@@ -43,6 +45,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         this.project = project;
         this.issueId = issueId;
         this.project.getIssueList().add(this);
+        this.pin = pin;
     }
 
     /**
@@ -147,6 +150,14 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return false;
     }
 
+    public void togglePin() {
+        this.pin.togglePinned();
+    }
+
+    public boolean isPinned() {
+        return this.pin.isPinned();
+    }
+
     public String uiRepresentation() {
         return this.title + " " + this.issueId.uiRepresentation();
     }
@@ -243,7 +254,12 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
                 && otherIssue.getDeadline().equals(getDeadline())
                 && otherIssue.getStatus().equals(getStatus())
                 && otherIssue.getPriority().equals(getPriority())
-                && otherIssue.getIssueId().equals(getIssueId());
+                && otherIssue.getIssueId().equals(getIssueId())
+                && otherIssue.getPin().equals(getPin());
+    }
+
+    private Pin getPin() {
+        return this.pin;
     }
 
     @Override

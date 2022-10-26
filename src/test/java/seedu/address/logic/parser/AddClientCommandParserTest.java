@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.client.AddClientCommand;
 import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.ClientWithoutModel;
@@ -38,7 +39,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(
                 new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
-                new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
+                new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>(), new Pin(false));
 
         //compulsory and optional fields
         assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
@@ -51,7 +52,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(
                 new Name(VALID_NAME_AMY), ClientPhone.EmptyClientPhone.EMPTY_PHONE,
-                ClientEmail.EmptyEmail.EMPTY_EMAIL, new ArrayList<>());
+                ClientEmail.EmptyEmail.EMPTY_EMAIL, new ArrayList<>(), new Pin(false));
 
         // only name
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_AMY + PROJECT_DESC_EMPTY_PROJECT,
@@ -66,7 +67,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(
                 new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
-                ClientEmail.EmptyEmail.EMPTY_EMAIL, new ArrayList<>());
+                ClientEmail.EmptyEmail.EMPTY_EMAIL, new ArrayList<>(), new Pin(false));
 
         // email missing
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
@@ -83,7 +84,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel =
                 new ClientWithoutModel(new Name(VALID_NAME_AMY), ClientPhone.EmptyClientPhone.EMPTY_PHONE,
-                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
+                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>(), new Pin(false));
 
         // phone missing
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
@@ -100,7 +101,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel =
                 new ClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
-                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
+                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>(), new Pin(false));
 
 
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
@@ -128,7 +129,7 @@ public class AddClientCommandParserTest {
         String expected = "No project with this project Id";
         ClientWithoutModel clientWithoutModel =
                 new ClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
-                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
+                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>(), new Pin(false));
 
         //        ProjectWithoutModel projectWithoutModel =
         //                new ProjectWithoutModel(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),

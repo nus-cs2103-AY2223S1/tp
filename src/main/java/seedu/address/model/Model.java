@@ -81,6 +81,8 @@ public interface Model {
     Issue getIssueById(int id);
     Client getClientById(int id);
 
+    Client getClient(Client client);
+
     void deleteProject(Project target);
 
     void deleteIssue(Issue target);
@@ -149,4 +151,10 @@ public interface Model {
     void sortClientsByName(int sortClientsByName);
 
     void setDefaultView(DefaultView defaultView);
+
+    void sortClientsByPin();
+
+    void sortProjectsByPin();
+
+    void sortIssuesByPin();
 }

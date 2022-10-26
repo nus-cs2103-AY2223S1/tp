@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -36,8 +35,6 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Hyperlink repository;
     @FXML
-    private Button copyRepoButton;
-    @FXML
     private Label deadline;
     @FXML
     private Label client;
@@ -50,11 +47,12 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
-        name.setText(displayedIndex + ". " + project.getProjectName().toString()
-                + " " + project.getProjectId().uiRepresentation());
+        name.setText(project.getProjectName().toString()
+                + " " + project.getProjectId().uiRepresentation()
+                + (project.isPinned() ? " \uD83D\uDCCC" : ""));
         repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
                 : project.getRepository().getUiRepresentation());
-        copyRepoButton.setOnAction(e -> copyRepoUrl(project.getRepository().isEmpty() ? ""
+        repository.setOnMouseClicked(e -> copyRepoUrl(project.getRepository().isEmpty() ? ""
                 : project.getRepository().getUiRepresentation()));
         deadline.setText(project.getDeadline().isEmpty() ? "No Deadline Set"
                 : project.getDeadline().uiRepresentation());
