@@ -105,7 +105,7 @@ public class MeetingBuilder {
     }
 
     /**
-     * Builds a Meeting
+     * Builds a new Meeting
      */
     public Meeting build() {
         return new Meeting(this.personsToMeetArray, this.meetingDescription,
