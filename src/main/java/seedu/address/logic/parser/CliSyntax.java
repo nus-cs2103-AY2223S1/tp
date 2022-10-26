@@ -15,4 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_NOTES_CONTENT = new Prefix("content/");
     public static final Prefix PREFIX_NOTES_TAG = new Prefix("n_tag/");
     public static final Prefix PREFIX_LOAN = new Prefix("l/");
+    public static final Prefix PREFIX_LOAN_AMOUNT = new Prefix("amt/");
+    public static final Prefix PREFIX_LOAN_REASON = new Prefix("reason/");
 }
