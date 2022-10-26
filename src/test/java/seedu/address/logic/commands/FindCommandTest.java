@@ -63,7 +63,7 @@ public class FindCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredExpenditureList());
     }
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleEntriesFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Lunch Dinner Movie");
         FindCommand command = new FindCommand(predicate);
