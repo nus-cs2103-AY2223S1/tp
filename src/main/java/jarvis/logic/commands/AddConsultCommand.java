@@ -9,9 +9,9 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
@@ -72,7 +72,14 @@ public class AddConsultCommand extends Command {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
 
-        Set<Student> studentSet = new HashSet<>();
+        Set<Student> studentSet = new TreeSet<>((s1, s2) -> {
+            int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
+            if (result == 0) {
+                return s1.getMatricNum().toString().compareTo(s2.getMatricNum().toString());
+            }
+            return result;
+        });
+
         for (Index studentIndex : studentIndexSet) {
             if (studentIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

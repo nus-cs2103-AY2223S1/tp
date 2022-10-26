@@ -2,7 +2,6 @@ package jarvis.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.TreeMap;
 
 import jarvis.model.exceptions.NoteNotFoundException;
@@ -20,7 +19,13 @@ public class LessonNotes {
      * @param students Students who are involved in the lesson.
      */
     public LessonNotes(Collection<Student> students) {
-        studentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
+        studentNotes = new TreeMap<>((s1, s2) -> {
+            int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
+            if (result == 0) {
+                return s1.getMatricNum().toString().compareTo(s2.getMatricNum().toString());
+            }
+            return result;
+        });
         generalNotes = new ArrayList<>();
         for (Student stu : students) {
             studentNotes.put(stu, new ArrayList<>());

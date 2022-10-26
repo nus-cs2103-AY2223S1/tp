@@ -1,7 +1,6 @@
 package jarvis.model;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -21,7 +20,14 @@ public class StudioParticipation {
      * @param students Students involved in the lesson.
      */
     public StudioParticipation(Collection<Student> students) {
-        participation = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
+        participation = new TreeMap<>((s1, s2) -> {
+            int result = s1.getName().toString().toLowerCase().compareTo(s2.getName().toString().toLowerCase());
+            if (result == 0) {
+                return s1.getMatricNum().toString().compareTo(s2.getMatricNum().toString());
+            }
+            return result;
+        });
+
         for (Student stu : students) {
             participation.put(stu, 0);
         }
