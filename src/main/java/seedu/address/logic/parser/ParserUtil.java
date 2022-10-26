@@ -204,9 +204,9 @@ public class ParserUtil {
             trimmedSubject = "chemistry";
         } else if (trimmedSubject.matches("(?i)biology|bio")) {
             trimmedSubject = "biology";
-        } else if (trimmedSubject.matches("(?i)(elem|elementary)\\s*(mathematics|maths{0,1}){0,1}|e\\s*maths{0,1}")) {
+        } else if (trimmedSubject.matches("(?i)(e|elem|elementary)\\s*(mathematics|maths{0,1}){0,1}")) {
             trimmedSubject = "emath";
-        } else if (trimmedSubject.matches("(?i)(add|additional)\\s*(mathematics|maths{0,1}){0,1}|a\\s*maths{0,1}")) {
+        } else if (trimmedSubject.matches("(?i)(a|add|additional)\\s*(mathematics|maths{0,1}){0,1}")) {
             trimmedSubject = "amath";
         }
 
