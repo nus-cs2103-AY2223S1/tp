@@ -30,11 +30,11 @@ public class TypicalInternships {
     public static final Internship GOOG = new InternshipBuilder().withName("Google")
             .withPosition("Software Engineer").withStatus("Progress").withEmail("careers@google.com")
             .withWebsite("https://careers.google.com/").withTasks("Application submitted /at 19-10-2022 11:38")
-            .withSalary("100000").withTags("friends").build();
+            .withSalary("100000").withTags("Urgent").build();
     public static final Internship META = new InternshipBuilder().withName("Meta")
             .withPosition("Data Analyst").withStatus("Progress").withEmail("careers@meta.com")
             .withWebsite("https://www.metacareers.com/").withTasks("Application submitted /at 20-10-2022 12:00")
-            .withSalary("125000").withTags("owesMoney", "friends").build();
+            .withSalary("125000").withTags("Urgent", "Remote").build();
     public static final Internship BABA = new InternshipBuilder().withName("Alibaba")
             .withPosition("Frontend Engineer").withStatus("Offered").withEmail("careers@alibaba.com")
             .withWebsite("https://careers.alibaba.com/").withTasks("Application submitted /at 19-10-2022 11:38")
@@ -44,13 +44,13 @@ public class TypicalInternships {
             .withWebsite("https://careers.pypl.com/home/")
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .withSalary("175000")
-            .withTags("friends").build();
+            .withTags("Remote").build();
     public static final Internship SSNLF = new InternshipBuilder().withName("Samsung Group")
             .withPosition("Full Stack Engineer").withStatus("Offered").withEmail("careers@samsung.com")
             .withWebsite("https://www.samsung.com/sg/about-us/careers/")
             .withTasks("Application submitted /at 25-10-2022 08:30", "Technical Interview /at 30-10-2022 09:00")
             .withSalary("200000")
-            .build();
+            .withTags("Urgent").build();
     public static final Internship TCEHY = new InternshipBuilder().withName("Tencent Holdings Ltd")
             .withPosition("Cyber Security Analyst").withStatus("Offered").withEmail("careers@tencent.com")
             .withWebsite("https://careers.tencent.com/en-us/home.html")

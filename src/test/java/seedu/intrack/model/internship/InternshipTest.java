@@ -13,7 +13,7 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_SALARY_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_SALARY_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_REMOTE;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
@@ -49,7 +49,7 @@ public class InternshipTest {
 
         // same name, all other attributes different -> returns true
         Internship editedGoogle = new InternshipBuilder(GOOG).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
-                .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT).build();
+                .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_REMOTE).build();
         assertTrue(GOOG.isSameInternship(editedGoogle));
 
         // different name, all other attributes same -> returns false
@@ -62,7 +62,7 @@ public class InternshipTest {
 
         // same name, same position, all other attributes different -> returns true
         editedGoogle = new InternshipBuilder(GOOG).withSalary(VALID_SALARY_MSFT).withEmail(VALID_EMAIL_MSFT)
-                .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT).build();
+                .withStatus(VALID_STATUS_MSFT).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_REMOTE).build();
         assertTrue(GOOG.isSameInternship(editedGoogle));
 
         // name differs in case, all other attributes same -> returns true
@@ -118,7 +118,7 @@ public class InternshipTest {
         assertFalse(GOOG.equals(editedGoogle));
 
         // different tags -> returns false
-        editedGoogle = new InternshipBuilder(GOOG).withTags(VALID_TAG_URGENT).build();
+        editedGoogle = new InternshipBuilder(GOOG).withTags(VALID_TAG_REMOTE).build();
         assertFalse(GOOG.equals(editedGoogle));
     }
 
