@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  * Represents a Debt's time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class DebtTime {
+public class DebtTime implements Comparable<DebtTime> {
     public static final String DEFAULT_TIME = "00:00";
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be in hh:mm format; where h is hour in 24h clock and m is minute.";
@@ -69,5 +69,10 @@ public class DebtTime {
     @Override
     public int hashCode() {
         return time.hashCode();
+    }
+
+    @Override
+    public int compareTo(DebtTime o) {
+        return this.time.compareTo(o.time);
     }
 }

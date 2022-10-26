@@ -52,6 +52,15 @@ public class DebtList {
     }
 
     /**
+     * Compares this DebtList's earliest Debt's DateTime to that of another DebtList.
+     */
+    public int compareEarliestDebtDateTimeWith(DebtList o) {
+        assert !isEmpty() && !o.isEmpty() : "compareEarliestDebtDateTimeWith should not be called "
+                                                + "when DebtLists are empty";
+        return debts.get(0).compareDateTimeWith(o.debts.get(0));
+    }
+
+    /**
      * Adds a debt to the list.
      *
      * @param toAdd The debt to add to the list.
@@ -60,7 +69,15 @@ public class DebtList {
     public DebtList addDebt(Debt toAdd) {
         requireNonNull(toAdd);
         DebtList edited = new DebtList(this);
-        edited.debts.add(toAdd);
+
+        int index = 0;
+        for (Debt prevDebt : edited.debts) {
+            if (toAdd.compareDateTimeWith(prevDebt) < 0) {
+                break;
+            }
+            index++;
+        }
+        edited.debts.add(index, toAdd);
         edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
         return edited;
     }
