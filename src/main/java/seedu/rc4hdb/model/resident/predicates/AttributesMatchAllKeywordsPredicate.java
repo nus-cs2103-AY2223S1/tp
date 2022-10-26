@@ -31,7 +31,22 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
                 && descriptor.getHouse().map(house -> resident.getHouse().containsIgnoreCase(house)).orElse(true)
                 && descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().containsIgnoreCase(matric))
                 .orElse(true)
-                && resident.getTags().stream().allMatch(this::allTagMatch);
+                && matchTags(resident);
+    }
+
+    /**
+     * Checks if the tag sets are not empty before the matching is done
+     * @param resident
+     * @return true if {@code tag} matches with the all the tags in {@code descriptor} or if descriptor tag set is empty
+     */
+    private boolean matchTags(Resident resident) {
+        if (descriptor.getTags().isEmpty()) {
+            return true;
+        }
+        if (resident.getTags().isEmpty()) {
+            return false;
+        }
+        return resident.getTags().stream().allMatch(this::allTagMatch);
     }
 
     /**
@@ -39,7 +54,7 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
      */
     private boolean allTagMatch(Tag tag) {
         if (descriptor.getTags().isEmpty()) {
-            return false;
+            return true;
         }
         return descriptor.getTags().get().stream()
                 .allMatch(tag::containsIgnoreCase);
