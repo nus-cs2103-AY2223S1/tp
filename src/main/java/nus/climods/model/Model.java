@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
 import javafx.collections.ObservableList;
@@ -12,7 +13,6 @@ import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.model.module.UserModule;
-
 
 /**
  * The API of the Model component.
@@ -46,6 +46,11 @@ public interface Model {
 
     ReadOnlyModuleList getModuleList();
 
+    /**
+     * Returns Optional Module corresponding to the supplied module code
+     */
+    Optional<Module> getListModule(String moduleCode);
+
     boolean isModuleOffered(String moduleCode);
 
     boolean isModuleOfferedInSemester(String moduleCode, SemestersEnum semester);
@@ -57,6 +62,16 @@ public interface Model {
     void setFilteredModuleList(Predicate<Module> predicate);
 
     void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator);
+
+    /**
+     * Sets module (currently for view) in full module list to the module specified by moduleCode
+     */
+    void setModuleInFocus(Module module) throws ApiException;
+
+    /**
+     * Resets active module to be inactive
+     */
+    void clearModuleInFocus();
 
     //=========== UserModule ==================================================================================
 

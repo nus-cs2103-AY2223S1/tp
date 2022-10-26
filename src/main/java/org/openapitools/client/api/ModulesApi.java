@@ -43,8 +43,19 @@ public class ModulesApi {
     private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
     private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
 
+    private static ModulesApi instance; // Singleton instance
+
+    @Deprecated
     public ModulesApi() {
         this(new ApiClient());
+    }
+
+    public static ModulesApi getInstance() {
+        if(instance == null){
+            instance = new ModulesApi();
+        }
+
+        return instance;
     }
 
     public ModulesApi(ApiClient apiClient) {

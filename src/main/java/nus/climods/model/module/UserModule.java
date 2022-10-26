@@ -18,6 +18,7 @@ public class UserModule {
      * @param moduleCode module code
      * @param selectedSemester semester
      */
+
     public UserModule(String moduleCode, SemestersEnum selectedSemester) {
         this.code = moduleCode;
         this.selectedSemester = selectedSemester;
