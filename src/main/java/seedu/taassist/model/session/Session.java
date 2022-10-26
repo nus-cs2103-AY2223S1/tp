@@ -96,4 +96,13 @@ public class Session implements Identity<Session> {
     public String toString() {
         return String.format("[%s; Date: %s]", getSessionName(), getDate());
     }
+
+    @Override
+    public int compareTo(Session other) {
+        if (date != other.date) {
+            return date.compareTo(other.date);
+        } else {
+            return sessionName.compareTo(other.sessionName);
+        }
+    }
 }

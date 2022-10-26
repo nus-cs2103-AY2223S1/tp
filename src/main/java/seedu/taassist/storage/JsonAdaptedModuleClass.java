@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.taassist.commons.exceptions.IllegalValueException;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * Json-friendly version of {@link ModuleClass}.
@@ -60,7 +61,7 @@ class JsonAdaptedModuleClass {
             throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
         }
 
-        List<Session> sessionList = new ArrayList<>();
+        UniqueList<Session> sessionList = new UniqueList<>();
         for (JsonAdaptedSession session : sessions) {
             sessionList.add(session.toModelType());
         }

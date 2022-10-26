@@ -4,13 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * Represents a Class in TA-Assist.
@@ -24,7 +23,7 @@ public class ModuleClass implements Identity<ModuleClass> {
     private final String className;
 
     // TODO: Implement a more robust solution to check for session uniqueness within the list.
-    private final List<Session> sessions;
+    private final UniqueList<Session> sessions;
 
     /**
      * Constructs a {@code ModuleClass}.
@@ -35,7 +34,7 @@ public class ModuleClass implements Identity<ModuleClass> {
         requireNonNull(className);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
-        sessions = new ArrayList<Session>();
+        sessions = new UniqueList<>();
     }
 
     /**
@@ -44,7 +43,7 @@ public class ModuleClass implements Identity<ModuleClass> {
      * @param className A valid class name.
      * @param sessions A list of sessions.
      */
-    public ModuleClass(String className, List<Session> sessions) {
+    public ModuleClass(String className, UniqueList<Session> sessions) {
         requireAllNonNull(className, sessions);
         checkArgument(isValidModuleClassName(className), MESSAGE_CONSTRAINTS);
         this.className = className;
@@ -67,7 +66,7 @@ public class ModuleClass implements Identity<ModuleClass> {
      * if modification is attempted.
      */
     public List<Session> getSessions() {
-        return Collections.unmodifiableList(sessions);
+        return sessions.asUnmodifiableObservableList();
     }
 
     /**
@@ -76,12 +75,8 @@ public class ModuleClass implements Identity<ModuleClass> {
      */
     public ModuleClass addSession(Session session) {
         requireNonNull(session);
-        if (hasSession(session)) {
-            return this;
-        }
-        List<Session> newSessions = new ArrayList<>(sessions);
-        newSessions.add(session);
-        return new ModuleClass(className, newSessions);
+        sessions.add(session);
+        return this;
     }
 
     /**
@@ -89,9 +84,8 @@ public class ModuleClass implements Identity<ModuleClass> {
      */
     public ModuleClass removeSession(Session session) {
         requireNonNull(session);
-        List<Session> newSessions = new ArrayList<>(sessions);
-        newSessions.remove(session);
-        return new ModuleClass(className, newSessions);
+        sessions.remove(session);
+        return this;
     }
 
     /**
@@ -123,7 +117,7 @@ public class ModuleClass implements Identity<ModuleClass> {
     }
 
     public boolean hasSession(Session toCheck) {
-        return sessions.stream().anyMatch(toCheck::isSame);
+        return sessions.contains(toCheck);
     }
 
     @Override
@@ -136,6 +130,11 @@ public class ModuleClass implements Identity<ModuleClass> {
      */
     public String toString() {
         return '[' + className + ']';
+    }
+
+    @Override
+    public int compareTo(ModuleClass other) {
+        return className.compareTo(other.className);
     }
 
 }

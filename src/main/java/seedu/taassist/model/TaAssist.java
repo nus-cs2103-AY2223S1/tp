@@ -14,7 +14,7 @@ import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the TA-Assist level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class TaAssist implements ReadOnlyTaAssist {

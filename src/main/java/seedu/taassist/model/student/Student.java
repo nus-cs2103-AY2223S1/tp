@@ -210,4 +210,9 @@ public class Student implements Identity<Student> {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Student other) {
+        return name.toString().compareTo(other.name.toString());
+    }
+
 }

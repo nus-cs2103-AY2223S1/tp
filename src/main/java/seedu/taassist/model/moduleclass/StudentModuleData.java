@@ -98,4 +98,9 @@ public class StudentModuleData implements Identity<StudentModuleData> {
                 && this.sessionDataList.equals(((StudentModuleData) other).sessionDataList);
     }
 
+    @Override
+    public int compareTo(StudentModuleData other) {
+        return moduleClass.compareTo(other.moduleClass);
+    }
+
 }

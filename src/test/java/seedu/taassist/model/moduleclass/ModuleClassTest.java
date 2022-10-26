@@ -7,19 +7,18 @@ import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1231S;
 import static seedu.taassist.testutil.TypicalSessions.ASSIGNMENT_1;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.model.session.Session;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 public class ModuleClassTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
         String validModuleClassName = "CS1101S";
-        List<Session> validSessions = Arrays.asList(ASSIGNMENT_1);
+        UniqueList<Session> validSessions = new UniqueList<>();
+        validSessions.add(ASSIGNMENT_1);
 
         // null name
         assertThrows(NullPointerException.class, () -> new ModuleClass(null));
@@ -76,7 +75,11 @@ public class ModuleClassTest {
         assertTrue(CS1101S.equals(CS1101S));
 
         // same name and sessions -> returns true
-        ModuleClass cs1101sCopy = new ModuleClass(CS1101S.getClassName(), CS1101S.getSessions());
+        UniqueList<Session> sessionsCopy = new UniqueList<>();
+        for (Session s : CS1101S.getSessions()) {
+            sessionsCopy.add(s);
+        }
+        ModuleClass cs1101sCopy = new ModuleClass(CS1101S.getClassName(), sessionsCopy);
         assertTrue(cs1101sCopy.equals(CS1101S));
     }
 }

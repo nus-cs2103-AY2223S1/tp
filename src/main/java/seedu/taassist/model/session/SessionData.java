@@ -71,4 +71,9 @@ public class SessionData implements Identity<SessionData> {
     public String toString() {
         return session.toString() + ": " + grade;
     }
+
+    @Override
+    public int compareTo(SessionData other) {
+        return session.compareTo(other.session);
+    }
 }

@@ -8,8 +8,6 @@ import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_TUT3;
 import static seedu.taassist.testutil.Assert.assertThrows;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.commons.core.Messages;
@@ -17,6 +15,7 @@ import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 class ScoresCommandTest {
 
@@ -119,7 +118,7 @@ class ScoresCommandTest {
         // Constructor that adds a single Session to the focused class.
         public ModelStubInFocusMode(Session session) {
             super();
-            ArrayList<Session> sessionList = new ArrayList<>(1);
+            UniqueList<Session> sessionList = new UniqueList<>();
             sessionList.add(session);
             this.focusedClass = new ModuleClass("CS2103T", sessionList);
         }

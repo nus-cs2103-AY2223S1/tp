@@ -202,5 +202,10 @@ class UniqueListTest {
                     && identity.equals(((Item) other).identity))
                     && data.equals(((Item) other).data); // state check
         }
+
+        @Override
+        public int compareTo(Item other) {
+            return identity.compareTo(other.identity);
+        }
     }
 }
