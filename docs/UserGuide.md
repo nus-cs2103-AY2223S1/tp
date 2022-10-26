@@ -139,6 +139,22 @@ Examples:
 - `list_contact` followed by `delete_contact 2` deletes the 2nd contact.
 - `find_contact Betsy` followed by `delete_contact 1` deletes the 1st contact in the results of the `find_contact` command.
 
+### Selecting a contact : `select_contact`
+
+Selects the specified contact.
+
+Format: `select_contact INDEX`
+
+- Selects the contact at the specified `INDEX`.
+- The index refers to the index number shown in the displayed contact list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- All tasks assigned to the contact will be displayed.
+
+Examples:
+
+- `list_contact` followed by `select_contact 1` selects the 1st contact in the contact list and shows all tasks assigned to that person.
+- `find_contact Hermione` followed by `select_contact 1` selects the first contact named Hermione in the contact list if it exists and shows all task assigned to that person.
+
 ### Adding a task: `add_task`
 
 Adds a task to the task list.
@@ -215,6 +231,22 @@ Examples:
 - `delete_task 1` Deletes the Task at index 1.
 - `delete_task 3` Deletes the Task at index 3.
 
+### Selecting a task : `select_task`
+
+Selects the specified task.
+
+Format: `select_task INDEX`
+
+- Selects the task at the specified `INDEX`.
+- The index refers to the index number shown in the displayed task list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- All contacts assigned to the task will be displayed.
+
+Examples:
+
+- `list_task` followed by `select_task 1` selects the 1st task in the task list and shows all contacts assigned to that task.
+- `find_task sleep` followed by `select_task 1` selects the first task named sleep in the task list if it exists and shows all contacts assigned to that task.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -251,8 +283,10 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 | **Find Contact**   | `find_contact KEYWORD [MORE_KEYWORDS]`                                         |
 | **Edit Contact**   | `edit_contact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
 | **Delete Contact** | `delete_contact INDEX`                                                         |
+| **Select Contact**    | `select_contact INDEX`                                                      |
 | **Add Task**       | `add_task n/NAME [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]…​`            |
 | **List Tasks**     | `list_task c/CONTACT_INDEX`                                                    |
 | **Find Tasks**     | `find_task KEYWORD [MORE_KEYWORDS]`                                            |
 | **Edit Task**      | `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`                                   |
 | **Delete Task**    | `delete_task INDEX`                                                            |
+| **Select Task**    | `select_task INDEX`                                                            |
