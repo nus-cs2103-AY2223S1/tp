@@ -17,7 +17,7 @@ management tasks done faster than traditional GUI apps.
     + [Adding a supplier](#adding-a-supplier-add-s)
     + [Adding an order to a buyer](#adding-an-order-to-a-buyer-add-o)
     + [Adding a pet to a supplier](#adding-a-pet-to-a-supplier--add-pt)
-    + **RECOMMENDED FOR BEGINNERS** [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add)
+    + [Adding a person with a popup window](#adding-a-person-with-a-popup-window--add) [RECOMMENDED FOR BEGINNERS]
   * [Listing contacts or items](#listing-contacts-or-items--list)
   * [Deleting a contact or item](#deleting-a-contact-or-item--delete)
   * [Finding a contact using keywords](#finding-a-contact-using-keywords--find)
