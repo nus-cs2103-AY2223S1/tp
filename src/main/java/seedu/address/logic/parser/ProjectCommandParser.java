@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 
@@ -204,11 +205,16 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME, PREFIX_PROJECT);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME, PREFIX_PROJECT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortProjectCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_PROJECT)) {
+            sortPrefix = PREFIX_PROJECT;
+            key = ParserUtil.parseProjectIdSort(argMultimap.getValue(PREFIX_PROJECT).get());
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {

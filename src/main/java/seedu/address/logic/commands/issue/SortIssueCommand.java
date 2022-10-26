@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
@@ -21,6 +22,9 @@ public class SortIssueCommand extends IssueCommand {
     public static final String MESSAGE_SUCCESS = "Sorted issues";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort issues in address book. "
+            + "Sort by issue id: "
+            + PREFIX_DEADLINE + "0 (ascending) or "
+            + PREFIX_DEADLINE + "1 (descending). "
             + "Sort by deadline: "
             + PREFIX_DEADLINE + "0 (chronological) or "
             + PREFIX_DEADLINE + "1 (reverse chronological). "
@@ -50,6 +54,11 @@ public class SortIssueCommand extends IssueCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
         String sortKeyString = "";
+
+        if (sortKey.equals(PREFIX_ISSUE)) {
+            model.sortIssuesById(sortOrder);
+            sortKeyString = "issue id.";
+        }
 
         if (sortKey.equals(PREFIX_DEADLINE)) {
             model.sortIssuesByDeadline(sortOrder);

@@ -25,6 +25,9 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     public static final String MESSAGE_INVALID_NAME_SORT_KEY =
             "Enter either a 0 to sort by alphabetical order or a 1 to sort by reverse alphabetical order";
 
+    public static final String MESSAGE_INVALID_PROJECT_ID_SORT_KEY =
+            "Enter either a 0 to sort in ascending order or a 1 to sort in descending order";
+
     // Components of a project
     private Name name;
     private Repository repository;
@@ -188,6 +191,23 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
      * @return true if input is a 0 or 1
      */
     public static boolean isValidNameSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is a valid project id sort key.
+     *
+     * 0 for ascending and 1 for descending order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidProjectIdSortKey(String num) {
         try {
             int number = Integer.parseInt(num);
             return number == 0 || number == 1;

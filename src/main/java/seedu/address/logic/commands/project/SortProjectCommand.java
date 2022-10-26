@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import seedu.address.logic.commands.CommandResult;
@@ -22,6 +23,9 @@ public class SortProjectCommand extends ProjectCommand {
     public static final String MESSAGE_SUCCESS = "Sorted projects";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort projects in address book. "
+            + "Sort by project id: "
+            + PREFIX_PROJECT + "0 (ascending) or "
+            + PREFIX_PROJECT + "1 (descending). "
             + "Sort by deadline: "
             + PREFIX_DEADLINE + "0 (chronological) or "
             + PREFIX_DEADLINE + "1 (reverse chronological). "
@@ -66,8 +70,13 @@ public class SortProjectCommand extends ProjectCommand {
         }
 
         if (sortKey.equals(PREFIX_NAME)) {
-            model.sortProjectsByName(sortOrder);
+            model.sortProjectsById(sortOrder);
             sortKeyString = "names.";
+        }
+
+        if (sortKey.equals(PREFIX_PROJECT)) {
+            model.sortProjectsById(sortOrder);
+            sortKeyString = "project id.";
         }
 
         ui.showProjects();

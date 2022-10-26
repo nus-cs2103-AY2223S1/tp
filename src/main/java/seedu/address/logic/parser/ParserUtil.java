@@ -326,4 +326,49 @@ public class ParserUtil {
         }
         return Integer.parseInt(trimmedKey);
     }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by project id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseProjectIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Project.isValidProjectIdSortKey(trimmedKey)) {
+            throw new ParseException(Project.MESSAGE_INVALID_PROJECT_ID_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by issue id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseIssueIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Issue.isValidIssueIdSortKey(trimmedKey)) {
+            throw new ParseException(Issue.MESSAGE_INVALID_ISSUE_ID_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by client id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseClientIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Client.isValidClientIdSortKey(trimmedKey)) {
+            throw new ParseException(Client.MESSAGE_INVALID_CLIENT_ID_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
 }

@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
@@ -238,10 +239,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                     SortIssueCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_PRIORITY,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_ISSUE, PREFIX_PRIORITY,
                 PREFIX_DEADLINE);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_PRIORITY, PREFIX_DEADLINE)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_ISSUE, PREFIX_PRIORITY, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortIssueCommand.MESSAGE_USAGE));
         }
@@ -254,6 +255,11 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             sortPrefix = PREFIX_PRIORITY;
             key = ParserUtil.parsePrioritySort(argMultimap.getValue(PREFIX_PRIORITY).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_ISSUE)) {
+            sortPrefix = PREFIX_ISSUE;
+            key = ParserUtil.parseIssueIdSort(argMultimap.getValue(PREFIX_ISSUE).get());
         }
 
         return new SortIssueCommand(sortPrefix, key);

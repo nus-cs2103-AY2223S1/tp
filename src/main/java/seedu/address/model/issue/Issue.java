@@ -19,6 +19,9 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     public static final String MESSAGE_INVALID_PRIORITY_SORT_KEY =
             "Enter either a 0 to sort by lowest priority or a 1 to sort by highest priority";
 
+    public static final String MESSAGE_INVALID_ISSUE_ID_SORT_KEY =
+            "Enter either a 0 to sort in ascending order or a 1 to sort in descending order";
+
     // Components of an issue
     private Description description;
     private Deadline deadline;
@@ -180,6 +183,23 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
      * @return true if input is a 0 or 1
      */
     public static boolean isValidPrioritySortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is a valid issue id sort key.
+     *
+     * 0 for ascending and 1 for descending order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidIssueIdSortKey(String num) {
         try {
             int number = Integer.parseInt(num);
             return number == 0 || number == 1;
