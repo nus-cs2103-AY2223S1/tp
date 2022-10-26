@@ -53,7 +53,7 @@ public class ExamCard extends UiPart<Region> {
         if (!exam.hasTasks()) {
             percentageCompleted.setPrefWidth(0);
         } else {
-            percentageCompleted.setPadding(new Insets(0, 5,0, 0));
+            percentageCompleted.setPadding(new Insets(0, 5, 0, 0));
         }
 
         percentageCompleted.setProgress(exam.getPercentageCompleted());
