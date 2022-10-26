@@ -169,21 +169,20 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons who match all the given conditions.
 
-Format: `find <keyword> [<more keywords>]`
+Format: `find [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag> ...]
+[d/<description> ...]`[m/<money> ...] [date/<date> ...] [time/<time> ...]
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Name and Address are case-insensitive partial matches. All other fields are exact matches.
+* The order of the conditions does not matter.
+  e.g. `d/burger n/hans` will match `Bo Hans` if he owes money for a burger.
+* Only persons matching all conditions will be returned (i.e. `AND` search).
+  e.g. `d/burger n/hans` will return `Hans Gruber` only if he owes money for a burger,
+  but not `Bo Yang` even if he owes money for a burger. 
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John` returns `john` and `John Doe`
 
 ### Locating persons by debt description: `finddebt`
 
