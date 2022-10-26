@@ -161,6 +161,16 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     @Override
+    public ObservableList<Student> getUncompletedStudentList() {
+        return students.filter(student -> !student.getProjectStatus().projectStatus.equals("DONE"));
+    }
+
+    @Override
+    public ObservableList<Student> getCompletedStudentList() {
+        return students.filter(student -> student.getProjectStatus().projectStatus.equals("DONE"));
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FypManager // instanceof handles nulls

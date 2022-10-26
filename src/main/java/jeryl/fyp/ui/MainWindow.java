@@ -31,7 +31,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private StudentListPanel studentListPanel;
+    private UncompletedStudentListPanel uncompletedStudentListPanel;
+    private UncompletedStudentListTitle uncompletedStudentListTitle;
+    private CompletedStudentListPanel completedStudentListPanel;
+    private CompletedStudentListTitle completedStudentListTitle;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +48,16 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane studentListPanelPlaceholder;
+    private StackPane uncompletedStudentListPanelPlaceholder;
 
     @FXML
-    private StackPane previewPanelPlaceholder;
+    private StackPane uncompletedStudentListTitlePlaceholder;
+
+    @FXML
+    private StackPane completedStudentListPanelPlaceholder;
+
+    @FXML
+    private StackPane completedStudentListTitlePlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -116,8 +125,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        uncompletedStudentListPanel = new UncompletedStudentListPanel(logic.getUncompletedStudentList());
+        uncompletedStudentListPanelPlaceholder.getChildren().add(uncompletedStudentListPanel.getRoot());
+
+        completedStudentListPanel = new CompletedStudentListPanel(logic.getCompletedStudentList());
+        completedStudentListPanelPlaceholder.getChildren().add(completedStudentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -127,6 +139,12 @@ public class MainWindow extends UiPart<Stage> {
 
         WelcomeBox welcomeBox = new WelcomeBox();
         welcomeBoxPlaceholder.getChildren().add(welcomeBox.getRoot());
+
+        UncompletedStudentListTitle uncompletedStudentListTitle = new UncompletedStudentListTitle();
+        uncompletedStudentListTitlePlaceholder.getChildren().add(uncompletedStudentListTitle.getRoot());
+
+        CompletedStudentListTitle completedStudentListTitle = new CompletedStudentListTitle();
+        completedStudentListTitlePlaceholder.getChildren().add(completedStudentListTitle.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -172,8 +190,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
+    public UncompletedStudentListPanel getUncompletedStudentListPanel() {
+        return uncompletedStudentListPanel;
+    }
+
+    public CompletedStudentListPanel getCompletedStudentListPanel() {
+        return completedStudentListPanel;
     }
 
     /**

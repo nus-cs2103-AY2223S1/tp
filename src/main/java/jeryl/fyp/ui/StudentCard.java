@@ -58,7 +58,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane deadlineList;
 
-    private Image emailThumbnail = new Image(this.getClass().getResourceAsStream("/images/address_book_32.png"));
+    private Image emailThumbnail = new Image(this.getClass().getResourceAsStream("/images/mail.png"));
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.

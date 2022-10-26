@@ -121,6 +121,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
+    /** Returns an unmodifiable view of the uncompleted list of students */
+    ObservableList<Student> getUncompletedStudentList();
+
+    /** Returns an unmodifiable view of the completed list of students */
+    ObservableList<Student> getCompletedStudentList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

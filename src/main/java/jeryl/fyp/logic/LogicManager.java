@@ -65,6 +65,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Student> getUncompletedStudentList() {
+        return model.getUncompletedStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getCompletedStudentList() {
+        return model.getCompletedStudentList();
+    }
+
+    @Override
     public Path getFypManagerFilePath() {
         return model.getFypManagerFilePath();
     }
