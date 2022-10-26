@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.position.Position;
+import seedu.address.model.person.position.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,7 +41,11 @@ public class Person {
         this.position = position;
         this.address = address;
         this.remark = remark;
-        this.tags.addAll(tags);
+        if (position instanceof Student) {
+            this.tags.add(tags.iterator().next());
+        } else {
+            this.tags.addAll(tags);
+        }
     }
 
     public Name getName() {
