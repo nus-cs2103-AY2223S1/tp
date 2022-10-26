@@ -29,8 +29,8 @@ title: User Guide
 | Command    | Format                                   |
 | ---------- | ---------------------------------------- |
 | `help`     | `help`                                   |
-| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]` |
-| `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER] [e/EMAIL][a/ADDRESS] [c/CLASS_NAME...]` |
+| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL][a/ADDRESS][c/CLASS_NAME...]` |
+| `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER][e/EMAIL][a/ADDRESS]` |
 | `delete`   | `delete INDEX`                           |
 | `find`     | `find KEYWORD [MORE_KEYWORDS...]`        |
 | `list`     | `list`                                   |
@@ -79,19 +79,17 @@ Edits an existing student in TA Assist.
 
 " %}
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`
 
 - Edits student data at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3,…
 - Only fields that are specified will be modified.
-- Multiple `c/CLASS_NAME` fields can be specified at once. `c/CLASS_NAME` is cumulative and **will not** replace classes currently taken by the student.
 
 Examples:
 
 - `edit 2 n/John Doe` will change the 2nd student’s name to **John Doe.**
-- `edit 4 e/john.doe@example.com a/38 College Avenue East, 138601 c/CS2103T c/CS2109S` will change the 4th student’s:
+- `edit 4 e/john.doe@example.com a/38 College Avenue East, 138601` will change the 4th student’s:
   - E-mail to **john.doe@example.com**
-  - Address to **38 College Avenue East**
-  - Add **CS2103T** and **CS2109S** to their list of participating classes.
+  - Address to **38 College Avenue East, 138601**
 
 ### Delete a student: `delete`
 
