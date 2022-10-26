@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_TUTORS_LISTED_OVERVIEW
 
 import java.util.HashMap;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.Model.ListType;

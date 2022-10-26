@@ -34,9 +34,9 @@ import seedu.address.model.Model;
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
-    private HashMap<Prefix, String> keywords = new HashMap<>();
+    private Model.ListType listType;
 
-    Model.ListType listType;
+    private HashMap<Prefix, String> keywords = new HashMap<>();
 
 
     public FindCommandParser(Model.ListType listType) {

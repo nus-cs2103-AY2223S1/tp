@@ -22,7 +22,8 @@ public class Messages {
 
 
     // Find command
-    public static final String MESSAGE_KEYWORDS_WITHOUT_PREFIX = "You have specified some keywords without any prefixes.\n%1$s";
+    public static final String MESSAGE_KEYWORDS_WITHOUT_PREFIX = "You have specified some"
+            + "keywords without any prefixes.\n%1$s";
 
     public static final String MESSAGE_INVALID_PREFIX = "You have specified an invalid prefix.\n%1$s";
 

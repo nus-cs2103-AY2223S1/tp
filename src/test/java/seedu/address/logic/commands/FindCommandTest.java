@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
@@ -23,7 +22,6 @@ import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBo
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
 
-import java.util.Collections;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
@@ -221,7 +219,8 @@ public class FindCommandTest {
         keywords.put(PREFIX_LEVEL, "");
         keywords.put(PREFIX_TIME, "");
         keywords.put(PREFIX_TAG, "");
-        TuitionClassContainsKeywordsPredicate<TuitionClass> predicate = new TuitionClassContainsKeywordsPredicate<>(keywords);
+        TuitionClassContainsKeywordsPredicate<TuitionClass> predicate =
+                new TuitionClassContainsKeywordsPredicate<>(keywords);
         FindCommand command = new FindCommand(keywords);
         expectedTuitionClassModel.updateFilteredTuitionClassList(predicate);
         tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
