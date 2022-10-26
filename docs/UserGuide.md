@@ -2,18 +2,31 @@
 layout: page
 title: User Guide
 ---
+{:toc}
 
 ## Introduction
+
+### About GREWZ
 Tired of opening multiple applications for your teaching needs? Look no further!
 
 GREWZ is your all-in-one **address book desktop application designed for university teaching assistants** to manage their personal homework and their students. It manages attendance of your students, organises your contacts and keeps track of your own homework! 
 
 GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while utilising a clean Command Line Interface(CLI) - this means that the faster you can type, the faster you can get your work done. 
 
-Hopefully our application has grown on you! Jump over to [Quick start](#quick-start) to continue.
+Hopefully our application has grown on you! 
 
-* Table of Contents
-{:toc}
+### Navigation
+The aim of this User Guide is to provide you with all the information needed to fully utilise GREWZ. We understand the steep difficulty curve when learning Command Line Interface (CLI) programs and have tried our best to ease you in. 
+
+If you need help setting up GREWZ, jump over to [Quick start](#quick-start) to continue.
+
+If you want to find out more about GREWZ features and commands, jump over to [Features](#features).
+
+If you want the quick overview of GREWZ commands, jump over to [Command Summary](command-summary)
+
+Take note of the following symbols and formatting used in this document:
+
+<Insert document>
 
 --------------------------------------------------------------------------------------------------------------------
 
