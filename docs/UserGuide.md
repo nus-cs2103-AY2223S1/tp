@@ -3,15 +3,29 @@ layout: page
 title: User Guide
 ---
 
+#User Guide
+
 EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**.
 As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and
 future tasks. With our app, teams management would be easier than ever.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Index
 
-Coming soon!
+- [Quick Start](#Quick Start)
+- [Features](#Features)
+- [Command Summary](#Command Summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick Start
+
+1. Ensure that you have Java `11` installed in your computer.
+2. Download the latest EZLead.jar from [here](https://github.com/AY2223S1-CS2103T-W09-3/tp/releases/download/v1.3.1/EzLead.jar).
+3. Double-click the file to start the app.
+4. Type the command in the command box and press Enter to execute it.
+5. Refer to the `Features` section in this user guide for more details on commands
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,7 +186,7 @@ Coming Soon!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Action              | Format, Examples                                                                                                                                               |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
