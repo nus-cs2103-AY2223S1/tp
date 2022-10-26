@@ -16,6 +16,9 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class EntryLineChart extends UiPart<Region> {
     private static final String FXML = "EntryLineChart.fxml";
+    private static final String X_AXIS = "Date";
+    private static final String Y_AXIS = "Amount";
+
     private final Logger logger = LogsCenter.getLogger(seedu.address.ui.EntryLineChart.class);
 
     @FXML
@@ -34,8 +37,8 @@ public class EntryLineChart extends UiPart<Region> {
     public EntryLineChart(XYChart.Series<String, Number> lineChartData) {
         super(FXML);
 
-        yAxis.setLabel("Amount");
-        xAxis.setLabel("Date");
+        yAxis.setLabel(X_AXIS);
+        xAxis.setLabel(Y_AXIS);
 
         lineChartData.getData().sort(Comparator.comparing(XYChart.Data::getXValue));
 

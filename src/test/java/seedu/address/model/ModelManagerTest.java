@@ -7,20 +7,24 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.ALLOWANCE;
 import static seedu.address.testutil.TypicalEntry.DINNER;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
+import static seedu.address.testutil.TypicalEntry.getExpenditureFilteredByMonthPennyWise;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.PennyWiseBuilder;
+import seedu.address.testutil.TypicalLineChartData;
 
 public class ModelManagerTest {
 
@@ -92,7 +96,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasExpenditure_expenditurenInPennyWise_returnsTrue() {
+    public void hasExpenditure_expenditureInPennyWise_returnsTrue() {
         modelManager.addExpenditure(LUNCH);
         assertTrue(modelManager.hasExpenditure(LUNCH));
     }
@@ -115,20 +119,9 @@ public class ModelManagerTest {
 
     @Test
     public void getExpensePieChart_emptyExpensesArray_success() {
-        ObservableList<PieChart.Data> expectedExpensePieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Food", 0.00), new PieChart.Data("Groceries", 0.00),
-                new PieChart.Data("Entertainment", 0.00), new PieChart.Data("Education", 0.00),
-                new PieChart.Data("Housing", 0.00), new PieChart.Data("Others", 0.00));
-
+        ObservableList<PieChart.Data> expectedExpensePieChartData = FXCollections.observableArrayList();
         ObservableList<PieChart.Data> actualExpensePieChartData = modelManager.getExpensePieChartData();
-
-        for (int i = 0; i < 6; i++) {
-            PieChart.Data expectedCategory = expectedExpensePieChartData.get(i);
-            PieChart.Data actualCategory = actualExpensePieChartData.get(i);
-
-            assertEquals(expectedCategory.getName(), actualCategory.getName());
-            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
-        }
+        assertEquals(expectedExpensePieChartData, actualExpensePieChartData);
     }
 
     @Test
@@ -154,20 +147,9 @@ public class ModelManagerTest {
 
     @Test
     public void getIncomePieChart_emptyIncomeArray_success() {
-        ObservableList<PieChart.Data> expectedIncomePieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Salary", 0.0), new PieChart.Data("Allowance", 0.0),
-                new PieChart.Data("Profit", 0.0), new PieChart.Data("Investment", 0.0),
-                new PieChart.Data("Gifts", 0.0), new PieChart.Data("Others", 0.0));
-
+        ObservableList<PieChart.Data> expectedIncomePieChartData = FXCollections.observableArrayList();
         ObservableList<PieChart.Data> actualIncomePieChartData = modelManager.getIncomePieChartData();
-
-        for (int i = 0; i < 6; i++) {
-            PieChart.Data expectedCategory = expectedIncomePieChartData.get(i);
-            PieChart.Data actualCategory = actualIncomePieChartData.get(i);
-
-            assertEquals(expectedCategory.getName(), actualCategory.getName());
-            assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
-        }
+        assertEquals(expectedIncomePieChartData, actualIncomePieChartData);
     }
 
     @Test
@@ -188,6 +170,40 @@ public class ModelManagerTest {
 
             assertEquals(expectedCategory.getName(), actualCategory.getName());
             assertEquals(expectedCategory.getPieValue(), actualCategory.getPieValue());
+        }
+    }
+
+    @Test
+    public void getExpenseLineChart_emptyExpensesArray_success() {
+        XYChart.Series<String, Number> expectedExpenseLineChartData = new XYChart.Series<>();
+        XYChart.Series<String, Number> actualExpenseLineChartData = modelManager.getExpenseLineChartData();
+        assertEquals(expectedExpenseLineChartData.getData(), actualExpenseLineChartData.getData());
+    }
+
+    @Test
+    public void getIncomeLineChart_emptyIncomeArray_success() {
+        XYChart.Series<String, Number> expectedIncomeLineChartData = new XYChart.Series<>();
+        XYChart.Series<String, Number> actualIncomeLineChartData = modelManager.getIncomeLineChartData();
+        assertEquals(expectedIncomeLineChartData.getData(), actualIncomeLineChartData.getData());
+    }
+
+    @Test
+    public void getExpenseLineChartData_validExpenseArray_success() {
+        PennyWise filteredPennyWise = getExpenditureFilteredByMonthPennyWise();
+        modelManager.setPennyWise(filteredPennyWise);
+        ObservableList<XYChart.Data<String, Number>> expectedExpenseLineChartData =
+                new TypicalLineChartData().getExpenditureLineChartData();
+
+        ObservableList<XYChart.Data<String, Number>> actualExpenseLineChartData =
+                modelManager.getExpenseLineChartData().getData();
+        actualExpenseLineChartData.sort(Comparator.comparing(XYChart.Data::getXValue));
+
+        modelManager.setPennyWise(new PennyWise());
+        for (int i = 0; i < 31; i++) {
+            assertEquals(expectedExpenseLineChartData.get(i).getXValue(),
+                    actualExpenseLineChartData.get(i).getXValue());
+            assertEquals(expectedExpenseLineChartData.get(i).getYValue(),
+                    actualExpenseLineChartData.get(i).getYValue());
         }
     }
 
