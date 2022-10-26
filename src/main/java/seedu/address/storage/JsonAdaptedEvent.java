@@ -10,10 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
+import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -67,7 +69,7 @@ class JsonAdaptedEvent {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
-    public Event toModelType() throws IllegalValueException {
+    public Event toModelType(AddressBook addressBook) throws IllegalValueException {
         final List<Tag> eventTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             eventTags.add(tag.toModelType());
@@ -102,7 +104,10 @@ class JsonAdaptedEvent {
 
         final Attendees modelAttendees = new Attendees();
         for (JsonAdaptedProfile attendee : attendees) {
-            modelAttendees.add(attendee.toModelType());
+            Profile p = attendee.toModelType();
+            if (addressBook.hasProfile(p)) {
+                modelAttendees.add(attendee.toModelType());
+            }
         }
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
