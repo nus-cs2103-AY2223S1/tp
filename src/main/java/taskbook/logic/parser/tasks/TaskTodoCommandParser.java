@@ -77,7 +77,8 @@ public class TaskTodoCommandParser implements Parser<TaskTodoCommand> {
     }
 
     private TaskTodoCommand parseWithoutPrefix(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESCRIPTION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESCRIPTION,
+                CliSyntax.PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -86,8 +87,9 @@ public class TaskTodoCommandParser implements Parser<TaskTodoCommand> {
         }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        return new TaskTodoCommand(Name.SELF, description, Assignment.TO);
+        return new TaskTodoCommand(Name.SELF, description, Assignment.TO, tagList);
     }
 
     /**
