@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 
 /**
  * Panel displaying the details of selected activity.
@@ -89,6 +88,5 @@ public class SelectedActivityPanel extends UiPart<Region> {
      */
     private static String intToHexColor(String tag) {
         return String.format("#%06X", (0xFFFFFF & tag.hashCode()));
-
     }
 }
