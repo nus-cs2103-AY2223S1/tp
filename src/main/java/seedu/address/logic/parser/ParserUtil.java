@@ -144,7 +144,7 @@ public class ParserUtil {
         if (module == null) {
             return new ModuleCode(null);
         }
-        String trimmedModule = module.trim();
+        String trimmedModule = module.trim().toUpperCase();
         if (!ModuleCode.isValidModuleCode(trimmedModule)) {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
