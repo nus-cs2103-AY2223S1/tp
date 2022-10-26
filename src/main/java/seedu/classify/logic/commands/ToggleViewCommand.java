@@ -22,21 +22,21 @@ public class ToggleViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-//        model.toggleStudentListInfoConcise();
-//        boolean isShowingParentDetails = !model.isStudentListInfoConcise();
-//
-//        if (isShowingParentDetails) {
-//            return new CommandResult(MESSAGE_SUCCESS_SHOW, false, true, false);
-//        }
-//        return new CommandResult(MESSAGE_SUCCESS_HIDE, false, true, false);
+        model.toggleStudentListInfoConcise();
+        boolean isShowingParentDetails = !model.isStudentListInfoConcise();
+
+        if (isShowingParentDetails) {
+            return new CommandResult(MESSAGE_SUCCESS_SHOW, false, true, false);
+        }
+        return new CommandResult(MESSAGE_SUCCESS_HIDE, false, true, false);
 
         // I try to add and delete dummy variable?
-        model.toggleStudentListInfoConcise();
-        Student tempStudent = Student.dummyStudent();
-        model.addStudent(tempStudent);
-        model.deleteStudent(tempStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(MESSAGE_TEMP);
+//        model.toggleStudentListInfoConcise();
+//        Student tempStudent = Student.dummyStudent();
+//        model.addStudent(tempStudent);
+//        model.deleteStudent(tempStudent);
+//        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+//        return new CommandResult(MESSAGE_TEMP);
     }
 
 }
