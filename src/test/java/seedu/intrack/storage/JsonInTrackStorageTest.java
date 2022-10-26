@@ -3,8 +3,8 @@ package seedu.intrack.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.GOOG;
 import static seedu.intrack.testutil.TypicalInternships.ADBE;
+import static seedu.intrack.testutil.TypicalInternships.GOOG;
 import static seedu.intrack.testutil.TypicalInternships.UBER;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
