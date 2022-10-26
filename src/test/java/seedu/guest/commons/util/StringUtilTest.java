@@ -191,6 +191,13 @@ public class StringUtilTest {
         // Query date bigger than sentence date
         assertFalse(StringUtil.containsDateIgnoreHyphenIgnoreSpace("13/03/22", "13/03/2022"));
 
+        // Sentence has extra spaces
+        assertTrue(StringUtil.containsIsRoomCleanIgnoreCase("  13/03/22  14/03/22  ", "13/03/22"));
+        // Only one isRoomClean in sentence
+        assertTrue(StringUtil.containsIsRoomCleanIgnoreCase("13/03/22", "13/03/22"));
+        // Leading/trailing spaces
+        assertTrue(StringUtil.containsDateIgnoreHyphenIgnoreSpace("13/03/22", "  13/03/22  "));
+
         // Matches dates in sentence with multiple dates
         assertTrue(StringUtil.containsDateIgnoreHyphenIgnoreSpace("13/03/22 14/03/22 15/03/22", "13/03/22"));
         assertTrue(StringUtil.containsDateIgnoreHyphenIgnoreSpace("13/03/22 14/03/22 15/03/22", "14/03/22"));
