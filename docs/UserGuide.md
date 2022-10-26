@@ -6,6 +6,8 @@ title: User Guide
 * Table of Contents:
 {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
+
 # 1. Introduction
 
 *MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further. *MyInsuRec* can also boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your customer relations.
@@ -13,7 +15,6 @@ title: User Guide
 *MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client, meeting and product management tasks done faster than traditional GUI apps.
 
 *MyInsuRec* is available for the Windows, macOS and Linux operating systems.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,11 +24,12 @@ title: User Guide
 
 Welcome to *MyInsuRec User Guide*!
 
-This guide explains how you can use *MyInsuRec* to organize and manage your clients, meetings and products. This guide has been structured for users to quickly find and understand what they need. 
+This guide explains how you can use *MyInsuRec* to organize and manage your clients, meetings and products. This guide has been structured for users to quickly find and understand what they need.
 
 Click on the links below to quickly get to what you need.
 
-{ fill with instructions linking to different sections of the user guide }  
+{ fill with instructions linking to different sections of the user guide }
+
 e.g.
 1. xyz (link)
 2. 
@@ -86,11 +88,11 @@ Beyond individual products, you can also:
 
 * show a summarized list of all products.
 
-## 2.4 User Interface (UI) of MyInsuRec
+## 2.4 User Interface
 
 { replace with a diagram of MyInsuRec and arrows and notes describing the different components of MyInsuRec }
 
-## 2.5 Quick start
+## 2.5 Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -108,7 +110,7 @@ Beyond individual products, you can also:
     2. `addClient`: Add a client
     3. `delClient`: Delete client
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -148,7 +150,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 * EMAIL and BIRTHDAY is optional.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
-In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#adding-a-product-addproduct).
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#331-adding-a-product-addproduct).
 </div>
 
 Examples:
@@ -208,7 +210,7 @@ Shows a list of all meetings in MyInsuRec.
 
 Format: `listMeeting`
 
-#### 3.2.2.1 List meetings by time period
+#### List meetings by time period
 
 Shows a list of meetings in MyInsuRec during a specified time period.
 
@@ -252,7 +254,7 @@ Examples:
 
 ## 3.3 Product commands
 
-### 3.3.1 Adding a product: `addProduct` 
+### 3.3.1 Adding a product: `addProduct`
 
 {addProduct PLACEHOLDER}
 
@@ -345,6 +347,6 @@ If your changes to the data file makes its format invalid, MyInsuRec will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 6. Glosssary
+# 6. Glossary
 
 { glossary placeholder }
