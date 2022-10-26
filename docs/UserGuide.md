@@ -83,19 +83,20 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a contact: `add`
+### Adding a contact: `addPerson`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB [t/TAG]`
+Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
 - The parameters in [ ] are optional parameters, including tag (`t`).
 - A person in the contact list can have more than 1 tag.
+- Date format accepted is: dd/mm/yyyy.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
-* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend t/criminal g/f d/14/12/1998`
+* `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
+* `addPerson n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend t/criminal g/f d/14/12/1998`
 
 __Additional Parameter 1: Gender__
 
@@ -103,11 +104,6 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 
 - Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
 for male, `F`/`f`/`Female`/`female` for female.
-
-__Additional Parameter 2: Date of Birth__
-
-- Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
-
 
 ### Listing all persons : `listPersons`
 
@@ -145,6 +141,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] 
   The index must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index.
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
+- Date format accepted is: dd/mm/yyyy.
 - When editing tags, the existing tags of the person will be removed (i.e. adding of tags is not cumulative).
 - You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
@@ -168,20 +165,6 @@ Examples:
 * `edit 1 g/M`
 * `edit 2 g/f`
 * `edit 3 g/F`
-
-__Optional Parameter 2: Date of Birth__
-
-Format: `edit INDEX [d/DOB]`
-
-- Edits the date of birth of a person in the contact list. Date format accepted is: dd/mm/yyyy.
-- `INDEX` must be **a positive integer** (i.e 1,2,3…)
-- `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
-
-
-Examples:
-* `edit 1 d/20/03/2000`
-* `edit 2 d/5/4/2000`
-* `edit 3 d/23/09/2000`
 
 ### Locating persons by name: `find`
 
