@@ -122,7 +122,7 @@ Examples:
 * `edit index/2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 * `edit id/1234 n/Charlie Crackshot` Edits the name of the person with ID 1234 to be `Charlie Crackshot`.
 
-### Locating persons by name: `find`
+### Searching students by specified criteria: `find`
 
 Finds all persons matching the specified criteria and the specified keywords.
 
