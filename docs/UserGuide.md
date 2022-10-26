@@ -39,8 +39,8 @@ contains some sample data.<br>
 | [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
 | [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
 | [`edit-module`](#213-edit-module)       | `edit-module     INDEX ([m/MODULE_CODE] <br/><br/><br/>[t/MODULE_TITLE])` | Edit module belonging to the specified index currently displayed on the screen  |
-| [`find-module`](#214-find-module)       | `find-module     KEYWORD`                            <br/>                   | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#215-list-module)       | `list-module`                                        <br/>                   | List all modules in home page after finding                                     |
+| *[`find-module`](#214-find-module)      | `find-module     KEYWORD`                            <br/>                   | Find module that starts with specified keyword in home page                     |
+| *[`list-module`](#215-list-module)      | `list-module`                                        <br/>                   | List all modules in home page after finding                                     |
 | [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
 | [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
 | [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
@@ -49,8 +49,8 @@ contains some sample data.<br>
 | [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
 | [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
 | [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
-| [`list-person`](#245-list-person)       | `list-person`                                                           | List all contacts                                                               |
+| *[`find-person`](#244-find-person)      | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword in home page                   |
+| *[`list-person`](#245-list-person)      | `list-person`                                                           | List all contacts in home page after finding                                    |
 | [`home`](#251-navigate-to-home)         | `home`                                                                  | Navigate to the home page                                                       |
 | [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
 | [`exit`](#26-exiting-the-program)       | `exit`                                                                  | Exit the program                                                                |
@@ -83,6 +83,8 @@ the parameter will be taken.<br>
 * Extraneous parameters for commands that do not take in parameters (such as
   `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
+
+* Features marked with * can only be utilised when user is currently at the home page.
 
 </div>
 
@@ -171,7 +173,7 @@ In the above example, we are changing the module title of the third module on Pl
 `Software Engineering`.
 
 #### 2.1.4. Find module
-You can find all modules in Plannit whose module code starts with a specific keyword.
+You may find modules whose module code starts with a specific keyword while in Plannit's home page.
 
 Format: `find-module KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -184,7 +186,7 @@ OR
 ```
 find-module CS
 ```
-In either of the above examples, we find every module that starts with CS from Plannit.
+In either of the above examples, we find every module whose module code starts with CS in Plannit.
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:** You will
 remain on the home page after executing the `find-module` command. This is different
@@ -192,7 +194,7 @@ from the behavior of [`goto`](#252-navigate-between-modules)
 </div>
 
 #### 2.1.5. List module
-Show a list of all modules in Plannit after finding module.
+You may obtain the lsit of every module in Plannit while in the home page.
 
 Format: `list-module`
 
@@ -201,7 +203,7 @@ Example:
 ```
 list-module
 ```
-In the above example, we list every module in Plannit while in home page.
+In the above example, we list every module that exist in Plannit.
 
 <br>
 
@@ -390,7 +392,7 @@ In the above example, we are editing the contact with a displayed-index number o
 
 
 #### 2.4.4. Find person
-You can find all contacts in Plannit whose name starts with a specific keyword.
+You may find person whose name starts with a specific keyword while in Plannit's home page.
 
 Format: `find-person KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -403,10 +405,10 @@ OR
 ```
 find-person Alex
 ```
-In either of the above examples, we find every contact with names starting with Alex from Plannit.
+In either of the above examples, we find every person whose names starts with Alex in Plannit.
 
 #### 2.4.5. List person
-Show a list of all contacts in Plannit after finding contacts.
+You may obtain the list of every person in Plannit while in the home page.
 
 Format: `list-person`
 
@@ -415,10 +417,10 @@ Example:
 ```
 list-person
 ```
-In the above example, we list every contact in Plannit.
+In the above example, we list every person that exist in Plannit.
 
 ### 2.5. Navigation
-With navigation functionalities, you now have the ability to navigate between different tabs in Plannit!
+With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
 
 #### 2.5.1. Navigate to home
 You may navigate back to the home page using the `home` command.
