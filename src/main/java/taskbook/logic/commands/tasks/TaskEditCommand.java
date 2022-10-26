@@ -78,9 +78,11 @@ public class TaskEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        Person personToFind = model.findPerson(editedTask.getName());
-        if (personToFind == null) {
-            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+        if (!editedTask.isSelfAssigned()) {
+            Person personToFind = model.findPerson(editedTask.getName());
+            if (personToFind == null) {
+                throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+            }
         }
 
         model.setTask(taskToEdit, editedTask);

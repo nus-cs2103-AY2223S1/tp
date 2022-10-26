@@ -89,6 +89,9 @@ public abstract class TaskAddCommand extends Command {
      * @throws CommandException Person not found exception thrown if no such person exist.
      */
     public void checkPersonNameExist(Model model) throws CommandException {
+        if (name.fullName.equalsIgnoreCase(Name.SELF.fullName)) {
+            return;
+        }
         Person personToAddTask = model.findPerson(name);
         if (personToAddTask == null) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);

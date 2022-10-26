@@ -54,8 +54,7 @@ public class TaskEventCommandParser implements Parser<TaskEventCommand> {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_FROM);
         }
 
-        throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskEventCommand.MESSAGE_USAGE));
+        return parseWithoutPrefix(args);
     }
 
     private TaskEventCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
@@ -79,6 +78,22 @@ public class TaskEventCommandParser implements Parser<TaskEventCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
         return new TaskEventCommand(name, description, assignment, date, tagList);
+    }
+
+    private TaskEventCommand parseWithoutPrefix(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE);
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskEventCommand.MESSAGE_USAGE));
+        }
+
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
+
+        return new TaskEventCommand(Name.SELF, description, Assignment.TO, date);
     }
 
     /**

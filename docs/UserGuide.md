@@ -48,8 +48,11 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 
 **:information_source: Notes about the command format:**<br>
 
+* Flags consisting of an alphabet and `/` specify the type of parameter to be supplied.
+  e.g. in `n/NAME`, `n/` is the flag for the `NAME` parameter.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `n/NAME`, `NAME` is a parameter which can be used as `n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [#/TAG]` can be used as `n/John Doe #/friend` or as `n/John Doe`.
@@ -106,43 +109,60 @@ Examples:
 
 Adds a task of type todo into the task list.
 
-Format:  `task todo m/ASSIGNOR d/DESCRIPTION [#/TAG]…`
+**Assigned by** Format:  `task todo m/NAME d/DESCRIPTION [#/TAG]…`
 
-Format:  `task todo o/ASSIGNEE d/DESCRIPTION [#/TAG]…`
+**Assigned to** Format:  `task todo o/NAME d/DESCRIPTION [#/TAG]…`
 
-* Adds a todo with an assignor (m) or assignee (o) and a description. Optional to include tags.
+**Self-assigned** Format:  `task todo d/DESCRIPTION`
+
+* Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact with a description. Optional to include tags.
+* Input "Myself" or omit the `m/` and `o/` flags to self-assign a todo.
+  * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 
 Examples:
 * `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to the user.
 * `task todo o/Sam d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Sam.
+* `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by the user.
+* `task todo d/Finish essay` adds a todo called "Finish essay" which is self-assigned to the user.
 
 ### Adding a deadline : `task deadline`
 
 Adds a task of type deadline into the task list.
 
-Format: `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE [#/TAG]…`
+**Assigned by** Format: `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-Format: `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE [#/TAG]…`
+**Assigned to** Format: `task deadline o/Name d/DESCRIPTION t/DATE [#/TAG]…`
 
-* Adds a deadline with an assignor (m) or assignee (o), a description and a date. Optional to include tags.
+**Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE`
+
+* Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact with a description and a deadline date. Optional to include tags.
+* Input "Myself" or omit the `m/` and `o/` flags to self-assign.
+  * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
+* For more information on `DATE` formats, scroll down to "Accepted Date Formats"
 
 Examples:
 * `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to the user.
 * `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Sam.
+* `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by the user.
+* `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which is self-assigned to the user.
 
 ### Adding an event : `task event`
 
 Adds a task of type event into the task list.
 
-Format: `task event m/ASSIGNOR d/DESCRIPTION t/DATE [#/TAG]…`
+**Assigned by** Format: `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-Format: `task event o/ASSIGNEE d/DESCRIPTION t/DATE [#/TAG]…`
+**Assigned to** Format: `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-* Adds an event with an assignor (m) or assignee (o), a description and a date. Optional to include tags.
+**Self-assigned** Format: `task event d/DESCRIPTION t/DATE`
+
+* Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date. Optional to include tags.
 
 Examples:
 * `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to the user.
 * `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Sam.
+* `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by the user.
+* `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which is assigned to the user.
 
 ### Editing a contact : `contact edit`
 
@@ -170,8 +190,8 @@ Format: `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…
 * The index **must be a positive integer** 1, 2, 3, …​
 * **At least 1 field** must be edited.
 * Only one of assignor `m/` or assignee `o/` can be specified.
-    * If the task currently has an **assignor** of "Person X", it can be changed to have an **assignee** of "Person Y" by providing parameter `o/Person Y`.
-    * If the task currently has an **assignee** of "Person Y", it can be changed to have an **assignor** of "Person X" by providing parameter `m/Person X`.
+    * A task can be **re-assigned to** "Person Y" by providing parameter `o/Person Y`.
+    * A task can be **re-assigned by** "Person X" by providing parameter `m/Person X`.
     * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
 
 Examples:
@@ -390,12 +410,12 @@ The following date formats are accepted:
 | **View All Tasks**            | `task list`                                                                                                                                                |
 | **View Contacts**             | `contact list`                                                                                                                                             |
 | **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123` |
-| **Add Todo: Assignor**        | `task todo m/ASSIGNOR d/DESCRIPTION [#/TAG]…` <br> e.g., `task todo m/John d/Finish user guide #/cs2103 #/homework`                                        |
-| **Add Todo: Assignee**        | `task todo o/ASSIGNEE d/DESCRIPTION [#/TAG]…` <br> e.g., `task todo o/Sam d/Finish the assignment #/compulsory`                                            |
-| **Add Deadline: Assignor**    | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`            |
-| **Add Deadline: Assignee**    | `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`               |
-| **Add Event: Assignor**       | `task event m/ASSIGNOR d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`                  |
-| **Add Event: Assignee**       | `task event o/ASSIGNEE d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`                     |
+| **Add Todo: Assigned by**     | `task todo m/NAME d/DESCRIPTION [#/TAG]…` <br> e.g., `task todo m/John d/Finish user guide #/cs2103 #/homework`                                        |
+| **Add Todo: Assigned to**     | `task todo o/NAME d/DESCRIPTION [#/TAG]…` <br> e.g., `task todo o/Sam d/Finish the assignment #/compulsory`                                            |
+| **Add Deadline: Assigned by** | `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`            |
+| **Add Deadline: Assigned to** | `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`               |
+| **Add Event: Assigned by**    | `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`                  |
+| **Add Event: Assigned to**    | `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`                     |
 | **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com #/friend`    |
 | **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…`<br> e.g.,`task edit i/2 o/James Lee #/classmate`                                   |
 | **Delete Contact**            | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                    |
@@ -411,3 +431,4 @@ The following date formats are accepted:
 | **Exiting the program**       | `bye`                                                                                                                                                      |
 | **History: Previous Command** | `UP` arrow key                                                                                                                                             |
 | **History: Next Command**     | `DOWN` arrow key                                                                                                                                           |
+

@@ -24,19 +24,13 @@ public class TaskBook implements ReadOnlyTaskBook {
     private final UniquePersonList persons;
     private final TaskList tasks;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+    /**
+     * Creates a new TaskBook
      */
-    {
-        persons = new UniquePersonList();
-        tasks = new TaskList();
+    public TaskBook() {
+        this.persons = new UniquePersonList();
+        this.tasks = new TaskList();
     }
-
-    public TaskBook() {}
 
     /**
      * Creates a TaskBook using the Persons in the {@code toBeCopied}

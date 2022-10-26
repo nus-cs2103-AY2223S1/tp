@@ -54,8 +54,7 @@ public class TaskDeadlineCommandParser implements Parser<TaskDeadlineCommand> {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_FROM);
         }
 
-        throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskDeadlineCommand.MESSAGE_USAGE));
+        return parseWithoutPrefix(args);
     }
 
     private TaskDeadlineCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
@@ -79,6 +78,22 @@ public class TaskDeadlineCommandParser implements Parser<TaskDeadlineCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
         return new TaskDeadlineCommand(name, description, assignment, date, tagList);
+    }
+
+    private TaskDeadlineCommand parseWithoutPrefix(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE);
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskDeadlineCommand.MESSAGE_USAGE));
+        }
+
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
+
+        return new TaskDeadlineCommand(Name.SELF, description, Assignment.TO, date);
     }
 
     /**

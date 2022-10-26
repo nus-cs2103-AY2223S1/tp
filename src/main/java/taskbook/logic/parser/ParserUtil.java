@@ -46,9 +46,13 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (trimmedName.equalsIgnoreCase(Name.SELF.fullName)) {
+            return Name.SELF;
+        }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+        assert trimmedName.length() > 0;
         return new Name(trimmedName);
     }
 
