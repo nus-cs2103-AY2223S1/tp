@@ -3,13 +3,11 @@
 ##### Overview
 
 <!-- TODO: ACTIVITY DIAGRAM -->
-
 <!-- TODO: Short Description of Command -->
 
 ##### `tag item` Feature Details
 
 <!-- TODO: SEQUENCE DIAGRAM -->
-
 <!-- TODO: Description of how Command works -->
 
 ##### Feature Considerations
@@ -44,13 +42,11 @@ The `tag item` command tags an item with the provided tag name in FoodRem. If bo
 ##### Overview
 
 <!-- TODO: ACTIVITY DIAGRAM -->
-
 <!-- TODO: Short Description of Command -->
 
 ##### `filtertag` Feature Details
 
 <!-- TODO: SEQUENCE DIAGRAM -->
-
 <!-- TODO: Description of how Command works -->
 
 ##### Feature Considerations
