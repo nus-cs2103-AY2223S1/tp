@@ -38,6 +38,13 @@ public class Name implements Comparable<Name> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if the given name is equal to this name, ignoring case considerations.
+     */
+
+    public boolean equalsIgnoreCase(Name other) {
+        return fullName.equalsIgnoreCase(other.fullName);
+    }
 
     @Override
     public String toString() {

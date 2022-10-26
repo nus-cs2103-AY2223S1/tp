@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Set;
 
-import seedu.trackascholar.commons.core.Messages;
-import seedu.trackascholar.commons.core.index.Index;
 import seedu.trackascholar.logic.commands.exceptions.CommandException;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.applicant.Applicant;
@@ -24,15 +22,16 @@ import seedu.trackascholar.model.major.Major;
 public class UnPinCommand extends Command {
     public static final String COMMAND_WORD = "unpin";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unpins the applicant identified by the index number used in the displayed applicant list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Unpins the applicant identified by the applicant's full name in the displayed pinned applicant list.\n"
+            + "Parameters: FULL_NAME\n"
+            + "Example: " + COMMAND_WORD + " John Doe";
     public static final String MESSAGE_UNPIN_APPLICANT_SUCCESS = "Unpinned Applicant: %1$s";
+    public static final String MESSAGE_NO_SUCH_APPLICANT_FOUND = "Given applicant does not exist.";
 
-    private final Index index;
+    private final Name name;
 
-    public UnPinCommand(Index targetIndex) {
-        this.index = targetIndex;
+    public UnPinCommand(Name targetName) {
+        this.name = targetName;
     }
 
     @Override
@@ -40,15 +39,27 @@ public class UnPinCommand extends Command {
         requireNonNull(model);
         List<Applicant> lastShownList = model.getFilteredApplicantList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
+        int indexOfApplicant = getApplicantIndex(lastShownList, name);
+        if (indexOfApplicant == -1) {
+            throw new CommandException(MESSAGE_NO_SUCH_APPLICANT_FOUND);
         }
 
-        Applicant applicantToPin = lastShownList.get(index.getZeroBased());
-        Applicant pinnedApplicant = createUnPinnedApplicant(applicantToPin);
+        Applicant applicantToUnpin = lastShownList.get(indexOfApplicant);
+        Applicant unPinnedApplicant = createUnPinnedApplicant(applicantToUnpin);
 
-        model.setApplicant(applicantToPin, pinnedApplicant);
-        return new CommandResult(String.format(MESSAGE_UNPIN_APPLICANT_SUCCESS, pinnedApplicant));
+        model.setApplicant(applicantToUnpin, unPinnedApplicant);
+        return new CommandResult(String.format(MESSAGE_UNPIN_APPLICANT_SUCCESS, unPinnedApplicant));
+    }
+
+    private static int getApplicantIndex(List<Applicant> list, Name nameToBeSearched) {
+        for (int i = 0; i < list.size(); i++) {
+            Applicant currApplicant = list.get(i);
+            Name currApplicantName = currApplicant.getName();
+            if (currApplicantName.equalsIgnoreCase(nameToBeSearched)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private static Applicant createUnPinnedApplicant(Applicant applicantToPin) {
@@ -68,6 +79,6 @@ public class UnPinCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UnPinCommand // instanceof handles nulls
-                && index.equals(((UnPinCommand) other).index)); // state check
+                && name.equals(((UnPinCommand) other).name)); // state check
     }
 }
