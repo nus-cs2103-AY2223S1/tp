@@ -14,7 +14,7 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path residentBookFilePath = Paths.get("data" , "rc4hdb.json");
+    private Path dataStorageFilePath = Paths.get("data" , "rc4hdb");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +35,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setResidentBookFilePath(newUserPrefs.getResidentBookFilePath());
+        setDataStorageFilePath(newUserPrefs.getDataStorageFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -47,13 +47,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getResidentBookFilePath() {
-        return residentBookFilePath;
+    public Path getDataStorageFilePath() {
+        return dataStorageFilePath;
     }
 
-    public void setResidentBookFilePath(Path residentBookFilePath) {
-        requireNonNull(residentBookFilePath);
-        this.residentBookFilePath = residentBookFilePath;
+    public void setDataStorageFilePath(Path dataStorageFilePath) {
+        requireNonNull(dataStorageFilePath);
+        this.dataStorageFilePath = dataStorageFilePath;
     }
 
     @Override
@@ -68,19 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && residentBookFilePath.equals(o.residentBookFilePath);
+                && dataStorageFilePath.equals(o.dataStorageFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, residentBookFilePath);
+        return Objects.hash(guiSettings, dataStorageFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + residentBookFilePath);
+        sb.append("\nLocal data file location : " + dataStorageFilePath);
         return sb.toString();
     }
 

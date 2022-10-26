@@ -21,6 +21,8 @@ import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 
 /**
  * Unit test for {@link StorageManager}.
@@ -34,9 +36,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonResidentBookStorage residentBookStorage = new JsonResidentBookStorage(getTempFilePath("ab"));
+        DataStorageManager dataStorageManager = new DataStorageManager(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(residentBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(dataStorageManager, userPrefsStorage);
     }
 
     //=================== User Prefs Storage Tests ==================================
@@ -80,20 +82,15 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getResidentBookFilePath() {
-        assertNotNull(storageManager.getResidentBookFilePath());
-    }
-
-    @Test
     public void setResidentBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> storageManager.setResidentBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> storageManager.setDataStorageFolderPath(null));
     }
 
     @Test
-    public void setResidentBookFilePath_validFilePath_filePathSet() {
-        Path expectedPath = Path.of("SomeFile.json");
-        storageManager.setResidentBookFilePath(expectedPath);
-        assertEquals(expectedPath, storageManager.getResidentBookFilePath());
+    public void setDataStoragePath_validFilePath_filePathSet() {
+        Path expectedPath = Path.of("SomeFile");
+        storageManager.setDataStorageFolderPath(expectedPath);
+        assertEquals(expectedPath, storageManager.getDataStorageFolderPath());
     }
 
     @Test
@@ -103,15 +100,16 @@ public class StorageManagerTest {
 
     @Test
     public void deleteResidentBook_existingFile_fileDeleted() throws Exception {
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted.json");
+        Path folderPath = testFolder.resolve("ToBeDeleted");
+        Path toBeDeleted = folderPath.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
         FileUtil.createIfMissing(toBeDeleted);
-        storageManager.deleteResidentBookFile(toBeDeleted);
+        storageManager.deleteResidentBookFile(folderPath);
         assertFalse(FileUtil.isFileExists(toBeDeleted));
     }
 
     @Test
     public void deleteResidentBook_fileDoesNotExist_throwsNoSuchFileException() {
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted.json");
+        Path toBeDeleted = testFolder.resolve("ToBeDeleted");
         assertThrows(NoSuchFileException.class, () -> storageManager.deleteResidentBookFile(toBeDeleted));
     }
 
@@ -122,30 +120,38 @@ public class StorageManagerTest {
 
     @Test
     public void createResidentBookFile_fileDoesNotExist_fileCreated() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated.json");
+        Path toBeCreated = testFolder.resolve("ToBeCreated");
         storageManager.createResidentBookFile(toBeCreated);
-        assertTrue(FileUtil.isFileExists(toBeCreated));
+        assertTrue(FileUtil.isFolderExists(toBeCreated));
+        assertTrue(FileUtil.isFileExists(toBeCreated.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH)));
     }
 
     @Test
     public void createResidentBookFile_fileAlreadyExist_throwsFileAlreadyExistException() throws Exception {
-        Path toBeCreated = testFolder.resolve("ToBeCreated.json");
-        storageManager.createResidentBookFile(toBeCreated);
+        Path toBeCreated = testFolder.resolve("ToBeCreated").resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
+        FileUtil.createIfMissing(toBeCreated);
         assertThrows(FileAlreadyExistsException.class, () -> storageManager.createResidentBookFile(toBeCreated));
+    }
+
+    //====================== CsvFileManagerTests =================================
+
+    @Test
+    public void readCsvFile_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> storageManager.readCsvFile(null));
     }
 
     @Test
     public void equals() {
-        JsonResidentBookStorage residentBookStorage = new JsonResidentBookStorage(getTempFilePath("ab"));
-        JsonResidentBookStorage otherResidentBookStorage = new JsonResidentBookStorage(getTempFilePath("bc"));
+        DataStorageManager dataStorage = new DataStorageManager(getTempFilePath("ab"));
+        DataStorageManager otherDataStorage = new DataStorageManager(getTempFilePath("bc"));
 
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonUserPrefsStorage otherUserPrefStorage = new JsonUserPrefsStorage(getTempFilePath("otherPrefs"));
 
-        StorageManager original = new StorageManager(residentBookStorage, userPrefsStorage);
-        StorageManager bothSame = new StorageManager(residentBookStorage, userPrefsStorage);
-        StorageManager diffResidentBookStorage = new StorageManager(otherResidentBookStorage, userPrefsStorage);
-        StorageManager diffUserPrefsStorage = new StorageManager(residentBookStorage, otherUserPrefStorage);
+        StorageManager original = new StorageManager(dataStorage, userPrefsStorage);
+        StorageManager bothSame = new StorageManager(dataStorage, userPrefsStorage);
+        StorageManager diffResidentBookStorage = new StorageManager(otherDataStorage, userPrefsStorage);
+        StorageManager diffUserPrefsStorage = new StorageManager(dataStorage, otherUserPrefStorage);
 
         // Same object
         assertEquals(original, original);

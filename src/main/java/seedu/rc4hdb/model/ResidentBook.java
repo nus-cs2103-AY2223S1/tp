@@ -7,9 +7,10 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.UniqueResidentList;
+import seedu.rc4hdb.model.resident.exceptions.DuplicateResidentException;
 
 /**
- * Wraps all data at the RC4HDB level
+ * Wraps all resident data at the RC4HDB level
  * Duplicates are not allowed (by .isSameResident comparison)
  */
 public class ResidentBook implements ReadOnlyResidentBook {
@@ -30,7 +31,7 @@ public class ResidentBook implements ReadOnlyResidentBook {
     public ResidentBook() {}
 
     /**
-     * Creates an ResidentBook using the Residents in the {@code toBeCopied}
+     * Creates a ResidentBook using the Residents in the {@code toBeCopied}
      */
     public ResidentBook(ReadOnlyResidentBook toBeCopied) {
         this();
@@ -70,7 +71,7 @@ public class ResidentBook implements ReadOnlyResidentBook {
      * Adds a resident to the resident book.
      * The resident must not already exist in the resident book.
      */
-    public void addResident(Resident p) {
+    public void addResident(Resident p) throws DuplicateResidentException {
         residents.add(p);
     }
 
