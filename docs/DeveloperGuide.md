@@ -600,7 +600,7 @@ otherwise)
 
 **MSS**
 
-1. User requests to find a student or student(s) with the specific keyword.
+1. User requests to find a student or student(s) with the specific keyword(s).
 2. SETA shows a list of students that contains the keyword(s).
 
 **Extensions**
@@ -651,9 +651,9 @@ otherwise)
 
   Use case ends.
 
-* 2a. The given index is invalid.
+* 1b. The given index is invalid.
 
-    * 2a1. SETA shows an error message.
+    * 1b1. SETA shows an error message.
 
       Use case resumes at step 1.
 
