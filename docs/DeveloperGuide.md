@@ -285,27 +285,46 @@ Activity: Determines and returns a category
 * **Alternative 2:** Categories of mods are saved into Storage.
     * Pros: Users can edit mod categories with less changes to the code base. Increased performance.
     * Cons: Increased complexity.
+    
+### Add Interest Feature
+The ```addInt``` command allows users to add one or more interests to a student by indicating the index of the student and the list of interests to be added.
 
-#### Design considerations:
+The command takes in:
+- ```Index```
+- ```Set<Interest>```
 
-**Aspect: How undo & redo executes:**
+#### Implementation
+Each ```Person``` has a ```Set``` of ```Interest``` and adding an ```Interest``` would add the specified ```Interest``` into this set.
 
-* **Alternative 1 (current choice):** Saves the entire mass linkers.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The Add Interest mechanism is facilitated by ```AddInterestCommand```, which extends from ```Command``` and ```AddInterestCommandParser```, which extends from
+```Parser```. ```AddInterestCommandParser``` serves to parse the command arguments and create a new ```AddInterestCommand``` object. ```AddInterestCommand```handles adding the ```Interest``` to the set of ```Interest``` of the ```Person```.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+####Steps:
+1. When the user enters the ```addInt``` command, the ```LogicManager``` is executed and it calls the ```AddressBookParser``` to parse the command.
+2. A new ```AddInterestCommandParser``` object is constructed.
+3. ```AddInterestCommandParser#parse``` parses the command arguments and returns a set of Interests. A new ```AddInterestCommand``` is constructed.
+4. ```AddInterestCommand``` is returned to the ```LogicManager```, which invokes ```AddInterestCommand#execute```.
+5. The ```Index``` is verified to be valid and if so, the list of interests is added to the ```Person``` marked by ```Index```.
+6. ```Person``` is updated with the added interests. ```ModelManager``` will also be updated with the changes.
 
-_{more aspects and alternatives to be added}_
+The sequence diagram for the command ```addInt 1 anime``` is as follows.
 
-### \[Proposed\] Data archiving
+![AddInterestSequenceDiagram](images/AddInterestSequenceDiagram.png)
 
-_{Explain here how the data archiving feature will be implemented}_
+In addition, the below sequence diagram illustrates how the ```AddInterestCommand``` interacts with ```Model``` to update the added interests in Mass Linkers. 
 
+![AddInterestRefSequenceDiagram](images/AddInterestRefSequenceDiagram.png)
 
+####Design considerations:
+1. Usefulness of ```AddInterestCommand```
+- The current ```EditCommand``` allows users to update interests. However, this involves overwriting all the current interests. Hence, ```addInt``` is useful to provide a quick way to add new interests to a ```Person```.
+2. Managing the List of Interests
+- **Alternative 1 (current choice)**: Store the set of```Interest``` as a field in the ```Person``` class.
+    * Pros: It is easier to implement. The use of a ```HashSet``` can handle duplicates.
+    * Cons: There is less abstraction as the logic of getting the list and adding to the list is handled by ```Person```.
+- **Alternative 2**: Have a ```UniqueInterestList``` to handle the list of Interests (similar to that of ```UniquePersonList```)
+  * Pros: The low-level details of adding, removing and checking the interests are abstracted. There is greater adherence to the Single Responsibility Principle as the list of interests are handled by the ```UniqueInterestList``` class.
+  * Cons: The number of ```Interest``` is usually not that large so Alternative 2 could result in unnecessary implementation overhead complexity.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -354,8 +373,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | student           | save my data to a file                    | access the data on different devices                                       |
 | `* *`    | technical student | close the App using a command             | close the App easily                                                       |
 
-*{More to be added}*
-
 ### Use cases
 (For all use cases below, the **System** is Mass Linkers and the **Actor** is the student, unless specified otherwise)
 
@@ -388,9 +405,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 4a. The specified batchmate is not found.
-    * a1. Mass Linkers detects an error in specified batchmate (non valid index).
-    * a2. Mass Linkers requests for a valid batchmate.
-    * Step a1 is repeated until a valid index is given. \
+    * 4a1. Mass Linkers detects an error in specified batchmate (non valid index).
+    * 4a2. Mass Linkers requests for a valid batchmate.
+    * Step 4a1 is repeated until a valid index is given. \
       Use case resumes from step 3.
 
 * *a. At any time, Student chooses to close Mass Linkers.
@@ -409,13 +426,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. Mass Linkers detects an invalid input. (No interests specified by the student)
-* 1a1. Mass Linkers requests for at least one interest to be specified.
-* 1a2. Student inputs new interests.
-* Steps 1a1-1a2 are repeated until input is valid.
-  \
-  Use case resumes from step 2.
+    * 1a1. Mass Linkers requests for at least one interest to be specified.
+    * 1a2. Student inputs new interests.
+    * Steps 1a1-1a2 are repeated until input is valid.
+    \
+    Use case resumes from step 1.
 * *a. At any time, Student chooses to close Mass Linkers.
-    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
@@ -431,14 +447,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list of batchmates is empty.
-* a1. Mass Linkers warns adding an interest is invalid.
-  \
-  Use case ends.
+  * 2a1. Mass Linkers warns adding an interest is invalid.
+    \
+    Use case ends.
 * 2b. Mass Linkers detects an error in specified batchmate (non valid index).
-    * b1. Mass Linkers requests for new batchmate details.
-    * Step b1 is repeated until a batchmate is found.
-      \
-      Use case resumes from step 2.
+  * 2b1. Mass Linkers requests for new batchmate details.
+  * Step 2b1 is repeated until a batchmate is found.
+    \
+    Use case resumes from step 2.
 
 * *a. At any time, Student chooses to close Mass Linkers.
     * a1. Mass Linkers updates the storage file.
@@ -457,12 +473,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list of modules is empty.
-    * a1. Mass Linkers warns marking a module is invalid.
+    * 2a1. Mass Linkers warns marking a module is invalid.
       \
       Use case ends.
 * 2b. Mass Linkers detects the specified module is invalid (out of range).
-    * b1. Mass Linkers requests for new module.
-    * Step b1 is repeated until a module is found.
+    * 2b1. Mass Linkers requests for new module.
+    * Step 2b1 is repeated until a module is found.
       \
       Use case resumes from step 2.
 

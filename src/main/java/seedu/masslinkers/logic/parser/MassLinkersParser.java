@@ -11,6 +11,7 @@ import seedu.masslinkers.logic.commands.AddInterestCommand;
 import seedu.masslinkers.logic.commands.ClearCommand;
 import seedu.masslinkers.logic.commands.Command;
 import seedu.masslinkers.logic.commands.DeleteCommand;
+import seedu.masslinkers.logic.commands.DeleteInterestCommand;
 import seedu.masslinkers.logic.commands.EditCommand;
 import seedu.masslinkers.logic.commands.ExitCommand;
 import seedu.masslinkers.logic.commands.FindCommand;
@@ -71,6 +72,9 @@ public class MassLinkersParser {
 
         case AddInterestCommand.COMMAND_WORD:
             return new AddInterestCommandParser().parse(arguments);
+
+        case DeleteInterestCommand.COMMAND_WORD:
+            return new DeleteInterestCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
