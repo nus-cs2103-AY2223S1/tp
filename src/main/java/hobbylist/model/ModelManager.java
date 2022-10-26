@@ -159,6 +159,7 @@ public class ModelManager implements Model {
         filteredActivities.setPredicate(predicate);
     }
 
+
     @Override
     public ObservableList<Activity> getSelectedActivity() {
         return selectedActivity;
