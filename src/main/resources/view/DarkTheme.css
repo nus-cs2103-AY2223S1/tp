@@ -74,11 +74,13 @@
 }
 
 .tab:hover {
+    /* Highlight the bottom border when the tab is hovered */
     -fx-border-color: derive(#864879, 50%);;
     -fx-cursor: hand;
 }
 
 .tab:selected {
+    /* Highlight the bottom border when the tab is selected */
     -fx-border-color: #864879;
 }
 
@@ -127,7 +129,7 @@
 
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: #1F1D36;
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-border-color: transparent transparent transparent #E9A6A6;
 }
 
 .split-pane {
@@ -177,7 +179,7 @@
 
 .pane-with-border {
      -fx-background-color: #1F1D36;
-     -fx-border-color: derive(#1F1D36, 10%);
+     -fx-border-color: derive(#1F1D36, 20%);
      -fx-border-top-width: 1px;
 }
 
@@ -205,7 +207,7 @@
 
 .status-bar-with-border {
     -fx-background-color: #1F1D36;
-    -fx-border-color: derive(#1F1D36, 25%);
+    -fx-border-color: derive(#1F1D36, 20%);
     -fx-border-width: 1px;
 }
 
@@ -215,7 +217,7 @@
 
 .grid-pane {
     -fx-background-color: #1F1D36;
-    -fx-border-color: derive(#1F1D36, 30%);
+    -fx-border-color: derive(#1F1D36, 20%);
     -fx-border-width: 1px;
 }
 
@@ -262,7 +264,7 @@
  */
 .button {
     -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
+    -fx-border-color: derive(#1F1D36, 20%);
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #1F1D36;

@@ -21,10 +21,6 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
-}
-
 #resultDisplay .content {
     -fx-background-color: #1F1D36;
     -fx-background-radius: 0;
@@ -43,4 +39,8 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 12px;
+}
+
+#graphPanelPlaceholder {
+    -fx-padding: 4px;
 }
