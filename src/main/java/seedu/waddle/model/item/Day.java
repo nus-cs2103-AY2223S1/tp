@@ -86,7 +86,7 @@ public class Day {
      * @param newItem The item to check for.
      * @return A list of conflicting items, possibly an empty list.
      */
-    public ArrayList<Item> getConflictingItems(Item newItem) {
+    private ArrayList<Item> getConflictingItems(Item newItem) {
         ArrayList<Item> conflictingItems = new ArrayList<>();
         for (Item item : this.itemList) {
             // same start time
