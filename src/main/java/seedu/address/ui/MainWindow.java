@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -26,20 +27,22 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
-
-
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
     private static final String SELECTED_LABEL_STYLE_CLASS = "active-label";
-    private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
 
     private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Person Displayed");
 
+    private static final String LIGHT_THEME_NAME = "./view/LightTheme.css";
+
+    private static final String DARK_THEME_NAME = "./view/DarkTheme.css";
+
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -83,6 +86,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Pane tuitionClassLabelPanel;
+
+    @FXML
+    private Scene mainWindowScene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -176,6 +182,24 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Sets the current theme to the light theme.
+     */
+    @FXML
+    private void updateToLightTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(LIGHT_THEME_NAME);
+    }
+
+    /**
+     * Sets the current theme to the dark theme.
+     */
+    @FXML
+    private void updateToDarkTheme() {
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add((DARK_THEME_NAME));
     }
 
     /**

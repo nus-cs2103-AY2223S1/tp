@@ -363,7 +363,8 @@
 
 #title {
     -fx-font-size: 35px;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
     -fx-text-fill: derive(#1d1d1d, 90%);
 }
 #entityDescriptionPanel {
@@ -524,4 +525,20 @@
 
 .studentColor {
     -fx-background-color: #d2691e;
+}
+
+
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.tooltip-text {
+    -fx-text-fill: white;
 }
