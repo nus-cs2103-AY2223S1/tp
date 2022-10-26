@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.issue.predicates.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.issue.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
 
 /**
- * Represents a class to find and filter issue list by description.
+ * Represents a class to find and filter issue list by title.
  */
-public class FindIssueByDescriptionCommand extends FindIssueCommand {
-    private final DescriptionContainsKeywordsPredicate predicate;
+public class FindIssueByTitleCommand extends FindIssueCommand {
+    private final TitleContainsKeywordsPredicate predicate;
 
-    public FindIssueByDescriptionCommand(DescriptionContainsKeywordsPredicate predicate) {
+    public FindIssueByTitleCommand(TitleContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -29,7 +29,7 @@ public class FindIssueByDescriptionCommand extends FindIssueCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindIssueByDescriptionCommand // instanceof handles nulls
-                && predicate.equals(((FindIssueByDescriptionCommand) other).predicate)); // state check
+                || (other instanceof FindIssueByTitleCommand // instanceof handles nulls
+                && predicate.equals(((FindIssueByTitleCommand) other).predicate)); // state check
     }
 }

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.client.find;
 
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.client.ClientCommand;
@@ -19,11 +19,11 @@ public abstract class FindClientCommand extends ClientCommand {
             + "address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_CLIENT_EMAIL + "EMAIL "
-            + PREFIX_CLIENT_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_MOBILE + "PHONE "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "
-            + PREFIX_CLIENT_EMAIL + "john@gmail.com "
-            + PREFIX_CLIENT_PHONE + "98765432 ";
+            + PREFIX_EMAIL + "john@gmail.com "
+            + PREFIX_MOBILE + "98765432 ";
 }

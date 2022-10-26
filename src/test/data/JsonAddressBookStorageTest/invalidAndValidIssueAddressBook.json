@@ -14,14 +14,14 @@
     "projectId" : "1"
   } ],
   "issues" : [ {
-    "description" : "Refactor UI Classes",
+    "title" : "Refactor UI Classes",
     "priority" : "X@",
     "deadline" : "2020a1",
     "status" : "x123",
     "issueId" : "1",
     "project" : "5"
   }, {
-    "description" : "Fix loading screen bug",
+    "title" : "Fix loading screen bug",
     "priority" : "MEDIUM",
     "deadline" : "2022-10-04",
     "status" : "true",

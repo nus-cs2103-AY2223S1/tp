@@ -13,10 +13,10 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
-import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Title;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -144,18 +144,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String description} into a {@code Description}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code description} is invalid.
+     * @throws ParseException if the given {@code title} is invalid.
      */
-    public static Description parseDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Description(trimmedDescription);
+        return new Title(trimmedTitle);
     }
 
     /**
@@ -323,6 +323,51 @@ public class ParserUtil {
         String trimmedKey = key.trim();
         if (!Client.isValidNameSortKey(trimmedKey)) {
             throw new ParseException(Client.MESSAGE_INVALID_NAME_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by project id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseProjectIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Project.isValidProjectIdSortKey(trimmedKey)) {
+            throw new ParseException(Project.MESSAGE_INVALID_PROJECT_ID_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by issue id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseIssueIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Issue.isValidIssueIdSortKey(trimmedKey)) {
+            throw new ParseException(Issue.MESSAGE_INVALID_ISSUE_ID_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by client id.
+     * @return Integer of 0 or 1 which specifies the order of sorting.
+     */
+    public static Integer parseClientIdSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Client.isValidClientIdSortKey(trimmedKey)) {
+            throw new ParseException(Client.MESSAGE_INVALID_CLIENT_ID_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }
