@@ -319,6 +319,7 @@ patients.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the use has not group patients or 
 appointments, ungroup commands will make no effect on the current addressbook list on the screen.
+</div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute
 ("ungroup")` API call.
