@@ -258,26 +258,6 @@ Format: `list [LIST_PARAMETER]`
 | Order     | orders, order, o, -o, /o         |
 | Pet       | pets, pet, p, -p, /p             |
 
-### Editing a person : `edit`
-
-Edits an existing person in the PetCode.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
-  The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567`
-  and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
 ### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -298,17 +278,19 @@ Examples:
 
 ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a contact or item : `delete`
 
-Deleting a person from contacts.
+Deletes a contact / item at the specified index of the respective contact / item list.
 
-Format: `delete c/PERSON_CATEGORY i/INDEX (must be a positive integer)`
+Format: `delete-KEY INDEX`
 
-Examples:
-
-* `delete c/Buyer i/1` will delete the contact at index 1 of the Buyer contacts list, if index is found.
-* `delete c/Deliverer i/2` will delete the contact at index 2 of the Deliverer contacts list, if index is found.
-* `delete c/Supplier i/3` will delete the contact at index 3 of the Supplier contacts list, if index is found.
+| Contact / Item to Delete | Key | Example                                                                                           |
+|--------------------------|----|---------------------------------------------------------------------------------------------------|
+| Buyer                    | b  | `delete-b 1`, Deletes Buyer contact at index 1 of Buyer Contacts List, if index is found.         |
+| Supplier                 | s  | `delete-s 1`, Deletes Supplier contact at index 1 of Supplier Contacts List, if index is found.   |
+| Deliverer                | d  | `delete-d 1`, Deletes Deliverer contact at index 1 of Deliverer Contacts List, if index is found. |
+| Order                    | o  | `delete-o 1`, Deletes Order at index 1 of Orders List, if index is found.                         |
+| Pet                      | p  | `delete-p 1`, Deletes Pet at index 1 of Pets List, if index is found.                             |
 
 ### Filter contacts : `filter`
 
@@ -434,7 +416,7 @@ Examples:
 
 Sort the contacts based on given list type and attributes in ascending order.
 
-Format: `sort LIST_PARAMETER, [ATTRIBUTES...]`
+Format: `sort LIST_PARAMETER [ATTRIBUTES...]`
 
 **Note Different list could have different supported sort attributes.**
 
@@ -593,38 +575,6 @@ These prefixes are for you to indicate different fields when you add a new perso
 | `pt_v/`    | Pet             | Vaccination status               | `true` if the pet is vaccinated, otherwise `false`. Required.                                                                                                                                                                                                                                                                      | `pt_v/false`                                     |
 | `pt_cert/` | Pet             | Certificate                      | A string of any characters. Other certificates this pet holds. Optional. Can have multiple.                                                                                                                                                                                                                                        | `pt_cert/US certified`, `pt_cert/noble blood`    |
 | `pt_t/`    | Pet             | Tag                              | A string of any characters. Optional. Can have multiple.                                                                                                                                                                                                                                                                           | `pt_t/good`, `pt_t/naughty`, `pt_t/fast growing` |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 |        Action         | Format, Examples                                                                                                                                                                                            |

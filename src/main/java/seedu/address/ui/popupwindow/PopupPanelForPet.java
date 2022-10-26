@@ -9,7 +9,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Price;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;

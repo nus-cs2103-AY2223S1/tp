@@ -71,9 +71,22 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+Given below is a partial class diagram of the `Ui` component.
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<img src="images/UiClassDiagram.png" width="700"/>
+
+The UI consists of a `MainWindow` that is made up of parts including `CommandBox`, `ResultDisplay`, `StatusBarFooter`.
+The `mainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
+Detailed implementation of the `AddCommandPopupWindow` is written [here](#pop-up-window-for-add-command).
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Furthermore, the `MainWindow` has different list panels such as `BuyerListPanel` and `PetListPanel` as shown below.
+List panels are used to fill the `MainWindow` for display. Which list panel is displayed depends on the input `Command`.
+Each list panel can have any number of the corresponding card. For example, `BuyerListPanel` can have any number of `BuyerCard`.
+All the list panels and cards inherit from the abstract `UiPart`, but **not shown** in the diagram below to reduce graph complexity.
+Detailed implementation of the list panel can be found [here](#display-of-person-list).
+
+<img src="images/UiClassDiagram1.png" width="700"/>
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -119,15 +132,15 @@ etc.)
 * Some Commands are similar but have their own Parsers and behave distinctly. (eg. AddDelivererCommand vs AddBuyerCommand).
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person`, `Order`, and `Pet` objects (which are contained in a `UniqueBuyerList`, `UniqueDelivererList`, `UniqueSupplierList`, `UniqueOrderList`, and `UniquePetList` object).
+* stores the currently 'selected' `Person`, `Order`, and `Pet` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -142,7 +155,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="750" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -254,22 +267,43 @@ We regard a string as a base 26 number (`'a'` - `'z'`). Every time the least sig
 
 For efficiency, the ID generator is implemented by a `List` of `char`, which avoids frequent string copying and concatenating. `List` facilitates fast in-place edit of a single `char` at a single index as well.
 
-### Display  of person list
-Initially, there is only one `PersonListPanel` that displays the person list in the ui. However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`. Therefore, it is necessary to have a separate list panel for each of these three type of `Person`.
+### Display of person list
 
-In addition, buyers, suppliers and deliverers have comprehensive details on the orders or pets that they possess, besides their contact information. A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly. Therefore, the ui needs to be optimised for the situation where there is plentiful information that the user wants to know about a single `Person`.
+#### Problems with the old UI and areas for improvements
 
-In the implementation, we have a `personListPanelPlaceholder` in the `MainWindow`, which can be filled by one of the followings depending on the `Command` executed:
+Given below is a partial class diagram of the **old UI**.
+
+<img src="images/OldUiClassDiagram.png" width="500" height="400" />
+
+Initially, there is only one `PersonListPanel` that displays the person list using `PersonCard`.
+However, our product classifies `Person` into three different categories -- `Buyer`, `Supplier`, and `Deliverer`.
+Therefore, it is necessary to have a **separate list panel** for each of these three type of `Person`.
+
+In addition, buyers, suppliers and deliverers have comprehensive information on the orders or pets that they possess, besides their contact information.
+A `PersonCard` with only `Label` of JavaFX will display information in a very unorganised and lengthy way, which is not helpful in helping the user obtain information quickly.
+Therefore, the UI needs to be **optimised for the situation where there is plentiful information** that the user wants to know about a single `Person`.
+
+#### Implementation of the new UI
+
+In the implementation as seen in the diagram below, the `MainWindow` can be filled by any one of the followings depending on the `Command` executed:
 * `BuyerListPanel`: displays information about each `Buyer` using a `BuyerCard` in a `ListView`.
 * `SupplierListPanel`: displays information about each `Supplier` using a `SupplierCard` in a `ListView`.
 * `DelivererListPanel`: displays information about each `Deliverer` using a `DelivererCard` in a `ListView`.
-* `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` n a `ListView`.
+* `MainListPanel`: displays a master list which includes all `Buyer`, `Supplier`, and `Deliverer` In a `ListView`.
+* `OrderListPanel`: displays information about each `Order` using an `OrderCard` in a `ListView`.
+* `PetListPanel`: displays information about each `Pet` using a `PetCard` in a `ListView`.
 
-By having a display panel for each of the three `Person` categories, as well as the panel that displays all, it will be easier to customise the display of different `Person` types if required by future features and ui improvements.
+*Note that each person card (`BuyerCard`, `DelivererCard`, `SupplierCard`) can have any number of the corresponding item cards (`OrderCard`, `PetCard`).*
 
-In each `BuyerCard`, the buyer's `Name` will be shown together with an `Index` and a label indicating he or she is a `Buyer`.
+<img src="images/UiClassDiagram1.png" width="700"/>
+
+By having separate list panels, it will be easier to customise the display of different `Person` types as well as `Order` and `Pet` if required by future features and ui improvements.
+
+In each `BuyerCard` as seen in the graph below, the buyer's `Name` will be shown together with an index and a label indicating he or she is a `Buyer`.
 The left side displays the contact information of the `Buyer`, including `Phone`, `Email`, `Location`, and `Address`.
 The right side of the card is visually enhanced by adding a `ListView` of `OrderCard`, which displays the information of each of the `Order` that the `Buyer` makes with an index in a list.
+
+<img src="images/BuyerCard.png" width="700"/>
 
 The structure of a `DelivererCard` is similar to that of the `BuyerCard`.
 
@@ -279,8 +313,16 @@ Instead of a `ListView` of `OrderCard`, it has a `ListView` of `PetCard` which d
 By modifying the `PersonCard` to the three types of cards stated above, divided into a left section which shows contact details, and a right section which is a `ListView`, we can keep the information displayed organised and maintain the height of each card within a reasonable range
 (e.g. if the orders are displayed as plain text below the buyer's contact information, the card will be stretched vertically, potentially to an extent that the whole window can only show information of one single buyer).
 
-Given below is a scenario that shows how the new ui responds to a `ListCommand`.
-// TODO: add description here
+#### Alternatives considered
+
+* **Alternative 1 (current choice):** Has only one display window and displays items (`Order` or `Pet`) together with the person.
+  * Pros: Easy to implement and can view all the information immediately after a command is executed.
+  * Cons: Too cramped, which may lead to information overload.
+* **Alternative 2:** Has one display window for person and a separate display window for items.
+  * Pros: More organised and visually pleasant.
+  * Cons: Hard to implement and need one more command such as `display INDEX` to display the information of the item.
+
+### Pop-up window for add command
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -473,7 +515,7 @@ Use case ends.
 
 **Extensions**
 
-1a. The index is not a valid index.
+1a. The index is not a valid index. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;  1a1. PetCode notifies user that the index is invalid.
 
 Use case ends.
