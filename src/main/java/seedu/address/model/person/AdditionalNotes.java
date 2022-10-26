@@ -23,7 +23,11 @@ public class AdditionalNotes {
      * @param appendedAdditionalNotes AdditionalNotes object that contains extra notes to be appended.
      */
     public void appendNotes(AdditionalNotes appendedAdditionalNotes) {
-        this.notes += " " + appendedAdditionalNotes.notes;
+        if (this.notes.isBlank()) {
+            this.notes += appendedAdditionalNotes.notes;
+        } else {
+            this.notes += " " + appendedAdditionalNotes.notes;
+        }
     }
 
     @Override

@@ -117,7 +117,7 @@ public class ClassStorage {
      * @param end LocalTime object.
      * @param startOfCurrClass LocalTime object.
      * @param endOfCurrClass LocalTime object.
-     * @return True if there is a conflict.
+     * @return true if there is a conflict.
      */
     public static boolean hasConflict(LocalTime start, LocalTime end, LocalTime startOfCurrClass,
                                       LocalTime endOfCurrClass) {
