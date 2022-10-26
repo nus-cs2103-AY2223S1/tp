@@ -32,10 +32,6 @@
     -fx-background-image: url("../images/texture_dirt.png");
 }
 
-#creeperPlaceHolder {
-    -fx-background-image: url("../images/creeper_mob.png");
-}
-
 #explosionPlaceHolder {
     -fx-background-image: url("../images/explosion2.png");
 }
@@ -43,5 +39,7 @@
 #mineFriendsPlaceHolder {
     -fx-background-image: url("../images/minefriends.png");
 }
+
+
 
 

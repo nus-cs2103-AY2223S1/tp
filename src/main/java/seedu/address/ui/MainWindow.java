@@ -1,15 +1,21 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
@@ -55,10 +61,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane creeperPlaceHolder;
 
-    @FXML
-    private StackPane explosionPlaceHolder;
-
     @FXML private StackPane mineFriendsPlaceHolder;
+
+    private ImageView creeperImageView;
+    private ImageView explosionImageView;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -132,7 +138,13 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        explosionPlaceHolder.setVisible(false);
+        creeperImageView = new ImageView(new Image(
+                    new File("src/main/resources/images/creeper_mob.png").toURI().toString()));
+        explosionImageView = new ImageView(new Image(
+                new File("src/main/resources/images/explosion2.png").toURI().toString()));
+        creeperPlaceHolder.getChildren().add(creeperImageView);
+        creeperPlaceHolder.getChildren().add(explosionImageView);
+        explosionImageView.setVisible(false);
     }
 
     /**
@@ -202,14 +214,47 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-            explosionPlaceHolder.setVisible(true);
-            PauseTransition visiblePause = new PauseTransition(
-                    Duration.seconds(2)
+
+            // start of creeper animation
+            String creeperSoundFile = "src/main/resources/audio/creeper_sound.mp3";
+            Media creeperSound = new Media(new File(creeperSoundFile).toURI().toString());
+            MediaPlayer mediaPlayerCreeper = new MediaPlayer(creeperSound);
+            mediaPlayerCreeper.play();
+            PauseTransition creeperSoundPause = new PauseTransition(Duration.seconds(1));
+            creeperSoundPause.setOnFinished(
+                    event -> {
+                        String explosionSoundFile = "src/main/resources/audio/explosion_sound.mp3";
+                        Media explosionSound = new Media(new File(explosionSoundFile).toURI().toString());
+                        MediaPlayer mediaPlayerExplosion = new MediaPlayer(explosionSound);
+                        mediaPlayerExplosion.play();
+                    }
             );
-            visiblePause.setOnFinished(
-                    event -> explosionPlaceHolder.setVisible(false)
+            creeperSoundPause.play();
+            ScaleTransition scaleTransitionExpand = new ScaleTransition();
+            scaleTransitionExpand.setDuration(Duration.seconds(4));
+            scaleTransitionExpand.setToX(1.2);
+            scaleTransitionExpand.setToY(1.2);
+            scaleTransitionExpand.setNode(creeperImageView);
+            scaleTransitionExpand.play();
+            PauseTransition creeperExplosionPause = new PauseTransition(Duration.seconds(3.5));
+            creeperExplosionPause.setOnFinished(
+                    event -> {
+                        creeperImageView.setVisible(false);
+                        explosionImageView.setVisible(true);
+                    }
             );
-            visiblePause.play();
+            creeperExplosionPause.play();
+            PauseTransition endOfExplosionPause = new PauseTransition(Duration.seconds(6));
+            endOfExplosionPause.setOnFinished(
+                    event -> {
+                        explosionImageView.setVisible(false);
+                        creeperImageView.setScaleX(1 / 1.2);
+                        creeperImageView.setScaleY(1 / 1.2);
+                        creeperImageView.setVisible(true);
+                    }
+            );
+            endOfExplosionPause.play();
+            // end of creeper animation
 
             throw e;
         }
