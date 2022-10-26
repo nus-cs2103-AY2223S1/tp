@@ -25,10 +25,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     @Override
     public FilterCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.length() == 2
-                || !trimmedArgs.startsWith("t/")
-                || !trimmedArgs.startsWith("m/")
-                || !trimmedArgs.startsWith("a/")) {
+        if (trimmedArgs.length() == 2 || trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
