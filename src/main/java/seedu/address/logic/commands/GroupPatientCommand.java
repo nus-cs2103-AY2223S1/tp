@@ -6,7 +6,7 @@ import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENTS;
 import seedu.address.model.Model;
 
 /**
- * Group all patients in the address book to the user.
+ * Group all patients in idENTify to the user.
  */
 public class GroupPatientCommand extends Command {
 
