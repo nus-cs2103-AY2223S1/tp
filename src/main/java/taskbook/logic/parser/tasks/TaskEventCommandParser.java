@@ -82,7 +82,8 @@ public class TaskEventCommandParser implements Parser<TaskEventCommand> {
 
     private TaskEventCommand parseWithoutPrefix(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE,
+                        CliSyntax.PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -92,8 +93,9 @@ public class TaskEventCommandParser implements Parser<TaskEventCommand> {
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        return new TaskEventCommand(Name.SELF, description, Assignment.TO, date);
+        return new TaskEventCommand(Name.SELF, description, Assignment.TO, date, tagList);
     }
 
     /**
