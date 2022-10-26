@@ -214,6 +214,18 @@ Examples:
 * `find r/4.0` returns all tutors that have rating of `4.0`.
 * `find t/friends` returns all tutors that have tag of `friends`.
 
+### Contacting tutors via email: `mail`
+
+Contacting targeted tutors is made easy with the mail command. The command opens the user's default mail client and specifies the "to" section in emails with the targeted tutors.
+
+Format: `mail INDEX or "all"`
+* `INDEX` refers to any index in range of the tutor list.
+* `"all"` allows you to email all the current tutors displayed in the tutor list.
+
+Examples:
+* `mail 3` opens the user's default mail client with the "to" specified as the third tutor's email.
+* `mail all` opens the user's default mail client with the "to" specified as all the currently displayed tutors' emails.
+
 ### Sorting tutors by quantitative measures: `sort`
 
 Looking for tutors with the best reviews? The sort command allows you to sort the
@@ -245,7 +257,9 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-[coming soon]
+Clears all entries from the address book.
+
+Format: `clear`
 
 ### Saving the data
 
@@ -269,18 +283,20 @@ Format: `exit`
 
 ## Command summary
 
-| Action                     | Format                                                                                                                     | Examples (if any)                                                                                          |
-|----------------------------|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| See **Help**               | `help`                                                                                                                     |                                                                                                            |
-| **List** All Tutors        | `list`                                                                                                                     |                                                                                                            |
-| **View** a Tutor           | `view`                                                                                                                     | `view 1`                                                                                                   |
-| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`                 | `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
-| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                  | `comment 1 c/Tasks not Finished`                                                                           |
-| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                          |
-| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                          | `find n/Alex`                                                                                              |
-| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                        | `sort a r/`                                                                                                |
-| **Delete** a Tutor         | `delete INDEX`                                                                                                             | `delete 3`                                                                                                 |
-| **Exit** Tuthub            | `exit`                                                                                                                     |                                                                                                            |
+| Action                     | Format                                                                                                                                                                                                          | Examples (if any)                                                                                          |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| See **Help**               | `help`                                                                                                                                                                                                          |                                                                                                            |
+| **List** All Tutors        | `list`                                                                                                                                                                                                          |                                                                                                            |
+| **View** a Tutor           | `view`                                                                                                                                                                                                          | `view 1`                                                                                                   |
+| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS r/RATING [t/TAG]…​`                                                                                                      | `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                                                                                                       | `comment 1 c/Tasks not Finished`                                                                           |
+| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [r/RATING] [t/TAG]…​`                                                                                      | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                          |
+| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                                                                                               | `find n/Alex`                                                                                              |
+| **Mail**                   | `mail INDEX or "all"`                                                                                                                                                                                           | `mail 3`                                                                                                   |
+| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                                                                                             | `sort a r/`                                                                                                |
+| **Delete** a Tutor         | `delete INDEX`                                                                                                                                                                                                  | `delete 3`                                                                                                 |
+| **Clear** Tutor List       | `clear`                                                                                                                                                                                                         |                                                                                                            |
+| **Exit** Tuthub            | `exit`                                                                                                                                                                                                          |                                                                                                            |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
