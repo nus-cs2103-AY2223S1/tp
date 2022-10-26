@@ -66,8 +66,7 @@ public class AddBuyerCommandParser extends AddPersonCommandParser implements Par
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Buyer buyer = new Buyer(PersonCategory.BUYER, name, phone, email, address, tagList, null);
 
-        List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), buyer);
-        buyer.addOrder(orders.stream().map(Order::getId).collect(Collectors.toList()));
+        List<Order> orders = ParserUtil.parseOrders(argMultimap.getAllValues(PREFIX_ORDER), false);
 
         return new AddBuyerCommand(buyer, orders);
     }

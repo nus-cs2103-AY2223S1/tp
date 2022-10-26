@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -79,6 +80,7 @@ public class AddSupplierCommand extends AddPersonCommand {
             pet.setSupplier(toAdd);
         }
 
+        toAdd.addPets(pets.stream().map(Pet::getId).collect(Collectors.toList()));
         model.addSupplier(toAdd);
 
         return new CommandResult("\n" //TODO To keep a single MESSAGE_SUCCESS

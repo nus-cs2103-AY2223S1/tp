@@ -26,12 +26,9 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
     public AddPetCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args,
-                        PREFIX_INDEX);
+                ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
-        if (!arePrefixesPresent(argMultimap,
-                PREFIX_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER));
         }
@@ -40,7 +37,7 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
         Index index = ParserUtil.parseIndex(indexStr);
         Pet pet = ParserUtil.parsePet(args, true);
 
-        return new AddPetCommand(index, pet);
+        return new AddPetCommand(pet, index);
     }
 
     /**

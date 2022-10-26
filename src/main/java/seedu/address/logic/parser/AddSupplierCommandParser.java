@@ -65,10 +65,9 @@ public class AddSupplierCommandParser extends AddPersonCommandParser implements 
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Supplier supplier = new Supplier(PersonCategory.BUYER, name, phone, email, address, tagList, null);
+        Supplier supplier = new Supplier(PersonCategory.SUPPLIER, name, phone, email, address, tagList, null);
 
-        List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_ORDER), false);
-        supplier.addPets(pets.stream().map(Pet::getId).collect(Collectors.toList()));
+        List<Pet> pets = ParserUtil.parsePets(argMultimap.getAllValues(PREFIX_PET), false);
 
         return new AddSupplierCommand(supplier, pets);
     }

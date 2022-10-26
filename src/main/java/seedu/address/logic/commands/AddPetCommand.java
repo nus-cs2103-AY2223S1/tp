@@ -86,12 +86,12 @@ public class AddPetCommand extends Command {
     /**
      * Constructs a new AddPetCommand object.
      *
-     * @param index The index of the associated supplier.
      * @param pet The pet to be added.
+     * @param index The index of the associated supplier.
      */
-    public AddPetCommand(Index index, Pet pet) {
-        this.index = index;
+    public AddPetCommand(Pet pet, Index index) {
         this.toAdd = pet;
+        this.index = index;
     }
 
     /**
