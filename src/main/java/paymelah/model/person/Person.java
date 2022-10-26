@@ -80,6 +80,10 @@ public class Person {
         return getDebtsAmountAsMoney().compareTo(o.getDebtsAmountAsMoney());
     }
 
+    public int compareEarliestDebtDateTimeWith(Person o) {
+        return debts.compareEarliestDebtDateTimeWith(o.debts);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
