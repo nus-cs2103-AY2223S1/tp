@@ -184,5 +184,4 @@ public class ModelManager implements Model {
     public ExerciseHashMap getExerciseHashMap() {
         return exerciseTracker.getExerciseHashMap();
     }
-
 }

@@ -285,7 +285,7 @@ The following sequence diagram shows how the date range process (variant of sort
       created within the method `filterListByDateRange()`. This practice of defensive programming is to prevent the 
       potential bug that may arise in the future, caused by the assumption that `internalUnmodifiableList` preserves 
       the original ordered state.
-
+    
 ### \[Proposed\] Generating a suggested workout routine
 
 #### Proposed Implementation
@@ -328,7 +328,7 @@ The number of `Generator` objects created is equal to the number of unique exerc
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
     * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
-
+    
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

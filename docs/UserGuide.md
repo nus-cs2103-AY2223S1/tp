@@ -43,7 +43,8 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 
 ### Viewing help : `:help`
 
-Access the help menu, containing the information about the commands.
+Access the help menu, containing a brief summary of the commands supported. The help menu also provides a link to the 
+user guide.
 
 Format: `:help`
 

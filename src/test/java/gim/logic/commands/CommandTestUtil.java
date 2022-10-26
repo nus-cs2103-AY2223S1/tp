@@ -1,5 +1,6 @@
 package gim.logic.commands;
 
+import static gim.logic.parser.CliSyntax.PREFIX_ALL;
 import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_NAME;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import gim.commons.core.index.Index;
 import gim.logic.commands.exceptions.CommandException;
+import gim.logic.generators.ValidLevel;
 import gim.model.ExerciseTracker;
 import gim.model.Model;
 import gim.model.exercise.Exercise;
@@ -37,6 +39,9 @@ public class CommandTestUtil {
     public static final String VALID_SETS_BENCH_PRESS = "5";
     public static final String VALID_REPS_ARM_CURLS = "1";
     public static final String VALID_REPS_BENCH_PRESS = "2";
+    public static final ValidLevel VALID_LEVEL_EASY = ValidLevel.EASY;
+    public static final ValidLevel VALID_LEVEL_MEDIUM = ValidLevel.MEDIUM;
+    public static final ValidLevel VALID_LEVEL_HARD = ValidLevel.HARD;
     public static final String VALID_DATE = "02/05/2022";
     public static final String VALID_DATE_2 = "12/01/2007";
     public static final String VALID_START_DATE = "01/10/2022";
@@ -62,6 +67,8 @@ public class CommandTestUtil {
     public static final String VALID_END_DATE_DESC = " " + PREFIX_END_DATE + "31/10/2022";
     public static final String INVALID_END_DATE_DESC = " " + PREFIX_END_DATE + "031/10/2022";
     // date can be empty, it will default to today's date
+
+    public static final String DESC_PREFIX_ALL = " " + PREFIX_ALL;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

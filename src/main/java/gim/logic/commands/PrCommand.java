@@ -5,13 +5,12 @@ import static gim.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Set;
 
 import gim.model.Model;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.Name;
-import gim.model.exercise.Weight;
 
 /**
  * For all exercises whose name contains any of the argument keywords, find the personal record (highest weight
@@ -35,6 +34,8 @@ public class PrCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listing PRs:\n%s";
 
+    public static final String MESSAGE_FAILURE = "Exercise(s) not registered in system!\nTry adding it first!";
+
     private final Set<Name> nameSet;
 
     /**
@@ -46,38 +47,57 @@ public class PrCommand extends Command {
     }
 
     /**
-     * Given the appropriate hashmap, returns a prettier String output for PrCommand.
-     * @param hashMap HashMap from PrCommand::execute.
-     * @return Displayed String output.
+     * Returns the pretty PrCommand output for an individual Exercise
+     * @param exercise Exercise
+     * @return Display PrCommand Exercise output.
      */
-    public String prettyStringifyHashMap(HashMap<Name, Weight> hashMap) {
+    public static String prExerciseStringify(Exercise exercise) {
+        return exercise.getName() + ": " + exercise.getWeight() + "kg" + "\n";
+    }
+
+    /**
+     * Given the appropriate ArrayList, returns a prettier String output for PrCommand.
+     * @param list ArrayList.
+     * @return Display PrCommand overall output.
+     */
+    public static String prettyStringifyArrayList(ArrayList<Exercise> list) {
+        list.sort(Comparator.comparing(Exercise::getName)); // Sort the List by Name (Alphabetically)
         StringBuilder returnString = new StringBuilder();
-        for (Name name : hashMap.keySet()) {
-            String exerciseName = name.toString();
-            String exerciseWeight = hashMap.get(name).toString();
-            returnString.append(exerciseName).append(": ").append(exerciseWeight).append("kg").append("\n");
+        for (Exercise exercise : list) {
+            returnString.append(prExerciseStringify(exercise));
         }
         return returnString.toString();
+    }
+
+    /**
+     * Generate an ArrayList containing Exercises which are PRs.
+     * @param nameSet nameSet.
+     * @param model Model.
+     * @return ArrayList containing Exercise PRs.
+     */
+    public ArrayList<Exercise> generateOutputArrayList(Set<Name> nameSet, Model model) {
+        if (nameSet.isEmpty()) {
+            return model.getAllExercisePRs();
+        } else {
+            ArrayList<Exercise> outputList = new ArrayList<>();
+            for (Name name : nameSet) {
+                Exercise exerciseWithPR = model.getExercisePR(name);
+                if (exerciseWithPR != null) {
+                    outputList.add(exerciseWithPR);
+                }
+            }
+            return outputList;
+        }
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        HashMap<Name, Weight> outputHashmap = new HashMap<>();
-        if (nameSet.isEmpty()) {
-            ArrayList<Exercise> allExercisePRs = model.getAllExercisePRs();
-            for (Exercise exercise : allExercisePRs) {
-                outputHashmap.put(exercise.getName(), exercise.getWeight());
-            }
-        } else {
-            for (Name name : nameSet) {
-                Exercise exerciseWithPR = model.getExercisePR(name);
-                if (exerciseWithPR != null) {
-                    outputHashmap.put(exerciseWithPR.getName(), exerciseWithPR.getWeight());
-                }
-            }
+        ArrayList<Exercise> outputList = generateOutputArrayList(nameSet, model);
+        if (outputList.isEmpty()) {
+            return new CommandResult(MESSAGE_FAILURE);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, prettyStringifyHashMap(outputHashmap)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prettyStringifyArrayList(outputList)));
     }
 
     @Override
