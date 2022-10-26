@@ -13,7 +13,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextArea?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-         title="TA Assist" minWidth="900" minHeight="670" onCloseRequest="#handleExit">
+         title="TA Assist" minWidth="740" minHeight="600" onCloseRequest="#handleExit">
+  <icons>
+    <Image url="@/images/ta_assist_logo.png" />
+  </icons>
   <scene>
     <Scene>
       <stylesheets>
@@ -36,7 +39,7 @@
           </buttons>
         </ButtonBar>
 
-        <HBox fx:id="studentList" minHeight="435" prefHeight="435" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <HBox fx:id="studentList" minHeight="350" prefHeight="350" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="25" bottom="10" left="25" />
           </padding>
