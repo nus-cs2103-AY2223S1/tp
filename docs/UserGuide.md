@@ -96,7 +96,7 @@ removes a member from a team.
 Format: `unassign m/MEMBER-INDEX t/TEAM-INDEX`
 
 Examples:
-* `unassign m/1 t/1` removes first member from first team.
+* `unassign m/1 t/1` removes the person with global index 1 from team 1.
 
 ### Viewing all members: `userlist`
 
@@ -108,10 +108,10 @@ Format: `userlist`
 
 Adds a new task to a team. Additionally, you may opt to set a deadline for the task (optional).
 
-Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/YYYY-MM-DD]`
+Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]`
 
 Examples:
-* `taskadd t/1 n/Finish project d/2023-12-24` Adds a new task to team with index 1 with the description 
+* `taskadd t/1 n/Finish project d/24-12-2023` Adds a new task to team with index 1 with the description 
 "Finish project". The deadline set here is 24 December 2023.
 
 ### Deleting a task `taskdelete`
@@ -132,14 +132,14 @@ Format: `taskmark t/TEAM-INDEX task/TASK-INDEX`
 Examples:
 * `taskmark t/1 task/1` Marks the first task in the first team as completed.
 
-### UnMarking a task as pending `taskunmark`
+### UnMarking a task `taskunmark`
 
-UnMarks a task as pending.
+Marks a task as pending.
 
 Format: `taskunmark t/TEAM-INDEX task/TASK-INDEX`
 
 Examples:
-* `taskunmark t/1 task/1` UnMarks the first task in the first team as pending.
+* `taskunmark t/1 task/1` Marks the first task in the first team as pending.
 
 ### Updating a task description: `taskedit`
 
@@ -151,23 +151,23 @@ Examples:
 * `taskedit t/1 task/1 n/Finish assignment` Updates the first task in the first team with new description 
 'Finish assignment'.
 
-### Adding a team: `createteam`
+### Adding a team: `create`
 
 Adds a team with the given name to EZLead.
 
-Format: `createteam n/TEAM-NAME`
+Format: `create n/TEAM-NAME`
 
 Examples:
-* `createteam n/Team1` Adds a team with the name Team1.
+* `create n/Team1` Adds a team with the name Team1.
 
 ### Deleting a team: `delteam`
 
 Deletes the given team from EZLead.
 
-Format: `deleteteam t/TEAM-INDEX`
+Format: `delteam t/TEAM-INDEX`
 
 Examples:
-* `deleteteam t/1` Deletes the first team.
+* `delteam t/1` Deletes the first team.
 
 ### Changing a team's name: `editteam`
 
@@ -197,11 +197,11 @@ Coming Soon!
 | **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`unassign m/1 t/1`                                                                                             |
 | **Member List**     | `userlist`                                                                                                                                                     |
 | **Help**            | `help`                                                                                                                                                         |
-| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/YYYY-MM-DD]` <br> e.g. `taskadd t/1 n/Finish project d/2023-12-24`                                                        |
+| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/DD-MM-YYYY]` <br> e.g. `taskadd t/1 n/Finish project d/24-12-2023`                                                        |
 | **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX n/NEW-TASK-NAME` <br> e.g. `taskedit t/1 task/1 n/Finish assignment`                                                    |
-| **Team Add**        | `createteam n/TEAM-NAME` <br> e.g. `createteam n/TEAM1`                                                                                                        |
-| **Team Delete**     | `delteam t/TEAM-INDEX` <br> e.g. `deleteteam t/1`                                                                                                              |
+| **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
+| **Team Delete**     | `delteam t/TEAM-INDEX` <br> e.g. `delteam t/1`                                                                                                                 |
 | **Team Edit**       | `editteam t/TEAM-INDEX n/NEW-TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                     |
