@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.Objects;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Person's phone number in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

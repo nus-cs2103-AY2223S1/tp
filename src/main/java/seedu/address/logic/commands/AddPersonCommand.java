@@ -28,7 +28,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to InterNUS.
  */
 public class AddPersonCommand extends Command {
 
@@ -51,7 +51,7 @@ public class AddPersonCommand extends Command {
             + PREFIX_COMPANY + "Meta";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in InterNUS";
 
     private final Name name;
     private final Phone phone;
@@ -62,7 +62,7 @@ public class AddPersonCommand extends Command {
     private final Company company;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddPersonCommand to add the specified {@code Person}
      */
     public AddPersonCommand(Person person) {
         requireNonNull(person);
@@ -76,9 +76,9 @@ public class AddPersonCommand extends Command {
     }
 
     /**
-     * Creates an AddCommand to add a {@code Person} with the specified
-     * {@code name}, {@code phone}, {@code email}, {@code address},
-     * {@code internshipId}, and {@code tags}.
+     * Creates an AddPersonCommand to add a {@code Person} with the specified
+     * {@code name}, {@code phone}, {@code email}, {@code company},
+     * {@code linkIndex}, and {@code tags}.
      */
     public AddPersonCommand(
             Name name,

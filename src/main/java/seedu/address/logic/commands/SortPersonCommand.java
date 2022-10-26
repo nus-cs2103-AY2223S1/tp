@@ -17,7 +17,7 @@ public class SortPersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons based on name or company name"
             + "Parameters: KEYWORD [c/] [n/]\n"
             + "Example: " + COMMAND_WORD + " c/";
-
+    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "There should only be 1 sorting criterion.";
     public static final String MESSAGE_SUCCESS = "Sorted all persons";
 
     /**

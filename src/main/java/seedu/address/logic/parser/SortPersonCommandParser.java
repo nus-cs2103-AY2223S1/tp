@@ -12,8 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class SortPersonCommandParser implements Parser<SortPersonCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the SortCommand
-     * and returns a SortCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SortPersonCommand
+     * and returns a SortPersonCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -22,6 +22,10 @@ public class SortPersonCommandParser implements Parser<SortPersonCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortPersonCommand.MESSAGE_USAGE));
+        }
+        if (trimmedArgs.length() > 2) {
+            throw new ParseException(
+                    String.format(SortPersonCommand.MESSAGE_TOO_MANY_ARGUMENTS));
         }
         if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
             return new SortPersonCommand(SortPersonCommand.Criteria.NAME);
