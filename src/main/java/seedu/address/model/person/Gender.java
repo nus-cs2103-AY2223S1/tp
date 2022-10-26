@@ -36,6 +36,7 @@ public class Gender implements Comparable<Gender> {
      * Returns if a given string is a valid gender.
      */
     public static boolean isValidGender(String test) {
+        requireNonNull(test);
         return VALID_GENDERS.contains(test);
     }
     /**
