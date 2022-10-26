@@ -101,7 +101,7 @@ will delete all data stored locally and this action is irreversible. You will lo
   * Command words and prefixes are case-sensitive. <br>
   e.g. `eXit` will not be accepted as the `exit` command.
   * Only the last occurrence of a repeated prefix input will be taken.
-  e.g. 'delete nm/Jonathan nm/Ethan nm/Alice'
+  e.g. `edit 1 nm/Jonathan nm/Ethan nm/Alice` is the same as `edit 1 nm/Alice`.
 * **Parameters**
   * Words in `UPPER_CASE` refers to input from the user. <br>
   e.g. For the `viewClass` command, the command format is `viewClass CLASS`<br>
