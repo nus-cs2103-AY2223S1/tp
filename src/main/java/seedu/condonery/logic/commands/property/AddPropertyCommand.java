@@ -3,6 +3,7 @@ package seedu.condonery.logic.commands.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.condonery.logic.commands.Command;
@@ -26,6 +27,7 @@ public class AddPropertyCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "PINNACLE@DUXTON "
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
+            + PREFIX_PRICE + "1000000 "
             + PREFIX_TAG + "High-End "
             + PREFIX_TAG + "Available";
 
@@ -80,5 +82,10 @@ public class AddPropertyCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddPropertyCommand // instanceof handles nulls
                 && toAdd.equals(((AddPropertyCommand) other).toAdd));
+    }
+
+    @Override
+    public String toString() {
+        return toAdd.toString();
     }
 }

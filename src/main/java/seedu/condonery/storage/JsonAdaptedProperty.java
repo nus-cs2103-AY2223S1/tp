@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -24,6 +25,7 @@ class JsonAdaptedProperty {
 
     private final String name;
     private final String address;
+    private final String price;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -31,9 +33,11 @@ class JsonAdaptedProperty {
      */
     @JsonCreator
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("address") String address,
+           @JsonProperty("price") String price,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.address = address;
+        this.price = price;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -45,6 +49,7 @@ class JsonAdaptedProperty {
     public JsonAdaptedProperty(Property source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
+        price = source.getPrice().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -77,8 +82,16 @@ class JsonAdaptedProperty {
         }
         final Address modelAddress = new Address(address);
 
+        if (price == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName()));
+        }
+        if (!Price.isValidPrice(price)) {
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
+        }
+        final Price modelPrice = new Price(price);
+
         final Set<Tag> modelTags = new HashSet<>(propertyTags);
-        return new Property(modelName, modelAddress, modelTags);
+        return new Property(modelName, modelAddress, modelPrice, modelTags);
     }
 
 }
