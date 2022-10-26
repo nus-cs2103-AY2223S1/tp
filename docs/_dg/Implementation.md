@@ -18,6 +18,4 @@ This section describes some noteworthy details on how certain features are imple
 
 ### General Features
 
-{% include_relative _dg/implementations/GeneralFeaturesDescription.md %}
-
 {% include_relative _dg/implementations/GeneralFeatures.md %}
