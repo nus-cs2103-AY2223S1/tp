@@ -16,7 +16,7 @@ public class Description implements Comparable<Description> {
      * The first character of the task must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{ASCII}][\\p{ASCII} ]*";
 
     public final String description;
 
