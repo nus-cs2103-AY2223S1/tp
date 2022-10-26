@@ -39,8 +39,7 @@ public class AddProfilesToEventCommandParser implements Parser<AddProfilesToEven
                     AddProfilesToEventCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!isPrefixPresent(argMultimap, PREFIX_PROFILE)
-                || !argMultimap.getPreamble().isEmpty() || argMultimap.getOptionArgs().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty() || argMultimap.getOptionArgs().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddProfilesToEventCommand.MESSAGE_USAGE));
         }
@@ -49,6 +48,10 @@ public class AddProfilesToEventCommandParser implements Parser<AddProfilesToEven
             indexList = ParserUtil.parseIndexes(argMultimap.getAllValues(PREFIX_PROFILE));
         } catch (ParseException pe) {
             throw new ParseException(AddProfilesToEventCommand.MESSAGE_INVALID_PROFILE_INDEX);
+        }
+
+        if (indexList.isEmpty()) {
+            throw new ParseException(AddProfilesToEventCommand.MESSAGE_NOT_ADDED);
         }
 
         return new AddProfilesToEventCommand(index, indexList);

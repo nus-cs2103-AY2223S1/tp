@@ -31,7 +31,7 @@ public class AddProfilesToEventCommand extends EventCommand {
             + PREFIX_PROFILE + "PROFILE_INDEX...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PROFILE + "1 "
-            + PREFIX_PROFILE + "3 ";
+            + PREFIX_PROFILE + "3";
 
     public static final String MESSAGE_EDIT_ATTENDEES_SUCCESS = "Edited list of attendees of the event:\n%1$s";
     public static final String MESSAGE_HELP = "Adds existing profiles to an existing event as "
