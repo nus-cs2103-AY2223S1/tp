@@ -19,6 +19,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     // Internal Id counters
+    private boolean hasLoadedInternship = false;
+    private boolean hasLoadedPerson = false;
     private int personIdCounter = 0;
     private int internshipIdCounter = 0;
 
@@ -67,6 +69,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @return A unique Id for a newly created Person.
      */
     public int getNextPersonId() {
+        updateNextPersonId();
         return personIdCounter;
     }
 
@@ -76,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @return A unique Id for a newly created Internship.
      */
     public int getNextInternshipId() {
+        updateNextInternshipId();
         return internshipIdCounter;
     }
 
@@ -83,22 +87,32 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates the next PersonId to be 1 + the largest PersonId in the list.
      */
     public void updateNextPersonId() {
-        for (Person p : persons) {
-            if (p.getPersonId().id >= personIdCounter) {
-                personIdCounter = p.getPersonId().id + 1;
+        if (!hasLoadedPerson) {
+            personIdCounter = -1;
+            for (Person p : persons) {
+                if (p.getPersonId().id > personIdCounter) {
+                    personIdCounter = p.getPersonId().id;
+                }
             }
+            hasLoadedPerson = true;
         }
+        personIdCounter++;
     }
 
     /**
      * Updates the next InternshipId to be 1 + the largest InternshipId in the list.
      */
     public void updateNextInternshipId() {
-        for (Internship i : internships) {
-            if (i.getInternshipId().id >= internshipIdCounter) {
-                internshipIdCounter = i.getInternshipId().id + 1;
+        if (!hasLoadedInternship) {
+            internshipIdCounter = -1;
+            for (Internship i : internships) {
+                if (i.getInternshipId().id > internshipIdCounter) {
+                    internshipIdCounter = i.getInternshipId().id;
+                }
             }
+            hasLoadedInternship = true;
         }
+        internshipIdCounter++;
     }
 
     /**
@@ -110,8 +124,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setInternships(newData.getInternshipList());
 
-        updateNextPersonId();
-        updateNextInternshipId();
+        hasLoadedInternship = false;
+        hasLoadedPerson = false;
     }
 
     //// person-level operations
@@ -136,8 +150,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.findById(personId);
     }
 
+    @Override
+    public String findPersonNameById(PersonId personId) {
+        Person p = findPersonById(personId);
+        return p == null ? null : p.getName().toString();
+    }
+
     public Internship findInternshipById(InternshipId internshipId) {
         return internships.findById(internshipId);
+    }
+
+    @Override
+    public String findInternshipNameById(InternshipId internshipId) {
+        Internship i = findInternshipById(internshipId);
+        return i == null ? null : i.getDisplayName().toString();
     }
 
     /**
@@ -146,15 +172,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates the personIdCounter to avoid duplicate Ids.
      */
     public void addPerson(Person p) {
-        updateNextPersonId();
-
         persons.add(p);
 
-        InternshipId internshipId = p.getInternshipId();
-        if (internshipId != null) {
-            // TODO: Find the associated Internship via Id,
-            //  then set the contactPersonId of the Internship to p.getPersonId().
-            //  Requires new Set method.
+        Internship i = findInternshipById(p.getInternshipId());
+        if (i != null) {
+            Internship linkedI = new Internship(
+                    i.getInternshipId(),
+                    i.getCompanyName(),
+                    i.getInternshipRole(),
+                    i.getInternshipStatus(),
+                    p.getPersonId(),
+                    i.getInterviewDate()
+            );
+            setInternship(i, linkedI);
         }
     }
 
@@ -164,15 +194,20 @@ public class AddressBook implements ReadOnlyAddressBook {
      * * Updates the internshipIdCounter to avoid duplicate Ids.
      */
     public void addInternship(Internship i) {
-        updateNextInternshipId();
-
         internships.add(i);
 
-        PersonId contactPersonId = i.getContactPersonId();
-        if (contactPersonId != null) {
-            // TODO: Find the associated Person via Id,
-            //  then set internshipId of the Person to i.getInternshipId().
-            //  Requires new Set method.
+        Person p = findPersonById(i.getContactPersonId());
+        if (p != null) {
+            Person linkedP = new Person(
+                    p.getPersonId(),
+                    p.getName(),
+                    p.getEmail(),
+                    p.getPhone(),
+                    i.getInternshipId(),
+                    p.getTags(),
+                    p.getCompany()
+            );
+            setPerson(p, linkedP);
         }
     }
 
@@ -199,6 +234,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+
+        Internship i = findInternshipById(key.getInternshipId());
+        if (i != null) {
+            Internship linkedI = new Internship(
+                    i.getInternshipId(),
+                    i.getCompanyName(),
+                    i.getInternshipRole(),
+                    i.getInternshipStatus(),
+                    null,
+                    i.getInterviewDate()
+            );
+            setInternship(i, linkedI);
+        }
     }
 
     /**
@@ -207,6 +255,20 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeInternship(Internship key) {
         internships.remove(key);
+
+        Person p = findPersonById(key.getContactPersonId());
+        if (p != null) {
+            Person linkedP = new Person(
+                    p.getPersonId(),
+                    p.getName(),
+                    p.getEmail(),
+                    p.getPhone(),
+                    null,
+                    p.getTags(),
+                    p.getCompany()
+            );
+            setPerson(p, linkedP);
+        }
     }
 
     //// util methods

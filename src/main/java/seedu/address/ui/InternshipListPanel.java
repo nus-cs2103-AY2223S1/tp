@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.internship.Internship;
 
 /**
@@ -16,6 +17,7 @@ import seedu.address.model.internship.Internship;
 public class InternshipListPanel extends UiPart<Region> {
     private static final String FXML = "InternshipListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InternshipListPanel.class);
+    private ReadOnlyAddressBook addressBook;
 
     @FXML
     private ListView<Internship> internshipListView;
@@ -23,8 +25,9 @@ public class InternshipListPanel extends UiPart<Region> {
     /**
      * Creates a {@code InternshipListPanel} with the given {@code ObservableList}.
      */
-    public InternshipListPanel(ObservableList<Internship> internshipList) {
+    public InternshipListPanel(ObservableList<Internship> internshipList, ReadOnlyAddressBook addressBook) {
         super(FXML);
+        this.addressBook = addressBook;
         internshipListView.setItems(internshipList);
         internshipListView.setCellFactory(listView -> new InternshipListViewCell());
     }
@@ -41,7 +44,12 @@ public class InternshipListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new InternshipCard(internship, getIndex() + 1).getRoot());
+                //create internship card
+                InternshipCard newInternshipCard = new InternshipCard(internship, getIndex() + 1);
+                newInternshipCard.setContactPerson(
+                        addressBook.findPersonNameById(newInternshipCard.getContactPersonId()));
+
+                setGraphic(newInternshipCard.getRoot());
             }
         }
     }
