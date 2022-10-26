@@ -144,7 +144,7 @@ Note: Email cannot be empty. It must fulfil the above requirements.
 Note: Tags must contain at least 1 alphanumeric character and cannot contain spacings.
 ```
 
-Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS`
+Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
 Example:
 
@@ -330,15 +330,15 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                                                             |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE [t/TAG] `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000 t/python t/beginner` |
-| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431`                           |
-| Get help             | `help`                                                                                                                                                                                                                       |
-| List all students    | `list`                                                                                                                                                                                                                       |
-| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                                              |
-| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                                                |
-| Clear all students   | `clear`                                                                                                                                                                                                                      |
-| Exit the application | `exit`                                                                                                                                                                                                                       |
+| Action               | Format, Examples                                                                                                                                                                                                                |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000 t/python t/beginner` |
+| Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431`                              |
+| Get help             | `help`                                                                                                                                                                                                                          |
+| List all students    | `list`                                                                                                                                                                                                                          |
+| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                                                 |
+| Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                                                   |
+| Clear all students   | `clear`                                                                                                                                                                                                                         |
+| Exit the application | `exit`                                                                                                                                                                                                                          |
 
 [Back to top](#table-of-contents)
