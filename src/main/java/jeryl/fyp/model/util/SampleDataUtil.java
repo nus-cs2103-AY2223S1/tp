@@ -1,7 +1,11 @@
 package jeryl.fyp.model.util;
 
+import static jeryl.fyp.commons.core.Datetimes.ACCEPTABLE_DATETIME_FORMATS;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,7 +32,7 @@ public class SampleDataUtil {
         return new Student[] {
             new Student(new StudentName("Alex Yeoh"), new StudentId("A1438807T"), new Email("alexyeoh@example.com"),
                 new ProjectName("neural network"), new ProjectStatus("YTS"),
-                    getDeadlineList("CS2103 TP", "2022-12-15 12:30"),
+                    getDeadlineList("CS2103 TP", "15-12-2022 12:30"),
                     getTagSet("friends")),
             new Student(new StudentName("Bernice Yu"), new StudentId("A1272758C"), new Email("berniceyu@example.com"),
                 new ProjectName("Decision Tree"), new ProjectStatus("IP"),
@@ -43,10 +47,10 @@ public class SampleDataUtil {
                     getDeadlineList("Final check", "2022-12-08 16:00"), getTagSet("family")),
             new Student(new StudentName("Irfan Ibrahim"), new StudentId("A1492021I"), new Email("irfan@example.com"),
                 new ProjectName("computer graphics"), new ProjectStatus("IP"),
-                    getDeadlineList("resterization", "2022-11-15 18:00"), getTagSet("classmates")),
+                    getDeadlineList("resterization", "15-11-2022 18:00"), getTagSet("classmates")),
             new Student(new StudentName("Roy Balakrishnan"), new StudentId("A1624417P"), new Email("royb@example.com"),
                 new ProjectName("circuit design"), new ProjectStatus("DONE"),
-                    getDeadlineList("CS2100 lab", "2022-11-15 18:00"), getTagSet("colleagues"))
+                    getDeadlineList("CS2100 lab", "15-11-2022 18:00"), getTagSet("colleagues"))
         };
     }
 
@@ -68,14 +72,23 @@ public class SampleDataUtil {
     }
 
     public static DeadlineList getDeadlineList(String name, String datetime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         DeadlineList deadlines = new DeadlineList();
-        new DeadlineList().add(new Deadline(new DeadlineName(name), LocalDateTime.parse(datetime, formatter)));
+        deadlines.add(getDeadline(name, datetime));
         return deadlines;
     }
 
     public static Deadline getDeadline(String name, String datetime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return new Deadline(new DeadlineName(name), LocalDateTime.parse(datetime, formatter));
+        LocalDateTime parsedDatetime = null;
+        for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
+            try {
+                parsedDatetime = LocalDateTime.parse(datetime,
+                        DateTimeFormatter.ofPattern(dateTimeFormat)
+                                .withResolverStyle(ResolverStyle.SMART));
+                return new Deadline(new DeadlineName(name), parsedDatetime);
+            } catch (DateTimeParseException dtpe) {
+                // Go to the next dateTime format
+            }
+        }
+        return new Deadline(new DeadlineName(name), parsedDatetime);
     }
 }

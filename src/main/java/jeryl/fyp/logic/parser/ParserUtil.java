@@ -1,11 +1,13 @@
 package jeryl.fyp.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Datetimes.ACCEPTABLE_DATETIME_FORMATS;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_DEADLINE_RANK;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -158,64 +160,23 @@ public class ParserUtil {
 
     /**
      * Converts a datetime string to a LocalDateTime Object.
-     * @param dateTime A string in format: yyyy-MM-dd hh:mm.
+     * @param dateTime A string in format: dd-MM-yyyy HH:mm.
      * @return A LocalDateTime variable implied by the string.
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
     public static LocalDateTime parseDeadlineDatetime(String dateTime) throws ParseException {
-        String[] dateAndTime = dateTime.trim().split(" ");
-        String hour;
-        String min;
-        if (dateAndTime.length != 2) {
-            throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
-        } else {
-            String[] components = dateAndTime[1].strip().split(":", 2);
-            if (components.length != 2) {
-                throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
-            } else {
-                hour = components[0];
-                min = components[1];
-                if (hour.length() == 2 && min.length() == 2) {
-                    try {
-                        LocalDate date = parseLocalDate(dateAndTime[0]);
-                        LocalTime time = LocalTime.parse(dateAndTime[1]);
-                        return LocalDateTime.of(date, time);
-                    } catch (Exception e) {
-                        throw new ParseException("The correct Format: YYYY-MM-DD HH:mm. \nHH should be a number in "
-                                + "[0,23]; mm should be a number in [0,59]");
-                    }
-                }
-                throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
+        for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
+            try {
+                return LocalDateTime.parse(dateTime,
+                        DateTimeFormatter.ofPattern(dateTimeFormat)
+                                .withResolverStyle(ResolverStyle.SMART));
+            } catch (DateTimeParseException dtpe) {
+                // Go to the next dateTime format
             }
         }
-    }
-
-    /**
-     * Converts a datetime string to a LocalDate Object.
-     * @param date A string in format: yyyy-MM-dd.
-     * @return A LocalDate variable implied by the string.
-     * @throws ParseException
-     */
-    public static LocalDate parseLocalDate(String date) throws ParseException {
-        String[] components = date.strip().split("-", 3);
-        String year;
-        String month;
-        String day;
-        if (components.length != 3) {
-            throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
-        } else {
-            year = components[0];
-            month = components[1];
-            day = components[2];
-            if (year.length() == 4 && month.length() == 2 && day.length() == 2) {
-                try {
-                    return LocalDate.parse(date);
-                } catch (Exception e) {
-                    throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
-                }
-            }
-            throw new ParseException("The correct Format: YYYY-MM-DD HH:mm");
-        }
+        throw new ParseException("Invalid datetime format given!\n"
+                + "Consider using \"dd-MM-yyyy HH:mm\"\n"
+                + "Example: 20-10-2022 13:57");
     }
 
     /**
