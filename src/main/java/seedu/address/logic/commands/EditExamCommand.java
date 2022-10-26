@@ -94,9 +94,9 @@ public class EditExamCommand extends Command {
                 Optional<ButtonType> userInput = alert.showAndWait();
 
                 if (userInput.get() == ButtonType.YES) {
-                    return changeModAndUnlinkTasks(model, examToEdit, editedExam);
+                    return editExamAndUnlinkTasks(model, examToEdit, editedExam);
                 } else {
-                    return examNotEditAfterConfirmation(model);
+                    return examNotEditedAfterConfirmation(model);
                 }
             } else {
                 return editExamWithoutUnlinkingTasks(model, examToEdit, editedExam);
@@ -106,7 +106,7 @@ public class EditExamCommand extends Command {
         }
     }
 
-    private CommandResult changeModAndUnlinkTasks(Model model, Exam examToEdit, Exam editedExam) {
+    private CommandResult editExamAndUnlinkTasks(Model model, Exam examToEdit, Exam editedExam) {
         model.replaceExam(examToEdit, editedExam, false);
         model.unlinkTasksFromExam(examToEdit);
         model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
@@ -121,7 +121,7 @@ public class EditExamCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam));
     }
 
-    private CommandResult examNotEditAfterConfirmation(Model model) {
+    private CommandResult examNotEditedAfterConfirmation(Model model) {
         model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
         return new CommandResult("Exam is not edited.");
     }
