@@ -52,6 +52,8 @@ deactivate FindItemCommandParser
 TrackOParser --> LogicManager : command
 deactivate TrackOParser
 
+destroy FindItemCommandParser
+
 LogicManager -> FindItemCommand : execute(model)
 activate FindItemCommand
 
