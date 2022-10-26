@@ -107,12 +107,12 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPhone_nullEmail_throwsNullPointerException() {
+    public void hasPhone_nullPhone_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasPhone(null));
     }
 
     @Test
-    public void hasTelegram_nullEmail_throwsNullPointerException() {
+    public void hasTelegram_nullTelegram_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasTelegram(null));
     }
 
