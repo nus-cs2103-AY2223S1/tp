@@ -28,7 +28,7 @@ public class AddContactCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_MODULE + "{module_1} {module_2}...] "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM]...\n"
             + "Example: " + COMMAND_WORD + " "

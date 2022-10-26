@@ -47,7 +47,7 @@ public class EditContactCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_MODULE + "MODS] "
+            + "[" + PREFIX_MODULE + "{module_1} {module_2}...] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM]...\n"
