@@ -63,4 +63,12 @@ public class UnbookCommand extends VenueCommand implements ModelCommand {
         }
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnbookCommand // instanceof handles nulls
+                && bookingDescriptor.equals(((UnbookCommand) other).bookingDescriptor)
+                && super.equals(other));
+    }
+
 }

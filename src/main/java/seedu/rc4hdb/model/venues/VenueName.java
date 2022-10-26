@@ -37,11 +37,11 @@ public class VenueName extends StringField {
         return test.matches(VALIDATION_REGEX);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return this == other
-                || ((other instanceof VenueName)
-                && value.equalsIgnoreCase(((VenueName) other).value));
+    /**
+     * Checks if the venue names are the same.
+     */
+    public boolean isSameVenueName(VenueName other) {
+        return value.equalsIgnoreCase(other.value);
     }
 
 }
