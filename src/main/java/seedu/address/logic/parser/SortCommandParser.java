@@ -6,7 +6,7 @@ import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input argument and creates a new SortMeetingCommand object
+ * Parses input argument and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
     @Override
