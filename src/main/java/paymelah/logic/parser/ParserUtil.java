@@ -335,7 +335,14 @@ public class ParserUtil {
         return presentCount == 1;
     }
 
-    public static PersonDescriptor argumentMultimapToPersonDescriptor(ArgumentMultimap argumentMultimap) throws ParseException {
+    /**
+     * Reads the given {@code ArgumentMultimap} to create a {@code PersonDescriptor}.
+     * @param argumentMultimap the {@code ArgumentMultimap} to read values from
+     * @return the created {@code PersonDescriptor}
+     * @throws ParseException if a prefix cannot be parsed
+     */
+    public static PersonDescriptor argumentMultimapToPersonDescriptor(ArgumentMultimap argumentMultimap)
+            throws ParseException {
         PersonDescriptor personDescriptor = new PersonDescriptor();
 
         if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -379,7 +386,8 @@ public class ParserUtil {
      * Parses {@code Collection<String> descriptions} into a {@code Set<Description>}
      * if {@code descriptions} is non-empty.
      */
-    private static Optional<Set<Description>> parseDescriptionsForDescriptor(Collection<String> descriptions) throws ParseException {
+    private static Optional<Set<Description>> parseDescriptionsForDescriptor(Collection<String> descriptions)
+            throws ParseException {
         assert descriptions != null;
 
         if (descriptions.isEmpty()) {
