@@ -70,7 +70,7 @@ Adds a contact.
 
 Format: `add_contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 A contact can have any number of tags (including 0)
 </div>
 
@@ -87,7 +87,7 @@ Format: `list_contact`
 
 ### Finding contacts by name: `find_contact`
 
-Finds contacts whose names contain any of the given keywords.
+Find contacts whose names contain any of the given keywords.
 
 Format: `find_contact KEYWORD [MORE_KEYWORDS]`
 
@@ -139,7 +139,7 @@ Examples:
 - `list_contact` followed by `delete_contact 2` deletes the 2nd contact.
 - `find_contact Betsy` followed by `delete_contact 1` deletes the 1st contact in the results of the `find_contact` command.
 
-### Creating a new task: `add_task`
+### Adding a task: `add_task`
 
 Adds a task to the task list.
 
@@ -187,17 +187,19 @@ Examples:
 
 Edits an existing task in task list.
 
-Format: `edit_task INDEX [n/NAME] [c/CONTACT_INDEX]`
+Format: `edit_task INDEX [n/NAME] [d/DESCRIPTION] [dl/DEADLINE] [c/CONTACT_INDEX]`
 
 - Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
+- Deadline must be in the format of **`dd-MM-yyyy HHmm`**.
 - You can remove any associated contacts by typing `c/` without
   specifying any tags after it.
 
 Examples:
 
-- `edit_task 1 n/Gym` Edits the task name of the 1st task to Gym.
+- `edit_task 1 n/Client meeting d/Gather user stories` Edits the task name and description of the 1st task to `Client meeting` and `Gather user stories` respectively.
+- `edit_task 2 dl/06-12-2022 1200` Edits the deadline of the 2nd task to be `06-12-2022 1200`.
 - `edit_task 3 n/Product meeting c/3` Edits the task name and associated contact of the 3rd task to be `Team meeting` and the 3rd contact respectively.
 
 ### Deleting tasks: `delete_task`
@@ -227,7 +229,7 @@ Swift+ data are saved in the hard disk automatically after any command that chan
 
 Swift+ data are saved as a JSON file `[JAR file location]/data/swift+.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution** <br>
 If your changes to the data file makes its format invalid, Swift+ will discard all data and start with an empty data file at the next run.
 </div>
 
