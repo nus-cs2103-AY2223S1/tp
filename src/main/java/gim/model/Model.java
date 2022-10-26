@@ -1,10 +1,13 @@
 package gim.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import gim.commons.core.GuiSettings;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
+import gim.model.exercise.Name;
 import javafx.collections.ObservableList;
 
 /**
@@ -64,6 +67,19 @@ public interface Model {
     void deleteExercise(Exercise target);
 
     /**
+     * Returns the Exercise with the highest weight, with Name {@code exercises}.
+     * @param exerciseName Name of exercise.
+     * @return Exercise containing the highest weight.
+     */
+    Exercise getExercisePR(Name exerciseName);
+
+    /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    ArrayList<Exercise> getAllExercisePRs();
+
+    /**
      * Adds the given exercise.
      * {@code exercise} can already exist in the exercise tracker.
      */
@@ -77,12 +93,39 @@ public interface Model {
      */
     void setExercise(Exercise target, Exercise editedExercise);
 
-    /** Returns an unmodifiable view of the filtered exercise list */
+    /**
+     * Returns a view of the filtered exercise list.
+     */
     ObservableList<Exercise> getFilteredExerciseList();
 
     /**
-     * Updates the filter of the filtered exercise list to filter by the given {@code predicate}.
+     * Returns a copy of the hashmap of Exercises stored.
+     */
+    ExerciseHashMap getExerciseHashMap();
+
+    /**
+     * Resets the filtered exercise list to default order and updates filter of filtered list
+     * by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
+
+    /**
+     * Filters the filtered exercise list by updating the filter of filtered list
+     * by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void filterFilteredExerciseList(Predicate<Exercise> predicate);
+
+    /**
+     * Sorts the filtered exercise list and updates filter of filtered list
+     * by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void sortFilteredExerciseList(Predicate<Exercise> predicate);
+
+    /**
+     * Resets the displayed exercise list to the default ordering.
+     */
+    void resetDisplayedList();
 }

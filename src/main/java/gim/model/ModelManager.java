@@ -4,12 +4,15 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import gim.commons.core.GuiSettings;
 import gim.commons.core.LogsCenter;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
+import gim.model.exercise.Name;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -99,6 +102,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Exercise getExercisePR(Name exerciseName) {
+        return exerciseTracker.getExercisePR(exerciseName);
+    }
+
+    @Override
+    public ArrayList<Exercise> getAllExercisePRs() {
+        return exerciseTracker.getAllExercisePRs();
+    }
+
+    @Override
     public Exercise addExercise(Exercise exercise) {
         Exercise added = exerciseTracker.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
@@ -108,7 +121,6 @@ public class ModelManager implements Model {
     @Override
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
-
         exerciseTracker.setExercise(target, editedExercise);
     }
 
@@ -126,7 +138,28 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredExerciseList(Predicate<Exercise> predicate) {
         requireNonNull(predicate);
+        resetDisplayedList();
         filteredExercises.setPredicate(predicate);
+    }
+
+    @Override
+    public void filterFilteredExerciseList(Predicate<Exercise> predicate) {
+        requireNonNull(predicate);
+        FilteredList<Exercise> filteredList = new FilteredList<>(this.exerciseTracker.getUnmodifiableList());
+        filteredList.setPredicate(predicate);
+        exerciseTracker.filterDisplayedList(filteredList);
+    }
+
+    @Override
+    public void sortFilteredExerciseList(Predicate<Exercise> predicate) {
+        requireNonNull(predicate);
+        exerciseTracker.sortDisplayedList();
+        filteredExercises.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetDisplayedList() {
+        exerciseTracker.resetDisplayedList();
     }
 
     @Override
@@ -146,6 +179,10 @@ public class ModelManager implements Model {
         return exerciseTracker.equals(other.exerciseTracker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredExercises.equals(other.filteredExercises);
+    }
+
+    public ExerciseHashMap getExerciseHashMap() {
+        return exerciseTracker.getExerciseHashMap();
     }
 
 }

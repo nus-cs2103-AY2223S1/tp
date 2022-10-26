@@ -129,6 +129,7 @@ public class MainWindow extends UiPart<Stage> {
 
         exerciseListWindow = new SavedExerciseListWindow();
         savedExerciseListPlaceholder.getChildren().add(exerciseListWindow.getRoot());
+        exerciseListWindow.setExerciseHashMap(logic.getExerciseHashmap());
     }
 
     /**
