@@ -150,6 +150,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+        resultDisplay.setFeedbackToUser("Welcome back! Try typing addp for starters!");
     }
 
     void show() {
