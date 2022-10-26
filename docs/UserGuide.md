@@ -84,7 +84,8 @@ Also contains a link to this User Guide._
 
 ### Listing all eateries : `list`
 
-_Lists out all eateries in NUSEatWhere database._
+_Lists out all eateries in NUSEatWhere database. <br>
+This can be used after a `find` command to return the list to its default state (all eateries displayed)._
 
 **Format:** `list [-h]`
 
@@ -115,6 +116,12 @@ Note:
   e.g. `find coffee cafe` will return eateries with either `coffee` or `cafe` in their name.
 
 Example: `find pasta -r 3`
+
+Below is an example of what the list would look like when using the wildcard `-r` command.
+The command used is shown on the command line. <br>
+Note how only 2 random eateries with "mala" in their names are shown. 
+![Ui](images/user-guide/UgFindWildcard.png)
+
 
 <br>
 
@@ -207,6 +214,10 @@ _Remove custom tag(s) from eatery._
 `-h`: displays help message (specific to untag)<br><br>
 Example: `untag 1 -t coffee -t tea`
 
+Below is a comparison between when the store at ID 50 is `tag[ged]` _(left)_ then `untag[ged]` _(right)_.
+The commands used are shown on the command line. <br>
+Note how the blue "cafe" tag on store 50 disappears after the untag command.
+![Ui](images/user-guide/UgTagUntagComparison.png)
 <br>
 
 ### Add eatery: `add`
@@ -239,6 +250,10 @@ _Deletes an eatery from NUSEatWhere's database_
 `-h`: displays help message (specific to delete)<br><br>
 Example: `delete 3`
 
+Below is a comparison between when the store at ID 70 is `add[ed]` _(left)_ then `delet[ed]` _(right)_.
+The commands used are shown on the command line. <br>
+Note how the eatery at index 70 disappears after the delete command.
+![Ui](images/user-guide/UgAddDeleteComparison.png)
 <br>
 
 ### Favourite/Unfavourite `[coming in later versions]`
