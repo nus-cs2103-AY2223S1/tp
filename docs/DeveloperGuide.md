@@ -7,26 +7,26 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **2. Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **3. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## *4. *Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 4.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -67,7 +67,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -87,7 +87,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
-### Logic component
+### 4.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -116,7 +116,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 4.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -131,7 +131,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
-### Storage component
+### 4.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -142,17 +142,17 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 4.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Hide Command
+### 5.1 Hide Command
 
 In order to get a clearer view by archiving overdue and completed tasks whenever a user enters the command. Hidden (archived) tasks will still be stored and can be retrieved using `listAllCommand`.    
 
@@ -252,9 +252,9 @@ _{more aspects and alternatives to be added}
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Mark/unmark feature
+### 5.2 Mark/unmark feature
 
-#### Implementation
+#### 5.2.1 Implementation
 
 The mark/unmark feature marks a task in the task list as done/not done respectively. Its mechanism is facilitated by `MarkCommand` and `UnmarkCommand`. They both extend `Command`, overriding the `execute` method.
 The implementation of `mark` and `unmark` is such that a task being marked or unmarked is effectively replaced by an identical task with a modified `isDone` field in the task list.
@@ -263,9 +263,9 @@ Below is the sequence diagram for an execution of `mark <index>`, assuming `<ind
 
 ![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
 
-### Returning to a previous command 
+### 5.3 Returning to a previous command 
 
-#### Implementation 
+#### 5.3.1 Implementation 
 
 This feature allows the user to traverse through past commands via the up and down keys on the keyboard, similar to how it works in a terminal. 
 
@@ -291,7 +291,7 @@ The following activity diagram summarizes what happens when a user clicks on the
 
 ![UpDownKeyActivityDiagram](images/UpDownKeyActivityDiagram.png)
 
-#### Design considerations: 
+#### 5.3.2 Design considerations: 
 
 **Aspect: How command history is stored:** 
 
@@ -304,7 +304,7 @@ The following activity diagram summarizes what happens when a user clicks on the
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **6. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -314,11 +314,11 @@ The following activity diagram summarizes what happens when a user clicks on the
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **7. Appendix: Requirements**
 
-### Product scope
+### 7.1 Product scope
 
-**Target user profile**:
+**7.1.1 Target user profile**:
 
 * tech-savvy
 * university student
@@ -327,10 +327,10 @@ The following activity diagram summarizes what happens when a user clicks on the
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage module tasks faster than a typical mouse/GUI driven app and organise them by certain parameters
+**7.1.2 Value proposition**: manage module tasks faster than a typical mouse/GUI driven app and organise them by certain parameters
 
 
-### User stories
+### 7.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -352,9 +352,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 
-### Use cases
+### 7.3 Use cases
 
-Unless specified otherwise, the **System** is the `NotioNUS` application and the **Actor** is the `user`.
+Unless specified otherwise, the **System** is the `NotionUS` application and the **Actor** is the `user`.
 
 **Use Case: UC1 - Add a task**
 
@@ -427,7 +427,7 @@ Unless specified otherwise, the **System** is the `NotioNUS` application and the
     Use case starts from 1.
 
 
-### Non-Functional Requirements
+### 7.4 Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed. (compatibility) 
 2. Should be able to hold up to 1000 users without a noticeable lag in performance for typical usage. (performance)
@@ -449,14 +449,14 @@ Unless specified otherwise, the **System** is the `NotioNUS` application and the
 
 *{More to be added}*
 
-### Glossary
+### 7.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Tag**: A user created tag that is linked to a task
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **8 Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -465,7 +465,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 8.1 Launch and shutdown
 
 1. Initial launch
 
@@ -482,11 +482,11 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### 8.2 Deleting a task
 
-1. Deleting a person while all persons are being shown
+1. Deleting a task while all tasks are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -499,7 +499,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 8.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
