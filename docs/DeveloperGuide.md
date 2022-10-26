@@ -39,9 +39,18 @@ Choose a section from the table of contents below to learn more about how RC4HDB
     * [Saving data](#saving-data)
     
 ---
-## **Acknowledgements** (OUTDATED)
+## **Acknowledgements** 
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+[comment]: <> (* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
+
+RC4HDB is built-upon (AddressBook-Level3)[https://github.com/se-edu/addressbook-level3/tree/master/docs], a sample project that provides 
+a starting point for Software Engineering (SE) students enrolled in CS2103T. 
+
+### Credits for code adapted from external sources
+
+1. `populateTagColumn` in `ResidentTableView` was adapted from [this thread](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items) on StackOverflow. 
+2. `populateIndexColumn` in `ResidentTableView`, and `populateDayColumn` in `BookingTableView` was adapted from [this thread](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx) on StackOverflow.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
