@@ -12,5 +12,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_STUDENT_ID = "The student ID provided does not exist!";
     public static final String MESSAGE_INVALID_STUDENT_NAME = "The student name provided does not exist!";
     public static final String MESSAGE_PERSONS_LISTED_IN_CLASS = "There are %1$d students in this class!";
-
+    public static final String MESSAGE_SINGLE_PERSON_LISTED_IN_CLASS = "There is %1$d student in this class!";
 }
