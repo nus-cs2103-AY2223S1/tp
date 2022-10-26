@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
+import static seedu.address.logic.parser.ParserUtil.parseIndexValidity;
 import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ParserUtil.parseStatusValidity;
 import static seedu.address.logic.parser.ParserUtil.parseTitleValidity;
@@ -177,9 +178,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
     private FindIssueCommand parseFindIssueCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_PROJECT_NAME, PREFIX_TITLE,
-                        PREFIX_STATUS, PREFIX_URGENCY);
+                        PREFIX_STATUS, PREFIX_URGENCY, PREFIX_PROJECT_ID);
 
-        if (noPrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_URGENCY, PREFIX_STATUS, PREFIX_TITLE)
+        if (noPrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_URGENCY, PREFIX_STATUS,
+                PREFIX_TITLE, PREFIX_PROJECT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE));
@@ -202,6 +204,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             parseNameValidity(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         }
 
+        if (anyPrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        }
+
         if (anyPrefixesPresent(argMultimap, PREFIX_URGENCY)) {
             parseUrgencyValidity(argMultimap.getValue(PREFIX_URGENCY).get());
         }
@@ -214,7 +220,8 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                 new IssueContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_TITLE),
                         argMultimap.getAllValues(PREFIX_STATUS),
                         argMultimap.getAllValues(PREFIX_URGENCY),
-                        argMultimap.getAllValues(PREFIX_PROJECT_NAME));
+                        argMultimap.getAllValues(PREFIX_PROJECT_NAME),
+                        argMultimap.getAllValues(PREFIX_PROJECT_ID));
 
 
         return new FindIssueCommand(predicate);

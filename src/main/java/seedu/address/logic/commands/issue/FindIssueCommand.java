@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
@@ -27,13 +28,15 @@ public class FindIssueCommand extends IssueCommand {
             + PREFIX_TITLE + "TITLE "
             + PREFIX_STATUS + "STATUS "
             + PREFIX_URGENCY + "URGENCY "
-            + PREFIX_PROJECT_NAME + "PROJECT NAME \n"
+            + PREFIX_PROJECT_NAME + "PROJECT NAME "
+            + PREFIX_PROJECT_ID + "PROJECT ID "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_TITLE + "This is an issue "
             + PREFIX_STATUS + "COMPLETED "
             + PREFIX_URGENCY + "HIGH "
-            + PREFIX_PROJECT_NAME + "DevEnable ";
+            + PREFIX_PROJECT_NAME + "DevEnable "
+            + PREFIX_PROJECT_ID + "1 ";
 
     private final IssueContainsKeywordsPredicate predicate;
 
