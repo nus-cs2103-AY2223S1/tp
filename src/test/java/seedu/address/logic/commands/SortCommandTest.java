@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.sort.SortByAppointment;
 import seedu.address.logic.parser.sort.SortByIncome;
+import seedu.address.logic.parser.sort.SortByMonthly;
 import seedu.address.logic.parser.sort.SortByName;
 import seedu.address.logic.parser.sort.SortByRiskTag;
 import seedu.address.model.Model;
@@ -54,12 +55,15 @@ public class SortCommandTest {
         SortCommand sortByRiskTagCommand = new SortCommand(sortByRiskTag, "risk");
         SortByIncome sortByIncome = new SortByIncome("asc");
         SortCommand sortByIncomeCommand = new SortCommand(sortByIncome, "income");
+        SortByMonthly sortByMonthly = new SortByMonthly("asc");
+        SortCommand sortByMonthlyCommand = new SortCommand(sortByMonthly, "monthly");
 
         // same object -> returns true
         assertTrue(sortByName.equals(sortByName));
         assertTrue(sortByAppointment.equals(sortByAppointment));
         assertTrue(sortByRiskTag.equals(sortByRiskTag));
         assertTrue(sortByIncome.equals(sortByIncome));
+        assertTrue(sortByMonthly.equals(sortByMonthly));
 
         // null -> returns false
         assertFalse(sortByAppointment.equals(null));
@@ -77,9 +81,13 @@ public class SortCommandTest {
         SortCommand sortByIncomeCommandClone = new SortCommand(sortByIncome, "income");
         assertTrue(sortByIncomeCommand.equals(sortByIncomeCommandClone));
 
+        SortCommand sortByMonthlyCommandClone = new SortCommand(sortByMonthly, "monthly");
+        assertTrue(sortByMonthlyCommand.equals(sortByMonthlyCommandClone));
+
         // different types -> returns false
         assertFalse(sortByNameCommand.equals(sortByRiskTagCommand));
         assertFalse(sortByIncomeCommand.equals(sortByAppointmentCommand));
+        assertFalse(sortByMonthlyCommand.equals(sortByAppointmentCommand));
 
 
     }
@@ -187,4 +195,31 @@ public class SortCommandTest {
         SortCommand sortCommand = new SortCommand(new SortByIncome("desc"), "income");
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_sortByMonthly_success() {
+        this.expectedModel = new ModelManager();
+        Person[] persons = {ALICE, ELLE, GEORGE, FIONA};
+        for (Person p: persons) {
+            expectedModel.addPerson(p);
+        }
+
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "monthly");
+        SortCommand sortCommand = new SortCommand(new SortByMonthly("asc"), "monthly");
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sortByMonthlyDesc_success() {
+        this.expectedModel = new ModelManager();
+        Person[] persons = {FIONA, GEORGE, ELLE, ALICE};
+        for (Person p: persons) {
+            expectedModel.addPerson(p);
+        }
+
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "monthly");
+        SortCommand sortCommand = new SortCommand(new SortByMonthly("desc"), "monthly");
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
 }
