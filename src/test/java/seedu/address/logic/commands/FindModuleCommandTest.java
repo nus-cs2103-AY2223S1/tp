@@ -18,8 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleDetailsContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindModuleCommand}.
@@ -58,7 +57,7 @@ public class FindModuleCommandTest {
         String expectedMessage = String.format(MESSAGE_MODULES_LISTED_OVERVIEW, 0);
         List<String> keyword = Collections.emptyList();
         FindModuleCommand command = new FindModuleCommand(keyword);
-        expectedModel.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(keyword));
+        expectedModel.updateFilteredModuleList(new ModuleDetailsContainsKeywordsPredicate(keyword));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
     }
@@ -72,15 +71,15 @@ public class FindModuleCommandTest {
         keywords.add("cs2103t");
         keywords.add("cs3230");
         FindModuleCommand command = new FindModuleCommand(keywords);
-        expectedModel.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(keywords));
+        expectedModel.updateFilteredModuleList(new ModuleDetailsContainsKeywordsPredicate(keywords));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(getTypicalModules(), model.getFilteredModuleList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code ModuleDetailsContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private ModuleDetailsContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new ModuleDetailsContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

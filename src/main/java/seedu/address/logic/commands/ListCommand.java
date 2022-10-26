@@ -14,7 +14,10 @@ public class ListCommand extends Command {
     public static final String COMMAND_TYPE = "list";
     public static final String COMMAND_WORD = COMMAND_TYPE;
 
-    public static final String MESSAGE_SUCCESS = "Listed all modules and persons";
+    public static final String MESSAGE_SUCCESS_PERSON = "Listed all persons! ";
+    public static final String MESSAGE_SUCCESS_MODULE = "Listed all modules! ";
+    public static final String MESSAGE_NO_CONTACTS_IN_LIST = "You have not added any contacts yet! ";
+    public static final String MESSAGE_NO_MODULES_IN_LIST = "You have not added any module yet! ";
 
 
     @Override
@@ -22,6 +25,10 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        int num_Person = model.getFilteredPersonList().size();
+        int num_Module = model.getFilteredModuleList().size();
+        String personResult = num_Person == 0 ? MESSAGE_NO_CONTACTS_IN_LIST : MESSAGE_SUCCESS_PERSON;
+        String moduleResult = num_Module == 0 ? MESSAGE_NO_MODULES_IN_LIST : MESSAGE_SUCCESS_MODULE;
+        return new CommandResult(personResult + moduleResult);
     }
 }

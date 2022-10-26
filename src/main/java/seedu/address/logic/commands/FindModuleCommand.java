@@ -7,9 +7,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.module.LectureDetailsContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.module.TutorialDetailsContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleDetailsContainsKeywordsPredicate;
 
 /**
  * Finds and lists all modules in address book whose name contains any of the argument keywords.
@@ -34,25 +32,10 @@ public class FindModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        //filter by name first
-        model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(keywords));
-        int currentFilter = 1;
-        //while filtered list is still empty, keep trying new field
-        while (currentFilter < 3) {
-            if (model.getFilteredModuleList().size() != 0) {
-                break;
-            } else if (currentFilter == 1) {
-                model.updateFilteredModuleList(new LectureDetailsContainsKeywordsPredicate(keywords));
-                currentFilter++;
-            } else {
-                model.updateFilteredModuleList(new TutorialDetailsContainsKeywordsPredicate(keywords));
-                currentFilter++;
-            }
-        }
+        model.updateFilteredModuleList(new ModuleDetailsContainsKeywordsPredicate(keywords));
         return new CommandResult(
-            String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
+                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
     }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

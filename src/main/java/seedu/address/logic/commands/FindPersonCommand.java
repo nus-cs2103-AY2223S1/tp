@@ -7,10 +7,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PersonModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.PersonDetailsContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose fields contain any of the argument keywords.
@@ -35,24 +32,7 @@ public class FindPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        //filter by name first
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(keywords));
-        int currentFilter = 1;
-        //while filtered list is still empty, keep trying new field
-        while (currentFilter < 4) {
-            if (model.getFilteredPersonList().size() != 0) {
-                break;
-            } else if (currentFilter == 1) {
-                model.updateFilteredPersonList(new PersonModuleCodeContainsKeywordsPredicate(keywords));
-                currentFilter++;
-            } else if (currentFilter == 2) {
-                model.updateFilteredPersonList(new EmailContainsKeywordsPredicate(keywords));
-                currentFilter++;
-            } else {
-                model.updateFilteredPersonList(new PhoneContainsKeywordsPredicate(keywords));
-                currentFilter++;
-            }
-        }
+        model.updateFilteredPersonList(new PersonDetailsContainsKeywordsPredicate(keywords));
         return new CommandResult(
             String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
