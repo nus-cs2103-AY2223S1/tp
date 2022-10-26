@@ -94,6 +94,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic.getObservableFields().addListener(getListChangeListener());
         this.logic.getObservableFolderPath().addListener(getFileChangeListener());
         this.logic.getObservableBookings().addListener(getBookingChangeListener());
+        this.logic.getObservableBookings().addListener(getViewingVenueChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -266,12 +267,24 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private ListChangeListener<Booking> getBookingChangeListener() {
+//        updateVenueLabels();
         return c -> bookingTableView.updateTable(logic.getObservableBookings());
     }
 
+    private ListChangeListener<Booking> getViewingVenueChangeListener() {
+        return c -> venueName.setText("Currently Viewing: " + logic.getObservableBookings().get(0).getVenueName().toString());
+    }
     private void setTabLabels() {
         this.residentTab.setText("Residents");
         this.venueTab.setText("Bookings");
     }
+//
+//    private void updateVenueLabels() {
+//        try {
+//            venueName.setText("Currently Viewing: " + logic.getObservableBookings().get(0).getVenueName().toString());
+//        } catch (IndexOutOfBoundsException e) {
+//            venueName.setText("Currently Viewing: " + logic.getObservableVenues().get(0).toString());
+//        }
+//    }
 
 }

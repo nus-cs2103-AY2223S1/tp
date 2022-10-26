@@ -14,6 +14,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="RC4HDB" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -44,12 +45,13 @@
             </Tab>
             <Tab fx:id="venueTab" closable="false" styleClass="tab">
                 <VBox fx:id="venueTabContainer" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-                    <VBox fx:id="bookingTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="bookingTableView" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                         <StackPane fx:id="bookingTableViewPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
-                    <HBox styleClass="venue-label" prefHeight="80.00" alignment="CENTER">
-                        <Label fx:id="venueName" prefHeight="40.00" minWidth="340.0" textAlignment="CENTER" styleClass="venue-label-text"/>
-                        <Label fx:id="allVenue" prefHeight="40.00" minWidth="340.0" textAlignment="RIGHT" styleClass="venue-label-text"/>
+                    <HBox styleClass="venue-label" prefHeight="80.00">
+                        <Label fx:id="venueName" prefHeight="40.00" minWidth="340.0" styleClass="venue-label-text" alignment="CENTER" HBox.hgrow="ALWAYS"/>
+                        <Region minWidth="400.0"/>
+                        <Label fx:id="allVenue" prefHeight="40.00" minWidth="340.0" styleClass="venue-label-text" alignment="CENTER" HBox.hgrow="ALWAYS"/>
                     </HBox>
                 </VBox>
             </Tab>
