@@ -38,7 +38,7 @@ public class TransactionUtil {
         sb.append(PREFIX_QUANTITY + transaction.getQuantity().quantity + " ");
         sb.append(PREFIX_GOODS + transaction.getGoods().goodsName + " ");
         sb.append(PREFIX_PRICE + transaction.getPrice().price + " ");
-        sb.append(PREFIX_DATE + transaction.getDate().date);
+        sb.append(PREFIX_DATE + transaction.getDate().date.toString());
         return sb.toString();
     }
 

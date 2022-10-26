@@ -14,16 +14,12 @@ public class Date {
 
     public static final DateTimeFormatter DEFAULT_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter NEW_PATTERN = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+    public static final DateTimeFormatter DISPLAY_PATTERN = DateTimeFormatter.ofPattern("d MMM yyyy");
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format DD/MM/YYYY";
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
-    public final String date;
-    private final LocalDate localDate;
-    private final String unformattedDate;
-
+    public final LocalDate date;
 
     /**
      * Constructs a {@code Date}.
@@ -33,9 +29,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        this.unformattedDate = date;
-        this.localDate = LocalDate.parse(date, dtf);
-        this.date = this.localDate.toString();
+        this.date = LocalDate.parse(date, NEW_PATTERN);
     }
 
     /**
@@ -43,7 +37,7 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDate.parse(test, dtf);
+            LocalDate.parse(test, NEW_PATTERN);
             String[] testArr = test.split("/");
             int day = Integer.parseInt(testArr[0]);
             int month = Integer.parseInt(testArr[1]);
@@ -68,11 +62,11 @@ public class Date {
 
     @Override
     public String toString() {
-        return date;
+        return date.format(DISPLAY_PATTERN);
     }
 
-    public String getUnformattedDate() {
-        return unformattedDate;
+    public String getDateInDdMmYyyy() {
+        return date.format(NEW_PATTERN);
     }
 
     @Override
@@ -83,7 +77,7 @@ public class Date {
     }
 
     public LocalDate getLocalDate() {
-        return this.localDate;
+        return this.date;
     }
 
 
@@ -93,6 +87,6 @@ public class Date {
      * @return True if current date is older than other date.
      */
     public boolean isOlderThan(Date date) {
-        return this.localDate.isBefore(date.localDate);
+        return this.date.isBefore(date.date);
     }
 }
