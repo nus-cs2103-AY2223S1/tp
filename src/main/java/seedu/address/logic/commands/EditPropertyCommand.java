@@ -162,7 +162,7 @@ public class EditPropertyCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, price, address, description);
+            return CollectionUtil.isAnyNonNull(name, price, address, description, address, characteristics, owner);
         }
 
         public void setName(PropertyName propertyName) {
