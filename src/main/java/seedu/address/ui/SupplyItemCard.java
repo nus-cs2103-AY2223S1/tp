@@ -129,12 +129,12 @@ public class SupplyItemCard extends UiPart<Region> {
         try {
             int parsedAmount = Integer.parseInt(input);
             if (parsedAmount >= 0) {
+                amountInput.setText(String.valueOf(parsedAmount));
                 changeIncDecHandler.accept(parsedAmount);
-            } else {
-                amountInput.setText(String.valueOf(amountInput.getText()));
             }
         } catch (NumberFormatException e) {
-            amountInput.setText(String.valueOf(1));
+            // No changes to value in TextField
+            return;
         }
     }
 }
