@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.ui.PersonProfile;
 
 /**
  * Represents a Person's net worth in the address book.
@@ -24,6 +25,20 @@ public class NetWorth {
         requireNonNull(netWorth);
         checkArgument(isValidNetWorth(netWorth), MESSAGE_CONSTRAINTS);
         value = netWorth;
+    }
+
+    /**
+     * Returns value of net worth.
+     */
+    public String getValue() {
+        return value;
+    }
+
+    /**
+     * Returns value of net worth if not null else, EMPTY_DISPLAY_VALUE.
+     */
+    public String getDisplayValue() {
+        return value == EMPTY_NETWORTH ? PersonProfile.EMPTY_DISPLAY_VALUE : value;
     }
 
     /**
