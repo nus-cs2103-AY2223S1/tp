@@ -4,10 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -102,9 +110,17 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        HashMap<Prefix, String> keywords = new HashMap<>();
+        keywords.put(PREFIX_NAME, "foo");
+        keywords.put(PREFIX_ADDRESS, "bar");
+        keywords.put(PREFIX_EMAIL, "baz");
+        keywords.put(PREFIX_PHONE, "");
+        keywords.put(PREFIX_SCHOOL, "");
+        keywords.put(PREFIX_LEVEL, "");
+        keywords.put(PREFIX_TAG, "");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")), listType);
+                FindCommand.COMMAND_WORD + " " + "n/" + keywords.get(PREFIX_NAME) + " a/" + keywords.get(PREFIX_ADDRESS)
+                        + " e/" + keywords.get(PREFIX_EMAIL), listType);
         assertEquals(new FindCommand(keywords), command);
     }
 

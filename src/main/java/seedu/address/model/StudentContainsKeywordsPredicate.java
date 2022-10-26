@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashMap;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.student.Student;

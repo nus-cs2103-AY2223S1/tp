@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX;
+import static seedu.address.commons.core.Messages.MESSAGE_KEYWORDS_WITHOUT_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_PREFIX_SPECIFIED;
 import static seedu.address.commons.core.Messages.MESSAGE_PREFIX_NOT_FOR_STUDENT;
 import static seedu.address.commons.core.Messages.MESSAGE_PREFIX_NOT_FOR_TUITIONCLASS;
@@ -169,6 +170,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(String.format(MESSAGE_PREFIX_NOT_FOR_TUITIONCLASS, FindCommand.MESSAGE_USAGE));
             }
             break;
+        }
+
+        // Check that there are no keywords without prefixes
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_KEYWORDS_WITHOUT_PREFIX, FindCommand.MESSAGE_USAGE));
         }
 
         // Check that there are no invalid prefixes
