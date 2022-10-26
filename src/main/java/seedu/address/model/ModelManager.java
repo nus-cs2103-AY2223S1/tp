@@ -360,12 +360,14 @@ public class ModelManager implements Model {
      */
     public boolean teamHasMember(Index p, Index t) {
         List<Team> teams = getFilteredTeamList();
+        List<Person> persons = getFilteredPersonList();
         requireNonNull(p);
         ObservableList<Person> memberList = null;
-        Team team = teams.get(t.getOneBased());
+        Team team = teams.get(t.getZeroBased());
+        Person person = persons.get(p.getZeroBased());
         memberList = team.getMemberList();
         for (int j = 0; j < memberList.size(); j++) {
-            if (memberList.contains(p)) {
+            if (memberList.contains(person)) {
                 return true;
             }
         }
