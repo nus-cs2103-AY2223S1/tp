@@ -28,7 +28,6 @@ public class EditBookCommand extends EditCommand {
                     + " book t/The Broken House");
 
     public static final String MESSAGE_EDIT_BOOK_SUCCESS = "Edited User: %1$s";
-    public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists.";
 
     private final Index index;
     private final EditBookDescriptor editBookDescriptor;
@@ -58,7 +57,7 @@ public class EditBookCommand extends EditCommand {
         Book editedBook = createEditedBook(bookToEdit, editBookDescriptor);
 
         if (!bookToEdit.equals(editedBook) && model.hasBook(editedBook)) {
-            throw new CommandException(MESSAGE_DUPLICATE_BOOK);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_BOOK);
         }
 
         model.setBook(bookToEdit, editedBook);

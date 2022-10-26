@@ -42,7 +42,6 @@ public class EditUserCommand extends EditCommand {
                     + PREFIX_EMAIL + "johndoe@example.com");
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited User: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the user list.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -72,7 +71,7 @@ public class EditUserCommand extends EditCommand {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PERSON);
         }
 
         model.setPerson(personToEdit, editedPerson);

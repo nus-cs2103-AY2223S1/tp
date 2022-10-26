@@ -6,6 +6,7 @@ import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
+import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.Model;
@@ -30,7 +31,6 @@ public class AddUserCommand extends AddCommand {
                     + PREFIX_TAG + "owesMoney");
 
     public static final String MESSAGE_SUCCESS = "New user added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This user already exists in the user list.";
 
     private final Person toAdd;
 
@@ -47,7 +47,7 @@ public class AddUserCommand extends AddCommand {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_PERSON);
         }
 
         model.addPerson(toAdd);

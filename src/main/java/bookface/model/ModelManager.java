@@ -3,6 +3,7 @@ package bookface.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -141,9 +142,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void loan(Person person, Book book) {
-        CollectionUtil.requireAllNonNull(person, book);
-        bookFace.loan(person, book);
+    public void loan(Person person, Book book, Date returnDate) {
+        CollectionUtil.requireAllNonNull(person, book, returnDate);
+        bookFace.loan(person, book, returnDate);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }

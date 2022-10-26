@@ -7,12 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import bookface.commons.core.GuiSettings;
+import bookface.commons.core.Messages;
 import bookface.logic.commands.CommandResult;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.BookFace;
@@ -48,7 +50,7 @@ public class AddUserCommandTest {
         AddUserCommand addCommand = new AddUserCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddUserCommand
+        assertThrows(CommandException.class, Messages
                 .MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
@@ -181,7 +183,7 @@ public class AddUserCommandTest {
         }
 
         @Override
-        public void loan(Person person, Book book) {
+        public void loan(Person person, Book book, Date returnDate) {
             throw new AssertionError("This method should not be called.");
         }
 

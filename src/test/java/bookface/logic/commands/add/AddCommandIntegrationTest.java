@@ -7,6 +7,7 @@ import static bookface.testutil.TypicalPersons.getTypicalBookFaceData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import bookface.commons.core.Messages;
 import bookface.model.Model;
 import bookface.model.ModelManager;
 import bookface.model.UserPrefs;
@@ -39,7 +40,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getBookFace().getPersonList().get(0);
-        assertCommandFailure(new AddUserCommand(personInList), model, AddUserCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddUserCommand(personInList), model, Messages.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

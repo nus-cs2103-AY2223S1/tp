@@ -63,6 +63,9 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
+        Button copyButton = (Button) super.getRoot().getScene().lookup("#copyButton");
+        copyButton.setOpacity(1);
+        copyButton.setText("Copy URL");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -85,6 +88,9 @@ public class HelpWindow extends UiPart<Stage> {
      * Focuses on the help window.
      */
     public void focus() {
+        Button copyButton = (Button) super.getRoot().getScene().lookup("#copyButton");
+        copyButton.setOpacity(1);
+        copyButton.setText("Copy URL");
         getRoot().requestFocus();
     }
 
@@ -97,5 +103,8 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+        Button copyButton = (Button) super.getRoot().getScene().lookup("#copyButton");
+        copyButton.setOpacity(0.5);
+        copyButton.setText("Copied");
     }
 }

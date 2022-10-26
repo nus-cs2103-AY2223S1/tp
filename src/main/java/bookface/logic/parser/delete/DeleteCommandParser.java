@@ -19,7 +19,6 @@ public class DeleteCommandParser extends CommandParser<DeleteCommand> {
         try {
             deleteType = DeleteSubcommand.valueOf(commandWord.toUpperCase());
         } catch (IllegalArgumentException e) {
-            //todo return Messages.UKNOWN COMMAND instead?
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteCommand.MESSAGE_USAGE));
         }

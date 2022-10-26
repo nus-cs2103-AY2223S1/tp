@@ -20,12 +20,7 @@ public class ReturnCommandParser implements Parseable<ReturnCommand> {
     @Override
     public ReturnCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ReturnCommand.MESSAGE_USAGE));
-        }
-
-        if (!trimmedArgs.matches(VALIDATION_REGEX)) {
+        if (trimmedArgs.isEmpty() || !trimmedArgs.matches(VALIDATION_REGEX)) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ReturnCommand.MESSAGE_USAGE));
         }
