@@ -3,6 +3,7 @@ package seedu.classify.logic.parser;
 import static seedu.classify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.classify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.classify.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.classify.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ public class ViewClassCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsViewClassCommand() {
         // no leading and trailing whitespaces
         ViewClassCommand expectedViewClassCommand =
                 new ViewClassCommand(new ClassPredicate(new Class("CLASS1")));

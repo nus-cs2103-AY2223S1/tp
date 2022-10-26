@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.classify.commons.core.Messages.MESSAGE_PERSONS_LISTED_IN_CLASS;
+import static seedu.classify.commons.core.Messages.MESSAGE_SINGLE_PERSON_LISTED_IN_CLASS;
 import static seedu.classify.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.classify.testutil.Assert.assertThrows;
 import static seedu.classify.testutil.TypicalStudents.DANIEL;
 import static seedu.classify.testutil.TypicalStudents.ELLE;
+import static seedu.classify.testutil.TypicalStudents.GEORGE;
 import static seedu.classify.testutil.TypicalStudents.getTypicalStudentRecord;
 
 import java.util.Arrays;
@@ -72,6 +75,16 @@ public class ViewClassCommandTest {
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, ELLE), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_singlePersonFound() {
+        String expectedMessage = String.format(MESSAGE_SINGLE_PERSON_LISTED_IN_CLASS, 1);
+        ClassPredicate predicate = preparePredicate("17S68");
+        ViewClassCommand command = new ViewClassCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(GEORGE), model.getFilteredStudentList());
     }
 
     /**
