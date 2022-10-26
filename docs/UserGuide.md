@@ -42,10 +42,11 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 **:information_source: Notes about the command format:**<br>
 
 * Quotes are optional for words (i.e. `add member "word"` and `add member word` are equivalent) when there is 
-   only one string argument. 
+   to be passed into commands. 
   * However, for words containing spaces, they should be surrounded with quotation marks. 
-     Otherwise, they will be treated as 2 separate words (i.e. `add member "two words"` and `add member two words` are 
-     not the same). 
+     Otherwise, they will be treated as 2 separate words (i.e. `add member "two words"` indicates that you are 
+    adding the member named `two words`, however, `add member two words` is adding the member named `two` with some 
+    other argument `word`)
 * Double <kbd>Tab</kbd> to autocomplete string values (Coming soon!)
 * Arguments are delimited with flags (`add member "word" --email="sample@email.com"`)
 </div>
@@ -104,14 +105,9 @@ names are case-sensitive.
 
 Format:
 * `delete member TEAM_MEMBER_INDEX`
-* `delete member --index=INDEX` (Coming soon!)
-* `delete member -i INDEX` (Coming soon!)
 
 Examples:
 * `delete member 2` will delete the second member of the current team.
-* `delete member --index=2`
-* `delete member -i 2`
-
 
 ### Listing all members of the team : `list members`
 
@@ -128,7 +124,7 @@ Format:
 * `add task TASK_NAME`
 
 Examples:
-*  `add task bake with butter` will add a task with the name "bake with butter" to the current team's task list.
+*  `add task "bake with butter"` will add a task with the name "bake with butter" to the current team's task list.
 *  `add task fry` will add a task with the name "fry" to the current team's task list.
 
 ### Assign task to team member: `assign task`
