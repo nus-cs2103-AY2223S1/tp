@@ -48,7 +48,7 @@ public class ApplicantUtil {
     public static String getEditApplicantDescriptorDetails(EditApplicantDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.getFullName()).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.getNumber()).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.getPhoneNumber()).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.getEmailAddress()).append(" "));
         descriptor.getScholarship()
                 .ifPresent(scholarship -> sb.append(PREFIX_SCHOLARSHIP)

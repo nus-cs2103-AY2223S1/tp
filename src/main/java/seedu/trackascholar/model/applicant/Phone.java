@@ -36,7 +36,7 @@ public class Phone {
     /**
      * Return phone number of applicant.
      */
-    public String getNumber() {
+    public String getPhoneNumber() {
         return value;
     }
 

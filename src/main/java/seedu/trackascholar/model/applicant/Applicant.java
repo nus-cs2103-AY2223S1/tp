@@ -72,7 +72,7 @@ public class Applicant {
     }
 
     public String getPhoneNumber() {
-        return phone.getNumber();
+        return phone.getPhoneNumber();
     }
 
     public Email getEmail() {
