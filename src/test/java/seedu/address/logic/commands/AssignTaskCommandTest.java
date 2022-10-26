@@ -188,8 +188,6 @@ public class AssignTaskCommandTest {
                 new Assignment(assignmentName)
         );
 
-        System.out.println(model.getFilteredGroupList());
-
         model.setPerson(personToAssignTask, editedPerson);
 
         assertCommandFailure(assignTaskCommand, model, AssignTaskCommand.MESSAGE_INVALID_PERSON_NOT_IN_GROUP);
