@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.testutil.Assert.assertThrows;
 
@@ -17,6 +18,8 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
@@ -35,6 +38,8 @@ public class CommandTestUtil {
     public static final String CLIENT_VALID_EMAIL_BOB = "bob@example.com";
     public static final String CLIENT_VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String CLIENT_VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_PRICE_AMY = "100000";
+    public static final String VALID_PRICE_BOB = "100000";
     public static final String CLIENT_VALID_TAG_HUSBAND = "husband";
     public static final String CLIENT_VALID_TAG_FRIEND = "friend";
 
@@ -51,11 +56,14 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_AMY = " " + CLIENT_VALID_EMAIL_AMY;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + CLIENT_VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + CLIENT_VALID_ADDRESS_BOB;
+    public static final String PRICE_DESC_AMY = " " + PREFIX_PRICE + VALID_PRICE_AMY;
+    public static final String PRICE_DESC_BOB = " " + PREFIX_PRICE + VALID_PRICE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + CLIENT_VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + CLIENT_VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE; // empty string not allowed for price
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -67,6 +75,7 @@ public class CommandTestUtil {
     public static final EditPropertyDescriptor PROPERTY_DESC_WHISTLER;
 
     static {
+
         CLIENT_DESC_AMY = new EditClientDescriptorBuilder().withName(CLIENT_VALID_NAME_AMY)
             .withAddress(CLIENT_VALID_ADDRESS_AMY)
             .withTags(CLIENT_VALID_TAG_FRIEND).build();
@@ -117,7 +126,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         PropertyDirectory expectedPropertyDirectory = new PropertyDirectory(actualModel.getPropertyDirectory(),
-                actualModel.getUserPrefs().getUserImageDirectoryPath());
+                actualModel.getPropertyDirectoryFilePath());
         List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -126,7 +135,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the {@code Property} at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPropertyAtIndex(Model model, Index targetIndex) {
@@ -137,6 +146,20 @@ public class CommandTestUtil {
         model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPropertyList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the {@code Client} at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showClientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
+        final String[] splitName = client.getName().fullName.split("\\s+");
+        model.updateFilteredClientList(new ClientNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredClientList().size());
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.condonery.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Property}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
  */
 public class ClientNameContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
@@ -27,4 +27,5 @@ public class ClientNameContainsKeywordsPredicate implements Predicate<Client> {
                 || (other instanceof ClientNameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ClientNameContainsKeywordsPredicate) other).keywords)); // state check
     }
+
 }

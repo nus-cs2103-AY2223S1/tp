@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Price;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -33,6 +34,7 @@ public class EditPropertyDescriptorBuilder {
         descriptor = new EditPropertyDescriptor();
         descriptor.setName(property.getName());
         descriptor.setAddress(property.getAddress());
+        descriptor.setPrice(property.getPrice());
         descriptor.setTags(property.getTags());
     }
 
@@ -53,7 +55,15 @@ public class EditPropertyDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPropertyDescriptor}
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPropertyDescriptorBuilder withPrice(String price) {
+        descriptor.setPrice(new Price(price));
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPropertyDescriptorBuilder withTags(String... tags) {
