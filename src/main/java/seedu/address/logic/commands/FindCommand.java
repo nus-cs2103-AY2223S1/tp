@@ -9,9 +9,11 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.Model.ListType;
 import seedu.address.model.StudentContainsKeywordsPredicate;
+import seedu.address.model.TuitionClassContainsKeywordsPredicate;
 import seedu.address.model.TutorContainsKeywordsPredicate;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 
 /**
@@ -32,7 +34,7 @@ public class FindCommand extends Command {
 
     private StudentContainsKeywordsPredicate<Student> studentPredicate;
     private TutorContainsKeywordsPredicate<Tutor> tutorPredicate;
-//    private NameContainsKeywordsPredicate<TuitionClass> classPredicate;
+    private TuitionClassContainsKeywordsPredicate<TuitionClass> classPredicate;
 
     public FindCommand(HashMap<Prefix, String> keywords) {
         this.keywords = keywords;
@@ -57,10 +59,11 @@ public class FindCommand extends Command {
                     String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getFilteredTutorList().size()));
 
         default:
-            this.studentPredicate = new StudentContainsKeywordsPredicate<>(keywords);
-            model.updateFilteredStudentList(studentPredicate);
+            this.classPredicate = new TuitionClassContainsKeywordsPredicate<>(keywords);
+            model.updateFilteredTuitionClassList(classPredicate);
             return new CommandResult(
-                    String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                    String.format(Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW,
+                            model.getFilteredTuitionClassList().size()));
         }
     }
 
@@ -81,10 +84,10 @@ public class FindCommand extends Command {
                 if (otherFind.tutorPredicate != null) {
                     return this.tutorPredicate.equals(otherFind.tutorPredicate);
                 }
-//            } else if (this.classPredicate != null) {
-//                if (otherFind.classPredicate != null) {
-//                    return this.classPredicate.equals(otherFind.classPredicate);
-//                }
+            } else if (this.classPredicate != null) {
+                if (otherFind.classPredicate != null) {
+                    return this.classPredicate.equals(otherFind.classPredicate);
+                }
             }
             return this.keywords.equals(otherFind.keywords);
         }

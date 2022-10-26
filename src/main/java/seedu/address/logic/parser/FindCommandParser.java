@@ -15,10 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
@@ -38,7 +35,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     private String schoolKeywords;
     private String levelKeywords;
 
-    private String qualificationsKeywords;
+    private String qualificationKeywords;
     private String institutionKeywords;
 
     private String dayKeywords;
@@ -108,20 +105,35 @@ public class FindCommandParser implements Parser<FindCommand> {
             addressKeywords = argMultimap.getValue(PREFIX_ADDRESS).orElse("");
             emailKeywords = argMultimap.getValue(PREFIX_EMAIL).orElse("");
             phoneKeywords = argMultimap.getValue(PREFIX_PHONE).orElse("");
-            qualificationsKeywords = argMultimap.getValue(PREFIX_QUALIFICATION).orElse("");
+            qualificationKeywords = argMultimap.getValue(PREFIX_QUALIFICATION).orElse("");
             institutionKeywords = argMultimap.getValue(PREFIX_INSTITUTION).orElse("");
 
             keywords.put(PREFIX_NAME, nameKeywords);
             keywords.put(PREFIX_ADDRESS, addressKeywords);
             keywords.put(PREFIX_EMAIL, emailKeywords);
             keywords.put(PREFIX_PHONE, phoneKeywords);
-            keywords.put(PREFIX_QUALIFICATION, qualificationsKeywords);
+            keywords.put(PREFIX_QUALIFICATION, qualificationKeywords);
             keywords.put(PREFIX_INSTITUTION, institutionKeywords);
             break;
 
 
         default:
+            if (areAnyPrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_SCHOOL,
+                    PREFIX_QUALIFICATION, PREFIX_INSTITUTION)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
 
+            nameKeywords = argMultimap.getValue(PREFIX_NAME).orElse("");
+            dayKeywords = argMultimap.getValue(PREFIX_DAY).orElse("");
+            subjectKeywords = argMultimap.getValue(PREFIX_SUBJECT).orElse("");
+            levelKeywords = argMultimap.getValue(PREFIX_LEVEL).orElse("");
+            timeKeywords = argMultimap.getValue(PREFIX_TIME).orElse("");
+
+            keywords.put(PREFIX_NAME, nameKeywords);
+            keywords.put(PREFIX_DAY, dayKeywords);
+            keywords.put(PREFIX_SUBJECT, subjectKeywords);
+            keywords.put(PREFIX_LEVEL, levelKeywords);
+            keywords.put(PREFIX_TIME, timeKeywords);
         }
 
         return new FindCommand(keywords);

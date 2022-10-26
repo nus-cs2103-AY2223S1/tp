@@ -46,6 +46,6 @@ public class TutorContainsKeywordsPredicate<T> implements Predicate<T> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TutorContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((TutorContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.equals(((TutorContainsKeywordsPredicate<?>) other).keywords)); // state check
     }
 }
