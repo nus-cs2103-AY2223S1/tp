@@ -63,6 +63,7 @@ import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.PetCertificate;
+import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
@@ -282,6 +283,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static PetName parsePetName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!PetName.isValidName(trimmedName)) {
+            throw new ParseException(PetName.MESSAGE_CONSTRAINTS);
+        }
+        return new PetName(trimmedName);
+    }
+
+    /**
      * Parses a {@code String orderStatus} into an {@code OrderStatus}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -396,7 +412,7 @@ public class ParserUtil {
             }
         }
 
-        Name name = parseName(argMultimap.getValue(PREFIX_PET_NAME).orElse(""));
+        PetName name = parsePetName(argMultimap.getValue(PREFIX_PET_NAME).orElse(""));
         DateOfBirth dateOfBirth = parseDateOfBirth(argMultimap.getValue(PREFIX_PET_DATE_OF_BIRTH).orElse(""));
         Color color = parseColor(argMultimap.getValue(PREFIX_PET_COLOR).orElse(""));
         ColorPattern colorPattern = parseColorPattern(argMultimap.getValue(PREFIX_PET_COLOR_PATTERN).orElse(""));

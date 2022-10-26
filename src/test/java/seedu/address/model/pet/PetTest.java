@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Price;
-import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 //import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPets;
@@ -24,7 +23,7 @@ public class PetTest {
 
     @Test
     public void constructor_invalidPet_throwsIllegalValueException() {
-        Name name = new Name("putu");
+        PetName name = new PetName("putu");
         Color color = new Color("brown");
         ColorPattern colorPattern = new ColorPattern("stripes");
         String dob = "101010";
@@ -40,8 +39,8 @@ public class PetTest {
 
     @Test
     public void toStringTest() {
-        String expected = "Doja; Species: cat; Date of birth: 2022-10-10; Weight: 10.05 kg; Height: 100.5 cm; Color: "
-            + "white; Color pattern: white and brown; Vaccination status: Vaccinated; Tags:  [ cat ] ";
+        String expected = "Doja; Species: cat; Date of birth: 2022-10-10; Weight: 10.05 kg; Height: 50.0 cm; "
+                + "Color: white; Color pattern: none; Vaccination status: Vaccinated; Tags:  [ cat ] ";
         assertEquals(expected, TypicalPets.DOJA.toString());
     }
 
@@ -52,7 +51,7 @@ public class PetTest {
 
     @Test
     public void equals_differentObjects_false() {
-        Name name = new Name("putu");
+        PetName name = new PetName("putu");
         Color color = new Color("brown");
         ColorPattern colorPattern = new ColorPattern("stripes");
         String dob = "2019-09-09";

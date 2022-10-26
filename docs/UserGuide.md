@@ -28,7 +28,7 @@ Petcode is a **desktop app for coordinating pet sale business, optimized for use
 
    * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
 
-   * **`delete c/Buyer i/2`** : Deletes the second contact from the Buyer contacts list.
+   * **`delete-b 1`** : Deletes the first contact from the buyer contacts list.
 
    * **`clear`** : Deletes all contacts.
 

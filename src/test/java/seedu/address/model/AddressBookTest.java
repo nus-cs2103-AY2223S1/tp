@@ -21,7 +21,6 @@ import seedu.address.model.order.Order;
 import seedu.address.model.order.Price;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.pet.Color;
@@ -29,6 +28,7 @@ import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
 import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
@@ -193,7 +193,7 @@ public class AddressBookTest {
     @Test
     public void hasPet_petWithSameIdentityFieldsInAddressBook_returnsFalse() {
         addressBook.addPet(TypicalPets.DOJA);
-        Pet editedDoja = new Pet(new Name("Doja"), TypicalSuppliers.ALICE,
+        Pet editedDoja = new Pet(new PetName("Doja"), TypicalSuppliers.ALICE,
                 new Color("black"),
                 new ColorPattern("black and brown"),
                 new DateOfBirth(LocalDate.parse("2022-10-10")), new Species("cat"), new Weight(10.05),

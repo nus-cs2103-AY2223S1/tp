@@ -19,7 +19,7 @@ public class AdditionalRequestPredicate<T extends Order> implements Predicate<T>
 
     @Override
     public boolean test(T order) {
-        List<String> additionalRequests = order.getAdditionalRequests().getAdditionalRequests();
+        List<String> additionalRequests = order.getAdditionalRequests().getAdditionalRequestsToString();
         Set<String> result = additionalRequests.stream()
                 .distinct()
                 .filter(keywords::contains)
