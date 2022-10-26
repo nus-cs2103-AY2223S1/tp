@@ -22,6 +22,7 @@ import seedu.taassist.model.ReadOnlyUserPrefs;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.util.SampleDataUtil;
+import seedu.taassist.storage.CsvDefaultStorage;
 import seedu.taassist.storage.JsonTaAssistStorage;
 import seedu.taassist.storage.JsonUserPrefsStorage;
 import seedu.taassist.storage.Storage;
@@ -57,7 +58,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaAssistStorage taAssistStorage = new JsonTaAssistStorage(userPrefs.getTaAssistFilePath());
-        storage = new StorageManager(taAssistStorage, userPrefsStorage);
+        CsvDefaultStorage csvDefaultStorage = new CsvDefaultStorage();
+        storage = new StorageManager(taAssistStorage, userPrefsStorage, csvDefaultStorage);
 
         initLogging(config);
 

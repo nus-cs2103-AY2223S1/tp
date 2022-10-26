@@ -11,12 +11,14 @@ import seedu.taassist.model.session.Session;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
+import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 
 /**
  * Represents a student's data for a module.
  */
 public class StudentModuleData implements Identity<StudentModuleData> {
 
+    private static final double DUMMY_GRADE = 0.0;
     private final ModuleClass moduleClass;
     private final UniqueList<SessionData> sessionDataList = new UniqueList<>();
 
@@ -63,6 +65,14 @@ public class StudentModuleData implements Identity<StudentModuleData> {
                 return moduleData;
             }
         }).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns the {@code SessionData} for the given {@code Session}.
+     */
+    public SessionData findSessionData(Session session) throws ElementNotFoundException {
+        SessionData match = sessionDataList.findElement(new SessionData(session, DUMMY_GRADE));
+        return match;
     }
 
     @Override

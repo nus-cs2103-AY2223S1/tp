@@ -26,7 +26,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonTaAssistStorage taAssistStorage = new JsonTaAssistStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(taAssistStorage, userPrefsStorage);
+        CsvDefaultStorage csvDefaultStorage = new CsvDefaultStorage();
+        storageManager = new StorageManager(taAssistStorage, userPrefsStorage, csvDefaultStorage);
     }
 
     private Path getTempFilePath(String fileName) {

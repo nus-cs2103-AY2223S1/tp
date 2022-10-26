@@ -100,7 +100,7 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
     /**
      * Finds and returns an element that has the same identity as {@code toFind}.
      */
-    public T findElement(T toFind) {
+    public T findElement(T toFind) throws ElementNotFoundException {
         requireNonNull(toFind);
         return internalList.stream()
                 .filter(toFind::isSame)

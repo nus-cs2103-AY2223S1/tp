@@ -5,6 +5,7 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -169,6 +170,12 @@ public class ModelManager implements Model {
     public void addModuleClass(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
         taAssist.addModuleClass(moduleClass);
+    }
+
+    @Override
+    public List<List<String>> exportModuleClassToStringList(ModuleClass moduleClass) {
+        requireNonNull(moduleClass);
+        return taAssist.exportModuleClassToStringList(moduleClass);
     }
 
     @Override

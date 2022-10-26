@@ -2,6 +2,7 @@ package seedu.taassist.model;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -116,6 +117,11 @@ public class ModelStub implements Model {
 
     @Override
     public void addModuleClass(ModuleClass moduleClass) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public List<List<String>> exportModuleClassToStringList(ModuleClass moduleClass) {
         throw new AssertionError("This method should not be called.");
     }
 

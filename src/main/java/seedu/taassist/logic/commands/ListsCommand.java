@@ -17,7 +17,7 @@ public class ListsCommand extends Command {
 
     public static final String COMMAND_WORD = "lists";
 
-    public static final String MESSAGE_LIST_HEADER = "Recorded sessions for class %s:";
+    public static final String MESSAGE_LIST_HEADER = "Recorded sessions for class $1%s:";
 
     @Override
     // TODO: Rudimentary implementation. Needs to be combined with UI.

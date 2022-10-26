@@ -2,6 +2,7 @@ package seedu.taassist.model;
 
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -124,6 +125,13 @@ public interface Model {
      * {@code moduleClass} must not already exist in TA-Assist.
      */
     void addModuleClass(ModuleClass moduleClass);
+
+    /**
+     * Exports the given class as a CSV file.
+     * The class must exist in TA-Assist.
+     * Returns the CSV file created.
+     */
+    List<List<String>> exportModuleClassToStringList(ModuleClass moduleClass);
 
     /** Returns an unmodifiable view of the module class list */
     ObservableList<ModuleClass> getModuleClassList();
