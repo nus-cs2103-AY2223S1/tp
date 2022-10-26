@@ -72,6 +72,11 @@ public class MailEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_MAIL_EVENT_SUCCESS, eventTitle, eventTitle));
     }
 
+    /**
+     * Returns a list of names and emails of all persons tagged to an event.
+     * @param event an event for mailing list generation.
+     * @param personList a list of all persons in the contact list.
+     */
     private static List<String[]> getMailingList(Event event, List<Person> personList) {
         UidList uids = event.getUids();
         List<String[]> dataLines = new ArrayList<>();
