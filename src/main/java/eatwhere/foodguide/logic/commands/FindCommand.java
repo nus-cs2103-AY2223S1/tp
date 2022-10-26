@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import eatwhere.foodguide.commons.core.Messages;
+import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.eatery.Eatery;
 
@@ -21,8 +22,10 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Chicken Rice";
+            + "Optionally, you can randomly choose a given number of the found eateries.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]... -r [NUMTOSHOW]\n"
+            + "Example: " + COMMAND_WORD + " Chicken Rice -r 1";
+    public static final String MESSAGE_INVALID_NUMTOSHOW = "Number to show must be positive";
 
     private final Predicate<Eatery> predicate;
 
@@ -34,7 +37,7 @@ public class FindCommand extends Command {
 
     /**
      * @param predicate What all found eateries must satisfy
-     * @param numRandPicks Determines the number of randomly chosen eateries found
+     * @param numRandPicks The number of found eateries to randomly select
      */
     public FindCommand(Predicate<Eatery> predicate, int numRandPicks) {
         this.predicate = predicate;
@@ -42,18 +45,20 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredEateryList(predicate);
         if (numRandPicks > 0) {
+            int numToShow = Math.min(numRandPicks, model.getFilteredEateryList().size());
             List<Integer> randomIndexes = new ArrayList<>(model.getFilteredEateryList().size());
             for (int i = 0; i < model.getFilteredEateryList().size(); ++i) {
                 randomIndexes.add(i);
             }
             Collections.shuffle(randomIndexes);
-            randomIndexes = randomIndexes.subList(0, numRandPicks);
+            randomIndexes = randomIndexes.subList(0, numToShow);
             randomIndexes.sort(null);
-            ArrayList<Eatery> eateriesChosen = new ArrayList<>(numRandPicks);
+
+            ArrayList<Eatery> eateriesChosen = new ArrayList<>(numToShow);
             for (Integer i : randomIndexes) {
                 eateriesChosen.add(model.getFilteredEateryList().get(i));
             }

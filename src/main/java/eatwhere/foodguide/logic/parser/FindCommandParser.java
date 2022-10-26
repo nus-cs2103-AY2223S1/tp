@@ -36,16 +36,30 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
             throw new DisplayCommandHelpException(FindCommand.MESSAGE_USAGE);
         }
+
         Predicate<Eatery> predicate;
-        if (argMultimap.getValue(PREFIX_RANDOM).isPresent()) {
+        if (argMultimap.getPreamble().isEmpty()) {
             predicate = eatery -> true;
-            return new FindCommand(predicate, Integer.parseInt(argMultimap.getValue(PREFIX_RANDOM).get()));
         } else {
-            String[] nameKeywords = trimmedArgs.split("\\s+");
+            String[] nameKeywords = argMultimap.getPreamble().split("\\s+");
             predicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         }
 
-        return new FindCommand(predicate);
+        if (argMultimap.getValue(PREFIX_RANDOM).isEmpty()) {
+            return new FindCommand(predicate);
+        }
+
+        try {
+            int numRandPicks = Integer.parseInt(argMultimap.getValue(PREFIX_RANDOM).get());
+            if (numRandPicks <= 0) {
+                throw new NumberFormatException();
+            }
+            return new FindCommand(predicate, numRandPicks);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_INVALID_NUMTOSHOW),
+                    nfe);
+        }
     }
 
 }
