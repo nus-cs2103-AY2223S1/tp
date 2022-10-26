@@ -1,6 +1,5 @@
 package longtimenosee.model.policy;
 
-import static longtimenosee.commons.util.AppUtil.checkArgument;
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -23,13 +22,12 @@ public class AssignedPolicy {
     /**
      * Construct an AssignedPolicy object.
      * @param policy
-     * @param premium
-     * @param startDate
-     * @param endDate
+     * @param premium Must be a valid premium.
+     * @param startDate Must be a valid date, after 1900, and before 2100.
+     * @param endDate Must be a valid date, after startDate and 1900, and before 2100.
      */
     public AssignedPolicy(Policy policy, Premium premium, PolicyDate startDate, PolicyDate endDate) {
         requireAllNonNull(policy, premium, startDate, endDate);
-        checkArgument(isChronological(startDate, endDate), MESSAGE_DATE_CONSTRAINTS);
         this.startDate = startDate;
         this.endDate = endDate;
         this.premium = premium;
