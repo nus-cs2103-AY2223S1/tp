@@ -23,7 +23,7 @@ public class MasteryCheckCommand extends Command {
     public static final String COMMAND_WORD = "mc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a student's mastery check result.\n"
-            + "Usage: " + COMMAND_WORD + " STUDENT_INDEX "
+            + "Usage: " + COMMAND_WORD + " INDEX "
             + PREFIX_MC_NUM + "MC_NUM " + PREFIX_MC_RES + "MC_RESULT\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MC_NUM + "1 " + PREFIX_MC_RES + "PASS";
 
