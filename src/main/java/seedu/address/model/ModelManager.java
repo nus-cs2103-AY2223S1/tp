@@ -289,4 +289,10 @@ public class ModelManager implements Model {
         examFilteredList.setPredicate(predicate);
     }
 
+    @Override
+    public boolean isExamLinkedToTask(Exam examToEdit) {
+        requireNonNull(examToEdit);
+        return addressBook.isExamLinkedToTask(examToEdit);
+    }
+
 }

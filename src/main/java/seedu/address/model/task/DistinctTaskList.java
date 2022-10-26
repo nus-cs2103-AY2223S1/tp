@@ -104,6 +104,19 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns true if {@code examToEdit} is linked to any task, otherwise false.
+     */
+    public boolean isExamLinkedToTask(Exam exam) {
+        requireNonNull(exam);
+        for(int i = 0; i < taskList.size(); i++) {
+            if(taskList.get(i).isLinked() && taskList.get(i).getExam().equals(exam)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Replaces task by changing its given exam field from {@code previousExam}
      * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
      * @param previousExam The exam in the task's exam field.

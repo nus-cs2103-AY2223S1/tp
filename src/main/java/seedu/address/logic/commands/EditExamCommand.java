@@ -13,6 +13,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXAMS;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -78,20 +80,50 @@ public class EditExamCommand extends Command {
             throw new CommandException(MESSAGE_EXAM_NOT_EDITED);
         }
 
-        try {
-            if (!examToEdit.getModule().isSameModule(editedExam.getModule())) {
-                model.unlinkTasksFromExam(examToEdit);
-            } else {
-                model.updateExamFieldForTask(examToEdit, editedExam);
-            }
-            model.replaceExam(examToEdit, editedExam, false);
+        boolean isEditedExamOfSameModule = examToEdit.getModule().isSameModule(editedExam.getModule());
 
+        try {
+            if (!isEditedExamOfSameModule && model.isExamLinkedToTask(examToEdit)) {
+                Alert alert =
+                        new Alert(Alert.AlertType.CONFIRMATION,
+                                "Do you want to edit the module code as " + "\n" +
+                                        "all the tasks linked to this exam will be unlinked",
+                                ButtonType.YES,
+                                ButtonType.NO);
+                alert.setTitle("Confirmation");
+                Optional<ButtonType> userInput = alert.showAndWait();
+
+                if (userInput.get() == ButtonType.YES) {
+                    return changeModAndUnlinkTasks(model, examToEdit, editedExam);
+                } else {
+                    return examNotEditAfterConfirmation(model);
+                }
+            } else {
+               return editExamWithoutUnlinkingTasks(model, examToEdit, editedExam);
+            }
         } catch (DuplicateExamException e) {
             throw new CommandException(MESSAGE_DUPLICATE_EXAM);
         }
+    }
 
+    private CommandResult changeModAndUnlinkTasks(Model model, Exam examToEdit, Exam editedExam) {
+        model.replaceExam(examToEdit, editedExam, false);
+        model.unlinkTasksFromExam(examToEdit);
+        model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
+        return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n" +
+                "All the tasks previously linked to this exam are now unlinked.");
+    }
+
+    private CommandResult editExamWithoutUnlinkingTasks(Model model, Exam examToEdit, Exam editedExam) {
+        model.replaceExam(examToEdit, editedExam, false);
+        model.updateExamFieldForTask(examToEdit, editedExam);
         model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
         return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam));
+    }
+
+    private CommandResult examNotEditAfterConfirmation(Model model) {
+        model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
+        return new CommandResult("Exam is not edited.");
     }
 
 

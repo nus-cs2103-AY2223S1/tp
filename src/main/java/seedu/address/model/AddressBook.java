@@ -330,6 +330,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.updateExamFieldForTask(previousExam, newExam);
     }
 
+    /**
+     * Returns true if {@code examToEdit} is linked to any task, otherwise false.
+     */
+    public boolean isExamLinkedToTask(Exam examToEdit) {
+        requireNonNull(examToEdit);
+        return tasks.isExamLinkedToTask(examToEdit);
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

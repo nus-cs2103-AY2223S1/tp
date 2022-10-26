@@ -70,7 +70,7 @@ public class JsonAdaptedTask {
         status = task.getStatus().status;
         priority = task.getPriorityTag() == null ? null : task.getPriorityTag().status;
         deadline = task.getDeadlineTag() == null ? null : task.getDeadlineTag().toString();
-        examDate = task.getExam() == null ? null : task.getExam().getExamDate().dateWithoutFormatting;
+        examDate = task.getExam() == null ? null : task.getExam().getExamDate().examDate;
         examDescription = task.getExam() == null ? null : task.getExam().getDescription().description;
     }
 

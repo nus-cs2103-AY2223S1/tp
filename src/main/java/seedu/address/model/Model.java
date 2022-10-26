@@ -170,7 +170,7 @@ public interface Model {
     void unlinkTasksFromExam(Exam exam);
 
     /**
-     * Returns true if a exam with the same description and module and exam date
+     * Returns true if an exam with the same description and module and exam date
      * as {@code exam} exists in the exam list.
      */
     boolean hasExam(Exam exam);
@@ -210,4 +210,9 @@ public interface Model {
      * @param newExam The new exam which will replace the previous exam in the task's exam field.
      */
     void updateExamFieldForTask(Exam previousExam, Exam newExam);
+
+    /**
+     * Returns true if {@code examToEdit} is linked to any task, otherwise false.
+     */
+    boolean isExamLinkedToTask(Exam examToEdit);
 }
