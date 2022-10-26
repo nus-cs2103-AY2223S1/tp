@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Provides a link to Plannit's user guide.
  */
 public class HelpCommand extends Command {
 
