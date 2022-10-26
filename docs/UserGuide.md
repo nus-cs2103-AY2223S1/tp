@@ -206,7 +206,7 @@ Format: `list [c/CATEGORY [DESCENDING]]`
   * Possible options for `CATEGORY` : `company_name`, `position`, `application_process`, `date` (case-insensitive)
   * Case-insensitive: `company_name`, `Company_Name` are all acceptable inputs.
 * The `DESCENDING` parameter is optional. It can take on the value `true` or `false` (case-insensitive). 
-  * The DESCENDING parameter is set to `false` by default if not stated. List of internships will be shown in ascending order.
+  * The `DESCENDING` parameter is set to `false` by default if not stated. List of internships will be shown in ascending order.
   * The `DESCENDING` parameter can only be set to `true` if the `CATEGORY` is stated
   * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
 
