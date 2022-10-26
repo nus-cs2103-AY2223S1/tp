@@ -41,6 +41,9 @@ public class Country {
 
     @Override
     public String toString() {
+        if (country.equals("default")) {
+            return "(Not planned)";
+        }
         return country;
     }
 

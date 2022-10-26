@@ -2,8 +2,8 @@ package seedu.waddle.testutil;
 
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
 
@@ -27,7 +27,7 @@ public class ItineraryUtil {
      */
     public static String getItineraryDetails(Itinerary itinerary) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + itinerary.getName().fullName + " ");
+        sb.append(PREFIX_DESCRIPTION + itinerary.getName().description + " ");
         sb.append(PREFIX_COUNTRY + itinerary.getCountry().country + " ");
         sb.append(PREFIX_START_DATE + itinerary.getStartDate().toString() + " ");
         sb.append(PREFIX_ITINERARY_DURATION + itinerary.getDuration().toString() + " ");
@@ -41,7 +41,7 @@ public class ItineraryUtil {
      */
     public static String getEditItineraryDescriptorDetails(EditItineraryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_DESCRIPTION).append(name.description).append(" "));
         descriptor.getCountry().ifPresent(phone -> sb.append(PREFIX_COUNTRY).append(phone).append(" "));
         descriptor.getStartDate().ifPresent(email -> sb.append(PREFIX_START_DATE).append(email).append(" "));
         descriptor.getDuration().ifPresent(address -> sb.append(PREFIX_ITINERARY_DURATION).append(address).append(" "));

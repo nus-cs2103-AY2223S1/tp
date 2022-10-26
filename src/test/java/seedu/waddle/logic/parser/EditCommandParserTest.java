@@ -42,8 +42,8 @@ import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 
@@ -85,7 +85,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Description.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_COUNTRY_DESC, Country.MESSAGE_CONSTRAINTS); // invalid country
         assertParseFailure(parser, "1" + INVALID_START_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid start date
         //invalid duration
@@ -113,7 +113,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_START_DATE_DESC
-                + VALID_DURATION_SUMMER + VALID_COUNTRY_SUMMER + VALID_BUDGET_SUMMER, Name.MESSAGE_CONSTRAINTS);
+                + VALID_DURATION_SUMMER + VALID_COUNTRY_SUMMER + VALID_BUDGET_SUMMER, Description.MESSAGE_CONSTRAINTS);
     }
 
     @Test

@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
 public class JsonAdaptedItineraryTest {
@@ -49,7 +49,7 @@ public class JsonAdaptedItineraryTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(INVALID_NAME, VALID_COUNTRY, VALID_START_DATE,
                 VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
 
@@ -57,7 +57,7 @@ public class JsonAdaptedItineraryTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedItinerary itinerary = new JsonAdaptedItinerary(null, VALID_COUNTRY, VALID_START_DATE,
                 VALID_DURATION, VALID_PEOPLE, VALID_BUDGET, VALID_EMPTY_ITEM_LIST, VALID_EMPTY_DAY_LIST);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
 

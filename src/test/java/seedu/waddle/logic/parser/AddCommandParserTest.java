@@ -30,9 +30,9 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 import seedu.waddle.testutil.ItineraryBuilder;
 
@@ -102,7 +102,7 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Name.MESSAGE_CONSTRAINTS);
+                + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Description.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_WINTER + INVALID_COUNTRY_DESC + START_DATE_DESC_WINTER
@@ -122,7 +122,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, Description.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_WINTER + COUNTRY_DESC_WINTER
