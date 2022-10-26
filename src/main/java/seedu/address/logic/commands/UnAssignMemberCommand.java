@@ -5,12 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Team;
-
 
 /**
  * Removes a person from a team.
@@ -48,8 +50,23 @@ public class UnAssignMemberCommand extends Command {
 
         requireNonNull(model);
 
+        List<Team> lastShownList = model.getFilteredTeamList();
+        List<Person> personList = model.getFilteredPersonList();
+
+        if (teamIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
+        }
+
+        if (personIndex.getZeroBased() >= personList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
         Team team = model.getTeamUsingIndex(teamIndex);
         Person person = model.getPersonUsingIndex(personIndex);
+
+        if (!model.teamHasMember(personIndex, teamIndex)) {
+            throw new CommandException(MESSAGE_PERSON_DOES_NOT_EXIST);
+        }
 
         seedu.address.model.team.Name teamName = model.getTeamName(teamIndex);
         seedu.address.model.person.Name personName = model.getPersonName(personIndex);

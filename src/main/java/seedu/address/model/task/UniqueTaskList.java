@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -150,8 +151,8 @@ public class UniqueTaskList implements Iterable<Task> {
      * @param index The {@code task} of the task to be edited.
      * @param newName The new name of the task.
      */
-    public void edit(int index, Name newName) {
-        internalList.get(index).editName(newName);
+    public void edit(int index, Name newName, LocalDate newDeadline) {
+        internalList.get(index).editTaskDesc(newName, newDeadline);
     }
 
     /**
