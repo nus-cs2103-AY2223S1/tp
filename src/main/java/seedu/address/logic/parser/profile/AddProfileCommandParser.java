@@ -37,6 +37,8 @@ public class AddProfileCommandParser implements Parser<AddProfileCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddProfileCommand parse(String args) throws ParseException {
+        assert args != null;
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
