@@ -7,7 +7,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.bill.Amount;
 import seedu.address.model.bill.Bill;
+import seedu.address.model.bill.BillDate;
 import seedu.address.model.bill.PaymentStatus;
 import seedu.address.model.patient.Name;
 
@@ -24,6 +26,8 @@ public class FindBillCommand extends Command {
             + "Parameters: prefix, KEYWORD/[MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " n/alice \n"
             + "Example: " + COMMAND_WORD + " p/paid \n"
+            + "Example: " + COMMAND_WORD + " d/2022 \n"
+            + "Example: " + COMMAND_WORD + " a/60 \n"
             + "Example: " + COMMAND_WORD + " n/Bob p/unpaid \n";
 
     private final Predicate<Bill> predicate;
@@ -33,11 +37,16 @@ public class FindBillCommand extends Command {
      *
      * @param namePredicate Optional predicate to filter bills by name.
      * @param paymentStatusPredicate Optional predicate to filter bills by payment status.
+     * @param billDatePredicate Optional predicate to filter bills by bill date.
      */
     public FindBillCommand(Optional<Predicate<Name>> namePredicate,
-                           Optional<Predicate<PaymentStatus>> paymentStatusPredicate) {
+                           Optional<Predicate<PaymentStatus>> paymentStatusPredicate,
+                           Optional<Predicate<BillDate>> billDatePredicate,
+                           Optional<Predicate<Amount>> amountPredicate) {
         this.predicate = bill -> namePredicate.orElse(x -> true).test(bill.getAppointment().getName())
-                && paymentStatusPredicate.orElse(x -> true).test(bill.getPaymentStatus());
+                && paymentStatusPredicate.orElse(x -> true).test(bill.getPaymentStatus())
+                && billDatePredicate.orElse(x -> true).test(bill.getBillDate())
+                && amountPredicate.orElse(x -> true).test(bill.getAmount());
     }
 
     @Override
