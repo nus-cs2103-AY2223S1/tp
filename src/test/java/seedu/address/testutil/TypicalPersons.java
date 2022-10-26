@@ -26,28 +26,31 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withPhone("94351253").withBirthday("02/02/2000")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withEmail("johnd@example.com").withPhone("98765432").withBirthday("01/01/2000")
             .withTags("owesMoney").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street").withBirthday("03/03/2000").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
+            .withEmail("cornelia@example.com").withAddress("10th street").withBirthday("11/11/2000")
+            .withTags("friends").build();
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
+            .withPhone("9482224").withBirthday("04/04/2000")
             .withEmail("werner@example.com").withAddress("michegan ave").withLoan("-10.0").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
+            .withPhone("9482427").withBirthday("05/05/2000")
             .withEmail("lydia@example.com").withAddress("little tokyo").withLoan("50.0").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street").withBirthday("06/06/2000").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india").withBirthday("07/07/2000").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withBirthday("08/08/2000").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

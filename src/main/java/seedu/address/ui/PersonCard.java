@@ -46,6 +46,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private ImageView loanImage;
     @FXML
+    private Label birthday;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -59,7 +61,6 @@ public class PersonCard extends UiPart<Region> {
         phoneImage.setImage(
                 new Image(Objects.requireNonNull(getClass().getResourceAsStream(PHONE_IMAGE_PATH))));
         phone.setText(person.getPhone().value);
-
         loanImage.setImage(
                 new Image(Objects.requireNonNull(getClass().getResourceAsStream(LOAN_IMAGE_PATH))));
         loanAmount.setText(person.getLoan().toString());

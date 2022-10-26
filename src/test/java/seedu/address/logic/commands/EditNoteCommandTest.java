@@ -96,6 +96,7 @@ public class EditNoteCommandTest {
                         + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
                         + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
                         + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_BIRTHDAY + PersonBuilder.DEFAULT_BIRTHDAY + " "
                         + CliSyntax.PREFIX_TAG + tagName + " ")
                 .execute(model));
 
@@ -122,6 +123,7 @@ public class EditNoteCommandTest {
                         + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
                         + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
                         + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_BIRTHDAY + PersonBuilder.DEFAULT_BIRTHDAY + " "
                         + CliSyntax.PREFIX_TAG + tagName)
                 .execute(model));
 
