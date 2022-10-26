@@ -19,12 +19,11 @@ public class FindProjectCommand extends ProjectCommand {
     public static final String MESSAGE_SUCCESS = "Filtered list of projects shown.";
     private static final String MESSAGE_PROJECT_NOT_FOUND = "A project matching requirements not found.";
 
-    public static final String MESSAGE_FIND_PROJECT_USAGE = COMMAND_WORD + ": Finds and filters projects by keyword "
-            + "from the "
-            + "address book. "
+    public static final String MESSAGE_FIND_PROJECT_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
+            + ": Finds projects by keyword.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_REPOSITORY + "REPOSITORY "
+            + PREFIX_REPOSITORY + "REPOSITORY \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "DevEnable "

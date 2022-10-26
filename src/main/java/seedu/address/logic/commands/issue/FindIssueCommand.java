@@ -21,14 +21,13 @@ public class FindIssueCommand extends IssueCommand {
     public static final String MESSAGE_SUCCESS = "Filtered list of issues shown.";
     private static final String MESSAGE_ISSUE_NOT_FOUND = "An issue matching requirements not found.";
 
-    public static final String MESSAGE_FIND_ISSUE_USAGE = COMMAND_WORD + ": Finds and filters issues by keyword "
-            + "from the "
-            + "address book. "
+    public static final String MESSAGE_FIND_ISSUE_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
+            + ": Finds issues by keyword.\n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_STATUS + "STATUS "
             + PREFIX_URGENCY + "URGENCY "
-            + PREFIX_PROJECT_NAME + "PROJECT NAME "
+            + PREFIX_PROJECT_NAME + "PROJECT NAME \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_TITLE + "This is an issue "

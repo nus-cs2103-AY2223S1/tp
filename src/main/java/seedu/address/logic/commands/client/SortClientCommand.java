@@ -20,7 +20,8 @@ public class SortClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted clients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
+            + ": Sort clients in address book. \n"
             + "Sort by name: "
             + PREFIX_NAME + "0 (alphabetical) or "
             + PREFIX_NAME + "1 (reverse alphabetical). \n"
