@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public class StringUtil {
 
-    private static String SPLIT_REGEX = "\\s+";
+    private static final String SPLIT_REGEX = "\\s+";
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
