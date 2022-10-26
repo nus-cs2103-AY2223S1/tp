@@ -53,9 +53,9 @@ public class ParserUtil {
      * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>} and returns it. Leading and
      * trailing whitespaces will be trimmed.
      *
-     * @param indices Collection of String representing valid indexes (non-zero unsigned integer).
-     * @return {@code Set<Index>} of indexes parsed from given String.
-     * @throws ParseException if an index is invalid (not non-zero unsigned integer).
+     * @param indices String of valid indices (non-zero unsigned integer).
+     * @return {@code Set<Index>} of indices parsed from given String.
+     * @throws ParseException if any index is invalid (not non-zero unsigned integer).
      */
     public static Set<Index> parseIndices(String indices) throws ParseException {
         requireNonNull(indices);
