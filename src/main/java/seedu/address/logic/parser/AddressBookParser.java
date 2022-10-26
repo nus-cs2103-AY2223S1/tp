@@ -21,6 +21,7 @@ import seedu.address.logic.commands.contact.ListContactCommand;
 import seedu.address.logic.commands.tag.AddTagCommand;
 import seedu.address.logic.commands.tag.DeleteAllCommand;
 import seedu.address.logic.commands.tag.DeleteTagCommand;
+import seedu.address.logic.commands.tag.ListTagCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
@@ -146,6 +147,9 @@ public class AddressBookParser {
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
 
+        case ListTagCommand.COMMAND_WORD:
+            return new ListTagCommand();
+
         case SortByDeadlineCommand.COMMAND_WORD:
             return new SortByDeadlineCommand();
 
@@ -189,6 +193,7 @@ public class AddressBookParser {
         case AddTagCommand.COMMAND_WORD:
         case DeleteTagCommand.COMMAND_WORD:
         case DeleteAllCommand.COMMAND_WORD:
+        case ListTagCommand.COMMAND_WORD:
             return 2;
 
         case AddTaskCommand.COMMAND_WORD:
