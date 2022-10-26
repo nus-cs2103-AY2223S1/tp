@@ -66,20 +66,16 @@ public class GradeCommand extends Command {
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
-        List<Student> oldStudents;
+        List<Student> studentsToGrade;
         try {
-            oldStudents = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
+            studentsToGrade = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
         } catch (ParseException e) {
             throw new CommandException(e.getMessage());
         }
 
-        for (Student oldStudent : oldStudents) {
-            Student newStudent = oldStudent.updateGrade(focusedClass, session, grade);
-            model.setStudent(oldStudent, newStudent);
-        }
+        studentsToGrade.forEach(s -> model.setStudent(s, s.updateGrade(focusedClass, session, grade)));
 
-        String message = getSuccessMessage(oldStudents);
-
+        String message = getSuccessMessage(studentsToGrade);
         return new CommandResult(message);
     }
 

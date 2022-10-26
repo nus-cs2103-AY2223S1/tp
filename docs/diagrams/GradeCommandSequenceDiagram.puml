@@ -5,11 +5,11 @@ box Logic LOGIC_COLOR_T1
 participant ":GradeCommand" as GradeCommand LOGIC_COLOR
 participant "<<class>>\nParserStudentIndexUtil" as Util LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "<<class>>\nStudent" as StudentC LOGIC_COLOR
-participant ":Student" as Student LOGIC_COLOR
-participant "<<class>>\nStudentModuleData" as SMD LOGIC_COLOR
-participant "<<class>>\nSessionData" as SD LOGIC_COLOR
-participant ":Session" as Session LOGIC_COLOR
+participant "oldStudent:Student" as OldStudent LOGIC_COLOR
+participant "newStudent:Student" as Student LOGIC_COLOR
+participant ":StudentModuleData" as SMD LOGIC_COLOR
+participant "newData:StudentModuleData" as NSMD LOGIC_COLOR
+participant "s:SessionData" as SD LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -31,41 +31,49 @@ deactivate Model
 
 GradeCommand -> Util: parseStudentFromIndices
 activate Util
-Util --> GradeCommand: oldStudents
+Util --> GradeCommand: studentsToGrade
 deactivate Util
 
-loop for each oldStudent in oldStudents
-    GradeCommand -> StudentC: getUpdatedStudent
-    activate StudentC
+loop for each oldStudent in studentsToGrade
+    GradeCommand -> OldStudent: updateGrade(focusedClass, session, grade)
+    activate OldStudent
 
-    StudentC -> SMD: getUpdatedModuleDataList
+    OldStudent -> SMD: updateGrade(session, grade)
     activate SMD
 
-    SMD -> SD: getUpdatedSessionDataList
+    SMD -> SMD : removeSession(session)
+    activate SMD
+    create NSMD
+    SMD -> NSMD
+    activate NSMD
+    NSMD --> SMD
+    deactivate NSMD
+    SMD --> SMD: newData
+    deactivate SMD
+
+    create SD
+    SMD -> SD
     activate SD
-    create Session
-    SD -> Session
-    activate Session
-    Session --> SD
-    deactivate Session
     SD --> SMD
     deactivate SD
 
+    SMD -> SMD: add s to session data list of newData
 
-    SMD --> StudentC: newModuleDataList
+    SMD --> OldStudent: newData
     deactivate SMD
 
     create Student
-    StudentC -> Student
+    OldStudent -> Student
     activate Student
-    Student --> StudentC: newStudent
+    Student --> OldStudent
     deactivate Student
 
-    StudentC --> GradeCommand: newStudent
-    deactivate StudentC
+    OldStudent --> GradeCommand: newStudent
+    deactivate OldStudent
 
-    GradeCommand -> Model: setStudent
+    GradeCommand -> Model: setStudent(oldStudent, newStudent)
     activate Model
+    Model --> GradeCommand
     deactivate Model
 end
 
