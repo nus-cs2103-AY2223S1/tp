@@ -259,8 +259,27 @@ public class Person {
         return getAClass().isEmpty();
     }
 
-    public int compareTo(Person person) {
-        return this.displayedClass.startTime.compareTo(person.displayedClass.startTime);
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     */
+    public int compareToByNameAsc(Person person) {
+        return this.name.compareTo(person.name);
+    }
+
+    /**
+     * Returns 1 if {@code this} should be before the given {@code person}, 0 if no difference, and -1 if after.
+     */
+    public int compareToByNameDesc(Person person) {
+        // return opposite result as this::compareToByNameAsc
+        return -1 * this.compareToByNameAsc(person);
+    }
+
+    public int compareToByClass(Person person) {
+        return this.aClass.compareToByStartTime(person.aClass);
+    }
+
+    public int compareToByDisplayClass(Person person) {
+        return this.displayedClass.compareToByStartTime(person.displayedClass);
     }
 
     /**

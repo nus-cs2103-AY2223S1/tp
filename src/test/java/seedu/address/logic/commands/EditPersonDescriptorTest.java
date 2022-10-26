@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DIFFERENT_ADDITIONAL_NOTES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_PAID_BOB;
@@ -16,12 +18,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
 
     @Test
-    public void equals() {
+    public void equals() throws ParseException {
         // same values -> returns true
         EditPersonDescriptor descriptorWithSameValues = new EditPersonDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
@@ -58,13 +61,21 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // todo: add test case for class and additional notes field
+        // different class -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withClass(VALID_CLASS_AMY).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different money owed -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMoneyOwed(VALID_MONEY_OWED_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different money paid -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMoneyPaid(VALID_MONEY_PAID_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different additional notes -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAdditionalNotes(VALID_DIFFERENT_ADDITIONAL_NOTES_AMY)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

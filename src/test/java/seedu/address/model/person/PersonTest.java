@@ -149,10 +149,10 @@ public class PersonTest {
         bob.setDisplayClass(bobClass);
 
         // Should return -1 since Alice's class is before Bob's
-        assertEquals(-1, alice.compareTo(bob));
+        assertEquals(-1, alice.compareToByDisplayClass(bob));
 
         //Should return 1 since Bob's class is after Alice's
-        assertEquals(1, bob.compareTo(alice));
+        assertEquals(1, bob.compareToByDisplayClass(alice));
     }
 
     @Test

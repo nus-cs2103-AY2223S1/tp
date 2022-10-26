@@ -428,10 +428,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to list students
-2. Teacher’s Pet shows a list of students
-3. Teacher requests to delete a specific student in the list
-4. Teacher’s Pet deletes the student
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to delete a specific student in the list.
+4. Teacher’s Pet deletes the student.
 
    Use case ends.
 
@@ -447,12 +447,12 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case resumes at step 2.
 
-#### Use case: **Edit a student contact detail**
+#### Use case: **Edit a student's contact number**
 
 **MSS**
 
-1. Teacher requests to edit contact number of a specific student in the list
-2. Teacher’s Pet edits the student
+1. Teacher requests to edit contact number of a specific student in the list.
+2. Teacher’s Pet updates the student with the new contact number.
 
    Use case ends.
 
@@ -468,12 +468,50 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
   Use case ends.
 
+#### Use case: **Edit a student's class date **
+
+**MSS**
+
+1. Teacher requests to edit class date of a specific student in the list.
+2. Teacher’s Pet updates the student with the new class date.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The given class date is in invalid date format.
+    - 1a1. Teacher’s Pet shows an error message.
+
+  Use case ends.
+
+- 1b. The given class date is occupied by another student.
+    - 1b1. Teacher’s Pet shows an error message.
+
+  Use case ends.
+
+
+#### Use case: **Find student by class date**
+
+**MSS**
+
+1. Teacher requests to find all the students with classes on a particular date.
+2. Teacher’s Pet shows a list of all the students with their details.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. None of the students has classes on that date.
+    - 1a1. Teacher’s Pet shows no students listed.
+
+      Use case ends.
+
 #### Use case: **Find student contact details**
 
 **MSS**
 
-1. Teacher requests to find the details of a specific student
-2. Teacher’s Pet shows the student’s details
+1. Teacher requests to find the details of a specific student.
+2. Teacher’s Pet shows the student’s details.
 
    Use case ends.
 
@@ -493,8 +531,8 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to [find](#use-case-find-student-by-address) a student by address
-2. Teacher’s Pet shows a list of filtered students according to their provided query
+1. Teacher requests to [find](#use-case-find-student-by-address) a student by address.
+2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
 
@@ -514,10 +552,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to list students
-2. Teacher’s Pet shows a list of students
-3. Teacher requests to mark a specific student in the list as present for class
-4. Teacher’s Pet marks the student as present for class
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to mark a specific student in the list as present for class.
+4. Teacher’s Pet marks the student as present for class.
 
     Use case ends.
 
@@ -543,13 +581,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to find the next available slot for class
-2. Teacher discusses with the student about whether the proposed slot is possible
-3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date
+1. Teacher requests to find the next available slot for class.
+2. Teacher discusses with the student about whether the proposed slot is possible.
+3. Teacher [edits](#use-case-edit-a-student-contact-detail) the student record with the next class date.
 
 **Extensions**
 
-- 2a. The student cannot make it on the proposed slot
+- 2a. The student cannot make it on the proposed slot.
   - Step 1-2 is repeated until a mutually-agreed slot is found.
 
     Use case resumes at step 3.
@@ -567,12 +605,12 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Glossary
 
-| Terms         | Definition                                           |
-|---------------|------------------------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X                           |
-| CLI           | Command Line Interface                               |
-| Class         | The 1-1 tutoring time slot of a student              |
-| Day-of-Week   | 3-letter Abbreviation; case-insensitive eg. Mon, MON |
+| Terms         | Definition                                             |
+|---------------|--------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                             |
+| CLI           | Command Line Interface                                 |
+| Class         | The 1-1 tutoring time slot of a student                |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.

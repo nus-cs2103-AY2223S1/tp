@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARAMETER_FORM
 import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_NOTE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.APPENDED_ADDITIONAL_NOTE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CLASS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -182,6 +183,11 @@ public class AddCommandParserTest {
         // include nt parameter
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + ADDITIONAL_NOTE_DESC_BOB,
+                String.format(MESSAGE_INVALID_PARAMETER_FORMAT, AddCommand.RELEVANT_PARAMETERS));
+
+        // include nt-a parameter
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + APPENDED_ADDITIONAL_NOTE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_PARAMETER_FORMAT, AddCommand.RELEVANT_PARAMETERS));
     }
 

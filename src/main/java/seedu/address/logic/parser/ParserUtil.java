@@ -18,6 +18,9 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortCommand.Order;
+import seedu.address.logic.commands.SortCommand.Type;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
@@ -219,7 +222,7 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@String date} as part of {@code parseClass}.
+     * Helper method to parse {@code String date} as part of {@code parseClass}.
      */
     public static LocalDate parseDate(String date) throws ParseException {
         LocalDate result;
@@ -232,7 +235,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@String date} and returns LocalDate object.
+     * Parses a {@code String date} and returns LocalDate object.
      */
     public static LocalDate parseDateToFind(String date) throws ParseException {
         requireNonNull(date);
@@ -251,7 +254,7 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@String time} as part of {@code parseClass}.
+     * Helper method to parse {@code String time} as part of {@code parseClass}.
      */
     private static LocalTime parseTime(String time) throws ParseException {
         Integer hour = Integer.valueOf(time.substring(0, 2));
@@ -319,5 +322,31 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String arg} into a {@code Order}.
+     */
+    public static Order parseSortOrder(String arg) throws ParseException {
+        switch (arg.toUpperCase()) {
+        case "ASC":
+            return Order.ASC;
+        case "DESC":
+            return Order.DESC;
+        default:
+            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
+        }
+    }
+
+    /**
+     * Parses {@code String arg} into a {@code Type}.
+     */
+    public static Type parseSortType(String arg) throws ParseException {
+        switch (arg) {
+        case "NAME":
+            return Type.NAME;
+        default:
+            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_TYPE_KEYWORD);
+        }
     }
 }

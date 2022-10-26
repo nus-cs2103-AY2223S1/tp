@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import java.util.Comparator;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 
@@ -19,4 +21,6 @@ public interface ReadOnlyTeachersPet {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getScheduleList();
+
+    void sortPersons(Comparator<Person> comparator);
 }

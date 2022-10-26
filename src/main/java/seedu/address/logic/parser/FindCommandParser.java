@@ -17,8 +17,9 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicate.ClassContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.ClassContainsDatePredicate;
 import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.PhoneContainsNumberPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -46,9 +47,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             String[] nameKeywords = nameToFind.split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-
-            // TODO: Implement phone search here, remove the exception below
-            throw new ParseException("p/ search not implemented yet.");
+            String phoneToFind = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).toString();
+            return new FindCommand(new PhoneContainsNumberPredicate(phoneToFind));
 
         } else if (argMultimap.getValue(PREFIX_NOK_PHONE).isPresent()) {
 
@@ -68,7 +68,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
             String dateToFind =
                     ParserUtil.parseDateToFind(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
-            return new FindCommand(new ClassContainsKeywordsPredicate(Arrays.asList(dateToFind)));
+            return new FindCommand(new ClassContainsDatePredicate(dateToFind));
 
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.
