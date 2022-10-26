@@ -97,7 +97,11 @@ public class SupplyItemCard extends UiPart<Region> {
                     amountInput.setText(oldValue);
                 }
             } catch (Exception e) {
-                amountInput.setText(oldValue);
+                if (newValue.length() == 0) {
+                    return;
+                } else {
+                    amountInput.setText(oldValue);
+                }
             }
         });
     }
@@ -126,26 +130,17 @@ public class SupplyItemCard extends UiPart<Region> {
     @FXML
     private void handleIncrease() throws CommandException, ParseException {
         String input = amountInput.getText();
-        // If user decides to give a falsy string we will not register the change.
-        int parsedAmount = 0;
 
-        if (input.length() > MAX_LENGTH) {
-            input = input.substring(0, MAX_LENGTH);
+        assert input.length() <= MAX_LENGTH;
+
+        int parsedAmount = Integer.parseInt(input);
+        if (parsedAmount >= 0) {
+            amountInput.setText(String.valueOf(parsedAmount));
+            changeIncDecHandler.accept(parsedAmount);
         }
 
-        try {
-            parsedAmount = Integer.parseInt(input);
-            if (parsedAmount >= 0) {
-                amountInput.setText(String.valueOf(parsedAmount));
-                changeIncDecHandler.accept(parsedAmount);
-            }
-
-            increaseHandler.accept(parsedAmount);
-            executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
-        } catch (NumberFormatException e) {
-            // When TextField value is blank
-            amountInput.setText(DEFAULT_TEXT_FIELD_VALUE);
-        }
+        increaseHandler.accept(parsedAmount);
+        executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
     }
 
     /**
@@ -154,27 +149,17 @@ public class SupplyItemCard extends UiPart<Region> {
     @FXML
     private void handleDecrease() throws CommandException, ParseException {
         String input = amountInput.getText();
-        // If user decides to give a falsy string we will not register the change.
-        int parsedAmount = 0;
 
-        if (input.length() > MAX_LENGTH) {
-            input = input.substring(0, MAX_LENGTH);
+        assert input.length() <= MAX_LENGTH;
 
+        int parsedAmount = Integer.parseInt(input);
+        if (parsedAmount >= 0) {
+            amountInput.setText(String.valueOf(parsedAmount));
+            changeIncDecHandler.accept(parsedAmount);
         }
 
-        try {
-            parsedAmount = Integer.parseInt(input);
-            if (parsedAmount >= 0) {
-                amountInput.setText(String.valueOf(parsedAmount));
-                changeIncDecHandler.accept(parsedAmount);
-            }
-
-            decreaseHandler.accept(parsedAmount);
-            executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
-        } catch (NumberFormatException e) {
-            // When TextField value is blank
-            amountInput.setText(DEFAULT_TEXT_FIELD_VALUE);
-        }
+        decreaseHandler.accept(parsedAmount);
+        executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
     }
 
     /**
@@ -185,19 +170,12 @@ public class SupplyItemCard extends UiPart<Region> {
     private void handleAmount() {
         String input = amountInput.getText();
 
-        if (input.length() > MAX_LENGTH) {
-            input = input.substring(0, MAX_LENGTH);
-        }
+        assert input.length() <= MAX_LENGTH;
 
-        try {
-            int parsedAmount = Integer.parseInt(input);
-            if (parsedAmount >= 0) {
-                amountInput.setText(String.valueOf(parsedAmount));
-                changeIncDecHandler.accept(parsedAmount);
-            }
-        } catch (NumberFormatException e) {
-            // When TextField value is blank
-            amountInput.setText(DEFAULT_TEXT_FIELD_VALUE);
+        int parsedAmount = Integer.parseInt(input);
+        if (parsedAmount >= 0) {
+            amountInput.setText(String.valueOf(parsedAmount));
+            changeIncDecHandler.accept(parsedAmount);
         }
     }
 }
