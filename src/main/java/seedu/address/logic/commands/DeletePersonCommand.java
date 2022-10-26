@@ -11,7 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Deletes a person identified using its name from the currently displayed list of contacts from the address book.
+ * Deletes a person identified using its name from the currently displayed list of persons from Plannit.
  */
 public class DeletePersonCommand extends Command {
 
