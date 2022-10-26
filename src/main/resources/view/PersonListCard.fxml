@@ -32,9 +32,7 @@
                <padding>
                   <Insets right="10.0" />
                </padding>
-               <font>
-                  <Font name="Trebuchet MS Bold" size="14.0" />
-               </font></Label>
+        </Label>
          <FlowPane fx:id="tags" alignment="CENTER_RIGHT" columnHalignment="RIGHT" prefHeight="18.0" prefWidth="345.0" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets right="10.0" />
