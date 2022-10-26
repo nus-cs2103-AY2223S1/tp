@@ -197,14 +197,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                                                   |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL]` <br> e.g., <br> • `addClient n/John Tan p/0123456789` <br> • `addClient n/John Tan p/0123456789 e/johntan@insurec.com` |
-| **List all clients**  | `listClient`                                                                                                                                                       |
-| **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                            |
-| **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/1`                                                                                                              |
-| **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                             |
-| **List all meetings** | `listMeeting`                                                                                                                                                      |
-| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                          |
-| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/1`                                                                                                            |
-| **Exit**              | `exit`                                                                                                                                                             |
+| Action                | Format, Examples                                                                                                                                                                                                          |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add client**        | `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY]` <br> e.g., <br> • `addClient n/John Tan p/12345678` <br> • `addClient n/John Tan p/12345678 a/123 ABC ROAD, #11-01 e/johntan@insurec.com b/12122000` |
+| **List all clients**  | `listClient`                                                                                                                                                                                                              |
+| **View client**       | `viewClient i/INDEX` <br> e.g., <br> • `viewClient i/1`                                                                                                                                                                   |
+| **Delete client**     | `delClient i/INDEX` <br> e.g., <br> • `delClient i/1`                                                                                                                                                                     |
+| **Add meeting**       | `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION` <br> e.g., <br> • `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`                                                                                                    |
+| **List all meetings** | `listMeeting`                                                                                                                                                                                                             |
+| **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                                                                                 |
+| **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/1`                                                                                                                                                                   |
+| **Help**              | `help`                                                                                                                                                                                                                    |
+| **Exit**              | `exit`                                                                                                                                                                                                                    |
+
