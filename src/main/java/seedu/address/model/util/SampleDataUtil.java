@@ -37,8 +37,8 @@ public class SampleDataUtil {
                             getGroupSet("neighbours")),
             new Person(new Occupation("STUDENT"), new Name("David Li"),
                     new Phone("91031282"), new Email("lidavid@example.com"), new Tutorial("T08"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet("family")
-                    , new Social(), getGroupSet("family")),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet("family"),
+                    new Social(), getGroupSet("family")),
             new Person(new Occupation("STUDENT"), new Name("Irfan Ibrahim"),
                     new Phone("92492021"), new Email("irfan@example.com"), new Tutorial("T09"),
                     new Address("Blk 47 Tampines Street 20, #17-35"), getTagSet("classmates"), new Social(),

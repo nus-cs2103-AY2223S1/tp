@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
@@ -90,6 +91,7 @@ public class UngroupCommand extends Command {
         Address address = personToUngroup.getAddress();
         Set<Tag> tags = personToUngroup.getTags();
         Social social = personToUngroup.getSocial();
+        Tutorial tutorial = personToUngroup.getTutorial();
 
         Set<Group> previousGroups = new HashSet<>(personToUngroup.getGroups());
         Set<Group> updatedGroups;
@@ -101,7 +103,7 @@ public class UngroupCommand extends Command {
             throw new CommandException(MESSAGE_UNGROUP_PERSON_FAIL);
         }
 
-        return new Person(occupation, name, phone, email, address, tags, social, updatedGroups);
+        return new Person(occupation, name, phone, email, tutorial, address, tags, social, updatedGroups);
     }
 
 }

@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
 import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
@@ -89,6 +90,7 @@ public class AddToGroupCommand extends Command {
         Address address = personToGroup.getAddress();
         Set<Tag> tags = personToGroup.getTags();
         Social social = personToGroup.getSocial();
+        Tutorial tutorial = personToGroup.getTutorial();
 
         Set<Group> previousGroups = new HashSet<>(personToGroup.getGroups());
         Set<Group> updatedGroups;
@@ -100,7 +102,7 @@ public class AddToGroupCommand extends Command {
             updatedGroups = previousGroups;
         }
 
-        return new Person(occupation, name, phone, email, address, tags, social, updatedGroups);
+        return new Person(occupation, name, phone, email, tutorial, address, tags, social, updatedGroups);
     }
 
 }

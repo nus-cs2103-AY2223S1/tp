@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -16,8 +18,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Tutorial;
-
-import org.junit.jupiter.api.Test;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_OCCUPATION = "stutaprof";
@@ -100,8 +100,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_OCCUPATION, VALID_NAME,
-                        VALID_PHONE, INVALID_EMAIL, VALID_TUTORIAL, VALID_ADDRESS, VALID_TAGS, VALID_SOCIAL
-                        , VALID_GROUPS);
+                        VALID_PHONE, INVALID_EMAIL, VALID_TUTORIAL, VALID_ADDRESS, VALID_TAGS, VALID_SOCIAL,
+                        VALID_GROUPS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -136,8 +136,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_OCCUPATION, VALID_NAME,
-                        VALID_PHONE, VALID_EMAIL, VALID_TUTORIAL, INVALID_ADDRESS, VALID_TAGS, VALID_SOCIAL
-                        , VALID_GROUPS);
+                        VALID_PHONE, VALID_EMAIL, VALID_TUTORIAL, INVALID_ADDRESS, VALID_TAGS, VALID_SOCIAL,
+                        VALID_GROUPS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -156,8 +156,8 @@ public class JsonAdaptedPersonTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_OCCUPATION, VALID_NAME,
-                        VALID_PHONE, VALID_EMAIL, VALID_TUTORIAL, VALID_ADDRESS, invalidTags, VALID_SOCIAL
-                        , VALID_GROUPS);
+                        VALID_PHONE, VALID_EMAIL, VALID_TUTORIAL, VALID_ADDRESS, invalidTags, VALID_SOCIAL,
+                        VALID_GROUPS);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
