@@ -2,14 +2,36 @@ package seedu.clinkedin.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.commands.AddTagCommand;
+import seedu.clinkedin.logic.commands.ClearCommand;
+import seedu.clinkedin.logic.commands.Command;
+import seedu.clinkedin.logic.commands.CreateTagTypeCommand;
+import seedu.clinkedin.logic.commands.DeleteCommand;
+import seedu.clinkedin.logic.commands.DeleteTagCommand;
+import seedu.clinkedin.logic.commands.EditCommand;
+import seedu.clinkedin.logic.commands.EditTagTypeCommand;
+import seedu.clinkedin.logic.commands.ExportCommand;
+import seedu.clinkedin.logic.commands.FindCommand;
+import seedu.clinkedin.logic.commands.HelpCommand;
+import seedu.clinkedin.logic.commands.ImportCommand;
+import seedu.clinkedin.logic.commands.ListCommand;
+import seedu.clinkedin.logic.commands.NoteCommand;
+import seedu.clinkedin.logic.commands.RateCommand;
+import seedu.clinkedin.logic.commands.StatsCommand;
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
 
 /**
- * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
+ * Contains Command Line Interface (CLI) syntax definitions common to multiple
+ * commands
  */
 public class CliSyntax {
 
@@ -36,9 +58,32 @@ public class CliSyntax {
             PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS));
 
     /**
+     * Contains all user-executable command classes that are used in Clinkedin.
+     */
+    private static final List<Class<? extends Command>> ALL_COMMAND_CLASSES = Arrays.asList(
+            AddCommand.class,
+            AddTagCommand.class,
+            ClearCommand.class,
+            CreateTagTypeCommand.class,
+            DeleteCommand.class,
+            DeleteTagCommand.class,
+            EditCommand.class,
+            EditTagTypeCommand.class,
+            ExportCommand.class,
+            FindCommand.class,
+            HelpCommand.class,
+            ListCommand.class,
+            ImportCommand.class,
+            ListCommand.class,
+            NoteCommand.class,
+            RateCommand.class,
+            StatsCommand.class);
+
+    /**
      * Adds a tag prefix to the list of prefixes.
      * @param pref Prefix to be added.
-     * @throws DuplicatePrefixException If the prefix is already present in the list of prefixes.
+     * @throws DuplicatePrefixException If the prefix is already present in the list
+     *                                  of prefixes.
      */
     public static void addTagPrefix(Prefix pref) throws DuplicatePrefixException {
         if (prefixTags.contains(pref) || prefixes.contains(pref)) {
@@ -51,7 +96,8 @@ public class CliSyntax {
     /**
      * Removes a tag prefix from the list of prefixes.
      * @param pref Prefix to be removed.
-     * @throws PrefixNotFoundException If the prefix doesn't exist in the list of prefixes.
+     * @throws PrefixNotFoundException If the prefix doesn't exist in the list of
+     *                                 prefixes.
      */
     public static void removeTagPrefix(Prefix pref) throws PrefixNotFoundException {
         if (!prefixTags.contains(pref) || !prefixes.contains(pref)) {
@@ -61,6 +107,10 @@ public class CliSyntax {
         prefixes.remove(pref);
     }
 
+    /**
+     * Returns a list of prefixes that are used in Clinkedin.
+     * @return List of prefixes.
+     */
     public static Prefix[] getPrefixes() {
         requireNonNull(prefixes);
         Prefix[] pref = new Prefix[prefixes.size()];
@@ -68,13 +118,64 @@ public class CliSyntax {
         return pref;
     }
 
+    /**
+     * Returns a list of prefixes for tags that are used in Clinkedin.
+     * @return List of prefixes for tags.
+     */
     public static ArrayList<Prefix> getPrefixTags() {
         requireNonNull(prefixTags);
         return prefixTags;
     }
 
+    /**
+     * Returns a list of prefixes that are unique to a person.
+     * @return List of prefixes that are unique to a person.
+     */
     public static ArrayList<Prefix> getUniquePrefixes() {
         requireNonNull(uniquePrefixes);
         return uniquePrefixes;
+    }
+
+    /**
+     * Returns the list of all possible user command classes.
+     * @return List of all possible user command classes.
+     */
+    public static List<Class<? extends Command>> getAllCommandClasses() {
+        return ALL_COMMAND_CLASSES;
+    }
+
+    /**
+     * Returns a map of all possible command words and their corresponding command
+     * message usage instructions.
+     * @return Map of all possible command words and their corresponding usage
+     * @throws NoSuchFieldException     If the command word field is not found in
+     *                                  the class
+     * @throws SecurityException        If the command word field is not accessible
+     * @throws IllegalArgumentException If the command word field is not a string
+     * @throws IllegalAccessException   If the command word field is not accessible
+     */
+    public static Map<String, String> getAllCommandMessages()
+            throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+        Map<String, String> allCommandMessages = new HashMap<>();
+        try {
+            for (Class<? extends Command> commandClass : ALL_COMMAND_CLASSES) {
+                Field commandWordField = commandClass.getField("COMMAND_WORD");
+                String commandWord = commandWordField.get(null).toString();
+
+                Field commandUsageField = commandClass.getField("MESSAGE_USAGE");
+                String commandUsage = commandUsageField.get(null).toString();
+
+                allCommandMessages.put(commandWord, commandUsage);
+            }
+            return allCommandMessages;
+        } catch (NoSuchFieldException exception) {
+            throw new NoSuchFieldException("No field named COMMAND_WORD found in supplied commands");
+        } catch (SecurityException exception) {
+            throw new SecurityException("Security exception!");
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("Illegal argument exception!");
+        } catch (IllegalAccessException exception) {
+            throw new IllegalAccessException("Illegal access exception!");
+        }
     }
 }
