@@ -25,7 +25,8 @@
     -pw-black: #000000;
     -pw-error: #A13333;
 
-    -pw-shadow: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 16, 0.5, 0.0, 0.0);
+    -pw-shadow-main: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 16, 0.5, 0.0, 0.0);
+    -pw-shadow-light: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 16, 0.5, 0.0, 0.0);
 }
 
 .background {
@@ -53,7 +54,7 @@
 
 .label-header {
     -fx-font-size: 32px;
-    -fx-font-family: Poppins Light;
+    -fx-font-family: "Poppins SemiBold";
     -fx-text-fill: -pw-white;
     -fx-opacity: 1;
 }
@@ -66,13 +67,14 @@
 /* Tab Pane */
 .tab-label {
     -fx-text-fill: -pw-white;
+    -fx-font-family: "Poppins SemiBold";
 }
 
 .tab {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-background-color: transparent;
-    -fx-font-size: 24px;
+    -fx-font-size: 20px;
     -fx-padding: 8;
     -fx-border-width: 0 0 4 0;
     -fx-border-color: transparent;
@@ -122,7 +124,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 24px;
-    -fx-font-family: Poppins Light;
+    -fx-font-family: "Poppins Light";
     -fx-text-fill: -pw-white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -160,7 +162,7 @@
 
 .list-cell:filled {
     -fx-background-color: -pw-primary;
-    -fx-effect: -pw-shadow;
+    -fx-effect: -pw-shadow-main;
 }
 
 .list-cell .label {
@@ -174,7 +176,7 @@
 }
 
 .cell_small_label {
-    -fx-font-family: Poppins Regular;
+    -fx-font-family: "Poppins Regular";
     -fx-font-size: 12px;
     -fx-text-fill: -pw-white;
 }
@@ -189,7 +191,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: Poppins Light;
+    -fx-font-family: "Poppins Light";
     -fx-font-size: 16px;
     -fx-text-fill: -pw-white;
 }
@@ -204,7 +206,7 @@
 
 
 .status-bar .label {
-    -fx-font-family: Poppins Light;
+    -fx-font-family: "Poppins Light";
     -fx-text-fill: -pw-black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -244,7 +246,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: Poppins Light;
+    -fx-font-family: "Poppins Ligh"t;
     -fx-text-fill: -pw-black;
     -fx-opacity: 0.9;
 }
@@ -277,11 +279,11 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: -pw-primary;
-    -fx-font-family: Poppins Regular;
+    -fx-font-family: "Poppins Regular";
     -fx-font-size: 16px;
     -fx-text-fill: -pw-white;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
-    -fx-effect: -pw-shadow;
+    -fx-effect: -pw-shadow-main;
 }
 
 .button:hover {

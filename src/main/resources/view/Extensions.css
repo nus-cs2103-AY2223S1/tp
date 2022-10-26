@@ -34,18 +34,18 @@
 
 #commandTextField {
     -fx-background-color: derive(-pw-surface, 20%);
-    -fx-effect: -pw-shadow;
+    -fx-effect: -pw-shadow-light;
     -fx-border-radius: 16px;
     -fx-background-radius: 16px;
     -fx-padding: 8 16;
-    -fx-background-insets: 0;
-    -fx-border-color: transparent;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Poppins Light";
+    -fx-font-family: "Poppins Regular";
     -fx-font-size: 16px;
     -fx-text-fill: -pw-white;
     -fx-border-width: 0 0 4 0;
+}
+
+#commandBoxPlaceholder {
+    -fx-padding: 8px;
 }
 
 #resultDisplay .content {
@@ -55,6 +55,7 @@
 
 #resultDisplay {
     -fx-font-size: 12px;
+    -fx-font-family: "Poppins Regular";
 }
 
 #tags {
@@ -82,7 +83,7 @@
 
 #graphPanelPlaceholder,
 #entryList {
-    -fx-effect: -pw-shadow;
+    -fx-effect: -pw-shadow-main;
     -fx-background-radius: 8px;
 }
 
