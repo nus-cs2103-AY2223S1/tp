@@ -1,13 +1,12 @@
 package seedu.address.model.attribute;
 
-import seedu.address.model.attribute.exceptions.AttributeException;
-import seedu.address.model.attribute.exceptions.AttributeNotFoundException;
-import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import seedu.address.model.attribute.exceptions.AttributeException;
+import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
 
 /**
  * Represents a Person's custom fields pairings in the address book.
@@ -33,15 +32,6 @@ public class AttributeList {
         attributeList.add(attribute);
     }
 
-    public Attribute<?> checkForAttributeName(String attributeName) {
-        List<Attribute<?>> lst = attributeList.stream()
-                .filter(attr -> attr.isNameMatch(attributeName))
-                .collect(Collectors.toList());
-        if (lst.isEmpty()) {
-            return null;
-        }
-        return lst.get(0);
-    }
 
     /**
      * Adds a field to the list of fields by a given field name.
@@ -60,6 +50,12 @@ public class AttributeList {
         this.addAttribute(attribute);
     }
 
+    /**
+     * Adds a field
+     *
+     * @param attributeName
+     * @throws AttributeException
+     */
     public void addAttribute(String attributeName) throws AttributeException {
         if (this.checkForAttributeName(attributeName) != null) {
             String existingName = this.checkForAttributeName(attributeName).getAttributeType();
@@ -74,6 +70,25 @@ public class AttributeList {
         this.addAttribute(attribute);
     }
 
+    /**
+     * Checks for attribute name
+     * @param attributeName
+     * @return
+     */
+    public Attribute<?> checkForAttributeName(String attributeName) {
+        List<Attribute<?>> lst = attributeList.stream()
+                .filter(attr -> attr.isNameMatch(attributeName))
+                .collect(Collectors.toList());
+        if (lst.isEmpty()) {
+            return null;
+        }
+        return lst.get(0);
+    }
+
+    /**
+     * Deletes an attribute
+     * @param type
+     */
     public void deleteAttribute(String type) {
         attributeList.removeIf(attr -> attr.isNameMatch(type));
     }

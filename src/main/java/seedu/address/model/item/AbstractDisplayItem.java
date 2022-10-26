@@ -3,7 +3,6 @@ package seedu.address.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.Set;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 import seedu.address.model.tag.Tag;
 
@@ -22,9 +22,9 @@ import seedu.address.model.tag.Tag;
 public abstract class AbstractDisplayItem implements DisplayItem {
 
     protected Name name;
+    protected AttributeList attributes;
     private int typeFlag;
     private int parentTypeFlag;
-    protected AttributeList attributes;
     private Set<Tag> tags;
 
     protected AbstractDisplayItem(String name, int typeFlag, int parentTypeFlag) {
@@ -88,7 +88,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
         attributes.addAttribute(attribute);
     }
 
-    public void addAttribute(String attributeName) {
+    public void addAttribute(String attributeName) throws AttributeException {
         attributes.addAttribute(attributeName);
     }
 
@@ -107,7 +107,7 @@ public abstract class AbstractDisplayItem implements DisplayItem {
      *
      * @param fieldName the field name to be added.
      */
-    public void addField(String fieldName) {
+    public void addField(String fieldName) throws AttributeException {
         attributes.addAttribute(fieldName);
     }
 

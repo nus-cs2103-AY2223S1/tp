@@ -6,6 +6,10 @@ package seedu.address.model.attribute.exceptions;
  */
 public class AttributeException extends Exception {
 
+    /**
+     * Constructs an AttributeException
+     * @param msg
+     */
     public AttributeException(String msg) {
         super(msg);
     }

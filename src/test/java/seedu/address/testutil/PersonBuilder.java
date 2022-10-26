@@ -7,14 +7,15 @@ import java.util.Map;
 import java.util.Set;
 
 import javafx.scene.Node;
-import seedu.address.model.attribute.Field;
-import seedu.address.model.attribute.Name;
-import seedu.address.model.attribute.Phone;
+//import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Address;
-import seedu.address.model.attribute.Email;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
-import seedu.address.model.person.Fields;
+import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Name;
+import seedu.address.model.attribute.Phone;
+import seedu.address.model.attribute.exceptions.AttributeException;
+//import seedu.address.model.person.Fields;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -30,9 +31,9 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    List<Attribute<?>> attrs;
     private Set<Tag> tags;
     private AttributeList fields;
+    private List<Attribute<?>> attrs;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -71,6 +72,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Adds custom attribute to the person
+     * @param name
+     * @param data
+     * @param <U>
+     * @return
+     */
     public <U> PersonBuilder addCustomAttr(String name, U data) {
         this.attrs.add(new Attribute<U>() {
             @Override
@@ -81,6 +89,11 @@ public class PersonBuilder {
             @Override
             public U getAttributeContent() {
                 return data;
+            }
+
+            @Override
+            public boolean isNameMatch(String name) {
+                return false;
             }
 
             @Override
@@ -126,7 +139,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Fields} of the {@code Person} that we are building.
      */
-    public PersonBuilder withFields(String... fieldNames) {
+    public PersonBuilder withFields(String... fieldNames) throws AttributeException {
         fields = new AttributeList();
         for (String fieldName : fieldNames) {
             fields.addAttribute(fieldName);
@@ -134,6 +147,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a Person instance
+     * @return
+     */
     public Person build() {
         Person p = new Person(name.fullName, fields);
         p.setTags(tags);
@@ -141,12 +158,18 @@ public class PersonBuilder {
         return p;
     }
 
+    /**
+     * Adds an Address attribute to the PersonBuilder instance
+     * @param string
+     * @return
+     */
     public PersonBuilder withAddress(String string) {
         attrs.add(new Address(string));
         return this;
     }
 
     /**
+     * Adds an Email attribute to the PersonBuilder instance
      * @param string
      * @return
      */
@@ -155,6 +178,11 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Adds a Phone attribute to the PersonBuilder instance
+     * @param string
+     * @return
+     */
     public PersonBuilder withPhone(String string) {
         attrs.add(new Phone(string));
         return this;

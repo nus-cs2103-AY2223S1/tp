@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.item.DisplayItemList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -104,7 +105,13 @@ public class UniquePersonList extends DisplayItemList<Person> {
      * @param fieldName the name of the field to be removed.
      */
     public void addField(String fieldName) {
-        internalList.forEach(person -> person.addField(fieldName));
+        internalList.forEach(person -> {
+            try {
+                person.addField(fieldName);
+            } catch (AttributeException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
