@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventTitle;
+import seedu.address.model.event.Purpose;
 import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 import seedu.address.model.event.UidList;
@@ -53,10 +55,10 @@ public class JsonAdaptedEvent {
      * Converts a given Event into this class for use by Jackson.
      */
     public JsonAdaptedEvent(Event event) {
-        this.eventTitle = event.getEventTitle();
+        this.eventTitle = event.getEventTitle().toString();
         this.startDate = event.getStartDate().toLogFormat();
         this.startTime = event.getStartTime().toLogFormat();
-        this.purpose = event.getPurpose();
+        this.purpose = event.getPurpose().toString();
         Iterator<Uid> iter = event.getUids().iterator();
         while (iter.hasNext()) {
             uids.add(new JsonAdaptedUid(iter.next()));
@@ -72,6 +74,10 @@ public class JsonAdaptedEvent {
         if (this.eventTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Event Title"));
         }
+        if (!EventTitle.isValidEventTitle(eventTitle)) {
+            throw new IllegalValueException(EventTitle.MESSAGE_CONSTRAINTS);
+        }
+        final EventTitle modelEventTitle = new EventTitle(eventTitle);
 
         if (this.startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date"));
@@ -92,10 +98,16 @@ public class JsonAdaptedEvent {
         if (this.purpose == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Purpose"));
         }
+
+        if (!Purpose.isValidPurpose(purpose)) {
+            throw new IllegalValueException(EventTitle.MESSAGE_CONSTRAINTS);
+        }
+        final Purpose modelPurpose = new Purpose(purpose);
+
         final UidList eventUids = new UidList();
         for (JsonAdaptedUid uid : uids) {
             eventUids.add(uid.toModelType());
         }
-        return new Event(this.eventTitle, modelStartDate, modelStartTime, this.purpose, eventUids);
+        return new Event(modelEventTitle, modelStartDate, modelStartTime, modelPurpose, eventUids);
     }
 }
