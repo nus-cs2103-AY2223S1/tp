@@ -43,8 +43,8 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         id = source.getId().toString();
         taskName = source.getName().fullName;
-        description = source.getDescription().map(Description::toString).orElse("");
-        deadline = source.getDeadline().map(Deadline::toString).orElse("");
+        description = source.getDescription().map(Description::toString).orElse(null);
+        deadline = source.getDeadline().map(Deadline::toString).orElse(null);
     }
 
     /**
