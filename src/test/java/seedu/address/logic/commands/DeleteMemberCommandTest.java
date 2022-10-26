@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteMemberCommand}.
  */
+// TODO: Add implementation for tests
 public class DeleteMemberCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

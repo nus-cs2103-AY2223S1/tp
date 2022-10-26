@@ -12,6 +12,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddPersonCommand}.
  */
+// TODO: Add implementation for tests
 public class AddPersonCommandIntegrationTest {
 
     private Model model;

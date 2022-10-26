@@ -11,6 +11,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditPersonCommand.
  */
+// TODO: Add implementation for tests
 public class EditPersonCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

@@ -8,6 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
+// TODO: Add implementation for tests
 class AddTeamCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
