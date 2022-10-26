@@ -68,7 +68,7 @@ Prerequisite: Tag currently exists in FoodRem
 
 
 ### Reset
-1. Test Case: `reset`<br> Expected Output in Item List Box: All ietms in Item List Box are cleared <br> Expected Output in Command Output Box: FoodRem reset success message.
+1. Test Case: `reset`<br> Expected Output in Item List Box: All items in Item List Box are cleared <br> Expected Output in Command Output Box: FoodRem reset success message.
 
 
 ### Exit
