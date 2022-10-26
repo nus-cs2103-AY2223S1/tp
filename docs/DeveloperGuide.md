@@ -293,7 +293,7 @@ and will be `ASC` when `TYPE` is `NAME` or `CLASS` and `DESC` when `TYPE` is `OW
 The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass to `TeachersPet` so that it will return the
 list of person as per usual. Additionally, it implements the following operation:
-- `TeachersPet#SortBy(ComparatorM<Person>)` -- Updates the `FilteredPersonList` by reordering the list with the given `Comparator`
+- `TeachersPet#SortPersons(ComparatorM<Person>)` -- Updates the `persons` by sorting the list with the given `Comparator`
 
 The following diagram illustrates how the operation works:
 
