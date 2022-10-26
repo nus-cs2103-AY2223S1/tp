@@ -114,14 +114,16 @@ public class FypManager implements ReadOnlyFypManager {
     }
 
     /**
-     * Sorts our student list by specialisation (which naturally sorts it by alphabetical order as well)
+     * Sorts our project list by specialisation (which naturally sorts it by alphabetical order as well)
+     * Returns our old List to revert back to after showing the sorted List
      */
     public void sortFilteredStudentListBySpecialisation() {
         students.sortFilteredStudentListBySpecialisation();
     }
 
     /**
-     * Sorts our student list by specialisation (which naturally sorts it by alphabetical order as well)
+     * Sorts our project list by project status fist, followed by alphabetical order
+     * Returns our old List to revert back to after showing the sorted List
      */
     public void sortFilteredStudentListByProjectStatus() {
         students.sortFilteredStudentListByProjectStatus();
