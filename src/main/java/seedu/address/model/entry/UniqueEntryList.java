@@ -29,7 +29,7 @@ public class UniqueEntryList implements Iterable<Entry> {
         FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent entry as the given argument.
+     * Returns true if the list con3tains an equivalent entry as the given argument.
      */
     public boolean contains(Entry toCheck) {
         requireNonNull(toCheck);
