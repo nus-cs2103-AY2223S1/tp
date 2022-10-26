@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.BookCommand;
+import seedu.rc4hdb.logic.commands.venuecommands.UnbookCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
@@ -32,6 +33,9 @@ public class VenueCommandParser implements CommandParser<VenueCommand> {
 
         case BookCommand.COMMAND_WORD:
             return new BookCommandParser().parse(args);
+
+        case UnbookCommand.COMMAND_WORD:
+            return new UnbookCommandParser().parse(userInput);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

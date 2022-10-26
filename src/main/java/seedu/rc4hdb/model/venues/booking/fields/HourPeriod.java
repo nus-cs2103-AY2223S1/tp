@@ -14,8 +14,8 @@ public class HourPeriod extends StringField implements BookingField {
     public static final String IDENTIFIER = "HourPeriod";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should only contain numbers, and it should be in the format HH-HH. The start hour cannot be larger"
-                    + "than the end hour";
+            "Time should only contain numbers, and it should be in the format HH-HH. The start hour cannot be larger "
+                    + "or equal to the end hour";
 
     private final Hour startHour;
     private final Hour endHour;

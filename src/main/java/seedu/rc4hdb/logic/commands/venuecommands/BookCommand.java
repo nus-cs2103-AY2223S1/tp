@@ -50,13 +50,13 @@ public class BookCommand extends VenueCommand implements ModelCommand {
     private final Index residentIndex;
 
     /**
-     * Creates an BookCommand to add the specified {@code Booking}
+     * Creates a BookCommand to add the specified {@code Booking}
      */
-    public BookCommand(Index residentIndex, VenueName venueName, BookingDescriptor bookingDescriptor) {
-        super(venueName);
+    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor) {
+        super(bookingDescriptor.getVenueName().get());
         requireAllNonNull(residentIndex, bookingDescriptor);
         this.residentIndex = residentIndex;
-        this.bookingDescriptor = new BookingDescriptor(bookingDescriptor);
+        this.bookingDescriptor = bookingDescriptor;
     }
 
     @Override
@@ -87,6 +87,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
         assert bookingDescriptor != null && resident != null;
         HourPeriod hourPeriod = bookingDescriptor.getHourPeriod().get();
         Day dayOfWeek = bookingDescriptor.getDayOfWeek().get();
+        VenueName venueName = bookingDescriptor.getVenueName().get();
         return new RecurrentBooking(venueName, resident, hourPeriod, dayOfWeek);
     }
 
@@ -94,7 +95,8 @@ public class BookCommand extends VenueCommand implements ModelCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BookCommand // instanceof handles nulls
-                && bookingDescriptor.equals(((BookCommand) other).bookingDescriptor));
+                && bookingDescriptor.equals(((BookCommand) other).bookingDescriptor)
+                && residentIndex.equals(((BookCommand) other).residentIndex));
     }
 
 }
