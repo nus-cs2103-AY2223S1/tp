@@ -608,41 +608,105 @@ testers are expected to do more *exploratory* testing.
 ### 7.1 Launch and shutdown
 
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
-
+2. Saving window preferences
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2. Re-launch the app by double-clicking the jar file.<br>
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### 7.2 Adding a new student record
 
-### 7.2 Deleting a person
+Prerequisites: Existing student records do not have the names or IDs that will be added.
+1. Test case: `addstud nm/Peter Tan id/452B class/1F`
+   
+Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
 
-1. Deleting a person while all persons are being shown
+2. Test case: `addstud nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+3. Test case: `addstud nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+4. Test case: `addstud nm/Jonathan Lim id/abc2 class/2A`
 
-1. _{ more test cases …​ }_
+Expected: The command entered by the user is highlighted red. The status message shows an error: "Id should only contain 3 digits and 1 character". "abc2" is an invalid value for the ID as Class-ify only accepts the last 3 numbers and last letter of a student's ID.
 
-### 7.3 Saving data
+### 7.3 Editing a student record
+
+1. Test case: `edit 1 exam/CA2 70 exam/SA1 60`
+
+Expected: Adds or updates the CA2 and SA1 exam grades of the 1st student in the list to be `70` and `60` respectively.
+
+2. Test case `edit 2 nm/Jacob Teo`
+
+Expected: Edits the name of the 2nd student in the list to `Jacob Teo`.
+
+### 7.4 Deleting a student record
+
+Prerequisites: List all persons using the `list` command. Multiple students in the list.
+
+1. Test case: `delete 1`
+
+Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+2. Test case: `delete 0`
+
+Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+3. Other incorrect delete commands to try: `delete`, `delete x`
+
+Expected: Similar to previous.
+
+### 7.5 Finding a student record
+
+Prerequisites: Students with "Alex" in their name exist in the list.
+
+1. Test case: `find nm/Alex`
+
+Expected: Students with "Alex" in their name appears in the list.
+
+Prerequisites: Student with "123A" as their ID exists in the list.
+
+1. Test case: `find id/123A`
+
+Expected: Student with "123A" as their ID appears in the list.
+
+### 7.6 Viewing all student records
+
+Prerequisites: There are existing student records.
+
+1. Test case: `viewAll`
+
+Expected: All student records will appear in the list.
+
+### 7.7 Viewing student records from a class
+
+Prerequisites: Class provided must exist within the student records.
+
+1. Test case: `viewClass 1A`
+
+Expected: Student records from class 1A will appear in the list.
+
+### 7.8 Toggling view
+
+1. Test case: `toggleView`
+
+Expected: Shows/hides parent details in each student card UI.
+
+### 7.9 Calculating exam statistics
+
+*To be updated*
+
+### 7.10 Saving data
 
 1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisites: Missing `data/classify.json` file
+      1. Test case: Delete `data/classify.json` file and relaunch the application.
+         Expected: Application will be populated with sample data.
