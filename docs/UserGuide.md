@@ -26,7 +26,7 @@ Petcode is a **desktop app for coordinating pet sale business, optimized for use
 
    * **`list buyer/supplier/delivery`** : Lists buyer/supplier/delivery.
 
-   * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
+   * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colour:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
 
    * **`delete-b 1`** : Deletes the first contact from the buyer contacts list.
 
@@ -73,9 +73,14 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
+
 ### Adding a person : `add`
 
 Adds a buyer, supplier, or delivery service to the contacts.
+A person can be of three categories: Buyer, Deliverer, and Supplier.
+
+### Adding a buyer: `add-b`
+
 
 Format: `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​`
 
@@ -438,6 +443,13 @@ _Details coming soon ..._
 
 ## Command summary
 
+## List of Prefixes
+These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
+
+| Prefix | Category | Meaning |
+|--------|----------|---------|
+|
+=======
 |        Action         | Format, Examples                                                                                                                                                                                             |
 |:---------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add** (need change) | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
