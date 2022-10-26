@@ -92,4 +92,5 @@ deactivate AddTaskCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml
