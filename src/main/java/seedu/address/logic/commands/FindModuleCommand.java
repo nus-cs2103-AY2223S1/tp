@@ -21,9 +21,9 @@ public class FindModuleCommand extends Command {
     public static final String COMMAND_WORD = COMMAND_TYPE + COMMAND_IDENTIFIER_MODULE;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all Modules whose fields contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " cs2100 Friday, 2pm";
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " cs2100 Friday, 2pm";
 
     private final List<String> keywords;
 
@@ -36,27 +36,27 @@ public class FindModuleCommand extends Command {
         requireNonNull(model);
         //filter by name first
         model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(keywords));
-        int current_Filter = 1;
+        int currentFilter = 1;
         //while filtered list is still empty, keep trying new field
-        while (current_Filter < 3) {
+        while (currentFilter < 3) {
             if (model.getFilteredModuleList().size() != 0) {
                 break;
-            } else if (current_Filter == 1) {
+            } else if (currentFilter == 1) {
                 model.updateFilteredModuleList(new LectureDetailsContainsKeywordsPredicate(keywords));
-                current_Filter++;
+                currentFilter++;
             } else {
                 model.updateFilteredModuleList(new TutorialDetailsContainsKeywordsPredicate(keywords));
-                current_Filter++;
+                currentFilter++;
             }
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
+            String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindModuleCommand // instanceof handles nulls
-                && keywords.equals(((FindModuleCommand) other).keywords)); // state check
+            || (other instanceof FindModuleCommand // instanceof handles nulls
+            && keywords.equals(((FindModuleCommand) other).keywords)); // state check
     }
 }
