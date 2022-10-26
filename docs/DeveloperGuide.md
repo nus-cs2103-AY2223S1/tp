@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a internship).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -180,26 +180,36 @@ When `execute` of `AddCommand` is run, the `Internship` is passed into the model
     - Pros: Allow multiple internships with the same company.
     - Cons: Need to check for both duplicate company names and duplicate tags.
 
-### Find `Internships` from `Company`
+### Find `Internships` from keywords
 
 #### Implementation
 
 - `FindCommandParser` parses the user input by splitting the input by whitespaces.
-- The parsed user input, also known as keywords, are then passed to the predicate `CompanyContainsKeywordsPredicate`.
-- `FindCommand` then takes in the `CompanyContainsKeywordsPredicate` containing the keywords.
-- When `FindCommand#execute(model)` is called, it updates the given model to the `Internship` list where the `Company` matches the keywords.
+- The parsed user input, also known as keywords, are then passed to the predicate `ContainsKeywordsPredicate`.
+- `FindCommand` then takes in the `ContainsKeywordsPredicate` containing the keywords.
+- When `FindCommand#execute(model)` is called, it updates the given model to the `Internship` list where the `Company` or `Tag` matches the keywords.
+
+The Sequence Diagram below illustrates the interactions within the Logic component as explained above.
+
+<img src="images/FindSequenceDiagram.png" width="850" />
 
 #### Design Considerations
 
 - Allowing for multiple keywords to show more than 1 specific internship in list
-- **Matching of company name with keywords:**
+- **Components of `Internship` to be matched**
+    - **Alternative 1:** Match all components of `Internship`, e.g. `Description`, `Link`, `Company`, etc.
+        - Pros: Better search capability
+        - Cons: Less specific internship list
+    - **Alternative 2 (current choice):** Only allow for matching of `Company` and `Tag`
+        - Pros: More logical search (A typical search would consist of roles or company name)
+        - Cons: May not be what users want to search
+- **Matching of keywords:**
   - **Alternative 1:** Only allows full word match
       - Pros: More specific internship list
-      - Cons: Require typing full name of company
+      - Cons: Require typing full name of company or tag
   - **Alternative 2 (current choice):** Allows partial word match
-      - Pros: Allow quick searching for company name
+      - Pros: Allow quick searching for company name or tag
       - Cons: Less specific internship list
-
 
 ### Filter by `ApplicationStatus` feature
 

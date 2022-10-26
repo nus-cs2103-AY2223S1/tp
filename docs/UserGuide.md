@@ -223,12 +223,12 @@ Examples:
 
 ### Finding for internship applications or tags: `find`
 
-Finds internship applications and tags which contain any of the given keywords.
+Finds internship applications where the company's name and tags contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive e.g `google` will match `Google`
-* Partial words will be matched e.g. `goo` will match `Google`
+* Partial words will be matched e.g. `goo` will match an application where the company's name or tag contains the word `goo` 
 
 Examples:
 * `find tiktok` returns internship application(s) and tag(s) containing `tiktok`
