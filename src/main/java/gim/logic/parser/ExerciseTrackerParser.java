@@ -17,6 +17,7 @@ import gim.logic.commands.GenerateCommand;
 import gim.logic.commands.HelpCommand;
 import gim.logic.commands.ListCommand;
 import gim.logic.commands.PrCommand;
+import gim.logic.commands.RangeCommand;
 import gim.logic.commands.SortCommand;
 import gim.logic.parser.exceptions.ParseException;
 
@@ -70,6 +71,9 @@ public class ExerciseTrackerParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RangeCommand.COMMAND_WORD:
+            return new RangeCommandParser().parse(arguments);
 
         case GenerateCommand.COMMAND_WORD:
             return new GenerateCommandParser().parse(arguments);

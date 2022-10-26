@@ -49,6 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
             exercise = new Exercise(name, weight, sets, reps, date);
         } else {
+            // if date is not supplied by user, we set the default date (which is today's date)
             exercise = new Exercise(name, weight, sets, reps, new Date());
         }
 

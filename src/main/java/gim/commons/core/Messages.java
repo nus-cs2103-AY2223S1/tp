@@ -13,4 +13,14 @@ public class Messages {
     public static final String MESSAGE_MISSING_LEVEL = "No difficulty level selected!";
     public static final String MESSAGE_INVALID_LEVEL = "Difficulty level not supported!";
 
+    /**
+     * Specific messages for the {@RangeCommand} feature (variation two).
+     * Note: variation two follows the format :range last/INTEGER
+     */
+    public static final String MESSAGE_RANGE_COMMAND_TWO = "Exercises from the last %1$d days listed!";
+    public static final String MESSAGE_RANGE_COMMAND_TWO_TODAY = "Exercises from today listed!";
+    public static final String MESSAGE_RANGE_COMMAND_TWO_YESTERDAY = "Exercises since yesterday listed!";
+    public static final String MESSAGE_RANGE_COMMAND_TWO_WEEK =
+            "Exercises since the last week (i.e. last 7 days) listed!";
+
 }
