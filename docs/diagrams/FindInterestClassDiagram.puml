@@ -4,8 +4,8 @@ hide circle
 hide members
 show FindInterestCommandParser methods
 show FindInterestCommand methods
-show PersonContainsInterestPredicate methods
-show Person methods
+show StudentContainsInterestPredicate methods
+show Student methods
 
 Class "<<interface>>\nParser" as Parser
 Class "<<interface>>\nPredicate" as Predicate
@@ -14,22 +14,22 @@ Class "{abstract}\nCommand" as Command
 Class FindInterestCommandParser {
   +parse(args: String): FindInterestCommand
 }
-Class PersonContainsInterestPredicate {
-  +test(person: Person): boolean
+Class StudentContainsInterestPredicate {
+  +test(student: Student): boolean
 }
 Class FindInterestCommand {
   +execute(model: Model): CommandResult
 }
-Class Person {
+Class Student {
   +getInterests(): Set<Interest>
 }
 
 Parser <|.. FindInterestCommandParser
-PersonContainsInterestPredicate .right.|> Predicate
-FindInterestCommandParser -right-> PersonContainsInterestPredicate
+StudentContainsInterestPredicate .right.|> Predicate
+FindInterestCommandParser -right-> StudentContainsInterestPredicate
 FindInterestCommandParser -right-> FindInterestCommand
-FindInterestCommand --> PersonContainsInterestPredicate
+FindInterestCommand --> StudentContainsInterestPredicate
 FindInterestCommand -up-|> Command
-PersonContainsInterestPredicate -left-> Person
+StudentContainsInterestPredicate -left-> Student
 
 @enduml

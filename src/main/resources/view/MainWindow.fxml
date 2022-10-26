@@ -38,7 +38,8 @@
                       onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <Label AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" fx:id="appLogo" text="Mass Linkers"/>
+            <Label AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10"
+                   fx:id="appLogo" text="Mass Linkers"/>
         </AnchorPane>
         <!--Search bar-->
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
@@ -59,12 +60,12 @@
 
           <!--People left panel-->
         <StackPane minWidth="300" prefWidth="NaN" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <HBox fx:id="personHeader" alignment="CENTER">
+        <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <HBox fx:id="studentHeader" alignment="CENTER">
             <children>
               <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                  <Image url="@../images/person.png" />
+                  <Image url="@../images/student.png" />
                 </image>
               </ImageView>
               <HBox alignment="CENTER">
@@ -83,7 +84,7 @@
               <Insets bottom="0"  />
             </padding>
           </HBox>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
         </StackPane>
           <!--Mods right panel-->

@@ -7,4 +7,4 @@
   * find common modules and form study groups
 * It is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 * For the detailed documentation of this project, see the [Mass Linkers Product Website](https://ay2223s1-cs2103t-t11-4.github.io/tp/)
-* _This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)._
+* _This project is based on the MassLinkers-Level3 project created by the [SE-EDU initiative](https://se-education.org)._
