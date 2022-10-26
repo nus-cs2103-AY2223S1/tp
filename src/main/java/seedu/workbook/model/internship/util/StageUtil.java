@@ -102,19 +102,6 @@ public class StageUtil {
         return stagesWithTips;
     }
 
-    /**
-     * Returns a list of tips if stage is present in {@code stagesWithTips},
-     * otherwise return an empty list.
-     * @param input the user input
-     * @return a list of stage-specific tips
-     */
-    public static List<String> getStageSpecificTips(String input) {
-        Stage providedStage = new Stage(input);
-        return (!stagesWithTips.contains(providedStage))
-                ? Collections.emptyList()
-                : tipsForStage.get(providedStage);
-    }
-
    /**
      * Returns a list of tips if stage is present in {@code stagesWithTips},
      * otherwise return an empty list.
