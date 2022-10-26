@@ -18,7 +18,8 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Interest
+Class Mod
 
 }
 
@@ -35,16 +36,20 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 MassLinkers *--> "1" UniqueStudentList
+
 UniqueStudentList --> "~* all" Student
+
 Student *--> Name
 Student *--> Phone
 Student *--> Email
 Student *--> Address
-Student *--> "*" Tag
+Student *--> "*" Interest
+Student *--> "*" Mod
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Student
+ModelManager --> Student: " * filtered"
+
 @enduml
