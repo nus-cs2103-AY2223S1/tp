@@ -3,7 +3,6 @@ package paymelah.logic.parser;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
