@@ -3,16 +3,18 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "dob" : "1/1/2000",
     "address": "123, Jurong West Ave 6, #08-111",
+    "gender" : "Female",
+    "dob" : "1/1/2000",
     "tagged": [ "friends" ],
     "uid" : "0ae8093a-6367-4060-bf1d-437646cb26c6"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "dob" : "1/1/2000",
     "address": "4th street",
+    "gender" : "Female",
+    "dob" : "1/1/2000",
     "uid" : "afe9246b-891e-4268-a5c0-c7cbebf1a790"
   } ],
   "events" : [ {

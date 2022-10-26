@@ -49,7 +49,7 @@ public class MailEventCommand extends Command {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Event> lastShownEventList = model.getFilteredEventList();
         Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
-        String eventTitle = eventToMail.getEventTitle();
+        String eventTitle = eventToMail.getEventTitle().toString();
         // check if index is valid
         if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
