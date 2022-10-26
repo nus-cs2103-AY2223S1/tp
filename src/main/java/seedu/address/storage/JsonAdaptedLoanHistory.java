@@ -2,12 +2,15 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Loan;
 import seedu.address.model.person.LoanHistory;
 import seedu.address.model.person.Reason;
-import seedu.address.model.tag.Tag;
 
+/**
+ * Jackson-friendly version of {@link LoanHistory}.
+ */
 public class JsonAdaptedLoanHistory {
 
     private final String loan;
