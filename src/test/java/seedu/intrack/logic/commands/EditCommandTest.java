@@ -16,7 +16,6 @@ import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.intrack.commons.core.Messages;
 import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.intrack.model.InTrack;
@@ -38,12 +37,17 @@ public class EditCommandTest {
     /*
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Internship selectedInternship = model.getFilteredInternshipList().get(0);
+        // An internship must be selected before Edit can be used
+        model.updateSelectedInternship(a -> a.isSameInternship(selectedInternship));
+
         Internship editedInternship = new InternshipBuilder().build();
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(editedInternship).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, descriptor);
+        EditCommand editCommand = new EditCommand(descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
+
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
-        expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        expectedModel.setInternship(selectedInternship, editedInternship);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
     */
@@ -51,27 +55,33 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastInternship = Index.fromOneBased(model.getFilteredInternshipList().size());
-        Internship lastInternship = model.getFilteredInternshipList().get(indexLastInternship.getZeroBased());
+        Internship selectedInternship = model.getFilteredInternshipList().get(indexLastInternship.getZeroBased());
+        // An internship must be selected before Edit can be used
+        model.updateSelectedInternship(a -> a.isSameInternship(selectedInternship));
 
-        InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
+        InternshipBuilder internshipInList = new InternshipBuilder(selectedInternship);
         Internship editedInternship = internshipInList.withName(VALID_NAME_MSFT).withSalary(VALID_SALARY_MSFT)
                 .withTags(VALID_TAG_URGENT).build();
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT)
                 .withSalary(VALID_SALARY_MSFT).withTags(VALID_TAG_URGENT).build();
-        EditCommand editCommand = new EditCommand(indexLastInternship, descriptor);
+        EditCommand editCommand = new EditCommand(descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
-        expectedModel.setInternship(lastInternship, editedInternship);
+        expectedModel.setInternship(selectedInternship, editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, new EditInternshipDescriptor());
+        Internship selectedInternship = model.getFilteredInternshipList().get(0);
+        // An internship must be selected before Edit can be used
+        model.updateSelectedInternship(a -> a.isSameInternship(selectedInternship));
+
+        EditCommand editCommand = new EditCommand(new EditInternshipDescriptor());
         Internship editedInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
@@ -85,10 +95,14 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
+        Internship selectedInternship = model.getFilteredInternshipList().get(0);
+        // An internship must be selected before Edit can be used
+        model.updateSelectedInternship(a -> a.isSameInternship(selectedInternship));
+
         Internship internshipInFilteredList = model.getFilteredInternshipList()
                 .get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         Internship editedInternship = new InternshipBuilder(internshipInFilteredList).withName(VALID_NAME_MSFT).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
+        EditCommand editCommand = new EditCommand(
                 new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
@@ -102,8 +116,12 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateInternshipUnfilteredList_failure() {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        Internship secondInternship = model.getFilteredInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+        // An internship must be selected before Edit can be used
+        model.updateSelectedInternship(a -> a.isSameInternship(secondInternship));
+
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(firstInternship).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_INTERNSHIP, descriptor);
+        EditCommand editCommand = new EditCommand(descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
@@ -111,49 +129,25 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateInternshipFilteredList_failure() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
+        Internship firstInternship = model.getFilteredInternshipList().get(0);
+        // An internship must be selected before Edit can be used
+        model.updateSelectedInternship(a -> a.isSameInternship(firstInternship));
 
         // edit internship in filtered list into a duplicate in internship tracker
         Internship internshipInList = model.getInTrack().getInternshipList()
                 .get(INDEX_SECOND_INTERNSHIP.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
-                new EditInternshipDescriptorBuilder(internshipInList).build());
+        EditCommand editCommand = new EditCommand(new EditInternshipDescriptorBuilder(internshipInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test
-    public void execute_invalidInternshipIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
-    }
-
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of internship tracker.
-     */
-    @Test
-    public void execute_invalidInternshipIndexFilteredList_failure() {
-        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
-        Index outOfBoundIndex = INDEX_SECOND_INTERNSHIP;
-        // ensures that outOfBoundIndex is still in bounds of internship tracker list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getInTrack().getInternshipList().size());
-
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT).build());
-
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_AAPL);
+        final EditCommand standardCommand = new EditCommand(DESC_AAPL);
 
         // same values -> returns true
         EditInternshipDescriptor copyDescriptor = new EditInternshipDescriptor(DESC_AAPL);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_INTERNSHIP, copyDescriptor);
+        EditCommand commandWithSameValues = new EditCommand(copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -165,11 +159,8 @@ public class EditCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_INTERNSHIP, DESC_AAPL)));
-
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_MSFT)));
+        assertFalse(standardCommand.equals(new EditCommand(DESC_MSFT)));
     }
 
 }

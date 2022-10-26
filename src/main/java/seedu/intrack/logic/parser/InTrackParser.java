@@ -95,11 +95,11 @@ public class InTrackParser {
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
 
-        case StatsCommand.COMMAND_WORD:
-            return new StatsCommand();
-
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
 
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);
