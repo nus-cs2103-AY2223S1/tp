@@ -115,7 +115,7 @@ public class EditRecordCommand extends Command {
 
     /**
      * Stores the details to edit the record with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the record.
      */
     public static class EditRecordDescriptor {
         private LocalDateTime recordDate;
@@ -127,7 +127,7 @@ public class EditRecordCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code medications} is used internally.
          */
         public EditRecordDescriptor(EditRecordDescriptor toCopy) {
             setRecordDate(toCopy.recordDate);
@@ -161,7 +161,7 @@ public class EditRecordCommand extends Command {
         /**
          * Returns an unmodifiable medication set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code medications} is null.
          */
         public Optional<Set<Medication>> getMedications() {
             return (medications != null) ? Optional.of(Collections.unmodifiableSet(medications)) : Optional.empty();

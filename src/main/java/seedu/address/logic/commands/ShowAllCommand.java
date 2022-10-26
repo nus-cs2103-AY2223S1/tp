@@ -10,13 +10,13 @@ import seedu.address.model.Model;
  * Displays all persons or records after a find or rfind command is executed
  * Keyword matching is case insensitive.
  */
-public class BackCommand extends Command {
+public class ShowAllCommand extends Command {
 
-    public static final String COMMAND_WORD = "back";
+    public static final String COMMAND_WORD = "showall";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Showing full list";
+    public static final String MESSAGE_SUCCESS = "Displaying full list!";
 
     @Override
     public CommandResult execute(Model model) {

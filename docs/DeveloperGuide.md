@@ -384,11 +384,11 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** The patient's appointment(if any) will be cleared. 
 
-###\[Proposed\] Upcoming appointment tracker
+### \[Proposed\] Upcoming appointment tracker
 
 The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
 
-####Proposed Implementation
+#### Proposed Implementation
 The proposed implementation is facilitated by `AppointmentWindow`. It extends `UiPart<Stage>` with a new window.
 
 Given below is an example usage scenario for the command.
@@ -397,6 +397,55 @@ Given below is an example usage scenario for the command.
 
 **Step 2:** A additional window appears, showing the current upcoming appointments.
 
+### \[Implemented\] Delete Records feature
+
+#### Implementation:
+The delete record mechanism is facilitated by `DeleteRecordCommandParser`  which extends `AddressbookParser`.
+
+`DeleteRecordCommandParser` implements the following operations:
+* `DeleteRecordCommandParser#parse()` - Parses the input argument into an `Index` and 
+creates a new `DeleteRecordCommand` object with the parsed `Index`.
+
+The `DeleteRecordCommand` object then communicates with the `Model` API when it is executed, more specifically, by calling the following methods that are implemented in `ModelManager`:
+* `Model#getFilteredRecordList()` - Returns the record list which is displayed.
+* `Model#isRecordListDisplayed()` - Returns a boolean result if a record list is being displayed.
+* `Model#deleteRecord(Record)` - Deletes the input record from the DisplayedPerson (`Model#personWithRecords`).
+
+Given below is an example usage scenario for the command.
+
+* Precondition: 
+  * User should be current viewing a specific patient's record list using the `rlist` command. 
+  * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+* Execution: 
+  * User executes `rdelete 1` to delete the 1st record in the displayed record list. The `rdelete` command calls `Model#deleteRecord(Record)` which performs the deletion of records from the `DisplayedPerson` held by the `Model`.
+
+### \[Implemented\] Edit Records feature
+
+#### Implementation:
+The edit record mechanism is facilitated by `EditRecordCommandParser`  which extends `AddressbookParser`.
+
+`EditRecordCommandParser` implements the following operations:
+* `EditRecordCommandParser#parse()` - Parses the input argument by storing the index and respective prefix as in `ArgumentMultimap`
+
+The `EditRecordCommand` object then calls `createEditedRecord` and communicates with the `EditRecordDescriptor` to create 
+a new `editedRecord` to replace the `Record` that is to be edited.
+
+The `EditRecordCommand` object then communicates with the `Model` API when it is executed, more specifically,
+by calling the following methods that are implemented in `ModelManager`:
+* `Model#setRecord(Record, Record)` - Sets the target record of `Model#personWithRecords` to the new edited record.
+* `Model#updateFilteredRecordList(Predicate<Record>)` - Updates the filter of the filtered record list to filter by the given predicate;
+in this case, show all the records.
+
+Given below is an example usage scenario for the command.
+
+* Precondition:
+    * User should be current viewing a specific patient's record list using the `rlist` command.
+    * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+* Execution:
+    * User executes `redit 1 r/Fever d/12-12-2012 1200 m/` to set the 1st record in the displayed record list to a new
+  record containing the date/time of `12-12-2012 1200`, record data of `Fever` and sets the medications to empty.
 
 --------------------------------------------------------------------------------------------------------------------
 
