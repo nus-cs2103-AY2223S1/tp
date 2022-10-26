@@ -53,7 +53,10 @@ public class InternshipCard extends UiPart<Region> {
         name.setText(internship.getDisplayName());
         companyName.setText(internship.getCompanyName().fullName);
         role.setText(internship.getInternshipRole().roleName);
-        status.getChildren().add(new Label(internship.getInternshipStatus().toString()));
+        String internshipStatus = internship.getInternshipStatus().toString();
+        Label statusLabel = new Label(internshipStatus);
+        statusLabel.getStyleClass().add(internshipStatus.toLowerCase());
+        status.getChildren().add(statusLabel);
         contactPerson.setText(NO_CONTACT_PERSON); // dummy value
     }
 

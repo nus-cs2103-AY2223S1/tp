@@ -157,10 +157,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String company} into an {@code Company}.
+     * Parses a {@code String company} into a {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code Company} is invalid.
+     * @throws ParseException if the given {@code company} is invalid.
      */
     public static Company parseCompany(String company) throws ParseException {
         if (company == null || company.isBlank()) {
@@ -233,7 +233,7 @@ public class ParserUtil {
         if (!InternshipStatus.isValidStatus(trimmedInternshipStatus)) {
             throw new ParseException(InternshipStatus.MESSAGE_CONSTRAINTS);
         }
-        return new InternshipStatus(InternshipStatus.State.valueOf(trimmedInternshipStatus));
+        return new InternshipStatus(InternshipStatus.State.fromTrimmedInput(trimmedInternshipStatus));
     }
 
     /**

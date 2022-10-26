@@ -11,11 +11,11 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 
 /**
- * Deletes an internship identified using it's displayed index from the address book.
+ * Deletes an internship identified using it's displayed index from the internship list.
  */
 public class DeleteInternshipCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletei";
+    public static final String COMMAND_WORD = "delete -i";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the internship identified by the index number used in the displayed internship list.\n"

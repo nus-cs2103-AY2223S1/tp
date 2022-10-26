@@ -8,7 +8,7 @@ import java.util.Objects;
 import seedu.address.model.person.PersonId;
 
 /**
- * Represents an Internship in the address book.
+ * Represents an Internship in InterNUS.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Internship {
@@ -98,6 +98,7 @@ public class Internship {
 
     /**
      * Returns a Comparator that compares Internships by interviewDate.
+     * Earlier dates are smaller (and appear higher in the sorted list).
      * Internships with no interview dates are greater (and appear lower in the sorted list).
      *
      * @return the Comparator.
@@ -109,6 +110,7 @@ public class Internship {
 
     /**
      * Returns a Comparator that compares Internships by internshipStatus.
+     * The ordering is defined in {@code InternshipStatus.State}.
      *
      * @return the Comparator.
      */
