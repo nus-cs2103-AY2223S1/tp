@@ -5,7 +5,7 @@ title: User Guide
 
 Teaching Assistant Assistant (TAA) is a **desktop app for Teaching Assistants (TA) to track student progress and tasks,
 optimized for use via a Command Line Interface** (CLI) while still having the
-benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done
+benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your students and tasks management done
 faster than traditional GUI apps.
 
 - Table of Contents
@@ -14,98 +14,128 @@ faster than traditional GUI apps.
 ---
 
 ## Quick start
-
-_Details coming soon..._
-
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest TAA.jar from [here](https://github.com/AY2223S1-CS2103T-T13-1/tp/releases/tag/v1.3.trial).
+3. Copy the file to the folder you want to use as the home folder for your TAA.
+4. Double-click the file to start the app. The GUI appear in your app should be similar as the one shown below:
+   <img src="images/TAA.png" width="500">
+5. Type the command in the command box and press Enter or click the Send button to execute. Some example commands you can try:
+* `student add` `n/John p/96123456 e/john@example.com g/T03`: Adds a student named John to the TAA.
+* `student edit` `1 g/T01`: Edits the student John to change his tutorial group from T03 to T01.
+* `student delete` `1`: Removes the student John from TAA.
+6. Refer to the Features below for details of each command.
 ---
 
 ## Features
 
-### Add students : `student add n/studentName p/phoneNumber e/email t/tags(optional)`
+### Add students : 
 
-- Command `student add n/studentName p/phoneNumber e/email t/tags(optional)`
-- Adds a student with the given phone number, email, and tags to the list of students
+- Command `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)`
+- Adds a student with the given phone number, email, tutorial group, and tags to the list of students
 
-### Remove students : `student remove n/studentName`
+Notes:
+- `<studentName>` should be alphanumeric and should not be blank
+- `<phoneNumber>` should only contain numbers, and it should be at least 3 digits long
+- `<email>` should contain in the format: local-part@domain
+  - local-part should only contain alphanumerics and these special characters, excluding the parentheses, (+_.-) 
+  - local-part should not start or end with any special characters
+  - domain should be at least 2 characters long
+- `<tutorialGroup>` should follow the format Txx, where x is a numeric value, and it should not be blank
+- `<tags>` should be alphanumeric with no white space
 
-- Command `student remove n/<studentName>`
-- Removes the named student from the list of students
+### Remove students : 
 
-### Rename students : `student rename n/oldStudentName n/newStudentName`
+- Command `student delete <index>`
+- Removes the student from the list of students with the given index
 
-- Command `student rename n/<oldStudentName> n/<newStudentName>`
-- Updates the name of the student
+Notes:
+- `index` must be a positive integer and must correspond to an existing student
 
-### List students : `student list`
+### Edit students : 
+
+- Command `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)`
+- Edits the student by its given index with at least 1 variable specified to change.
+
+Notes:
+- `index` must be a positive integer and must correspond to an existing student
+
+### List students : 
 
 - Command `student list`
 - Abbreviate with `students`
 - Shows a list of all students
 
-### Add new task : `task add n/newTaskName`
+### Add new task : 
 
-- Command `task add n/<taskName>`
+- Command `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)`
 - Adds a task to the list of tasks
-- The task is initially assigned to no students
+- The task is initially assigned to no students if no student variable is entered
 
-### Remove task : `task remove n/taskName`
+Notes:
+- `taskName` should only contain alphanumeric characters and spaces, and it should not be blank
+- `taskDescription` should not be blank
+- `taskDeadline` should be in the format of DD/MM/YYYY with its days and months within range
+- `student(s)`, referenced by their name, should exist
 
-- Command `task remove n/<taskName>`
-- Removes the named task from the list of tasks
+### Remove task : 
 
-### Rename task : `task rename n/oldTaskName n/newTaskName`
+- Command `task delete <index>`
+- Removes the indexed task from the list of tasks
 
-- Command `task rename n/<oldTaskName> n/<newTaskName>`
-- Updates the name of the task
+Notes:
+- `index` must be a positive integer and valid
 
-### Add deadline to task : `task deadline n/taskName d/deadline`
+### Edit task : 
 
-- Command `task deadline n/<taskName> d/<deadline>`
-- Adds a deadline to the task
+- Command `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)`
+- Edits the task by its given index with at least 1 variable specified to change.
 
-### List tasks : `task list`
+Notes:
+- `index` must be a positive integer and valid
+
+### List tasks : 
 
 - Command `task list`
 - Abbreviate with `tasks`
 - Shows a list of tasks
 
-### Mark tasks : `task mark i/taskNumber`
+### Mark tasks : 
 
 - Command `task mark i/<taskNumber>`
 - Marks the task with the task number on the list.
 
-### Unmark tasks : `task unmark i/taskNumber`
+### Unmark tasks : 
 
 - Command `task unmark i/<taskNumber>`
 - Unmarks the task with the task number on the list.
 
-### Assign a task to a student : `task assign n/taskName n/studentName`
+### Assign a task to a student : 
 
 - Command `task assign n/<taskName> n/<studentName>`
 - Assign the task `taskName` to the student `studentName`.
 
-### Add new group : `group add n/newGroupName`
+### Add new tutorial group : 
 
-- Command `group add g/<newGroupName>`
-- Adds a new group with the name `newGroupName`
+- Command `tutorialAdd g/<tutorialGroup>`
+- Adds the tutorial group with the name `tutorialGroup`
 
 
-### Remove group : `group remove g/groupName`
+### Remove tutorial group : 
 
-- Command `group remove g/<groupName>`
-- Removes the group named `groupName`
+- Command `tutorial delete g/<tutorialGroup>`
+- Removes the tutorial group with the name `tutorialGroup`
 
-### Enroll a student into a group : `student enroll i n/groupName `
+### Enroll a student into a group : 
 
-- Command `group enroll i g/<groupName>`
+- Command `student enroll i g/<groupName>`
 - Enrolls the student at index i to the group named `groupName`
 
-### Expel a student from a group `To be implemented` : `group expel g/groupName n/studentName`
+### Expel a student from a group `To be implemented` : 
 
 - Command `group expel g/<groupName> g/<studentName>`
 - Removes the student `studentName` from the group `groupName`.
 
-### View the list of students in a group : `group roster g/groupName`
+### View the list of students in a group : 
 
 - Command `group roster n/<groupName>`
 - Displays a list of students enrolled in `groupName`.
