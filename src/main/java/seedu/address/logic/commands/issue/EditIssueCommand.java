@@ -1,9 +1,9 @@
 package seedu.address.logic.commands.issue;
 
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
 import seedu.address.logic.commands.CommandResult;
@@ -28,15 +28,15 @@ public class EditIssueCommand extends IssueCommand {
              + ": Edits an issue in the address book. "
             + "Parameters: "
             + PREFIX_ISSUE_ID + "ISSUE_ID "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_TITLE + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_URGENCY + "PRIORITY "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_ISSUE_ID + "1 "
-            + PREFIX_DESCRIPTION + "To Edit Class "
+            + PREFIX_TITLE + "To Edit Class "
             + PREFIX_DEADLINE + "2022-03-05 "
-            + PREFIX_PRIORITY + "1 ";
+            + PREFIX_URGENCY + "1 ";
 
     public static final String MESSAGE_SUCCESS = "Issue %1$s has been edited";
     private final Description newDescription;

@@ -2,9 +2,9 @@ package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
 import seedu.address.logic.commands.CommandResult;
@@ -28,15 +28,15 @@ public class AddIssueCommand extends IssueCommand {
             + ": Adds an issue to the address book. "
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_TITLE + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
-            + PREFIX_PRIORITY + "PRIORITY(0, 1, 2) \n"
+            + PREFIX_URGENCY + "PRIORITY(0, 1, 2) \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG
             + PREFIX_PROJECT_ID + "1 "
-            + PREFIX_DESCRIPTION + "to create a person class which stores all relevant person data "
+            + PREFIX_TITLE + "to create a person class which stores all relevant person data "
             + PREFIX_DEADLINE + "2022-12-10 "
-            + PREFIX_PRIORITY + "0 ";
+            + PREFIX_URGENCY + "0 ";
 
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
