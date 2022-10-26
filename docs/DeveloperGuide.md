@@ -327,6 +327,64 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
 
+#### Design considerations:
+
+**Aspect: How to simplify the command for User:**
+
+* **Current Implementation:** Use A-Z to specify ascending to minimise characters and improve ease of understanding
+    * Pros: More intuitive
+    * Cons: Harder to extend to sorting other items such as rating where A-Z does not make sense to users.
+
+* **Alternative:** Use the word ascending or descending
+    * Pros: Easier to generalise to sorting the contact list by other features that has a numerical value.
+    * Cons: More letters for user to type.
+
+### Export List Feature
+
+#### Implementation
+
+The proposed export mechanism is facilitated by `ExportCommand`. It extends `Command` which fetches the directory
+where the `JSON` copy of the `AddressBook` is stored at. It then uses the `CsvUtils` to create a new CSV file and
+parse the `JSON objects` in the file specified and copies it into the new CSV file with a file name specified by user.
+`FileName` class is used to specify the name of the file being added to avoid adding a file with an incompatible name.
+
+Given below is an example usage scenario and how the export command mechanism behaves at each step.
+
+Step 1. The user types `export mycontacts` and presses enter.
+
+Step 2. The `export mycontacts` will be parsed by `AddressBook#parseCommand()` which will return a `ExportCommandParser`.
+
+Step 3. The `ExportCommandParser` will parse `mycontacts` using `parse()` and then create an `FileName`.
+
+Step 4. `ExportCommandParser` then creates a `ExportCommand` by passing the `FileName` to its constructor.
+
+Step 5. The `ExportCommand` will then be executed using `ExportCommand#execute()`.
+
+Step 6. The `Model#getAddressBookFilePath();` method will be called and passed into the fileToExport
+parameter of `CsvUtils#exportAsCsv(fileToExport, exportLocation)` along with the `FileName` as the exportLocation parameter.
+
+Step 7. The `CsvUtils#exportAsCsv(fileToExport, exportLocation)` will create a CSV version of the `Addressbook` in the specified `exportLocation`.
+
+Step 8. The `Desktop` will then be used to open the CSV file created.
+
+Step 9. A `CommandResult` indicating successful completion of the command will be returned along with the absolute path of the exported file.
+
+The following sequence diagram shows how the export feature works.
+
+![ExportCommandSequenceDiagram](images/ExportCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How to simplify the command for User:**
+
+* **Current Implementation:** Allow users to specify the name of the file they want to store the CSV version of the `addressbook` into.
+    * Pros: Allows more customisation for the users.
+    * Cons: Might confuse users that are not very familiar with naming files.
+
+* **Alternative:** Use a single word export.
+    * Pros: Very intuitive to use and fool-proof.
+    * Cons: Users have less customisation.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -477,9 +535,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The student specified by the user is invalid.
   * 3a1. SoConnect shows an error message.
-    
-    Use case resumes at step 2.  
-
+    Use case resumes at step 2.
 **Use case: Delete a person**
 
 **MSS**
@@ -526,7 +582,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-  
 
 **Use case: Get Template for adding a Person**
 

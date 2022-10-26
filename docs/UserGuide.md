@@ -135,7 +135,7 @@ Similar to professor, when adding a Teaching Assistant, you can enter multiple m
 
 Examples:
 * `ta n/Alice Doe m/CS2100 p/98765432 e/AliceD@example.com g/F t/friends t/owesMoney l/COM1-0203 git/alicyD r/5`
-* `ta n/Pablo Escobar m/CS2040 p/99982344 e/Pablo@hotmail.com g/M t/entrepreneur git/pabbyescobar` 
+* `ta n/Pablo Escobar m/CS2040 p/99982344 e/Pablo@hotmail.com g/M t/entrepreneur git/pabbyescobar`
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3.2 Editing-Related Commands
