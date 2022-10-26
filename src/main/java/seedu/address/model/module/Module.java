@@ -34,7 +34,7 @@ public class Module {
                   TutorialDetails tutorialDetails, ZoomLink lectureZoomLink, ZoomLink tutorialZoomLink,
                   Set<AssignmentDetails> assignmentDetails) {
         requireAllNonNull(moduleCode, lectureDetails, tutorialDetails, lectureZoomLink, tutorialZoomLink,
-                assignmentDetails);
+            assignmentDetails);
         assert moduleCode.moduleCode != null; // There should be no way to reach here with module code as null
         this.moduleCode = moduleCode;
         this.lectureDetails = lectureDetails;
@@ -67,6 +67,7 @@ public class Module {
     /**
      * Returns an immutable assignment detail set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
      * @return
      */
     public Set<AssignmentDetails> getAssignmentDetails() {
@@ -83,7 +84,7 @@ public class Module {
         }
 
         return otherModule != null
-                && otherModule.getModuleCode().equals(getModuleCode());
+            && otherModule.getModuleCode().equals(getModuleCode());
     }
 
     /**
@@ -102,31 +103,40 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getModuleCode().equals(getModuleCode())
-                && otherModule.getLectureDetails().equals(getLectureDetails())
-                && otherModule.getTutorialDetails().equals(getTutorialDetails())
-                && otherModule.getLectureZoomLink().equals(getLectureZoomLink())
-                && otherModule.getTutorialZoomLink().equals(getTutorialZoomLink())
-                && otherModule.getAssignmentDetails().equals(getAssignmentDetails());
+            && otherModule.getLectureDetails().equals(getLectureDetails())
+            && otherModule.getTutorialDetails().equals(getTutorialDetails())
+            && otherModule.getLectureZoomLink().equals(getLectureZoomLink())
+            && otherModule.getTutorialZoomLink().equals(getTutorialZoomLink())
+            && otherModule.getAssignmentDetails().equals(getAssignmentDetails());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(moduleCode, lectureDetails, tutorialDetails,
-                lectureZoomLink, tutorialZoomLink, assignmentDetails);
+            lectureZoomLink, tutorialZoomLink, assignmentDetails);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getModuleCode())
-                .append("; Lecture Details: ")
-                .append(getLectureDetails())
-                .append("; Tutorial Details: ")
-                .append(getTutorialDetails())
-                .append("; Lecture Zoom Link: ")
-                .append(getLectureZoomLink())
-                .append("; Tutorial Zoom Link: ")
+        builder.append(getModuleCode());
+
+        if (!(getLectureDetails().toString().equals(""))) {
+            builder.append("; Lecture Details: ")
+                .append(getLectureDetails());
+        }
+        if (!(getTutorialDetails().toString().equals(""))) {
+            builder.append("; Tutorial Details: ")
+                .append(getTutorialDetails());
+        }
+        if (!(getLectureZoomLink().toString().equals(""))) {
+            builder.append("; Lecture Zoom Link: ")
+                .append(getLectureZoomLink());
+        }
+        if (!(getTutorialZoomLink().toString().equals(""))) {
+            builder.append("; Tutorial Zoom Link: ")
                 .append(getTutorialZoomLink());
+        }
 
         Set<AssignmentDetails> assignmentDetails = getAssignmentDetails();
         if (!assignmentDetails.isEmpty()) {

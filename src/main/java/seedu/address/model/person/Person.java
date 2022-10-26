@@ -33,8 +33,8 @@ public class Person {
                   //Telegram telegram,
                   ModuleCode moduleCode, Set<Tag> tags) {
         requireAllNonNull(name, phone, email,
-                //telegram,
-                moduleCode, tags);
+            //telegram,
+            moduleCode, tags);
         assert name.fullName != null;
         this.name = name;
         this.phone = phone;
@@ -82,7 +82,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -101,33 +101,44 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                // && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getModuleCode().equals(getModuleCode())
-                && otherPerson.getTags().equals(getTags());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            // && otherPerson.getTelegram().equals(getTelegram())
+            && otherPerson.getModuleCode().equals(getModuleCode())
+            && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email,
-                //telegram,
-                moduleCode, tags);
+            //telegram,
+            moduleCode, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                // .append("; Telegram: ")
-                // .append(getTelegram())
-                .append("; Module Code: ")
+        System.out.println("the string is" + getPhone());
+        builder.append(getName());
+        if (!(getPhone().toString().equals(""))) {
+            builder.append("; Phone: ")
+                .append(getPhone());
+        }
+        if (!(getEmail().toString().equals(""))) {
+            builder.append("; Email: ")
+                .append(getEmail());
+        }
+        /*
+        if (getTelegram() != null) {
+            builder.append("; Telegram: ")
+                .append(getTelegram());
+        }
+        */
+        if (!(getModuleCode().toString().equals(""))) {
+            builder.append("; Module Code: ")
                 .append(getModuleCode());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
