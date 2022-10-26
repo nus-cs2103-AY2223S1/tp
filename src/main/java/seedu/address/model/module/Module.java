@@ -1,11 +1,5 @@
 package seedu.address.model.module;
 
-// Module has a zoom link, tutorial venue and timing, lecture venue and timing, assignment name and deadline
-// Add /m CS1101S /l I3-AUDI Monday 12:00 /t COM1 B1-103 Tuesday 14:00
-// /a Functional Expressionism ONLY ONE WEEK /z https://www.zoom.sg/12891
-// Module has ModuleCode, LectureDetails, TutorialDetails, AssignmentDetails, ZoomLink
-// Only AssignmentDetails are optional, the rest should be provided by the user.
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -21,6 +15,8 @@ import seedu.address.model.assignmentdetails.AssignmentDetails;
  */
 public class Module {
 
+    public static final String INVALID_MODULE_MESSAGE = "Module needs a module code";
+
     // Identity fields
     private final ModuleCode moduleCode;
 
@@ -32,13 +28,14 @@ public class Module {
     private final Set<AssignmentDetails> assignmentDetails = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Module code must be present and not null.
      */
     public Module(ModuleCode moduleCode, LectureDetails lectureDetails,
                   TutorialDetails tutorialDetails, ZoomLink lectureZoomLink, ZoomLink tutorialZoomLink,
                   Set<AssignmentDetails> assignmentDetails) {
         requireAllNonNull(moduleCode, lectureDetails, tutorialDetails, lectureZoomLink, tutorialZoomLink,
                 assignmentDetails);
+        assert moduleCode.moduleCode != null; // There should be no way to reach here with module code as null
         this.moduleCode = moduleCode;
         this.lectureDetails = lectureDetails;
         this.tutorialDetails = tutorialDetails;

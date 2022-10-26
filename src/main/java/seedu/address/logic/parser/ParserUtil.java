@@ -63,7 +63,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
+        if (phone == null) {
+            return new Phone(null);
+        }
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
@@ -78,7 +80,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
+        if (address == null) {
+            return new Address(null);
+        }
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
@@ -93,7 +97,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        if (email == null) {
+            return new Email(null);
+        }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -135,8 +141,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code module} is invalid.
      */
     public static ModuleCode parseModuleCode(String module) throws ParseException {
-        requireNonNull(module);
-        String trimmedModule = module.trim();
+        if (module == null) {
+            return new ModuleCode(null);
+        }
+        String trimmedModule = module.trim().toUpperCase();
         if (!ModuleCode.isValidModuleCode(trimmedModule)) {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
@@ -150,9 +158,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code lecture} is invalid.
      */
     public static LectureDetails parseLectureDetails(String lecture) throws ParseException {
-        requireNonNull(lecture);
+        if (lecture == null) {
+            return new LectureDetails(null);
+        }
         String trimmedLecture = lecture.trim();
-        assert LectureDetails.areValidLectureDetails(trimmedLecture);
         if (!LectureDetails.areValidLectureDetails(trimmedLecture)) {
             throw new ParseException(LectureDetails.MESSAGE_CONSTRAINTS);
         }
@@ -166,9 +175,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tutorial} is invalid.
      */
     public static TutorialDetails parseTutorialDetails(String tutorial) throws ParseException {
-        requireNonNull(tutorial);
+        if (tutorial == null) {
+            return new TutorialDetails(null);
+        }
         String trimmedTutorial = tutorial.trim();
-        assert TutorialDetails.areValidTutorialDetails(trimmedTutorial);
         if (!TutorialDetails.areValidTutorialDetails(trimmedTutorial)) {
             throw new ParseException(TutorialDetails.MESSAGE_CONSTRAINTS);
         }
@@ -182,9 +192,11 @@ public class ParserUtil {
      * @throws ParseException if the given {@code module} is invalid.
      */
     public static ZoomLink parseZoomLink(String zoom) throws ParseException {
-        requireNonNull(zoom);
+        if (zoom == null) {
+            return new ZoomLink(null);
+        }
         String trimmedZoom = zoom.trim();
-        if (!ZoomLink.isValidZoomLink(trimmedZoom)) {
+        if (!ZoomLink.isValidUrl(trimmedZoom)) {
             throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         return new ZoomLink(trimmedZoom);

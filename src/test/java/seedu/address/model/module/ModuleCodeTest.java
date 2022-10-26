@@ -9,11 +9,6 @@ import org.junit.jupiter.api.Test;
 public class ModuleCodeTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ModuleCode(null));
-    }
-
-    @Test
     public void constructor_invalidModuleCode_throwsIllegalArgumentException() {
         String invalidModule = "";
         assertThrows(IllegalArgumentException.class, () -> new ModuleCode(invalidModule));
@@ -21,8 +16,6 @@ public class ModuleCodeTest {
 
     @Test
     public void isValidModuleCode() {
-        // null module code
-        assertThrows(NullPointerException.class, () -> ModuleCode.isValidModuleCode(null));
 
         // invalid module code
         assertFalse(ModuleCode.isValidModuleCode("")); // empty string
