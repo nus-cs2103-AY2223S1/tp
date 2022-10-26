@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Refreshes Stats panel silently. Gives no feedback to user.
+ * Refreshes Stats panel.
  */
 public class RefreshStatsCommand extends Command {
     public static final String COMMAND_WORD = "refreshStats";
