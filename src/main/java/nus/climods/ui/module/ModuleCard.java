@@ -9,6 +9,7 @@ import org.openapitools.client.model.SemestersEnum;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -93,8 +94,6 @@ public class ModuleCard extends UiPart<Region> {
         // add lesson info in a similar way as expanded module info
         lessonInfo.managedProperty().bind(lessonInfo.visibleProperty());
         lessonInfo.setVisible(false);
-        showLessonInformation(SemestersEnum.S1);
-
         if (module.isFocused()) {
             showDetailedModuleInformation();
         }
@@ -120,8 +119,12 @@ public class ModuleCard extends UiPart<Region> {
 
     private TitledPane addLessonType(LessonType lessonType, Module.ModuleLessonIdMap slots) {
         TitledPane pane = new TitledPane();
+        ScrollPane sc = new ScrollPane();
         pane.setText(String.format("%s: %s", module.getCode(), lessonType));
-        pane.setContent(addLessonSlot(slots));
+        sc.setContent(addLessonSlot(slots));
+        sc.setFitToWidth(true);
+        sc.setFitToHeight(true);
+        pane.setContent(sc);
         return pane;
     }
 
