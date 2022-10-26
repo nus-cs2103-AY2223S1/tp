@@ -10,11 +10,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.RECORD1;
 import static seedu.address.testutil.TypicalPersons.RECORD2;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.RecordBuilder;
-
-import java.time.LocalDateTime;
 
 public class RecordTest {
 
