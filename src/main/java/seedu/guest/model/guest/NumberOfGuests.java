@@ -14,7 +14,7 @@ public class NumberOfGuests {
     private static final int MAX_NUM_GUESTS = 4;
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Number of Guests should only contain 1 numeric character from " + MIN_NUM_GUESTS + " to "
+            "NumberOfGuests should only contain 1 numeric character from " + MIN_NUM_GUESTS + " to "
                     + MAX_NUM_GUESTS + ".";
     public static final String VALIDATION_REGEX = String.format("^[%d-%d]$", MIN_NUM_GUESTS, MAX_NUM_GUESTS);
     public final String value;
