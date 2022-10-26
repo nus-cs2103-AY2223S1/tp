@@ -39,7 +39,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         String appointmentDate = argumentMultimap.getValue(PREFIX_DATE).orElse("");
 
-        if (!Appointment.isValidDate(appointmentDate)) {
+        if (!Appointment.isValidDateFormat(appointmentDate)) {
             throw new ParseException(AddAppointmentCommand.DATE_MISSING);
         }
 

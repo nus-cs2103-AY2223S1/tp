@@ -70,7 +70,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, INVALID_BIRTHDATE, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_TAGS, VALID_RECORDLIST, VALID_APPOINTMENT);
-        String expectedMessage = Birthdate.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Birthdate.MESSAGE_INVALID_DATE_FORMAT;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

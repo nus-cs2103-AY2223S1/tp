@@ -3,9 +3,12 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.person.Birthdate.DATE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 class BirthdateTest {
 
@@ -21,26 +24,35 @@ class BirthdateTest {
     }
 
     @Test
-    void isValidBirthdate() {
+    void isValidDateFormat() {
         // null birthdate
-        assertThrows(NullPointerException.class, () -> Birthdate.isValidBirthdate(null));
+        assertThrows(NullPointerException.class, () -> Birthdate.isValidDateFormat(null));
 
         // invalid birthdate
-        assertFalse(Birthdate.isValidBirthdate("")); // empty string
-        assertFalse(Birthdate.isValidBirthdate(" ")); // spaces only
-        assertFalse(Birthdate.isValidBirthdate("02022002")); // incorrect date format
-        assertFalse(Birthdate.isValidBirthdate("11.11.2001")); // incorrect date format
-        assertFalse(Birthdate.isValidBirthdate("2009.09.21")); // incorrect date format
-        assertFalse(Birthdate.isValidBirthdate("10 Jul 2022")); // incorrect date format
-        assertFalse(Birthdate.isValidBirthdate("12 12 2007")); // incorrect date format
-        assertFalse(Birthdate.isValidBirthdate("2004-11-11")); // incorrect date format
-        assertFalse(Birthdate.isValidBirthdate("01-01-3000")); // incorrect date (after current date)
-        assertFalse(Birthdate.isValidBirthdate("20-12-2095")); // incorrect date (after current date)
+        assertFalse(Birthdate.isValidDateFormat("")); // empty string
+        assertFalse(Birthdate.isValidDateFormat(" ")); // spaces only
+        assertFalse(Birthdate.isValidDateFormat("02022002")); // incorrect date format
+        assertFalse(Birthdate.isValidDateFormat("11.11.2001")); // incorrect date format
+        assertFalse(Birthdate.isValidDateFormat("2009.09.21")); // incorrect date format
+        assertFalse(Birthdate.isValidDateFormat("10 Jul 2022")); // incorrect date format
+        assertFalse(Birthdate.isValidDateFormat("12 12 2007")); // incorrect date format
+        assertFalse(Birthdate.isValidDateFormat("2004-11-11")); // incorrect date format
 
         // valid birthdate
-        assertTrue(Birthdate.isValidBirthdate("01-01-2001"));
-        assertTrue(Birthdate.isValidBirthdate("12-02-1927"));
-        assertTrue(Birthdate.isValidBirthdate("31-12-2003"));
+        assertTrue(Birthdate.isValidDateFormat("01-01-2001"));
+        assertTrue(Birthdate.isValidDateFormat("12-02-1927"));
+        assertTrue(Birthdate.isValidDateFormat("31-12-2003"));
+    }
+
+    @Test
+    void isFutureDate() {
+        assertTrue(Birthdate.isFutureDate(LocalDate.now().plusYears(10).format(DATE_FORMAT)));
+        assertTrue(Birthdate.isFutureDate(LocalDate.now().plusDays(1).format(DATE_FORMAT)));
+        assertTrue(Birthdate.isFutureDate(LocalDate.now().plusMonths(1).format(DATE_FORMAT)));
+
+        assertFalse(Birthdate.isFutureDate(LocalDate.now().minusYears(6).format(DATE_FORMAT)));
+        assertFalse(Birthdate.isFutureDate(LocalDate.now().minusDays(1).format(DATE_FORMAT)));
+        assertFalse(Birthdate.isFutureDate(LocalDate.now().minusMonths(1).format(DATE_FORMAT)));
     }
 
     @Test
