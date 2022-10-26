@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 import static seedu.rc4hdb.testutil.TypicalResidents.CARL;
 import static seedu.rc4hdb.testutil.TypicalResidents.ELLE;

@@ -1,8 +1,8 @@
 package seedu.rc4hdb.logic.commands.residentcommands;
 
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.MESSAGE_SUCCESS_FORMAT;
 import static seedu.rc4hdb.logic.commands.residentcommands.ColumnManipulatorCommand.generateComplementListFrom;
-import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.assertCommandSuccess;
 import static seedu.rc4hdb.logic.commands.residentcommands.ResetCommand.COMMAND_PAST_TENSE;
 import static seedu.rc4hdb.testutil.TypicalFieldLists.VALID_FIELDS;
 import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;

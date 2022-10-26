@@ -32,7 +32,7 @@ public class Hour extends StringField {
     public static boolean isValidHour(String test) {
         try {
             int hour = Integer.parseInt(test);
-            return hour >= 8 && hour < 24;
+            return hour >= 8 && hour <= 23;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -42,15 +42,14 @@ public class Hour extends StringField {
      * Gets the hour as an integer.
      */
     public int asInt() {
-        return Integer.parseInt(value);
+        return hour;
     }
 
+    /**
+     * Checks whether this hour comes after or is during the {@code other} hour.
+     */
     public boolean isAfterOrDuring(Hour other) {
         return hour >= other.hour;
     }
 
-    @Override
-    public String toString() {
-        return Integer.toString(this.hour);
-    }
 }

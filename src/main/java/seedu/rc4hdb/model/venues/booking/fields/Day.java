@@ -33,16 +33,7 @@ public class Day extends StringField implements BookingField {
      * Returns true if a given string is a valid day.
      */
     public static boolean isValidDay(String test) {
-        switch (test.toUpperCase()) {
-        case "MON": case "TUE": case "WED": case "THU": case "FRI": case "SAT": case "SUN":
-            return true;
-        default:
-            return false;
-        }
-    }
-
-    private int getIndex(Day day) {
-        return this.DAYS_OF_WEEK.indexOf(day.toString());
+        return DAYS_OF_WEEK.stream().anyMatch(day -> day.equalsIgnoreCase(test));
     }
 
 }
