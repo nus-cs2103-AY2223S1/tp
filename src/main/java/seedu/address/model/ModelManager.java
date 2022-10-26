@@ -160,6 +160,9 @@ public class ModelManager implements Model {
         addressBook.removeTask(target);
     }
 
+
+
+
     //========== Exam List ==================================================================================
     @Override
     public boolean hasExam(Exam exam) {
@@ -262,6 +265,17 @@ public class ModelManager implements Model {
         addressBook.sortTaskList(criteria);
     }
 
+    @Override
+    public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
+        addressBook.unlinkTasksFromExam(exam);
+    }
+
+    @Override
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        addressBook.updateExamFieldForTask(previousExam, newExam);
+    }
 
     //================================Exam Commands=====================================
     @Override

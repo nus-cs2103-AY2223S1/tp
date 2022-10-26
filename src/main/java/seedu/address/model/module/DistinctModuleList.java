@@ -15,7 +15,7 @@ import seedu.address.model.task.DistinctTaskList;
 /**
  * This class represents a list which contains Module objects which are distinct from
  * each other. Module Objects are distinct from each other when they have different module
- * codes.
+ * codes and different module names.
  */
 public class DistinctModuleList implements Iterable<Module> {
 
@@ -63,7 +63,7 @@ public class DistinctModuleList implements Iterable<Module> {
      */
     public void updateTotalNumOfTasks(Module module, DistinctTaskList tasks) {
         requireAllNonNull(module, tasks);
-        int totalNumOfTasks = tasks.getTotalNumOfTasks(module);
+        int totalNumOfTasks = tasks.getTotalNumOfModuleTasks(module);
 
         int index = moduleList.indexOf(module);
         if (index == -1) {
@@ -84,7 +84,7 @@ public class DistinctModuleList implements Iterable<Module> {
      */
     public void updateNumOfCompletedTasks(Module module, DistinctTaskList tasks) {
         requireAllNonNull(module, tasks);
-        int numOfCompletedTasks = tasks.getNumOfTasksCompleted(module);
+        int numOfCompletedTasks = tasks.getNumOfCompletedModuleTasks(module);
 
         int index = moduleList.indexOf(module);
         if (index == -1) {
@@ -110,10 +110,12 @@ public class DistinctModuleList implements Iterable<Module> {
      * Replaces the given task {@code target} with {@code editedModule}.
      * {@code target} must exist in the module list.
      *
-     * @throws DuplicateModuleException if module identity of {@code editedModule} is the same as another module
+     * @throws DuplicateModuleException if module {@code editedModule} is the same as another module
      *     in the list (other than {@code target}).
+     * @throws ModuleNotFoundException if module {@code target} does not exist in the list.
      */
-    public void replaceModule(Module target, Module editedModule) throws DuplicateModuleException {
+    public void replaceModule(Module target, Module editedModule) throws DuplicateModuleException,
+            ModuleNotFoundException {
         requireAllNonNull(target, editedModule);
 
         int index = moduleList.indexOf(target);

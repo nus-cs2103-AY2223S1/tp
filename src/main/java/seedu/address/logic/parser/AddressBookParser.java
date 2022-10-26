@@ -16,10 +16,14 @@ import seedu.address.logic.commands.ClearModulesCommand;
 import seedu.address.logic.commands.ClearTasksCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteExamCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.logic.commands.EditTagCommand;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterTasksCommand;
@@ -29,10 +33,12 @@ import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LinkExamCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListExamTasksCommand;
 import seedu.address.logic.commands.ListModulesCommand;
 import seedu.address.logic.commands.ListTasksCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.UnlinkExamCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -86,11 +92,17 @@ public class AddressBookParser {
         case UnmarkCommand.COMMAND_WORD:
             return new UnmarkCommandParser().parse(arguments);
 
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
+
         case AddModuleCommand.COMMAND_WORD:
             return new AddModuleCommandParser().parse(arguments);
 
         case LinkExamCommand.COMMAND_WORD:
             return new LinkExamCommandParser().parse(arguments);
+
+        case UnlinkExamCommand.COMMAND_WORD:
+            return new UnlinkExamCommandParser().parse(arguments);
 
         case SortTaskCommand.COMMAND_WORD:
             return new SortTaskCommandParser().parse(arguments);
@@ -113,11 +125,15 @@ public class AddressBookParser {
         case ListTasksCommand.COMMAND_WORD:
             return new ListTasksCommand();
 
+        case EditTagCommand.COMMAND_WORD:
+            return new EditTagCommandParser().parse(arguments);
+
         case FindTasksCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);
 
         case FindModulesCommand.COMMAND_WORD:
             return new FindModulesCommandParser().parse(arguments);
+
         case ListModulesCommand.COMMAND_WORD:
             return new ListModulesCommand();
 
@@ -130,6 +146,9 @@ public class AddressBookParser {
         case DeleteModuleCommand.COMMAND_WORD:
             return new DeleteModuleCommandParser().parse(arguments);
 
+        case DeleteExamCommand.COMMAND_WORD:
+            return new DeleteExamCommandParser().parse(arguments);
+
         case ClearTasksCommand.COMMAND_WORD:
             return new ClearTasksCommand();
 
@@ -141,8 +160,13 @@ public class AddressBookParser {
 
         case FilterTasksCommand.COMMAND_WORD:
             return new FilterTasksCommandParser().parse(arguments);
+
         case AddExamCommand.COMMAND_WORD:
             return new AddExamCommandParser().parse(arguments);
+        case EditExamCommand.COMMAND_WORD:
+            return new EditExamCommandParser().parse(arguments);
+        case ListExamTasksCommand.COMMAND_WORD:
+            return new ListExamTasksCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

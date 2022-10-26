@@ -164,6 +164,12 @@ public interface Model {
     void sortTaskList(Criteria criteria);
 
     /**
+     * Updates the task list to unlink all tasks that are currently linked to the give {@code exam}.
+     * @param exam
+     */
+    void unlinkTasksFromExam(Exam exam);
+
+    /**
      * Returns true if a exam with the same description and module and exam date
      * as {@code exam} exists in the exam list.
      */
@@ -198,4 +204,10 @@ public interface Model {
      */
     void updateFilteredExamList(Predicate<Exam>predicate);
 
+    /**
+     * Updates the exam field in task by replacing the previous exam with the new exam.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    void updateExamFieldForTask(Exam previousExam, Exam newExam);
 }

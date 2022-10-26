@@ -142,6 +142,12 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void unlinkTasksFromExam(Exam exam) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasExam(Exam exam) {
             throw new AssertionError("This method should not be called.");
         }
@@ -173,6 +179,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredExamList(Predicate<Exam> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
             throw new AssertionError("This method should not be called.");
         }
 
