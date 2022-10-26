@@ -85,7 +85,7 @@ public class User {
     private RepoList getUpdatedRepoList(UserReposWrapper userReposWrapper) {
         RepoList repoList = new RepoList();
         for (int repoId : getRepoIds(userReposWrapper)) {
-            repoList.addRepo(new Repo(
+            repoList.add(new Repo(
                     userReposWrapper.getRepoName(repoId),
                     userReposWrapper.getRepoUrl(repoId),
                     userReposWrapper.getRepoForkCount(repoId),
