@@ -61,7 +61,7 @@ public class ModDeleteCommandTest {
      * Tests the behaviour of ModDeleteCommand when the student wants to delete 1 existing mod
      * from the list of modules of a batchmate.
      *
-     * @throws CommandException If an error which occurs during execution of ModDeleteCommand.
+     * @throws CommandException If an error occurs during execution of ModDeleteCommand.
      */
     @Test
     public void execute_deleteOneMod_success() throws CommandException {
@@ -87,7 +87,7 @@ public class ModDeleteCommandTest {
      * Tests the behaviour of ModDeleteCommand when the student wants to delete 2 existing mods
      * from the list of modules of a batchmate.
      *
-     * @throws CommandException If an error which occurs during execution of ModDeleteCommand.
+     * @throws CommandException If an error occurs during execution of ModDeleteCommand.
      */
     @Test
     public void execute_deleteMultipleMods_success() throws CommandException {
@@ -168,7 +168,7 @@ public class ModDeleteCommandTest {
     /**
      * Tests the behaviour of ModDeleteCommand when index is out of range.
      *
-     * @throws CommandException If an error which occurs during execution of ModDeleteCommand.
+     * @throws CommandException If an error occurs during execution of ModDeleteCommand.
      */
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() throws CommandException {
