@@ -23,15 +23,18 @@ public class HelpWindow extends UiPart<Stage> {
             + "1) :a - Adds an exercise\n"
             + "2) :d - Deletes an exercise\n"
             + "3) :ls - Lists all exercise entries\n"
-            + "4) :find - Finds an exercise with a particular name\n"
+            + "4) :find - Finds exercises by their name, supports finding one or multiple\n"
             + "5) :clear - Clears the saved exercises and resets the data in the system\n"
             + "6) :sort - Sorts the exercises by date, if they have the same date, by name \n"
             + "7) :range - Displays the exercises saved over a range of days\n"
-            + "8) :pr - Displays the Personal Record associated with a certain exercise\n"
+            + "8) :pr - Displays the stored Personal Records, supports displaying for one, multiple "
+            + "or all stored exercises\n"
             + "9) :gen - Generates a sample workout based on your Personal Records for that exercise\n"
-            + "10) :help - displays the help menu\n"
-            + "Simply type the command without parameters and example usages will appear "
-            + "in the result box in the top right.\n"
+            + "10) :help - displays the help menu\n\n"
+            + "For Add, Delete, Find, Range, Pr, Gen, simply type the command without"
+            + " parameters and example usages will appear "
+            + "in the result box on the top right.\n"
+            + "Other commands function without parameter inputs.\n"
             + "If you have any more questions, feel free to visit our user guide below.";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
