@@ -112,6 +112,12 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* Some Commands have multiple parsers for the same Command (FindCommand has 3 different parsers - FindBuyerCommandParser
+, FindSupplierCommandParser and FindDelivererCommandParser, all of which return a FindCommand)
+* Some parsers can return different Commands (eg. SortCommandParser can return a SortBuyerCommand, SortDelivererCommand 
+etc.)
+* Some Commands are similar but have their own Parsers and behave distrinctly. (eg. AddDelivererCommand 
+vs AddBuyerCommand).
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
