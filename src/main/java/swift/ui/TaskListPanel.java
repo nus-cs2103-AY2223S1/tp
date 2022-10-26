@@ -36,13 +36,6 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     /**
-     * Remove heading from the panel.
-     */
-    protected void removeHeading() {
-        listPanelHeading.setText("");
-    }
-
-    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
      */
     class TaskListViewCell extends ListCell<Task> {

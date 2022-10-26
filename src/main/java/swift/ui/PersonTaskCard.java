@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
+import swift.model.task.Deadline;
 import swift.model.task.Task;
 
 /**
@@ -39,7 +40,7 @@ public class PersonTaskCard extends UiPart<Region> {
     @FXML
     private FlowPane contacts;
     @FXML
-    private Label dueDate;
+    private Label deadline;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,6 +51,7 @@ public class PersonTaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
+        deadline.setText(task.getDeadline().map(Deadline::toString).orElse("No deadline"));
         setAssociatedContacts(personTaskBridgeList, personList);
     }
 
@@ -68,7 +70,6 @@ public class PersonTaskCard extends UiPart<Region> {
                             Label label = new Label(associatedPerson.getName().toString());
                             setStyle(label);
                             contacts.getChildren().add(label);
-                            dueDate.setText("No due date");
                             return;
                         }
                     }
