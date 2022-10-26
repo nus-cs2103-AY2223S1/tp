@@ -23,13 +23,13 @@ public class ClearTasksCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Task> taskList = model.getAddressBook().getTaskList();
+        ObservableList<Task> taskList = model.getFilteredTaskList();
         if(taskList.isEmpty()) {
             throw new CommandException(MESSAGE_TASK_LIST_ALREADY_EMPTY);
         }
 
-        ObservableList<Module> moduleList = model.getAddressBook().getModuleList();
-        ObservableList<Exam> examList = model.getAddressBook().getExamList();
+        ObservableList<Module> moduleList = model.getFilteredModuleList();
+        ObservableList<Exam> examList = model.getFilteredExamList();
 
         AddressBook newAddressBook = new AddressBook();
         newAddressBook.setModules(moduleList);

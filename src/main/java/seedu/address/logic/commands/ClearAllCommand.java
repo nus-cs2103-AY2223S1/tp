@@ -23,9 +23,9 @@ public class ClearAllCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Task> taskList = model.getAddressBook().getTaskList();
-        ObservableList<Module> moduleList = model.getAddressBook().getModuleList();
-        ObservableList<Exam> examList = model.getAddressBook().getExamList();
+        ObservableList<Task> taskList = model.getFilteredTaskList();
+        ObservableList<Module> moduleList = model.getFilteredModuleList();
+        ObservableList<Exam> examList = model.getFilteredExamList();
         if (taskList.isEmpty() && moduleList.isEmpty() && examList.isEmpty()) {
             throw new CommandException(MESSAGE_ALL_LISTS_ALREADY_EMPTY);
         }
