@@ -26,8 +26,6 @@ public class AddLinkCommand extends Command {
 
     public static final String COMMAND_WORD = "add-link";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Link: %2$s";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a link to the module identified "
             + "by the index number used in the displayed module list. "
             + "Parameters: INDEX (must be a positive integer) "

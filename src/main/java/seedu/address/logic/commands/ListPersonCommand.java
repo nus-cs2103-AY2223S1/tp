@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Lists all existing people in Plannit to the user.
+ * Lists all existing person in Plannit to the user.
  */
 public class ListPersonCommand extends Command {
 

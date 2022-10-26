@@ -25,8 +25,6 @@ import seedu.address.model.person.Person;
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete-link";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Link: %2$s";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a link from the module identified "
             + "by the index number used in the displayed module list. "
             + "Parameters: INDEX (must be a positive integer) "
