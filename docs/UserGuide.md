@@ -97,7 +97,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [b/BIRTHDAY]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -221,7 +221,7 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 | **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                            |
 | **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                 |
 | **List**   | `list`                                                                                                                                            |
-| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                                                             |                                                               
-| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                         
+| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                   |
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                    |
 | **Help**   | `help`                                                                                                                                            |
 
