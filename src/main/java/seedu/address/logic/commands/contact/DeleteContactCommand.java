@@ -3,6 +3,7 @@ package seedu.address.logic.commands.contact;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -42,6 +44,10 @@ public class DeleteContactCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Set<Tag> tagsToDelete = personToDelete.getTags();
+        for (Tag tag: tagsToDelete) {
+            model.decreaseTagCount(tag);
+        }
         model.deletePerson(personToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));

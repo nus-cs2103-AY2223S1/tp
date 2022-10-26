@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
@@ -12,13 +12,15 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedTag {
 
     private final String tagName;
+    private final int tagCount;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedTag} with the given tag details.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
+    public JsonAdaptedTag(@JsonProperty ("name") String tagName, @JsonProperty ("count") int tagCount) {
         this.tagName = tagName;
+        this.tagCount = tagCount;
     }
 
     /**
@@ -26,11 +28,7 @@ class JsonAdaptedTag {
      */
     public JsonAdaptedTag(Tag source) {
         tagName = source.tagName;
-    }
-
-    @JsonValue
-    public String getTagName() {
-        return tagName;
+        tagCount = source.getCount();
     }
 
     /**
@@ -42,7 +40,7 @@ class JsonAdaptedTag {
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        return new Tag(tagName, tagCount);
     }
 
 }

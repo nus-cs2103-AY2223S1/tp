@@ -3,6 +3,7 @@ package seedu.address.logic.commands.task;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -10,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
@@ -47,6 +49,10 @@ public class DeleteTaskCommand extends Command {
         }
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Set<Tag> tagsToDelete = taskToDelete.getTags();
+        for (Tag tag: tagsToDelete) {
+            model.decreaseTagCount(tag);
+        }
         model.deleteTask(taskToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));

@@ -7,7 +7,10 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark" : "free on monday",
-    "tagged" : [ "friends" ]
+    "tagged" : [ {
+      "tagName" : "friends",
+      "tagCount" :  1
+    } ]
   }, {
     "id": "1b75e80a-7f43-40b1-b576-f8e2b26a873c",
     "name" : "Benson Meier",
@@ -15,7 +18,13 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "free on tuesday",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ {
+      "tagName" : "friends",
+      "tagCount" :  1
+    }, {
+    "tagName": "owesMoney",
+    "tagCount": 1
+    } ]
   }, {
     "id": "d6c74f5b-c510-4838-a86f-d4bb22a7424",
     "name" : "Carl Kurz",
@@ -31,7 +40,10 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "remark" : "",
-    "tagged" : [ "friends" ]
+    "tagged" : [ {
+      "tagName" : "friends",
+      "tagCount" :  1
+    } ]
   }, {
     "id": "bab841db-58a7-4db7-9271-45b3b641883e",
     "name" : "Elle Meyer",
@@ -60,5 +72,14 @@
   "tasks" : [ ],
   "taskList" : {
     "isSortedByDeadline" : false
-  }
+  },
+  "tags" : [
+    {
+      "tagName" : "friends",
+      "tagCount" : 3
+    },
+    {
+      "tagName" : "owesMoney",
+      "tagCount" : 1
+    } ]
 }

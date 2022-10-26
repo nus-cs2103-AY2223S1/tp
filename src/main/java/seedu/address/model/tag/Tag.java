@@ -28,6 +28,19 @@ public class Tag {
     }
 
     /**
+     * Constructs a {@code Tag}.
+     *
+     * @param tagName A valid tag name.
+     * @param tagCount Number of tags of this name retrieved from storage.
+     */
+    public Tag(String tagName, int tagCount) {
+        requireNonNull(tagName);
+        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        this.tagName = tagName;
+        this.count = tagCount;
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
