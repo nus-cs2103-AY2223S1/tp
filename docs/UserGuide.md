@@ -26,7 +26,7 @@ Test
 * [Introduction to RC4HDB](#introduction-to-rc4hdb)
 * [Using this guide](#using-this-guide)
 * [Quick start](#quick-start)
-* [Command Guide](#command-guide)
+* [Command guide](#command-guide)
   * [Getting help](ug-pages/getting-help.md#viewing-help--help)
   * [Modifying residents](ug-pages/modifying-residents.md)
     * [Adding a resident `add`](ug-pages/modifying-residents.md#adding-a-resident--add)
@@ -36,9 +36,9 @@ Test
     * [Resident field format](ug-pages/modifying-residents.md#format-for-resident-fields)
   * [Viewing residents](ug-pages/viewing-residents.md)
     * [Listing all residents `list`](ug-pages/viewing-residents.md#listing-all-residents--list)
-    * [Showing resident fields `show`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly) 
-    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md#hiding-only-some-columns--hideonly) 
-    * [Resetting hidden resident fields `reset`](ug-pages/viewing-residents.md#resetting-hidden-columns--reset)  
+    * [Showing resident fields `show`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly)
+    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md#hiding-only-some-columns--hideonly)
+    * [Resetting hidden resident fields `reset`](ug-pages/viewing-residents.md#resetting-hidden-columns--reset)
     * [Finding residents `find`](ug-pages/viewing-residents.md#locating-residents-by-name--find)
     * [Filtering residents `filter`](ug-pages/viewing-residents.md#filtering-residents-by-field--filter)
   * [File management](ug-pages/file-management.md)
@@ -48,6 +48,14 @@ Test
     * [Importing from CSV file `import`](ug-pages/file-management.md#importing-from-csv-file--file-import)
     * [Exporting to CSV file `export`](ug-pages/file-management.md#exporting-to-csv-file--file-export)
     * [CSV file format](ug-pages/file-management.md#csv-file-format)
+  * [Venue booking](ug-pages/venue-booking.md)
+    * [Viewing the bookings](ug-pages/venue-booking.md#viewing-the-bookings)
+    * [Adding a venue](ug-pages/venue-booking.md#adding-a-venue--venue-add)
+    * [Deleting a venue](ug-pages/venue-booking.md#deleting-a-venue--venue-delete)
+    * [Viewing a venue](ug-pages/venue-booking.md#viewing-a-venue--venue-view)
+    * [Adding a booking](ug-pages/venue-booking.md#adding-a-booking-venue-book)
+    * [Deleting a booking](ug-pages/venue-booking.md#deleting-a-booking-venue-unbook)
+    * [Format for venue fields](ug-pages/venue-booking.md#format-for-venue-fields)
   * [Data management](ug-pages/data-management.md)
     * [Saving data](ug-pages/data-management.md#saving-the-data)
     * [Editing data file](ug-pages/data-management.md#editing-the-data-file)
@@ -55,6 +63,7 @@ Test
     * [Keyboard shortcuts](ug-pages/quality-of-life.md#keyboard-shortcuts)
     * [Accessing command history](ug-pages/quality-of-life.md#accessing-command-history)
   * [Exiting RC4HDB `exit`](ug-pages/exiting-the-program.md#exiting-the-program--exit)
+  * [Upcoming features]
 * [FAQ](ug-pages/faq.md#faq)
 * [Glossary](ug-pages/glossary.md)
 * [Authors]()
@@ -159,6 +168,6 @@ may have typed a command incorrectly as RC4HDB will step in as and when needed!
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>  
+</div>
 
 ---

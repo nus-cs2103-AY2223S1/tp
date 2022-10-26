@@ -21,7 +21,7 @@ All file commands have a `FILE_NAME` field that requires you to input a name for
     * `rc4.data.2022` has dots.
     * `rc4/data/2022` has forward slashes.
     * `rc4\data\2022` has backslashes.
-    
+
 ---
 
 ### Creating a new data file : `file create`
@@ -32,7 +32,7 @@ Format: `file create FILE_NAME`
 * Does not create a new file if the file already exists.
 * The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](FileCommands.html#format).
+:information source: `FILE_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file create rc4_data_2022` will create a new file named `rc4_data_2022.json`.
@@ -48,7 +48,7 @@ Format: `file delete FILE_NAME`
 * Does not delete the file if it is the data file that is currently open. You may switch to a different file before deleting the previously open data file.
 * The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](FileCommands.html#format).
+:information source: `FILE_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022.json` file.
@@ -64,7 +64,7 @@ Format: `file switch FILE_NAME`
 * Does not create a new file if the specified file does not exist.
 * The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](FileCommands.html#format).
+:information source: `FILE_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file switch rc4_data_2022` will switch the current data file to `rc4_data_2022.json`.
@@ -82,19 +82,6 @@ Format: `file import FILE_NAME`
 
 Examples:
 * `file import residents` will import the data from `residents.csv` into a new data file `residents.json`.
-
----
-
-### Exporting to CSV file : `file export`
-
-RC4HDB provides users with the ability to export data to `.csv` files. The file will be safe to remove from the `[JAR file location]/data` folder.
-
-Format: `file export FILE_NAME`
-
-:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
-
-Examples:
-* `file export residents` will export the data from `residents.json` file into a `.csv` file named `residents.csv`.
 
 ---
 

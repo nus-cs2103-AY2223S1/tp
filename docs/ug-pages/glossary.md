@@ -7,7 +7,7 @@ title: Glossary
 
 ### Idempotent
 
-This term describes an operation which can be applied multiple times without changing the result beyond the initial application. 
+This term describes an operation which can be applied multiple times without changing the result beyond the initial application.
 
 For example:
 
@@ -16,7 +16,7 @@ For example:
 
 ### State-independent
 
-This term describes an operation whose result is not affected by current conditions. 
+This term describes an operation whose result is not affected by current conditions.
 
 For example:
 
