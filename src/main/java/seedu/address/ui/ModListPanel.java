@@ -30,10 +30,12 @@ public class ModListPanel extends UiPart<Region> {
     }
 
     public void setPersonModList(Person person) {
-        currentPerson = person;
-        ObservableList<Mod> moduleList = person.getMods();
-        modListView.setItems(moduleList);
-        modListView.setCellFactory(listView -> new ModListViewCell());
+        if (person != null) {
+            currentPerson = person;
+            ObservableList<Mod> moduleList = person.getMods();
+            modListView.setItems(moduleList);
+            modListView.setCellFactory(listView -> new ModListViewCell());
+        }
     }
 
     /**

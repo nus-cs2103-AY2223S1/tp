@@ -10,7 +10,8 @@ import seedu.address.logic.parser.ParserUtil;
  * Guarantees: immutable; name is valid as declared in {@link #isValidModName(String)}
  */
 public class Mod {
-    public static final String MESSAGE_CONSTRAINTS = "Mod names should be numbers prefixed with letters.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Mod names should be numbers prefixed with letters and less than 10 characters.";
     /** Categories for mods */
     public enum ModCategory {
         COMP("Computer Science"), MATH("Mathematics"), SCI("Sciences"), COMMS("Communication"),
@@ -67,7 +68,7 @@ public class Mod {
      * Returns true if a given string is a valid mod name.
      */
     public static boolean isValidModName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.length() < 10 && test.matches(VALIDATION_REGEX);
     }
 
     /**
