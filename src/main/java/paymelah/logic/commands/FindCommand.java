@@ -7,6 +7,7 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import paymelah.commons.core.Messages;
 import paymelah.model.Model;

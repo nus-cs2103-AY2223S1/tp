@@ -12,7 +12,7 @@ import java.time.format.ResolverStyle;
  * Represents a Debt's date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class DebtDate {
+public class DebtDate implements Comparable<DebtDate> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in yyyy-mm-dd format; where y is year, m is month and d is day.";
@@ -70,5 +70,10 @@ public class DebtDate {
     @Override
     public int hashCode() {
         return date.hashCode();
+    }
+
+    @Override
+    public int compareTo(DebtDate o) {
+        return this.date.compareTo(o.date);
     }
 }

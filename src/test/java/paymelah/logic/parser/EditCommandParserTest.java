@@ -114,8 +114,13 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + TELEGRAM_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        PersonDescriptor descriptor = new PersonDescriptorBuilder().withName(VALID_NAME_AMY)
+<<<<<<<<< Temporary merge branch 1
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withTelegram(VALID_TELEGRAM_AMY).withAddress(VALID_ADDRESS_AMY)
+=========
+        PersonDescriptor descriptor = new PersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+>>>>>>>>> Temporary merge branch 2
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 

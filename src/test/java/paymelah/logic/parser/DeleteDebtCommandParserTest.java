@@ -2,11 +2,11 @@ package paymelah.logic.parser;
 
 import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDEX;
-import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDEXES;
 import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDEX_ZERO;
+import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDICES;
 import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDEX;
-import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDEXES;
-import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDEXES_REPEAT;
+import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDICES;
+import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDICES_REPEAT;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_DEBT;
@@ -65,7 +65,7 @@ public class DeleteDebtCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_DEBT_INDEX, MESSAGE_INVALID_FORMAT); // non-index
         assertParseFailure(parser, "1" + INVALID_DEBT_INDEX_ZERO, MESSAGE_INVALID_FORMAT); // zero index
-        assertParseFailure(parser, "1" + INVALID_DEBT_INDEXES, MESSAGE_INVALID_FORMAT); // multiple spacing
+        assertParseFailure(parser, "1" + INVALID_DEBT_INDICES, MESSAGE_INVALID_FORMAT); // mix of validity
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DeleteDebtCommandParserTest {
     @Test
     public void parse_multipleDebt_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + VALID_DEBT_INDEXES;
+        String userInput = targetIndex.getOneBased() + VALID_DEBT_INDICES;
 
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_FIRST_DEBT, INDEX_SECOND_DEBT, INDEX_THIRD_DEBT));
         DeleteDebtCommand expectedCommand = new DeleteDebtCommand(targetIndex, debtIndexSet);
@@ -93,7 +93,7 @@ public class DeleteDebtCommandParserTest {
     @Test
     public void parse_multipleDebtWithRepeat_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + VALID_DEBT_INDEXES_REPEAT;
+        String userInput = targetIndex.getOneBased() + VALID_DEBT_INDICES_REPEAT;
 
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_FIRST_DEBT, INDEX_THIRD_DEBT));
         DeleteDebtCommand expectedCommand = new DeleteDebtCommand(targetIndex, debtIndexSet);
