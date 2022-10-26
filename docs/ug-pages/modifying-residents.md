@@ -66,19 +66,18 @@ Format: `clear`
 ### Format for resident fields
 
 `n/NAME`
-* Must be a string
-* Spaces are allowed
+* Whitespaces are allowed *i.e. `n/Michael B. Jordan` is allowed*
 
 `p/PHONE_NUMBER`
 * Must be an **8**-digit non-negative integer
 
 `e/EMAIL`
-* Can be any string, valid or invalid email
+* Must follow the formatting for all standard emails *i.e. `e/Example@email.com` is accepted*
+* Can be both valid or invalid emails
 
 `r/FLOOR-UNIT`
 * The floor number and unit number must be separated by a hyphen
-* Both floor and unit number must be a non-negative integer
-* e.g. `5-8`
+* Both floor and unit number must be a non-negative integer *i.e. `5-8` is valid and `-3-8` is invalid*
 
 `g/GENDER`
 * `M` or `F`
@@ -89,8 +88,7 @@ Format: `clear`
 * `D` stands for **Draco**, `U` for **Ursa**, `L` for **Leo**, `A` for **Aquila**, `N` for **Noctua**
 
 `m/MATRIC_NUMBER`
-* Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet.
-* e.g. `A0123456A`
+* Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet. *i.e. `A0123456A`*
 
 `t/TAG`
 * Represents any other key that could be used to identify a resident
