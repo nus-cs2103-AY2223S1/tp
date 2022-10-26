@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" percentWidth="50.0" prefWidth="300.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" percentWidth="50.0" prefWidth="300.0" />
@@ -108,10 +110,21 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="pane-with-header" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
-            <VBox spacing="10.0">
+            <VBox minHeight="300.0" spacing="10.0">
                <children>
-                  <Label styleClass="label-subheader" text="Upcoming meeting:" />
-                  <VBox fx:id="meetings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+                  <Label styleClass="label-subheader" text="Upcoming meetings:" />
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" prefWidth="200.0" vbarPolicy="NEVER">
+                    <content>
+                      <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                           <children>
+                              <VBox fx:id="meetings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </VBox>
          </children>

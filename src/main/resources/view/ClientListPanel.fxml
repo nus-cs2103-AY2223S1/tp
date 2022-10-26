@@ -34,7 +34,7 @@
                <Label text="Name" GridPane.columnIndex="1" />
                <Label text="Phone" GridPane.columnIndex="2" />
                <Label text="Email" GridPane.columnIndex="3" />
-               <Label text="Purchase" GridPane.columnIndex="4" />
+               <Label text="Products" GridPane.columnIndex="4" />
             </children>
             <padding>
                <Insets left="10.0" right="10.0" />

@@ -1,17 +1,12 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.address.model.client.Client;
-import seedu.address.model.meeting.Meeting;
 
 /**
  * An UI component that displays information of a {@code Client}.
