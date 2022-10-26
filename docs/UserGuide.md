@@ -13,10 +13,32 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
-* #### [Quick start](#Quick start)
-* #### [Features](#Features)
-* #### [FAQ](#FAQ)
-* #### [Command summary](#Command summary)
+1. ### [Quick start](#Quick start)
+2. ### [Features](#Features)
+   1. #### [Commands on main page](#commands-on-main-page)
+      1. [`help` Viewing help](#viewing-help--help)
+      2. [`add` Creating a new itinerary](#creating-a-new-itinerary--add)
+      3. [`list` Listing all itineraries](#listing-all-itineraries--list)
+      4. [`edit` Editing the details of an itinerary](#editing-the-details-of-an-itinerary--edit)
+      5. [`delete` Deleting an itinerary](#deleting-an-itinerary--delete)
+      6. [`clear` Clearing itineraries](#clearing-itineraries--clear)
+      7. [`find` Locating itineraries by name](#locating-itineraries-by-name--find)
+      8. [`select` Selecting an itinerary](#selecting-an-itinerary--select)
+   2. #### [Commands on item planning page](#commands-on-item-planning-page)
+      1. [`add` Adding an item](#adding-an-item--add)
+      2. [`edit` Editing the details of an item](#editing-the-details-of-an-item--edit)
+      3. [`delete` Deleting an item](#deleting-an-item--delete)
+      4. [`plan` Scheduling an item](#scheduling-an-item--plan)
+      5. [`unplan` Unscheduling an item](#unscheduling-an-item--unplan)
+      6. [`free` Viewing vacant timeslots](#viewing-vacant-timeslots--free)
+      7. [`home` Returning to main page](#returning-to-main-page--home)
+      8. [`export` Exporting to PDF file](#exporting-to-pdf-file--export)
+      <br><br>
+   3. [`exit` Exiting Waddle](#exiting-waddle--exit)
+3. ### [FAQ](#FAQ)
+4. ### [Command summary](#Command summary)
+   1. #### [Home page commands](#home-page-commands)
+   2. #### [Item planning page commands](#item-planning-page commands)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -82,7 +104,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Creating a new itinerary: `add`
+### Creating a new itinerary : `add`
 
 Adds an itinerary to Waddle.
 
@@ -105,7 +127,7 @@ Shows a list of all itineraries in Waddle.
 
 Format: `list`
 
-### Editing the details of an itinerary: `edit`
+### Editing the details of an itinerary : `edit`
 
 Edits an existing itinerary in Waddle.
 
@@ -118,25 +140,6 @@ Format: `edit INDEX [d/NAME] [c/COUNTRY] [sd/START DATE] [du/DURATION] [p/NUMBER
 Examples:
 * `edit 1 du/15 sd/2022-10-04` Edits the duration and start date of the first itinerary to be `15` and `2022-10-04` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
-
-### Locating itineraries by name: `find`
-
-Finds itineraries with names containing any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g. `india` will match `India`
-* The order of the keywords does not matter. e.g. `Trip Japan My` will match `My Japan Trip`
-* Only the name is searched.
-* Only full words will be matched e.g. `Jap` will not match `Japan`
-* Itineraries matching at least one of the provided keywords will be returned (i.e. `OR` search).
-  - e.g. `find Japan Trip` will return `My Germany Trip`, since there is a match for the keyword  `Trip`.
-* Use the [`list`](#listing-all-itineraries--list) command to see all itineraries again.
-
-Examples:
-* `find India` returns `My India Trip` and `India Expedition`
-* `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`<br><br>
-  ![result for 'find trip'](images/findTripResult.png)
 
 ### Deleting an itinerary : `delete`
 
@@ -157,9 +160,28 @@ Deletes all itineraries in Waddle.
 
 Format: `clear`
 
-### Selecting an itinerary: `select`
+### Locating itineraries by name : `find`
 
-Enters the [item planning stage](#commands-in-item-planning-stage) for the selected itinerary.
+Finds itineraries with names containing any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `india` will match `India`
+* The order of the keywords does not matter. e.g. `Trip Japan My` will match `My Japan Trip`
+* Only the name is searched.
+* Only full words will be matched e.g. `Jap` will not match `Japan`
+* Itineraries matching at least one of the provided keywords will be returned (i.e. `OR` search).
+  - e.g. `find Japan Trip` will return `My Germany Trip`, since there is a match for the keyword  `Trip`.
+* Use the [`list`](#listing-all-itineraries--list) command to see all itineraries again.
+
+Examples:
+* `find India` returns `My India Trip` and `India Expedition`
+* `find India Trip` returns `My Japan Trip`, `My India Trip`, `India Expedition`<br><br>
+  ![result for 'find trip'](images/findTripResult.png)
+
+### Selecting an itinerary : `select`
+
+Enters the [item planning page](#commands-on-item-planning-page) for the selected itinerary.
 
 Format: `select INDEX`
 
@@ -169,9 +191,9 @@ Format: `select INDEX`
 Examples:
 * `select 1`
 
-### Commands in item planning stage
+### Commands on item planning page
 
-### Adding an item: `add`
+### Adding an item : `add`
 
 Adds an item to the list of items.
 
@@ -189,7 +211,7 @@ Examples:
 * `add d/Go to the Louvre s/2022-12-12 du/1`
 * `add d/Skiing c/Germany du/14 s/05/10/22 b/1000 p/4`
 
-### Editing the details of an item: `edit`
+### Editing the details of an item : `edit`
 
 Edits an existing item in the item list.
 
@@ -203,7 +225,7 @@ Examples:
 * `edit 1 d/Go skiing` would edit the description of the 1st item in the unscheduled item list to be `Go skiing`.
 * `edit 2.2 p/3 c/100` would edit the priority and cost of the 2nd item in the Day 2 item list to be `3` and `100` respectively.
 
-### Deleting an item: `delete`
+### Deleting an item : `delete`
 
 Deletes an existing item in the item list.
 
@@ -215,7 +237,7 @@ Examples:
 * `delete 1` would delete the 1st item in the unscheduled item list.
 * `delete 2.1` would delete the 1st item in the Day 2 item list.
 
-### Scheduling an item: `plan`
+### Scheduling an item : `plan`
 
 Schedules an item in the unscheduled item list.
 
@@ -232,7 +254,7 @@ Examples:
 * `plan 2 d/3 st/12:00` would schedule the 2nd item in the unscheduled item list on Day 3, starting at 12pm.
 * `plan 1 d/1 st/14:50:10` would schedule the 1st item in the unscheduled item list on Day 1, starting at 14:50pm, 10 seconds in.
 
-### Unscheduling an item: `unplan`
+### Unscheduling an item : `unplan`
 
 Unschedules an item in the scheduled item lists in the list of days.
 
@@ -244,9 +266,27 @@ Examples:
 * `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
 
-### Exiting the program : `exit`
+### Viewing vacant timeslots : `free`
 
-Exits the program.
+Displays the vacant timeslots available for scheduling items.
+
+Format: `free`
+
+### Returning to main page : `home`
+
+Returns you to the main itinerary list page.
+
+Format: `home`
+
+### Exporting to PDF file : `export`
+
+Exports the itinerary into a PDF file.
+
+Format: `export`
+
+### Exiting Waddle : `exit`
+
+Exits the Waddle program.
 
 Format: `exit`
 
@@ -264,10 +304,6 @@ Waddle data is saved as a JSON file `[JAR file location]/data/waddle.json`. Adva
 If your changes to the data file makes its format invalid, Waddle will discard all data and start with an empty data file at the next run. Please perform a backup before manually editing data.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -279,26 +315,28 @@ _Details coming soon ..._
 
 ## Command summary
 
-### Home Page Commands
-| Action                | Format, Examples                                                                                                                                                |
-|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Itinerary**     | `add d/DESCRIPTION [c/COUNTRY] du/DURATION s/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add n/Germanyyyy c/Germany du/14 s/2022-05-10 p/4 b/7500` |
-| **Clear Itineraries** | `clear`                                                                                                                                                         |
-| **Delete Itinerary**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                             |
-| **Edit Itinerary**    | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/2022-04-10`                            |
-| **Find Itinerary**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                      |
-| **List Itineraries**  | `list`                                                                                                                                                          |
-| **Help**              | `help`                                                                                                                                                          |
-| **Select Itinerary**  | `select INDEX`<br> e.g., `select 3`                                                                                                                             |
+### Home page commands
+| Action                                                           | Format, Examples                                                                                                                                                |
+|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                          |
+| [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION [c/COUNTRY] du/DURATION s/START DATE [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add n/Germanyyyy c/Germany du/14 s/2022-05-10 p/4 b/7500` |
+| [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                          |
+| [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 d/15 s/2022-04-10`                            |
+| [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                             |
+| [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                         |
+| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                      |
+| [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                             |
+| [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                          |
 
-### Itinerary Page Commands
-| Action                  | Format, Examples                                                                                         |
-|-------------------------|----------------------------------------------------------------------------------------------------------|
-| **Add Item**            | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
-| **Delete Item**         | `delete INDEX`<br> e.g., `delete 3`                                                                      |
-| **Edit Item**           | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
-| **Schedule Item**       | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`                                  |
-| **Unschedule Item**     | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
-| **View Vacant Slots**   | `free`                                                                                                   |
-| **Return to Home Page** | `home`                                                                                                   |
-| **Export to PDF**       | `export`                                                                                                 |
+### Item planning page commands
+| Action                                                       | Format, Examples                                                                                         |
+|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
+| [**Edit Item**](#editing-the-details-of-an-item--edit)       | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
+| [**Delete Item**](#deleting-an-item--delete)                 | `delete INDEX`<br> e.g., `delete 3`                                                                      |
+| [**Schedule Item**](#scheduling-an-item--plan)               | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`                                  |
+| [**Unschedule Item**](#unscheduling-an-item--unplan)         | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
+| [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
+| [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
+| [**Export to PDF**](#exporting-to-pdf-file--export)          | `export`                                                                                                 |
+| [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |
