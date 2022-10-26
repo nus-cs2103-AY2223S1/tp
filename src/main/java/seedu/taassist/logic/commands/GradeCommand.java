@@ -74,7 +74,7 @@ public class GradeCommand extends Command {
         }
 
         for (Student oldStudent : oldStudents) {
-            Student newStudent = Student.getUpdatedStudent(oldStudent, focusedClass, session, grade);
+            Student newStudent = oldStudent.updateGrade(focusedClass, session, grade);
             model.setStudent(oldStudent, newStudent);
         }
 

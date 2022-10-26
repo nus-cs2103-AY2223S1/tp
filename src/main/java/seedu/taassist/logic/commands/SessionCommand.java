@@ -5,9 +5,6 @@ import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
@@ -49,16 +46,12 @@ public class SessionCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
-        ModuleClass oldClass = model.getFocusedClass();
-        if (oldClass.hasSession(session)) {
+        ModuleClass focusedClass = model.getFocusedClass();
+        if (focusedClass.hasSession(session)) {
             throw new CommandException(String.format(MESSAGE_SESSION_EXISTS, session.getSessionName()));
         }
 
-        List<Session> newSessions = new ArrayList<>(oldClass.getSessions());
-        newSessions.add(session);
-        ModuleClass newClass = new ModuleClass(oldClass.getClassName(), newSessions);
-
-        model.setModuleClass(oldClass, newClass);
+        model.setModuleClass(focusedClass, focusedClass.addSession(session));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, session.getSessionName(), session.getDate()));
     }
