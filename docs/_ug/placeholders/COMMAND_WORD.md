@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The COMMAND_WORD is a text indicating a command word of a command
+The COMMAND_WORD is a text indicating a command word of a command. Refer to the [Command Format](#command-format) for more info.
 
 ```info
 - COMMAND_WORD is **strictly** any of the following valid examples.

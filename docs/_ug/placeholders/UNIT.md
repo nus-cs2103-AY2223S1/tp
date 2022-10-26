@@ -1,16 +1,16 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The UNIT is a text indicating the unit of an item.
+The UNIT is a text indicating the unit-of-measurement of an item.
 
 ```info
-- UNIT is a short text
-- UNIT should only contain alphanumeric characters and spaces
-- UNIT has a limit of 50 characters
-- UNIT will have leading and trailing spaces trimmed
+- UNIT is a short text with a limit of 50 characters.
+- UNIT can contain alphanumeric characters, spaces, and the following symbols: “?'."[]{}()+^$*-,:;@!#%&_=”
+- UNIT has a limit of 50 characters.
+- UNIT will have leading and trailing spaces trimmed.
 ```
 
 **Valid Examples:**
 
-* Kg
+* KG
 * Packets 8
 
 **Invalid Examples:**
