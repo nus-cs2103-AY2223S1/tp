@@ -41,9 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label telegramHandle;
     @FXML
-    private Label tutorialModule;
-    @FXML
-    private Label tutorialName;
+    private Label tutorial;
     @FXML
     private Label attendance;
     @FXML
@@ -61,12 +59,11 @@ public class PersonCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        stuId.setText("Student ID: " + student.getId().id);
-        phone.setText("Phone: " + student.getPhone().value);
-        email.setText("Email: " + student.getEmail().value);
-        telegramHandle.setText("Telegram: @" + student.getTelegram().telegram);
-        tutorialModule.setText(student.getTutorialModule().moduleName);
-        tutorialName.setText(student.getTutorialName().fullName);
+        stuId.setText(student.getId().id);
+        phone.setText(student.getPhone().value);
+        email.setText(student.getEmail().value);
+        telegramHandle.setText(" @" + student.getTelegram().telegram);
+        tutorial.setText(student.getTutorialModule().moduleName + "-" + student.getTutorialName().fullName);
         attendance.setText("Attendance: " + student.getAttendance().value);
         participation.setText("Participation: " + student.getParticipation().value);
         grade.setText("Grade: " + student.getGrade().value);
