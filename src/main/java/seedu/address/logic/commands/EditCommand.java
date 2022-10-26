@@ -120,7 +120,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Loan updatedLoan = editPersonDescriptor.getLoan().orElse(personToEdit.getLoan());
         List<LoanHistory> updatedHistory = editPersonDescriptor.getHistory().orElse(personToEdit.getHistory());
-        
+
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedBirthday, updatedTags, updatedLoan, updatedHistory);
     }
