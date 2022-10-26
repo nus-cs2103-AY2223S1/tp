@@ -69,17 +69,11 @@ public class CreateMeetingCommand extends Command {
 
         try {
             requireNonNull(model);
-            String[] newMeetingInformation = this.meetingInfo.split(";;;");
-            String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
-            String meetingTitle = newMeetingInformation[1].strip();
-            String meetingDateAndTime = newMeetingInformation[2].strip();
-            String meetingLocation = newMeetingInformation[3].strip();
 
-            if ((Objects.equals(meetingTitle, "")) || (Objects.equals(meetingLocation, ""))) {
-                return new CommandResult(INCORRECT_NUMBER_OF_ARGUMENTS);
-            }
 
-            ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, peopleToMeet);
+
+
+
 
             Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
                 meetingDateAndTime, meetingLocation);
