@@ -10,8 +10,8 @@ import seedu.address.model.Model;
 import seedu.address.model.property.AbstractFilterPropsPredicate;
 
 /**
- * Filters and lists all properties in the property list that either has a price that is within the given price,
- * characteristics that match the given characteristics list, or have the given seller.
+ * Filters and lists all properties in the property list that either has a price that is within the given price range,
+ * contains all the characteristics in the given characteristics list, or is owned by the given seller.
  * Keyword matching is case-insensitive.
  */
 public class FilterPropsCommand extends Command {

@@ -10,8 +10,8 @@ import seedu.address.model.Model;
 import seedu.address.model.buyer.AbstractFilterBuyerPredicate;
 
 /**
- * Filters and lists all buyers in the buyer list that either have a price range that accepts the given price,
- * characteristics that match the given characteristics list, or have the given tag.
+ * Filters and lists all buyers in the buyer list that either have a price range that contains the given price,
+ * contains all the characteristics in the given characteristics list, or have the given priority.
  * Keyword matching is case-insensitive.
  */
 public class FilterBuyersCommand extends Command {

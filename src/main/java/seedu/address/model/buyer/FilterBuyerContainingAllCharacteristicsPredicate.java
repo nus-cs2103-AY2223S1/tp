@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.characteristics.Characteristics;
 
 /**
- * Tests that a given {@code Buyer}'s {@code DesiredCharacteristics} contains the given characteristic.
+ * Tests that a given {@code Buyer}'s {@code DesiredCharacteristics} contains all the given characteristics.
  */
-public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPredicate {
+public class FilterBuyerContainingAllCharacteristicsPredicate extends AbstractFilterBuyerPredicate {
 
     private final Characteristics givenCharacteristics;
 
     /**
      * Standard constructor for the predicate.
      */
-    public FilterBuyerByCharacteristicsPredicate(Characteristics characteristics) {
+    public FilterBuyerContainingAllCharacteristicsPredicate(Characteristics characteristics) {
         requireNonNull(characteristics);
         this.givenCharacteristics = characteristics;
     }
@@ -31,8 +31,8 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterBuyerByCharacteristicsPredicate // instanceof handles nulls
+                || (other instanceof FilterBuyerContainingAllCharacteristicsPredicate // instanceof handles nulls
                 && givenCharacteristics.equals((
-                        (FilterBuyerByCharacteristicsPredicate) other).givenCharacteristics)); // state check
+                        (FilterBuyerContainingAllCharacteristicsPredicate) other).givenCharacteristics)); // state check
     }
 }

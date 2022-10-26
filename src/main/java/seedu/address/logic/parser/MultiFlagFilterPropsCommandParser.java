@@ -17,7 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.property.FilterPropsByCharacteristicsPredicate;
+import seedu.address.model.property.FilterPropsContainingAllCharacteristicsPredicate;
 import seedu.address.model.property.FilterPropsByOwnerNamePredicate;
 import seedu.address.model.property.FilterPropsByPricePredicate;
 import seedu.address.model.property.Property;
@@ -56,7 +56,7 @@ public class MultiFlagFilterPropsCommandParser extends Parser<MultiFlagFilterPro
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
-            predicatesList.add(new FilterPropsByCharacteristicsPredicate(characteristics));
+            predicatesList.add(new FilterPropsContainingAllCharacteristicsPredicate(characteristics));
         }
 
         if (argMultimap.getValue(PREFIX_OWNER_NAME).isPresent()) {

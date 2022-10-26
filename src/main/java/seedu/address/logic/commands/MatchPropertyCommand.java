@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.FilterBuyerByCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
 import seedu.address.model.property.Property;
 
@@ -49,7 +49,7 @@ public class MatchPropertyCommand extends Command {
         // Start constructing the predicate
         Predicate<Buyer> matchingPredicate = new FilterBuyerByPricePredicate(propertyToMatch.getPrice());
         if (propertyToMatch.getCharacteristics().isPresent()) {
-            matchingPredicate = matchingPredicate.and(new FilterBuyerByCharacteristicsPredicate(
+            matchingPredicate = matchingPredicate.and(new FilterBuyerContainingAllCharacteristicsPredicate(
                     propertyToMatch.getCharacteristics().get()));
         }
 

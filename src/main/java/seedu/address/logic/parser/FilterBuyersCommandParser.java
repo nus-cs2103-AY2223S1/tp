@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import seedu.address.logic.commands.FilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.AbstractFilterBuyerPredicate;
-import seedu.address.model.buyer.FilterBuyerByCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
 import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
 import seedu.address.model.buyer.Priority;
@@ -50,7 +50,7 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
-            predicate = new FilterBuyerByCharacteristicsPredicate(characteristics);
+            predicate = new FilterBuyerContainingAllCharacteristicsPredicate(characteristics);
         }
 
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {

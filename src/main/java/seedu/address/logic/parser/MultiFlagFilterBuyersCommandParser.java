@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 import seedu.address.logic.commands.MultiFlagFilterBuyersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.buyer.Buyer;
-import seedu.address.model.buyer.FilterBuyerByCharacteristicsPredicate;
+import seedu.address.model.buyer.FilterBuyerContainingAllCharacteristicsPredicate;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
 import seedu.address.model.buyer.FilterBuyerByPriorityPredicate;
 import seedu.address.model.buyer.Priority;
@@ -58,7 +58,7 @@ public class MultiFlagFilterBuyersCommandParser extends Parser<MultiFlagFilterBu
         if (argMultimap.getValue(PREFIX_CHARACTERISTICS).isPresent()) {
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
-            predicatesList.add(new FilterBuyerByCharacteristicsPredicate(characteristics));
+            predicatesList.add(new FilterBuyerContainingAllCharacteristicsPredicate(characteristics));
         }
 
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
