@@ -139,7 +139,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortByRiskTag_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {ALICE, FIONA, ELLE, GEORGE};
+        Person[] persons = {GEORGE, ALICE, ELLE, FIONA};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }
@@ -152,7 +152,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortByRiskTagDesc_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {ELLE, GEORGE, FIONA, ALICE};
+        Person[] persons = {ELLE, FIONA, GEORGE, ALICE};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }

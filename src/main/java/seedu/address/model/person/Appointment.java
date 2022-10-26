@@ -6,7 +6,7 @@ import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 import java.util.Objects;
 
 import seedu.address.logic.parser.DateTimeParser;
-import seedu.address.logic.util.MaximumSortedList;
+import seedu.address.model.util.MaximumSortedList;
 
 /**
  * Represents one of the Person's appointments.

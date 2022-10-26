@@ -21,6 +21,14 @@ public class Date implements Comparable<Date> {
         this.localDate = localDate;
     }
 
+    public int getYear() {
+        return localDate.getYear();
+    }
+
+    public int getMonth() {
+        return localDate.getMonthValue();
+    }
+
     @Override
     public String toString() {
         return localDate.format(java.time.format
@@ -43,4 +51,6 @@ public class Date implements Comparable<Date> {
     public int hashCode() {
         return localDate.hashCode();
     }
+
+
 }

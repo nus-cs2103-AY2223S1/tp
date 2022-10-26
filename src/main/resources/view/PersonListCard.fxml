@@ -20,7 +20,7 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
         </columnConstraints>
-        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" style="-fx-background: transparent; -fx-background-color: transparent;">
             <content>
                 <VBox alignment="CENTER_LEFT" minHeight="105">
                     <padding>
@@ -126,7 +126,7 @@
                         <Insets bottom="10.0" />
                     </padding>
                 </HBox>
-                <ListView fx:id="appointments" prefHeight="127.0" prefWidth="129.0" />
+                <ListView fx:id="appointments" focusTraversable="false" prefHeight="127.0" prefWidth="129.0" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />

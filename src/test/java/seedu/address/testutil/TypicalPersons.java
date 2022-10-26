@@ -18,7 +18,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKTAG_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKTAG_LOW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -54,7 +53,7 @@ public class TypicalPersons {
             .withEmail("musab@gmail.com")
             .withPhone("92345678")
             .withMonthly("$100")
-            .withRiskTag("HIGH")
+            .withRiskTag("LOW")
             .withPlanTag("Savings Plan")
             .withTags("gay")
             .build();
@@ -77,7 +76,7 @@ public class TypicalPersons {
             .withAddress("wall street")
             .withIncome("$1000")
             .withMonthly("$200")
-            .withRiskTag("HIGH")
+            .withRiskTag("LOW")
             .withPlanTag("Savings Plan")
             .build();
     public static final Person DANIEL = new PersonBuilder()
@@ -87,7 +86,7 @@ public class TypicalPersons {
             .withAddress("10th street")
             .withIncome("$1000")
             .withMonthly("$300")
-            .withRiskTag("HIGH")
+            .withRiskTag("LOW")
             .withTags("friends")
             .withPlanTag("Savings Plan")
             .build();
@@ -98,7 +97,7 @@ public class TypicalPersons {
             .withAddress("michegan ave")
             .withIncome("$6000")
             .withMonthly("$250")
-            .withRiskTag("HIGH")
+            .withRiskTag("MEDIUM")
             .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_22_JAN_2023)
@@ -124,7 +123,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withIncome("$10000")
             .withMonthly("$400")
-            .withRiskTag("HIGH")
+            .withRiskTag("LOW")
             .withPlanTag("Savings Plan")
             .withAppointment(new AppointmentBuilder()
                     .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -142,7 +141,7 @@ public class TypicalPersons {
             .withAddress("little india")
             .withIncome("$1000")
             .withMonthly("$300")
-            .withRiskTag("HIGH")
+            .withRiskTag("LOW")
             .withPlanTag("Savings Plan")
             .build();
     public static final Person IDA = new PersonBuilder()
@@ -152,7 +151,7 @@ public class TypicalPersons {
             .withAddress("chicago ave")
             .withIncome("$1000")
             .withMonthly("$200")
-            .withRiskTag("HIGH")
+            .withRiskTag("MEDIUM")
             .withPlanTag("Savings Plan")
             .build();
 
@@ -175,7 +174,7 @@ public class TypicalPersons {
             .withAddress(VALID_ADDRESS_BOB)
             .withIncome(VALID_INCOME_BOB)
             .withMonthly(VALID_MONTHLY_BOB)
-            .withRiskTag(VALID_RISKTAG_HIGH)
+            .withRiskTag(VALID_RISKTAG_LOW)
             .withPlanTag("Savings Plan")
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();

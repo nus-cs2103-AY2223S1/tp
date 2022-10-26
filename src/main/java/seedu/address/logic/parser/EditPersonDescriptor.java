@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -18,6 +17,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
+import seedu.address.model.util.MaximumSortedList;
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the

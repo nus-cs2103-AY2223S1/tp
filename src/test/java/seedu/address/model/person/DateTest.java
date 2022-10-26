@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class DateTest {
@@ -23,6 +24,19 @@ public class DateTest {
     public void versionToString_validVersion_correctStringRepresentation() {
         Date date = new Date(LocalDate.of(2023, 1, 21));
         assertEquals("21-Jan-2023", date.toString());
+    }
+
+    @Test
+    public void getYear_sameYear_success() {
+        Date date = new Date(LocalDate.of(2023, 1, 21));
+        Assertions.assertEquals(2023, date.getYear());
+        Assertions.assertNotEquals(2022, date.getYear());
+    }
+    @Test
+    public void getMonth_sameMonth_success() {
+        Date date = new Date(LocalDate.of(2023, 1, 21));
+        Assertions.assertEquals(1, date.getMonth());
+        Assertions.assertNotEquals(2, date.getMonth());
     }
 
     @Test
