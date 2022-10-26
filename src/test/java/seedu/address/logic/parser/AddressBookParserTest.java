@@ -185,17 +185,23 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_hidePatients() throws ParseException {
         HidePatientsCommand command = (HidePatientsCommand) parser.parseCommand(
-                HidePatientsCommand.COMMAND_WORD + " patients" + " t/tag1 tag2");
-        assertEquals(new HidePatientsCommand(new TagContainsKeywordsPredicate("tag1 tag2")), command);
+                HidePatientsCommand.COMMAND_WORD + " patients" + " t/tag1 t/tag2");
+        List<String> l = new ArrayList<>();
+        l.add("tag1");
+        l.add("tag2");
+        assertEquals(new HidePatientsCommand(new TagContainsKeywordsPredicate(l)), command);
     }
 
     @Test
     public void parseCommand_hideAppointments() throws ParseException {
         HideAppointmentsCommand command = (HideAppointmentsCommand) parser.parseCommand(
-                HideAppointmentsCommand.COMMAND_WORD + " appts" + " r/ear nose");
+                HideAppointmentsCommand.COMMAND_WORD + " appts" + " r/ear r/nose");
+        List<String> l = new ArrayList<>();
+        l.add("ear");
+        l.add("nose");
         assertEquals(new HideAppointmentsCommand(
                 new HideAppointmentPredicate(
-                        HideAppointmentPredicate.HideBy.KEYWORD, "ear nose")), command);
+                        HideAppointmentPredicate.HideBy.KEYWORD, l)), command);
     }
 
     @Test

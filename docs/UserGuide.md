@@ -224,53 +224,53 @@ Format:
 By name:
 Filters out (hides) patients whose names contain any of the given keywords.
 
-Format: `hide patients n/NAME [MORE_NAMES]`
+Format: `hide patients n/NAME [n/MORE_NAMES]...`
 
 Examples:
 * `hide patients n/John` hides `john` and `John Doe`
-* `hide patients n/alex david` hides `Alex Yeoh`, `David Li`<br>
+* `hide patients n/alex n/david` hides `Alex Yeoh`, `David Li`<br>
 
 By tag:
 
 Hides patients whose names contain any of the given tags.
 
-Format: `hide patients t/TAG [MORE_TAGS]`
+Format: `hide patients t/TAG [t/MORE_TAGS]...`
 
 * The search is case-insensitive. e.g. `EAR` will match `ear`
 * All tags of a patient are searched.
 
 Examples:
-* `hide patients t/ear nose` hides all patients with a ear OR nose tag.
+* `hide patients t/ear t/nose` hides all patients with a ear OR nose tag.
 
 #### Unhiding patients by name or tag: `unhide patients`
 
 By name:
 Shows (unhides) patients that were previously hidden whose names contain any of the given keywords.
 
-Format: `unhide patients n/NAME [MORE_NAMES]`
+Format: `unhide patients n/NAME [n/MORE_NAMES]...`
 
 Examples:
 * `unhide patients n/John` unhides `john` and `John Doe`
-* `unhide patients n/alex david` unhides `Alex Yeoh`, `David Li`<br>
+* `unhide patients n/alex n/david` unhides `Alex Yeoh`, `David Li`<br>
 
 By tag:
 
 Unhides patients that were previously hidden whose names contain any of the given tags.
 
-Format: `unhide patients t/TAG [MORE_TAGS]`
+Format: `unhide patients t/TAG [t/MORE_TAGS]...`
 
 * The search is case-insensitive. e.g `EAR` will match `ear`
 * All tags of a patient are searched.
 
 Examples:
-* `unhide patients t/nose ear` unhides all patients with a nose OR ear tag.
+* `unhide patients t/nose t/ear` unhides all patients with a nose OR ear tag.
 
 #### Hiding appointments by reason, tag, or marked status: `hide appts`
 
 By reason:
 Filters out (hides) appointments that has a reason that matches the given keyword.
 
-Format: `hide appts r/REASON [MORE_REASONS]`
+Format: `hide appts r/REASON [r/MORE_REASONS]...`
 
 Examples:
 * `hide appts r/nose` hides all appointments with "nose" in the reason.
@@ -279,7 +279,7 @@ By tag:
 
 Hides appointments which contain any of the given tags.
 
-Format: `hide appts t/TAG [MORE_TAGS]`
+Format: `hide appts t/TAG [t/MORE_TAGS]...`
 
 * The search is case-insensitive. e.g `EAR` will match `ear`
 * All tags of an appointment are searched.
@@ -302,7 +302,7 @@ Examples:
 By reason:
 Shows (unhides) appointments that were previously hidden whose reason contain any of the given keywords.
 
-Format: `unhide appts r/reason [MORE_REASONS]`
+Format: `unhide appts r/reason [r/MORE_REASONS]...`
 
 Examples:
 * `unhide appts r/pain` unhides all appointments with "pain" as part of the reason.
@@ -311,13 +311,13 @@ By tag:
 
 Unhides appointments that were previously hidden which contain any of the given tags.
 
-Format: `unhide appts t/TAG [MORE_TAGS]`
+Format: `unhide appts t/TAG [t/MORE_TAGS]...`
 
 * The search is case-insensitive. e.g `EAR` will match `ear`
 * All tags of an appointment are searched.
 
 Examples:
-* `unhide appts t/nose ear` unhides all appointments with a nose OR ear tag.
+* `unhide appts t/nose t/ear` unhides all appointments with a nose OR ear tag.
 
 By marked/unmarked status:
 Unhides appointments that were previously hidden which are marked/unmarked.

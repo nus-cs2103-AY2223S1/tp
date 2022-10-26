@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.logic.commands.UnhidePatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -25,18 +25,14 @@ public class UnhidePatientsCommandParser implements Parser<UnhidePatientsCommand
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_NAME);
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             return new UnhidePatientsCommand(
-                    new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
+                    new TagContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_TAG)));
         }
         if (argMultimap.getValue(PREFIX_NAME).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhidePatientsCommand.MESSAGE_USAGE));
         }
-        String trimmedArgs = argMultimap.getValue(PREFIX_NAME).orElse("").trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnhidePatientsCommand.MESSAGE_USAGE));
-        }
-        String[] keywords = trimmedArgs.split("\\s+");
-        return new UnhidePatientsCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+
+        return new UnhidePatientsCommand(new NameContainsKeywordsPredicate(nameKeywords));
     }
 }

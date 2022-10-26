@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.commands.UnhideAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -33,16 +35,16 @@ public class UnhideAppointmentsCommandParser implements Parser<UnhideAppointment
         }
 
         HideAppointmentPredicate.HideBy cond;
-        String val;
+        List<String> val;
         if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
-            val = argMultimap.getValue(PREFIX_REASON).orElse("");
+            val = argMultimap.getAllValues(PREFIX_REASON);
             cond = HideAppointmentPredicate.HideBy.KEYWORD;
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            val = argMultimap.getValue(PREFIX_TAG).orElse("");
+            val = argMultimap.getAllValues(PREFIX_TAG);
             cond = HideAppointmentPredicate.HideBy.TAG;
         } else if (argMultimap.getValue(PREFIX_STATUS).isPresent()
                 && isValidStatusInput(argMultimap.getValue(PREFIX_STATUS).orElse(""))) {
-            val = argMultimap.getValue(PREFIX_STATUS).orElse("");
+            val = argMultimap.getAllValues(PREFIX_STATUS);
             cond = HideAppointmentPredicate.HideBy.IS_MARKED;
         } else {
             throw new ParseException(
