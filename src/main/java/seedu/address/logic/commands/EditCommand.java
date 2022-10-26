@@ -15,7 +15,8 @@ public abstract class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an entity (client/transaction/remark) identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of "
+            + "an entity (client/transaction/remark) identified "
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
