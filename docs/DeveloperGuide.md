@@ -292,10 +292,10 @@ used to describe the resident.
 
 <br>
 
-#### Structure of the Command 
+#### Structure of the Command
 A ```FilterCommand``` class and a ```FilterCommandParser``` class was implemented to follow the structure of the
-```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the 
-```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be 
+```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the
+```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be
 added without changing any of the Logic class components other than adding the cases to create a ```FilterCommand```
 object
 
