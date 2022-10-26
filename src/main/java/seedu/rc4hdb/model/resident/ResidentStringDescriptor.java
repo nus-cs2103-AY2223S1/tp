@@ -1,112 +1,102 @@
 package seedu.rc4hdb.model.resident;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.rc4hdb.commons.util.CollectionUtil;
-import seedu.rc4hdb.model.resident.fields.Email;
-import seedu.rc4hdb.model.resident.fields.Gender;
-import seedu.rc4hdb.model.resident.fields.House;
-import seedu.rc4hdb.model.resident.fields.MatricNumber;
-import seedu.rc4hdb.model.resident.fields.Name;
-import seedu.rc4hdb.model.resident.fields.Phone;
-import seedu.rc4hdb.model.resident.fields.Room;
-import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
- * Stores the details to edit the resident with. Each non-empty field value will replace the
+ * Stores the details to filter the resident with. Each non-empty field value will replace the
  * corresponding field value of the resident.
  */
-public class ResidentDescriptor {
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Room room;
-    private Gender gender;
-    private House house;
-    private MatricNumber matricNumber;
-    private Set<Tag> tags;
+public class ResidentStringDescriptor {
+    private String name;
+    private String phone;
+    private String email;
+    private String room;
+    private String gender;
+    private String house;
+    private String matricNumber;
+    private Set<String> tags;
 
-    public ResidentDescriptor() {}
+    public ResidentStringDescriptor() {
+    }
 
     /**
      * Copy constructor.
      * A defensive copy of {@code tags} is used internally.
      */
-    public ResidentDescriptor(ResidentDescriptor toCopy) {
-        setName(toCopy.name);
-        setPhone(toCopy.phone);
-        setEmail(toCopy.email);
-        setRoom(toCopy.room);
-        setGender(toCopy.gender);
-        setHouse(toCopy.house);
-        setMatricNumber(toCopy.matricNumber);
+    public ResidentStringDescriptor(ResidentStringDescriptor toCopy) {
+        this.name = toCopy.name;
+        this.phone = toCopy.phone;
+        this.email = toCopy.email;
+        this.room = toCopy.room;
+        this.gender = toCopy.gender;
+        this.house = toCopy.house;
+        this.matricNumber = toCopy.matricNumber;
         setTags(toCopy.tags);
     }
 
-    /**
-     * Returns true if at least one field is edited.
-     */
     public boolean isAnyFieldNonNull() {
         return CollectionUtil.isAnyNonNull(name, phone, email, room, gender, house, matricNumber, tags);
     }
 
     //=========== Start of Getters and Setters ===============================================================
-
-    public void setName(Name name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Optional<Name> getName() {
+    public Optional<String> getName() {
         return Optional.ofNullable(name);
     }
 
-    public void setPhone(Phone phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Optional<Phone> getPhone() {
+    public Optional<String> getPhone() {
         return Optional.ofNullable(phone);
     }
 
-    public void setEmail(Email email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public Optional<Email> getEmail() {
+    public Optional<String> getEmail() {
         return Optional.ofNullable(email);
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(String room) {
         this.room = room;
     }
 
-    public Optional<Room> getRoom() {
+    public Optional<String> getRoom() {
         return Optional.ofNullable(room);
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public Optional<Gender> getGender() {
+    public Optional<String> getGender() {
         return Optional.ofNullable(gender);
     }
 
-    public void setHouse(House house) {
+    public void setHouse(String house) {
         this.house = house;
     }
 
-    public Optional<House> getHouse() {
+    public Optional<String> getHouse() {
         return Optional.ofNullable(house);
     }
 
-    public void setMatricNumber(MatricNumber matricNumber) {
+    public void setMatricNumber(String matricNumber) {
         this.matricNumber = matricNumber;
     }
 
-    public Optional<MatricNumber> getMatricNumber() {
+    public Optional<String> getMatricNumber() {
         return Optional.ofNullable(matricNumber);
     }
 
@@ -114,7 +104,7 @@ public class ResidentDescriptor {
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
      */
-    public void setTags(Set<Tag> tags) {
+    public void setTags(Set<String> tags) {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
@@ -123,8 +113,8 @@ public class ResidentDescriptor {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
-    public Optional<Set<Tag>> getTags() {
-        return (tags != null) ? Optional.of(tags) : Optional.empty();
+    public Optional<Set<String>> getTags() {
+        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
     //=========== End of Getters and Setters =================================================================
@@ -137,12 +127,12 @@ public class ResidentDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ResidentDescriptor)) {
+        if (!(other instanceof ResidentStringDescriptor)) {
             return false;
         }
 
         // state check
-        ResidentDescriptor e = (ResidentDescriptor) other;
+        ResidentStringDescriptor e = (ResidentStringDescriptor) other;
 
         return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
@@ -154,3 +144,5 @@ public class ResidentDescriptor {
                 && getTags().equals(e.getTags());
     }
 }
+
+
