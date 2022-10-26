@@ -10,9 +10,9 @@ import seedu.address.model.Model;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListStudentCommand extends Command {
+public class ListStudentCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "list_s";
+    //public static final String COMMAND_WORD = "list_s";
 
     // the full string that calls list student which is used by UI
     // please update after changing list_s to list student/list s
@@ -28,5 +28,10 @@ public class ListStudentCommand extends Command {
         model.updateCurrentListType(ListType.STUDENT_LIST);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENT);
         return new CommandResult(MESSAGE_SUCCESS, CommandType.LIST);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ListStudentCommand;
     }
 }
