@@ -1,13 +1,13 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.COMMAND_WORD;
-import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.EXCLUDE_SPECIFIER;
-import static seedu.rc4hdb.logic.commands.modelcommands.ListCommand.INCLUDE_SPECIFIER;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.COMMAND_WORD;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.EXCLUDE_SPECIFIER;
+import static seedu.rc4hdb.logic.commands.residentcommands.ListCommand.INCLUDE_SPECIFIER;
 
 import java.util.List;
 
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**

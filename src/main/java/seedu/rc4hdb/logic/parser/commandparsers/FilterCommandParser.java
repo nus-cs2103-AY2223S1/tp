@@ -14,7 +14,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
 
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.FilterCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
 import seedu.rc4hdb.logic.parser.FilterSpecifier;

@@ -1,23 +1,23 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.GENDER_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.HOUSE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ALL_SPECIFIER_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_GENDER_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_HOUSE_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_NAME_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_PHONE_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ROOM_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.GENDER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.HOUSE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.NAME_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.ROOM_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_ALL_SPECIFIER_DESC;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_GENDER_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_HOUSE_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_MATRIC_NUMBER_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_NAME_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_PHONE_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_ROOM_AMY;
+import static seedu.rc4hdb.logic.commands.ModelCommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
@@ -25,10 +25,13 @@ import static seedu.rc4hdb.testutil.TypicalSpecifiers.ALL_SPECIFIER;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.FilterCommand;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
 
+/**
+ * Unit tests for {@link FilterCommandParser}.
+ */
 public class FilterCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;

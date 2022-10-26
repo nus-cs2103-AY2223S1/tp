@@ -4,30 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.rc4hdb.model.Field;
-
 /**
- * Represents the fields for a residents.
+ * Represents the fields for a resident.
  */
-public abstract class ResidentField extends Field {
+public interface ResidentField {
 
-    public static final String INDEX_IDENTIFIER = "Index";
+    String INDEX_IDENTIFIER = "Index";
 
-    public static final List<String> FIELDS = List.of(
+    List<String> FIELDS = List.of(
             INDEX_IDENTIFIER, Email.IDENTIFIER, Gender.IDENTIFIER,
             House.IDENTIFIER, MatricNumber.IDENTIFIER, Name.IDENTIFIER,
             Phone.IDENTIFIER, Room.IDENTIFIER, Tag.IDENTIFIER
     );
 
-    public static final List<String> LOWERCASE_FIELDS = FIELDS.stream()
+    List<String> LOWERCASE_FIELDS = FIELDS.stream()
             .map(String::toLowerCase)
             .collect(Collectors.toList());
 
-    public static final HashMap<String, String> LETTER_TO_FIELD_NAME_MAPPINGS = getHashMapOfLetterToFieldName();
-
-    protected ResidentField(String value) {
-        super(value);
-    }
+    HashMap<String, String> LETTER_TO_FIELD_NAME_MAPPINGS = getHashMapOfLetterToFieldName();
 
     private static HashMap<String, String> getHashMapOfLetterToFieldName() {
         HashMap<String, String> letterToFieldNameMappings = new HashMap<>();

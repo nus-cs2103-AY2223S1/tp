@@ -2,11 +2,13 @@ package seedu.rc4hdb.model.resident.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.model.StringField;
+
 /**
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag extends ResidentField {
+public class Tag extends StringField {
 
     public static final String IDENTIFIER = "Tags";
 

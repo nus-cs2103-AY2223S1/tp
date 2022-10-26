@@ -11,7 +11,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.AddCommand;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
