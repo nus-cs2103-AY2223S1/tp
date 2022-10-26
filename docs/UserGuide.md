@@ -279,3 +279,16 @@ Format: `exit`
 | **Sort** Tutor List      | `sort ORDER PREFIX`                                                                                                        | `sort a r/`                                                                                                |
 | **Delete** a Tutor       | `delete INDEX`                                                                                                             | `delete 3`                                                                                                 |
 | **Exit** Tuthub          | `exit`                                                                                                                     |                                                                                                            |
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Glossary
+
+| **Term**                              | **Definition**                                                                                                                    |
+|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**      | A text-based interface where users may interact with the system by typing in commands.                                            |
+| **Graphical User Interface (GUI)**    | A graphic-based interface where users may interact with graphical components (e.g. icons and menus) to interact with the system.  |
+| **JAR File**                          | Java Archive File with multiple files compressed into one and may be an executable.                                               |                     
+| **Java**                              | A widely used programming language.                                                                                               |                    
+| **Javascript Object Notation (JSON)** | A lightweight format for storing and transporting data.                                                                           |                   
