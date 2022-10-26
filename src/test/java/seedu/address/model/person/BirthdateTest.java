@@ -44,7 +44,7 @@ class BirthdateTest {
     }
 
     @Test
-    void getAge() {
+    void calculateAge() {
         // set up test Birthdate
         Birthdate bd1 = new Birthdate("01-04-1974");
         Birthdate bd2 = new Birthdate("05-05-1995");
