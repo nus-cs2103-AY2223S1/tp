@@ -8,11 +8,13 @@ The INDEX of an item is the number to the left of the item name in the List Comp
 ```
 
 **Valid Examples:**
-- 1
-- 124
+
+* 1
+* 124
 
 **Invalid Examples:**
-- -1
-- 1.5
-- 1,132
-- 1 132
+
+* -1
+* 1.5
+* 1,132
+* 1 132

@@ -3,7 +3,6 @@ Example of Item:
 
 ![Item](images/ItemImage.png)
 
-
 #### Create a new item: `new`
 
 **Format**: `new n/ITEM_NAME [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
@@ -84,6 +83,7 @@ List Box:
 ---
 
 #### Search for an item: `find`
+
 **Format:** `find KEYWORD [KEYWORDS]...`
 
 > Finds all items in FoodRem whose names contain any of the specified keywords
@@ -97,6 +97,7 @@ List Box:
 ```
 
 **Example Input:**
+
 ```text
 find potato carrot cucumbers
 ```
@@ -118,6 +119,7 @@ List Box:
 ---
 
 #### Sort all items by an attribute: `sort`
+
 **Format:**: `sort [n/] [qty/] [u/] [bgt/] [exp/] [p/] [r/]`
 
 > Sorts the list of currently displayed items by the provided criteria
@@ -151,6 +153,7 @@ List Box:
 ---
 
 #### View the information of an item: `view`
+
 **Format:** `view INDEX`
 
 > Displays the item at the specified index
@@ -249,6 +252,7 @@ Tags: {vegetables}
 ---
 
 #### Edit the information of an item: `edit`
+
 Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
 > Updates the details of the item at the specified index
@@ -288,9 +292,11 @@ Price: $6
 Remarks: No Remarks
 Tags: {vegetables}
 ```
+
 ---
 
 #### Add a remark to an item: `rmk`
+
 Command: `rmk ITEM_INDEX [r/REMARKS]`
 
 > Adds a remark to the item at the specified index
@@ -301,6 +307,7 @@ Command: `rmk ITEM_INDEX [r/REMARKS]`
 ```
 
 **Example Input:**
+
 ```text
 rmk 1 r/For Party
 ```
@@ -308,6 +315,7 @@ rmk 1 r/For Party
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 Remark Added:
 Name: Onions
