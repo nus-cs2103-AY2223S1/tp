@@ -13,9 +13,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCredit;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -32,6 +35,8 @@ import seedu.address.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_KEYWORDS = "The keywords for tag delete must be priority"
+            + " or deadline or both.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -108,6 +113,44 @@ public class ParserUtil {
     }
 
     /**
+     * Parses the {@code moduleName} String into a {@code ModuleName} object.
+     *
+     * @param moduleName The name of the module.
+     * @return The ModuleName object created from the moduleName string.
+     * @throws ParseException if the given {@code moduleName} is not valid.
+     */
+    public static ModuleName parseModuleName(String moduleName) throws ParseException {
+        requireNonNull(moduleName);
+        String trimmedModuleName = moduleName.strip();
+        if (!ModuleName.isValidModuleName(trimmedModuleName)) {
+            throw new ParseException(ModuleName.MODULE_NAME_CONSTRAINTS);
+        }
+        return new ModuleName(trimmedModuleName);
+    }
+
+    /**
+     * Parses the {@code moduleCredit} String into a {@code ModuleCredit} object.
+     *
+     * @param moduleCredit The module credit of the module.
+     * @return The ModuleCredit object created from the moduleCredit string.
+     * @throws ParseException if the given {@code moduleCredit} is not valid.
+     */
+    public static ModuleCredit parseModuleCredit(String moduleCredit) throws ParseException {
+        requireNonNull(moduleCredit);
+        final int integerModuleCredit;
+        String trimmedModuleCredit = moduleCredit.strip();
+        try {
+            integerModuleCredit = Integer.parseInt(trimmedModuleCredit);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(ModuleCredit.MODULE_CREDIT_CONSTRAINTS);
+        }
+        if (!ModuleCredit.isValidModuleCredit(integerModuleCredit)) {
+            throw new ParseException(ModuleCredit.MODULE_CREDIT_CONSTRAINTS);
+        }
+        return new ModuleCredit(integerModuleCredit);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -147,6 +190,28 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses delete tag keywords from a String into a Set containing each keyword.
+     *
+     * @param keywords The keywords used to specify which tag to delete
+     * @return The set of string containing the keywords specifying the tags to delete.
+     * @throws ParseException if the keywords given are invalid or are duplicated.
+     */
+    public static Set<String> parseDeleteTagKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.strip();
+        String[] keywordsList = trimmedKeywords.split(" ");
+        final Set<String> keywordSet = new HashSet<>();
+        for (String keyword : keywordsList) {
+            if (!(keyword.equalsIgnoreCase("priority")
+                    || keyword.equalsIgnoreCase("deadline"))) {
+                throw new ParseException(MESSAGE_INVALID_KEYWORDS);
+            }
+            keywordSet.add(keyword.toLowerCase());
+        }
+        return keywordSet;
     }
 
     /**
@@ -205,6 +270,22 @@ public class ParserUtil {
             throw new ParseException(TaskDescription.DESCRIPTION_CONSTRAINTS);
         }
         return new TaskDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses the criteria given to create a new Criteria object.
+     *
+     * @param criteria The criteria given for sorting.
+     * @return The criteria object which contains the criteria used for sorting.
+     * @throws ParseException if the given {@code criteria} is invalid.
+     */
+    public static Criteria parseCriteria(String criteria) throws ParseException {
+        requireNonNull(criteria);
+        String strippedCriteria = criteria.strip();
+        if (!Criteria.isValidCriteria(strippedCriteria)) {
+            throw new ParseException(Criteria.CRITERIA_CONSTRAINTS);
+        }
+        return new Criteria(strippedCriteria);
     }
 
     /**

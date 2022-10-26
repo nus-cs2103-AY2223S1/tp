@@ -22,4 +22,6 @@ public class Messages {
     public static final String MESSAGE_MODULE_NOT_FOUND = "This module does not exist";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists in the exam list";
+    public static final String MESSAGE_INVALID_EXAM_DISPLAYED_INDEX =
+            "The exam index provided is invalid";
 }

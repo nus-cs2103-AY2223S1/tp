@@ -3,11 +3,14 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.Criteria;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -79,11 +82,41 @@ public class DistinctTaskList implements Iterable<Task> {
         }
 
         boolean isDuplicateTask = contains(editedTask) && !editedTask.isSameTask(target);
-        if (!isSameTask && contains(editedTask) && isDuplicateTask) {
+        if (!isSameTask && isDuplicateTask) {
             throw new DuplicateTaskException();
         }
 
         taskList.set(index, editedTask);
+    }
+
+    /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
+        taskList.forEach(task -> {
+            if (task.isLinked() && task.getExam().equals(exam)) {
+                Task unlinkedTask = task.unlinkTask();
+                replaceTask(task, unlinkedTask, true);
+            }
+        });
+    }
+
+    /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        taskList.forEach(task-> {
+            if (task.isLinked() && task.getExam().equals(previousExam)) {
+                Task editedTask = task.linkTask(newExam);
+                replaceTask(task, editedTask, true);
+            }
+        });
     }
 
     /**
@@ -95,6 +128,74 @@ public class DistinctTaskList implements Iterable<Task> {
         if (!taskList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    public int getNumOfCompletedModuleTasks(Module module) {
+        requireNonNull(module);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
+            .filter(module::isSameModule).count();
+    }
+
+    public int getTotalNumOfModuleTasks(Module module) {
+        requireNonNull(module);
+        return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
+    }
+
+    public int getNumOfCompletedExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getExam)
+            .filter(exam::isSameExam).count();
+    }
+
+    public int getTotalNumOfExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().map(Task::getExam).filter(exam::isSameExam).count();
+    }
+
+    /**
+     * Sorts the tasks stored in the task list.
+     *
+     * @param criteria The criteria used for sorting.
+     */
+    public void sortTasks(Criteria criteria) {
+
+        //@@author dlimyy-reused
+        //Reused from https://stackoverflow.com/questions/51186174/
+        //with slight modifications
+        switch (criteria.getCriteria().toLowerCase()) {
+        case "priority":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getPriorityTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+            break;
+        case "deadline":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDeadlineTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+            break;
+        case "module":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getModule,
+                    Comparator.naturalOrder()));
+            break;
+        case "description":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDescription,
+                    Comparator.naturalOrder()));
+            break;
+        default:
+            break;
+        }
+        //@@author
+    }
+
+    /**
+     * Checks whether the criteria given by the user is valid.
+     *
+     * @param criteria The criteria that is being checked for validity.
+     * @return true if the criteria is valid; else return false.
+     */
+    public static boolean isValidCriteria(String criteria) {
+        return criteria.equalsIgnoreCase("priority")
+                || criteria.equalsIgnoreCase("deadline")
+                || criteria.equalsIgnoreCase("module")
+                || criteria.equalsIgnoreCase("description");
     }
 
     @Override

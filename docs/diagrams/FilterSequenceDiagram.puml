@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(filter)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(filter)
+activate AddressBookParser
+
+create FilterCommand
+AddressBookParser -> FilterCommand
+activate FilterCommand
+
+FilterCommand --> AddressBookParser
+deactivate FilterCommand
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FilterCommand : execute()
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredTaskList(Predicate)
+activate Model
+
+Model --> FilterCommand
+deactivate Model
+
+FilterCommand --> LogicManager : result
+deactivate FilterCommand
+FilterCommand -[hidden]-> LogicManager : result
+destroy FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

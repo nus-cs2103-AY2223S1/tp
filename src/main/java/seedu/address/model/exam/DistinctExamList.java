@@ -12,10 +12,7 @@ import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
-
-
-
-
+import seedu.address.model.task.DistinctTaskList;
 
 /**
  * This class represents a list which contains Exam objects which are distinct from
@@ -60,40 +57,25 @@ public class DistinctExamList implements Iterable<Exam> {
     }
 
     /**
-     * Replaces the exam {@code target} in the exam list with {@code editedExam}.
-     * {@code target} must exist in the exam list.
-     * The exam identity of {@code editedExam} should be the same as exam identity of {@code target}.
-     */
-    public void setExam(Exam target, Exam editedExam) {
-        requireAllNonNull(target, editedExam);
-
-        int index = examList.indexOf(target);
-        if (index == -1) {
-            throw new ExamNotFoundException();
-        }
-
-        if (!target.isSameExam(editedExam)) {
-            throw new ExamIdentityModifiedException();
-        }
-
-        examList.set(index, editedExam);
-    }
-
-    /**
      * Replaces the given exam {@code target} with {@code editedExam}.
      * {@code target} must exist in the exam list.
      *
      * @throws DuplicateExamException if task identity of {@code editedExam} is the same as another exam
      *     in the exam list (other than {@code target}).
      */
-    public void replaceExam(Exam target, Exam editedExam) throws DuplicateExamException {
+    public void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException {
         requireAllNonNull(target, editedExam);
 
         int index = examList.indexOf(target);
         if (index == -1) {
             throw new ExamNotFoundException();
         }
-        if (contains(editedExam) && !editedExam.isSameExam(target)) {
+
+        if (isSameExam && !target.isSameExam(editedExam)) {
+            throw new ExamIdentityModifiedException();
+        }
+
+        if (!isSameExam && contains(editedExam) && !editedExam.isSameExam(target)) {
             throw new DuplicateExamException();
         }
         examList.set(index, editedExam);
@@ -108,6 +90,49 @@ public class DistinctExamList implements Iterable<Exam> {
         if (!examList.remove(toRemove)) {
             throw new ExamNotFoundException();
         }
+    }
+
+    /**
+     * Counts the number of tasks in {@code tasks} linked to {@code exam},
+     * and updates this number in {@code exam}.
+     * {@code exam} must exist in the exam list.
+     *
+     * @param exam The exam to check for number of tasks.
+     * @param tasks The list of tasks to check with the exam.
+     */
+    public void updateTotalNumOfTasks(Exam exam, DistinctTaskList tasks) {
+        requireAllNonNull(exam, tasks);
+        int totalNumOfTasks = tasks.getTotalNumOfExamTasks(exam);
+
+        int index = examList.indexOf(exam);
+        if (index == -1) {
+            throw new ExamNotFoundException();
+        }
+
+        Exam examToEdit = examList.get(index);
+        Exam updatedExam = examToEdit.setTotalNumOfTasks(totalNumOfTasks);
+        examList.set(index, updatedExam);
+    }
+
+    /**
+     * Counts the number of completed tasks in {@code tasks} linked to {@code exam},
+     * and updates this number in {@code exam}.
+     * {@code exam} must exist in the exam list.
+     *
+     * @param exam The exam to check for number of completed tasks.
+     * @param tasks The list of tasks to check with the exam.
+     */
+    public void updateNumOfCompletedTasks(Exam exam, DistinctTaskList tasks) {
+        requireAllNonNull(exam, tasks);
+        int numOfCompletedTasks = tasks.getNumOfCompletedExamTasks(exam);
+
+        int index = examList.indexOf(exam);
+        if (index == -1) {
+            throw new ExamNotFoundException();
+        }
+        Exam examToEdit = examList.get(index);
+        Exam updatedExam = examToEdit.setNumOfCompletedTasks(numOfCompletedTasks);
+        examList.set(index, updatedExam);
     }
 
     @Override
