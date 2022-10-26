@@ -17,6 +17,7 @@ import seedu.address.model.pet.DateOfBirth;
 import seedu.address.model.pet.Height;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.PetCertificate;
+import seedu.address.model.pet.PetName;
 import seedu.address.model.pet.Species;
 import seedu.address.model.pet.VaccinationStatus;
 import seedu.address.model.pet.Weight;
@@ -78,7 +79,7 @@ public class PopupPanelForPet extends PopUpPanel {
      * @throws ParseException When user inputs cannot be parsed.
      */
     public Pet generatePet(Supplier supplier) throws ParseException {
-        Name name = ParserUtil.parseName(petNameField.getText());
+        PetName name = ParserUtil.parsePetName(petNameField.getText());
         Species species = ParserUtil.parseSpecies(speciesField.getText());
         Height height = ParserUtil.parseHeight(heightField.getText());
         Weight weight = ParserUtil.parseWeight(weightField.getText());

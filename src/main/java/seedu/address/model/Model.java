@@ -108,21 +108,25 @@ public interface Model {
      * @param comparator The specified comparator.
      */
     void sortBuyer(Comparator<Buyer> comparator);
+
     /**
      * Sorts the supplier list using the specified comparator.
      * @param comparator The specified comparator.
      */
     void sortSupplier(Comparator<Supplier> comparator);
+
     /**
      * Sorts the deliverer list using the specified comparator.
      * @param comparator The specified comparator.
      */
     void sortDeliverer(Comparator<Deliverer> comparator);
+
     /**
      * Sorts the order list using the specified comparator.
      * @param comparator The specified comparator.
      */
     void sortOrder(Comparator<Order> comparator);
+
     /**
      * Sorts the pet list using the specified comparator.
      * @param comparator The specified comparator.
@@ -153,12 +157,14 @@ public interface Model {
      * @return The list of orders.
      */
     List<Order> getOrdersFromBuyer(Buyer buyer);
+
     /**
      * Gets orders from a given deliverer.
      * @param deliverer The given deliverer.
      * @return The list of orders.
      */
     List<Order> getOrdersFromDeliverer(Deliverer deliverer);
+
     /**
      * Gets pets from a given supplier.
      * @param supplier The given supplier.
