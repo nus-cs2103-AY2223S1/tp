@@ -8,7 +8,7 @@ import static seedu.application.testutil.TypicalApplications.getTypicalApplicati
 import static seedu.application.testutil.TypicalApplicationsWithInterview.getTypicalApplicationBookWithInterview;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
-import static seedu.application.testutil.TypicalInterviews.INTERVIEW_JANE_STREET;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_SHOPEE;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,7 @@ public class AddInterviewCommandTest {
         Index indexLastApplication = Index.fromOneBased(model.getFilteredApplicationList().size());
         Application lastApplication = model.getFilteredApplicationList().get(indexLastApplication.getZeroBased());
 
-        CommandResult commandResult = new AddInterviewCommand(indexLastApplication, INTERVIEW_JANE_STREET)
+        CommandResult commandResult = new AddInterviewCommand(indexLastApplication, INTERVIEW_SHOPEE)
                 .execute(model);
 
         assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, lastApplication),
