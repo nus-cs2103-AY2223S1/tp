@@ -19,8 +19,8 @@ public class ModMarkCommand extends ModCommand {
 
     public static final String COMMAND_WORD = "mark";
     public static final String MESSAGE_SUCCESS = "Successfully marked the specified mods.";
-    public static final String MESSAGE_INVALID_MOD = "This batchmate is not taking all of the modules specified."
-            + "\nPlease check the list of mods and try again.";
+    public static final String MESSAGE_INVALID_MOD = "This batchmate is not taking all of the modules specified.\n"
+            + "Please check the list of mods and try again.";
     private final Index targetIndex;
     private final ObservableList<Mod> mods;
 
@@ -62,7 +62,12 @@ public class ModMarkCommand extends ModCommand {
             throw new CommandException(MESSAGE_INVALID_MOD);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit), false, false, false, false);
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, personToEdit),
+                false,
+                false,
+                false,
+                false);
     }
 
     @Override
@@ -83,4 +88,3 @@ public class ModMarkCommand extends ModCommand {
                 && mods.equals(e.mods);
     }
 }
-
