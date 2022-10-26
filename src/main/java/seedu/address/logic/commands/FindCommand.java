@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,12 +14,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NormalTagContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.PlanTagContainsKeywordsPredicate;
 import seedu.address.model.person.RiskTagContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
@@ -31,9 +33,11 @@ public class FindCommand extends Command {
             + PREFIX_NAME.getPrefix() + " KEYWORD [MORE_KEYWORDS]...\n"
             + PREFIX_RISKTAG.getPrefix() + " RISKTAG [MORE_RISKTAGS]...\n"
             + PREFIX_TAG.getPrefix() + " TAG [MORE_TAGS]...\n"
+            + PREFIX_PHONE.getPrefix() + " PHONE [MORE_PHONE]...\n"
             + "Examples: " + COMMAND_WORD + " " + PREFIX_NAME.getPrefix() + " alice bob charlie\n"
             + COMMAND_WORD + " " + PREFIX_RISKTAG.getPrefix() + " high low\n"
-            + COMMAND_WORD + " " + PREFIX_PLANTAG.getPrefix() + " savings plan";
+            + COMMAND_WORD + " " + PREFIX_PLANTAG.getPrefix() + " savings plan"
+            + COMMAND_WORD + " " + PREFIX_PHONE.getPrefix() + " 912345678";
 
     private final Predicate<Person> predicate;
 
@@ -50,6 +54,10 @@ public class FindCommand extends Command {
     }
 
     public FindCommand(PlanTagContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public FindCommand(PhoneContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
