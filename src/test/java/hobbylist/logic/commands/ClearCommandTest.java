@@ -1,6 +1,7 @@
 package hobbylist.logic.commands;
 
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,4 +30,10 @@ public class ClearCommandTest {
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
+    @Test
+    public void setCommandWord_validWord_success() {
+        ClearCommand.setCommandWord("test");
+        assertEquals(ClearCommand.getCommandWord(), "test");
+        ClearCommand.setCommandWord("clear");
+    }
 }

@@ -41,14 +41,14 @@ public class DescriptionBookParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.getCommandWord()) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.getCommandWord() + " 3") instanceof ClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased());
+                DeleteCommand.getCommandWord() + " " + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased());
         assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY), command);
     }
 
@@ -56,36 +56,37 @@ public class DescriptionBookParserTest {
     public void parseCommand_edit() throws Exception {
         Activity activity = new ActivityBuilder().build();
         EditCommand.EditActivityDescriptor descriptor = new EditActivityDescriptorBuilder(activity).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.getCommandWord() + " "
                 + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased() + " "
                 + ActivityUtil.getEditActivityDescriptorDetails(descriptor));
+        EditCommand test = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, descriptor);
         assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, descriptor), command);
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.getCommandWord()) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.getCommandWord() + " 3") instanceof ExitCommand);
     }
 
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.getCommandWord() + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameOrDescContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.getCommandWord()) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.getCommandWord() + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.getCommandWord()) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.getCommandWord() + " 3") instanceof ListCommand);
     }
 
     @Test

@@ -35,12 +35,16 @@ public class MainWindow extends UiPart<Stage> {
     private ActivityListPanel activityListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private EditAliasesWindow editAliasesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem editAliasesItem;
 
     @FXML
     private StackPane activityListPanelPlaceholder;
@@ -69,6 +73,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        editAliasesWindow = new EditAliasesWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -77,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(editAliasesItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -208,6 +215,18 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
+    /**
+     * Opens the edit aliases window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEditAliases() {
+        if (!editAliasesWindow.isShowing()) {
+            editAliasesWindow.show();
+        } else {
+            editAliasesWindow.focus();
+        }
+    }
+
     void show() {
 
         primaryStage.show();
@@ -222,6 +241,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        editAliasesWindow.hide();
         primaryStage.hide();
     }
 
