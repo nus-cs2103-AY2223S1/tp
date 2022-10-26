@@ -66,7 +66,10 @@ public class ModtrektParser {
                 .addCommand(CdModuleCommand.COMMAND_WORD, new CdModuleCommand())
                 .addCommand(RemoveCommand.COMMAND_WORD, new RemoveCommand())
                 .addCommand(RemoveCommand.COMMAND_WORD_SHORTHAND, new RemoveCommand())
+                .addCommand(RemoveCommand.COMMAND_WORD_SHORTHAND_2, new RemoveCommand())
+                .addCommand(RemoveCommand.COMMAND_WORD_SHORTHAND_3, new RemoveCommand())
                 .addCommand(RemoveTaskCommand.COMMAND_WORD, new RemoveTaskCommand())
+                .addCommand(RemoveTaskCommand.COMMAND_WORD_SHORTHAND, new RemoveTaskCommand())
                 .build();
         try {
             // Get the tokens from the user input.

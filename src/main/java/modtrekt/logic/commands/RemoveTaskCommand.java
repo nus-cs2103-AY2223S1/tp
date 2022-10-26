@@ -20,6 +20,7 @@ import modtrekt.model.task.Task;
 public class RemoveTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "remove task";
+    public static final String COMMAND_WORD_SHORTHAND = "rm task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task/module identified by the index number.\n"
