@@ -81,16 +81,16 @@ Format: `help`
 
 Adds a person to the SectresBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...​ [l/LOAN]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS bday/BIRTHDAY [t/TAG]...​ [l/LOAN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Member`
-* `add n/Jane Doe p/98876542 e/jane@example.com a/That Street, block 133, #11-10 t/Member l/10`
-* `add n/Neethesh t/VicePresident e/neethesh@example.com a/Happy Avenue p/91234567`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 bday/02/04/2013 t/Member`
+* `add n/Jane Doe p/98876542 e/jane@example.com a/That Street, block 133, #11-10 bday/02/07/1995 t/Member l/10`
+* `add n/Neethesh t/VicePresident e/neethesh@example.com a/Happy Avenue p/91234567 bday/16/09/2000`
 
 ### Listing all persons : `list`
 
@@ -102,7 +102,7 @@ Format: `list`
 
 Edits an existing club member’s information in the SectresBook
 
-Format: `edit INDEX <OR> NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX <OR> NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bday/BIRTHDAY] [t/TAG]…​`
 
 Example of usage:
 
@@ -256,10 +256,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS bday/BIRTHDAY [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 bday/01/01/2000 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bday/BIRTHDAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **FindTag** | `findTag TAG [MORE_TAGS]`<br> e.g., `findTag Operations Outreach`
 **List** | `list`
