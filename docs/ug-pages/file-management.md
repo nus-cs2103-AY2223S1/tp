@@ -32,7 +32,7 @@ Format: `file create FILE_NAME`
 * Does not create a new file if the file already exists.
 * The file must be a `.json` file.
 
-:information source: `FILE_NAME` must follow this [format](FileCommands.html#format).
+:information source: `FILE_NAME` must follow this [format](#file-command-format).
 
 Examples:
 * `file create rc4_data_2022` will create a new file named `rc4_data_2022.json`.
