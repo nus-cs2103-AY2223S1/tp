@@ -47,20 +47,16 @@
                     <VBox spacing="12">
                         <HBox fx:id="errorMessagePlaceholder" alignment="CENTER"/>
                         <HBox>
-                            <Label text="Title" styleClass="addCommissionWindowLabel">
+                            <Label text="Title" styleClass="addCommissionWindowLabel" minWidth="118" maxWidth="118">
                                 <HBox.margin>
-                                    <Insets top ="10" right="82.0"/>
+                                    <Insets top ="10"/>
                                 </HBox.margin>
                             </Label>
-                            <TextField fx:id="title" styleClass="addCommissionTextField" minWidth="500"/>
+                            <TextField fx:id="title" styleClass="addCommissionTextField" minWidth="500" maxWidth="500"/>
                         </HBox>
 
                         <HBox>
-                            <Label text="Tags" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="78.0"/>
-                                </HBox.margin>
-                            </Label>
+                            <Label text="Tags" styleClass="addCommissionWindowLabel" minWidth="118" maxWidth="118"/>
                             <VBox minWidth="500" maxWidth="500">
                                 <ScrollPane maxWidth="500" maxHeight="200" fitToWidth="true" fitToHeight="true">
                                     <FlowPane fx:id="tags" styleClass="commissionTags" />
@@ -76,30 +72,22 @@
 
                         <HBox spacing="36">
                             <HBox>
-                                <Label text="Deadline" styleClass="addCommissionWindowLabel">
-                                    <HBox.margin>
-                                        <Insets right="50.0"/>
-                                    </HBox.margin>
-                                </Label>
-                                <TextField fx:id="deadline" styleClass="addCommissionTextField"/>
+                                <Label text="Deadline" styleClass="addCommissionWindowLabel"
+                                       minWidth="118" maxWidth="118"/>
+                                <TextField fx:id="deadline" styleClass="addCommissionTextField"
+                                           minWidth="200" maxWidth="200"/>
                             </HBox>
 
                             <HBox>
-                                <Label text="Fee" styleClass="addCommissionWindowLabel">
-                                    <HBox.margin>
-                                        <Insets right="20.0"/>
-                                    </HBox.margin>
-                                </Label>
-                                <TextField fx:id="fee" styleClass="addCommissionTextField"/>
+                                <Label text="Fee" styleClass="addCommissionWindowLabel" minWidth="65" maxWidth="65"/>
+                                <TextField fx:id="fee" styleClass="addCommissionTextField"
+                                           minWidth="200" maxWidth="200"/>
                             </HBox>
                         </HBox>
 
                         <HBox>
-                            <Label text="Completion" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="36.0"/>
-                                </HBox.margin>
-                            </Label>
+                            <Label text="Completion" styleClass="addCommissionWindowLabel"
+                                   minWidth="118" maxWidth="118"/>
                             <fx:define>
                                 <ToggleGroup fx:id="completion"/>
                             </fx:define>
@@ -110,12 +98,10 @@
                         </HBox>
 
                         <HBox>
-                            <Label text="Description" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="32.0"/>
-                                </HBox.margin>
-                            </Label>
-                            <TextField fx:id="description" styleClass="addCommissionTextField" minWidth="500"/>
+                            <Label text="Description" styleClass="addCommissionWindowLabel"
+                                   minWidth="118" maxWidth="118"/>
+                            <TextField fx:id="description" styleClass="addCommissionTextField"
+                                       minWidth="500" maxWidth="500"/>
                         </HBox>
                         <BorderPane.margin>
                             <Insets left="36" right="36"/>
