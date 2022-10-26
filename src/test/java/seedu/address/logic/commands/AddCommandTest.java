@@ -149,6 +149,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person getCurrentlyViewedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCurrentlyViewedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int getPersonCount() {
             throw new AssertionError("This method should not be called.");
         }

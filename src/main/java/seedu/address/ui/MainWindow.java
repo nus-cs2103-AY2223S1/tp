@@ -47,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane personViewPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -125,6 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         // TODO add detailed person card implementation
+        handleView();
     }
 
     /**
@@ -181,6 +185,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the detailed person view panel with the newest info.
+     */
+    @FXML
+    public void handleView() {
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson());
+        personViewPanelPlaceholder.getChildren().clear();
+        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -211,6 +225,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowCount()) {
                 handleCount();
             }
+            handleView();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
