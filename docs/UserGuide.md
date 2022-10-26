@@ -38,6 +38,7 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 6. Click the button located in the top left corner to execute certain task.<br>
    Some example buttons you can try:
     * **`File`** : To find the exit button.
+    * **`Preference`** : To set command words according to user's preference.
     * **`Help`** : To look at a pop up window about more helping information.
     * **`Theme`** : To change different appearance of the app.
 
@@ -101,10 +102,11 @@ Example:
 ### Finding a command with keywords: `find`
 
 Shows a list of all hobby activities whose names or descriptions contain any of the specified keywords.
-Show alist of all hobby activities that located on a certain date, or in a certain month of a year, or in a certain year.
-
+Show a list of all hobby activities that located on a certain date, or in a certain month of a year, or in a certain year.
+Show a list of all hobby activities whose rate is exactly the required value(between 0-5, both inclusive).
 Format:
     `find KEYWORD`
+    `find rate/[VALUE]`
     `find yyyy-mm-dd`
     `find yyyy-mm`
     `find yyyy`
@@ -117,6 +119,18 @@ Example:
 * `find 1974-02`
 * `find 1999`
 * `find 2001-01-01`
+* `find rate/0`
+
+### Finding activities with rate above certain value : `r/above value`
+
+Show a list of all hobby activities whose rate value is greater or equal than the required value.
+Format:
+    `r/above [VALUE]`
+
+* The value need to be between 0-5(inclusive).
+
+Example"
+* `r/above 1`
 
 ### Finding activities by tags : `filter`
 
@@ -134,7 +148,7 @@ Example:
 
 Edits a specified activity from HobbyList.
 
-Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS] [date/DATE]`
 
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -208,14 +222,15 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 ## Command summary
 
-| Action     | Format                                                                                                                                             |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
-| **Clear**  | `clear`                                                                                                                                            |
-| **Delete** | `delete INDEX`                                                                                                                                     |
-| **Edit**   | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
-| **Exit**   | `exit`                                                                                                                                             |
-| **Find**   | `find KEYWORDS``find yyyy-mm-dd` `find yyyy-mm` `find yyyy`                                                                                        |
-| **Filter** | `filter KEYWORD`                                                                                                                                   |
-| **List**   | `list`                                                                                                                                             |
-| **Help**   | `help`                                                                                                                                             |
+| Action      | Format                                                                                                                                             |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                |
+| **Clear**   | `clear`                                                                                                                                            |
+| **Delete**  | `delete INDEX`                                                                                                                                     |
+| **Edit**    | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
+| **Exit**    | `exit`                                                                                                                                             |
+| **Find**    | `find KEYWORDS``find yyyy-mm-dd` `find yyyy-mm` `find yyyy` `find rate/value`                                                                      |
+| **Filter**  | `filter KEYWORD`                                                                                                                                   |
+| **List**    | `list`                                                                                                                                             |
+| **Help**    | `help`                                                                                                                                             |
+| **r/above** | `r/above [VALUE]`                                                                                                                                  |
