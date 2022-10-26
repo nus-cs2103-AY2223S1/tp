@@ -1,4 +1,4 @@
-package logic.parser;
+package tracko.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

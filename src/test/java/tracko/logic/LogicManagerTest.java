@@ -1,4 +1,4 @@
-package logic;
+package tracko.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 // import static tracko.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;

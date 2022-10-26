@@ -1,12 +1,8 @@
-package logic.parser;
+package tracko.logic.parser;
 
-import static logic.parser.CommandParserTestUtil.assertParseFailure;
-import static logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +16,7 @@ public class FindOrderCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ",
+        CommandParserTestUtil.assertParseFailure(parser, "     ",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE));
     }
 
@@ -34,10 +30,10 @@ public class FindOrderCommandParserTest {
                 new FindOrderCommand(
                         new OrderMatchesFlagsAndPrefixPredicate(nameList, addressList,
                                  itemList, false, true, false, true));
-        assertParseSuccess(parser, " -d n/Alice Bob a/Clementi Geylang i/Keychain Pillow", expectedFindOrderCommand);
+        CommandParserTestUtil.assertParseSuccess(parser, " -d n/Alice Bob a/Clementi Geylang i/Keychain Pillow", expectedFindOrderCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " -d \n n/ \n Alice \n \t Bob  \t a/ \n Clementi \n \t Geylang  \t i/ \n Keychain \n \t Pillow  \t", expectedFindOrderCommand);
+        CommandParserTestUtil.assertParseSuccess(parser, " -d \n n/ \n Alice \n \t Bob  \t a/ \n Clementi \n \t Geylang  \t i/ \n Keychain \n \t Pillow  \t", expectedFindOrderCommand);
     }
 
 }

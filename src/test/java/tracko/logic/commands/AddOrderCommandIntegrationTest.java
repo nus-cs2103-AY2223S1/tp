@@ -1,7 +1,7 @@
-package logic.commands;
+package tracko.logic.commands;
 
 // import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
-import static logic.commands.CommandTestUtil.assertCommandSuccess;
+import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
 import org.junit.jupiter.api.BeforeEach;
