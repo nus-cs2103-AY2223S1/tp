@@ -37,7 +37,7 @@
                     <VBox spacing="2">
                         <Label fx:id="itemName" text="\$first" styleClass="cell_big_label_item" />
                         <HBox spacing="2">
-                            <HBox styleClass="sellPrice-container" alignment="CENTER" spacing="5.0">
+                            <HBox styleClass="light-green-container" alignment="CENTER" spacing="5.0">
                                 <Region styleClass="sellPrice-icon" id="sellPriceIcon"/>
                                 <Label fx:id="sellPrice" text="\$sellPrice" wrapText="true"/>
                             </HBox>

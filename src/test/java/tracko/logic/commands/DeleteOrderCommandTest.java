@@ -2,9 +2,6 @@ package tracko.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
-import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
@@ -37,7 +34,7 @@ public class DeleteOrderCommandTest {
         ModelManager expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
 
-        assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -45,12 +42,12 @@ public class DeleteOrderCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getOrderList().size() + 1);
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showOrderAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
 
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
@@ -61,12 +58,12 @@ public class DeleteOrderCommandTest {
         expectedModel.deleteOrder(orderToDelete);
         showNoOrder(expectedModel);
 
-        assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showOrderAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
 
@@ -75,12 +72,12 @@ public class DeleteOrderCommandTest {
 
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexSortedList_success() {
-        showOrderAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
 
         Order orderToDelete = model.getSortedOrderList().get(INDEX_FIRST.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
@@ -91,7 +88,7 @@ public class DeleteOrderCommandTest {
         expectedModel.deleteOrder(orderToDelete);
         showNoOrder(expectedModel);
 
-        assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

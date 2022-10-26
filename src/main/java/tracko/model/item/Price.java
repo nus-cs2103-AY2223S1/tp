@@ -31,7 +31,6 @@ public class Price {
      * @return True if input is a valid price
      */
     public static boolean isValidPrice(Double test) {
-        // BigDecimal bigDecimalTest = new BigDecimal(test);
         boolean isPositive = !(BigDecimal.valueOf(test).compareTo(BigDecimal.ZERO) < 0);
         boolean isRoundedTo2dp = (BigDecimal.valueOf(test).scale() <= 2);
         return isPositive && isRoundedTo2dp;
@@ -50,6 +49,21 @@ public class Price {
         BigDecimal bigDecimalPrice = new BigDecimal(price);
         bigDecimalPrice.setScale(2, RoundingMode.HALF_UP);
         return bigDecimalPrice.doubleValue();
+    }
+
+    /**
+     * Multiplies price with an integer value. Used to multiply the cost of an individual type
+     * of ordered items with its quantity.
+     *
+     * @param quantity The quantity of items ordered.
+     * @return The total price of one single type of ordered item.
+     */
+    public Double multiply(Integer quantity) {
+        BigDecimal bigDecimalPrice = new BigDecimal(price);
+        BigDecimal bigDecimalQuantity = new BigDecimal(quantity);
+        BigDecimal multipliedValue = bigDecimalPrice.multiply(bigDecimalQuantity);
+        multipliedValue.setScale(2, RoundingMode.HALF_UP);
+        return multipliedValue.doubleValue();
     }
 
     @Override

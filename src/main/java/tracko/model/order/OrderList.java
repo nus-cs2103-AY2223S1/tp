@@ -62,7 +62,8 @@ public class OrderList implements Iterable<Order> {
      */
     public void refreshData() {
         for (int i = 0; i < internalList.size(); i++) {
-            internalList.set(i, internalList.get(i));
+            Order order = internalList.get(i);
+            internalList.set(i, order);
         }
     }
 

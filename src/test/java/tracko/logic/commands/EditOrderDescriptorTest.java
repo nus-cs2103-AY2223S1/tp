@@ -1,14 +1,6 @@
 package tracko.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tracko.logic.commands.CommandTestUtil.DESC_AMY;
-import static tracko.logic.commands.CommandTestUtil.DESC_BOB;
-import static tracko.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static tracko.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
@@ -19,39 +11,44 @@ public class EditOrderDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditOrderDescriptor descriptorWithSameValues = new EditOrderDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditOrderDescriptor descriptorWithSameValues = new EditOrderDescriptor(CommandTestUtil.DESC_AMY);
+        Assertions.assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        Assertions.assertTrue(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_AMY));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
 
         // different name -> returns false
-        EditOrderDescriptor editedAmy = new EditOrderDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditOrderDescriptor editedAmy = new EditOrderDescriptorBuilder(
+                CommandTestUtil.DESC_AMY).withName(CommandTestUtil.VALID_NAME_BOB).build();
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditOrderDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditOrderDescriptorBuilder(
+                CommandTestUtil.DESC_AMY).withPhone(CommandTestUtil.VALID_PHONE_BOB).build();
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditOrderDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditOrderDescriptorBuilder(
+                CommandTestUtil.DESC_AMY).withEmail(CommandTestUtil.VALID_EMAIL_BOB).build();
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditOrderDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditOrderDescriptorBuilder(
+                CommandTestUtil.DESC_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
 
         // different item list -> returns false
-        editedAmy = new EditOrderDescriptorBuilder(DESC_AMY).withSecondItemList().build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditOrderDescriptorBuilder(
+                CommandTestUtil.DESC_AMY).withSecondItemList().build();
+        Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
     }
 }

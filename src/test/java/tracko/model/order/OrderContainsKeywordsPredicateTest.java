@@ -21,18 +21,41 @@ public class OrderContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> firstPredicateNameKeywordList = Collections.singletonList("Alice");
+        List<String> firstPredicateAddressKeywordList = Collections.singletonList("Clementi");
+        List<String> firstPredicateItemKeywordList = Collections.singletonList("Keychain");
+        Boolean firstPredicateIsFilteringByPaid = false;
+        Boolean firstPredicateIsFilteringByDelivered = true;
+        Boolean firstPredicateIsPaid = false;
+        Boolean firstPredicateIsDelivered = true;
+        List<String> secondPredicateNameKeywordList = Arrays.asList("Alice", "Bob");
+        List<String> secondPredicateAddressKeywordList = Collections.singletonList("Clementi, Geylang");
+        List<String> secondPredicateItemKeywordList = Collections.singletonList("keychain, pillow");
+        Boolean secondPredicateIsFilteringByPaid = false;
+        Boolean secondPredicateIsFilteringByDelivered = false;
+        Boolean secondPredicateIsPaid = false;
+        Boolean secondPredicateIsDelivered = false;
 
-        OrderContainsKeywordsPredicate firstPredicate = new OrderContainsKeywordsPredicate(firstPredicateKeywordList);
-        OrderContainsKeywordsPredicate secondPredicate = new OrderContainsKeywordsPredicate(secondPredicateKeywordList);
+        OrderMatchesFlagsAndPrefixPredicate firstPredicate =
+                new OrderMatchesFlagsAndPrefixPredicate(firstPredicateNameKeywordList,
+                        firstPredicateAddressKeywordList, firstPredicateItemKeywordList,
+                        firstPredicateIsFilteringByPaid, firstPredicateIsFilteringByDelivered,
+                        firstPredicateIsPaid, firstPredicateIsDelivered);
+        OrderMatchesFlagsAndPrefixPredicate secondPredicate =
+                new OrderMatchesFlagsAndPrefixPredicate(secondPredicateNameKeywordList,
+                        secondPredicateAddressKeywordList, secondPredicateItemKeywordList,
+                        secondPredicateIsFilteringByPaid, secondPredicateIsFilteringByDelivered,
+                        secondPredicateIsPaid, secondPredicateIsDelivered);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        OrderContainsKeywordsPredicate firstPredicateCopy =
-                new OrderContainsKeywordsPredicate(firstPredicateKeywordList);
+        OrderMatchesFlagsAndPrefixPredicate firstPredicateCopy =
+                new OrderMatchesFlagsAndPrefixPredicate(firstPredicateNameKeywordList,
+                        firstPredicateAddressKeywordList, firstPredicateItemKeywordList,
+                        firstPredicateIsFilteringByPaid, firstPredicateIsFilteringByDelivered,
+                        firstPredicateIsPaid, firstPredicateIsDelivered);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -53,23 +76,27 @@ public class OrderContainsKeywordsPredicateTest {
                 new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
 
         // One keyword
-        OrderContainsKeywordsPredicate predicate =
-                new OrderContainsKeywordsPredicate(Collections.singletonList("Keychain"));
+        OrderMatchesFlagsAndPrefixPredicate predicate =
+                new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
+                        Collections.singletonList("Keychain"), false, false, false, false);
         assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Multiple keywords
-        predicate = new OrderContainsKeywordsPredicate(Arrays.asList("Keychain", "Apple"));
+        predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
+                Arrays.asList("Keychain", "Apple"), false, false, false, false);
         assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Only one matching keyword
-        predicate = new OrderContainsKeywordsPredicate(Arrays.asList("Keychain", "Apple"));
+        predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
+                Arrays.asList("Keychain", "Apple"), false, false, false, false);
         assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).build()));
 
         // Mixed-case keywords
-        predicate = new OrderContainsKeywordsPredicate(Arrays.asList("kEyChAiN", "aPpLe"));
+        predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
+                Arrays.asList("kEyChAiN", "aPpLe"), false, false, false, false);
         assertTrue(predicate.test(new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(bananaKeychainItem, new Quantity(1))).build()));
     }
@@ -82,17 +109,21 @@ public class OrderContainsKeywordsPredicateTest {
             new Quantity(300), new HashSet<>(), new Price(1.99), new Price(4.85));
 
         // Zero keywords
-        OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate(Collections.emptyList());
+        OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(),
+                Collections.emptyList(), Collections.emptyList(), false, false, false, false);
         assertFalse(predicate.test(new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Non-matching keyword
-        predicate = new OrderContainsKeywordsPredicate(Arrays.asList("Banana"));
+        predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
+                Arrays.asList("Banana"), false, false, false, false);
         assertFalse(predicate.test(new OrderBuilder().withItemQuantityPair(
                 new ItemQuantityPair(appleKeychainItem, new Quantity(1))).build()));
 
         // Keywords match phone, email and address, but does not match order name
-        predicate = new OrderContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new OrderMatchesFlagsAndPrefixPredicate(Collections.emptyList(), Collections.emptyList(),
+                Arrays.asList("12345", "alice@email.com", "Main", "Street"),
+                false, false, false, false);
         assertFalse(predicate.test(new OrderBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }

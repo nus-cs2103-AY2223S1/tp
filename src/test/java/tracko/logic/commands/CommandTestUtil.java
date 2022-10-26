@@ -3,11 +3,14 @@ package tracko.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static tracko.logic.parser.CliSyntax.PREFIX_COST_PRICE;
+import static tracko.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static tracko.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static tracko.logic.parser.CliSyntax.PREFIX_SELL_PRICE;
 import static tracko.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import tracko.model.TrackO;
 import tracko.model.item.Item;
 import tracko.model.item.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
-import tracko.model.order.OrderContainsKeywordsPredicate;
+import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
 import tracko.model.tag.Tag;
 import tracko.testutil.EditItemDescriptorBuilder;
 import tracko.testutil.EditOrderDescriptorBuilder;
@@ -76,6 +79,31 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ITEM_NAME_DESC = " " + PREFIX_ITEM;
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-3";
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
+    public static final String INVALID_SELL_PRICE_DESC = " " + PREFIX_SELL_PRICE + -33.00;
+    public static final String INVALID_COST_PRICE_DESC = " " + PREFIX_COST_PRICE + 33.333;
+
+    public static final String VALID_DEFAULT_ITEM_NAME = "Chair";
+    public static final String VALID_DEFAULT_DESCRIPTION = "This is a wooden dining chair.";
+    public static final String VALID_SECOND_DESCRIPTION = "This set of furniture require some DIY.";
+
+    public static final Integer VALID_DEFAULT_QUANTITY = 300;
+
+    public static final Double VALID_DEFAULT_SELL_PRICE = 60.00;
+    public static final Double VALID_SECOND_SELL_PRICE = 10.00;
+
+    public static final Double VALID_DEFAULT_COST_PRICE = 45.00;
+    public static final Double VALID_SECOND_COST_PRICE = 15.00;
+
+    public static final String ITEM_NAME_DESC_DEFAULT = " " + PREFIX_ITEM + VALID_DEFAULT_ITEM_NAME;
+    public static final String QUANTITY_DESC_DEFAULT = " " + PREFIX_QUANTITY + VALID_DEFAULT_QUANTITY;
+    public static final String ITEM_DESCRIPTION_DESC_DEFAULT = " " + PREFIX_DESCRIPTION + VALID_DEFAULT_DESCRIPTION;
+    public static final String ITEM_DESCRIPTION_DESC_SECOND = " " + PREFIX_DESCRIPTION + VALID_SECOND_DESCRIPTION;
+    public static final String SELL_PRICE_DESC_DEFAULT = " " + PREFIX_SELL_PRICE + VALID_DEFAULT_SELL_PRICE;
+    public static final String SELL_PRICE_DESC_SECOND = " " + PREFIX_SELL_PRICE + VALID_SECOND_SELL_PRICE;
+    public static final String COST_PRICE_DESC_DEFAULT = " " + PREFIX_COST_PRICE + VALID_DEFAULT_COST_PRICE;
+    public static final String COST_PRICE_DESC_SECOND = " " + PREFIX_COST_PRICE + VALID_SECOND_COST_PRICE;
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -160,7 +188,8 @@ public class CommandTestUtil {
         Order order = model.getOrderList().get(targetIndex.getZeroBased());
         // Index is at 1 because at 0, every order is initialized to have a keychain.
         final String[] splitName = order.getItemList().get(1).getItemName().split("\\s+");
-        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+        model.updateFilteredOrderList(new OrderMatchesFlagsAndPrefixPredicate(Collections.EMPTY_LIST,
+                Collections.EMPTY_LIST, Collections.singletonList(splitName[0]), false, false, false, false));
 
         assertEquals(1, model.getFilteredOrderList().size());
     }
