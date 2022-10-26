@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.GuiSettings.DARK_THEME_NAME;
+import static seedu.address.commons.core.GuiSettings.LIGHT_THEME_NAME;
 import static seedu.address.logic.commands.ListStudentCommand.COMMAND_LIST_STUDENT_STRING;
 import static seedu.address.logic.commands.ListTuitionClassCommand.COMMAND_LIST_CLASS_STRING;
 import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_STRING;
@@ -38,9 +40,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Person Displayed");
 
-    private static final String LIGHT_THEME_NAME = "./view/LightTheme.css";
 
-    private static final String DARK_THEME_NAME = "./view/DarkTheme.css";
+    private static final String WELCOME_MESSAGE = "Welcome to myStudent!\n" + "Key in command to start";
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -57,8 +58,8 @@ public class MainWindow extends UiPart<Stage> {
     private TutorDescription tutorDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
     private Model.ListType descriptionEntityType;
+    private String theme;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -101,7 +102,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        setWindow(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -169,19 +170,22 @@ public class MainWindow extends UiPart<Stage> {
 
         entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
 
-        resultDisplay.setFeedbackToUser("Welcome to myStudent\n" + "Key in command to start");
+        resultDisplay.setFeedbackToUser(WELCOME_MESSAGE);
     }
 
     /**
-     * Sets the default size based on {@code guiSettings}.
+     * Sets the default size and theme based on {@code guiSettings}.
      */
-    private void setWindowDefaultSize(GuiSettings guiSettings) {
+    private void setWindow(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+        mainWindowScene.getStylesheets().clear();
+        mainWindowScene.getStylesheets().add(guiSettings.getTheme());
+        this.theme = guiSettings.getTheme();
     }
 
     /**
@@ -191,6 +195,7 @@ public class MainWindow extends UiPart<Stage> {
     private void updateToLightTheme() {
         mainWindowScene.getStylesheets().clear();
         mainWindowScene.getStylesheets().add(LIGHT_THEME_NAME);
+        this.theme = LIGHT_THEME_NAME;
     }
 
     /**
@@ -200,6 +205,7 @@ public class MainWindow extends UiPart<Stage> {
     private void updateToDarkTheme() {
         mainWindowScene.getStylesheets().clear();
         mainWindowScene.getStylesheets().add((DARK_THEME_NAME));
+        this.theme = DARK_THEME_NAME;
     }
 
     /**
@@ -230,7 +236,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), this.theme);
         logic.setGuiSettings(guiSettings);
         PauseTransition pause = new PauseTransition(Duration.seconds(3));
         pause.setOnFinished(event -> {
