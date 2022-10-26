@@ -19,7 +19,7 @@ public class SetupCommand extends Command {
 
     public static final String COMMAND_WORD = "setup";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets up the users profile for the tracker. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets up the users profile for NutriGoals. \n"
             + "Parameters: "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_HEIGHT + "HEIGHT "

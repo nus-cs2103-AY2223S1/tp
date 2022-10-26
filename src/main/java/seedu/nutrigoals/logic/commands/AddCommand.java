@@ -16,7 +16,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a food to the tracker. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a food item to NutriGoals. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CALORIE + "CALORIES "
