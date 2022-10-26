@@ -3,6 +3,8 @@ package seedu.workbook.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
+import seedu.workbook.model.internship.util.StageUtil;
+
 /**
  * Represents an Internship's application stage in WorkBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidStage(String)}
@@ -37,6 +39,13 @@ public class Stage {
      */
     public static boolean isValidStage(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given stage has curated tips.
+     */
+    public boolean hasNoTips() {
+        return !StageUtil.stageHasTips(this);
     }
 
     @Override

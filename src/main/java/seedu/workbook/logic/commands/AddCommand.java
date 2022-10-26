@@ -7,6 +7,7 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.workbook.model.internship.util.StageUtil.stagesWithTipsToString;
 
 import seedu.workbook.logic.commands.exceptions.CommandException;
 import seedu.workbook.model.Model;
@@ -39,7 +40,13 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     /** Message string displaying successful execution of the add command */
-    public static final String MESSAGE_SUCCESS = "New internship application added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New internship application added: %1$s, "
+            + "check out some tips for the stage!";
+
+    /** Message string displaying successful execution of the add command, but stage is not in our pre-defined list */
+    public static final String MESSAGE_SUCCESS_STAGE_NO_TIPS = "New internship application added: %1$s, "
+            + "however, do you mean " + stagesWithTipsToString() + " for the stages? We curated "
+            + "some nifty tips for those stages!";
 
     /** Message string displaying error message for unsuccessful execution of the add command for a duplicate */
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship application already exists in WorkBook";
@@ -65,7 +72,12 @@ public class AddCommand extends Command {
 
         model.addInternship(toAdd);
         model.commitWorkBook();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        if (toAdd.stageHasNoTips()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_STAGE_NO_TIPS, toAdd));
+        } else {
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
     }
 
     @Override

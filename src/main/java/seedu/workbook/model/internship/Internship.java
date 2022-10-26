@@ -82,6 +82,10 @@ public class Internship {
                 && otherInternship.getRole().equals(getRole());
     }
 
+    public boolean stageHasNoTips() {
+        return this.getStage().hasNoTips();
+    }
+
     /**
      * Returns true if both internships have the same identity and data fields.
      * This defines a stronger notion of equality between two internships.
