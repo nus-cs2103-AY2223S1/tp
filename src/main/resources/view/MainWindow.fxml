@@ -26,7 +26,7 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" style="-fx-background-color: #0e1011;" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" focusTraversable="false" style="-fx-background-color: #0e1011;" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -46,7 +46,7 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <TabPane fx:id="tabPane" minWidth="340" prefWidth="340" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane fx:id="tabPane" focusTraversable="false" minWidth="340" prefWidth="340" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab fx:id="contactsTab" style="-fx-background-color: #2200f9;" text="contacts">
                   <content>
@@ -62,7 +62,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id= "calendarTab" style="-fx-background-color: #a020f0;" text="calendar">
+                <Tab fx:id="calendarTab" style="-fx-background-color: #a020f0;" text="calendar">
                   <content>
                     <AnchorPane>
                            <children>
