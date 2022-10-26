@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
@@ -51,9 +52,12 @@ public class ExamCard extends UiPart<Region> {
         examDate.setText(exam.getExamDate().examDate);
         if (!exam.hasTasks()) {
             percentageCompleted.setPrefWidth(0);
+        } else {
+            percentageCompleted.setPadding(new Insets(0, 5,0, 0));
         }
 
         percentageCompleted.setProgress(exam.getPercentageCompleted());
+        percentageCompleted.setStyle("-fx-accent:limegreen");
         progressMessage.setText(exam.generateProgressMessage());
 
     }
