@@ -28,23 +28,23 @@ import seedu.address.model.task.TaskMark;
 public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         Project[] projectList = new Project[] {
-            new Project(new ProjectName("CS2103T TP"), new Budget("200"), new Deadline("2022-06-01"),
-                getTagSet("friends")),
+            new Project(new ProjectName("CS2103T TP"), new Budget("200"), new Deadline("2022-10-28"),
+                getTagSet("Software")),
             new Project(new ProjectName("CS2102"), new Budget("3"), new Deadline("2023-07-02"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("Computing", "Pending")),
             new Project(new ProjectName("GESS1025"), new Budget("1100"), new Deadline("2024-08-03"),
-                getTagSet("neighbours")),
+                getTagSet("Expansion")),
             new Project(new ProjectName("CS2101"), new Budget("25"), new Deadline("2016-09-04"),
-                getTagSet("family")),
-            new Project(new ProjectName("Analysis"), new Budget("10000009"), new Deadline("2018-10-05"),
-                getTagSet("classmates")),
-            new Project(new ProjectName("I am tired"), new Budget("1250"), new Deadline("2024-11-06"),
-                getTagSet("colleagues"))
+                getTagSet("Important")),
+            new Project(new ProjectName("Merger with Tiktok"), new Budget("10000000"), new Deadline("2018-10-05"),
+                getTagSet("Important")),
+            new Project(new ProjectName("Change supplier"), new Budget("3000"), new Deadline("2024-11-06"),
+                getTagSet("Finance"))
         };
         Project tempProject = projectList[0];
         Set<Tag> tagList = new HashSet<>();
-        tagList.add(new Tag("husband"));
-        tagList.add(new Tag("friend"));
+        tagList.add(new Tag("Vacation"));
+        tagList.add(new Tag("Busy"));
         Staff staff = new Staff(new StaffName("Andy Lee"), new StaffContact("11111111"),
                 new StaffTitle("Senior Software Engineer"), new StaffDepartment("IT Department"),
                 new StaffLeave("true"), tagList);
@@ -55,11 +55,13 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Deadline("2022-08-30"), new TaskDescription("Finish 2103"),
+            new Task(new Deadline("2022-10-28"), new TaskDescription("Downloaded jar file"),
+                    new TaskMark("true")),
+            new Task(new Deadline("2022-08-30"), new TaskDescription("Read user guide"),
                     new TaskMark("false")),
-            new Task(new Deadline("2022-06-01"), new TaskDescription("Submit homework"),
+            new Task(new Deadline("2022-06-01"), new TaskDescription("Try out commands"),
                     new TaskMark("false")),
-            new Task(new Deadline("2022-07-02"), new TaskDescription("Prepare for 2103 exam"),
+            new Task(new Deadline("2022-07-02"), new TaskDescription("Make changes to create save file"),
                     new TaskMark("false"))
         };
     }

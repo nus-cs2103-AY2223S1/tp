@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 public class MarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "marktask";
 
-    public static final String MESSAGE_MARK_TASK_SUCCESS = "Task at %1$s set as completed!";
+    public static final String MESSAGE_MARK_TASK_SUCCESS = "Task at index %1$s set as completed!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task at specified index of the currently displayed tasks.\n"

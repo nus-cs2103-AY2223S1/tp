@@ -16,7 +16,7 @@ import seedu.address.model.task.Task;
 public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmarktask";
 
-    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Task at %1$s set as uncompleted!";
+    public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Task at index %1$s set as uncompleted!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task at specified index of the currently displayed tasks.\n"
