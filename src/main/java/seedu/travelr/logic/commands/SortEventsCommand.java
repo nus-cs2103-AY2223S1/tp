@@ -17,7 +17,7 @@ public class SortEventsCommand extends Command {
             + PREFIX_REVERSE_ORDER + " will make the events be sorted in reverse order.\n"
             + "Example: " + COMMAND_WORD + PREFIX_REVERSE_ORDER;
 
-    public static final String SORT_SUCCESS = "Events have been sorted.";
+    public static final String SORT_SUCCESS = "Bucket list has been sorted.";
 
     private final Comparator<Event> comparator;
 
@@ -27,7 +27,7 @@ public class SortEventsCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        model.sortEvents(comparator);
+        model.sortBucketList(comparator);
         return new CommandResult(SORT_SUCCESS);
     }
 }

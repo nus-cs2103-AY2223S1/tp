@@ -249,8 +249,8 @@ public class ModelManager implements Model {
     }
     
     @Override
-    public void sortEvents(Comparator<Event> comp) {
-        addressBook.sortEvents(comp);
+    public void sortBucketList(Comparator<Event> comp) {
+        addressBook.sortBucketList(comp);
     }
     
     @Override

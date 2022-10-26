@@ -166,7 +166,7 @@ public interface Model {
 
     void sortTripsByComparator(Comparator<Trip> comp);
 
-    void sortEvents(Comparator<Event> comparator);
+    void sortBucketList(Comparator<Event> comparator);
 
     boolean hasEventInBucketList(Event event);
 }
