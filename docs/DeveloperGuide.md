@@ -410,8 +410,11 @@ Design considerations:
 Ministry of Education (MOE) Teachers who:
 * Teaches 3 to 5 classes a year
 * Manages about 60 to 100 students with varying needs
+* Is required to identify students who need additional academic assistance and contact their parents if necessary
 * Finds paperwork time-consuming and messy
-* Finds it difficult to keep track of the academic progress of each individual student
+* Manually keeps track of the academic progress of each individual student
+* Manually identifies students who are performing poorly academically and finds it inefficient
+* Find Excel spreadsheet complex and difficult to use
 * Prefers typing to mouse interactions
 * Types fast and is reasonably comfortable using CLI apps
 
@@ -422,28 +425,38 @@ of class statistics / progress. Manage student details faster than a typical mou
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Role (As a/ an)                                       | Goal/ Function (I want to)                                               | Benefit (So that I)                                                           | Priority |
-|-------------------------------------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------|----------|
-| new user                                              | purge all current data                                                   | can get rid of sample/experimental data I used for exploring the application. | ***      |
-| new user                                              | add in individual students' personal information                         | can easily find information pertaining to that student.                       | ***      |
-| new user                                              | add in individual students' academic results                             | I can keep track of their results over time.                                  | ***      |
-| new user                                              | view a summarised list of all students' information                      | get an overview of all the students that I am teaching.                       | ***      |
-| new user                                              | search for a student by his/her name                                     |                                                                               | ***      |
-| new user                                              | search for a student by his/her student ID                               |                                                                               | ***      |
-| new user                                              | search for a class by the class name                                     |                                                                               | ***      |
-| new user                                              | delete a student's record by his/her student ID                          |                                                                               | ***      |
-| new user                                              | delete a student's record by his/her name                                |                                                                               | ***      |
-| new user who is forgetful                             | automatically save the data without having to type in a separate command | do not need to worry about forgetting to save before I quit the application.  | ***      |
-| new user who is non-technical                         | follow a set of instructions/guide                                       | can get a sense of how to use the application.                                | ***      |
-| intermediate user                                     | update the details of any student record                                 | can keep my records accurate and up to date.                                  | ***      |
-| teacher with multiple classes                         | separate my different classes individually                               | can keep my records tidy and organised.                                       | ***      |
-| potential user                                        | see a summary of functionalities                                         | have an idea of what I can do with the app without accessing the user guide.  | **       |
-| potential user                                        | try the application with sample data                                     | can easily see how the application will look like when it is in use.          | **       |
-| intermediate user                                     | delete all student records from a class                                  | can reuse the class for another batch.                                        | **       |
-| intermediate user                                     | view statistics for the exam results of a particular class               | can have an overview of how all my students are doing.                        | **       |
-| intermediate user                                     | view a summary of my students' performance                               | can take note of my students' academic performance.                           | **       |
-| intermediate user                                     | see a list of students whose grades are below average                    | can quickly identify students who will need more help.                        | **       |
-| intermediate user                                     | see the parents' contact information of a student                        | can contact them to let them know that their child is not doing well.         | **       |
+| Role (As a/ an)                                     | Goal/ Function (I want to)                                  | Benefit (So that I)                                                           | Priority |
+|-----------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------------------------|----------|
+| new user                                            | add new student records                                     |                                                                               | ***      |
+| new user                                            | delete student records                                      | can remove irrelevant or incorrect student records.                           | ***      |
+| new user                                            | update student records                                      | can keep my student records accurate and up to date.                          | ***      |
+| new user                                            | view all students that I am teaching                        |                                                                               | ***      |
+| new user                                            | find a particular student's record by name                  |                                                                               | ***      |
+| new user                                            | find a particular student's record by student ID            |                                                                               | ***      |
+| new user                                            | add in individual students' personal information            | can retrieve my student's information when necessary.                         | ***      |
+| new user                                            | add in individual students' academic results                | can keep track of their results over time.                                    | ***      |
+| teacher with multiple classes                       | categorise students into different classes                  | can keep my student records tidy and organised.                               | ***      |
+| new user                                            | store parent's details                                      | can contact and inform them if a student is not doing well.                   | ***      |
+| teacher with multiple classes                       | filter student records based on their class                 | can search for students in a particular class easily.                         | ***      |
+| new user                                            | get exam statistics from a class                            | can get an overview of my students' academic performance.                     | ***      |
+| new user                                            | flag out students who are under performing in class         | can quickly identify students who need more academic assistance.              | ***      |
+| new user                                            | sort the student records in terms of grades                 | can easily view the academic rankings of my student.                          | ***      |
+| teacher with many students                          | hide parent's information from view                         | can have an uncluttered view of my student's information.                     | ***      |
+| new user who is forgetful                           | automatically save the data without inputting a new command | do not need to worry about forgetting to save before I quit the application.  | ***      |
+| potential user                                      | try the application with sample data                        | can easily see how the application will look like when it is in use.          | ***      |
+| potential user                                      | see a summary of functionalities                            | have an idea of what I can do without referencing the user guide.             | **       |
+| new user                                            | purge all current data                                      | can get rid of sample/experimental data I used for exploring the application. | **       |
+| intermediate user                                   | add multiple student records with a single command          | can efficiently enter my students' information at once.                       | **       |
+| new user                                            | filter student records below a certain grade                | can identify students who scored below an acceptable grade.                   | **       |
+| teacher who might teach a different class next year | delete all student records from a particular class          | can remove the records of students that I am no longer teaching.              | **       |
+| new user                                            | undo previous commands                                      | can easily undo an accidental change.                                         | **       |
+| intermediate user                                   | create additional custom fields in student records          | can keep track of additional information of my students.                      | **       |
+| intermediate user                                   | share student details with other teachers                   | can share the data with another teacher who may take over the class.          | *        |
+| advanced user                                       | transfer and backup data from one computer to another       | will not lose my data if I switch to another computer.                        | *        |
+| advanced user                                       | update all students' exam grades with a single command      | can efficiently update my students' grades at once.                           | *        |
+| teacher who might teach the same class next year    | update the class name of all students in that class         | can save time updating each student's information individually.               | *        |
+| advanced user                                       | find out more advanced commands through suggestions         | can learn and extend the functionality of the app.                            | *        |
+| potential user                                      | follow a tutorial to introduce the basic commands           | can learn the basic functionalities step by step.                             | *        |
 
 ### 6.3 Use cases
 
