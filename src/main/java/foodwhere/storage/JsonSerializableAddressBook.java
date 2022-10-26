@@ -14,7 +14,7 @@ import foodwhere.model.ReadOnlyAddressBook;
 import foodwhere.model.stall.Stall;
 
 /**
- * An Immutable AddressBook in FoodWhere that is serializable to JSON format.
+ * An immutable AddressBook in FoodWhere that is serializable to JSON format.
  */
 @JsonRootName(value = "foodwhere")
 class JsonSerializableAddressBook {
