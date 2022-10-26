@@ -41,12 +41,30 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Description name = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Country country = ParserUtil.parseCountry(argMultimap.getValue(PREFIX_COUNTRY).get());
         Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
         ItineraryDuration duration = ParserUtil.parseItineraryDuration(
                 argMultimap.getValue(PREFIX_ITINERARY_DURATION).get());
-        People people = ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get());
-        Budget budget = ParserUtil.parseBudget(argMultimap.getValue(PREFIX_BUDGET).get());
+
+        Country country;
+        if (arePrefixesPresent(argMultimap, PREFIX_COUNTRY)) {
+            country = ParserUtil.parseCountry(argMultimap.getValue(PREFIX_COUNTRY).get());
+        } else {
+            country = ParserUtil.parseCountry("default");
+        }
+
+        People people;
+        if (arePrefixesPresent(argMultimap, PREFIX_PEOPLE)) {
+            people = ParserUtil.parsePeople(argMultimap.getValue(PREFIX_PEOPLE).get());
+        } else {
+            people = ParserUtil.parsePeople("0");
+        }
+
+        Budget budget;
+        if (arePrefixesPresent(argMultimap, PREFIX_BUDGET)) {
+            budget = ParserUtil.parseBudget(argMultimap.getValue(PREFIX_BUDGET).get());
+        } else {
+            budget = ParserUtil.parseBudget("0");
+        }
 
         Itinerary itinerary = new Itinerary(name, country, startDate, duration, people, budget);
 
