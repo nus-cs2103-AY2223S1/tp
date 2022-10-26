@@ -1,10 +1,10 @@
 {
   "_comment": "InTrack save file which contains the same Internship values as in TypicalInternships#getTypicalInTrack()",
   "internships" : [ {
-    "name" : "Alice Pauline",
+    "name" : "Google",
     "position": "Software Engineer",
     "status" : "Progress",
-    "email" : "alice@example.com",
+    "email" : "careers@google.com",
     "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
@@ -14,11 +14,11 @@
     "tagged" : [ "friends" ],
     "remark" : ""
   }, {
-    "name" : "Benson Meier",
+    "name" : "Meta",
     "position": "Data Analyst",
     "status" : "Progress",
-    "email" : "johnd@example.com",
-    "website" : "https://careers.google.com/",
+    "email" : "careers@meta.com",
+    "website" : "https://www.metacareers.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "20-10-2022 12:00"
@@ -27,11 +27,11 @@
     "tagged" : [ "owesMoney", "friends" ],
     "remark" : ""
   }, {
-    "name" : "Carl Kurz",
+    "name" : "Alibaba",
     "position": "Frontend Engineer",
     "status" : "Offered",
-    "email" : "heinz@example.com",
-    "website" : "https://careers.google.com/",
+    "email" : "careers@alibaba.com",
+    "website" : "https://careers.alibaba.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -40,11 +40,11 @@
     "tagged" : [ ],
     "remark" : ""
   }, {
-    "name" : "Daniel Meier",
+    "name" : "Paypal",
     "position": "Backend Engineer",
     "status" : "Progress",
-    "email" : "cornelia@example.com",
-    "website" : "https://careers.google.com/",
+    "email" : "careers@paypal.com",
+    "website" : "https://careers.pypl.com/home/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -56,11 +56,11 @@
     "tagged" : [ "friends" ],
     "remark" : ""
   }, {
-    "name" : "Elle Meyer",
+    "name" : "Samsung Group",
     "position": "Full Stack Engineer",
     "status" : "Offered",
-    "email" : "werner@example.com",
-    "website" : "https://careers.google.com/",
+    "email" : "careers@samsung.com",
+    "website" : "https://www.samsung.com/sg/about-us/careers/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "25-10-2022 08:30"
@@ -72,11 +72,11 @@
     "tagged" : [ ],
     "remark" : ""
   }, {
-    "name" : "Fiona Kunz",
+    "name" : "Tencent Holdings Ltd",
     "position": "Cyber Security Analyst",
     "status" : "Offered",
-    "email" : "lydia@example.com",
-    "website" : "https://careers.google.com/",
+    "email" : "careers@tencent.com",
+    "website" : "https://careers.tencent.com/en-us/home.html",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -88,11 +88,11 @@
     "tagged" : [ ],
     "remark" : ""
   }, {
-    "name" : "George Best",
+    "name" : "Netflix",
     "position": "Algorithm Engineer",
     "status" : "Progress",
-    "email" : "anna@example.com",
-    "website" : "https://careers.google.com/",
+    "email" : "careers@netflix.com",
+    "website" : "https://jobs.netflix.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"

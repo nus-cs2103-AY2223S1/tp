@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.ALICE;
+import static seedu.intrack.testutil.TypicalInternships.GOOG;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class InTrackTest {
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
-        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
+        Internship editedGoogle = new InternshipBuilder(GOOG).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
-        List<Internship> newInternships = Arrays.asList(ALICE, editedAlice);
+        List<Internship> newInternships = Arrays.asList(GOOG, editedGoogle);
         InTrackStub newData = new InTrackStub(newInternships);
 
         assertThrows(DuplicateInternshipException.class, () -> inTrack.resetData(newData));
@@ -61,21 +61,21 @@ public class InTrackTest {
 
     @Test
     public void hasInternship_internshipNotInInTrack_returnsFalse() {
-        assertFalse(inTrack.hasInternship(ALICE));
+        assertFalse(inTrack.hasInternship(GOOG));
     }
 
     @Test
     public void hasInternship_internshipInInTrack_returnsTrue() {
-        inTrack.addInternship(ALICE);
-        assertTrue(inTrack.hasInternship(ALICE));
+        inTrack.addInternship(GOOG);
+        assertTrue(inTrack.hasInternship(GOOG));
     }
 
     @Test
     public void hasInternship_internshipWithSameIdentityFieldsInInTrack_returnsTrue() {
-        inTrack.addInternship(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
+        inTrack.addInternship(GOOG);
+        Internship editedGoogle = new InternshipBuilder(GOOG).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
-        assertTrue(inTrack.hasInternship(editedAlice));
+        assertTrue(inTrack.hasInternship(editedGoogle));
     }
 
     @Test

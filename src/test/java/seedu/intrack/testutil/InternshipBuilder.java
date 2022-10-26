@@ -22,11 +22,11 @@ import seedu.intrack.model.util.SampleDataUtil;
  */
 public class InternshipBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NAME = "Airbnb Inc";
     public static final String DEFAULT_POSITION = "Software Engineer";
     public static final String DEFAULT_STATUS = "Progress";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_WEBSITE = "https://careers.shopee.sg/";
+    public static final String DEFAULT_EMAIL = "careers@airbnb.com";
+    public static final String DEFAULT_WEBSITE = "https://careers.airbnb.com/";
     public static final String DEFAULT_SALARY = "100000";
     public static final String DEFAULT_REMARK = "";
 

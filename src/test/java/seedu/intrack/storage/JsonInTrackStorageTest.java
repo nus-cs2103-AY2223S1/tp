@@ -3,9 +3,9 @@ package seedu.intrack.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.ALICE;
-import static seedu.intrack.testutil.TypicalInternships.HOON;
-import static seedu.intrack.testutil.TypicalInternships.IDA;
+import static seedu.intrack.testutil.TypicalInternships.ADBE;
+import static seedu.intrack.testutil.TypicalInternships.GOOG;
+import static seedu.intrack.testutil.TypicalInternships.UBER;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonInTrackStorageTest {
         assertEquals(original, new InTrack(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addInternship(HOON);
-        original.removeInternship(ALICE);
+        original.addInternship(ADBE);
+        original.removeInternship(GOOG);
         jsonInTrackStorage.saveInTrack(original, filePath);
         readBack = jsonInTrackStorage.readInTrack(filePath).get();
         assertEquals(original, new InTrack(readBack));
 
         // Save and read without specifying file path
-        original.addInternship(IDA);
+        original.addInternship(UBER);
         jsonInTrackStorage.saveInTrack(original); // file path not specified
         readBack = jsonInTrackStorage.readInTrack().get(); // file path not specified
         assertEquals(original, new InTrack(readBack));

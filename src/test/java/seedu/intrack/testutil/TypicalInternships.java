@@ -27,48 +27,48 @@ import seedu.intrack.model.internship.Internship;
  */
 public class TypicalInternships {
 
-    public static final Internship ALICE = new InternshipBuilder().withName("Alice Pauline")
-            .withPosition("Software Engineer").withStatus("Progress").withEmail("alice@example.com")
+    public static final Internship GOOG = new InternshipBuilder().withName("Google")
+            .withPosition("Software Engineer").withStatus("Progress").withEmail("careers@google.com")
             .withWebsite("https://careers.google.com/").withTasks("Application submitted /at 19-10-2022 11:38")
             .withSalary("100000").withTags("friends").build();
-    public static final Internship BENSON = new InternshipBuilder().withName("Benson Meier")
-            .withPosition("Data Analyst").withStatus("Progress").withEmail("johnd@example.com")
-            .withWebsite("https://careers.google.com/").withTasks("Application submitted /at 20-10-2022 12:00")
+    public static final Internship META = new InternshipBuilder().withName("Meta")
+            .withPosition("Data Analyst").withStatus("Progress").withEmail("careers@meta.com")
+            .withWebsite("https://www.metacareers.com/").withTasks("Application submitted /at 20-10-2022 12:00")
             .withSalary("125000").withTags("owesMoney", "friends").build();
-    public static final Internship CARL = new InternshipBuilder().withName("Carl Kurz")
-            .withPosition("Frontend Engineer").withStatus("Offered").withEmail("heinz@example.com")
-            .withWebsite("https://careers.google.com/").withTasks("Application submitted /at 19-10-2022 11:38")
+    public static final Internship BABA = new InternshipBuilder().withName("Alibaba")
+            .withPosition("Frontend Engineer").withStatus("Offered").withEmail("careers@alibaba.com")
+            .withWebsite("https://careers.alibaba.com/").withTasks("Application submitted /at 19-10-2022 11:38")
             .withSalary("150000").build();
-    public static final Internship DANIEL = new InternshipBuilder().withName("Daniel Meier")
-            .withPosition("Backend Engineer").withStatus("Progress").withEmail("cornelia@example.com")
-            .withWebsite("https://careers.google.com/")
+    public static final Internship PYPL = new InternshipBuilder().withName("Paypal")
+            .withPosition("Backend Engineer").withStatus("Progress").withEmail("careers@paypal.com")
+            .withWebsite("https://careers.pypl.com/home/")
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .withSalary("175000")
             .withTags("friends").build();
-    public static final Internship ELLE = new InternshipBuilder().withName("Elle Meyer")
-            .withPosition("Full Stack Engineer").withStatus("Offered").withEmail("werner@example.com")
-            .withWebsite("https://careers.google.com/")
+    public static final Internship SSNLF = new InternshipBuilder().withName("Samsung Group")
+            .withPosition("Full Stack Engineer").withStatus("Offered").withEmail("careers@samsung.com")
+            .withWebsite("https://www.samsung.com/sg/about-us/careers/")
             .withTasks("Application submitted /at 25-10-2022 08:30", "Technical Interview /at 30-10-2022 09:00")
             .withSalary("200000")
             .build();
-    public static final Internship FIONA = new InternshipBuilder().withName("Fiona Kunz")
-            .withPosition("Cyber Security Analyst").withStatus("Offered").withEmail("lydia@example.com")
-            .withWebsite("https://careers.google.com/")
+    public static final Internship TCEHY = new InternshipBuilder().withName("Tencent Holdings Ltd")
+            .withPosition("Cyber Security Analyst").withStatus("Offered").withEmail("careers@tencent.com")
+            .withWebsite("https://careers.tencent.com/en-us/home.html")
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .withSalary("225000").build();
-    public static final Internship GEORGE = new InternshipBuilder().withName("George Best")
-            .withPosition("Algorithm Engineer").withStatus("Progress").withEmail("anna@example.com")
-            .withWebsite("https://careers.google.com/")
+    public static final Internship NFLX = new InternshipBuilder().withName("Netflix")
+            .withPosition("Algorithm Engineer").withStatus("Progress").withEmail("careers@netflix.com")
+            .withWebsite("https://jobs.netflix.com/")
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .withSalary("250000").build();
 
     // Manually added
-    public static final Internship HOON = new InternshipBuilder().withName("Hoon Meier")
-            .withPosition("Product Designer").withStatus("Progress").withEmail("stefan@example.com")
-            .withWebsite("https://careers.google.com/").withSalary("300000").build();
-    public static final Internship IDA = new InternshipBuilder().withName("Ida Mueller")
-            .withPosition("Data Engineer").withStatus("Progress").withEmail("hans@example.com")
-            .withWebsite("https://careers.google.com/").withSalary("275000").build();
+    public static final Internship ADBE = new InternshipBuilder().withName("Adobe Inc")
+            .withPosition("Product Designer").withStatus("Progress").withEmail("careers@adobe.com")
+            .withWebsite("https://www.adobe.com/careers.html").withSalary("300000").build();
+    public static final Internship UBER = new InternshipBuilder().withName("Uber Technologies")
+            .withPosition("Data Engineer").withStatus("Progress").withEmail("careers@uber.com")
+            .withWebsite("https://www.uber.com/us/en/careers/").withSalary("275000").build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}
     public static final Internship AAPL = new InternshipBuilder().withName(VALID_NAME_AAPL)
@@ -81,7 +81,7 @@ public class TypicalInternships {
             .withSalary(VALID_SALARY_MSFT)
             .withTags(VALID_TAG_REMOTE, VALID_TAG_URGENT).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final String KEYWORD_MATCHING_ADBE = "Adobe"; // A keyword that matches ADBE
 
     private TypicalInternships() {} // prevents instantiation
 
@@ -97,18 +97,18 @@ public class TypicalInternships {
     }
 
     public static List<Internship> getTypicalInternships() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(GOOG, META, BABA, PYPL, SSNLF, TCEHY, NFLX));
     }
 
     public static List<Internship> getUnsortedInternships() {
-        return new ArrayList<>(Arrays.asList(ALICE, ELLE, BENSON));
+        return new ArrayList<>(Arrays.asList(GOOG, SSNLF, META));
     }
 
     public static List<Internship> getSortedAscendingInternships() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, ELLE));
+        return new ArrayList<>(Arrays.asList(GOOG, SSNLF, META));
     }
 
     public static List<Internship> getSortedDescendingInternships() {
-        return new ArrayList<>(Arrays.asList(ELLE, BENSON, ALICE));
+        return new ArrayList<>(Arrays.asList(META, SSNLF, GOOG));
     }
 }

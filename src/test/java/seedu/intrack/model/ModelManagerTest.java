@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.ALICE;
-import static seedu.intrack.testutil.TypicalInternships.BENSON;
+import static seedu.intrack.testutil.TypicalInternships.GOOG;
+import static seedu.intrack.testutil.TypicalInternships.META;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,18 +80,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasInternship_internshipNotInInTrack_returnsFalse() {
-        assertFalse(modelManager.hasInternship(ALICE));
+        assertFalse(modelManager.hasInternship(GOOG));
     }
 
     @Test
     public void hasInternship_internshipInInTrack_returnsTrue() {
-        modelManager.addInternship(ALICE);
-        assertTrue(modelManager.hasInternship(ALICE));
+        modelManager.addInternship(GOOG);
+        assertTrue(modelManager.hasInternship(GOOG));
     }
 
     @Test
     public void isInternshipSortedAscending_internshipInInTrack_returnsTrue() {
-        InTrack inTrack = new InTrackBuilder().withInternship(ALICE).withInternship(BENSON).build();
+        InTrack inTrack = new InTrackBuilder().withInternship(GOOG).withInternship(META).build();
         UserPrefs userPrefs = new UserPrefs();
 
         // after sorting, elements are the same buf different order
@@ -104,7 +104,7 @@ public class ModelManagerTest {
 
     @Test
     public void isInternshipSortedDescending_internshipInInTrack_returnsTrue() {
-        InTrack inTrack = new InTrackBuilder().withInternship(ALICE).withInternship(BENSON).build();
+        InTrack inTrack = new InTrackBuilder().withInternship(GOOG).withInternship(META).build();
         UserPrefs userPrefs = new UserPrefs();
 
         // after sorting, elements should not change, but reverse in collections for some reason alters it?
@@ -130,14 +130,14 @@ public class ModelManagerTest {
     @Test
     public void getFilteredStatusInternshipListSize_oneStatusFound() {
         modelManager = new ModelManager();
-        modelManager.addInternship(ALICE);
+        modelManager.addInternship(GOOG);
         assertEquals(1, modelManager.getFilteredStatusInternshipListSize(
-                new StatusIsKeywordPredicate(ALICE.getStatus().value)));
+                new StatusIsKeywordPredicate(GOOG.getStatus().value)));
     }
 
     @Test
     public void equals() {
-        InTrack inTrack = new InTrackBuilder().withInternship(ALICE).withInternship(BENSON).build();
+        InTrack inTrack = new InTrackBuilder().withInternship(GOOG).withInternship(META).build();
         InTrack differentInTrack = new InTrack();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -159,7 +159,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentInTrack, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = GOOG.getName().fullName.split("\\s+");
         modelManager.updateFilteredInternshipList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(inTrack, userPrefs)));
 

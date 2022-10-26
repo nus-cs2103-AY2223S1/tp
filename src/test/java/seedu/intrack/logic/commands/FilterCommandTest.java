@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INTERNSHIPS_LISTED_OVERVIEW;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.intrack.testutil.TypicalInternships.CARL;
-import static seedu.intrack.testutil.TypicalInternships.ELLE;
-import static seedu.intrack.testutil.TypicalInternships.FIONA;
+import static seedu.intrack.testutil.TypicalInternships.BABA;
+import static seedu.intrack.testutil.TypicalInternships.SSNLF;
+import static seedu.intrack.testutil.TypicalInternships.TCEHY;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import java.util.Arrays;
@@ -58,7 +58,7 @@ public class FilterCommandTest {
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());
+        assertEquals(Arrays.asList(BABA, SSNLF, TCEHY), model.getFilteredInternshipList());
     }
 
 }
