@@ -3,7 +3,7 @@ layout: page
 title: Viewing Residents
 ---
 
-###### [Back to Menu](../UserGuide.md)
+#### [Back to Menu](../UserGuide.md)
 
 Often times, you may find yourself overloaded with information. These commands can help to include, and exclude
 fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
