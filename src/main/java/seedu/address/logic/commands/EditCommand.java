@@ -10,8 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENT;
@@ -29,6 +28,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
 import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
@@ -99,13 +99,13 @@ public class EditCommand extends Command {
                     + "[" + PREFIX_PHONE + "PHONE] "
                     + "[" + PREFIX_EMAIL + "EMAIL] "
                     + "[" + PREFIX_ADDRESS + "ADDRESS] "
-                    + "[" + PREFIX_SCHOOL + "SCHOOL] "
+                    + "[" + CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL] "
                     + "[" + PREFIX_LEVEL + "LEVEL] "
                     + "[" + PREFIX_TAG + "TAG]...\n"
                     + "Example: " + COMMAND_WORD + " 1 "
                     + PREFIX_PHONE + "91234567 "
                     + PREFIX_EMAIL + "johndoe@example.com "
-                    + PREFIX_SCHOOL + "Katong Primary School";
+                    + CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + "Katong Primary School";
 
         case TUTOR_LIST:
             return COMMAND_WORD + ": Edits the details of the tutor identified "
@@ -130,13 +130,13 @@ public class EditCommand extends Command {
                     + "Existing values will be overwritten by the input values.\n"
                     + "Parameters: INDEX (must be a positive integer) "
                     + "[" + PREFIX_NAME + "NAME] "
-                    + "[" + PREFIX_SUBJECT + "SUBJECT] "
+                    + "[" + PREFIX_SUBJECT_OR_SCHOOL + "SUBJECT] "
                     + "[" + PREFIX_LEVEL + "LEVEL] "
                     + "[" + PREFIX_DAY + "DAY] "
                     + "[" + PREFIX_TIME + "TIME] "
                     + "[" + PREFIX_TAG + "TAG]...\n"
                     + "Example: " + COMMAND_WORD + " 1 "
-                    + PREFIX_SUBJECT + "Mathematics "
+                    + PREFIX_SUBJECT_OR_SCHOOL + "Mathematics "
                     + PREFIX_DAY + "Monday "
                     + PREFIX_TIME + "12:00-14:00";
 

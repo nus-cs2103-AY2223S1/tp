@@ -11,8 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -45,7 +44,7 @@ public class NextOfKinCommandParser implements Parser<NextOfKinCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                         PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_RELATIONSHIP,
-                        PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION,
+                        PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME, PREFIX_LEVEL, PREFIX_QUALIFICATION,
                         PREFIX_INSTITUTION);
 
         Index index;
@@ -60,7 +59,7 @@ public class NextOfKinCommandParser implements Parser<NextOfKinCommand> {
 
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_RELATIONSHIP,
-                PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME, PREFIX_SCHOOL, PREFIX_LEVEL, PREFIX_QUALIFICATION,
+                PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME, PREFIX_LEVEL, PREFIX_QUALIFICATION,
                 PREFIX_INSTITUTION)) {
             return new NextOfKinCommand(index);
         }
@@ -68,7 +67,7 @@ public class NextOfKinCommandParser implements Parser<NextOfKinCommand> {
 
         if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_RELATIONSHIP))
-                || (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT, PREFIX_DAY, PREFIX_TIME, PREFIX_SCHOOL,
+                || (areAnyPrefixesPresent(argMultimap, PREFIX_SUBJECT_OR_SCHOOL, PREFIX_DAY, PREFIX_TIME, CliSyntax.PREFIX_SUBJECT_OR_SCHOOL,
                 PREFIX_LEVEL, PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NextOfKinCommand.MESSAGE_USAGE));
         }

@@ -9,8 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -20,6 +19,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.NextOfKinCommand;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.Student;
@@ -66,7 +66,7 @@ public class PersonUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         if (person instanceof Student) {
-            sb.append(PREFIX_SCHOOL + ((Student) person).getSchool().school + " ");
+            sb.append(CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + ((Student) person).getSchool().school + " ");
             sb.append(PREFIX_LEVEL + ((Student) person).getLevel().level + " ");
         } else if (person instanceof Tutor) {
             sb.append(PREFIX_QUALIFICATION + ((Tutor) person).getQualification().qualification + " ");
@@ -81,7 +81,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append("class ");
         sb.append(PREFIX_NAME + tuitionClass.getName().name + " ");
-        sb.append(PREFIX_SUBJECT + tuitionClass.getSubject().subject + " ");
+        sb.append(PREFIX_SUBJECT_OR_SCHOOL + tuitionClass.getSubject().subject + " ");
         sb.append(PREFIX_LEVEL + tuitionClass.getLevel().level + " ");
         sb.append(PREFIX_DAY + tuitionClass.getDay().day + " ");
         sb.append(PREFIX_TIME + tuitionClass.getTime().timeFrame + " ");

@@ -10,14 +10,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_OR_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -79,7 +79,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_SCHOOL + "SCHOOL "
+            + CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + "SCHOOL "
             + PREFIX_LEVEL + "LEVEL "
             + "[" + PREFIX_TAG + "TAG]... OR\n"
             + "tutor "
@@ -92,7 +92,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]... OR\n"
             + "class "
             + PREFIX_NAME + "NAME "
-            + PREFIX_SUBJECT + "SUBJECT "
+            + PREFIX_SUBJECT_OR_SCHOOL + "SUBJECT "
             + PREFIX_LEVEL + "LEVEL "
             + PREFIX_DAY + "DAY "
             + PREFIX_TIME + "TIME "
@@ -103,7 +103,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_SCHOOL + "Keming Primary School "
+            + CliSyntax.PREFIX_SUBJECT_OR_SCHOOL + "Keming Primary School "
             + PREFIX_LEVEL + "Primary3 "
             + PREFIX_TAG + "badBoy "
             + PREFIX_TAG + "owesMoney";

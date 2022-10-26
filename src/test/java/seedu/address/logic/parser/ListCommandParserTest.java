@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.AddCommand.Entity.MESSAGE_DID_YOU_MEAN_STUDENT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -27,9 +28,11 @@ public class ListCommandParserTest {
 
         assertParseFailure(parser, "gangster", AddCommand.Entity.MESSAGE_CONSTRAINTS);
 
-        assertParseFailure(parser, "student and some string", AddCommand.Entity.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "student and some string",
+                AddCommand.Entity.MESSAGE_CONSTRAINTS + MESSAGE_DID_YOU_MEAN_STUDENT);
 
-        assertParseFailure(parser, "student n/name", AddCommand.Entity.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "student n/name",
+                AddCommand.Entity.MESSAGE_CONSTRAINTS + MESSAGE_DID_YOU_MEAN_STUDENT);
     }
 
     @Test
