@@ -15,6 +15,8 @@ import java.util.Optional;
  */
 public class ArgumentMultimap {
 
+    public static final String DOES_NOT_EXIST = "-";
+
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
@@ -44,7 +46,7 @@ public class ArgumentMultimap {
      */
     public Optional<String> getValueOptional(Prefix prefix) {
         List<String> values = getAllValues(prefix);
-        return values.isEmpty() ? Optional.of("-") : Optional.of(values.get(values.size() - 1));
+        return values.isEmpty() ? Optional.of(DOES_NOT_EXIST) : Optional.of(values.get(values.size() - 1));
     }
 
     /**
