@@ -21,7 +21,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.profile.Email;
+import seedu.address.model.profile.EventsAttending;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
@@ -95,6 +97,10 @@ public class EditProfileCommand extends ProfileCommand {
 
         model.setProfile(profileToEdit, editedProfile);
         model.updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
+        for (Event e : profileToEdit.getEventsToAttend().getEventsList()) {
+            e.getAttendees().remove(profileToEdit);
+            e.getAttendees().add(editedProfile);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile));
     }
 
@@ -110,8 +116,9 @@ public class EditProfileCommand extends ProfileCommand {
         Email updatedEmail = editProfileDescriptor.getEmail().orElse(profileToEdit.getEmail());
         Telegram updatedTelegram = editProfileDescriptor.getTelegram().orElse(profileToEdit.getTelegram());
         Set<Tag> updatedTags = editProfileDescriptor.getTags().orElse(profileToEdit.getTags());
+        EventsAttending updatedEventsToAttend = editProfileDescriptor.getEventsToAttend().orElse(profileToEdit.getEventsToAttend());
 
-        return new Profile(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedTags);
+        return new Profile(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedTags, updatedEventsToAttend);
     }
 
     @Override
@@ -142,6 +149,7 @@ public class EditProfileCommand extends ProfileCommand {
         private Email email;
         private Telegram telegram;
         private Set<Tag> tags;
+        private EventsAttending eventsToAttend;
 
         public EditProfileDescriptor() {}
 
@@ -155,6 +163,7 @@ public class EditProfileCommand extends ProfileCommand {
             setEmail(toCopy.email);
             setTelegram(toCopy.telegram);
             setTags(toCopy.tags);
+            setEventsToAttend(toCopy.eventsToAttend);
         }
 
         /**
@@ -196,6 +205,14 @@ public class EditProfileCommand extends ProfileCommand {
             return Optional.ofNullable(telegram);
         }
 
+        public void setEventsToAttend(EventsAttending eventsToAttend) {
+            this.eventsToAttend = eventsToAttend;
+        }
+
+        public Optional<EventsAttending> getEventsToAttend() {
+            return Optional.ofNullable(eventsToAttend);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -232,6 +249,7 @@ public class EditProfileCommand extends ProfileCommand {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getTelegram().equals(e.getTelegram())
+                    && getEventsToAttend().equals(e.getEventsToAttend())
                     && getTags().equals(e.getTags());
         }
     }

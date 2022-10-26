@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
@@ -82,6 +84,13 @@ public interface Model {
      */
     void setProfile(Profile target, Profile editedProfile);
 
+    /**
+     * Adds the given list of events {@code eventsToAdd} to the given profile's list of eventsAttending.
+     * {@code profile} must exist in the address book .
+     * Events in {@eventsToAdd} must also exist in the address book.
+     */
+    void addEventsAttending(Profile profile, List<Event> eventsToAdd);
+
     /** Returns an unmodifiable view of the filtered profile list */
     ObservableList<Profile> getFilteredProfileList();
 
@@ -118,10 +127,17 @@ public interface Model {
 
     /**
      * Adds the given list of profiles {@code profilesToAdd} to the given event's list of attendees.
-     * {@code event} must exist in the address book .
+     * {@code event} must exist in the address book.
      * Profiles in {@profilesToAdd} must also exist in the address book.
      */
     void addEventAttendees(Event event, List<Profile> profilesToAdd);
+
+    /**
+     * Adds the given event {@code event} to every profile in the given list of profiles {@code profilesToAddEventTo}.
+     * {@code event} must exist in the address book.
+     * Profiles in {@profilesToAddEventTo} must also exist in the address book.
+     */
+    void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();

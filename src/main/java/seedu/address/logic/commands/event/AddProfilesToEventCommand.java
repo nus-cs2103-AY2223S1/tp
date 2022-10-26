@@ -80,6 +80,9 @@ public class AddProfilesToEventCommand extends EventCommand {
 
         model.addEventAttendees(event, profilesToAdd);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        for (Profile p : profilesToAdd) {
+            p.getEventsToAttend().add(event);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_ATTENDEES_SUCCESS, event));
     }
 

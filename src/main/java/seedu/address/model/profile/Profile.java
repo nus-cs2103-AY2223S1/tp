@@ -1,12 +1,15 @@
 package seedu.address.model.profile;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.event.Event;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +26,7 @@ public class Profile implements Comparable<Profile> {
     // Data fields
     private final Telegram telegram;
     private final Set<Tag> tags = new HashSet<>();
+    private final EventsAttending eventsToAttend;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +38,20 @@ public class Profile implements Comparable<Profile> {
         this.email = email;
         this.telegram = telegram;
         this.tags.addAll(tags);
+        eventsToAttend = new EventsAttending();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Profile(Name name, Phone phone, Email email, Telegram telegram, Set<Tag> tags, EventsAttending eventsToAttend) {
+        requireAllNonNull(name, phone, email, tags, eventsToAttend);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.telegram = telegram;
+        this.tags.addAll(tags);
+        this.eventsToAttend = eventsToAttend;
     }
 
     public Name getName() {
@@ -50,6 +68,10 @@ public class Profile implements Comparable<Profile> {
 
     public Telegram getTelegram() {
         return telegram;
+    }
+
+    public EventsAttending getEventsToAttend() {
+        return eventsToAttend;
     }
 
     /**
@@ -104,6 +126,27 @@ public class Profile implements Comparable<Profile> {
     @Override
     public int compareTo(Profile other) {
         return this.getName().compareTo(other.getName());
+    }
+
+    /**
+     * Adds the events in {@code eventsToAdd} to the profile's list of eventsAttending if
+     * they have not already been added.
+     */
+    public void addEventsAttending(List<Event> eventsToAdd) {
+        requireNonNull(eventsToAdd);
+
+        eventsToAdd.forEach(event -> {
+            if (!eventsToAttend.hasEventAttending(event)) {
+                eventsToAttend.add(event);
+            }
+        });
+    }
+
+    /**
+     * Returns true if the specified event is in the profile's list of eventsAttending.
+     */
+    public boolean hasEventAttending(Event event) {
+        return eventsToAttend.hasEventAttending(event);
     }
 
     @Override

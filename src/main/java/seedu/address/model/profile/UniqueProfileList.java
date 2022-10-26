@@ -10,6 +10,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueEventList;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
@@ -86,6 +89,36 @@ public class UniqueProfileList implements Iterable<Profile> {
         if (!internalList.remove(toRemove)) {
             throw new ProfileNotFoundException();
         }
+    }
+
+    /**
+     * Adds events in {@code eventsToAdd} to the given profile.
+     * The profile must exist in the list.
+     */
+    public void addEventsAttending(Profile profile, List<Event> eventsToAdd) {
+        requireAllNonNull(profile, eventsToAdd);
+
+        int index = internalList.indexOf(profile);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        internalList.get(index).addEventsAttending(eventsToAdd);
+    }
+
+    /**
+     * Adds profiles in {@code profilesToAdd} to the given event.
+     * The event must exist in the list.
+     */
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+
+        int index = internalList.indexOf(event);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        //internalList.get(index).addAttendees(profilesToAdd);
     }
 
     public void setProfiles(UniqueProfileList replacement) {

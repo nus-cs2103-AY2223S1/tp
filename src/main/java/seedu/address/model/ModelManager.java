@@ -116,6 +116,12 @@ public class ModelManager implements Model {
         addressBook.setProfile(target, editedProfile);
     }
 
+    @Override
+    public void addEventsAttending(Profile profile, List<Event> eventsToAdd) {
+        requireAllNonNull(profile, eventsToAdd);
+        addressBook.addEventsAttending(profile, eventsToAdd);
+    }
+
     //========== Events ======================================================================================
 
     @Override
@@ -146,6 +152,13 @@ public class ModelManager implements Model {
         requireAllNonNull(event, profilesToAdd);
         addressBook.addEventAttendees(event, profilesToAdd);
     }
+
+    @Override
+     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+        addressBook.addEventToAttendees(event, profilesToAddEventTo);
+    }
+
 
     //=========== Filtered Profile List Accessors =============================================================
 

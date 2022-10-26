@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Represents an Event in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event {
+public class Event implements Comparable<Event> {
 
     // Identity fields
     private final Title title;
@@ -73,6 +73,11 @@ public class Event {
 
     public Attendees getAttendees() {
         return attendees;
+    }
+
+    @Override
+    public int compareTo(Event other) {
+        return this.getStartDateTime().compareTo(other.getStartDateTime());
     }
 
     /**

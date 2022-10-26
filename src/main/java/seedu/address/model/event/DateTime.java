@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * Represents an Event's start or end datetime in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
 
     public static final String RECOMMENDED_DATE_FORMAT = "dd/MM/yyyy";
     public static final String RECOMMENDED_TIME_FORMAT = "HH:mm";
@@ -200,6 +200,11 @@ public class DateTime {
 
     public LocalDate getDate() {
         return this.date;
+    }
+
+    @Override
+    public int compareTo(DateTime otherDateTime) {
+        return this.date.compareTo(otherDateTime.date);
     }
 
     @Override
