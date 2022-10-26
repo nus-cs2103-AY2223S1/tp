@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.transaction.exceptions.TransactionNotFoundException;
 
 
 class TransactionLogTest {
@@ -92,6 +93,18 @@ class TransactionLogTest {
 
         assertEquals(deletedTransaction, SELL_CLOTHES);
         assertEquals(transactionLog.size(), 1);
+    }
+
+    @Test
+    public void setByIndex_setIncorrectIndex_fail() {
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(BUY_BOOKS);
+        transactions.add(SELL_CLOTHES);
+
+        TransactionLog transactionLog = new TransactionLog(transactions);
+
+        assertThrows(new TransactionNotFoundException().getClass(), () ->
+                transactionLog.setTransaction(-1, SELL_CLOTHES));
     }
 
     public void size_returnsCorrectSize_success() {
