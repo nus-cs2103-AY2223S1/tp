@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <StackPane fx:id="selectedTripCardPlaceholder" style="-fx-border-color: grey; -fx-border-width: 3;
+  <StackPane fx:id="selectedTripCardPlaceholder" style="-fx-border-color: #002f42; -fx-border-width: 3;
       -fx-border-style: solid;" VBox.vgrow="ALWAYS"/>
   <ListView fx:id="tripListView" VBox.vgrow="ALWAYS" />
 </VBox>
