@@ -29,9 +29,9 @@ import seedu.address.model.internship.ContainsKeywordsPredicate;
 // import seedu.address.testutil.InternshipBuilder;
 // import seedu.address.testutil.InternshipUtil;
 
-public class AddressBookParserTest {
+public class FindMyInternParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FindMyInternParser parser = new FindMyInternParser();
 
     /* Test passes locally but not on GitHub Actions
     @Test

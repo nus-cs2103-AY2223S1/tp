@@ -48,10 +48,10 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyFindMyIntern addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyFindMyIntern getAddressBook();
 
     /**
      * Returns true if an internship with the same identity as {@code internship} exists in the address book.

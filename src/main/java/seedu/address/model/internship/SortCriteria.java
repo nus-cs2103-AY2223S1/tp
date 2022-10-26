@@ -5,7 +5,7 @@ import java.util.Comparator;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Represents an Internship's sort criteria in the address book.
+ * Represents an Internship's sort criteria in the findMyIntern.
  */
 public enum SortCriteria {
 

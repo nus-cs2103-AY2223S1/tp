@@ -12,7 +12,7 @@ import seedu.address.model.internship.UniqueInternshipList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class FindMyIntern implements ReadOnlyFindMyIntern {
 
     private final UniqueInternshipList internships;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         internships = new UniqueInternshipList();
     }
 
-    public AddressBook() {}
+    public FindMyIntern() {}
 
     /**
      * Creates an AddressBook using the Internships in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public FindMyIntern(ReadOnlyFindMyIntern toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyFindMyIntern newData) {
         requireNonNull(newData);
 
         setInternships(newData.getInternshipList());
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && internships.equals(((AddressBook) other).internships));
+                || (other instanceof FindMyIntern // instanceof handles nulls
+                && internships.equals(((FindMyIntern) other).internships));
     }
 
     @Override
