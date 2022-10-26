@@ -13,66 +13,70 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <HBox id="moduleCardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS" style="-fx-padding: 5 0 5 0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-            <padding>
-                <Insets top="5" right="5" bottom="5" left="15"/>
-            </padding>
-            <HBox spacing="5" HBox.hgrow="ALWAYS">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE"/>
-                    </minWidth>
-                </Label>
-                <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label"/>
-                <FlowPane fx:id="assignmentDetails">
-                    <padding>
-                        <Insets left="15" bottom="10"/>
-                    </padding>
-                </FlowPane>
-            </HBox>
-            <Label fx:id="moduleTitle" styleClass="cell_big_label"/>
-            <HBox>
-                <Label id="lectureLabel" styleClass="field_label" text="Lecture: "/>
-                <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>
-            </HBox>
-            <HBox>
-                <Label fx:id="lectureZoomLink" styleClass="cell_small_label" text="\$zoomLink"/>
-                <Button fx:id="lectureCopyButton" styleClass="copyButton" mnemonicParsing="false"
-                        onAction="#copyLectureZoomUrl">
-                    <graphic>
-                        <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@/images/copy-button.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </HBox>
-            <Label fx:id="placeHolder2" styleClass="cell_small_label" text=" "/>
-            <HBox>
-                <Label fx:id="tutorialLabel" styleClass="field_label" text="Tutorial: "/>
-                <Label fx:id="tutorialDetails" styleClass="cell_small_label" text="\$tutorialDetails"/>
-            </HBox>
-            <HBox>
-                <Label fx:id="tutorialZoomLink" styleClass="cell_small_label" text="\$zoomLink"/>
-                <Button fx:id="tutorialCopyButton" styleClass="copyButton" mnemonicParsing="false"
-                        onAction="#copyTutorialZoomUrl">
-                    <graphic>
-                        <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@/images/copy-button.png"/>
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </HBox>
-        </VBox>
+        <HBox>
+            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" minHeight="105" GridPane.columnIndex="0">
+                <padding>
+                    <Insets top="5" right="5" bottom="5" left="15"/>
+                </padding>
+                <HBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label fx:id="id" styleClass="cell_big_label">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE"/>
+                        </minWidth>
+                    </Label>
+                    <Label fx:id="moduleTitle" HBox.hgrow="ALWAYS" styleClass="cell_big_label"/>
+                    <FlowPane fx:id="assignmentDetails">
+                        <padding>
+                            <Insets left="15" bottom="10"/>
+                        </padding>
+                    </FlowPane>
+                </HBox>
+                <HBox>
+                    <Label id="lectureLabel" styleClass="field_label" text="Lecture: "/>
+                    <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>
+                </HBox>
+                <HBox>
+                    <Label fx:id="lectureZoomLink" styleClass="cell_small_label" text="\$zoomLink"/>
+                    <Button fx:id="lectureCopyButton" styleClass="copyButton" mnemonicParsing="false"
+                            onAction="#copyLectureZoomUrl">
+                        <graphic>
+                            <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/images/copy-button.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+                <Label fx:id="placeHolder2" styleClass="cell_small_label" text=" "/>
+                <HBox>
+                    <Label fx:id="tutorialLabel" styleClass="field_label" text="Tutorial: "/>
+                    <Label fx:id="tutorialDetails" styleClass="cell_small_label" text="\$tutorialDetails"/>
+                </HBox>
+                <HBox>
+                    <Label fx:id="tutorialZoomLink" styleClass="cell_small_label" text="\$zoomLink"/>
+                    <Button fx:id="tutorialCopyButton" styleClass="copyButton" mnemonicParsing="false"
+                            onAction="#copyTutorialZoomUrl">
+                        <graphic>
+                            <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/images/copy-button.png"/>
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+            <Label fx:id="moduleCode" alignment="BOTTOM_RIGHT" minWidth="300" maxWidth="300" text="\$first"
+                   styleClass="module_big_label"/>
+        </HBox>
     </GridPane>
 </HBox>
 
