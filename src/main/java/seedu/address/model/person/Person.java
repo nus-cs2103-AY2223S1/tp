@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -224,8 +225,8 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
+                && Optional.ofNullable(otherPerson.getPhone()).equals(Optional.ofNullable(getPhone()))
+                && Optional.ofNullable(otherPerson.getEmail()).equals(Optional.ofNullable(getEmail()))
                 && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getInterests().equals(getInterests())
                 && otherPerson.getMods().equals(getMods());

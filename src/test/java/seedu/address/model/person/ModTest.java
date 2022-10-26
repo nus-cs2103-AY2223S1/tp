@@ -37,7 +37,7 @@ public class ModTest {
         assertFalse(Mod.isValidModName("")); // empty string
         assertFalse(Mod.isValidModName(" ")); // spaces only
         assertFalse(Mod.isValidModName("9312 1534")); // spaces within digits
-        assertFalse(Mod.isValidModName("this is a mod")); // spaces within words
+        assertFalse(Mod.isValidModName("this is a mod")); // more than 10 chars
         assertFalse(Mod.isValidModName("ALLWORDS")); // all words
         assertFalse(Mod.isValidModName("1234")); // all numbers
         assertFalse(Mod.isValidModName("cs2103")); // not uppercase
