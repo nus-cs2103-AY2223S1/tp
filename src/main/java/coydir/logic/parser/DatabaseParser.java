@@ -16,8 +16,8 @@ import coydir.logic.commands.ExitCommand;
 import coydir.logic.commands.FindCommand;
 import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
-import coydir.logic.commands.ViewCommand;
 import coydir.logic.commands.RateCommand;
+import coydir.logic.commands.ViewCommand;
 import coydir.logic.parser.exceptions.ParseException;
 
 /**

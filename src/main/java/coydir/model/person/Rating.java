@@ -20,9 +20,9 @@ public class Rating {
     public static final String MESSAGE_CONSTRAINTS_TIMESTAMP = "Invalid Timestamp, please follow dd-MM-yyyy";
     public static final String VALIDATION_REGEX = "[1-5]";
     private static final Rating NULL = new Rating();
+    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public final LocalDate timestamp;
     public final String value;
-    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
      * Constructs a {@code Name}.
@@ -36,6 +36,12 @@ public class Rating {
         this.timestamp = LocalDate.now();
     }
 
+    /**
+     * Constructs a {@code Rating}.
+     * @param rating A valid rating.
+     * @param timestamp Timestamp when rating is added.
+     * @throws ParseException
+     */
     public Rating(String rating, String timestamp) throws ParseException {
         checkArgument(isValidRating(rating), MESSAGE_CONSTRAINTS);
         this.value = rating;
@@ -45,7 +51,7 @@ public class Rating {
             throw new ParseException(MESSAGE_CONSTRAINTS_TIMESTAMP);
         }
     }
-    
+
     /**
      * Bypass input validation, allows actual null values.
      */

@@ -2,10 +2,14 @@ package coydir.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import coydir.commons.exceptions.IllegalValueException;
 import coydir.model.person.Rating;
 import coydir.model.tag.Tag;
 
+/**
+ * Jackson-friendly version of {@link Rating}.
+ */
 public class JsonAdaptedRating {
     private final String value;
     private final String timestamp;
@@ -39,5 +43,4 @@ public class JsonAdaptedRating {
         }
         return new Rating(value, timestamp);
     }
-    
 }

@@ -15,11 +15,11 @@ import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Leave;
-import coydir.model.person.Rating;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
 import coydir.model.person.Position;
+import coydir.model.person.Rating;
 import coydir.model.tag.Tag;
 
 /**
@@ -54,7 +54,8 @@ class JsonAdaptedPerson {
             @JsonProperty("address") String address, @JsonProperty("leave") String leave,
             @JsonProperty("leaveLeft") String leaveLeft, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken,
-            @JsonProperty("rating") String rating, @JsonProperty("performanceHistory") List<JsonAdaptedRating> performanceHistory) {
+            @JsonProperty("rating") String rating,
+            @JsonProperty("performanceHistory") List<JsonAdaptedRating> performanceHistory) {
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
@@ -118,7 +119,7 @@ class JsonAdaptedPerson {
         }
 
         final List<Rating> personRatings = new ArrayList<>();
-        for(JsonAdaptedRating rating : performanceHistory) {
+        for (JsonAdaptedRating rating : performanceHistory) {
             personRatings.add(rating.toModelType());
         }
 
@@ -207,8 +208,8 @@ class JsonAdaptedPerson {
             p.addLeave(l);
         }
 
-        for (Rating R : modelPerformanceHistory) {
-            p.addRating(R);
+        for (Rating r : modelPerformanceHistory) {
+            p.addRating(r);
         }
 
         return p;

@@ -1,17 +1,22 @@
 package coydir.logic.commands;
-import static java.util.Objects.requireNonNull;
+
 import static coydir.logic.parser.CliSyntax.PREFIX_ID;
 import static coydir.logic.parser.CliSyntax.PREFIX_RATE;
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
+
 import coydir.commons.core.Messages;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.Model;
 import coydir.model.person.EmployeeId;
-import coydir.model.person.Leave;
 import coydir.model.person.Person;
 import coydir.model.person.Rating;
+
+/**
+ * Rate an employee's current performance.
+ */
 public class RateCommand extends Command {
-    
     public static final String COMMAND_WORD = "rate";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Rate the current performance of an employee.\n"
@@ -22,13 +27,18 @@ public class RateCommand extends Command {
             + " | Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "1 "
             + PREFIX_RATE + "3 ";
-    
+
     public static final String MESSAGE_RATE_SUCCESS = "Performance successfully rated for %1$s";
 
     private EmployeeId targetId;
     private Rating rating;
 
-    public RateCommand(EmployeeId targetid, Rating rating ) {
+    /**
+     * Creates a RateCommand object.
+     * @param targetid of the employee to rate.
+     * @param rating of the employee to add.
+     */
+    public RateCommand(EmployeeId targetid, Rating rating) {
         this.targetId = targetid;
         this.rating = rating;
     }
@@ -51,5 +61,5 @@ public class RateCommand extends Command {
                 || (other instanceof RateCommand // instanceof handles nulls
                 && targetId.equals(((RateCommand) other).targetId)
                 && rating.equals(((RateCommand) other).rating)); // state check
-    }    
+    }
 }

@@ -17,7 +17,7 @@ public class Leave {
      * Constructs a {@code Leave}.
      *
      * @param startDate A valid start date.
-     * @param endDate A valid start date.
+     * @param endDate A valid end date.
      */
     public Leave(String startDate, String endDate) {
         this.startDate = LocalDate.parse(startDate, FORMAT);
