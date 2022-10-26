@@ -75,6 +75,8 @@ public class StringUtil {
      * Returns a string removing consecutive duplicate whitespaces.
      */
     public static String removeDuplicateWhitespace(String str) {
+        requireNonNull(str);
+
         Pattern pattern = Pattern.compile("\\s+");
         Matcher matcher = pattern.matcher(str);
         return matcher.replaceAll(" ");
@@ -84,24 +86,19 @@ public class StringUtil {
      * Returns a string removing consecutive duplicate commas.
      */
     public static String removeDuplicateComma(String str) {
+        requireNonNull(str);
+
         Pattern pattern = Pattern.compile(",+");
         Matcher matcher = pattern.matcher(str);
         return matcher.replaceAll(",");
     }
 
     /**
-     * Returns a string removing all whitespaces.
-     */
-    public static String removeAllWhitespace(String str) {
-        Pattern pattern = Pattern.compile("\\s+");
-        Matcher matcher = pattern.matcher(str);
-        return matcher.replaceAll("");
-    }
-
-    /**
      * Returns a string capitalising every first letter of each word.
      */
     public static String capitaliseOnlyFirstLetter(String str) {
+        requireNonNull(str);
+
         str = str.toLowerCase();
         Pattern pattern = Pattern.compile("\\s\\p{Alpha}");
         Matcher matcher = pattern.matcher(str);
@@ -116,6 +113,8 @@ public class StringUtil {
      * Returns a string after removing whitespace Primary/Secondary and digit.
      */
     public static String removeWhitespaceForLevel(String level) {
+        requireNonNull(level);
+
         Pattern pattern = Pattern.compile("(?i)primary\\s*|secondary\\s*");
         Matcher matcher = pattern.matcher(level);
         return matcher.replaceAll(matchResult -> matchResult.group().contains("primary") ? "primary" : "secondary");
@@ -125,6 +124,8 @@ public class StringUtil {
      * Returns a string converting short form academic levels to full form.
      */
     public static String convertShortFormLevel(String level) {
+        requireNonNull(level);
+
         //allow p, pri, s, sec
         Pattern pattern = Pattern.compile("(?i)(pri|sec|p|s)\\s*\\d");
         Matcher matcher = pattern.matcher(level);
@@ -142,6 +143,8 @@ public class StringUtil {
      * @throws ParseException if invalid hours provided for 12-hour format.
      */
     public static String formatTime(String time) throws ParseException {
+        requireNonNull(time);
+
         //add 0 padding to make up 2 digit hour
         if (time.matches("\\p{Digit}{1,2}(am|pm)")) {
             if (time.contains("am")) {
@@ -228,8 +231,10 @@ public class StringUtil {
                     }
                 }
             }
+        } else {
+            throw new ParseException("invalid format");
         }
+        assert false;
         return "";
     }
-
 }
