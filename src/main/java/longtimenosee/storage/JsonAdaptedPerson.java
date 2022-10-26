@@ -109,6 +109,9 @@ class JsonAdaptedPerson {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+        if (!Name.isValidLength(name)) {
+            throw new IllegalValueException(Name.LENGTH_CONSTRAINTS);
+        }
         final Name modelName = new Name(name);
 
         if (phone == null) {
@@ -140,10 +143,28 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthday.class.getSimpleName()));
         }
+        //Check for valid YYYY-MM-DD format
+        if (!Birthday.isValidFormat(birthday)) {
+            throw new IllegalValueException(String.format(Birthday.MESSAGE_FORMAT_CONSTRAINTS,
+                    Birthday.class.getSimpleName()));
+        }
+        //Check for whether the date is a valid Date
+        if (!Birthday.isValidDate(birthday)) {
+            throw new IllegalValueException(String.format(Birthday.RANGE_FORMAT_CONSTRAINTS,
+                    Birthday.class.getSimpleName()));
+        }
+        //Check whether the date (specifically the year) is reasonable
+        if (!Birthday.isReasonableBirthday(birthday)) {
+            throw new IllegalValueException(String.format(Birthday.MESSAGE_DATE_CONSTRAINTS,
+                    Birthday.class.getSimpleName()));
+        }
         final Birthday modelBirthday = new Birthday(birthday);
 
         if (income == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Income.class.getSimpleName()));
+        }
+        if (!Income.isValidFormat(income)) {
+            throw new IllegalValueException(Income.MESSAGE_FORMAT_CONSTRAINTS);
         }
 
         final Income modelIncome = new Income(income);
@@ -151,6 +172,9 @@ class JsonAdaptedPerson {
         if (riskAppetite == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     RiskAppetite.class.getSimpleName()));
+        }
+        if (!RiskAppetite.isValidFormat(riskAppetite)) {
+            throw new IllegalValueException(RiskAppetite.MESSAGE_FORMAT_CONSTRAINTS);
         }
 
         final RiskAppetite modelRiskAppetite = new RiskAppetite(riskAppetite);

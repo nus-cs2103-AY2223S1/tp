@@ -72,6 +72,12 @@ public class JsonAdaptedEvent {
         if (!Date.isValidFormat(date)) {
             throw new IllegalValueException(Date.MESSAGE_FORMAT_CONSTRAINTS);
         }
+        if (!Date.isValidRange(date)) {
+            throw new IllegalValueException(Date.RANGE_FORMAT_CONSTRAINTS);
+        }
+        if (!Date.isValidYear(date)) {
+            throw new IllegalValueException(Date.YEAR_RANGE_CONSTRAINTS);
+        }
         final Date modelDate = new Date(date);
 
         if (duration == null) {
