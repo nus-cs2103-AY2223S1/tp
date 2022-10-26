@@ -44,10 +44,6 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        // Removes log for refreshing Stats panel
-        if (!commandText.equals(RefreshStatsCommand.COMMAND_WORD)) {
-
-        }
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
