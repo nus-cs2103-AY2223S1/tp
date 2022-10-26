@@ -32,7 +32,7 @@
                     </Label>
                     <Label fx:id="studentClass" text="Label">
                     </Label>
-                    <TextField></TextField>
+                    <TextField fx:id ="enteredScore"></TextField>
                     <Button fx:id="copyButton" mnemonicParsing="false" onAction = "#enterGradeForStudent" text="Enter">
                         <HBox.margin>
                             <Insets left="5.0"/>

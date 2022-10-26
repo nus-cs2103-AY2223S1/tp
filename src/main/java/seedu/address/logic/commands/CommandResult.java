@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents the result of a command execution.
@@ -61,8 +61,11 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false,false, "0.0");
+        this(feedbackToUser, false, false, false, false, "0.0");
     }
+    /**
+     * Constructs a {@code CommandResult} with specific fields
+     */
     public CommandResult(String feedbackToUser, boolean showGradeWindow,
                          List<Person> studentsToGrade, String assessmentString) {
         this(feedbackToUser, false, false, false, true, "0.0");
@@ -81,7 +84,10 @@ public class CommandResult {
         return showPrediction;
     }
 
-    public boolean isShowGradeWindow() { return showGradeWindow;}
+    public boolean isShowGradeWindow() {
+        return showGradeWindow;
+    }
+
     public boolean isExit() {
         return exit;
     }
@@ -93,7 +99,10 @@ public class CommandResult {
     public List<Person> getStudentsToGrade() {
         return studentsToGrade;
     }
-    public String getAssessmentString() {return assessmentString;}
+
+    public String getAssessmentString() {
+        return assessmentString;
+    }
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
