@@ -162,15 +162,13 @@ Examples:
 
 Edits an existing patient in the patient list.
 
-Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 * Edits the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index ***must be a positive integer*** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing t/ without specifying any tags after it.
 
 Example:
 
