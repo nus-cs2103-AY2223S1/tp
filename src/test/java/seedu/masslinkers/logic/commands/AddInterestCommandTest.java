@@ -3,7 +3,7 @@ package seedu.masslinkers.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
-import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.masslinkers.testutil.TypicalStudents.BOB;
 import static seedu.masslinkers.testutil.TypicalStudents.getTypicalMassLinkers;
 
@@ -46,7 +46,7 @@ public class AddInterestCommandTest {
      */
     @Test
     public void constructor_nullMods_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddInterestCommand(INDEX_FIRST_PERSON, null));
+        assertThrows(NullPointerException.class, () -> new AddInterestCommand(INDEX_FIRST_STUDENT, null));
     }
 
     /**
@@ -120,7 +120,7 @@ public class AddInterestCommandTest {
         currentInterestSet.add(VALID_INTEREST_ANIME);
         AddInterestCommand invalidCommand = new AddInterestCommand(indexOutOfBounds,
                 currentInterestSet);
-        assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
 }

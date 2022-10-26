@@ -28,7 +28,7 @@ public class FindInterestCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+            String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW,
                 model.getFilteredStudentList().size()), false, false, true, false);
     }
 

@@ -2,7 +2,7 @@ package seedu.masslinkers.logic.commands;
 
 import static seedu.masslinkers.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.masslinkers.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.masslinkers.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +34,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel,
                 false, false, true, false);
     }

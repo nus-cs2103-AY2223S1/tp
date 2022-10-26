@@ -285,7 +285,7 @@ Module prefix refers to the first two characters of every module name.
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Mass Linkers home folder.
 
 #### Privacy Issues
-**Q**: What if I do not want to share some of my studental data like my phone number and email address?
+**Q**: What if I do not want to share some of my personal data like my phone number and email address?
 
 **A**: To address privacy concerns, the input fields Phone, Email and GitHub have been made optional. In that way, the only mandatory fields are your name and telegram handle (for contact purposes). If you are uncomfortable sharing information like your name, you are also free to use a pseudo-name for identification purposes. 
 

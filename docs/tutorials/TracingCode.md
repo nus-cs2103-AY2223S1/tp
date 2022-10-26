@@ -192,11 +192,11 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
        Student studentToEdit = lastShownList.get(index.getZeroBased());
        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+           throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
        }
        model.setStudent(studentToEdit, editedStudent);
-       model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+       model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+       return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
    }
    ```
 

@@ -185,7 +185,7 @@
     -fx-padding: 4px 4px 4px 4px;
 }
 
-#modHeader, #personHeader {
+#modHeader, #studentHeader {
     -fx-background-color:
     linear-gradient(to top, #6c6c6c, #b2b2b2);
     -fx-background-radius: 12 12 0 0;

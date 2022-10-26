@@ -340,7 +340,7 @@ save it with `Model#setStudent()`.
         List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
@@ -349,7 +349,7 @@ save it with `Model#setStudent()`.
                 studentToEdit.getAddress(), remark, studentToEdit.getTags());
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
