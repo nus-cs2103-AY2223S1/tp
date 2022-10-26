@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalOrders.getTypicalOrdersAddressBook;
@@ -49,36 +49,36 @@ public class DeleteOrderCommandTest {
                 Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    //    @Test
-    //    public void execute_validIndexFilteredOrderList_success() {
-    //        showOrderAtIndex(modelForOrders, INDEX_FIRST);
-    //
-    //        Order personToDelete = modelForOrders.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-    //        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
-    //
-    //        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
-    //
-    //        Model expectedModel = new ModelManager(modelForOrders.getAddressBook(), new UserPrefs());
-    //        expectedModel.deleteOrder(personToDelete);
-    //        showNoOrder(expectedModel);
-    //
-    //        assertCommandSuccess(deleteOrderCommand, modelForOrders, expectedMessage, expectedModel);
-    //    }
-    //
-    //    @Test
-    //    public void execute_invalidIndexFilteredOrderList_throwsCommandException() {
-    //        showOrderAtIndex(modelForOrders, INDEX_FIRST);
-    //
-    //        Index outOfBoundIndex = INDEX_SECOND;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.getZeroBased() <
-    //                modelForOrders.getAddressBook().getOrderList().size());
-    //
-    //        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteOrderCommand, modelForOrders,
-    //                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
+        @Test
+        public void execute_validIndexFilteredOrderList_success() {
+            showOrderAtIndex(modelForOrders, INDEX_FIRST);
+
+            Order personToDelete = modelForOrders.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+            DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
+
+            String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, personToDelete);
+
+            Model expectedModel = new ModelManager(modelForOrders.getAddressBook(), new UserPrefs());
+            expectedModel.deleteOrder(personToDelete);
+            showNoOrder(expectedModel);
+
+            assertCommandSuccess(deleteOrderCommand, modelForOrders, expectedMessage, expectedModel);
+        }
+
+        @Test
+        public void execute_invalidIndexFilteredOrderList_throwsCommandException() {
+            showOrderAtIndex(modelForOrders, INDEX_FIRST);
+
+            Index outOfBoundIndex = INDEX_SECOND;
+            // ensures that outOfBoundIndex is still in bounds of address book list
+            assertTrue(outOfBoundIndex.getZeroBased() <
+                    modelForOrders.getAddressBook().getOrderList().size());
+
+            DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
+
+            assertCommandFailure(deleteOrderCommand, modelForOrders,
+                    Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
 
     @Test
     public void equals_order() {

@@ -115,7 +115,7 @@ public class OrderBuilder {
     }
 
     /**
-     * Sets the {@code SettledPrice} of the {@code Order} that we are building.
+     * Sets the {@code OrderStatus} of the {@code Order} that we are building.
      */
     public OrderBuilder withStatus(String status) {
         if (status.equals("Pending")) {

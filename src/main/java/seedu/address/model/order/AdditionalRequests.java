@@ -28,7 +28,7 @@ public class AdditionalRequests {
         additionalRequests.addAll(descriptions);
     }
 
-    public List<String> getAdditionalRequests() {
+    public List<String> getAdditionalRequestsToString() {
         return additionalRequests;
     }
 
