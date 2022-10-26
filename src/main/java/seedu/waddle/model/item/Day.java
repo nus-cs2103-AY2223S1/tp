@@ -1,11 +1,13 @@
 package seedu.waddle.model.item;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.exceptions.CommandException;
+import seedu.waddle.model.item.exceptions.Period;
 
 /**
  * Encapsulates a day in an itinerary.
@@ -41,7 +43,7 @@ public class Day {
         StringBuilder conflicts = new StringBuilder();
         if (!conflictingItems.isEmpty()) {
             for (Item cItem : conflictingItems) {
-                conflicts.append(cItem.getDescription()).append(": ").append(cItem.getStartTime())
+                conflicts.append("    ").append(cItem.getDescription()).append(": ").append(cItem.getStartTime())
                         .append(" - ").append(cItem.getEndTime()).append("\n");
             }
             throw new CommandException(String.format(Messages.MESSAGE_CONFLICTING_ITEMS, conflicts));
@@ -96,7 +98,6 @@ public class Day {
             boolean endTimeConflict = newItem.getEndTime().isAfter(item.getStartTime())
                     && newItem.getEndTime().isBefore(item.getEndTime());
 
-
             if (sameStartTime || startTimeConflict || endTimeConflict) {
                 conflictingItems.add(item);
             }
@@ -118,5 +119,56 @@ public class Day {
 
     public int getDayNumber() {
         return this.dayNumber;
+    }
+
+    /**
+     * Compiles the vacant time slots in this day and formats it as a string.
+     *
+     * @return The vacant slots as a string.
+     */
+    public String getVacantSlots() {
+        if (this.itemList.getSize() == 0) {
+            return "Day " + (this.dayNumber + 1) + ":\n    Free!\n";
+        }
+        StringBuilder vacantSlots = new StringBuilder("Day ");
+        vacantSlots.append((this.dayNumber + 1)).append(":").append(System.getProperty("line.separator"));
+
+        ArrayList<Period> vacantPeriods = new ArrayList<>();
+        Period toBeSplit = new Period(LocalTime.MIN, LocalTime.parse("23:59"));
+        for (Item item : this.itemList) {
+            vacantPeriods.addAll(splitTimeSlot(toBeSplit, new Period(item.getStartTime(), item.getEndTime())));
+            if (vacantPeriods.size() > 0) {
+                // remove the last period to continue splitting
+                toBeSplit = vacantPeriods.remove(vacantPeriods.size() - 1);
+            } else {
+                toBeSplit = null;
+                break;
+            }
+        }
+        // add the last period back if there is any
+        if (toBeSplit != null) {
+            vacantPeriods.add(toBeSplit);
+        }
+        for (Period period : vacantPeriods) {
+            vacantSlots.append("    ").append(period.getStart()).append(" - ")
+                    .append(period.getEnd()).append(System.getProperty("line.separator"));
+        }
+
+        return vacantSlots.toString();
+    }
+
+    private ArrayList<Period> splitTimeSlot(Period big, Period small) {
+        ArrayList<Period> splitPeriods = new ArrayList<>();
+        if (big.getStart().equals(small.getStart()) && big.getEnd().equals(small.getEnd())) {
+            return splitPeriods;
+        } else if (big.getStart().equals(small.getStart())) {
+            splitPeriods.add(new Period(small.getEnd(), big.getEnd()));
+        } else if (big.getEnd().equals(small.getEnd())) {
+            splitPeriods.add(new Period(big.getStart(), small.getStart()));
+        } else if (small.getStart().isAfter(big.getStart()) && big.getEnd().isAfter(small.getEnd())) {
+            splitPeriods.add(new Period(big.getStart(), small.getStart()));
+            splitPeriods.add(new Period(small.getEnd(), big.getEnd()));
+        }
+        return splitPeriods;
     }
 }

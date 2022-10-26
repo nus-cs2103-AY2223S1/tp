@@ -237,6 +237,14 @@ public class Itinerary {
         return FXCollections.unmodifiableObservableList(itemGroups);
     }
 
+    public String getVacantSlots() {
+        StringBuilder vacantSlots = new StringBuilder();
+        for (Day day : this.days) {
+            vacantSlots.append(day.getVacantSlots()).append(System.getProperty("line.separator"));
+        }
+        return vacantSlots.toString();
+    }
+
     /**
      * Returns true if both itineraries have the same identity and data fields.
      * This defines a stronger notion of equality between two itineraries.
