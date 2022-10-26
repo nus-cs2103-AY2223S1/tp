@@ -39,12 +39,12 @@ StudentRecord *--> "1" UniqueStudentList
 UniqueStudentList ---> "~* all" Student
 ModelManager -->"~* filtered" Student
 
-Student *--> "1..2" Name
-Student *--> "1" Id
-Student *--> "1" Class
-Student *--> "0..1" Phone
-Student *--> "0..1" Email
-Student *--> "0..4" Exam
+Student *--> Name
+Student *--> Id
+Student *--> Class
+Student *--> Phone
+Student *--> Email
+Student *--> Exam
 
 Name -[hidden]right-> Id
 Id -[hidden]right-> Class
