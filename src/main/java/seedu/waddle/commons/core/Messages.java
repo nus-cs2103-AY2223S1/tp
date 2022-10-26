@@ -6,6 +6,8 @@ package seedu.waddle.commons.core;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNAVAILABLE_COMMAND_HOME = "Command is unavailable in the home page";
+    public static final String MESSAGE_UNAVAILABLE_COMMAND_ITINERARY = "Command is unavailable in the itinerary page";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX = "The itinerary index provided is invalid";
     public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The item index provided is invalid";
