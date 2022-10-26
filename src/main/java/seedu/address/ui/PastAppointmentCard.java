@@ -6,11 +6,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.PastAppointment;
 
+/**
+ * Creates a {@code PastAppointmentCard} with the given {@code PastAppointment} and index to display.
+ */
 public class PastAppointmentCard extends UiPart<Region> {
-    private final static String FXML = "PastAppointmentCard.fxml";
-    private final static String DATE_FORMAT = "Date: %s";
-    private final static String DIAGNOSIS_FORMAT = "Diagnosis: %s";
-    private final static String MEDICATION_FORMAT = "Medication: %s";
+    private static final String FXML = "PastAppointmentCard.fxml";
+    private static final String DATE_FORMAT = "Date: %s";
+    private static final String DIAGNOSIS_FORMAT = "Diagnosis: %s";
+    private static final String MEDICATION_FORMAT = "Medication: %s";
 
     public final PastAppointment pastAppointment;
 
@@ -23,6 +26,11 @@ public class PastAppointmentCard extends UiPart<Region> {
     @FXML
     private FlowPane medications;
 
+    /**
+     * Generates a past appointment card.
+     * @param pastAppointment Past appointment to display.
+     * @param displayedIndex Index of the past appointment.
+     */
     public PastAppointmentCard(PastAppointment pastAppointment, int displayedIndex) {
         super(FXML);
         this.pastAppointment = pastAppointment;

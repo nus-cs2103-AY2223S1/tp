@@ -184,6 +184,9 @@ public class MainWindow extends UiPart<Stage> {
         countWindow.show();
     }
 
+    /**
+     * Updates the detailed person view panel with the newest info.
+     */
     @FXML
     public void handleView() {
         PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson());

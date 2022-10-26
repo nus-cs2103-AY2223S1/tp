@@ -24,6 +24,10 @@ public class ViewCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Generates a View Command with the given Index.
+     * @param index the index of the patient to view.
+     */
     public ViewCommand(Index index) {
         requireNonNull(index);
         this.index = index;
