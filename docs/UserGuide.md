@@ -42,12 +42,12 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 
     - **`list`** : Lists all contacts.
 
-    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact
-      named `John Doe` to the Address Book.
+    - **`add`**`t/i d/TutionTeaching a/45.00 da/13-10-2022 c/Salary` : Adds an income entry
+      with the description `TuitionTeaching` to the PennyWise application.
 
-    - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    - **`delete`**`3 t/e` : Deletes the 3rd contact shown in the expenditure.
 
-    - **`clear`** : Deletes all contacts.
+    - **`clear`** : Deletes all entries.
 
     - **`exit`** : Exits the app.
 
@@ -62,74 +62,61 @@ clean Graphical User Interface (GUI) for easy comprehension of expenditure and s
 **:information_source: Notes about the command format:**<br>
 
 - All command follow this format:<br>
-  `command | identifier | input | [optional inputs]`<br>
-  Example: `add -s 15.60 / 15-08-2022`<br>
+  `command | entry identifier | input | [optional inputs]`<br>
+  Example: `add t/e d/Lunch a/15.60 da/15-08-2022 c/Meal` <br>
     - Command : add<br>
-    - Identifier : -s<br>
-    - Input : 15.60<br>
-    - Optional input : 15-08-2022<br>
+    - Identifier : t/e<br>
+    - Input : d/Lunch a/15.60 da/15-08-2022 c/Meal<br>
+    - Optional input : NIL<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `del -s INDEX_OF_SPENDING`, `INDEX_OF_SPENDING` is a parameter which can be used as `del -s 10`.
+  e.g. in `del INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `del 10 t/e`.
 
 - Items in square brackets are optional.<br>
-  e.g `add -s NUMBER [DATE]` can be used as `add -s 100 [31-08-2022]` or as `add -s 100`.
+  e.g `view t/ENTRY_TYPE g/GRAPH_TYPE [MONTH]` can be used as `view t/e g/c [mo/2022-05]` or as `view t/e g/c`.
 </div>
 
 
-### Adding spendings: `add -s  NUMBER [DATE]`
-Adds a spending entry. <br>
-1. Add spending with default date <br>
-   - Example: `add -s 15.60`<br>
-   - A spending of 15.60 will be added with the current date
+### Adding entries: `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY`
+Adds an entry to the specified list. <br>
+1. Add expense <br>
+   - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`<br>
+   - An expense of 15.60 on 10/10/2022 will be added to the Expenditure list, under the Food category.
+
+1. Add income <br>
+   - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`<br>
+   - An income of 40.00 on 10/10/2022 will be added to the Income list, under the Salary category.
+
+### Deleting entries: `del INDEX_OF_ENTRY t/ENTRY_TYPE`
+Deletes an entry.
+1. Example: `del 2 t/e` deletes the 2nd item on the expenditure list 
+   Expenditure list:
+   1. Movie 15.60 12 Sep 2022 c/Entertainment
+   2. Drink 1.20 12 Sep 2022 c/Food 
+   Expected: `Deleted Entry: Drink; Date: 12-09-2022; Amount: 1.20; Tag: Food`
+   
+1. Example: `del 2 t/i` deletes the 2nd item on the income list
+   Income list:
+   1. Tuition 40.00 12 Sep 2022 c/Salary
+   2. Allowance 100.00 12 Sep 2022 c/Allowance
+   Expected: `Deleted Entry: Allowance; Date: 12-09-2022; Amount: 100.00 Tag: Allowance`
 
 
-2. Add spending with specific date<br>
-   - Example: add `-s 15.60 / 12-09-2022`<br>
-   - A spending of 15.60 will be added with 12 September 2022 as the date
+### Editing entries: `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`
+Edits an entry, at least **1** of the optional fields must be present.
 
-### Deleting spendings: `del -s INDEX_OF_SPENDING`
-
-Deletes a spending entry.
-
-Example: `del -s 2` deletes the 2nd item on the list
-
-Spending list:
-1. Spent 15.60 12 Sep 2022
-2. Spent 1.20 12 Sep 2022
-
-Expected: `A spending of 1.20 on 12 Sep 2022 has been deleted.`
-
-
-### Adding income: `add -i NUMBER [DATE]`
-
-Adds an income entry.
-
-1. Add income with default current date
-   * Example: `add -i 15.60`
-   * An income of $15.60 will be added with the current date
-   * Expected: `An income of 15.60 on 27 Sep 2022 has been recorded`
-2. Add income with specific date
-   * Example: `add -i 15.60 / 12-09-2022`
-   * An income of $15.60 will be added with 12 September 2022 as the date
-   * Expected: `An income of 15.60 on 12 Sep 2022 has been recorded`
+1. Edits expenditure with specified fields
+   * Example: `edit 1 t/e d/ChickenRice`
+   * The expenditure at index 1 will have its description edited
+   * Expected: `Edited Entry: ChickenRice; Date: 21-10-2022; Amount: 4.20; Tag: Food`
+1. Edits income with specified fields
+   * Example: `edit 2 t/i a/150.00 da/22-10-2022`
+   * The income at index 2 will have its amount and date edited
+   * Expected: `Edited Entry: CafeSalary; Date: 22-10-2022; Amount: 150.00; Tag: Salary`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The default date is the current date on your computer!
 </div>
-
-### Deleting income: `del -i NUMBER INDEX_OF_INCOME`
-
-Deletes an income entry
-
-Example: `del -i 2` deletes the 2nd item on the list
-
-Spending list:
-1. Earned 5.00 12 Sep 2022
-2. Earned 30.00 12 Sep 2022
-
-Expected: `An income of 30.00 on 12 Sep 2022 has been deleted.`
-
 
 ### Viewing total summary of spendings : `view -s [MONTH]`
 
@@ -143,17 +130,23 @@ Expected: `An income of 30.00 on 12 Sep 2022 has been deleted.`
 * View all spending recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application displays the current month.
 
-### Viewing total summary of income : `view -i [MONTH]`
+### Viewing total summary of income : `view t/ENTRY_TYPE g/GRAPH_TYPE [mo/MONTH]`
 
-1. View a summary of all income
-    * Examples: `view -i`
-    * Expected: A summary of total income earned: `Total amount earned: $125.30`
-2. View a summary of all income the specified month
-    * Examples: `view -i 09-2022`
-    * Expected: A summary of all income in September 2022: `Total amount spent in September 2022: $37.70`
+1. View a PieChart of all expenditures by categories
+    * Examples: `view t/e g/c`
+    * Expected: `Show graphically all expenditure by category` and a PieChart on the right of the application
+1. View a PieChart of all incomes by categories
+   * Examples: `view t/i g/c`
+   * Expected: `Show graphically all income by category` and a PieChart on the right of the application
+1. View a LineGraph of all expenditures in a specified month
+   * Examples: `view t/e g/m mo/2022-10`
+   * Expected: `Show graphically all expenditure by month` and a LineGraph on the right of the application
+1. View a LineGraph of all incomes in a specified month
+   * Examples: `view t/i g/m mo/2022-10`
+   * Expected: `Show graphically all income by month` and a LineGraph on the right of the application
 
-* View all income recorded by the user in a month. The month refers to the month that is displayed to the user.
-* The `MONTH` field is optional, if no month is specified, the application displays the current month.
+* View all entries recorded by the user in a month. The month refers to the month that is displayed to the user.
+* The `MONTH` field is required for the LineGraph, if no month is specified, the application displays an error.
 
 
 ### Summarise financials : `summary [MONTH]`
@@ -192,7 +185,6 @@ PennyWise data are saved as a JSON file `[JAR file location]/data/addressbook.js
 If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 
-### Editing of entries `[coming in v1.3]`
 ### Tagging of Income `[coming in v1.3]`
 ### Tagging of Spending `[coming in v1.3]`
 ### Filtering of Income/Spendings `[coming in v1.3]`
