@@ -2,7 +2,6 @@ package swift.logic.commands;
 
 import static java.util.Map.entry;
 import static java.util.Objects.requireNonNull;
-import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static swift.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
@@ -34,18 +33,19 @@ public class EditTaskCommand extends Command {
     public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
             Map.ofEntries(entry(PREFIX_NAME, "<name>"),
                     entry(PREFIX_DESCRIPTION, "<description>"),
-                    entry(PREFIX_DEADLINE, "<deadline"),
-                    entry(PREFIX_CONTACT, "<contact>")));
+                    entry(PREFIX_DEADLINE, "<deadline>")));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
         + "by the index number used in the displayed task list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_CONTACT + "CONTACT] "
+        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+        + "[" + PREFIX_DEADLINE + "DEADLINE] "
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NAME + "Finish Assignment "
-        + PREFIX_CONTACT + "2";
+        + PREFIX_DESCRIPTION + "Write your name "
+        + PREFIX_DEADLINE + "12/12/2022 1800";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
