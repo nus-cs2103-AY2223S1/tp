@@ -168,6 +168,7 @@ public class Module {
      * @param editedPerson The person to replace {@code target} in the module's set.
      */
     public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
         persons.remove(target);
         persons.add(editedPerson);
     }

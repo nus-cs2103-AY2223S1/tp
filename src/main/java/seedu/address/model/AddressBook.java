@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param editedPerson The person to replace {@code target}.
      */
     public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+        requireAllNonNull(target, editedPerson);
         modules.setPersonInModules(target, editedPerson);
         persons.setPerson(target, editedPerson);
     }
