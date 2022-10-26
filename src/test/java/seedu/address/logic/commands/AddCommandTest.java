@@ -158,6 +158,21 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateTeachersPetHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undo() throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTeachersPetHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
