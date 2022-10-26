@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -44,10 +45,16 @@ public class ReminderCommandParser {
         String date = argMultimap.getValue(PREFIX_DATE).orElse("");
 
         try {
-            LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
+            LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
+                    .withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ReminderCommand.MESSAGE_USAGE), e);
+            if (e.getMessage().contains("Invalid")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ReminderCommand.MESSAGE_INVALID_DATE), e);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        ReminderCommand.MESSAGE_DATE_CONSTRAINTS), e);
+            }
         }
 
         reminder = new Reminder(task, date);

@@ -53,8 +53,8 @@ public class ReminderCard extends UiPart<Region> {
         assert reminder.date != null : "Something went wrong in UI ReminderCard date";
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        reminderTask.setText(reminder.task);
-        reminderDate.setText(reminder.date
+        reminderTask.setText("\uD83D\uDDD2\t" + reminder.task);
+        reminderDate.setText("\uD83D\uDCC5\t" + reminder.date
                 .format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
     }
 
