@@ -39,6 +39,20 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code haystack} contains the {@code needle}.
+     * Ignores case, and a full word match is not required.
+     * @param haystack cannot be null
+     * @param needle cannot be null or empty
+     * @return true if {@code needle} can be found in the {@code haystack}
+     */
+    public static boolean containsStringIgnoreCase(String haystack, String needle) {
+        requireNonNull(haystack);
+        requireNonNull(needle);
+
+        return haystack.toLowerCase().contains(needle.toLowerCase());
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
