@@ -38,7 +38,8 @@
                       onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <Label AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" fx:id="appLogo" text="Mass Linkers"/>
+            <Label AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10"
+                   fx:id="appLogo" text="Mass Linkers"/>
         </AnchorPane>
         <!--Search bar-->
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">

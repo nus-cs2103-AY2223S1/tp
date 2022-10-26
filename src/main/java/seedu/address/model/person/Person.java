@@ -16,7 +16,7 @@ import seedu.address.model.interest.Interest;
 import seedu.address.model.util.ModComparator;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the mass linkers.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {

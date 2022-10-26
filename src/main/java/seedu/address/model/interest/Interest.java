@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Interest in the address book.
+ * Represents an Interest in the mass linkers.
  * Guarantees: immutable; name is valid as declared in {@link #isValidInterest(String)}
  */
 public class Interest {

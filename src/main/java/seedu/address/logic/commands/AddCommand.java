@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the mass linkers.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the mass linkers. "
             + "\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_TELEGRAM + "TELEGRAM "
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_INTEREST + "netflix";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the mass linkers";
 
     private final Person toAdd;
 

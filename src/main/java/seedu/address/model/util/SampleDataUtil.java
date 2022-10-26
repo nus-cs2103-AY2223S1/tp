@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.MassLinkers;
+import seedu.address.model.ReadOnlyMassLinkers;
 import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
@@ -18,7 +18,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code MassLinkers} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -44,8 +44,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyMassLinkers getSampleMassLinkers() {
+        MassLinkers sampleAb = new MassLinkers();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

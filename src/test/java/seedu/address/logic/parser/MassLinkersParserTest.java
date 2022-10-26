@@ -32,9 +32,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class MassLinkersParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final MassLinkersParser parser = new MassLinkersParser();
 
     @Test
     public void parseCommand_add() throws Exception {

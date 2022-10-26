@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalMassLinkers;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,25 +23,25 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class MassLinkersTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final MassLinkers massLinkers = new MassLinkers();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), massLinkers.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> massLinkers.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyMassLinkers_replacesData() {
+        MassLinkers newData = getTypicalMassLinkers();
+        massLinkers.resetData(newData);
+        assertEquals(newData, massLinkers);
     }
 
     @Test
@@ -51,49 +51,49 @@ public class AddressBookTest {
                 .withInterests(VALID_INTEREST_NETFLIX)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        MassLinkersStub newData = new MassLinkersStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> massLinkers.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> massLinkers.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInMassLinkers_returnsFalse() {
+        assertFalse(massLinkers.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInMassLinkers_returnsTrue() {
+        massLinkers.addPerson(ALICE);
+        assertTrue(massLinkers.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+    public void hasPerson_personWithSameIdentityFieldsInMassLinkers_returnsTrue() {
+        massLinkers.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
                 .withInterests(VALID_INTEREST_NETFLIX)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(massLinkers.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> massLinkers.getPersonList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyMassLinkers whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class MassLinkersStub implements ReadOnlyMassLinkers {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Mod> mods = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        MassLinkersStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 
