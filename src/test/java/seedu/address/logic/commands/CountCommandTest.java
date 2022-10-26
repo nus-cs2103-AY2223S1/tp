@@ -11,7 +11,7 @@ import seedu.address.model.UserPrefs;
 
 class CountCommandTest {
 
-    Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     void execute_countCommand_success() {
