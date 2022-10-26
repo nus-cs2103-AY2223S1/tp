@@ -29,8 +29,8 @@ public class FilterTagCommand extends FilterCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FilterTagCommand // instanceof handles nulls
+        return other == this
+                || (other instanceof FilterTagCommand
                 && this.tag.equals(((FilterTagCommand) other).tag));
     }
 }

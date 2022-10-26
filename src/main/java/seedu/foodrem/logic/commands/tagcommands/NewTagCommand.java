@@ -13,9 +13,6 @@ import seedu.foodrem.model.tag.Tag;
  * Adds a tag to FoodRem.
  */
 public class NewTagCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "New tag added: %1$s";
-    private static final String ERROR_DUPLICATE = "This tag already exists in FoodRem";
-
     private final Tag toAdd;
 
     /**
@@ -31,11 +28,11 @@ public class NewTagCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTag(toAdd)) {
-            throw new CommandException(ERROR_DUPLICATE);
+            throw new CommandException("This tag already exists in FoodRem");
         }
 
         model.addTag(toAdd);
-        return CommandResult.from(String.format(MESSAGE_SUCCESS, toAdd));
+        return CommandResult.from(String.format("New tag added: %1$s", toAdd));
     }
 
     public static String getUsage() {
@@ -44,8 +41,7 @@ public class NewTagCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                // instanceof handles nulls
+        return other == this
                 || (other instanceof NewTagCommand
                 && toAdd.equals(((NewTagCommand) other).toAdd));
     }

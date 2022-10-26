@@ -55,9 +55,9 @@ public class TagName {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TagName // instanceof handles nulls
-                && fullName.equals(((TagName) other).fullName)); // state check
+        return other == this
+                || (other instanceof TagName
+                && fullName.equals(((TagName) other).fullName));
     }
 
     @Override

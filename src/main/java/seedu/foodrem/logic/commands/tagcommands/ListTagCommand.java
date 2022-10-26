@@ -14,15 +14,13 @@ import seedu.foodrem.model.tag.Tag;
  * Lists all the tags available
  */
 public class ListTagCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Listed all tags:\n";
-
     @Override
     public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTagList(Model.PREDICATE_SHOW_ALL_TAGS);
         List<Tag> allTags = model.getFilteredTagList();
 
-        StringBuilder allTagsList = new StringBuilder(MESSAGE_SUCCESS);
+        StringBuilder allTagsList = new StringBuilder("Listed all tags:\n");
 
         for (Tag tag : allTags) {
             allTagsList.append(tag.getName());

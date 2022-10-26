@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.testutil.ItemBuilder;
 
-
 public class NameContainsKeywordsPredicateTest {
     @Test
     public void equals() {

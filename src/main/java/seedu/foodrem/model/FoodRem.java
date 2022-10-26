@@ -32,8 +32,7 @@ public class FoodRem implements ReadOnlyFoodRem {
         tags = new UniqueTagList();
     }
 
-    public FoodRem() {
-    }
+    public FoodRem() {}
 
     /**
      * Creates a FoodRem using the Items in the {@code toBeCopied}
@@ -183,8 +182,8 @@ public class FoodRem implements ReadOnlyFoodRem {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FoodRem // instanceof handles nulls
+        return other == this
+                || (other instanceof FoodRem
                 && items.equals(((FoodRem) other).items))
                 && tags.equals(((FoodRem) other).tags);
     }

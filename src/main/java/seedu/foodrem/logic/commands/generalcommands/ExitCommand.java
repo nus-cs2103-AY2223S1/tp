@@ -10,14 +10,12 @@ import seedu.foodrem.model.Model;
  * Terminates the program.
  */
 public class ExitCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Exiting FoodRem as requested ...";
-
     @Override
     public CommandResult<String> execute(Model model) {
         return new CommandResult<>() {
             @Override
             public String getOutput() {
-                return MESSAGE_SUCCESS;
+                return "Exiting FoodRem as requested ...";
             }
 
             @Override
