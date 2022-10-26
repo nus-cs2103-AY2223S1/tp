@@ -70,7 +70,7 @@ public class AddPersonToModuleCommand extends Command {
         } catch (ModuleNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
         } catch (PersonNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_NO_SUCH_PERSON_DELETE);
+            throw new CommandException(Messages.MESSAGE_NO_SUCH_PERSON);
         }
 
         assert moduleToAddPersonTo != null;

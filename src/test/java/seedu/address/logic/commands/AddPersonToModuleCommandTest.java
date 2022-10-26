@@ -98,7 +98,7 @@ public class AddPersonToModuleCommandTest {
         ModelStubWithModuleAndPerson modelStub = new ModelStubWithModuleAndPerson(validModule, validPerson);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_NO_SUCH_PERSON_DELETE, () -> addPersonToModuleCommand.execute(modelStub));
+                Messages.MESSAGE_NO_SUCH_PERSON, () -> addPersonToModuleCommand.execute(modelStub));
     }
 
     @Test

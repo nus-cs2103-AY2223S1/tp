@@ -107,7 +107,7 @@ public class AddPersonToModuleCommandIntegrationTest {
         Name nameOfNonexistentPerson = nonexistentPerson.getName();
 
         assertCommandFailure(new AddPersonToModuleCommand(validModuleCode, nameOfNonexistentPerson), model,
-                Messages.MESSAGE_NO_SUCH_PERSON_DELETE);
+                Messages.MESSAGE_NO_SUCH_PERSON);
     }
 
     @Test
