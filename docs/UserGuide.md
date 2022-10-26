@@ -123,6 +123,33 @@ Examples:
 * `view 1` returns person in first index <br>
   `remove h/2` removes person at first index's *homework at second index*
 
+### Marking specific field in person: `mark`
+
+Marks a specific field of a person in the address book, accessed by View method.<br>
+It requires one field:
+- h/: To be followed by INDEX of homework to be marked
+- a/: To be followed by INDEX of attendance to be marked
+
+Format: `mark [h/ a/]INDEX`
+
+Examples:
+* `view 1` returns person in first index <br>
+  `mark a/1` marks person at first index's *attendance at first index*
+
+### Unmarking specific field in person: `unmark`
+
+Unmarks a specific field of a person in the address book, accessed by View method.<br>
+It requires one field:
+- h/: To be followed by INDEX of homework to be unmarked
+- a/: To be followed by INDEX of attendance to be unmarked
+
+Format: `unmark [h/ a/]INDEX`
+
+Examples:
+* `view 2` returns person in second index <br>
+  `unmark h/4` unmarks person at second index's *homework at fourth index*
+
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -177,16 +204,16 @@ Format: `homework INDEX h/HOMEWORK`
 Examples:
 *`homework 1 h/math assignment` adds math assignment to first student in address book.
 
-### Adding Grade Progress to student: `gradeprogress`
+### Adding Grade Progress to student: `grade`
 
 Adds a string description of grade progress to student in address book.
 
-Format: `gradeprogress INDEX h/GRADE_PROGRESS`
+Format: `grade INDEX g/GRADE_PROGRESS`
 
 *Adds grade progress to student with the specified `INDEX`.
 
 Examples:
-*`gradeprogress 1 h/math D+` adds math D+ grade to first student in address book.
+*`grade 1 g/Math: D+` adds Math: D+ grade to first student in address book.
 
 ### Adding Attendance to student : `attendance`
 
