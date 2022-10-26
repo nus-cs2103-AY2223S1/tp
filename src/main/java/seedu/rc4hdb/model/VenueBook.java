@@ -123,7 +123,7 @@ public class VenueBook implements ReadOnlyVenueBook {
         return venues.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Booking> getBookings(VenueName venueName) {
+    public ObservableList<Booking> getBookings(VenueName venueName) throws VenueNotFoundException {
         requireNonNull(venueName);
         return venues.getBookings(venueName);
     }
