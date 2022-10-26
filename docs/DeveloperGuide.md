@@ -289,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | potential user                    | find the installation/setup instructions                        | can install the app properly                                                    |
 | `* * *`  | user ready to start using the app | see the basic commands                                          | can learn how to use the most basic features of the app                         |
 | `* * *`  | user ready to start using the app | add the students in my tutorial class into the app              | can track the students' attendance and grades                                   |
-| `* * *`  | user                              | add my tasks                                                    | will not forget to do any of the tasks                                          |
+| `* * *`  | user                              | add my tasks                                                    | can keep track of the tasks I have to do                                          |
  | `* * *`  | user                              | add my lessons                                                  | can keep track of lessons I have scheduled with which students                  |
 | `* * *`  | user                              | mark tasks as done                                              | can focus on the remaining tasks                                                |
 | `* * *`  | user                              | mark tasks as not done                                          | can go back and redo tasks that are incomplete                                  |
