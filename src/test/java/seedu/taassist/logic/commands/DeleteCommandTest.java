@@ -31,7 +31,7 @@ public class DeleteCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_SUCCESS, studentToDelete.getName());
 
         ModelManager expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
         expectedModel.removeStudent(studentToDelete);
@@ -54,7 +54,7 @@ public class DeleteCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_SUCCESS, studentToDelete.getName());
 
         Model expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
         expectedModel.removeStudent(studentToDelete);
