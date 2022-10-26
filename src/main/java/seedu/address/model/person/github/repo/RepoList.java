@@ -38,7 +38,6 @@ public class RepoList {
      * Method to add new Repo to Existing RepoList.
      *
      * @param nextRepo the next Repo Object to be added.
-     * @return the same RepoList with updated new repository.
      */
     public void addRepo(Repo nextRepo) {
         this.repoList.add(nextRepo);

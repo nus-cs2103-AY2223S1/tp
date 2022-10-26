@@ -20,11 +20,11 @@ import seedu.address.github.exceptions.RepoNotFoundException;
 public class UserReposWrapper {
     //@@author arnav-ag
 
-    private final static String ID_KEY = "id";
-    private final static String NAME_KEY = "name";
-    private final static String URL_KEY = "html_url";
-    private final static String FORKS_KEY = "forks_count";
-    private final static String UPDATED_KEY = "updated_at";
+    private static final String ID_KEY = "id";
+    private static final String NAME_KEY = "name";
+    private static final String URL_KEY = "html_url";
+    private static final String FORKS_KEY = "forks_count";
+    private static final String UPDATED_KEY = "updated_at";
     private final UserReposRoute.UserReposRequest getUserReposRequest;
     private JSONArray reposJson;
 

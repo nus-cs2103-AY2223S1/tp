@@ -73,6 +73,9 @@ public class UserInfoWrapper {
         return userJson.getString(IMAGE_LOCATION_KEY);
     }
 
+    /**
+     * Downloads avatar to file specified in class above.
+     */
     public void downloadAvatar() {
         byte[] image = userAvatarRequest.getAvatarImage();
         try {
