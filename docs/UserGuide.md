@@ -153,7 +153,7 @@ Example:
 
 ### Clone a person : `clone`
 
-Clones an existing person in Survin with updated details.
+Creates a new person with updated details based on an existing person in Survin, the new person created will be added to end of existing address book.
 
 Format: `clone INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/SURVEY] [t/TAG]…`
 
@@ -219,6 +219,19 @@ Compacted Mode:<br>
 ![CompactedMode](images/CompactedMode.png)
 
 Format: `toggle-list-mode`
+
+### Shortcut keys 
+These shortcut keys will add texts to the command box, this helps the users to enter the commands faster.
+
+- `CTRL + A` adds `add n/ p/ e/ a/ g/ b/ ra/ re/ s/ t/` to the command box.
+- `CTRL + E` adds `edit` to the command box.
+- `CTRL + D` adds `delete` to the command box.
+- `CTRL + M` adds `mark` to the command box.
+- `CTRL + U` adds `unmark` to the command box.
+- `CTRL + Z` adds `undo` to the command box.
+- `CTRL + L` adds `clone` to the command box.
+- `CTRL + I` adds `view` to the command box.
+
 
 ### Clearing all entries : `clear`
 

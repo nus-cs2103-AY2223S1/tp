@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -37,7 +36,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final String DELETE_COMMAND_SHORTCUT_TEXT = "delete ";
     private static final String CLONE_COMMAND_SHORTCUT_TEXT = "clone ";
     private static final String VIEW_COMMAND_SHORTCUT_TEXT = "view ";
-
+    private static final String UNDO_COMMAND_SHORTCUT_TEXT = "undo ";
+    private static final String MARK_COMMAND_SHORTCUT_TEXT = "mark ";
+    private static final String UNMARK_COMMAND_SHORTCUT_TEXT = "unmark ";
 
 
     private final String lightTheme = getClass().getResource("/view/LightTheme.css").toExternalForm();
@@ -110,8 +111,11 @@ public class MainWindow extends UiPart<Stage> {
         setCommandBoxText(ADD_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+A"));
         setCommandBoxText(EDIT_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+E"));
         setCommandBoxText(DELETE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+D"));
-        setCommandBoxText(CLONE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+C"));
-        setCommandBoxText(VIEW_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+V"));
+        setCommandBoxText(CLONE_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+L"));
+        setCommandBoxText(VIEW_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+I"));
+        setCommandBoxText(UNDO_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+Z"));
+        setCommandBoxText(MARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+M"));
+        setCommandBoxText(UNMARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+U"));
     }
 
     /**
@@ -160,9 +164,9 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-        /**
-         * Fills up all the placeholders of this window.
-         */
+    /**
+     * Fills up all the placeholders of this window.
+     */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), isExpanded);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
