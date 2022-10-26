@@ -49,8 +49,8 @@ public class Book {
         return author;
     }
 
-    public Date getReturnDate() {
-        return returnDate;
+    public Optional<Date> getReturnDate() {
+        return Optional.ofNullable(returnDate);
     }
 
     public void setReturnDate(Date returnDate) {
