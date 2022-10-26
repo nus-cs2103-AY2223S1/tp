@@ -83,7 +83,6 @@ Examples:
 
 :white_check_mark: **Tip:**
 Input shortcut: `c` can be used in place of `create`.
-
 Format: `c n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [d/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG]...`
 
 ### Listing all persons : `list`
@@ -140,6 +139,7 @@ Format: `f n/NAME…`
 ### Locating persons by phone number: `find`
 
 Finds persons whose stored number matches the given number.
+   
 Format: `find p/NUMBER...`
 
 * Only full numbers will be matched e.g. `7654` will not match `80765432`
@@ -150,9 +150,7 @@ Examples:
 
 :white_check_mark: **Tip:**
 Input shortcut: `f` can be used in place of `find`.
-
 Format: `f p/NUMBER...`
-
 
 ### Locating persons by address: `find`
 
@@ -300,6 +298,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | **Clear**       | `clear`                                                                                                                     | cl       |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                         | d        |
 | **Update**      | `update INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [mt/TIME]`<br> e.g.,`edit 2 p/91234567 a/21 Lower Kent Ridge Rd`        | u        |
+| **Description** | `description INDEX d/DESCRIPTION` <br> e.g., `description 3 d/Accident prone`                                               | desc     |
 | **Find**        | `find n/NAME…` or `find p/NUMBER` or `find a/ADDRESS` <br> e.g., `find n/James Jake` or `find p/09122222` or `find a/Jurong`| f        |
 | **List**        | `list`                                                                                                                      | l        |
 | **Open File**   | `file INDEX`<br/> e.g. `file 2`                                                                                             |          |
