@@ -112,6 +112,7 @@ public class CreateMeetingCommand extends Command {
         } catch (ImpreciseMatchException e) {
             return new CommandResult(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE);
         }
+
     }
 
     @Override

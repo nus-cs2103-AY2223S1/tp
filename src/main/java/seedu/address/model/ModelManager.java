@@ -49,33 +49,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = new FilteredList<>(this.meetingList.getMeetingList());
-
-        // To check
-
-        //        ObservableList<Meeting> internalList = FXCollections.observableArrayList();
-        //        ObservableList<Meeting> internalUnmodifiableList =
-        //                FXCollections.unmodifiableObservableList(internalList);
-        //
-        //        ArrayList<Person> myArray = new ArrayList<>();
-        //
-        //        myArray.add(new Person(new Name("Alex Yeoh"), new Phone("87438807"),
-        //                new Email("alexyeoh@example.com"),
-        //                new Address("Blk 30 Geylang Street 29, #06-40"),
-        //                getTagSet("friends")));
-        //
-        //        myArray.add(new Person(new Name("Bernice Yu"), new Phone("99272758"),
-        //                new Email("berniceyu@example.com"),
-        //                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-        //                getTagSet("colleagues", "friends")));
-        //        try {
-        //            internalList.addAll(this.meetingList.getMeetingList().stream().collect(Collectors.toList()));
-        //            internalList.add(new Meeting(myArray, "Study Session", "06-10-2022 2015", "UTown"));
-        //            internalList.add(new Meeting(myArray, "Ice Skating", "12-10-2022 2015", "Jurong East"));
-        //        } catch (Exception e) {
-        //            System.out.println("Exception: " + e);
-        //        }
-        //
-        //        filteredMeetings = new FilteredList<>(internalList);
     }
 
     public ModelManager() {
