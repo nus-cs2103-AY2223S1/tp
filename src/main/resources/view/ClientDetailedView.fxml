@@ -49,6 +49,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label fx:id="phoneNumber" prefHeight="20.0" prefWidth="263.0" text="\$phoneNumber" GridPane.columnSpan="2">
@@ -75,24 +76,24 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Products:" GridPane.rowIndex="2">
+                   <Label fx:id="birthday" prefHeight="20.0" prefWidth="263.0" text="\$birthday" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                       <graphic>
+                           <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                   <Image url="@../images/birthday.png" />
+                               </image>
+                           </ImageView>
+                       </graphic>
+                       <padding>
+                           <Insets top="10.0" />
+                       </padding>
+                   </Label>
+                  <Label text="Products:" GridPane.columnSpan="2" GridPane.rowIndex="3">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
                </children>
-                <Label fx:id="birthday" prefHeight="20.0" prefWidth="263.0" text="\$birthday" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                    <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/birthday.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <padding>
-                        <Insets top="10.0" />
-                    </padding>
-                </Label>
                <padding>
                   <Insets left="10.0" />
                </padding>

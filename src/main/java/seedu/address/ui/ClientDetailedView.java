@@ -46,7 +46,7 @@ public class ClientDetailedView extends UiPart<Region> {
         this.client = client;
         clientName.setText(client.getName().toString());
         phoneNumber.setText(client.getPhone().toString());
-        email.setText(client.getEmail().toString());
+        email.setText(client.getEmail().get().toString());
         Optional<Birthday> clientBirthday = client.getBirthday();
         if (clientBirthday.isEmpty()) {
             birthday.setText("");

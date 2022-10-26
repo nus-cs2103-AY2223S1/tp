@@ -26,7 +26,7 @@
   <Label fx:id="name" styleClass="cell_big_label" text="\$name" GridPane.columnIndex="1" />
    <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" GridPane.columnIndex="2" />
    <Label fx:id="email" styleClass="cell_big_label" text="\$email" GridPane.columnIndex="3" />
-      <Label fx:id="purchase" styleClass="cell_big_label" text="\$purchase" GridPane.columnIndex="4" />
+      <Label fx:id="products" styleClass="cell_big_label" text="\$purchase" GridPane.columnIndex="4" />
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>

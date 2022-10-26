@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -39,6 +40,8 @@ public class ClientCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label email;
+    @FXML
+    private Label products;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -50,6 +53,7 @@ public class ClientCard extends UiPart<Region> {
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         email.setText(client.getEmail().get().toString());
+        products.setText(client.getProducts().stream().collect(Collectors.toList()).toString());
     }
 
     @Override
