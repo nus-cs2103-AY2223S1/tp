@@ -15,7 +15,7 @@ import seedu.address.model.buyer.Buyer;
 
 /**
  * Filters and lists all buyers in the buyer list that have a price range that accepts the given price,
- * characteristics that match the given characteristics list, or have the given tag.
+ * contains all the characteristics in the given characteristics list, or have the given the priority.
  * More than one filtering criteria can be accepted, buyers matching any or all of the given criteria can be returned
  * based on whether the user passes in the 'PREFIX_MATCH_ALL' flag.
  * Keyword matching is case-insensitive.
@@ -26,9 +26,9 @@ public class MultiFlagFilterBuyersCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all buyers in the database who"
             + " either has a price range that accepts the given price, contains all characteristics in the given"
-            + " characteristics list, or has the given tag. You can pass in more than one criteria at a time.\n"
+            + " characteristics list, or has the given priority. You can pass in more than one criteria at a time.\n"
             + " Pass in " + PREFIX_MATCH_ALL + " for strict filtering, i.e. filtered buyers will satisfy"
-            + " all the conditions specified.i \n"
+            + " all the conditions specified. \n"
             + "Parameters: [" + PREFIX_PRICE + " PRICE] "
             + "[" + PREFIX_CHARACTERISTICS + " CHARACTERISTICS] "
             + "[" + PREFIX_PRIORITY + " <HIGH/LOW>]"

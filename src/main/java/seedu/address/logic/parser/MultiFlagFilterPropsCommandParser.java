@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHARACTERISTICS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MATCH_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
 
@@ -12,8 +13,10 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FilterPropsCommand;
+import seedu.address.logic.commands.MultiFlagFilterBuyersCommand;
 import seedu.address.logic.commands.MultiFlagFilterPropsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
@@ -21,8 +24,6 @@ import seedu.address.model.property.FilterPropsContainingAllCharacteristicsPredi
 import seedu.address.model.property.FilterPropsByOwnerNamePredicate;
 import seedu.address.model.property.FilterPropsByPricePredicate;
 import seedu.address.model.property.Property;
-
-
 
 /**
  * Parses user input to create a {@code FilterPropsCommand}.
@@ -39,11 +40,12 @@ public class MultiFlagFilterPropsCommandParser extends Parser<MultiFlagFilterPro
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PRICE_RANGE,
-                PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME);
+                PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME, PREFIX_MATCH_ALL);
 
         if (!isAnyPrefixPresent(argMultimap, PREFIX_PRICE_RANGE, PREFIX_CHARACTERISTICS, PREFIX_OWNER_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterPropsCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MultiFlagFilterPropsCommand.MESSAGE_USAGE));
         }
 
         List<Predicate<Property>> predicatesList = new ArrayList<>();
@@ -64,10 +66,15 @@ public class MultiFlagFilterPropsCommandParser extends Parser<MultiFlagFilterPro
             predicatesList.add(new FilterPropsByOwnerNamePredicate(ownerName));
         }
 
-        // Get logical OR of all predicates
-        Optional<Predicate<Property>> logicalOrPredicate = predicatesList.stream().reduce(Predicate::or);
+        Optional<Predicate<Property>> combinedPredicate;
+        if (arePrefixesPresent(argMultimap, PREFIX_MATCH_ALL)) {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::and);
+        } else {
+            combinedPredicate = predicatesList.stream().reduce(Predicate::or);
+        }
 
-        // Is it now possible to get a NoSuchElementException?
-        return new MultiFlagFilterPropsCommand(logicalOrPredicate.get());
+        // combinedPredicate must exist, since predicatesList should contain at least one predicate
+        assert(combinedPredicate.isPresent());
+        return new MultiFlagFilterPropsCommand(combinedPredicate.get());
     }
 }
