@@ -47,7 +47,7 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Returns the AddressBook
+     * Returns the Database
      */
     ReadOnlyAddressBook getAddressBook();
 

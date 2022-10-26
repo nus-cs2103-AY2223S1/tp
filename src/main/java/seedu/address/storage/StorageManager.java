@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Database data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -45,7 +45,7 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-    // ================ AddressBook methods ==============================
+    // ================ Database methods ==============================
 
     @Override
     public Path getAddressBookFilePath() {
