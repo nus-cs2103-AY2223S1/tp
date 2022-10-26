@@ -46,11 +46,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
-            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("position") String position, @JsonProperty("department") String department,
-            @JsonProperty("address") String address, @JsonProperty("leave") String leave,
-            @JsonProperty("leaveLeft") String leaveLeft, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
+         @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+         @JsonProperty("position") String position, @JsonProperty("department") String department,
+         @JsonProperty("address") String address, @JsonProperty("leave") String leave,
+         @JsonProperty("leaveLeft") String leaveLeft,
+         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+         @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
+
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
@@ -122,25 +124,31 @@ class JsonAdaptedPerson {
         }
         final EmployeeId modelEmployeeId = new EmployeeId(employeeId);
 
+        final Phone modelPhone;
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
+        } else if (phone.equals("N/A")) {
+            modelPhone = new Phone();
+        } else if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        } else {
+            modelPhone = new Phone(phone);
         }
-        final Phone modelPhone = new Phone(phone);
 
+        final Email modelEmail;
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
+        } else if (email.equals("N/A")) {
+            modelEmail = new Email();
+        } else if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        } else {
+            modelEmail = new Email(email);
         }
-        final Email modelEmail = new Email(email);
 
         if (position == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Position.class.getSimpleName()));
+                    Position.class.getSimpleName()));
         }
         if (!Position.isValidPosition(position)) {
             throw new IllegalValueException(Position.MESSAGE_CONSTRAINTS);
@@ -149,24 +157,29 @@ class JsonAdaptedPerson {
 
         if (department == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Department.class.getSimpleName()));
+                    Department.class.getSimpleName()));
         }
         if (!Department.isValidDepartment(department)) {
             throw new IllegalValueException(Department.MESSAGE_CONSTRAINTS);
         }
         final Department modelDepartment = new Department(department);
 
+        final Address modelAddress;
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
+        } else if (address.equals("N/A")) {
+            modelAddress = new Address();
+        } else if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        } else {
+            modelAddress = new Address(address);
         }
-        final Address modelAddress = new Address(address);
 
         if (leave == null) {
-            throw new IllegalValueException("FAIL");
+            throw new IllegalValueException("Invalid");
         }
+
         final int modelLeave = Integer.valueOf(leave);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
@@ -183,5 +196,4 @@ class JsonAdaptedPerson {
         }
         return p;
     }
-
 }
