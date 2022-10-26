@@ -18,11 +18,20 @@ package "AddressBook Storage" #F4F6F6{
 Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
 Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+Class JsonAdaptedBuyer
+Class JsonAdaptedSupplier
+Class JsonAdaptedDeliverer
+Class JsonAdaptedOrder
+Class JsonAdaptedPet
 Class JsonAdaptedTag
+Class JsonAdaptedPriceRange
+Class JsonAdaptedRequest
 }
 
+
 }
+
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
@@ -37,7 +46,18 @@ Storage -right-|> AddressBookStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableAddressBook --> "*" JsonAdaptedBuyer
+JsonSerializableAddressBook --> "*" JsonAdaptedSupplier
+JsonSerializableAddressBook --> "*" JsonAdaptedDeliverer
+JsonSerializableAddressBook --> "*" JsonAdaptedPet
+JsonSerializableAddressBook --> "*" JsonAdaptedOrder
+JsonAdaptedBuyer --> "*" JsonAdaptedTag
+JsonAdaptedSupplier --> "*" JsonAdaptedTag
+JsonAdaptedDeliverer --> "*" JsonAdaptedTag
+JsonAdaptedPet --> "*" JsonAdaptedTag
+JsonAdaptedPet --> "1" JsonAdaptedSupplier
+JsonAdaptedOrder --> "1" JsonAdaptedBuyer
+JsonAdaptedOrder --> "1" JsonAdaptedPriceRange
+JsonAdaptedOrder --> "1" JsonAdaptedRequest
 
 @enduml

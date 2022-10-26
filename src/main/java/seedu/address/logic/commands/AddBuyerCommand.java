@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -21,9 +22,9 @@ import seedu.address.model.person.Buyer;
  * If this buyer comes with multiple orders (where one order can have a pet as well), these orders and pets
  * will be also added to their respective unique lists.
  */
-public class AddBuyerCommand extends AddPersonCommand {
+public class AddBuyerCommand extends Command {
 
-    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + " c/Buyer";
+    public static final String COMMAND_WORD = "add-b";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -77,8 +78,10 @@ public class AddBuyerCommand extends AddPersonCommand {
 
         for (Order order : orders) {
             model.addOrder(order);
+            order.setBuyer(toAdd);
         }
 
+        toAdd.addOrders(orders.stream().map(Order::getId).collect(Collectors.toList()));
         model.addBuyer(toAdd);
 
         return new CommandResult("\n" //TODO To keep a single MESSAGE_SUCCESS
