@@ -102,6 +102,9 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        if (target.equals(currentlyViewedPerson)) {
+            currentlyViewedPerson = filteredPersons.size() > 0 ? filteredPersons.get(0) : null;
+        }
     }
 
     @Override
@@ -115,6 +118,9 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        if (target.equals(currentlyViewedPerson)) {
+            currentlyViewedPerson = editedPerson;
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
