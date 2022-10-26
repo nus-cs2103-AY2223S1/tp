@@ -18,7 +18,8 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    public final String lowerCaseName;
+    public final String properCaseName;
 
     /**
      * Constructs a {@code Name}.
@@ -28,7 +29,8 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        lowerCaseName = name.toLowerCase();
+        properCaseName = toProperCase(lowerCaseName);
     }
 
     /**
@@ -38,22 +40,47 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a given name String in proper case format.
+     * @param name Input name String to be converted to proper case.
+     * @return Name String in proper case format.
+     */
+    public static String toProperCase(String name) {
+        String[] nameWords = name.split(" ");
+        StringBuffer properCaseName = new StringBuffer();
+        int count = 0;
+        for (int i = 0; i < nameWords.length; i++) {
+            String word = nameWords[i];
+            word = word.substring(0, 1).toUpperCase() + word.substring(1);
+            if (count == nameWords.length - 1) {
+                properCaseName = properCaseName.append(word);
+            } else {
+                properCaseName = properCaseName.append(word + " ");
+            }
+            count++;
+        }
+        return properCaseName.toString();
+    }
+
+    public String getLowerCaseName() {
+        return lowerCaseName;
+    }
 
     @Override
     public String toString() {
-        return fullName;
+        return properCaseName;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                && lowerCaseName.equals(((Name) other).lowerCaseName)); // state check
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return lowerCaseName.hashCode();
     }
 
 }

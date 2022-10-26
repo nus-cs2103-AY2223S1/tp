@@ -42,7 +42,7 @@ public class EditRecordCommand extends Command {
 
     public static final String MESSAGE_EDIT_RECORD_SUCCESS = "Edited record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_RECORD = "A record with this date already exists in the address book.";
 
     private final Index index;
     private final EditRecordDescriptor editRecordDescriptor;
