@@ -40,7 +40,7 @@ public class RenameCommand extends Command {
         requireNonNull(model);
         try {
             Path newAddressBookFilePath = Paths.get("data" , name + ".json");
-            if (newAddressBookFilePath.equals(model.getUserPrefs().getAddressBookFilePath())) {
+            if (newAddressBookFilePath.toString().equals(model.getUserPrefs().getAddressBookFilePath().toString())) {
                 return new CommandResult(MESSAGE_RENAME_SAME, null, false, false, false, false);
             }
             model.renameAddressBook(this.name);
