@@ -4,6 +4,9 @@ import nus.climods.logic.commands.PrereqsCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
 
+/**
+ * Parses input arguments and creates new PrereqsCommand
+ */
 public class PrereqsCommandParser implements Parser<PrereqsCommand> {
     @Override
     public PrereqsCommand parse(String args) throws ParseException {
