@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -49,16 +51,15 @@ public class AddTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         List<Person> memberList = model.getTeam().getTeamMembers();
-        for (int i = 0; i < assignees.length; i++) {
-            for (Person person : memberList) {
-                if (person.getName().fullName.equals(assignees[i])) {
-                    task.assignTo(person);
-                    break;
-                }
-            }
-            if (i == assignees.length - 1) {
-                throw new CommandException(MESSAGE_PERSON_NOT_EXISTS);
-            }
+        List<Person> assigneePersonList = memberList.stream()
+                .filter(member -> Arrays.asList(assignees)
+                        .contains(member.getName().fullName))
+                .collect(Collectors.toList());
+        if (assigneePersonList.size() < memberList.size()) {
+            throw new CommandException(MESSAGE_PERSON_NOT_EXISTS);
+        }
+        for (Person assignee : assigneePersonList) {
+            task.assignTo(assignee);
         }
         model.getTeam().addTask(task);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, task));
