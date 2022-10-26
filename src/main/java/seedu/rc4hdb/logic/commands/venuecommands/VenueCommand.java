@@ -23,4 +23,11 @@ public abstract class VenueCommand implements Command {
         this.venueName = venueName;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof VenueCommand // instanceof handles nulls
+                && venueName.equals(((VenueCommand) other).venueName));
+    }
+
 }

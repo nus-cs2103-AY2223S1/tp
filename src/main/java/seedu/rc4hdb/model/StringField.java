@@ -50,7 +50,8 @@ public abstract class StringField {
         }
 
         StringField otherField = (StringField) other;
-        return isSubclass(otherField) && otherField.value.equals(this.value);
+        return isSubclass(otherField)
+                && value.equals(((StringField) other).value);
     }
 
 }

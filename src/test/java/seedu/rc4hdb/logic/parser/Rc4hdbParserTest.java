@@ -17,6 +17,8 @@ import static seedu.rc4hdb.testutil.TypicalColumnManipulatorInputs.VALID_LETTERS
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 import static seedu.rc4hdb.testutil.TypicalSpecifiers.ALL_SPECIFIER;
 import static seedu.rc4hdb.testutil.TypicalSpecifiers.ANY_SPECIFIER;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_STRING;
+import static seedu.rc4hdb.testutil.TypicalVenues.MEETING_ROOM_VENUE_NAME;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +40,8 @@ import seedu.rc4hdb.logic.commands.residentcommands.HideOnlyCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.ResetCommand;
 import seedu.rc4hdb.logic.commands.residentcommands.ShowOnlyCommand;
+import seedu.rc4hdb.logic.commands.venuecommands.VenueCommand;
+import seedu.rc4hdb.logic.commands.venuecommands.VenueViewCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.HideOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ShowOnlyCommandParser;
@@ -46,6 +50,7 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
@@ -170,12 +175,21 @@ public class Rc4hdbParserTest {
     }
 
     @Test
-    public void parseCommand_file() throws Exception {
+    public void parseCommand_fileCommand() throws Exception {
         assertTrue(parser.parseCommand(FileCommand.COMMAND_WORD + " " + FileCreateCommand.COMMAND_WORD + " "
                 + VALID_FILE_NAME_STRING) instanceof FileCommand);
         FileCommand fileCommand = (FileCommand) parser.parseCommand(FileCommand.COMMAND_WORD
                 + " " + FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING);
         assertEquals(new FileCreateCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING), fileCommand);
+    }
+
+    @Test
+    public void parseCommand_venueCommand() throws Exception {
+        assertTrue(parser.parseCommand(VenueCommand.COMMAND_WORD + " " + VenueViewCommand.COMMAND_WORD + " "
+                + MEETING_ROOM_STRING) instanceof VenueViewCommand);
+        VenueCommand venueCommand = (VenueCommand) parser.parseCommand(VenueCommand.COMMAND_WORD + " "
+                + VenueViewCommand.COMMAND_WORD + " " + MEETING_ROOM_STRING);
+        assertEquals(new VenueViewCommand(MEETING_ROOM_VENUE_NAME), venueCommand);
     }
 
     @Test

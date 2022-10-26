@@ -96,7 +96,8 @@ public class BookCommand extends VenueCommand implements ModelCommand {
         return other == this // short circuit if same object
                 || (other instanceof BookCommand // instanceof handles nulls
                 && bookingDescriptor.equals(((BookCommand) other).bookingDescriptor)
-                && residentIndex.equals(((BookCommand) other).residentIndex));
+                && residentIndex.equals(((BookCommand) other).residentIndex)
+                && super.equals(other));
     }
 
 }

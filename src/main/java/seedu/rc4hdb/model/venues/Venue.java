@@ -96,14 +96,14 @@ public class Venue implements BookingField {
     }
 
     /**
-     * Checks if the venues are the same
+     * Checks if the venues are the same.
      */
     public boolean isSameVenue(Venue other) {
-        return this.venueName.equals(other.venueName);
+        return this.venueName.isSameVenueName(other.venueName);
     }
 
     public boolean isSameVenue(VenueName otherVenueName) {
-        return this.venueName.equals(otherVenueName);
+        return this.venueName.isSameVenueName(otherVenueName);
     }
 
     //==================== Start of getters =================================
