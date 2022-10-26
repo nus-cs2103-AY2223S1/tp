@@ -33,6 +33,7 @@ public class UnmarkTaskCommand extends Command {
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
+    public static final String MESSAGE_ALREADY_UNMARKED = "This task is already marked as incomplete.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -64,6 +65,10 @@ public class UnmarkTaskCommand extends Command {
 
         if (!taskToUnmark.isSameTask(unmarkedTask) && model.hasTask(unmarkedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (taskToUnmark.equals(unmarkedTask)) {
+            throw new CommandException(MESSAGE_ALREADY_UNMARKED);
         }
 
         model.setTask(taskToUnmark, unmarkedTask);

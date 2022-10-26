@@ -33,6 +33,7 @@ public class MarkTaskCommand extends Command {
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
+    public static final String MESSAGE_ALREADY_MARKED = "This task is already marked as completed.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -64,6 +65,10 @@ public class MarkTaskCommand extends Command {
 
         if (!taskToMark.isSameTask(markedTask) && model.hasTask(markedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (taskToMark.equals(markedTask)) {
+            throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
 
         model.setTask(taskToMark, markedTask);
