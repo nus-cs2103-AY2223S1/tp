@@ -52,4 +52,6 @@ public interface Logic {
      * Returns the net amount transacted by all clients in the current list.
      */
     double calculateTotalTransaction(ObservableList<Client> filteredClientList);
+
+
 }

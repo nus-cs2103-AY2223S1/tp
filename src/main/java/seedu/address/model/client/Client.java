@@ -232,4 +232,18 @@ public class Client implements ReadOnlyClient {
         return transactions.getBuyTransactionList();
     }
 
+    /**
+     * Returns an unmodifiable view of the sorted by oldest transactions list.
+     */
+    public ObservableList<Transaction> getSortOldestTransaction() {
+        return transactions.getOldestTransactionList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the sorted by latest transactions list.
+     */
+    public ObservableList<Transaction> getSortLatestTransaction() {
+        return transactions.getLatestTransactionList();
+    }
+
 }

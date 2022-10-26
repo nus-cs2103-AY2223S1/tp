@@ -21,7 +21,9 @@ public class Date {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
     public final String date;
+    private final LocalDate localDate;
     private final String unformattedDate;
+
 
     /**
      * Constructs a {@code Date}.
@@ -32,7 +34,8 @@ public class Date {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.unformattedDate = date;
-        this.date = LocalDate.parse(date, dtf).toString();
+        this.localDate = LocalDate.parse(date, dtf);
+        this.date = this.localDate.toString();
     }
 
     /**
@@ -77,5 +80,19 @@ public class Date {
         return other == this // short circuit if same object
                 || (other instanceof Date // instanceof handles nulls
                 && date.equals(((Date) other).date)); // state check
+    }
+
+    public LocalDate getLocalDate() {
+        return this.localDate;
+    }
+
+
+    /**
+     * Compares current transaction's date with another date.
+     * @param date Another chosen date.
+     * @return True if current date is older than other date.
+     */
+    public boolean isOlderThan(Date date) {
+        return this.localDate.isBefore(date.localDate);
     }
 }

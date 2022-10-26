@@ -12,7 +12,6 @@ import static seedu.address.model.transaction.Date.NEW_PATTERN;
 import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.BuyTransaction;
@@ -40,7 +39,7 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     BuyCommand.MESSAGE_USAGE), ive);
         }

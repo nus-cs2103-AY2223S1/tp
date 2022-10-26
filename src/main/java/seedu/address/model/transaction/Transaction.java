@@ -2,10 +2,12 @@ package seedu.address.model.transaction;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+
 /**
  * Abstract transaction class
  */
-public abstract class Transaction {
+public abstract class Transaction implements Comparable<Transaction> {
 
     protected final Goods goods;
     protected final Price price;
@@ -40,6 +42,25 @@ public abstract class Transaction {
 
     public Date getDate() {
         return date;
+    }
+
+    public LocalDate getLocalDate() {
+        return date.getLocalDate();
+    }
+
+
+    /**
+     * Compares two LocalDates and checks if this LocalDate is before the other LocalDate.
+     * @param transaction the object to be compared.
+     * @return 1 if is before and 0 if is after.
+     */
+    @Override
+    public int compareTo(Transaction transaction) {
+        if (this.getLocalDate().isBefore(transaction.getLocalDate())) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }
