@@ -3,7 +3,12 @@ layout: page
 title: User Guide
 ---
 
-## Introduction
+* Table of Contents
+  {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 1. Introduction
 
 *MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients, meetings and products details, then look no further. *MyInsuRec* can also boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your customer relations.
 
@@ -11,13 +16,12 @@ title: User Guide
 
 *MyInsuRec* is available for the Windows, macOS and Linux operating systems.
 
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+# 2. About
 
-## How to use this User Guide
+## 2.1 Using this User Guide
 
 Welcome to *MyInsuRec User Guide*!
 
@@ -30,9 +34,8 @@ e.g.
 1. xyz (link)
 2. 
 
---------------------------------------------------------------------------------------------------------------------
 
-## Symbols
+## 2.2 Symbols
 
 | Symbol               | Meaning                                                                       |
 |----------------------|-------------------------------------------------------------------------------|
@@ -40,13 +43,12 @@ e.g.
 | :information_source: | Additional information that can be helpful.                                   |
 | :exclamation:        | Crucial information that you should be aware of.                              |
 
---------------------------------------------------------------------------------------------------------------------
 
-## About
+## 2.3 Terminologies
 
 The following explains some terminology and main features of *MyInsuRec*:
 
-### Clients
+### 2.3.1 Clients
 
 At the heart of *MyInsuRec* is the ability to organize and keep track of clients. You can do client-specific tasks such as:
 
@@ -61,7 +63,7 @@ Beyond individual clients, you can also:
 * filter and display a summarized list of clients with upcoming birthdays to help boost your customer relations.
 * filter and display a summarized list of clients who purchased a specific product.
 
-### Meetings
+### 2.3.2 Meetings
 
 *MyInsuRec* eases a financial advisor's mental load by helping them track of any upcoming meetings. You can do meeting-specific tasks such as:
 
@@ -75,7 +77,7 @@ Beyond individual meetings, you can also:
 * show a summarized list of all meetings with their important details such as meeting date and time.
 * quickly get a glance of tomorrow's meetings, and also in the coming week and month.
 
-### Products
+### 2.3.3 Products
 
 In order to help track a client's purchases, *MyInsuRec* also includes the ability for users to define products that a client might have purchased. You can do product-specific tasks such as:
 
@@ -86,15 +88,11 @@ Beyond individual products, you can also:
 
 * show a summarized list of all products.
 
---------------------------------------------------------------------------------------------------------------------
-
-## User Interface (UI) of MyInsuRec
+## 2.4 User Interface (UI) of MyInsuRec
 
 { replace with a diagram of MyInsuRec and arrows and notes describing the different components of MyInsuRec }
 
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
+## 2.5 Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -116,7 +114,7 @@ Beyond individual products, you can also:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -139,11 +137,9 @@ Beyond individual products, you can also:
 
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+## 3.1 Client commands
 
-## Client commands
-
-### Adding a client: `addClient`
+### 3.1.1 Adding a client: `addClient`
 
 Adds a new client to MyInsuRec.
 
@@ -153,23 +149,21 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 * A client must have a NAME and a PHONE_NUMBER.
 * EMAIL and BIRTHDAY is optional.
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Caution:**
-
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#adding-a-product-addproduct).
-
 </div>
 
 Examples:
 * `addClient n/John Tan p/0123456789 b/12122000`
 * `addClient n/John Tan p/0123456789 e/johntan@insurec.com`
 
-### Listing all clients : `listClient`
+### 3.1.2 Listing all clients : `listClient`
 
 List all clients in MyInsuRec.
 
 Format: `listClient`
 
-### Viewing a client: `viewClient`
+### 3.1.3 Viewing a client: `viewClient`
 
 View details associated with a client, such as client's name and phone number.
 
@@ -182,7 +176,7 @@ Format: `viewClient i/INDEX`
 Examples:
 * `viewClient i/1`
 
-### Deleting a client : `delClient`
+### 3.1.4 Deleting a client : `delClient`
 
 Deletes the specified client from MyInsuRec.
 
@@ -195,11 +189,9 @@ Format: `delClient i/INDEX`
 Examples:
 * `delClient i/2`
 
---------------------------------------------------------------------------------------------------------------------
+## 3.2 Meeting commands
 
-## Meeting commands
-
-### Adding a meeting : `addMeeting`
+### 3.2.1 Adding a meeting : `addMeeting`
 
 Adds a new meeting to MyInsuRec.
 DATE should be in DD-MM-YYYY format and TIME should be in 24-hour format.
@@ -212,13 +204,13 @@ Format: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
 Examples:
 * `addMeeting i/1 d/28092022 t/1400 dn/Team meeting`
 
-### Listing meetings: `listMeeting`
+### 3.2.2 Listing meetings: `listMeeting`
 
 Shows a list of all meetings in MyInsuRec.
 
 Format: `listMeeting`
 
-#### List meetings by time period
+#### 3.2.2.1 List meetings by time period
 
 Shows a list of meetings in MyInsuRec during a specified time period.
 
@@ -234,7 +226,7 @@ Examples:
 * `listMeeting d/month`
 
 
-### Viewing a meeting: `viewMeeting`
+### 3.2.3 Viewing a meeting: `viewMeeting`
 
 View details associated with a meeting, such as meeting's date and time.
 
@@ -247,7 +239,7 @@ Format: `viewMeeting i/INDEX`
 Examples:
 * `viewMeeting i/1`
 
-### Deleting a meeting : `delMeeting`
+### 3.2.4 Deleting a meeting : `delMeeting`
 
 Deletes a meeting from MyInsuRec.
 
@@ -260,21 +252,19 @@ Format: `delMeeting i/INDEX`
 Examples:
 * `delMeeting i/2`
 
---------------------------------------------------------------------------------------------------------------------
+## 3.3 Product commands
 
-## Product commands
-
-### Adding a product: `addProduct` 
+### 3.3.1 Adding a product: `addProduct` 
 
 {addProduct PLACEHOLDER}
 
-### Listing products: `listProduct`
+### 3.3.2 Listing products: `listProduct`
 
 Shows a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
-### Deleting a product : `delProduct`
+### 3.3.3 Deleting a product : `delProduct`
 
 Deletes a product from MyInsuRec.  
 This feature will remove the product from association with any client.
@@ -285,20 +275,16 @@ Format: `delProduct i/INDEX`
 * The index refers to the index number shown in the displayed product list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Caution:**
-
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 This feature should only be used if there is a need to delete a product, which is unlikely in most conceivable scenario! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
-
 </div>
 
 Examples:
 * `delProduct i/2`
 
---------------------------------------------------------------------------------------------------------------------
+## 3.4 General commands
 
-## General commands
-
-### Viewing help : `help`
+### 3.4.1 Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -306,21 +292,19 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Exiting MyInsuRec : `exit`
+### 3.4.2 Exiting MyInsuRec : `exit`
 
 Exits the program.
 
 Format: `exit`
 
---------------------------------------------------------------------------------------------------------------------
+## 3.5 Others
 
-## Others
-
-### Saving the data
+### 3.5.1 Saving the data
 
 MyInsuRec data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 3.5.2 Editing the data file
 
 MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -328,13 +312,13 @@ MyInsuRec data are saved as a JSON file `[JAR file location]/data/myinsurec.json
 If your changes to the data file makes its format invalid, MyInsuRec will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### 3.5.3 Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+*Details coming soon ...*
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+# 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app, then overwrite the `myinsurec.json` file created by the app with the version of the file from the previous computer.
@@ -347,7 +331,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# 5. Command summary
 
 | Action                | Format, Examples                                                                                                                                                   |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -360,3 +344,9 @@ _Details coming soon ..._
 | **View meeting**      | `viewMeeting i/INDEX` <br> e.g., <br> • `viewMeeting i/1`                                                                                                          |
 | **Delete meeting**    | `delMeeting i/INDEX` <br> e.g., <br> • `delMeeting i/1`                                                                                                            |
 | **Exit**              | `exit`                                                                                                                                                             |
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 6. Glosssary
+
+{ glossary placeholder }
