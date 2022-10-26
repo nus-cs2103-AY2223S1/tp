@@ -7,10 +7,12 @@ import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalStudents.ALICE;
 import static seedu.taassist.testutil.TypicalStudents.BENSON;
+import static seedu.taassist.testutil.TypicalStudents.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -94,6 +96,38 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setFilteredListPredicate_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setFilteredListPredicate(null));
+    }
+
+    @Test
+    public void setFilteredListPredicate_validPredicate_setsFilteredListPredicate() {
+        modelManager.addStudent(ALICE);
+        modelManager.addStudent(BENSON);
+        modelManager.setFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("A")));
+        assertEquals(List.of(ALICE), modelManager.getFilteredStudentList());
+    }
+
+    @Test
+    public void andFilteredListPredicate_noPreviousPredicate_setsFilteredListPredicate() {
+        modelManager.addStudent(ALICE);
+        modelManager.addStudent(BENSON);
+        modelManager.andFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("A")));
+        assertEquals(List.of(ALICE), modelManager.getFilteredStudentList());
+    }
+
+    @Test
+    public void andFilteredListPredicate_hasPreviousPredicate_setsFilteredListPredicate() {
+        modelManager.addStudent(ALICE);
+        modelManager.addStudent(BENSON);
+        modelManager.addStudent(CARL);
+        modelManager.setFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("A")));
+        assertEquals(List.of(ALICE, CARL), modelManager.getFilteredStudentList());
+        modelManager.andFilteredListPredicate(new NameContainsKeywordsPredicate(List.of("R")));
+        assertEquals(List.of(CARL), modelManager.getFilteredStudentList());
+    }
+
+    @Test
     public void equals() {
         TaAssist taAssist = new TaAssistBuilder().withStudent(ALICE).withStudent(BENSON).build();
         TaAssist differentTaAssist = new TaAssist();
@@ -118,11 +152,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.setFilteredListPredicate(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taAssist, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        modelManager.setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
