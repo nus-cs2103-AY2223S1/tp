@@ -228,9 +228,21 @@
 
 .context-menu {
     -fx-background-color: derive(#ffffff, 10%);
+    -fx-background-radius: 10px;
+    -fx-padding: 7px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 15, 0, 1, 1);
 }
 
 .context-menu .label {
+    -fx-text-fill: #333333;
+}
+
+.menu-item {
+}
+
+.menu-item:focused {
+    -fx-background-color: #48C9B0;
+    -fx-background-radius: 5px;
     -fx-text-fill: white;
 }
 
