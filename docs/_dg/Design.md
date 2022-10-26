@@ -1,3 +1,5 @@
+<!--markdownlint-disable-file first-line-h1 -->
+
 ```tip
 The `.puml` files used to create diagrams in this document can be found in the [diagrams]({{ page.master_branch }}/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 ```
