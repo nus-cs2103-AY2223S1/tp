@@ -26,6 +26,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DOUBLE = "invalid";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +34,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_DOUBLE = "2.5";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +194,17 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFutureDifficulty_validValue_returnsDouble() {
+        double expectedValue = 2.5;
+        assertEquals(expectedValue, ParserUtil.parseFutureAssessmentDifficulty(VALID_DOUBLE));
+    }
+
+    @Test
+    public void parseFutureDifficulty_invalidValue_throwsNumberFormatException() {
+        assertThrows(NumberFormatException.class,
+            () -> ParserUtil.parseFutureAssessmentDifficulty(INVALID_DOUBLE));
     }
 }
