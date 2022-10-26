@@ -72,11 +72,25 @@ public class Event {
     }
 
     /**
+     * Returns true if both events have the same eventTitle.
+     * Serves as a weaker notion of equality between two events.
+     */
+    public boolean isSameEvent(Event otherEvent) {
+        if (otherEvent == this) {
+            return true;
+        }
+
+        return otherEvent != null
+                && otherEvent.getEventTitle().equals(getEventTitle());
+    }
+
+    /**
      * Returns true if the person is tagged to the event.
      */
     public boolean containsPerson(Person person) {
         return uids.contains(person.getUid());
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

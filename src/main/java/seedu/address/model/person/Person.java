@@ -19,43 +19,26 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final DateOfBirth dob;
-
-    // Data fields
     private final Address address;
-    private final Gender gender; // add gender attribute for person
+    private final Gender gender;
+    private final DateOfBirth dob;
     private final Set<Tag> tags = new HashSet<>();
 
     private final Uid uid;
 
     /**
-     * Overloaded constructor that takes in optional parameter gender
+     * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags,
-                  Gender gender, Uid uid) {
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, DateOfBirth dob,
+                  Set<Tag> tags, Uid uid) {
         requireAllNonNull(name, phone, email, address, tags, gender, uid);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.dob = dob;
         this.address = address;
-        this.tags.addAll(tags);
+        this.dob = dob;
         this.gender = gender;
-        this.uid = uid;
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags, Uid uid) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.dob = dob;
-        this.address = address;
         this.tags.addAll(tags);
-        this.gender = Gender.getNoGender();
         this.uid = uid;
     }
 
@@ -71,10 +54,6 @@ public class Person {
         return email;
     }
 
-    public DateOfBirth getDob() {
-        return dob;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -82,10 +61,12 @@ public class Person {
     public Gender getGender() {
         return gender;
     }
+    public DateOfBirth getDob() {
+        return dob;
+    }
     public Uid getUid() {
         return uid;
     }
-
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -126,10 +107,10 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getDob().equals(getDob())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getGender().equals(getGender()); // add gender field for comparison
+                && otherPerson.getDob().equals(getDob())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -148,19 +129,16 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
                 .append("; Date of birth: ")
                 .append(getDob());
-
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
 
-        if (!getGender().equals(Gender.getNoGender())) {
-            // add gender field in toString method
-            builder.append("; Gender: ").append(getGender());
-        }
         return builder.toString();
     }
 }

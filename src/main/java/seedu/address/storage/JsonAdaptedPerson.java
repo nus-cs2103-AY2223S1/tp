@@ -69,10 +69,10 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         dob = source.getDob().toLogFormat();
         address = source.getAddress().value;
+        gender = source.getGender().value.toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        gender = source.getGender().value.toString();
         uid = source.getUid().value;
     }
 
@@ -110,7 +110,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
-
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -118,27 +117,21 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
         if (dob == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                     DateOfBirth.class.getSimpleName()));
+                    DateOfBirth.class.getSimpleName()));
         }
-
         if (!DateOfBirth.isValidDateOfBirth(dob)) {
             throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
-
         final DateOfBirth modelDob = new DateOfBirth(dob);
-
-        // add in optional field gender
-        Gender modelGender;
-        if (gender == null) {
-            modelGender = Gender.getNoGender();
-        } else if (!Gender.isValidGender(gender)) {
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
-        } else {
-            modelGender = new Gender(gender);
-        }
         if (uid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Uid.class.getSimpleName()));
         }
@@ -148,7 +141,7 @@ class JsonAdaptedPerson {
         Uid modelUid = new Uid(uid);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags, modelGender, modelUid);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelDob, modelTags, modelUid);
     }
 
 }
