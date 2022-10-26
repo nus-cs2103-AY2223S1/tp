@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -38,7 +39,9 @@ public class Module {
     private org.openapitools.client.model.Module apiModule;
     private boolean isFocused = false;
 
-    static class ModuleLessonIdMap extends HashMap<String, List<Lesson>> {}
+    static class ModuleLessonIdMap extends HashMap<String, List<Lesson>> {
+
+    }
 
     /**
      * Constructor for Module.
@@ -228,6 +231,19 @@ public class Module {
     }
 
     /**
+     * Returns the lesson types that cannot be selected
+     *
+     * @param semester semester
+     * @return a set of lesson types
+     */
+    public Set<LessonType> getUnselectableLessonTypes(SemestersEnum semester) {
+        Set<LessonType> unselectableSet = getLessonTypes(semester);
+        unselectableSet.removeAll(getSelectableLessonTypes(semester));
+
+        return unselectableSet;
+    }
+
+    /**
      * Checks if a lesson type is selectable in module
      *
      * @param lessonType lesson type
@@ -249,6 +265,21 @@ public class Module {
         assert lessonMap.containsKey(semester);
 
         return lessonMap.get(semester);
+    }
+
+    /**
+     * Check if module has a specified lesson id
+     *
+     * @param lessonId   lesson id
+     * @param semester   semester
+     * @param lessonType lesson type
+     * @return true if module has lesson id else false
+     */
+    public boolean hasLessonId(String lessonId, SemestersEnum semester, LessonType lessonType) {
+        requireNonNull(lessonMap);
+
+        return Optional.of(lessonMap.get(semester)).map(semesterMap -> semesterMap.get(lessonType))
+            .map(semesterLessonMap -> semesterLessonMap.get(lessonId)).isPresent();
     }
 
     /**
