@@ -3,21 +3,27 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyResidentBook" as ReadOnlyResidentBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
+Class ResidentBook
+Class ModelManager {
+- visibleFields: ObservableList<String>
+- hiddenFields: ObservableList<String>
+}
 Class UserPrefs
-
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueResidentList
+Class Resident
 Class Name
 Class Phone
+Class Email
+Class Room
+Class Gender
+Class House
+Class Matric
 Class Tag
 
 }
@@ -25,26 +31,25 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ResidentBook .up.|> ReadOnlyResidentBook
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model .left.> ReadOnlyUserPrefs
+Model .right.> ReadOnlyResidentBook
+ModelManager -right-> "1" ResidentBook
+ModelManager -left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ResidentBook *--> "1" UniqueResidentList
+UniqueResidentList --> "~* all" Resident
+Resident *--> "1" Name
+Resident *--> "1" Phone
+Resident *--> "1" Email
+Resident *--> "1" Room
+Resident *--> "1" Gender
+Resident *--> "1" House
+Resident *--> "1" Matric
+Resident *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"~* filtered" Person
+ModelManager --> "~* filtered" Resident
 @enduml
