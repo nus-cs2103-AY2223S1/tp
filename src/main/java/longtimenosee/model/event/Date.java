@@ -18,7 +18,7 @@ public class Date {
     public static final String STANDARD_DATE = "yyyy-MM-dd";
 
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Dates must follow Format: " + STANDARD_DATE;
-    public static final String RANGE_FORMAT_CONSTRAINTS = "Ensure that Year/Month/Date values entered are appropriate.";
+    public static final String RANGE_FORMAT_CONSTRAINTS = "Ensure that Year/Month/Date values are valid dates.";
 
     public static final String YEAR_RANGE_CONSTRAINTS = "Ensure that Year entered is reasonable (i.e: Within the "
             + "20th century to 21st Century)";
