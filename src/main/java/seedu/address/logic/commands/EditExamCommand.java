@@ -85,7 +85,7 @@ public class EditExamCommand extends Command {
             if (!isEditedExamOfSameModule && model.isExamLinkedToTask(examToEdit)) {
                 model.unlinkTasksFromExam(examToEdit);
                 return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n"
-                        + "All the tasks previously linked to this exam are now unlinked.");
+                        + "Warning! All the tasks previously linked to this exam are now unlinked.");
             } else {
                 model.updateExamFieldForTask(examToEdit, editedExam);
             }
