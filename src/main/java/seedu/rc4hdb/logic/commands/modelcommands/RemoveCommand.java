@@ -14,13 +14,9 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.rc4hdb.commons.core.Messages;
-import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.FilterSpecifier;
-import seedu.rc4hdb.logic.parser.ParserUtil;
-import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
@@ -87,12 +83,11 @@ public class RemoveCommand implements ModelCommand {
             if (predicate.test(residentToDelete)) {
                 model.deleteResident(residentToDelete);
                 deleted++;
-            }
-            else {
+            } else {
                 index++;
             }
         }
-            return new CommandResult(String.format(MESSAGE_REMOVED_SUCCESS, deleted));
+        return new CommandResult(String.format(MESSAGE_REMOVED_SUCCESS, deleted));
     }
 
 
