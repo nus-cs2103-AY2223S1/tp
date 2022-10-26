@@ -297,6 +297,21 @@ Example:
 * `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
 * `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
 
+### Generating piechart of statistics of the people tagged to an event in the event list : `makeStats`
+
+Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
+
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `STATISTIC_TYPE` refers to the type of statistical data being generated.
+* The `STATISTIC_TYPE` must be either `a` or `g`, where `a` stands for age and is specified to generate a pie chart showcasing
+the distribution of ages across age groups, while `g` stands for gender and is specified to generate a pie chart showcasing
+the distribution of genders.
+
+Example:
+* `makeStats 1 t/g` generates gender statistics of the persons tagged to the 1st event in the event list
+* `makeStats 3 t/a` generates age statistics of the persons tagged to the 3rd event in the event list
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the application.
