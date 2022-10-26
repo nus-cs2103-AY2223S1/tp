@@ -1,4 +1,4 @@
-package seedu.address.wrapper;
+package seedu.address.github;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -8,7 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import kong.unirest.UnirestInstance;
-import seedu.address.wrapper.exceptions.ResponseParseException;
+import seedu.address.github.exceptions.ResponseParseException;
 
 /**
  * Class representing routes taken to get user's repo information

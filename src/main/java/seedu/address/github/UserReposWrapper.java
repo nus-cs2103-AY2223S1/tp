@@ -1,7 +1,7 @@
-package seedu.address.wrapper;
+package seedu.address.github;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.wrapper.UserReposRoute.getUserReposRoute;
+import static seedu.address.github.UserReposRoute.getUserReposRoute;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import kong.unirest.UnirestInstance;
-import seedu.address.wrapper.exceptions.RepoNotFoundException;
+import seedu.address.github.exceptions.RepoNotFoundException;
 
 /**
  * Class representing a wrapper over the requests and routes needed to get user repo information from GitHub

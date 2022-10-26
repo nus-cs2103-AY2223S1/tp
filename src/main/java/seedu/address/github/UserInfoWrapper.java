@@ -1,5 +1,5 @@
 //@@author arnav-ag
-package seedu.address.wrapper;
+package seedu.address.github;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 import org.json.JSONObject;
 
 import kong.unirest.UnirestInstance;
-import seedu.address.wrapper.exceptions.FileSaveFailException;
+import seedu.address.github.exceptions.FileSaveFailException;
 
 /**
  * Class representing a wrapper over the requests and routes needed to get user information from GitHub

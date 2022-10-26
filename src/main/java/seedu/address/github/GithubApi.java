@@ -1,4 +1,4 @@
-package seedu.address.wrapper;
+package seedu.address.github;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -7,10 +7,10 @@ import kong.unirest.HttpRequestSummary;
 import kong.unirest.HttpResponse;
 import kong.unirest.Interceptor;
 import kong.unirest.UnirestInstance;
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.RepoNotFoundException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.model.person.github.User;
-import seedu.address.wrapper.exceptions.NetworkConnectionException;
-import seedu.address.wrapper.exceptions.RepoNotFoundException;
-import seedu.address.wrapper.exceptions.UserInvalidException;
 
 /**
  * Class representing a singleton GitHub API wrapper

@@ -1,4 +1,4 @@
-package seedu.address.wrapper.exceptions;
+package seedu.address.github.exceptions;
 
 /**
  * Represents an error which occurs when getting a link.

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
 
+import seedu.address.github.UserInfoWrapper;
+import seedu.address.github.UserReposWrapper;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.contact.Email;
 import seedu.address.model.person.github.repo.Repo;
 import seedu.address.model.person.github.repo.RepoList;
-import seedu.address.wrapper.UserInfoWrapper;
-import seedu.address.wrapper.UserReposWrapper;
 
 /**
  * Represents a GitHub's User
