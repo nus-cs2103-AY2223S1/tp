@@ -4,7 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.sort.*;
+import seedu.address.logic.parser.sort.SortByAppointment;
+import seedu.address.logic.parser.sort.SortByIncome;
+import seedu.address.logic.parser.sort.SortByMonthly;
+import seedu.address.logic.parser.sort.SortByName;
+import seedu.address.logic.parser.sort.SortByRiskTag;
+
 
 /**
  * Parses input arguments and creates a new SortCommand object
