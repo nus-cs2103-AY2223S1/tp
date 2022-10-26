@@ -10,7 +10,7 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -35,7 +35,7 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -58,30 +58,21 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
 
 </div>
 
-## General Commands
-
 ### Viewing help : `help`
 
-<details>
-<summary> Displays a list of commands and functionalities. </summary>
+Displays a list of commands and functionalities.
 
 Format: `help`
-</details>
 
 ### Clearing all entries : `clear`
 
-<details>
-<summary> Clears all entries from the list. </summary>
+Clears all entries from the list. 
 
 Format: `clear`
-</details>
-
-## Project Commands
 
 ### Adding a project: `project -a`
 
-<details> 
-<summary> Adds a project to the list of projects. A unique project ID will be automatically generated. </summary>
+Adds a project to the list of projects. A unique project ID will be automatically generated.
 
 Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME] [c/CLIENT_ID] [d/DEADLINE]`
 
@@ -99,12 +90,10 @@ client with `CLIENT_ID` 1 to the project.
 * `project -a n/LastProject d/2023-10-01 r/Dave/LastProject c/2` Adds a project with `PROJECT_NAME` LastProject and 
 `DEADLINE` 2023-10-01 and `USERNAME/REPO_NAME` Dave/LastProject to the `ProjectList` and adds a client with `CLIENT_ID` 2 
 to the project.
-</details>
 
 ### Editing a project : `project -e`
 
-<details>
-<summary> Edits a specified existing project. </summary>
+Edits a specified existing project.
 
 Format: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/USERNAME/REPO_NAME] [c/CLIENT_ID] [d/DEADLINE]`
 
@@ -123,12 +112,10 @@ and new `DEADLINE` 2021-12-03.
 * `project -e p/4 n/ThirdProject d/2022-02-02 r/Jackson/ThirdProject c/2` Edits the project with `PROJECT_ID` 4 to 
 have the new `PROJECT_NAME` ThirdProject, new `DEADLINE` 2022-02-02, new `USERNAME/REPO_NAME` Jackson/ThirdProject and new 
 client with `CLIENT_ID` 2.
-</details>
 
 ### Deleting a project : `project -d`
 
-<details>
-<summary> Removes the specified existing project. </summary>
+Removes the specified existing project.
 
 Format: `project -d PROJECT_ID`
 
@@ -138,20 +125,16 @@ Format: `project -d PROJECT_ID`
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
 * `project -d 4` Deletes project with `PROJECT_ID` 4.
-</details>
 
 ### Listing all projects : `project -l`
 
-<details>
-<summary> Shows a list of all projects. </summary>
+Shows a list of all projects.
 
 Format: `project -l`
-</details>
 
 ### Finding a project : `project -f`
 
-<details>
-<summary> Finds and lists all the projects matching the search criteria.</summary>
+Finds and lists all the projects matching the search criteria.
 
 Format: `project -f [n/PROJECT_NAME] [r/USERNAME/REPO_NAME]`
 
@@ -166,12 +149,10 @@ Examples:
 * `project -f r/tp/F13` Finds and lists all the projects with `USERNAME/REPO_NAME` tp/F13.
 * `project -f n/AB4 AB3 r/tp/F13` Finds and lists all the projects whose `PROJECT_NAME` contains the word AB4 or AB3 
   and with `USERNAME/REPO_NAME` tp/F13.
-</details>
 
 ### Sorting all projects: `project -s`
 
-<details>
-<summary> Sorts all projects in `ProjectList` based on a specified key. </summary>
+Sorts all projects in `ProjectList` based on a specified key.
 
 Format: `project -s [p/PROJECT_ID] [d/DEADLINE] [i/ISSUE_COUNT] [n/PROJECT_NAME]`
 
@@ -188,23 +169,18 @@ Examples:
 * `project -s i/1` Sorts list of projects based on `ISSUE_COUNT` from highest incomplete issue count to lowest incomplete 
 issue count.
 * `project -s n/0` Sorts list of projects based on `PROJECT_NAME` in alphabetical order.
-</details>
+
 
 ### Setting project list as default view: `project -v`
 
-<details>
-<summary> Sets `ProjectList` to be the default view when application is re-opened. </summary>
+Sets `ProjectList` to be the default view when application is re-opened.
 
 Format: `project -v`
-</details>
-
-## Client Commands
 
 ### Adding a client : `client -a`
 
-<details>
-<summary> Adds a client to the list of clients and to the specified existing project. A unique client ID will be automatically 
-generated. </summary>
+Adds a client to the list of clients and to the specified existing project. A unique client ID will be automatically 
+generated. 
 
 Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
@@ -219,12 +195,10 @@ Examples:
    charlie@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 3.
 *  `client -a n/Dave m/12345678 e/dave@gmail.com p/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_MOBILE` 
    12345678 and `CLIENT_EMAIL` dave@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 4.
-</details>
 
 ### Editing a client : `client -e`
 
-<details>
-<summary> Edits the specified existing client. </summary>
+Edits the specified existing client.
 
 Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
@@ -241,12 +215,10 @@ Examples:
    `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
 *  `client -e c/4 n/Dave m/12345678 e/dave@gmail.com` Edits the client with `CLIENT``_ID` 4 to have the new 
    `CLIENT_NAME` Dave, `CLIENT_MOBILE` 12345678 and `CLIENT_EMAIL` dave@gmail.com.
-</details>
 
 ### Deleting a client : `client -d`
 
-<details>
-<summary> Removes the specified existing client. </summary>
+Removes the specified existing client.
 
 Format: `client -d CLIENT_ID`
 
@@ -256,20 +228,16 @@ Format: `client -d CLIENT_ID`
 Examples:
 * `client -d 1` Deletes client with `CLIENT_ID` 1.
 * `client -d 6` Deletes client with `CLIENT_ID` 6.
-</details>
 
 ### Listing all clients : `client -l`
 
-<details>
-<summary> Shows a list of all clients. </summary>
+Shows a list of all clients. 
 
 Format: `client -l`
-</details>
 
 ### Finding a client : `client -f`
 
-<details>
-<summary> Finds and lists all the clients matching the search criteria.</summary>
+Finds and lists all the clients matching the search criteria.
 
 Format: `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]`
 
@@ -288,11 +256,10 @@ Examples:
 * `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
   `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
   `CLIENT_MOBILE` 12345678.
-</details>
 
 ### Sorting all clients: `client -s`
-<details>
-<summary> Sorts all clients in `ClientList` based on a specified key. </summary>
+
+Sorts all clients in `ClientList` based on a specified key.
 
 Format: `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`
 
@@ -304,23 +271,17 @@ Format: `client -s [c/CLIENT_ID] [n/CLIENT_NAME]`
 Examples:
 * `client -s c/0` Sort list of clients based on `CLIENT_ID` from lowest to highest.
 * `client -s n/1` Sort list of clients based on `CLIENT_NAME` in reverse alphabetical order.
-</details>
 
 ### Setting client list as default view: `client -v`
 
-<details>
-<summary> Sets `ClientList` to be the default view when application is re-opened. </summary>
+Sets `ClientList` to be the default view when application is re-opened.
 
 Format: `client -v`
-</details>
-
-## Issue Commands
 
 ### Adding an issue : `issue -a`
 
-<details>
- <summary> Adds an issue to the list of issues and to the issue list in the specified existing project. A unique issue ID will be 
-automatically generated. </summary>
+Adds an issue to the list of issues and to the issue list in the specified existing project. A unique issue ID will be 
+automatically generated. 
 
 Format: `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY]`
 
@@ -335,12 +296,10 @@ project with `PROJECT_ID` 1.
 and to the `IssueList` of the project with `PROJECT_ID` 2.
 * `issue -a t/Design GUI u/0 d/2022-09-12 p/3` Adds an issue with `TITLE` Design GUI, `URGENCY` NONE(0) and `DEADLINE` 
 2022-09-12 to the overall `IssueList` and to the `IssueList` of the project with `PROJECT_ID` 3.
-</details>
 
 ### Editing an issue : `issue -e`
 
-<details>
-<summary> Edits the specified existing issue. </summary>
+Edits the specified existing issue. 
 
 Format: `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]`
 
@@ -358,12 +317,10 @@ Examples:
 LOW(1).
 * `issue -e 1/3 u/3 t/Do UG d/2022-01-12` Edits the issue with `ISSUE_ID` 3 to have the new `URGENCY` HIGH(3) and 
 `TITLE` Do UG and `DEADLINE` 2022-01-12.
-</details>
 
 ### Deleting an issue : `issue -d`
 
-<details>
-<summary> Removes the specified existing issue. </summary>
+Removes the specified existing issue.
 
 Format: `issue -d ISSUE_ID`
 
@@ -373,12 +330,10 @@ Format: `issue -d ISSUE_ID`
 Examples:
 * `issue -d 1` Deletes issue with `ISSUE_ID` 1.
 * `issue -d 3` Deletes issue with `ISSUE_ID` 3.
-</details>
 
 ### Finding an issue : `issue -f`
 
-<details>
-<summary> Finds and lists all the issues matching the search criteria. </summary>
+Finds and lists all the issues matching the search criteria.
 
 Format: `issue -f [t/TITLE] [pn/PROJECT_NAME] [u/URGENCY] [s/STATUS]`
 
@@ -395,13 +350,11 @@ Examples:
   `PROJECT_NAME` containing DevEnable or AB3.
 * `issue -f t/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `TITLE` 
   enhancement and `URGENCY` HIGH or LOW and tied to project with `PROJECT_NAME` containing DevEnable or AB3.
-* `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete. 
-</details>
+* `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete.
 
 ### Sorting all issues: `issue -s`
 
-<details>
-<summary> Sorts all issues in `IssueList` based on a specified key. </summary>
+Sorts all issues in `IssueList` based on a specified key.
 
 Format: `issue -s [i/ISSUE_ID] [d/DEADLINE] [u/URGENCY]`
 
@@ -415,15 +368,38 @@ Examples:
 * `issues -s i/0` Sorts list of issues based on `ISSUE_ID` from lowest to highest.
 * `issues -s d/0` Sorts list of issues based on `DEADLINE` from earliest to latest.
 * `issues -s u/1` Sorts list of issues based on `URGENCY` from highest to lowest.
-</details>
+
+### Marking an issue: `issue -m`
+ 
+Marks specified existing issue as completed.
+
+Format: `issue -m ISSUE_ID`
+
+* Marks the issue with the specified `ISSUE_ID`, changing its `STATUS` to completed.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `issue -m 1` Changes the `STATUS` of the issue with `ISSUE_ID` 1 to completed.
+* `issue -m 8` Changes the `STATUS` of the issue with `ISSUE_ID` 8 to completed.
+
+### Unmarking an issue: `issue -u`
+
+Marks specified existing issue as incomplete.
+
+Format: `issue -U ISSUE_ID`
+
+* Unmarks the issue with the specified `ISSUE_ID`, changing its `STATUS` to incomplete.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `issue -m 1` Changes the `STATUS` of the issue with `ISSUE_ID` 1 to incomplete.
+* `issue -m 4` Changes the `STATUS` of the issue with `ISSUE_ID` 4 to incomplete.
 
 ### Setting issue list as default view: `issue -v`
-
-<details>
-<summary> Sets `IssueList` to be the default view when application is re-opened. </summary>
+ 
+Sets `IssueList` to be the default view when application is re-opened.
 
 Format: `issue -v`
-</details>
 
 ### Saving the data
 
@@ -443,14 +419,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DevEnable home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command summary
+## Command summary
 
 | Action                         | Format, Examples |
 |--------------------------------|------------------|
@@ -474,6 +450,8 @@ _Details coming soon ..._
 | **List Issues**                | `issue -l`       |
 | **Find Issue**                 | `issue -f`       |
 | **Sort Issues**                | `issue -s`       |
+| **Mark Issue**                 | `issue -m`       |
+| **Unmark Issue**               | `issue -u`       |
 | **Set Default View (Issue)**   | `issue -v`       |
 | **Clear**                      | `clear`          |
 | **Help**                       | `help`           |
