@@ -1,9 +1,10 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 The BOUGHT_DATE is the date indicating when an item was bought.
 
-**Note:**
+```info
 - BOUGHT_DATE must be in the following format (dd-mm-yyyy)
 - BOUGHT_DATE can only have years between 1900 and 2300 inclusive
+```
 
 **Valid Examples:**
 - 01-01-2022

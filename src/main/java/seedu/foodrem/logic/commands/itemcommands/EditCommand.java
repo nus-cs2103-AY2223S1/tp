@@ -23,6 +23,7 @@ import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Edits the details of an existing item in FoodRem.
@@ -33,7 +34,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     // TODO: FIX ME: Make this implementation detail private
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
-    private static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
 
     private final EditItemDescriptor editItemDescriptor;
     private final Index index;
@@ -77,7 +77,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getCurrentList();
 
@@ -93,7 +93,8 @@ public class EditCommand extends Command {
         }
 
         model.setItem(itemToEdit, editedItem);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
+        return CommandResult.from(new ItemWithMessage(editedItem,
+                "Item successfully edited with the following values:"));
     }
 
     public static String getUsage() {

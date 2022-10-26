@@ -14,7 +14,6 @@ import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.testutil.TypicalFoodRem;
 
 class HelpCommandTest {
-
     private final Model model = new ModelManager(TypicalFoodRem.getTypicalFoodRem(), new UserPrefs());
 
     @Test
@@ -25,7 +24,7 @@ class HelpCommandTest {
                 + "To receive help for a specific command, enter \"help COMMAND_WORD\" "
                 + "in the command box, where COMMAND_WORD is any one of the following:\n"
                 + "exit, help, reset, dec, del, edit, find, inc, list, new, rmk, sort, view, "
-                + "deletetag, listtag, newtag, renametag, tag, untag.\n\n"
+                + "filtertag, deletetag, listtag, newtag, renametag, tag, untag.\n\n"
                 + "For more information please head to:\n"
                 + "https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide";
         assertEquals(helpMessage, HelpCommand.getCommandHelpMessage(CommandType.HELP_COMMAND));
@@ -36,18 +35,18 @@ class HelpCommandTest {
         String generalHelpMessage = "To receive help for a specific command, enter \"help COMMAND_WORD\" "
                 + "in the command box, where COMMAND_WORD is any one of the following:\n"
                 + "exit, help, reset, dec, del, edit, find, inc, list, new, rmk, sort, view, "
-                + "deletetag, listtag, newtag, renametag, tag, untag.\n\n"
+                + "filtertag, deletetag, listtag, newtag, renametag, tag, untag.\n\n"
                 + "For more information please head to:\n"
                 + "https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide";
         assertEquals(generalHelpMessage, HelpCommand.getGeneralHelpMessage());
     }
 
     @Test
-    void execute() {
-        CommandResult commandResult = new HelpCommand("Test").execute(model);
+    void testCommandResult() {
+        CommandResult<?> commandResult = new HelpCommand("Test").execute(model);
         assertEquals(commandResult.getHelpText(), "Test");
-        assertTrue(commandResult.isShowHelp());
-        assertEquals(commandResult.getFeedbackToUser(), "Opened help window.");
+        assertTrue(commandResult.shouldShowHelp());
+        assertEquals(commandResult.getOutput(), "Opened help window.");
     }
 
     @Test
@@ -58,11 +57,17 @@ class HelpCommandTest {
         HelpCommand helpCommandDifferentFirst = new HelpCommand("Hello");
         HelpCommand helpCommandDifferentSecond = new HelpCommand("Goodbye");
 
-
         // Exactly the same
         assertEquals(helpCommandSameFirst, helpCommandSameSecond);
-
         // Different
         assertNotEquals(helpCommandDifferentFirst, helpCommandDifferentSecond);
+    }
+
+    @Test
+    void testCommandResultEquals() {
+        CommandResult<?> firstResult = new HelpCommand("Test").execute(model);
+        CommandResult<?> secondResult = new HelpCommand("Test").execute(model);
+
+        assertEquals(firstResult, secondResult);
     }
 }

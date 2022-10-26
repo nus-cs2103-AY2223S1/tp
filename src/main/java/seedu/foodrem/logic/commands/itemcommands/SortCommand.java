@@ -31,10 +31,10 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult<String> execute(Model model) {
         requireNonNull(model);
         model.updateSortedItemList(comparator);
-        return new CommandResult(String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW,
+        return CommandResult.from(String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW,
                 model.getCurrentList().size()));
     }
 

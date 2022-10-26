@@ -11,22 +11,20 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
-    public static final String ERROR_STYLE_CLASS = "error";
-    private static final String FXML = "CommandBox.fxml";
+    private static final String ERROR_STYLE_CLASS = "error";
 
     private final CommandExecutor commandExecutor;
 
-    @FXML
-    private TextField commandTextField;
+    @FXML private TextField commandTextField;
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
     public CommandBox(CommandExecutor commandExecutor) {
-        super(FXML);
+        super("CommandBox.fxml");
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.textProperty().addListener((_1, _2, _3) -> setStyleToDefault());
     }
 
     /**

@@ -8,21 +8,10 @@ import seedu.foodrem.commons.util.ValidationUtil;
  * Validation class for item quantities.
  */
 public class ItemPriceValidator implements Validator {
-    // Validation for characters used in price
-    private static final String MESSAGE_FOR_NOT_A_NUMBER =
-            "The item price should be a number.";
-    private static final String MESSAGE_FOR_PRICE_IS_NEGATIVE =
-            "The item price should not be negative.";
-
-    // Validation for price precision
+    /** Validation for price precision */
     private static final int MAX_DECIMAL_PLACE = 2;
-    private static final String MESSAGE_FOR_PRECISION_TOO_HIGH =
-            String.format("The item price should not have more than %d decimal places.", MAX_DECIMAL_PLACE);
-
-    // Validation for size of price
+    /** Validation for size of price */
     private static final int MAX_PRICE = 1_000_000;
-    private static final String MESSAGE_FOR_PRICE_TOO_LARGE =
-            String.format("The item price should not be more than %,d.", MAX_PRICE);
 
     /**
      * Validates a given input String. This is to be used during construction.
@@ -30,19 +19,28 @@ public class ItemPriceValidator implements Validator {
      * @param itemPriceString String representation of item price to validate against.
      */
     public static Void validate(String itemPriceString) {
-        boolean isPriceStringParsable = ValidationUtil.isParsableDouble(itemPriceString);
-        boolean isPriceTooPrecise = ValidationUtil.isDoubleTooPrecise(itemPriceString, MAX_DECIMAL_PLACE);
+        return validateNumericString(itemPriceString, MAX_DECIMAL_PLACE, MAX_PRICE,
+                "The item price should be a number.",
+                String.format("The item price should not have more than %d decimal places.", MAX_DECIMAL_PLACE),
+                String.format("The item price should not be more than %,d.", MAX_PRICE),
+                "The item price should not be negative.");
+    }
 
-        checkArgument(isPriceStringParsable, MESSAGE_FOR_NOT_A_NUMBER);
-        checkArgument(!isPriceTooPrecise, MESSAGE_FOR_PRECISION_TOO_HIGH);
+    static Void validateNumericString(String numericString, int maxDecimalPlace, int maximum,
+                                      String messageNotANumber, String messageTooPrecise, String messageTooLarge,
+                                      String messageIsNegative) {
+        boolean isParsable = ValidationUtil.isParsableDouble(numericString);
+        boolean isTooPrecise = ValidationUtil.isDoubleTooPrecise(numericString, maxDecimalPlace);
 
-        double price = Double.parseDouble(itemPriceString);
+        checkArgument(isParsable, messageNotANumber);
+        checkArgument(!isTooPrecise, messageTooPrecise);
 
-        boolean isPriceLessThanEqualMaxPrice = price <= MAX_PRICE;
-        boolean isPriceNonNegative = ValidationUtil.isNonNegative(price);
+        double number = Double.parseDouble(numericString);
+        boolean isWithinMaximum = number <= maximum;
+        boolean isNonNegative = ValidationUtil.isNonNegative(number);
 
-        checkArgument(isPriceLessThanEqualMaxPrice, MESSAGE_FOR_PRICE_TOO_LARGE);
-        checkArgument(isPriceNonNegative, MESSAGE_FOR_PRICE_IS_NEGATIVE);
+        checkArgument(isWithinMaximum, messageTooLarge);
+        checkArgument(isNonNegative, messageIsNegative);
         return null;
     }
 }

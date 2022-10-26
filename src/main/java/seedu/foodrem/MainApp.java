@@ -15,6 +15,7 @@ import seedu.foodrem.commons.util.ConfigUtil;
 import seedu.foodrem.commons.util.StringUtil;
 import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.LogicManager;
+import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.ReadOnlyFoodRem;
@@ -38,11 +39,9 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected Ui ui;
-    protected Logic logic;
-    protected Storage storage;
-    protected Model model;
-    protected Config config;
+    private Ui ui;
+    private Storage storage;
+    private Model model;
 
     private String initialMessage = "Welcome to FoodRem!";
 
@@ -52,7 +51,7 @@ public class MainApp extends Application {
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
-        config = initConfig(appParameters.getConfigPath());
+        Config config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
@@ -63,8 +62,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
-
+        Logic logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
     }
 
@@ -78,18 +76,18 @@ public class MainApp extends Application {
         try {
             Optional<ReadOnlyFoodRem> foodRemOptional = storage.readFoodRem();
             if (foodRemOptional.isEmpty()) {
-                initialMessage = "Data file not found. Will be starting with a sample FoodRem";
+                initialMessage = "Data file not found. Will be starting with a sample FoodRem.";
                 logger.info(initialMessage);
             }
             initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
-            initialMessage = "Data file not in the correct format. Will be starting with a sample FoodRem";
+            initialMessage = "Data file not in the correct format. Will be starting with an empty FoodRem.";
             logger.warning(initialMessage);
-            initialData = SampleDataUtil.getSampleFoodRem();
+            initialData = new FoodRem();
         } catch (IOException e) {
-            initialMessage = "Problem while reading from the file. Will be starting with a sample FoodRem";
+            initialMessage = "Problem while reading from the file. Will be starting with an empty FoodRem";
             logger.warning(initialMessage);
-            initialData = SampleDataUtil.getSampleFoodRem();
+            initialData = new FoodRem();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -175,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Food Rem ] =============================");
+        logger.info("============================ [ Stopping FoodRem ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

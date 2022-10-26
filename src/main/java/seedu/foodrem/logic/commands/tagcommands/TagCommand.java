@@ -13,13 +13,12 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Tags an item with a Tag.
  */
 public class TagCommand extends Command {
-    // TODO: Test this command
-    private static final String MESSAGE_SUCCESS = "Item tagged successfully.\n%1$s";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
@@ -38,7 +37,22 @@ public class TagCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
+        Item itemToTag = validateAndGetTargetItem(model, tag, index);
+        Set<Tag> itemTags = itemToTag.getTagSet();
+        if (itemTags.contains(tag)) {
+            throw new CommandException(ERROR_DUPLICATE);
+        }
+        itemTags.add(tag);
+        Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
+
+        model.setItem(itemToTag, newTagSetItem);
+
+        return CommandResult.from(
+                new ItemWithMessage(newTagSetItem, "Item tagged successfully. View updated item below:"));
+    }
+
+    static Item validateAndGetTargetItem(Model model, Tag tag, Index index) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {
@@ -50,16 +64,7 @@ public class TagCommand extends Command {
             throw new CommandException(ERROR_NOT_FOUND_ITEM);
         }
 
-        Item itemToTag = lastShownList.get(index.getZeroBased());
-        Set<Tag> itemTags = itemToTag.getTagSet();
-        if (itemTags.contains(tag)) {
-            throw new CommandException(ERROR_DUPLICATE);
-        }
-        itemTags.add(tag);
-        Item newTagSetItem = Item.createItemWithTags(itemToTag, itemTags);
-
-        model.setItem(itemToTag, newTagSetItem);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newTagSetItem));
+        return lastShownList.get(index.getZeroBased());
     }
 
     public static String getUsage() {
