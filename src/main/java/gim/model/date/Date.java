@@ -89,7 +89,10 @@ public class Date {
      * @return string representing the day of week
      */
     public String getDayString() {
-        return date.getDayOfWeek().toString();
+        // Convert "SATURDAY" to "Saturday"
+        String dayString = date.getDayOfWeek().toString();
+        dayString = dayString.charAt(0) + dayString.substring(1).toLowerCase();
+        return dayString;
     }
 
     /**
