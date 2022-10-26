@@ -193,7 +193,7 @@ Taking into consideration that check-in and check-out dates come as a pair, we d
   * Pros: Less code, more flexibility.
   * Cons: `Bill` must be allowed to hold negative values, but `Guest`s cannot (more checks required).
 
-Taking into consideration that `double`s is already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
+Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
 
 ### Add Command
 
