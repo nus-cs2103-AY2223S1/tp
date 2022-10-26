@@ -125,14 +125,19 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidDate() {
         // different format
-        assertParseFailure(parser, " dt/10 oct", Class.INVALID_DATETIME_ERROR_MESSAGE);
+        assertParseFailure(parser, " dt/10 oct", Class.INVALID_FIND_COMMAND_MESSAGE);
+        assertParseFailure(parser, " dt/2022-10-20 1500-1600", Class.INVALID_FIND_COMMAND_MESSAGE);
+        assertParseFailure(parser, " dt/monday", Class.INVALID_FIND_COMMAND_MESSAGE);
 
         // incomplete date format
-        assertParseFailure(parser, " dt/2022-10", Class.INVALID_DATETIME_ERROR_MESSAGE);
-        assertParseFailure(parser, " dt/2022", Class.INVALID_DATETIME_ERROR_MESSAGE);
+        assertParseFailure(parser, " dt/2022-10", Class.INVALID_FIND_COMMAND_MESSAGE);
+        assertParseFailure(parser, " dt/2022", Class.INVALID_FIND_COMMAND_MESSAGE);
 
         // empty
-        assertParseFailure(parser, " dt/", Class.INVALID_DATETIME_ERROR_MESSAGE);
+        assertParseFailure(parser, " dt/", Class.INVALID_FIND_COMMAND_MESSAGE);
+
+        // whitespaces
+        assertParseFailure(parser, " dt/   ", Class.INVALID_FIND_COMMAND_MESSAGE);
     }
 
 }

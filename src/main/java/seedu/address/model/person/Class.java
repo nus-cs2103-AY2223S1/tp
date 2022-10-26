@@ -29,11 +29,15 @@ public class Class {
             + " " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
     public static final String VALIDATION_FLEXIBLE_CLASS_REGEX =
             "(?i)(Mon|Tue|Wed|Thu|Fri|Sat|Sun) " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
+    public static final String INVALID_FIND_COMMAND_MESSAGE =
+            "Please include a date either in the format of yyyy-MM-dd or Day-of-Week"
+            + "\nExamples: 2022-10-15, Mon, tue"
+            + "\nDay-of-Week must be 3 letters and is case-insensitive";
 
     public final LocalDate date;
     public final LocalTime startTime;
     public final LocalTime endTime;
-    // yyyy-MM-dd eg. 2022-05-05 1200-1500
+    // yyyy-MM-dd 0000-2359 eg. 2022-05-05 1200-1500
     public final String classDateTime;
 
     /**

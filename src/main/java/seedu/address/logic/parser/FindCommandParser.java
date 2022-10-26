@@ -66,7 +66,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             String[] addressKeywords = addressToFind.split("\\s+");
             return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addressKeywords)));
         } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
-            String dateToFind = ParserUtil.parseDate(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
+            String dateToFind =
+                    ParserUtil.parseDateToFind(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
             return new FindCommand(new ClassContainsKeywordsPredicate(Arrays.asList(dateToFind)));
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.

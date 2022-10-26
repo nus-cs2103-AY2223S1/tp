@@ -219,7 +219,7 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code date} as part of {@code parseClass}.
+     * Helper method to parse {@String date} as part of {@code parseClass}.
      */
     public static LocalDate parseDate(String date) throws ParseException {
         LocalDate result;
@@ -232,7 +232,26 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code time} as part of {@code parseClass}.
+     * Parses a {@String date} and returns LocalDate object.
+     */
+    public static LocalDate parseDateToFind(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (trimmedDate.isBlank()) {
+            throw new ParseException(Class.INVALID_FIND_COMMAND_MESSAGE);
+        }
+        if (Arrays.asList(DAYS_OF_WEEK).contains(trimmedDate.toUpperCase())) {
+            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedDate.toUpperCase());
+            return LocalDate.now().with(DATE_ADJUSTER);
+        } else if (trimmedDate.matches(Class.VALIDATION_DATETIME_REGEX)) {
+            return parseDate(trimmedDate);
+        } else {
+            throw new ParseException(Class.INVALID_FIND_COMMAND_MESSAGE);
+        }
+    }
+
+    /**
+     * Helper method to parse {@String time} as part of {@code parseClass}.
      */
     private static LocalTime parseTime(String time) throws ParseException {
         Integer hour = Integer.valueOf(time.substring(0, 2));
