@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
@@ -29,7 +30,6 @@ public class RemarkCommand extends Command {
             + "He participates often in class";
 
     public static final String MESSAGE_SUCCESS = "Added remark for %s: %s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final Remark remark;
@@ -40,8 +40,7 @@ public class RemarkCommand extends Command {
      * @param remark remark to add
      */
     public RemarkCommand(Index index, Remark remark) {
-        requireNonNull(index);
-        requireNonNull(remark);
+        requireAllNonNull(index, remark);
 
         this.index = index;
         this.remark = remark;
@@ -74,10 +73,6 @@ public class RemarkCommand extends Command {
 
         Person personToAddRemark = lastShownList.get(index.getZeroBased());
         Person personAddedRemark = addRemark(personToAddRemark, remark);
-
-        if (!personToAddRemark.isSamePerson(personAddedRemark) && model.hasPerson(personAddedRemark)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
 
         model.setPerson(personToAddRemark, personAddedRemark);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
