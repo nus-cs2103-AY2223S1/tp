@@ -19,5 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SUBJECT = new Prefix("s/");
     public static final Prefix PREFIX_GRADE = new Prefix("g/");
 
+    // For prediction
+    public static final Prefix PREFIX_FUTURE_ASSESSMENT_DIFFICULTY = new Prefix("diff/");
 
 }

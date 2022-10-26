@@ -190,6 +190,24 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String} into a {@code double}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws NumberFormatException if the given {@code String} is invalid.
+     */
+    public static double parseFutureAssessmentDifficulty(String difficulty)
+        throws NumberFormatException {
+        requireNonNull(difficulty);
+        String trimmedSubject = difficulty.trim();
+        double parsedDifficulty = Double.parseDouble(trimmedSubject);
+        // Difficulty must be between 0 and 5 (inclusive)
+        if (parsedDifficulty < 0 || parsedDifficulty > 5) {
+            throw new NumberFormatException();
+        }
+        return parsedDifficulty;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

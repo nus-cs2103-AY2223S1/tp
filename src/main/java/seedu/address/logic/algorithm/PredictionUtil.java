@@ -23,7 +23,7 @@ public class PredictionUtil {
      * @param attendance the Attendance object with which to predict with
      * @return the predicted grade as a double representing the percentage
      */
-    public static double predictGrade(Grades grades, Attendance attendance) {
+    public static double predictGrade(Grades grades, Attendance attendance, double assessmentDifficulty) {
         // v5.0: use attendance to factor in amount of learning completed
         double[] rawPercents = grades.getRawPercentages();
         double[] difficulties = grades.getDifficulties();
@@ -33,9 +33,14 @@ public class PredictionUtil {
             normalizedScores[i] = (rawPercents[i] * 100)
                 + getDifficultyBonus(difficulties[i], learningRating);
         }
-        double finalScore = Arrays.stream(normalizedScores).sum() / normalizedScores.length;
+        double finalScore = Arrays.stream(normalizedScores).sum() / normalizedScores.length
+            + getDifficultyPenalty(assessmentDifficulty);
         // score cannot be more than 100%
         return Math.min(MAXIMUM_SCORE_POSSIBLE, finalScore);
+    }
+
+    private static double getDifficultyPenalty(double difficulty) {
+        return difficulty * -1.25;
     }
 
     private static double getDifficultyBonus(double difficulty, double learningRating) {

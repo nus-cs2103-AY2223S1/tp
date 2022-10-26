@@ -12,10 +12,12 @@ import seedu.address.model.person.subject.Grades;
 
 public class PredictionTest {
 
+    private final double EXPECTED = 78.90970887629169;
+
     @Test
     public void execute_validGradeInput_prediction() {
-        double testResult = PredictionUtil.predictGrade(new GradeStub(), new AttendanceStub());
-        assertEquals(82.03470887629169, testResult);
+        double testResult = PredictionUtil.predictGrade(new GradeStub(), new AttendanceStub(), 2.5);
+        assertEquals(EXPECTED, testResult);
     }
 
     static class GradeStub extends Grades {
