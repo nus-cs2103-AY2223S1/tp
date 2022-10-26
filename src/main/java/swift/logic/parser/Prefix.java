@@ -6,15 +6,15 @@ package swift.logic.parser;
  */
 public class Prefix {
     private final String prefix;
-    private String user_prompt;
+    private String userPrompt;
 
     public Prefix(String prefix) {
         this.prefix = prefix;
     }
 
-    public Prefix(String prefix, String user_prompt) {
+    public Prefix(String prefix, String userPrompt) {
         this.prefix = prefix;
-        this.user_prompt = user_prompt;
+        this.userPrompt = userPrompt;
     }
 
     public String getPrefix() {
@@ -26,7 +26,7 @@ public class Prefix {
     }
 
     public String getUserPrompt() {
-        return user_prompt == null ? "" : "<" + user_prompt + ">";
+        return userPrompt == null ? "" : "<" + userPrompt + ">";
     }
 
     @Override

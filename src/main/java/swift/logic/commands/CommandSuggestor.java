@@ -106,7 +106,7 @@ public class CommandSuggestor {
         int autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
 
         // If command has no prefix arguments
-        if(autocompleteUptoIndex == 0) {
+        if (autocompleteUptoIndex == 0) {
             autocompleteUptoIndex = suggestedCommand.length();
         }
         userInput = userInput + suggestedCommand.substring(0, autocompleteUptoIndex);
@@ -123,7 +123,8 @@ public class CommandSuggestor {
      */
     public String suggestArguments(
             ArrayList<Prefix> argPrefixes, String userInput) throws CommandException {
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[]{}));
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[] {}));
         String argumentSuggestion = "";
         String[] userInputArray = userInput.split(" ");
         Prefix currPrefix = null;
@@ -131,22 +132,23 @@ public class CommandSuggestor {
 
         // Check if user input for index is valid (only if required)
         if (isIndexRequired) {
-            if(userInputArray[0].equals("")) {
+            if (userInputArray[0].equals("")) {
                 argumentSuggestion += " " + argPrefixes.get(0).getUserPrompt();
             } else {
-                if(!userInputArray[0].matches("-?\\d+(\\.\\d+)?")) {
+                if (!userInputArray[0].matches("-?\\d+(\\.\\d+)?")) {
                     throw new CommandException("Invalid index");
                 }
             }
         }
 
         // Check if user is trying to autocomplete a prefix
-        if ((!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1)) && !userInputArray[userInputArray.length - 1].contains("/")) {
+        if ((!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1))
+                && !userInputArray[userInputArray.length - 1].contains("/")) {
             currPrefix = new Prefix(userInputArray[userInputArray.length - 1] + "/");
             argumentMultimap.put(currPrefix, "");
             if (argPrefixes.contains(currPrefix)) {
                 argumentSuggestion += "/ ";
-            } else if(!userInput.contains("/")){
+            } else if (!userInput.contains("/")) {
                 throw new CommandException("Invalid prefix");
             }
         }

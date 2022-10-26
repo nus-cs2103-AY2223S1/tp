@@ -1,6 +1,7 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 
 import swift.commons.core.Messages;

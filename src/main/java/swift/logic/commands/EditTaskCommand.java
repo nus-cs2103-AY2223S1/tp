@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

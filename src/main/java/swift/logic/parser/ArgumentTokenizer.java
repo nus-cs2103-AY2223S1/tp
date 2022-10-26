@@ -90,7 +90,7 @@ public class ArgumentTokenizer {
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
 
         // Insert a PrefixPosition to represent the preamble if preamble exists
-        if(prefixPositions.isEmpty() || prefixPositions.get(0).getStartPosition() != 0) {
+        if (prefixPositions.isEmpty() || prefixPositions.get(0).getStartPosition() != 0) {
             PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
             prefixPositions.add(0, preambleMarker);
         }

@@ -7,6 +7,7 @@ import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 import static swift.logic.parser.CliSyntax.PREFIX_PHONE;
 import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;

@@ -3,6 +3,7 @@ package swift.logic.commands;
 import static swift.commons.util.CollectionUtil.requireAllNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +20,7 @@ import swift.model.task.Task;
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add_task";
-    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(PREFIX_NAME,PREFIX_CONTACT));
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(PREFIX_NAME, PREFIX_CONTACT));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the task list.\n"
