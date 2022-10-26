@@ -1,6 +1,10 @@
 package paymelah.logic.parser;
 
+import static paymelah.logic.parser.CliSyntax.PREFIX_ABOVE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_AFTER;
+import static paymelah.logic.parser.CliSyntax.PREFIX_BEFORE;
+import static paymelah.logic.parser.CliSyntax.PREFIX_BELOW;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
@@ -38,7 +42,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_TELEGRAM, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_MONEY, PREFIX_DATE, PREFIX_TIME);
+                        PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_MONEY, PREFIX_DATE, PREFIX_TIME,
+                        PREFIX_ABOVE, PREFIX_BELOW, PREFIX_BEFORE, PREFIX_AFTER);
 
         PersonDescriptor personDescriptor = new PersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
