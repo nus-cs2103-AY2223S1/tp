@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddBuyerCommand;
 import seedu.address.logic.commands.AddDelivererCommand;
 import seedu.address.logic.commands.AddOrderCommand;
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AddPetCommand;
 import seedu.address.logic.commands.AddSupplierCommand;
 import seedu.address.logic.commands.CheckCommand;

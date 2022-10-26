@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -28,7 +27,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddBuyerCommandParser extends AddPersonCommandParser implements Parser<AddPersonCommand> {
+public class AddBuyerCommandParser implements Parser<AddBuyerCommand> {
 
     public AddBuyerCommandParser() {
     }
