@@ -4,8 +4,6 @@ import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static coydir.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import coydir.logic.commands.FindCommand;
@@ -25,7 +23,7 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new PersonMatchesKeywordsPredicate("Prittam", "Intern", "Board"));
-        assertParseSuccess(parser, "n/Prittam j/Intern d/Board ", expectedFindCommand);
+        assertParseSuccess(parser, "n/Prittam j/Intern d/Board", expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n n/Prittam \nj/Intern \t d/Board  \t", expectedFindCommand);

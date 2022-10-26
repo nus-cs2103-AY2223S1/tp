@@ -8,6 +8,7 @@ import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -72,9 +73,9 @@ public class DatabaseParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = new ArrayList<>(Arrays.asList("foo", "bar", "baz"));
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + PersonUtil.getFindCommand(keywords));
         assertEquals(new FindCommand(
                     new PersonMatchesKeywordsPredicate(keywords.get(0), keywords.get(1), keywords.get(2))
                     ), command);

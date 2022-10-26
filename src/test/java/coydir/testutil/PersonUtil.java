@@ -8,9 +8,11 @@ import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
 import static coydir.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
 import java.util.Set;
 
 import coydir.logic.commands.AddCommand;
+import coydir.logic.commands.ListCommand;
 import coydir.logic.commands.EditCommand.EditPersonDescriptor;
 import coydir.model.person.Person;
 import coydir.model.tag.Tag;
@@ -64,6 +66,17 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given keywords for the {@code FindCommand}.
+     */
+    public static String getFindCommand(List<String> keywords) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("n/%s ", keywords.get(0)));
+        sb.append(String.format("j/%s ", keywords.get(1)));
+        sb.append(String.format("d/%s ", keywords.get(2)));
         return sb.toString();
     }
 }

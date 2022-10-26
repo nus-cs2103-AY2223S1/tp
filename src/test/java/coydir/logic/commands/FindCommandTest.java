@@ -3,6 +3,7 @@ package coydir.logic.commands;
 import static coydir.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.testutil.TypicalPersons.CARL;
+import static coydir.testutil.TypicalPersons.DANIEL;
 import static coydir.testutil.TypicalPersons.ELLE;
 import static coydir.testutil.TypicalPersons.FIONA;
 import static coydir.testutil.TypicalPersons.getTypicalDatabase;
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
@@ -56,17 +58,17 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonMatchesKeywordsPredicate predicate = preparePredicate(" ");
+    public void execute_oneKeyword_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PersonMatchesKeywordsPredicate predicate = preparePredicate("el");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(DANIEL, ELLE), model.getFilteredPersonList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonMatchesKeywordsPredicate predicate = preparePredicate("Kurz Fire Operations");
         FindCommand command = new FindCommand(predicate);
@@ -75,11 +77,21 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL), model.getFilteredPersonList());
     }
 
+    @Test
+    public void execute_mismatchedKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PersonMatchesKeywordsPredicate predicate = preparePredicate("Alice Fire");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code PersonMatchesKeywordsPredicate}.
      */
     private PersonMatchesKeywordsPredicate preparePredicate(String userInput) {
-        List<String> keywords = Arrays.asList(userInput.split("\\s+"));
+        List<String> keywords = new ArrayList<>(Arrays.asList(userInput.split("\\s+")));
         while (keywords.size() < 3) {
             keywords.add("");
         }
