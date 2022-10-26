@@ -18,7 +18,7 @@ import seedu.address.model.task.Id;
 public class EditTaskDescriptor {
     private Description description;
     private Deadline deadline;
-    private boolean isDone;
+    private Boolean isDone;
     private Set<Tag> tags;
     private Id id;
 
@@ -58,7 +58,7 @@ public class EditTaskDescriptor {
         return Optional.ofNullable(deadline);
     }
 
-    public void setIsDone(boolean isDone) {
+    public void setIsDone(Boolean isDone) {
         this.isDone = isDone;
     }
 
