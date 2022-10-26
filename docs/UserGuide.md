@@ -1,13 +1,12 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
 TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TruthTable can get your task management done faster than traditional GUI apps.
+(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TruthTable can get your
+task management done faster than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -19,8 +18,8 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the
-   app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+   contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
@@ -41,7 +40,8 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 **:information_source: Notes about the command format:**<br>
 
-*  Quotes optional for string arguments (i.e. `add member "egg"` and `add_member egg` are equivalent) when there is only one string argument.
+* Quotes optional for string arguments (i.e. `add member "egg"` and `add_member egg` are equivalent) when there is only
+  one string argument.
 * Double Tab to autocomplete string values (Coming soon!)
 * Arguments are delimited with flags (`add member "egg" --email="asd@a.com"`) (Coming soon!)
 </div>
@@ -63,7 +63,8 @@ Examples:
 
 ### Set a new team `set_team`
 
-Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
+Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if
+the team does not exist
 
 Format:
 * `set_team TEAM_NAME`
@@ -74,8 +75,8 @@ Examples:
 ### Delete an existing team `delete_team`
 
 Delete an existing team from the user's list of teams. Throws an error under these conditions.
- - The target team does not exist.
- - The target team is the only existing team.
+- The target team does not exist.
+- The target team is the only existing team.
 
 Format:
 * `delete_team TEAM_NAME`
@@ -85,7 +86,8 @@ Examples:
 
 ### Adding a new member to the team `add_member`
 
-Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
+Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the
+team.
 
 Format:
 * `add_member TASK_INDEX`
@@ -108,7 +110,6 @@ Examples:
 * `delete member --index=2`
 * `delete member -i 2`
 
-
 ### Listing all members of the team : `list_members`
 
 View all the members currently in the team, in the form of a list.
@@ -124,8 +125,8 @@ Format:
 * `add_task TASK_NAME`
 
 Examples:
-*  `add_task bake with butter` will add a task with the name "bake with butter" to the current team's task list.
-*  `add_task fry` will add a task with the name "fry" to the current team's task list.
+* `add_task bake with butter` will add a task with the name "bake with butter" to the current team's task list.
+* `add_task fry` will add a task with the name "fry" to the current team's task list.
 
 ### Assign task to team member: `assign_task`
 
@@ -149,20 +150,22 @@ Format: `assign_task_rand TASK_INDEX`
 Examples:
 * `assign_task_rand 1` will assign the first task on the task list to a random team member.
 
-
 ### Set Deadline for task: `set_deadline`
 
-Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If
-deadline has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in YYYY-MM-DD HH:MM format.
+Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If deadline
+has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in
+YYYY-MM-DD HH:MM format.
 
 Format: `set_deadline TASK_INDEX DEADLINE`
 
 Examples:
-* `set_deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
+* `set_deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023
+  11.59pm.
 
 ### Delete task from team : `delete_task`
 
-Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
+Delete an existing task from the team given the task's index. Will display an error message if the task is not found in
+the user’s team, i.e., when the index exceeds the number of tasks.
 
 Format:
 * `delete_task TASK_INDEX`
@@ -172,8 +175,8 @@ Examples:
 
 ### List tasks in team: `list_tasks`
 
-View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete
-or remaining tasks.
+View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
+remaining tasks.
 
 Format:
 * `list_tasks` will list all the tasks of the current team.
@@ -234,6 +237,13 @@ Deletes all the people from the application.
 Format:
 * `clear`
 
+### Switching between light and dark theme: `theme`
+
+Toggles between light theme and dark theme.
+
+Format:
+* `theme`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -271,7 +281,6 @@ the data of your previous TruthTable home folder.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
 
 | Action | Format, Examples |
 |--------|------------------|
