@@ -20,6 +20,7 @@ import gim.model.ReadOnlyExerciseTracker;
 import gim.model.ReadOnlyUserPrefs;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.ExerciseHashMap;
+import gim.model.exercise.Name;
 import gim.testutil.ExerciseBuilder;
 import javafx.collections.ObservableList;
 
@@ -97,6 +98,16 @@ public class AddCommandTest {
 
         @Override
         public void setExerciseTrackerFilePath(Path exerciseTrackerFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Exercise getExercisePR(Name exerciseName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<Exercise> getAllExercisePRs() {
             throw new AssertionError("This method should not be called.");
         }
 

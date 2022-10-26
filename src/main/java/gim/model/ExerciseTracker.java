@@ -2,11 +2,13 @@ package gim.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gim.model.exercise.Exercise;
 import gim.model.exercise.ExerciseHashMap;
 import gim.model.exercise.ExerciseList;
+import gim.model.exercise.Name;
 import javafx.collections.ObservableList;
 
 /**
@@ -72,6 +74,23 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
         return exerciseHashMap.contains(exercise);
+    }
+
+    /**
+     * Returns the Exercise with the highest weight, with Name {@code exercises}.
+     * @param exerciseName Name of exercise.
+     * @return Exercise containing the highest weight.
+     */
+    public Exercise getExercisePR(Name exerciseName) {
+        return exerciseHashMap.getExercisePR(exerciseName);
+    }
+
+    /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    public ArrayList<Exercise> getAllExercisePRs() {
+        return exerciseHashMap.getAllExercisePRs();
     }
 
     /**

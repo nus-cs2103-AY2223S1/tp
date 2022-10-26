@@ -4,6 +4,7 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import gim.commons.core.GuiSettings;
 import gim.commons.core.LogsCenter;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.ExerciseHashMap;
+import gim.model.exercise.Name;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -97,6 +99,16 @@ public class ModelManager implements Model {
     @Override
     public void deleteExercise(Exercise target) {
         exerciseTracker.removeExercise(target);
+    }
+
+    @Override
+    public Exercise getExercisePR(Name exerciseName) {
+        return exerciseTracker.getExercisePR(exerciseName);
+    }
+
+    @Override
+    public ArrayList<Exercise> getAllExercisePRs() {
+        return exerciseTracker.getAllExercisePRs();
     }
 
     @Override

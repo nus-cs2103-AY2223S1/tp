@@ -1,11 +1,13 @@
 package gim.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import gim.commons.core.GuiSettings;
 import gim.model.exercise.Exercise;
 import gim.model.exercise.ExerciseHashMap;
+import gim.model.exercise.Name;
 import javafx.collections.ObservableList;
 
 /**
@@ -63,6 +65,19 @@ public interface Model {
      * The exercise must exist in the exercise tracker.
      */
     void deleteExercise(Exercise target);
+
+    /**
+     * Returns the Exercise with the highest weight, with Name {@code exercises}.
+     * @param exerciseName Name of exercise.
+     * @return Exercise containing the highest weight.
+     */
+    Exercise getExercisePR(Name exerciseName);
+
+    /**
+     * Returns all unique Exercises with their respective highest weights.
+     * @return ArrayList containing all Exercises with the highest weights.
+     */
+    ArrayList<Exercise> getAllExercisePRs();
 
     /**
      * Adds the given exercise.
