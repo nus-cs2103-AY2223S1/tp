@@ -13,8 +13,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXAMS;
 import java.util.List;
 import java.util.Optional;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
