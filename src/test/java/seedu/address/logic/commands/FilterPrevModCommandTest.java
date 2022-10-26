@@ -17,47 +17,47 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.module.CurrModContainsKeywordsPredicate;
+import seedu.address.model.module.PrevModContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FilterCurrModCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FilterPrevModCommand}.
  */
-public class FilterCurrModCommandTest {
+public class FilterPrevModCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        CurrModContainsKeywordsPredicate firstPredicate =
-                new CurrModContainsKeywordsPredicate("first");
-        CurrModContainsKeywordsPredicate secondPredicate =
-                new CurrModContainsKeywordsPredicate("second");
+        PrevModContainsKeywordsPredicate firstPredicate =
+                new PrevModContainsKeywordsPredicate("first");
+        PrevModContainsKeywordsPredicate secondPredicate =
+                new PrevModContainsKeywordsPredicate("second");
 
-        FilterCurrModCommand filterCurrModFirstCommand = new FilterCurrModCommand(firstPredicate);
-        FilterCurrModCommand filterCurrModSecondCommand = new FilterCurrModCommand(secondPredicate);
+        FilterPrevModCommand filterPrevModFirstCommand = new FilterPrevModCommand(firstPredicate);
+        FilterPrevModCommand filterPrevModSecondCommand = new FilterPrevModCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(filterCurrModFirstCommand.equals(filterCurrModFirstCommand));
+        assertTrue(filterPrevModFirstCommand.equals(filterPrevModFirstCommand));
 
         // same values -> returns true
-        FilterCurrModCommand filterCurrModFirstCommandCopy = new FilterCurrModCommand(firstPredicate);
-        assertTrue(filterCurrModFirstCommand.equals(filterCurrModFirstCommandCopy));
+        FilterPrevModCommand filterPrevModFirstCommandCopy = new FilterPrevModCommand(firstPredicate);
+        assertTrue(filterPrevModFirstCommand.equals(filterPrevModFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(filterCurrModFirstCommand.equals(1));
+        assertFalse(filterPrevModFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(filterCurrModFirstCommand.equals(null));
+        assertFalse(filterPrevModFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(filterCurrModFirstCommand.equals(filterCurrModSecondCommand));
+        assertFalse(filterPrevModFirstCommand.equals(filterPrevModSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        CurrModContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FilterCurrModCommand command = new FilterCurrModCommand(predicate);
+        PrevModContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FilterPrevModCommand command = new FilterPrevModCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -66,17 +66,17 @@ public class FilterCurrModCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        CurrModContainsKeywordsPredicate predicate = preparePredicate("CS2103T");
-        FilterCurrModCommand command = new FilterCurrModCommand(predicate);
+        PrevModContainsKeywordsPredicate predicate = preparePredicate("CS2030S");
+        FilterPrevModCommand command = new FilterPrevModCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code CurrModContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PrevModContainsKeywordsPredicate}.
      */
-    private CurrModContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new CurrModContainsKeywordsPredicate(userInput);
+    private PrevModContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PrevModContainsKeywordsPredicate(userInput);
     }
 }
