@@ -20,12 +20,20 @@ public class MainDisplay extends UiPart<Region>{
     }
 
     /**
-     * Sets the main display to show the details of the person object
+     * Sets the main display to show the details of a person object
      * @param person person object to be displayed
      */
     public void setPersonProfile(Person person) {
         requireNonNull(person);
+        setMainDisplay(new PersonProfile(person).getRoot());
+    }
+
+    /**
+     * Sets a region to be the only thing displayed on the main display.
+     * @param region container to be displayed on main display
+     */
+    public void setMainDisplay(Region region) {
         mainDisplay.getChildren().clear();
-        mainDisplay.getChildren().add(new PersonProfile(person).getRoot());
+        mainDisplay.getChildren().add(region);
     }
 }
