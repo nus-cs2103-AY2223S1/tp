@@ -194,7 +194,7 @@ The borrow feature is facilitated by `DeleteStudentCommandParser` and `DeleteStu
 
 Given below is an example usage scenario and how the borrow mechanism behaves at each step:
 
-1. The user enters delete student command and provides the student id of student to be deleted.
+1. The user enters delete student command and provides the student ID of student to be deleted.
 2. `FYPManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
 3. `DeleteStudentCommandParser` creates a new `DeleteStudentCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteStudentCommand`.
@@ -221,7 +221,7 @@ The delete student command is designed to be used in conjunction with find stude
 to find students taking machine learning projects before doing `delete-s id/A0123456X` to remove student from FYP Manager.
 
 This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student id. Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
 
 ### \[Proposed\] Undo/redo feature
 

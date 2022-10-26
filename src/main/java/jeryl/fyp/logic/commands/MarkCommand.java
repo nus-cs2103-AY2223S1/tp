@@ -25,7 +25,7 @@ public class MarkCommand extends Command {
             + "by the student ID given in the command "
             + "Existing statuses will be updated by the input.\n"
             + "Parameters: "
-            + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student id that is already in the FYP manager) "
+            + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student ID that is already in the FYP manager) "
             + PREFIX_PROJECT_STATUS + "STATUS\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "

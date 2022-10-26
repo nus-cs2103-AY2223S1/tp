@@ -23,7 +23,7 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_PROJECT_NAME = "$@CS2103 SE!?";
     private static final JsonAdaptedDeadline INVALID_DEADLINELIST = new JsonAdaptedDeadline(
-            "CS2103--tp, deadline: 2022-12-15");
+            "CS2103--tp, deadline: 15-12-2022");
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_STUDENT_NAME = BENSON.getStudentName().toString();

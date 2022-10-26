@@ -14,7 +14,6 @@ import jeryl.fyp.model.student.StudentId;
 
 /**
  * Adds a deadline to a student.
- * For example, add deadline: add -d id/A0123456X dn/random dd/2022-10-25 16:45
  */
 public class AddDeadlineCommand extends Command {
 
@@ -24,11 +23,11 @@ public class AddDeadlineCommand extends Command {
             + "Parameters: "
             + PREFIX_STUDENT_ID + "STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G) "
             + PREFIX_DEADLINE_NAME + "DEADLINE_NAME "
-            + PREFIX_DEADLINE_DATETIME + "DEADLINE_DATETIME "
+            + PREFIX_DEADLINE_DATETIME + "DEADLINE_DATETIME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_DEADLINE_NAME + "Midterm thesis report "
-            + PREFIX_DEADLINE_DATETIME + "2022-11-11 11:11 ";
+            + PREFIX_DEADLINE_DATETIME + "13-02-2022 11:11 ";
 
     public static final String MESSAGE_SUCCESS = "New deadline added: %1$s";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this "
