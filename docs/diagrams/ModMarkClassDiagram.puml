@@ -4,7 +4,7 @@ hide circle
 hide members
 show ModCommandParser methods
 show ModMarkCommand methods
-show Person methods
+show Student methods
 show Mod methods
 
 Class "<<interface>>\nParser" as Parser
@@ -16,7 +16,7 @@ Class ModCommandParser {
 Class ModMarkCommand {
   +execute(model: Model): CommandResult
 }
-Class Person {
+Class Student {
  +markMods(mods: ObservableList<Mod>)
 }
 Class Mod {
@@ -26,8 +26,8 @@ Class Mod {
 Parser <|.. ModCommandParser
 ModCommand <|-- ModMarkCommand
 ModCommandParser -right-> ModMarkCommand
-ModMarkCommand --> Person
-Person -left-> Mod
+ModMarkCommand --> Student
+Student -left-> Mod
 ModCommandParser ..> Mod
 ModMarkCommand ..> Mod
 

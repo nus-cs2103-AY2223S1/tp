@@ -227,13 +227,9 @@ Examples:
 
 ### Marking module of all as taken: `mod mark all`
 
-Marks module(s) of all batchmates as taken. This is useful for updating the module status of all batchmates after each semester.
+Marks all modules of all batchmates as taken. This is useful for updating the module status of all modules of all batchmates after each semester.
 
-Format: `mod mark all MODULE [MORE_MODULES]...`
-
-Examples:
-* `mod mark all cs2103t` marks the module `cs2103t` of all batchmates as taken.
-* `mod mark all cs2100 cs2103t cs2101 cs2105` marks the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` of all batchmates as taken.
+Format: `mod mark all`
 
 ### Find modules: `mod find`
 
@@ -320,7 +316,7 @@ Module prefix refers to the first two characters of every module name.
 | **Delete module**                | `mod delete INDEX MODULE [MORE_MODULES]...` <br> Example: `mod delete 3 cs2100 cs2103t cs2101 cs2105`                                                                                                        |
 | **Mark module**                  | `mod mark INDEX MODULE [MORE_MODULES]...` <br> Example: `mod mark 3 cs2100 cs2103t cs2101 cs2105`                                                                                                            |
 | **Unmark module**                | `mod unmark INDEX MODULE [MORE_MODULES]...` <br> Example: `mod unmark 3 cs2100 cs2103t cs2101 cs2105`                                                                                                        |
-| **Mark module of all**           | `mod mark all MODULE [MORE_MODULES]...` <br> Example: `mod mark all cs2100 cs2103t cs2101 cs2105`                                                                                                            |
+| **Mark module of all**           | `mod mark all`                                                                                                                                                                                               |
 | **Find module**                  | `mod find MODULE [MORE_MODULES]...` <br> Example: `mod find cs2101 cs2103t`                                                                                                                                  |
 | **Find modules taken or taking** | `mod find taken MODULE [MORE_MODULES]...` <br> `mod find taking MODULE [MORE_MODULES]...` <br> Example: `mod find taken cs2100` or <br> `mod find taking cs2101 cs2103t`                                     |
 | **Exit**                         | `exit`                                                                                                                                                                                                       |

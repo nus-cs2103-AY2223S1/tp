@@ -4,7 +4,7 @@ hide Footbox
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LM LOGIC_COLOR
-participant ":AddressBookParser" as ABP LOGIC_COLOR
+participant ":MassLinkersParser" as ABP LOGIC_COLOR
 participant ":ModCommandParser" as MCP LOGIC_COLOR
 participant "f:ModFindCommand" as MFC LOGIC_COLOR
 participant ":CommandResult" as CR LOGIC_COLOR
@@ -29,7 +29,7 @@ return f
 return f
 destroy MCP
 LM -> MFC ++ : execute(model)
-MFC -> Model ++ : updateFilteredPersonList(predicate)
+MFC -> Model ++ : updateFilteredStudentList(predicate)
 return
 MFC -> CR **
 activate CR
