@@ -19,10 +19,11 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.MessageToUser;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 class IncrementCommandTest {
 
-    private static final String EXPECTED_SUCCESS_FORMAT = "Incremented Item:\n%1$s";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Incremented successfully and updated item as follows:";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
@@ -34,15 +35,14 @@ class IncrementCommandTest {
                 .withItemQuantity("20")
                 .build();
 
-        String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, expectedItem);
-
         IncrementCommand incrementCommand = new IncrementCommand(INDEX_FIRST_ITEM,
                 new ItemQuantity("10"));
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setItem(model.getCurrentList().get(0), expectedItem);
 
-        assertCommandSuccess(incrementCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(incrementCommand, model,
+                new ItemWithMessage(expectedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
