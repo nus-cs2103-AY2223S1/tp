@@ -47,9 +47,9 @@ This user guide provides in-depth descriptions of all the available features in 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases).
-   ![Ui](images/Download.png)
-1. Copy the file to the folder you want to use as the _home folder_ for your GuestBook.
+1. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases). <br>
+   ![Ui](images/DownloadInstruction.png)
+1. Copy the file to the folder you want to use as the _home folder_ for your GuestBook. <br>
    ![Ui](images/GuestBookIcon.png)
 1. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -89,7 +89,7 @@ This user guide provides in-depth descriptions of all the available features in 
 | **Hard disk**    | `A data storage device used to store and retrieve data.`                                                                                              |
 | **Index**        | `The number that corresponds to the position of the Guest in the list.`                                                                               |
 | **Java**         | `A programming language used to run GuestBook.`                                                                                                       |
-| **JSON file**    | `Stands for JavaScript Object Notation, it refers to a file format to store data.`                                                                    |
+| **JSON file**    | `Stands for JavaScript Object Notation. It refers to a file format to store data.`                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,9 +145,9 @@ Constraints of parameters:
 
 &nbsp;&nbsp;&nbsp;Unless stated otherwise, all fields should not be left blank.
 * `NAME` should only contain alphanumeric characters and spaces.
-* `PHONE` should only contain numbers, and it should be at least 3 digits long.
-* `EMAIL` should only contain alphanumeric characters and '@' character.
-* `ROOM` should only contain alphanumeric characters and a hyphen.
+* `PHONE` should only contain numbers, and it should be at least 3 digits and at most 15 digits long.
+* `EMAIL` should only contain alphanumeric characters and '@' character. The local length (before "@") should be at most 64 characters long, and the domain length (after "@") should be at most 255 characters long.
+* `ROOM` should only contain alphanumeric characters and a hyphen. A hyphen can only be added if it is in between 2 alphanumeric characters.
 * `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
 * `IS_ROOM_CLEAN` should only contain case insensitive 'yes', 'no', 'y', 'n'.
@@ -215,7 +215,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro`<br>
+* `find alex 99272758 03-68` returns `Alex Yeoh`, `Bernice Yu`, `Charlotte Oliveiro` (refer to the image below for the details of the guests)<br>
 
 
   ![result for 'find alex 99272758 03-68'](images/findAlex9927275803-68.png)

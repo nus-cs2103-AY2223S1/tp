@@ -166,9 +166,9 @@ This section describes some noteworthy details on how certain features are imple
 **Aspect: How to represent dates**
 * **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
   * Pros: Easier to parse and edit dates separately.
-  * Cons: Depend on each other for validation (check-in must be earlier than check-out), increases coupling.
+  * Cons: Depend on each other for validation (check-in must be earlier than check-out), which increases coupling.
 * **Alternative 2 (current choice):** Single class representing both dates.
-  * Pros: Validation can be done within the class itself, reduces coupling. More intuitive as the dates are often displayed together.
+  * Pros: Validation can be done within the class itself, which reduces coupling. More intuitive as the dates are often displayed together.
   * Cons: Parsing, editing, and other operations on the dates are more complex.
 
 Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
@@ -201,7 +201,7 @@ Taking into consideration that `double`s are already signed and charges on bills
 
 * The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room`, `Date Range` and `Number of Guests`) and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields from their respective prefixes.
 
-The following activity diagrams summarizes what happens when a user enters an `add` command.
+The following activity diagram summarizes what happens when a user enters an `add` command.
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
@@ -209,24 +209,24 @@ The following activity diagrams summarizes what happens when a user enters an `a
 
 **Aspect: How to deal with duplicate entries**
 
-* **Alternative 1 (current choice):** Reject any entry with a duplicate name that is case-insensitive.
+* **Alternative 1 (current choice):** Reject any entry with a duplicate name or room that is case-insensitive.
     * Pros: Easy to implement.
-    * Cons: Will have issues with adding people of the same name to GuestBook.
+    * Cons: Will have issues with adding people of the same name or room to GuestBook.
 
 * **Alternative 2:** Allow duplicate entries to be added with no consequences.
-    * Pros: Allows for multiple guests of the same full name to be added.
-    * Cons: Easy to abuse the command intentionally (to break the program) or unintentionally (accidentally).
+    * Pros: Allows for multiple guests of the same name or room to be added.
+    * Cons: Easy to abuse the command intentionally (to break the program) or unintentionally (accidentally). Inappropriate to put 2 or more unrelated guests in the same room.
 
-Taking into consideration that in small hotels, the chances of getting two guests that have identical full names are
-incredibly unlikely, we decided to proceed with Alternative 1.
+In small hotels, the chances of getting two guests that have identical full names are
+incredibly unlikely. Also, guests would prefer to stay alone or with their families and friends. With these considerations in mind, we decided to proceed with Alternative 1.
 
 **Aspect: Excluding `isRoomClean` in the `add` command**
 * As adding the guest will be done during check in, the room should by default be cleaned for the guest to immediately
-be able to enter their room. Hence, we chose to remove `isRoomClean` as it makes the `add` command unnecessarily longer.
+be able to enter their room. Hence, we chose to remove `isRoomClean` as it would make the `add` command unnecessarily longer.
 
 **Aspect: Excluding `Bill` in the `add` command**
 * As adding the guest will be done during check in, the guest should not have incurred any bill costs yet. Hence, we set
-the initial bill to be 0 and chose to remove `Bill` as it makes the `add` command unnecessarily longer.
+the initial bill to be 0 and chose to remove `Bill` as it would make the `add` command unnecessarily longer.
 
 **Aspect: Making `Request` in the `add` command**
 * As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
@@ -247,7 +247,7 @@ The following activity diagrams summarizes what happens when a user enters an `e
 * As the edit command is usually used when there is a change or error in the information provided, it makes more sense for the user to be able to change only selected fields.
 
 **Aspect: Excluding `Bill` in the `edit` command**
-* As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace it by accident.
+* As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace the `Bill` by accident.
 
 ### Bill Command
 
@@ -262,7 +262,7 @@ The following activity diagrams summarizes what happens when a user enters a `bi
 
 **Aspect: How to update a bill**
 * **Alternative 1:** Set the bill to the input value.
-  * Pros: Can be implemented by extending the `edit` command, so that the user does not need to learn an additional command
+  * Pros: Can be implemented by extending the `edit` command, so that the user does not need to learn an additional command.
   * Cons: The user is required to calculate the updated bill value, which is less convenient and intuitive.
 * **Alternative 2 (current choice):** Add the input value to the bill.
   * Pros: More aligned with real-life implementation of bills, by adding the next charge. Easy to undo as the previous command is displayed.
@@ -298,12 +298,12 @@ The following activity diagram summarizes what happens when a user enters a `mar
   * Pros: User is able to change all the guests' isRoomClean statuses in a single command.
   * Cons: There is less flexibility in marking groups of guests' room as unclean.
 
-Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous.
+Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous. Hence, we decided to proceed with Alternative 2.
 
 ### Find Command
 
 #### Implementation:
-* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `fields` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
+* The `find` command takes in multiple keywords separated by spaces, and find all guests whose `fields` contain any of the keywords. The keywords are case-insensitive as well. For example, finding 'Alice' is the same as finding 'aLiCE'.
 
 The following activity diagram summarizes what happens when a user enters a `find` command.
 
@@ -396,11 +396,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the guest being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+As the users of this application would be hotel mangers of small hotels, there would not a massive list of guests. Hence, we think that memory usage would not be an issue, and proceeded with Alternative 1.
 
-### \[Proposed\] Data Archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -490,13 +487,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. The guest is already exists in the list of guests.
+* 1a. The guest is already exists in the list of guests.
 
     Use case ends.
 
-* 3a. The input data is invalid.
+* 1b. The input data is invalid.
 
-  * 3a1. System shows an error message.
+  * 1b1. System shows an error message.
   
     Use case resumes at step 2.
 
@@ -504,19 +501,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to search by for guest.
+1. User requests to search for a guest.
 2. System returns the guest.
 
    Use case ends.
 
 **Extensions**
-* 2a. The guest is does not exist in the system.
+* 1a. The guest is does not exist in the system.
 
   Use case ends.
 
-* 2a. The search data is invalid.
+* 1b. The search data is invalid.
 
-    * 3a1. System shows an error message.
+    * 1b1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -524,7 +521,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User searches for guest (Use case 2).
+1. User <u>searches for guest (Use case 2)</u>.
 2. User requests to edit a guest's details.
 3. System updates the guest.
 
@@ -533,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 2a. The edit data is invalid.
 
-    * 3a1. System shows an error message.
+    * 2a1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -598,7 +595,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 2a. The update data is invalid.
 
-    * 3a1. System shows an error message.
+    * 2a1. System shows an error message.
 
       Use case resumes at step 2.
 
@@ -622,8 +619,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 guests without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The response to any use action should become visible within 5 seconds.
-5. The number of guests a user enters should not exceed 4.
-6. The guests should have a check-out date.
+5. The number of guests a user enters should be at least 1 and at most 4.
+6. The guests should have a check-in and check-out date.
 7. The guest cannot stay for a period longer than 1 year.
 8. Data should be saved into a JSON file before exiting the program.
 9. The project is expected to adhere to a schedule that delivers a feature set every two weeks.
@@ -705,39 +702,45 @@ testers are expected to do more *exploratory* testing.
       Expected: No guest is added,
       because the name is already in GuestBook. Error details shown in the status message.
          Status bar remains the same.
+   
+   4. Test case: `add n/Peter p/98765431 e/johnd@nus.com rm/05-73
+         dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
+         Expected: No guest is added,
+         because the room is already in GuestBook. Error details shown in the status message.
+         Status bar remains the same.
 
-   4. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
+   5. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the name is invalid. Error details shown in the status message.
       Status bar remains the same.
 
-   5. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73
+   6. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the phone number is invalid. Error details shown in the status message.
       Status bar remains the same.
 
-   6. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73
+   7. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the email address is invalid. Error details shown in the status message.
       Status bar remains the same.
 
-   7. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/!06-73
+   8. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/!06-73
                   dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the room is invalid. Error details shown in the status message.
       Status bar remains the same.
 
-   8. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+   9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
                   dr/13/09/22 - 13/09/23 ng/1 rq/Kill the insect `<br>
       Expected: No guest is added, because the date range is invalid. Error details shown in the status message.
       Status bar remains the same.
 
-   9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
-                  dr/13/09/22 - 15/09/23 ng/5 rq/Kill the insect `<br>
-      Expected: No guest is added, because the number of guest is invalid(>4).
-      Error details shown in the status message.
-         Status bar remains the same.
-
    10. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+                   dr/13/09/22 - 15/09/23 ng/5 rq/Kill the insect `<br>
+       Expected: No guest is added, because the number of guest is invalid(>4).
+       Error details shown in the status message.
+          Status bar remains the same.
+
+   11. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
                    dr/13/09/22 - 15/09/23 ng/1 rq/Kill the insect `<br>
        Expected: No guest is added, because the is room clean is invalid. Error details shown in the status message.
        Status bar remains the same.

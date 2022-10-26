@@ -18,7 +18,7 @@ package "GuestBook Storage" #F4F6F6{
 Class "<<interface>>\nGuestBookStorage" as GuestBookStorage
 Class JsonGuestBookStorage
 Class JsonSerializableGuestBook
-Class JsonAdaptedPerson
+Class JsonAdaptedGuest
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> GuestBookStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonGuestBookStorage .up.|> GuestBookStorage
 JsonGuestBookStorage ..> JsonSerializableGuestBook
-JsonSerializableGuestBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableGuestBook --> "*" JsonAdaptedGuest
+JsonAdaptedGuest --> "*" JsonAdaptedTag
 
 @enduml
