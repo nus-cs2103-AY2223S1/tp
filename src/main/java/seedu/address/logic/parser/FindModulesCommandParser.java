@@ -10,7 +10,6 @@ import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 
 
 
-
 /**
  * Parses input arguments and creates a new FindModulesCommand object
  */
