@@ -1,4 +1,3 @@
-/*
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -170,10 +169,9 @@ public class CreateMeetingCommandTest {
         assertFalse(createMeetingWithAliceAndCharlie.equals(createMeetingWithAliceAndCharlieConflict));
     }
 
-    */
-/**
+*
      * A default address book stub that has most of the methods failing.
-     *//*
+
 
     private class AddressBookStub implements ReadOnlyAddressBook {
         private final UniquePersonList persons;
@@ -183,14 +181,12 @@ public class CreateMeetingCommandTest {
             addPerson(new PersonBuilder().withTags("Classmate", "Dalao").build());
         }
 
-        */
-/*
          * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
          * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
          *
          * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
          *   among constructors.
-         *//*
+
 
         {
             persons = new UniquePersonList();
@@ -199,11 +195,10 @@ public class CreateMeetingCommandTest {
 
         //// list overwrite operations
 
-        */
-/**
+*
          * Replaces the contents of the person list with {@code persons}.
          * {@code persons} must not contain duplicate persons.
-         *//*
+
 
         public void setPersons(List<Person> persons) {
             this.persons.setPersons(persons);
@@ -211,20 +206,18 @@ public class CreateMeetingCommandTest {
 
         //// person-level operations
 
-        */
-/**
+*
          * Adds a person to the address book.
          * The person must not already exist in the address book.
-         *//*
+
 
         public void addPerson(Person p) {
             persons.add(p);
         }
 
-        */
-/**
+*
          * Returns true if a person with the same identity as {@code person} exists in the address book.
-         *//*
+
 
         public boolean hasPerson(Person person) {
             requireNonNull(person);
@@ -233,22 +226,20 @@ public class CreateMeetingCommandTest {
 
         //// meeting-level operations
 
-        */
-/**
+*
          * Returns true if a Meeting with the same person to meet
          * and date and time as {@code meeting} exists in the address book.
-         *//*
+
 
         public boolean hasMeeting(Meeting meeting) {
             requireNonNull(meeting);
             return meetings.contains(meeting);
         }
 
-        */
-/**
+*
          * Adds a person to the address book.
          * The person must not already exist in the address book.
-         *//*
+
 
         public void addMeeting(Meeting newMeeting) {
             this.meetings.add(newMeeting);
@@ -278,10 +269,9 @@ public class CreateMeetingCommandTest {
         }
     }
 
-    */
-/**
+*
      * A default model stub that has most of the methods failing.
-     *//*
+
 
     private class ModelStub implements Model {
         private AddressBookStub addressBookStub = new AddressBookStub();
@@ -415,23 +405,21 @@ public class CreateMeetingCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        */
-/**
+*
          * Updates the filter of the filtered meeting list to filter by implementation.
          *
          * @param predicate
          * @throws NullPointerException if {@param meetingList} is null.
-         *//*
+
 
         @Override
         public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
-        */
-/**
+*
          * Returns an unmodifiable view of the filtered meetings list
-         *//*
+
 
         @Override
         public ObservableList<Meeting> getFilteredMeetingList() {
@@ -439,11 +427,10 @@ public class CreateMeetingCommandTest {
         }
     }
 
-    */
-/**
+*
      * A Model stub that contains a single Meeting.
      * To test for duplicateMeetingException
-     *//*
+
 
     private class ModelStubWithMeeting extends CreateMeetingCommandTest.ModelStub {
         private final Meeting meeting;
@@ -461,10 +448,9 @@ public class CreateMeetingCommandTest {
         }
     }
 
-    */
-/**
+*
      * A Model stub that always accepts the person being added.
-     *//*
+
 
     private class ModelStubAcceptingMeetingCreated extends CreateMeetingCommandTest.ModelStub {
         final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
@@ -491,4 +477,3 @@ public class CreateMeetingCommandTest {
     }
 
 }
-*/

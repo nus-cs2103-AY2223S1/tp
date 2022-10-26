@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -25,25 +26,19 @@ public class CreateMeetingCommandParserTest {
     private CreateMeetingCommandParser parser = new CreateMeetingCommandParser();
 
     @Test
-    public void parse_validArgs_returnsCreateMeetingCommand() {
+    public void parse_validArgs_returnsCreateMeetingCommand() throws ParseException {
         String[] nameArgs = {"Alex", "Yu"};
-        assertParseSuccess(parser, "  Alex }} Yu ;;; Study session "
-                + ";;; 26-10-2022 1830 ;;; Central Library  ",
-            new CreateMeetingCommand(nameArgs, "Study session", "26-10-2022 1830", "Central Library"));
+        assertParseSuccess(parser, "  Alex }} Yu ;;; Study session ;;; 26-10-2022 1830 ;;; Central Library  ",
+            new CreateMeetingCommand(nameArgs, "Study session",
+                "Wednesday, 26 October 2022 06:30 pm", "Central Library"));
+        assertEquals(parser.parse("  Alex }} Yu ;;; Study session ;;; 26-10-2022 1830 ;;; Central Library  "),
+            new CreateMeetingCommand(nameArgs, "Study session", "Wednesday, 26 October 2022 06:30 pm",
+                "Central Library"));
     }
 
     @Test
     public void newMeeting_wrongDateAndTimeFormat_throwsParseException() throws Exception {
         String meetingInfo = "Amy ;;; Do CS2103 Project ;;; tomorrow ;;; University Town";
-
-        //        String[] newMeetingInformation = meetingInfo.split(";;;");
-        //        String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
-        //        String meetingTitle = newMeetingInformation[1].strip();
-        //        String meetingDateAndTime = newMeetingInformation[2].strip();
-        //        String meetingLocation = newMeetingInformation[3].strip();
-        //
-        //        ArrayList<Person> arrayOfPeopleToMeet = dummyConvertNameToPerson(peopleToMeet);
-
         assertThrows(ParseException.class, "Meeting date: tomorrow is not in dd-MM-yyyy format", () ->
             parser.parse(meetingInfo));
     }
@@ -60,10 +55,9 @@ public class CreateMeetingCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateMeetingCommand.MESSAGE_USAGE));
     }
 
-    // TODO check why this fails
     @Test
-    public void parse_emptyName_throwsParseException() {
-        assertParseFailure(parser, " ;;; Do CS2103 Project ;;; 26-10-2022 1830 ;;; University Town",
+    public void parse_emptyDescription_throwsParseException() {
+        assertParseFailure(parser, " Amy ;;; ;;; 26-10-2022 1830 ;;; University Town",
             String.format(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS));
     }
 
