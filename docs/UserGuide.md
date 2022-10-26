@@ -48,9 +48,9 @@ This user guide provides in-depth descriptions of all the available features in 
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `guestbook.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-1/tp/releases).
-
+   ![Ui](images/download.png)
 1. Copy the file to the folder you want to use as the _home folder_ for your GuestBook.
-
+   ![Ui](images/homefolder.png)
 1. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
