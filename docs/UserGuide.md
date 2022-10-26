@@ -31,7 +31,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the application.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deletePerson`**`3` : Deletes the 3rd contact shown in the current list.
 
    * **`clear`** : Deletes all contacts.
 
@@ -87,10 +87,10 @@ Format: `help`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] d/DOB [t/TAG]`
 
-- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`)
-- The parameters in [ ] are optional parameters, including gender (`g`), date of birth (`d`), purchase history (`ph`), tag (`t`).
+- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), date of birth(`d`).
+- The parameters in [ ] are optional parameters, including gender (`g`), purchase history (`ph`), tag (`t`).
 - A person in the contact list can have more than 1 tag.
 
 Examples:
@@ -109,19 +109,9 @@ Examples:
 * `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
 * `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
 
-__Optional Parameter 2: Date of Birth__
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
+__Additional Parameter 2: Date of Birth__
 
 - Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
-- NAME can contain more than 1 word.
-
-
-Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20/03/2000`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/24/09/2000`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/2/1/2000`
-
 
 ### Listing all persons : `list`
 
@@ -216,19 +206,19 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person : `deletePerson`
 
 Deletes the specified person from the application.
 
-Format: `delete INDEX`
+Format: `deletePerson INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index must be **a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the application.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `deletePerson 2` deletes the 2nd person in the application.
+* `find Betsy` followed by `deletePerson 1` deletes the 1st person in the results of the `find` command.
 
 ### Add an event: `addEvent`
 
@@ -265,6 +255,36 @@ Format: `listEvents`
 Examples:
 * `listEvents`
 
+### Tag persons to an event : `tagEvent`
+
+Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
+
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* The `PERSON_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
+* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
+
+Example:
+* `tagEvent 1 p/2` tags the 2nd person in the contact list to the 1st event in the event list
+* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the contact list the 2nd event in the event list
+
+### Untag persons from an event : `untagEvent`
+
+Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
+
+* The `EVENT_INDEX` refers to the index number shown in the displayed event list.
+* The `EVENT_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* The `PERSON_INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the person list index.
+* The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
+* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
+
+Example:
+* `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list
+* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the application.
@@ -300,15 +320,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                                       |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002` |
-| **Clear**       | `clear`                                                                                                                                                                                |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                    |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
-| **List**        | `list  [s/FIELD]` <br> e.g., `list s/n`                                                                                                                                                |
-| **AddEvent**    | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
-| **DeleteEvent** | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
-| **ListEvents**  | `listEvents`                                                                                                                                                                           |
-| **Help**        | `help`                                                                                                                                                                                 |
+| Action           | Format, Examples                                                                                                                                                                       |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20 MAR 2002` |
+| **Clear**        | `clear`                                                                                                                                                                                |
+| **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                        |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
+| **List**         | `list  [s/FIELD]` <br> e.g., `list s/n`                                                                                                                                                |
+| **AddEvent**     | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
+| **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
+| **ListEvents**   | `listEvents`                                                                                                                                                                           |
+| **TagEvent**     | `tagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                                |
+| **UntagEvent**   | `untagEvent EVENT_INDEX PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                            |
+| **Help**         | `help`                                                                                                                                                                                 |

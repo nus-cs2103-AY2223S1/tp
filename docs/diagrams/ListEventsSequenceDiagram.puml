@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "u:ListEventsCommand" as ListEventsCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant "filteredEvents:FilteredList" as eventList MODEL_COLOR
+
+end box
+[-> LogicManager : execute("listEvents")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("listEvents")
+activate AddressBookParser
+
+create ListEventsCommand
+AddressBookParser -> ListEventsCommand
+activate ListEventsCommand
+
+ListEventsCommand --> AddressBookParser
+deactivate ListEventsCommand
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> ListEventsCommand : execute()
+activate ListEventsCommand
+
+ListEventsCommand -> ModelManager : updateFilteredEventList\n(PREDICATE_SHOW\n_ALL_EVENTS)
+activate ModelManager
+
+ModelManager -> eventList : setPredicate\n(PREDICATE_SHOW\n_ALL_EVENTS)
+activate eventList
+
+eventList --> ModelManager :
+deactivate eventList
+
+ModelManager --> ListEventsCommand :
+deactivate ModelManager
+
+ListEventsCommand --> LogicManager : result
+deactivate ListEventsCommand
+ListEventsCommand -[hidden]-> LogicManager : result
+destroy ListEventsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -26,11 +26,14 @@ public class Person {
     private final Gender gender; // add gender attribute for person
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Uid uid;
+
     /**
      * Overloaded constructor that takes in optional parameter gender
      */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags, Gender gender) {
-        requireAllNonNull(name, phone, email, address, tags, gender);
+    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags,
+                  Gender gender, Uid uid) {
+        requireAllNonNull(name, phone, email, address, tags, gender, uid);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -38,13 +41,13 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.gender = gender;
+        this.uid = uid;
     }
 
     /**
      * Every field must be present and not null.
-     * Gender field is added at the end of each method.
      */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags, Uid uid) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -53,6 +56,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.gender = Gender.getNoGender();
+        this.uid = uid;
     }
 
     public Name getName() {
@@ -77,6 +81,9 @@ public class Person {
 
     public Gender getGender() {
         return gender;
+    }
+    public Uid getUid() {
+        return uid;
     }
 
     /**
@@ -103,6 +110,7 @@ public class Person {
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
+     * Uid is not included in equality check.
      */
     @Override
     public boolean equals(Object other) {
@@ -139,12 +147,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
-
-        if (!getDob().isEmpty()) { //Need check if DateOfBirth is empty
-            builder.append("; Date of Birth: ")
+                .append(getAddress())
+                .append("; Date of birth: ")
                 .append(getDob());
-        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -36,7 +36,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 2, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -89,8 +89,9 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
-
-        return new ModelManager(initialData, userPrefs);
+        Model model = new ModelManager(initialData, userPrefs);
+        model.updateEventPersonReference();
+        return model;
     }
 
     private void initLogging(Config config) {

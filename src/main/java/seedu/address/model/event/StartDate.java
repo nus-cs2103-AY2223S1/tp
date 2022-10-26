@@ -34,6 +34,7 @@ public class StartDate {
      */
     public StartDate(String date) {
         requireNonNull(date);
+        assert !date.isBlank();
         checkArgument(isValidStartDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
     }

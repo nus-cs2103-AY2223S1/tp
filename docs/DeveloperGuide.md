@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` objects and `Event` objects residing in the `Model`.
 
 ### Logic component
 
@@ -121,8 +121,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` and `Events` objects (which are contained in the `UniquePersonList` and `UniqueEventList` objects).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -154,8 +155,258 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Sort Persons
 
+The sort persons feature allows the user to sort persons by their name, date of birth or gender.
+
+The field to sort persons by is encapsulated within the `SortField` class. `SortField` stores the sort field enumeration (`SortFieldType`) as well as the `Comparator` object that defines the sorting logic.
+
+The following class diagram shows how the `SortField` class integrates with the other components:
+
+![SortFieldClassDiagram](images/SortFieldClassDiagram.png)
+<br><br>
+
+Sorting is performed as part of `listPersonsCommand#execute()`. The sorting operation is exposed in the `Model` interface as `Model#sortPersons()` which calls `AddressBook#sortPersons()` which in turn calls `UniquePersonList#sort()` to sort the underlying `ObservableList<Person>`.
+
+The following sequence diagram illustrates the relevant sorting method calls for the command `listPersons s/n` with a `SortField` object `s`:
+
+![SortPersonsSequenceDiagram](images/SortPersonsSequenceDiagram.png)
+
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Sorting is performed directly on the underlying `UniquePersonList` object, which means the sorted result is **permanent**. For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will display the sorted results from the first `listPersons s/n` command because the sorted result is permanent.
+</div>
+
+
+#### Design Considerations:
+
+**Aspect: How sorting is performed:**
+
+Ideally, sorting should be a "view" level operation that doesn't change the underlying persons list. However, the way the UI is designed makes it difficult to implement sorting as such. The issue is that the UI is **hardcoded** to only display persons from the `UniquePersonList` object. As such, any changes to the persons list must be made directly to the `UniquePersonList` object. i.e. A modified copy of the persons list cannot be passed to the UI during runtime since the UI is hardcoded to show only the `UniquePersonList` object.
+
+Therefore, given the constraints of the UI, sorting is implemented as a **permanent operation**.
+
+
+* **Alternative 1 (current choice):** Sort the underlying persons list directly.
+  * Pros: User can directly use the index numbers of the sorted list to interact with the persons using other commands such as `editPerson` or `deletePerson`.
+  * Cons: Sorted result is permanent, instead of being a "view" level operation.
+
+* **Alternative 2:** Sort the persons list at the UI level.
+   * Pros: Sorted result is not permanent. So sorting won't interfere with the underlying persons list.
+   * Cons: Requires redesigning a significant part of the `UI`, `Logic` and `Model` classes.
+
+### Adding Events
+
+The Add Event feature that is accessed through the `addEvent` command allows users to add new marketing campaigns of 
+the `event` class to the application. 
+
+The `event` added by the user will have 4 compulsory fields:
+- Title of the `event`
+- Date of the `event`
+- Time of the `event`
+- Purpose of the `event`
+
+The `addEvent` operation is facilitated by `AddEventCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `AddEventCommand` in `AddressBookParser#parseCommand()`, `AddEventCommandParser#parse()` will 
+process the additional user inputs which constitute the 4 compulsory fields of the `event` class and return an 
+`AddEventCommand`. 
+
+Executing this Command object through the `AddEventCommand#execute()` triggers the `Model` interface's 
+`Model#addEvent()`. This operation subsequently calls upon the `AddressBook#addEvent()` operation which in turn calls 
+upon the `UniqueEventList#add()` operation and the `event` will be stored in memory.
+
+The addEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the event to
+a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
+
+The following sequence diagram will illustrate how the `addEvent` operation works: 
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
+event command text entered by user. event represents the event class created and stored within AddEventCommand. 
+Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
+</div>
+
+
+### Deleting Events
+
+The Delete Event feature that is accessed through the `deleteEvent` command allows users to delete marketing campaigns of
+the `event` class in the application.
+
+The `deleteEvent` operation is facilitated by `DeleteEventCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `DeleteEventCommand` in `AddressBookParser#parseCommand()`, `DeleteEventCommandParser#parse()` will
+process the additional user input which is the current index of the marketing event on the User Interface.
+
+Executing this Command object through the `DeleteEventCommand#execute()` triggers the `Model` interface's
+`Model#deleteEvent()`. This operation subsequently calls upon the `AddressBook#deleteEvent()` operation which in turn calls
+upon the `UniqueEventList#remove()` operation and the `event` will be removed from memory.
+
+The deleteEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current 
+list of events which excludes the deleted event to a .JSON format together with all other `Person`(s) in memory.
+
+The following sequence diagram will illustrate how the `deleteEvent` operation works:
+
+![DeleteEventSequenceDiagram](images/DeleteEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the delete
+event command text entered by user. event represents the instance of event class created and stored within DeleteEventCommand. 
+Additionally, saving of the updated events list from has been excluded from this diagram for simplicity.
+</div>
+
+### Add Gender
+
+The Add Gender feature allows users to add a gender field (Male / Female) to a person in the contact list. It is performed as a part
+ of `addPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
+`AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
+stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to add person operation:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
+person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
+for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new add command:
+
+![AddPersonActivityDiagram](images/AddPersonActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to gender field are considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+gender field is not provided in the command, or the gender is not of valid format; Duplicated person exception is
+thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
+</div>
+
+#### Design considerations:
+
+**Aspect: Whether gender field should be optional for a person:**
+
+* **Alternative 1 (current choice):** Compulsory gender field:
+    * Pros: It is a more logical implementation because gender is a common attribute for all persons,
+  similar to name, address, etc, which are also compulsory field for persons in contact list.
+    * Cons: It is less flexible, since only female and male genders are accepted.
+
+* **Alternative 2:** Optional gender field:
+    * Pros: It is a more flexible implementation, since user has the choice to set gender to male or female,
+  as well as hide gender.
+    * Cons: It is less logical since gender is usually a required binary field in most applications.
+
+### Edit Gender
+
+The Edit Gender feature allows users to edit a gender field (Male / Female) of a person in the contact list.
+It is performed as a part of `editPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
+`AddressBook#setPerson()` which calls `UniquePersonList#setPerson()` to replace an existing person with a new person
+object with edited fields in the person list stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to edit person operation:
+
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
+person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list
+in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new edit command:
+
+![EditPersonActivityDiagram](images/EditPersonActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to gender field are considered and shown in this activity diagram. All fields are considered optional
+in edit person command, therefore, it is not compulsory that gender field must be provided.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+the gender is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
+contact list. Error message is displayed on the GUI subsequently.
+</div>
+
+### Add Date Of Birth
+
+The Add Date Of Birth feature allows users to add a date of birth field (format: dd/mm/yyyy) to a person in the addressbook. It is performed as a part of `addPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
+`AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
+stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to add person operation:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
+person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
+for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new add person command:
+
+![AddPersonActivityDiagram](images/AddPersonActivityDiagram_DOB.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to date of birth field are considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+date of birth field is not provided in the command, or the date of birth is not of valid format; Duplicate person exception is
+thrown if the person to add already exists in the addressbook. Error message is displayed on the GUI subsequently.
+</div>
+
+#### Design considerations:
+
+**Aspect: Whether date of birth field should be optional for a person:**
+
+* **Alternative 1 (current choice):** Compulsory date of birth field:
+    * Pros: It is a more logical implementation because date of birth is a common attribute for all persons,
+  similar to name, address, etc, which are also compulsory fields for persons in the addressbook.
+    * Cons: It is less flexible in cases where the user is missing the date of birth field for a contact,
+    but wants to add the contact anyways, as the user is not able to leave the date of birth field blank.
+
+* **Alternative 2:** Optional date of birth field:
+    * Pros: It is a more flexible implementation, since the user has the choice to set a date of birth,
+    or leave it empty.
+    * Cons: It is less logical since date of birth is a common attribute for all persons in the addressbook.
+
+### Edit Date of Birth
+
+The Edit Date of Birth feature allows users to edit a date of birth field (format: dd/mm/yyyy) of a person in the addressbook.
+It is performed as a part of `editPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
+`AddressBook#setPerson()` which calls `UniquePersonList#setPerson()` to replace an existing person with a new person
+object with edited fields in the person list stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to edit person operation:
+
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
+person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list
+in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new edit command:
+
+![EditPersonActivityDiagram](images/EditPersonActivityDiagram_DOB.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to date of birth field are considered and shown in this activity diagram. The edit person command only requires at least one of the optional fields to be given, all of the fields are optional, therefore, it is not compulsory that a date of birth field must be provided.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+the date of birth is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
+addressbook. Error message is displayed on the GUI subsequently.
+</div>
+
+### \[Proposed\] Undo/redo feature
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
@@ -237,6 +488,46 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+
+### Listing Events
+
+The List Events feature allows users to enter `listEvents` and update the UI display for events, showing a list of all
+events sorted in their current order inside `ModelManager`. In the future, the command will take in a parameter,
+which specifies the field that the events list can be permanently sorted by.
+
+The List Events feature is facilitated by `ListEventsCommand` which extends from `Command`. Additionally, it implements
+the following operation:
+
+* `ModelManager#updateFilteredEventList()`  — Updates the predicate inside `ModelManager`'s filtered event list
+to modify and sort which and how events are shown.
+
+This operation is exposed in the `Model` interface as the method `Model#updateFilteredEventList()`.
+
+The following sequence diagram shows how the `listEvents` operation works.
+
+![ListEventsSequenceDiagram](images/ListEventsSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the activities related to events are
+considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListEventsCommand` should
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+</div>
+
+#### Design Considerations:
+
+**Aspect: If `listEvents` should sort events permanently:**
+* **Alternative 1 (current choice):** Sort all events permanently.
+  * Pros: Easy to implement.
+  * Cons: Whenever events are added, they are always added as the last event in the event list. Once sorted, the order
+  cannot be returned to the order which events were added.
+* **Alternative 2:** Sort all events temporarily.
+  * Pros: When users sort their events, the ordering of the events in `ModelManager` stays constant.
+  * Cons: Hard to implement as a new form of storage or memory has to be created to maintain the relative ordering of
+    events.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
