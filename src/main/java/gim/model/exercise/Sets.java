@@ -9,7 +9,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Sets {
 
-    public static final String MESSAGE_CONSTRAINTS = "Sets can only take positive integer values, up to 3 digits";
+    public static final String MESSAGE_CONSTRAINTS = "Sets can only take positive integer values, up to 3 digits, "
+            + "leading zeros are not allowed.";
     public static final String VALIDATION_REGEX = "^(?:([1-9])|([1-9][0-9])|([1-9][0-9][0-9]))$";
 
 
