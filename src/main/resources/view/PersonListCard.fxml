@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -28,15 +30,62 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="stuId" styleClass="cell_small_label" text="\$stuId" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="telegramHandle" styleClass="cell_small_label" text="\$telegramHandle" />
-      <Label fx:id="tutorialModule" styleClass="cell_small_label" text="\$tutorialModule" />
-      <Label fx:id="tutorialName" styleClass="cell_small_label" text="\$tutorialName" />
-      <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
-      <Label fx:id="participation" styleClass="cell_small_label" text="\$participation" />
-      <Label fx:id="grade" styleClass="cell_small_label" text="\$grade" />
+      <HBox HBox.hgrow="ALWAYS">
+        <VBox HBox.hgrow="ALWAYS" prefWidth="0">
+          <Label fx:id="stuId" styleClass="cell_small_label" text="\$stuId">
+            <graphic>
+              <ImageView fitWidth="20" fitHeight="20">
+                <Image url="@/images/student-card.png" />
+              </ImageView>
+            </graphic>
+          </Label>
+          <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
+            <graphic>
+              <ImageView fitWidth="20" fitHeight="20">
+                <Image url="@/images/phone.png" />
+              </ImageView>
+            </graphic>
+          </Label>
+          <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+            <graphic>
+              <ImageView fitWidth="20" fitHeight="20">
+                <Image url="@/images/email.png" />
+              </ImageView>
+            </graphic>
+          </Label>
+          <Label fx:id="telegramHandle" styleClass="cell_small_label" text="\$telegramHandle">
+            <graphic>
+              <ImageView fitHeight="20" fitWidth="20">
+                <Image url="@/images/telegram.png" />
+              </ImageView>
+            </graphic>
+          </Label>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS" prefWidth="0">
+          <Label fx:id="tutorial" styleClass="cell_small_label" text="\$tutorial" />
+          <Label fx:id="grade" styleClass="cell_small_label" text="\$grade">
+            <graphic>
+              <ImageView fitHeight="20" fitWidth="20">
+                <Image url="@/images/grade.png" />
+              </ImageView>
+            </graphic>
+          </Label>
+          <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance">
+            <graphic>
+              <ImageView fitHeight="20" fitWidth="20">
+                <Image url="@/images/correct.png" />
+              </ImageView>
+            </graphic>
+          </Label>
+          <Label fx:id="participation" styleClass="cell_small_label" text="\$participation">
+            <graphic>
+              <ImageView fitHeight="20" fitWidth="20">
+                <Image url="@/images/test.png" />
+              </ImageView>
+            </graphic>
+          </Label>
+        </VBox>
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>
