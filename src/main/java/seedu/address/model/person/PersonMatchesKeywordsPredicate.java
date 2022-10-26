@@ -1,10 +1,14 @@
 package seedu.address.model.person;
 
-import java.util.function.Predicate;
 import java.util.Arrays;
+import java.util.function.Predicate;
+
 
 import seedu.address.commons.util.StringUtil;
 
+/**
+ * Tests that a {@code Person} matches any of the keywords given.
+ */
 public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     private final String keywords;
 
