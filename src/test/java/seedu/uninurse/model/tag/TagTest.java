@@ -53,7 +53,7 @@ public class TagTest {
 
     @Test
     public void testToString() {
-        assertEquals(TAG_ELDERLY.toString(), "[" + TYPICAL_TAG_ELDERLY + "]");
+        assertEquals(TAG_ELDERLY.toString(), TYPICAL_TAG_ELDERLY);
     }
 
     @Test
