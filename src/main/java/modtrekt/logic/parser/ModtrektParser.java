@@ -62,6 +62,7 @@ public class ModtrektParser {
                 .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
                 .addCommand(AddModuleCommand.COMMAND_WORD, new AddModuleCommand())
                 .addCommand(AddModuleCommand.COMMAND_WORD_SHORTHAND, new AddModuleCommand())
+                .addCommand(CdModuleCommand.COMMAND_WORD, new CdModuleCommand())
                 .build();
         try {
             // Get the tokens from the user input.
@@ -130,8 +131,6 @@ public class ModtrektParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        case CdModuleCommand.COMMAND_WORD:
-            return new CdCommandParser().parse(arguments);
         default:
             return null;
         }
