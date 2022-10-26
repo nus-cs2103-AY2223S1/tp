@@ -108,12 +108,18 @@ This guides aims to:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+**Tip Box**
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+- Press `ESC` to close the Help window <br>
+- Press `c` to copy the User Guide url in the Help window 
+</div>
 
 ### Adding an internship: `add`
 
@@ -139,7 +145,12 @@ Examples:
 * `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
 * `add n/Tiktok p/backend engineer`
-* `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
+
+![help message](images/BeforeAddCommand.png)
+_Before executing command:  `add n/Gojek p/Mobile Intern`_
+
+![help message](images/AfterAddCommand.png)
+_After executing command: `add n/Gojek p/Mobile Intern`_
 
 ### Listing all internships : `list`
 

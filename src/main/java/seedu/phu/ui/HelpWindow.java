@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.phu.commons.core.LogsCenter;
 
@@ -22,37 +24,37 @@ public class HelpWindow extends UiPart<Stage> {
             "Refer to the following table for a quick guide on how to use this app.";
 
     public static final String COMMAND_SUMMARY =
-            "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Action                   | Format                                                             |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Add an internship        | add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE]    |\n"
-            + "|                          | [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…            |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Clear all entries        | clear                                                              |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Delete an internship     | delete INDEX...                                                    |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| View internship details  | view INDEX                                                         |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Edit internship details  | edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS]  |\n"
-            + "|                          | [d/DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...  |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Find internship(s)       | find [c/CATEGORY] KEYWORDS...                                      |\n"
-            + "| containing keyword(s)    |                                                                    |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| List all internship(s)   | list [c/CATEGORY [DESCENDING]]                                     |\n"
-            + "| in specified order       |                                                                    |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Copy internship details  | copy INDEX                                                         |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Undo previous command    | undo                                                               |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| Redo previous            | redo                                                               |\n"
-            + "| undone command           |                                                                    |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n"
-            + "| List available commands  | help                                                               |\n"
-            + "| and link to User Guide   |                                                                    |\n"
-            + "+--------------------------+--------------------------------------------------------------------+\n";
+            "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Action                  | Undo | Format                                                            |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Add an internship       |  √   | add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE]   |\n"
+            + "|                         |      | [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK] [t/TAG]…            |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Clear all entries       |  √   | clear                                                             |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Delete an internship    |  √   | delete INDEX...                                                   |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| View internship details |  x   | view INDEX                                                        |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Edit internship details |  √   | edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] |\n"
+            + "|                         |      | [d/DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]... |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Find internship(s)      |  x   | find [c/CATEGORY] KEYWORDS...                                     |\n"
+            + "| containing keyword(s)   |      |                                                                   |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| List all internship(s)  |  x   | list [c/CATEGORY [DESCENDING]]                                    |\n"
+            + "| in specified order      |      |                                                                   |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Copy internship details |  x   | copy INDEX                                                        |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Undo previous command   |  x   | undo                                                              |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| Redo previous           |  √   | redo                                                              |\n"
+            + "| undone command          |      |                                                                   |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+\n"
+            + "| List available commands |  x   | help                                                              |\n"
+            + "| and link to User Guide  |      |                                                                   |\n"
+            + "+-------------------------+------+-------------------------------------------------------------------+";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -88,6 +90,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+        setKeys();
     }
 
     /**
@@ -111,7 +114,27 @@ public class HelpWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing help page about the application.");
         getRoot().show();
+        getRoot().setMaximized(true);
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Bind keys as shortcuts for help window.
+     */
+    private void setKeys() {
+        //Bind ESC to minimized help window
+        getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                hide();
+            }
+        });
+
+        //Bind C to copy user guide url
+        getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (KeyCode.C == event.getCode()) {
+                copyUrl();
+            }
+        });
     }
 
     /**

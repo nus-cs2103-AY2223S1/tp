@@ -1,8 +1,10 @@
 #copyButton, #userGuideMessage, #commandSummary, #welcomeMessage, #commandSummaryIntro {
     -fx-text-fill: white;
+    -fx-font-size: 13;
 }
 
 #welcomeMessage {
+    fx-text-fill: white;
     -fx-font-size: 20;
 }
 
