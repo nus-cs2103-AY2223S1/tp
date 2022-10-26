@@ -13,6 +13,7 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GO
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_BYTEDANCE;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_FACEBOOK;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_GOOGLE;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_JANE_STREET;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_SHOPEE;
@@ -25,7 +26,7 @@ import seedu.application.model.ApplicationBook;
 import seedu.application.model.application.Application;
 
 /**
- * A utility class containing a list of {@code Application} objects with {@code Interview}to be used in tests.
+ * A utility class containing a list of {@code Application} objects with {@code Interview} to be used in tests.
  */
 public class TypicalApplicationsWithInterview {
 
@@ -55,7 +56,7 @@ public class TypicalApplicationsWithInterview {
             .withContact(VALID_CONTACT_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
             .withEmail(VALID_EMAIL_FACEBOOK).withPosition(VALID_POSITION_FACEBOOK)
             .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY)
-            .build();
+            .withInterview(INTERVIEW_FACEBOOK).build();
 
     private TypicalApplicationsWithInterview() {} // prevents instantiation
 

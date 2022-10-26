@@ -72,7 +72,7 @@ public class CommandTestUtil {
     public static final String VALID_INTERVIEW_TIME_GOOGLE = "1100";
     public static final String VALID_LOCATION_GOOGLE = "11, Kallang Way 6, 118436";
     public static final String VALID_ROUND_FACEBOOK = "Online assessment";
-    public static final String VALID_INTERVIEW_DATE_FACEBOOK = "2023-12-25";
+    public static final String VALID_INTERVIEW_DATE_FACEBOOK = "2025-12-25";
     public static final String VALID_INTERVIEW_TIME_FACEBOOK = "1700";
     public static final String VALID_LOCATION_FACEBOOK = "Skype";
     public static final String ROUND_DESC_GOOGLE = " " + PREFIX_ROUND + VALID_ROUND_GOOGLE;
