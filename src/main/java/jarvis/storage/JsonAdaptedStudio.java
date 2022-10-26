@@ -59,6 +59,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
      */
     @Override
     public Studio toModelType() throws IllegalValueException {
+        // LessonDesc
         if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
             throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
         }
@@ -66,14 +67,18 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
                 ? new LessonDesc(this.getLessonDesc())
                 : null;
 
+        // TimePeriod
         if (this.getStartDateTime() == null || this.getEndDateTime() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-        // check validity
+        if (!TimePeriod.isValidTimePeriod(this.getStartDateTime(), this.getEndDateTime())) {
+            throw new IllegalValueException(TimePeriod.MESSAGE_CONSTRAINTS);
+        }
         final TimePeriod modelTimePeriod = new TimePeriod(this.getStartDateTime(),
                 this.getEndDateTime());
 
+        // Student list for lesson
         if (this.getStudentList() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Student.class.getSimpleName()));
@@ -83,6 +88,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
             modelStudentList.add(jsonAdaptedStudent.toModelType());
         }
 
+        // LessonAttendance
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -94,6 +100,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
         }
         LessonAttendance modelAttendance = new LessonAttendance(attendanceMap);
 
+        // LessonNotes
         if (this.getGeneralNotes() == null || this.getStudentNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
@@ -105,6 +112,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
         }
         LessonNotes modelLessonNotes = new LessonNotes(this.getGeneralNotes(), modelStudentNotes);
 
+        // StudioParticipation
         if (studioParticipation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StudioParticipation.class.getSimpleName()));
@@ -118,6 +126,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
 
         Studio studio = new Studio(modelLessonDesc, modelTimePeriod, modelStudentList,
                 modelAttendance, modelLessonNotes, modelStudioParticipation);
+
         if (this.isCompleted()) {
             studio.markAsCompleted();
         }

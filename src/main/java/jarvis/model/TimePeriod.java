@@ -12,6 +12,7 @@ public class TimePeriod {
 
     public static final String MESSAGE_CONSTRAINTS_DATE = "Date should be in yyyy-MM-dd format";
     public static final String MESSAGE_CONSTRAINTS_TIME = "Time should be in HH:mm format";
+    public static final String MESSAGE_CONSTRAINTS = "Start time must be before end time";
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
     public static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
@@ -24,9 +25,13 @@ public class TimePeriod {
      * @param end Ending time.
      */
     public TimePeriod(LocalDateTime start, LocalDateTime end) {
-        assert start.isBefore(end) : "Start time must be before end time";
+        assert isValidTimePeriod(start, end) : "Start time must be before end time";
         this.start = start;
         this.end = end;
+    }
+
+    public static boolean isValidTimePeriod(LocalDateTime start, LocalDateTime end) {
+        return start.isBefore(end);
     }
 
     public LocalDateTime getStart() {

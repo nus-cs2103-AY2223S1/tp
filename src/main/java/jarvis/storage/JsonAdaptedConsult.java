@@ -55,6 +55,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
      */
     @Override
     public Consult toModelType() throws IllegalValueException, IOException {
+        // LessonDesc
         if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
             throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
         }
@@ -62,13 +63,18 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
                 ? new LessonDesc(this.getLessonDesc())
                 : null;
 
+        // TimePeriod
         if (this.getStartDateTime() == null || this.getEndDateTime() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
+        if (!TimePeriod.isValidTimePeriod(this.getStartDateTime(), this.getEndDateTime())) {
+            throw new IllegalValueException(TimePeriod.MESSAGE_CONSTRAINTS);
+        }
         final TimePeriod modelTimePeriod = new TimePeriod(this.getStartDateTime(),
                 this.getEndDateTime());
 
+        // Student list for lesson
         if (this.getStudentList() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Student.class.getSimpleName()));
@@ -78,6 +84,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
             modelStudentList.add(jsonAdaptedStudent.toModelType());
         }
 
+        // LessonAttendance
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -89,6 +96,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
         }
         LessonAttendance modelAttendance = new LessonAttendance(attendanceMap);
 
+        // LessonNotes
         if (this.getGeneralNotes() == null || this.getStudentNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
@@ -99,6 +107,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
             modelStudentNotes.put(modelStudentList.get(i), this.getStudentNotes().get(i));
         }
         LessonNotes modelLessonNotes = new LessonNotes(this.getGeneralNotes(), modelStudentNotes);
+
 
 
         Consult consult = new Consult(modelLessonDesc, modelTimePeriod,

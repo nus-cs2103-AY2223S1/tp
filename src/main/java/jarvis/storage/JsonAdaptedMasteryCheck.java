@@ -54,6 +54,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
      */
     @Override
     public MasteryCheck toModelType() throws IllegalValueException {
+        // LessonDesc
         if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
             throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
         }
@@ -61,13 +62,18 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
                 ? new LessonDesc(this.getLessonDesc())
                 : null;
 
+        // TimePeriod
         if (this.getStartDateTime() == null || this.getEndDateTime() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TimePeriod.class.getSimpleName()));
         }
-        TimePeriod modelTimePeriod = new TimePeriod(this.getStartDateTime(),
+        if (!TimePeriod.isValidTimePeriod(this.getStartDateTime(), this.getEndDateTime())) {
+            throw new IllegalValueException(TimePeriod.MESSAGE_CONSTRAINTS);
+        }
+        final TimePeriod modelTimePeriod = new TimePeriod(this.getStartDateTime(),
                 this.getEndDateTime());
 
+        // Student list for lesson
         if (this.getStudentList() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Student.class.getSimpleName()));
@@ -77,6 +83,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
             modelStudentList.add(jsonAdaptedStudent.toModelType());
         }
 
+        // LessonAttendance
         if (this.getAttendance() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonAttendance.class.getSimpleName()));
@@ -88,15 +95,18 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
         }
         LessonAttendance modelAttendance = new LessonAttendance(attendanceMap);
 
-        if (this.getGeneralNotes() == null) {
+        // LessonNotes
+        if (this.getGeneralNotes() == null || this.getStudentNotes() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
         }
-        TreeMap<Student, ArrayList<String>> modelStudentNotes = new TreeMap<>();
+        TreeMap<Student, ArrayList<String>> modelStudentNotes = new TreeMap<>(Comparator.comparing(s ->
+                s.getName().toString()));
         for (Integer i : this.getStudentNotes().keySet()) {
             modelStudentNotes.put(modelStudentList.get(i), this.getStudentNotes().get(i));
         }
         LessonNotes modelLessonNotes = new LessonNotes(this.getGeneralNotes(), modelStudentNotes);
+
 
         MasteryCheck masteryCheck = new MasteryCheck(modelLessonDesc, modelTimePeriod, modelStudentList,
                 modelAttendance, modelLessonNotes);
