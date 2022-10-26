@@ -41,7 +41,7 @@ public class Person {
         this.position = position;
         this.address = address;
         this.remark = remark;
-        if (position instanceof Student) {
+        if (position instanceof Student && tags.size() != 0) {
             this.tags.add(tags.iterator().next());
         } else {
             this.tags.addAll(tags);
