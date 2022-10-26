@@ -38,7 +38,7 @@ public class AddPersonCommand extends Command {
             + FLAG_PHONE_STR + " PHONE "
             + FLAG_EMAIL_STR + " EMAIL "
             + FLAG_ADDRESS_STR + " ADDRESS "
-            + FLAG_TAG_STR + " [TAG]...\n"
+            + "[" + FLAG_TAG_STR + " TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + FLAG_NAME_STR + " \"John Doe\" "
             + FLAG_PHONE_STR + " 98765432 "
