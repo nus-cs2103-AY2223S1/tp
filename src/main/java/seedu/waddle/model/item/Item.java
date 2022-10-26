@@ -4,11 +4,13 @@ import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
 
+import seedu.waddle.model.itinerary.Description;
+
 /**
  * Represents an item in the itinerary.
  */
 public class Item {
-    private final String description;
+    private final Description description;
     private final Priority priority;
     private final Cost cost;
     private final Duration duration;
@@ -20,7 +22,7 @@ public class Item {
      *
      * @param description description of the item
      */
-    public Item(String description, Priority priority, Cost cost, Duration duration) {
+    public Item(Description description, Priority priority, Cost cost, Duration duration) {
         requireAllNonNull(description, priority);
         this.description = description;
         this.priority = priority;
@@ -28,7 +30,7 @@ public class Item {
         this.duration = duration;
     }
 
-    public String getDescription() {
+    public Description getDescription() {
         return description;
     }
 

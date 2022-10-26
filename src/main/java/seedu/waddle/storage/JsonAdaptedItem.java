@@ -10,6 +10,7 @@ import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.itinerary.Description;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -44,7 +45,7 @@ public class JsonAdaptedItem {
      * Converts a given {@code Item} into this class for Jackson use.
      */
     public JsonAdaptedItem(Item source) {
-        description = source.getDescription();
+        description = source.getDescription().description;
         stars = source.getPriority().getStars();
         cost = source.getCost().toString();
         //TODO duration and startTime null error
@@ -73,7 +74,7 @@ public class JsonAdaptedItem {
         }
         final Description modelDescription = new Description(description);
         */
-        final String modelDescription = description;
+        final Description modelDescription = new Description(description);
 
         if (stars == null) {
             throw new IllegalValueException(

@@ -4,9 +4,9 @@ import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
 /**
@@ -41,7 +41,7 @@ public class EditItineraryDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditItineraryDescriptor} that we are building.
      */
     public EditItineraryDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new Description(name));
         return this;
     }
 

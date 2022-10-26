@@ -49,7 +49,7 @@ public class ItineraryCard extends UiPart<Region> {
         super(FXML);
         this.itinerary = itinerary;
         id.setText(displayedIndex + ". ");
-        name.setText(itinerary.getName().fullName);
+        name.setText(itinerary.getName().description);
         country.setText("Country: " + itinerary.getCountry().country);
         time.setText("Dates: " + itinerary.getTimeString());
         duration.setText("Duration: " + itinerary.getDuration().toString() + " Days");

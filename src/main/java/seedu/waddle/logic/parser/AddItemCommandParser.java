@@ -14,6 +14,7 @@ import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.itinerary.Description;
 
 /**
  * Parses input arguments and creates a new AddItemCommand object
@@ -35,7 +36,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
                                                    AddItemCommand.MESSAGE_USAGE));
         }
 
-        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Priority priority;
 
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
