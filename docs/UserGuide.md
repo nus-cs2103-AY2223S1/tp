@@ -106,11 +106,9 @@ Format: `list`
 
 Edits an existing person in Watson.
 
-Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br>
-`edit index/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [c/CLASS] [rem/REMARK] [t/TAG]…​` <br>
 
-* Edits the person at the specified `ID` or `INDEX`. The ID refers to the unique Identification number assigned to the person.
-The index refers to the index of the person after using the find/list feature.
+* Edits the person at the specified `INDEX`. The index refers to the index of the person after using the find/list feature.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -118,9 +116,10 @@ The index refers to the index of the person after using the find/list feature.
   specifying any tags after it.
 
 Examples:
-* `edit index/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit index/2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-* `edit id/1234 n/Charlie Crackshot` Edits the name of the person with ID 1234 to be `Charlie Crackshot`.
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person displayed after 
+using the list/find feature to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 4 n/Charlie Crackshot c/1B` Edits the name of the 4th person to be `Charlie Crackshot` and class to be `1B`.
 
 ### Locating persons by name: `find`
 
