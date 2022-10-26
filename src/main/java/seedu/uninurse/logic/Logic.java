@@ -9,6 +9,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
 
 
@@ -54,6 +55,11 @@ public interface Logic {
      * Returns the patient of interest.
      */
     Patient getPatientOfInterest();
+
+    /**
+     * Returns the schedule.
+     */
+    Schedule getSchedule();
 
     /**
      * Returns the saved PatientListTracker.

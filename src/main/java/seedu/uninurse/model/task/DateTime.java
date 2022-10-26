@@ -23,7 +23,7 @@ public class DateTime {
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_PATTERN);
 
-    public final LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
 
     /**
@@ -42,7 +42,10 @@ public class DateTime {
         dateTime = LocalDateTime.parse(validDateTime, DATE_TIME_FORMATTER);
     }
 
-    private DateTime(LocalDateTime localDateTime) {
+    /**
+     * Constructs a {@code DateTime} with the given {@code localDateTime}.
+     */
+    public DateTime(LocalDateTime localDateTime) {
         requireNonNull(localDateTime);
         dateTime = localDateTime;
     }
@@ -59,6 +62,10 @@ public class DateTime {
 
     public boolean isPastDate() {
         return dateTime.isBefore(LocalDateTime.now());
+    }
+
+    public boolean isBefore(DateTime dateTimeToCheck) {
+        return dateTime.isBefore(dateTimeToCheck.dateTime);
     }
 
     /**

@@ -60,7 +60,6 @@ public class TaskListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new TaskListCard(task, getIndex() + 1).getRoot());
             }
-
         }
     }
 }

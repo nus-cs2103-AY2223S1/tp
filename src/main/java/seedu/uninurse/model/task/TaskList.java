@@ -113,6 +113,13 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
+     * Returns a list of {@code Task}s that are due on a given day.
+     */
+    public List<Task> getAllTasksOnDay(DateTime test) {
+        return internalTaskList.stream().filter(t -> t.isTaskOnDay(test)).collect(Collectors.toList());
+    }
+
+    /**
      * Returns a list of {@code Task}s that are due today.
      */
     public List<Task> getAllTasksToday() {

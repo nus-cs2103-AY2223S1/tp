@@ -15,6 +15,7 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.storage.Storage;
 
@@ -84,6 +85,11 @@ public class LogicManager implements Logic {
     @Override
     public Patient getPatientOfInterest() {
         return model.getPatientOfInterest();
+    }
+
+    @Override
+    public Schedule getSchedule() {
+        return model.getSchedule();
     }
 
     @Override

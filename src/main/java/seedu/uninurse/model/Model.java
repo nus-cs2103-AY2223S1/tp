@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.DateTime;
 
 /**
  * The API of the Model component.
@@ -106,16 +107,21 @@ public interface Model {
     void setPatientOfInterest(Patient patient);
 
     /**
-     * Updates the TaskList of each patient with new RecurringTasks if the existing RecurringTask are past their
-     * Task date.
-     */
-    void updateRecurringTasks();
-
-    /**
      * Gets the patient of interest.
      * @return patient of interest.
      */
     Patient getPatientOfInterest();
+
+    /**
+     * Updates the day of interest with {@code dateTime} to be accessed by UI components.
+     */
+    void setDayOfInterest(DateTime dayOfInterest);
+
+    /**
+     * Gets the schedule.
+     * @return schedule.
+     */
+    Schedule getSchedule();
 
     /**
      * Gets the saved PatientListTracker.
@@ -152,4 +158,10 @@ public interface Model {
      * Makes a snapshot of the current UninurseBook.
      */
     void makeSnapshot(PatientListTracker patientListTracker);
+
+    /**
+    * Updates the TaskList of each patient with new RecurringTasks if the existing RecurringTask are past their
+    * Task date.
+    */
+    void updateRecurringTasks();
 }

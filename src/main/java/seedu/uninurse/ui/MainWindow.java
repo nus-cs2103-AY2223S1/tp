@@ -219,7 +219,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isSchedule()) {
-               // schedulePanel.handleSchedule(logic.getPatientTaskPairList); Possible implementation
+                outputPanel.handleSchedule(logic.getSchedule());
             }
 
             if (commandResult.isAddPatient()) {

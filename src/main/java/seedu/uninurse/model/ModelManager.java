@@ -15,6 +15,7 @@ import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.DateTime;
 
 /**
  * Represents the in-memory model of the uninurse book data.
@@ -28,6 +29,7 @@ public class ModelManager implements Model {
     private final FilteredList<Patient> filteredPersons;
 
     private Optional<Patient> patientOfInterest;
+    private Optional<DateTime> dayOfInterest;
     private PatientListTracker savedPair;
 
     /**
@@ -157,6 +159,16 @@ public class ModelManager implements Model {
     @Override
     public Patient getPatientOfInterest() throws PatientOfInterestNotFoundException {
         return this.patientOfInterest.orElseThrow(() -> new PatientOfInterestNotFoundException());
+    }
+
+    @Override
+    public void setDayOfInterest(DateTime dayOfInterest) {
+        this.dayOfInterest = Optional.ofNullable(dayOfInterest);
+    }
+
+    @Override
+    public Schedule getSchedule() {
+        return new Schedule(persistentUninurseBook.getWorkingCopy().getPersonList(), dayOfInterest.get());
     }
 
     @Override

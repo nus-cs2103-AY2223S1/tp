@@ -7,7 +7,6 @@ import javafx.scene.layout.Region;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
-
 /**
  * An UI component that displays information of a {@code Patient}.
  */
@@ -26,6 +25,7 @@ public class TaskListCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label time;
+
     /**
      * Creates a {@code TaskListCard} with the given {@code TaskList} to display.
      */

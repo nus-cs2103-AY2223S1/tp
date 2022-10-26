@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -25,6 +26,18 @@ public class OutputPanel extends UiPart<Region> {
 
     public void clear() {
         outputView.getChildren().clear();
+    }
+
+    /**
+     * Updates the outputView panel accordingly with a schedule if commandResult is schedule related.
+     */
+    public void handleSchedule(Schedule schedule) {
+        ScheduleListPanel scheduleListPanel = new ScheduleListPanel(schedule);
+        scheduleListPanel.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
+        scheduleListPanel.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
+
+        outputView.getChildren().clear();
+        outputView.getChildren().add(scheduleListPanel.getRoot());
     }
 
     /**

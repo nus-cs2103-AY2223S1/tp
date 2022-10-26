@@ -35,7 +35,7 @@
                   <RowConstraints minHeight="120.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <VBox fx:id="personDetails" minWidth="100.0" prefWidth="200.0">
+                  <VBox minWidth="100.0" prefWidth="200.0">
                      <children>
                         <HBox alignment="CENTER_LEFT" spacing="5">
                            <children>
@@ -65,7 +65,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </HBox>
-                  <VBox fx:id="rightBox" GridPane.columnIndex="2">
+                  <VBox GridPane.columnIndex="2">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -107,7 +107,7 @@
                      </GridPane.margin>
                   </VBox>
                   <Separator orientation="VERTICAL" GridPane.columnIndex="1" />
-                  <VBox fx:id="rightBox1" GridPane.columnIndex="2">
+                  <VBox GridPane.columnIndex="2">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

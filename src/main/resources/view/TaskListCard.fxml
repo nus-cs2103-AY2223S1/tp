@@ -30,7 +30,7 @@
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icons_clock.png" />
+                  <Image url="@../images/icon_clock.png" />
                </image>
             </ImageView>
          </graphic>
