@@ -198,6 +198,12 @@ public class ParserUtil {
         return new Loan(trimmedLoan);
     }
 
+    /**
+     * Parses a {@code String reason} into a {@code Reason}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reason} is invalid.
+     */
     public static Reason parseReason(String reason) throws ParseException {
         requireNonNull(reason);
         String trimmedReason = reason.trim();
