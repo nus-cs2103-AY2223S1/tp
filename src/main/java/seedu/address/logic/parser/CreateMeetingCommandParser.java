@@ -7,7 +7,6 @@ import java.time.format.ResolverStyle;
 import java.util.Locale;
 import java.util.Objects;
 
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CreateMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.util.DateTimeProcessor;
@@ -36,18 +35,28 @@ public class CreateMeetingCommandParser implements Parser<CreateMeetingCommand> 
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateMeetingCommand.MESSAGE_USAGE));
         }
 
-        String[] newMeetingInformation = meetingInfo.split(";;;");
+        try {
+            String[] newMeetingInformation = meetingInfo.split(";;;");
 
-        String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
-        String meetingTitle = newMeetingInformation[1].strip();
-        String meetingDateAndTime = newMeetingInformation[2].strip();
-        String meetingLocation = newMeetingInformation[3].strip();
+            String[] peopleToMeet = newMeetingInformation[0].strip().split("}}");
+            String meetingTitle = newMeetingInformation[1].strip();
+            String meetingDateAndTime = newMeetingInformation[2].strip();
+            String processedMeetingDateAndTime = this.validator.processDateTime(meetingDateAndTime);
+            String meetingLocation = newMeetingInformation[3].strip();
 
-        if ((Objects.equals(meetingTitle, "")) || (Objects.equals(meetingLocation, ""))) {
+            if ((Objects.equals(meetingTitle, "")) || (Objects.equals(meetingLocation, ""))) {
+                throw new ParseException(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
+            }
+
+            return new CreateMeetingCommand(peopleToMeet, meetingTitle, processedMeetingDateAndTime, meetingLocation);
+
+        } catch (IndexOutOfBoundsException e) {
             throw new ParseException(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
+
+        } catch (java.text.ParseException e) {
+            throw new ParseException(e.getMessage());
         }
 
-        return new CreateMeetingCommand(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
     }
 
 }

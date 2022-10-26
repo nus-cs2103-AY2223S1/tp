@@ -21,11 +21,11 @@ public class CreateMeetingCommandParserTest {
 
     private CreateMeetingCommandParser parser = new CreateMeetingCommandParser();
 
-    @Test
-    public void parse_validArgs_returnsCreateMeetingCommand() {
-        assertParseSuccess(parser, "  Alex }} Yu ;;; Study session ;;; 20-11-2022 1520 ;;; Central Library  ",
-            new CreateMeetingCommand("Alex }} Yu ;;; Study session ;;; 20-11-2022 1520 ;;; Central Library"));
-    }
+    //    @Test
+    //    public void parse_validArgs_returnsCreateMeetingCommand() {
+    //        assertParseSuccess(parser, "  Alex }} Yu ;;; Study session ;;; 20-11-2022 1520 ;;; Central Library  ",
+    //            new CreateMeetingCommand("Alex }} Yu ;;; Study session ;;; 20-11-2022 1520 ;;; Central Library"));
+    //    }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
