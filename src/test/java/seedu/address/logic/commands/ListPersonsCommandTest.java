@@ -11,34 +11,34 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.SortField;
+import seedu.address.model.person.PersonSortField;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListCommandTest {
+public class ListPersonsCommandTest {
 
     private Model model;
     private Model expectedModel;
-    private SortField dummySortField;
+    private PersonSortField dummySortField;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        dummySortField = SortField.sortByNoField();
+        dummySortField = PersonSortField.sortByNoField();
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        String successMessage = String.format(ListCommand.MESSAGE_SUCCESS, dummySortField.getField());
-        assertCommandSuccess(new ListCommand(dummySortField), model, successMessage, expectedModel);
+        String successMessage = String.format(ListPersonsCommand.MESSAGE_SUCCESS, dummySortField.getField());
+        assertCommandSuccess(new ListPersonsCommand(dummySortField), model, successMessage, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        String successMessage = String.format(ListCommand.MESSAGE_SUCCESS, dummySortField.getField());
+        String successMessage = String.format(ListPersonsCommand.MESSAGE_SUCCESS, dummySortField.getField());
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(dummySortField), model, successMessage, expectedModel);
+        assertCommandSuccess(new ListPersonsCommand(dummySortField), model, successMessage, expectedModel);
     }
 }
