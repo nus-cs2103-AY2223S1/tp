@@ -22,6 +22,7 @@ import seedu.address.logic.commands.project.DeleteProjectCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.logic.commands.project.FindProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
+import seedu.address.logic.commands.project.PinProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
 import seedu.address.logic.commands.project.SortProjectCommand;
@@ -29,6 +30,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.predicates.ProjectContainsKeywordsPredicate;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.ProjectId;
@@ -65,12 +67,23 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             return parseSetProjectDefaultViewCommand(arguments);
         case FindProjectCommand.COMMAND_FLAG:
             return parseFindProjectCommand(arguments);
+        case PinProjectCommand.COMMAND_FLAG:
+            return parsePinProjectCommand(arguments);
 
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
 
+    private ProjectCommand parsePinProjectCommand(String arguments) throws ParseException {
+        try {
+            ProjectId pinnedProjectId = ParserUtil.parseProjectId(arguments);
+            return new PinProjectCommand(pinnedProjectId);
+        } catch (ParseException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinProjectCommand.MESSAGE_USAGE), e);
+        }
+    }
 
 
     /**
@@ -137,7 +150,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         List<Issue> issueList = new ArrayList<>();
 
         ProjectWithoutModel projectWithoutModel =
-                new ProjectWithoutModel(name, repository, deadline, clientId, issueList);
+                new ProjectWithoutModel(name, repository, deadline, clientId, issueList, new Pin(false));
 
         return new AddProjectCommand(projectWithoutModel);
     }

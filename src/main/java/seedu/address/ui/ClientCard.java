@@ -45,9 +45,9 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        // id.setText(displayedIndex + ". ");
-        name.setText(displayedIndex + ". " + client.getClientName().toString()
-                + " " + client.getClientId().uiRepresentation());
+        name.setText(client.getClientName().toString()
+                + " " + client.getClientId().uiRepresentation()
+                + (client.isPinned() ? " \uD83D\uDCCC" : ""));
         phone.setText(client.getClientPhone().uiRepresentation());
         email.setText(client.getClientEmail().uiRepresentation());
         client.getProjects().stream()

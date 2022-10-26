@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
@@ -34,6 +35,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     private List<Project> projects;
 
     private ClientId clientId;
+    private Pin pin;
 
     /**
      * Constructs a client with inputs given by the user.
@@ -41,13 +43,14 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @param phone String representing phone number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId) {
-        requireAllNonNull(name, phone, email, clientId);
+    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId, Pin pin) {
+        requireAllNonNull(name, phone, email, clientId, pin);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.projects = projects;
         this.clientId = clientId;
+        this.pin = pin;
     }
 
     /**
@@ -61,6 +64,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         this.email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         this.projects = new ArrayList<>();
         this.clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
+        this.pin = new Pin(false);
     }
 
     /**
@@ -224,6 +228,14 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         this.projects.remove(p);
     }
 
+    public void togglePin() {
+        this.pin.togglePinned();
+    }
+
+    public boolean isPinned() {
+        return this.pin.isPinned();
+    }
+
 
     /**
      * Returns true if both clients have the same name.
@@ -269,9 +281,14 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             boolean hasSameName = this.getClientName().equals(otherClient.getClientName());
             boolean hasSameEmail = this.getClientEmail().equals(otherClient.getClientEmail());
             boolean hasSamePhone = this.getClientPhone().equals(otherClient.getClientPhone());
-            return hasSameId && hasSameEmail && hasSamePhone && hasSameName;
+            boolean hasSamePin = this.getPin().equals(otherClient.getPin());
+            return hasSameId && hasSameEmail && hasSamePhone && hasSameName && hasSamePin;
         } else {
             return false;
         }
+    }
+
+    private Pin getPin() {
+        return this.pin;
     }
 }

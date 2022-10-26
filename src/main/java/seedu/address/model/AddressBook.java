@@ -394,6 +394,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         setClients(sortedClientsByName);
     }
 
+    /**
+     * Sorts client list with pinned clients at the front of the list.
+     */
+    public void sortClientsByPin() {
+        ObservableList<Client> sortedClientsByPin;
+        sortedClientsByPin = getModifiableClientList().sorted(Comparator.comparing(c -> !c.isPinned()));
+        setClients(sortedClientsByPin);
+    }
+
+    /**
+     * Sorts project list with pinned projects at the front of the list.
+     */
+    public void sortProjectsByPin() {
+        ObservableList<Project> sortedProjectsByPin;
+        sortedProjectsByPin = getModifiableProjectList().sorted(Comparator.comparing(p -> !p.isPinned()));
+        setProjects(sortedProjectsByPin);
+    }
+
+    /**
+     * Sorts issue list with pinned issues at the front of the list.
+     */
+    public void sortIssuesByPin() {
+        ObservableList<Issue> sortedIssuesByPin;
+        sortedIssuesByPin = getModifiableIssueList().sorted(Comparator.comparing(i -> !i.isPinned()));
+        setIssues(sortedIssuesByPin);
+    }
+
     //// util methods
 
     @Override
@@ -487,4 +514,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return clients.hashCode();
     }
 
+    /**
+     * Default sorting method to sort all entity lists by id in ascending order, and by pin.
+     */
+    public void sortAllLists() {
+        sortClientsById(0);
+        sortProjectsById(0);
+        sortIssuesById(0);
+        sortClientsByPin();
+        sortProjectsByPin();
+        sortIssuesByPin();
+    }
 }

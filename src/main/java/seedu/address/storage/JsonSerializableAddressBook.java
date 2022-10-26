@@ -81,6 +81,8 @@ class JsonSerializableAddressBook {
             addressBook.addIssue(issue);
         }
 
+        addressBook.sortAllLists();
+
         return addressBook;
     }
 

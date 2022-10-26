@@ -25,11 +25,13 @@ import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.FindClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
+import seedu.address.logic.commands.client.PinClientCommand;
 import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
 import seedu.address.logic.commands.client.SortClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
@@ -66,6 +68,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             return parseSortClientCommand(arguments);
         case FindClientCommand.COMMAND_FLAG:
             return parseFindClientCommand(arguments);
+        case PinClientCommand.COMMAND_FLAG:
+            return parsePinClientCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -122,7 +126,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email, new ArrayList<>());
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email,
+                new ArrayList<>(), new Pin(false));
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
         return new AddClientCommand(clientWithoutModel, projectId);
@@ -263,6 +268,17 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         return new SortClientCommand(sortPrefix, key);
+    }
+
+    private PinClientCommand parsePinClientCommand(String arguments) throws ParseException {
+        try {
+            ClientId pinnedClientId = ParserUtil.parseClientId(arguments);
+            return new PinClientCommand(pinnedClientId);
+        } catch (ParseException e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PinClientCommand.MESSAGE_USAGE), e);
+        }
+
     }
 
     /**
