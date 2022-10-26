@@ -46,7 +46,14 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = teachersPetParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        model.updateTeachersPetHistory();
+        try {
+            commandResult = command.execute(model);
+        } catch (CommandException e) {
+            logger.info("Invalid command: " + commandText);
+            model.deleteTeachersPetHistory();
+            throw e;
+        }
 
         try {
             storage.saveTeachersPet(model.getTeachersPet());

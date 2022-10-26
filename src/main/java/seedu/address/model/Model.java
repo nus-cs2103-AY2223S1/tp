@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
@@ -93,4 +94,20 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredScheduleList(Predicate<Person> predicate);
+
+    /**
+     * Updates previous state of the address book.
+     */
+    void updateTeachersPetHistory();
+
+    /**
+     * Undo last change made to state of teacher's pet.
+     */
+    void undo() throws CommandException;
+
+    /**
+     * Deletes the latest addition in the ArrayList of Teachers Pet.
+     */
+    void deleteTeachersPetHistory();
+
 }

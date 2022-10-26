@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> filteredSchedule;
+    private final ArrayList<ReadOnlyTeachersPet> teachersPetHistory;
 
     /**
      * Initializes a ModelManager with the given teachersPet and userPrefs.
@@ -36,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.teachersPet.getPersonList());
         filteredSchedule = new FilteredList<>(this.teachersPet.getScheduleList());
+        this.teachersPetHistory = new ArrayList<>();
     }
 
     public ModelManager() {
@@ -167,4 +171,27 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Undo Accessors =================================================================================
+    @Override
+    public void updateTeachersPetHistory() {
+        this.teachersPetHistory.add(new TeachersPet(this.teachersPet));
+    }
+
+    @Override
+    public void undo() throws CommandException {
+        try {
+            ReadOnlyTeachersPet targetTeachersPet = this.teachersPetHistory.get(this.teachersPetHistory.size() - 2);
+            setTeachersPet(targetTeachersPet);
+            // remove the current state and last state from history
+            deleteTeachersPetHistory();
+            deleteTeachersPetHistory();
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("Undo cannot be done as there was no previous action");
+        }
+    }
+
+    @Override
+    public void deleteTeachersPetHistory() {
+        this.teachersPetHistory.remove(this.teachersPetHistory.size() - 1);
+    }
 }
