@@ -2,10 +2,9 @@ package seedu.trackascholar.logic.parser;
 
 import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.trackascholar.commons.core.index.Index;
 import seedu.trackascholar.logic.commands.UnPinCommand;
 import seedu.trackascholar.logic.parser.exceptions.ParseException;
-
+import seedu.trackascholar.model.applicant.Name;
 
 
 /**
@@ -19,8 +18,8 @@ public class UnPinCommandParser implements Parser<UnPinCommand> {
      */
     public UnPinCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new UnPinCommand(index);
+            Name name = ParserUtil.parseName(args);
+            return new UnPinCommand(name);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnPinCommand.MESSAGE_USAGE), pe);
