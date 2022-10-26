@@ -13,6 +13,7 @@ import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -73,16 +74,14 @@ public class VenueBook implements ReadOnlyVenueBook {
     }
 
     /**
-     * Adds a venue to the venue book.
-     * The venue must not already exist in the venue book.
+     * Adds a venue to the venue book. The venue must not already exist in the venue book.
      */
-    public void addVenue(Venue p) {
+    public void addVenue(Venue p) throws DuplicateVenueException {
         venues.add(p);
     }
 
     /**
-     * Removes {@code key} from this {@code VenueBook}.
-     * {@code key} must exist in the venue book.
+     * Removes {@code key} from this {@code VenueBook}. {@code key} must exist in the venue book.
      */
     public void removeVenue(Venue key) {
         venues.remove(key);

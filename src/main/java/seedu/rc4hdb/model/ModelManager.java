@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.resident.exceptions.DuplicateResidentException;
 import seedu.rc4hdb.model.resident.fields.ResidentField;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
@@ -21,6 +22,7 @@ import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -126,7 +128,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addResident(Resident person) {
+    public void addResident(Resident person) throws DuplicateResidentException {
         residentBook.addResident(person);
         updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
     }
@@ -178,7 +180,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addVenue(Venue venue) {
+    public void addVenue(Venue venue) throws DuplicateVenueException {
         requireNonNull(venue);
         venueBook.addVenue(venue);
     }
