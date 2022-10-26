@@ -25,8 +25,8 @@ public class AssignTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a task to the specified member in the team.\n"
-            + "Parameters: TASK_INDEX (must be a positive integer) \n"
-            + "Parameters: PERSON_INDEX \n"
+            + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
+            + "Parameters: MEMBER_INDEX (must be a valid positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1" + " 2";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned Task: %1$s assigned to %2$s";

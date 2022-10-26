@@ -22,7 +22,7 @@ public class AssignTaskRandomlyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a task to the random member in the team.\n"
-            + "Parameters: TASK_INDEX (must be a positive integer) \n"
+            + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Randomly Assigned Task: %1$s randomly assigned to %2$s";
