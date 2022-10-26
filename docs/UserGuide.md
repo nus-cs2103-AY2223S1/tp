@@ -57,7 +57,7 @@ If you are someone who is looking to expand on our project, check out our [Devel
   * [Upcoming features](ug-pages/upcoming-features.md)
 * [FAQ](ug-pages/faq.md#faq)
 * [Glossary](ug-pages/glossary.md)
-* [Authors]()
+* [Authors](ug-pages/authors.md)
 * [Command Summary](ug-pages/command-summary.md#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
