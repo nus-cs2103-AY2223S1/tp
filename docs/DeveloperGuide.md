@@ -360,7 +360,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 1. User requests to add a task into the task list
-2. NotioNUS adds task into task list and displays it
+2. NotionUS adds task into task list and displays it
    
    Use case ends.
 
