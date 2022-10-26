@@ -9,9 +9,8 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  */
 public class NumberOfGuests {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "Number of Guests should only contain numbers, and it should be at least 1 and at most 4";
+            "Number of Guests should only contain 1 numerical character from 1 to 4.";
     public static final String VALIDATION_REGEX = "\\d{1,}";
     public final String value;
 
