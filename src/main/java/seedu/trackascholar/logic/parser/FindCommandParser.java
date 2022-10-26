@@ -9,6 +9,7 @@ import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -34,7 +35,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SCHOLARSHIP, PREFIX_MAJOR);
 
         if (!hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SCHOLARSHIP, PREFIX_MAJOR)
-                || !argMultimap.getPreamble().isEmpty()
+                || !argMultimap.isEmptyPreamble()
                 || args.isBlank()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -54,18 +55,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(argMultimap);
         List<Predicate<Applicant>> applicantPredicateList = new ArrayList<>();
 
-        if (hasPrefixPresent(argMultimap, PREFIX_NAME)) {
+        if (isPrefixPresent(argMultimap, PREFIX_NAME)) {
             List<String> nameKeywords = getKeywordsList(argMultimap, PREFIX_NAME);
             NameContainsKeywordsPredicate nameKeywordsPredicate = new NameContainsKeywordsPredicate(nameKeywords);
             applicantPredicateList.add(nameKeywordsPredicate);
         }
-        if (hasPrefixPresent(argMultimap, PREFIX_SCHOLARSHIP)) {
+        if (isPrefixPresent(argMultimap, PREFIX_SCHOLARSHIP)) {
             List<String> scholarshipKeywords = getKeywordsList(argMultimap, PREFIX_SCHOLARSHIP);
             ScholarshipContainsKeywordsPredicate scholarshipKeywordsPredicate =
                     new ScholarshipContainsKeywordsPredicate(scholarshipKeywords);
             applicantPredicateList.add(scholarshipKeywordsPredicate);
         }
-        if (hasPrefixPresent(argMultimap, PREFIX_MAJOR)) {
+        if (isPrefixPresent(argMultimap, PREFIX_MAJOR)) {
             List<String> majorKeywords = getKeywordsList(argMultimap, PREFIX_MAJOR);
             MajorContainsKeywordsPredicate majorKeywordsPredicate = new MajorContainsKeywordsPredicate(majorKeywords);
             applicantPredicateList.add(majorKeywordsPredicate);
@@ -100,8 +101,9 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns true if the prefix does not contain an empty {@code Optional} value in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean hasPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
-        return argumentMultimap.getValue(prefix).isPresent();
+    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        Optional<String> prefixValue = argumentMultimap.getValue(prefix);
+        return prefixValue.isPresent();
     }
 
     /**

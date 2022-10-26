@@ -19,18 +19,19 @@ import seedu.trackascholar.storage.JsonTrackAScholarStorage;
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
-    public static final String MESSAGE_SUCCESS = "Imported new file";
     public static final String REPLACE = "r";
     public static final String KEEP = "k";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Imports a new trackAScholarImport.json file and merges it with the current trackAScholar file.\n"
             + "Please insert file at path data/trackAScholarImport.json with the exact name.\n"
             + "Parameters: 'r' (replace duplicates with imported applicants) / 'k' (keep existing duplicates)\n"
             + "Example: " + COMMAND_WORD + " r";
-    public static final String NO_FILE_ERROR = "No File Found"
-            + ": Please insert file to be imported into data/trackAScholarImport.json with the exact name.\n";
 
-    public static final String FILE_FORMAT_ERROR = "File data format is invalid";
+    public static final String MESSAGE_NO_FILE_FOUND_ERROR = "No File Found"
+            + ": Please insert file to be imported into data/trackAScholarImport.json with the exact name.\n";
+    public static final String MESSAGE_INVALID_FILE_DATA_FORMAT = "Invalid file data format!";
+    public static final String MESSAGE_SUCCESS = "Imported new file";
 
     private final Path importedFilePath = Paths.get("data", "trackAScholarImport.json");
     private final String str;
@@ -44,21 +45,25 @@ public class ImportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         if (Files.notExists(importedFilePath)) {
-            throw new CommandException(NO_FILE_ERROR);
+            throw new CommandException(MESSAGE_NO_FILE_FOUND_ERROR);
         }
         JsonTrackAScholarStorage jsonTrackAScholarStorage = new JsonTrackAScholarStorage(importedFilePath);
 
         try {
-            Optional<ReadOnlyTrackAScholar> trackAScholar =
+            Optional<ReadOnlyTrackAScholar> optionalTrackAScholar =
                     jsonTrackAScholarStorage.readTrackAScholar(importedFilePath);
-            ObservableList<Applicant> applicantList = trackAScholar.get().getApplicantList();
+
+            assert !optionalTrackAScholar.isEmpty();
+            ReadOnlyTrackAScholar importedTrackAScholar = optionalTrackAScholar.get();
+            ObservableList<Applicant> applicantList = importedTrackAScholar.getApplicantList();
+
             if (str.equals(REPLACE)) {
                 model.importWithReplace(applicantList);
             } else if (str.equals(KEEP)) {
                 model.importWithoutReplace(applicantList);
             }
         } catch (DataConversionException e) {
-            throw new CommandException(FILE_FORMAT_ERROR);
+            throw new CommandException(MESSAGE_INVALID_FILE_DATA_FORMAT);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
 

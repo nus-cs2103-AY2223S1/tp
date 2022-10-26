@@ -16,9 +16,9 @@ public class Name implements Comparable<Name> {
      * The first character of the trackascholar must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    private final String fullName;
 
     /**
      * Constructs a {@code Name}.
@@ -41,9 +41,15 @@ public class Name implements Comparable<Name> {
     /**
      * Returns true if the given name is equal to this name, ignoring case considerations.
      */
-
     public boolean equalsIgnoreCase(Name other) {
         return fullName.equalsIgnoreCase(other.fullName);
+    }
+
+    /**
+     * Returns full name of applicant.
+     */
+    public String getFullName() {
+        return fullName;
     }
 
     @Override
