@@ -39,8 +39,14 @@ public class GroupCard extends UiPart<Region> {
         group.getMembers().stream()
                 .sorted(Comparator.comparing(member ->
                     member.getName().toString()))
-                .forEach(member ->
-                    members.getChildren().add(new Label(member.getName().toString())));
+                .forEach(member -> {
+
+
+                    members.getChildren().add(new Label(member.getName().toString()));
+
+
+
+                });
 
     }
 
