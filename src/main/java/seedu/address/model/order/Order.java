@@ -194,8 +194,7 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(buyer, requestedPriceRange, request,
-                additionalRequests, byDate, settledPrice, status);
+        return Objects.hash(id);
     }
 
     @Override

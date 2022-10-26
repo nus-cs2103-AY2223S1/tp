@@ -263,8 +263,7 @@ public class Pet {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(name, color, dateOfBirth, species, weight, height, vaccinationStatus, tags,
-                certificates, supplier);
+        return Objects.hash(id);
     }
 
     /**
