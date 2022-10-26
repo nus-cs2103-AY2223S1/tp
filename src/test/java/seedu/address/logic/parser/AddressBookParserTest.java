@@ -9,24 +9,15 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFilePaths.PATH_TO_JERRY_JPG;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.ExportCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ImportCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -105,6 +96,13 @@ public class AddressBookParserTest {
         ImportCommand command = (ImportCommand) parser.parseCommand(
                 ImportCommand.COMMAND_WORD + " " + VALID_PATH_JERRY);
         assertEquals(new ImportCommand(PATH_TO_JERRY_JPG), command);
+    }
+
+    @Test
+    public void parseCommand_checkout() throws Exception {
+        CheckoutCommand command = (CheckoutCommand) parser.parseCommand(
+            CheckoutCommand.COMMAND_WORD + " test");
+        assertEquals(new CheckoutCommand(Paths.get("data", "test.json")), command);
     }
 
     @Test
