@@ -20,7 +20,7 @@ import modtrekt.model.task.Task;
 public class DoneTaskCommand extends Command {
     public static final String COMMAND_WORD = "done task";
 
-    @Parameter(description = "Index of the task to mark as done", required = true, converter = IndexConverter.class)
+    @Parameter(description = "<task index>", required = true, converter = IndexConverter.class)
     private Index index;
 
     /**

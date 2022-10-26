@@ -30,7 +30,7 @@ public class EditModuleCommand extends Command {
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Module successfully edited: %1$s";
 
-    @Parameter(description = "Module code for the module to be edited", required = true,
+    @Parameter(description = "<module code>", required = true,
             converter = ModCodeConverter.class)
     private ModCode targetModCode;
 
