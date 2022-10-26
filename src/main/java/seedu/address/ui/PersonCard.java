@@ -69,7 +69,7 @@ public class PersonCard extends UiPart<Region> {
         moneyOwed.setText(person.getMoneyOwed().toString());
         moneyPaid.setText(person.getMoneyPaid().toString());
         ratesPerClass.setText(person.getRatesPerClass().toString());
-        additionalNotes.setText(person.getAdditionalNotes().notes);
+        additionalNotes.setText(person.getAdditionalNotes().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

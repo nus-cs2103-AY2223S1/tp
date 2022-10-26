@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES_APPEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -39,7 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_NOK_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_CLASS_DATE_TIME, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID,
-                PREFIX_RATES_PER_CLASS, PREFIX_ADDITIONAL_NOTES, PREFIX_TAG);
+                PREFIX_RATES_PER_CLASS, PREFIX_ADDITIONAL_NOTES, PREFIX_ADDITIONAL_NOTES_APPEND, PREFIX_TAG);
 
         Index index;
 
@@ -82,12 +83,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAdditionalNotes(
                     ParserUtil.parseAdditionalNotes(argMultimap.getValue(PREFIX_ADDITIONAL_NOTES).get()));
         }
+        if (argMultimap.getValue(PREFIX_ADDITIONAL_NOTES_APPEND).isPresent()) {
+            editPersonDescriptor.setAppendedAdditionalNotes(
+                    ParserUtil.parseAdditionalNotes(argMultimap.getValue(PREFIX_ADDITIONAL_NOTES_APPEND).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-
         return new EditCommand(index, editPersonDescriptor);
     }
 

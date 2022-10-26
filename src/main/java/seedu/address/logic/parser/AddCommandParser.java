@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARAMETER_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES_APPEND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -40,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_NOK_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_RATES_PER_CLASS,
-                        PREFIX_ADDITIONAL_NOTES, PREFIX_CLASS_DATE_TIME);
+                        PREFIX_ADDITIONAL_NOTES, PREFIX_ADDITIONAL_NOTES_APPEND, PREFIX_CLASS_DATE_TIME);
 
         // Throw an error if any of these inputs are not present.
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_NOK_PHONE, PREFIX_EMAIL)
@@ -48,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         if (isAnyPrefixPresent(argMultimap, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_RATES_PER_CLASS,
-                PREFIX_ADDITIONAL_NOTES, PREFIX_CLASS_DATE_TIME)) {
+                PREFIX_ADDITIONAL_NOTES, PREFIX_ADDITIONAL_NOTES_APPEND, PREFIX_CLASS_DATE_TIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER_FORMAT, AddCommand.RELEVANT_PARAMETERS));
         }
 
