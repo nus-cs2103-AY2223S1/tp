@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 
 class ViewCommandParserTest {
-
     private final ViewCommandParser parser = new ViewCommandParser();
 
     @Test

@@ -17,7 +17,6 @@ import seedu.foodrem.model.item.itemcomparators.ItemRemarkComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemUnitComparator;
 
 class SortCommandParserTest {
-
     private final SortCommandParser parser = new SortCommandParser();
 
     @Test

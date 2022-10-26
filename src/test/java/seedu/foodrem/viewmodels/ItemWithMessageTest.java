@@ -10,7 +10,6 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
 
 class ItemWithMessageTest {
-
     private final Item initialItem = new ItemBuilder().build();
     private final String initialMessage = "Test message";
 
