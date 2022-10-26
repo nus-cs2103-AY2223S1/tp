@@ -188,9 +188,10 @@ Examples:
 
 Adds a staff member info to Project in project list.
 
-Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT NUMBER`
+Format: `addstaff pn/PROJECT_NAME sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER [t/TAGS]`
 
-* All fields for staff member are required
+* All fields for staff member are required, except `TAGS`
+* Adding staff to a staff list that is currently shown will show the staff being added. 
 
 Examples:
 * `addStaff pn/DUKE sn/John Doe sp/98765432 sl/true sd/Accounting st/Accountant` Adds staff member named `John Doe` to the project DUKE.
@@ -226,8 +227,31 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 ### Editing a Staff member within a Project : `editstaff`
 
+Edits the staff details of a staff of a specified project in Project list.
+
+Format: `editstaff INDEX pn/PROJECT_NAME [sn/STAFF_NAME sl/LEAVE_STATUS sd/STAFF_DEPARTMENT st/STAFF_TITLE sc/CONTACT_NUMBER
+t\TAGS]`
+
+* All fields for staff members in the `[]` are optional. 
+* Index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+* `editstaff 1 pn/CS2103T sn/John Doe` edits the staff name of the first staff in the staff list of `CS2103T` to `John Doe`
 --------------------------------------------------------------------------------------------------------------------
 ### Finding a Staff member within a Project : `findstaff`
+
+Finds the current active staff list for a staff name
+
+Format: `findstaff NAME`
+
+* `NAME` must not be an empty string. 
+*  For `findstaff` to work as expected, the current active staff list must be non-empty.
+
+Examples:
+* `findstaff Jon` returns a filtered view of the staff list such that all staffs with name `Jon` are listed.
+* `findstaff Adrian Lam` returns a filtered view of the staff list such that all staffs with name `Adrian Lam` are listed. 
+Staffs whose name contains `Adrian` or `Lam` only aren't listed. 
+* You can always use `view INDEX` to list all the staff in the staff list after you are done with finding a particular staff.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Task Commands

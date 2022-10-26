@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STAFF;
 
 import java.util.List;
 
@@ -87,6 +88,8 @@ public class AddStaffCommand extends Command {
 
         projectToAdd.getStaffList().add(toAdd);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        model.setFilteredStaffList(projectToAdd);
+        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
         return new CommandResult(String.format(MESSAGE_ADD_STAFF_SUCCESS, toAdd));
     }
 
