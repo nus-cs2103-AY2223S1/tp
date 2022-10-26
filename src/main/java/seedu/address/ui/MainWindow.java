@@ -242,16 +242,27 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            switch (commandResult.getModelType()) {
+            case HELP:
                 handleHelp();
-            }
-
-            if (commandResult.isExit()) {
+                break;
+            case EXIT:
                 handleExit();
-            }
-
-            if (commandResult.isShowChart()) {
+                break;
+            case STUDENT:
+                handlePerson();
+                break;
+            case TUTORIAL:
+                handleTutorial();
+                break;
+            case CONSULTATION:
+                handleConsultation();
+                break;
+            case GRADE_CHART:
                 handleShowChart();
+                break;
+            default:
+                break;
             }
 
             return commandResult;

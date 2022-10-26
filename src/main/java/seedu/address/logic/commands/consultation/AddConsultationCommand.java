@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelType;
 import seedu.address.model.consultation.Consultation;
 
 /**
@@ -58,7 +59,7 @@ public class AddConsultationCommand extends Command {
             throw new CommandException(MESSAGE_CLASH_CONSULTATION);
         }
         model.addConsultation(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ModelType.CONSULTATION);
     }
 
     @Override

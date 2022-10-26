@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelType;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -60,7 +61,7 @@ public class AddTutorialCommand extends Command {
             throw new CommandException(MESSAGE_CLASH_TUTORIAL);
         }
         model.addTutorial(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ModelType.TUTORIAL);
     }
 
     @Override
