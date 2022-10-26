@@ -11,9 +11,9 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 
 /*
-  Adapted from James_D's answer on Stack Overflow, see
-  https://stackoverflow.com/a/32297235.
-*/
+ * Adapted from James_D's answer on Stack Overflow, see
+ * https://stackoverflow.com/a/32297235.
+ */
 
 /**
  * An {@code ObservableList} implementation that maps {@code Student}-s to {@code StudentView}-s. The list
