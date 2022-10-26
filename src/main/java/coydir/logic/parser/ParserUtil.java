@@ -25,6 +25,7 @@ import coydir.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_ARGUMENT = "Keyword argument cannot be empty.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -40,6 +41,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a user-specified keyword into an {@code String} and returns it trimmed and in lower-case.
+     * @throws ParseException if the specified keyword is empty.
+     */
+    public static String parseKeyword(String keyword) throws ParseException {
+        String trimmedKeyword = keyword.trim();
+        if (trimmedKeyword.equals("")) {
+            throw new ParseException(MESSAGE_INVALID_ARGUMENT);
+        }
+        return trimmedKeyword;
+    }
+
+    /**
      * Parses {@code oneBasedIndex} into an {@code int} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
@@ -51,7 +64,6 @@ public class ParserUtil {
         }
         return trimmedIndex;
     }
-
 
     /**
      * Parses a {@code String name} into a {@code Name}.
