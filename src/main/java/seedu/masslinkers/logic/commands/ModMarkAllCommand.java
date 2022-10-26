@@ -4,10 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.masslinkers.logic.commands.exceptions.CommandException;
 import seedu.masslinkers.model.Model;
-import seedu.masslinkers.model.student.Mod;
 import seedu.masslinkers.model.student.Student;
 
 /**
@@ -34,9 +32,9 @@ public class ModMarkAllCommand extends ModCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
-        for (Person person : lastShownList) {
+        for (Student person : lastShownList) {
             person.markAllMods();
         }
 
