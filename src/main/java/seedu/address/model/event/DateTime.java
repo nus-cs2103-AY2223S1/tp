@@ -215,25 +215,19 @@ public class DateTime implements Comparable<DateTime> {
      */
     @Override
     public int compareTo(DateTime other) {
-        int compareValue = this.getDate().isBefore(other.getDate())
-                ? -1 // this object is before other
-                : this.getDate().isAfter(other.getDate())
-                ? 1 // this object is after other
-                : 0; // this object is on the same day as other
+        int compareValue = this.date.compareTo(other.date);
 
         if (compareValue == 0) {
-            boolean objectTimePresent = this.getTime().isPresent();
-            boolean otherTimePresent = other.getTime().isPresent();
+            boolean objectTimePresent = this.time.isPresent();
+            boolean otherTimePresent = other.time.isPresent();
             if (!objectTimePresent && !otherTimePresent) {
                 compareValue = 0;
             } else if (objectTimePresent && otherTimePresent) {
-                compareValue = this.getTime().get().compareTo(other.getTime().get());
+                compareValue = this.time.get().compareTo(other.time.get());
             } else if (objectTimePresent) {
                 compareValue = 1;
-            } else if (otherTimePresent) {
-                compareValue = -1;
             } else {
-                assert false;
+                compareValue = -1;
             }
         }
 
