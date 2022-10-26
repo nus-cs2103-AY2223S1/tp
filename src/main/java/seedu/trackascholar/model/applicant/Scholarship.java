@@ -9,13 +9,14 @@ import static seedu.trackascholar.commons.util.AppUtil.checkArgument;
  */
 public class Scholarship implements Comparable<Scholarship> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Scholarship can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Scholarship should only contain alphanumeric characters, dashes and spaces, and it should not be blank";
 
     /*
      * The first character of the trackascholar must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} &-]*";
 
     public final String scholarship;
 

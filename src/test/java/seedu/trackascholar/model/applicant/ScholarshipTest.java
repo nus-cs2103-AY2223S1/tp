@@ -31,6 +31,7 @@ public class ScholarshipTest {
         // valid scholarship
         assertTrue(Scholarship.isValidScholarship("NUS Global Merit"));
         assertTrue(Scholarship.isValidScholarship("A")); // one character
+        assertTrue(Scholarship.isValidScholarship("MENDAKI - Dr Abdul Aziz Ali Scholarship")); // with a dash
         assertTrue(Scholarship.isValidScholarship(
                         "Hong Kong & Shanghai Banking Corporation Centenary Scholarship")); // long scholarship
     }
