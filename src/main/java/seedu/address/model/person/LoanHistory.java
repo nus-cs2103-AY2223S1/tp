@@ -11,17 +11,17 @@ public class LoanHistory implements ShallowCopyable {
     private final Loan loanChange;
 
     private final Reason reason;
-    
+
     public LoanHistory(Loan loanChange, Reason reason) {
         requireAllNonNull(loanChange, reason);
         this.loanChange = loanChange;
         this.reason = reason;
     }
-    
+
     public Loan getLoanChange() {
         return loanChange;
     }
-    
+
     public Reason getReason() {
         return reason;
     }
