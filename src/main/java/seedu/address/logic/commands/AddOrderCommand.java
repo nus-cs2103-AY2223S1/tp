@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
@@ -8,11 +9,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
+
+import java.util.Collections;
 
 /**
  * Adds an order to the contact.
@@ -52,6 +57,7 @@ public class AddOrderCommand extends Command {
             + USAGE_COMMON_SAMPLE_PARAMETERS;
 
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "Added Order: %1$s";
 
     private final Order toAdd;
     private final Index index;
@@ -75,6 +81,19 @@ public class AddOrderCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+
+        ObservableList<Buyer> lastShownList = model.getFilteredBuyerList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Buyer associatedBuyer = lastShownList.get(index.getZeroBased());
+
+        associatedBuyer.addOrders(Collections.singletonList(toAdd.getId()));
+        toAdd.setBuyer(associatedBuyer);
+        model.addOrder(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

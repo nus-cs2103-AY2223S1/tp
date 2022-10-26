@@ -111,10 +111,10 @@ public class AddPetCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Supplier affiliatedSupplier = lastShownList.get(index.getZeroBased());
+        Supplier associatedSupplier = lastShownList.get(index.getZeroBased());
 
-        affiliatedSupplier.addPets(Collections.singletonList(toAdd.getId()));
-        toAdd.setSupplier(affiliatedSupplier);
+        associatedSupplier.addPets(Collections.singletonList(toAdd.getId()));
+        toAdd.setSupplier(associatedSupplier);
         model.addPet(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
