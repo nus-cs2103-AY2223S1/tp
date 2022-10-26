@@ -31,22 +31,10 @@
         </Label>
         <Label fx:id="title" text="\$first" styleClass="name_label" />
       </HBox>
-      <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label fx:id="dateTime">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label fx:id="duration">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-      </HBox>
+      <VBox spacing="6">
+        <HBox fx:id="dateTime" alignment="CENTER_LEFT" spacing="10"/>
+        <HBox fx:id="duration" alignment="CENTER_LEFT" spacing="10"/>
+      </VBox>
       <FlowPane fx:id="tags" />
     </VBox>
   </GridPane>
