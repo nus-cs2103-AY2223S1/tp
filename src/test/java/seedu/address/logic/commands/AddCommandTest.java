@@ -165,6 +165,12 @@ public class AddCommandTest {
         public void deleteReminder(Pair<Person, Reminder> target) {
             throw new AssertionError("This method should not be called.");
         }
+
+
+        @Override
+        public void deletePersonReminders(Person personToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

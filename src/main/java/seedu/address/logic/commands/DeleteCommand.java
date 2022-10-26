@@ -64,6 +64,7 @@ public class DeleteCommand extends Command {
 
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             model.deletePerson(personToDelete);
+            model.deletePersonReminders(personToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         } else {
             List<String> nameKeywords = Arrays.asList(targetName.fullName.split("\\s+"));

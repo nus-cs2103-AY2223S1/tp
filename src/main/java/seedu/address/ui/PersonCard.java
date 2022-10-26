@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
@@ -76,7 +78,7 @@ public class PersonCard extends UiPart<Region> {
         lifeInsurance.setText("Life                    "
                 + (person.getLifeInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
         birthday.setText("\uD83C\uDF82\t"
-                + person.getBirthday().value.format(DateTimeFormatter.ofPattern("d-MM-yyyy")));
+                + person.getBirthday().value.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
