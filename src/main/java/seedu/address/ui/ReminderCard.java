@@ -48,8 +48,8 @@ public class ReminderCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        reminderTask.setText(reminder.task);
-        reminderDate.setText(reminder.date
+        reminderTask.setText("\uD83D\uDDD2\t" + reminder.task);
+        reminderDate.setText("\uD83D\uDCC5\t" + reminder.date
                 .format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
     }
 

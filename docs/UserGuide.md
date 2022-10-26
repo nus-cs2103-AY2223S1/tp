@@ -165,7 +165,7 @@ Adds a reminder to the specified contact.
 
 Format: `remind INDEX r/REMINDER d/DATE`
 
-* Adds a reminder to the person at the specified `INDEX` with the reminder `REMINDER` and date `DATE`.
+* Adds a reminder to the person at the specified `INDEX` with the `REMINDER` and `DATE`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, ...
 * The date **must be in the format of** `D-MM-YYYY`.
@@ -214,15 +214,14 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                    |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
-| **Clear**     | `clear`                                                                                                                                             |
-| **Delete**    | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                              |
-| **Find**      | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                   |
-| **List**      | `list`                                                                                                                                              |
-| **Remind**    | `remind`                                                                                                                                            |
-|
-| **Insurance** | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                           |
-|
-| **Help**      | `help`                                                                                                                                              |
+| Action     | Format, Examples                                                                                                                                  |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com c/friend b/18-08-2000` |
+| **Clear**  | `clear`                                                                                                                                           |
+| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`                                                                                            |
+| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find James Jake`                                                                                 |
+| **List**   | `list`                                                                                                                                            |
+| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                                                             |                                                               
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                         
+| **Help**   | `help`                                                                                                                                            |
+
