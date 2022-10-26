@@ -9,38 +9,39 @@ import modtrekt.model.Model;
 /**
  * Lists all tasks.
  */
-@Parameters(commandDescription = "List tasks in the task book.")
-public class ListCommand extends Command {
-    public static final String COMMAND_WORD = "ls";
+@Parameters(commandDescription = "List modules in the Module List.")
+public class ListModulesCommand extends Command {
+    public static final String COMMAND_PHRASE = "list module";
+    public static final String COMMAND_ALIAS = "ls module";
 
-    @Parameter(names = "-a", description = "Show all tasks")
-    private boolean areDoneTasksShown;
+    @Parameter(names = "-a", description = "Show all modules")
+    private boolean areDoneModulesShown;
 
     /**
      * Returns a new ListTasksCommand object, with no fields initialized, for use with JCommander.
      */
-    public ListCommand() {
+    public ListModulesCommand() {
     }
 
-    public ListCommand(boolean areDoneTasksShown) {
-        this.areDoneTasksShown = areDoneTasksShown;
+    public ListModulesCommand(boolean areDoneTasksShown) {
+        this.areDoneModulesShown = areDoneTasksShown;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (areDoneTasksShown) {
-            model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult("Here is the list of all tasks, including those marked as done!");
+        if (areDoneModulesShown) {
+            model.updateFilteredModuleList(Model.PREDICATE_SHOW_ALL_MODULES);
+            return new CommandResult("Here is the list of all modules, including those marked as done!");
         } else {
-            model.updateFilteredTaskList(Model.PREDICATE_HIDE_DONE_TASKS);
-            return new CommandResult("Here is the list of all active tasks!");
+            model.updateFilteredModuleList(Model.PREDICATE_HIDE_DONE_MODULES);
+            return new CommandResult("Here is the list of all active modules!");
         }
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListCommand // instanceof handles nulls
-                && areDoneTasksShown == (((ListCommand) other).areDoneTasksShown));
+                || (other instanceof ListModulesCommand // instanceof handles nulls
+                && areDoneModulesShown == (((ListModulesCommand) other).areDoneModulesShown));
     }
 }

@@ -13,17 +13,7 @@ import com.beust.jcommander.UnixStyleUsageFormatter;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.util.StringUtil;
-import modtrekt.logic.commands.AddModuleCommand;
-import modtrekt.logic.commands.AddTaskCommand;
-import modtrekt.logic.commands.CdModuleCommand;
-import modtrekt.logic.commands.Command;
-import modtrekt.logic.commands.DoneModuleCommand;
-import modtrekt.logic.commands.EditModuleCommand;
-import modtrekt.logic.commands.EditTaskCommand;
-import modtrekt.logic.commands.ExitCommand;
-import modtrekt.logic.commands.HelpCommand;
-import modtrekt.logic.commands.RemoveCommand;
-import modtrekt.logic.commands.UndoneModuleCommand;
+import modtrekt.logic.commands.*;
 import modtrekt.logic.commands.tasks.DoneTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.UndoneTaskCommand;
@@ -52,7 +42,9 @@ public class ModtrektParser {
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
         JCommander jcommander = JCommander.newBuilder().programName("")
-                .addCommand(ListTasksCommand.COMMAND_WORD, new ListTasksCommand())
+                .addCommand(ListTasksCommand.COMMAND_PHRASE, new ListTasksCommand(), ListTasksCommand.COMMAND_ALIAS)
+                .addCommand(ListModulesCommand.COMMAND_PHRASE, new ListModulesCommand(),
+                        ListModulesCommand.COMMAND_ALIAS)
                 .addCommand(DoneTaskCommand.COMMAND_WORD, new DoneTaskCommand())
                 .addCommand(UndoneTaskCommand.COMMAND_WORD, new UndoneTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
