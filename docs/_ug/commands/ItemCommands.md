@@ -72,7 +72,7 @@ Command Output Box:
 Listed all items
 ```
 
-List Box:
+Item List Box:
 
 ```text
 1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
@@ -110,7 +110,7 @@ Command Output Box:
 1 item listed!
 ```
 
-List Box:
+Item List Box:
 
 ```text
 1. Potato 6 kg $2.40 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
@@ -142,7 +142,7 @@ Command Output Box:
 3 items sorted!
 ```
 
-List Box:
+Item List Box:
 
 ```text
 1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)

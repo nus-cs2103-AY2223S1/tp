@@ -176,7 +176,7 @@ Command Output Box:
 Items filtered by tag: fruits
 ```
 
-List Box:
+Item List Box:
 
 ```text
 1. Apples 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
