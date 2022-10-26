@@ -22,20 +22,20 @@ implementation of our features in the "Implementation" section.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **2. Acknowledgements**
 
 
 * [AddressBook Level-3](https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **3. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## *4. *Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -45,7 +45,7 @@ Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.h
 diagrams.
 </div>
 
-### Architecture
+### 4.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -94,7 +94,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2 UI component
 
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -125,7 +125,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
-### Logic component
+### 4.3 Logic component
 
 **
 API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -163,10 +163,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
-
-**
-API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+### 4.4 Model component
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -184,7 +182,7 @@ The `Model` component,
   should make sense on their own without depending on other components)
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
-### Storage component
+### 4.5 Storage component
 
 **
 API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -200,17 +198,17 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-### Common classes
+### 4.6 Common classes
 
 Classes used by multiple components are in the `seedu.TaskList.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Hide Command
+### 5.1 Hide Command
 
 In order to get a clearer view by archiving overdue and completed tasks whenever a user enters the command. Hidden (
 archived) tasks will still be stored and can be retrieved using `listAllCommand`.
@@ -234,7 +232,7 @@ Below is the sequence diagram for an execution of `archive <index>`, assuming `<
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Mark/unmark feature
+### 5.2 Mark/unmark feature
 
 #### Implementation
 
@@ -247,9 +245,9 @@ Below is the sequence diagram for an execution of `mark <index>`, assuming `<ind
 
 ![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
 
-### Returning to a previous command
+### 5.3 Returning to a previous command
 
-#### Implementation
+#### 5.3.1 Implementation
 
 This feature allows the user to traverse through past commands via the up and down keys on the keyboard, similar to how
 it works in a terminal.
@@ -285,7 +283,7 @@ The following activity diagram summarizes what happens when a user clicks on the
 
 ![UpDownKeyActivityDiagram](images/UpDownKeyActivityDiagram.png)
 
-#### Design considerations:
+#### 5.3.2 Design considerations:
 
 **Aspect: How command history is stored:**
 
@@ -296,9 +294,9 @@ The following activity diagram summarizes what happens when a user clicks on the
     * Pros: Will be able to restore commands from previous launches.
     * Cons: Difficult to implement as storage architecture will have to be renewed.
 
-### Command autocomplete feature
+### 5.4 Command autocomplete feature
 
-#### Implementation
+#### 5.4.1 Implementation
 
 This feature allows the user to traverse through a drop-down list of possible commands that can be used, and is updated
 as they are typing. This provides convenience for the user as he can click `Enter` to complete the command after
@@ -332,9 +330,9 @@ per normal.
 Below is an activity diagram to display how the feature works:
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
 
-#### Design considerations:
+#### 5.4.2 Design considerations:
 
-##### Aspect: Filtering commandList to find matching commands:
+** Aspect: Filtering commandList to find matching commands: **
 
 * **Alternative 1: (current implementation)** Filters command list down everytime the user input changes:
   * Pros: Easy to implement
@@ -346,7 +344,7 @@ in previous list
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **6. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -356,11 +354,11 @@ in previous list
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **7. Appendix: Requirements**
 
-### Product scope
+### 7.1 Product scope
 
-**Target user profile**:
+**7.1.1 Target user profile**:
 
 * tech-savvy
 * university student
@@ -369,10 +367,9 @@ in previous list
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage module tasks faster than a typical mouse/GUI driven app and organise them by certain
-parameters
+**7.1.2 Value proposition**: manage module tasks faster than a typical mouse/GUI driven app and organise them by certain parameters
 
-### User stories
+### 7.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -391,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 7.3 Use cases
 
 Unless specified otherwise, the **System** is the `NotionUS` application and the **Actor** is the `user`.
 
@@ -524,7 +521,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case ends.
 
-### Non-Functional Requirements
+### 7.4 Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed. (compatibility)
 2. Should be able to hold up to 1000 users without a noticeable lag in performance for typical usage. (performance)
@@ -549,14 +546,14 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 *{More to be added}*
 
-### Glossary
+### 7.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Tag**: A user created tag that is linked to a task
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **8 Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -565,7 +562,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 8.1 Launch and shutdown
 
 1. Initial launch
 
@@ -583,11 +580,12 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a task
+### 8.2 Deleting a task
 
-1. Deleting a tasj while all persons are being shown
+1. Deleting a task while all tasks are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
+
 
     2. Test case: `delete 1`<br>
        Expected: First tasj is deleted from the list. Details of the deleted task shown in the status message.
@@ -601,7 +599,7 @@ testers are expected to do more *exploratory* testing.
 
 2. _{ more test cases …​ }_
 
-### Saving data
+### 8.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
