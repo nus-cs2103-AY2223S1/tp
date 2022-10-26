@@ -20,6 +20,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -53,6 +55,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
 
+    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
     private final Index index;
     private final EditTaskCommand.EditTaskDescriptor editTaskDescriptor;
 
@@ -103,7 +106,13 @@ public class EditTaskCommand extends Command {
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
+        Name name = NO_PERSON_ASSIGNED;
+        for (Person person: model.getFilteredPersonList()) {
+            if (person.getEmail().equals(editedTask.getPersonEmailAddress())) {
+                name = person.getName();
+            }
+        }
+        editedTask.setPersonName(name);
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
@@ -143,6 +152,8 @@ public class EditTaskCommand extends Command {
         private Email personEmailAddress;
         private boolean isDone;
 
+        private Name personName;
+
         public EditTaskDescriptor() {
         }
 
@@ -158,6 +169,7 @@ public class EditTaskCommand extends Command {
             setDeadline(toCopy.deadline);
             setPersonEmailAddress(toCopy.personEmailAddress);
             setDone(toCopy.isDone);
+            setPersonName(toCopy.personName);
         }
 
         /**
@@ -222,6 +234,14 @@ public class EditTaskCommand extends Command {
 
         public Optional<Boolean> getIsDone() {
             return Optional.of(isDone);
+        }
+
+        public void setPersonName(Name personName) {
+            this.personName = personName;
+        }
+
+        public Optional<Name> getpersonName() {
+            return Optional.of(personName);
         }
 
 
