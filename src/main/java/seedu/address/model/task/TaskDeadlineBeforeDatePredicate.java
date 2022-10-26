@@ -6,19 +6,20 @@ import java.util.function.Predicate;
  * Tests that a {@code Task}'s {@code TaskDeadline} matches the date given.
  */
 public class TaskDeadlineBeforeDatePredicate implements Predicate<Task> {
-    private final TaskDeadline date;
+    private final TaskDate date;
 
     /**
      * Constructor method for {@code TaskDeadlineBeforeDatePredicate} class.
      * @param date the TaskDeadline to be used as comparison
      */
-    public TaskDeadlineBeforeDatePredicate(TaskDeadline date) {
+    public TaskDeadlineBeforeDatePredicate(TaskDate date) {
         this.date = date;
     }
 
     @Override
     public boolean test(Task task) {
-        return date.isAfter(task.getDeadline()) || date.equals(task.getDeadline());
+        return date.isAfter(task.getDeadline().getDeadline())
+                || date.getDate().equals(task.getDeadline().getDeadline());
     }
 
     @Override

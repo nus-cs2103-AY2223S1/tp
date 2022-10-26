@@ -16,9 +16,7 @@ public class TaskDeadline {
     private final LocalDate deadline;
 
     /**
-     * constructor for deadline
-     *
-     * @param date
+     * Constructor for deadline.
      */
     public TaskDeadline(LocalDate date) {
         requireNonNull(date);
@@ -30,8 +28,6 @@ public class TaskDeadline {
 
     /**
      * Returns the deadline of a task.
-     *
-     * @return The task category.
      */
     public LocalDate getDeadline() {
         return this.deadline;
@@ -39,8 +35,6 @@ public class TaskDeadline {
 
     /**
      * Returns hashcode of the current object
-     *
-     * @return Hashcode of the object.
      */
     @Override
     public int hashCode() {
@@ -49,8 +43,6 @@ public class TaskDeadline {
 
     /**
      * Returns the string representation of the task deadline.
-     *
-     * @return Task priority.
      */
     @Override
     public String toString() {
@@ -60,8 +52,8 @@ public class TaskDeadline {
     /**
      * Compares another object with the Deadline object.
      *
-     * @param other The other object to be compared to.
-     * @return If the two objects are equal.
+     * @param other The other object to be compared to
+     * @return true if the two objects are equal
      */
     @Override
     public boolean equals(Object other) {
@@ -91,8 +83,8 @@ public class TaskDeadline {
     /**
      * Returns true if deadline is valid.
      *
-     * @param test String to test.
-     * @return Whether the String is a valid deadline.
+     * @param test String to test
+     * @return true if the String is a valid deadline
      */
     public static boolean isValidTaskDeadline(String test) {
         Boolean errorHappened = false;

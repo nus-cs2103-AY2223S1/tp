@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.Optional;
 
@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskCategoryAndDeadlinePredicate;
 import seedu.address.model.task.TaskContainsCategoryPredicate;
-import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.TaskDeadlineBeforeDatePredicate;
 
 /**
@@ -27,11 +27,11 @@ public class FilterTaskCommand extends Command {
             + "and displays them as a list with index numbers.\n"
             + "Parameters: "
             + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
-            + "[" + PREFIX_DEADLINE + "DATE (YYYY-MM-DD)]\n"
+            + "[" + PREFIX_DATE + "DATE (YYYY-MM-DD)]\n"
             + "Requirement: At least one parameter to filter with must be provided.\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CATEGORY + "backend "
-            + PREFIX_DEADLINE + "2022-12-12";
+            + PREFIX_DATE + "2022-12-12";
 
     private final FilterTaskDescriptor filterTaskDescriptor;
     private final TaskCategoryAndDeadlinePredicate both;
@@ -121,7 +121,7 @@ public class FilterTaskCommand extends Command {
      */
     public static class FilterTaskDescriptor {
         private TaskCategory category;
-        private TaskDeadline date;
+        private TaskDate date;
 
         public FilterTaskDescriptor() {
         }
@@ -150,11 +150,11 @@ public class FilterTaskCommand extends Command {
             this.category = category;
         }
 
-        public Optional<TaskDeadline> getDate() {
+        public Optional<TaskDate> getDate() {
             return Optional.ofNullable(date);
         }
 
-        public void setDate(TaskDeadline date) {
+        public void setDate(TaskDate date) {
             this.date = date;
         }
 

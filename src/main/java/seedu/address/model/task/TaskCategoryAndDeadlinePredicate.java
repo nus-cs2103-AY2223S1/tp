@@ -8,14 +8,14 @@ import java.util.function.Predicate;
  */
 public class TaskCategoryAndDeadlinePredicate implements Predicate<Task> {
     private final TaskCategory category;
-    private final TaskDeadline date;
+    private final TaskDate date;
 
     /**
      * Constructor method for {@code TaskCategoryAndDeadlinePredicate} class.
      * @param category the TaskCategory to be used as comparison
      * @param date the TaskDeadline to be used as comparison
      */
-    public TaskCategoryAndDeadlinePredicate(TaskCategory category, TaskDeadline date) {
+    public TaskCategoryAndDeadlinePredicate(TaskCategory category, TaskDate date) {
         this.category = category;
         this.date = date;
     }
@@ -23,7 +23,8 @@ public class TaskCategoryAndDeadlinePredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return task.getCategory().equals(category)
-                && (date.isAfter(task.getDeadline()) || date.equals(task.getDeadline()));
+                && (date.isAfter(task.getDeadline().getDeadline())
+                || date.getDate().equals(task.getDeadline().getDeadline()));
     }
 
     @Override
