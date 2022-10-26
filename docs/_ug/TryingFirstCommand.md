@@ -25,7 +25,7 @@ Suppose you just bought 30 kg worth of potatoes, today is 5th September 2022, an
 `BOUGHT_DATE`: 05-09-2022
 
 ```note
-* The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
+The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
 ```
 
 The command you would like to enter into the command box would be:
