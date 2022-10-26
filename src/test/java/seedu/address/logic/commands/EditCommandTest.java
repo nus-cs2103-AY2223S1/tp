@@ -43,7 +43,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                getTypicalAddressBook(), new UserPrefs());
         expectedModel.setTask(model.getFilteredPersonList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -64,7 +65,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getArchivedAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                model.getArchivedAddressBook(), new UserPrefs());
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,7 +79,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getArchivedAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                model.getArchivedAddressBook(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -93,7 +96,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getArchivedAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                model.getArchivedAddressBook(), new UserPrefs());
         expectedModel.setTask(model.getFilteredPersonList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
