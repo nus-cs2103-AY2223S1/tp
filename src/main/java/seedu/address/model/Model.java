@@ -160,9 +160,16 @@ public interface Model {
      */
     void setQuestion(Question target, Question editedQuestion);
 
-
+    /**
+     * Marks a question in the question list as important based on the index given.
+     * @param index
+     */
     void markQuestion(Index index);
 
+    /**
+     * Marks a question in the question list as unimportant based on the index given.
+     * @param index
+     */
     void unmarkQuestion(Index index);
 
     /** Returns an unmodifiable view of the filtered question list */

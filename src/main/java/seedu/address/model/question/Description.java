@@ -27,16 +27,9 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
-        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         descriptionString = description;
     }
 
-    /**
-     * Returns true if a given string is a valid description.
-     */
-    public static boolean isValidDescription(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
 
     @Override
     public String toString() {

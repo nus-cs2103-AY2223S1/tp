@@ -183,6 +183,14 @@ public class ModelManager implements Model {
         updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
     }
 
+    @Override
+    public void unmarkQuestion(Index index) {
+        requireAllNonNull(index);
+
+        addressBook.unmarkQuestion(index);
+        updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
+    }
+
     //=========== Tutorial ================================================================================
 
     @Override

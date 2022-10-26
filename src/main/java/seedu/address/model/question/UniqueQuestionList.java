@@ -141,11 +141,14 @@ public class UniqueQuestionList implements Iterable<Question> {
 
     public void markQuestion(Index index) {
         requireNonNull(index);
-
+        Question questionToEdit = internalList.get(index.getZeroBased());
+        internalList.set(index.getZeroBased(), new Question(questionToEdit.getDescription(), new ImportantTag(true)));
     }
 
     public void unmarkQuestion(Index index) {
         requireNonNull(index);
+        Question questionToEdit = internalList.get(index.getZeroBased());
+        internalList.set(index.getZeroBased(), new Question(questionToEdit.getDescription(), new ImportantTag(false)));
 
     }
 }
