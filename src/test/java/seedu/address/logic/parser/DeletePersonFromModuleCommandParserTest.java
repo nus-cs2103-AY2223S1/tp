@@ -25,7 +25,7 @@ public class DeletePersonFromModuleCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeletePersonFromModuleCommand() {
-        String userInput = MODULE_CODE_DESC_CS2106 + " " + NAME_DESC_AMY;
+        String userInput = MODULE_CODE_DESC_CS2106 + NAME_DESC_AMY;
         assertParseSuccess(parser,
                 userInput,
                 new DeletePersonFromModuleCommand(new ModuleCode(VALID_CS2106_MODULE_CODE), new Name(VALID_NAME_AMY)));
@@ -33,13 +33,13 @@ public class DeletePersonFromModuleCommandParserTest {
 
     @Test
     public void execute_invalidModuleCode_throwsCommandException() {
-        String userInput = INVALID_MODULE_CODE_DESC + " " + NAME_DESC_AMY;
+        String userInput = INVALID_MODULE_CODE_DESC + NAME_DESC_AMY;
         assertParseFailure(parser, userInput, ModuleCode.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void execute_invalidName_throwsCommandException() {
-        String userInput = MODULE_CODE_DESC_CS2106 + " " + INVALID_NAME_DESC;
+        String userInput = MODULE_CODE_DESC_CS2106 + INVALID_NAME_DESC;
         assertParseFailure(parser, userInput, Name.MESSAGE_CONSTRAINTS);
     }
 
