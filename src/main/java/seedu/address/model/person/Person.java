@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.portfolio.Note;
 import seedu.address.model.portfolio.Plan;
 import seedu.address.model.portfolio.Portfolio;
 import seedu.address.model.portfolio.Risk;
@@ -35,7 +36,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Income income, MeetingDate meetingDate,
-                  Set<Tag> tags, Risk risk, Set<Plan> plan) {
+                  Set<Tag> tags, Risk risk, Set<Plan> plan, Note note) {
         requireAllNonNull(name, phone, email, address, income, meetingDate, tags);
         this.name = name;
         this.phone = phone;
@@ -44,7 +45,7 @@ public class Person {
         this.income = income;
         this.meetingDate = meetingDate;
         this.tags.addAll(tags);
-        this.portfolio = new Portfolio(risk, plan);
+        this.portfolio = new Portfolio(risk, plan, note);
     }
 
     public Name getName() {
@@ -111,6 +112,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
+        Portfolio otherPortfolio = otherPerson.getPortfolio();
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
@@ -118,8 +120,9 @@ public class Person {
                 && otherPerson.getIncome().equals(getIncome())
                 && otherPerson.getMeetingDate().equals(getMeetingDate())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getPortfolio().getRisk().equals(getPortfolio().getRisk())
-                && otherPerson.getPortfolio().getPlans().equals(getPortfolio().getPlans());
+                && otherPortfolio.getRisk().equals(getPortfolio().getRisk())
+                && otherPortfolio.getPlans().equals(getPortfolio().getPlans())
+                && otherPortfolio.getNote().equals(getPortfolio().getNote());
     }
 
     @Override
@@ -131,6 +134,7 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        Portfolio portfolio = getPortfolio();
         builder.append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
@@ -149,13 +153,15 @@ public class Person {
             tags.forEach(builder::append);
         }
         builder.append("; Risk: ")
-                .append(getPortfolio().getRisk());
+                .append(portfolio.getRisk());
 
-        Set<Plan> plans = getPortfolio().getPlans();
+        Set<Plan> plans = portfolio.getPlans();
         if (!plans.isEmpty()) {
             builder.append("; Plans: ");
             plans.forEach(builder::append);
         }
+        builder.append("; Note: ")
+                .append(portfolio.getNote());
 
         return builder.toString();
     }
@@ -167,6 +173,7 @@ public class Person {
      */
     public String toClipboardString() {
         final StringBuilder builder = new StringBuilder();
+        Portfolio portfolio = getPortfolio();
         builder.append("Name: ")
                 .append(getName())
                 .append("\nPhone: ")
@@ -180,6 +187,7 @@ public class Person {
                 .append("\nMeeting date: ")
                 .append(getMeetingDate());
 
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("\nTags: ");
@@ -187,6 +195,21 @@ public class Person {
             outputTag = outputTag.replace("]", "");
             builder.append(outputTag);
         }
+
+        builder.append("\nRisk: ")
+                .append(portfolio.getRisk());
+
+        Set<Plan> plans = portfolio.getPlans();
+        if (!plans.isEmpty()) {
+            builder.append("\nPlans: ");
+            String outputPlans = plans.toString().replace("[", "");
+            outputPlans = outputPlans.replace("]", "");
+            builder.append(outputPlans);
+        }
+
+        builder.append("\nNote: ")
+                .append(portfolio.getNote());
+
         return builder.toString();
     }
 

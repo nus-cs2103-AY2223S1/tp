@@ -11,13 +11,15 @@ import java.util.Set;
 public class Portfolio {
     private final Risk risk;
     private final Set<Plan> plans = new HashSet<>();
+    private final Note note;
 
     /**
      * Every field must be present and not null.
      */
-    public Portfolio(Risk risk, Set<Plan> plan) {
+    public Portfolio(Risk risk, Set<Plan> plan, Note note) {
         this.risk = risk;
         this.plans.addAll(plan);
+        this.note = note;
     }
 
     public Risk getRisk() {
@@ -26,6 +28,10 @@ public class Portfolio {
 
     public Set<Plan> getPlans() {
         return Collections.unmodifiableSet(plans);
+    }
+
+    public Note getNote() {
+        return note;
     }
 
     /**
