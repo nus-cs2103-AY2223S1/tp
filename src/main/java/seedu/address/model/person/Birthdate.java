@@ -16,7 +16,8 @@ public class Birthdate {
 
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static final DateTimeFormatter DISPLAYED_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
-    public static final String MESSAGE_CONSTRAINTS = "Birthdate has to be of format dd-MM-yyyy!";
+    public static final String MESSAGE_CONSTRAINTS = "Birthdate has to be of format dd-MM-yyyy, "
+        + "and must not be later than the current date!";
     private final LocalDate birthdate;
 
     /**
@@ -37,12 +38,15 @@ public class Birthdate {
      * @return true when the given birthdate is valid.
      */
     public static boolean isValidBirthdate(String testDate) {
+        LocalDate birthdate;
         try {
-            LocalDate.parse(testDate, DATE_FORMAT);
+            birthdate = LocalDate.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
             return false;
         }
-        return true;
+        LocalDate currDate = LocalDate.now();
+
+        return !birthdate.isAfter(currDate);
     }
 
     /**
