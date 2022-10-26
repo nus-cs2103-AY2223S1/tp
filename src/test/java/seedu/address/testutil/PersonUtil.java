@@ -55,25 +55,23 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-//        if (descriptor.getGroups().isPresent()) {
-//            Set<Group> groups = descriptor.getGroups().get();
-//            if (groups.isEmpty()) {
-////                sb.append(PREFIX_GROUP);
-//            } else {
-//                groups.forEach(s -> sb.append(PREFIX_GROUP).append(s.groupName).append(" "));
-//            }
-//        }
-//        sb.append(" ");
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        if (descriptor.getGroups().isPresent()) {
+            Set<Group> groups = descriptor.getGroups().get();
+            if (groups.isEmpty()) {
+                sb.append(PREFIX_GROUP);
+            } else {
+                groups.forEach(s -> sb.append(PREFIX_GROUP).append(s.groupName).append(" "));
+            }
+        }
 
-//        System.out.println(sb);
         return sb.toString();
     }
 }

@@ -56,8 +56,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    public final Index index;
+    public final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
@@ -107,12 +107,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
+        Set<Group> groups = (personToEdit.getGroups());
 
         Social updatedSocial = editPersonDescriptor.getSocial().orElse(personToEdit.getSocial());
 
         return new Person(updatedOccupation, updatedName, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags, updatedSocial, updatedGroups);
+                updatedEmail, updatedAddress, updatedTags, updatedSocial, groups);
     }
 
     @Override
