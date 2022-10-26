@@ -102,6 +102,9 @@ public class UserProfile extends UiPart<Region> {
             currModuleDescription.setText("Current Modules: ");
             prevModuleDescription.setText("Previous Modules: ");
             planModuleDescription.setText("Planned Modules: ");
+            currModulesTags.getChildren().clear();
+            planModulesTags.getChildren().clear();
+            prevModulesTags.getChildren().clear();
             user.getCurrModules().stream()
                     .sorted(Comparator.comparing(mod -> mod.moduleName))
                     .forEach(mod -> currModulesTags.getChildren().add(new Label(mod.moduleName)));

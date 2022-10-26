@@ -209,6 +209,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandText.startsWith("delete user")
                     || commandText.startsWith("edit user")
+                    || commandText.startsWith("module user")
                     || commandText.startsWith("user")) {
                 userProfile.update(logic.getUser());
             }

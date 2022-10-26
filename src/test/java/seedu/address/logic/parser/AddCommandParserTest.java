@@ -28,15 +28,15 @@ import static seedu.address.logic.commands.CommandTestUtil.PREVIOUS_MODULE_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CURRENT_MODULE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CURRENT_MODULE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_5;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_6;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PLANNED_MODULE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PLANNED_MODULE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PREVIOUS_MODULE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PREVIOUS_MODULE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -96,7 +96,7 @@ public class AddCommandParserTest {
         // multiple current modules - all accepted
         Person expectedPersonMultipleCurrentModules = new PersonBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .withCurrentModules(VALID_CURRENT_MODULE, VALID_CURRENT_MODULE_2)
+                .withCurrentModules(VALID_MODULE_1, VALID_MODULE_2)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + GITHUB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + CURRENT_MODULE_DESC_1
@@ -105,7 +105,7 @@ public class AddCommandParserTest {
         // multiple previous modules - all accepted
         Person expectedPersonMultiplePreviousModules = new PersonBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .withPreviousModules(VALID_PREVIOUS_MODULE, VALID_PREVIOUS_MODULE_2)
+                .withPreviousModules(VALID_MODULE_3, VALID_MODULE_4)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + GITHUB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PREVIOUS_MODULE_DESC_1
@@ -114,7 +114,7 @@ public class AddCommandParserTest {
         // multiple previous modules - all accepted
         Person expectedPersonMultiplePlannedModules = new PersonBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .withPlannedModules(VALID_PLANNED_MODULE, VALID_PLANNED_MODULE_2)
+                .withPlannedModules(VALID_MODULE_5, VALID_MODULE_6)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + GITHUB_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PLANNED_MODULE_DESC_1
