@@ -35,6 +35,7 @@ public class Person {
         requireAllNonNull(name, phone, email,
                 //telegram,
                 moduleCode, tags);
+        assert name.fullName != null;
         this.name = name;
         this.phone = phone;
         this.email = email;
