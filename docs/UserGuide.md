@@ -132,6 +132,12 @@ Examples:
 * `list m/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T module.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### Showing grades
+
+Shows a pie chart representing proportions of students' grade.
+
+Format: `show grade`
+
 ### Adding a tutorial : `add tutorial`
 
 Adds a tutorial to the tutorial database.
@@ -269,6 +275,7 @@ Action | Format, Examples
 **Edit Student** | `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g.,`edit student 1 p/91234567 e/jameslee@example.com`
 **Find Student** | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`<br> e.g., `find student n/john m/CS2103T`
 **Delete Student** | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`
+**Show grade** | `show grade`<br> e.g., `show grade`
 **Add Tutorial** | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY` <br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
 **Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`
 **Add Consultation** | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION` <br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`
