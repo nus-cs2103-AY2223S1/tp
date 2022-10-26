@@ -282,9 +282,9 @@ Examples:
 
 Finds and lists all the issues matching the search criteria.
 
-Format: `issue -f [desc/DESCRIPTION] [pn/PROJECT_NAME] [p/PRIORITY] [s/STATUS]…​`
+Format: `issue -f [desc/TITLE] [pn/PROJECT_NAME] [p/PRIORITY] [s/STATUS]…​`
 
-* Finds all the issues with the specified `DESCRIPTION`, `PROJECT_NAME`, `PRIORITY` and `STATUS`.
+* Finds all the issues with the specified `TITLE`, `PROJECT_NAME`, `PRIORITY` and `STATUS`.
 * Finds all the issues such that the fields under the issue contain at least one word from the keywords provided
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
@@ -295,7 +295,7 @@ Examples:
   DevEnable or AB3.
 * `issue -f pn/DevEnable AB3 p/LOW` Finds and lists all the issues with `PRIORITY` as LOW and tied to the project whose 
   `PROJECT_NAME` contains DevEnable or AB3.
-* `issue -f desc/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `DESCRIPTION` 
+* `issue -f desc/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `TITLE` 
   enhancement and `PRIORITY` HIGH or LOW and tied to project with `PROJECT_NAME` DevEnable or AB3.
 * `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete. 
 

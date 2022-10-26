@@ -22,6 +22,7 @@ public class TitleTest {
     @Test
     public void isValidTitle() {
         //null title
+<<<<<<< HEAD
         assertThrows(NullPointerException.class, () -> seedu.address.model.issue.Title.isValidTitle(null));
 
         //invalid title
@@ -36,6 +37,22 @@ public class TitleTest {
         assertTrue(seedu.address.model.issue.Title.isValidTitle("a^2 = b^2 + c^2")); // all characters
         assertTrue(seedu.address.model.issue.Title.isValidTitle("Complete Final Class")); // with capital letters
         assertTrue(seedu.address.model.issue.Title.isValidTitle("Finish project class creation "
+=======
+        assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
+
+        //invalid title
+        assertFalse(Title.isValidTitle("")); // empty string
+        assertFalse(Title.isValidTitle(" ")); // spaces only
+
+        //valid title
+        assertTrue(Title.isValidTitle("create class")); // alphabets only
+        assertTrue(Title.isValidTitle("12345")); // numbers only
+        assertTrue(Title.isValidTitle("^/*")); // non-alphanumeric characters only
+        assertTrue(Title.isValidTitle("redo 2 classes")); // alphanumeric characters only
+        assertTrue(Title.isValidTitle("a^2 = b^2 + c^2")); // all characters
+        assertTrue(Title.isValidTitle("Complete Final Class")); // with capital letters
+        assertTrue(Title.isValidTitle("Finish project class creation "
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
                 + "before doing 2 sub-classes")); //long title
     }
 }

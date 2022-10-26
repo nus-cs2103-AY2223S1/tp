@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.issue;
 
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
@@ -25,7 +25,7 @@ public class EditIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
-             + ": Edits an issue in the address book. "
+            + ": Edits an issue in the address book. \n"
             + "Parameters: "
             + PREFIX_ISSUE_ID + "ISSUE_ID "
             + PREFIX_TITLE + "TITLE "

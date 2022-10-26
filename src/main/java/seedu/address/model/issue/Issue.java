@@ -19,6 +19,9 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     public static final String MESSAGE_INVALID_URGENCY_SORT_KEY =
             "Enter either a 0 to sort by lowest urgency or a 1 to sort by highest urgency";
 
+    public static final String MESSAGE_INVALID_ISSUE_ID_SORT_KEY =
+            "Enter either a 0 to sort in ascending order or a 1 to sort in descending order";
+
     // Components of an issue
     private Title title;
     private Deadline deadline;
@@ -58,7 +61,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     public static class EmptyIssue extends Issue {
         public static final Issue EMPTY_ISSUE = new EmptyIssue();
         private EmptyIssue() {
-            super(seedu.address.model.issue.Title.EmptyTitle.EMPTY_TITLE, Project.EmptyProject.EMPTY_PROJECT);
+            super(Title.EmptyTitle.EMPTY_DESCRIPTION, Project.EmptyProject.EMPTY_PROJECT);
         }
 
         /**
@@ -189,6 +192,26 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Checks if input is a valid issue id sort key.
+     *
+     * 0 for ascending and 1 for descending order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidIssueIdSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
      * Returns true if both issues have the same title.
      * This defines a weaker notion of equality between two issues.
      */

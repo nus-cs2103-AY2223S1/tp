@@ -10,5 +10,7 @@ public class ClientCliSyntax {
     public static final Prefix PREFIX_MOBILE = new Prefix("m/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_PROJECT_ID = new Prefix("p/");
+    public static final Prefix PREFIX_CLIENT_ID = new Prefix("c/");
+
 
 }

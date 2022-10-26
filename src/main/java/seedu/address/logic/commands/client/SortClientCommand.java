@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
@@ -19,10 +20,10 @@ public class SortClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "Sorted clients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort clients in address book. \n"
             + "Sort by name: "
             + PREFIX_NAME + "0 (alphabetical) or "
-            + PREFIX_NAME + "1 (reverse alphabetical). "
+            + PREFIX_NAME + "1 (reverse alphabetical). \n"
             + "Example: "
             + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
@@ -46,6 +47,11 @@ public class SortClientCommand extends ClientCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
         String sortKeyString = "";
+
+        if (sortKey.equals(PREFIX_CLIENT_ID)) {
+            model.sortClientsById(sortOrder);
+            sortKeyString = "client id";
+        }
 
         if (sortKey.equals(PREFIX_NAME)) {
             model.sortClientsByName(sortOrder);

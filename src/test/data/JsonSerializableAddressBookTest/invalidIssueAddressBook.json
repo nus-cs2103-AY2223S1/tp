@@ -15,7 +15,11 @@
   } ],
   "issues" : [ {
     "title" : "Refactor UI Classes",
+<<<<<<< HEAD
     "urgency" : "X",
+=======
+    "priority" : "X",
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "20201",
     "status" : "x",
     "issueId" : "1",

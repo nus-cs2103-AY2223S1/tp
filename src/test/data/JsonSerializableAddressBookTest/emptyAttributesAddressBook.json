@@ -41,7 +41,11 @@
   } ],
   "issues" : [ {
     "title" : "Fix UI Bugs",
+<<<<<<< HEAD
     "urgency" : "NONE",
+=======
+    "priority" : "NONE",
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "",
     "status" : "false",
     "issueId" : "1",

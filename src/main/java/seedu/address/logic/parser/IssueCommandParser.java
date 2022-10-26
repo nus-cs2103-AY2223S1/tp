@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 
 import java.util.stream.Stream;
 
@@ -35,10 +35,11 @@ import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.model.issue.Urgency;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Title;
-import seedu.address.model.issue.predicates.TitleContainsKeywordsPredicate;
+
 import seedu.address.model.issue.predicates.UrgencyMatchesKeywordsPredicate;
 import seedu.address.model.issue.predicates.ProjectContainsKeywordsPredicate;
 import seedu.address.model.issue.predicates.StatusMatchesKeywordsPredicate;
+import seedu.address.model.issue.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -238,10 +239,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                     SortIssueCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_URGENCY,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_ISSUE_ID, PREFIX_URGENCY,
                 PREFIX_DEADLINE);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_URGENCY, PREFIX_DEADLINE)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_ISSUE_ID, PREFIX_URGENCY, PREFIX_DEADLINE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortIssueCommand.MESSAGE_USAGE));
         }
@@ -254,6 +255,11 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_URGENCY)) {
             sortPrefix = PREFIX_URGENCY;
             key = ParserUtil.parseUrgencySort(argMultimap.getValue(PREFIX_URGENCY).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_ISSUE_ID)) {
+            sortPrefix = PREFIX_ISSUE_ID;
+            key = ParserUtil.parseIssueIdSort(argMultimap.getValue(PREFIX_ISSUE_ID).get());
         }
 
         return new SortIssueCommand(sortPrefix, key);

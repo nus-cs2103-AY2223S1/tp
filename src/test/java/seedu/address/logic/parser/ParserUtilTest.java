@@ -178,20 +178,35 @@ public class ParserUtilTest {
 
     @Test
     public void parseTitle_invalidValue_throwsParseException() {
+<<<<<<< HEAD
         assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+=======
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_DESCRIPTION));
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
     @Test
     public void parseTitle_validValueWithoutWhitespace_returnsTitle() throws Exception {
+<<<<<<< HEAD
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_TITLE));
+=======
+        Title expectedTitle = new Title(VALID_DESCRIPTION);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_DESCRIPTION));
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
     @Test
     public void parseTitle_validValueWithWhitespace_returnsTitle() throws Exception {
+<<<<<<< HEAD
         String titleWithWhitespace = WHITESPACE + VALID_TITLE + WHITESPACE;
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
+=======
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        Title expectedTitle = new Title(VALID_DESCRIPTION);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(descriptionWithWhitespace));
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
     @Test
@@ -211,7 +226,11 @@ public class ParserUtilTest {
 
     @Test
     public void parseProject_invalidValue_throwsParseException() {
+<<<<<<< HEAD
             assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+=======
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_DESCRIPTION));
+>>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
     @Test

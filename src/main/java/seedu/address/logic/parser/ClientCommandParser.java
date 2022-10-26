@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -220,7 +220,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                         argMultimap.getAllValues(PREFIX_EMAIL)));
             }
 
-            //implies arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE) is true
+            //implies arePrefixesPresent(argMultimap, PREFIX_MOBILE) is true
             return new FindClientByPhoneCommand(new PhoneContainsKeywordsPredicate(
                     argMultimap.getAllValues(PREFIX_MOBILE)));
 
@@ -245,16 +245,21 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                     SortClientCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_ID, PREFIX_NAME);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_ID)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortClientCommand.MESSAGE_USAGE));
         }
 
+        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            sortPrefix = PREFIX_CLIENT_ID;
+            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        }
+
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             sortPrefix = PREFIX_NAME;
-            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_NAME).get());
+            key = ParserUtil.parseClientIdSort(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         return new SortClientCommand(sortPrefix, key);

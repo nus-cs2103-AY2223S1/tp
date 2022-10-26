@@ -23,13 +23,14 @@ public class AddClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-a";
 
-    public static final String MESSAGE_ADD_CLIENT_USAGE = COMMAND_WORD + " " + COMMAND_FLAG
-            + ": Adds a client to the address book. "
+    public static final String MESSAGE_ADD_CLIENT_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+            + ": Adds a client to the address book. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_MOBILE + "PHONE "
+            + PREFIX_MOBILE + "MOBILE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_PROJECT_ID + "PROJECT ID: "
+            + PREFIX_PROJECT_ID + "PROJECT ID: \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John Doe "

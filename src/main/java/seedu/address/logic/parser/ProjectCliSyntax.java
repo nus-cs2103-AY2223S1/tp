@@ -13,5 +13,4 @@ public class ProjectCliSyntax {
     public static final Prefix PREFIX_PROJECT_ID = new Prefix("p/");
     public static final Prefix PREFIX_ISSUE_COUNT = new Prefix("i/");
 
-
 }

@@ -220,6 +220,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Sort projects by id in ascending or descending order based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for ascending order and one for descending order
+     */
+    public void sortProjectsById(int order) {
+        ObservableList<Project> sortedProjectsById;
+        if (order == 0) {
+            //sort in ascending order
+            sortedProjectsById =
+                    getModifiableProjectList().sorted(Comparator.comparing(Project::getProjectIdInInt));
+        } else {
+            //sort in descending order
+            sortedProjectsById = getModifiableProjectList().sorted((p1, p2) ->
+                    p2.getProjectIdInInt() - p1.getProjectIdInInt());
+        }
+        setProjects(sortedProjectsById);
+    }
+
+    /**
      * Sort projects in chronological order or reverse chronological order based on key value of 0 or 1 respectively.
      *
      * @param order zero for chronological order and one for reverse chronological order
@@ -281,6 +300,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Sort issues by id in ascending or descending order based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for ascending order and one for descending order
+     */
+    public void sortIssuesById(int order) {
+        ObservableList<Issue> sortedIssuesById;
+        if (order == 0) {
+            //sort in ascending order
+            sortedIssuesById =
+                    getModifiableIssueList().sorted(Comparator.comparing(Issue::getIssueIdInInt));
+        } else {
+            //sort in descending order
+            sortedIssuesById = getModifiableIssueList().sorted((i1, i2) ->
+                    i2.getIssueIdInInt() - i1.getIssueIdInInt());
+        }
+        setIssues(sortedIssuesById);
+    }
+
+    /**
      * Sort issues in chronological order or reverse chronological order based on key value of 0 or 1 respectively.
      *
      * @param order zero for chronological order and one for reverse chronological order
@@ -316,6 +354,25 @@ public class AddressBook implements ReadOnlyAddressBook {
                     i2.getUrgency().compareTo(i1.getUrgency()));
         }
         setIssues(sortedIssuesByUrgency);
+    }
+
+    /**
+     * Sort clients by id in ascending or descending order based on key value of 0 or 1 respectively.
+     *
+     * @param order zero for ascending order and one for descending order
+     */
+    public void sortClientsById(int order) {
+        ObservableList<Client> sortedClientsById;
+        if (order == 0) {
+            //sort in ascending order
+            sortedClientsById =
+                    getModifiableClientList().sorted(Comparator.comparing(Client::getClientIdInInt));
+        } else {
+            //sort in descending order
+            sortedClientsById = getModifiableClientList().sorted((c1, c2) ->
+                    c2.getClientIdInInt() - c1.getClientIdInInt());
+        }
+        setClients(sortedClientsById);
     }
 
     /**

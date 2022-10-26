@@ -15,11 +15,11 @@ import seedu.address.model.project.Project;
  */
 public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Client> {
 
-    public static final String MESSAGE_INVALID = "Client does not exist in the project.";
-
-
     public static final String MESSAGE_INVALID_NAME_SORT_KEY =
             "Enter either a 0 to sort by alphabetical order or a 1 to sort by reverse alphabetical order";
+
+    public static final String MESSAGE_INVALID_CLIENT_ID_SORT_KEY =
+            "Enter either a 0 to sort in ascending order or a 1 to sort in descending order";
 
     //Represents the Client's name
     private Name name;
@@ -91,6 +91,10 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         return this.clientId;
     }
 
+    public int getClientIdInInt() {
+        return getClientId().getIdInt();
+    }
+
     /**
      * Checks if this Client is empty.
      * @return true if the Client is empty.
@@ -131,6 +135,24 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             return "";
         }
 
+    }
+
+
+    /**
+     * Checks if input is a valid client id sort key.
+     *
+     * 0 for ascending and 1 for descending order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidClientIdSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
@@ -195,7 +217,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @return String for display in the UI
      */
     public String uiRepresentation() {
-        return this.name.toString() + " " + this.phone.toString();
+        return this.name.toString() + " (" + this.phone.toString() + ")";
     }
 
     public void removeProject(Project p) {
