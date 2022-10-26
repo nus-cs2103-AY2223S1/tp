@@ -65,6 +65,6 @@ public class ViewLesson extends UiPart<Node> {
     }
 
     private LessonPill addSlot(String[] slot) {
-        return new LessonPill(String.format("%s : %s", slot[0], slot[1]));
+        return new LessonPill(null, null);
     }
 }

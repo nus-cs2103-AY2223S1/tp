@@ -1,15 +1,23 @@
 package nus.climods.ui.module;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
+import org.openapitools.client.model.Lesson;
+import org.openapitools.client.model.SemestersEnum;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import nus.climods.model.module.LessonType;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
+import nus.climods.ui.module.components.LessonPill;
 import nus.climods.ui.module.components.ModuleCreditsPill;
 import nus.climods.ui.module.components.SemesterPill;
 
@@ -56,6 +64,11 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label preclusion;
 
+    @FXML
+    private VBox lessonInfo;
+    @FXML
+    private Accordion allLessons;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -77,6 +90,10 @@ public class ModuleCard extends UiPart<Region> {
         expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
         // by default expanded is not visible
         expandedModuleInfo.setVisible(false);
+        // add lesson info in a similar way as expanded module info
+        lessonInfo.managedProperty().bind(lessonInfo.visibleProperty());
+        lessonInfo.setVisible(false);
+        showLessonInformation(SemestersEnum.S1);
 
         if (module.isFocused()) {
             showDetailedModuleInformation();
@@ -93,8 +110,33 @@ public class ModuleCard extends UiPart<Region> {
         preclusion.setText(module.getPreclusion());
     }
 
-    private void showLessonInformation() {
+    private void showLessonInformation(SemestersEnum sem) {
+        lessonInfo.setVisible(true);
+        allLessons.getPanes()
+                .addAll(module.getLessons(sem).entrySet().stream()
+                        .map(entry -> addLessonType(entry.getKey(), entry.getValue()))
+                        .collect(Collectors.toList()));
+    }
 
+    private TitledPane addLessonType(LessonType lessonType, Module.ModuleLessonIdMap slots) {
+        TitledPane pane = new TitledPane();
+        pane.setText(String.format("%s: %s", module.getCode(), lessonType));
+        pane.setContent(addLessonSlot(slots));
+        return pane;
+    }
+
+    private FlowPane addLessonSlot(Module.ModuleLessonIdMap slots) {
+        FlowPane fc = new FlowPane();
+        fc.getChildren().addAll(slots.entrySet().stream()
+                .map(entry -> addSlot(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList()));
+        fc.setHgap(4);
+        fc.setVgap(8);
+        return fc;
+    }
+
+    private LessonPill addSlot(String id, List<Lesson> lessons) {
+        return new LessonPill(id, lessons);
     }
 
     @Override
