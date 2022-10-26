@@ -161,6 +161,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setGroups(toCopy.groups);
         }
 
         /**
@@ -272,7 +273,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getGroups().equals(e.getGroups());
         }
     }
 }
