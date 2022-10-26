@@ -95,11 +95,11 @@ public interface Model {
     void addStudent(Student student);
 
     /**
-     * Replaces the given student {@code targetStuent} with {@code editedStudent}.
+     * Replaces the given student {@code targetStudent} with {@code editedStudent}.
      * {@code targetStudent} must exist in the student book.
      * The identity of {@code editedStudent} must not be the same as another existing student in the student book.
      */
-    void setStudent(Student target, Student editedStudent);
+    void setStudent(Student targetStudent, Student editedStudent);
 
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
