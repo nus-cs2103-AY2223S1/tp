@@ -342,9 +342,11 @@ public class ParserUtil {
      * Parses {@code String arg} into a {@code Type}.
      */
     public static Type parseSortType(String arg) throws ParseException {
-        switch (arg) {
+        switch (arg.toUpperCase()) {
         case "NAME":
             return Type.NAME;
+        case "CLASS":
+            return Type.CLASS;
         default:
             throw new ParseException(SortCommand.MESSAGE_UNKNOWN_TYPE_KEYWORD);
         }

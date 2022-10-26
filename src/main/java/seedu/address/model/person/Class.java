@@ -290,7 +290,12 @@ public class Class {
                 && classDateTime.equals(((Class) other).classDateTime)); // state check
     }
 
+    /**
+     * Returns 1 is this {@code Class} starts before the given {@code aclass}.
+     * {@code Class} and {@code aclass} must be non-null;
+     */
     public int compareToByStartTime(Class aclass) {
+        requireAllNonNull(this.startTime, aclass.startTime);
         return this.startTime.compareTo(aclass.startTime);
     }
 

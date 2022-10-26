@@ -29,7 +29,8 @@ public class SortCommand extends Command {
      * {@code TYPE} specifies what possible types {@code SortCommand} can accept.
      */
     public static enum Type {
-        NAME
+        NAME,
+        CLASS
     };
 
     /**
@@ -59,6 +60,12 @@ public class SortCommand extends Command {
                 return Person::compareToByNameAsc;
             } else {
                 return Person::compareToByNameDesc;
+            }
+        case CLASS:
+            if (order.equals(Order.ASC)) {
+                return Person::compareToByClassAsc;
+            } else {
+                return Person::compareToByClassDesc;
             }
         default:
             // default sorting is to sort by Name Asc
