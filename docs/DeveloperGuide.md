@@ -208,7 +208,7 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
       - Pros: More specific internship list
       - Cons: Require typing full name of company or tag
   - **Alternative 2 (current choice):** Allows partial word match
-      - Pros: Allow quick searching for company name or tag
+      - Pros: Allow quick searching for company or tag
       - Cons: Less specific internship list
 
 ### Filter by `ApplicationStatus` feature
@@ -397,10 +397,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
-**Use Case: UC4 - Search for internship applications using keywords**
+**Use Case: UC4 - Find internship applications using keywords**
 
 **MSS**:
-1. User wants to search for internship applications stored in the tracker.
+1. User wants to find internship applications stored in the tracker.
 2. User enters the keywords for the search.
 3. FindMyIntern shows a list of internship applications that match the keywords.
    

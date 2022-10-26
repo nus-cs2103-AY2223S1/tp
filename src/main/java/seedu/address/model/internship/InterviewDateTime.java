@@ -12,7 +12,7 @@ import java.time.temporal.ChronoField;
 import java.util.Comparator;
 
 /**
- * Represents an Internship's interview date and time in FindMyIntern.
+ * Represents an Internship's interview date and time in findMyIntern.
  * Guarantees: immutable; is valid as declared in {@link #isValidInterviewDateTime(String)}
  */
 public class InterviewDateTime {

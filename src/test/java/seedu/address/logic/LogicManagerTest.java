@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFindMyInternStorage addressBookStorage =
-                new JsonFindMyInternStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonFindMyInternStorage findMyInternStorage =
+                new JsonFindMyInternStorage(temporaryFolder.resolve("findmyintern.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(findMyInternStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,12 +70,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonFindMyInternStorage addressBookStorage =
-                new JsonFindMyInternIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonFindMyInternIoExceptionThrowingStub
+        JsonFindMyInternStorage findMyInternStorage =
+                new JsonFindMyInternIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFindMyIntern.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(findMyInternStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

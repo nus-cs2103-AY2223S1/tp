@@ -54,11 +54,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyFindMyIntern getSampleFindMyIntern() {
-        FindMyIntern sampleAb = new FindMyIntern();
+        FindMyIntern sampleFmi = new FindMyIntern();
         for (Internship sampleInternship : getSampleInternships()) {
-            sampleAb.addInternship(sampleInternship);
+            sampleFmi.addInternship(sampleInternship);
         }
-        return sampleAb;
+        return sampleFmi;
     }
 
     /**

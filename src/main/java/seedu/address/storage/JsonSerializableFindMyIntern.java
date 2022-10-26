@@ -14,9 +14,9 @@ import seedu.address.model.ReadOnlyFindMyIntern;
 import seedu.address.model.internship.Internship;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable FindMyIntern that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "FindMyIntern")
 class JsonSerializableFindMyIntern {
 
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "Internships list contains duplicate internship(s).";
@@ -24,7 +24,7 @@ class JsonSerializableFindMyIntern {
     private final List<JsonAdaptedInternship> internships = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given internships.
+     * Constructs a {@code JsonSerializableFindMyIntern} with the given internships.
      */
     @JsonCreator
     public JsonSerializableFindMyIntern(@JsonProperty("internships") List<JsonAdaptedInternship> internships) {
@@ -32,9 +32,9 @@ class JsonSerializableFindMyIntern {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyFindMyIntern} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableFindMyIntern}.
      */
     public JsonSerializableFindMyIntern(ReadOnlyFindMyIntern source) {
         internships.addAll(source.getInternshipList().stream().map(JsonAdaptedInternship::new)
