@@ -73,6 +73,8 @@ public class GraduationDateContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withGraduationDate("05-2024").build()));
         predicate = new GraduationDateContainsKeywordsPredicate(Arrays.asList("12-05-2024")); // keyword larger
         assertFalse(predicate.test(new PersonBuilder().withGraduationDate("05-2024").build()));
+        predicate = new GraduationDateContainsKeywordsPredicate(Arrays.asList("May")); // Alphanumeric
+        assertFalse(predicate.test(new PersonBuilder().withGraduationDate("05-2024").build()));
 
         // Keywords match name, phone, email and address, but does not match GraduationDate
         predicate = new GraduationDateContainsKeywordsPredicate(
