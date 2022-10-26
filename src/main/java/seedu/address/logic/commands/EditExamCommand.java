@@ -84,48 +84,21 @@ public class EditExamCommand extends Command {
 
         try {
             if (!isEditedExamOfSameModule && model.isExamLinkedToTask(examToEdit)) {
-                Alert alert =
-                        new Alert(Alert.AlertType.CONFIRMATION,
-                                "Do you want to edit the module code as " + "\n"
-                                        + "all the tasks linked to this exam will be unlinked",
-                                ButtonType.YES,
-                                ButtonType.NO);
-                alert.setTitle("Confirmation");
-                Optional<ButtonType> userInput = alert.showAndWait();
-
-                if (userInput.get() == ButtonType.YES) {
-                    return editExamAndUnlinkTasks(model, examToEdit, editedExam);
-                } else {
-                    return examNotEditedAfterConfirmation(model);
-                }
+                model.replaceExam(examToEdit, editedExam, false);
+                model.unlinkTasksFromExam(examToEdit);
+                return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n"
+                        + "All the tasks previously linked to this exam are now unlinked.");
             } else {
-                return editExamWithoutUnlinkingTasks(model, examToEdit, editedExam);
+                model.replaceExam(examToEdit, editedExam, false);
+                model.updateExamFieldForTask(examToEdit, editedExam);
             }
         } catch (DuplicateExamException e) {
             throw new CommandException(MESSAGE_DUPLICATE_EXAM);
         }
-    }
 
-    private CommandResult editExamAndUnlinkTasks(Model model, Exam examToEdit, Exam editedExam) {
-        model.replaceExam(examToEdit, editedExam, false);
-        model.unlinkTasksFromExam(examToEdit);
-        model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n"
-                + "All the tasks previously linked to this exam are now unlinked.");
-    }
-
-    private CommandResult editExamWithoutUnlinkingTasks(Model model, Exam examToEdit, Exam editedExam) {
-        model.replaceExam(examToEdit, editedExam, false);
-        model.updateExamFieldForTask(examToEdit, editedExam);
         model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
         return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam));
     }
-
-    private CommandResult examNotEditedAfterConfirmation(Model model) {
-        model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
-        return new CommandResult("Exam is not edited.");
-    }
-
 
     @Override
     public boolean equals(Object other) {
