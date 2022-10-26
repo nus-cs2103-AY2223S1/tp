@@ -12,7 +12,7 @@
       xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-<!--      prefWidth of 200 is half of module list's width. -->
+      <!--      prefWidth of 200 is half of module list's width. -->
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
@@ -20,10 +20,10 @@
         <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
       <HBox>
-<!--        Task number. Min width necessary to prevent truncation. -->
+        <!--        Task number. Min width necessary to prevent truncation. -->
         <Label fx:id="id" styleClass="cell_small_label" HBox.hgrow="ALWAYS"
                minWidth="15"/>
-<!--        Task Description. -->
+        <!--        Task Description. -->
         <Label fx:id="taskDescription"
                styleClass="cell_small_label" textAlignment="JUSTIFY"
                text="\$task" wrapText="true"/>

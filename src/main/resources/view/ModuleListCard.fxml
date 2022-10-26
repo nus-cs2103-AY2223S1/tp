@@ -31,6 +31,7 @@
                styleClass="cell_small_label" />
       </HBox>
       <HBox>
+        <!--        prefWidth of 200 is half of module list's width. -->
         <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="170"
               prefWidth="200" HBox.hgrow="ALWAYS">
           <Label alignment="CENTER" styleClass="underlined-text"
@@ -42,6 +43,7 @@
           </padding>
           <StackPane fx:id="taskListPanelPlaceholder" />
         </VBox>
+        <!--        prefWidth of 200 is half of module list's width. -->
         <VBox styleClass="pane-with-border" minWidth="170"
               prefWidth="200" HBox.hgrow="ALWAYS">
           <padding>
