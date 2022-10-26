@@ -298,7 +298,7 @@ This command executes 3 main actions, they are:
    - `ScheduleCard#setMarkStatus(Person person)` sets the text of `markStatus` to be `[X]` if the `person` is marked, else `[ ]`.
 
 2. Increment the money owed by the student.
-   - This action will add `ratesPerClass` field to `MoneyOwed` field in `Person`.
+   - This action will add `ratesPerClass` field to `moneyOwed` field in `Person`.
    - The addition of money is called through `Money#addTo(Money money)` method.
    - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
 
@@ -308,8 +308,9 @@ This command executes 3 main actions, they are:
    - The next `Class` will be checked if it clashes with another `Class`. If it does not, it will be saved in `ClassStorage`. All these are called through `ClassStorage#saveClass()`.
    - The marked `Class` will be deleted from `ClassStorage`.
 
+The following diagram illustrates how the operation works:
 
-
+![MarkActivityDiagram](images/DG-images/MarkActivityDiagram.png)
 
 ---
 
