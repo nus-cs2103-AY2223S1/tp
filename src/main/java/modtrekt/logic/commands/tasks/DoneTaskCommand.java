@@ -14,28 +14,27 @@ import modtrekt.model.Model;
 import modtrekt.model.task.Task;
 
 /**
- * Archives a task in the task book.
+ * Marks a task in the task book as done.
  */
-@Parameters(commandDescription = "Archives a task in the task book.")
-public class ArchiveTaskCommand extends Command {
-    public static final String COMMAND_WORD = "archive";
+@Parameters(commandDescription = "Marks a task as done.")
+public class DoneTaskCommand extends Command {
+    public static final String COMMAND_WORD = "done task";
 
-    @Parameter(names = "-t", description = "Index of the task to archive",
-            required = true, converter = IndexConverter.class)
+    @Parameter(description = "Index of the task to mark as done", required = true, converter = IndexConverter.class)
     private Index index;
 
     /**
-     * Returns a new ArchiveTaskCommand object, with no fields initialized, for use with JCommander.
+     * Returns a new DoneTaskCommand object, with no fields initialized, for use with JCommander.
      */
-    public ArchiveTaskCommand() {
+    public DoneTaskCommand() {
     }
 
     /**
-     * Returns a new ArchiveTaskCommand object.
+     * Returns a new DoneTaskCommand object.
      *
-     * @param index the index of the task to be archived
+     * @param index the index of the task to be marked as done
      */
-    public ArchiveTaskCommand(Index index) {
+    public DoneTaskCommand(Index index) {
         this.index = index;
     }
 
@@ -51,18 +50,19 @@ public class ArchiveTaskCommand extends Command {
         // The 0-based index is guaranteed by the Index class invariant to be >= 0.
         if (index.getZeroBased() >= tasks.size()) {
             throw new CommandException(String.format("Task index must an integer between 1 and %d inclusive.",
-                    tasks.size()));
+                    tasks.size()
+            ));
         }
 
         Task target = model.getFilteredTaskList().get(index.getZeroBased());
 
-        // Check that the task is not already unarchived.
-        if (target.isArchived()) {
-            throw new CommandException(String.format("Task #%d is already archived.", index.getOneBased()));
+        // Check that the task is not already marked as done.
+        if (target.isDone()) {
+            throw new CommandException(String.format("Task #%d is already marked as done.", index.getOneBased()));
         }
 
-        // Archive the task.
-        model.setTask(target, target.archive());
+        // Mark the task as done.
+        model.setTask(target, target.setAsDone());
         return new CommandResult("Yay! I successfully marked this task as done!");
     }
 }

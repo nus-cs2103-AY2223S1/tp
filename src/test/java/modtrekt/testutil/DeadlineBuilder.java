@@ -14,12 +14,12 @@ public class DeadlineBuilder {
     public static final String DEFAULT_DESC = "Complete Assignment";
     public static final String DEFAULT_MOD_CODE = "CS2103T";
     public static final LocalDate DEFAULT_DUE_DATE = LocalDate.of(2022, 01, 01);
-    public static final boolean DEFAULT_ARCHIVE_STATUS = false;
+    public static final boolean DEFAULT_IS_DONE_STATUS = false;
     public static final Task.Priority DEFAULT_PRIORITY = Task.Priority.NONE;
     private Description description;
     private ModCode modCode;
     private LocalDate dueDate;
-    private boolean isArchived;
+    private boolean isDone;
     private Task.Priority priority;
 
     /**
@@ -29,7 +29,7 @@ public class DeadlineBuilder {
         description = new Description(DEFAULT_DESC);
         dueDate = DEFAULT_DUE_DATE;
         modCode = new ModCode(DEFAULT_MOD_CODE);
-        isArchived = DEFAULT_ARCHIVE_STATUS;
+        isDone = DEFAULT_IS_DONE_STATUS;
         priority = DEFAULT_PRIORITY;
     }
 
@@ -58,10 +58,10 @@ public class DeadlineBuilder {
     }
 
     /**
-     * Sets the {@code isArchived} of the {@code Deadline} that we are building.
+     * Sets the {@code isDone} of the {@code Deadline} that we are building.
      */
-    public DeadlineBuilder withIsArchived(boolean isArchived) {
-        this.isArchived = isArchived;
+    public DeadlineBuilder withIsDone(boolean isDone) {
+        this.isDone = isDone;
         return this;
     }
 
@@ -74,6 +74,6 @@ public class DeadlineBuilder {
     }
 
     public Deadline build() {
-        return new Deadline(description, modCode, dueDate, isArchived, priority);
+        return new Deadline(description, modCode, dueDate, isDone, priority);
     }
 }

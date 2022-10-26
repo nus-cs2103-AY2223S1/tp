@@ -20,13 +20,13 @@ public class TaskOrderTest {
     private final Task low = new TaskBuilder().withPriority(Task.Priority.LOW).build();
     private final Task medium = new TaskBuilder().withPriority(Task.Priority.MEDIUM).build();
     private final Task high = new TaskBuilder().withPriority(Task.Priority.HIGH).build();
-    private final Task noneArch = new TaskBuilder().withIsArchived(true).build();
+    private final Task noneArch = new TaskBuilder().withIsDone(true).build();
     private final Task lowArch = new TaskBuilder().withPriority(Task.Priority.LOW)
-            .withIsArchived(true).build();
+            .withIsDone(true).build();
     private final Task mediumArch = new TaskBuilder().withPriority(Task.Priority.MEDIUM)
-            .withIsArchived(true).build();
+            .withIsDone(true).build();
     private final Task highArch = new TaskBuilder().withPriority(Task.Priority.HIGH)
-            .withIsArchived(true).build();
+            .withIsDone(true).build();
 
     // Deadlines
     private final Task dNone = new DeadlineBuilder().build();
@@ -34,13 +34,13 @@ public class TaskOrderTest {
     private final Task dLow = new DeadlineBuilder().withPriority(Task.Priority.LOW).build();
     private final Task dMed = new DeadlineBuilder().withPriority(Task.Priority.MEDIUM).build();
     private final Task dHigh = new DeadlineBuilder().withPriority(Task.Priority.HIGH).build();
-    private final Task dNoneArch = new DeadlineBuilder().withIsArchived(true).build();
+    private final Task dNoneArch = new DeadlineBuilder().withIsDone(true).build();
     private final Task dLowArch = new DeadlineBuilder().withPriority(Task.Priority.LOW)
-            .withIsArchived(true).build();
+            .withIsDone(true).build();
     private final Task dMedArch = new DeadlineBuilder().withPriority(Task.Priority.MEDIUM)
-            .withIsArchived(true).build();
+            .withIsDone(true).build();
     private final Task dHighArch = new DeadlineBuilder().withPriority(Task.Priority.HIGH)
-            .withIsArchived(true).build();
+            .withIsDone(true).build();
     // Different dates
     private final Task dNoneLater = new DeadlineBuilder().withDueDate(LocalDate.of(2023, 01, 01)).build();
     private final Task dLowLater = new DeadlineBuilder().withDueDate(LocalDate.of(2023, 01, 01))
@@ -50,13 +50,13 @@ public class TaskOrderTest {
     private final Task dHighLater = new DeadlineBuilder().withDueDate(LocalDate.of(2023, 01, 01))
             .withPriority(Task.Priority.HIGH).build();
     private final Task dNoneArchLater = new DeadlineBuilder().withDueDate(LocalDate.of(2023, 01, 01))
-            .withIsArchived(true).build();
+            .withIsDone(true).build();
     private final Task dLowArchLater = new DeadlineBuilder().withDueDate(LocalDate.of(2023, 01, 01))
-            .withIsArchived(true).withPriority(Task.Priority.LOW).build();
+            .withIsDone(true).withPriority(Task.Priority.LOW).build();
     private final Task dMedArchLater = new DeadlineBuilder().withDueDate(LocalDate.of(2023, 01, 01))
-            .withIsArchived(true).withPriority(Task.Priority.MEDIUM).build();
+            .withIsDone(true).withPriority(Task.Priority.MEDIUM).build();
     private final Task dHighArchLater = new DeadlineBuilder().withDueDate(LocalDate.of(2023, 01, 01))
-            .withIsArchived(true).withPriority(Task.Priority.HIGH).build();
+            .withIsDone(true).withPriority(Task.Priority.HIGH).build();
 
     List<Task> listBuilder(Task ...tasks) {
         List<Task> taskList = new ArrayList<Task>();
@@ -89,7 +89,7 @@ public class TaskOrderTest {
     }
 
     @Test
-    public void order_tasksDeadlines_archivedAlwaysOnBottom() {
+    public void order_tasksDeadlines_doneAlwaysOnBottom() {
         List<Task> taskList = listBuilder(dHighArch, highArch, mediumArch, none, dNone);
         assertTrue(isOrderedCorrectly(taskList, dNone, none, dHighArch, highArch, mediumArch));
     }
@@ -108,43 +108,43 @@ public class TaskOrderTest {
     }
 
     @Test
-    public void order_all_archiveThenPriorityThenDeadlinesThenDuedateThenLexi() {
+    public void order_all_doneThenPriorityThenDeadlinesThenDuedateThenLexi() {
         List<Task> taskList = listBuilder(none, noneLexiAfter, low, medium, high, noneArch,
                 lowArch, mediumArch, highArch, dNone, dNoneLexiAfter, dLow, dMed, dHigh,
                 dNoneArch, dLowArch, dMedArch, dHighArch, dNoneLater, dLowLater, dMedLater,
                 dHighLater, dNoneArchLater, dLowArchLater, dMedArchLater, dHighArchLater);
         assertTrue(isOrderedCorrectly(taskList,
-                // Unarchived deadlines high
+                // Undone deadlines high
                 dHigh, dHighLater,
-                // Unarchived tasks high
+                // Undone tasks high
                 high,
-                // Unarchived deadlines medium
+                // Undone deadlines medium
                 dMed, dMedLater,
-                // Unarchived tasks medium
+                // Undone tasks medium
                 medium,
-                // Unarchived deadlines low
+                // Undone deadlines low
                 dLow, dLowLater,
-                // Unarchived tasks low
+                // Undone tasks low
                 low,
-                // Unarchived deadlines none
+                // Undone deadlines none
                 dNone, dNoneLexiAfter, dNoneLater,
-                // Unarchived tasks none
+                // Undone tasks none
                 none, noneLexiAfter,
-                // Archived deadlines high
+                // done deadlines high
                 dHighArch, dHighArchLater,
-                // Archived tasks high
+                // done tasks high
                 highArch,
-                // Archived deadlines medium
+                // done deadlines medium
                 dMedArch, dMedArchLater,
-                // Archived tasks medium
+                // done tasks medium
                 mediumArch,
-                // Archived deadlines low
+                // done deadlines low
                 dLowArch, dLowArchLater,
-                // Unarchived tasks low
+                // Undone tasks low
                 lowArch,
-                // Unarchived deadlines none
+                // Undone deadlines none
                 dNoneArch, dNoneArchLater,
-                // Unarchived tasks none
+                // Undone tasks none
                 noneArch
                 ));
     }

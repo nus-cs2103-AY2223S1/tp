@@ -21,7 +21,7 @@ title: Developer Guide
      - [Add Task](#add-task)
      - [Remove Task](#remove-task)
      - [Edit Task](#edit-task)
-     - [Task Archival](#task-archival)
+     - [Marking Tasks as Done](#marking-tasks-as-done)
      - [Task Listing](#task-listing)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
@@ -348,8 +348,8 @@ Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
     * Cons: User needs to type more.
 
 We decided to go with the alternative 1 as it would be faster for users to type inputs. Furthermore, at any point, it is
-unlikely that users will take so many modules such that the GUI is unable to display all the modules. We also have an
-archive feature that would remove previously taken modules so that it would not clutter up the GUI.
+unlikely that users will take so many modules such that the GUI is unable to display all the modules. We also have a
+feature that would remove previously taken modules so that it would not clutter up the GUI.
 
 #### Current implementation
 
@@ -572,67 +572,66 @@ first obtain the `Task` using the index. Then it would remove the `Task` from th
 with the information specified by the user.  The `TaskList` is subsequently updated and the user can now see the updated
 task details in the list.
 
-### Task archival
+### Marking tasks as done
 
 Section by : [Jonathan](https://github.com/jontmy)
 
-Task archival allows users to selectively hide tasks that they have completed.
+Marking tasks as done allows users to selectively hide tasks that they have completed.
 
-Every task in the task book will be in either the archived or unarchived state.
-New tasks will be created in the unarchived state.
+Every task in the task book will be in either the done or undone state.
+New tasks will be created in the undone state.
 
-In this section, we will discuss the management of archived/unarchived state, as well as the
+In this section, we will discuss the management of done/undone state, as well as the
 interactions between the commands, their parsers, and the UI.
 
 The relevant commands for this section are:
-* **`archive -t <task index>`**  archives the task visible in the UI with the specified index.
-* **`unarchive -t <task index>`** unarchives the task visible in the UI with the specified index.
+* **`done task <task index>`**  marks the task visible in the UI with the specified index as done.
+* **`undone task <task index>`** marks the task visible in the UI with the specified index as undone.
 
 #### Design considerations
 
-There was an alternative we considered for users to select the task to archive:
+There was an alternative we considered for users to select the task to mark as done:
 
 * **Alternative 1:** Using the task name:
     * Pro: Users do not have to search for a task and its index.
-    * Pro: Users can archive tasks that aren't visible in the UI.
+    * Pro: Users can mark tasks that aren't visible in the UI as done.
     * Con: Users have to type a significant amount to disambiguate tasks by their name.
     * Con: Users have to remember the task names which may be difficult if there are many tasks.
 
 * **Alternative 2:** Using the task index of the current module (current implementation):
-    * Pro: Users can archive tasks by their index easily without much typing.
-    * Con: Users now have to use `cd` to change the current module tied to the task they want to archive.
-    * Con: Users now have to use `ls` and `ls -A` to view the tasks to archive or unarchive respectively.
+    * Pro: Users can mark tasks as done by their index easily without much typing.
+    * Con: Users now have to use `cd` to change the current module tied to the task they want to mark as done.
+    * Con: Users now have to use `ls` and `ls -A` to view undone tasks or all tasks respectively.
 
 Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
 even though the `cd` and `ls` commands add a bit of overhead.
 
 #### Current implementation
 
-Archival state is handled in the `Task` class via a boolean flag `isArchived`.
-Because `Task` is immutable, the methods `Task::archive` and `Task::unarchive` return a new `Task`
-with the archival state changed instead of mutating the `isArchived` variable directly.
+The done/undone state is handled in the `Task` class via a boolean flag `isDone`.
+Because `Task` is immutable, the methods `Task::setAsDone` and `Task::setAsUndone` return a new `Task`
+with the done/undone state changed instead of mutating the `isDone` variable directly.
 
-The following activity diagram shows the execution and control flow of the `archive` command.
+The following activity diagram shows the execution and control flow of the `done` command.
 
 <img src="images/tasks/ArchivalActivityDiagram.png" width="1000" />
 
-Notice how we explicitly prevent an archived task from being archived again. Even though archiving an archived task
+Notice how we explicitly prevent a done task from being marked as done again. Even though marking a done task as done again
 is inconsequential from a data perspective (nothing in a `Task` changes other than the creation of a new instance),
 it is still a user error that should be handled:
 
-> Suppose that a user intended to _unarchive_ a task, but accidentally entered the `archive` command instead.
+> Suppose that a user intended to mark a task as undone, but accidentally entered the `done` command instead.
 By displaying an error instead of silently accepting the erroneous command, the user is notified and
 can enter the correct command next—this results in better UX!
 
-The classes directly involved in setting the archival state from user input are:
-* `ArchiveTaskCommand` and `UnarchiveTaskCommand` which are the commands that when executed, archive and unarchive tasks respectively.
-* `ArchiveTaskCommandParser` and `UnarchiveTaskCommandParser` which parse user input for their respective commands.
-* `ModtrektParser` which parses the command word and delegates the parsing to the correct parser.
+The classes directly involved in setting the done/undone state from user input are:
+* `DoneTaskCommand` and `UndoneTaskCommand` which are the commands that when executed, mark tasks as done or undone respectively.
+* `ModtrektParser` which parses the command word and delegates the parsing to JCommander.
 * `LogicManager` which executes the commands.
 
-For brevity, we omit the diagrams and explanations for task unarchival—it is the direct inverse of archival,
-such that the control flow is exactly the same: just replace "archive" and its derivatives
-with "unarchive", and vice versa.
+For brevity, we omit the diagrams and explanations for marking tasks as undone—it is the direct inverse of marking tasks as done,
+such that the control flow is exactly the same: just replace "done" and its derivatives
+with "undone", and vice versa.
 
 ### Task listing
 
@@ -642,14 +641,14 @@ Task listing allows users to view the tasks they have created which belong to a 
 
 The relevant commands for this section are:
 * **`cd`** sets the current module to view tasks for.
-* **`ls`** displays only the unarchived tasks for the current module in the UI.
-* **`ls -a`** displays all the tasks for the current module, including the ones archived, in the UI.
+* **`ls`** displays only the undone tasks for the current module in the UI.
+* **`ls -a`** displays all the tasks for the current module, including the ones done, in the UI.
 
 #### Current implementation
 
-We check for the presence of the `-a` flag to decide whether to display archived tasks.
+We check for the presence of the `-a` flag to decide whether to display done tasks.
 
-The predicates defined by `Model.SHOW_ALL_TASKS` and `Model.HIDE_ARCHIVED_TASKS` are used to filter
+The predicates defined by `Model.SHOW_ALL_TASKS` and `Model.HIDE_DONE_TASKS` are used to filter
 the tasks displayed in the UI via the `updateFilteredTaskList` method in the `Model` interface.
 
 The sequence diagram below details the interactions between the command, parser, and the model
@@ -710,7 +709,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Tasks / Deadline | `***`    | user                               | view my tasks and deadlines per module                                                    | see my tasks and deadlines in an organised manner                 |
 | Tasks / Deadline | `***`    | user                               | change the module of a specific task or deadline                                          | move my tasks and deadlines around if I make a mistake            |
 | Tasks / Deadline | `***`    | clumsy user                        | delete tasks and deadlines                                                                | ensure my homepage is not cluttered with unused items             |
-| Tasks / Deadline | `**`     | novice user                        | archive tasks and deadlines that are completed                                            | refer to them in future                                           |
+| Tasks / Deadline | `**`     | novice user                        | mark tasks and deadlines that are completed as done                                       | refer to them in future                                           |
 | Tasks / Deadline | `***`    | novice user                        | change a deadline that I had created                                                      | adjust the due date accordingly in the event the deadline changes |
 
 ### Use cases
@@ -859,7 +858,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Removing a task while all tasks are being shown
 
-    1. Prerequisites: All tasks (archived and active) are shown, and user is not currently cd-ed into a module.
+    1. Prerequisites: All tasks (done and undone) are shown, and user is not currently cd-ed into a module.
 
     1. Test case: `remove -t 1`<br>
        Expected: First task is deleted from the list. Details of the deleted task shown in the status message.

@@ -16,11 +16,11 @@ public class Deadline extends Task {
      *
      * @param description description of task
      * @param module      module code of note's module
-     * @param isArchived  true if task is completed/archived
+     * @param isDone      true if task is done, false otherwise
      * @param priority    priority of task
      */
-    public Deadline(Description description, ModCode module, LocalDate dueDate, boolean isArchived, Priority priority) {
-        super(description, module, isArchived, priority);
+    public Deadline(Description description, ModCode module, LocalDate dueDate, boolean isDone, Priority priority) {
+        super(description, module, isDone, priority);
         this.dueDate = dueDate;
     }
 
@@ -33,18 +33,18 @@ public class Deadline extends Task {
     }
 
     @Override
-    public Task archive() {
+    public Task setAsDone() {
         return new Deadline(this.getDescription(), this.getModule(), this.getDueDate(), true, this.getPriority());
     }
 
     @Override
-    public Task unarchive() {
+    public Task setAsUndone() {
         return new Deadline(this.getDescription(), this.getModule(), this.getDueDate(), false, this.getPriority());
     }
 
     @Override
     public Task setPriority(Priority priority) {
-        return new Deadline(this.getDescription(), this.getModule(), this.getDueDate(), this.isArchived(), priority);
+        return new Deadline(this.getDescription(), this.getModule(), this.getDueDate(), this.isDone(), priority);
     }
 
     @Override
@@ -60,6 +60,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("%s due %s", super.toString(), dueDate);
+        return String.format("%s due %s", super.toString().trim(), dueDate);
     }
 }

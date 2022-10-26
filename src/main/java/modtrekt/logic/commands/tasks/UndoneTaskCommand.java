@@ -14,28 +14,28 @@ import modtrekt.model.Model;
 import modtrekt.model.task.Task;
 
 /**
- * Unarchives a task in the task book.
+ * Marks a task in the task book as undone.
  */
-@Parameters(commandDescription = "Unarchives a task in the task book.")
-public class UnarchiveTaskCommand extends Command {
-    public static final String COMMAND_WORD = "unarchive";
+@Parameters(commandDescription = "Marks a task as undone.")
+public class UndoneTaskCommand extends Command {
+    public static final String COMMAND_WORD = "undone task";
 
-    @Parameter(names = "-t", description = "Index of the task to unarchive",
-            required = true, converter = IndexConverter.class)
+    @Parameter(description = "Index of the task to mark as undone", required = true,
+            converter = IndexConverter.class)
     private Index index;
 
     /**
-     * Returns a new UnarchiveTaskCommand object, with no fields initialized, for use with JCommander.
+     * Returns a new UndoneTaskCommand object, with no fields initialized, for use with JCommander.
      */
-    public UnarchiveTaskCommand() {
+    public UndoneTaskCommand() {
     }
 
     /**
-     * Returns a new UnarchiveTaskCommand object.
+     * Returns a new UndoneTaskCommand object.
      *
-     * @param index   the index of the task to be unarchived
+     * @param index the index of the task to be mark as undone
      */
-    public UnarchiveTaskCommand(Index index) {
+    public UndoneTaskCommand(Index index) {
         this.index = index;
     }
 
@@ -51,17 +51,18 @@ public class UnarchiveTaskCommand extends Command {
         // The 0-based index is guaranteed by the Index class invariant to be >= 0.
         if (index.getZeroBased() >= tasks.size()) {
             throw new CommandException(String.format("Task index must an integer between 1 and %d inclusive.",
-                    tasks.size()));
+                    tasks.size()
+            ));
         }
         Task target = model.getFilteredTaskList().get(index.getZeroBased());
 
-        // Check that the task is not already unarchived.
-        if (!target.isArchived()) {
-            throw new CommandException(String.format("Task #%d is already unarchived.", index.getOneBased()));
+        // Check that the task is not already marked as undone.
+        if (!target.isDone()) {
+            throw new CommandException(String.format("Task #%d is already marked as undone.", index.getOneBased()));
         }
 
-        // Unarchive the task.
-        model.setTask(target, target.unarchive());
+        // Mark the task as undone..
+        model.setTask(target, target.setAsUndone());
         return new CommandResult("I successfully marked this task as not done!");
     }
 }

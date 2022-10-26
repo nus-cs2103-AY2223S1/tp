@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes the command to archive a task;
+:User executes the command to mark a task as done;
 :ModtRekt parses the command looking for tags;
 
 'Since the beta syntax does not support placing the condition outside the
@@ -9,11 +9,11 @@ start
 if () then ([contains all valid tags])
     :check if task index argument is valid;
     if () then ([valid task index])
-        if () then ([task is not already archived])
-            :archive task;
-            :display archival success message;
+        if () then ([task is not already done])
+            :mark task as done;
+            :display marking success message;
         else ([else])
-            :display invalid archival state error message;
+            :display invalid state error message;
         endif
     else ([else])
         :display invalid input error message;

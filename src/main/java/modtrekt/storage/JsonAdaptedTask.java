@@ -25,7 +25,7 @@ public class JsonAdaptedTask {
     private final String modCode;
     private final String dueDate;
     private final String priority;
-    private final boolean isArchived;
+    private final boolean isDone;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +35,12 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(@JsonProperty("description") String name, @JsonProperty("module code") String modCode,
                            @JsonProperty("dueDate") String dueDate,
                            @JsonProperty("priority") String priority,
-                           @JsonProperty("isArchived") boolean isArchived) {
+                           @JsonProperty("isDone") boolean isDone) {
         this.description = name;
         this.modCode = modCode;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.isArchived = isArchived;
+        this.isDone = isDone;
     }
 
     /**
@@ -55,7 +55,7 @@ public class JsonAdaptedTask {
             dueDate = null;
         }
         this.priority = task.getPriority().toString();
-        this.isArchived = task.isArchived();
+        this.isDone = task.isDone();
     }
 
     /**
@@ -80,10 +80,10 @@ public class JsonAdaptedTask {
 
         Task.Priority modelPriority = new PriorityConverter().convert(priority);
         if (dueDate == null) {
-            return new Task(modelDescription, modCode, isArchived, modelPriority);
+            return new Task(modelDescription, modCode, isDone, modelPriority);
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
         LocalDate dueDateObj = LocalDate.parse(dueDate, formatter);
-        return new Deadline(modelDescription, modCode, dueDateObj, isArchived, modelPriority);
+        return new Deadline(modelDescription, modCode, dueDateObj, isDone, modelPriority);
     }
 }

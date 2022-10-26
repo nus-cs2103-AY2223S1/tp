@@ -15,7 +15,7 @@ import modtrekt.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = module -> true;
-    Predicate<Task> PREDICATE_HIDE_ARCHIVED_TASKS = task -> !task.isArchived();
+    Predicate<Task> PREDICATE_HIDE_DONE_TASKS = task -> !task.isDone();
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
 
     /**
@@ -120,11 +120,11 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
-     * Archives all the tasks in the done module.
+     * Marks all the tasks in the done module as done.
      *
      * @param code the code of the module that is marked as done.
      */
-    void archiveDoneModuleTasks(ModCode code);
+    void setDoneModuleTasksAsDone(ModCode code);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();

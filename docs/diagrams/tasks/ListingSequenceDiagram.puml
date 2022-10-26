@@ -67,7 +67,7 @@ alt -a flag is present
 
 else else
 
-    ListTasksCommand -> Model : updateFilteredTaskList(HIDE_ARCHIVED_TASKS)
+    ListTasksCommand -> Model : updateFilteredTaskList(HIDE_DONE_TASKS)
     activate Model
 
     Model --> ListTasksCommand
