@@ -63,7 +63,7 @@ public class DistinctModuleList implements Iterable<Module> {
      */
     public void updateTotalNumOfTasks(Module module, DistinctTaskList tasks) {
         requireAllNonNull(module, tasks);
-        int totalNumOfTasks = tasks.getTotalNumOfTasks(module);
+        int totalNumOfTasks = tasks.getTotalNumOfModuleTasks(module);
 
         int index = moduleList.indexOf(module);
         if (index == -1) {
@@ -84,7 +84,7 @@ public class DistinctModuleList implements Iterable<Module> {
      */
     public void updateNumOfCompletedTasks(Module module, DistinctTaskList tasks) {
         requireAllNonNull(module, tasks);
-        int numOfCompletedTasks = tasks.getNumOfTasksCompleted(module);
+        int numOfCompletedTasks = tasks.getNumOfCompletedModuleTasks(module);
 
         int index = moduleList.indexOf(module);
         if (index == -1) {
@@ -93,6 +93,18 @@ public class DistinctModuleList implements Iterable<Module> {
         Module moduleToEdit = moduleList.get(index);
         Module updatedModule = moduleToEdit.setNumOfCompletedTasks(numOfCompletedTasks);
         moduleList.set(index, updatedModule);
+    }
+
+    /**
+     * Resets number of tasks and number of completed tasks of all modules to 0.
+     */
+    public void resetAllTaskCount() {
+        moduleList.forEach(module -> {
+            int index = moduleList.indexOf(module);
+            Module updatedModule = module.setNumOfCompletedTasks(0);
+            updatedModule = updatedModule.setTotalNumOfTasks(0);
+            moduleList.set(index, updatedModule);
+        });
     }
 
     /**

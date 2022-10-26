@@ -130,15 +130,26 @@ public class DistinctTaskList implements Iterable<Task> {
         }
     }
 
-    public int getNumOfTasksCompleted(Module module) {
+    public int getNumOfCompletedModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
             .filter(module::isSameModule).count();
     }
 
-    public int getTotalNumOfTasks(Module module) {
+    public int getTotalNumOfModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
+    }
+
+    public int getNumOfCompletedExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getExam)
+            .filter(exam::isSameExam).count();
+    }
+
+    public int getTotalNumOfExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().map(Task::getExam).filter(exam::isSameExam).count();
     }
 
     /**

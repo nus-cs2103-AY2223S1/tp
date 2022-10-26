@@ -63,8 +63,6 @@ public class LinkExamCommand extends Command {
             throw new CommandException(DIFFERENT_MODULE_CODE);
         }
         Task linkedTask = task.linkTask(exam);
-        Exam linkedExam = exam.linkExam(task);
-        model.replaceExam(exam, linkedExam, true);
         model.replaceTask(task, linkedTask, true);
         return new CommandResult(EXAM_LINKED_SUCCESS);
     }
