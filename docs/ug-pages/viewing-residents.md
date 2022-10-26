@@ -88,7 +88,7 @@ Note:
 
 ---
 
-### Resetting columns after calling `showonly` or `hideonly` : `reset`
+### Resetting hidden columns : `reset`
 
 Resets the columns in the table to the default view with *all* columns visible. 
 

@@ -36,10 +36,11 @@ Test
     * [Resident field format](ug-pages/modifying-residents.md#format-for-resident-fields)
   * [Viewing residents](ug-pages/viewing-residents.md)
     * [Listing all residents `list`](ug-pages/viewing-residents.md#listing-all-residents--list)
+    * [Showing resident fields `show`](ug-pages/viewing-residents.md#showing-only-some-columns--showonly) 
+    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md#hiding-only-some-columns--hideonly) 
+    * [Resetting hidden resident fields `reset`](ug-pages/viewing-residents.md#resetting-hidden-columns--reset)  
     * [Finding residents `find`](ug-pages/viewing-residents.md#locating-residents-by-name--find)
     * [Filtering residents `filter`](ug-pages/viewing-residents.md#filtering-residents-by-field--filter)
-    * [Showing resident fields `show`](ug-pages/viewing-residents.md) <!-- to update -->
-    * [Hiding resident fields `hide`](ug-pages/viewing-residents.md) <!-- to update -->
   * [File management](ug-pages/file-management.md)
     * [Creating a new data file `file create`](ug-pages/file-management.md#creating-a-new-data-file--file-create)
     * [Deleting an existing data file `file delete`](ug-pages/file-management.md#deleting-an-existing-data-file--file-delete)
