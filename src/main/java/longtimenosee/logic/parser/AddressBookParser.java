@@ -14,6 +14,7 @@ import longtimenosee.logic.commands.Command;
 import longtimenosee.logic.commands.DeleteCommand;
 import longtimenosee.logic.commands.DeleteEventCommand;
 import longtimenosee.logic.commands.EditCommand;
+import longtimenosee.logic.commands.EventCommand;
 import longtimenosee.logic.commands.ExitCommand;
 import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.commands.FindEventCommand;
@@ -34,6 +35,7 @@ import longtimenosee.logic.commands.SortCommand;
 import longtimenosee.logic.commands.ViewIncomeCommand;
 import longtimenosee.logic.commands.ViewPinCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
+import longtimenosee.model.event.exceptions.EventNotFoundException;
 
 
 /**
@@ -140,6 +142,8 @@ public class AddressBookParser {
 
         case ListEventsCommand.COMMAND_WORD:
             return new ListEventsCommand();
+        case EventCommand.COMMAND_WORD:
+            return new EventCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
