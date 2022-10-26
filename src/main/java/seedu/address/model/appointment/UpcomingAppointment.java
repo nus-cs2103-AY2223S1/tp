@@ -25,12 +25,22 @@ public class UpcomingAppointment extends Appointment {
      * @param dateString string representation of date of the appointment
      */
     public UpcomingAppointment(String dateString) {
-        super(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        super(dateString);
         this.value = dateString;
+    }
+
+    /**
+     * Returns true if a given string is a valid date; false otherwise.
+     */
+    public static boolean isValidDate(String test) {
+        if (test.equals("")) {
+            return true;
+        }
+        return Appointment.isValidDate(test);
     }
 
     @Override
     public String toString() {
-        return "Upcoming Appointment Date: " + (value == null ? "None" : value);
+        return "Upcoming Appointment Date: " + (value == null || value.equals("") ? "None" : value);
     }
 }
