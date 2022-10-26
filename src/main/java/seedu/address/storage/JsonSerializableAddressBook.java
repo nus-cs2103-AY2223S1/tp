@@ -73,8 +73,6 @@ class JsonSerializableAddressBook {
             }
         }
 
-        addressBook.sortClientListById();
-
         for (JsonAdaptedIssue jsonAdaptedIssue : issues) {
             Issue issue = jsonAdaptedIssue.toModelType(addressBook);
             if (addressBook.hasIssue(issue)) {
@@ -82,6 +80,8 @@ class JsonSerializableAddressBook {
             }
             addressBook.addIssue(issue);
         }
+
+        addressBook.sortAllLists();
         return addressBook;
     }
 

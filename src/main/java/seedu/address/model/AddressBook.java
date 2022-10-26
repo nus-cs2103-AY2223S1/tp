@@ -504,4 +504,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return clients.hashCode();
     }
 
+    /**
+     * Default sorting method to sort all entity lists by id in ascending order, and by pin.
+     */
+    public void sortAllLists() {
+        sortClientsById(0);
+        sortProjectsById(0);
+        sortIssuesById(0);
+        sortClientsByPin();
+        sortProjectsByPin();
+        sortIssuesByPin();
+    }
 }
