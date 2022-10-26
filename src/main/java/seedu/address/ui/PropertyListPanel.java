@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 
 
@@ -21,6 +22,8 @@ public class PropertyListPanel extends UiPart<Region> {
     @FXML
     private ListView<Property> propertyListView;
 
+    private ObservableList<Property> currentlyDisplayedPropertyList;
+
     /**
      * Creates a {@code PropertyListPanel} with the given {@code ObservableList}.
      */
@@ -29,6 +32,18 @@ public class PropertyListPanel extends UiPart<Region> {
         propertyListView.setItems(propertyList);
         propertyListView.setCellFactory(listView -> new PropertyListViewCell());
     }
+
+    /**
+     * Updates the current PropertyListPanel with a new source list
+     */
+    public void setNewList(ObservableList<Property> newList) {
+        if (currentlyDisplayedPropertyList.equals(newList)) {
+            return;
+        }
+        propertyListView.setItems(newList);
+        currentlyDisplayedPropertyList = newList;
+    }
+
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Property} using a {@code PropertyCard}.

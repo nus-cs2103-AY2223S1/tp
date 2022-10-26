@@ -186,4 +186,23 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
+
+    //=========== Sorted Property List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the sorted property list
+     */
+    ObservableList<Property> getSortedPropertyList();
+
+    /**
+     * Updates the comparator of the sorted property list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedPropertyList(Comparator<Property> comparator);
+
+    /**
+     * Returns the last shown properties list; either the sorted or filtered list.
+     */
+    ObservableList<Property> getLastShownPropertiesList();
 }

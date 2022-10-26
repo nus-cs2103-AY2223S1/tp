@@ -26,19 +26,20 @@ public class BuyerComparator implements Comparator<Buyer> {
     public int compare(Buyer firstBuyer, Buyer secondBuyer) {
         if (nameComparator.isPresent()) {
             return nameComparator.get().compare(firstBuyer.getName(), secondBuyer.getName());
+        } else {
+            return priceRangeComparator.get()
+                    .compare(firstBuyer.getPriceRange().get(), secondBuyer.getPriceRange().get());
         }
-        // else statement
-        // remove "return 0" once implemented
-        return 0;
+
+
     }
 
     @Override
     public String toString() {
         if (nameComparator.isPresent()) {
             return nameComparator.get().toString();
+        } else {
+            return priceRangeComparator.get().toString();
         }
-        // else statement
-        // remove "return """ once implemented
-        return "";
     }
 }

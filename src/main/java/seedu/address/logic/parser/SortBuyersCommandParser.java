@@ -12,8 +12,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sortcomparators.BuyerComparator;
 import seedu.address.logic.sortcomparators.NameComparator;
 import seedu.address.logic.sortcomparators.Order;
+import seedu.address.logic.sortcomparators.PriceRangeComparator;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Name;
+import seedu.address.model.pricerange.PriceRange;
 
 /**
  * Parses user input to create a {@code SortBuyersCommand}.
@@ -43,6 +45,12 @@ public class SortBuyersCommandParser extends Parser<SortBuyersCommand> {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_NAME).get());
             Comparator<Name> nameComparator = new NameComparator(order);
             buyerComparator = new BuyerComparator(nameComparator, null);
+        }
+
+        if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
+            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
+            Comparator<PriceRange> priceRangeComparator = new PriceRangeComparator(order);
+            buyerComparator = new BuyerComparator(null, priceRangeComparator);
         }
 
         return new SortBuyersCommand(buyerComparator);

@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.property.Property;
 import seedu.address.ui.PersonListPanel;
+import seedu.address.ui.PropertyListPanel;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,12 +28,17 @@ public class ModelManager implements Model {
     private final PersonBook personBook;
     private final PropertyBook propertyBook;
     private PersonListPanel personListPanel;
+    private PropertyListPanel propertyListPanel;
     private final FilteredList<Buyer> filteredBuyers;
+    private final FilteredList<Property> filteredProperties;
     private final SortedList<Buyer> sortedBuyers;
+    private final SortedList<Property> sortedProperties;
+
     // flag to indicate the last shown buyers list
     // set to false for filteredBuyers and true for sortedBuyers
     private boolean isLastShownBuyersListSorted = false;
-    private final FilteredList<Property> filteredProperties;
+    private boolean isLastShownPropertiesListSorted = false;
+
 
     /**
      * Initializes a ModelManager with the given personBook and userPrefs.
@@ -50,6 +56,7 @@ public class ModelManager implements Model {
         filteredBuyers = new FilteredList<>(this.personBook.getPersonList());
         sortedBuyers = new SortedList<>(this.personBook.getPersonList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        sortedProperties = new SortedList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
@@ -239,6 +246,34 @@ public class ModelManager implements Model {
         filteredProperties.setPredicate(predicate);
     }
 
+    //=========== Sorted Buyer List Accessors =============================================================
+
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Property> getSortedPropertyList() {
+        return sortedProperties;
+    }
+
+    @Override
+    public void updateSortedPropertyList(Comparator<Property> comparator) {
+        requireNonNull(comparator);
+        sortedProperties.setComparator(comparator);
+        isLastShownPropertiesListSorted = true;
+        propertyListPanel.setNewList(sortedProperties);
+    }
+
+    @Override
+    public ObservableList<Property> getLastShownPropertiesList() {
+        return isLastShownPropertiesListSorted
+                ? sortedProperties
+                : filteredProperties;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -260,6 +295,8 @@ public class ModelManager implements Model {
                 && filteredBuyers.equals(other.filteredBuyers)
                 && sortedBuyers.equals(other.sortedBuyers)
                 && filteredProperties.equals(other.filteredProperties)
-                && isLastShownBuyersListSorted == other.isLastShownBuyersListSorted;
+                && sortedProperties.equals(other.sortedProperties)
+                && isLastShownBuyersListSorted == other.isLastShownBuyersListSorted
+                && isLastShownPropertiesListSorted == other.isLastShownPropertiesListSorted;
     }
 }
