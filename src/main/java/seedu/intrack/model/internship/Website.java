@@ -3,8 +3,8 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.AppUtil.checkArgument;
 
-import java.net.URISyntaxException;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Represents an Internship's website in the internship tracker.
