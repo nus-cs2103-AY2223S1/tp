@@ -51,7 +51,8 @@ class EditItemCommandTest {
         InventoryItem lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
 
         InventoryItemBuilder itemInList = new InventoryItemBuilder(lastItem);
-        InventoryItem editedItem = itemInList.withItemName(VALID_ITEM_NAME_ERASER).withQuantity(VALID_ITEM_QUANTITY_ERASER)
+        InventoryItem editedItem = itemInList.withItemName(VALID_ITEM_NAME_ERASER)
+            .withQuantity(VALID_ITEM_QUANTITY_ERASER)
                 .withSellPrice(VALID_ITEM_SELL_PRICE_ERASER).build();
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_ERASER)

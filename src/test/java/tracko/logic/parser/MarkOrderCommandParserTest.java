@@ -26,40 +26,40 @@ public class MarkOrderCommandParserTest {
     public void parse_validArgs_returnsMarkOrderCommand() {
 
         //mark order as paid
-        CommandParserTestUtil.assertParseSuccess(parser, "1 -p", new MarkOrderCommand(INDEX_FIRST, true, false));
+        assertParseSuccess(parser, "1 -p", new MarkOrderCommand(INDEX_FIRST, true, false));
 
         //mark order as delivered
-        CommandParserTestUtil.assertParseSuccess(parser, "1 -d", new MarkOrderCommand(INDEX_FIRST, false, true));
+        assertParseSuccess(parser, "1 -d", new MarkOrderCommand(INDEX_FIRST, false, true));
 
         //mark order as both paid and delivered
-        CommandParserTestUtil.assertParseSuccess(parser, "1 -d -p", new MarkOrderCommand(INDEX_FIRST, true, true));
+        assertParseSuccess(parser, "1 -d -p", new MarkOrderCommand(INDEX_FIRST, true, true));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        CommandParserTestUtil.assertParseFailure(parser, "a",
+        assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
 
-        CommandParserTestUtil.assertParseFailure(parser, "1",
+        assertParseFailure(parser, "1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
 
         //preamble is not a valid index
-        CommandParserTestUtil.assertParseFailure(parser, "a -p",
+        assertParseFailure(parser, "a -p",
                 String.format(MESSAGE_INVALID_INDEX));
     }
 
     @Test
     public void parse_invalidFlags_throwsParseException() {
         //wrong tag
-        CommandParserTestUtil.assertParseFailure(parser, "a -e",
+        assertParseFailure(parser, "a -e",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
 
         //wrong tag but contains the correct tag format
-        CommandParserTestUtil.assertParseFailure(parser, "1 -p-d",
+        assertParseFailure(parser, "1 -p-d",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
 
         //wrong tag but contains the correct tag format
-        CommandParserTestUtil.assertParseFailure(parser, "1 -d-p",
+        assertParseFailure(parser, "1 -d-p",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
     }
 }
