@@ -27,7 +27,7 @@ import modtrekt.model.module.Module;
 public class AddModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "add module";
-    public static final String COMMAND_WORD_SHORTHAND = "add mod";
+    public static final String COMMAND_ALIAS = "add mod";
 
     public static final String MESSAGE_SUCCESS = "Yay! I added a new module: %1$s!";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";

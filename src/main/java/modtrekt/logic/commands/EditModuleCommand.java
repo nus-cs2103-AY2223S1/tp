@@ -26,6 +26,7 @@ import modtrekt.model.module.Module;
 public class EditModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "edit module";
+    public static final String COMMAND_ALIAS = "edit mod";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Module successfully edited: %1$s";
 

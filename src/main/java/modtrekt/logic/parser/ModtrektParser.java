@@ -52,16 +52,21 @@ public class ModtrektParser {
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
         JCommander jcommander = JCommander.newBuilder().programName("")
+                // tasks
                 .addCommand(ListTasksCommand.COMMAND_WORD, new ListTasksCommand())
+                .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
+                .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(DoneTaskCommand.COMMAND_WORD, new DoneTaskCommand())
                 .addCommand(UndoneTaskCommand.COMMAND_WORD, new UndoneTaskCommand())
-                .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
-                .addCommand(EditModuleCommand.COMMAND_WORD, new EditModuleCommand())
-                .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
-                .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
-                .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
-                .addCommand(AddModuleCommand.COMMAND_WORD, new AddModuleCommand())
-                .addCommand(AddModuleCommand.COMMAND_WORD_SHORTHAND, new AddModuleCommand())
+                // modules
+                .addCommand(AddModuleCommand.COMMAND_WORD, new AddModuleCommand(),
+                        AddModuleCommand.COMMAND_ALIAS)
+                .addCommand(EditModuleCommand.COMMAND_WORD, new EditModuleCommand(),
+                        EditModuleCommand.COMMAND_ALIAS)
+                .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand(),
+                        DoneModuleCommand.COMMAND_ALIAS)
+                .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand(),
+                        UndoneModuleCommand.COMMAND_ALIAS)
                 .build();
         try {
             // Get the tokens from the user input.
