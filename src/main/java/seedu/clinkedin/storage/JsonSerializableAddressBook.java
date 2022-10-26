@@ -53,12 +53,6 @@ class JsonSerializableAddressBook {
         }
         prefixMap = prefixMapToList;
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-//        Map<Prefix, TagType> sourcePrefixMap = source.getPrefixMap();
-//        Map<String, JsonAdaptedTagType> map = new HashMap<>();
-//        for (Prefix prefix: sourcePrefixMap.keySet()) {
-//            map.put(prefix.getPrefix(), new JsonAdaptedTagType(sourcePrefixMap.get(prefix)));
-//        }
-//        prefixMap = new JsonAdaptedPrefixMap(map);
     }
 
     /**
@@ -69,7 +63,7 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         Map<Prefix, TagType> map = new HashMap<>();
-        for(int i = 0; i < prefixMap.size(); i = i + 2) {
+        for (int i = 0; i < prefixMap.size(); i = i + 2) {
             map.put(new Prefix(prefixMap.get(i)), new TagType(prefixMap.get(i + 1), new Prefix(prefixMap.get(i))));
         }
         addressBook.setPrefixMap(map);

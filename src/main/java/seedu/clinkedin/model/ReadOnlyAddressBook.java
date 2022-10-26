@@ -1,11 +1,11 @@
 package seedu.clinkedin.model;
 
+import java.util.Map;
+
 import javafx.collections.ObservableList;
 import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.tag.TagType;
-
-import java.util.Map;
 
 /**
  * Unmodifiable view of an address book

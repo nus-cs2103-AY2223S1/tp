@@ -10,7 +10,6 @@ import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniquePersonList;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 
 /**
