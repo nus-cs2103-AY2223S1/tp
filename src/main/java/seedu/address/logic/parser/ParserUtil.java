@@ -222,6 +222,12 @@ public class ParserUtil {
         return new TaskDeadline(localDate);
     }
 
+    /**
+     * Parses a {@code String taskDate} into a {@code TaskDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskDate} is does not follow the format YYYY-MM-DD.
+     */
     public static TaskDate parseTaskDate(String taskDate) throws ParseException {
         requireNonNull(taskDate);
         String trimmedDate = taskDate.trim();
