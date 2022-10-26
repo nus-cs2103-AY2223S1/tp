@@ -32,6 +32,7 @@ public class ToDoCard extends UiPart<Region> implements TaskCard {
      */
     public ToDoCard(ToDo task, int displayedIndex) {
         super(FXML);
+        cardPane.setStyle("-fx-background-color: #00c29a;");
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);

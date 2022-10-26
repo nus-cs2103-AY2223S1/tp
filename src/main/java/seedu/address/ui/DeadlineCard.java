@@ -34,6 +34,7 @@ public class DeadlineCard extends UiPart<Region> implements TaskCard {
      */
     public DeadlineCard(Deadline task, int displayedIndex) {
         super(FXML);
+        cardPane.setStyle("-fx-background-color: #c89afe;");
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);

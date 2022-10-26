@@ -1,0 +1,9 @@
+#cardPane Label {
+    -fx-text-fill: #000;
+}
+
+#cardPane {
+    -fx-padding: 10px 0px;
+    -fx-border-insets: 10px 0px;
+    -fx-background-insets: 10px 0px;
+}
