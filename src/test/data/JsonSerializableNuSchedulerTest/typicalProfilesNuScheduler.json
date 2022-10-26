@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Profile values as in TypicalProfiles#getTypicalAddressBook()",
+  "_comment": "NUScheduler save file which contains the same Profile values as in TypicalProfiles#getTypicalAddressBook()",
   "profiles" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

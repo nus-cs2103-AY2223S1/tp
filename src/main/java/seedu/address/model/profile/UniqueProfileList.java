@@ -3,11 +3,13 @@ package seedu.address.model.profile;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
@@ -27,6 +29,13 @@ public class UniqueProfileList implements Iterable<Profile> {
     private final ObservableList<Profile> internalList = FXCollections.observableArrayList();
     private final ObservableList<Profile> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final SortedList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(
+            new Comparator<Profile>() {
+                @Override
+                public int compare(Profile p1, Profile p2) {
+                    return p1.compareTo(p2);
+                }
+            });
 
     /**
      * Returns true if the list contains an equivalent profile as the given argument.
@@ -101,7 +110,7 @@ public class UniqueProfileList implements Iterable<Profile> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Profile> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return unmodifiableSortedList;
     }
 
     @Override

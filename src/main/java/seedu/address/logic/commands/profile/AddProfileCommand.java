@@ -37,7 +37,14 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New profile added:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the NUS scheduler";
+    public static final String MESSAGE_HELP = "Adds a profile to NUScheduler.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
+            + "[" + PREFIX_TAG + "TAG]...";
+    public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the NUScheduler";
 
     private final Profile toAdd;
 

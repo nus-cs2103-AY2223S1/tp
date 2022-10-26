@@ -70,6 +70,21 @@ public class Event {
     }
 
     /**
+     * Returns true if start date is before or equal the end date.
+     */
+    public boolean isValidStartEnd() {
+        return startDateTime.isBeforeOrEqual(endDateTime);
+    }
+
+    /**
+     * Returns true if start date and end dates either both have time
+     * or both do not have time.
+     */
+    public boolean isHasTimeEqual() {
+        return startDateTime.hasTime() == endDateTime.hasTime();
+    }
+
+    /**
      * Returns true if both event have the same identity and data fields.
      * This defines a stronger notion of equality between two events.
      */
@@ -97,7 +112,8 @@ public class Event {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
+        builder.append("Title: ")
+                .append(getTitle())
                 .append("; Start: ")
                 .append(getStartDateTime())
                 .append("; End: ")

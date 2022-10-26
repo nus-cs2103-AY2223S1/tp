@@ -1,14 +1,22 @@
 package seedu.address.ui;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.NuSchedulerParser;
+import seedu.address.logic.parser.event.EventCommandParser;
+import seedu.address.logic.parser.profile.ProfileCommandParser;
 
 /**
  * Controller for a help page
@@ -27,6 +35,13 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private Accordion generalAccordion;
+    @FXML
+    private Accordion profileAccordion;
+    @FXML
+    private Accordion eventAccordion;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +50,51 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+
+        Map<String, String> generalCommands = NuSchedulerParser.getGeneralCommands();
+        generalCommands.forEach((format, description) -> {
+            HBox hBox = new HBox();
+            hBox.getChildren().add(new Label(description));
+            hBox.setAlignment(Pos.TOP_LEFT);
+            hBox.prefWidth(288.0);
+            generalAccordion.getPanes().add(new TitledPane(format, hBox));
+        });
+
+        Map<String, String> profileCommands = ProfileCommandParser.getProfileCommands();
+        profileCommands.forEach((format, description) -> {
+            HBox hBox = new HBox();
+            hBox.getChildren().add(new Label(description));
+            hBox.setAlignment(Pos.TOP_LEFT);
+            hBox.prefWidth(288.0);
+            profileAccordion.getPanes().add(new TitledPane(format, hBox));
+        });
+
+        Map<String, String> eventCommands = EventCommandParser.getEventCommands();
+        eventCommands.forEach((format, description) -> {
+            HBox hBox = new HBox();
+            hBox.getChildren().add(new Label(description));
+            hBox.setAlignment(Pos.TOP_LEFT);
+            hBox.prefWidth(288.0);
+            eventAccordion.getPanes().add(new TitledPane(format, hBox));
+        });
+
+        generalAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
+            if (!root.isFullScreen()) {
+                root.sizeToScene();
+            }
+        });
+
+        profileAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
+            if (!root.isFullScreen()) {
+                root.sizeToScene();
+            }
+        });
+
+        eventAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
+            if (!root.isFullScreen()) {
+                root.sizeToScene();
+            }
+        });
     }
 
     /**

@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,6 +61,19 @@ public class NuSchedulerParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    /**
+     * Returns a hash map containing the details about general commands to display in the help window.
+     */
+    public static Map<String, String> getGeneralCommands() {
+        return new LinkedHashMap<>() {
+            {
+                put(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_HELP);
+                put(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_HELP);
+                put(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_HELP);
+            }
+        };
     }
 
 }

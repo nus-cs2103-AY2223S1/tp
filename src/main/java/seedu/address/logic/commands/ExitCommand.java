@@ -8,8 +8,8 @@ import seedu.address.model.Model;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
-
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting NUS scheduler as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting NUScheduler as requested ...";
+    public static final String MESSAGE_HELP = "Closes and exits NUScheduler.";
 
     @Override
     public CommandResult execute(Model model) {

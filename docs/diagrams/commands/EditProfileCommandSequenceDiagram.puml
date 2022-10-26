@@ -37,7 +37,7 @@ destroy profileCommandParser
 return p
 
 logicManager -> editProfileCommand ++: execute(model)
-editProfileCommand -> model ++: setProfile(oldProfile, p)
+editProfileCommand -> model ++: setProfile(profileToEdit, editedProfile)
 return
 editProfileCommand -> model ++: updateFilteredProfileList
 return

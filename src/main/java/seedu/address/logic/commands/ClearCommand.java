@@ -6,12 +6,13 @@ import seedu.address.model.Model;
 import seedu.address.model.NuScheduler;
 
 /**
- * Clears the NUS scheduler.
+ * Clears the NUScheduler.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "NUS scheduler has been cleared!";
+    public static final String MESSAGE_SUCCESS = "NUScheduler has been cleared!";
+    public static final String MESSAGE_HELP = "Clears all the profiles and events in NUScheduler.";
 
 
     @Override
