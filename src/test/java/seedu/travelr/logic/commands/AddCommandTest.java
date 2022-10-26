@@ -284,6 +284,11 @@ public class AddCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+        
+        @Override
+        public void sortTripsByComparator(Comparator<Trip> comp) {
+            tripsAdded.sort(comp);
+        }
     }
 
 }
