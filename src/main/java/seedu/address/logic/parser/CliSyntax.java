@@ -29,7 +29,6 @@ public class CliSyntax {
 
     // Prefixes for pets
     public static final Prefix PREFIX_PET = new Prefix("pt/");
-    public static final Prefix PREFIX_PET_OWNER = new Prefix("pt_o/");
     public static final Prefix PREFIX_PET_NAME = new Prefix("pt_n/");
     public static final Prefix PREFIX_PET_DATE_OF_BIRTH = new Prefix("pt_d/");
     public static final Prefix PREFIX_PET_COLOR = new Prefix("pt_c/");
