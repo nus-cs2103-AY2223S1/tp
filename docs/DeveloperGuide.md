@@ -264,6 +264,8 @@ Given below is an example usage scenario and how the add order mechanism behaves
 has already added some inventory items to be tracked by the system, such that our initial state before the add order command
 is initiated, is illustrated as such.
 
+![AddOrderState0](images/developer-guide/AddOrderState0.png)
+
 Step 1. The user enters the following input into the UI's command box:
 `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`. This instantiates an `AddOrderCommand`, that references
 a new `Order` which encapsulates the input customer data. This then sets the system to await and prompt for further input from the user.

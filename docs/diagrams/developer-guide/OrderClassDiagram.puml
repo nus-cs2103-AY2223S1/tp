@@ -3,7 +3,6 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor ORDER_MODEL_COLOR_T4
 skinparam classBackgroundColor ORDER_MODEL_COLOR
-hide empty members
 
 Class Order {
     - isPaid: boolean
