@@ -128,11 +128,6 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         requireNonNull(student);
         taAssist.addStudent(student);
-        if (isInFocusMode()) {
-            setFilteredListPredicate(new IsPartOfClassPredicate(focusedClass));
-        } else {
-            setFilteredListPredicate(PREDICATE_SHOW_ALL_STUDENTS);
-        }
     }
 
     @Override
