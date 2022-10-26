@@ -20,14 +20,14 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS">
             <padding>
-                <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="15.0" top="5.0" />
             </padding>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
          <children>
                <HBox alignment="CENTER_LEFT">
-               <VBox prefWidth="14.0">
+               <VBox prefHeight="47.0" prefWidth="14.0">
                   <children>
                          <Label fx:id="id" alignment="TOP_LEFT" style="-fx-text-fill: black;" styleClass="cell_big_label">
                              <minWidth>
@@ -38,12 +38,12 @@
                </VBox>
                <VBox HBox.hgrow="ALWAYS">
                   <children>
-                        <Label fx:id="moduleCode" prefHeight="17.0" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$modCode" wrapText="true">
+                         <Label fx:id="description" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$description" wrapText="true">
                         <font>
                            <Font name="PT Mono Bold" size="16.0" />
                         </font>
                      </Label>
-                         <Label fx:id="description" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$description" wrapText="true">
+                        <Label fx:id="moduleCode" prefHeight="17.0" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$modCode" wrapText="true">
                         <font>
                            <Font name="PT Sans" size="14.0" />
                         </font>
@@ -56,32 +56,32 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <HBox prefHeight="4.0">
-                        <children>
-                           <Button fx:id="priorityTag" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" style="-fx-background-color: D0F4FF; -fx-border-color: black; -fx-border-radius: 5; -fx-background-radius: 5;" textAlignment="JUSTIFY" wrapText="true">
-                              <font>
-                                 <Font size="10.0" />
-                              </font>
-                              <HBox.margin>
-                                 <Insets right="3.0" />
-                              </HBox.margin>
-                           </Button>
-                           <Button fx:id="deadlineTag" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" style="-fx-background-color: D0F4FF; -fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;" textAlignment="CENTER" wrapText="true">
-                              <HBox.margin>
-                                 <Insets />
-                              </HBox.margin>
-                              <font>
-                                 <Font size="10.0" />
-                              </font>
-                           </Button>
-                        </children>
-                        <VBox.margin>
-                           <Insets top="2.0" />
-                        </VBox.margin>
-                     </HBox>
                   </children>
                </VBox>
                </HBox>
+            <HBox prefHeight="4.0">
+               <children>
+                  <Button fx:id="priorityTag" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" style="-fx-background-color: D0F4FF; -fx-border-color: black; -fx-border-radius: 8; -fx-background-radius: 8;" textAlignment="JUSTIFY" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="deadlineTag" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" style="-fx-background-color: D0F4FF; -fx-border-color: black; -fx-background-radius: 8; -fx-border-radius: 8;" textAlignment="CENTER" wrapText="true">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
          </children>
         </VBox>
           <CheckBox fx:id="isComplete" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="3.0" prefWidth="18.0" style="-fx-border-color: black; -fx-border-radius: 2; -fx-border-width: 1.5;" GridPane.columnIndex="1">
