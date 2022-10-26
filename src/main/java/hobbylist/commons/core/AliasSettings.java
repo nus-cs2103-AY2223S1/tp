@@ -19,6 +19,8 @@ public class AliasSettings implements Serializable {
     private static final String DEFAULT_LIST = "list";
     private static final String DEFAULT_HELP = "help";
     private static final String DEFAULT_RATE = "rate";
+    private static final String DEFAULT_RATE_ABOVE = "r/above";
+    private static final String DEFAULT_SELECT = "select";
 
     private String add;
     private String clear;
@@ -31,6 +33,8 @@ public class AliasSettings implements Serializable {
     private String list;
     private String help;
     private String rate;
+    private String rateAbove;
+    private String select;
 
     /**
      * Constructs a {@code AliasSettings} with the default command words.
@@ -47,13 +51,16 @@ public class AliasSettings implements Serializable {
         list = DEFAULT_LIST;
         help = DEFAULT_HELP;
         rate = DEFAULT_RATE;
+        rateAbove = DEFAULT_RATE_ABOVE;
+        select = DEFAULT_SELECT;
     }
 
     /**
      * Constructs a {@code AliasSettings} with the specified command words.
      */
     public AliasSettings(String add, String clear, String delete, String edit, String exit, String filterTag,
-                         String find, String list, String help, String rate, String filterStatus) {
+                         String find, String list, String help, String rate, String filterStatus, String rateAbove,
+                         String select) {
         this.add = add;
         this.clear = clear;
         this.delete = delete;
@@ -65,6 +72,8 @@ public class AliasSettings implements Serializable {
         this.list = list;
         this.help = help;
         this.rate = rate;
+        this.rateAbove = rateAbove;
+        this.select = select;
     }
 
     public String getAdd() {
@@ -111,6 +120,14 @@ public class AliasSettings implements Serializable {
         return rate;
     }
 
+    public String getRateAbove() {
+        return rateAbove;
+    }
+
+    public String getSelect() {
+        return select;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -132,12 +149,15 @@ public class AliasSettings implements Serializable {
                 && find.equals(o.find)
                 && list.equals(o.list)
                 && help.equals(o.help)
-                && rate.equals(o.rate);
+                && rate.equals(o.rate)
+                && rateAbove.equals(o.rateAbove)
+                && select.equals(o.select);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(add, clear, delete, edit, exit, filterTag, find, list, help, rate, filterStatus);
+        return Objects.hash(add, clear, delete, edit, exit, filterTag, find, list, help, rate, filterStatus, rateAbove,
+                select);
     }
 
     @Override
@@ -148,12 +168,14 @@ public class AliasSettings implements Serializable {
         sb.append("delete : " + delete + "\n");
         sb.append("edit : " + edit + "\n");
         sb.append("exit : " + exit + "\n");
+        sb.append("filterStatus : " + filterStatus + "\n");
         sb.append("filterTag : " + filterTag + "\n");
         sb.append("find : " + find + "\n");
         sb.append("list : " + list + "\n");
         sb.append("help : " + help + "\n");
         sb.append("rate : " + rate + "\n");
-        sb.append("filterStatus : " + filterStatus);
+        sb.append("rateAbove : " + rateAbove + "\n");
+        sb.append("select : " + select);
         return sb.toString();
     }
 }

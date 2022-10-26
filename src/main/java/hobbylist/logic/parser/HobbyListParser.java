@@ -59,7 +59,7 @@ public class HobbyListParser {
             return new ClearCommand();
         } else if (commandWord.equals(FindCommand.getCommandWord())) {
             return new FindCommandParser().parse(arguments);
-        } else if (commandWord.equals(RateAboveCommand.COMMAND_WORD)) {
+        } else if (commandWord.equals(RateAboveCommand.getCommandWord())) {
             return new RateAboveCommandParser().parse(arguments);
         } else if (commandWord.equals(FindCommand.getCommandWord())) {
             return new FindCommandParser().parse(arguments);
