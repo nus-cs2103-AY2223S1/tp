@@ -47,11 +47,11 @@ public class UniqueApplicationList implements Iterable<Application> {
         if (toCheck.getInterview().isEmpty()) {
             return false;
         }
-        for (int i = 0; i < internalList.size() - 1; i++) {
-            if (internalList.get(i).getInterview().isEmpty() || internalList.get(i).isSameApplication(toCheck)) {
+        for (Application application : internalList) {
+            if (application.getInterview().isEmpty() || application.isSameApplication(toCheck)) {
                 continue;
             }
-            if (internalList.get(i).getInterview().get().isOnSameTime(toCheck.getInterview().get())) {
+            if (application.getInterview().get().isOnSameTime(toCheck.getInterview().get())) {
                 return true;
             }
         }
@@ -63,11 +63,11 @@ public class UniqueApplicationList implements Iterable<Application> {
      */
     public boolean hasSameInterviewTime(Interview toCheck) {
         requireNonNull(toCheck);
-        for (int i = 0; i < internalList.size() - 1; i++) {
-            if (internalList.get(i).getInterview().isEmpty()) {
+        for (Application application : internalList) {
+            if (application.getInterview().isEmpty()) {
                 continue;
             }
-            if (internalList.get(i).getInterview().get().isOnSameTime(toCheck)) {
+            if (application.getInterview().get().isOnSameTime(toCheck)) {
                 return true;
             }
         }
@@ -84,11 +84,11 @@ public class UniqueApplicationList implements Iterable<Application> {
         if (application.getInterview().isEmpty()) {
             return false;
         }
-        for (int i = 0; i < internalList.size() - 1; i++) {
-            if (internalList.get(i).getInterview().isEmpty() || internalList.get(i).isSameApplication(application)) {
+        for (Application otherApplication : internalList) {
+            if (otherApplication.getInterview().isEmpty() || otherApplication.isSameApplication(application)) {
                 continue;
             }
-            if (internalList.get(i).getInterview().get().isOnSameTime(interview)) {
+            if (otherApplication.getInterview().get().isOnSameTime(interview)) {
                 return true;
             }
         }
