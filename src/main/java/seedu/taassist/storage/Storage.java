@@ -28,4 +28,11 @@ public interface Storage extends TaAssistStorage, UserPrefsStorage {
 
     @Override
     void saveTaAssist(ReadOnlyTaAssist taAssist) throws IOException;
+
+    /**
+     * Creates a backup of the given {@code filePath} in the same directory.
+     * The backup file will be named with the given {@code filePath} appended with a ".bak" extension.
+     * If the backup file already exists, it will be overwritten.
+     */
+    void backupFile(Path filePath) throws IOException;
 }
