@@ -41,6 +41,10 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
 
         Index index;
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {

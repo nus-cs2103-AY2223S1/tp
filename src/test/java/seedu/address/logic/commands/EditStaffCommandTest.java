@@ -107,7 +107,7 @@ public class EditStaffCommandTest {
                 INDEX_FIRST_PROJECT, descriptor);
 
         String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
-                validStaffTwo);
+                validStaffTwo, validProject.getProjectName().toString());
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Project expectedProject = new ProjectBuilder(validProject).build();
@@ -137,7 +137,7 @@ public class EditStaffCommandTest {
                 INDEX_FIRST_PROJECT, descriptor);
 
         String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
-                validStaffTwo);
+                validStaffTwo, validProject.getProjectName().toString());
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Project expectedProject = new ProjectBuilder(validProject).build();
@@ -164,7 +164,7 @@ public class EditStaffCommandTest {
                 INDEX_FIRST_PROJECT, descriptor);
 
         String expectedMessage = String.format(EditStaffCommand.MESSAGE_EDIT_STAFF_SUCCESS,
-                validStaff);
+                validStaff, validProject.getProjectName().toString());
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Project expectedProject = new ProjectBuilder(validProject).build();

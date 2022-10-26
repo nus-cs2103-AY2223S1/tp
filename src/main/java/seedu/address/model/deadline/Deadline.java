@@ -3,6 +3,7 @@ package seedu.address.model.deadline;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 
 /**
@@ -11,17 +12,7 @@ import java.time.LocalDate;
 public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format YYYY-MM-DD and should not be blank";
-
-    /*
-     * The date should be in YYYY-MM-DD format.
-     *
-     */
-    public static final String VALIDATION_REGEX =
-            "^((2000|2400|2800|(2[0-9])(0[48]|[2468][048]|[13579][26]))-02-29)$"
-                    + "|^(((2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$"
-                    + "|^(((2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
-                    + "|^(((2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
+            "Date should be in the format YYYY-MM-DD and is a valid date. Also it should not be blank.";
 
     public final String deadline;
 
@@ -40,7 +31,12 @@ public class Deadline implements Comparable<Deadline> {
      * Returns if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDate.parse(test);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
     }
 
     @Override

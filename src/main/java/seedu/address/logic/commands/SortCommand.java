@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_SUCCESS = "Projects are now sorted!";
+    public static final String MESSAGE_SUCCESS = "Projects are now sorted by deadline!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

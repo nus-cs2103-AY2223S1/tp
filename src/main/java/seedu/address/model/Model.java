@@ -201,7 +201,7 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
-     * Updates the
+     * Updates the tasks to show the uncompleted tasks at the top and the rest at the bottom.
      */
     void filterTask();
 

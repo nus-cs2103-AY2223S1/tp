@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 
 /**
- * Find and lists all tasks in address book whose name contains any of the argument keywords.
+ * Find and lists all tasks in HR Pro Max++ whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindTaskCommand extends Command {

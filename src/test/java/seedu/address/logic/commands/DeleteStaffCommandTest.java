@@ -40,7 +40,7 @@ public class DeleteStaffCommandTest {
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(staffName, project.getProjectName());
 
         String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
-                staff.getStaffName().staffName);
+                staff.getStaffName().staffName, project.getProjectName().toString());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased()).getStaffList().add(staff);

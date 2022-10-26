@@ -39,8 +39,9 @@ public class EditStaffCommand extends Command {
 
     public static final String COMMAND_WORD = "editstaff";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the staff in the specified "
-            + "project identified by the index number used in the displayed project list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the staff within a project "
+            + "currently displayed, identifying it with the project name. \nThe index identifies the staff to edit "
+            + "based on the index of the displayed staff list."
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + "STAFF_INDEX (must be a positive integer) "
@@ -56,7 +57,8 @@ public class EditStaffCommand extends Command {
             + PREFIX_STAFF_NAME + "John Doe "
             + PREFIX_STAFF_CONTACT + "98765432 ";
 
-    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff: %1$s";
+    public static final String MESSAGE_EDIT_STAFF_SUCCESS = "Edited Staff in %2$s: %1$s\n"
+            + "Displaying all staff in project: %2$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field must be provided.";
     public static final String MESSAGE_DUPLICATE_STAFF = "This staff already exists in the project.";
@@ -84,6 +86,10 @@ public class EditStaffCommand extends Command {
 
         List<Project> lastShownList = model.getFilteredProjectList();
         int projectIndex = 0;
+
+        if (lastShownList.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName.fullName));
+        }
 
         for (int i = 0; i < lastShownList.size(); ++i) {
             if (lastShownList.get(i).getProjectName().equals(projectName)) {
@@ -116,7 +122,7 @@ public class EditStaffCommand extends Command {
         model.setFilteredStaffList(lastShownList.get(projectIndex));
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff));
+        return new CommandResult(String.format(MESSAGE_EDIT_STAFF_SUCCESS, editedStaff, projectName));
     }
 
     /**

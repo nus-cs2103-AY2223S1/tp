@@ -47,8 +47,8 @@ public class ProjectCard extends UiPart<Region> {
         this.project = project;
         id.setText(displayedIndex + ". ");
         projectName.setText(project.getProjectName().fullName);
-        budget.setText("Budget: $" + project.getBudget().value);
-        deadline.setText("Project deadline: " + project.getDeadline().deadline);
+        budget.setText("Budget: S$" + project.getBudget().value);
+        deadline.setText("Deadline: " + project.getDeadline().deadline);
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

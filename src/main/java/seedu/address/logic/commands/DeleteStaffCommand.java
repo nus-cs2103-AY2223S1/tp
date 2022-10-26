@@ -23,13 +23,14 @@ public class DeleteStaffCommand extends Command {
     public static final String COMMAND_WORD = "delstaff";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the project identified by the index number used in the displayed project list.\n"
+            + ": Deletes the staff from the specified project.\n"
             + "Parameters: "
-            + PREFIX_PROJECT_NAME + "PROJECT NAME "
-            + PREFIX_STAFF_NAME + "STAFF NAME\n"
-            + "Example: " + COMMAND_WORD + " pn/CS2103 sn/Shawn Law";
+            + PREFIX_PROJECT_NAME + "PROJECT_NAME "
+            + PREFIX_STAFF_NAME + "STAFF_NAME\n"
+            + "Example: " + COMMAND_WORD + " pn/CS2103T TP sn/Andy Lee";
 
-    public static final String MESSAGE_DELETE_STAFF_SUCCESS = "Deleted Staff: %1$s";
+    public static final String MESSAGE_DELETE_STAFF_SUCCESS = "Deleted Staff from %2$s: %1$s\n"
+            + "Displaying all staff in project: %2$s ";
 
     private String projectName;
 
@@ -73,7 +74,9 @@ public class DeleteStaffCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_STAFF, staffName));
         }
         staffList.remove(staff);
-        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName));
+        model.setFilteredStaffList(project);
+        model.updateFilteredStaffList(Model.PREDICATE_SHOW_ALL_STAFF);
+        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName, projectName));
     }
 
     @Override

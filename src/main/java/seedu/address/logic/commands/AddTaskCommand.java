@@ -15,7 +15,7 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addtask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": adds a task to the task list\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to HR Pro Max++.\n"
             + "Parameters: "
             + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION "
             + PREFIX_TASK_DEADLINE + "TASK_DEADLINE\n"

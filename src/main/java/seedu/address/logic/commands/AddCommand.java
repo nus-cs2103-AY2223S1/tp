@@ -11,27 +11,27 @@ import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
 /**
- * Adds a project to the address book.
+ * Adds a project to HR Pro Max++.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to HR Pro Max++.\n"
             + "Parameters: "
-            + PREFIX_PROJECT_NAME + "PROJECT NAME "
-            + PREFIX_BUDGET + "BUDGET "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_PROJECT_NAME + "PROJECT_NAME "
+            + PREFIX_BUDGET + "PROJECT_BUDGET "
+            + PREFIX_DEADLINE + "PROJECT_DEADLINE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT_NAME + "CS2103T TP "
+            + PREFIX_PROJECT_NAME + "GEA1000 Project "
             + PREFIX_BUDGET + "200 "
             + PREFIX_DEADLINE + "2022-01-01 "
             + PREFIX_TAG + "Important "
             + PREFIX_TAG + "busy";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in HR Pro Max++!";
 
     private final Project toAdd;
 
