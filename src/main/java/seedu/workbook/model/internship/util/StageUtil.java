@@ -96,16 +96,6 @@ public class StageUtil {
     }
 
     /**
-     * Constructor for StageUtil class
-     * Populates the map whereby each stage is mapped to a list of tips.
-     */
-    private StageUtil() {
-        for (int i = 0; i < tipsForStage.size(); i++) {
-            tipsForStage.put(stagesWithTips.get(i), listOfTips.get(i));
-        }
-    }
-
-    /**
      * Returns the list of stages with curated tips.
      */
     public static List<Stage> getStagesWithTips() {
