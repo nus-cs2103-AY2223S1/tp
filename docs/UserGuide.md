@@ -125,7 +125,7 @@ Format: `target CALORIE`
 
 Example:
 
-* `target 2000` targets a daily calorie intake of 2000 calories.
+* `target 2000` sets a target calorie intake of 2000 calories for the day.
 
 ### Viewing a summary of the daily calorie intake: `review`
 

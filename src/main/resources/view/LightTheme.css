@@ -90,25 +90,37 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(ivory, 20%);
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: ivory;
+    /*
+    rounded edges for foodcard
+    */
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    /*
+    margin for foodcard
+    */
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #b0f4bc;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #c8f4ac;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: lightgrey;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -117,7 +129,7 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .cell_big_label {
@@ -132,34 +144,34 @@
     -fx-text-fill: #010504;
 }
 
-.stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
-}
-
-.pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+.white-pane {
+     -fx-background-color: #F9F9F9;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #F9F9F9;
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
 }
 
 .result-display .label {
     -fx-text-fill: black !important;
 }
 
+.result-display .scroll-bar {
+    -fx-background-color: white;
+}
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
@@ -184,23 +196,39 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
 .context-menu .label {
     -fx-text-fill: white;
 }
 
+.context-menu {
+    -fx-background-color: #C6F0AD;
+    -fx-padding: 0px;
+}
+
+.context-menu:focused {
+    -fx-background-color: #C4C4C4;
+}
+
+.menu:showing {
+    -fx-background-color: #ADF0BF;
+}
+
+.menu:hover {
+    -fx-background-color: #ADF0BF;
+}
+
+.menu-item:focused {
+    -fx-background-color: #E6E6E6;
+}
+
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #F9F9F9;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 0.9;
+    -fx-text-fill: black;
 }
 
 .menu .left-container {
@@ -281,17 +309,23 @@
     -fx-text-fill: white;
 }
 
+/** Scroll bar css adapted from: https://blog.ngopal.com.np/2012/07/11/customize-scrollbar-via-css/ **/
+
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #F9F9F9;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius: 5px;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
+    -fx-background-color: derive(black,90.0%);
+    -fx-background-insets: 3px;
+    -fx-background-radius: 5px;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
+    -fx-background-color: white;
+    -fx-background-radius: 0.0em;
     -fx-padding: 0 0 0 0;
 }
 
@@ -318,14 +352,15 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #F9F9F9;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #F9F9F9 #F9F9F9 black #F9F9F9;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: #5A5A5A;
 }
 
 #filterField, #foodListPanel, #foodWebpage {
@@ -333,7 +368,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: white;
     -fx-background-radius: 0;
 }
 

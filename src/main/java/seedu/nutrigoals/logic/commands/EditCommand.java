@@ -1,6 +1,7 @@
 package seedu.nutrigoals.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -11,7 +12,6 @@ import seedu.nutrigoals.commons.core.Messages;
 import seedu.nutrigoals.commons.core.index.Index;
 import seedu.nutrigoals.commons.util.CollectionUtil;
 import seedu.nutrigoals.logic.commands.exceptions.CommandException;
-import seedu.nutrigoals.logic.parser.Prefix;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.meal.DateTime;
@@ -26,20 +26,18 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final Prefix PREFIX_CALORIE = new Prefix("c/");
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the food identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the food item identified "
             + "by the index number used in the displayed food list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_CALORIE + "CALORIE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Bread "
             + PREFIX_CALORIE + "150";
 
-    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Edited Food: %1$s";
+    public static final String MESSAGE_EDIT_FOOD_SUCCESS = "Food item edited!\n\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

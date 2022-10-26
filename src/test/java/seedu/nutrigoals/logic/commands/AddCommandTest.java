@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.Calorie;
@@ -23,6 +24,7 @@ import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.ReadOnlyNutriGoals;
 import seedu.nutrigoals.model.ReadOnlyUserPrefs;
+import seedu.nutrigoals.model.Tip;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.meal.Name;
@@ -212,6 +214,21 @@ public class AddCommandTest {
 
         @Test
         public Map<Name, Calorie> getFoodCalorieList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Tip getTip() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Test
+        public double calculateCalorieIntakeProgress() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Test
+        public DoubleProperty getCalorieIntakeProgress() {
             throw new AssertionError("This method should not be called.");
         }
     }

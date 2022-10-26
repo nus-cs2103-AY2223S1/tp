@@ -58,9 +58,7 @@ public class Calorie {
     public int calculateDifference(Calorie other) {
         int operand1 = this.getCalorieValue();
         int operand2 = other.getCalorieValue();
-        int diff = operand1 - operand2;
-
-        return diff;
+        return operand1 - operand2;
     }
 
     /**
@@ -74,6 +72,17 @@ public class Calorie {
         int sum = operand1 + operand2;
 
         return new Calorie(Integer.toString(sum));
+    }
+
+    /**
+     * Calculates the proportion of this {@code Calorie} to the given {@code Calorie}.
+     * @param other The {@code Calorie} to calculate the proportion with respect to.
+     * @return The proportion of this {@code Calorie} to the given {@code Calorie}.
+     */
+    public double calculateProportion(Calorie other) {
+        int operand1 = this.getCalorieValue();
+        int operand2 = other.getCalorieValue();
+        return (double) operand1 / operand2;
     }
 
     @Override
