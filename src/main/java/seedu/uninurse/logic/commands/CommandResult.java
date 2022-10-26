@@ -50,6 +50,10 @@ public class CommandResult {
         return this.commandType == CommandType.DELETE_PATIENT;
     }
 
+    public boolean isListTask() {
+        return this.commandType == CommandType.LIST_TASK;
+    }
+
     public boolean isTaskRelated() {
         return this.commandType == CommandType.TASK;
     }

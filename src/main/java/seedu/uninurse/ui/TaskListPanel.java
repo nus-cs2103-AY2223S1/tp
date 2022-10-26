@@ -46,6 +46,7 @@ public class TaskListPanel extends UiPart<Region> {
         TaskListViewCell() {
             super();
             setStyle("-fx-padding: 0 5 0 0");
+            prefWidthProperty().bind(taskListView.widthProperty().subtract(15.0));
         }
 
         @Override

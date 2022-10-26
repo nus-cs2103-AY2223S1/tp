@@ -1,5 +1,7 @@
 package seedu.uninurse.ui;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -50,6 +52,18 @@ public class OutputPanel extends UiPart<Region> {
 
         outputView.getChildren().clear();
         outputView.getChildren().add(taskListPanel.getRoot());
+    }
+
+    /**
+     * Updates the outputView panel accordingly with a list of {@code patient} if executed command is ListTask.
+     */
+    public void handleListTask(List<Patient> patients) {
+        TruncatedTaskListPanel truncatedTaskListPanel = new TruncatedTaskListPanel(patients);
+        truncatedTaskListPanel.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
+        truncatedTaskListPanel.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
+
+        outputView.getChildren().clear();
+        outputView.getChildren().add(truncatedTaskListPanel.getRoot());
     }
 
     /**

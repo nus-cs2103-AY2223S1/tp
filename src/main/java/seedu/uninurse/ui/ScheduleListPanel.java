@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.Schedule.PatientTaskListPair;
@@ -17,10 +16,6 @@ public class ScheduleListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<PatientTaskListPair> scheduleListView;
-    @FXML
-    private Label name;
-    @FXML
-    private FlowPane tags;
     @FXML
     private Label header;
 

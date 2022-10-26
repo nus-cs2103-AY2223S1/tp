@@ -214,6 +214,10 @@ public class MainWindow extends UiPart<Stage> {
                 outputPanel.handleViewPatient(logic.getPatientOfInterest());
             }
 
+            if (commandResult.isListTask()) {
+                outputPanel.handleListTask(logic.getFilteredPersonList());
+            }
+
             if (commandResult.isTaskRelated()) {
                 outputPanel.handleTask(logic.getPatientOfInterest());
             }

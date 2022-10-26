@@ -12,6 +12,7 @@ public enum CommandType {
     ADD_PATIENT,
     EDIT_PATIENT,
     DELETE_PATIENT,
+    LIST_TASK,
     LIST,
     TASK,
     SCHEDULE,
