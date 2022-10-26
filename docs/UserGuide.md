@@ -120,18 +120,18 @@ Examples:
 - `listp` followed by `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `listp` followed by `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Editing an internship : `editi`
+### Editing an internship : `edit -i`
 
 Edits an existing internship in InterNUS.
 
-Format: `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`
+Format: `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`
 - Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index must be a positive integer 1, 2, 3, …
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 
 Examples:
-- `listi` followed by `edit 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
-- `listi` followed by `edit 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
+- `list -i` followed by `edit -i 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
+- `list -i` followed by `edit -i 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
 
 ### Linking a person and an internship : `link` [coming soon]
 
@@ -199,19 +199,19 @@ Examples:
 * `list -p` followed by `delete -p 2` deletes the 2nd person in InterNUS.
 * `find -p Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
 
-### Deleting an internship by index : `deletei`
+### Deleting an internship by index : `delete -i`
 
 Deletes the specified internship from InterNUS.
 
-Format: `deletei INDEX`
+Format: `delete -i INDEX`
 
 * Deletes the internship with the specific `INDEX` in the internship list.
 * The index refers to the index number shown in the currently displayed internship list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `listi` followed by `deletei 2` deletes the 2nd internship in InterNUS.
-* `findi ABC Pte Ltd` followed by `deletei 1` deletes the 1st internship in the results of the `find` command.
+* `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
+* `find -i ABC Pte Ltd` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
 ### Sorting persons by name: `sortp n/`
 
@@ -274,9 +274,9 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 | **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`               |
 | **Clear**             | `clear`                                                                                                                                            |
 | **Delete person**     | `delete -p INDEX`<br> e.g., `delete -p 3`                                                                                                          |
-| **Delete internship** | `deletei INDEX`<br> e.g., `deletei 1`                                                                                                              |
+| **Delete internship** | `delete -i INDEX`<br> e.g., `delete -i 1`                                                                                                          |
 | **Edit person**       | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                   |
-| **Edit internship**   | `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`<br> e.g.,`editi 2 s/REJECTED`, `editi 3 d/2023-01-01 13:30`               |
+| **Edit internship**   | `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`<br> e.g.,`edit -i 2 s/REJECTED`, `edit -i 3 d/2023-01-01 13:30`                 |
 | **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                                           |
 | **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                                          |
 | **List persons**      | `listp`                                                                                                                                            |

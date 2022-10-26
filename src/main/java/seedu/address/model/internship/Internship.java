@@ -98,6 +98,7 @@ public class Internship {
 
     /**
      * Returns a Comparator that compares Internships by interviewDate.
+     * Earlier dates are smaller (and appear higher in the sorted list).
      * Internships with no interview dates are greater (and appear lower in the sorted list).
      *
      * @return the Comparator.
@@ -109,6 +110,7 @@ public class Internship {
 
     /**
      * Returns a Comparator that compares Internships by internshipStatus.
+     * The ordering is defined in {@code InternshipStatus.State}.
      *
      * @return the Comparator.
      */
