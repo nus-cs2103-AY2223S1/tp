@@ -4,9 +4,11 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 
 /**
@@ -25,7 +27,9 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label startDateTime;
+    private HBox dateTime;
+    @FXML
+    private HBox duration;
     @FXML
     private Label endDateTime;
     @FXML
@@ -37,11 +41,28 @@ public class EventCard extends UiPart<Region> {
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
 
+        ImageView durationIcon = new ImageView("/images/duration_icon.png");
+        durationIcon.setFitHeight(15);
+        durationIcon.setFitWidth(15);
+        Label durationLabel = new Label(
+                DateTime.getDifferenceString(event.getStartDateTime(), event.getEndDateTime()));
+
+        ImageView dateTimeIcon = new ImageView("/images/dateTime_icon.png");
+        dateTimeIcon.setFitHeight(15);
+        dateTimeIcon.setFitWidth(15);
+        String dateString = String.format("%s - %s",
+                event.getStartDateTime().toString(),
+                event.getEndDateTime().toString());
+        Label dateTimeLabel = new Label(dateString);
+
         this.event = event;
         id.setText(displayedIndex + ". ");
         title.setText(event.getTitle().title);
-        startDateTime.setText(event.getStartDateTime().toString());
-        endDateTime.setText(event.getEndDateTime().toString());
+        duration.getChildren().add(durationIcon);
+        duration.getChildren().add(durationLabel);
+        dateTime.getChildren().add(dateTimeIcon);
+        dateTime.getChildren().add(dateTimeLabel);
+
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

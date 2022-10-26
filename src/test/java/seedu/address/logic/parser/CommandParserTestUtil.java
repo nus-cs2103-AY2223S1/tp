@@ -16,6 +16,7 @@ import seedu.address.logic.commands.profile.ViewProfilesCommand;
 import seedu.address.logic.parser.event.AddEventCommandParser;
 import seedu.address.logic.parser.event.DeleteEventCommandParser;
 import seedu.address.logic.parser.event.EditEventCommandParser;
+import seedu.address.logic.parser.event.FindEventCommandParser;
 import seedu.address.logic.parser.event.ViewEventsCommandParser;
 import seedu.address.logic.parser.event.ViewUpcomingEventsCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -53,6 +54,8 @@ public class CommandParserTestUtil {
             userInput = " -" + DeleteEventCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof EditEventCommandParser) {
             userInput = " -" + EditEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof FindEventCommandParser) {
+            userInput = " -" + EditEventCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewUpcomingEventsCommandParser) {
             userInput = " -" + ViewUpcomingEventsCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewEventsCommandParser) {
@@ -89,6 +92,8 @@ public class CommandParserTestUtil {
         } else if (parser instanceof DeleteEventCommandParser) {
             userInput = " -" + DeleteEventCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof EditEventCommandParser) {
+            userInput = " -" + EditEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof FindEventCommandParser) {
             userInput = " -" + EditEventCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewUpcomingEventsCommandParser) {
             userInput = " -" + ViewUpcomingEventsCommand.COMMAND_OPTION + " " + userInput;

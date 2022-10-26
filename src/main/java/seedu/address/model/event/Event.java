@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents an Event in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event {
+public class Event implements Comparable<Event> {
 
     // Identity fields
     private final Title title;
@@ -69,8 +69,19 @@ public class Event {
                 && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
+    /**
+     * Returns true if start date is before or equal the end date.
+     */
     public boolean isValidStartEnd() {
         return startDateTime.isBeforeOrEqual(endDateTime);
+    }
+
+    /**
+     * Returns true if start date and end dates either both have time
+     * or both do not have time.
+     */
+    public boolean isHasTimeEqual() {
+        return startDateTime.hasTime() == endDateTime.hasTime();
     }
 
     /**
@@ -116,4 +127,15 @@ public class Event {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Event other) {
+        int compareValue = this.getStartDateTime().compareTo(other.getStartDateTime());
+        if (compareValue == 0) {
+            compareValue = this.getEndDateTime().compareTo(other.getEndDateTime());
+        }
+        if (compareValue == 0) {
+            compareValue = this.getTitle().compareTo(other.getTitle());
+        }
+        return compareValue;
+    }
 }

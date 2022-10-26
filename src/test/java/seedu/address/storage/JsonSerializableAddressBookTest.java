@@ -17,8 +17,10 @@ public class JsonSerializableAddressBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_PROFILES_FILE = TEST_DATA_FOLDER.resolve("typicalProfilesAddressBook.json");
-    private static final Path INVALID_PROFILE_FILE = TEST_DATA_FOLDER.resolve("invalidProfileAddressBook.json");
-    private static final Path DUPLICATE_PROFILE_FILE = TEST_DATA_FOLDER.resolve("duplicateProfileAddressBook.json");
+    private static final Path INVALID_PROFILE_FILE = TEST_DATA_FOLDER.resolve("invalidNameAddressBook.json");
+    private static final Path SIMILAR_EMAIL_FILE = TEST_DATA_FOLDER.resolve("similarEmailAddressBook.json");
+    private static final Path SIMILAR_PHONE_FILE = TEST_DATA_FOLDER.resolve("similarPhoneAddressBook.json");
+    private static final Path SIMILAR_TELEGRAM_FILE = TEST_DATA_FOLDER.resolve("similarTelegramAddressBook.json");
 
     @Test
     public void toModelType_typicalProfilesFile_success() throws Exception {
@@ -37,10 +39,26 @@ public class JsonSerializableAddressBookTest {
     }
 
     @Test
-    public void toModelType_duplicateProfiles_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PROFILE_FILE,
+    public void toModelType_similarEmail_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(SIMILAR_EMAIL_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PROFILE,
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_SIMILAR_EMAIL,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_similarPhone_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(SIMILAR_PHONE_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_SIMILAR_PHONE,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_similarTelegram_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(SIMILAR_TELEGRAM_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_SIMILAR_TELEGRAM,
                 dataFromFile::toModelType);
     }
 

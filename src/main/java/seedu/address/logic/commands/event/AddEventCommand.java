@@ -61,6 +61,10 @@ public class AddEventCommand extends EventCommand {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
+        if (!toAdd.isHasTimeEqual()) {
+            throw new CommandException(Messages.MESSAGE_EVENTS_HAS_TIME);
+        }
+
         if (!toAdd.isValidStartEnd()) {
             throw new CommandException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }

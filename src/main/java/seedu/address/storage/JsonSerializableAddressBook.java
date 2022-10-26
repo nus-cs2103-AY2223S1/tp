@@ -20,7 +20,9 @@ import seedu.address.model.profile.Profile;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PROFILE = "Profiles list contains duplicate profile(s).";
+    public static final String MESSAGE_SIMILAR_EMAIL = "Profiles list contains similar email(s).";
+    public static final String MESSAGE_SIMILAR_PHONE = "Profiles list contains similar phone(s).";
+    public static final String MESSAGE_SIMILAR_TELEGRAM = "Profiles list contains similar telegram(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
 
     private final List<JsonAdaptedProfile> profiles = new ArrayList<>();
@@ -55,8 +57,14 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedProfile jsonAdaptedProfile : profiles) {
             Profile profile = jsonAdaptedProfile.toModelType();
-            if (addressBook.hasProfile(profile)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PROFILE);
+            if (addressBook.hasEmail(profile)) {
+                throw new IllegalValueException(MESSAGE_SIMILAR_EMAIL);
+            }
+            if (addressBook.hasPhone(profile)) {
+                throw new IllegalValueException(MESSAGE_SIMILAR_PHONE);
+            }
+            if (addressBook.hasTelegram(profile)) {
+                throw new IllegalValueException(MESSAGE_SIMILAR_TELEGRAM);
             }
             addressBook.addProfile(profile);
         }
