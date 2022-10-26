@@ -79,7 +79,17 @@ public class Debt {
      */
     public int compareDateTimeWith(Debt o) {
         int dateComparison = this.date.compareTo(o.date);
-        return dateComparison == 0 ? this.time.compareTo(o.time) : dateComparison;
+        int timeComparison = this.time.compareTo(o.time);
+        return dateComparison == 0
+                ? timeComparison == 0 ? compareDescriptionWith(o) : timeComparison
+                : dateComparison;
+    }
+
+    /**
+     * Compares with another Debt using their descriptions' alphabetical order.
+     */
+    public int compareDescriptionWith(Debt o) {
+        return this.description.compareTo(o.description);
     }
 
     /**
