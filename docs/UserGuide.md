@@ -63,6 +63,7 @@ Test
     * [Keyboard shortcuts](ug-pages/quality-of-life.md#keyboard-shortcuts)
     * [Accessing command history](ug-pages/quality-of-life.md#accessing-command-history)
   * [Exiting RC4HDB `exit`](ug-pages/exiting-the-program.md#exiting-the-program--exit)
+  * [Upcoming features]
 * [FAQ](ug-pages/faq.md#faq)
 * [Glossary](ug-pages/glossary.md)
 * [Authors]()

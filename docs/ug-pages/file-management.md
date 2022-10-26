@@ -85,19 +85,6 @@ Examples:
 
 ---
 
-### Exporting to CSV file : `file export`
-
-RC4HDB provides users with the ability to export data to `.csv` files. The file will be safe to remove from the `[JAR file location]/data` folder.
-
-Format: `file export FILE_NAME`
-
-:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
-
-Examples:
-* `file export residents` will export the data from `residents.json` file into a `.csv` file named `residents.csv`.
-
----
-
 ### CSV file format
 
 :information_source: All fields must adhere to this [format](modifying-residents.md#format-for-resident-fields).<br>
