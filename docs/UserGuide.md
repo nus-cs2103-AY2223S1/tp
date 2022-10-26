@@ -19,7 +19,8 @@ This section aims to help you navigate the user guide.
 
 1. The next subsection [Section 2.2, Tips for reading the User Guide](#22-tips-for-reading-the-user-guide), provides some tips on reading this document.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
-3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented. 
+3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented.
+4. [Section 7, Glossary](#7-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
