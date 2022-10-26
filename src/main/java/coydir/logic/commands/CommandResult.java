@@ -19,6 +19,8 @@ public class CommandResult {
 
     private final boolean view;
 
+    private final boolean update;
+
     private int viewIndex;
 
 
@@ -30,6 +32,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.view = false;
+        this.update = true;
     }
 
     /**
@@ -41,6 +44,7 @@ public class CommandResult {
         this.exit = false;
         this.view = view;
         this.viewIndex = index;
+        this.update = false;
     }
 
     /**
@@ -65,6 +69,10 @@ public class CommandResult {
 
     public boolean isView() {
         return view;
+    }
+
+    public boolean isUpdate() {
+        return update;
     }
 
     public int getViewIndex() {

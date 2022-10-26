@@ -10,6 +10,8 @@ import java.util.Queue;
 import java.util.Set;
 
 import coydir.model.tag.Tag;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Person in the database.
@@ -98,6 +100,10 @@ public class Person {
         return this.leaves;
     }
 
+    public ObservableList<Leave> getObservableListLeaves() {
+        return FXCollections.observableArrayList(leaves);
+    }
+
     public int getTotalNumberOfLeaves() {
         return this.totalNumberOfLeaves;
     }
@@ -108,6 +114,20 @@ public class Person {
 
     public void setLeavesLeft(int leavesLeft) {
         this.leavesLeft = leavesLeft;
+    }
+
+
+    /**
+     * Check whether a person is currently on leave
+     * @return a string representation of "true" if the person is currently on leave, "false" otherwise.
+     */
+    public String onLeaveStatus() {
+        for (Leave leave: leaves) {
+            if (leave.isOnLeave()) {
+                return "True";
+            }
+        }
+        return "False";
     }
 
     /**
