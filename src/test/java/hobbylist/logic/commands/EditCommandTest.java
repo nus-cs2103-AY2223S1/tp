@@ -1,6 +1,7 @@
 package hobbylist.logic.commands;
 
 import static hobbylist.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -143,6 +144,13 @@ public class EditCommandTest {
                 new EditActivityDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOXING).build());
 
         CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ACTIVITY_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void setCommandWord_validWord_success() {
+        EditCommand.setCommandWord("test");
+        assertEquals(EditCommand.getCommandWord(), "test");
+        EditCommand.setCommandWord("edit");
     }
 
     @Test

@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.ThemeSettings;
 
@@ -15,7 +16,11 @@ import hobbylist.commons.core.ThemeSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
+
     private ThemeSettings themeSettings = new ThemeSettings();
+
+    private AliasSettings aliasSettings = new AliasSettings();
+
     private Path hobbyListFilePath = Paths.get("data" , "hobbylist.json");
 
     /**
@@ -38,11 +43,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setThemeSettings(newUserPrefs.getThemeSettings());
+        setAliasSettings(newUserPrefs.getAliasSettings());
         setHobbyListFilePath(newUserPrefs.getHobbyListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
         return guiSettings;
+    }
+
+    public AliasSettings getAliasSettings() {
+        return aliasSettings;
     }
 
     public void setGuiSettings(GuiSettings guiSettings) {
@@ -57,6 +67,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setThemeSettings(ThemeSettings themeSettings) {
         requireNonNull(themeSettings);
         this.themeSettings = themeSettings;
+    }
+
+    public void setAliasSettings(AliasSettings aliasSettings) {
+        requireNonNull(aliasSettings);
+        this.aliasSettings = aliasSettings;
     }
 
     public Path getHobbyListFilePath() {
@@ -80,12 +95,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
+                && aliasSettings.equals(o.aliasSettings)
                 && hobbyListFilePath.equals(o.hobbyListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, hobbyListFilePath);
+        return Objects.hash(guiSettings, aliasSettings, hobbyListFilePath);
     }
 
     @Override
@@ -93,6 +109,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nTheme Settings : " + themeSettings);
+        sb.append("\nAlias Settings : " + aliasSettings);
         sb.append("\nLocal data file location : " + hobbyListFilePath);
         return sb.toString();
     }

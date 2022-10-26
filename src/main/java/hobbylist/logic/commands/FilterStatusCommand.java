@@ -11,17 +11,33 @@ import hobbylist.model.activity.StatusMatchesGivenStatus;
  * Status matching is case insensitive.
  */
 public class FilterStatusCommand extends Command {
-    public static final String COMMAND_WORD = "filterStatus";
+    private static String commandWord = "filterStatus";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose status matches"
+    public static final String MESSAGE_USAGE = commandWord + ": Finds all activities whose status matches"
             + "the given status (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: STATUS...\n"
-            + "Example: " + COMMAND_WORD + "ONGOING";
+            + "Example: " + commandWord + "ONGOING";
 
     private final StatusMatchesGivenStatus predicate;
 
     public FilterStatusCommand(StatusMatchesGivenStatus predicate) {
         this.predicate = predicate;
+    }
+
+    /**
+     * Returns the command word.
+     * @return the command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
+    }
+
+    /**
+     * Sets the command word.
+     * @param word the new command word.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
     }
 
     @Override

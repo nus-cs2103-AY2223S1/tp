@@ -2,6 +2,7 @@ package hobbylist.model;
 
 import java.nio.file.Path;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.ThemeSettings;
 
@@ -13,6 +14,8 @@ public interface ReadOnlyUserPrefs {
     GuiSettings getGuiSettings();
 
     ThemeSettings getThemeSettings();
+
+    AliasSettings getAliasSettings();
 
     Path getHobbyListFilePath();
 

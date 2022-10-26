@@ -2,6 +2,7 @@ package hobbylist.logic;
 
 import java.nio.file.Path;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.commons.core.ThemeSettings;
 import hobbylist.logic.commands.CommandResult;
@@ -59,4 +60,14 @@ public interface Logic {
      * Set the user prefs' theme settings.
      */
     void setThemeSettings(ThemeSettings themeSettings);
+
+    /**
+     * Returns the user prefs' Alias settings.
+     */
+    AliasSettings getAliasSettings();
+
+    /**
+     * Set the user prefs' Alias settings.
+     */
+    void setAliasSettings(AliasSettings aliasSettings);
 }

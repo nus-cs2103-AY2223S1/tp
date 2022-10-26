@@ -9,6 +9,7 @@ import hobbylist.logic.commands.EditCommand.EditActivityDescriptor;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Status;
 import hobbylist.model.tag.Tag;
 
 /**
@@ -34,6 +35,16 @@ public class EditActivityDescriptorBuilder {
         descriptor.setName(activity.getName());
         descriptor.setDescription(activity.getDescription());
         descriptor.setTags(activity.getTags());
+        if (activity.getDate().size() > 0) {
+            descriptor.setDate(activity.getDate());
+        } else {
+            descriptor.setDate(null);
+        }
+        if (activity.getStatus().status != Status.State.NONE) {
+            descriptor.setStatus(activity.getStatus());
+        } else {
+            descriptor.setStatus(null);
+        }
     }
 
     /**
