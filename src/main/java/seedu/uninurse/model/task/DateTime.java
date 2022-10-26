@@ -13,8 +13,8 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime implements Comparable<DateTime> {
 
-    public static final String DATE_TIME_PATTERN = "dd-MM-yyyy HHmm";
-    public static final String DATE_PATTERN = "dd-MM-yyyy";
+    public static final String DATE_TIME_PATTERN = "d-M-yyyy HHmm";
+    public static final String DATE_PATTERN = "d-M-yyyy";
     public static final String TIME_PATTERN = "HH:mm a";
     public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
             + DATE_TIME_PATTERN + " i.e 16-10-2022 1015\n" + "or just date should be in the format of: "
