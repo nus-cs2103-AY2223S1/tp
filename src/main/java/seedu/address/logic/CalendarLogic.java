@@ -3,6 +3,10 @@ package seedu.address.logic;
 import static javafx.scene.paint.Color.WHITE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -17,15 +21,23 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
+import seedu.address.model.person.Date;
 import seedu.address.ui.CalendarEventListPanel;
+import seedu.address.ui.JumpText;
 import seedu.address.ui.NextButton;
 import seedu.address.ui.PreviousButton;
 import seedu.address.ui.RefreshButton;
+import seedu.address.ui.TextValidation;
 
 /**
  * The manager of the logic for the Calendar.
  */
 public class CalendarLogic {
+    private static final String SUCCESS_MESSAGE = "success";
+    private static final String FAILURE_MESSAGE = "failure";
+    private static final String EMPTY_MESSAGE = "";
+
+
     private static final String[] MONTH_NAMES = {
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -38,6 +50,9 @@ public class CalendarLogic {
     private PreviousButton prevButton = new PreviousButton("Prev", this);
     private NextButton nextButton = new NextButton("Next", this);
     private RefreshButton refreshButton = new RefreshButton("Refresh", this);
+    private JumpText jumpText = new JumpText(this);
+    private TextValidation textValidation = new TextValidation();
+
     @FXML
     private GridPane calendarDisplay;
     @FXML
@@ -79,7 +94,7 @@ public class CalendarLogic {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
-                refreshButton.getRoot());
+                refreshButton.getRoot(), jumpText.getRoot(), textValidation.getRoot());
         topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
@@ -137,6 +152,7 @@ public class CalendarLogic {
     public void refresh() {
         resetGridPane();
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        textValidation.setTextValidation(EMPTY_MESSAGE);
         drawCalendar();
     }
 
@@ -146,6 +162,7 @@ public class CalendarLogic {
     public void previous() {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getPreviousMonth(currentMonth);
+        textValidation.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
 
@@ -155,7 +172,35 @@ public class CalendarLogic {
     public void next() {
         this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = getNextMonth(currentMonth);
+        textValidation.setTextValidation("");
         updateCalendarMonth();
+    }
+    /**
+     * Displays the CalendarEvents given by the user input.
+     */
+    public void jump() {
+        this.calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
+        currentMonth = getJumpMonth(currentMonth);
+        updateCalendarMonth();
+    }
+
+    private GregorianCalendar getJumpMonth(Calendar cal) {
+
+        String date = jumpText.getText();
+        jumpText.clear();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MMM-uuuu");
+            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
+            Date jumpDate = new Date(LocalDate.parse(date, formatter));
+            int newMonth = jumpDate.getMonth() - 1;
+            int newYear = jumpDate.getYear();
+            textValidation.setTextValidation(SUCCESS_MESSAGE);
+            return new GregorianCalendar(newYear, newMonth, 1);
+        } catch (DateTimeParseException e) {
+            textValidation.setTextValidation(FAILURE_MESSAGE);
+        }
+        return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
+
     }
 
     private void updateCalendarMonth() {
