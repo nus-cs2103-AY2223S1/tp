@@ -19,25 +19,29 @@ import seedu.intrack.model.tag.Tag;
 public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "deltag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes one or more tags of the internship" +
-            " with the " + "selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n" +
-            " or to delete all tags, use the Parameters: clear\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes one or more tags of the internship"
+            + " with the " + "selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
+            + " or to delete all tags, use the Parameters: clear\n"
             + "Example 1: " + COMMAND_WORD + " 1 URGENT\n"
             + "Example 2: " + COMMAND_WORD + " 1 clear.";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag/tags of internship successfully";
     public static final String MESSAGE_CLEAR_TAGS_SUCCESS = "Cleared tag/tags of internship successfully";
 
-    public static final String DELETED_TAG_NOT_PRESENT = "There are one or more tags listed that are not in the list" +
-            " of tags!";
+    public static final String DELETED_TAG_NOT_PRESENT = "There are one or more tags listed that are not in the list"
+            + " of tags!";
 
-    public static final String DELETE_TAG_CONSTRAINTS = "No tag detected, please include a tag to delete from the " +
-            "indicated internship";
+    public static final String DELETE_TAG_CONSTRAINTS = "No tag detected, please include a tag to delete from the "
+            + "indicated internship";
 
     private final Index index;
     private final List<Tag> tags;
     private final String command;
 
+    /**
+     * Generates a command execution success message based on whether a tag is added deleted/cleared to the taglist
+     * {@code internshipToEdit}.
+     */
     public DeleteTagCommand(Index index, List<Tag> tags, String command) {
         requireAllNonNull(index, tags);
 

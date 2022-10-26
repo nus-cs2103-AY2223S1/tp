@@ -19,18 +19,22 @@ import seedu.intrack.model.tag.Tag;
 public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "addtag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to the internship application with the " +
-            "selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
-            + "Example: " + COMMAND_WORD + " 1 URGENT\n" +
-            "or " + COMMAND_WORD + " 1 URGENT HARD HELP";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds one or more tags to the internship application "
+            + "with the " + "selected index.\n" + "Parameters: INDEX (must be a positive integer) TAG \n"
+            + "Example: " + COMMAND_WORD + " 1 URGENT\n"
+            + "or " + COMMAND_WORD + " 1 URGENT HARD HELP";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to internship successfully";
-    public static final String ADD_TAG_CONSTRAINTS = "No tag detected, please include a tag to add to the indicated" +
-            " internship";
+    public static final String ADD_TAG_CONSTRAINTS = "No tag detected, please include a tag to add to the indicated"
+            + " internship";
 
     private final Index index;
     private final List<Tag> tags;
 
+    /**
+     * Generates a command execution success message based on whether a tag is added successfully to the taglist
+     * {@code internshipToEdit}.
+     */
     public AddTagCommand(Index index, List<Tag> tags) {
         requireAllNonNull(index, tags);
 

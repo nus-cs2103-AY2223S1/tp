@@ -6,7 +6,26 @@ import static seedu.intrack.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.intrack.logic.commands.*;
+import seedu.intrack.logic.commands.AddCommand;
+import seedu.intrack.logic.commands.AddTagCommand;
+import seedu.intrack.logic.commands.AddTaskCommand;
+import seedu.intrack.logic.commands.ClearCommand;
+import seedu.intrack.logic.commands.Command;
+import seedu.intrack.logic.commands.DeleteCommand;
+import seedu.intrack.logic.commands.DeleteTagCommand;
+import seedu.intrack.logic.commands.DeleteTaskCommand;
+import seedu.intrack.logic.commands.EditCommand;
+import seedu.intrack.logic.commands.ExitCommand;
+import seedu.intrack.logic.commands.FilterCommand;
+import seedu.intrack.logic.commands.FindNameCommand;
+import seedu.intrack.logic.commands.FindPositionCommand;
+import seedu.intrack.logic.commands.HelpCommand;
+import seedu.intrack.logic.commands.ListCommand;
+import seedu.intrack.logic.commands.RemarkCommand;
+import seedu.intrack.logic.commands.SelectCommand;
+import seedu.intrack.logic.commands.SortCommand;
+import seedu.intrack.logic.commands.StatsCommand;
+import seedu.intrack.logic.commands.StatusCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 
 /**
