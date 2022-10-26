@@ -71,6 +71,12 @@ public class TypicalStudents {
             .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withGitHub(VALID_GITHUB_BOB)
             .withInterests(VALID_INTEREST_SWE, VALID_INTEREST_AI).withMods("CS2100")
             .build();
+    public static final Student BOB_WITHOUT_TENNIS = new StudentBuilder().withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
+            .withGitHub(VALID_GITHUB_BOB).withInterests(VALID_INTEREST_NETFLIX).withMods("CS2100").build();
+    public static final Student BOB_WITHOUT_INTERESTS = new StudentBuilder().withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
+            .withGitHub(VALID_GITHUB_BOB).withMods("CS2100").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
