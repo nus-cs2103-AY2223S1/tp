@@ -107,7 +107,9 @@ class JsonAdaptedEvent {
         for (JsonAdaptedProfile attendee : attendees) {
             Profile p = attendee.toModelType();
             if (addressBook.hasProfile(p)) {
-                modelAttendees.add(attendee.toModelType());
+                int index = addressBook.getProfileList().indexOf(p);
+                p = addressBook.getProfileList().get(index);
+                modelAttendees.add(p);
             }
         }
 
@@ -121,7 +123,7 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
-        return new Event(modelTitle, modelStart, modelEnd, modelTags);
+        return new Event(modelTitle, modelStart, modelEnd, modelTags, modelAttendees);
     }
 
 }

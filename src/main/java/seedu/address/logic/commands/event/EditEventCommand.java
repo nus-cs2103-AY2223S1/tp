@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Attendees;
 import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Title;
@@ -109,8 +110,9 @@ public class EditEventCommand extends EventCommand {
         DateTime updatedStartDateTime = editEventDescriptor.getStartDateTime().orElse(eventToEdit.getStartDateTime());
         DateTime updatedEndDateTime = editEventDescriptor.getEndDateTime().orElse(eventToEdit.getEndDateTime());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
+        Attendees currentAttendees = eventToEdit.getAttendees();
 
-        return new Event(updatedTitle, updatedStartDateTime, updatedEndDateTime, updatedTags);
+        return new Event(updatedTitle, updatedStartDateTime, updatedEndDateTime, updatedTags, currentAttendees);
     }
 
     @Override
