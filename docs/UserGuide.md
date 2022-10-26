@@ -147,11 +147,17 @@ Beyond individual products, you can also:
 
 Adds a new client to MyInsuRec.
 
-Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY]`
+Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * Adds a client having name `NAME`.
 * A client must have a NAME and a PHONE_NUMBER.
 * EMAIL and BIRTHDAY is optional.
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Caution:**
+
+In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#adding-a-product-addproduct).
+
+</div>
 
 Examples:
 * `addClient n/John Tan p/0123456789 b/12122000`
@@ -241,7 +247,7 @@ Format: `viewMeeting i/INDEX`
 Examples:
 * `viewMeeting i/1`
 
-### Deleting a Meeting : `delMeeting`
+### Deleting a meeting : `delMeeting`
 
 Deletes a meeting from MyInsuRec.
 
@@ -258,7 +264,9 @@ Examples:
 
 ## Product commands
 
-### {addProduct PLACEHOLDER}
+### Adding a product: `addProduct` 
+
+{addProduct PLACEHOLDER}
 
 ### Listing products: `listProduct`
 
@@ -266,7 +274,7 @@ Shows a list of all products in MyInsuRec.
 
 Format: `listProduct`
 
-### Deleting a Product : `delProduct`
+### Deleting a product : `delProduct`
 
 Deletes a product from MyInsuRec.  
 This feature will remove the product from association with any client.
