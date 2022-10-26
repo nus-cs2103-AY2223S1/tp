@@ -1,0 +1,18 @@
+package seedu.address.model.reminder;
+
+import java.time.LocalDateTime;
+import java.util.Comparator;
+
+public class ReminderDeadlineComparator implements Comparator<Reminder> {
+    @Override
+    public int compare(Reminder r1, Reminder r2) {
+        LocalDateTime otherDeadline = r2.getDatetime();
+        LocalDateTime thisDeadline = r1.getDatetime();
+
+        if (otherDeadline == thisDeadline) {
+            return r1.getName().fullName.compareTo(r2.getName().fullName);
+        } else {
+            return thisDeadline.compareTo(otherDeadline);
+        }
+    }
+}

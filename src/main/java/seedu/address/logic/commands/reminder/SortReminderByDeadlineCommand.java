@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.reminder;
 
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -9,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Sorts reminder by their deadline. Reminders with same deadline will be sorted lexicographically by their names.
  */
-public class SortReminderByDeadline {
+public class SortReminderByDeadlineCommand extends Command {
     
     public static final String COMMAND_WORD = "sort reminder deadline";
 
