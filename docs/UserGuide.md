@@ -20,8 +20,15 @@ For a full list of commands and detailed instructions, head to the [Features](#f
     * [Adding a student: `add`](#adding-a-student-add)
     * [Editing a student's details: `edit`](#editing-student-details-edit)
     * [Viewing all students: `list`](#viewing-all-students-list)
-    * [Finding one or more students: `find`](#finding-one-or-more-students-find)
-    * [Deleting a student: `delete`](#deleting-a-student-delete)
+    * [Finding a student: `find`](#finding-a-student-find)
+      * [Find by name](#find-by-name)
+      * [Find by email](#)
+      * [Find by address](#)
+      * [Find by student's contact number](#)
+      * [Find by Next of Kin's contact number](#)
+      * [Find by class date](#find-by-class-date)
+      * [Find by tag](#)
+    * [Deleting a student: `delete`](#deleting-students-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
@@ -264,7 +271,7 @@ Format: `list`
 
 ---
 
-### Finding a students: `find`
+### Finding a student: `find`
 
 Finds an existing student in the list. You can only find by one field at a time. Fields supported in `find`:
 
@@ -276,7 +283,9 @@ Finds an existing student in the list. You can only find by one field at a time.
 - Class Date
 - Tag
 
-### Find by name:
+### Find by Name:
+
+Finds all students with names matching the keywords.
 
 Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
@@ -293,7 +302,7 @@ Example:
 
 [Back to top](#table-of-contents)
 
-#### Find by Class Date: `find dt/`
+#### Find by Class Date:
 
 Finds all students with classes on a particular date.
 
@@ -312,6 +321,8 @@ Examples:
 `find dt/Mon` returns all students with classes on the coming monday.
 
 [Back to top](#table-of-contents)
+
+---
 
 ### Deleting students: 'delete'
 
