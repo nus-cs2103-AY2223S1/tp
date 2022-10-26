@@ -246,7 +246,7 @@ Lorem Ipsum
 
 ###### Quick Links
 
-NUScheduler offers you easy access to some of your favourite NUS websites, right from the menu. 
+Get easy access to some of your favourite NUS websites, right from the menu. 
 
 1. Click on `Links` in the menu bar. A dropdown should appear.
 2. Click on the link you want to visit, if you want to visit `Canvas`, click on `Canvas`.
