@@ -9,27 +9,27 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleDetailsContainsKeywordsPredicate;
 import seedu.address.testutil.ModuleBuilder;
 
-public class ModuleCodeContainsKeywordsPredicateTest {
+public class ModuleDetailsContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        ModuleCodeContainsKeywordsPredicate firstPredicate =
-                new ModuleCodeContainsKeywordsPredicate(firstPredicateKeywordList);
-        ModuleCodeContainsKeywordsPredicate secondPredicate =
-                new ModuleCodeContainsKeywordsPredicate(secondPredicateKeywordList);
+        ModuleDetailsContainsKeywordsPredicate firstPredicate =
+                new ModuleDetailsContainsKeywordsPredicate(firstPredicateKeywordList);
+        ModuleDetailsContainsKeywordsPredicate secondPredicate =
+                new ModuleDetailsContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ModuleCodeContainsKeywordsPredicate firstPredicateCopy =
-                new ModuleCodeContainsKeywordsPredicate(firstPredicateKeywordList);
+        ModuleDetailsContainsKeywordsPredicate firstPredicateCopy =
+                new ModuleDetailsContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -45,32 +45,32 @@ public class ModuleCodeContainsKeywordsPredicateTest {
     @Test
     public void test_moduleCodeContainsKeywords_returnsTrue() {
         // One keyword
-        ModuleCodeContainsKeywordsPredicate predicate =
-                new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("CS2100"));
+        ModuleDetailsContainsKeywordsPredicate predicate =
+                new ModuleDetailsContainsKeywordsPredicate(Collections.singletonList("CS2100"));
         assertTrue(predicate.test(new ModuleBuilder().withModuleCode("CS2100 CS2101").build()));
 
         // Multiple keywords
-        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("CS2100", "CS2101"));
+        predicate = new ModuleDetailsContainsKeywordsPredicate(Arrays.asList("CS2100", "CS2101"));
         assertTrue(predicate.test(new ModuleBuilder().withModuleCode("CS2100 CS2101").build()));
 
         // Only one matching keyword
-        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("CS2100", "CS2109s"));
+        predicate = new ModuleDetailsContainsKeywordsPredicate(Arrays.asList("CS2100", "CS2109s"));
         assertTrue(predicate.test(new ModuleBuilder().withModuleCode("CS2103T CS2100").build()));
 
         // Mixed-case keywords
-        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("cs2100", "cS2109S"));
+        predicate = new ModuleDetailsContainsKeywordsPredicate(Arrays.asList("cs2100", "cS2109S"));
         assertTrue(predicate.test(new ModuleBuilder().withModuleCode("CS2100 CS2109S").build()));
     }
 
     @Test
     public void test_moduleCodeDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ModuleCodeContainsKeywordsPredicate predicate =
-                new ModuleCodeContainsKeywordsPredicate(Collections.emptyList());
+        ModuleDetailsContainsKeywordsPredicate predicate =
+                new ModuleDetailsContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ModuleBuilder().withModuleCode("CS2100").build()));
 
         // Non-matching keyword
-        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("CS1101"));
+        predicate = new ModuleDetailsContainsKeywordsPredicate(Arrays.asList("CS1101"));
         assertFalse(predicate.test(new ModuleBuilder().withModuleCode("CS2109 CS2100").build()));
     }
 }

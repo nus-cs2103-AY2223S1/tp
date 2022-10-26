@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonDetailsContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindPersonCommand}.
@@ -59,7 +59,7 @@ public class FindPersonCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         List<String> keyword = Collections.emptyList();
         FindPersonCommand command = new FindPersonCommand(keyword);
-        expectedModel.updateFilteredPersonList(new NameContainsKeywordsPredicate(keyword));
+        expectedModel.updateFilteredPersonList(new PersonDetailsContainsKeywordsPredicate(keyword));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -72,15 +72,15 @@ public class FindPersonCommandTest {
         keywords.add("Elle");
         keywords.add("Kunz");
         FindPersonCommand command = new FindPersonCommand(keywords);
-        expectedModel.updateFilteredPersonList(new NameContainsKeywordsPredicate(keywords));
+        expectedModel.updateFilteredPersonList(new PersonDetailsContainsKeywordsPredicate(keywords));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PersonDetailsContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PersonDetailsContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PersonDetailsContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
