@@ -1,12 +1,12 @@
 package coydir.model.person;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.beans.property.SimpleStringProperty;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Represents a Leave in the database.
