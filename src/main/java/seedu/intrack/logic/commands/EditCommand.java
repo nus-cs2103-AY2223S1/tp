@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.intrack.commons.core.Messages;
-import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.commons.util.CollectionUtil;
 import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
@@ -38,18 +37,17 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified by "
-            + "the index number used in the displayed list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the selected internship."
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_WEBSITE + "WEBSITE] "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_SALARY + "200000 "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_SALARY + "2000 "
             + PREFIX_EMAIL + "newemail@example.com";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited internship: %1$s";
@@ -58,31 +56,25 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the tracker.";
 
-    private final Index index;
     private final EditInternshipDescriptor editInternshipDescriptor;
 
     /**
-     * @param index of the internship in the filtered internship list to edit
      * @param editInternshipDescriptor details to edit the internship with
      */
-    public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
-        requireNonNull(index);
+    public EditCommand(EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(editInternshipDescriptor);
 
-        this.index = index;
         this.editInternshipDescriptor = new EditInternshipDescriptor(editInternshipDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Internship> lastShownList = model.getFilteredInternshipList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        List<Internship> lastShownList = model.getSelectedInternship();
+        if (lastShownList.size() != 1) {
+            throw new CommandException(Messages.MESSAGE_NO_INTERNSHIP_SELECTED);
         }
-
-        Internship internshipToEdit = lastShownList.get(index.getZeroBased());
+        Internship internshipToEdit = lastShownList.get(0);
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
         if (!internshipToEdit.isSameInternship(editedInternship) && model.hasInternship(editedInternship)) {
@@ -118,20 +110,9 @@ public class EditCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
-            return false;
-        }
-
-        // state check
-        EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editInternshipDescriptor.equals(e.editInternshipDescriptor);
+        return other == this // short circuit if same object
+                || (other instanceof EditCommand // instanceof handles nulls
+                && editInternshipDescriptor.equals(((EditCommand) other).editInternshipDescriptor)); // state check
     }
 
     /**
