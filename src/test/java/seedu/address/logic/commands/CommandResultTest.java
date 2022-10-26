@@ -71,14 +71,14 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isFilterTransactions() {
+    public void isFilteredTransactions() {
         CommandResult firstCommandResult = new CommandResult("feedback");
         CommandResult secondCommandResult = new CommandResult("feedback", true, false);
         CommandResult thirdCommandResult = new CommandResult("feedback", false, false, true);
 
-        assertEquals(firstCommandResult.isFilterTransactions(), false);
-        assertEquals(secondCommandResult.isFilterTransactions(), false);
-        assertEquals(thirdCommandResult.isFilterTransactions(), true);
+        assertEquals(firstCommandResult.isFilteredTransactions(), false);
+        assertEquals(secondCommandResult.isFilteredTransactions(), false);
+        assertEquals(thirdCommandResult.isFilteredTransactions(), true);
     }
 
     @Test
@@ -87,9 +87,9 @@ public class CommandResultTest {
         CommandResult secondCommandResult = new CommandResult("feedback", true, false, false, false);
         CommandResult thirdCommandResult = new CommandResult("feedback", false, false, false, true);
 
-        assertEquals(firstCommandResult.isSortTransactions(), false);
-        assertEquals(secondCommandResult.isSortTransactions(), false);
-        assertEquals(thirdCommandResult.isSortTransactions(), true);
+        assertEquals(firstCommandResult.isSortedTransactions(), false);
+        assertEquals(secondCommandResult.isSortedTransactions(), false);
+        assertEquals(thirdCommandResult.isSortedTransactions(), true);
     }
 
 

@@ -280,9 +280,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isFilterTransactions()) {
+            if (commandResult.isFilteredTransactions()) {
                 handleFilterTransaction(commandResult);
-            } else if (commandResult.isSortTransactions()) {
+            } else if (commandResult.isSortedTransactions()) {
                 handleSortTransaction(commandResult);
             } else {
                 handleClientDetailsUpdate(commandResult);
