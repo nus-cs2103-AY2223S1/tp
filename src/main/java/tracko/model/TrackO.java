@@ -88,7 +88,9 @@ public class TrackO implements ReadOnlyTrackO {
             order.setDelivered();
         }
 
-        setOrder(order, order.getImmutableItemsCopy());
+        if (order.isCompleted()) {
+            setOrder(order, order.getImmutableItemsCopy());
+        }
     }
 
     @Override
