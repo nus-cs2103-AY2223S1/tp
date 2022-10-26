@@ -1,7 +1,5 @@
 package hobbylist.logic.parser;
 
-import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import hobbylist.logic.commands.RateAboveCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
 
