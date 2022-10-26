@@ -1,7 +1,10 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.logic.parser.CliSyntax.*;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
