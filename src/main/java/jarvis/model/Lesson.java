@@ -6,10 +6,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import jarvis.commons.core.Messages;
@@ -48,6 +46,9 @@ public abstract class Lesson {
         this.notes = new LessonNotes(students);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
                   LessonAttendance attendance, LessonNotes notes) {
         requireAllNonNull(timePeriod, students, attendance, notes);

@@ -10,7 +10,6 @@ import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.UserPrefs;
-import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
  * API of the Storage component
@@ -45,8 +44,8 @@ public interface Storage extends StudentBookStorage, TaskBookStorage, LessonBook
     Path getLessonBookFilePath();
 
     @Override
-    Optional<ReadOnlyLessonBook> readLessonBook(ReadOnlyStudentBook studentBook) throws DataConversionException, IOException;
+    Optional<ReadOnlyLessonBook> readLessonBook() throws DataConversionException, IOException;
 
     @Override
-    void saveLessonBook(ReadOnlyLessonBook lessonBook, ReadOnlyStudentBook studentBook) throws IOException;
+    void saveLessonBook(ReadOnlyLessonBook lessonBook) throws IOException;
 }

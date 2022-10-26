@@ -9,13 +9,11 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.Lesson;
 import jarvis.model.LessonBook;
 import jarvis.model.ReadOnlyLessonBook;
-import jarvis.model.ReadOnlyStudentBook;
 
 
 /**
@@ -41,19 +39,16 @@ public class JsonSerializableLessonBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableLessonBook}.
      */
-    public JsonSerializableLessonBook(ReadOnlyLessonBook source, ReadOnlyStudentBook studentBook) {
+    public JsonSerializableLessonBook(ReadOnlyLessonBook source) {
         lessons.addAll(source.getLessonList().stream()
-                .map(x -> JsonAdaptedLesson.createLesson(x, studentBook))
+                .map(x -> JsonAdaptedLesson.createLesson(x))
                 .collect(Collectors.toList()));
-        assert lessons.stream().allMatch(new Predicate<JsonAdaptedLesson>() {
-            @Override
-            public boolean test(JsonAdaptedLesson jsonAdaptedLesson) {
-                if (jsonAdaptedLesson == null) {
-                    return false;
-                }
-                return true;
+        if (!lessons.stream().allMatch(jsonAdaptedLesson -> {
+            if (jsonAdaptedLesson == null) {
+                return false;
             }
-        });
+            return true;
+        })) throw new AssertionError();
     }
 
     /**
@@ -61,10 +56,10 @@ public class JsonSerializableLessonBook {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public LessonBook toModelType(ReadOnlyStudentBook studentBook) throws IllegalValueException, IOException {
+    public LessonBook toModelType() throws IllegalValueException, IOException {
         LessonBook lessonBook = new LessonBook();
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
-            Lesson lesson = jsonAdaptedLesson.toModelType(studentBook);
+            Lesson lesson = jsonAdaptedLesson.toModelType();
             if (lessonBook.hasLesson(lesson)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LESSONS);
             }

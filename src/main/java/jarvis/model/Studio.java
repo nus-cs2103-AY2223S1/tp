@@ -1,13 +1,9 @@
 package jarvis.model;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
-
-import jarvis.storage.JsonAdaptedStudio;
-import jarvis.storage.JsonAdaptedTimePeriod;
 
 /**
  * Represents a Studio in JARVIS.
@@ -24,6 +20,9 @@ public class Studio extends Lesson {
         this.participation = new StudioParticipation(students);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public Studio(LessonDesc lessonDesc, TimePeriod timePeriod, Collection<Student> students,
                   LessonAttendance attendance, LessonNotes notes, StudioParticipation participation) {
         super(lessonDesc, timePeriod, students, attendance, notes);

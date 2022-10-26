@@ -1,34 +1,23 @@
 package jarvis.storage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.Map;
 import java.util.TreeMap;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
-import jarvis.commons.core.index.Index;
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.commons.util.JsonUtil;
 import jarvis.model.Consult;
-import jarvis.model.Lesson;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
-import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Student;
 import jarvis.model.TimePeriod;
-import jarvis.model.util.SampleStudentUtil;
 
 /**
  * Jackson-friendly version of {@link Consult}.
@@ -55,7 +44,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
     /**
      * Converts a given {@code Consult} into this class for Jackson use.
      */
-    public JsonAdaptedConsult(Consult source, ReadOnlyStudentBook studentBook) {
+    public JsonAdaptedConsult(Consult source) {
         super(source.getDesc(), source.getTimePeriod(), source.getStudentList(),
                 source.getAttendance(), source.getGeneralNotes(), source.getStudentNotes(),
                 source.isCompleted());
@@ -65,7 +54,7 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
      * {@inheritDoc}
      */
     @Override
-    public Consult toModelType(ReadOnlyStudentBook studentBook) throws IllegalValueException, IOException {
+    public Consult toModelType() throws IllegalValueException, IOException {
         if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
             throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
         }
@@ -104,11 +93,12 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LessonNotes.class.getSimpleName()));
         }
-        TreeMap<Student, ArrayList<String>> modelStudentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
+        TreeMap<Student, ArrayList<String>> modelStudentNotes = new TreeMap<>(Comparator.comparing(s ->
+                s.getName().toString()));
         for (Integer i : this.getStudentNotes().keySet()) {
             modelStudentNotes.put(modelStudentList.get(i), this.getStudentNotes().get(i));
         }
-        LessonNotes modelLessonNotes = new LessonNotes(modelStudentList, this.getGeneralNotes(), modelStudentNotes);
+        LessonNotes modelLessonNotes = new LessonNotes(this.getGeneralNotes(), modelStudentNotes);
 
 
         Consult consult = new Consult(modelLessonDesc, modelTimePeriod,

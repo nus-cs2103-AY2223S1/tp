@@ -1,15 +1,10 @@
 package jarvis.storage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.TreeMap;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,13 +15,10 @@ import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.model.Consult;
 import jarvis.model.Lesson;
-import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
-import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
-import jarvis.model.ReadOnlyStudentBook;
-import jarvis.model.Studio;
 import jarvis.model.Student;
+import jarvis.model.Studio;
 import jarvis.model.TimePeriod;
 
 /**
@@ -73,6 +65,9 @@ public abstract class JsonAdaptedLesson {
         this.isCompleted = isCompleted;
     }
 
+    /**
+     * Constructs a {@code JsonAdaptedLesson} with the given lesson details.
+     */
     public JsonAdaptedLesson(LessonDesc lessonDesc, TimePeriod timePeriod, List<Student> studentList,
                              Map<Integer, Boolean> attendance, ArrayList<String> generalNotes,
                              Map<Integer, ArrayList<String>> studentNotes, boolean isCompleted) {
@@ -97,18 +92,18 @@ public abstract class JsonAdaptedLesson {
      * @param lesson The given lesson, which could be a {@code Consult}, {@code MasteryCheck} or {@code Studio}.
      * @return The Jackson-friendly version of the lesson.
      */
-    public static JsonAdaptedLesson createLesson(Lesson lesson, ReadOnlyStudentBook studentBook) {
+    public static JsonAdaptedLesson createLesson(Lesson lesson) {
         CollectionUtil.requireAllNonNull(lesson);
         assert (lesson instanceof Consult || lesson instanceof MasteryCheck) || lesson instanceof Studio;
         if (lesson instanceof Consult) {
             Consult consult = (Consult) lesson;
-            return new JsonAdaptedConsult(consult, studentBook);
+            return new JsonAdaptedConsult(consult);
         } else if (lesson instanceof MasteryCheck) {
             MasteryCheck masteryCheck = (MasteryCheck) lesson;
-            return new JsonAdaptedMasteryCheck(masteryCheck, studentBook);
+            return new JsonAdaptedMasteryCheck(masteryCheck);
         } else if (lesson instanceof Studio) {
             Studio studio = (Studio) lesson;
-            return new JsonAdaptedStudio(studio, studentBook);
+            return new JsonAdaptedStudio(studio);
         } else {
             throw new IllegalArgumentException();
         }
@@ -151,6 +146,6 @@ public abstract class JsonAdaptedLesson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted lesson.
      */
-    public abstract Lesson toModelType(ReadOnlyStudentBook studentBook) throws IllegalValueException, IOException;
+    public abstract Lesson toModelType() throws IllegalValueException, IOException;
 }
 

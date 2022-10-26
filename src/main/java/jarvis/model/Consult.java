@@ -3,9 +3,6 @@ package jarvis.model;
 import java.util.Collection;
 import java.util.Objects;
 
-import jarvis.storage.JsonAdaptedConsult;
-import jarvis.storage.JsonAdaptedTimePeriod;
-
 /**
  * Represents a Consult in JARVIS.
  * Guarantees: details are present and not null.

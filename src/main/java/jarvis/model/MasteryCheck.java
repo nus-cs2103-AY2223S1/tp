@@ -3,9 +3,6 @@ package jarvis.model;
 import java.util.Collection;
 import java.util.Objects;
 
-import jarvis.storage.JsonAdaptedMasteryCheck;
-import jarvis.storage.JsonAdaptedTimePeriod;
-
 /**
  * Represents a Mastery Check in JARVIS.
  * Guarantees: details are present and not null.

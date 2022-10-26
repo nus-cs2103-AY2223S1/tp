@@ -5,10 +5,8 @@ import java.util.List;
 
 import jarvis.model.Consult;
 import jarvis.model.Lesson;
-import jarvis.model.LessonAttendance;
 import jarvis.model.LessonBook;
 import jarvis.model.LessonDesc;
-import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
 import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.TimePeriod;

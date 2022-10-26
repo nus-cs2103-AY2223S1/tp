@@ -1,9 +1,5 @@
 package jarvis.model;
 
-import java.util.Collection;
-import java.util.Set;
-
-import jarvis.commons.core.index.Index;
 import javafx.collections.ObservableList;
 
 /**
@@ -16,9 +12,5 @@ public interface ReadOnlyStudentBook {
      * This list will not contain any duplicate students.
      */
     ObservableList<Student> getStudentList();
-
-    Set<Integer> getIndexList(Collection<Student> students);
-
-    Set<Student> studentSetOf(Set<Integer> studentIndexList);
 
 }

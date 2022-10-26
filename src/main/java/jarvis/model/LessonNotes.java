@@ -6,8 +6,6 @@ import java.util.Comparator;
 import java.util.TreeMap;
 
 import jarvis.model.exceptions.NoteNotFoundException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -29,7 +27,12 @@ public class LessonNotes {
         }
     }
 
-    public LessonNotes(Collection<Student> students, ArrayList<String> generalNotes,
+    /**
+     * Creates the notes for a lesson with the given general and student notes.
+     * @param generalNotes The given general notes.
+     * @param studentNotes The given student notes.
+     */
+    public LessonNotes(ArrayList<String> generalNotes,
                        TreeMap<Student, ArrayList<String>> studentNotes) {
         this.generalNotes = generalNotes;
         this.studentNotes = studentNotes;

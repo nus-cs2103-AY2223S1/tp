@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,7 +14,6 @@ import jarvis.commons.exceptions.IllegalValueException;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
-import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Student;
 import jarvis.model.Studio;
 import jarvis.model.StudioParticipation;
@@ -50,7 +48,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
     /**
      * Converts a given {@code Studio} into this class for Jackson use.
      */
-    public JsonAdaptedStudio(Studio source, ReadOnlyStudentBook studentBook) {
+    public JsonAdaptedStudio(Studio source) {
         super(source.getDesc(), source.getTimePeriod(), source.getStudentList(),
                 source.getAttendance(), source.getGeneralNotes(), source.getStudentNotes(), source.isCompleted());
         studioParticipation = source.getParticipation();
@@ -60,7 +58,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
      * {@inheritDoc}
      */
     @Override
-    public Studio toModelType(ReadOnlyStudentBook studentBook) throws IllegalValueException {
+    public Studio toModelType() throws IllegalValueException {
         if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
             throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
         }
@@ -105,7 +103,7 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
         for (Integer i : this.getStudentNotes().keySet()) {
             modelStudentNotes.put(modelStudentList.get(i), this.getStudentNotes().get(i));
         }
-        LessonNotes modelLessonNotes = new LessonNotes(modelStudentList, this.getGeneralNotes(), modelStudentNotes);
+        LessonNotes modelLessonNotes = new LessonNotes(this.getGeneralNotes(), modelStudentNotes);
 
         if (studioParticipation == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

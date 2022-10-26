@@ -4,25 +4,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 import java.util.Map;
 import java.util.TreeMap;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
-import jarvis.commons.core.index.Index;
 import jarvis.commons.exceptions.IllegalValueException;
-import jarvis.model.Consult;
 import jarvis.model.LessonAttendance;
 import jarvis.model.LessonDesc;
 import jarvis.model.LessonNotes;
 import jarvis.model.MasteryCheck;
-import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.Student;
 import jarvis.model.TimePeriod;
-import jarvis.model.util.SampleStudentUtil;
 
 /**
  * Jackson-friendly version of {@link MasteryCheck}.
@@ -50,7 +44,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
     /**
      * Converts a given {@code MasteryCheck} into this class for Jackson use.
      */
-    public JsonAdaptedMasteryCheck(MasteryCheck source, ReadOnlyStudentBook studentBook) {
+    public JsonAdaptedMasteryCheck(MasteryCheck source) {
         super(source.getDesc(), source.getTimePeriod(), source.getStudentList(),
                 source.getAttendance(), source.getGeneralNotes(), source.getStudentNotes(), source.isCompleted());
     }
@@ -59,7 +53,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
      * {@inheritDoc}
      */
     @Override
-    public MasteryCheck toModelType(ReadOnlyStudentBook studentBook) throws IllegalValueException {
+    public MasteryCheck toModelType() throws IllegalValueException {
         if (this.getLessonDesc() != null && !LessonDesc.isValidLessonDesc(this.getLessonDesc())) {
             throw new IllegalValueException(LessonDesc.MESSAGE_CONSTRAINTS);
         }
@@ -102,7 +96,7 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
         for (Integer i : this.getStudentNotes().keySet()) {
             modelStudentNotes.put(modelStudentList.get(i), this.getStudentNotes().get(i));
         }
-        LessonNotes modelLessonNotes = new LessonNotes(modelStudentList, this.getGeneralNotes(), modelStudentNotes);
+        LessonNotes modelLessonNotes = new LessonNotes(this.getGeneralNotes(), modelStudentNotes);
 
         MasteryCheck masteryCheck = new MasteryCheck(modelLessonDesc, modelTimePeriod, modelStudentList,
                 modelAttendance, modelLessonNotes);

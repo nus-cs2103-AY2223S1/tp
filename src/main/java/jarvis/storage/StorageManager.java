@@ -120,25 +120,24 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyLessonBook> readLessonBook(ReadOnlyStudentBook studentBook) throws DataConversionException, IOException {
-        return readLessonBook(lessonBookStorage.getLessonBookFilePath(), studentBook);
+    public Optional<ReadOnlyLessonBook> readLessonBook() throws DataConversionException, IOException {
+        return readLessonBook(lessonBookStorage.getLessonBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyLessonBook> readLessonBook(Path filePath, ReadOnlyStudentBook studentBook) throws DataConversionException, IOException {
+    public Optional<ReadOnlyLessonBook> readLessonBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return lessonBookStorage.readLessonBook(filePath, studentBook);
+        return lessonBookStorage.readLessonBook(filePath);
     }
 
     @Override
-    public void saveLessonBook(ReadOnlyLessonBook lessonBook, ReadOnlyStudentBook studentBook) throws IOException {
-        saveLessonBook(lessonBook, studentBook, lessonBookStorage.getLessonBookFilePath());
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook) throws IOException {
+        saveLessonBook(lessonBook, lessonBookStorage.getLessonBookFilePath());
     }
 
     @Override
-    public void saveLessonBook(ReadOnlyLessonBook lessonBook, ReadOnlyStudentBook studentBook,
-                               Path filePath) throws IOException {
+    public void saveLessonBook(ReadOnlyLessonBook lessonBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        lessonBookStorage.saveLessonBook(lessonBook, studentBook, filePath);
+        lessonBookStorage.saveLessonBook(lessonBook, filePath);
     }
 }
