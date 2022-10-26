@@ -212,18 +212,21 @@ Commissions are currently stored in the individual `Customer`'s `UniqueCommissio
 Iterations help users keep track of the progress of their commissions. Each commission iteration
 essentially represents a version of the commissioned artwork.
 
-Iterations contain a `Date`, `IterationDescription`, `ImagePath`, and `Feedback`. Since
-an iteration must be tied to a commission, this composition is captured by storing the
+Iterations contain:
+* a `Date`, which uses a `LocalDate` in its underlying implementation, representing the date
+tied to the iteration
+* an `IterationDescription`, which represents a textual description of the iteration
+* a `Path`, which is the file path of an image representing the iteration artwork
+* and a `Feedback`, which represents textual feedback to the iteration.
+
+Since an iteration must be tied to a commission, this composition is captured by storing the
 iterations in a `UniqueIterationList` inside the associated commission object.
 
-<!-- TODO insert iteration class diagram here -->
+<img src="images/IterationClassDiagram.png" width="450" />
 
 #### Adding an Iteration (`additer`)
 Creates an iteration based on the user input, and adds the iteration to the active commission.
-<!-- TODO Users may either add an iteration via the command line or the GUI as described in the activity
-diagram below. -->
-
-<!-- TODO insert addIteration activity diagram here -->
+Like all other add commands, users may either add an iteration via the command line or the GUI.
 
 ##### Implementation
 Support for the add iteration command is integrated with the `AddIterationParser`,

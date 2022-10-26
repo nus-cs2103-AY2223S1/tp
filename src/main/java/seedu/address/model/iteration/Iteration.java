@@ -14,11 +14,8 @@ public class Iteration {
     // Identity fields
     private final Date date;
     private final IterationDescription description;
-
-    private final Path imagePath;
-
-    // TODO Optional fields (feedback is currently required)
     private final Feedback feedback;
+    private final Path imagePath;
 
     /**
      * Constructs an Iteration.
