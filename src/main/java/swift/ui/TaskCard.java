@@ -54,6 +54,7 @@ public class TaskCard extends UiPart<Region> {
         deadline.setText(task.getDeadline().map(Deadline::toString).orElse("No deadline"));
         // TODO: Populate the description
         // task.getDescription().map(Description::toString).orElse("No description");
+    }
 
     private void setAssociatedContacts(ObservableList<PersonTaskBridge> personTaskBridgeList,
                                        ObservableList<Person> personList) {
