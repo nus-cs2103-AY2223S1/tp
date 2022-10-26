@@ -17,8 +17,8 @@ import java.util.HashSet;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
-import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.logic.parser.Parser;
+import seedu.rc4hdb.logic.parser.Specifier;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 
@@ -28,7 +28,7 @@ import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
-    private FilterSpecifier specifier;
+    private Specifier specifier;
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
@@ -42,10 +42,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                         PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG, PREFIX_FILTER_ALL, PREFIX_FILTER_ANY);
 
         if (argMultimap.getValue(PREFIX_FILTER_ANY).isPresent()) {
-            specifier = new FilterSpecifier("any");
+            specifier = new Specifier("any");
         }
         if (argMultimap.getValue(PREFIX_FILTER_ALL).isPresent()) {
-            specifier = new FilterSpecifier("all");
+            specifier = new Specifier("all");
         }
 
         try {

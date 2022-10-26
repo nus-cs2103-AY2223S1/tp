@@ -16,7 +16,7 @@ import java.util.function.Predicate;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.parser.FilterSpecifier;
+import seedu.rc4hdb.logic.parser.Specifier;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
@@ -41,7 +41,7 @@ public class RemoveCommand implements ModelCommand {
             + "[" + PREFIX_HOUSE + "HOUSE] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRIC_NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + PREFIX_FILTER_ALL
+            + "Example: " + COMMAND_WORD + " " + PREFIX_FILTER_ALL + " "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -50,12 +50,12 @@ public class RemoveCommand implements ModelCommand {
 
     /** description to remove the residents with */
     private final ResidentStringDescriptor removePersonDescriptor;
-    private final FilterSpecifier specifier;
+    private final Specifier specifier;
 
     /**
      * @param removePersonDescriptor description object to remove the resident with
      */
-    public RemoveCommand(ResidentStringDescriptor removePersonDescriptor, FilterSpecifier specifier) {
+    public RemoveCommand(ResidentStringDescriptor removePersonDescriptor, Specifier specifier) {
         assert removePersonDescriptor != null : "Descriptor object is null";
         this.removePersonDescriptor = new ResidentStringDescriptor(removePersonDescriptor);
         this.specifier = specifier;

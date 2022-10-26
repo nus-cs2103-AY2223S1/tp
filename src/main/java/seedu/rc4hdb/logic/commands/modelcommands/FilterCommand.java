@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.parser.FilterSpecifier;
+import seedu.rc4hdb.logic.parser.Specifier;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
@@ -40,7 +40,7 @@ public class FilterCommand implements ModelCommand {
             + "[" + PREFIX_HOUSE + "HOUSE] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRIC_NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + PREFIX_FILTER_ALL
+            + "Example: " + COMMAND_WORD + " " + PREFIX_FILTER_ALL + " "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -48,12 +48,12 @@ public class FilterCommand implements ModelCommand {
 
     /** description to filter the resident with */
     private final ResidentStringDescriptor filterPersonDescriptor;
-    private final FilterSpecifier specifier;
+    private final Specifier specifier;
 
     /**
      * @param filterPersonDescriptor description object to filter the resident with
      */
-    public FilterCommand(ResidentStringDescriptor filterPersonDescriptor, FilterSpecifier specifier) {
+    public FilterCommand(ResidentStringDescriptor filterPersonDescriptor, Specifier specifier) {
         assert filterPersonDescriptor != null : "Descriptor object is null";
         this.filterPersonDescriptor = new ResidentStringDescriptor(filterPersonDescriptor);
         this.specifier = specifier;
