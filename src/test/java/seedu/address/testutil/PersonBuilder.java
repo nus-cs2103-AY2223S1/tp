@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -32,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Social social;
+    private Set<Group> groups;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         social = new Social();
+        groups = new HashSet<>();
     }
 
     /**
@@ -57,6 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         social = personToCopy.getSocial();
+        groups = personToCopy.getGroups();
     }
 
     /**
@@ -80,6 +84,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code groups} into a {@code Set<Group>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withGroups(String ... groups) {
+        this.groups = SampleDataUtil.getGroupSet(groups);
         return this;
     }
 
@@ -108,7 +120,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(occupation, name, phone, email, address, tags, social);
+        return new Person(occupation, name, phone, email, address, tags, social, groups);
     }
 
 }
