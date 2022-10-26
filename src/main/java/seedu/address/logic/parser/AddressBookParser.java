@@ -6,7 +6,20 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LessonCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ModuleCommand;
+import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.commands.TimetableCommand;
+import seedu.address.logic.commands.UserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -57,11 +70,8 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case ModuleCommand.COMMAND_WORD:
+            return new ModuleCommandParser().parse(arguments);
 
         case LessonCommand.COMMAND_WORD:
             return new LessonCommandParser().parse(arguments);
@@ -72,6 +82,7 @@ public class AddressBookParser {
         case TimetableCommand.COMMAND_WORD:
             return new TimetableCommandParser().parse(arguments);
 
+<<<<<<< HEAD
         case FilterTagCommand.COMMAND_WORD:
             return new FilterTagCommandParser().parse(arguments);
 
@@ -87,6 +98,13 @@ public class AddressBookParser {
         case NextSemCommand.COMMAND_WORD:
             return new NextSemCommand();
 
+=======
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+>>>>>>> origin/master
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

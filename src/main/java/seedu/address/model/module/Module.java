@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Module in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleName(String)}
  */
-public abstract class Module {
+public class Module {
 
     public static final String MESSAGE_CONSTRAINTS = "Module names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";

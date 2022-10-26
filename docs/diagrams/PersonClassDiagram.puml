@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Person *--> "1" Name
+Person *--> "1" Email
+Person *--> "0..1" Github
+Person *--> "1" Phone
+Person *--> "1" Address
+Person *--> "1" CurrentModulesSet
+Person *--> "1" PreviousModulesSet
+Person *--> "1" PlannedModulesSet
+Person *--> "1" LessonsSet
+
+CurrentModulesSet *--> "*" CurrentModule
+PreviousModulesSet *--> "*" PreviousModule
+PlannedModulesSet *--> "*" PlannedModule
+LessonsSet *--> "*" Lesson
+
+Github -down[hidden]-> CurrentModulesSet
+Github -down[hidden]-> PreviousModulesSet
+Github -down[hidden]-> PlannedModulesSet
+Github -down[hidden]-> LessonsSet
+@enduml
