@@ -3,22 +3,17 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-//import static seedu.address.testutil.TypicalPersons.ALICE;
-//import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalEntry.DINNER;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-//import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-//import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PennyWiseBuilder;
 
 public class ModelManagerTest {
 
@@ -63,12 +58,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setPennyWiseFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setPennyWiseFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setPennyWiseFilePath_validPath_setsPennyWiseFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setPennyWiseFilePath(path);
         assertEquals(path, modelManager.getPennyWiseFilePath());
@@ -85,12 +80,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasExpenditure_incomeNotInAddressBook_returnsFalse() {
+    public void hasExpenditure_incomeNotInPennyWise_returnsFalse() {
         assertFalse(modelManager.hasExpenditure(LUNCH));
     }
 
     @Test
-    public void hasExpenditure_expenditurenInAddressBook_returnsTrue() {
+    public void hasExpenditure_expenditurenInPennyWise_returnsTrue() {
         modelManager.addExpenditure(LUNCH);
         assertTrue(modelManager.hasExpenditure(LUNCH));
     }
@@ -102,7 +97,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        PennyWise pennyWise = new AddressBookBuilder().withExpenditure(LUNCH).withExpenditure(DINNER).build();
+        PennyWise pennyWise = new PennyWiseBuilder().withExpenditure(LUNCH).withExpenditure(DINNER).build();
         PennyWise differentPennyWise = new PennyWise();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -126,7 +121,7 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         // String[] keywords = LUNCH.getName().fullName.split("\\s+");
         // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        // assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        // assertFalse(modelManager.equals(new ModelManager(pennyWise, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredExpenditureList(Model.PREDICATE_SHOW_ALL_ENTRIES);

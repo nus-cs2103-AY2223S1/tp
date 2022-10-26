@@ -74,7 +74,7 @@ public class DeleteCommandTest {
         showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
         Index outOfBoundIndex = INDEX_SECOND_ENTRY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of penny wise list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPennyWise().getExpenditureList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, this.expenditureType);
