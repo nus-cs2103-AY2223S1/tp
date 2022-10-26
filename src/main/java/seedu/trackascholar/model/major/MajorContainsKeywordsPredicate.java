@@ -21,13 +21,13 @@ public class MajorContainsKeywordsPredicate implements Predicate<Applicant> {
 
     @Override
     public boolean test(Applicant applicant) {
-        Set<String[]> majors = applicant.getMajors()
+        Set<String> majors = applicant.getMajors()
                 .stream()
-                .map(major -> major.major.split("\\s+"))
+                .map(major -> major.major)
                 .collect(Collectors.toSet());
 
         List<String> listOfMajors = new ArrayList<>();
-        majors.forEach(x -> listOfMajors.addAll(List.of(x)));
+        majors.forEach(major -> listOfMajors.add(major));
 
         return listOfMajors.stream()
                 .anyMatch(majorNames -> keywords.stream()
