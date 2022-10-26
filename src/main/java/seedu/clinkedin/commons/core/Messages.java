@@ -8,6 +8,8 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_CANNOT_UNDO = "CLInkedIn cannot undo any further!";
+    public static final String MESSAGE_CANNOT_REDO = "CLInkedIn cannot redo any further!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_STATS_DISPLAYED_OVERVIEW = "Statistics displayed!\n"
             + "Number of persons used to calculate statistics: %5$d\n"

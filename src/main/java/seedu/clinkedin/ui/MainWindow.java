@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ExportWindow exportWindow;
+    private ImportWindow importWindow;
     private PersonCountDisplay personCountDisplay;
 
     @FXML
@@ -121,6 +123,9 @@ public class MainWindow extends UiPart<Stage> {
         personCountDisplayPlaceholder.getChildren().add(personCountDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
+        exportWindow = new ExportWindow(this);
+        importWindow = new ImportWindow(this);
+
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -154,6 +159,30 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the export window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleExport() {
+        if (!exportWindow.isShowing()) {
+            exportWindow.show();
+        } else {
+            exportWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the import window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleImport() {
+        if (!importWindow.isShowing()) {
+            importWindow.show();
+        } else {
+            importWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -179,7 +208,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.clinkedin.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText, boolean isDisplay) throws CommandException,
+            ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -193,13 +223,28 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            if (commandResult.isExport()) {
+                handleExport();
+            }
+            if (commandResult.isImport()) {
+                handleImport();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            if (isDisplay) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
+            }
             personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
             throw e;
         }
+    }
+
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        return executeCommand(commandText, true);
+    }
+    public CommandResult executeFromWindow(String command) throws CommandException, ParseException {
+        return this.executeCommand(command, false);
     }
 }

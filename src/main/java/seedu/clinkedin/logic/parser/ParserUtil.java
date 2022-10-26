@@ -3,6 +3,7 @@ package seedu.clinkedin.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,12 +13,15 @@ import java.util.Set;
 
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.StringUtil;
+import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
+import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
+import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
@@ -32,6 +36,16 @@ import seedu.clinkedin.model.tag.UniqueTagList;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Types of file extensions supported for export and/or import.
+     */
+    public enum FileType {
+        XML,
+        CSV,
+        TXT,
+        JSON
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -77,7 +91,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String clinkedin} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code clinkedin} is invalid.
@@ -340,6 +354,112 @@ public class ParserUtil {
             noteSet.add(parseNote(noteName));
         }
         return noteSet;
+    }
+
+    /**
+     * Gets {@code FileType} from {@code String filePath}
+     */
+    public static FileType getFileType(String filePath) throws InvalidExtensionException {
+        requireNonNull(filePath);
+        String trimmedFilePath = filePath.trim();
+
+        int periodIndex = trimmedFilePath.lastIndexOf(".");
+        if (periodIndex == -1) {
+            throw new InvalidExtensionException();
+        }
+        String extension = trimmedFilePath.substring(periodIndex + 1).trim().toUpperCase();
+        FileType fileType;
+        try {
+            fileType = FileType.valueOf(extension);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidExtensionException();
+        }
+
+        return fileType;
+    }
+
+    /**
+     * Parses a person.
+     */
+    public static Person parsePerson(ArrayList<String[]> person) throws InvalidPersonException {
+        boolean atleastOne = person.stream().allMatch(detail -> detail.length >= 1);
+        if (!atleastOne) {
+            throw new InvalidPersonException();
+        }
+        Name name = null;
+        Phone phone = null;
+        Email email = null;
+        Address address = null;
+        Status status = null;
+        Note note = null;
+        UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+        Rating rating = null;
+        Set<Link> links = new HashSet<>();
+
+        for (String[] detail: person) {
+            String check = detail[0];
+            String tagType = null;
+            if (check.startsWith("Tag:")) {
+                tagType = check.substring(4);
+                check = "Tag:";
+            } else if (!check.startsWith("Links") && detail.length != 2) {
+                throw new InvalidPersonException("More arguments found than possible!");
+            }
+            switch (check) {
+            case "Name":
+                name = new Name(detail[1]);
+                break;
+            case "Phone":
+                phone = new Phone(detail[1]);
+                break;
+            case "Email":
+                email = new Email(detail[1]);
+                break;
+            case "Address":
+                address = new Address(detail[1]);
+                break;
+            case "Status":
+                status = new Status(detail[1]);
+                break;
+            case "Note":
+                note = new Note(detail[1]);
+                break;
+            case "Tag:":
+                TagType tagTypeName = new TagType(tagType);
+                ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
+                break;
+            case "Rating":
+                rating = new Rating(detail[1]);
+                break;
+            case "Links":
+                for (int i = 1; i < detail.length; i++) {
+                    links.add(new Link(detail[i]));
+                }
+                break;
+            default:
+                throw new InvalidPersonException("Invalid attribute found!");
+            }
+        }
+        boolean foundAll = checkAllNonNull(name, phone, email, address, tagTypeMap, status, note, rating, links);
+        if (!foundAll) {
+            throw new InvalidPersonException("All attributes not present!");
+        }
+        return new Person(name, phone, email, address, tagTypeMap, status, note, rating, links);
+    }
+
+    private static void addTags(UniqueTagTypeMap tagTypeMap, TagType tagType, String[] tags) {
+        for (int i = 1; i < tags.length; i++) {
+            tagTypeMap.mergeTag(tagType, new Tag(tags[i]));
+        }
+    }
+    private static boolean checkAllNonNull(Name name, Phone phone, Email email,
+                                           Address address, UniqueTagTypeMap tagTypeMap, Status status,
+                                           Note note, Rating rating, Set<Link> links) {
+        if (name == null || phone == null || email == null || address == null || tagTypeMap == null || status == null
+                || note == null || rating == null || links == null) {
+            return false;
+        }
+        return true;
     }
 
     /**
