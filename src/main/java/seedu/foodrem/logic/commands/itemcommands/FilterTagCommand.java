@@ -14,7 +14,7 @@ public class FilterTagCommand extends FilterCommand {
      * @param tag to filter the Item list for Items tagged with it
      */
     public FilterTagCommand(Tag tag) {
-        super(item -> item.containsTag(tag));
+        super(item -> item.getTagSet().contains(tag));
         this.tag = tag;
     }
 

@@ -34,7 +34,7 @@ public class FilterTagCommandTest {
     public void execute_success() {
         long expectedSizeVegetable = model.getCurrentList()
                 .stream()
-                .filter(item -> item.containsTag(vegetableTag))
+                .filter(item -> item.getTagSet().contains(vegetableTag))
                 .count();
 
         String expectedMessageVegetable = String.format(EXPECTED_SUCCESS_TAG_NAME, vegetableTag.getName())
@@ -43,11 +43,14 @@ public class FilterTagCommandTest {
         FilterTagCommand filterVegetableTagCommand = new FilterTagCommand(vegetableTag);
 
         Model expectedModelVegetable = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-        expectedModelVegetable.updateFilteredItemList(item -> item.containsTag(vegetableTag));
+        expectedModelVegetable.updateFilteredItemList(item -> item.getTagSet().contains(vegetableTag));
 
         assertCommandSuccess(filterVegetableTagCommand, model, expectedMessageVegetable, expectedModelVegetable);
 
-        long expectedSizeNumbers = model.getCurrentList().stream().filter(item -> item.containsTag(numbersTag)).count();
+        long expectedSizeNumbers = model.getCurrentList()
+                .stream()
+                .filter(item -> item.getTagSet().contains(numbersTag))
+                .count();
 
         String expectedMessageNumbers = String.format(EXPECTED_SUCCESS_TAG_NAME, numbersTag.getName())
                 + String.format(EXPECTED_SUCCESS_LIST_AFTER_FILTERING, expectedSizeNumbers);
@@ -55,7 +58,7 @@ public class FilterTagCommandTest {
         FilterTagCommand filterNumbersTagCommand = new FilterTagCommand(numbersTag);
 
         Model expectedModelNumbers = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-        expectedModelNumbers.updateFilteredItemList(item -> item.containsTag(numbersTag));
+        expectedModelNumbers.updateFilteredItemList(item -> item.getTagSet().contains(numbersTag));
 
         assertCommandSuccess(filterNumbersTagCommand, model, expectedMessageNumbers, expectedModelNumbers);
     }
