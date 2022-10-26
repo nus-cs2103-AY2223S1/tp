@@ -101,8 +101,7 @@ public class ItemView {
      * @return the string representation of the item's bought date.
      */
     public static String buildBoughtDateStringFrom(Item item) {
-        return String.valueOf(item.getBoughtDate())
-                .isBlank() ? "Not Set" : item.getBoughtDate().toString();
+        return item.getBoughtDate().isNotSet() ? "Not Set" : item.getBoughtDate().toString();
     }
 
     /**
@@ -111,7 +110,6 @@ public class ItemView {
      * @return the string representation of the item's expiry date.
      */
     public static String buildExpiryDateStringFrom(Item item) {
-        return String.valueOf(item.getExpiryDate())
-                .isBlank() ? "Not Set" : item.getExpiryDate().toString();
+        return item.getExpiryDate().isNotSet() ? "Not Set" : item.getExpiryDate().toString();
     }
 }
