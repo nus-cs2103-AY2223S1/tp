@@ -10,9 +10,8 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -106,7 +105,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void deleteVenue(Venue target) {
+    public void deleteVenue(VenueName venueName) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -121,18 +120,28 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void removeBooking(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+    public void removeBooking(BookingDescriptor bookingDescriptor)
             throws VenueNotFoundException, BookingNotFoundException {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ObservableList<String> getObservableFields() {
+    public ObservableList<String> getVisibleFields() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setObservableFields(List<String> observableFields) {
+    public void setVisibleFields(List<String> fieldsToShow) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setHiddenFields(List<String> fieldsToHide) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -54,17 +54,17 @@ public class JsonResidentBookStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readResidentBook("notJsonFormatResidentBook.json"));
+        assertThrows(DataConversionException.class, () -> readResidentBook("notJsonFormatResidentBook"));
     }
 
     @Test
     public void readResidentBook_invalidResidentResidentBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readResidentBook("invalidResidentResidentBook.json"));
+        assertThrows(DataConversionException.class, () -> readResidentBook("invalidResidentResidentBook"));
     }
 
     @Test
     public void readResidentBook_invalidAndValidResidentResidentBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readResidentBook("invalidAndValidResidentResidentBook.json"));
+        assertThrows(DataConversionException.class, () -> readResidentBook("invalidAndValidResidentResidentBook"));
     }
 
     @Test
@@ -118,9 +118,10 @@ public class JsonResidentBookStorageTest {
     @Test
     public void deleteResidentBookFile_existingFile_fileDeleted() throws Exception {
         JsonResidentBookStorage jsonResidentBookStorage = new JsonResidentBookStorage();
-        Path toBeDeleted = testFolder.resolve("ToBeDeleted.json");
+        Path folderPath = testFolder.resolve("ToBeDeleted");
+        Path toBeDeleted = folderPath.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH);
         FileUtil.createIfMissing(toBeDeleted);
-        jsonResidentBookStorage.deleteResidentBookFile(toBeDeleted);
+        jsonResidentBookStorage.deleteResidentBookFile(folderPath);
         assertFalse(FileUtil.isFileExists(toBeDeleted));
     }
 
@@ -140,9 +141,9 @@ public class JsonResidentBookStorageTest {
     @Test
     public void createResidentBookFile_fileDoesNotExist_fileCreated() throws Exception {
         JsonResidentBookStorage jsonResidentBookStorage = new JsonResidentBookStorage();
-        Path toBeCreated = testFolder.resolve("ToBeCreated.json");
-        jsonResidentBookStorage.createResidentBookFile(toBeCreated);
-        assertTrue(FileUtil.isFileExists(toBeCreated));
+        Path folderPath = testFolder.resolve("ToBeCreated");
+        jsonResidentBookStorage.createResidentBookFile(folderPath);
+        assertTrue(FileUtil.isFileExists(folderPath.resolve(JsonResidentBookStorage.RESIDENT_DATA_PATH)));
     }
 
     @Test

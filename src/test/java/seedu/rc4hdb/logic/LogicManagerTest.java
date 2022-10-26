@@ -2,13 +2,13 @@ package seedu.rc4hdb.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.GENDER_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.HOUSE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.GENDER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.HOUSE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.NAME_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.residentcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -29,8 +29,8 @@ import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.commands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.AddCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelStub;
@@ -75,7 +75,8 @@ public class LogicManagerTest {
         String listCommand = ListCommand.COMMAND_WORD;
         model = new ModelStubForListCommand();
         logic = new LogicManager(model, storage);
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS);
+        assertCommandSuccess(listCommand,
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, ListCommand.COMMAND_PAST_TENSE));
     }
 
     @Test
@@ -210,7 +211,12 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void setObservableFields(List<String> modifiableList) {
+        public void setVisibleFields(List<String> fieldsToShow) {
+            // do nothing
+        }
+
+        @Override
+        public void setHiddenFields(List<String> fieldsToHide) {
             // do nothing
         }
     }

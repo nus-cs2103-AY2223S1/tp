@@ -140,7 +140,7 @@ public class StorageManager implements Storage {
     @Override
     public void createResidentBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        dataStorage.deleteResidentBookFile(folderPath);
+        dataStorage.createResidentBookFile(folderPath);
     }
 
     //================ VenueBook methods ================================

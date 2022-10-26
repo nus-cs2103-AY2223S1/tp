@@ -10,15 +10,16 @@ import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ClearCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.AddCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ClearCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.DeleteCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.EditCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.FilterCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.FindCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.HideOnlyCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ResetCommand;
+import seedu.rc4hdb.logic.commands.residentcommands.ShowOnlyCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.VenueCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
@@ -26,9 +27,9 @@ import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.HideOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ShowOnlyCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.VenueCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
@@ -83,20 +84,23 @@ public class Rc4hdbParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case HideCommand.COMMAND_WORD:
-            return new HideCommandParser().parse(arguments);
-
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
-
-        case ShowCommand.COMMAND_WORD:
-            return new ShowCommandParser().parse(arguments);
 
         case FileCommand.COMMAND_WORD:
             return new FileCommandParser().parse(arguments);
 
         case VenueCommand.COMMAND_WORD:
             return new VenueCommandParser().parse(arguments);
+
+        case ShowOnlyCommand.COMMAND_WORD:
+            return new ShowOnlyCommandParser().parse(arguments);
+
+        case HideOnlyCommand.COMMAND_WORD:
+            return new HideOnlyCommandParser().parse(arguments);
+
+        case ResetCommand.COMMAND_WORD:
+            return new ResetCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -1,25 +1,23 @@
 package seedu.rc4hdb.model.resident.predicates;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class AttributesMatchAnyKeywordPredicate implements Predicate<Resident> {
-    private ResidentDescriptor descriptor;
+    private ResidentStringDescriptor descriptor;
 
     /**
      * Constructor to create predicate object for filter
      *
      * @param keywords the description to filter the residents with any specifier
      */
-    public AttributesMatchAnyKeywordPredicate(ResidentDescriptor keywords) {
+    public AttributesMatchAnyKeywordPredicate(ResidentStringDescriptor keywords) {
         this.descriptor = keywords;
     }
 
@@ -34,7 +32,18 @@ public class AttributesMatchAnyKeywordPredicate implements Predicate<Resident> {
                 || descriptor.getHouse().map(house -> resident.getHouse().containsIgnoreCase(house)).orElse(false)
                 || descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().containsIgnoreCase(matric))
                 .orElse(false)
-                || !Collections.disjoint(resident.getTags(), descriptor.getTags().orElse(new HashSet<Tag>()));
+                || resident.getTags().stream().anyMatch(this::anyTagMatch);
+    }
+
+    /**
+     * Returns true if there is any match between the {@code tag} and the tags in {@code descriptor}.
+     */
+    private boolean anyTagMatch(Tag tag) {
+        if (descriptor.getTags().isEmpty()) {
+            return false;
+        }
+        return descriptor.getTags().get().stream()
+                .anyMatch(tag::containsIgnoreCase);
     }
 
     @Override

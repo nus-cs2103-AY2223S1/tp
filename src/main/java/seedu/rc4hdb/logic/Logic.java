@@ -47,11 +47,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the list of observable resident fields in the model.
-     */
-    ObservableList<String> getObservableFields();
-
-    /**
      * Returns the list of observable venues in the model.
      */
     ObservableList<Venue> getObservableVenues();
@@ -61,5 +56,19 @@ public interface Logic {
      */
     ObservableValue<Path> getObservableFolderPath();
 
+    /**
+     * Returns the list of observable bookings in the model.
+     */
     ObservableList<Booking> getObservableBookings();
+
+    /**
+     * Returns an observable list of the fields to be shown when invoking {@code show}.
+     */
+    ObservableList<String> getVisibleFields();
+
+    /**
+     * Returns an observable list of the fields to be hidden when invoking {@code hide}.
+     */
+    ObservableList<String> getHiddenFields();
+
 }

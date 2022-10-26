@@ -47,7 +47,7 @@ public class JsonVenueBookStorage implements VenueBookStorage {
         Optional<JsonSerializableVenueBook> jsonVenueBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableVenueBook.class);
         if (!jsonVenueBook.isPresent()) {
-            logger.warning(String.format("No venue file found at %s", filePath));
+            logger.info(String.format("No venue file found at %s", filePath));
             return Optional.empty();
         }
 
