@@ -1,7 +1,9 @@
 package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.waddle.logic.StageManager;
@@ -21,7 +23,9 @@ public class AddItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an item to an itinerary. "
             + "Parameters: "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
-            + "[" + PREFIX_PRIORITY + "PRIORITY]...\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]"
+            + "[" + PREFIX_COST + "COST]"
+            + "[" + PREFIX_ITEM_DURATION + "DURATION]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Visit Taj Mahal "
             + PREFIX_PRIORITY + "3";
@@ -45,14 +49,6 @@ public class AddItemCommand extends Command {
 
         StageManager stageManager = StageManager.getInstance();
 
-        // if not at wish stage, throw exception and change to wish stage
-        /*
-        if (!stageManager.isCurrentStage(Stages.WISH)) {
-            return new CommandResult(MESSAGE_WRONG_STAGE);
-        }
-
-        stageManager.setHomeStage();
-         */
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
         if (itinerary.hasItem(toAdd)) {

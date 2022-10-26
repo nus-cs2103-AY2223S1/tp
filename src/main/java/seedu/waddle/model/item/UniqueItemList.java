@@ -3,6 +3,7 @@ package seedu.waddle.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -140,6 +141,10 @@ public class UniqueItemList implements Iterable<Item> {
             }
         }
         return true;
+    }
+
+    public void sort(Comparator<Item> comparator) {
+        this.internalList.sort(comparator);
     }
 
 }

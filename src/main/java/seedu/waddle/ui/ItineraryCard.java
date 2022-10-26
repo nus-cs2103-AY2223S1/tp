@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -32,11 +33,13 @@ public class ItineraryCard extends UiPart<Region> {
     @FXML
     private Label country;
     @FXML
-    private Label startDate;
+    private Label duration;
     @FXML
-    private Label endDate;
+    private Label time;
     @FXML
     private Label people;
+    @FXML
+    private Label budget;
 
 
     /**
@@ -47,10 +50,17 @@ public class ItineraryCard extends UiPart<Region> {
         this.itinerary = itinerary;
         id.setText(displayedIndex + ". ");
         name.setText(itinerary.getName().fullName);
-        country.setText(itinerary.getCountry().country);
-        startDate.setText(itinerary.getStartDate().date);
-        endDate.setText(itinerary.getEndDate().date);
-        people.setText(itinerary.getPeople().numOfPeople);
+        country.setText("Country: " + itinerary.getCountry().country);
+        time.setText("Dates: " + itinerary.getTimeString());
+        duration.setText("Duration: " + itinerary.getDuration().toString() + " Days");
+        people.setText("Waddlers: " + itinerary.getPeople().numOfPeople);
+        Budget itineraryBudget = itinerary.getBudget();
+        if (itineraryBudget.getSpending() == 0) {
+            budget.setText("Budget: $" + itineraryBudget.getValue());
+        } else {
+            budget.setText("Budget: $" + itineraryBudget.getValue() + ", $"
+                    + itineraryBudget.calculateLeftOverBudget() + " remaining");
+        }
     }
 
     @Override

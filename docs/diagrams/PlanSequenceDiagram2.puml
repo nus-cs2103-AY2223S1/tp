@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box LOGIC_COLOR_T1
+participant "d:PlanCommand" as PlanCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box StageManger STAGE_COLOR_T1
+participant ":StageManager" as StageManager STAGE_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Itinerary" as Itinerary MODEL_COLOR
+participant ":Day" as Day MODEL_COLOR
+end box
+
+
+activate PlanCommand
+
+PlanCommand -> StageManager : getInstance()
+activate StageManager
+
+StageManager --> PlanCommand
+deactivate StageManager
+
+PlanCommand -> StageManager : instance.getSelectedItinerary()
+activate StageManager
+
+StageManager --> PlanCommand
+deactivate StageManager
+
+PlanCommand -> Itinerary : planItem(itemIndex, dayNumber, startTime)
+activate Itinerary
+
+Itinerary -> Day : addItem(item)
+activate Day
+
+Day -> Day : getConflictingItems(item)
+activate Day
+
+Day --> Day
+deactivate Day
+
+Day --> Itinerary
+deactivate Day
+
+Itinerary --> PlanCommand
+deactivate Itinerary
+
+create CommandResult
+PlanCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PlanCommand
+deactivate CommandResult
+@enduml

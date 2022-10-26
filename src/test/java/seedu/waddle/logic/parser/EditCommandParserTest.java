@@ -1,12 +1,14 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.END_DATE_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.END_DATE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_BUDGET_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_END_DATE_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
@@ -15,10 +17,11 @@ import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_BUDGET_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_END_DATE_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_END_DATE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
@@ -36,8 +39,10 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.EditCommand;
 import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
+import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
@@ -83,8 +88,10 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_COUNTRY_DESC, Country.MESSAGE_CONSTRAINTS); // invalid country
         assertParseFailure(parser, "1" + INVALID_START_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid start date
-        assertParseFailure(parser, "1" + INVALID_END_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid end date
+        //invalid duration
+        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, ItineraryDuration.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_PEOPLE_DESC, People.MESSAGE_CONSTRAINTS); // invalid people
+        assertParseFailure(parser, "1" + INVALID_BUDGET_DESC, Budget.MESSAGE_CONSTRAINTS); // invalid budget
 
         // invalid country followed by valid start date
         assertParseFailure(parser, "1" + INVALID_COUNTRY_DESC + INVALID_START_DATE_DESC,
@@ -106,17 +113,18 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_START_DATE_DESC
-                + VALID_END_DATE_SUMMER + VALID_COUNTRY_SUMMER, Name.MESSAGE_CONSTRAINTS);
+                + VALID_DURATION_SUMMER + VALID_COUNTRY_SUMMER + VALID_BUDGET_SUMMER, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITINERARY;
-        String userInput = targetIndex.getOneBased() + COUNTRY_DESC_WINTER + PEOPLE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + END_DATE_DESC_WINTER + NAME_DESC_SUMMER;
+        String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + PEOPLE_DESC_SUMMER
+                + START_DATE_DESC_SUMMER + DURATION_DESC_SUMMER + NAME_DESC_SUMMER + BUDGET_DESC_SUMMER;
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_SUMMER)
-                .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_SUMMER)
-                .withEndDate(VALID_END_DATE_WINTER).withPeople(VALID_PEOPLE_SUMMER).build();
+                .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
+                .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
+                .withBudget(VALID_BUDGET_SUMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -155,8 +163,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + END_DATE_DESC_SUMMER;
-        descriptor = new EditItineraryDescriptorBuilder().withEndDate(VALID_END_DATE_SUMMER).build();
+        userInput = targetIndex.getOneBased() + DURATION_DESC_SUMMER;
+        descriptor = new EditItineraryDescriptorBuilder().withDuration(VALID_DURATION_SUMMER).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -170,13 +178,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ITINERARY;
-        String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + END_DATE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_SUMMER + END_DATE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_WINTER + END_DATE_DESC_WINTER
+        String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + DURATION_DESC_SUMMER
+                + START_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_SUMMER + DURATION_DESC_SUMMER
+                + START_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_WINTER + DURATION_DESC_WINTER
                 + START_DATE_DESC_WINTER + PEOPLE_DESC_WINTER;
 
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withCountry(VALID_COUNTRY_WINTER)
-                .withStartDate(VALID_START_DATE_WINTER).withEndDate(VALID_END_DATE_WINTER)
+                .withStartDate(VALID_START_DATE_WINTER).withDuration(VALID_DURATION_WINTER)
                 .withPeople(VALID_PEOPLE_WINTER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -194,10 +202,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + START_DATE_DESC_WINTER + INVALID_COUNTRY_DESC + END_DATE_DESC_WINTER
+        userInput = targetIndex.getOneBased() + START_DATE_DESC_WINTER + INVALID_COUNTRY_DESC + DURATION_DESC_WINTER
                 + COUNTRY_DESC_WINTER;
         descriptor = new EditItineraryDescriptorBuilder().withCountry(VALID_COUNTRY_WINTER)
-                .withStartDate(VALID_START_DATE_WINTER).withEndDate(VALID_END_DATE_WINTER).build();
+                .withStartDate(VALID_START_DATE_WINTER).withDuration(VALID_DURATION_WINTER).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

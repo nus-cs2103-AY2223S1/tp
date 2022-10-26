@@ -2,14 +2,21 @@ package seedu.waddle.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+
 import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.commons.util.StringUtil;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.DayNumber;
+import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
@@ -33,6 +40,26 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    /**
+     * Parses {@code oneBasedMultiIndex} into an {@code MultiIndex} and returns it. Leading and trailing whitespaces
+     * will be trimmed.
+     * @throws ParseException if the specified MultiIndex is invalid (not non-zero unsigned integer).
+     */
+    public static MultiIndex parseMultiIndex(String oneBasedMultiIndex) throws ParseException {
+        String trimmedMultiIndex = oneBasedMultiIndex.trim();
+        if (!MultiIndex.isValidMultiIndex(trimmedMultiIndex)) {
+            throw new ParseException(MultiIndex.MESSAGE_CONSTRAINTS);
+        }
+        String[] oneBasedIndexList = trimmedMultiIndex.split("\\.", 2);
+        MultiIndex multiIndex = new MultiIndex();
+        for (String oneBasedIndex : oneBasedIndexList) {
+            Index index = parseIndex(oneBasedIndex);
+            multiIndex.addIndex(index);
+        }
+        return multiIndex;
+    }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -80,6 +107,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String duration} into an {@code ItineraryDuration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code duration} is invalid.
+     */
+    public static ItineraryDuration parseItineraryDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!ItineraryDuration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(ItineraryDuration.MESSAGE_CONSTRAINTS);
+        }
+        return new ItineraryDuration(trimmedDuration);
+    }
+
+    /**
      * Parses a {@code String people} into an {@code People}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -92,6 +134,21 @@ public class ParserUtil {
             throw new ParseException(People.MESSAGE_CONSTRAINTS);
         }
         return new People(trimmedPeople);
+    }
+
+    /**
+     * Parses a {@code String budget} into an {@code Budget}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code budget} is invalid.
+     */
+    public static Budget parseBudget(String budget) throws ParseException {
+        requireNonNull(budget);
+        String trimmedBudget = budget.trim();
+        if (!Budget.isValidBudget(trimmedBudget)) {
+            throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
+        }
+        return new Budget(trimmedBudget);
     }
 
     /**
@@ -121,10 +178,11 @@ public class ParserUtil {
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
-        if (!Priority.isValidPriority(trimmedPriority)) {
+        Integer stars = Integer.parseInt(trimmedPriority);
+        if (!Priority.isValidPriority(stars)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
-        return new Priority(trimmedPriority);
+        return new Priority(stars);
     }
 
     /**
@@ -155,6 +213,37 @@ public class ParserUtil {
             throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
         }
         return new Duration(trimmedDuration);
+    }
+
+    /**
+     * Parses a {@code int Day Number}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static DayNumber parseDayNumber(String dayNumber) throws ParseException {
+        requireNonNull(dayNumber);
+        String trimmedDayNumber = dayNumber.trim();
+        if (!DayNumber.isValidDayNumber(trimmedDayNumber)) {
+            throw new ParseException(DayNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new DayNumber(trimmedDayNumber);
+    }
+
+    /**
+     * Parses a {@code String startTime} into a {@code StartTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code startTime} is invalid.
+     */
+    public static LocalTime parseStartTime(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        LocalTime time;
+        try {
+            time = LocalTime.parse(startTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Start time should be written in HH:MM:SS format. For example, 10:15 or 10:15:30");
+        }
+        return time;
     }
 
 }

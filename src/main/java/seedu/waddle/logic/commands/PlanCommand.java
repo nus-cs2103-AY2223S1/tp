@@ -1,78 +1,79 @@
 package seedu.waddle.logic.commands;
 
-import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DAY_NUMBER;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 
-import seedu.waddle.commons.core.Messages;
+import java.time.LocalTime;
+
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.StageManager;
-import seedu.waddle.logic.Stages;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
+import seedu.waddle.model.item.Item;
+import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Plans an item in the itinerary wish list.
  */
 public class PlanCommand extends Command {
+
     public static final String COMMAND_WORD = "plan";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": selects an itinerary for planning "
-            + "by the index number used in the last itineraries listing.\n"
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedules an item identified "
+            + "by the index number used in the item list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "Example: " + COMMAND_WORD + " 1 ";
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
-    public static final String MESSAGE_PLAN_ITINERARY_SUCCESS = "Planning Itinerary: %1$s";
-    private final Index index;
+            + "[" + PREFIX_DAY_NUMBER + "DAY NUMBER] "
+            + "[" + PREFIX_START_TIME + "START TIME] "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DAY_NUMBER + "1 "
+            + PREFIX_START_TIME + "12:00 ";
+
+    public static final String MESSAGE_SUCCESS = "Item scheduled: %1$s";
+    public static final String MESSAGE_INVALID_DAY_NUMBER = "The day you have selected does not exist";
+
+    private final Index itemIndex;
+    private final DayNumber dayNumber;
+    private final LocalTime startTime;
 
     /**
-     * @param index of the itinerary to plan
+     * Creates a PlanCommand to add the specified {@code Item}
      */
-    public PlanCommand(Index index) {
-        requireAllNonNull(index);
+    public PlanCommand(Index itemIndex, DayNumber dayNumber, LocalTime startTime) {
+        requireNonNull(itemIndex);
+        requireNonNull(dayNumber);
+        requireNonNull(startTime);
 
-        this.index = index;
+        this.itemIndex = itemIndex;
+        this.dayNumber = dayNumber;
+        this.startTime = startTime;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
         StageManager stageManager = StageManager.getInstance();
-        Itinerary selectedItinerary;
 
-        // get the selected itinerary from the last shown list of itineraries
+        Itinerary itinerary = stageManager.getSelectedItinerary();
+
+        Item plannedItem;
         try {
-            selectedItinerary = model.getFilteredItineraryList().get(this.index.getZeroBased());
+            plannedItem = itinerary.planItem(itemIndex, dayNumber, startTime);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
-        }
-        // change to wish stage in stage manager
-        try {
-            stageManager.setWishStage(selectedItinerary);
-        } catch (NullPointerException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_DAY_NUMBER);
         }
 
-        //TODO: allow users to directly select which planning stage
-        // instead of going to wish stage by default
-
-        // return command result with stage change to wish by default for now (refer above)
-        return new CommandResult(String.format(MESSAGE_PLAN_ITINERARY_SUCCESS, selectedItinerary.getName()),
-                Stages.WISH);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, plannedItem.getDescription()));
     }
 
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof PlanCommand)) {
-            return false;
-        }
-
-        // state check
-        PlanCommand e = (PlanCommand) other;
-        return index.equals(e.index);
+        return other == this // short circuit if same object
+                || (other instanceof PlanCommand // instanceof handles nulls
+                && itemIndex.equals(((PlanCommand) other).itemIndex)
+                && dayNumber == ((PlanCommand) other).dayNumber
+                && startTime.equals(((PlanCommand) other).startTime));
     }
 }

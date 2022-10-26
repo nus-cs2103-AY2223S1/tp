@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WaddleParser" as WaddleParser LOGIC_COLOR
+participant ":PlanCommandParser" as PlanCommandParser LOGIC_COLOR
+participant "d:PlanCommand" as PlanCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("plan 1 d/1 t/12:00")
+activate LogicManager
+
+LogicManager -> WaddleParser : parseCommand("plan 1 d/1 t/12:00")
+activate WaddleParser
+
+create PlanCommandParser
+WaddleParser -> PlanCommandParser
+activate PlanCommandParser
+
+PlanCommandParser --> WaddleParser
+deactivate PlanCommandParser
+
+WaddleParser -> PlanCommandParser : parse("1 d/1 t/12:00")
+activate PlanCommandParser
+
+create PlanCommand
+PlanCommandParser -> PlanCommand
+activate PlanCommand
+
+PlanCommand --> PlanCommandParser : d
+deactivate PlanCommand
+
+PlanCommandParser --> WaddleParser : d
+deactivate PlanCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PlanCommandParser -[hidden]-> WaddleParser
+destroy PlanCommandParser
+
+WaddleParser --> LogicManager : d
+deactivate WaddleParser
+
+LogicManager -> PlanCommand : execute()
+activate PlanCommand
+
+PlanCommand --> LogicManager : result
+deactivate PlanCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

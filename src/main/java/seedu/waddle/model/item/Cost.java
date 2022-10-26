@@ -19,7 +19,7 @@ public class Cost {
     public Cost(String cost) {
         requireNonNull(cost);
         checkArgument(isValidCost(cost), MESSAGE_CONSTRAINTS);
-        this.cost = Float.valueOf(cost);
+        this.cost = Float.parseFloat(cost);
     }
 
     /**
@@ -28,11 +28,15 @@ public class Cost {
     public static boolean isValidCost(String test) {
         float value;
         try {
-            value = Float.valueOf(test);
+            value = Float.parseFloat(test);
         } catch (NumberFormatException e) {
             return false;
         }
         return value >= 0;
+    }
+
+    public float getValue() {
+        return this.cost;
     }
 
     @Override

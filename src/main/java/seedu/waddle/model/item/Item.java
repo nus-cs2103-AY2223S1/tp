@@ -2,18 +2,22 @@ package seedu.waddle.model.item;
 
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalTime;
+
 /**
  * Represents an item in the itinerary.
  */
 public class Item {
-    private String description;
-    private Priority priority;
-    private Cost cost;
-    private Duration duration;
-    // private Category category;
+    private final String description;
+    private final Priority priority;
+    private final Cost cost;
+    private final Duration duration;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     /**
      * Constructor for an item.
+     *
      * @param description description of the item
      */
     public Item(String description, Priority priority, Cost cost, Duration duration) {
@@ -33,11 +37,43 @@ public class Item {
     }
 
     public Cost getCost() {
-        return cost;
+        return this.cost;
     }
 
     public Duration getDuration() {
         return duration;
+    }
+
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        LocalTime end = this.startTime.plusMinutes(this.duration.getDuration());
+        // if the time overflows to next day (including 00:00), set to 23:59
+        if (end.isBefore(this.startTime) || end.equals(LocalTime.MIDNIGHT)) {
+            return LocalTime.parse("23:59");
+        }
+        return end;
+    }
+
+    public String getTimeString() {
+        if (this.startTime != null) {
+            if (this.duration != null) {
+                return this.startTime + " - " + getEndTime();
+            } else {
+                return this.startTime.toString();
+            }
+        }
+        return "(Not planned)";
+    }
+
+    public void resetStartTime() {
+        this.startTime = null;
     }
 
     /**

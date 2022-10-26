@@ -12,47 +12,48 @@ public class Priority {
     public static final String MESSAGE_CONSTRAINTS =
             "Priority should only contain a number between 1 and 5";
 
-    /*
-     * The first character of the country must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[1-5]";
-
-    public final String priority;
+    private final Integer stars;
 
     /**
      * Constructs a {@code Priority}.
      *
-     * @param priority A valid priority.
+     * @param stars A valid priority.
      */
-    public Priority(String priority) {
-        requireNonNull(priority);
-        checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
-        this.priority = priority;
+    public Priority(Integer stars) {
+        requireNonNull(stars);
+        checkArgument(isValidPriority(stars), MESSAGE_CONSTRAINTS);
+        this.stars = stars;
     }
 
     /**
      * Returns true if a given string is a valid priority.
      */
-    public static boolean isValidPriority(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidPriority(Integer test) {
+        return test > 0 && test <= 5;
     }
 
+    public int getStars() {
+        return this.stars;
+    }
 
     @Override
     public String toString() {
-        return priority;
+        return this.stars.toString();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Priority // instanceof handles nulls
-                && priority.equals(((Priority) other).priority)); // state check
+                && this.stars.equals(((Priority) other).getStars())); // state check
     }
 
     @Override
     public int hashCode() {
-        return priority.hashCode();
+        return this.stars.hashCode();
+    }
+
+    public int compareTo(Priority p) {
+        return this.stars.compareTo(p.getStars());
     }
 }

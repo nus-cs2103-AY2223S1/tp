@@ -2,7 +2,7 @@ package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.DeleteItemCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
@@ -19,7 +19,7 @@ public class DeleteItemCommandParser implements Parser<DeleteItemCommand> {
      */
     public DeleteItemCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            MultiIndex index = ParserUtil.parseMultiIndex(args);
             return new DeleteItemCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
