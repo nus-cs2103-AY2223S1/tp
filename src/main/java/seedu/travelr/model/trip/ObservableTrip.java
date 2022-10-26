@@ -37,7 +37,7 @@ public class ObservableTrip {
     public SimpleStringProperty getObservableDescription() {
         return tripDescription;
     }
-    
+
     public boolean isEqual(Trip trip) {
         return trip.getTitle().fullTitle.equals(tripTitle.get());
     }

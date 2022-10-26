@@ -13,7 +13,7 @@ import seedu.travelr.model.trip.Trip;
 
 
 /**
- * Represents the AddEventToTripCommand. Extends the Command class.
+ * Represents the MarkTripDoneCommand. Extends the Command class.
  */
 public class MarkTripDoneCommand extends Command {
 

@@ -10,6 +10,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TRIP_DISPLAYED_INDEX = "The trip index provided is invalid";
     public static final String MESSAGE_TRIPS_LISTED_OVERVIEW = "%1$d trips listed!";
     public static final String MESSAGE_INVALID_DISPLAYED_INDEX = "The event index provided is invalid";
-    public static final String MESSAGE_INVALID_DELETE_DISPLAYED_INDEX_FROM_BUCKET_LIST = "The event index provided is invalid in the bucket list";
+    public static final String MESSAGE_INVALID_DISPLAYED_INDEX_FROM_BUCKET_LIST = "The event index provided "
+            + "is invalid in the bucket list";
 
 }
