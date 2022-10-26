@@ -290,4 +290,8 @@ public class Class {
                 && classDateTime.equals(((Class) other).classDateTime)); // state check
     }
 
+    public int compareToByStartTime(Class aclass) {
+        return this.startTime.compareTo(aclass.startTime);
+    }
+
 }

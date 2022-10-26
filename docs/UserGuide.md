@@ -126,7 +126,11 @@ Note: Address cannot be empty. It must contain at least 1 character.
 5. Email:
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
-      - Domain address should be least 2 characters long.
+      - Consecutive special characters are not supported.
+      - The domain name must:
+        1. End with a domain label at least 2 characters long.
+        2. Have each domain label start and end with alphanumeric characters.
+        3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 ```yaml
 Note: Email cannot be empty. It must fulfil the above requirements.
