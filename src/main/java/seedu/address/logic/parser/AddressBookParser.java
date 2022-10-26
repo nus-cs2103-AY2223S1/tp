@@ -188,6 +188,8 @@ public class AddressBookParser {
 
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
+        case UndoCommand.COMMAND_WORD:
+        case RedoCommand.COMMAND_WORD:
             return 3;
 
         case AddTagCommand.COMMAND_WORD:
