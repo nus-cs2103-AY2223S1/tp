@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.meeting.exceptions.ImpreciseMatchException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -42,6 +43,10 @@ public class CreateMeetingCommand extends Command {
 
     public static final String DUPLICATE_PERSON_TO_MEET = "It looks like you are adding the same "
         + "person to a meeting twice!";
+
+    public static final String IMPRECISE_NAME_PREDICATE = "Oops! The name of one of the persons you are meeting "
+        + "matches more than one person in the address book! \n"
+        + "Please include a more precise name.";
 
     private final String meetingInfo;
 
@@ -100,7 +105,11 @@ public class CreateMeetingCommand extends Command {
 
         } catch (DuplicatePersonException e) {
             return new CommandResult(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
+
+        } catch (ImpreciseMatchException e) {
+            return new CommandResult(CreateMeetingCommand.IMPRECISE_NAME_PREDICATE);
         }
+
     }
 
     @Override
