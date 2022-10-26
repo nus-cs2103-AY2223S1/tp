@@ -97,11 +97,15 @@ _Lists out all eateries in NUSEatWhere database._
 
 _Search for eateries with names that match the keywords._
 
-**Format:** `find NAME [NAME…​] [-r NUMBER] [-h]`
+**Format:** `find NAME…​ [-r NUMBER] [-h]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can leave NAME empty if you are using the wildcard (-r) feature
+</div>
 
 **Arguments:** </br>
 `NAME` : returns eateries that match the keyword(s)<br>
-`NUMBER`: randomly generates indicated number of eateries<br>
+`NUMBER`: randomly generates indicated number of eateries (more than 0)<br>
 `-h`: displays help message (specific to find)
 <br>
 
@@ -118,7 +122,7 @@ Example: `find pasta -r 3`
 
 _Search for eateries that match the specified tag(s)._
 
-**Format:** `find TAGNAME [TAGNAME…​] [-h]`
+**Format:** `find TAGNAME…​ [-h]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can search for any number of tags by typing them all after findTag
@@ -142,7 +146,7 @@ Example: `findTag restaurant`
 
 _Search for eateries that match the specified location(s)._
 
-**Format:** `findLocation LOCATIONNAME [LOCATIONNAME…​] [-h]`
+**Format:** `findLocation LOCATIONNAME…​ [-h]`
 
 **Arguments:** <br>
 `LOCATIONNAME`: returns eateries that match the keyword(s)<br>
@@ -161,7 +165,7 @@ Example: `findLocation utown`
 
 _Search for eateries that match the specified cuisine(s)._
 
-**Format:** `findCuisine CUISINENAME [CUISINENAME…​] [-h]`
+**Format:** `findCuisine CUISINENAME…​ [-h]`
 
 **Arguments:** </br>
 `CUISINENAME`: returns eateries that match the keyword(s)<br>
