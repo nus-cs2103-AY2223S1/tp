@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -110,6 +111,10 @@ public class Task {
         } else {
             return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         }
+    }
+
+    public Optional<LocalDateTime> getDeadline() {
+        return Optional.of(deadline);
     }
 
     /**

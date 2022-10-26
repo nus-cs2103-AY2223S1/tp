@@ -7,8 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -61,11 +63,7 @@ public class EditTaskCommand extends Command {
         String updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDateTime updatedDeadline;
         if (editTaskDescriptor.getDeadline().isEmpty()) {
-            if (taskToEdit.getDeadlineStorage().equals("")) {
-                updatedDeadline = null;
-            } else {
-                updatedDeadline = LocalDateTime.parse(taskToEdit.getDeadlineStorage());
-            }
+            updatedDeadline = taskToEdit.getDeadline().orElse(null);
         } else {
             updatedDeadline = editTaskDescriptor.getDeadline().get();
         }
@@ -92,13 +90,12 @@ public class EditTaskCommand extends Command {
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
         List<Person> memberList = model.getTeam().getTeamMembers();
         if (editTaskDescriptor.getAssignees().isPresent()) {
-            for (int i = 0; i < editTaskDescriptor.getAssignees().get().length; i++) {
-                for (Person person : memberList) {
-                    if (person.getName().fullName.equals(editTaskDescriptor.getAssignees().get()[i])) {
-                        editedTask.assignTo(person);
-                        break;
-                    }
-                }
+            List<Person> assigneePersonList = memberList.stream()
+                    .filter(member -> Arrays.asList(editTaskDescriptor.getAssignees().get())
+                            .contains(member.getName().fullName))
+                    .collect(Collectors.toList());
+            for (Person assignee : assigneePersonList) {
+                editedTask.assignTo(assignee);
             }
         }
         if (!taskToEdit.equals(editedTask) && model.getTeam().hasTask(editedTask)) {
