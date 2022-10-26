@@ -16,12 +16,14 @@ import seedu.clinkedin.commons.util.StringUtil;
 import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
 import seedu.clinkedin.logic.parser.exceptions.InvalidPersonException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
@@ -160,6 +162,48 @@ public class ParserUtil {
     public static Note parseNote(String note) throws ParseException {
         requireNonNull(note);
         return new Note(note.trim());
+    }
+
+    /**
+     * Parses a {@code String rating} into a {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRatingStr(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid.
+     */
+    public static Link parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>}.
+     */
+    public static Set<Link> parseLinks(Collection<String> links) throws ParseException {
+        requireNonNull(links);
+        final Set<Link> linkSet = new HashSet<>();
+        for (String tagName : links) {
+            linkSet.add(parseLink(tagName));
+        }
+        return linkSet;
     }
 
     /**
@@ -349,6 +393,8 @@ public class ParserUtil {
         Status status = null;
         Note note = null;
         UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+        Rating rating = null;
+        Set<Link> links = new HashSet<>();
 
         for (String[] detail: person) {
             String check = detail[0];
@@ -356,7 +402,7 @@ public class ParserUtil {
             if (check.startsWith("Tag:")) {
                 tagType = check.substring(4);
                 check = "Tag:";
-            } else if (detail.length != 2) {
+            } else if (!check.startsWith("Links") && detail.length != 2) {
                 throw new InvalidPersonException("More arguments found than possible!");
             }
             switch (check) {
@@ -382,15 +428,23 @@ public class ParserUtil {
                 TagType tagTypeName = new TagType(tagType);
                 ParserUtil.addTags(tagTypeMap, tagTypeName, detail);
                 break;
+            case "Rating":
+                rating = new Rating(detail[1]);
+                break;
+            case "Links":
+                for (int i = 1; i < detail.length; i++) {
+                    links.add(new Link(detail[i]));
+                }
+                break;
             default:
                 throw new InvalidPersonException("Invalid attribute found!");
             }
         }
-        boolean foundAll = checkAllNonNull(name, phone, email, address, tagTypeMap, status, note);
+        boolean foundAll = checkAllNonNull(name, phone, email, address, tagTypeMap, status, note, rating, links);
         if (!foundAll) {
             throw new InvalidPersonException("All attributes not present!");
         }
-        return new Person(name, phone, email, address, tagTypeMap, status, note);
+        return new Person(name, phone, email, address, tagTypeMap, status, note, rating, links);
     }
 
     private static void addTags(UniqueTagTypeMap tagTypeMap, TagType tagType, String[] tags) {
@@ -399,11 +453,24 @@ public class ParserUtil {
         }
     }
     private static boolean checkAllNonNull(Name name, Phone phone, Email email,
-                                           Address address, UniqueTagTypeMap tagTypeMap, Status status, Note note) {
+                                           Address address, UniqueTagTypeMap tagTypeMap, Status status,
+                                           Note note, Rating rating, Set<Link> links) {
         if (name == null || phone == null || email == null || address == null || tagTypeMap == null || status == null
-                || note == null) {
+                || note == null || rating == null || links == null) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Parses {@code Collection<String> ratings} into a {@code Set<Rating>}.
+     */
+    public static Set<Rating> parseRatings(List<String> ratings) throws ParseException {
+        requireNonNull(ratings);
+        final Set<Rating> ratingSet = new HashSet<>();
+        for (String ratingName : ratings) {
+            ratingSet.add(parseRating(ratingName));
+        }
+        return ratingSet;
     }
 }

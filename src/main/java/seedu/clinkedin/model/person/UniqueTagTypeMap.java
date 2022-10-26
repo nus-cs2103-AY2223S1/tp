@@ -45,7 +45,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             CliSyntax.PREFIX_DEGREETAG, new TagType("Degree", CliSyntax.PREFIX_DEGREETAG),
             CliSyntax.PREFIX_JOBTYPETAG, new TagType("Job Type", CliSyntax.PREFIX_JOBTYPETAG)
     );
-    private static final Map<Prefix, TagType> prefixMap = new HashMap<>(initialTagTypeMap);
+    private static Map<Prefix, TagType> prefixMap = new HashMap<>(initialTagTypeMap);
     private final ObservableMap<TagType, UniqueTagList> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<TagType, UniqueTagList> internalUnmodifiableMap = FXCollections
             .unmodifiableObservableMap(internalMap);
@@ -215,6 +215,15 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return internalMap.size();
     }
 
+    public int getTagCount() {
+        int count = 0;
+        for (TagType t: this) {
+            assert this.getTagList(t) != null;
+            count += this.getTagList(t).getCount();
+        }
+        return count;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -225,6 +234,15 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     @Override
     public Iterator<TagType> iterator() {
         return internalMap.keySet().iterator();
+    }
+
+    public static Map<Prefix, TagType> getPrefixMap() {
+        return prefixMap;
+    }
+
+    public static void setPrefixMap(Map<Prefix, TagType> map) {
+        prefixMap = map;
+        CliSyntax.setTagPrefix(map.keySet().stream().collect(Collectors.toList()));
     }
 
     @Override

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import seedu.clinkedin.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.clinkedin.logic.parser.exceptions.PrefixNotFoundException;
@@ -21,18 +22,21 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
     public static final Prefix PREFIX_NOTE = new Prefix("note/");
+
+    public static final Prefix PREFIX_LINK = new Prefix(("l/"));
     public static final Prefix PREFIX_SKILLTAG = new Prefix(("st/"));
     public static final Prefix PREFIX_DEGREETAG = new Prefix(("dt/"));
     public static final Prefix PREFIX_JOBTYPETAG = new Prefix(("jtt/"));
     public static final Prefix PREFIX_PATH = new Prefix("path/");
+    public static final Prefix PREFIX_RATING = new Prefix("rate/");
     private static ArrayList<Prefix> prefixTags = new ArrayList<>(Arrays.asList(PREFIX_SKILLTAG, PREFIX_DEGREETAG,
             PREFIX_JOBTYPETAG));
     private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG, PREFIX_STATUS, PREFIX_NOTE,
-            PREFIX_PATH));
+            PREFIX_PATH, PREFIX_RATING, PREFIX_LINK));
     // Will there be PREFIX_NOTE in this?
     private static ArrayList<Prefix> uniquePrefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE,
-            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS));
+            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS, PREFIX_RATING, PREFIX_NOTE));
 
     /**
      * Adds a tag prefix to the list of prefixes.
@@ -48,6 +52,16 @@ public class CliSyntax {
     }
 
     /**
+     * Adds a tag prefix to the list of prefixes if it does not already exist in the prefixes list.
+     * @param pref List of prefixes to be added.
+     */
+    public static void setTagPrefix(List<Prefix> pref) {
+        prefixes.removeAll(prefixTags);
+        prefixTags = new ArrayList<>(pref);
+        prefixes.addAll(prefixTags);
+    }
+
+    /**
      * Removes a tag prefix from the list of prefixes.
      * @param pref Prefix to be removed.
      * @throws PrefixNotFoundException If the prefix doesn't exist in the list of prefixes.
@@ -59,16 +73,19 @@ public class CliSyntax {
         prefixTags.remove(pref);
         prefixes.remove(pref);
     }
+
     public static Prefix[] getPrefixes() {
         requireNonNull(prefixes);
         Prefix[] pref = new Prefix[prefixes.size()];
         pref = prefixes.toArray(pref);
         return pref;
     }
+
     public static ArrayList<Prefix> getPrefixTags() {
         requireNonNull(prefixTags);
         return prefixTags;
     }
+
     public static ArrayList<Prefix> getUniquePrefixes() {
         requireNonNull(uniquePrefixes);
         return uniquePrefixes;

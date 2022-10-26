@@ -13,10 +13,10 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 ## Table of Contents
 {:toc}
 
-## Introduction 
+## Introduction
 ![Ui](images/Ui.png)
 
-CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
+CLInkedIn is a **desktop address book application made for Recruiting and Hiring Managers to keep track of candidates and their job applications.** The application is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 
 If you can type fast, CLInkedIn can get your Recruitment tasks done faster than traditional GUI apps.
 
@@ -101,7 +101,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/STATUS [note/NOTE] [st/SKILL_TAG] [dt/DEGREE_TAG] [jt/JOB_TYPE_TAG] [<alias>/TAG] [rate/RATING] …​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can have any number and any kind of tags (including 0).
@@ -112,7 +112,7 @@ You can have any number and any kind of tags (including 0).
 
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship, rate/4`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
 ### Listing all persons : `list`
@@ -125,7 +125,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/STATUS] [note/NOTE] [st/OLD_SKILL_TAG-NEW_SKILL_TAG] [dt/OLD_DEGREE_TAG-NEW_DEGREE_TAG] [jt/OLD_JOB_TYPE_TAG-NEW_JOB_TYPE_TAG] [<alias>/OLD_TAG-NEW_TAG] [rate/RATING]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -168,21 +168,22 @@ Examples:
 
 Finds candidates whose personal information and tags contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] 
+
+Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
 [MORE_TAGGED_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* The personal information and tags will be searched.  
+* The personal information and tags will be searched.
 * Partial words will be matched e.g. `Han` will match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Search can be further refined by specifying the type of tag to search for.  
+* Search can be further refined by specifying the type of tag to search for.
   e.g. `find n/John p/867` will return `John Doe` with **Phone** number `8675309`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find Java` returns list of candidates with Java skills 
+* `find Java` returns list of candidates with Java skills
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 * `find n/John` returns `John Doe`
 * `find n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
@@ -204,14 +205,14 @@ Examples:
 
 ### Creating a custom tag type: `create`
 
-Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types. 
+Creates a custom tag type apart from the existing Skill, Degree, and Job Type tag types.
 
-Format: `create TAG_TYPE TAG_ALIAS` 
+Format: `create TAG_TYPE TAG_ALIAS`
 
 - Creates a new `TAG_TYPE` tag type.
 - `TAG_ALIAS` can be used to add tags to this custom tag type.
 
-Examples:  
+Examples:
 
 - `create GPA gpat` creates a tag type `GPA` with `gpat` as its tag alias.
 
@@ -253,6 +254,17 @@ A person can have any number of notes (including 0)
 
 Examples:
 * `note 4 note/Strong in Java` adds a note `Strong in Java` to the 4th person in the address book.
+
+### Adding optional rating: `rate`
+
+Format: `rate INDEX rate/<RATING>`
+* The INDEX refers to the index number shown in the displayed person list. 
+* The INDEX must be a positive integer 1, 2, 3, …​
+* The RATING must be an integer between 0 to 10 inclusive. 
+
+Examples:
+* `rate 2 rate/5` adds a rating of `5` to the 2nd person in the address book.
+
 
 ### Clearing all entries : `clear`
 

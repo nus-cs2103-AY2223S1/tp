@@ -4,21 +4,28 @@ import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.EditCommand;
 import seedu.clinkedin.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 /**
@@ -91,10 +98,29 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
             editPersonDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
         }
+        if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
+            editPersonDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
+        }
+        parseLinksForEdit(argMultimap.getAllValues(PREFIX_LINK)).ifPresent(editPersonDescriptor::setLinks);
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>} if {@code links} is non-empty.
+     * If {@code links} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Link>} containing zero link.
+     */
+    private Optional<Set<Link>> parseLinksForEdit(Collection<String> links) throws ParseException {
+        assert links != null;
+
+        if (links.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> linkSet = links.size() == 1 && links.contains("") ? Collections.emptySet() : links;
+        return Optional.of(ParserUtil.parseLinks(linkSet));
     }
 }

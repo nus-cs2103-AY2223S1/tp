@@ -2,8 +2,10 @@ package seedu.clinkedin.storage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,12 +13,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
@@ -37,15 +41,19 @@ class JsonAdaptedPerson {
     private final List<List<JsonAdaptedTag>> tags = new ArrayList<>();
     private final String status;
     private final String note;
+    private final String rating;
+
+    private final List<JsonAdaptedLink> links = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("clinkedin") String address,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<List<JsonAdaptedTag>> tags, @JsonProperty("status") String status,
-            @JsonProperty("note") String note) {
+            @JsonProperty("note") String note, @JsonProperty("rating") String rating,
+            @JsonProperty("links") List<JsonAdaptedLink> links) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,6 +63,10 @@ class JsonAdaptedPerson {
         }
         this.note = note;
         this.status = status;
+        this.rating = rating;
+        if (links != null) {
+            this.links.addAll(links);
+        }
     }
 
     /**
@@ -76,6 +88,8 @@ class JsonAdaptedPerson {
         }
         status = source.getStatus().status;
         note = source.getNote().value;
+        rating = source.getRating().toString();
+        links.addAll(source.getLinks().stream().map(JsonAdaptedLink::new).collect(Collectors.toList()));
     }
 
     /**
@@ -98,6 +112,11 @@ class JsonAdaptedPerson {
             UniqueTagList uniqueTagList = new UniqueTagList();
             uniqueTagList.setTags(tagList);
             personTags.put(t, uniqueTagList);
+        }
+
+        final List<Link> personLinks = new ArrayList<>();
+        for (JsonAdaptedLink link : links) {
+            personLinks.add(link.toModelType());
         }
 
         if (name == null) {
@@ -148,7 +167,15 @@ class JsonAdaptedPerson {
         }
         final Note modelNote = new Note(note);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote);
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        }
+        final Rating modelRating = new Rating(rating);
+
+        final Set<Link> modelLinks = new HashSet<>(personLinks);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote,
+                modelRating, modelLinks);
     }
 
 }
