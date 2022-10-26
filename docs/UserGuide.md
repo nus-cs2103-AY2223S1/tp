@@ -74,9 +74,9 @@ Format: `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIM
 * The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
 * `TAG` is optional, but can be used multiple times.
 
-<div markdown="block" class="alert alert-warning"><i class="fa fa-warning"></i>
+<div markdown="block" class="alert alert-warning">
 
-**Date/time formats**
+:warning: **Date/time formats**
 
 * `APPLIED_DATE` must be one of these formats:
   * `d MMM yyyy` (7 Oct 2022)
@@ -106,9 +106,9 @@ Format: `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INT
 * When editing tags, the existing tags will removed and replaced with the input tags.
 * Tags can be removed by typing `t/` without specifying any tags after it.
 
-<div markdown="block" class="alert alert-warning"><i class="fa fa-warning"></i>
+<div markdown="block" class="alert alert-warning">
 
-**Date/time formats**
+:warning: **Date/time formats**
 
 * `APPLIED_DATE` must be one of these formats:
     * `d MMM yyyy` (7 Oct 2022)
