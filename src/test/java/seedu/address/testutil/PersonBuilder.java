@@ -10,6 +10,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,19 +22,17 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_DOB = "1/1/2000";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-
-    public static final String DEFAULT_GENDER = "NA";
+    public static final String DEFAULT_GENDER = "Male";
+    public static final String DEFAULT_DOB = "1/1/2000";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private DateOfBirth dob;
     private Address address;
-    private Set<Tag> tags;
-
     private Gender gender;
+    private DateOfBirth dob;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,8 +41,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        dob = new DateOfBirth(DEFAULT_DOB);
         address = new Address(DEFAULT_ADDRESS);
+        dob = new DateOfBirth(DEFAULT_DOB);
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
     }
@@ -55,10 +54,10 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        dob = personToCopy.getDob();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        dob = personToCopy.getDob();
         gender = personToCopy.getGender();
+        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -100,15 +99,6 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
-
-    /**
-     * Sets the {@code Gender} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withGender(String gender) {
-        this.gender = new Gender(gender);
-        return this;
-    }
-
     /**
      * Sets the {@code DateOfBirth} of the {@code Person} that we are building.
      */
@@ -116,9 +106,15 @@ public class PersonBuilder {
         this.dob = new DateOfBirth(dob);
         return this;
     }
-
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
     public Person build() {
-        return new Person(name, phone, email, dob, address, tags, gender);
+        return new Person(name, phone, email, address, gender, dob, tags, new Uid());
     }
 
 }
