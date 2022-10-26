@@ -44,6 +44,7 @@ can get your contact and module management tasks done faster than traditional GU
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
+
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it.
