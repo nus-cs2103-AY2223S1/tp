@@ -1,9 +1,8 @@
 package tuthub.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tuthub.logic.commands.CommandTestUtil.assertCommandFailure;
-import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tuthub.testutil.Assert.assertThrows;
 import static tuthub.testutil.TypicalIndexes.INDEX_FIRST_TUTOR;
 import static tuthub.testutil.TypicalIndexes.INDEX_SECOND_TUTOR;
@@ -23,27 +22,32 @@ public class MailCommandTest {
     private Model model = new ModelManager(getTypicalTuthub(), new UserPrefs());
     private Model expectedModel = new ModelManager(model.getTuthub(), new UserPrefs());
 
-
     @Test
-    public void execute_validInput_success() {
-        String all = "all";
-        MailCommand mailCommand = new MailCommand(all);
-        assertCommandSuccess(mailCommand, model, MailCommand.MESSAGE_MAIL_TUTOR_SUCCESS, expectedModel);
-    }
-
-    @Test
-    public void execute_checkValidTarget_throwsCommandException() {
+    public void checkValidTarget() {
+        // Invalid word
         String invalidWord = "a";
-        MailCommand mailCommand = new MailCommand(invalidWord);
+        MailCommand mailCommand1 = new MailCommand(invalidWord);
         String expectedMessage = String.format(MailCommand.MESSAGE_INVALID_WORD, invalidWord);
-        assertCommandFailure(mailCommand, model, expectedMessage);
+        assertThrows(CommandException.class, expectedMessage, mailCommand1::checkValidTarget);
+
+        // Valid word
+        String validWord = "all";
+        MailCommand mailCommand2 = new MailCommand(validWord);
+        assertAll(mailCommand2::checkValidTarget);
     }
 
     @Test
-    public void execute_checkValidIndex_throwsCommandException() {
-        Index i = Index.fromZeroBased(200);
-        MailCommand mailCommand = new MailCommand(i);
-        assertCommandFailure(mailCommand, model, Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
+    public void checkValidIndex() {
+        // Invalid index
+        Index invalidIndex = Index.fromZeroBased(200);
+        MailCommand mailCommand1 = new MailCommand(invalidIndex);
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX,
+                () -> mailCommand1.checkValidIndex(model.getFilteredTutorList()));
+
+        // valid index
+        Index validIndex = Index.fromZeroBased(1);
+        MailCommand mailCommand2 = new MailCommand(validIndex);
+        assertAll(() -> mailCommand2.checkValidIndex(model.getFilteredTutorList()));
     }
 
     @Test
