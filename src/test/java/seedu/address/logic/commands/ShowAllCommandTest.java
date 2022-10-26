@@ -17,14 +17,30 @@ import seedu.address.testutil.TestUtil;
 /**
  * Contains integration tests (interaction with the Model) for {@code BackCommand}.
  */
-public class BackCommandTest {
+public class ShowAllCommandTest {
     private final String testString = "benson covid-19";
     @Test
     public void execute_emptyAddressBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new BackCommand(), model, BackCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowAllCommand(), model, ShowAllCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_nonEmptyUnfilteredPersonList_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        assertCommandSuccess(new ShowAllCommand(), model, ShowAllCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_nonEmptyUnfilteredRecordList_success() {
+        Model model = TestUtil.prepareModel();
+        Model expectedModel = TestUtil.prepareModel();
+
+        assertCommandSuccess(new ShowAllCommand(), model, ShowAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -33,7 +49,7 @@ public class BackCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.updateFilteredPersonList(prepareNamePredicate());
 
-        assertCommandSuccess(new BackCommand(), model, BackCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowAllCommand(), model, ShowAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -42,7 +58,7 @@ public class BackCommandTest {
         Model expectedModel = TestUtil.prepareModel();
         model.updateFilteredRecordList(prepareRecordPredicate());
 
-        assertCommandSuccess(new BackCommand(), model, BackCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowAllCommand(), model, ShowAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     /**

@@ -14,6 +14,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.FindRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
@@ -213,12 +214,14 @@ public class ParserUtil {
      * Parses {@code String keywords} into a {@code List<String>}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static List<String> parseKeywords(String keywords) {
+    public static List<String> parseKeywords(String keywords) throws ParseException {
         // currently does not throw error when empty field eg. r/ or m/
         String trimmedArgs = keywords.trim();
 
-        if (trimmedArgs.isBlank()) {
+        if (trimmedArgs.equals(FindRecordCommandParser.PREFIX_NOT_SPECIFIED)) {
             return new ArrayList<>();
+        } else if (trimmedArgs.isBlank()) {
+            throw new ParseException(FindRecordCommand.MESSAGE_EMPTY_PREFIX);
         } else {
             String[] nameKeywords = trimmedArgs.split("\\s+");
             return Arrays.asList(nameKeywords);
@@ -226,23 +229,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code List<String> dateToParse} into a {@code Optional<String>}.
+     * Parses a {@code String dateToParse} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given inputs is invalid.
      */
-    public static Optional<String> parseDateKeyword(List<String> dateToParse) throws ParseException {
-        if (dateToParse.isEmpty()) {
-            return Optional.empty();
-        }
+    public static String parseDateKeyword(String dateToParse) throws ParseException {
+        String trimmedArgs = dateToParse.trim();
+        Boolean matcher = trimmedArgs.matches("^(?=(?:[^-]*-){1}[^-]*$)(?=(?:\\D*\\d){6}\\D*$).*$");
 
-        String date = dateToParse.get(0);
-        Boolean matcher = date.matches("^(?=(?:[^-]*-){1}[^-]*$)(?=(?:\\D*\\d){6}\\D*$).*$");
-
-        if (dateToParse.size() == 1 && matcher) {
-            return Optional.of(date);
+        if (trimmedArgs.equals(FindRecordCommandParser.PREFIX_NOT_SPECIFIED)) {
+            return "";
+        } else if (trimmedArgs.isBlank()) {
+            throw new ParseException(FindRecordCommand.MESSAGE_EMPTY_PREFIX);
+        } else if (matcher) {
+            return trimmedArgs;
         } else {
-            throw new ParseException(Messages.MESSAGE_INVALID_FIND_DATE_FORMAT);
+            throw new ParseException(FindRecordCommand.MESSAGE_INVALID_FIND_DATE_FORMAT);
         }
     }
 }

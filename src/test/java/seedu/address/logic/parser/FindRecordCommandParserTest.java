@@ -22,6 +22,11 @@ public class FindRecordCommandParserTest {
     }
 
     @Test
+    public void parse_emptyPrefix_throwsParseException() {
+        assertParseFailure(parser, " m/ r/", FindRecordCommand.MESSAGE_EMPTY_PREFIX);
+    }
+
+    @Test
     public void parse_validArgs_returnsFindRecordCommand() {
         // no leading and trailing whitespaces
         FindRecordCommand expectedFindRecordCommand =

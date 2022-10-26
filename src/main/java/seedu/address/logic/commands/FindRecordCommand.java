@@ -22,6 +22,9 @@ public class FindRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "rfind";
     public static final DateTimeFormatter FIND_DATE_FORMAT = DateTimeFormatter.ofPattern("MM-yyyy");
+    public static final String MESSAGE_EMPTY_PREFIX = "A specified prefix must not be empty eg. rfind m/ r/ d/";
+    public static final String MESSAGE_INVALID_FIND_DATE_FORMAT =
+            "Invalid find date format! \n Please use the format MM-yyyy!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all records whose content contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

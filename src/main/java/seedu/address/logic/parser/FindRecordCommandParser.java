@@ -17,6 +17,7 @@ import seedu.address.model.record.RecordContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindRecordCommandParser implements Parser<FindRecordCommand> {
+    public static final String PREFIX_NOT_SPECIFIED = "@#$fIndREC%^&orDiNPUtVALid*()";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -32,9 +33,13 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
         }
 
-        Optional<String> recordDate = ParserUtil.parseDateKeyword(argMultimap.getAllValues(PREFIX_DATE));
-        List<String> recordkeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_RECORD).orElse(""));
-        List<String> medications = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_MEDICATION).orElse(""));
+        String recordDate = ParserUtil.parseDateKeyword(
+                argMultimap.getValue(PREFIX_DATE).orElse(PREFIX_NOT_SPECIFIED));
+        List<String> recordkeywords = ParserUtil.parseKeywords(
+                argMultimap.getValue(PREFIX_RECORD).orElse(PREFIX_NOT_SPECIFIED));
+        List<String> medications = ParserUtil.parseKeywords(
+                argMultimap.getValue(PREFIX_MEDICATION).orElse(PREFIX_NOT_SPECIFIED));
+
         return new FindRecordCommand(new RecordContainsKeywordsPredicate(recordkeywords, medications, recordDate));
     }
 
@@ -46,3 +51,5 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
+
+// cannot input empty prefix but can leave out prefix
