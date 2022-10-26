@@ -3,13 +3,13 @@ package seedu.taassist.storage;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_LINE_BREAK;
 import static seedu.taassist.commons.core.csv.CsvConfig.CSV_SEPARATOR;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import seedu.taassist.commons.util.FileUtil;
 
 /**
  * A class to manage storage of CSV files at the default filepath.
@@ -34,14 +34,11 @@ public class CsvDefaultStorage implements CsvStorage {
     @Override
     public Path saveAsCsvFile(String fileName, List<List<String>> fileData) throws IOException {
         Path filePath = getCsvDefaultPath().resolve(fileName + ".csv");
-        File csvFile = new File(filePath.toString());
-
-        FileWriter writer = new FileWriter(csvFile);
-        writer.write(fileData.stream()
+        String content = fileData.stream()
                 .map(ls -> ls.stream().collect(Collectors.joining(CSV_SEPARATOR)))
-                .collect(Collectors.joining(CSV_LINE_BREAK)));
-        writer.write("\n");
-        writer.close();
+                .collect(Collectors.joining(CSV_LINE_BREAK));
+
+        FileUtil.writeToFile(filePath, content);
 
         return filePath;
     }
