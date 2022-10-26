@@ -204,7 +204,6 @@ public class ParserUtilTest {
 
     @Test
     public void parseFutureDifficulty_invalidValue_throwsNumberFormatException() {
-        assertThrows(NumberFormatException.class,
-            () -> ParserUtil.parseFutureAssessmentDifficulty(INVALID_DOUBLE));
+        assertThrows(NumberFormatException.class, () -> ParserUtil.parseFutureAssessmentDifficulty(INVALID_DOUBLE));
     }
 }
