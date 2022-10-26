@@ -1,6 +1,8 @@
 package seedu.workbook.logic.parser;
 
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
 import static seedu.workbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.workbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -24,11 +26,21 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new CompanyContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new CompanyContainsKeywordsPredicate(Arrays.asList("Amy", "Bee")));
+        assertParseSuccess(parser, COMPANY_DESC_AMY, expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, COMPANY_DESC_AMY, expectedFindCommand);
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        // no searching for company and role in the same command
+        assertParseFailure(parser, COMPANY_DESC_AMY
+                + ROLE_DESC_AMY, String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        //no prefix provided
+        assertParseFailure(parser, "amy bee", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
 }
