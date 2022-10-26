@@ -10,6 +10,8 @@ import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItemsWi
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.CommandTestUtil;
@@ -54,7 +56,7 @@ public class TagCommandTest {
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
         assertCommandSuccess(tagItemCommand, model, expectedMessage, expectedModel);
-        assertTrue(model.getCurrentList().get(0).containsTag(tag));
+        assertTrue(model.getCurrentList().get(0).getTagSet().contains(tag));
 
     }
 
@@ -92,7 +94,10 @@ public class TagCommandTest {
 
         model.addTag(tag);
 
-        model.getCurrentList().get(0).addItemTag(tag);
+        Item item = model.getCurrentList().get(0);
+        Set<Tag> tagSet = item.getTagSet();
+        tagSet.add(tag);
+        model.setItem(item, Item.createItemWithTags(item, tagSet));
 
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
