@@ -118,7 +118,7 @@ Format: `help`
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
 - Press `ESC` to close the Help window <br>
-- Press `c` to copy the User Guide url in the Help window 
+- Press `c` to copy the User Guide url into clipboard when the Help window is opened
 </div>
 
 ### Adding an internship: `add`
@@ -302,7 +302,7 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Undo Compatibility | Format, Examples                                                                                                                                                                                               |
+| Action     | Undo               | Format, Examples                                                                                                                                                                                               |
 |------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
 | **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
@@ -310,7 +310,7 @@ _Details coming soon ..._
 | **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
 | **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
 | **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
-| **List**   | :x:                | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`                                                                                                                                                       |
+| **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g, `list c/d true`                                                                                                                                                     |
 | **Help**   | :x:                | `help`                                                                                                                                                                                                         |
 | **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
 | **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
