@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.attribute.AbstractAttribute;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.AttributeList;
 import seedu.address.model.attribute.Name;
@@ -86,6 +87,12 @@ public abstract class AbstractDisplayItem implements DisplayItem {
             throw new ItemCannotBeParentException(this);
         }
         attributes.addAttribute(attribute);
+    }
+
+    @Override
+    public void addAttribute(String attributeName, String attributeContent) throws AttributeException {
+        requireAllNonNull(attributeName, attributeContent);
+        attributes.addAttribute(attributeName, attributeContent);
     }
 
     public void addAttribute(String attributeName) throws AttributeException {

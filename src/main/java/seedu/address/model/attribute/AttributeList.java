@@ -3,8 +3,10 @@ package seedu.address.model.attribute;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attribute.exceptions.AttributeException;
 import seedu.address.model.attribute.exceptions.DuplicateAttributeException;
 
@@ -15,6 +17,9 @@ public class AttributeList {
 
     // A list of fields
     private final List<Attribute<?>> attributeList;
+
+    // For logging purposes before updating UI
+    private static final Logger logger = LogsCenter.getLogger(AttributeList.class);
 
     /**
      * Constructs a new Fields instance.
@@ -30,6 +35,7 @@ public class AttributeList {
      */
     public void addAttribute(Attribute<?> attribute) {
         attributeList.add(attribute);
+        logger.info(String.format("Attribute added successfully: %s", attribute.getAttributeType()));
     }
 
 
@@ -40,7 +46,11 @@ public class AttributeList {
      * @param attributeName the name of the Field instance to be added to the list.
      * @param value the value of the field.
      */
-    public <T> void addAttribute(String attributeName, T value) {
+    public <T> void addAttribute(String attributeName, T value) throws AttributeException {
+        if (this.checkForAttributeName(attributeName) != null) {
+            String existingName = this.checkForAttributeName(attributeName).getAttributeType();
+            throw new DuplicateAttributeException(existingName, attributeName);
+        }
         AbstractAttribute<T> attribute = new AbstractAttribute<T>(attributeName, value) {
             @Override
             public Map<String, Object> toSaveableData() {
