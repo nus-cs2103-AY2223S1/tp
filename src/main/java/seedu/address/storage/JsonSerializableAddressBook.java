@@ -61,7 +61,7 @@ class JsonSerializableAddressBook {
             addressBook.addProfile(profile);
         }
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
-            Event event = jsonAdaptedEvent.toModelType();
+            Event event = jsonAdaptedEvent.toModelType(addressBook);
             if (addressBook.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }

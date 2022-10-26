@@ -279,21 +279,21 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 ![ViewProfileCommandActivityDiagram](images/commands/ViewProfileCommandActivityDiagram.png)
 
-### \[Proposed\] Add Attendees to an Event
+### AddProfilesToEventCommand
 
 #### Description
 
-In this section, we will describe how the `AddAttendeesCommand` is implemented. `AddAttendeesCommand` is used to add existing `Profile`s to an `Event` as attendees.
+In this section, we will describe how the `AddProfilesToEventCommand` is implemented. `AddAttendeesCommand` is used to add existing `Profile`s to an `Event` as attendees.
 
-The `AddAttendeesCommand` class extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddAttendeesCommand` overrides the `Command#execute` method to add new attendees to an event when called.
+The `AddProfilesToEventCommand` class extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddProfilesToEventCommand` overrides the `Command#execute` method to add new attendees to an event when called.
 
 #### Proposed implementation
 
-Similar to other commands, the user input to add attendees is passed to `LogicManager` to be executed. The following details the key difference in the methods that is invoked when the `AddAttendeesCommand#execute()` method is called:
+Similar to other commands, the user input to add attendees is passed to `LogicManager` to be executed. The following details the key difference in the methods that is invoked when the `AddProfilesToEventCommand#execute()` method is called:
 
-* `Model#updateEventAttendees()` - Adds the specified `Profile`s to the `Attendees` attribute of the `Event`.
+* `Model#addEventAttendees()` - Adds the specified `Profile`s to the `Attendees` attribute of the `Event`.
 
-Given below is an example usage scenario on how `AddAttendeesCommand` can be used and how it works.
+Given below is an example usage scenario on how `AddProfilesToEventCommand` can be used and how it works.
 
 Step 1. The user clears all the data in the application with the `ClearCommand`and then enters the following commands:
 
@@ -306,7 +306,7 @@ Step 2. The user executes `event -ap 1 n/1` to add the `Profile` John of `Index`
 
 ![AddAttendeeState1](images/AddAttendeesState1.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Multiple profiles can be added at once. If one of the specified profiles has already been added to the event as an attendee, the command will still execute successfully. However, if any of the specified indexes are out of bounds, an error is returned to the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Multiple profiles can be added at once. If one or more of the specified profiles has already been added to the event as an attendee, the command will still execute successfully. However, if any of the specified indexes are out of bounds, an error is returned to the user.
 
 </div>
 
@@ -316,7 +316,7 @@ The following sequence diagram illustrates how the operation works.
 
 #### Design Considerations
 
-* **Alternative 1 (Current Design)**: Separate `AddAttendeesCommand` from `AddEventCommand` and `EditEventCommand`.
+* **Alternative 1 (Current Design)**: Separate `AddProfilesToEventCommand` from `AddEventCommand` and `EditEventCommand`.
   * Pros: Greater convenience.
   * Cons: Harder to implement.
 * **Alternative 2**: Include the addition of attendees under `AddEventCommand` and any changes to the list of attendees under `EditEventCommand`.

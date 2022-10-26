@@ -21,7 +21,7 @@ public class AddEventCommand extends EventCommand {
     public static final String COMMAND_OPTION = "a";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
-            + ": Adds an event to the address book. "
+            + ": Adds an event to NUScheduler."
             + "Parameters: "
             + PREFIX_NAME + "TITLE "
             + PREFIX_START_DATE + "START "
@@ -59,6 +59,10 @@ public class AddEventCommand extends EventCommand {
 
         if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
+
+        if (!toAdd.isHasTimeEqual()) {
+            throw new CommandException(Messages.MESSAGE_EVENTS_HAS_TIME);
         }
 
         if (!toAdd.isValidStartEnd()) {

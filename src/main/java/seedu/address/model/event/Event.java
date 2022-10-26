@@ -1,12 +1,15 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +25,7 @@ public class Event {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
+    private final Attendees attendees;
 
     /**
      * Every field must be present and not null.
@@ -32,6 +36,19 @@ public class Event {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.tags.addAll(tags);
+        attendees = new Attendees();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Event(Title title, DateTime startDateTime, DateTime endDateTime, Set<Tag> tags, Attendees attendees) {
+        requireAllNonNull(title, startDateTime, endDateTime, tags, attendees);
+        this.title = title;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.tags.addAll(tags);
+        this.attendees = attendees;
     }
 
     public Title getTitle() {
@@ -54,6 +71,31 @@ public class Event {
         return Collections.unmodifiableSet(tags);
     }
 
+    public Attendees getAttendees() {
+        return attendees;
+    }
+
+    /**
+     * Adds the profiles in {@code profilesToAdd} to the event's list of attendees if
+     * they have not already been added.
+     */
+    public void addAttendees(List<Profile> profilesToAdd) {
+        requireNonNull(profilesToAdd);
+
+        profilesToAdd.forEach(profile -> {
+            if (!attendees.hasAttendee(profile)) {
+                attendees.add(profile);
+            }
+        });
+    }
+
+    /**
+     * Returns true if the specified profile is in the event's list of attendees.
+     */
+    public boolean hasAttendee(Profile profile) {
+        return attendees.hasAttendee(profile);
+    }
+
     /**
      * Returns true if both events have the same title, start, and end times.
      * This defines a weaker notion of equality between two events.
@@ -69,8 +111,19 @@ public class Event {
                 && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
+    /**
+     * Returns true if start date is before or equal the end date.
+     */
     public boolean isValidStartEnd() {
         return startDateTime.isBeforeOrEqual(endDateTime);
+    }
+
+    /**
+     * Returns true if start date and end dates either both have time
+     * or both do not have time.
+     */
+    public boolean isHasTimeEqual() {
+        return startDateTime.hasTime() == endDateTime.hasTime();
     }
 
     /**
@@ -113,7 +166,12 @@ public class Event {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        if(!attendees.isEmpty()) {
+            builder.append(System.lineSeparator())
+                    .append(attendees);
+        }
+
         return builder.toString();
     }
-
 }

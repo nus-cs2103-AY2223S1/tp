@@ -180,20 +180,26 @@ public class DateTime {
         return Optional.ofNullable(generateLocalTime(hours, minutes, seconds));
     }
 
-    public LocalDate getDate() {
-        return this.date;
-    }
-
-    public Optional<LocalTime> getTime() {
-        return this.time;
-    }
-
     /**
      * Returns true if a start DateTime is before or equal another DateTime.
-     * Otherwise, returns false
+     * Otherwise, returns false.
      */
-    public boolean isBeforeOrEqual(DateTime dateTime) {
-        return !this.dateTime.isAfter(dateTime.dateTime);
+    public boolean isBeforeOrEqual(DateTime other) {
+        if (this.time.isEmpty() && other.time.isEmpty()) {
+            return !this.date.isAfter(other.date);
+        }
+        assert this.time.isPresent() && other.time.isPresent() : "Both should have time!";
+        return this.date.isEqual(other.date)
+                ? !this.time.get().isAfter(other.time.get())
+                : !this.date.isAfter(other.date);
+    }
+
+    public boolean hasTime() {
+        return this.time.isPresent();
+    }
+
+    public LocalDate getDate() {
+        return this.date;
     }
 
     @Override
