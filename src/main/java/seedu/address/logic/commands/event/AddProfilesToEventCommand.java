@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,11 @@ public class AddProfilesToEventCommand extends EventCommand {
             profilesToAdd.add(p);
         }
 
-        model.addEventAttendees(event, profilesToAdd);
+        Event eventCopy = new Event(event.getTitle(), event.getStartDateTime(), event.getEndDateTime(),
+                event.getTags(), event.getAttendees());
+        eventCopy.addAttendees(profilesToAdd);
+
+        model.setEvent(event, eventCopy);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_ATTENDEES_SUCCESS, event));
     }
