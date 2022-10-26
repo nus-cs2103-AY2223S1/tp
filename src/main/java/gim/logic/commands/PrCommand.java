@@ -80,7 +80,9 @@ public class PrCommand extends Command {
             ArrayList<Exercise> outputList = new ArrayList<>();
             for (Name name : nameSet) {
                 Exercise exerciseWithPR = model.getExercisePR(name);
-                outputList.add(exerciseWithPR);
+                if (exerciseWithPR != null) {
+                    outputList.add(exerciseWithPR);
+                }
             }
             return outputList;
         }
