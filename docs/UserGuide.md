@@ -244,6 +244,10 @@ NUScheduler keeps track of all the successful commands you've made within each s
 
 Lorem Ipsum
 
+###### Quick Links
+
+Lorem Ipsum
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
