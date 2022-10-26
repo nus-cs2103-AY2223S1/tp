@@ -79,42 +79,42 @@
     "projectId" : "6"
   } ],
   "issues" : [ {
-    "description" : "Refactor UI Classes",
+    "title" : "Refactor UI Classes",
     "priority" : "LOW",
     "deadline" : "2022-01-01",
     "status" : "false",
     "issueId" : "1",
     "project" : "1"
   }, {
-    "description" : "Fix loading screen bug",
+    "title" : "Fix loading screen bug",
     "priority" : "MEDIUM",
     "deadline" : "2022-10-04",
     "status" : "true",
     "issueId" : "2",
     "project" : "2"
   }, {
-    "description" : "Implement filter command",
+    "title" : "Implement filter command",
     "priority" : "LOW",
     "deadline" : "2022-09-03",
     "status" : "false",
     "issueId" : "3",
     "project" : "2"
   }, {
-    "description" : "Update collision logic",
+    "title" : "Update collision logic",
     "priority" : "HIGH",
     "deadline" : "2023-07-14",
     "status" : "true",
     "issueId" : "4",
     "project" : "3"
   }, {
-    "description" : "Create Developer Guide",
+    "title" : "Create Developer Guide",
     "priority" : "HIGH",
     "deadline" : "2022-02-04",
     "status" : "true",
     "issueId" : "5",
     "project" : "4"
   }, {
-    "description" : "Change default behaviour",
+    "title" : "Change default behaviour",
     "priority" : "MEDIUM",
     "deadline" : "2022-02-19",
     "status" : "false",

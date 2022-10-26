@@ -14,7 +14,7 @@
     "projectId" : "1"
   } ],
   "issues" : [ {
-    "description" : "Refactor UI Classes",
+    "title" : "Refactor UI Classes",
     "priority" : "X@",
     "deadline" : "2020a1",
     "status" : "x123",

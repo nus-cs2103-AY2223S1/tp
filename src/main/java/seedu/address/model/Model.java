@@ -130,15 +130,23 @@ public interface Model {
 
     void updateFilteredClientList(Predicate<Client> predicate);
 
-    void sortProjectsByDeadline(int sortByDeadlineKey);
+    void sortProjectsById(int sortProjectsById);
 
-    void sortProjectsByIssueCount(int sortByIssueCountKey);
+    void sortProjectsByDeadline(int sortProjectsByDeadlineKey);
 
-    void sortProjectsByName(int sortByNameKey);
+    void sortProjectsByIssueCount(int sortProjectsByIssueCountKey);
+
+    void sortProjectsByName(int sortProjectsByNameKey);
+
+    void sortIssuesById(int sortIssuesById);
 
     void sortIssuesByDeadline(int sortIssuesByDeadline);
 
     void sortIssuesByPriority(int sortIssuesByPriority);
+
+    void sortClientsById(int sortClientsById);
+
+    void sortClientsByName(int sortClientsByName);
 
     void setDefaultView(DefaultView defaultView);
 }

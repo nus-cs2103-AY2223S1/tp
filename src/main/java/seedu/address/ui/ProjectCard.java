@@ -1,8 +1,11 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.project.Project;
@@ -33,6 +36,8 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Hyperlink repository;
     @FXML
+    private Button copyRepoButton;
+    @FXML
     private Label deadline;
     @FXML
     private Label client;
@@ -45,18 +50,32 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
-        name.setText(project.getProjectName().toString() + " " + project.getProjectId().uiRepresentation());
+        name.setText(displayedIndex + ". " + project.getProjectName().toString()
+                + " " + project.getProjectId().uiRepresentation());
         repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
-                : project.getRepository().getRepositoryUrl());
+                : project.getRepository().getUiRepresentation());
+        copyRepoButton.setOnAction(e -> copyRepoUrl(project.getRepository().isEmpty() ? ""
+                : project.getRepository().getUiRepresentation()));
         deadline.setText(project.getDeadline().isEmpty() ? "No Deadline Set"
-                : project.getDeadline().getFormattedDeadline());
+                : project.getDeadline().uiRepresentation());
         client.setText(project.getClient().isEmpty()
                 ? "No Client Set"
-                : "In Charge: " + project.getClient().uiRepresentation());
+                : "Client in charge: " + project.getClient().uiRepresentation());
         issueCount.setText(project.getIssueList().size() + " issues ("
                 + project.getCompletedIssueCount() + " complete, "
                 + project.getIncompleteIssueCount() + " incomplete)");
 
+    }
+
+    /**
+     * Copies the URL to the user guide to the clipboard.
+     */
+    @FXML
+    private void copyRepoUrl(String repoUrl) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(repoUrl);
+        clipboard.setContent(url);
     }
 
     @Override

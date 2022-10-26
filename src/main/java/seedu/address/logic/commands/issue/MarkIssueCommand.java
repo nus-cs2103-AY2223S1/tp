@@ -23,12 +23,12 @@ public class MarkIssueCommand extends IssueCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Marks the issue identified by the issue id as complete \n"
-            + "Parameters: ISSUE_ID (must be a positive integer) "
+            + "Parameters: ISSUE_ID (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " 1";
 
 
-    public static final String MESSAGE_SUCCESS = "Issue marked: %1$s";
+    public static final String MESSAGE_SUCCESS = "Issue marked completed: %1$s";
 
     private final Status newStatus;
     private final IssueId issueId;

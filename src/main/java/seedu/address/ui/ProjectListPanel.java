@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -20,6 +21,9 @@ public class ProjectListPanel extends UiPart<Region> {
     @FXML
     private ListView<Project> projectListView;
 
+    @FXML
+    private Label projectListViewName;
+
     /**
      * Creates a {@code ProjectListPanel} with the given {@code ObservableList}.
      */
@@ -27,6 +31,7 @@ public class ProjectListPanel extends UiPart<Region> {
         super(FXML);
         projectListView.setItems(projectList);
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
+        projectListViewName.setText("Projects List");
     }
 
     /**
