@@ -613,10 +613,11 @@ Use case ends.
 *{More to be added}*
 
 ### Glossary
-
+* **CLI**: Command Line Interface
+* **CLI**: Graphical User Interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Command**
+* **Command**: 
 
 --------------------------------------------------------------------------------------------------------------------
 
