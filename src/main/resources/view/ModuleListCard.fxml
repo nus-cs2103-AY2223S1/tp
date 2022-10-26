@@ -33,7 +33,7 @@
       <!-- HBox with tasks and links. -->
       <HBox>
         <!-- prefWidth of 200 is half of module list's width. -->
-        <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="170"
+        <VBox styleClass="pane-with-border" minWidth="100"
               prefWidth="200" HBox.hgrow="ALWAYS" >
           <Label alignment="CENTER" styleClass="underlined-text"
                  maxWidth="Infinity">
@@ -42,7 +42,7 @@
           <StackPane fx:id="taskListPanelPlaceholder" />
         </VBox>
         <!-- prefWidth of 200 is half of module list's width. -->
-        <VBox styleClass="pane-with-border" minWidth="170"
+        <VBox styleClass="pane-with-border" minWidth="100"
               prefWidth="200" HBox.hgrow="ALWAYS">
           <Label alignment="CENTER" styleClass="underlined-text"
                  maxWidth="Infinity">
