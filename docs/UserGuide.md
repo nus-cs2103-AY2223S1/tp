@@ -124,10 +124,15 @@ Beyond individual products, you can also:
   e.g. in `addClient n/NAME p/PHONE_NUMBER`, `NAME` and `PHONE_NUMBER` are parameters which can be used as `addClient n/John Tan p/12345678`.
 
 * Items in square brackets are optional, while those not in square brackets are compulsory.<br>
-  e.g. `addClient` can be used as `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [b/BIRTHDAY]` for example `addClient n/John p/12345678 e/John@abc.com b/12122000` or `addClient n/NAME p/PHONE_NUMBER` for example `addClient n/John Tan p/12345678`.<br>
+  e.g. `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]` can be used as <br>
+  * `addClient n/John Tan p/12345678`
+  * `addClient n/John p/12345678 e/John@abc.com b/12122000`
 
-* This symbol `||` indicates that only one of the optional parameters can be used. Using more than one optional parameter is strictly not allowed.
-  e.g. `listClient` can be used as either `listClient pd/[PRODUCT]` for example `listClient pd/Product1` or `listClient bd/BIRTHDAY` for example `listClient bd/week`.
+* This symbol `||` indicates that only one of the optional parameters can be used. <br> 
+  **Using more than one optional parameter is strictly not allowed.** <br>
+  e.g. `listClient` can be used as 
+  * `listClient pd/Product1`
+  * `listClient bd/week`
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -149,7 +154,7 @@ Adds a new client to MyInsuRec.
 Format: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
 * A client must have a `NAME` and a `PHONE_NUMBER`.
-* `EMAIL`, `BIRTHDAY` and `ADDRESS` are optional.
+* `EMAIL`, `BIRTHDAY`, `ADDRESS` and `PRODUCT` are optional.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 In order to use `pd/PRODUCT` as a parameter, you must have already added that product into MyInsuRec via `addProduct`. See [addProduct](#331-adding-a-product-addproduct).
@@ -158,7 +163,7 @@ In order to use `pd/PRODUCT` as a parameter, you must have already added that pr
 Examples:
 * `addClient n/John Tan p/12345678`
 * `addClient n/John Tan p/12345678 b/12122000`
-* `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01`
+* `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 
 #### 3.1.2 Listing all clients : `listClient`
 
@@ -186,7 +191,7 @@ Deletes the specified client from MyInsuRec.
 Format: `delClient i/INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listClient`](#listing-all-clients-listclient) command.
+* `INDEX` refers to the index number shown by executing [`listClient`](#312-listing-all-clients--listclient) command.
 * `Index` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -249,7 +254,7 @@ Deletes a meeting from MyInsuRec.
 Format: `delMeeting i/INDEX`
 
 * Deletes the meeting at the specified `INDEX`.
-* `INDEX` refers to the index number shown by executing [`listMeeting`](#listing-meetings-listmeeting) command.
+* `INDEX` refers to the index number shown by executing [`listMeeting`](#322-listing-meetings-listmeeting) command.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
