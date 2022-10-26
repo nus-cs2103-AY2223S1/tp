@@ -13,14 +13,6 @@ RC4HDB to its fullest potential.
 
 If you are someone who is looking to expand on our project, check out our [Developer Guide](DeveloperGuide.md) too!
 
-<!--
-<details close>
-<summary> test </summary>
-<br>
-Test
-</details>
--->
-
 ## Table of Contents
 
 * [Introduction to RC4HDB](#introduction-to-rc4hdb)
@@ -46,15 +38,14 @@ Test
     * [Deleting an existing data file `file delete`](ug-pages/file-management.md#deleting-an-existing-data-file--file-delete)
     * [Switching data file `file switch`](ug-pages/file-management.md#switching-to-a-different-data-file--file-switch)
     * [Importing from CSV file `import`](ug-pages/file-management.md#importing-from-csv-file--file-import)
-    * [Exporting to CSV file `export`](ug-pages/file-management.md#exporting-to-csv-file--file-export)
     * [CSV file format](ug-pages/file-management.md#csv-file-format)
   * [Venue booking](ug-pages/venue-booking.md)
     * [Viewing the bookings](ug-pages/venue-booking.md#viewing-the-bookings)
-    * [Adding a venue](ug-pages/venue-booking.md#adding-a-venue--venue-add)
-    * [Deleting a venue](ug-pages/venue-booking.md#deleting-a-venue--venue-delete)
-    * [Viewing a venue](ug-pages/venue-booking.md#viewing-a-venue--venue-view)
-    * [Adding a booking](ug-pages/venue-booking.md#adding-a-booking-venue-book)
-    * [Deleting a booking](ug-pages/venue-booking.md#deleting-a-booking-venue-unbook)
+    * [Adding a venue `venue add`](ug-pages/venue-booking.md#adding-a-venue--venue-add)
+    * [Deleting a venue `venue delete`](ug-pages/venue-booking.md#deleting-a-venue--venue-delete)
+    * [Viewing a venue `venue view`](ug-pages/venue-booking.md#viewing-a-venue--venue-view)
+    * [Adding a booking `venue book`](ug-pages/venue-booking.md#adding-a-booking-venue-book)
+    * [Deleting a booking `venue unbook`](ug-pages/venue-booking.md#deleting-a-booking-venue-unbook)
     * [Format for venue fields](ug-pages/venue-booking.md#format-for-venue-fields)
   * [Data management](ug-pages/data-management.md)
     * [Saving data](ug-pages/data-management.md#saving-the-data)
@@ -63,7 +54,7 @@ Test
     * [Keyboard shortcuts](ug-pages/quality-of-life.md#keyboard-shortcuts)
     * [Accessing command history](ug-pages/quality-of-life.md#accessing-command-history)
   * [Exiting RC4HDB `exit`](ug-pages/exiting-the-program.md#exiting-the-program--exit)
-  * [Upcoming features]
+  * [Upcoming features](ug-pages/upcoming-features.md)
 * [FAQ](ug-pages/faq.md#faq)
 * [Glossary](ug-pages/glossary.md)
 * [Authors](ug-pages/authors.md)
@@ -149,8 +140,8 @@ may have typed a command incorrectly as RC4HDB will step in as and when needed!
 
 <div markdown="block" class="alert alert-info">
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are compulsory and must be entered by you, the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which you must enter, such as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.

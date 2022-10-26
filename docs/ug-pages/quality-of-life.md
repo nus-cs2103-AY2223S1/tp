@@ -15,12 +15,17 @@ Key | Functionality
 `F1` | Opens the Help Window if it's not open
 `F2` | Highlights the first row of the displayed list
 `F3` | Quick-access to the command input box
-`Ctrl+Tab` | Allows for quick switching
+`Ctrl+Tab` | Switch between Resident and Booking tabs
 
-This feature is especially useful if you want to refer to our Help Window which contains a summary of our commands.
+This feature is especially useful if you want to refer to our Help Window which contains a summary of our most basic
+commands. If you want a full summary of all our commands, refer to [here](command-summary.md)
 
 ### Accessing command history
 
-Use the `Up` and `Down` arrow keys to navigate through the command history. This feature
+Use the `Up` and `Down` arrow keys to navigate through the command history. This
 is useful if your next command is similar to a previous command, or if you wish to revisit
 your previous commands.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Only valid commands will be saved in the history!
+</div>
