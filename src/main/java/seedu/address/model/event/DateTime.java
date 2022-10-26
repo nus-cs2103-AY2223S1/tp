@@ -194,6 +194,9 @@ public class DateTime {
         res += hours != 0 ? String.format("%d hour%s, ", hours, hours == 1 ? "" : "s") : "";
         res += minutes != 0 ? String.format("%d minute%s, ", minutes, minutes == 1 ? "" : "s") : "";
         res = res.replaceAll(", $", "");
+        if (res.isEmpty()) {
+            return "No Duration";
+        }
         return res;
     }
 
