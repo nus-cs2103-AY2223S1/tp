@@ -12,34 +12,26 @@ import com.fasterxml.jackson.databind.SequenceWriter;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 
 
-public class ExportStudentCsv {
+public class ExportTutorCsv {
     private Path filePath;
 
-    public ExportStudentCsv(Path filePath) {
+    public ExportTutorCsv(Path filePath) {
         this.filePath = filePath;
     }
 
     public void readJson() throws IOException {
         JsonNode jsonTree = new ObjectMapper().readTree(new File(this.filePath.toUri()));
         CsvMapper csvMapper = new CsvMapper();
-        SequenceWriter seqW = csvMapper.writer().writeValues(new File("studentCsvConvertor.csv"));
-        seqW.write(Arrays.asList("name", "phone", "email", "address", "school", "level", "nok_name", "nok_phone",
-                "nok_email", "nok_address", "nok_relationship", "nok_tagged", "tagged", "tuitionClasses"));
+        SequenceWriter seqW = csvMapper.writer().writeValues(new File("tutorCsvConvertor.csv"));
+        seqW.write(Arrays.asList("name", "phone", "email", "address", "qualification", "institution", "tagged", "tuitionClasses"));
+
 
         ArrayList<JsonNode> list = new ArrayList<>();
         jsonTree.elements().next().elements().forEachRemaining(list::add);
         for (JsonNode item : list) {
             ArrayList<String> arr = new ArrayList<>();
             item.fields().forEachRemaining(header -> {
-                if (header.getKey().equals("nextOfKin")) {
-                    header.getValue().elements().forEachRemaining(values -> {
-                        if (values.textValue() == null) {
-                            arr.add(handleTagged(values));
-                        } else {
-                            arr.add(values.textValue());
-                        }
-                    });
-                } else if (header.getKey().equals("tagged")) {
+                if (header.getKey().equals("tagged")) {
                     arr.add((handleTagged(header.getValue())));
                 } else if (header.getKey().equals("tuitionClasses")) {
                     arr.add(handleTuitionClass(header.getValue()));
@@ -56,10 +48,10 @@ public class ExportStudentCsv {
         ArrayList<String> arr = new ArrayList<>();
         fullClassList.elements().forEachRemaining(classes -> {
             classes.fields().forEachRemaining(id -> {
-                        if (id.getKey().equals("name")) {
-                            arr.add(id.getValue().textValue());
-                        }
-                    });
+                if (id.getKey().equals("name")) {
+                    arr.add(id.getValue().textValue());
+                }
+            });
         });
         return arr.toString();
     }

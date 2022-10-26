@@ -20,6 +20,8 @@ import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.storage.ExportStudentCsv;
+import seedu.address.storage.ExportTuitionClassCsv;
+import seedu.address.storage.ExportTutorCsv;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -193,9 +195,13 @@ public class ModelManager implements Model {
 
     @Override
     public void export(){
-        ExportStudentCsv StudentCsv = new ExportStudentCsv(getStudentAddressBookFilePath());
+        ExportStudentCsv studentCsv = new ExportStudentCsv(getStudentAddressBookFilePath());
+        ExportTutorCsv tutorCsv = new ExportTutorCsv(getTutorAddressBookFilePath());
+        ExportTuitionClassCsv tuitionClassCsv = new ExportTuitionClassCsv(getTuitionClassAddressBookFilePath());
         try {
-            StudentCsv.readJson();
+            studentCsv.readJson();
+            tutorCsv.readJson();
+            tuitionClassCsv.readJson();
             System.out.println("file converted to csv!");
         } catch (IOException e) {
             System.out.println("something went wrong");
