@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-MyInsuRec is a **desktop app for financial advisors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MyInsuRec can get your client and meeting management tasks done faster than traditional GUI apps.
+*MyInsuRec* is **the desktop app for financial advisors**. If you are a financial advisor looking for an app to better manage your clients and meetings and ease your mental load, then look no further. *MyInsuRec* can also boost your productivity with features to quickly look up client and meetings details. Beyond that, *MyInsuRec* also has features to help you improve your customer relations.
+
+*MyInsuRec* is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, *MyInsuRec* can get your client and meeting management tasks done faster than traditional GUI apps.
+
+*MyInsuRec* is available for the Linux, Windows and macOS operating systems.
 
 * Table of Contents
 {:toc}
@@ -55,14 +59,9 @@ MyInsuRec is a **desktop app for financial advisors, optimized for use via a Com
 
 </div>
 
-### Viewing help : `help`
+--------------------------------------------------------------------------------------------------------------------
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
+## Client commands
 
 ### Adding a client: `addClient`
 
@@ -110,6 +109,10 @@ Format: `delClient i/INDEX`
 Examples:
 * `delClient i/2`
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Meeting commands
+
 ### Adding a meeting : `addMeeting`
 
 Adds a new meeting to MyInsuRec.
@@ -125,9 +128,25 @@ Examples:
 
 ### Listing meetings: `listMeeting`
 
-List all meetings in MyInsuRec.
+Shows a list of all meetings in MyInsuRec.
 
 Format: `listMeeting`
+
+#### List meetings by time period
+
+Shows a list of meetings in MyInsuRec during a specified time period.
+
+Format: `listMeeting d/DATE`
+
+* Time periods are specified by keywords. The possible keywords are:
+* * `tomorrow` for a list of meetings happening tomorrow;
+* * `week` for a list of meetings happening in the next week;
+* * `month` for a list of meetings happening in the next month.
+
+Examples:
+* `listMeeting d/tomorrow`
+* `listMeeting d/month`
+
 
 ### Viewing a meeting: `viewMeeting`
 
@@ -155,11 +174,59 @@ Format: `delMeeting i/INDEX`
 Examples:
 * `delMeeting i/2`
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Product commands
+
+### {addProduct PLACEHOLDER}
+
+### Listing products: `listProduct`
+
+Shows a list of all products in MyInsuRec.
+
+Format: `listProduct`
+
+### Deleting a Product : `delProduct`
+
+Deletes a product from MyInsuRec.  
+This feature will remove the product from association with any client.
+
+Format: `delProduct i/INDEX`
+
+* Deletes the product at the specified `INDEX`.
+* The index refers to the index number shown in the displayed product list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-danger">
+
+* This feature should only be used if there is a need to delete a product, which is unlikely in most conceivable scenario! Use with caution as this not only removes the product from MyInsuRec's product list, it also removes the product from any association with your clients.
+
+</div>
+
+Examples:
+* `delProduct i/2`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## General commands
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Exiting MyInsuRec : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Others
 
 ### Saving the data
 
