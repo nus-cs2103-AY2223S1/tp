@@ -232,7 +232,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // additional notes
-        userInput = targetIndex.getOneBased() + ADDITIONAL_NOTE_DESC_AMY ;
+        userInput = targetIndex.getOneBased() + ADDITIONAL_NOTE_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
