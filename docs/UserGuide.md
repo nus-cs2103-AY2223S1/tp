@@ -167,7 +167,7 @@ and the employee has sufficient leaves, the leave period will be added and the t
 
 **Case 2: Invalid ID, date or insufficient leaves**
 
-If any of employee ID, date is invalid, or the employee does not pocess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
+If any of employee ID, date is invalid, or the employee does not possess enough leaves, Coydir will prompt the users accordingly, and the command will not execute.
 
 Format: `addleave id/ID sd/START_DATE ed/END_DATE`
 
