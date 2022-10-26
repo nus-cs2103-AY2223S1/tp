@@ -1,6 +1,15 @@
 package paymelah.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
+import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
+import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -324,6 +333,95 @@ public class ParserUtil {
             }
         }
         return presentCount == 1;
+    }
+
+    public static PersonDescriptor argumentMultimapToPersonDescriptor(ArgumentMultimap argumentMultimap) throws ParseException {
+        PersonDescriptor personDescriptor = new PersonDescriptor();
+
+        if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
+            personDescriptor.setName(ParserUtil.parseName(argumentMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            personDescriptor.setPhone(ParserUtil.parsePhone(argumentMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argumentMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            personDescriptor.setEmail(ParserUtil.parseEmail(argumentMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            personDescriptor.setAddress(ParserUtil.parseAddress(argumentMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+
+        parseTagsForDescriptor(argumentMultimap.getAllValues(PREFIX_TAG)).ifPresent(personDescriptor::setTags);
+        parseDescriptionsForDescriptor(argumentMultimap.getAllValues(PREFIX_DESCRIPTION))
+                .ifPresent(personDescriptor::setDescriptions);
+        parseMoniesForDescriptor(argumentMultimap.getAllValues(PREFIX_MONEY)).ifPresent(personDescriptor::setMonies);
+        parseDatesForDescriptor(argumentMultimap.getAllValues(PREFIX_DATE)).ifPresent(personDescriptor::setDates);
+        parseTimesForDescriptor(argumentMultimap.getAllValues(PREFIX_TIME)).ifPresent(personDescriptor::setTimes);
+
+        return personDescriptor;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     */
+    private static Optional<Set<Tag>> parseTagsForDescriptor(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> descriptions} into a {@code Set<Description>}
+     * if {@code descriptions} is non-empty.
+     */
+    private static Optional<Set<Description>> parseDescriptionsForDescriptor(Collection<String> descriptions) throws ParseException {
+        assert descriptions != null;
+
+        if (descriptions.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseDescriptions(descriptions));
+    }
+
+    /**
+     * Parses {@code Collection<String> monies} into a {@code Set<Money>} if {@code monies} is non-empty.
+     */
+    private static Optional<Set<Money>> parseMoniesForDescriptor(Collection<String> monies) throws ParseException {
+        assert monies != null;
+
+        if (monies.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseMonies(monies));
+    }
+
+    /**
+     * Parses {@code Collection<String> dates} into a {@code Set<DebtDate>} if {@code dates} is non-empty.
+     */
+    private static Optional<Set<DebtDate>> parseDatesForDescriptor(Collection<String> dates) throws ParseException {
+        assert dates != null;
+
+        if (dates.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseDates(dates));
+    }
+
+    /**
+     * Parses {@code Collection<String> times} into a {@code Set<DebtTime>} if {@code times} is non-empty.
+     */
+    private static Optional<Set<DebtTime>> parseTimesForDescriptor(Collection<String> times) throws ParseException {
+        assert times != null;
+
+        if (times.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(ParserUtil.parseTimes(times));
     }
 
     /**
