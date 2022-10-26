@@ -44,6 +44,8 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+    private String initialMessage = "Welcome to FoodRem!";
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing FoodRem ]===========================");
@@ -76,14 +78,17 @@ public class MainApp extends Application {
         try {
             Optional<ReadOnlyFoodRem> foodRemOptional = storage.readFoodRem();
             if (foodRemOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample FoodRem");
+                initialMessage = "Data file not found. Will be starting with a sample FoodRem";
+                logger.info(initialMessage);
             }
             initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with a sample FoodRem");
+            initialMessage = "Data file not in the correct format. Will be starting with a sample FoodRem";
+            logger.warning(initialMessage);
             initialData = SampleDataUtil.getSampleFoodRem();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with a sample FoodRem");
+            initialMessage = "Problem while reading from the file. Will be starting with a sample FoodRem";
+            logger.warning(initialMessage);
             initialData = SampleDataUtil.getSampleFoodRem();
         }
 
@@ -165,7 +170,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting FoodRem " + MainApp.VERSION);
-        ui.start(primaryStage);
+        ui.start(primaryStage, initialMessage);
     }
 
     @Override
