@@ -16,7 +16,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.link.Link;
 
 /**
- * Parses input arguments and creates a new {@code AddLinkCommand} object
+ * Parses input arguments and creates a new {@code AddLinkCommand} object.
  */
 public class AddLinkCommandParser implements Parser<AddLinkCommand> {
 

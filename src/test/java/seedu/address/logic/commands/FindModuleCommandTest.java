@@ -41,7 +41,7 @@ public class FindModuleCommandTest {
         // same object -> returns true
         assertTrue(findModuleFirstCommand.equals(findModuleFirstCommand));
 
-        // same values -> returns true
+        // same keyword -> returns true
         FindModuleCommand findModuleFirstCommandCopy = new FindModuleCommand(firstPredicate);
         assertTrue(findModuleFirstCommand.equals(findModuleFirstCommandCopy));
 
@@ -51,7 +51,7 @@ public class FindModuleCommandTest {
         // null -> returns false
         assertFalse(findModuleFirstCommand.equals(null));
 
-        // different module -> returns false
+        // different keyword -> returns false
         assertFalse(findModuleFirstCommand.equals(findModuleSecondCommand));
     }
 
