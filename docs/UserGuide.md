@@ -234,21 +234,33 @@ Format: `list`
 
 ### Finding a student: `find`
 
-Finds students whose names contain any of the given keywords.
+Finds an existing student in the list. You can only find by one field at a time. Fields supported in find:
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+- Name
+- Email
+- Address
+- Phone number
+- Next of Kin's Phone number
+- Class Date
+- Tag
+
+### Find by name:
+
+Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g. `alex` will match `Alex`.
 - The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
-- Only the name is searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`.
-- Persons matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+- Students matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Example:
 
 `find tan` returns `Tan Xiao Ming` and `John Tan`.
 
 ![UiFind](images/UG-screenshots/UiFind.png)
+
+Replace the prefix n/ with the corresponding prefixes (p/, np/, e/, a/, dt/ or t/) for find by other fields.
+The same rules apply as per find by name.
 
 [Back to top](#table-of-contents)
 
