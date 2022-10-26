@@ -342,20 +342,20 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                       |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action      | Format, Examples                                                                                                                                       |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **listC**   | `listC`                                                                                                                                                |
-| **addC**   | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **addC**    | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
 | **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
 | **editC**   | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
-| **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
+| **findC**   | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
 | **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |                                                                                                 |
 | **listT**   | `listT`                                                                                                                                                |
-| **addT**   | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
-| **markT**    | `markT INDEX` <br> e.g., `mark 1`                                                                                                                      |
-| **unmarkT**  | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                                                                  |
-| **searchT** | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                                                                             |
+| **addT**    | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
+| **markT**   | `markT INDEX` <br> e.g., `mark 1`                                                                                                                      |
+| **unmarkT** | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                                                                  |
+| **findT**   | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                                                                             |
 | **filterT** | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
 | **listL**   | `listL`                                                                                                                                                |
-| **addL**   | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
-| **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |
+| **addL**    | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
+| **deleteL** | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |
