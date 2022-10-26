@@ -75,7 +75,6 @@ public class DeleteCommandTest {
         showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
         Index outOfBoundIndex = INDEX_SECOND_ENTRY;
-        
         // ensures that outOfBoundIndex is still in bounds of expenditure list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPennyWise().getExpenditureList().size());
 

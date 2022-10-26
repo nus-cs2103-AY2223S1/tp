@@ -80,9 +80,9 @@ public class PennyWiseTest {
 
     @Test
     public void hasIncome_incomeNotInPennyWise_returnsFalse() {
-        assertFalse(pennyWise.hasIncome());
+        assertFalse(pennyWise.hasIncome(ALLOWANCE));
     }
-    
+
     @Test
     public void hasExpenditure_expenditureInPennyWise_returnsTrue() {
         pennyWise.addExpenditure(LUNCH);
