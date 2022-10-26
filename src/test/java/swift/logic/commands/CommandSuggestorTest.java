@@ -90,7 +90,7 @@ public class CommandSuggestorTest {
 
     @Test
     public void suggestCommand_validCommandWithIndexGiven_success() {
-        String expectedSuggestion =  EditTaskCommand.COMMAND_WORD + " 1 "
+        String expectedSuggestion = EditTaskCommand.COMMAND_WORD + " 1 "
                                         + PREFIX_NAME + PREFIX_NAME.getUserPrompt() + " "
                                         + PREFIX_DESCRIPTION + PREFIX_DESCRIPTION.getUserPrompt() + " "
                                         + PREFIX_DEADLINE + PREFIX_DEADLINE.getUserPrompt();
