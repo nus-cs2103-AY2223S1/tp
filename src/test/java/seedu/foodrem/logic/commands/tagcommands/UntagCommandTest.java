@@ -51,7 +51,8 @@ public class UntagCommandTest {
         // Run tag command on original model
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
-        assertCommandSuccess(untagItemCommand, model, new ItemWithMessage(editedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
+        assertCommandSuccess(untagItemCommand, model,
+                new ItemWithMessage(editedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
         assertFalse(model.getCurrentList().get(0).containsTag(tag));
     }
 
