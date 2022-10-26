@@ -112,7 +112,7 @@ You can have any number and any kind of tags (including 0).
 
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship, r/4`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 st/Java dt/Bachelors jt/Internship, rate/4`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
 
 ### Listing all persons : `list`
@@ -169,7 +169,7 @@ Examples:
 Finds candidates whose personal information and tags contain any of the given keywords.
 
 
-Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [r/RATING]
+Format: `find KEYWORD [MORE_KEYWORDS]` **or** `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [s/STATUS] [rate/RATING]
 [MORE_TAGGED_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
