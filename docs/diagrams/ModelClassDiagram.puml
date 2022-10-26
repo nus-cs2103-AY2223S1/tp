@@ -18,7 +18,8 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Interest
+Class Mod
 
 }
 
@@ -35,16 +36,20 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
+
 UniquePersonList --> "~* all" Person
+
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "*" Interest
+Person *--> "*" Mod
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager --> Person: " * filtered"
+
 @enduml
