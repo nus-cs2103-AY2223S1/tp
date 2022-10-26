@@ -16,25 +16,30 @@ internship management tasks done faster than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `InTrack.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-2/tp).
+2. Download the latest `InTrack.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for InTrack.
+3. Copy the file to the folder you want to use as the _home folder_ for InTrack.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Launch the app by double-clicking the file by using the command java -jar InTrack.jar. The GUI similar to the below 
+   should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
+   open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all internships.
+   * **`list`** : Lists all internship applications.
 
-   * **`add`**`p/Software Engineer Intern c/Google e/email@gmail.com a/1600 Amphitheatre Parkway t/Urgent` : Adds a `Software Engineer Intern` internship application to `Google` with respective email, location and tag to InTrack.
+   * **`add`**`n/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/careers.microsoft.com t/Urgent` :
+     Adds an internship application for `Software Engineer` at `Microsoft` to InTrack.
 
-   * **`mark`** `1` : Marks the 1st internship shown in the current list as completed
+   * **`delete`**`1` : Deletes the first internship application displayed in InTrack.
 
-   * **`delete`**`1` : Deletes the 1st internship shown in the current list.
+   * **`clear`** : Deletes all entries in InTrack.
 
-1. Refer to the [Features](#features) below for details of each command.
+   * **`exit`** : Exits InTrack.
+   
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,13 +50,13 @@ internship management tasks done faster than traditional GUI apps.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer Intern`.
+  e.g. in `add p/POSITION`, `POSITION` is a parameter which can be used as `add p/Software Engineer`.
 
 * Items in square brackets are optional.<br>
-  e.g `a/ADDRESS [t/TAG]` can be used as `a/1600 Amphitheatre Parkway t/virtual` or as `a/1600 Amphitheatre Parkway`.
+  e.g `w/WEBSITE [t/TAG]` can be used as `w/careers.microsoft.com t/Urgent` or as `w/careers.microsoft.com`.
 
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/urgent`, `t/urgent t/virtual` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Urgent`, `t/Urgent t/Remote` etc.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -60,78 +65,148 @@ internship management tasks done faster than traditional GUI apps.
 
 ### Viewing help: `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page and shows the format of all commands.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
-
-### Adding an internship application: `add`
-
-Adds a new internship application to the tracker.
-
-Format: `add p/POSITION c/COMPANY e/EMAIL a/ADDRESS [t/TAG]…`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An internship can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add p/Software Engineer Intern c/Google e/email@gmail.com a/1600 Amphitheatre Parkway t/Urgent`
-* `add p/Data Analyst c/TikTok e/tiktok@bytedance.com a/1 Raffles Quay`
-
 ### Listing all internship applications : `list`
 
-Shows a list of all internship applications in the tracker.
+Shows a list of all internship applications in InTrack.
 
 Format: `list`
 
-### Deleting an internship application : `delete`
+### Clearing all internship applications : `clear`
 
-Deletes the specified internship application from the tracker.
+Deletes all internship applications in InTrack.
 
-Format: `delete INDEX`
-
-* Deletes the internship application at the specified INDEX.
-* The index refers to the index number shown in the displayed internship list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `delete 1` deletes the 1st internship application in InTrack.
-
-### Marking completion status of an internship application : `mark`
-
-Marks the specified internship application as completed.
-
-Format: `mark INDEX`
-
-* Marks the internship application at the specified INDEX.
-* The index refers to the index number shown in the displayed internship list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `mark 1` marks the 1st internship application in InTrack as completed.
+Format: `clear`
 
 ### Saving the data
 
-InTrack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+InTrack data are saved in the hard disk automatically after any command that changes the data. 
+There is no need to save manually.
+
+### Adding an internship application: `add`
+
+Adds a new internship application to InTrack.
+
+Format: `add n/COMPANY_NAME p/POSITION s/SALARY e/EMAIL w/WEBSITE [t/TAG]…`
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** An internship can have any number of tags (including 0).
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note about duplicates:**<br>
+
+An internship application can only be added if it does not currently exist in InTrack. Each internship application is
+uniquely identified by its `COMPANY` and `POSITION` with no regards to case-sensitivity.<br>
+
+Example: If an internship application with the parameters `n/Microsoft p/Software Engineer` already exists in InTrack, 
+a new one with `n/MICROSOFT p/Software Engineer` will be treated as a duplicate and will not be added.
+
+</div>
+
+| Parameter      | Representation                               | Constraints |
+|----------------|----------------------------------------------|-------------|
+| `COMPANY_NAME` | Company that is offering the internship      |             |
+| `POSITION`     | Position of the internship                   |             |
+| `SALARY `      | Salary of the position                       |             |
+| `EMAIL`        | Email of the hiring team                     |             |
+| `WEBSITE`      | Website containing details of the internship |             |
+| `TAG`          | Tag(s) of the internship application         |             |
+
+Examples of usage:
+
+* `add n/Microsoft p/Software Engineer s/5000 e/hr@microsoft.com w/https://careers.microsoft.com t/Urgent`
+
+* `add n/Apple p/Frontend Developer s/5000 e/hr@apple.com w/https://www.apple.com/careers`
+
+Expected outcome:
+
+* Internship application information is added to InTrack.
+
+### Deleting an internship application : `delete`
+
+Deletes the internship application at the specified `INDEX` from InTrack. 
+`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+
+Format: `delete INDEX`
+
+Example of usage:
+
+* `delete 1` 
+
+Expected outcome:
+
+* The first internship application in InTrack is deleted.
+
+### Editing an internship application : `edit`
+
+### Updating status of an internship application : `status`
+
+### Adding a remark to an internship application : `remark`
+
+### Finding internship applications by company name : `findn`
+
+### Finding internship applications by position : `findp`
+
+### Filtering internship applications by status : `filter`
+
+### Sorting internship applications: `sort`
+
+### Viewing statistics of all internship applications : `stats`
+
+### Selecting an internship application : `select`
+
+Selects and shows the details of the internship application at the specified `INDEX`
+`INDEX` refers to the index number shown in the displayed internship list and **must be a positive unsigned integer**.
+
+Format: `select INDEX`
+
+Example of usage:
+
+* `select 1`
+
+Expected outcome:
+
+* The first internship application in InTrack is selected and its details are shown on the right panel. 
+
+### Adding a task to a selected internship application : `addtask`
+
+### Deleting a task from a selected internship application : `deltask`
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-- Work in progress
+**Q**: What is a positive unsigned integer?<br>
+**A**: A positive unsigned integer is a whole number that ranges from 1 to 4294967295 inclusive.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                  |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                            |
-| **Add**    | `add p/POSITION c/COMPANY e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add p/Software Engineer Intern c/Google e/email@gmail.com a/1600 Amphitheatre Parkway t/Urgent` |
-| **Delete** | `delete INDEX`<br> e.g., `delete 1`                                                                                                                               |
-| **Mark**   | `mark INDEX`<br> e.g., `mark 1`                                                                                                                                   |
-| **List**   | `list`                                                                                                                                                            |
+| Action               | Format, Examples |
+|----------------------|------------------|
+| **Help**             | `help`           |
+| **List**             | `list`           |
+| **Clear**            | `clear`          |
+| **Exit**             | `exit`           |
+| **Add**              |                  |
+| **Delete**           |                  |
+| **Edit**             |                  |
+| **Status**           |                  |
+| **Remark**           |                  |
+| **Find by Company**  |                  |
+| **Find by Position** |                  |
+| **Filter**           |                  |
+| **Sort**             |                  |
+| **Stats**            |                  |
+| **Select**           |                  |
+| **Add Task**         |                  |
+| **Delete Task**      |                  |
 
