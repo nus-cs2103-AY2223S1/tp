@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.transaction.exceptions.TransactionNotFoundException;
 
 
 /**
@@ -55,10 +56,6 @@ public class TransactionLog {
         return transactionList.remove(index);
     }
 
-    public int size() {
-        return transactionList.size();
-    }
-
     /**
      * Checks if the transaction list is empty.
      * @return the boolean value true if the list is empty.
@@ -77,6 +74,38 @@ public class TransactionLog {
             internalList.add(transaction);
         }
         return FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    /**
+     * @return the number of transactions in the transaction log.
+     */
+    public int size() {
+        return transactionList.size();
+    }
+
+    /**
+     * Retrieves a transaction at specified index.
+     *
+     * @param index of transaction to be retrieved.
+     * @return transaction at the index
+     */
+    public Transaction getTransaction(int index) {
+        return transactionList.get(index);
+    }
+
+    /**
+     * Sets a new transaction at the specified index of transaction list.
+     *
+     * @param index of transaction to be replaced.
+     * @param editedTransaction the transaction to be used to replace the old transaction at the specified index.
+     */
+    public void setTransaction(int index, Transaction editedTransaction) {
+        requireAllNonNull(editedTransaction);
+
+        if (index == -1) {
+            throw new TransactionNotFoundException();
+        }
+        transactionList.set(index, editedTransaction);
     }
 
     /**
