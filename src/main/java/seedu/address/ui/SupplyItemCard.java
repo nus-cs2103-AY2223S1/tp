@@ -85,6 +85,25 @@ public class SupplyItemCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         amountInput.setText(String.valueOf(supplyItem.getIncDecAmount()));
+        //@@author hauchongtang-reused
+        //Reused from https://stackoverflow.com/questions/15159988/javafx-2-2-textfield-maxlength
+        // with minor modifications
+        amountInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                // force numeric value by resetting to old value if exception is thrown
+                Integer.parseInt(newValue);
+                // force correct length by resetting to old value if longer than maxLength
+                if (newValue.length() > MAX_LENGTH) {
+                    amountInput.setText(oldValue);
+                }
+            } catch (Exception e) {
+                if (newValue.length() == 0) {
+                    return;
+                } else {
+                    amountInput.setText(oldValue);
+                }
+            }
+        });
     }
 
     @Override
@@ -110,7 +129,17 @@ public class SupplyItemCard extends UiPart<Region> {
      */
     @FXML
     private void handleIncrease() throws CommandException, ParseException {
-        increaseHandler.accept(supplyItem.getIncDecAmount());
+        String input = amountInput.getText();
+
+        assert input.length() <= MAX_LENGTH;
+
+        int parsedAmount = Integer.parseInt(input);
+        if (parsedAmount >= 0) {
+            amountInput.setText(String.valueOf(parsedAmount));
+            changeIncDecHandler.accept(parsedAmount);
+        }
+
+        increaseHandler.accept(parsedAmount);
         executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
     }
 
@@ -119,7 +148,17 @@ public class SupplyItemCard extends UiPart<Region> {
      */
     @FXML
     private void handleDecrease() throws CommandException, ParseException {
-        decreaseHandler.accept(supplyItem.getIncDecAmount());
+        String input = amountInput.getText();
+
+        assert input.length() <= MAX_LENGTH;
+
+        int parsedAmount = Integer.parseInt(input);
+        if (parsedAmount >= 0) {
+            amountInput.setText(String.valueOf(parsedAmount));
+            changeIncDecHandler.accept(parsedAmount);
+        }
+
+        decreaseHandler.accept(parsedAmount);
         executeCommand.execute(RefreshStatsCommand.COMMAND_WORD);
     }
 
@@ -131,19 +170,12 @@ public class SupplyItemCard extends UiPart<Region> {
     private void handleAmount() {
         String input = amountInput.getText();
 
-        if (input.length() > MAX_LENGTH) {
-            input = input.substring(0, MAX_LENGTH);
-        }
+        assert input.length() <= MAX_LENGTH;
 
-        try {
-            int parsedAmount = Integer.parseInt(input);
-            if (parsedAmount >= 0) {
-                amountInput.setText(String.valueOf(parsedAmount));
-                changeIncDecHandler.accept(parsedAmount);
-            }
-        } catch (NumberFormatException e) {
-            // When TextField value is blank
-            amountInput.setText(DEFAULT_TEXT_FIELD_VALUE);
+        int parsedAmount = Integer.parseInt(input);
+        if (parsedAmount >= 0) {
+            amountInput.setText(String.valueOf(parsedAmount));
+            changeIncDecHandler.accept(parsedAmount);
         }
     }
 }
