@@ -26,7 +26,7 @@ Petcode is a **desktop app for coordinating pet sale business, optimized for use
 
    * **`list buyer/supplier/delivery`** : Lists buyer/supplier/delivery.
 
-   * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
+   * **`add`**`add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colour:blue t/Singapore` : Adds a buyer named `Hong Yi` who is looking for a ragdoll to the PetCode.
 
    * **`delete c/Buyer i/2`** : Deletes the second contact from the Buyer contacts list.
 
@@ -313,3 +313,11 @@ _Details coming soon ..._
 | **List**           | `list buyers`, `list suppliers`, `list delivery`                                                                                                                                                             |
 | **Clear**          | `clear`                                                                                                                                                                                                      |
 | **Help**           | `help`                                                                                                                                                                                                       |
+
+
+## List of Prefixes
+These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
+
+| Prefix | Category | Meaning |
+|--------|----------|---------|
+|
