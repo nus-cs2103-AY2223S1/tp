@@ -1,13 +1,21 @@
 {
-  "clients": [ {
-    "name": "Valid Person",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+  "clients" : [ {
+    "@UUID" : "8f19d695-cb80-4fca-8433-2c4cc5262c9c",
+    "name" : "Valid Client",
+    "phone" : "9482424",
+    "email" : "hans@example.com",
+    "address" : "4th street",
+    "birthday" : "",
+    "tagged" : [ ],
+    "meetings" : [ ]
   }, {
-    "name": "Person With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "@UUID" : "75e2ad1e-75df-4633-bffe-858ddc4c6cda",
+    "name" : "Client With Invalid Phone Field",
+    "phone" : "948asdf2424",
+    "email" : "hans@example.com",
+    "address" : "4th street",
+    "birthday" : "",
+    "tagged" : [ ],
+    "meetings" : [ ]
   } ]
 }

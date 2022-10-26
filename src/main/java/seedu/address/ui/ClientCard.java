@@ -49,7 +49,7 @@ public class ClientCard extends UiPart<Region> {
         id.setText(displayedIndex + "");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
-        email.setText(client.getEmail().value);
+        email.setText(client.getEmail().get().toString());
     }
 
     @Override
