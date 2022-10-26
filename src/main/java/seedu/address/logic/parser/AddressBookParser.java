@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
@@ -55,7 +54,8 @@ public class AddressBookParser {
 
             return (Command) commandExecuted.commandSpec().userObject();
         } catch (CommandLine.UnmatchedArgumentException e) {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    e.getCommandLine().getUsageMessage()));
         } catch (CommandLine.PicocliException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
