@@ -11,9 +11,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.shape.Circle?>
-
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.Button?>
+
 <HBox id="detailsPane" fx:id="detailsPane"
       xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
     <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
@@ -26,13 +26,8 @@
                     <Insets bottom="5" left="5" right="5" top="5" />
                 </padding>
                 <HBox alignment="CENTER_LEFT" spacing="5">
-                    <Label fx:id="id" styleClass="cell_big_label" textFill="#D8D8D8" wrapText="true">
-                        <minHeight>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE" />
-                        </minHeight>
-                    </Label>
-                    <Label id="title" fx:id="title" styleClass="cell_title_label" text="\$first" wrapText="true">
+                    <Label id="title" fx:id="title" styleClass="cell_title_label" text="\$first"
+                           wrapText="true" maxWidth="Infinity" HBox.hgrow="ALWAYS">
                         <minHeight>
                             <!-- Ensures that the label text is never truncated -->
                             <Region fx:constant="USE_PREF_SIZE" />
@@ -85,22 +80,7 @@
                         <Insets bottom="4.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox>
-                    <ImageView fx:id="customerIcon" fitWidth="12.5" fitHeight="16">
-                        <HBox.margin>
-                            <Insets right="8"/>
-                        </HBox.margin>
-                    </ImageView>
-                    <Label fx:id="customerName" styleClass="cell_small_label" text="\$customerName" wrapText="true">
-                        <minHeight>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE" />
-                        </minHeight>
-                    </Label>
-                    <VBox.margin>
-                        <Insets bottom="8.0" />
-                    </VBox.margin>
-                </HBox>
+
                 <Label styleClass="cell_h2_label" text="Description">
                     <VBox.margin>
                         <Insets top="16" bottom="8" />

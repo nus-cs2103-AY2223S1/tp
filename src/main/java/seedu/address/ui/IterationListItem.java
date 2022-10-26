@@ -31,6 +31,7 @@ public class IterationListItem extends UiPart<Region> {
     private Label feedback;
     @FXML
     private ImageView artImage;
+
     private boolean imageCopyCompleted;
 
     /**

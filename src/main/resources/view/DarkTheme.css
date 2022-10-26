@@ -158,7 +158,7 @@
 .card-pane {
      -fx-background-color: #1E2128;
      -fx-background-radius: 0 12 12 12;
-     -fx-border-color: #1E2128;
+     -fx-border-color: transparent;
 }
 
 .split-pane {
@@ -166,13 +166,15 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #1E2128;
+    -fx-padding: 0 0 0 16;
 }
 
 .result-display {
     -fx-background-color: #15181F;
     -fx-font-size: 12pt;
-    -fx-text-fill: #D8D8D8;
+    -fx-text-fill: #CDCDCD;
+    -fx-padding: 8px;
 }
 
 .result-display .label {
@@ -207,7 +209,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #30343F;
 }
 
 .context-menu .label {
@@ -221,6 +223,10 @@
 .menu-bar .label {
     -fx-font-size: 12pt;
     -fx-text-fill: #D8D8D8;
+}
+
+.menu-item:focused {
+    -fx-background-color: #3681C0;
 }
 
 .menu .left-container {
@@ -313,8 +319,8 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #3C424B;
-    -fx-background-insets: 3;
+    -fx-background-color: #383D48;
+    -fx-background-insets: 0 0 0 8;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -349,6 +355,14 @@
 .noSuchData {
     -fx-background-color: #1E2128;
     -fx-background-radius: 4px;
+}
+
+.optionsIconMenuButton,
+.optionsIconMenuButton > .arrow-button,
+.optionsIconMenuButton > .arrow-button > .arrow,
+ .optionsIconMenuButton > .label {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
 }
 
 .addButton, .addButton:armed, .addButton:pressed, .addButton:selected, .addButton:hover, .addButton:focused {
