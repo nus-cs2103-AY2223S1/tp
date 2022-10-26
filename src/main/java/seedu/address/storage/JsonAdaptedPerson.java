@@ -15,6 +15,7 @@ import seedu.address.model.person.AdditionalNotes;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -39,6 +40,8 @@ class JsonAdaptedPerson {
     private final Integer ratesPerClass;
     private final String additionalNotes;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final Boolean isPresent;
+    private final String displayedClass;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -52,7 +55,9 @@ class JsonAdaptedPerson {
                              @JsonProperty("moneyPaid") Integer moneyPaid,
                              @JsonProperty("ratesPerClass") Integer ratesPerClass,
                              @JsonProperty("additionalNotes") String additionalNotes,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("isPresent") Boolean isPresent,
+                             @JsonProperty("displayedClass") String displayedClass) {
         this.name = name;
         this.phone = phone;
         this.nokPhone = nokPhone;
@@ -66,6 +71,8 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isPresent = isPresent;
+        this.displayedClass = displayedClass;
     }
 
     /**
@@ -81,10 +88,12 @@ class JsonAdaptedPerson {
         moneyOwed = source.getMoneyOwed().value;
         moneyPaid = source.getMoneyPaid().value;
         ratesPerClass = source.getRatesPerClass().value;
-        additionalNotes = source.getAdditionalNotes().notes;
+        additionalNotes = source.getAdditionalNotes().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isPresent = source.getMarkStatus().isMarked();
+        displayedClass = source.getDisplayedClass().classDateTime;
     }
 
     /**
@@ -114,15 +123,13 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        final Phone modelNokPhone;
         if (nokPhone == null) {
-            modelNokPhone = new Phone();
-        } else {
-            if (!Phone.isValidPhone(nokPhone)) {
-                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-            }
-            modelNokPhone = new Phone(nokPhone);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
+        if (!Phone.isValidPhone(nokPhone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelNokPhone = new Phone(nokPhone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -187,9 +194,28 @@ class JsonAdaptedPerson {
             modelAdditionalNotes = new AdditionalNotes("");
         }
 
+        final Mark modelIsPresent;
+        if (isPresent != null) {
+            modelIsPresent = new Mark(isPresent);
+        } else {
+            modelIsPresent = new Mark(Boolean.FALSE);
+        }
+
+        final Class modelDisplayedClass;
+        if (displayedClass != null && !displayedClass.equals("")) {
+            if (!Class.isValidClassString(displayedClass)) {
+                throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
+            }
+            modelDisplayedClass = ParserUtil.parseClass(displayedClass);
+        } else {
+            modelDisplayedClass = new Class();
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Person(modelName, modelPhone, modelNokPhone, modelEmail, modelAddress, modelClassDateTime,
-                modelMoneyOwed, modelMoneyPaid, modelRatesPerClass, modelAdditionalNotes, modelTags);
+                modelMoneyOwed, modelMoneyPaid, modelRatesPerClass, modelAdditionalNotes, modelTags, modelIsPresent,
+                modelDisplayedClass);
     }
 
 }

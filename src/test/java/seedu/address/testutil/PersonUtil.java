@@ -38,6 +38,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
+        sb.append(PREFIX_NOK_PHONE + person.getNokPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getTags().stream().forEach(
@@ -68,7 +69,7 @@ public class PersonUtil {
         descriptor.getMoneyPaid().ifPresent(
                 moneyPaid -> sb.append(PREFIX_MONEY_PAID).append(moneyPaid.value.toString()).append(" "));
         descriptor.getAdditionalNotes().ifPresent(
-                additionalNotes -> sb.append(PREFIX_ADDITIONAL_NOTES).append(additionalNotes.notes).append(" "));
+                additionalNotes -> sb.append(PREFIX_ADDITIONAL_NOTES).append(additionalNotes.toString()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

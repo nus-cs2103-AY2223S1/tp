@@ -77,9 +77,9 @@ Basic Instructions:
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
-- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
 - Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (e.g.
-  0 times), `t/friend`, `t/friend t/family` etc.
+  0 times), `t/python`, `t/javascript t/react` etc.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
@@ -111,15 +111,19 @@ Note: Multiple students may share the same name.
 ```
 
 2. Student’s Contact Number:
-   - Contact number must only contain numerical digits between `0` and `9`.
+   - Student’s contact number must not be empty. 
+   - Student’s contact number must only contain numerical digits between `0` and `9`.
+   - Student's contact number must begin with `6`, `8` or `9`. 
 ```yaml
-Note: Contact number must contain at least 3 digits. Contact number must be unique.
+Note: Contact number must contain exactly 8 digits. Contact number must be unique.
 ```
 
-3. Next of Kin’s Number:
-    - Next of Kin’s number must only contain numerical digits between `0` and `9`.
+3. Next of Kin’s Contact Number:
+    - Next of Kin’s contact number must not be empty.
+    - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
+    - Next of Kin’s contact number must begin with `6`, `8` or `9`. 
 ```yaml
-Note: Next of Kin’s number cannot be empty. It must contain at least 3 digits.
+Note: Next of Kin’s contact number must contain exactly 8 digits.
 ```
 
 4. Address:
@@ -130,15 +134,24 @@ Note: Address cannot be empty. It must contain at least 1 character.
 ```
 
 5. Email:
+    - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
       - Local address should only contain alphanumeric characters and these special characters `+_.-`.
-      - Domain address should be least 2 characters long.
+      - Consecutive special characters are not supported.
+      - The domain name must:
+        1. End with a domain label at least 2 characters long.
+        2. Have each domain label start and end with alphanumeric characters.
+        3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
+4. Tags:
+    - Tags are optional.
+    - A student can have any number of tags (including 0).
+    - Tags must only contain alphanumeric characters.
 ```yaml
-Note: Email cannot be empty. It must fulfil the above requirements.
+Note: Tags must contain at least 1 alphanumeric character and cannot contain spacings.
 ```
 
-Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS`
+Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 Example:
 
@@ -160,15 +173,16 @@ Edits an existing student in the list.
 
 - Student’s Name
 - Student's Contact Number
-- Next of Kin’s Number
+- Next of Kin’s Contact Number
 - Address
 - Email
 - Class Date
 - Amount Paid
 - Amount Owed
 - Additional Notes
+- Tag
 
-1. Student's Name, Student's Contact Number, Next of Kin’s Number, Address, and Email follow
+1. Student's Name, Student's Contact Number, Next of Kin’s Contact Number, Email, Address and Tag follow
 the same convention as [adding a student](#adding-a-student-add).
 
 2. Class Date:
@@ -214,7 +228,7 @@ Important: Note **at least one** of these fields must exist in order to make the
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND]`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
 
 Examples:
 
@@ -240,6 +254,7 @@ Allows the user to view students and their information which includes:
 - Amount Paid
 - Amount Owed
 - Additional Notes
+- Tag
 
 Format: `list`
 
@@ -249,19 +264,26 @@ Format: `list`
 
 ---
 
-### Finding one or more students: `find`
+### Finding a students: `find`
 
-#### Find by Name: `find n/`
+Finds an existing student in the list. You can only find by one field at a time. Fields supported in `find`:
 
-Finds one or more students whose names contain any of the given keywords.
+- Name
+- Email
+- Address
+- Student's Contact Number
+- Next of Kin's Contact number
+- Class Date
+- Tag
+
+### Find by name:
 
 Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g. `alex` will match `Alex`.
 - The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
-- Only the name is searched.
 - Only full words will be matched e.g. `Han` will not match `Hans`.
-- Persons matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+- Students matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Example:
 
@@ -289,22 +311,24 @@ Examples:
 `find dt/2022-10-15` returns all students with classes on 15 October 2022.
 `find dt/Mon` returns all students with classes on the coming monday.
 
-### Deleting a student: 'delete'
+[Back to top](#table-of-contents)
 
-Deletes the specified person from the student list.
+### Deleting students: 'delete'
 
-Format: `delete INDEX`
+Deletes the specified student(s) from the student list.
 
-- Deletes the person at the specified `INDEX`.
-- The index refers to the index number shown in the Student's Details panel (bottom left).
-- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+Format: `delete INDEX [MORE_INDEXES]`
+
+- Deletes the student(s) at the specified `INDEX(ES)`.
+- The index(es) refers to the index numbers shown in the Student's Details panel (bottom left section of the display).
+- The index(es) must be a positive integer within the size of the displayed student list. e.g. `1, 2, 3, ...`.
 
 Examples:
-- `list` followed by `delete 2` deletes the 2nd person in the Student's Details panel.
+- `list` followed by `delete 1 2` deletes the 1st and 2nd person in the Student's Details panel.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
+❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
 ```
 
 [Back to top](#table-of-contents)
@@ -372,12 +396,11 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                  |
 | INDEX       | The number beside the student's name inthe Student's Details panel list |
 
-
 ## Command Summary
 
 | Action               | Format, Examples                                                                                                                                                                                                                  |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com`                                                                        |
+| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL [t/TAG]... `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com t/python t/beginner`                                         |
 | Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] `e.g., edit 2 p/98765431` |
 | Get help             | `help`                                                                                                                                                                                                                            |
 | List all students    | `list`                                                                                                                                                                                                                            |
@@ -385,5 +408,6 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                                                     |
 | Clear all students   | `clear`                                                                                                                                                                                                                           |
 | Exit the application | `exit`                                                                                                                                                                                                                            |
+
 
 [Back to top](#table-of-contents)
