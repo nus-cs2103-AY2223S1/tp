@@ -1,0 +1,14 @@
+{
+  "prefixMap" : [ "jtt/", "Job Type", "dt/", "Degree", "st/", "Skills" ],
+  "persons" : [ {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "tags" : [ [ "Skills", "colleagues", "friends" ] ],
+    "status" : "Application Received",
+    "note" : "",
+    "rating" : "5",
+    "links" : [ ]
+  } ]
+}

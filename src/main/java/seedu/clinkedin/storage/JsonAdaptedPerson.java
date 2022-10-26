@@ -42,7 +42,6 @@ class JsonAdaptedPerson {
     private final String status;
     private final String note;
     private final String rating;
-
     private final List<JsonAdaptedLink> links = new ArrayList<>();
 
     /**
