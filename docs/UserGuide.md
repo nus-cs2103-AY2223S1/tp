@@ -13,9 +13,9 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 
 # Table of Contents
 1. [Quickstart](#quick-start)
-2. [Features](fFeatures)<br>
+2. [Features](#Features)<br>
     a. [Common Features](#common-features)<br>
-    b. [Person Features](#person-features)<br>
+    b. [Client Features](#client-features)<br>
     c. [Policy Features](#policy-features)<br>
     d. [Event Features](#event-features)
 3. [Frequently Asked Questions](#faq)
@@ -38,13 +38,13 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`listClients`** : Lists all clients.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to the Address Book.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd client shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all clients.
 
    * **`exit`** : Exits the app.
 
@@ -81,7 +81,7 @@ As such, the features available to you are split into 4 main features:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `contacts`, `exit`, `clear` etc.) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `clients`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -94,7 +94,7 @@ Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+        Format: `help`
 
 ### Clearing all entries : `clear`
 
@@ -122,86 +122,96 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Client Features
 
-### Adding a person: `add`
+### Adding a client: `addClient`
 
-Adds a person to the address book.
+Adds a client to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A client can have any number of tags (including 0)
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The format for entering a birthday is "YYYY-MM-DD". The dates entered must be valid.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The `Risk Appetite` can be classified as High, Medium or Low. They are represented by characters "H", "M" and
+"L" respectively. e.g: "ra/H". All other values will be ignored.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05, i/50000, ra/L`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H`
 
-### Listing all persons : `list`
+### Listing all clients : `allClients`
 
-Shows a list of all persons in the address book.
+Shows a list of all clients in the address book.
 
-Format: `list`
+Format: `allClients`
 
-### Editing a person : `edit`
+### Editing a client : `editClient`
 
-Edits an existing person in the address book.
+Edits an existing client in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [r/RISK_APPETITE] ​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
+    specifying any tags after it. 
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
 
-### Search for contacts: `findContact`
+### Search for clients: `findClient`
 
-Search for contacts based on certain metrics
+Search for clients based on certain metrics
 
-Format: `findContact [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]`
+Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]`
 
 The following table illustrates the details of each metric and their search range:
 
 | Metric          | Usage Details                                                                                                                                                                                                                                                                                                                                                                                           |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name            | <ul><li>The search is case-insensitive. e.g `hans` will match `Hans`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>Contacts matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`</li></ul>                                 |
-| Phone           | <ul><li>At least 3 numbers have to be specified</li><li>All contacts whose phone number contains the exact specified numbers will be listed</li></ul>                                                                                                                                                                                                                                                   |
+| Name            | <ul><li>The search is case-insensitive. e.g `hans` will match `Hans`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>clients matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`</li></ul>                                 |
+| Phone           | <ul><li>At least 3 numbers have to be specified</li><li>All clients whose phone number contains the exact specified numbers will be listed</li></ul>                                                                                                                                                                                                                                                   |
 | Email           | <ul><li>The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com`</li><li>Only full emails are valid e.g. `Alice` will not yield a valid search</li></ul>                                                                                                                                                                                                                  |
 | Address         | <ul><li>The search is case-insensitive. e.g `Bedok` will match `bedok`</li><li>Any length of textual search except for an empty space is valid</li></ul>                                                                                                                                                                                                                                                |
-| Tag             | <ul><li>The search is case-insensitive. e.g `friends` will match `Friends`</li><li>Only full words will be matched e.g. `colleagues` will not match `colleague`</li><li>More than one tag can be specified to list all contacts that have all the specified tags. <br/> e.g. `friends` and `family` will list all contacts with both the `friends` and `family` tag </li></ul>                          |
-| Birthday        | <ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only contacts whose birthday falls on the specified date will be listed</li></ul>                                                                                                                                                                                                                         |
-| Income          | <ul><li>Any valid income value can be entered and it will be matched with the corresponding income bracket</li><li>All contacts whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`</li></ul>                                                                                                                        |
-| Risk Appetite   | <ul><li>Only one of the 3 levels, {H, M, L}, is allowed</li><li>All contacts whose risk appetite matches the specified risk level will be listed</ul>                                                                                                                                                                                                                                                   |
-| Policy Title    | <ul><li>The search is case insensitive. e.g `Health Plan` will match `health plan`</li><li>Any length of alphanumeric input except for an empty space will be valid</li><li>Contacts who are covered by a policy which contains at least one keyword will be listed</ul>                                                                                                                                |
-| Policy Coverage | <ul><li>Only inputs of the valid coverage type options are allowed</li><li>More than one coverage can be specified to list all contacts with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all contacts with both the `HEALTH` and `LIFE` coverage type </li><li>Contacts who are covered by policies which covers all the specified coverage types will be listed</ul> |
-| Policy Company  | <ul><li>Only one of the valid company abbreviations is allowed</li><li>Contacts who are covered by a policy belonging to the specified company will be listed</ul>                                                                                                                                                                                                                                      |
+| Tag             | <ul><li>The search is case-insensitive. e.g `friends` will match `Friends`</li><li>Only full words will be matched e.g. `colleagues` will not match `colleague`</li><li>More than one tag can be specified to list all clients that have all the specified tags. <br/> e.g. `friends` and `family` will list all clients with both the `friends` and `family` tag </li></ul>                          |
+| Birthday        | <ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only clients whose birthday falls on the specified date will be listed</li></ul>                                                                                                                                                                                                                         |
+| Income          | <ul><li>Any valid income value can be entered and it will be matched with the corresponding income bracket</li><li>All clients whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`</li></ul>                                                                                                                        |
+| Risk Appetite   | <ul><li>Only one of the 3 levels, {H, M, L}, is allowed</li><li>All clients whose risk appetite matches the specified risk level will be listed</ul>                                                                                                                                                                                                                                                   |
+| Policy Title    | <ul><li>The search is case insensitive. e.g `Health Plan` will match `health plan`</li><li>Any length of alphanumeric input except for an empty space will be valid</li><li>clients who are covered by a policy which contains at least one keyword will be listed</ul>                                                                                                                                |
+| Policy Coverage | <ul><li>Only inputs of the valid coverage type options are allowed</li><li>More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type </li><li>Clients who are covered by policies which covers all the specified coverage types will be listed</ul> |
+| Policy Company  | <ul><li>Only one of the valid company abbreviations is allowed</li><li>Clients who are covered by a policy belonging to the specified company will be listed</ul>                                                                                                                                                                                                                                      |
 
 Examples:
 
-* `findContact n/John` returns `john` and `John Doe`
-* `findContact n/alex david` returns `Alex Yeoh`, `David Li`
-* `findContact p/8743` returns contacts with that contain `8743` in their phone number
-* `findContact t/colleagues t/friends` returns contacts with both the `colleagues` and `friends` tag
-* `findContact n/alex t/friends` returns contacts with the name `alex` and tagged with a `friends` tag
+* `findClient n/John` returns `john` and `John Doe`
+* `findClient n/alex david` returns `Alex Yeoh`, `David Li`
+* `findClient p/8743` returns clients with that contain `8743` in their phone number
+* `findClient t/colleagues t/friends` returns clients with both the `colleagues` and `friends` tag
+* `findClient n/alex t/friends` returns clients with the name `alex` and tagged with a `friends` tag
 
-### Deleting a person : `delete`
+### Deleting a client : `deleteClient`
 
-Deletes the specified person from the address book.
+Deletes the specified client from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listClients` followed by `delete 2` deletes the 2nd client in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st Client in the results of the `find` command.
 
 
 
@@ -353,7 +363,7 @@ Examples:
 
 If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
 
-If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Person](#adding-a-person-add) or [Adding a Policy](#adding-a-policy) guides.
+If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client-add) or [Adding a Policy](#adding-a-policy) guides.
 
 Format: `assign INDEXOFCLIENT INDEXOFPOLICY pr/PREMIUM sd/STARTDATE ed/ENDDATE
 
@@ -401,40 +411,55 @@ Example Usage:
 ## Event Features 
 
 
-### Adding an Event 
+### Adding an Event : `addEvent`
+* Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME d/EVENT_DATE s/START_TIME e/END_TIME`
+* Description: Adds an event into the address book. Note the following restrictions 
+  * `START_TIME` must before `END_TIME`. All times are in the format: `HH:MM`.
+  * `EVENT_DATE` follows a standard date format for our app (i.e: `YYYY-MM-DD`).
+  * `CLIENT_NAME` indicates the name of a valid client within the address book. All Events must be tagged to a single client.
+    * If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+* Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
+* Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation,
 
 
 
 
 
+### Deleting an Event : `deleteEvent`
+Deletes the specified Event from the address book.
 
-(for Colin: can put this where you deem fit)<br>
-You may want to indicate that a particular Event involves a Client of yours. If you have not added this Client to your Client Book, you can refer to the [Adding a Person](#adding-a-person-add) guide to add your Client first.
+Format: `deleteEvent INDEX`
+
+* Deletes the event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Example Usage: `deleteEvent 2`
+* Example Result: deletes the 2nd event from the list.
 
 
-### Deleting an Event 
-
-
-### Viewing all Events : `listEvents`
+### Viewing all Events : `allEvents`
 
 This allows you to view all Events that have been previously added.
+* Note that events are automatically sorted in chronological order.
 
-Format: `listEvents`
+Format: `allEvents`
+
+![result for 'listEventsSample'](images/listEventsExample.png)
 
 
 ### Searching for an Event
 
 Search for events based on certain metrics
 
-Format: `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]`
+Format: `findEvent [desc/DESCRIPTION] [n/CLIENT_NAME] [date/DATE]`
 
 The following table illustrates the details of each metric and their search range:
 
-| Metric      | Usage Details                                                                                                                                                                                                                                                                                                                                                                                                          |
-|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Description | <ul><li>The search is case-insensitive. e.g `Meeting to discuss plans` will match `meeting to discuss plans`</li><li>Only full phrases will be matched e.g. `Meeting to discuss plans` will not match `Plans`</li><li>Only events for which description contains the complete specified phrase will be listed. <br/> e.g. `discuss plans` will return `Meeting to discuss plans` and `Discuss plans`</li></ul>         |
-| Person Name | <ul><li>The search is case-insensitive. e.g `John` will match `john`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>Events with the participant name contains at least one keyword will be listed. <br/> e.g. `Hans Bo` will return events which involve `Hans Gruber` or `Bo Yang`</li></ul> |
-| Date        | <ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only events which occur on the specified date will be listed</li></ul>                                                                                                                                                                                                                                                   |
+| Metric       | Usage Details                                                                                                                                                                                                                                                                                                                                                                                                          |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Description  | <ul><li>The search is case-insensitive. e.g `Meeting to discuss plans` will match `meeting to discuss plans`</li><li>Only full phrases will be matched e.g. `Meeting to discuss plans` will not match `Plans`</li><li>Only events for which description contains the complete specified phrase will be listed. <br/> e.g. `discuss plans` will return `Meeting to discuss plans` and `Discuss plans`</li></ul>         |
+| Client Name | <ul><li>The search is case-insensitive. e.g `John` will match `john`</li><li>The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`</li><li>Only full words will be matched e.g. `Han` will not match `Hans`</li><li>Events with the participant name contains at least one keyword will be listed. <br/> e.g. `Hans Bo` will return events which involve `Hans Gruber` or `Bo Yang`</li></ul> |
+| Date         | <ul><li>Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`</li><li>Only events which occur on the specified date will be listed</li></ul>                                                                                                                                                                                                                                                   |
 
 Examples:
 
@@ -462,7 +487,7 @@ Format: `calendar`
 **A**: When adding an Event involving a client, this client must exist in your client book first.
 
 **Q**: Why am I seeing a `Sorting metric does not exist` error when trying to sort my client list?<br>
-**A**: You may be typing a wrong **keyword** or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
+**A**: You may be typing a wrong **keyword** or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to client us! 
 
 **Q**: Why is a blank screen shown when I use the `calendar` feature?
 **A**: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event) first. Alternatively, you can choose to [view all Events](#viewing-all-events--listevents) instead.
@@ -479,9 +504,9 @@ Format: `calendar`
 | **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                   |
 | **List**         | `list`                                                                                                                                                                                                        |
 | **Help**         | `help`                                                                                                                                                                                                        |
-| **Find Contact** | `findContact [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: ` find n/Jim p/98765432` |
+| **Find client** | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br> e.g: ` find n/Jim p/98765432` |
 | **Find Policy**  | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br/> e.g: `findPolicy cov/LIFE`                                                                                                  |
-| **Find Event**   | `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]` <br/> e.g: `findEvent date/2022-05-05`                                                                                                             |
+| **Find Event**   | `findEvent [desc/DESCRIPTION] [n/CLIENT_NAME] [date/DATE]` <br/> e.g: `findEvent date/2022-05-05`                                                                                                            |
 | **Sort**         | `sort [COMPARABLE_METRIC]` <br> `e.g: sort AGE`                                                                                                                                                               |
 | **Pin**          | `pin [n/Name]` <br> e.g: `pin n/Jim`                                                                                                                                                                          |
 | **policies**     | `policies`                                                                                                                                                                                                    |

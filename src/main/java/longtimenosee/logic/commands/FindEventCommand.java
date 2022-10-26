@@ -23,7 +23,7 @@ public class FindEventCommand extends Command {
             + "and displays them as a list with index numbers.\n"
             + "Parameters: "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_NAME + "PERSON_NAME] "
+            + "[" + PREFIX_NAME + "CLIENT_NAME] "
             + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "meeting "
