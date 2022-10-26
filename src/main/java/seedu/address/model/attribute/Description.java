@@ -1,7 +1,5 @@
 package seedu.address.model.attribute;
 
-import java.util.Map;
-
 /**
  * Creates an attribute to represent a description of a display Item
  */

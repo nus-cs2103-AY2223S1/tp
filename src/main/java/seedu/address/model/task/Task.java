@@ -75,6 +75,10 @@ public class Task extends AbstractSingleItem {
         return completedTime;
     }
 
+    public Description getDescription() {
+        return description;
+    }
+
     /**
      * Returns true if both tasks have the same name and group. This defines a
      * weaker notion of equality between two

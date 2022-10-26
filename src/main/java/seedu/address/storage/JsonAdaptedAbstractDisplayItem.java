@@ -1,15 +1,18 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 abstract class JsonAdaptedAbstractDisplayItem {
 
     private final String name;
-    private final List<JsonAdaptedAttribute> attributes = new ArrayList<>();
+    private final List<JsonAdaptedAbstractAttribute> attributes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
-    protected JsonAdaptedAbstractDisplayItem(String name, List<JsonAdaptedAttribute> attributes,
+
+    protected JsonAdaptedAbstractDisplayItem(String name, List<JsonAdaptedAbstractAttribute> attributes,
                                              List<JsonAdaptedTag> tags) {
         this.name = name;
         this.attributes.addAll(attributes);
@@ -20,7 +23,7 @@ abstract class JsonAdaptedAbstractDisplayItem {
         return name;
     }
 
-    protected List<JsonAdaptedAttribute> getAttributes() {
+    protected List<JsonAdaptedAbstractAttribute> getAttributes() {
         return attributes;
     }
 
