@@ -95,7 +95,7 @@ public class AddressBookParserTest {
             + "Study ;;; 15-10-2022 1900 ;;; Utown") instanceof CreateMeetingCommand);
         assertThrows(ParseException.class,
             "Make sure you have entered the correct amount of information correctly separated!", ()
-            -> parser.parseCommand(CreateMeetingCommand.COMMAND_WORD + " Alex"));
+                -> parser.parseCommand(CreateMeetingCommand.COMMAND_WORD + " Alex"));
     }
 
     @Test
