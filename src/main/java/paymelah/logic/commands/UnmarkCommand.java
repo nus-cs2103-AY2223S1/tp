@@ -90,7 +90,7 @@ public class UnmarkCommand extends Command {
         int i = 1;
         for (Debt debt : debtsToUnmark) {
             builder.append(i + ". ")
-                    .append(debt)
+                    .append(debt.setPaid(false))
                     .append("\n");
             i++;
         }

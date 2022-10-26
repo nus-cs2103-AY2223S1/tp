@@ -90,7 +90,7 @@ public class MarkCommand extends Command {
         int i = 1;
         for (Debt debt : debtsToMark) {
             builder.append(i + ". ")
-                    .append(debt)
+                    .append(debt.setPaid(true))
                     .append("\n");
             i++;
         }
