@@ -40,8 +40,7 @@ task management done faster than traditional GUI apps.
 
 **:information_source: Notes about the command format:**<br>
 
-* Quotes optional for string arguments (i.e. `add member "egg"` and `add_member egg` are equivalent) when there is only
-  one string argument.
+* Quotes optional for string arguments (i.e. `add member "egg"` and `add_member egg` are equivalent) when there is only one string argument.
 * Double Tab to autocomplete string values (Coming soon!)
 * Arguments are delimited with flags (`add member "egg" --email="asd@a.com"`) (Coming soon!)
 </div>
@@ -63,8 +62,7 @@ Examples:
 
 ### Set a new team `set_team`
 
-Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if
-the team does not exist
+Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
 
 Format:
 * `set_team TEAM_NAME`
@@ -86,8 +84,7 @@ Examples:
 
 ### Adding a new member to the team `add_member`
 
-Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the
-team.
+Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
 
 Format:
 * `add_member TASK_INDEX`
@@ -152,20 +149,16 @@ Examples:
 
 ### Set Deadline for task: `set_deadline`
 
-Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If deadline
-has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in
-YYYY-MM-DD HH:MM format.
+Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If a deadline has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in YYYY-MM-DD HH:MM format.
 
 Format: `set_deadline TASK_INDEX DEADLINE`
 
 Examples:
-* `set_deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023
-  11.59pm.
+* `set_deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
 
 ### Delete task from team : `delete_task`
 
-Delete an existing task from the team given the task's index. Will display an error message if the task is not found in
-the user’s team, i.e., when the index exceeds the number of tasks.
+Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
 
 Format:
 * `delete_task TASK_INDEX`
@@ -175,8 +168,7 @@ Examples:
 
 ### List tasks in team: `list_tasks`
 
-View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or
-remaining tasks.
+View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete or remaining tasks.
 
 Format:
 * `list_tasks` will list all the tasks of the current team.
