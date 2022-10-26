@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.commands.CommandTestUtil.DESC_ERASER;
 import static tracko.logic.commands.CommandTestUtil.DESC_PEN;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_ERASER;
-import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_PEN;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_ERASER;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_SELL_PRICE_ERASER;
 import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
