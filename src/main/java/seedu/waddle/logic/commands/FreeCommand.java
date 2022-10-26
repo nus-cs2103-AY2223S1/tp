@@ -1,9 +1,7 @@
 package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
 
-import javafx.stage.StageStyle;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.model.Model;
 
