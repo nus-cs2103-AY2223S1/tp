@@ -131,13 +131,8 @@ public class ModelManager implements Model {
     //=========== Filtered Buyer List Accessors =============================================================
 
     /**
-<<<<<<< HEAD
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code PersonBook}
-=======
      * Returns an unmodifiable view of the list of {@code Buyer} backed by the internal list of
-     * {@code versionedAddressBook}
->>>>>>> d5ba928e3d8ee4c1f674fd33403d69f7e1f67b16
+     * {@code PersonBook}
      */
     @Override
     public ObservableList<Buyer> getFilteredPersonList() {
