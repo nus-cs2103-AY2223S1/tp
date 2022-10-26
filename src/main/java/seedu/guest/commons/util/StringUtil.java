@@ -13,10 +13,6 @@ import java.util.Arrays;
 public class StringUtil {
 
     private static String SPLIT_REGEX = "\\s+";
-    private static String ABBREVIATED_ROOM_CLEAN = "y";
-    private static String STANDARDISED_ROOM_CLEAN = "yes";
-    private static String ABBREVIATED_ROOM_UNCLEAN = "n";
-    private static String STANDARDISED_ROOM_UNCLEAN = "no";
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -91,6 +87,12 @@ public class StringUtil {
      * @param isRoomClean cannot be null, cannot be empty, must be a single isRoomClean
      */
     public static boolean containsIsRoomCleanIgnoreCase(String sentence, String isRoomClean) {
+
+        String abbreviatedRoomClean = "y";
+        String standardisedRoomClean = "yes";
+        String abbreviatedRoomUnclean = "n";
+        String standardisedRoomUnclean = "no";
+
         requireNonNull(sentence);
         requireNonNull(isRoomClean);
 
@@ -98,10 +100,10 @@ public class StringUtil {
         checkArgument(!preppedIsRoomClean.isEmpty(), "IsRoomClean parameter cannot be empty");
         checkArgument(preppedIsRoomClean.split(SPLIT_REGEX).length == 1,
                 "IsRoomClean parameter should be a single IsRoomClean");
-        if (preppedIsRoomClean.equals(ABBREVIATED_ROOM_CLEAN)) {
-            preppedIsRoomClean = STANDARDISED_ROOM_CLEAN;
-        } else if (preppedIsRoomClean.equals(ABBREVIATED_ROOM_UNCLEAN)) {
-            preppedIsRoomClean = STANDARDISED_ROOM_UNCLEAN;
+        if (preppedIsRoomClean.equals(abbreviatedRoomClean)) {
+            preppedIsRoomClean = standardisedRoomClean;
+        } else if (preppedIsRoomClean.equals(abbreviatedRoomUnclean)) {
+            preppedIsRoomClean = standardisedRoomUnclean;
         }
 
         String preppedSentence = sentence;
