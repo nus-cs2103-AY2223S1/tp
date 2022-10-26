@@ -3,15 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_TUITIONCLASSES_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTORS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalStudents.STUDENT2;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
@@ -32,7 +27,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.NameContainsKeywordsPredicate;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -41,12 +35,9 @@ import seedu.address.model.tuitionclass.TuitionClass;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model studentModel = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
     private Model tutorModel = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
     private Model tuitionClassModel = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
-
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedStudentModel = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
     private Model expectedTutorModel = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
     private Model expectedTuitionClassModel = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
@@ -63,21 +54,21 @@ public class FindCommandTest {
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // FindCommand test for Student List
-        model.updateCurrentListType(Model.ListType.STUDENT_LIST);
-        findFirstCommand.execute(model);
+        studentModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
+        findFirstCommand.execute(studentModel);
 
         // second command studentPredicate not initialized -> return false;
         assertFalse(findFirstCommand.equals(findSecondCommand));
 
         // Initialize the second command
-        findSecondCommand.execute(model);
+        findSecondCommand.execute(studentModel);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstKeywords);
-        findFirstCommandCopy.execute(model);
+        findFirstCommandCopy.execute(studentModel);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -102,21 +93,21 @@ public class FindCommandTest {
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // FindCommand test for Student List
-        model.updateCurrentListType(Model.ListType.TUTOR_LIST);
-        findFirstCommand.execute(model);
+        tutorModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
+        findFirstCommand.execute(tutorModel);
 
         // second command tutorPredicate not initialized -> return false;
         assertFalse(findFirstCommand.equals(findSecondCommand));
 
         // Initialize the second command
-        findSecondCommand.execute(model);
+        findSecondCommand.execute(tutorModel);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstKeywords);
-        findFirstCommandCopy.execute(model);
+        findFirstCommandCopy.execute(tutorModel);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -141,21 +132,21 @@ public class FindCommandTest {
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // FindCommand test for Student List
-        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        findFirstCommand.execute(model);
+        tuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        findFirstCommand.execute(tuitionClassModel);
 
         // second command tuitionClassPredicate not initialized -> return false;
         assertFalse(findFirstCommand.equals(findSecondCommand));
 
         // Initialize the second command
-        findSecondCommand.execute(model);
+        findSecondCommand.execute(tuitionClassModel);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstKeywords);
-        findFirstCommandCopy.execute(model);
+        findFirstCommandCopy.execute(tuitionClassModel);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -166,20 +157,6 @@ public class FindCommandTest {
 
         // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
-    }
-
-    @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        List<String> keywords = prepareKeywords(" ");
-        NameContainsKeywordsPredicate<Person> predicate = new NameContainsKeywordsPredicate<>(keywords);
-        FindCommand command = new FindCommand(keywords);
-        expectedModel.updateFilteredPersonList(predicate);
-        model.updateCurrentListType(Model.ListType.PERSON_LIST);
-        expectedModel.updateCurrentListType(Model.ListType.PERSON_LIST);
-        command.execute(model);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
@@ -219,19 +196,6 @@ public class FindCommandTest {
         expectedTuitionClassModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         assertCommandSuccess(command, tuitionClassModel, expectedMessage, expectedTuitionClassModel);
         assertEquals(Collections.emptyList(), tuitionClassModel.getFilteredTuitionClassList());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        List<String> keywords = prepareKeywords("Kurz Elle Kunz");
-        NameContainsKeywordsPredicate<Person> predicate = new NameContainsKeywordsPredicate<>(keywords);
-        FindCommand command = new FindCommand(keywords);
-        expectedModel.updateFilteredPersonList(predicate);
-        model.updateCurrentListType(Model.ListType.PERSON_LIST);
-        expectedModel.updateCurrentListType(Model.ListType.PERSON_LIST);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     @Test

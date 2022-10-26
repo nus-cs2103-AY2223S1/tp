@@ -53,11 +53,6 @@ public class FindCommand extends Command {
             model.updateFilteredTutorList(tutorPredicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getFilteredTutorList().size()));
-        case PERSON_LIST:
-            this.personPredicate = new NameContainsKeywordsPredicate<>(keywords);
-            model.updateFilteredPersonList(personPredicate);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
         default:
             assert (type == ListType.TUITIONCLASS_LIST);
             this.classPredicate = new NameContainsKeywordsPredicate<>(keywords);

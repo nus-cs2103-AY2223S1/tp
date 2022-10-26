@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,11 +22,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult.CommandType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -105,6 +106,9 @@ public class CommandTestUtil {
     public static final String INSTITUTION_DESC_AMY = " " + PREFIX_INSTITUTION + VALID_INSTITUTION_AMY;
     public static final String INSTITUTION_DESC_BOB = " " + PREFIX_INSTITUTION + VALID_INSTITUTION_BOB;
 
+    public static final String RELATIONSHIP_DESC_AMY = " " + PREFIX_RELATIONSHIP + VALID_RELATIONSHIP_AMY;
+    public static final String RELATIONSHIP_DESC_BOB = " " + PREFIX_RELATIONSHIP + VALID_RELATIONSHIP_BOB;
+
     //class related here
     public static final String ENTITY_DESC_CLASS = " " + VALID_ENTITY_CLASS;
     public static final String NAME_DESC_CLASS1 = " " + PREFIX_NAME + VALID_NAME_CLASS1;
@@ -139,6 +143,8 @@ public class CommandTestUtil {
             " " + PREFIX_QUALIFICATION + "M&c"; // '&' not allowed in qualifications name
     public static final String INVALID_INSTITUTION_DESC =
             " " + PREFIX_INSTITUTION + "& University"; // '&' not allowed in institutions name
+    public static final String INVALID_RELATIONSHIP_DESC =
+            " " + PREFIX_RELATIONSHIP + "stranger";
 
     public static final String INVALID_SUBJECT_DESC =
             " " + PREFIX_SUBJECT + "Philosophy"; //outside set subjects not allowed
@@ -225,8 +231,53 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel, boolean isListCommand) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, true);
+                                            Model expectedModel, CommandType type) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, type);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     * This is for ShowCommand, EditCommand, AssignCommand and UnassignCommand.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, CommandType type, int index) {
+        assert(type == CommandType.SHOW || type == CommandType.EDIT || type == CommandType.ASSIGN);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, type, index);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     * This is for DeleteCommand.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, Student student) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, student);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     * This is for DeleteCommand.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, Tutor tutor) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, tutor);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     * This is for DeleteCommand.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel, TuitionClass tuitionClass) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, tuitionClass);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -234,31 +285,22 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered entity lists and selected entity in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
-
+        List<Student> expectedFilteredStudentList = new ArrayList<>(actualModel.getFilteredStudentList());
+        List<Tutor> expectedFilteredTutorList = new ArrayList<>(actualModel.getFilteredTutorList());
+        List<TuitionClass> expectedFilteredTuitionClassList =
+                new ArrayList<>(actualModel.getFilteredTuitionClassList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
-    }
+        assertEquals(expectedFilteredStudentList, actualModel.getFilteredStudentList());
+        assertEquals(expectedFilteredTutorList, actualModel.getFilteredTutorList());
+        assertEquals(expectedFilteredTuitionClassList, actualModel.getFilteredTuitionClassList());
 
-    /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
-
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate<Person>(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPersonList().size());
     }
 
     /**

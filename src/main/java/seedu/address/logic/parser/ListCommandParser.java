@@ -30,7 +30,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListTuitionClassCommand();
         default:
             assert false;
-            return new ListCommand();
+            return null;
         }
     }
 }

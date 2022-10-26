@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -27,7 +28,7 @@ public class Student extends Person {
     private static int id = 0;
     private final School school;
     private final Level level;
-    private final NextOfKin nextOfKin;
+    private NextOfKin nextOfKin;
     private final List<TuitionClass> tuitionClasses = new ArrayList<>();
     private final String uniqueId;
 
@@ -105,6 +106,21 @@ public class Student extends Person {
             throw new TuitionClassNotAssignedException();
         }
         tuitionClasses.remove(tuitionClass);
+    }
+
+    /**
+     * Add {@code nextOfKin} to student.
+     */
+    public void addNextOfKin(NextOfKin nextOfKin) throws CommandException {
+        requireAllNonNull(nextOfKin);
+        if (this.nextOfKin != null && this.nextOfKin.equals(nextOfKin)) {
+            throw new CommandException("trying to assign same nextOfKin");
+        }
+        this.nextOfKin = nextOfKin;
+    }
+
+    public void removeNextOfKin() {
+        this.nextOfKin = null;
     }
 
     /**

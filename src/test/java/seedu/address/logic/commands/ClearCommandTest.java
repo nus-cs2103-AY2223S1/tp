@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
-
+import static seedu.address.logic.commands.CommandResult.CommandType.CLEAR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
@@ -10,7 +9,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,7 +20,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
     }
 
     @Test
@@ -31,7 +29,7 @@ public class ClearCommandTest {
         model.updateCurrentListType(Model.ListType.STUDENT_LIST);
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
     }
 
     @Test
@@ -40,7 +38,7 @@ public class ClearCommandTest {
         model.updateCurrentListType(Model.ListType.TUTOR_LIST);
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
     }
 
     @Test
@@ -49,17 +47,7 @@ public class ClearCommandTest {
         model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
-    public void execute_nonEmptyAddressBookOnDefault_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        model.updateCurrentListType(Model.ListType.PERSON_LIST);
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
-
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
     }
 
     @Test
@@ -70,7 +58,7 @@ public class ClearCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
         expectedModel.setStudents(Collections.emptyList());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
     }
 
     @Test
@@ -81,7 +69,7 @@ public class ClearCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel.setTutors(Collections.emptyList());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
     }
 
     @Test
@@ -92,7 +80,7 @@ public class ClearCommandTest {
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel.setTuitionClasses(Collections.emptyList());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
     }
 
     @Test
@@ -103,14 +91,14 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
 
         model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
 
         // undisplayed is tutor list
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
@@ -118,14 +106,14 @@ public class ClearCommandTest {
         expectedModel = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
 
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         expectedModel = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
 
         // undisplayed is tuition class list
         model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
@@ -133,14 +121,14 @@ public class ClearCommandTest {
         expectedModel = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.STUDENT_LIST);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
 
         model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.TUTOR_LIST);
         expectedModel = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
         expectedModel.updateCurrentListType(Model.ListType.TUTOR_LIST);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel, CLEAR);
 
     }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="entityDescription" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" spacing="3.0" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+     <Label fx:id="name" styleClass="name-label" text="\$first" />
+         <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
+            <children>
+               <Label id="tutorDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="35.0" text="Tutor" textAlignment="CENTER">
+                  <HBox.margin>
+                     <Insets top="1.0" />
+                  </HBox.margin>
+               </Label>
+               <FlowPane fx:id="tags" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <Label styleClass="prefix-label" text="Phone:" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <Label styleClass="prefix-label" text="Address:" />
+               <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <Label styleClass="prefix-label" text="Email:" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <Label styleClass="prefix-label" text="Institution:" />
+            <Label fx:id="institution" styleClass="cell_small_label" text="\\$institution" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" spacing="5">
+            <children>
+               <Label styleClass="prefix-label" text="Qualification:" />
+            <Label fx:id="qualification" styleClass="cell_small_label" text="\\$qualidication" />
+            </children>
+         </HBox>
+         <Label styleClass="prefix-label" text="Class:" />
+         <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
+            <children>
+               <VBox fx:id="assignedClassList" alignment="TOP_CENTER" spacing="5.0">
+                  <StackPane.margin>
+                     <Insets bottom="5.0" top="5.0" />
+                  </StackPane.margin>
+               </VBox>
+            </children>
+         </StackPane>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>

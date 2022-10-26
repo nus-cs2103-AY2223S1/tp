@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.SortCommand.SortBy;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
 import seedu.address.model.person.tutor.Tutor;
@@ -21,8 +20,6 @@ import seedu.address.model.tuitionclass.UniqueTuitionClassList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
-    private final UniquePersonList persons;
     private final UniqueStudentList students;
     private final UniqueTutorList tutors;
     private final UniqueTuitionClassList tuitionClasses;
@@ -35,7 +32,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         students = new UniqueStudentList();
         tutors = new UniqueTutorList();
         tuitionClasses = new UniqueTuitionClassList();
@@ -52,15 +48,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
     /**
      * Replaces the contents of the student list with {@code students}.
      * {@code students} must not contain duplicate students.
@@ -94,8 +81,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setStudents(newData.getStudentList());
         setTutors(newData.getTutorList());
         setTuitionClasses(newData.getTuitionClassList());
-        // To be removed
-        setPersons(newData.getPersonList());
     }
 
     //// person-level operations
@@ -108,11 +93,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(person);
         if (person instanceof Student) {
             return students.contains((Student) person);
-        } else if (person instanceof Tutor) {
-            return tutors.contains((Tutor) person);
         } else {
-            // To be removed
-            return persons.contains(person);
+            assert(person instanceof Tutor);
+            return tutors.contains((Tutor) person);
         }
     }
 
@@ -123,11 +106,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPerson(Person p) {
         if (p instanceof Student) {
             students.add((Student) p);
-        } else if (p instanceof Tutor) {
-            tutors.add((Tutor) p);
         } else {
-            // To be removed
-            persons.add(p);
+            assert(p instanceof Tutor);
+            tutors.add((Tutor) p);
         }
     }
 
@@ -140,11 +121,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
         if (target instanceof Student && editedPerson instanceof Student) {
             students.setStudent((Student) target, (Student) editedPerson);
-        } else if (target instanceof Tutor && editedPerson instanceof Tutor) {
-            tutors.setTutor((Tutor) target, (Tutor) editedPerson);
         } else {
-            // To be removed
-            persons.setPerson(target, editedPerson);
+            assert(target instanceof Tutor && editedPerson instanceof Tutor);
+            tutors.setTutor((Tutor) target, (Tutor) editedPerson);
         }
     }
 
@@ -157,13 +136,11 @@ public class AddressBook implements ReadOnlyAddressBook {
             Student student = (Student) key;
             student.minusId();
             students.remove(student);
-        } else if (key instanceof Tutor) {
+        } else {
+            assert(key instanceof Tutor);
             Tutor tutor = (Tutor) key;
             tutor.minusId();
             tutors.remove(tutor);
-        } else {
-            // To be removed
-            persons.remove(key);
         }
     }
 
@@ -225,10 +202,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: refine later
     }
 
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
 
     @Override
     public ObservableList<Student> getStudentList() {

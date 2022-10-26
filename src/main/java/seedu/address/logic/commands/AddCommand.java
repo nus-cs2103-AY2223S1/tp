@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandResult.CommandType.ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -144,14 +145,14 @@ public class AddCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
             model.addPerson(this.personToAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, this.personToAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, this.personToAdd), ADD);
         } else {
             requireNonNull(this.classToAdd);
             if (model.hasTuitionClass(this.classToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_CLASS);
             }
             model.addTuitionClass(this.classToAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, this.classToAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, this.classToAdd), ADD);
         }
     }
 
