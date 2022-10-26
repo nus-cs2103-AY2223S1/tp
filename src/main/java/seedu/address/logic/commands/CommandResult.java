@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.ModelType;
+
 /**
  * Represents the result of a command execution.
  */
@@ -11,33 +13,15 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
-
-    /** The application should show the pie chart. */
-    private final boolean showChart;
+    /** The model type should show in the main screen. */
+    private final ModelType modelType;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified model fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, ModelType modelType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.showChart = false;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean showChart) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = false;
-        this.exit = false;
-        this.showChart = showChart;
+        this.modelType = requireNonNull(modelType);
     }
 
     /**
@@ -45,23 +29,16 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        //show student by default
+        this(feedbackToUser, ModelType.STUDENT);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public boolean isShowHelp() {
-        return showHelp;
-    }
-
-    public boolean isExit() {
-        return exit;
-    }
-
-    public boolean isShowChart() {
-        return showChart;
+    public ModelType getModelType() {
+        return modelType;
     }
 
     @Override
@@ -77,14 +54,12 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && showChart == otherCommandResult.showChart;
+                && modelType.equals(otherCommandResult.getModelType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, modelType);
     }
 
 }

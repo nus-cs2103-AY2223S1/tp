@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SwitchCommand;
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
 import seedu.address.logic.commands.consultation.DeleteConsultationCommand;
 import seedu.address.logic.commands.reminder.AddReminderCommand;
@@ -21,7 +22,6 @@ import seedu.address.logic.commands.student.DeleteCommand;
 import seedu.address.logic.commands.student.EditCommand;
 import seedu.address.logic.commands.student.ExtractEmailsCommand;
 import seedu.address.logic.commands.student.FindCommand;
-import seedu.address.logic.commands.student.ShowGradeCommand;
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
 import seedu.address.logic.commands.tutorial.DeleteTutorialCommand;
 import seedu.address.logic.parser.consultation.AddConsultationCommandParser;
@@ -92,9 +92,6 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case ShowGradeCommand.COMMAND_WORD:
-            return new ShowGradeCommand();
-
         case AddReminderCommand.COMMAND_WORD:
             return new AddReminderCommandParser().parse(arguments);
 
@@ -121,6 +118,9 @@ public class AddressBookParser {
 
         case ExtractEmailsCommand.COMMAND_WORD:
             return new ExtractEmailsCommand();
+
+        case SwitchCommand.COMMAND_WORD:
+            return new SwitchCommandParser().parse(arguments);
 
         default:
             throw new UnknownPreambleException(commandWords);
