@@ -24,7 +24,7 @@ import seedu.address.model.person.Buyer;
  */
 public class AddBuyerCommand extends AddPersonCommand {
 
-    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + " c/Buyer";
+    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "-b";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "

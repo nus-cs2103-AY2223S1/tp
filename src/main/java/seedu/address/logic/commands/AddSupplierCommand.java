@@ -22,7 +22,7 @@ import seedu.address.model.pet.Pet;
  */
 public class AddSupplierCommand extends AddPersonCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = AddPersonCommand.COMMAND_WORD + "-s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "

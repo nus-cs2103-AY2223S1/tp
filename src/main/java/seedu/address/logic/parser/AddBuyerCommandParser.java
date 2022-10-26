@@ -42,16 +42,16 @@ public class AddBuyerCommandParser extends AddPersonCommandParser implements Par
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_PERSON_CATEGORY,
-                        PREFIX_NAME, PREFIX_PHONE,
+                        PREFIX_NAME,
+                        PREFIX_PHONE,
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
                         PREFIX_TAG,
                         PREFIX_ORDER);
 
         if (!arePrefixesPresent(argMultimap,
-                PREFIX_PERSON_CATEGORY,
-                PREFIX_NAME, PREFIX_ADDRESS,
+                PREFIX_NAME,
+                PREFIX_ADDRESS,
                 PREFIX_PHONE,
                 PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
