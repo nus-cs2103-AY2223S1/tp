@@ -1,15 +1,15 @@
 package tuthub.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import tuthub.commons.core.Messages;
 import tuthub.commons.core.index.Index;
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.model.Model;
 import tuthub.model.tutor.Comment;
 import tuthub.model.tutor.Tutor;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes a comment from a tutor identified using it's displayed index from tuthub.
@@ -29,6 +29,12 @@ public class DeleteCommentCommand extends Command {
 
     private final Index commentIndex;
 
+    /**
+     * Deletes a comment form the comment list.
+     *
+     * @param tutorIndex Index of the tutor.
+     * @param commentIndex Index of the comment in the comment list of the tutor.
+     */
     public DeleteCommentCommand(Index tutorIndex, Index commentIndex) {
         this.tutorIndex = tutorIndex;
         this.commentIndex = commentIndex;

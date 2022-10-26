@@ -150,7 +150,8 @@ class JsonAdaptedTutor {
         final StudentId modelStudentId = new StudentId(studentId);
 
         if (comments == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CommentList.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CommentList.class.getSimpleName()));
         }
         final CommentList modelComments = new CommentList();
 
