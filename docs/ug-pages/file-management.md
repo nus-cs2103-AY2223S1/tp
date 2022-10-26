@@ -5,6 +5,16 @@ title: File Management
 
 All file commands have a `FILE_NAME` field that requires you to input a name for the file you are targeting.
 
+<!--
+<details close>
+<summary> File Command Format </summary>
+<br>
+
+
+</details>
+-->
+
+
 ### File Command Format:
 * Do not include the file type in the `FILE_NAME`.
 * The following symbols are not to be used in `FILE_NAME`.
@@ -13,7 +23,10 @@ All file commands have a `FILE_NAME` field that requires you to input a name for
     * `/` forward slashes
     * `\ ` backslashes
 
-### Example:
+<details close>
+<summary> Examples </summary>
+<br>
+
 * `rc4_data_2022` is a valid `FILE_NAME`.
 * `rc4_data_2022.json` is an invalid `FILE_NAME` due to the inclusion of the file type, `.json`.
 * The following are invalid `FILE_NAME` due to the inclusion of restricted symbols.
@@ -21,6 +34,11 @@ All file commands have a `FILE_NAME` field that requires you to input a name for
     * `rc4.data.2022` has dots.
     * `rc4/data/2022` has forward slashes.
     * `rc4\data\2022` has backslashes.
+
+</details>
+
+### Example:
+
 
 ---
 
