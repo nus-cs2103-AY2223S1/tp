@@ -89,11 +89,11 @@ public class ClassStorageTest {
 
     @Test
     public void execute_updatePerson() throws Exception {
-        Person personToEdit = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
+        Person personToEdit = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
                 .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("Remind student to submit homework")
                 .withRatesPerClass(40).build();
-        Person editedPerson = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
+        Person editedPerson = new PersonBuilder().withName("Daniel Tan").withPhone("81201230").withNokPhone("97228333")
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
                 .withMoneyOwed(20).withMoneyPaid(10).withAdditionalNotes("Remind student to submit homework")
                 .withRatesPerClass(40).build();
@@ -102,8 +102,10 @@ public class ClassStorageTest {
         TeachersPet teachersPetFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
+        // edit money owed and money paid of Daniel Tan (last person on personsTeachersPet list)
         ClassStorage.updatePerson(personToEdit, editedPerson);
         List<Person> listOfPerson = ClassStorage.getListOfPerson(LocalDate.of(2022, 5, 5));
+
         assert listOfPerson.size() == 3;
         assertEquals(editedPerson, listOfPerson.get(2));
     }

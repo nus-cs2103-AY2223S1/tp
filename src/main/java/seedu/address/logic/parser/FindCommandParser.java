@@ -66,7 +66,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("a/ search not implemented yet.");
 
         } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
-            String dateToFind = ParserUtil.parseDate(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
+            String dateToFind =
+                    ParserUtil.parseDateToFind(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
             return new FindCommand(new ClassContainsKeywordsPredicate(Arrays.asList(dateToFind)));
 
         } else {
