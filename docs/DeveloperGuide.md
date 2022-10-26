@@ -7,9 +7,23 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+### **Purpose**
+This document describes the architecture and software design decisions for our CLI-based task management app notionUS.
+While the document is in general for anyone who wants to understand the system, it is primarily targeted towards the
+designers, developers and software testers of notionUS.
+
+### **Scope**
+As the goal of this document is to cover and explain the architecture and design decisions, we first discuss
+the high-level architecture and software design under the "Design" section. Then we go into details of 
+implementation of our features in the "Implementation" section. 
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [AddressBook Level-3](https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
