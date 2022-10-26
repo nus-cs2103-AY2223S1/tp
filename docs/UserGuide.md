@@ -115,7 +115,7 @@ Formats:
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `QUANTITY` refers to the amount of the goods transacted.
-* The `QUANTITY` should only contain numbers and be at least 1 digit long.
+* The `QUANTITY` should only contain non-negative numbers and be at least 1 digit long.
 * The `GOODS` refers to the name of the goods transacted.
 * The `GOODS` should only contain alphanumeric characters, and it should not be blank.
 * The `PRICE` refers to the price of the goods transacted.
