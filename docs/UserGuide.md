@@ -247,7 +247,7 @@ Undos the last command from the FABook.
 * Non-undoable commands are: 'description', 'exit', 'find */', 'help', 'list', 'file' and 'filepath'
 
 :heavy_exclamation_mark: **Important**
-You can undo a 'redo' command. See [Redo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#redoing-a-previous-command--redo)
+You can undo a `redo` command. See [Redo](https://github.com/AY2223S1-CS2103T-T10-2/tp/blob/master/docs/UserGuide.md#redoing-a-previous-command--redo)
 
 ### Redoing a previous command : `redo`
 
