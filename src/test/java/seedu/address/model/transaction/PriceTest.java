@@ -39,6 +39,29 @@ class PriceTest {
         assertTrue(Price.isValidPrice("93121534"));
         assertTrue(Price.isValidPrice("124293842033123"));
     }
+
+    @Test
+    public void isValidPositivePrice() {
+        // null price number
+        assertThrows(NullPointerException.class, () -> Price.isPositivePrice(null));
+
+        // invalid price numbers
+        assertFalse(Price.isPositivePrice("-1.0"));
+        assertFalse(Price.isPositivePrice("-0.8"));
+        assertFalse(Price.isPositivePrice("-09.0"));
+        assertFalse(Price.isPositivePrice("-1.09"));
+        assertFalse(Price.isPositivePrice("-0.0"));
+        assertFalse(Price.isPositivePrice("-0"));
+
+        // valid price numbers
+        assertTrue(Price.isPositivePrice("0.1"));
+        assertTrue(Price.isPositivePrice("1.1827872"));
+        assertTrue(Price.isPositivePrice("91"));
+        assertTrue(Price.isPositivePrice("93121534"));
+        assertTrue(Price.isPositivePrice("124293842033123"));
+        assertTrue(Price.isPositivePrice("0"));
+        assertTrue(Price.isPositivePrice("0.000"));
+    }
     @Test
     public void testToString() {
         String value = "93121534";

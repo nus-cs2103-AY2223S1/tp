@@ -169,6 +169,9 @@ public class ParserUtil {
         if (!Price.isValidPrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
+        if (!Price.isPositivePrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS_POSITIVE);
+        }
         return new Price(price);
     }
 
@@ -183,6 +186,9 @@ public class ParserUtil {
         String trimmedQuantity = quantity.trim();
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        if (!Quantity.isPositiveQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS_POSITIVE);
         }
         return new Quantity(quantity);
     }

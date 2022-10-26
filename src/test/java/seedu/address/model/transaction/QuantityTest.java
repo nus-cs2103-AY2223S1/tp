@@ -21,8 +21,6 @@ class QuantityTest {
 
     @Test
     public void isValidQuantity() {
-        // null quantity number
-        assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity(null));
 
         // invalid quantity numbers
         assertFalse(Quantity.isValidQuantity("")); // empty string
@@ -31,12 +29,37 @@ class QuantityTest {
         assertFalse(Quantity.isValidQuantity("9011p041")); // alphabets within digits
         assertFalse(Quantity.isValidQuantity("93 14")); // spaces within digits
         assertFalse(Quantity.isValidQuantity("93.55")); // decimals within digits
+        assertFalse(Quantity.isValidQuantity("0")); // 0 Quantity
+        assertFalse(Quantity.isValidQuantity("12000022371")); // too large quantity
+
 
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("1"));
         assertTrue(Quantity.isValidQuantity("91"));
         assertTrue(Quantity.isValidQuantity("93121534"));
-        assertTrue(Quantity.isValidQuantity("124293842033123"));
+        assertTrue(Quantity.isValidQuantity("1200002237"));
+    }
+
+    @Test
+    public void isValidPositiveQuantity() {
+
+        // null quantity number
+        assertThrows(NullPointerException.class, () -> Quantity.isPositiveQuantity(null));
+
+        // negative quantity numbers
+        assertFalse(Quantity.isPositiveQuantity("-1.0"));
+        assertFalse(Quantity.isPositiveQuantity("-0.8"));
+        assertFalse(Quantity.isPositiveQuantity("-09.0"));
+        assertFalse(Quantity.isPositiveQuantity("-1.09"));
+        assertFalse(Quantity.isPositiveQuantity("-0.0"));
+        assertFalse(Quantity.isPositiveQuantity("-0"));
+
+        // positive quantity numbers
+        assertTrue(Quantity.isPositiveQuantity("012"));
+        assertTrue(Quantity.isPositiveQuantity("213"));
+        assertTrue(Quantity.isPositiveQuantity("91"));
+        assertTrue(Quantity.isPositiveQuantity("93121534"));
+        assertTrue(Quantity.isPositiveQuantity("124293842033123"));
     }
     @Test
     public void testToString() {

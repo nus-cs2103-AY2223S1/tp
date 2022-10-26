@@ -10,7 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers, and it should be at least 1 digits long";
+    public static final String MESSAGE_CONSTRAINTS_POSITIVE =
+            "Price should be not be negative.";
     public final String price;
+
 
     /**
      * Constructs a {@code Price}.
@@ -20,6 +23,7 @@ public class Price {
     public Price(String price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
+        checkArgument(isPositivePrice(price), MESSAGE_CONSTRAINTS_POSITIVE);
         this.price = price;
     }
 
@@ -27,13 +31,22 @@ public class Price {
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
+
         boolean isDouble = true;
+        double num = 0.00;
         try {
-            Double num = Double.parseDouble(test);
+            num = Double.parseDouble(test);
         } catch (NumberFormatException e) {
             isDouble = false;
         }
         return isDouble;
+    }
+
+    /**
+     * Returns true if a give string is a valid positive price.
+     */
+    public static boolean isPositivePrice(String test) {
+        return !test.contains("-");
     }
 
     @Override

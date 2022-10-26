@@ -9,17 +9,19 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, and it should be at least 1 digits long";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+    public static final String MESSAGE_CONSTRAINTS_POSITIVE =
+            "Price should be not be negative.";
+
     public final String quantity;
 
     /**
      * Constructs a {@code Quantity}.
-     *
      * @param quantity A valid quantity.
      */
     public Quantity(String quantity) {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isPositiveQuantity(quantity), MESSAGE_CONSTRAINTS_POSITIVE);
         this.quantity = quantity;
     }
 
@@ -27,7 +29,23 @@ public class Quantity {
      * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
+        boolean isInteger = true;
+        int num = 0;
+
+        try {
+            num = Integer.parseInt(test);
+        } catch (NumberFormatException e) {
+            isInteger = false;
+        }
+
+        return isInteger && num > 0 && !test.equals("null");
+    }
+
+    /**
+     * Returns true if a give string is a valid positive quantity.
+     */
+    public static boolean isPositiveQuantity(String test) {
+        return !test.contains("-");
     }
 
     @Override
