@@ -30,16 +30,6 @@ public class JsonAdaptedStallTest {
             .collect(Collectors.toList());
 
     @Test
-    public void isReviewOfStall_nullName_throwsException() throws Exception {
-        JsonAdaptedStall jsonAdaptedStall = new JsonAdaptedStall(null, VALID_ADDRESS,
-                VALID_TAGS, new ArrayList<>());
-        String expectedMessage =
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, () -> jsonAdaptedStall
-                .isReviewOfStall(TypicalReviews.ALICE));
-    }
-
-    @Test
     public void toModelType_validStallTags_returnsStall() throws Exception {
         JsonAdaptedStall stall = new JsonAdaptedStall(BENSON);
         assertEquals(BENSON, stall.toModelType());
