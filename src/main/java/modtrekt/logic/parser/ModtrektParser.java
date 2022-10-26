@@ -23,7 +23,8 @@ import modtrekt.logic.commands.EditTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.ListModulesCommand;
-import modtrekt.logic.commands.RemoveCommand;
+import modtrekt.logic.commands.RemoveModuleCommand;
+import modtrekt.logic.commands.RemoveTaskCommand;
 import modtrekt.logic.commands.UndoneModuleCommand;
 import modtrekt.logic.commands.tasks.DoneTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
@@ -61,6 +62,8 @@ public class ModtrektParser {
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(DoneTaskCommand.COMMAND_WORD, new DoneTaskCommand())
                 .addCommand(UndoneTaskCommand.COMMAND_WORD, new UndoneTaskCommand())
+                .addCommand(RemoveTaskCommand.COMMAND_WORD, new RemoveTaskCommand(),
+                        RemoveTaskCommand.COMMAND_ALIAS)
                 // modules
                 .addCommand(AddModuleCommand.COMMAND_WORD, new AddModuleCommand(),
                         AddModuleCommand.COMMAND_ALIAS)
@@ -72,6 +75,9 @@ public class ModtrektParser {
                         UndoneModuleCommand.COMMAND_ALIAS)
                 .addCommand(ListModulesCommand.COMMAND_PHRASE, new ListModulesCommand(),
                         ListModulesCommand.COMMAND_ALIAS)
+                .addCommand(CdModuleCommand.COMMAND_WORD, new CdModuleCommand())
+                .addCommand(RemoveModuleCommand.COMMAND_WORD, new RemoveModuleCommand(),
+                        RemoveModuleCommand.COMMAND_ALIASES)
                 .build();
         try {
             // Get the tokens from the user input.
@@ -133,14 +139,10 @@ public class ModtrektParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        case CdModuleCommand.COMMAND_WORD:
-            return new CdCommandParser().parse(arguments);
         default:
             return null;
         }
