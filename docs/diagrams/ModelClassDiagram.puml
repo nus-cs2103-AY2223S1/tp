@@ -4,47 +4,56 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+' Override `hide members` in style.puml
+show members
+hide empty members
+skinparam genericDisplay old
+
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
-Class ModelManager
-Class UserPrefs
+    Class "<<interface>>\nReadOnlyTaskList" as ReadOnlyTaskList
+    Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+    Class "<<interface>>\nModel" as Model
+    Class TaskList
+    Class ModelManager
+    Class UserPrefs
+    Class UniqueTaskList
+    Class Task {
+       isDone
+    }
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+    Class "<<interface>>\nComparable<Task>" as Comparable
 
+    Class Deadline
+    Class Name
+    Class Module
+    Class Tag
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TaskList .up.|> ReadOnlyTaskList
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyTaskList
+ModelManager -left-> "1" TaskList
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+TaskList *--> "1" UniqueTaskList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueTaskList -r-> "all ~* " Task : \t
 
-ModelManager -->"~* filtered" Person
+Task ..right|> Comparable : "   "
+
+Task *--> "1" Name
+Task *--> "1 " Module
+Task *--> "1  " Deadline
+Task *--> "*" Tag
+
+Name -[hidden]right-> Module
+Module -[hidden]right-> Deadline
+
+ModelManager -->"filtered ~*" Task
 @enduml

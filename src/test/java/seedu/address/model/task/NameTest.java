@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -36,5 +37,29 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void compareTo() {
+        Name alice = new Name("Alice Peterson");
+        Name ben = new Name("Benford Lee");
+        Name charles = new Name("Charleston Low");
+        Name charles2 = new Name("Charleston Low");
+
+        // null comparison
+        assertThrows(NullPointerException.class, () -> alice.compareTo(null));
+
+        // Lexicographically smaller
+        assertTrue(alice.compareTo(ben) < 0);
+        assertTrue(alice.compareTo(charles) < 0);
+        assertTrue(ben.compareTo(charles) < 0);
+
+        // Lexicographically bigger
+        assertTrue(charles.compareTo(alice) > 0);
+        assertTrue(charles.compareTo(ben) > 0);
+        assertTrue(ben.compareTo(alice) > 0);
+
+        // Equal
+        assertEquals(charles, charles2);
     }
 }

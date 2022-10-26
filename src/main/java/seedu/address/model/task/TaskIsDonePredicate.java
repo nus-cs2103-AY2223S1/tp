@@ -8,11 +8,11 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Task}'s {@code isDone} is false.
  */
-public class ModuleIsDonePredicate implements Predicate<Task> {
+public class TaskIsDonePredicate implements Predicate<Task> {
 
     private final List<String> isDone;
 
-    public ModuleIsDonePredicate(List<String> isDone) {
+    public TaskIsDonePredicate(List<String> isDone) {
         this.isDone = isDone;
     }
 
@@ -25,8 +25,16 @@ public class ModuleIsDonePredicate implements Predicate<Task> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleIsDonePredicate // instanceof handles nulls
-                && isDone.equals(((ModuleIsDonePredicate) other).isDone)); // state check
+                || (other instanceof TaskIsDonePredicate // instanceof handles nulls
+                && isDone.equals(((TaskIsDonePredicate) other).isDone)); // state check
     }
 
+    @Override
+    public String toString() {
+        if (isDone.size() == 1) {
+            return isDone.get(0).equals("true") ? "Marked Tasks" : "Unmarked Tasks";
+        } else {
+            return "All tasks";
+        }
+    }
 }

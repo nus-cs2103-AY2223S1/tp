@@ -34,6 +34,12 @@ public interface Logic {
     ObservableList<Task> getFilteredPersonList();
 
     /**
+     * Returns the current filter of the list view.
+     * @return String for current filter.
+     */
+    String getFilterStatus();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();

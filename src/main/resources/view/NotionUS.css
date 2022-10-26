@@ -6,7 +6,11 @@
     -cell-even-selected: #CECDCA;
     -menu-bg: #EBECED;
     -cell-odd-selected: #9B9A97;
-    -cell-label: #FBE4E4;
+    -cell-label-red: #FBE4E4;
+    -cell-label-blue: #DDEBF1;
+    -cell-label-green: #DDEDEA;
+    -notion-blue: #0B6E99;
+    -notion-green: #0F7B6C;
 }
 
 .background {
@@ -225,6 +229,13 @@
     -fx-opacity: 0.9;
 }
 
+.menu-bar .filterLabel {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Quicksand SemiBold";
+    -fx-text-fill: -font-color;
+    -fx-opacity: 0.9;
+}
+
 .menu .left-container {
     -fx-background-color: black;
 }
@@ -378,7 +389,7 @@
 
 #tags .label {
     -fx-text-fill: -font-color;
-    -fx-background-color: -cell-label;
+    -fx-background-color: -cell-label-green;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;

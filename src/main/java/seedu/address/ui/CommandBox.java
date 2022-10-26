@@ -42,7 +42,6 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
-        System.out.println(commandText);
         if (commandText.equals("")) {
             return;
         }
@@ -84,7 +83,7 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
             commandTextField.setText(prevCommand);
-            commandTextField.positionCaret(commandTextField.getLength());
+            commandTextField.positionCaret(commandTextField.getText().trim().length());
             break;
         case DOWN:
             String nextCommand = commandHistoryStorage.down();
@@ -93,7 +92,7 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
             commandTextField.setText(nextCommand);
-            commandTextField.positionCaret(commandTextField.getLength());
+            commandTextField.positionCaret(commandTextField.getText().trim().length());
             break;
         default:
             return;

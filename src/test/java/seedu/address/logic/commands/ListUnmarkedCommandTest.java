@@ -20,7 +20,7 @@ import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.ModuleIsDonePredicate;
+import seedu.address.model.task.TaskIsDonePredicate;
 
 public class ListUnmarkedCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -28,8 +28,8 @@ public class ListUnmarkedCommandTest {
 
     @Test
     public void equals() {
-        ModuleIsDonePredicate firstPredicate =
-                new ModuleIsDonePredicate(Collections.singletonList("false"));
+        TaskIsDonePredicate firstPredicate =
+                new TaskIsDonePredicate(Collections.singletonList("false"));
 
         ListUnmarkedCommand listUnmarkedCommand = new ListUnmarkedCommand(firstPredicate);
 
@@ -51,7 +51,7 @@ public class ListUnmarkedCommandTest {
     @Test
     public void execute_allMarked_noTasksFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        ModuleIsDonePredicate predicate = preparePredicate(" ");
+        TaskIsDonePredicate predicate = preparePredicate(" ");
         ListUnmarkedCommand command = new ListUnmarkedCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -61,7 +61,7 @@ public class ListUnmarkedCommandTest {
     @Test
     public void execute_multipleUnmarked_multipleTasksFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        ModuleIsDonePredicate predicate = preparePredicate("false");
+        TaskIsDonePredicate predicate = preparePredicate("false");
         ListUnmarkedCommand command = new ListUnmarkedCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -69,10 +69,10 @@ public class ListUnmarkedCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TaskIsDonePredicate}.
      * @return
      */
-    private ModuleIsDonePredicate preparePredicate(String userInput) {
-        return new ModuleIsDonePredicate(Arrays.asList(userInput.split("\\s+")));
+    private TaskIsDonePredicate preparePredicate(String userInput) {
+        return new TaskIsDonePredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
