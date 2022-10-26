@@ -6,11 +6,13 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class HelpCommandParser implements Parser<HelpCommand> {
 
     public static final String INVALID_ARGUMENT_MESSAGE = "Command you are trying to get help for is invalid!\n"
-            + "Use 'help' to view valid commands";
+            + "Use 'help' to view all valid commands";
 
     @Override
     public HelpCommand parse(String args) throws ParseException {
@@ -36,22 +38,26 @@ public class HelpCommandParser implements Parser<HelpCommand> {
             return new HelpCommand(BuyCommand.MESSAGE_USAGE);
         case "clear":
             return new HelpCommand(ClearCommand.MESSAGE_USAGE);
-        case "remark":
-            return new HelpCommand(RemarkCommand.MESSAGE_USAGE);
         case "delete":
             return new HelpCommand(DeleteCommand.MESSAGE_USAGE);
         case "edit":
             return new HelpCommand(EditCommand.MESSAGE_USAGE);
         case "exit":
             return new HelpCommand(ExitCommand.MESSAGE_USAGE);
+        case "filter":
+            return new HelpCommand(FilterTransCommand.MESSAGE_USAGE);
         case "find":
             return new HelpCommand(FindCommand.MESSAGE_USAGE);
         case "help":
             return new HelpCommand(HelpCommand.MESSAGE_USAGE);
         case "list":
             return new HelpCommand(ListCommand.MESSAGE_USAGE);
+        case "remark":
+            return new HelpCommand(RemarkCommand.MESSAGE_USAGE);
         case "sell":
             return new HelpCommand(SellCommand.MESSAGE_USAGE);
+        case "sort":
+            return new HelpCommand(SortCommand.MESSAGE_USAGE);
         case "user_guide":
             return new HelpCommand(UserGuideCommand.MESSAGE_USAGE);
         case "view":

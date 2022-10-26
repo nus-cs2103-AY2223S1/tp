@@ -11,11 +11,13 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -114,12 +116,28 @@ public class HelpCommandParserTest {
 
         assertParseSuccess(parser, FindCommand.COMMAND_WORD, expectedHelpCommand);
     }
+
+    @Test
+    public void parse_filterArg_returnsFilterTransCommandWithMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(FilterTransCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, FilterTransCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+
+    @Test
+    public void parse_sortArg_returnsSortCommandWithMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(SortCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, SortCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+
     @Test
     public void parse_sellArg_returnsHelpCommandWithSellMessageUsage() {
         HelpCommand expectedHelpCommand = new HelpCommand(SellCommand.MESSAGE_USAGE);
 
         assertParseSuccess(parser, SellCommand.COMMAND_WORD, expectedHelpCommand);
     }
+
     @Test
     public void parse_viewArg_returnsHelpCommandWithViewMessageUsage() {
         HelpCommand expectedHelpCommand = new HelpCommand(ViewCommand.MESSAGE_USAGE);

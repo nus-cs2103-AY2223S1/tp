@@ -143,6 +143,15 @@ public class HelpCommandTest {
     }
 
     @Test
+    public void execute_viewArgument_showsFilterUsage() {
+        String expectedMessage = FilterTransCommand.MESSAGE_USAGE;
+
+        HelpCommand command = new HelpCommand(FilterTransCommand.MESSAGE_USAGE);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
         HelpCommand addHelpCommand = new HelpCommand(AddCommand.MESSAGE_USAGE);
         HelpCommand editHelpCommand = new HelpCommand(EditCommand.MESSAGE_USAGE);
