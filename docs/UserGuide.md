@@ -285,7 +285,7 @@ Format: `hide appts t/TAG [t/MORE_TAGS]...`
 * All tags of an appointment are searched.
 
 Examples:
-* `hide appts t/ear nose` hides all appointments with a ear OR nose tag.
+* `hide appts t/ear t/nose` hides all appointments with a ear OR nose tag.
 
 By marked/unmarked status:
 Hides appointments which are marked/unmarked.
