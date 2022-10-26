@@ -58,6 +58,9 @@ public class ViewStatsCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewStatsCommand // instanceof handles nulls
-                && predicate.equals(((ViewStatsCommand) other).predicate)); // state check
+                && predicate.equals(((ViewStatsCommand) other).predicate)
+                && className.equals(((ViewStatsCommand) other).className)
+                && exam.equals(((ViewStatsCommand) other).exam)
+                && isFilterOn == ((ViewStatsCommand) other).isFilterOn); // state check
     }
 }
