@@ -60,7 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         social = personToCopy.getSocial();
-        groups = personToCopy.getGroups();
+        groups = new HashSet<>(personToCopy.getGroups());
     }
 
     /**
