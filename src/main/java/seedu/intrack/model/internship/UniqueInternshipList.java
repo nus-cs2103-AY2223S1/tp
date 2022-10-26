@@ -101,8 +101,6 @@ public class UniqueInternshipList implements Iterable<Internship> {
         internalList.setAll(internships);
     }
 
-
-
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

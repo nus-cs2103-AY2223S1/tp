@@ -2,23 +2,8 @@ package seedu.intrack.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
 
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_REMARK_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_SALARY_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.*;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.ALICE;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
@@ -137,8 +122,8 @@ public class InternshipTest {
         taskList.add(second);
         taskList.add(third);
         Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
-                new Status(VALID_STATUS_AAPL), new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
-                new Website(VALID_WEBSITE_AAPL), taskList,
+                new Status(VALID_STATUS_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Website(VALID_WEBSITE_AAPL), taskList, new Salary(VALID_SALARY_AAPL),
                 tagList, new Remark(VALID_REMARK_AAPL));
         LocalDateTime furthestDate = internship.getFurthestTaskDate();
         LocalDateTime expectedFurthestDate = third.getTaskTime();
@@ -158,8 +143,8 @@ public class InternshipTest {
         taskList.add(second);
         taskList.add(third);
         Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
-                new Status(VALID_STATUS_AAPL), new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
-                new Website(VALID_WEBSITE_AAPL), taskList,
+                new Status(VALID_STATUS_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Website(VALID_WEBSITE_AAPL), taskList, new Salary(VALID_SALARY_AAPL),
                 tagList, new Remark(VALID_REMARK_AAPL));
         LocalDateTime nearestDate = internship.getNearestTaskDate();
         LocalDateTime expectedNearestDate = second.getTaskTime();
