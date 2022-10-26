@@ -65,7 +65,7 @@ public class AssignCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SelectContactCommand // instanceof handles nulls
+                || (other instanceof AssignCommand // instanceof handles nulls
                         && contactIndex.equals(((AssignCommand) other).contactIndex)
                         && taskIndex.equals(((AssignCommand) other).taskIndex)); // state check
     }
