@@ -17,7 +17,7 @@ public class IsFoodInPredicate implements Predicate<Food> {
     }
 
     /**
-     * returns the foodName of the predicate
+     * Returns the foodName of the predicate
      * @return foodName of the predicate
      */
     public Name getFoodName() {
