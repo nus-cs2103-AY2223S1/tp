@@ -82,7 +82,7 @@ public class Task {
      * @return Whether the String is a valid isDone value.
      */
     public static boolean isValidIsDone(String test) {
-        return test == IS_DONE_TRUE_STRING || test == IS_DONE_FALSE_STRING;
+        return test.equals(IS_DONE_TRUE_STRING) || test.equals(IS_DONE_FALSE_STRING);
     }
 
     /**
