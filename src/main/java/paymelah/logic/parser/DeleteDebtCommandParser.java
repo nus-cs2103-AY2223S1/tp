@@ -4,10 +4,7 @@ import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.DeleteDebtCommand;
@@ -33,9 +30,7 @@ public class DeleteDebtCommandParser implements Parser<DeleteDebtCommand> {
 
         try {
             Index personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            List<String> debtIndexList = Arrays.stream(argMultimap.getValue(PREFIX_DEBT).get().split(" "))
-                    .collect(Collectors.toList());
-            Set<Index> debtIndexSet = ParserUtil.parseIndexes(debtIndexList);
+            Set<Index> debtIndexSet = ParserUtil.parseIndices(argMultimap.getValue(PREFIX_DEBT).get());
             return new DeleteDebtCommand(personIndex, debtIndexSet);
         } catch (ParseException pe) {
             throw new ParseException(

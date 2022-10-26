@@ -75,6 +75,14 @@ public class Debt {
     }
 
     /**
+     * Compares with another Debt using date and time.
+     */
+    public int compareDateTimeWith(Debt o) {
+        int dateComparison = this.date.compareTo(o.date);
+        return dateComparison == 0 ? this.time.compareTo(o.time) : dateComparison;
+    }
+
+    /**
      * Returns a Debt with the given description, money, date and time.
      */
     public static Debt makeDebt(String description, String money, String date, String time) {
