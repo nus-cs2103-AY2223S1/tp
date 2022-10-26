@@ -191,7 +191,8 @@ public class ModelManager implements Model {
         if (filteredIncome.size() == 0) {
             return null;
         }
-        int[] incomePieChartArr = new int[6];
+
+        double[] incomePieChartArr = new double[6];
 
         for (Entry e : filteredIncome) {
             String tagName = e.getTag().getTagName();
@@ -224,7 +225,6 @@ public class ModelManager implements Model {
             new PieChart.Data("Profit", incomePieChartArr[2]), new PieChart.Data("Investment", incomePieChartArr[3]),
             new PieChart.Data("Gifts", incomePieChartArr[4]), new PieChart.Data("Others", incomePieChartArr[5]));
 
-
         return FXCollections.unmodifiableObservableList(incomePieChartData);
     }
 
@@ -238,7 +238,8 @@ public class ModelManager implements Model {
         if (filteredExpenditure.size() == 0) {
             return null;
         }
-        int[] expensePieChartArr = new int[6];
+
+        double[] expensePieChartArr = new double[6];
 
         for (Entry e : filteredExpenditure) {
             String tagName = e.getTag().getTagName();

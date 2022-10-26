@@ -11,8 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
-//import static seedu.address.testutil.TypicalPersons.AMY;
-//import static seedu.address.testutil.TypicalEntry.LUNCH;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -32,16 +30,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.UserPrefs;
-//import seedu.address.model.entry.Expenditure;
-//import seedu.address.model.person.Person;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.storage.JsonPennyWiseStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.ExpenditureBuilder;
-//import seedu.address.testutil.ExpenditureBuilder;
-//import seedu.address.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -54,10 +48,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPennyWiseStorage addressBookStorage =
-                new JsonPennyWiseStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonPennyWiseStorage pennyWiseStorage =
+                new JsonPennyWiseStorage(temporaryFolder.resolve("pennyWise.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(pennyWiseStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -84,12 +78,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonPennyWiseStorage addressBookStorage =
-                new JsonPennyWiseIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonPennyWiseIoExceptionThrowingStub
+        JsonPennyWiseStorage pennyWiseStorage =
+                new JsonPennyWiseIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPennyWise.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(pennyWiseStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD

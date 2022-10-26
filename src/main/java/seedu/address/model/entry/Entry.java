@@ -108,20 +108,20 @@ public abstract class Entry {
                 && otherEntry.getTag().equals(getTag());
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append("; Date: ")
-                .append(getDate())
-                .append("; Amount: ")
-                .append(getAmount());
-
-        Tag tag = getTag();
-        if (tag != null) {
-            builder.append("; Tag: ");
-            builder.append(tag);
-        }
-        return builder.toString();
-    }
+    //    @Override
+    //    public String toString() {
+    //        final StringBuilder builder = new StringBuilder();
+    //        builder.append(getDescription())
+    //                .append("; Date: ")
+    //                .append(getDate())
+    //                .append("; Amount: ")
+    //                .append(getAmount());
+    //
+    //        Tag tag = getTag();
+    //        if (tag != null) {
+    //            builder.append("; Tag: ");
+    //            builder.append(tag);
+    //        }
+    //        return builder.toString();
+    //    }
 }

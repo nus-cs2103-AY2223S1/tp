@@ -1,5 +1,6 @@
 package seedu.address.model.entry;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,6 +18,14 @@ public class AmountTest {
     public void constructor_invalidAmount_throwsIllegalArgumentException() {
         String invalidAmount = "";
         assertThrows(IllegalArgumentException.class, () -> new Amount(invalidAmount));
+    }
+
+    @Test
+    public void add_validAmounts_success() {
+        Amount amount1 = new seedu.address.model.entry.Amount("1.00");
+        Amount amount2 = new seedu.address.model.entry.Amount("2.00");
+
+        assertEquals(new seedu.address.model.entry.Amount("3.00"), Amount.add(amount1, amount2));
     }
 
     @Test
