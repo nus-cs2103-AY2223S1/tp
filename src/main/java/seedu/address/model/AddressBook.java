@@ -60,11 +60,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setMedicationMap(newData.getMedicationMapObject());
+        setMedicationMap(newData.getStringifiedMedicationMap());
     }
 
-    private void setMedicationMap(String medicationMap) {
-        this.medicationMap.setMedicationMap(medicationMap);
+    private void setMedicationMap(String stringifiedMedicationMap) {
+        this.medicationMap.setStringifiedMedicationMap(stringifiedMedicationMap);
     }
 
     //// person-level operations
@@ -126,8 +126,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public String getMedicationMapObject() {
-        return medicationMap.getMedicationMapSimplified();
+    public String getStringifiedMedicationMap() {
+        return medicationMap.getStringifiedMedicationMap();
     }
 
     @Override

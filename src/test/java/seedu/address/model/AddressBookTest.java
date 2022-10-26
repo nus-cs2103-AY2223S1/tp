@@ -119,8 +119,8 @@ public class AddressBookTest {
         }
 
         @Override
-        public String getMedicationMapObject() {
-            return medicationMap.getMedicationMapSimplified();
+        public String getStringifiedMedicationMap() {
+            return medicationMap.getStringifiedMedicationMap();
         }
     }
 

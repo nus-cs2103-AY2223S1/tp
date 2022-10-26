@@ -25,5 +25,8 @@ public interface ReadOnlyAddressBook {
      */
     String getCensus(Model model);
 
-    String getMedicationMapObject();
+    /**
+     * Returns a string representation of the address book's medication map.
+     */
+    String getStringifiedMedicationMap();
 }

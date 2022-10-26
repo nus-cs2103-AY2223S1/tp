@@ -14,6 +14,8 @@ import seedu.address.model.person.Person;
  */
 public class MedicationMap {
     public static final String COUNT_BY_MEDICATION = "Patient count by medication:";
+    // used internally here to separate medication and count when resetting the address book
+    private static final String SEPARATOR = " /-/-/ ";
     private final ObservableMap<String, Integer> medicationMap = FXCollections.observableHashMap();
 
     /**
@@ -65,25 +67,31 @@ public class MedicationMap {
         return sb.toString();
     }
 
-    public void setMedicationMap(String medicationMap) {
-        this.medicationMap.clear();
-        String[] medicationArray = medicationMap.split(" /-/-/ ");
+    /**
+     * Sets the medication map to the given map.
+     */
+    public void setStringifiedMedicationMap(String stringifiedMedicationMap) {
+        medicationMap.clear();
+        String[] medicationArray = stringifiedMedicationMap.split(SEPARATOR);
         if (medicationArray.length == 1 && medicationArray[0].equals("")) {
             return;
         }
         for (int i = 0; i < medicationArray.length; i += 2) {
-            this.medicationMap.put(medicationArray[i], Integer.parseInt(medicationArray[i + 1]));
+            medicationMap.put(medicationArray[i], Integer.parseInt(medicationArray[i + 1]));
         }
     }
 
-    public String getMedicationMapSimplified() {
+    /**
+     * Returns a stringified version of the medication map.
+     */
+    public String getStringifiedMedicationMap() {
         StringBuilder sb = new StringBuilder();
         medicationMap.keySet().stream().sorted()
                 .forEach(medication ->
                         sb.append(medication)
-                                .append(" /-/-/ ")
+                                .append(SEPARATOR)
                                 .append(medicationMap.get(medication))
-                                .append(" /-/-/ "));
+                                .append(SEPARATOR));
         return sb.toString();
     }
 
