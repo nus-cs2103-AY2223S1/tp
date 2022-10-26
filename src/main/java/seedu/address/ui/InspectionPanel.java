@@ -22,6 +22,7 @@ public class InspectionPanel extends UiPart<Region> {
     private static final String PHONE_IMAGE_PATH = "/images/phone.png";
     private static final String EMAIL_IMAGE_PATH = "/images/mail.png";
     private static final String ADDRESS_IMAGE_PATH = "/images/home.png";
+    private static final String BIRTHDAY_IMAGE_PATH = "/images/birthday.png";
 
     private static final String FXML = "InspectionPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InspectionPanel.class);
@@ -49,6 +50,12 @@ public class InspectionPanel extends UiPart<Region> {
     @FXML
     private ImageView emailImage;
 
+    @FXML
+    private Label birthday;
+    @FXML
+    private ImageView birthdayImage;
+
+
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
@@ -64,6 +71,7 @@ public class InspectionPanel extends UiPart<Region> {
                     InspectionPanel.this.email.setText(n.getEmail().value);
                     InspectionPanel.this.phone.setText(n.getPhone().value);
                     InspectionPanel.this.address.setText(n.getAddress().value);
+                    InspectionPanel.this.birthday.setText("NONE");
                 });
 
         personListView.getSelectionModel().select(0);
@@ -74,6 +82,7 @@ public class InspectionPanel extends UiPart<Region> {
         phoneImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(PHONE_IMAGE_PATH))));
         emailImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(EMAIL_IMAGE_PATH))));
         addressImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(ADDRESS_IMAGE_PATH))));
+        birthdayImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(BIRTHDAY_IMAGE_PATH))));
     }
 
     /**

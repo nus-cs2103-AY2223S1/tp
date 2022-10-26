@@ -194,13 +194,30 @@ public class MainWindow extends UiPart<Stage> {
 
         ListView<Person> personListView = getPersonListPanel().getListView();
 
+        if (inspectingName.length == 1) {
+            try {
+                int index = Integer.parseInt(inspectingName[0]) - 1;
+                if (index < 0 || index >= personListView.getItems().size()) {
+                    resultDisplay.setFeedbackToUser("The index given to be inspected must be within "
+                            + "the bounds of the list!");
+                    return;
+                }
+
+                personListView.getSelectionModel().clearSelection();
+                personListView.getSelectionModel().select(index);
+                return;
+            } catch (NumberFormatException e) {
+                logger.info("Input given was not an Integer");
+            }
+        }
+
         Person[] personsArray = personListView.getItems()
                 .stream().filter(x -> matches(x.getName().fullName, inspectingName))
                 .toArray(Person[]::new);
 
         if (personsArray.length == 0) {
             resultDisplay.setFeedbackToUser("There was nobody of that name found.\n"
-                    + "Note that inspection works only on the currently filtered list,"
+                    + "Note that inspection works only on the currently filtered list, "
                     + "perhaps you would like to list all persons available first?");
             return;
         }
@@ -213,6 +230,7 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         int index = personListView.getItems().indexOf(personsArray[0]);
+        personListView.getSelectionModel().clearSelection();
         personListView.getSelectionModel().select(index);
     }
 

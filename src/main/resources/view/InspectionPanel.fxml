@@ -30,45 +30,60 @@
     </padding>
   </Separator>
   <HBox styleClass="inspectionPanel-VBox">
-  <padding>
-    <Insets top="10" right="10" bottom="10" left="10" />
-  </padding>
-  <VBox prefWidth="250" maxWidth="250">
-    <GridPane HBox.hgrow="NEVER">
-      <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="250" />
-      </columnConstraints>
-      <VBox alignment="CENTER" minHeight="30" GridPane.columnIndex="0" spacing="5" styleClass="inspection-card">
-        <padding>
-          <Insets top="10" right="15" bottom="5" left="15" />
-        </padding>
-        <Label text="Basic Information" styleClass="cell_bigger_label"/>
-        <Separator/>
-        <VBox spacing="5" alignment="CENTER_LEFT" styleClass="inspection-card">
+    <padding>
+      <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    <VBox prefWidth="250" maxWidth="250">
+      <GridPane HBox.hgrow="NEVER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="250" />
+        </columnConstraints>
+        <VBox alignment="CENTER" minHeight="30" GridPane.columnIndex="0" spacing="5" styleClass="inspection-card">
           <padding>
-            <Insets top="5" />
+            <Insets top="10" right="15" bottom="5" left="15" />
           </padding>
-          <HBox alignment="CENTER_LEFT" spacing="10">
-            <ImageView fx:id="nameImage" fitHeight="20" fitWidth="20"/>
-            <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
-          </HBox>
-          <HBox alignment="CENTER_LEFT" spacing="10">
-            <ImageView fx:id="phoneImage" fitHeight="20" fitWidth="20"/>
-            <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" wrapText="true"/>
-          </HBox>
-          <HBox alignment="CENTER_LEFT" spacing="10">
-            <ImageView fx:id="addressImage" fitHeight="20" fitWidth="20"/>
-            <Label fx:id="address" styleClass="cell_big_label" text="\$address" wrapText="true"/>
-          </HBox>
-          <HBox alignment="CENTER_LEFT" spacing="10">
-            <ImageView fx:id="emailImage" fitHeight="20" fitWidth="20"/>
-            <Label fx:id="email" styleClass="cell_big_label" text="\$email" wrapText="true" />
-          </HBox>
-          <FlowPane fx:id="tags"/>
+          <Label text="Basic Information" styleClass="cell_bigger_label"/>
+          <Separator/>
+          <VBox spacing="5" alignment="CENTER_LEFT" styleClass="inspection-card">
+            <padding>
+              <Insets top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="nameImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="birthdayImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="birthday" text="\$bday" styleClass="cell_big_label" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="phoneImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="phone" styleClass="cell_big_label" text="\$phone" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="addressImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="address" styleClass="cell_big_label" text="\$address" wrapText="true"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+              <ImageView fx:id="emailImage" fitHeight="20" fitWidth="20"/>
+              <Label fx:id="email" styleClass="cell_big_label" text="\$email" wrapText="true" />
+            </HBox>
+            <FlowPane fx:id="tags"/>
+          </VBox>
         </VBox>
-      </VBox>
-    </GridPane>
-  </VBox>
-  <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
+      </GridPane>
+    </VBox>
+    <HBox alignment="CENTER">
+      <padding>
+        <Insets left="5" right="5"/>
+      </padding>
+      <Separator orientation="VERTICAL" styleClass="separator-inspect"/>
+    </HBox>
+    <HBox HBox.hgrow="ALWAYS">
+      <padding>
+        <Insets left="15" right="15"/>
+      </padding>
+      <ListView fx:id="historyListView" HBox.hgrow="ALWAYS"/>
+    </HBox>
   </HBox>
 </VBox>

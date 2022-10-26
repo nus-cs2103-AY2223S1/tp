@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AMBIGUOUS_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOAN;
@@ -10,10 +11,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -100,10 +103,14 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
 
+        String splitPreamble = Arrays.stream(preamble.split(" "))
+                .map(x -> "\"" + x.trim() + "\"")
+                .collect(Collectors.joining(" or "));
+
         if (filteredPersonList.size() == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_NAME, splitPreamble), pe);
         } else if (filteredPersonList.size() > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, preamble), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_AMBIGUOUS_NAME, splitPreamble), pe);
         }
     }
 

@@ -56,7 +56,6 @@ public class PersonListPanel extends UiPart<Region> {
             focusedProperty().addListener((ob, o, n) -> setOpacity(1));
 
             setOnMouseEntered(e -> setOpacity(1));
-            setOnMouseClicked(e -> setOpacity(1));
             setOnMouseExited(e -> {
                 if (personListView.getSelectionModel().getSelectedIndex() != getIndex()) {
                     setOpacity(0.7);

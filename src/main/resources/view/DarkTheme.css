@@ -125,6 +125,16 @@
     -fx-border-color: white;
 }
 
+.separator-inspect *.line {
+    -fx-border-color: linear-gradient(transparent 0%, orange 50%, transparent 100%);
+    -fx-border-width: 1;
+}
+
+.separator-card *.line {
+    -fx-border-color: linear-gradient(to right, transparent 0%, orangered 50%, transparent 100%);
+    -fx-border-width: 1;
+}
+
 .inspectionPanel-VBox {
     -fx-background-color: rgba(0, 0, 0, 0.4);
     -fx-padding: 5, 5, 5, 5;
@@ -168,6 +178,7 @@
     -fx-border-radius: 0px;
 }
 
+
 .list-cell:filled:selected {
     -fx-background-color: derive(black, 20%);
     -fx-border-radius: 0px;
@@ -175,7 +186,7 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-width: 0;
     -fx-border-radius: 0px;
 }
 
@@ -194,11 +205,6 @@
     -fx-font-family: 'MinionPro-Bold';
     -fx-font-size: 15px;
     -fx-text-fill: white;
-}
-
-.separator-card *.line {
-    -fx-border-color: orangered;
-    -fx-border-width: 1;
 }
 
 .cell_small_label {
