@@ -60,7 +60,7 @@ public class PersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code PersonDescriptor} that we are building.
+     * Sets the {@code Telegram} of the {@code PersonDescriptor} that we are building.
      */
     public PersonDescriptorBuilder withTelegram(String telegram) {
         descriptor.setTelegram(new Telegram(telegram));
