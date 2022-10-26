@@ -33,6 +33,7 @@ public class AssignmentCard extends UiPart<Region> implements TaskCard {
      */
     public AssignmentCard(Assignment task, int displayedIndex) {
         super(FXML);
+        cardPane.setStyle("-fx-background-color: #f8fd99;");
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);

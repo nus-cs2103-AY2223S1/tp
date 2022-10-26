@@ -2,8 +2,11 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.ToDo;
 
@@ -32,6 +35,8 @@ public class ToDoCard extends UiPart<Region> implements TaskCard {
      */
     public ToDoCard(ToDo task, int displayedIndex) {
         super(FXML);
+//        cardPane.setBackground(new Background(new BackgroundFill(Color.web("#00c29a"), null, null)));
+        cardPane.setStyle("-fx-background-color: #00c29a;");
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().title);
