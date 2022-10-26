@@ -15,6 +15,9 @@ import seedu.address.model.attribute.Name;
 import seedu.address.model.group.Group;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Jackson-friendly version of {@link Group}.
+ */
 class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Group's %s field is missing!";

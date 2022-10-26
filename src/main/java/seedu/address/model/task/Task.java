@@ -7,6 +7,8 @@ import static seedu.address.model.AccessDisplayFlags.TASK;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.model.attribute.Description;
 import seedu.address.model.item.AbstractDisplayItem;
@@ -139,6 +141,12 @@ public class Task extends AbstractSingleItem {
             setContactParent((Person) o);
         }
 
+    }
+
+    @Override
+    public Set<? extends DisplayItem> getParents() {
+        return Stream.concat(super.getParents().stream(), assignedParents.stream())
+                .collect(Collectors.toSet());
     }
 
     private void setParentForSingleGrp(AbstractSingleItem o) {

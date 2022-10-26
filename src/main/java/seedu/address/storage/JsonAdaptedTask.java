@@ -17,6 +17,9 @@ import seedu.address.model.attribute.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
+/**
+ * Jackson-friendly version of {@link Task}.
+ */
 class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
