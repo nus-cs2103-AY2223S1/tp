@@ -3,7 +3,6 @@ package jeryl.fyp.model.student;
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;

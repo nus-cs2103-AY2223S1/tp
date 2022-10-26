@@ -164,6 +164,15 @@ public class FypManager implements ReadOnlyFypManager {
         student.getDeadlineList().setDeadline(target, editedDeadline);
     }
 
+    public ObservableList<Student> getSortedBySpecialisationStudentList() {
+        return students.sortFilteredStudentListBySpecialisation();
+    }
+
+    public ObservableList<Student> getSortedByProjectStatusStudentList() {
+        return students.sortFilteredStudentListByProjectStatus();
+    }
+
+
     //// util methods
 
     @Override
@@ -175,16 +184,6 @@ public class FypManager implements ReadOnlyFypManager {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Student> getSortedBySpecialisationStudentList() {
-        return students.sortFilteredStudentListBySpecialisation();
-    }
-
-    @Override
-    public ObservableList<Student> getSortedByProjectStatusStudentList() {
-        return students.sortFilteredStudentListByProjectStatus();
     }
 
     @Override

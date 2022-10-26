@@ -124,7 +124,8 @@ public interface Model {
     /** Returns an unmodifiable view of the sorted student list by specalisation */
     ObservableList<Student> getSortedBySpecialisationStudentList();
 
-    /** Returns an unmodifiable view of the sorted student list by project status
+    /**
+     * Returns an unmodifiable view of the sorted student list by project status
      * followed by alphabetical order
      */
     ObservableList<Student> getSortedByProjectStatusStudentList();

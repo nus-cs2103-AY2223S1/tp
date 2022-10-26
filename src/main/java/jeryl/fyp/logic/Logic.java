@@ -36,7 +36,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the sorted list of students according to specialisation */
     ObservableList<Student> getSortedBySpecialisationStudentList();
 
-    /** Returns an unmodifiable view of the sorted list of students according to project status
+    /**
+     * Returns an unmodifiable view of the sorted list of students according to project status
      * followed by alphabetical order
      */
     ObservableList<Student> getSortedByProjectStatusStudentList();
