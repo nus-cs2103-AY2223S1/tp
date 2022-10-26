@@ -80,23 +80,6 @@ class EditItemCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        showItemAtIndex(model, INDEX_FIRST);
-
-        Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
-        Item editedItem = new ItemBuilder(itemInFilteredList).withItemName(VALID_ITEM_NAME_PEN).build();
-        EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST,
-                new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_PEN).build());
-
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
-
-        Model expectedModel = new ModelManager(new TrackO(model.getTrackO()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
-
-        assertCommandSuccess(editItemCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_duplicateItemUnfilteredList_failure() {
         Item firstItem = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(firstItem).build();
