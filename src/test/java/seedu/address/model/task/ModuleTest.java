@@ -30,7 +30,7 @@ public class ModuleTest {
         assertFalse(Module.isValidModule("")); // empty string
         assertFalse(Module.isValidModule(" ")); // spaces only
         assertFalse(Module.isValidModule("A B")); // has spaces
-        assertFalse(Module.isValidModule("-")); // one character
+        assertFalse(Module.isValidModule("#")); // one character
         assertFalse(Module.isValidModule("USGCSDSA13495798735729475238945273858gf_ewt3wi4rw34")); // long module
 
         // valid modules

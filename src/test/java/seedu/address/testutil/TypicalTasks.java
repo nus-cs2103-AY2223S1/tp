@@ -36,6 +36,13 @@ public class TypicalTasks {
             new Status(false)
     );
 
+    public static final Task BUY_GROCERIES = new Task(
+            new TaskName("Buy Groceries"),
+            new Module("-"),
+            new Deadline("2022-07-15 00:00"),
+            new Status(false)
+    );
+
     /** Weakly but not strongly equivalent to FINISH_TP. */
     public static final Task FINISH_TP_ISH = new Task(
             new TaskName("Finish TP"),
