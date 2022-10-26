@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Objects;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -44,7 +46,12 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
-        module.setText(task.getModule().moduleName);
+        String mod = task.getModule().moduleName;
+        if (Objects.equals(mod, "-")) {
+            module.setVisible(false);
+        } else {
+            module.setText(mod);
+        }
         status.setText(task.getStatus().toDisplayString());
         deadline.setText(task.getDeadline().toString());
     }

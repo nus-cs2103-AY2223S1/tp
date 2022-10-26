@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BUY_GROCERIES;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_LAB_2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
@@ -10,9 +11,11 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_FINISH_TP
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_LAB_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_FINISH_TP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_BUY_GROCERIES;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_FINISH_TP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalTasks.BUY_GROCERIES;
 import static seedu.address.testutil.TypicalTasks.FINISH_TP;
 
 import org.junit.jupiter.api.Test;
@@ -46,6 +49,13 @@ public class AddTaskCommandParserTest {
     }
 
     @Test
+    public void parse_optionalFieldMissing_success() {
+        // optional modules
+        assertParseSuccess(parser, VALID_TASK_NAME_BUY_GROCERIES + DEADLINE_DESC_BUY_GROCERIES,
+                new AddTaskCommand(BUY_GROCERIES));
+    }
+
+    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
@@ -55,10 +65,6 @@ public class AddTaskCommandParserTest {
 
         // missing deadline prefix
         assertParseFailure(parser, VALID_TASK_NAME_FINISH_TP + VALID_DEADLINE_FINISH_TP + MODULE_DESC_FINISH_TP,
-                expectedMessage);
-
-        // missing module prefix
-        assertParseFailure(parser, VALID_TASK_NAME_FINISH_TP + DEADLINE_DESC_FINISH_TP + VALID_MODULE_FINISH_TP,
                 expectedMessage);
 
         // all prefixes missing
