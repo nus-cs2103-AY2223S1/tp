@@ -144,7 +144,7 @@ _Help window displayed after running the `help` command_
 
 Adds a patient to the patient list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY]… [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY]… [c/CONDITION]… [t/TAG]…`
 
 * `DATE_AND_TIME` should be in the format like 16-10-2022 1030
 * If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
@@ -346,7 +346,7 @@ Format: `addCondition PATIENT_INDEX c/CONDITION`
 
 Examples:
 * `list` followed by `addCondition 1 c/Diabetes` adds a condition to the 1st patient in the patient list.
-* `find Betsy` followed by `addCondition 2 c/Alzhiemer's disease` adds a condition to the 2nd patient in the patient list.
+* `find Betsy` followed by `addCondition 2 c/Alzheimer's disease` adds a condition to the 2nd patient in the patient list.
 
 ### Editing a tag: `editCondition`
 
@@ -472,7 +472,7 @@ the data of your previous UniNurse home folder.
 | Action                          | Format                                                                                                                       |
 |---------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                        | `help`                                                                                                                       |
-| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]`                                                                       |
+| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]… [c/CONDITION]… [t/TAG]…`                                              |
 | **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                     |
 | **Delete patient**              | `delete -p INDEX`                                                                                                            |
 | **List all patients**           | `list`                                                                                                                       |
