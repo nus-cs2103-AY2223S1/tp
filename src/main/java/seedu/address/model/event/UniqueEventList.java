@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.profile.Profile;
-import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
@@ -107,7 +106,7 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        internalList.get(index).addAttendees(profilesToAddEventTo);
+        internalList.get(index).addEventToAttendees(profilesToAddEventTo);
     }
 
     /**
@@ -122,7 +121,7 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        internalList.get(index).removeAttendees(profilesToEdit);
+        internalList.get(index).removeEventFromAttendees(profilesToEdit);
     }
 
     /**
@@ -137,8 +136,8 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
 
-        target.addAttendees(profilesToEdit);
-        editedEvent.addAttendees(profilesToEdit);
+        target.removeEventFromAttendees(profilesToEdit);
+        editedEvent.addEventToAttendees(profilesToEdit);
     }
 
     public void setEvents(UniqueEventList replacement) {
@@ -195,31 +194,6 @@ public class UniqueEventList implements Iterable<Event> {
             }
         }
         return true;
-    }
-
-    /**
-     * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
-     * {@code editedProfile}.
-     */
-    public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
-        requireAllNonNull(target, editedProfile, eventsToSet);
-
-        for (Event e : eventsToSet) {
-            e.removeAttendees(List.of(target));
-            e.addAttendees(List.of(editedProfile));
-        }
-    }
-
-    /**
-     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
-     * Events in {@code eventsToEdit} must exist in the address book.
-     */
-    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
-        requireAllNonNull(target, eventsToEdit);
-
-        for (Event e : eventsToEdit) {
-            e.removeAttendees(List.of(target));
-        }
     }
 }
 

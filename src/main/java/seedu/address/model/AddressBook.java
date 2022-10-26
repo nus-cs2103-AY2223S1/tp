@@ -107,18 +107,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
-     * {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The profiles in list of profiles {@code profilesToEdit} must also exist in the address book.
-     */
-    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, editedEvent, profilesToEdit);
-        //events.setEventForAttendees(target, editedEvent, profilesToEdit);
-        profiles.setEventForAttendees(target, editedEvent, profilesToEdit);
-    }
-
-    /**
      * Updates the profiles {@code target} in list of events {@code eventsToSet} to the new edited profile
      * {@code editedProfile}.
      * {@code target} must exist in the address book.
@@ -126,8 +114,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setProfileForEventsAttending(Profile target, Profile editedProfile, List<Event> eventsToSet) {
         requireAllNonNull(target, editedProfile, eventsToSet);
-        //profiles.setProfileForEventsAttending(target, editedProfile, eventsToSet);
-        events.setProfileForEventsAttending(target, editedProfile, eventsToSet);
+        profiles.setProfileForEventsAttending(target, editedProfile, eventsToSet);
     }
 
     /**
@@ -137,8 +124,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
         requireAllNonNull(target, eventsToEdit);
-        //profiles.removeProfileFromEventsAttending(target, eventsToEdit);
-        events.removeProfileFromEventsAttending(target, eventsToEdit);
+        profiles.removeProfileFromEventsAttending(target, eventsToEdit);
     }
 
     //// event-level operations
@@ -185,7 +171,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
         requireAllNonNull(event, profilesToAdd);
         events.addEventAttendees(event, profilesToAdd);
-        //profiles.addEventAttendees(event, profilesToAdd);
     }
 
     /**
@@ -195,8 +180,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
-        //events.addEventToAttendees(event, profilesToAddEventTo);
-        profiles.addEventToAttendees(event, profilesToAddEventTo);
+        events.addEventToAttendees(event, profilesToAddEventTo);
+    }
+
+    /**
+     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
+     * {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The profiles in list of profiles {@code profilesToEdit} must also exist in the address book.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, editedEvent, profilesToEdit);
+        events.setEventForAttendees(target, editedEvent, profilesToEdit);
     }
 
     /**
@@ -206,8 +201,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
         requireAllNonNull(target, profilesToEdit);
-        //events.removeEventsFromAttendeesList(target, profilesToEdit);
-        profiles.removeEventsFromAttendeesList(target, profilesToEdit);
+        events.removeEventsFromAttendeesList(target, profilesToEdit);
     }
 
     //// util methods

@@ -109,6 +109,34 @@ public class Event implements Comparable<Event> {
     }
 
     /**
+     * Adds the event to {@code profilesToAddEventTo} in the profile's list of eventsAttending if
+     * they have not already been added.
+     */
+    public void addEventToAttendees(List<Profile> profilesToAddEventTo) {
+        requireNonNull(profilesToAddEventTo);
+
+        profilesToAddEventTo.forEach(profile -> {
+            if (!profile.hasEventAttending(this)) {
+                profile.getEventsToAttend().add(this);
+            }
+        });
+    }
+
+    /**
+     * Removes the event in {@code profilesToRemoveEventFrom} from the profile's list of eventsAttending if
+     * they exist.
+     */
+    public void removeEventFromAttendees(List<Profile> profilesToRemoveEventFrom) {
+        requireNonNull(profilesToRemoveEventFrom);
+
+        profilesToRemoveEventFrom.forEach(profile -> {
+            if (profile.hasEventAttending(this)) {
+                profile.getEventsToAttend().remove(this);
+            }
+        });
+    }
+
+    /**
      * Returns true if the specified profile is in the event's list of attendees.
      */
     public boolean hasAttendee(Profile profile) {

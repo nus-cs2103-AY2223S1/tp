@@ -129,29 +129,28 @@ public class Profile implements Comparable<Profile> {
     }
 
     /**
-     * Adds the events in {@code eventsToAdd} to the profile's list of eventsAttending if
+     * Adds the profile to the attendee list in the list of events {@code eventsToAdd} if it has not been added.
      * they have not already been added.
      */
     public void addEventsAttending(List<Event> eventsToAdd) {
         requireNonNull(eventsToAdd);
 
         eventsToAdd.forEach(event -> {
-            if (!eventsToAttend.hasEventAttending(event)) {
-                eventsToAttend.add(event);
+            if (!event.hasAttendee(this)) {
+                event.getAttendees().add(this);
             }
         });
     }
 
     /**
-     * Removes the events in {@code eventsToRemove} from the profile's list of eventsAttending if
-     * they exit.
+     * Removes the profile from the attendee list in the list of events {@code eventsToRemove} if it exists.
      */
     public void removeEventsAttending(List<Event> eventsToRemove) {
         requireNonNull(eventsToRemove);
 
         eventsToRemove.forEach(event -> {
-            if (eventsToAttend.hasEventAttending(event)) {
-                eventsToAttend.remove(event);
+            if (event.hasAttendee(this)) {
+                event.getAttendees().remove(this);
             }
         });
     }

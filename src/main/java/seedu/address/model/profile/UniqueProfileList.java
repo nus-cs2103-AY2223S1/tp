@@ -10,7 +10,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.profile.exceptions.DuplicateProfileException;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 
@@ -173,41 +172,5 @@ public class UniqueProfileList implements Iterable<Profile> {
             }
         }
         return true;
-    }
-
-    /**
-     * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
-     */
-    public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
-        requireAllNonNull(event, profilesToAddEventTo);
-
-        for (Profile p : profilesToAddEventTo) {
-            p.addEventsAttending(List.of(event));
-        }
-    }
-
-    /**
-     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
-     * Profiles in {@code profilesToEdit} must exist in the address book.
-     */
-    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, profilesToEdit);
-
-        for (Profile p : profilesToEdit) {
-            p.removeEventsAttending(List.of(target));
-        }
-    }
-
-    /**
-     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
-     * {@code editedEvent}.
-     */
-    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
-        requireAllNonNull(target, editedEvent, profilesToEdit);
-
-        for (Profile p : profilesToEdit) {
-            p.removeEventsAttending(List.of(target));
-            p.addEventsAttending(List.of(editedEvent));
-        }
     }
 }
