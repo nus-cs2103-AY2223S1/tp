@@ -1,11 +1,11 @@
-@startuml
+]]@startuml
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddExamCommandParser" as AddExamCommandParser LOGIC_COLOR
-participant ":st:AddExamCommand" as AddExamCommand LOGIC_COLOR
+participant "ex:AddExamCommand" as AddExamCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addexam m/cs2030s ex/midterm ed/20-12-2022")
+[-> LogicManager : execute("e add m/cs2030s ex/midterm ed/20-12-2022")
 activate LogicManager
 
-LogicManager -> AddressBookParser: parseCommand("addexam...")
+LogicManager -> AddressBookParser: parseCommand("e add...")
 activate AddressBookParser
 
 create AddExamCommandParser
@@ -33,15 +33,15 @@ create AddExamCommand
 AddExamCommandParser -> AddExamCommand
 activate AddExamCommand
 
-AddExamCommand --> AddExamCommandParser : st
+AddExamCommand --> AddExamCommandParser : ex
 deactivate AddExamCommand
 
-AddExamCommandParser --> AddressBookParser : st
+AddExamCommandParser --> AddressBookParser : ex
 deactivate AddExamCommandParser
 AddExamCommandParser [hidden]--> AddressBookParser
 destroy AddExamCommandParser
 
-AddressBookParser --> LogicManager : st
+AddressBookParser --> LogicManager : ex
 deactivate AddressBookParser
 
 LogicManager -> AddExamCommand : execute(model)
@@ -50,12 +50,18 @@ activate AddExamCommand
 AddExamCommand -> Model: hasModule(exam)
 activate Model
 Model --> AddExamCommand
+deactivate Model
 
 
 
 AddExamCommand -> Model: hasExam(exam)
+activate Model
 Model --> AddExamCommand
+deactivate Model
+
 AddExamCommand -> Model: addExam(exam)
+activate Model
+
 Model --> AddExamCommand
 deactivate Model
 
@@ -68,8 +74,9 @@ activate CommandResult
 CommandResult --> AddExamCommand
 deactivate CommandResult
 
-AddExamCommand --> LogicManager
+AddExamCommand --> LogicManager: result
 deactivate AddExamCommand
+
 
 
 [<--LogicManager
