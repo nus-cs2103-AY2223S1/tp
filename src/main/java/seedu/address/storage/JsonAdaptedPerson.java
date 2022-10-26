@@ -82,21 +82,11 @@ class JsonAdaptedPerson {
         String email = socialArray[2];
         String instagram = socialArray[3];
         String preferred = socialArray[4];
-        if (whatsapp != "null") {
-            modelSocial.addWhatsapp(whatsapp);
-        }
-        if (telegram != "null") {
-            modelSocial.addTelegram(telegram);
-        }
-        if (email != "null") {
-            modelSocial.addEmail(email);
-        }
-        if (instagram != "null") {
-            modelSocial.addInstagram(instagram);
-        }
-        if (preferred != "null") {
-            modelSocial.prefer(preferred);
-        }
+        modelSocial.addWhatsapp(whatsapp);
+        modelSocial.addTelegram(telegram);
+        modelSocial.addEmail(email);
+        modelSocial.addInstagram(instagram);
+        modelSocial.prefer(preferred);
 
         return modelSocial;
     }
@@ -156,6 +146,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Social modelSocial = getModelSocial(social);
+
         return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelSocial);
     }
 

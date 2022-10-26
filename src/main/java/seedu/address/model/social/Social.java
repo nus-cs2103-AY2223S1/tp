@@ -127,7 +127,7 @@ public class Social {
      * @return Whatsapp link of the person.
      */
     public String getWhatsapp() {
-        return links[0];
+            return links[0].trim();
     }
 
     /**
@@ -209,16 +209,14 @@ public class Social {
      */
     public void openWhatsapp() throws SocialException {
         try {
-            if (getWhatsapp() == null) {
+            if (getWhatsapp().equals(null) || getWhatsapp().equals("null")) {
                 throw new SocialException("No Whatsapp Link");
-            }
-            if (getWhatsapp().startsWith(SCHEME) || getWhatsapp().startsWith(SCHEMES)) {
+            } else if (getWhatsapp().startsWith(SCHEME) || getWhatsapp().startsWith(SCHEMES)) {
                 URI uri = new URI(getWhatsapp());
                 Desktop desktop = java.awt.Desktop.getDesktop();
                 desktop.browse(uri);
             } else {
                 URI uri = new URI(SCHEME + getWhatsapp());
-
                 Desktop desktop = java.awt.Desktop.getDesktop();
                 desktop.browse(uri);
             }
@@ -226,6 +224,8 @@ public class Social {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (SocialException e) {
+            throw new SocialException("No Whatsapp Link");
         }
     }
 
@@ -234,7 +234,7 @@ public class Social {
      */
     public void openTelegram() throws SocialException {
         try {
-            if (getTelegram() == null) {
+            if (getTelegram().equals(null) || getTelegram().equals("null")) {
                 throw new SocialException("No Telegram Link");
             }
             if (getTelegram().startsWith(SCHEME) || getTelegram().startsWith(SCHEMES)) {
@@ -250,6 +250,8 @@ public class Social {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (SocialException e) {
+            throw new SocialException("No Whatsapp Link");
         }
     }
 
@@ -258,7 +260,7 @@ public class Social {
      */
     public void openEmail() throws SocialException {
         try {
-            if (getEmail() == null) {
+            if (getEmail().equals(null) || getEmail().equals("null")) {
                 throw new SocialException("No Email Link");
             }
             URI uri = new URI(getEmail());
@@ -268,6 +270,8 @@ public class Social {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (SocialException e) {
+            throw new SocialException("No Whatsapp Link");
         }
     }
 
@@ -276,7 +280,7 @@ public class Social {
      */
     public void openInstagram() throws SocialException {
         try {
-            if (getInstagram() == null) {
+            if (getInstagram().equals(null) || getInstagram().equals("null")) {
                 throw new SocialException("No Instagram Link");
             }
             if (getInstagram().startsWith(SCHEME) || getInstagram().startsWith(SCHEMES)) {
@@ -292,6 +296,8 @@ public class Social {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (SocialException e) {
+            throw new SocialException("No Whatsapp Link");
         }
     }
 
@@ -300,7 +306,7 @@ public class Social {
      */
     public void openPreferred() throws SocialException {
         try {
-            if (getPreferredLink() == null) {
+            if (getPreferredLink().equals(null) || getPreferredLink().equals("null")) {
                 throw new SocialException("No Preferred Link");
             }
             if (getPreferredLink().startsWith(SCHEME) || getPreferredLink().startsWith(SCHEMES)) {
@@ -316,6 +322,8 @@ public class Social {
             throw new SocialException(MESSAGE_BAD_LINK);
         } catch (IOException e) {
             throw new SocialException(MESSAGE_BAD_LINK);
+        } catch (SocialException e) {
+            throw new SocialException("No Whatsapp Link");
         }
     }
 

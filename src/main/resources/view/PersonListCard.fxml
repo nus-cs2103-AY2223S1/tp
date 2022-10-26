@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -34,11 +34,11 @@
   </GridPane>
    <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="300.0">
       <children>
-         <Button fx:id="whatsapp" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" text="\$whatsapp" textFill="#09e323" />
-         <Button fx:id="telegram" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" text="\$telegram" textFill="#2674f9" />
-         <Button fx:id="email2" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" text="\$email2" textFill="#fcfcfc" />
-         <Button fx:id="instagram" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" text="\$instagram" textFill="#f22525" />
-         <Button fx:id="preferred" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" text="\$preferred" textFill="#0acfbb" />
+         <Button fx:id="whatsapp" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" stylesheets="@button.css" text="\$whatsapp" textFill="#09e323" />
+         <Button fx:id="telegram" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" stylesheets="@button.css" text="\$telegram" textFill="#229ed9" />
+         <Button fx:id="email2" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" stylesheets="@button.css" text="\$email2" textFill="#fcfcfc" />
+         <Button fx:id="instagram" mnemonicParsing="false" prefHeight="36.0" prefWidth="301.0" stylesheets="@button.css" text="\$instagram" textFill="#e645b3" />
+         <Button fx:id="preferred" mnemonicParsing="false" prefHeight="20.0" prefWidth="400.0" stylesheets="@button.css" text="\$preferred" textFill="#11f4da" />
       </children>
    </VBox>
 </HBox>
