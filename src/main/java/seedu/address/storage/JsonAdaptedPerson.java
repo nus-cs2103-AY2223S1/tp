@@ -38,8 +38,7 @@ class JsonAdaptedPerson extends JsonAdaptedAbstractDisplayItem {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        super(source.getName().fullName, UUID.nameUUIDFromBytes(("Person: " + source.getName().fullName)
-                        .getBytes(StandardCharsets.UTF_8)).toString(),
+        super(source.getName().fullName, source.getUid().toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),

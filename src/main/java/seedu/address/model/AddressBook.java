@@ -76,6 +76,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setGroups(newData.getTeamsList());
+        setTasks(newData.getTasksList());
     }
 
     //// person-level operations
@@ -184,6 +185,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addTask(Task task) {
         requireNonNull(task);
         tasks.add(task);
+    }
+
+    /**
+     * Replaces the contents of the task list with {@code tasks}. {@code tasks}
+     * must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setItems(tasks);
     }
 
     /**

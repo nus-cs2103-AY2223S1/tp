@@ -15,8 +15,12 @@ abstract class JsonAdaptedAbstractDisplayItem {
                                              List<JsonAdaptedTag> tags) {
         this.name = name;
         this.uid = uid;
-        this.attributes.addAll(attributes);
-        this.tags.addAll(tags);
+        if (attributes != null) {
+            this.attributes.addAll(attributes);
+        }
+        if (tags != null) {
+            this.tags.addAll(tags);
+        }
     }
 
     protected String getName() {

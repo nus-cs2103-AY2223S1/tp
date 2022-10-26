@@ -16,7 +16,9 @@ class JsonAdaptedFields {
 
     @JsonCreator
     public JsonAdaptedFields(@JsonProperty("fields") List<JsonAdaptedField> fieldList) {
-        this.fieldList.addAll(fieldList);
+        if (fieldList != null) {
+            this.fieldList.addAll(fieldList);
+        }
     }
 
     public JsonAdaptedFields(Fields fields) {

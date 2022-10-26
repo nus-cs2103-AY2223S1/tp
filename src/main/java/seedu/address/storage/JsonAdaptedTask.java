@@ -3,8 +3,12 @@ package seedu.address.storage;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -37,8 +41,7 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
     }
 
     public JsonAdaptedTask(Task source) {
-        super(source.getName().fullName, UUID.nameUUIDFromBytes(("Task: " + source.getName().fullName)
-                        .getBytes(StandardCharsets.UTF_8)).toString(),
+        super(source.getName().fullName, source.getUid().toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
@@ -46,7 +49,8 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
                         .map(JsonAdaptedTag::new)
                         .collect(Collectors.toList()));
         description = source.getDescription().getAttributeContent();
-        localDateTime = source.getCompletedTime().toString();
+        LocalDateTime completedTime = source.getCompletedTime();
+        localDateTime = completedTime == null ? "" : completedTime.toString();
     }
 
     public Task toModelType() throws IllegalValueException {
@@ -71,9 +75,11 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
         final Name modelName = new Name(name);
         final Set<Tag> modelTags = new HashSet<>(taskTags);
 
-        LocalDateTime modelLocalDateTime;
+        LocalDateTime modelLocalDateTime = null;
         try {
-            modelLocalDateTime = LocalDateTime.parse(localDateTime);
+            if (!localDateTime.isEmpty()) {
+                modelLocalDateTime = LocalDateTime.parse(localDateTime);
+            }
         } catch (DateTimeParseException pe) {
             throw new IllegalValueException(String.format(INVALID_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
@@ -81,7 +87,7 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
 
         Task task = new Task(modelName.getAttributeContent(), description, modelLocalDateTime);
         task.setTags(modelTags);
-        modelAttributes.stream().forEach(attribute -> task.addAttribute(attribute));
+        modelAttributes.forEach(attribute -> task.addAttribute(attribute));
         return task;
     }
 }

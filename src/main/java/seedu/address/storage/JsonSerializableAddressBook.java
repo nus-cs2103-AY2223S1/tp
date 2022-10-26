@@ -70,21 +70,16 @@ class JsonSerializableAddressBook {
         groups.addAll(groupList.stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
         tasks.addAll(taskList.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
 
-        personList.forEach(person -> itemRelationship.put(
-                UUID.nameUUIDFromBytes(("Person: " + person.getName().fullName)
-                        .getBytes(StandardCharsets.UTF_8)).toString(),
-                person.getParents().stream().map(Object::toString).collect(Collectors.toList())));
+        personList.forEach(person -> itemRelationship.put(person.getUid().toString(),
+                person.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
 
         groupList.forEach(group -> itemRelationship.put(
-                UUID.nameUUIDFromBytes(("Group: " + group.getName().fullName)
-                        .getBytes(StandardCharsets.UTF_8)).toString(),
-                group.getParents().stream().map(Object::toString).collect(Collectors.toList())));
+                group.getUid().toString(),
+                group.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
 
-        taskList.forEach(task -> {
-            String taskUid = UUID.nameUUIDFromBytes(("Task: " + task.getName().fullName)
-                    .getBytes(StandardCharsets.UTF_8)).toString();
-            itemRelationship.put(taskUid, List.of(task.getParent().toString()));
-        });
+        taskList.forEach(task -> itemRelationship.put(
+                task.getUid().toString(),
+                task.getParents().stream().map(parent -> parent.getUid().toString()).collect(Collectors.toList())));
     }
 
     /**
@@ -114,14 +109,14 @@ class JsonSerializableAddressBook {
         for (Map.Entry<String, Group> pair : builtGroup.entrySet()) {
             Group group = pair.getValue();
             List<String> parentUid = itemRelationship.get(pair.getKey());
-            if (parentUid.size() != 1) {
+            if (parentUid.size() > 1) {
                 throw new IllegalValueException(MESSAGE_INVALID_GROUP_PARENT_COUNT);
             }
-            group.setParent(builtGroup.get(parentUid.get(0)));
 
-            if (addressBook.hasGroup(group)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_GROUP);
+            if (parentUid.size() == 1) {
+                group.setParent(builtGroup.get(parentUid.get(0)));
             }
+
             addressBook.addTeam(group);
         }
 
@@ -139,9 +134,6 @@ class JsonSerializableAddressBook {
                 person.setParent(builtSingleItem.get(parentUid));
             }
 
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
             addressBook.addPerson(person);
         }
 

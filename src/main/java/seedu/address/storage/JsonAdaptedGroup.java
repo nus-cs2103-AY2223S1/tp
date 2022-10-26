@@ -21,15 +21,14 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Group's %s field is missing!";
 
     @JsonCreator
-    public JsonAdaptedGroup(@JsonProperty("name") String name, @JsonProperty String uid,
+    public JsonAdaptedGroup(@JsonProperty("name") String name, @JsonProperty("uid") String uid,
                             @JsonProperty("tags") List<JsonAdaptedTag> tags,
                             @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
         super(name, uid, attributes, tags);
     }
 
     public JsonAdaptedGroup(Group source) {
-        super(source.getName().fullName, UUID.nameUUIDFromBytes(("Group: " + source.getName().fullName)
-                        .getBytes(StandardCharsets.UTF_8)).toString(),
+        super(source.getName().fullName, source.getUid().toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),

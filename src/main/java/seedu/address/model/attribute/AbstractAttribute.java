@@ -162,13 +162,13 @@ public abstract class AbstractAttribute<T> implements Attribute<T> {
             sb.append(" italic");
         }
         if (isAllStyleMatch(FONT_SIZE_SMALL)) {
-            size = 10;
+            size = 8;
         }
         if (isAllStyleMatch(FONT_SIZE_BIG) && !isInMenu) {
             size = 32;
         }
         if (isAllStyleMatch(FONT_SIZE_NORMAL)) {
-            size = 12;
+            size = 10;
         }
 
         sb.append(String.format(" %fpt 'Segoe UI';", size));

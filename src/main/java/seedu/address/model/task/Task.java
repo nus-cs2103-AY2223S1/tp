@@ -4,12 +4,16 @@ import static seedu.address.model.AccessDisplayFlags.GROUP;
 import static seedu.address.model.AccessDisplayFlags.PERSON;
 import static seedu.address.model.AccessDisplayFlags.TASK;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.attribute.Description;
 import seedu.address.model.item.AbstractDisplayItem;
 import seedu.address.model.item.AbstractSingleItem;
@@ -87,10 +91,7 @@ public class Task extends AbstractSingleItem {
      * tasks.
      */
     public boolean isSameTask(Task t) {
-        if (completedTime != null) {
-            return name.equals(t.name) && description.equals(t.description) && completedTime.equals(t.completedTime);
-        }
-        return name.equals(t.name) && description.equals(t.description) && (t.completedTime == null);
+        return getFullPath().equals(t.getFullPath());
     }
 
     /**
@@ -100,7 +101,12 @@ public class Task extends AbstractSingleItem {
      */
     @Override
     public boolean stronglyEqual(DisplayItem o) {
-        return equals(o);
+        if (!weaklyEqual(o)) {
+            return false;
+        }
+        Task task = (Task) o;
+        return completedTime.equals(task.completedTime) && description.equals(task.description) &&
+                getAttributes().equals(task.getAttributes());
     }
 
     /**
@@ -162,4 +168,10 @@ public class Task extends AbstractSingleItem {
 
         assignedParents.add(o);
     }
+
+    @Override
+    public UUID getUid() {
+        return UUID.nameUUIDFromBytes(("Task: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
+    }
+
 }

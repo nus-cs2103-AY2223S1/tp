@@ -4,9 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.AccessDisplayFlags.GROUP;
 import static seedu.address.model.AccessDisplayFlags.PERSON;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.attribute.Name;
 import seedu.address.model.item.AbstractDisplayItem;
@@ -123,5 +125,10 @@ public class Person extends AbstractDisplayItem {
     protected String getTitle(List<String> sb, AbstractDisplayItem o) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public UUID getUid() {
+        return UUID.nameUUIDFromBytes(("Person: " + getFullPath()).getBytes(StandardCharsets.UTF_8));
     }
 }
