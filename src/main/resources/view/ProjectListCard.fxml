@@ -16,10 +16,7 @@
             </padding>
             <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             <Label fx:id="client" styleClass="cell_small_label" text="\$client" />
-            <HBox alignment="CENTER_LEFT" spacing="8">
-                <Hyperlink fx:id="repository" styleClass="cell_small_label" text="\$repository" />
-                <Button fx:id="copyRepoButton" mnemonicParsing="false" text="Copy URL" />
-            </HBox>
+            <Hyperlink fx:id="repository" styleClass="cell_small_label" text="\$repository" />
             <Label fx:id="issueCount" styleClass="cell_small_label" text="\$issueCount" />
             <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
         </VBox>

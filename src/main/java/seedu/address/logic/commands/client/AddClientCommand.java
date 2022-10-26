@@ -64,17 +64,23 @@ public class AddClientCommand extends ClientCommand {
         }
 
         Client toAddClient = toAddClientWithoutModel.apply(model);
-
         Project toModifyProject = model.getProjectById(projectId.getIdInt());
 
         if (!toModifyProject.getClient().isEmpty()) {
             throw new CommandException(MESSAGE_CLIENT_ALREADY_PRESENT);
         }
 
-        toModifyProject.setClient(toAddClient);
-        toAddClient.addProjects(toModifyProject);
+        if (model.hasClient(toAddClient)) {
+            Client existingClient = model.getClient(toAddClient);
+            existingClient.addProjects(toModifyProject);
+        }
 
-        model.addClient(toAddClient);
+        else {
+            toAddClient.addProjects(toModifyProject);
+            model.addClient(toAddClient);
+        }
+
+        toModifyProject.setClient(toAddClient);
 
         ui.showClients();
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
