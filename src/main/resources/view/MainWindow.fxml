@@ -164,7 +164,7 @@
 
         </GridPane>
 
-        <StackPane fx:id="reminderbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="reminderBarPlaceholder" VBox.vgrow="NEVER" />
 
       </VBox>
     </Scene>
