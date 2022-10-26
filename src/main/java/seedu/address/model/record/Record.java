@@ -111,12 +111,8 @@ public class Record implements Comparable<Record> {
             return true;
         }
 
-        boolean sameRecordData = otherRecord != null
-                && otherRecord.getRecordData().equals(getRecordData());
-        boolean sameRecordDate = otherRecord != null
+        return otherRecord != null
                 && otherRecord.getRecordDate().equals(getRecordDate());
-
-        return sameRecordData && sameRecordDate;
     }
 
     @Override
@@ -127,7 +123,8 @@ public class Record implements Comparable<Record> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getRecordDate().format(DATE_FORMAT))
+        builder.append("Date: ")
+                .append(getRecordDate().format(DATE_FORMAT))
                 .append("; Record: ")
                 .append(record);
 

@@ -126,6 +126,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSimilarName(Person person) {
+        requireNonNull(person);
+        return addressBook.hasSimilarName(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

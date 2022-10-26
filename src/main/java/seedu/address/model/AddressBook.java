@@ -67,6 +67,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a person with a same name in lower case exists in the address book.
+     */
+    public boolean hasSimilarName(Person person) {
+        requireNonNull(person);
+        return persons.hasSimilarName(person);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

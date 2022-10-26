@@ -28,25 +28,25 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Birthdate("08-08-1988"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("HighRisk"), getSampleRecordList(), Appointment.of("11-11-2011 1500")),
+                getTagSet("PollenAllergy"), getSampleRecordList(), Appointment.of("11-11-2011 1500")),
 
             new Person(new Name("Bernice Yu"), new Birthdate("04-04-1944"), new Phone("99272758"),
                 new Email("berniceyu@example.com"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("GlutenAllergy", "PollenAllergy"), getSampleRecordList(),
+                getTagSet("Elderly", "PollenAllergy"), getSampleRecordList(),
                 Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED)),
 
             new Person(new Name("Charlotte Oliveiro"), new Birthdate("06-06-2006"), new Phone("93210283"),
                 new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("Eczema"), getSampleRecordList(), Appointment.of("01-05-2005 1045")),
+                    getTagSet(), getSampleRecordList(), Appointment.of("01-05-2005 1045")),
 
             new Person(new Name("David Li"), new Birthdate("01-10-2001"), new Phone("91031282"),
                 new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("Elderly"), getSampleRecordList(),
+                getTagSet("GlutenAllergy"), getSampleRecordList(),
                 Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED)),
 
             new Person(new Name("Irfan Ibrahim"), new Birthdate("04-04-1994"), new Phone("92492021"),
                 new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("Diabetic"), getSampleRecordList(), Appointment.of("02-12-2024 1600")),
+                getTagSet("LatexAllergy"), getSampleRecordList(), Appointment.of("02-12-2024 1600")),
 
             new Person(new Name("Roy Balakrishnan"), new Birthdate("09-09-1969"), new Phone("92624417"),
                 new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
