@@ -108,7 +108,7 @@ public class EditLoanCommand extends Command{
         }
         updatedLoanHistory.add(editLoanDescriptor.getHistory().get());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, 
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                           updatedBirthday updatedTags, updatedLoan, updatedLoanHistory);
     }
 
