@@ -1,5 +1,8 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-{Insert an image of items}
+Example of Item:
+
+![Item](images/ItemImage.png)
+
 
 #### Create a new item: `new`
 

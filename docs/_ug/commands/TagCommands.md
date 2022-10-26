@@ -1,5 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-{Insert an image of tags}
+Example of Tags:
+
+![Tags](images/TagImage.png)
 
 #### Create a new tag: `newtag`
 
