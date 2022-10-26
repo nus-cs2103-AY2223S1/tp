@@ -14,6 +14,9 @@ public class PriceRange implements Comparable<PriceRange> {
             + "If you have not decided one bound, you can enter " + Price.NOT_APPLICABLE_PRICE
             + " to indicate non-applicable price. "
             + "For example, 0.7,-1 means the price is at least 0.7 but not bounded above. ";
+    public static final int LOWER_THAN_RANGE = -1;
+    public static final int WITHIN_RANGE = 0;
+    public static final int HIGHER_THAN_RANGE = 1;
 
     private Price upperBound;
     private Price lowerBound;
@@ -54,6 +57,34 @@ public class PriceRange implements Comparable<PriceRange> {
     public void updatePriceRange(Price lowerBound, Price upperBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
+    }
+
+
+    /**
+     * Checks if a price is within the price range.
+     *
+     * @param price The price to be checked.
+     * @return {@code WITHIN_RANGE} if the price passed is within the range,
+     *      {@code LOWER_THAN_RANGE}, {@code HIGHER_THAN_RANGE} respectively.
+     */
+    public int isWithinRange(Price price) {
+        if (lowerBound.isNotApplicablePrice()) {
+            if (upperBound.isNotApplicablePrice()) {
+                return WITHIN_RANGE;
+            } else {
+                return price.compareTo(upperBound) <= 0 ? WITHIN_RANGE : HIGHER_THAN_RANGE;
+            }
+        } else {
+            if (upperBound.isNotApplicablePrice()) {
+                return price.compareTo(lowerBound) >= 0 ? WITHIN_RANGE : LOWER_THAN_RANGE;
+            } else {
+                if (price.compareTo(lowerBound) >= 0) {
+                    return price.compareTo(upperBound) <= 0 ? WITHIN_RANGE : HIGHER_THAN_RANGE;
+                } else {
+                    return LOWER_THAN_RANGE;
+                }
+            }
+        }
     }
 
     @Override
