@@ -231,7 +231,7 @@ These shortcut keys will add texts to the command box, this helps the users to e
 - `CTRL + Z` adds `undo` to the command box.
 - `CTRL + L` adds `clone` to the command box.
 - `CTRL + I` adds `view` to the command box.
-- `CTRL + P` clears all texts in the command box.
+- `CTRL + R` clears all texts in the command box.
 
 
 ### Clearing all entries : `clear`

@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         setCommandBoxText(UNDO_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+Z"));
         setCommandBoxText(MARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+M"));
         setCommandBoxText(UNMARK_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+U"));
-        setCommandBoxText(EMPTY_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+P"));
+        setCommandBoxText(EMPTY_COMMAND_SHORTCUT_TEXT, KeyCombination.valueOf("Shortcut+R"));
     }
 
     /**
