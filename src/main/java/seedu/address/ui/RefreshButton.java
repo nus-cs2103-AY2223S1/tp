@@ -31,7 +31,7 @@ public class RefreshButton extends CalendarButton {
 
     @FXML
     private void handleOnKeyPressed(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER) || event.getCode().equals(KeyCode.R)) {
+        if (event.getCode().equals(KeyCode.R)) {
             calendarLogic.refresh();
             refreshButton.requestFocus();
         } else if (event.getCode().equals(KeyCode.N)) {
