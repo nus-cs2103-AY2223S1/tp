@@ -345,6 +345,10 @@ public class Pet {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
     /**
      * Returns true if the two uniqueId matches.
      */

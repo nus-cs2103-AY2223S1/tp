@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COLOR;
@@ -51,12 +52,10 @@ import seedu.address.model.order.Price;
 import seedu.address.model.order.PriceRange;
 import seedu.address.model.order.Request;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Age;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
@@ -172,24 +171,47 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code orderString} is invalid.
      */
-    public static Order parseOrder(String orderString, Buyer buyer) throws ParseException {
+    public static Order parseOrder(String orderString, boolean isBuyerExisting) throws ParseException {
         requireNonNull(orderString);
         String trimmedOrderString = orderString.trim();
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(trimmedOrderString,
-                        PREFIX_ORDER_STATUS,
-                        PREFIX_ORDER_REQUESTS,
-                        PREFIX_ORDER_PRICE,
-                        PREFIX_ORDER_PRICE_RANGE,
-                        PREFIX_ORDER_ADDITIONAL_REQUESTS,
-                        PREFIX_ORDER_DATE);
-        if (!arePrefixesPresent(argMultimap,
-                PREFIX_ORDER_STATUS,
-                PREFIX_ORDER_REQUESTS,
-                PREFIX_ORDER_PRICE,
-                PREFIX_ORDER_PRICE_RANGE,
-                PREFIX_ORDER_DATE)) {
-            throw new ParseException(AddOrderCommand.MESSAGE_USAGE);
+        ArgumentMultimap argMultimap;
+
+        if (isBuyerExisting) {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(trimmedOrderString,
+                            PREFIX_INDEX, // The difference is here.
+                            PREFIX_ORDER_STATUS,
+                            PREFIX_ORDER_REQUESTS,
+                            PREFIX_ORDER_PRICE,
+                            PREFIX_ORDER_PRICE_RANGE,
+                            PREFIX_ORDER_ADDITIONAL_REQUESTS,
+                            PREFIX_ORDER_DATE);
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_INDEX, // The difference is here.
+                    PREFIX_ORDER_STATUS,
+                    PREFIX_ORDER_REQUESTS,
+                    PREFIX_ORDER_PRICE,
+                    PREFIX_ORDER_PRICE_RANGE,
+                    PREFIX_ORDER_DATE)) {
+                throw new ParseException(AddOrderCommand.MESSAGE_USAGE_EXISTING_BUYER);
+            }
+        } else {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(trimmedOrderString,
+                            PREFIX_ORDER_STATUS,
+                            PREFIX_ORDER_REQUESTS,
+                            PREFIX_ORDER_PRICE,
+                            PREFIX_ORDER_PRICE_RANGE,
+                            PREFIX_ORDER_ADDITIONAL_REQUESTS,
+                            PREFIX_ORDER_DATE);
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_ORDER_STATUS,
+                    PREFIX_ORDER_REQUESTS,
+                    PREFIX_ORDER_PRICE,
+                    PREFIX_ORDER_PRICE_RANGE,
+                    PREFIX_ORDER_DATE)) {
+                throw new ParseException(AddOrderCommand.MESSAGE_USAGE_NEW_BUYER);
+            }
         }
 
         PriceRange priceRange = parsePriceRange(argMultimap.getValue(PREFIX_ORDER_PRICE_RANGE).orElse(""));
@@ -200,7 +222,7 @@ public class ParserUtil {
         Price price = parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).orElse(""));
         OrderStatus orderStatus = parseOrderStatus(argMultimap.getValue(PREFIX_ORDER_STATUS).orElse(""));
 
-        return new Order(buyer, priceRange, request, additionalRequests, byDate, price, orderStatus);
+        return new Order(null, priceRange, request, additionalRequests, byDate, price, orderStatus);
     }
 
     /**
@@ -218,11 +240,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> orders} into a {@code List<Order>}.
      */
-    public static List<Order> parseOrders(Collection<String> orders, Buyer buyer) throws ParseException {
+    public static List<Order> parseOrders(Collection<String> orders, boolean isBuyerExisting) throws ParseException {
         requireNonNull(orders);
         final List<Order> orderList = new ArrayList<>();
         for (String order : orders) {
-            orderList.add(parseOrder(order, buyer));
+            orderList.add(parseOrder(order, isBuyerExisting));
         }
         return orderList;
     }
@@ -230,11 +252,11 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> pets} into a {@code List<Pet>}.
      */
-    public static List<Pet> parsePets(Collection<String> pets, Supplier supplier) throws ParseException {
+    public static List<Pet> parsePets(Collection<String> pets, boolean isSupplierExisting) throws ParseException {
         requireNonNull(pets);
         final List<Pet> petList = new ArrayList<>();
         for (String pet : pets) {
-            petList.add(parsePet(pet, supplier));
+            petList.add(parsePet(pet, isSupplierExisting));
         }
         return petList;
     }
@@ -329,33 +351,65 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code petString} is invalid.
      */
-    public static Pet parsePet(String petString, Supplier owner) throws ParseException {
+    public static Pet parsePet(String petString, boolean isSupplierExisting) throws ParseException {
 
         requireNonNull(petString);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(petString,
-                        PREFIX_PET_OWNER,
-                        PREFIX_PET_NAME,
-                        PREFIX_PET_DATE_OF_BIRTH,
-                        PREFIX_PET_COLOR,
-                        PREFIX_PET_COLOR_PATTERN,
-                        PREFIX_PET_HEIGHT,
-                        PREFIX_PET_CERTIFICATE,
-                        PREFIX_PET_SPECIES,
-                        PREFIX_PET_VACCINATION_STATUS,
-                        PREFIX_PET_PRICE,
-                        PREFIX_PET_WEIGHT,
-                        PREFIX_PET_TAG);
-        if (!arePrefixesPresent(argMultimap,
-                PREFIX_PET_NAME,
-                PREFIX_PET_DATE_OF_BIRTH,
-                PREFIX_PET_COLOR,
-                PREFIX_PET_COLOR_PATTERN,
-                PREFIX_PET_HEIGHT,
-                PREFIX_PET_SPECIES,
-                PREFIX_PET_PRICE,
-                PREFIX_PET_WEIGHT)) {
-            throw new ParseException(AddPetCommand.MESSAGE_USAGE);
+        ArgumentMultimap argMultimap;
+
+        if (isSupplierExisting) {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(petString,
+                            PREFIX_INDEX, // The difference is here
+                            PREFIX_PET_OWNER,
+                            PREFIX_PET_NAME,
+                            PREFIX_PET_DATE_OF_BIRTH,
+                            PREFIX_PET_COLOR,
+                            PREFIX_PET_COLOR_PATTERN,
+                            PREFIX_PET_HEIGHT,
+                            PREFIX_PET_CERTIFICATE,
+                            PREFIX_PET_SPECIES,
+                            PREFIX_PET_VACCINATION_STATUS,
+                            PREFIX_PET_PRICE,
+                            PREFIX_PET_WEIGHT,
+                            PREFIX_PET_TAG);
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_INDEX, // The difference is here
+                    PREFIX_PET_NAME,
+                    PREFIX_PET_DATE_OF_BIRTH,
+                    PREFIX_PET_COLOR,
+                    PREFIX_PET_COLOR_PATTERN,
+                    PREFIX_PET_HEIGHT,
+                    PREFIX_PET_SPECIES,
+                    PREFIX_PET_PRICE,
+                    PREFIX_PET_WEIGHT)) {
+                throw new ParseException(AddPetCommand.MESSAGE_USAGE_EXISTING_SUPPLIER);
+            }
+        } else {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(petString,
+                            PREFIX_PET_OWNER,
+                            PREFIX_PET_NAME,
+                            PREFIX_PET_DATE_OF_BIRTH,
+                            PREFIX_PET_COLOR,
+                            PREFIX_PET_COLOR_PATTERN,
+                            PREFIX_PET_HEIGHT,
+                            PREFIX_PET_CERTIFICATE,
+                            PREFIX_PET_SPECIES,
+                            PREFIX_PET_VACCINATION_STATUS,
+                            PREFIX_PET_PRICE,
+                            PREFIX_PET_WEIGHT,
+                            PREFIX_PET_TAG);
+            if (!arePrefixesPresent(argMultimap,
+                    PREFIX_PET_NAME,
+                    PREFIX_PET_DATE_OF_BIRTH,
+                    PREFIX_PET_COLOR,
+                    PREFIX_PET_COLOR_PATTERN,
+                    PREFIX_PET_HEIGHT,
+                    PREFIX_PET_SPECIES,
+                    PREFIX_PET_PRICE,
+                    PREFIX_PET_WEIGHT)) {
+                throw new ParseException(AddPetCommand.MESSAGE_USAGE_NEW_SUPPLIER);
+            }
         }
 
         PetName name = parsePetName(argMultimap.getValue(PREFIX_PET_NAME).orElse(""));
@@ -372,7 +426,7 @@ public class ParserUtil {
         Set<Tag> tags = parseTags(argMultimap.getAllValues(PREFIX_PET_TAG));
 
         Pet pet = new Pet(name,
-                owner,
+                null,
                 color,
                 colorPattern,
                 dateOfBirth,
