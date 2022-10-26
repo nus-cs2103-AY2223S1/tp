@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_IMPORT_ERROR;
 
 import java.io.FileReader;
+import java.io.Reader;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -49,8 +50,10 @@ public class ImportCommand extends Command {
                 JsonAddressBookStorage tempStorage = new JsonAddressBookStorage(targetPath);
                 tempStorage.readAddressBook().ifPresent(x -> x.getPersonList().forEach(model::addPerson));
             } else {
-                List<CsvAdaptedPerson> beans = new CsvToBeanBuilder(new FileReader(targetPath.toFile()))
+                Reader reader = new FileReader(targetPath.toFile());
+                List<CsvAdaptedPerson> beans = new CsvToBeanBuilder(reader)
                         .withType(CsvAdaptedPerson.class).build().parse();
+                reader.close();
                 beans.forEach(x -> {
                     try {
                         model.addPerson(x.toModelType());

@@ -4,6 +4,7 @@ title: Developer Guide
 ---
 
 Table of Contents
+
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
@@ -14,6 +15,7 @@ Table of Contents
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
 - [Implementation](#implementation)
+    * [Import command](#import-command)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
     * [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -169,7 +171,7 @@ How the parsing works:
 **
 API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
 
 
 The `Model` component,
@@ -214,6 +216,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Import command
+
+#### Current Implementation
+
+The import command mainly relies on the following classes:
+
+* `ImportCommand`
+* `AddressBookParser`
+* `ImportCommandParser`
+* `ParserUtil`
+* `CsvAdaptedPerson`
+* `StringToTag`
+
+`CsvToBeanBuilder` is provided by the OpenCSV library.
+
+1. The user executes the `import` command while providing a path as an argument.
+2. `AddressBookParser#parseCommand()` is called, which creates and returns a new `ImportCommandParser` that parses the provided path.
+3. `ImportCommandParser#parse()` is called, which calls `ParserUtil#parseImportPath()` to parse the provided path.
+4. `ParserUtil` checks if the path is to a `JSON` or `CSV` file, and if the file is readable. If the path is valid, it returns the path.
+5. `ImportCommandParser` creates and returns a new `ImportCommand` using the returned path.
+6. `ImportCommand#execute()` is called.
+    * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses it to read and add `Person`s to the `Model`.
+    * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to obtain a list of `CsvAdaptedPerson`s. `StringToTag#convertToRead()` is called by `CsvToBeanBuilder` to convert strings from the `CSV` file to `Tag`s. `CsvAdaptedPerson#toModelType()` is called to convert each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
+
+The following sequence diagram shows how the import command works:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+#### Design considerations:
+
+Chose to use OpenCSV to read `CSV` files to avoid reinventing the wheel.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -631,11 +665,11 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `delete 1`<br>
        Expected: First client is deleted from the list. Details of the deleted client shown in the status message.
        Timestamp in the status bar is updated.
-   
+
     3. Test case: `delete 1,2,5`<br>
-        Expected: Client at index 1,2 and 5 is deleted form the list. Details of the deleted client shown
-        in the status message.
-   
+       Expected: Client at index 1,2 and 5 is deleted form the list. Details of the deleted client shown
+       in the status message.
+
     4. Test case: `delete 1-3`<br>
        Expected: Client at index 1,2 and 3 is deleted form the list. Details of the deleted client shown
        in the status message.
@@ -653,19 +687,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: Importing an invalid JSON file
+    1. Test case: Importing an invalid JSON file   
        Expected: list of clients will be empty and nothing is shown
 
-    2. Test case: Importing an invalid CSV file
+    2. Test case: Importing an invalid CSV file   
        Expected: list of clients will be empty and nothing is shown
 
-    3. Test case: Editing the JSON file when the application is not launched with invalid datas
+    3. Test case: Editing the JSON file when the application is not launched with invalid datas   
        Expected: list of clients will be empty and nothing is shown
 
-    4. Test case: Missing JSON file
+    4. Test case: Missing JSON file   
        Expected: Creates a new addressbook.json file when there is a new command entered
 
     5. {explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 
 1. _{ more test cases …​ }_
