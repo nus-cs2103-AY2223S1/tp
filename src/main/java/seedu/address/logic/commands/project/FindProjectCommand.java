@@ -39,6 +39,7 @@ public class FindProjectCommand extends ProjectCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) {
         requireNonNull(model);
+        ui.showProjects();
         model.updateFilteredProjectList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW, model.getFilteredProjectList().size()));

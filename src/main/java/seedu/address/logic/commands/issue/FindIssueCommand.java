@@ -45,6 +45,7 @@ public class FindIssueCommand extends IssueCommand {
     @Override
     public CommandResult execute(Model model, Ui ui) {
         requireNonNull(model);
+        ui.showIssues();
         model.updateFilteredIssueList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ISSUES_LISTED_OVERVIEW, model.getFilteredIssueList().size()));
