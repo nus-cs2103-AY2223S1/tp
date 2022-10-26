@@ -79,7 +79,7 @@ Adds a buyer, supplier, or delivery service to the contacts.
 
 Format: `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 
 **:bulb: Tip:** A person can have any number of tags (including 0)
 
@@ -116,13 +116,13 @@ Useful keyboard shortcuts for the pop-up window:
 |     CTRL + D      |        Deletes the last order/pet under the buyer/supplier in the pop-up window        |
 |     CTRL + S      | Saves the inputs, adds the buyer/supplier to the contacts, and closes the pop-p window |
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 
 **:bulb: Tip:** If a compulsory text field is ***empty*** during saving, the cursor will be brought be the text field, which will be highlighted in red.
 
 </div>
 
-<div markdown="span" class="alert alert-primary"> 
+<div markdown="span" class="alert alert-primary">
 
 **:bulb: Tip:** If the input of a text field is in the ***wrong format*** during saving, the person will not be added to the contacts and the pop-up window will not close.
 The error message and the correct format of the input will be shown in the **main window**.
@@ -336,7 +336,7 @@ Format: `sort LIST_PARAMETER, [ATTRIBUTES...]`
 | Pet       | <u>Price</u>, Name, Color, Color Pattern, Birth Date, Species, Height, Weight, Vaccination Status, Characteristics, Certificates |
 
 > The underlined attribute represents the default sorting attribute for each list. <br>
-> For Example: `sort pet` will sort the pet list in default by the price attribute. 
+> For Example: `sort pet` will sort the pet list in default by the price attribute.
 
 #### Attribute Parameter Table
 
