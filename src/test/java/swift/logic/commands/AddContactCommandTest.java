@@ -152,6 +152,11 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getUnfilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -207,6 +212,11 @@ public class AddContactCommandTest {
 
         @Override
         public ObservableList<PersonTaskBridge> getFilteredBridgeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<PersonTaskBridge> getUnfilteredBridgeList() {
             throw new AssertionError("This method should not be called.");
         }
     }
