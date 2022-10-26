@@ -80,36 +80,33 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
+
         // zero tags
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + MODULE_DESC_AMY
                         + ID_DESC_AMY + GIT_DESC_AMY + HANDLE_DESC_AMY,
                 new AddCommand(expectedStudent));
+        
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
-                expectedMessage);
+        // missing name
+        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + MODULE_DESC_BOB + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
-                expectedMessage);
+        // missing module
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
 
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
-                expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
-                        + ID_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB,
-                expectedMessage);
+        // missing student id
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + MODULE_DESC_BOB + GIT_DESC_BOB + HANDLE_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, expectedMessage);
     }
 
     @Test

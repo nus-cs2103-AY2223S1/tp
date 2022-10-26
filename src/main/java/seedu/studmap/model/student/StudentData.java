@@ -12,9 +12,9 @@ import seedu.studmap.model.tag.Tag;
 public class StudentData {
     private StudentID studentID;
     private GitName gitName = new GitName();
-    private TeleHandle teleHandle;
+    private TeleHandle teleHandle = new TeleHandle();
     private Name name;
-    private Phone phone;
+    private Phone phone = new Phone();
     private Email email = new Email();
     private Module module;
     private Set<Tag> tags = new HashSet<>();
