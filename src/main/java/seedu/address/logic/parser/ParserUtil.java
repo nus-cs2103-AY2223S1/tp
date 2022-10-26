@@ -17,6 +17,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -116,13 +117,22 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String clazz} into an {@code Clazz}.
+     * Parses a {@code String} into an {@code Attendance}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
     public static Attendance parseAttendance(String attendance) throws ParseException {
         requireNonNull(attendance);
         return new Attendance(Attendance.parseAttendanceFromJson(attendance));
+    }
+
+    /**
+     * Parses a {@code String subjectHandler} into an {@code SubjectHandler}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static SubjectHandler parseSubjectHandler(String subjectHandler) {
+        requireNonNull(subjectHandler);
+        String trimmedsubjectHandler = subjectHandler.trim();
+        return new SubjectHandler(trimmedsubjectHandler);
     }
 
     /**
