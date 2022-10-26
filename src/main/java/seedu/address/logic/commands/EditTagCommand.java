@@ -19,7 +19,7 @@ import seedu.address.model.task.Task;
  * tag or the deadline of the deadline tag.
  */
 public class EditTagCommand extends Command {
-    public static final String COMMAND_WORD = "edittag";
+    public static final String COMMAND_WORD = "tagedit";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edits the tags of a task "
             + "in the task list.\n"
             + "parameters: INDEX " + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS "

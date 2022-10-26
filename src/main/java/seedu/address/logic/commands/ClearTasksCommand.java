@@ -13,7 +13,7 @@ import seedu.address.model.module.Module;
  */
 public class ClearTasksCommand extends Command {
 
-    public static final String COMMAND_WORD = "cleartasks";
+    public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESSS = "Task list has been cleared!";
 
     @Override

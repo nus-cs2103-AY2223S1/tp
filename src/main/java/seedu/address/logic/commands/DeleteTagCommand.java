@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
  * DeleteTagCommand removes the tag linked to the task in the task list.
  */
 public class DeleteTagCommand extends Command {
-    public static final String COMMAND_WORD = "deletetag";
+    public static final String COMMAND_WORD = "tagdel";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes tags linked to the task.\n"
             + "Format: " + COMMAND_WORD + " " + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " " + "t/" + "priority\n"

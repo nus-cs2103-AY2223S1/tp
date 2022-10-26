@@ -16,7 +16,7 @@ import seedu.address.model.exam.Exam;
  */
 public class DeleteExamCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteexam";
+    public static final String COMMAND_WORD = "del";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the exam identified by the index number used in the displayed exam list.\n"

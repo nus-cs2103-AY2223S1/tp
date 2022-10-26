@@ -19,7 +19,7 @@ import seedu.address.model.task.Task;
  * AddTagCommand represents a command which adds a tag to the existing task.
  */
 public class AddTagCommand extends Command {
-    public static final String COMMAND_WORD = "addtag";
+    public static final String COMMAND_WORD = "tagadd";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": tags a task in the task list.\n"
             + "parameters: INDEX " + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS "
             + PREFIX_DEADLINE + "DEADLINE";
