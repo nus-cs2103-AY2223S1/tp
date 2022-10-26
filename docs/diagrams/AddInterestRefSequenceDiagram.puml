@@ -7,30 +7,30 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":Person" as Person MODEL_COLOR
+participant ":Student" as Student MODEL_COLOR
 end box
 
 group sd Add Interest
 [-> AddInterestCommand : execute()
 activate AddInterestCommand
 
-AddInterestCommand -> Model: getFilteredPersonList()
+AddInterestCommand -> Model: getFilteredStudentList()
 activate Model
-Model --> AddInterestCommand: ObservableList<Person>
+Model --> AddInterestCommand: ObservableList<Student>
 deactivate Model
 
-AddInterestCommand -> Person: get(1)
-activate Person
-Person --> AddInterestCommand: personToEdit
-deactivate Person
+AddInterestCommand -> Student: get(1)
+activate Student
+Student --> AddInterestCommand: personToEdit
+deactivate Student
 
-AddInterestCommand -> Person: addInterest("anime")
-activate Person
-Person --> AddInterestCommand
-deactivate Person
+AddInterestCommand -> Student: addInterest("anime")
+activate Student
+Student --> AddInterestCommand
+deactivate Student
 
 
-AddInterestCommand -> Model: updateFilteredPersonList()
+AddInterestCommand -> Model: updateFilteredStudentList()
 activate Model
 Model --> AddInterestCommand
 deactivate Model
