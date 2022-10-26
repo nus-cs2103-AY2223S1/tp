@@ -12,6 +12,8 @@ import seedu.intrack.model.internship.Task;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -31,9 +33,16 @@ public class UpcomingTaskPanel extends UiPart<Region> {
 
     public UpcomingTaskPanel(ObservableList<Internship> internshipList) {
         super(FXML);
-        ObservableList<Task> upcomingTask = internshipList.stream().map(internship -> internship.getTasks().get(0))
+
+        List<Task> upcomingTaskList = new ArrayList<>();
+        for (Internship internship : internshipList) {
+            upcomingTaskList.addAll(internship.getTasks());
+        }
+        Task nextTask = upcomingTaskList.stream()
+                .sorted((t1, t2) -> t1.getTaskTime().compareTo(t2.getTaskTime()))
                 .filter(task -> task.getTaskTime().isAfter(currentDateTime))
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+                .findFirst().orElse(null);
+        ObservableList<Task> upcomingTask = FXCollections.observableArrayList(nextTask);
         taskListView.setItems(upcomingTask);
     }
 }

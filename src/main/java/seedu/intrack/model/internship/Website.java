@@ -25,7 +25,7 @@ public class Website {
         requireNonNull(website);
         checkArgument(isValidWebsite(website), MESSAGE_CONSTRAINTS);
 
-        value = website;
+        value = addHttp(website);
     }
 
     /**
@@ -43,15 +43,12 @@ public class Website {
     /**
      * Adds http to the website if valid URI but does not contain protocol
      */
-    /*
     public static String addHttp(String uri) {
         if (!uri.matches("^\\w+?://.*")) {
             uri = "http://" + uri;
         }
         return uri;
     }
-
-     */
 
     @Override
     public String toString() {
