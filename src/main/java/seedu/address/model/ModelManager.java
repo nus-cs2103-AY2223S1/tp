@@ -15,7 +15,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
- * Represents the in-memory model of the NUS scheduler data.
+ * Represents the in-memory model of the NUScheduler data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyNuScheduler nuScheduler, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(nuScheduler, userPrefs);
 
-        logger.fine("Initializing with NUS scheduler: " + nuScheduler + " and user prefs " + userPrefs);
+        logger.fine("Initializing with NUScheduler: " + nuScheduler + " and user prefs " + userPrefs);
 
         this.nuScheduler = new NuScheduler(nuScheduler);
         this.userPrefs = new UserPrefs(userPrefs);

@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s NUS scheduler and {@code userPrefs}. <br>
-     * The data from the sample NUS scheduler will be used instead if {@code storage}'s NUS scheduler is not found,
-     * or an empty NUS scheduler will be used instead if errors occur when reading {@code storage}'s NUS scheduler.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s NUScheduler and {@code userPrefs}. <br>
+     * The data from the sample NUScheduler will be used instead if {@code storage}'s NUScheduler is not found,
+     * or an empty NUScheduler will be used instead if errors occur when reading {@code storage}'s NUScheduler.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyNuScheduler> nuSchedulerOptional;

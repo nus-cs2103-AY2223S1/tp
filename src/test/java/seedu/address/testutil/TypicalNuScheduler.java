@@ -5,7 +5,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 
 /**
- * A utility class containing a NUS scheduler with a list of
+ * A utility class containing a NUScheduler with a list of
  * {@code Profile} and {@code Event} objects to be used in tests.
  */
 public class TypicalNuScheduler {

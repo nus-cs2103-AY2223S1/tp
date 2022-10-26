@@ -35,7 +35,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     public NuScheduler() {}
 
     /**
-     * Creates a NUS scheduler using the Profiles in the {@code toBeCopied}
+     * Creates a NUScheduler using the Profiles in the {@code toBeCopied}
      */
     public NuScheduler(ReadOnlyNuScheduler toBeCopied) {
         this();
@@ -72,7 +72,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     //// profile-level operations
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the NUS scheduler.
+     * Returns true if a profile with the same identity as {@code profile} exists in the NUScheduler.
      */
     public boolean hasProfile(Profile profile) {
         requireNonNull(profile);
@@ -80,8 +80,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     }
 
     /**
-     * Adds a profile to the NUS scheduler.
-     * The profile must not already exist in the NUS scheduler.
+     * Adds a profile to the NUScheduler.
+     * The profile must not already exist in the NUScheduler.
      */
     public void addProfile(Profile p) {
         profiles.add(p);
@@ -89,8 +89,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Replaces the given profile {@code target} in the list with {@code editedProfile}.
-     * {@code target} must exist in the NUS scheduler.
-     * The profile identity of {@code editedProfile} must not be the same as an existing profile in the NUS scheduler.
+     * {@code target} must exist in the NUScheduler.
+     * The profile identity of {@code editedProfile} must not be the same as an existing profile in the NUScheduler.
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireNonNull(editedProfile);
@@ -100,7 +100,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Removes {@code key} from this {@code NuScheduler}.
-     * {@code key} must exist in the NUS scheduler.
+     * {@code key} must exist in the NUScheduler.
      */
     public void removeProfile(Profile key) {
         profiles.remove(key);
@@ -109,7 +109,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     //// event-level operations
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the NUS scheduler.
+     * Returns true if an event with the same identity as {@code event} exists in the NUScheduler.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -117,8 +117,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
     }
 
     /**
-     * Adds an event to the NUS scheduler.
-     * The event must not already exist in the NUS scheduler.
+     * Adds an event to the NUScheduler.
+     * The event must not already exist in the NUScheduler.
      */
     public void addEvent(Event p) {
         events.add(p);
@@ -126,8 +126,8 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the NUS scheduler.
-     * The event identity of {@code editedEvent} must not be the same as an existing event in the NUS scheduler.
+     * {@code target} must exist in the NUScheduler.
+     * The event identity of {@code editedEvent} must not be the same as an existing event in the NUScheduler.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
@@ -136,7 +136,7 @@ public class NuScheduler implements ReadOnlyNuScheduler {
 
     /**
      * Removes {@code key} from this {@code NuScheduler}.
-     * {@code key} must exist in the NUS scheduler.
+     * {@code key} must exist in the NUScheduler.
      */
     public void removeEvent(Event key) {
         events.remove(key);

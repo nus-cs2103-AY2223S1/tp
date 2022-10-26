@@ -39,17 +39,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' NUS scheduler file path.
+     * Returns the user prefs' NUScheduler file path.
      */
     Path getNuSchedulerFilePath();
 
     /**
-     * Sets the user prefs' NUS scheduler file path.
+     * Sets the user prefs' NUScheduler file path.
      */
     void setNuSchedulerFilePath(Path nuSchedulerFilePath);
 
     /**
-     * Replaces NUS scheduler data with the data in {@code nuScheduler}.
+     * Replaces NUScheduler data with the data in {@code nuScheduler}.
      */
     void setNuScheduler(ReadOnlyNuScheduler nuScheduler);
 
@@ -57,27 +57,27 @@ public interface Model {
     ReadOnlyNuScheduler getNuScheduler();
 
     /**
-     * Returns true if a profile with the same identity as {@code profile} exists in the NUS scheduler.
+     * Returns true if a profile with the same identity as {@code profile} exists in the NUScheduler.
      */
     boolean hasProfile(Profile profile);
 
     /**
      * Deletes the given profile.
-     * The profile must exist in the NUS scheduler.
+     * The profile must exist in the NUScheduler.
      */
     void deleteProfile(Profile target);
 
     /**
      * Adds the given profile.
-     * {@code profile} must not already exist in the NUS scheduler.
+     * {@code profile} must not already exist in the NUScheduler.
      */
     void addProfile(Profile profile);
 
     /**
      * Replaces the given profile {@code target} with {@code editedProfile}.
-     * {@code target} must exist in the NUS scheduler.
+     * {@code target} must exist in the NUScheduler.
      * The profile identity of {@code editedProfile} must not be the same as another existing
-     * profile in the NUS scheduler.
+     * profile in the NUScheduler.
      */
     void setProfile(Profile target, Profile editedProfile);
 
@@ -91,27 +91,27 @@ public interface Model {
     void updateFilteredProfileList(Predicate<Profile> predicate);
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the NUS scheduler.
+     * Returns true if an event with the same identity as {@code event} exists in the NUScheduler.
      */
     boolean hasEvent(Event event);
 
     /**
      * Deletes the given event.
-     * The event must exist in the NUS scheduler.
+     * The event must exist in the NUScheduler.
      */
     void deleteEvent(Event target);
 
     /**
      * Adds the given event.
-     * {@code event} must not already exist in the NUS scheduler.
+     * {@code event} must not already exist in the NUScheduler.
      */
     void addEvent(Event event);
 
     /**
      * Replaces the given event {@code target} with {@code editedEvent}.
-     * {@code target} must exist in the NUS scheduler.
+     * {@code target} must exist in the NUScheduler.
      * The event identity of {@code editedEvent} must not be the same as another existing
-     * event in the NUS scheduler.
+     * event in the NUScheduler.
      */
     void setEvent(Event target, Event editedEvent);
 

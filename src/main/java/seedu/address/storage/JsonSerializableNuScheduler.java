@@ -47,7 +47,7 @@ class JsonSerializableNuScheduler {
     }
 
     /**
-     * Converts this NUS scheduler into the model's {@code NuScheduler} object.
+     * Converts this NUScheduler into the model's {@code NuScheduler} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

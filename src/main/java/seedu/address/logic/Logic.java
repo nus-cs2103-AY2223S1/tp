@@ -38,7 +38,7 @@ public interface Logic {
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns the user prefs' NUS scheduler file path.
+     * Returns the user prefs' NUScheduler file path.
      */
     Path getNuSchedulerFilePath();
 
