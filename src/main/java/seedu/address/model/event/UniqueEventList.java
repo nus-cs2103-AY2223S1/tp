@@ -107,9 +107,25 @@ public class UniqueEventList implements Iterable<Event> {
             int index = internalList.indexOf(e);
             if (index == -1) {
                 throw new EventNotFoundException();
-            };
+            }
             e.removeAttendees(List.of(target));
             e.addAttendees(List.of(editedProfile));
+        }
+    }
+
+    /**
+     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
+     * Events in {@code eventsToEdit} must exist in the address book.
+     */
+    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
+        requireAllNonNull(target, eventsToEdit);
+
+        for (Event e : eventsToEdit) {
+            int index = internalList.indexOf(e);
+            if (index == -1) {
+                throw new EventNotFoundException();
+            }
+            e.removeAttendees(List.of(target));
         }
     }
 

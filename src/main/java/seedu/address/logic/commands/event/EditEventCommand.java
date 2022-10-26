@@ -93,7 +93,6 @@ public class EditEventCommand extends EventCommand {
             throw new CommandException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
-        //model.setProfileForEventsAttending(profileToEdit, editedProfile, profileToEdit.getEventsToAttend().getEventsList());
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));

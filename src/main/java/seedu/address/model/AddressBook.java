@@ -109,6 +109,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         profiles.remove(key);
     }
 
+    /**
+     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
+     * {@code target} must exist in the address book.
+     * Events in {@code eventsToEdit} must also exist in the address book.
+     */
+    public void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit) {
+        requireAllNonNull(target, eventsToEdit);
+        if (!profiles.contains(target)) {
+            throw new ProfileNotFoundException();
+        }
+        events.removeProfileFromEventsAttending(target, eventsToEdit);
+    }
+
     //// event-level operations
 
     /**
@@ -138,11 +151,33 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
+     * {@code editedEvent}.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, editedEvent, profilesToEdit);
+        profiles.setEventForAttendees(target, editedEvent, profilesToEdit);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
     public void removeEvent(Event key) {
         events.remove(key);
+    }
+
+    /**
+     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
+     * {@code target} must exist in the address book.
+     * Profiles in {@code profilesToEdit} must also exist in the address book.
+     */
+    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+        if (!events.contains(target)) {
+            throw new EventNotFoundException();
+        }
+        profiles.removeEventsFromAttendeesList(target, profilesToEdit);
     }
 
     /**

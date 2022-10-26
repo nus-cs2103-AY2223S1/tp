@@ -143,6 +143,20 @@ public class Profile implements Comparable<Profile> {
     }
 
     /**
+     * Removes the events in {@code eventsToRemove} from the profile's list of eventsAttending if
+     * they exit.
+     */
+    public void removeEventsAttending(List<Event> eventsToRemove) {
+        requireNonNull(eventsToRemove);
+
+        eventsToRemove.forEach(event -> {
+            if (eventsToAttend.hasEventAttending(event)) {
+                eventsToAttend.remove(event);
+            }
+        });
+    }
+
+    /**
      * Returns true if the specified event is in the profile's list of eventsAttending.
      */
     public boolean hasEventAttending(Event event) {

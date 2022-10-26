@@ -108,7 +108,6 @@ public class UniqueProfileList implements Iterable<Profile> {
 
     /**
      * Adds event {@code event} to the profiles in list of profiles {@code profilesToAddEventTo}.
-     * The event must exist in the list.
      */
     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
         requireAllNonNull(event, profilesToAddEventTo);
@@ -119,6 +118,39 @@ public class UniqueProfileList implements Iterable<Profile> {
                 throw new ProfileNotFoundException();
             };
             p.addEventsAttending(List.of(event));
+        }
+    }
+
+    /**
+     * Updates the events {@code target} in list of profiles {@code profilesToSet} to the new edited event
+     * {@code editedEvent}.
+     */
+    public void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, editedEvent, profilesToEdit);
+
+        for (Profile p : profilesToEdit) {
+            int index = internalList.indexOf(p);
+            if (index == -1) {
+                throw new ProfileNotFoundException();
+            };
+            p.removeEventsAttending(List.of(target));
+            p.addEventsAttending(List.of(editedEvent));
+        }
+    }
+
+    /**
+     * Deletes the event {@code target} from given list of profiles {@code profilesToEdit}.
+     * Profiles in {@code profilesToEdit} must exist in the address book.
+     */
+    public void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+
+        for (Profile p : profilesToEdit) {
+            int index = internalList.indexOf(p);
+            if (index == -1) {
+                throw new ProfileNotFoundException();
+            }
+            p.removeEventsAttending(List.of(target));
         }
     }
 

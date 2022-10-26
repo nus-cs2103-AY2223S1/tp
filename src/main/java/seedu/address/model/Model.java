@@ -71,6 +71,11 @@ public interface Model {
     void deleteProfile(Profile target);
 
     /**
+     * Deletes the profile {@code target} from given list of events {@code eventsToEdit}.
+     */
+    void removeProfileFromEventsAttending(Profile target, List<Event> eventsToEdit);
+
+    /**
      * Adds the given profile.
      * {@code profile} must not already exist in the address book.
      */
@@ -118,6 +123,11 @@ public interface Model {
     void deleteEvent(Event target);
 
     /**
+     * Deletes the event {@code target} from list of profiles {@code profilesToEdit}.
+     */
+    void removeEventsFromAttendeesList(Event target, List<Profile> profilesToEdit);
+
+    /**
      * Adds the given event.
      * {@code event} must not already exist in the address book.
      */
@@ -130,6 +140,12 @@ public interface Model {
      * event in the address book.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Updates the target event {@code target} in the given list of profiles {@code profilesToEdit} to the new
+     * edited event {@code editedEvent}
+     */
+    void setEventForAttendees(Event target, Event editedEvent, List<Profile> profilesToEdit);
 
     /**
      * Adds the given list of profiles {@code profilesToAdd} to the given event's list of attendees.
