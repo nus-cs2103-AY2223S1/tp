@@ -7,6 +7,8 @@ import seedu.classify.logic.commands.ViewStatsCommand;
 import seedu.classify.logic.parser.exceptions.ParseException;
 import seedu.classify.model.student.Class;
 
+import static seedu.classify.logic.parser.CliSyntax.PREFIX_FILTER;
+
 /**
  * Parses input arguments and creates a ViewStatsCommand object
  * */
@@ -14,10 +16,9 @@ public class ViewStatsCommandParser implements Parser<ViewStatsCommand> {
 
     @Override
     public ViewStatsCommand parse(String args) throws ParseException {
-        Prefix filterPrefix = new Prefix("filter/");
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_CLASS,
-                CliSyntax.PREFIX_EXAM, filterPrefix);
-        if (!arePrefixesPresent(argMultiMap, CliSyntax.PREFIX_CLASS, CliSyntax.PREFIX_EXAM, filterPrefix)) {
+                CliSyntax.PREFIX_EXAM, PREFIX_FILTER);
+        if (!arePrefixesPresent(argMultiMap, CliSyntax.PREFIX_CLASS, CliSyntax.PREFIX_EXAM, PREFIX_FILTER)) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewStatsCommand.MESSAGE_USAGE));
         }
@@ -25,7 +26,7 @@ public class ViewStatsCommandParser implements Parser<ViewStatsCommand> {
         try {
             Class className = ParserUtil.parseClass(argMultiMap.getValue(CliSyntax.PREFIX_CLASS).get());
             String exam = ParserUtil.parseExamQuery(argMultiMap.getValue(CliSyntax.PREFIX_EXAM).get());
-            boolean isFilterOn = ParserUtil.parseFilter(argMultiMap.getValue(filterPrefix).get().toUpperCase());
+            boolean isFilterOn = ParserUtil.parseFilter(argMultiMap.getValue(PREFIX_FILTER).get().toUpperCase());
             return new ViewStatsCommand(className, exam, isFilterOn);
         } catch (ParseException pe) {
             throw new ParseException(

@@ -19,11 +19,10 @@ import seedu.classify.model.student.exceptions.ExamNotFoundException;
  */
 public class ViewStatsCommand extends Command {
 
-    public static final String COMMAND_WORD = "viewstats";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Retrieves the grades of the specified exam from the"
-            + " students in the specified class, calculates the mean score within the class, then sorts the class list"
-            + " according to grade. If filter tag is on, only students whose grade falls below the mean will be"
-            + " displayed.\n"
+    public static final String COMMAND_WORD = "viewStats";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Calculates the mean score of the specified exam in the"
+            + " specified class and displays the list of students in the class in ascending order of their exam score."
+            + " If filter tag is on, only students whose grade falls below the mean will be displayed.\n"
             + "Parameters: " + CliSyntax.PREFIX_CLASS + "CLASS " + CliSyntax.PREFIX_EXAM + "EXAM filter/FILTER\n"
             + "Example: " + COMMAND_WORD + " class/4A1 exam/SA1 filter/on";
 
@@ -32,7 +31,7 @@ public class ViewStatsCommand extends Command {
     private final boolean isFilterOn;
 
     /**
-     * creates a ViewStatsCommand to view the mean of a particular exam of a particular class,
+     * Creates a ViewStatsCommand to view the mean of a particular exam of a particular class,
      * using the specified fields.
      */
     public ViewStatsCommand(Class className, String exam, boolean isFilterOn) {
