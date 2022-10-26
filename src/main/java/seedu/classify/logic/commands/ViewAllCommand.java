@@ -6,7 +6,7 @@ import static seedu.classify.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import seedu.classify.model.Model;
 
 /**
- * Lists all the students' name and ID to the user.
+ * Lists all student records.
  */
 public class ViewAllCommand extends Command {
 
