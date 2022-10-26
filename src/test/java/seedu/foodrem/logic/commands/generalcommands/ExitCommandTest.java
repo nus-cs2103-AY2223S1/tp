@@ -13,11 +13,10 @@ import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.testutil.TypicalFoodRem;
 
 class ExitCommandTest {
-
     private final Model model = new ModelManager(TypicalFoodRem.getTypicalFoodRem(), new UserPrefs());
 
     @Test
-    void execute() {
+    void testCommandResult() {
         CommandResult<?> commandResult = new ExitCommand().execute(model);
 
         assertFalse(commandResult.shouldShowHelp());
