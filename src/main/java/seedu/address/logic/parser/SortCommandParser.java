@@ -4,10 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.sort.SortByAppointment;
-import seedu.address.logic.parser.sort.SortByIncome;
-import seedu.address.logic.parser.sort.SortByName;
-import seedu.address.logic.parser.sort.SortByRiskTag;
+import seedu.address.logic.parser.sort.*;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -50,6 +47,12 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         case "risk desc":
             return new SortCommand(new SortByRiskTag("desc"), "risk in descending order");
+
+        case "monthly":
+            return new SortCommand(new SortByMonthly("asc"), "monthly");
+
+        case "monthly desc":
+            return new SortCommand(new SortByMonthly("desc"), "monthly in descending order");
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
