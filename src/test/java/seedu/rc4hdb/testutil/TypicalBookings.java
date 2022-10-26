@@ -13,12 +13,21 @@ import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
  */
 public class TypicalBookings {
 
-    public static final HourPeriod HP_5_TO_6PM = new HourPeriod("17-18");
-    public static final HourPeriod HP_6_TO_7PM = new HourPeriod("18-19");
-    public static final HourPeriod HP_5_TO_7PM = new HourPeriod("17-19");
+    /* Typical hour period fields */
+    public static final String HP_5_TO_6PM_STRING = "17-18";
+    public static final String HP_6_TO_7PM_STRING = "18-19";
+    public static final String HP_5_TO_7PM_STRING = "17-19";
 
-    public static final Day MONDAY = new Day("MON");
-    public static final Day TUESDAY = new Day("TUE");
+    public static final HourPeriod HP_5_TO_6PM = new HourPeriod(HP_5_TO_6PM_STRING);
+    public static final HourPeriod HP_6_TO_7PM = new HourPeriod(HP_6_TO_7PM_STRING);
+    public static final HourPeriod HP_5_TO_7PM = new HourPeriod(HP_5_TO_7PM_STRING);
+
+    /* Typical day fields */
+    public static final String MONDAY_STRING = "MON";
+    public static final String TUESDAY_STRING = "TUE";
+
+    public static final Day MONDAY = new Day(MONDAY_STRING);
+    public static final Day TUESDAY = new Day(TUESDAY_STRING);
 
     /* Meeting room bookings */
     public static final RecurrentBooking MR_ALICE_MONDAY_5_TO_6_PM =

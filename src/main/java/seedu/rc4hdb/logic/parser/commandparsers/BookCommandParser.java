@@ -5,7 +5,6 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TIME_PERIOD;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE_NAME;
 
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import seedu.rc4hdb.commons.core.index.Index;
@@ -37,13 +36,9 @@ public class BookCommandParser implements Parser<BookCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            BookingDescriptor bookingDescriptor = buildBookingDescriptor(argMultimap);
-            return new BookCommand(index, bookingDescriptor);
-        } catch (NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE), e);
-        }
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        BookingDescriptor bookingDescriptor = buildBookingDescriptor(argMultimap);
+        return new BookCommand(index, bookingDescriptor);
     }
 
     /**
