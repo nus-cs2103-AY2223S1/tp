@@ -19,11 +19,10 @@ more effectively than traditional GUI apps.
         * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
         * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
         * Finding a student: [`findstu`](#finding-a-student-findstu)
-        * Listing all students: [`liststu`](#listing-all-students-liststu)
     * **Question**
         * Adding a question: [`addq`](#adding-a-question--addq)
-        * Marking a question: [`markq`](#marking-a-question--markq)
-        * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
+        * Marking a question as important: [`markq`](#marking-a-question--markq)
+        * Marking a question as unimportant: [`unmarkq`](#unmarking-a-question--unmarkq)
         * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
     * **Tutorial**
         * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
@@ -186,16 +185,6 @@ Example:
 * `findstu john mary`
 
 
-### Listing all students: `liststu`
-
-Lists all students in the student list.
-
-Format: `liststu`
-
-Example: 
-
-* `liststu`
-
 
 ### Adding a question : `addq`
 
@@ -216,8 +205,9 @@ Format: `markq INDEX`
 
 * Marks the question at the specified INDEX as important.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, …
-*
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible 
+  indexes are 1, 2, 3 and 4.
 
 Examples:
 
@@ -232,8 +222,9 @@ Format: `unmarkq INDEX`
 
 * Marks the question at the specified INDEX as unimportant.
 * The index refers to the index number shown in the displayed question list.
-* The index must be a positive integer 1, 2. 3, …
-*
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
 
 Examples:
 
@@ -245,6 +236,10 @@ Examples:
 Deletes a question in the question list.
 
 Format: `deleteq INDEX`
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2, 3, ...
+* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
 
 Examples:
 
