@@ -5,8 +5,6 @@ import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -48,18 +46,12 @@ public class DeletesCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NOT_IN_FOCUS_MODE, COMMAND_WORD));
         }
 
-        ModuleClass oldClass = model.getFocusedClass();
-        for (Session session : sessions) {
-            if (!oldClass.hasSession(session)) {
-                throw new CommandException(String.format(MESSAGE_SESSION_DOES_NOT_EXIST, session.getSessionName()));
-            }
+        ModuleClass focusedClass = model.getFocusedClass();
+        if (!sessions.stream().allMatch(focusedClass::hasSession)) {
+            throw new CommandException(String.format(MESSAGE_SESSION_DOES_NOT_EXIST, sessions));
         }
 
-        List<Session> newSessions = new ArrayList<>(oldClass.getSessions());
-        newSessions.removeAll(sessions);
-        ModuleClass newClass = new ModuleClass(oldClass.getClassName(), newSessions);
-
-        model.setModuleClass(oldClass, newClass);
+        model.removeSessions(focusedClass, sessions);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessions));
     }
