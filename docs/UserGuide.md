@@ -118,12 +118,18 @@ the data for all internships whose company name contains the word `Shopee`.
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+**Tip Box**
+<div markdown="block" class="alert alert-success">
+**:bulb: Tip:** <br>
+- Press `ESC` to close the Help window <br>
+- Press `c` to copy the User Guide url in the Help window 
+</div>
 
 ### Adding an internship: `add`
 
@@ -131,9 +137,9 @@ Adds an internship into the list.
 
 Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​`
 
-* Possible options for `APPLICATION_PROCESS` : `APPLY`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
-* Case-insensitive: `Apply`, `APPLY`, and `apply` are all acceptable inputs.
-* `APPLICATION_PROCESS` will be set to `APPLY` by default.
+* Possible options for `APPLICATION_PROCESS` : `APPLIED`, `ASSESSMENT`, `INTERVIEW`, `OFFER`, `ACCEPTED`, `REJECTED` 
+* Case-insensitive: `Applied`, `APPLIED`, and `applied` are all acceptable inputs.
+* `APPLICATION_PROCESS` will be set to `APPLIED` by default.
 * `DATE` should be in dd-mm-yyyy format.
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
@@ -146,10 +152,15 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 </div>
 
 Examples:
-* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLY d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
+* `add n/Google ph/98765432 e/johnd@example.com r/Y2 summer break p/Backend Intern pr/APPLIED d/11-12-2022 web/https://careers.google.com/jobs t/high t/java`
 * `add n/Grab p/software engineer pr/ASSESSMENT web/https://www.grab.com/sg/about`
 * `add n/Tiktok p/backend engineer`
-* `add n/Shopee p/frontend engineer pr/INTERVIEW d/14-09-2022`
+
+![help message](images/BeforeAddCommand.png)
+_Before executing command:  `add n/Gojek p/Mobile Intern`_
+
+![help message](images/AfterAddCommand.png)
+_After executing command: `add n/Gojek p/Mobile Intern`_
 
 ### Listing all internships : `list`
 
@@ -286,8 +297,6 @@ PleaseHireUs data is saved as a JSON file `[JAR file location]/data/internshipbo
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-
-
 ### Archiving data files `[coming in v1.3]`
 
 _Details coming soon ..._
@@ -303,21 +312,20 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`
-**Clear** | `clear`
-**Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
-**View** | `view INDEX`<br> e.g., `view 1`
-**Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
-**Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
-**List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`
-**Copy** | `copy INDEX` <br> e.g., `copy 1`
-**Help** | `help`
-**Undo** | `undo`
-**Redo** | `redo`
+| Action     | Undo Compatibility | Format, Examples                                                                                                                                                                                               |
+|------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
+| **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
+| **Delete** | :heavy_check_mark: | `delete INDEX...`<br> e.g., `delete 1 3`                                                                                                                                                                       |
+| **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
+| **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
+| **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
+| **List**   | :x:                | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`                                                                                                                                                       |
+| **Help**   | :x:                | `help`                                                                                                                                                                                                         |
+| **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
+| **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
+| **Redo**   | :heavy_check_mark: | `redo`                                                                                                                                                                                                         |
 
---------------------------------------------------------------------------------------------------------------------
 
 ## Prefix Summary
 
@@ -333,6 +341,17 @@ Prefix | Symbolize
 **r/** | Remark
 **t/** | Tags
 **c/** | Category
+
+## Glossary
+
+| Term                           | Description                                                                                                                                        |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
+| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
+| Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
+| Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
+| Alphanumeric                   | Characters that are either a number or a letter.                                                                                                   |
 
 ## Acknowledgements
 * This project is adapted from **[AddressBook 3(AB3)](https://github.com/se-edu/addressbook-level3)**
