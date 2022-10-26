@@ -7,7 +7,9 @@ import java.util.Optional;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.LessonTypeEnum;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.UserModule;
+import org.openapitools.client.ApiException;
 
 
 /**
@@ -21,7 +23,7 @@ public class PickCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_MODULE_MISSING = "This module is not in your module list";
-    public static final String MESSAGE_INVALID_LESSONTYPE = "This Lesson Type is not offered in this module";
+    public static final String MESSAGE_INVALID_LESSONTYPE = "This lesson type is not offered in this module";
     public static final String MESSAGE_INVALID_CLASSNO = "This class is not offered or an invalid one";
     public static final String MESSAGE_DUPLICATE_CLASSNO = "This class already exist in your current module";
 
@@ -51,13 +53,21 @@ public class PickCommand extends Command {
 
         UserModule curr = toUpdate.get();
 
+        Module module = model.getListModule(toPick).get();
+
+        try {
+            module.loadMoreData();
+        } catch (ApiException e) {
+            throw new CommandException("Error 404 something went wrong");
+        }
+
         //check if lesson type is offered
-        if (!model.isModuleLessonOffered(toPick, curr.getSelectedSemester(), lessonType)) {
+        if (!module.isLessonTypeEnumSelectable(lessonType, curr.getSelectedSemester())) {
             throw new CommandException(MESSAGE_INVALID_LESSONTYPE);
         }
 
         //check if lesson class code is offered
-        if (!model.isModuleLessonClassOffered(toPick, toUpdate.get().getSelectedSemester(), lessonType, classNo)) {
+        if (!module.hasLessonId(classNo, curr.getSelectedSemester(), lessonType)) {
             throw new CommandException(MESSAGE_INVALID_CLASSNO);
         }
 

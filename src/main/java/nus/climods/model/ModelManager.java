@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import nus.climods.logic.commands.exceptions.CommandException;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.SemestersEnum;
 
@@ -84,6 +85,7 @@ public class ModelManager implements Model {
     @Override
     public boolean isModuleOfferedInSemester(String moduleCode, SemestersEnum semester) {
         Optional<Module> module = getModule(moduleCode);
+
         if (module.isEmpty()) {
             return false;
         }
@@ -91,10 +93,17 @@ public class ModelManager implements Model {
         return module.get().availableInSemester(semester);
     }
 
+    //will keep these here first jic we plan to use the wrapper to standardize for pickcommand
     @Override
     public Set<LessonTypeEnum> unselectableLessonType(String moduleCode, SemestersEnum semester) {
-        Optional<Module> module = getModule(moduleCode);
+        Optional<Module> module = getListModule(moduleCode);
         if (module.isEmpty()) {
+            return null;
+        }
+
+        try {
+            module.get().loadMoreData();
+        } catch (ApiException e) {
             return null;
         }
 
@@ -104,19 +113,30 @@ public class ModelManager implements Model {
     @Override
     public boolean isModuleLessonOffered(String moduleCode, SemestersEnum semester,
                                          LessonTypeEnum lessonType) {
-        Optional<Module> module = getModule(moduleCode);
+        Optional<Module> module = getListModule(moduleCode);
         if (module.isEmpty()) {
             return false;
         }
 
+        try {
+            module.get().loadMoreData();
+        } catch (ApiException e) {
+            return false;
+        }
         return module.get().hasLessonTypeEnum(lessonType, semester);
     }
 
     @Override
     public boolean isModuleLessonClassOffered(String moduleCode, SemestersEnum semester,
                                          LessonTypeEnum lessonType, String classCode) {
-        Optional<Module> module = getModule(moduleCode);
+        Optional<Module> module = getListModule(moduleCode);
         if (module.isEmpty()) {
+            return false;
+        }
+
+        try {
+            module.get().loadMoreData();
+        } catch (ApiException e) {
             return false;
         }
 

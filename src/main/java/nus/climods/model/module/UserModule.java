@@ -93,7 +93,7 @@ public class UserModule {
     public String getLessons() {
         String str = "";
         for (LessonTypeEnum k : lessons.keySet()) {
-            str += k.toString() + "Code: " + lessons.get(k) + " ";
+            str += k.toString() + " | " + lessons.get(k) + "\n";
         }
         return str;
     }
