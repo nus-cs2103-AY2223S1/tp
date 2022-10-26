@@ -171,7 +171,7 @@ class UniqueListTest {
     /**
      * A class that has a String identity as well as a data field.
      */
-    private static class Item implements Identity<Item> {
+    private static class Item implements Identity<Item>, Comparable<Item> {
 
         private String identity;
         private String data;

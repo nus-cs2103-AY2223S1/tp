@@ -11,7 +11,7 @@ import seedu.taassist.model.uniquelist.Identity;
 /**
  * Represents a session data of student in a module.
  */
-public class SessionData implements Identity<SessionData> {
+public class SessionData implements Identity<SessionData>, Comparable<SessionData> {
 
     private final Session session;
     private final double grade;

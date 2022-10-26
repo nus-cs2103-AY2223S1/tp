@@ -17,7 +17,7 @@ import seedu.taassist.model.uniquelist.Identity;
  * Represents a Class in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleClassName(String)}
  */
-public class ModuleClass implements Identity<ModuleClass> {
+public class ModuleClass implements Identity<ModuleClass>, Comparable<ModuleClass> {
 
     public static final String MESSAGE_CONSTRAINTS = "Class names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";

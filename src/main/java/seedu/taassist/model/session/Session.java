@@ -13,7 +13,7 @@ import seedu.taassist.model.uniquelist.Identity;
  * Represents a Session for a {@code ModuleClass} in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
  */
-public class Session implements Identity<Session> {
+public class Session implements Identity<Session>, Comparable<Session> {
     public static final String MESSAGE_CONSTRAINTS = "Session names can take any values, but they should not be blank";
 
     /*

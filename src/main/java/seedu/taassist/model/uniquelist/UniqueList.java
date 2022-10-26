@@ -22,7 +22,7 @@ import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
  * uses {@code Identity<T>#equals(Object)} so as to ensure that the element with exactly the same fields are removed.
  * Supports a minimal set of list operations.
  */
-public class UniqueList<T extends Identity<T>> implements Iterable<T> {
+public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterable<T> {
 
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =
