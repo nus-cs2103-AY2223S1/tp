@@ -6,6 +6,7 @@ import static seedu.trackascholar.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,19 @@ public class UniqueApplicantList implements Iterable<Applicant> {
     public boolean contains(Applicant toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameApplicant);
+    }
+
+    /**
+     * Checks if the list contains an applicant with the same name as the given one.
+     * @param toCheck the applicant to be compared with the rest of the list
+     * @return applicant from the list with the same name
+     */
+    public Applicant findSimilarApplicant(Applicant toCheck) {
+        requireNonNull(toCheck);
+        assert this.contains(toCheck);
+
+        Optional<Applicant> similarApplicant = internalList.stream().filter(toCheck::isSameApplicant).findFirst();
+        return similarApplicant.get();
     }
 
     /**
