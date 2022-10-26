@@ -15,10 +15,10 @@ Teacher’s Pet can get your contact and class management tasks done faster than
     * [Editing student details: `edit`](#editing-student-details-edit)
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
-    * [Deleting a student: `delete`](#deleting-a-student-delete)
-    * [Undo a command: `undo`](#undo-the-last-command-undo)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
+    * [Deleting a student: `delete`](#deleting-a-student-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
+    * [Undo a command: `undo`](#undo-the-last-command-undo)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -262,8 +262,29 @@ Example:
 
 ![UiFind](images/UG-screenshots/UiFind.png)
 
-Replace the prefix n/ with the corresponding prefixes (p/, np/, e/, a/, dt/ or t/) for find by other fields.
+Replace the prefix `n/` with the corresponding prefixes (`p/`, `np/`, `e/`, `a/`, `dt/` or `t/`) for find by other fields.
 The same rules apply as per find by name.
+
+[Back to top](#table-of-contents)
+
+---
+
+### Sort the displayed students: 'sort'
+
+Sort the displayed list of students (in the Student's Details panel) by the given `type` and `order`.
+
+Format: `sort TYPE [ORDER]`
+
+- `TYPE` must be from `NAME`, `CLASS`, and `OWED`.
+- `ORDER`, if present, must be from `ASC` or `DESC`. If it is left blank, it will follow the default order for the type.
+- Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
+- The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
+
+Examples:
+
+- `list` followed by `sort NAME` will list all the students by ascending order of their names.
+- `list` followed by `sort CLASS ASC` will list all the students by ascending order of their upcoming classes.
+- `list` followed by `sort OWED DESC` will list all the students by descending order of how much money they owe.
 
 [Back to top](#table-of-contents)
 
@@ -291,37 +312,6 @@ Examples:
 
 ---
 
-### Undo the last command: 'undo'
-
-Undoes the last command executed and restores the Teacher's Pet to the previous state.
-
-Format: `undo`
-
-[Back to top](#table-of-contents)
-
----
-
-### Sort the displayed students: 'sort'
-
-Sort the displayed list of students (in the Student's Details panel) by the given `type` and `order`.
-
-Format: `sort TYPE [ORDER]`
-
-- `TYPE` must be from `NAME`, `CLASS`, and `OWED`.
-- `ORDER`, if present, must be from `ASC` or `DESC`. If it is left blank, it will follow the default order for the type.
-- Default order for `NAME` and `CLASS` is `ASC` while default order for `OWED` is `DESC`.
-- The two parameters `TYPE` and `ORDER` can be non-capitalized such as `name`, `nAMe` and so on.
-
-Examples:
-
-- `list` followed by `sort NAME` will list all the students by ascending order of their names.
-- `list` followed by `sort CLASS ASC` will list all the students by ascending order of their upcoming classes.
-- `list` followed by `sort OWED DESC` will list all the students by descending order of how much money they owe.
-
-[Back to top](#table-of-contents)
-
----
-
 ### Clearing all student: 'clear'
 
 Clears all students and their details from the list.
@@ -331,6 +321,16 @@ Format: `clear`
 ```yaml
 ❗ Caution: Clearing all students by mistake can be reversed by "undo" command!
 ```
+
+[Back to top](#table-of-contents)
+
+---
+
+### Undo the last command: 'undo'
+
+Undoes the last command executed and restores the Teacher's Pet to the previous state.
+
+Format: `undo`
 
 [Back to top](#table-of-contents)
 
