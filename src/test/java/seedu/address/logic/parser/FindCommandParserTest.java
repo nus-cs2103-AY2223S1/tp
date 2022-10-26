@@ -24,8 +24,9 @@ public class FindCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
 
-    private static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
-            + "either n/, p/, np/, e/, a/ or dt/";
+    public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix, "
+            + "either n/, p/, np/, e/, a/, dt/ or t/";
+
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
