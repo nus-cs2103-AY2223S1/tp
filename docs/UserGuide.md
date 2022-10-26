@@ -75,13 +75,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
 ### Adding a patient: `add`
 
 Adds a patient to the patient record database.
 
 Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
+* The command can only be called when the patient addressbook is displayed (after using `list`).
 * Patient's name entered in is case-insensitive.
 * Duplicate patients are not allowed.
   * Patients are considered duplicate when they have the same `NAME` and `ADDRESS`.
@@ -92,17 +92,19 @@ A patient can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/PollenAllergy`
+* `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Ang Mo Kio Ave 5, block 13, #02-033 p/1234567 t/PollenAllergy`
 
 ### Adding a record: `radd`
 
 Adds a new record to a given patient.
 
-Format: `radd d/DATE r/DATA [m/MEDICATION]…` 
+Format: `radd d/RECORD_DATE r/RECORD_DATA [m/MEDICATION]…` 
 
-* The command is only valid after using `rlist PATIENT_INDEX`.
-* Adds a new record to the patient with given `DATE`, `DATA` and `MEDICATION` information.
 
+* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
+* Adds a new record to the patient with given `RECORD_DATE`, `RECORD_DATA` and `MEDICATION` information.
+  * `RECORD_DATA` field cannot be empty.
+  
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Dates must be given in DD-MM-YYYY HHmm format!
 </div>
@@ -117,6 +119,7 @@ Deletes the specified patient from the patient database.
 
 Format: `delete INDEX`
 
+* The command can only be called when the patient addressbook is displayed (after using `list`).
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient records list.
 * The index must be a positive integer 1, 2, 3, …​
@@ -131,7 +134,7 @@ Deletes the specified record from the currently viewed patient’s records.
 
 Format: `rdelete RECORD_INDEX`
 
-* The command is only valid after using `rlist PATIENT_INDEX`.
+* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 * Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
 * The record index must be a positive integer 1, 2, 3, …​
 
@@ -146,13 +149,13 @@ Shows a list of all patients in the patient database.
 Format: `list`
 * To be used only when the list of records is displayed, in order to return to the main display.
 
-### Listing all record(s) for the specified patient : `rlist
+### Listing all record(s) for the specified patient : `rlist`
 
 Shows a list of all records for the specified patient.
 
 Format: `rlist PATIENT_INDEX`
 
-* The command is only valid after using `list`.
+* The command can only be called when the patient addressbook is displayed (after using `list`).
 * Lists all records of the patient at the specified `PATIENT_INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -167,6 +170,7 @@ Edits an existing patient in the address book.
 
 Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
+* * The command can only be called when the patient addressbook is displayed (after using `list`).
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided 
   * if the same field is specified more than once, only the latest instance of the field is used.
@@ -188,8 +192,9 @@ Examples:
 
 Edits an existing record in the record list.
 
-Format: `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`
+Format: `redit INDEX [d/RECORD_DATE] [r/RECORD_DATA] [m/MEDICATION]…​`
 
+* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 * Edits the record at the specified `INDEX`. The index refers to the index number shown in the displayed record list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
   * if the same field is specified more than once, only the latest instance of the field is used.
@@ -213,6 +218,7 @@ Finds patients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+* The command can only be called when the patient addressbook is displayed (after using `list`).
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -228,9 +234,11 @@ Examples:
 
 ### Locating records by keyword: `rfind`
 
-Finds records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the rlist command to list out the records for a specified patient.
+Find records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the rlist command to list out the records for a specified patient.
 
 Format: `rfind [d/DATA] [r/DATA] [m/MEDICATION]`
+* 
+* * The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 * The search is case-insensitive. e.g `h1n1` will match `H1N1`
 * The order of the keywords does not matter. e.g. `r/Has SARS` will match `SARS Has` stored in record data
 * Only full words will be matched e.g. `Covid` will not match `Covid-19`.
@@ -255,11 +263,15 @@ Format: `showall`
 
 Clears all patients from Omnihealth.
 
+* The command can only be called when the patient addressbook is displayed (after using `list`).
+
 Format: `clear`
 
 ### Clearing all patient records : `rclear`
 
 Clears all records of a specific patient from Omnihealth.
+
+* The command can only be called when a patient's record list is displayed (after using `rlist PATIENT_INDEX`).
 
 Format: `rclear`
 
@@ -268,11 +280,13 @@ Format: `rclear`
 Adds an appointment for a specified patient. This command is only valid in the patient list view.
 
 Format: `appt INDEX d/DATE`
+
+* The command can only be called when the patient addressbook is displayed (after using `list`).
 * Adds a new appointment for the patient under the specified `INDEX`.
-* The index refers to the index number in the list of patients.
-* The index must be positive and available in the list.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * The appointment is created with the given date.
-* If a pre-existing appointment is present, it will be overriden by the new appointment.
+* If a pre-existing appointment is present, it will be overridden by the new appointment.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Appointment dates must be given in DD-MM-YYYY HHmm format!
@@ -283,9 +297,11 @@ Appointment dates must be given in DD-MM-YYYY HHmm format!
 Clears the appointment for a specified patient. This command is only valid in the patient list view.
 
 Format: `apptcl INDEX`
+
+* The command can only be called when the patient addressbook is displayed (after using `list`).
 * Clears any appointment under the patient with the specified `INDEX`.
-* The index refers to the index number in the list of patients.
-* The index must be positive and available in the list.
+* The index refers to the index number shown in the displayed patient list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Exiting the program : `exit`
 
@@ -338,3 +354,4 @@ _Details coming soon ..._
 | **Add Appointment**   | `appt INDEX [d/DATE]` <br> e.g., `appt 1 d/01-01-2000 1230`                                                                                                    |
 | **Clear Appointment** | `apptcl`                                                                                                                                                       |
 | **Help**              | `help`                                                                                                                                                         |
+
