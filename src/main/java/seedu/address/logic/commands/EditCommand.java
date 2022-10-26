@@ -9,7 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REWARD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.customer.Customer.birthdayTag;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -107,6 +109,16 @@ public class EditCommand extends Command {
         }
         Customer customerToEdit = lastShownList.get(index.getZeroBased());
         Customer editedCustomer = createEditedPerson(customerToEdit, editPersonDescriptor);
+        LocalDate currentDate = LocalDate.now();
+        String currentMonth = String.valueOf(currentDate.getMonth().getValue());
+        if (editedCustomer.getTags().contains(birthdayTag)
+                && !editedCustomer.getBirthdayMonth().value.equals(currentMonth)) {
+            editedCustomer.removeBirthdayTag();
+        } else if (!editedCustomer.getTags().contains(birthdayTag)
+                && editedCustomer.getBirthdayMonth().value.equals(currentMonth)) {
+            editedCustomer.addBirthdayTag();
+        }
+
         Predicate<Customer> filterPersonToEdit = p -> !p.equals(customerToEdit);
         FilteredList<Customer> filteredListWithoutTarget = model.getAddressBook().getPersonList()
                 .filtered(filterPersonToEdit);

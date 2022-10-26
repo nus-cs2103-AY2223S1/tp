@@ -1,6 +1,9 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,6 +11,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.tag.Tag;
+
+import static seedu.address.model.customer.Customer.birthdayTag;
 
 /**
  * An UI component that displays information of a {@code Customer}.
@@ -15,6 +21,17 @@ import seedu.address.model.customer.Customer;
 public class CustomerCard extends UiPart<Region> {
 
     private static final String FXML = "CustomerListCard.fxml";
+
+    private static final HashMap<String, String> colourMap= new HashMap<>() {{
+        put("DIAMOND", " -fx-background-color: ba68c8; ");
+        put("PLATINUM", " -fx-background-color: a5d6a7; ");
+        put("GOLD", " -fx-background-color: c9b037; ");
+        put("SILVER", " -fx-background-color: c0c0c0; ");
+        put("BRONZE", " -fx-background-color: cd7f32; ");
+        put("WARNING", " -fx-background-color: ff6600; ");
+        put("BANNED", " -fx-background-color: dd0000; ");
+        put(birthdayTag.tagName, " -fx-background-color: ff69b4; ");
+    }};
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -55,9 +72,14 @@ public class CustomerCard extends UiPart<Region> {
         birthdayMonth.setText(customer.getBirthdayMonth().monthString);
         reward.setText(customer.getReward().displayValue);
         email.setText(customer.getEmail().displayValue);
-        customer.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        List<Tag> listOfTags = customer.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName)).collect(Collectors.toList());
+        for (Tag tag : listOfTags) {
+            String tagName = tag.tagName;
+            Label label = new Label(tagName);
+            label.setStyle(colourMap.getOrDefault(tagName, "  -fx-background-color: 3e7b91; "));
+            tags.getChildren().add(label);
+        }
     }
 
     @Override
