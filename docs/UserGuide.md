@@ -158,7 +158,7 @@ Format: `help`
 <div markdown="block" class="alert alert-success">
 **:bulb: Tip:** <br>
 - Press <kbd>esc</kbd> to close the Help window <br>
-- Press <kbd>C</kbd> to copy the User Guide url in the Help window 
+- Press <kbd>C</kbd> to copy the User Guide url into the clipboard when the Help window is opened
 </div>
 
 ### Adding an internship: `add`
@@ -174,7 +174,8 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 * `DATE` will be set to today’s date by default.
 * `PHONE` will be set to "NA" by default.
 * `EMAIL` will be set to "NA" by default.
-* `WEBSITE` will be set to “NA” by default. Website must start with `http://` or `https://`
+* `WEBSITE` will be set to “NA” by default. 
+* `WEBSITE` must start with `http://` or `https://`
 * `REMARK` will be empty by default.
 * `TAG` will be empty by default. All tags must be alphanumeric.
 
@@ -352,7 +353,7 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Undo Compatibility | Format, Examples                                                                                                                                                                                               |
+| Action     | Undo               | Format, Examples                                                                                                                                                                                               |
 |------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | :heavy_check_mark: | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`                                        |
 | **Clear**  | :heavy_check_mark: | `clear`                                                                                                                                                                                                        |
@@ -360,7 +361,7 @@ _Details coming soon ..._
 | **View**   | :x:                | `view INDEX`<br> e.g., `view 1`                                                                                                                                                                                |
 | **Edit**   | :heavy_check_mark: | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022` |
 | **Find**   | :x:                | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`                                                                                                                                                  |
-| **List**   | :x:                | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`                                                                                                                                                       |
+| **List**   | :x:                | `list [c/CATEGORY [DESCENDING]]` <br> e.g, `list c/d true`                                                                                                                                                     |
 | **Help**   | :x:                | `help`                                                                                                                                                                                                         |
 | **Copy**   | :x:                | `copy INDEX` <br> e.g., `copy 1`                                                                                                                                                                               |
 | **Undo**   | :x:                | `undo`                                                                                                                                                                                                         |
