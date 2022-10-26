@@ -310,9 +310,9 @@ requests, Order status, Price range.
 
 | Attribute           | Prefix | Format                     | Example         |
 |---------------------|--------|----------------------------|-----------------|
-| Additional requests | ar | ar/KEYWORD                 | ar/non-shedding |
-| Order Status | os | os/KEYWORD                 | os/Negotating   |
-| Price Range | pr | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+| Additional requests | ar     | ar/KEYWORD                 | ar/non-shedding |
+| Order Status        | os     | os/KEYWORD                 | os/Negotating   |
+| Price Range         | pr     | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
 Format: `filter-o [PREFIX]/INPUT`
 
@@ -327,13 +327,13 @@ Examples:
 Filter display only Pets based on the given attributes. There are five possible attributes to filter: Color, Name,
 Price, Species, Vaccination status.
 
-| Attribute | Prefix | Format             | Example         |
-|-----------|--------|--------------------|-----------------|
-| Color | c | c/KEYWORD          | c/pink          |
-| Name | n | n/KEYWORD          | n/nyanko-sensei |
-| Price | p | p/PRICE            | p/209           |
-| Species | s | s/KEYWORD          | s/ostrich       |
-| Vaccination Status | v | v/KEYWORD |  v/false        |
+| Attribute          | Prefix | Format    | Example         |
+|--------------------|--------|-----------|-----------------|
+| Color              | c      | c/KEYWORD | c/pink          |
+| Name               | n      | n/KEYWORD | n/nyanko-sensei |
+| Price              | p      | p/PRICE   | p/209           |
+| Species            | s      | s/KEYWORD | s/ostrich       |
+| Vaccination Status | v      | v/KEYWORD | v/false         |
 
 Format: `filter-p [PREFIX]/INPUT`
 
@@ -350,11 +350,11 @@ Address, Email, Location, Name, Phone.
 
 | Attribute | Prefix | Format    | Example                |
 |-----------|--------|-----------|------------------------|
-| Address | a      | a/KEYWORD | a/Wall Street          |
-| Email | e      | e/KEYWORD | e/whereisamy@gmail.com |
-|Location | l      | l/KEYWORD | l/Nova Scotia          |
-| Name | n      | n/KEYWORD | n/Amy Toh              |
-| Phone | p      | p/NUMBER  | p/999                  |
+| Address   | a      | a/KEYWORD | a/Wall Street          |
+| Email     | e      | e/KEYWORD | e/whereisamy@gmail.com |
+| Location  | l      | l/KEYWORD | l/Nova Scotia          |
+| Name      | n      | n/KEYWORD | n/Amy Toh              |
+| Phone     | p      | p/NUMBER  | p/999                  |
 
 Format: `find [PREFIX]/INPUT`
 
@@ -538,31 +538,58 @@ the data of your previous PetCode home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
-
 ## List of Prefixes
 
 These prefixes are for you to indicate different fields when you add a new person, a new order, or a new pet.
 
-| Prefix | Category | Meaning |
-|--------|----------|---------|
-|
+| Prefix     | Category        | Meaning                          | Usage                                                                                                                                                                                                                                                                                                                              | Example                                          |
+|------------|-----------------|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| `n/`       | General Person  | Name                             | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `n/John Halstead`                                |
+| `p/`       | General Person  | Phone number                     | Numbers only. Required.                                                                                                                                                                                                                                                                                                            | `p/80334455`                                     |
+| `e/`       | General Person  | Email address                    | A string of any characters. Must contain `@` and follow email format. Required.                                                                                                                                                                                                                                                    | `e/1324@sample.com`                              |
+| `a/`       | General Person  | Address                          | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `a/36 College Ave East, Singapore 138600`        |
+| `i/`       | General Person  | Index                            | A positive integer counting from 1. Required.                                                                                                                                                                                                                                                                                      | `i/4`                                            |
+| `t/`       | General Person  | Tag that describes a person      | A string of any characters. Optional. Can have multiple.                                                                                                                                                                                                                                                                           | `t/old buyer`, `t/good partner`                  |
+| `o/`       | Order           | Order                            | Always followed by `add-o`. Optional, if no orders to add when adding a buyer. Can have multiple.                                                                                                                                                                                                                                  | `o/add-o`                                        |
+| `o_s/`     | Order           | Order status                     | `Pending`, `Negotiating`, or `Delivering`                                                                                                                                                                                                                                                                                          | `o_s/Pending`                                    |
+| `o_p/`     | Order           | Price                            | A non-negative decimal number. Use `-1` to indicate not settled price. Required.                                                                                                                                                                                                                                                   | `o_p/38.6`                                       |
+| `o_pr/`    | Order           | Price range                      | This is for you to use when negotiating with buyer -- the range the price is expected  to fall within. Two non-negative decimal numbers, separated by a comma `,`. The first must not be greater than the second. If you haven't settled down one or two of the bounds, use `-1` to indicate not applicable price bound. Required. | `o_pr/-1, -1`, `o_pr/2.9, -1`, `o_pr/4.3, 19.5`  |
+| `o_d/`     | Order           | Transaction (scheduled) date     | In the format `yyyy-MM-dd`.                                                                                                                                                                                                                                                                                                        | `o_d/2022-10-28`, `o_d/2022-9-2`                 |
+| `o_r/`     | Order (Request) | Order request                    | Always followed by `add-r`. The Request group of prefixes describe what kind of pet this order seeks. Required.                                                                                                                                                                                                                    | `o_r/add-r`                                      |
+| `o_a/`     | Order (Request) | Age                              | A non-negative integer. Required.                                                                                                                                                                                                                                                                                                  | `o_a/5`                                          |
+| `o_s/`     | Order (Request) | Species                          | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `o_s/Chihuahua`, `o_s/German shepherd`           |
+| `o_c/`     | Order (Request) | Color                            | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `o_c/red`                                        |
+| `o_cp/`    | Order (Request) | Color pattern                    | A string of any characters. This describes the appearance of the pet in more detail. Required.                                                                                                                                                                                                                                     | `o_cp/white stripped`, `o_cp/black dotted`       |
+| `o_ar/`    | Order           | Additional request of the order. | A string of any characters. Optional. Can have multiple.                                                                                                                                                                                                                                                                           | `o_ar/free delivery`, `o_ar/arrive in 10 days`   |
+| `pt/`      | Pet             | Pet                              | Always followed by `add-pt`. Optional, if no orders to add when adding a supplier. Can have multiple.                                                                                                                                                                                                                              | `pt/add-pt`                                      |
+| `pt_n/`    | Pet             | Pet name                         | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `pt_n/Page`                                      |
+| `pt_s/`    | Pet             | Species                          | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `pt_s/Chihuahua`, `pt_s/German shepherd`         |
+| `pt_d/`    | Pet             | Date of birth of the pet         | In the format `yyyy-MM-dd`.                                                                                                                                                                                                                                                                                                        | `pt_d/2020-3-29`                                 |
+| `pt_c/`    | Pet             | Color                            | A string of any characters. Required.                                                                                                                                                                                                                                                                                              | `pt_c/blue`                                      |
+| `pt_cp/`   | Pet             | Color pattern                    | A string of any characters. This describes the appearance of the pet in more detail. Required.                                                                                                                                                                                                                                     | `pt_cp/blue grids`                               |
+| `pt_h/`    | Pet             | Height                           | A non-negative decimal number. The unit is cm. Required.                                                                                                                                                                                                                                                                           | `pt_h/33.2`                                      |
+| `pt_w/`    | Pet             | Weight                           | A non-negative decimal number. The unit is kg. Required.                                                                                                                                                                                                                                                                           | `pt_w/58.2`                                      |
+| `pt_p/`    | Pet             | Price                            | A non-negative decimal number. This is the price the pet is to be sold at. Use `-1` to indicate not settled price. Required.                                                                                                                                                                                                       | `pt_p/55.5`                                      |
+| `pt_v/`    | Pet             | Vaccination status               | `true` if the pet is vaccinated, otherwise `false`. Required.                                                                                                                                                                                                                                                                      | `pt_v/false`                                     |
+| `pt_cert/` | Pet             | Certificate                      | A string of any characters. Other certificates this pet holds. Optional. Can have multiple.                                                                                                                                                                                                                                        | `pt_cert/US certified`, `pt_cert/noble blood`    |
+| `pt_t/`    | Pet             | Tag                              | A string of any characters. Optional. Can have multiple.                                                                                                                                                                                                                                                                           | `pt_t/good`, `pt_t/naughty`, `pt_t/fast growing` |
 
+## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                                             |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**            | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-| **Add**            | `add buyer`, `add supplier`                                                                                                                                                                                  |
-| **Clear**          | `clear`                                                                                                                                                                                                      |
-| **Delete**         | `delete-KEY INDEX` e.g., `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`                                                                                                                |
-| **Find**           | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                         |
-| **Find Buyer**     | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                                     |
-| **Find Deliverer** | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                                     |
-| **Find Supplier**  | `find-s PREFIX/KEYWORD` <br> e.g., `find-s n/James Jake`                                                                                                                                                     |
-| **Filter**         | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                      |
-| **Filter Orders**  | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                               |
-| **Filter Pets**    | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                            |
-| **Help**           | `help`                                                                                                                                                                                                       |
-| **List**           | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                         |
-| **Sort**           | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                                 |
-
+|        Action         | Format, Examples                                                                                                                                                                                            |
+|:---------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** (need change) | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br>e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
+|        **Add**        | `add buyer`, `add supplier`                                                                                                                                                                                 |
+|       **Clear**       | `clear`                                                                                                                                                                                                     |
+|      **Delete**       | `delete c/PERSON_CATEGORY i/INDEX` e.g., `delete c/Buyer i/1`                                                                                                                                               |
+|       **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                        |
+|       **Find**        | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                        |
+|    **Find Buyer**     | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                                    |
+|  **Find Deliverer**   | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                                    |
+|   **Find Supplier**   | `find-s PREFIX/KEYWORD` <br> e.g., `find-s n/James Jake`                                                                                                                                                    |
+|      **Filter**       | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                     |
+|   **Filter Orders**   | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                              |
+|    **Filter Pets**    | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                           |
+|       **Help**        | `help`                                                                                                                                                                                                      |
+|       **List**        | `list all`, `list buyer`, `list supplier`, `list delivery`, `list order`, `list pet`                                                                                                                        |
+|       **Sort**        | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                                |

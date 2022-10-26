@@ -19,7 +19,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_DATE_OF_BIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_OWNER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_TAG;
@@ -360,7 +359,6 @@ public class ParserUtil {
             argMultimap =
                     ArgumentTokenizer.tokenize(petString,
                             PREFIX_INDEX, // The difference is here
-                            PREFIX_PET_OWNER,
                             PREFIX_PET_NAME,
                             PREFIX_PET_DATE_OF_BIRTH,
                             PREFIX_PET_COLOR,
@@ -387,7 +385,6 @@ public class ParserUtil {
         } else {
             argMultimap =
                     ArgumentTokenizer.tokenize(petString,
-                            PREFIX_PET_OWNER,
                             PREFIX_PET_NAME,
                             PREFIX_PET_DATE_OF_BIRTH,
                             PREFIX_PET_COLOR,
