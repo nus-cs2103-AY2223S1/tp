@@ -16,10 +16,12 @@ Class Email
 Class Address
 Class ItemQuantityPair
 Class LocalDateTime
-Class Item
 Class Quantity
+Class "<<interface>>\nItem" as Item
+Class RecordedItem implements Item
+Class InventoryItem implements Item
 
-Order *--> "1" Name: by >
+Order *-left> "1" Name: by >
 Order *--> "1" Phone: contacted at >
 Order *--> "1" Email: contacted at >
 Order *--> "1" Address: to deliver to >
