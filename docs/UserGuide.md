@@ -222,7 +222,7 @@ Format: `exit`
 
 ###### Session-Based Command History
 
-NUScheduler keeps track of all the successful commands you've made within each session. 
+NUScheduler keeps track of all the successful commands you've made within each session.
 
 * Use the up arrow key, <kbd>&#8593;</kbd> to navigate to the previous command.
 * Use the down arrow key, <kbd>&#8595;</kbd> to navigate to the next command.
