@@ -146,7 +146,7 @@
                             <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" VBox.vgrow="NEVER" />
             </VBox>
          <stylesheets>
-            <URL value="@DarkTheme.css" />
+            <URL value="@LightTheme.css" />
             <URL value="@Extensions.css" />
          </stylesheets>
         </Scene>
