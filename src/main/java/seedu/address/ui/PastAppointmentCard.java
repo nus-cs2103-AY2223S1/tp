@@ -30,7 +30,9 @@ public class PastAppointmentCard extends UiPart<Region> {
         date.setText(String.format(DATE_FORMAT, pastAppointment.getDate()));
         diagnosis.setText(String.format(DIAGNOSIS_FORMAT, pastAppointment.getDiagnosis()));
         if (pastAppointment.getMedication().size() > 0) {
-            medications.getChildren().add(new Label(pastAppointment.getMedicationString()));
+            Label meds = new Label(pastAppointment.getMedicationString());
+            meds.applyCss();
+            medications.getChildren().add(meds);
         }
     }
 

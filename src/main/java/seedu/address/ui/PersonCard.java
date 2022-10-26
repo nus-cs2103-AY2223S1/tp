@@ -31,23 +31,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label email;
-    @FXML
-    private Label nextOfKin;
-    @FXML
     private Label patientType;
-    @FXML
-    private Label hospitalWing;
-    @FXML
-    private Label floorNumber;
-    @FXML
-    private Label wardNumber;
-    @FXML
-    private FlowPane medications;
-    @FXML
-    private Label appointments;
     @FXML
     private Label upcomingAppointment;
 
@@ -59,20 +43,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().toString());
-        email.setText(person.getEmail().toString());
-        nextOfKin.setText(person.getNextOfKin().toString());
         patientType.setText(person.getPatientType().toString());
-        person.getHospitalWing().ifPresentOrElse(hw -> hospitalWing.setText(hw.toString()), () ->
-                hospitalWing.setVisible(false));
-        person.getFloorNumber().ifPresentOrElse(fn -> floorNumber.setText(fn.toString()), () ->
-                floorNumber.setVisible(false));
-        person.getWardNumber().ifPresentOrElse(wn -> wardNumber.setText(wn.toString()), () ->
-                wardNumber.setVisible(false));
-        if (person.getMedications().size() > 0) {
-            medications.getChildren().add(new Label(person.getMedicationString()));
-        }
-        appointments.setText("Past Appointments: " + person.getPastAppointmentCount());
         person.getUpcomingAppointment().ifPresentOrElse(ua -> upcomingAppointment.setText(ua.toString()), () ->
                 upcomingAppointment.setVisible(false));
     }

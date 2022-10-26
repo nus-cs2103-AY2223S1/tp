@@ -52,6 +52,7 @@ public class ContactCard extends UiPart<Region> {
     public ContactCard(Person person) {
         this(person, 0);
         id.setVisible(false);
+        name.setVisible(false);
     }
 
     @Override

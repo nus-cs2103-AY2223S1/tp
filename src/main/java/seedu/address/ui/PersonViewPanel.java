@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -29,7 +30,13 @@ public class PersonViewPanel extends UiPart<Region> {
     private Label phone;
 
     @FXML
-    private HBox nokDetails;
+    private Label nokName;
+
+    @FXML
+    private Label nokRelationship;
+
+    @FXML
+    private Label nokContact;
 
     @FXML
     private Label patientType;
@@ -49,6 +56,9 @@ public class PersonViewPanel extends UiPart<Region> {
     @FXML
     private ListView<PastAppointment> pastAppointments;
 
+    @FXML
+    private FlowPane medications;
+
 
     public PersonViewPanel(Person person) {
         super(FXML);
@@ -57,9 +67,9 @@ public class PersonViewPanel extends UiPart<Region> {
             return;
         }
         this.person = person;
-//        setPersonalDetails();
-//        setHospitalisationDetails();
-//        setAppointmentDetails();
+        setPersonalDetails();
+        setHospitalisationDetails();
+        setAppointmentDetails();
     }
 
     private void setPersonalDetails() {
@@ -67,7 +77,12 @@ public class PersonViewPanel extends UiPart<Region> {
         email.setText(person.getEmail().toString());
         phone.setText(person.getPhone().toString());
         ContactCard contactCard = new ContactCard(person);
-        nokDetails.getChildren().add(contactCard.getRoot());
+        nokName.setText("Name: " + person.getNextOfKin().getNextOfKinName());
+        nokRelationship.setText("Relationship: " + person.getNextOfKin().getNextOfKinRelationship());
+        nokContact.setText("Contact: " + person.getNextOfKin().getNextOfKinContact());
+        if (person.getMedications().size() > 0) {
+            medications.getChildren().add(new Label(person.getMedicationString()));
+        }
     }
 
     private void setHospitalisationDetails() {
@@ -81,7 +96,7 @@ public class PersonViewPanel extends UiPart<Region> {
     }
 
     private void setAppointmentDetails() {
-        upcomingAppointment.setText(person.getUpcomingAppointment().toString());
+        upcomingAppointment.setText(person.getUpcomingAppointment().get().toString());
         ObservableList<PastAppointment> pastAppointmentsObservableList =
                 new ObservableListWrapper<>(person.getPastAppointments());
         pastAppointments.setItems(pastAppointmentsObservableList);

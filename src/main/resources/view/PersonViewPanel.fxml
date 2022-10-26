@@ -2,20 +2,32 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<VBox stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <VBox prefHeight="309.0" prefWidth="247.0">
+<ScrollPane prefWidth="340.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox>
       <children>
-         <Label id="name" prefHeight="66.0" prefWidth="259.0" text="\\$name">
-            <font>
-               <Font name="System Bold" size="18.0" />
-            </font>
-         </Label>
-         <Label id="email" prefHeight="34.0" prefWidth="247.0" text="\\$email" />
-         <Label id="phone" prefHeight="33.0" prefWidth="247.0" text="\\$phone" />
-         <HBox prefHeight="100.0" prefWidth="200.0" fx:id="nokDetails" />
-         <Label prefHeight="30.0" prefWidth="317.0" text="\\$patientType" />
+         <Label id="name" fx:id="name" styleClass="cell_big_label" text="\$name" />
+
+         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" />
+         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+
+         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Next-of-Kin Details" textAlignment="CENTER" />
+         <Label fx:id="nokName" styleClass="cell_small_label" text="Next-of-Kin Information:" />
+         <Label fx:id="nokRelationship" styleClass="cell_small_label" text="Label" />
+         <Label fx:id="nokContact" styleClass="cell_small_label" text="Label" />
+
+         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Long Term Medications" />
+         <FlowPane fx:id="medications" styleClass="cell_small_label" />
+
+         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Hospitalisation Details" />
+         <Label fx:id="patientType" styleClass="cell_small_label" text="\$patientType" />
+         <Label fx:id="hospitalWing" styleClass="cell_small_label" text="\$hospitalWing" />
+         <Label fx:id="floorNumber" styleClass="cell_small_label" text="\$floorNumber" />
+         <Label fx:id="wardNumber" styleClass="cell_small_label" text="\$wardNumber" />
+
+         <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointment Details" />
+         <Label fx:id="upcomingAppointment" styleClass="cell_small_label" text="\$upcomingAppointment" />
+         <ListView id="pastAppointments" fx:id="pastAppointments"/>
       </children></VBox>
-    <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
-</VBox>
+</ScrollPane>

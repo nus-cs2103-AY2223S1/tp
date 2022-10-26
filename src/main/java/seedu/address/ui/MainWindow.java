@@ -187,7 +187,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleView() {
         PersonViewPanel personViewPanel = new PersonViewPanel(logic.getCurrentlyViewedPerson());
-        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+        personViewPanelPlaceholder.getChildren().clear();
+        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
     }
 
     /**
