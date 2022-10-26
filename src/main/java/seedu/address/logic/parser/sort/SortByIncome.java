@@ -16,10 +16,10 @@ public class SortByIncome implements Comparator<Person> {
     public int compare(Person p1, Person p2) {
 
         if (this.order.equals("desc")) {
-            return p2.getIncome().value.compareTo(p1.getIncome().value);
+            return p2.getIncome().convertIncomeToInt() - p1.getIncome().convertIncomeToInt();
         }
 
-        return p1.getIncome().value.compareTo(p2.getIncome().value);
+        return p1.getIncome().convertIncomeToInt() - p2.getIncome().convertIncomeToInt();
     }
 
     @Override
