@@ -32,7 +32,7 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
  
    * **`task list`** : Lists all tasks.
 
-   * **`task todo`**`m/John t/Finish user guide` : Adds a todo named `Finish user guide` to the task list.
+   * **`task todo`**`m/John d/Finish user guide` : Adds a todo with the description `Finish user guide` to the task list.
 
    * **`task delete`**`i/3` : Deletes the 3rd task shown in the current task list.
 
@@ -55,10 +55,10 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
   e.g. in `n/NAME`, `NAME` is a parameter which can be used as `n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [#/TAG]` can be used as `n/John Doe #/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[#/TAG]…​` can be used as ` ` (i.e. 0 times), `#/friend`, `#/friend #/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -99,29 +99,29 @@ Format: `task list`
 
 Adds a contact to the taskbook.
 
-Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `contact add n/Betsy Crowe #/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 #/criminal`
  
 ### Adding a todo : `task todo`
 
 Adds a task of type todo into the task list.
 
-**Assigned by** Format:  `task todo m/NAME d/DESCRIPTION`
+**Assigned by** Format:  `task todo m/NAME d/DESCRIPTION [#/TAG]…`
 
-**Assigned to** Format:  `task todo o/Name d/DESCRIPTION`
+**Assigned to** Format:  `task todo o/NAME d/DESCRIPTION [#/TAG]…`
 
 **Self-assigned** Format:  `task todo d/DESCRIPTION`
 
-* Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact with a description.
+* Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact with a description. Optional to include tags.
 * Input "Myself" or omit the `m/` and `o/` flags to self-assign a todo.
   * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 
 Examples:
 * `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to the user.
-* `task todo o/Sam d/Finish the assignment` adds a todo called “Finish the assignment” which is assigned by the user to Sam.
+* `task todo o/Sam d/Finish the assignment #/cs2103` adds a todo called “Finish the assignment” tagged as "cs2103" and assigned to Sam.
 * `task todo o/Myself d/Upload slides` adds a todo called “Upload slides” which is self-assigned by the user.
 * `task todo d/Finish essay` adds a todo called "Finish essay" which is self-assigned to the user.
 
@@ -129,20 +129,20 @@ Examples:
 
 Adds a task of type deadline into the task list.
 
-**Assigned by** Format: `task deadline m/NAME d/DESCRIPTION t/DATE`
+**Assigned by** Format: `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-**Assigned to** Format: `task deadline o/Name d/DESCRIPTION t/DATE`
+**Assigned to** Format: `task deadline o/Name d/DESCRIPTION t/DATE [#/TAG]…`
 
 **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE`
 
-* Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact with a description and a deadline date.
+* Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact with a description and a deadline date. Optional to include tags.
 * Input "Myself" or omit the `m/` and `o/` flags to self-assign.
   * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
 * For more information on `DATE` formats, scroll down to "Accepted Date Formats"
 
 Examples:
 * `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to the user.
-* `task deadline o/Sam d/Finish the assignment t/Jan 31 2022` adds a deadline called “Finish the assignment” which is assigned to Sam.
+* `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds a deadline called “Finish the assignment” and tagged as "cs2103" which is assigned to Sam.
 * `task deadline o/Myself d/Upload slides t/2022-12-31` adds a deadline called “Upload Slides” which self-assigned by the user.
 * `task deadline d/Finish essay t/Jan 31 2022` adds a deadline called “Finish essay” which is self-assigned to the user.
 
@@ -150,17 +150,17 @@ Examples:
 
 Adds a task of type event into the task list.
 
-**Assigned by** Format: `task event m/NAME d/DESCRIPTION t/DATE`
+**Assigned by** Format: `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
-**Assigned to** Format: `task event o/NAME d/DESCRIPTION t/DATE`
+**Assigned to** Format: `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 **Self-assigned** Format: `task event d/DESCRIPTION t/DATE`
 
-* Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date.
+* Adds an event assigned by (`m/`) or assigned to (`o/`) a contact with a description and an event date. Optional to include tags.
 
 Examples:
 * `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to the user.
-* `task event o/Sam d/Finish the assignment t/Jan 31 2022` adds an event called “Finish the assignment” which is assigned to Sam.
+* `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/cs2103` adds an event called “Finish the assignment” tagged as "cs2103" which is assigned to Sam.
 * `task event o/Myself d/Upload Slides t/Jan 31 2022` adds an event called “Upload Slides” which is self-assigned by the user.
 * `task event d/Finish essay t/Jan 31 2022` adds an event called “Finish essay” which is assigned to the user.
 
@@ -168,7 +168,7 @@ Examples:
 
 Edits the specified contact in the contact list.
 
-Format: `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
 
 * Edits the contact at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed contact list.
@@ -177,13 +177,13 @@ Format: `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t
 
 Examples:
 * `contact edit i/1 n/James Lee e/jameslee@example.com`
-* `contact edit i/2 p/98765433`
+* `contact edit i/2 p/98765433 #/friend`
 
 ### Editing a task : `task edit`
 
 Edits the specified task in the task list.
 
-Format: `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE]`
+Format: `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…`
 
 * Edits the contact at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed contact list.
@@ -255,15 +255,18 @@ Examples:
 * `task find a/FROM` will change the task list in the GUI to show a task list where all tasks are assigned to the user by someone else.
 * `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
 
-## Sorting tasks : `contact sort`
+### Sorting tasks : `contact sort`
 
 Sorts the person list based on the input flag.
 
 Format: `contact sort s/SORT`
 
 SORT flags:
-* ca: Chronologically sort tasks by date and time added
-* a: Alphabetically sort contact names
+* ca: Chronologically sort tasks by date and time added.
+* a: Alphabetically sort contact names.
+* ra: Alphabetically sort contact names in reverse order.
+* p: Numerically sort contact phone numbers in ascending order.
+* rp: Numerically sort contact phone numbers in descending order.
 
 Examples:
 * `contact sort s/a` will change the contact list in the GUI to show a contact list where names are sorted by alphabetical order.
@@ -275,8 +278,11 @@ Sorts the task list based on the input flag.
 Format: `task sort s/SORT`
 
 SORT flags:
-* ca: Chronologically sort tasks by date and time added
-* a: Alphabetically sort task descriptions
+* ca: Chronologically sort tasks by date and time added.
+* a: Alphabetically sort task descriptions.
+* ra: Alphabetically sort task descriptions in reverse order.
+* cd: Chronologically sort tasks by their associated dates in ascending order. Tasks without dates are at the end of the list, in no particular order.
+* rcd: Chronologically sort tasks by their associated dates in descending order. Tasks without dates are at the end of the list, in no particular order.
 
 Examples:
 * `task sort s/a` will change the task list in the GUI to show a task list sorted by description alphabetical order
@@ -362,14 +368,14 @@ Steps:
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TaskBook data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TaskBook data is saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, TaskBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Locating persons by name: `find` [coming soon]
@@ -392,37 +398,37 @@ The following date formats are accepted:
 **A**: Your progress is automatically saved after each command.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TaskBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action                        | Format, Examples                                                                                                                                                         |
-|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                      | `help [c/COMMAND]`                                                                                                                                                       |
-| **View All Tasks**            | `task list`                                                                                                                                                              |
-| **View Contacts**             | `contact list`                                                                                                                                                           |
-| **Add Contact**               | `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Add Todo: Assigned by**        | `task todo m/NAME d/DESCRIPTION` <br> e.g., `task todo m/John d/Finish user guide`                                                                                   |
-| **Add Todo: Assigned to**        | `task todo o/Name d/DESCRIPTION` <br> e.g., `task todo o/Sam d/Finish the assignment`                                                                                |
-| **Add Deadline: Assigned by**    | `task deadline m/NAME d/DESCRIPTION t/DATE` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31`                                                       |
-| **Add Deadline: Assigned to**    | `task deadline o/Name d/DESCRIPTION t/DATE` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022`                                                   |
-| **Add Event: Assigned by**       | `task event m/NAME d/DESCRIPTION t/DATE` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31`                                                             |
-| **Add Event: Assigned to**       | `task event o/Name d/DESCRIPTION t/DATE` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022`                                                         |
-| **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com`                           |
-| **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE]`<br> e.g.,`task edit i/2 o/James Lee`                                                                      |
-| **Delete Contact**            | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                                  |
-| **Delete Task**               | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                        |
-| **Sort Contacts**             | `contact sort s/SORT`<br> e.g., `contact sort s/a`                                                                                                                       |
-| **Sort Tasks**                | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                             |
-| **Find Contacts**             | `contact find q/QUERY` <br> e.g., `contact find q/ea`                                                                                                                    |
-| **Find Tasks**                | `task find q/QUERY a/ASSIGNMENT x/DONE` <br> (Arguments unordered) <br> e.g., `task find a/FROM q/ea`                                                                    |
-| **Mark Task**                 | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                                            |
-| **Unmark Task**               | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                                        |
-| **Undo**                      | `undo`                                                                                                                                                                   |
-| **Redo**                      | `redo`                                                                                                                                                                   |
-| **Exiting the program**       | `bye`                                                                                                                                                                    |
-| **History: Previous Command** | `UP` arrow key                                                                                                                                                           |
-| **History: Next Command**     | `DOWN` arrow key                                                                                                                                                         |
+| Action                        | Format, Examples                                                                                                                                           |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                      | `help [c/COMMAND]`                                                                                                                                         |
+| **View All Tasks**            | `task list`                                                                                                                                                |
+| **View Contacts**             | `contact list`                                                                                                                                             |
+| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123` |
+| **Add Todo: Assigned by**     | `task todo m/NAME d/DESCRIPTION [#/TAG]…` <br> e.g., `task todo m/John d/Finish user guide #/cs2103 #/homework`                                        |
+| **Add Todo: Assigned to**     | `task todo o/NAME d/DESCRIPTION [#/TAG]…` <br> e.g., `task todo o/Sam d/Finish the assignment #/compulsory`                                            |
+| **Add Deadline: Assigned by** | `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`            |
+| **Add Deadline: Assigned to** | `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`               |
+| **Add Event: Assigned by**    | `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31 #/cs2103 #/homework`                  |
+| **Add Event: Assigned to**    | `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022 #/compulsory`                     |
+| **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com #/friend`    |
+| **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#/TAG]…`<br> e.g.,`task edit i/2 o/James Lee #/classmate`                                   |
+| **Delete Contact**            | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                    |
+| **Delete Task**               | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                          |
+| **Sort Contacts**             | `contact sort s/SORT`<br> e.g., `contact sort s/a`                                                                                                         |
+| **Sort Tasks**                | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                               |
+| **Find Contacts**             | `contact find q/QUERY` <br> e.g., `contact find q/ea`                                                                                                      |
+| **Find Tasks**                | `task find q/QUERY a/ASSIGNMENT x/DONE` <br> (Arguments unordered) <br> e.g., `task find a/FROM q/ea`                                                      |
+| **Mark Task**                 | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                              |
+| **Unmark Task**               | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                          |
+| **Undo**                      | `undo`                                                                                                                                                     |
+| **Redo**                      | `redo`                                                                                                                                                     |
+| **Exiting the program**       | `bye`                                                                                                                                                      |
+| **History: Previous Command** | `UP` arrow key                                                                                                                                             |
+| **History: Next Command**     | `DOWN` arrow key                                                                                                                                           |
 

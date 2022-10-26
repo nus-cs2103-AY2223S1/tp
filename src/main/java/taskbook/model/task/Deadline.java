@@ -2,9 +2,11 @@ package taskbook.model.task;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -31,8 +33,37 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Deadline(Person person, Assignment assignment, Description description, boolean isDone,
+                    LocalDate date, Set<Tag> tags) {
+        super(person, assignment, description, isDone, tags);
+        this.date = date;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Deadline(Name name, Assignment assignment, Description description, boolean isDone,
+                    LocalDate date, Set<Tag> tags) {
+        super(name, assignment, description, isDone, tags);
+        this.date = date;
+    }
+
+    @Override
+    public String getStatus() {
+        return isDone() ? "[X]  [D]" : "[  ]  [D]";
+    }
+
+    @Override
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public boolean hasDate() {
+        return true;
     }
 
     @Override
@@ -56,8 +87,9 @@ public class Deadline extends Task {
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
         LocalDate date = descriptor.getDate().orElse(getDate());
+        Set<Tag> tags = descriptor.getTags().orElse(getTags());
 
-        return new Deadline(name, assignment, description, isDone, date);
+        return new Deadline(name, assignment, description, isDone, date, tags);
     }
 
     @Override
@@ -77,6 +109,14 @@ public class Deadline extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), date);
+    }
+
+    @Override
+    public String toUiString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+               .append(String.format(" [by %s]", getDate().toString()));;
+        return builder.toString();
     }
 
     @Override

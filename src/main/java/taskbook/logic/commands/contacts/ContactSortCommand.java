@@ -16,12 +16,22 @@ public abstract class ContactSortCommand extends Command {
                     + ": Sorts list of persons in some order.\n"
                     + "Available sorting commands:\n"
                     + "a: sorts names of persons in alphabetical order.\n"
-                    + "ca: sorts persons chronologically by the time they were added into Task Book.\n";
-    public static final String MESSAGE_SORT_TASK_SUCCESS = "Persons sorted";
+                    + "ra: sorts names of persons in reverse alphabetical order.\n"
+                    + "ca: sorts persons chronologically by the time they were added into Task Book.\n"
+                    + "p: sorts phone numbers of persons in ascending order.\n"
+                    + "rp: sorts phone numbers of persons in descending order.\n";
+    public static final String MESSAGE_SORT_TASK_SUCCESS = "Contacts sorted";
+    public final String messageSortType;
     private final Comparator<Person> comparator;
 
-    public ContactSortCommand(Comparator<Person> comparator) {
+    /**
+     * Creates a contact sorting command.
+     * @param comparator
+     * @param sortType
+     */
+    public ContactSortCommand(Comparator<Person> comparator, String sortType) {
         this.comparator = comparator;
+        this.messageSortType = sortType;
     }
 
     public Comparator<Person> getComparator() {

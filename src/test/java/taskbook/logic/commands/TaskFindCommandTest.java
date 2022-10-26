@@ -28,7 +28,8 @@ public class TaskFindCommandTest {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         TaskFindCommand command = new TaskFindCommand(pred, "ea", "TO", "X");
         assertCommandSuccess(command, model, String.format(TaskFindCommand.MESSAGE_SUCCESS + "\n"
-                + expectedModel.getFilteredTaskList().size() + " tasks listed."), expectedModel);
+                + expectedModel.getFilteredTaskList().size() + " tasks listed.\n"
+                + "Query: ea\nAssignment: TO\nTasks are done."), expectedModel);
     }
 
     @Test
@@ -57,7 +58,8 @@ public class TaskFindCommandTest {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         TaskFindCommand command = new TaskFindCommand(pred, null, null, "X");
         assertCommandSuccess(command, model, String.format(TaskFindCommand.MESSAGE_SUCCESS + "\n"
-                + expectedModel.getFilteredTaskList().size() + " tasks listed."), expectedModel);
+                + expectedModel.getFilteredTaskList().size() + " tasks listed.\n"
+                + "Tasks are done."), expectedModel);
     }
 
     @Test

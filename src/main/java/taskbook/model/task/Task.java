@@ -2,12 +2,17 @@ package taskbook.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import taskbook.commons.util.CollectionUtil;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -20,6 +25,7 @@ public abstract class Task {
     private final Assignment assignment;
     private final Description description;
     private final boolean isDone;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -43,6 +49,30 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    protected Task(Person person, Assignment assignment, Description description, boolean isDone, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(person, assignment, description, isDone, tags);
+        this.name = person.getName();
+        this.assignment = assignment;
+        this.description = description;
+        this.isDone = isDone;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    protected Task(Name name, Assignment assignment, Description description, boolean isDone, Set<Tag> tags) {
+        CollectionUtil.requireAllNonNull(name, assignment, description, isDone, tags);
+        this.name = name;
+        this.assignment = assignment;
+        this.description = description;
+        this.isDone = isDone;
+        this.tags.addAll(tags);
+    }
+
     public Name getName() {
         return name;
     }
@@ -59,12 +89,29 @@ public abstract class Task {
         return isDone;
     }
 
+    public LocalDate getDate() {
+        return null;
+    }
+
+    public boolean hasDate() {
+        return false;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
     /**
      * Returns the string representation of the completion status of the task.
-     * @return [X] if the task is done. Otherwise, return [ ].
+     * 2 whitespaces needed to match width of 'X' in the GUI.
+     * @return [X] if the task is done. Otherwise, return [  ].
      */
     public String getStatus() {
-        return isDone() ? "[X]" : "[ ]";
+        return isDone() ? "[X]" : "[  ]";
     }
 
     /**
@@ -109,24 +156,36 @@ public abstract class Task {
         return otherTask.name.equals(name)
                 && otherTask.assignment.equals(assignment)
                 && otherTask.description.equals(description)
-                && otherTask.isDone == isDone;
+                && otherTask.isDone == isDone
+                && otherTask.getTags().equals(tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, assignment, description, isDone);
+        return Objects.hash(name, assignment, description, isDone, tags);
+    }
+
+    /**
+     * Gets a String to represent all itmes related to the task's description.
+     * @return
+     */
+    public String toUiString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription());
+        return builder.toString();
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(String.format("[%s]", isDone()))
+        builder.append(String.format("%s", getStatus()))
                 .append(String.format("[%s]", getAssignment()))
                 .append(String.format("[%s]", getName()))
                 .append("\n")
-                .append(getDescription());
-
+                .append(getDescription())
+                .append("\n")
+                .append(getTags().size() == 0 ? "" : getTags());
         return builder.toString();
     }
 
@@ -157,6 +216,47 @@ public abstract class Task {
      */
     public int compareByDescriptionAlphabeticalTo(Task other) {
         return this.description.compareByAlphabeticalTo(other.description);
+    }
+
+    /**
+     * Compares this task and the input task to decide description alphabetical reverse order.
+     * @param other input task.
+     * @return -1 if this task's description is alphabetically first, 1 otherwise.
+     */
+    public int compareByDescriptionReverseAlphabeticalTo(Task other) {
+        return -1 * this.description.compareByAlphabeticalTo(other.description);
+    }
+
+    /**
+     * Compares this task and the input task to decide chronological date reverse order.
+     * @param other input task.
+     * @return an int.
+     */
+    public int compareByChronologicalDateTo(Task other) {
+        if (this.hasDate() && other.hasDate()) {
+            return this.getDate().compareTo(other.getDate());
+        } else if (this.hasDate()) {
+            return this.getDate().compareTo(LocalDate.MAX);
+        } else if (other.hasDate()) {
+            return LocalDate.MAX.compareTo(other.getDate());
+        }
+        return 0;
+    }
+
+    /**
+     * Compares this task and the input task to decide chronological date reverse order.
+     * @param other input task.
+     * @return an int.
+     */
+    public int compareByReverseChronologicalDateTo(Task other) {
+        if (this.hasDate() && other.hasDate()) {
+            return -1 * this.getDate().compareTo(other.getDate());
+        } else if (this.hasDate()) {
+            return this.getDate().compareTo(LocalDate.MAX);
+        } else if (other.hasDate()) {
+            return LocalDate.MAX.compareTo(other.getDate());
+        }
+        return 0;
     }
 }
 

@@ -7,6 +7,9 @@ import taskbook.commons.core.Messages;
 import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
 import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
+import taskbook.logic.commands.contacts.ContactSortNameReverseAlphabeticalCommand;
+import taskbook.logic.commands.contacts.ContactSortPhoneAscendingCommand;
+import taskbook.logic.commands.contacts.ContactSortPhoneDescendingCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
@@ -20,11 +23,7 @@ import taskbook.logic.parser.exceptions.ParseException;
  */
 public class ContactSortCommandParser implements Parser<ContactSortCommand> {
     // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-    private static final Pattern CHRONOLOGICAL_ADDED =
-            Pattern.compile(String.format("\\s+%s.*", CliSyntax.PREFIX_SORT_TYPE.getPrefix()));
-
-    // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-    private static final Pattern NAME_ALPHABETICAL =
+    private static final Pattern SORT =
             Pattern.compile(String.format("\\s+%s.*", CliSyntax.PREFIX_SORT_TYPE.getPrefix()));
 
     /**
@@ -40,11 +39,7 @@ public class ContactSortCommandParser implements Parser<ContactSortCommand> {
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactSortCommand.MESSAGE_USAGE));
         }
 
-        if (CHRONOLOGICAL_ADDED.matcher(args).matches()) {
-            return parseWithPrefix(args, CliSyntax.PREFIX_SORT_TYPE);
-        }
-
-        if (NAME_ALPHABETICAL.matcher(args).matches()) {
+        if (SORT.matcher(args).matches()) {
             return parseWithPrefix(args, CliSyntax.PREFIX_SORT_TYPE);
         }
 
@@ -62,10 +57,16 @@ public class ContactSortCommandParser implements Parser<ContactSortCommand> {
         }
         SortTypes sortTypes = SortTypes.parse(argMultimap.getValue(CliSyntax.PREFIX_SORT_TYPE).orElse("INVALID"));
         switch (sortTypes) {
-        case DESC_ALPHABETICAL:
+        case NAME_ALPHABETICAL:
             return new ContactSortNameAlphabeticalCommand();
-        case DESC_CHRONOLOGICAL_ADDED:
+        case NAME_REVERSE_ALPHABETICAL:
+            return new ContactSortNameReverseAlphabeticalCommand();
+        case CHRONOLOGICAL_ADDED:
             return new ContactSortAddedChronologicalCommand();
+        case PHONE_ASCENDING:
+            return new ContactSortPhoneAscendingCommand();
+        case PHONE_DESCENDING:
+            return new ContactSortPhoneDescendingCommand();
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     ContactSortCommand.MESSAGE_USAGE));

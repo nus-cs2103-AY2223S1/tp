@@ -74,6 +74,6 @@ public class Description {
      * @return 1 if this description is alphabetically first, -1 otherwise.
      */
     public int compareByAlphabeticalTo(Description other) {
-        return this.description.compareTo(other.description);
+        return this.description.compareToIgnoreCase(other.description);
     }
 }

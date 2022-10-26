@@ -23,7 +23,6 @@ import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TodoBuilder;
 
-
 public class TaskTodoCommandTest {
 
     private static final Name NAME_AMY = new Name("Amy");

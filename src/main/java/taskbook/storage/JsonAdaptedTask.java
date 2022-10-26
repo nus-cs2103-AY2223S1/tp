@@ -1,5 +1,9 @@
 package taskbook.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -7,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.task.Task;
+
+
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -24,20 +30,26 @@ public abstract class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
+    protected final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String name;
     private final String assignment;
     private final String description;
     private final boolean isDone;
+
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("phone") String assignment,
-                           @JsonProperty("email") String description, @JsonProperty("address") boolean isDone) {
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("assignment") String assignment,
+                           @JsonProperty("description") String description, @JsonProperty("isDone") boolean isDone,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.assignment = assignment;
         this.description = description;
         this.isDone = isDone;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -48,6 +60,9 @@ public abstract class JsonAdaptedTask {
         assignment = source.getAssignment().name();
         description = source.getDescription().description;
         isDone = source.isDone();
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     public String getName() {
@@ -64,6 +79,10 @@ public abstract class JsonAdaptedTask {
 
     public boolean isDone() {
         return isDone;
+    }
+
+    public List<JsonAdaptedTag> getTags() {
+        return tagged;
     }
 
     /**

@@ -15,6 +15,8 @@ import taskbook.model.task.Task;
  */
 public class TaskListPanel extends UiPart<Region> {
     private static final String FXML = "TaskListPanel.fxml";
+    private static final String emptyCellStyle = "-fx-background-color: derive(#455985, 0%);"
+            + " -fx-border-color: derive(#455985, 0%);";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
@@ -40,6 +42,7 @@ public class TaskListPanel extends UiPart<Region> {
             if (empty || task == null) {
                 setGraphic(null);
                 setText(null);
+                setStyle(emptyCellStyle);
             } else {
                 setGraphic(new TaskListCard(task, getIndex() + 1).getRoot());
             }
