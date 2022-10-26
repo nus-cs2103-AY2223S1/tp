@@ -12,6 +12,7 @@ public class Module {
     private final ModCredit credits;
     private final boolean isDone;
     private ModTaskCount taskCount;
+    private boolean isCurrentModule;
 
     /**
      * Creates a Module with the given code, name, credits and tasks.
@@ -26,6 +27,7 @@ public class Module {
         this.credits = credits;
         this.taskCount = taskCount;
         this.isDone = false;
+        this.isCurrentModule = false;
     }
 
     /**
@@ -41,6 +43,7 @@ public class Module {
         this.credits = credits;
         this.taskCount = taskCount;
         this.isDone = isDone;
+        this.isCurrentModule = false;
     }
 
     /**
@@ -56,6 +59,7 @@ public class Module {
         this.credits = new ModCredit(credits);
         this.taskCount = new ModTaskCount(taskCount);
         this.isDone = false;
+        this.isCurrentModule = false;
     }
 
     public ModName getName() {
@@ -92,6 +96,14 @@ public class Module {
 
     public Module undone() {
         return new Module(this.code, this.name, this.credits, this.taskCount, false);
+    }
+
+    public boolean getIsCurrentModule() {
+        return isCurrentModule;
+    }
+
+    public void setIsCurrentModule(boolean newValue) {
+        isCurrentModule = newValue;
     }
 
     /**

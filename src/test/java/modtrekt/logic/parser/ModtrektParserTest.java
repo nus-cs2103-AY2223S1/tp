@@ -8,12 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import modtrekt.commons.core.Messages;
+import modtrekt.logic.commands.AddModuleCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.task.Task;
+import modtrekt.testutil.AddTaskCommandBuilder;
 import modtrekt.testutil.TaskBuilder;
 import modtrekt.testutil.TaskUtil;
 
@@ -57,4 +59,34 @@ public class ModtrektParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_addCommandNoFlags_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parseCommand(AddModuleCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_addCommandMFlag_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parseCommand(
+                String.format("%s %s", AddModuleCommand.COMMAND_WORD, CliSyntax.PREFIX_MODULE)));
+    }
+
+    @Test
+    public void parseCommand_addTaskCommandNoDeadline_throws() {
+        assertThrows(Exception.class, () -> parser.parseCommand("add task -c CS2102"));
+        assertThrows(Exception.class, () -> parser.parseCommand("add task -d 2022-09-19 -c CS2102"));
+    }
+
+    @Test
+    public void parseCommand_addTaskCommandNoModCode_returnsTrue() throws Exception {
+        AddTaskCommand cmd = AddTaskCommandBuilder.build("desc", null, null, "none");
+        assertEquals(parser.parseCommand("add task desc"), cmd);
+    }
+
+    @Test
+    public void parseCommand_addTaskCommandInvalidDate_throws() {
+        assertThrows(ParseException.class, () -> parser.parseCommand("add task desc -d 4"));
+    }
+
+
 }

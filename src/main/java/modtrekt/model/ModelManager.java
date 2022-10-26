@@ -215,12 +215,21 @@ public class ModelManager implements Model {
 
     @Override
     public void setCurrentModule(ModCode code) {
+        ModCode previousModCode = currentModule;
+        // Remove isCurrentModule from previous module
+        if (previousModCode != null) {
+            Module previousModule = moduleList.getModuleFromCode(previousModCode);
+            previousModule.setIsCurrentModule(false);
+            moduleList.setModule(previousModule, previousModule);
+        }
+
         currentModule = code;
         if (currentModule == null) {
-            updateFilteredModuleList(Model.PREDICATE_SHOW_ALL_MODULES);
             updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
         } else {
-            updateFilteredModuleList(model -> model.getCode().equals(code));
+            Module newCurrentModule = moduleList.getModuleFromCode(currentModule);
+            newCurrentModule.setIsCurrentModule(true);
+            moduleList.setModule(newCurrentModule, newCurrentModule);
             updateFilteredTaskList(task -> task.getModule().equals(code));
         }
     }
