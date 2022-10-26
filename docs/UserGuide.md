@@ -260,6 +260,7 @@ We will assist you as soon as possible.
 | **Edit**        | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE_APPLIED] [t/TAG]...`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                             |
 | **Archive**     | `archive INDEX`<br> e.g., `archive 2`                                                                                                                                                       |
 | **Retrieve**    | `retrieve INDEX`<br> e.g., `retrieve 2`                                                                                                                                                     |
+| **Remind**      | `remind`                                                                                                                                                                                    |
 | **Clear**       | `clear`                                                                                                                                                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                      |
 
