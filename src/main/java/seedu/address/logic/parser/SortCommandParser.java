@@ -7,6 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.sort.SortByAppointment;
 import seedu.address.logic.parser.sort.SortByIncome;
 import seedu.address.logic.parser.sort.SortByName;
+import seedu.address.logic.parser.sort.SortByRiskTag;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -23,7 +24,6 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
-        // will add more cases of keywords later on
 
         switch (trimmedArgs) {
 
@@ -31,7 +31,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand(new SortByName("asc"), "name");
 
         case "name desc":
-            return new SortCommand(new SortByName("desc"), "name");
+            return new SortCommand(new SortByName("desc"), "name in descending order");
 
         case "appt":
             return new SortCommand(new SortByAppointment("asc"), "appt");
@@ -44,6 +44,12 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         case "income desc":
             return new SortCommand(new SortByIncome("desc"), "income in descending order");
+
+        case "risk":
+            return new SortCommand(new SortByRiskTag("asc"), "risk");
+
+        case "risk desc":
+            return new SortCommand(new SortByRiskTag("desc"), "risk in descending order");
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
