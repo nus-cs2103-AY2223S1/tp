@@ -1,11 +1,9 @@
 package seedu.clinkedin.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ModelManager;
 
