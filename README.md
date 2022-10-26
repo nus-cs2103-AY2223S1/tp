@@ -97,7 +97,7 @@ Examples:
 
 Adds a contact to the contact list.
 
-Format: `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module1} [{module2} ]...] gh/ {github} tele/ {telegram}`
+Format: `addc n/ {name} p/ {phone_number} e/ {email} a/ {address} [t/ {tag}] [m/ {module_1} {module_2}...] gh/ {github} tele/ {telegram}`
 
 Examples:
 * `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com a/ 1 Computing Dr, NUS m/ CS1101S CS1231S gh/ bobby tele/ bmartin`
