@@ -1,4 +1,4 @@
-package logic.commands;
+package tracko.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,61 +16,74 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import tracko.commons.core.GuiSettings;
-// import tracko.logic.commands.exceptions.CommandException;
-import tracko.logic.commands.CommandResult;
-import tracko.logic.commands.order.AddOrderCommand;
+import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.commands.item.AddItemCommand;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
 import tracko.model.TrackO;
 import tracko.model.item.Item;
 import tracko.model.order.Order;
-import tracko.testutil.OrderBuilder;
+import tracko.testutil.ItemBuilder;
 
-
-public class AddOrderCommandTest {
-
+public class AddItemCommandTest {
     @Test
-    public void constructor_nullOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddOrderCommand(null));
+    public void constructor_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddItemCommand(null));
     }
 
     @Test
-    public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
-        Order validOrder = new OrderBuilder().build();
+    public void execute_itemAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
+        Item validItem = new ItemBuilder().build();
 
-        AddOrderCommand command = new AddOrderCommand(validOrder);
-        command.setAwaitingInput(false);
+        AddItemCommand command = new AddItemCommand(validItem);
 
         CommandResult commandResult = command.execute(modelStub);
 
-        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
+        assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validItem), modelStub.itemsAdded);
+    }
+
+    @Test
+    public void execute_repeatedItemRejectedByModel_throwsCommandException() throws Exception {
+        ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
+        Item validItem = new ItemBuilder().build();
+
+        String expectedMessage = AddItemCommand.MESSAGE_ITEM_EXISTS;
+
+        AddItemCommand command = new AddItemCommand(validItem);
+
+        CommandResult commandResult = command.execute(modelStub);
+
+        assertEquals(String.format(AddItemCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+
+        //throws an error when same item is added to the model again
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Order alice = new OrderBuilder().withName("Alice").build();
-        Order bob = new OrderBuilder().withName("Bob").build();
-        AddOrderCommand addAliceCommand = new AddOrderCommand(alice);
-        AddOrderCommand addBobCommand = new AddOrderCommand(bob);
+        Item key = new ItemBuilder().withItemName("key").build();
+        Item flour = new ItemBuilder().withItemName("flour").build();
+        AddItemCommand addKeyCommand = new AddItemCommand(key);
+        AddItemCommand addFlourCommand = new AddItemCommand(flour);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addKeyCommand.equals(addKeyCommand));
 
         // same values -> returns true
-        AddOrderCommand addAliceCommandCopy = new AddOrderCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddItemCommand addKeyCommandCopy = new AddItemCommand(key);
+        assertTrue(addKeyCommand.equals(addKeyCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addKeyCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addKeyCommand.equals(null));
 
-        // different order -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different item -> returns false
+        assertFalse(addKeyCommand.equals(addFlourCommand));
     }
 
     /**
@@ -216,13 +229,19 @@ public class AddOrderCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingOrderAdded extends ModelStub {
-        final ArrayList<Order> ordersAdded = new ArrayList<>();
+    private class ModelStubAcceptingItemAdded extends AddItemCommandTest.ModelStub {
+        final ArrayList<Item> itemsAdded = new ArrayList<>();
 
         @Override
-        public void addOrder(Order order) {
-            requireNonNull(order);
-            ordersAdded.add(order);
+        public void addItem(Item item) {
+            requireNonNull(item);
+            itemsAdded.add(item);
+        }
+
+        @Override
+        public boolean hasItem(Item item) {
+            requireNonNull(item);
+            return itemsAdded.contains(item);
         }
 
         @Override
@@ -230,5 +249,4 @@ public class AddOrderCommandTest {
             return new TrackO();
         }
     }
-
 }

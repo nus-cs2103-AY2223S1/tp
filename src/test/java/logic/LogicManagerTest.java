@@ -86,7 +86,7 @@ public class LogicManagerTest {
     //             + ADDRESS_DESC_AMY;
     //     Order expectedOrder = new OrderBuilder(ORDER_10).build();
     //     ModelManager expectedModel = new ModelManager();
-    //     expectedModel.addOrder(expectedOrder);
+    //     expectedModel.addItem(expectedOrder);
     //     String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
     //     assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     // }

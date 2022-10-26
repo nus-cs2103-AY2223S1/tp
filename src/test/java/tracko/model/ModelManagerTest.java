@@ -72,27 +72,6 @@ public class ModelManagerTest {
         assertEquals(path, modelManager.getTrackOFilePath());
     }
 
-    // @Test
-    // public void hasPerson_nullPerson_throwsNullPointerException() {
-    //     assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
-    // }
-    //
-    // @Test
-    // public void hasPerson_personNotInAddressBook_returnsFalse() {
-    //     assertFalse(modelManager.hasPerson(ORDER_1));
-    // }
-    //
-    // @Test
-    // public void hasPerson_personInAddressBook_returnsTrue() {
-    //     modelManager.addPerson(ORDER_1);
-    //     assertTrue(modelManager.hasPerson(ORDER_1));
-    // }
-    //
-    // @Test
-    // public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-    //     assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
-    // }
-
     @Test
     public void equals() {
         TrackO trackO = new TrackOBuilder().withOrder(ORDER_1).withOrder(ORDER_2).build();
@@ -116,15 +95,6 @@ public class ModelManagerTest {
         // different trackO -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentTrackO, userPrefs)));
 
-        // // different filteredList -> returns false
-        // String[] keywords = ORDER_1.getName().fullName.split("\\s+");
-        // modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        // assertFalse(modelManager.equals(new ModelManager(trackO, userPrefs)));
-        //
-        // // resets modelManager to initial state for upcoming tests
-        // modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(trackO, differentUserPrefs)));
