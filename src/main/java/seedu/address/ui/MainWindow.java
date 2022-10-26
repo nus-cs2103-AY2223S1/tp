@@ -28,7 +28,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final String lightThemeUrl = getClass().getResource("/view/LightMode.css").toExternalForm();
-    private final String darkThemeUrl = getClass().getResource("/view/LightMode.css").toExternalForm();
+    private final String darkThemeUrl = getClass().getResource("/view/DarkMode.css").toExternalForm();
 
     private Stage primaryStage;
     private Logic logic;
