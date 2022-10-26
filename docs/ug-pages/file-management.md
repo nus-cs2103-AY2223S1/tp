@@ -14,7 +14,7 @@ All file commands have a `FILE_NAME` field that requires you to input a name for
     * `.` dots
     * `/` forward slashes
     * `\ ` backslashes
-  
+
 ### Example:
 * `rc4_data_2022` is a valid `FILE_NAME`.
 * `rc4_data_2022.json` is an invalid `FILE_NAME` due to the inclusion of the file type, `.json`.

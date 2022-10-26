@@ -32,9 +32,9 @@ Note:
 - Each field to be included or excluded from the table should be entered as a *single letter*, that is, the first letter of the corresponding field name.
 - The relative order of each letter *does not matter*, and the letters can be in either upper or lower case. Duplicate letters are ignored.
 - Only letters corresponding to the first letter of a valid field in the table can be specified, *any other letter will be considered invalid*.
-- Letters *must* be separated by a single whitespace. 
+- Letters *must* be separated by a single whitespace.
 - There needs to be at least one field (and hence column) included in the table view at all times.
-  
+
 *(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are [*idempotent*](glossary.md#idempotent) and [*state-independent*](glossary.md#state-independent). This means that using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current table looks like. Calling the same command again will not change the table view any further.
 
 [Back to Top](#back-to-menuuserguidemd)
@@ -62,7 +62,7 @@ Note:
 
 - Like in `list`, each column to be shown should be entered as a single letter that corresponds to the first letter of the column to be shown.
 - The relative order of each letter does not matter, and the letters can be in either upper or lower case. Duplicate letters are ignored.
-- Similarly, letters *must* be separated by a single whitespace. 
+- Similarly, letters *must* be separated by a single whitespace.
 - Only valid letters can be specified, and there needs to be at least one column shown in the table at all times.
 - You can always `reset` the table to the full, default view at any time!
 
