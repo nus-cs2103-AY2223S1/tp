@@ -17,6 +17,7 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 import seedu.taassist.storage.Storage;
 
 /**
@@ -67,10 +68,14 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<StudentView> getStudentViewList() {
+        return model.getStudentViewList();
+    }
+
+    @Override
     public ObservableList<ModuleClass> getModuleClassList() {
         return model.getModuleClassList();
     }
-
 
     @Override
     public Path getTaAssistFilePath() {
