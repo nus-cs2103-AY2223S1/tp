@@ -147,6 +147,12 @@ public interface Model {
      */
     void addModuleClass(ModuleClass moduleClass);
 
+    /**
+     * Adds the given classes.
+     * {@code moduleClass} must not already exist in TA-Assist.
+     */
+    void addModuleClasses(Set<ModuleClass> moduleClasses);
+
     /** Returns an unmodifiable view of the module class list */
     ObservableList<ModuleClass> getModuleClassList();
 
@@ -165,9 +171,9 @@ public interface Model {
     SimpleStringProperty getFocusLabelProperty();
 
     /** Queries {@code SessionData} within studentViewList with the provided {@code Session} */
-    public void querySessionData(Session targetSession);
+    void querySessionData(Session targetSession);
 
     /** Removes queried {@code SessionData} within the studentViewList */
-    public void resetQueriedSessionData();
+    void resetQueriedSessionData();
 
 }
