@@ -21,6 +21,7 @@ import seedu.address.logic.commands.client.find.FindClientCommand;
 import seedu.address.logic.commands.issue.MarkIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.client.*;
 import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
@@ -114,7 +115,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
-        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email, new ArrayList<>());
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email,
+                new ArrayList<>(), new Pin(false));
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
         return new AddClientCommand(clientWithoutModel, projectId);

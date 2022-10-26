@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.Name;
+import seedu.address.model.Pin;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
@@ -34,7 +35,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     private List<Project> projects;
 
     private ClientId clientId;
-    private boolean isPinned;
+    private Pin pin;
 
     /**
      * Constructs a client with inputs given by the user.
@@ -42,14 +43,14 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @param phone String representing phone number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId) {
-        requireAllNonNull(name, phone, email, clientId);
+    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId, Pin pin) {
+        requireAllNonNull(name, phone, email, clientId, pin);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.projects = projects;
         this.clientId = clientId;
-        this.isPinned = false;
+        this.pin = pin;
     }
 
     /**
@@ -205,11 +206,11 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     }
 
     public void togglePin() {
-        this.isPinned = !this.isPinned;
+        this.pin.togglePinned();
     }
 
     public boolean isPinned() {
-        return isPinned;
+        return this.pin.isPinned();
     }
 
 

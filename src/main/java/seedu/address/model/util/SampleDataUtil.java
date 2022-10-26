@@ -3,10 +3,7 @@ package seedu.address.model.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.Deadline;
-import seedu.address.model.Name;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.*;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
@@ -48,27 +45,32 @@ public class SampleDataUtil {
                     new ClientPhone("87438807"),
                     new ClientEmail("alexyeoh@example.com"),
                     new ArrayList<>(List.of(sampleProjects[0], sampleProjects[1])),
-                    new ClientId(1)),
+                    new ClientId(1),
+                    new Pin(false)),
             new Client(new Name("Bernice Yu"),
                     new ClientPhone("99272758"),
                     new ClientEmail("berniceyu@example.com"),
                     new ArrayList<>(List.of(sampleProjects[2])),
-                    new ClientId(2)),
+                    new ClientId(2),
+                    new Pin(false)),
             new Client(new Name("Charlotte Oliveiro"),
                     new ClientPhone("93210283"),
                     new ClientEmail("charlotte@example.com"),
                     new ArrayList<>(List.of(sampleProjects[3])),
-                    new ClientId(3)),
+                    new ClientId(3),
+                    new Pin(false)),
             new Client(new Name("David Li"),
                     new ClientPhone("91031282"),
                     new ClientEmail("lidavid@example.com"),
                     new ArrayList<>(List.of(sampleProjects[4])),
-                    new ClientId(4)),
+                    new ClientId(4),
+                    new Pin(false)),
             new Client(new Name("Irfan Ibrahim"),
                     new ClientPhone("92492021"),
                     new ClientEmail("irfan@example.com"),
                     new ArrayList<>(List.of(sampleProjects[5])),
-                    new ClientId(5)),
+                    new ClientId(5),
+                    new Pin(false)),
         };
         sampleProjects[0].setClient(sampleClients[0]);
         sampleProjects[1].setClient(sampleClients[0]);
