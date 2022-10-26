@@ -15,60 +15,26 @@ title: User Guide
 
 ### 1.1 What is Class-ify?
 
-Class-ify is a **class management application** built specially for **Ministry of Education (MOE) teachers** to easily
-**monitor their students’ academic progress**. Teachers can **generate exam statistics** for each class, 
+Class-ify is a **class management application** built specially for **Ministry of Education (MOE) teachers** to 
+**monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, 
 and Class-ify quickly **flags out students** who require more support for contacting.
 
 ### 1.2 Who is this guide for?
 
-Are you a teacher who is looking to use Class-ify to manage your classes? Well, look no further! This user guide will
+Are you a teacher looking to use Class-ify to manage your classes? Well, look no further! This user guide will
 get you started in no time and be your guiding light as you navigate through Class-ify's features. For a quick start
-guide, head over to [Quick Start](#2-quick-start) or to learn about Class-ify's features, head over to
-[Features](#3-features) for more information.
+guide, head over to [Quick Start](#3-quick-start) or to learn about Class-ify's features, head over to
+[Features](#4-features) for more information.
 
-## 2 How to use this user guide
+## 2. How to use this user guide
 
-Class-ify uses a Command Line Interface (CLI), which may be new to some users. We strongly recommend new users to look through
-the user guide thoroughly to understand how to use Class-ify. We have also included some links to navigate around the
-user guide more easily for related information. This guide also contains some tips and cautions for you to take note of
-when using our application. Additionally, we have provided a link back to the table of contents at the end of each
-section. We suggest using our table of contents to jump around and access information that you need quickly.
-
-### 2.1 Symbols
-Before you begin reading, here are some special notations to help you along the way!
-
-**Tips**
-
-Tips are useful bits of information that will help you have a better experience with Class-ify.
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Tips are useful!
-</div><br>
-
-**Notes**
-
-Notes are here to provide you with extra information that you may find helpful when using Class-ify.
-
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** Take notes when you see this icon!
-</div><br>
-
-**Caution**
-
-Cautions are around to warn you of potential pitfalls that new users may encounter. For example, commands like `clear`
-will delete all data stored locally and this action is irreversible. You will lose your data permanently.
-
-<div markdown="span" class="alert alert-warning">
-:exclamation: Stop and read carefully when you see this!
-</div>
-
-### 2.2 Command format
-
-*To be updated*
-
-### 2.3 Command parameters
-
-*To be updated*
+Class-ify uses a Command Line Interface (CLI), which may be new to some users. If you are a new user, we strongly recommend you to look through
+the user guide from start to end to fully understand how to use Class-ify. However, you may also choose to skip to the relevant sections described below:
+* Refer to our <a href="#top">Table of Contents</a> to easily navigate between sections of the User Guide. There is also a link at the end of every section to bring you back to the Table of Contents.
+* Refer to our [Quick Start](#3-quick-start) guide to learn how to set-up Class-ify.
+* Refer to our [Features](#4-features) section to learn in detail the different features and commands available in Class-ify.
+* Refer to our [Command Summary](#6-command-summary) to have a quick overview of the different commands and their respective formats.
+* Refer to our [Glossary](#7-glossary) to learn key terms that are used in this User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -101,6 +67,52 @@ Click <a href="#top">here</a> to return to the top.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. **Features**
+Before you begin reading, here are some special notations to help you along the way!
+
+**Tips**
+
+Tips are useful bits of information that will help you have a better experience with Class-ify.
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** Tips are useful!
+</div><br>
+
+**Notes**
+
+Notes are here to provide you with extra information that you may find helpful when using Class-ify.
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** Take notes when you see this icon!
+</div><br>
+
+**Caution**
+
+Cautions are around to warn you of potential pitfalls that new users may encounter. For example, commands like `clear`
+will delete all data stored locally and this action is irreversible. You will lose your data permanently.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: Stop and read carefully when you see this!
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source:
+**Notes on the Command Format:** <br>
+
+* **Command Words**
+  * Command words and prefixes are case-sensitive. <br>
+  e.g. `eXit` will not be accepted as the `exit` command.
+  * Only the last occurrence of a repeated prefix input will be taken.
+  e.g. 'delete nm/Jonathan nm/Ethan nm/Alice'
+* **Parameters**
+  * Words in `UPPER_CASE` refers to input from the user. <br>
+  e.g. For the `viewClass` command, the command format is `viewClass CLASS`<br>
+  `CLASS` refers to the user input which can be `viewClass 17S68`.
+  * Parameters can be written in any order
+  * Additional parameters for commands that do not require parameters will be ignored.<br>
+  e.g. `exit hello123` will be accepted as the `exit` command
+  * Optional parameters are indicated by square brackets `[]`. <br>
+  e.g. For the `addStud` command, the command format is `addStud nm/NAME id/ID class/CLASS [pn/PARENTNAME] [hp/PHONENUMBER]...`<br>
+  `[pn/PARENTNAME]` and `[hp/PHONENUMBER]` refer to optional parameters that can be supplied by the user.
+</div><br>
 
 ## 4.1 Managing student records
 
@@ -206,7 +218,7 @@ Format: `viewAll`
 
 Shows a list of all students in the specified class.
 
-Format: `viewClass [class name]`
+Format: `viewClass CLASS`
 
 * Class name can only contain alphanumeric characters.
 * Class name is case-insensitive.

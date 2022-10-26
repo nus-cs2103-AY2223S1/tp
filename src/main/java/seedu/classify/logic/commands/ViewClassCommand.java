@@ -14,7 +14,7 @@ public class ViewClassCommand extends Command {
 
     public static final String COMMAND_WORD = "viewClass";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all students in the given class.\n"
-            + "Parameters: CLASSNAME\n"
+            + "Parameters: CLASS\n"
             + "Example: " + COMMAND_WORD + " class1A";
 
     private final ClassPredicate predicate;
