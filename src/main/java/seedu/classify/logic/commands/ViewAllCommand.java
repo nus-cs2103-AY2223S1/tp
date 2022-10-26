@@ -7,7 +7,7 @@ import seedu.classify.model.Model;
 import seedu.classify.model.student.NameComparator;
 
 /**
- * Lists all the students' name and ID to the user.
+ * Lists all student records.
  */
 public class ViewAllCommand extends Command {
 
