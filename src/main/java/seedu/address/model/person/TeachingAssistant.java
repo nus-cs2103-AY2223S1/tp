@@ -147,4 +147,8 @@ public class TeachingAssistant extends Person {
         return false;
     }
 
+    @Override
+    public boolean doesOfficeHourMatch(List<String> officeHoursList) {
+        return false;
+    }
 }

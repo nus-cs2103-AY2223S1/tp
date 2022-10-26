@@ -6,9 +6,8 @@ SOConnect is a **desktop application for SOC students to easily find their peers
 Since it is designed for SOC students, it is **optimized for use via a Command Line Interface (CLI)**
 but it also has a Graphical User Interface for simpler and quicker task.
 
-
 * Table of Contents
-  {:toc}
+{:toc}
 
 <div style="page-break-after: always;"></div>
 
@@ -89,7 +88,7 @@ Adds a new Student contact to your contacts list.
 Format: `student n/NAME [y/YEAR] m/MODULE_CODE... p/PHONE e/EMAIL g/GENDER [t/TAG]... [l/LOCATION] git/GITHUB_USERNAME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have multiple module codes and tags.
+A student can have multiple module codes and tags. But a student must have at least **1** module code.
 </div>
 
 Examples:
@@ -140,18 +139,170 @@ Format: `delete INDEX1 INDEX2...`
 Example:
 * `Delete 1 2 3`
 
-### 3.2.2 Edit contact
-[coming soon]
+### 3.2.2 Edit contacts: 'edit'
+Edits an existing person in contact list.
+
+#### 3.2.2 Edit Student's contact
+
+Format: edit INDEX [n/NAME] [y/YEAR] [m/MODULE_CODE]... [p/PHONE] [e/EMAIL] [g/GENDER] [t/TAG]... [l/LOCATION] [git/GITHUB_USERNAME]
+
+#### 3.2.2 Edit Teaching Assistant's contact
+
+Format: edit INDEX [n/NAME] [m/MODULE_CODE] [p/PHONE] [e/EMAIL] [g/GENDER] [t/TAG]... [l/LOCATION] [git/GITHUB_USERNAME] [r/RATING]
+
+#### 3.2.2 Edit Professor's contact
+
+Format: edit INDEX [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE e/EMAIL g/GENDER] [t/TAG]... [l/LOCATION] [git/GITHUB_USERNAME] [r/RATING]
+
+
+* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing a Student's module codes, the existing module codes of the student will be removed i.e adding of module codes is not cumulative.
+* You can remove all the person’s tags by typing t/ without specifying any tags after it.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+An error will be thrown if an edit a field that does not exist for the contact. E.g editing year field of a professor contact will throw an error as professor does not have a year field.
+</div>
+
+Examples:
+Assuming you have a contact list where the first, second and third contact is a Student,Teaching Assistant and Professor respectively.
+* edit 1 p/91234567 e/johndoe@example.com Edits the phone number and email address of the 1st contact which is-a Student to be 91234567 and johndoe@example.com respectively.
+* edit 2 r/3 t/ Edits the rating to 3 and clears tags of the 2nd contact which is-a Teaching Assistant.
+* edit 3 s/Discrete Math Edits the Specialisation of the 3rd contact which is-a Professor.
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3.3 Searching-Related Commands
-### 3.3.1 Locate contact
-[coming soon]
-### 3.3.2 List contact
-[coming soon]
+### 3.3.1 Locate contact: `find`
+
+Finds all contacts based on the fields provided.
+
+A list of keywords can be entered under each field
+
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Find can be used with any number of fields as long at least one field is provided.
+* The search is case-insensitive. e.g. `bob` will match `Bob`
+* Keywords for all fields (except specialisation) are separated by spaces. e.g. `find n/bob alex joe`
+* For fields `name` and `location`, only one of the keywords need to fully match. e.g. `find n/alex bob` can return contacts `Alex Hunter` and `Bob Jones`.
+* Keywords for specialisation must be a full match and are separated by `,`. e.g. `find s/discrete math, networks` will return contacts with specialisation `Discrete Math` AND/OR `Networks`, but NOT `Discrete`.
+* The order of the keywords for any field does not matter. e.g. `find n/Hans Bo` will match `find n/Bo Hans`
+* For all fields, only full keywords will be matched e.g. `Bob` will not match `Bobby`
+* Persons matching at least one of the fields (as well one of the keywords in the field) will be returned (i.e. `OR` search).
+  e.g. `find n/alex bob t/friends` can return `Alex James`, `Bob Hunt` AND/OR all contacts with the tag `friends` (case-insensitive).
+
+Examples:
+*  `find m/CS2103T t/friends goodCoder` Returns contacts who take module `CS2103T` OR have the tags `friends` OR `goodCoder`
+*  `find n/wong leong m/CS1231S l/COM3` Returns all contacts whose names have `wong` OR `leong` in them, OR take the module `CS1231S`, OR have the location `COM3`
+
+#### `ALL` search for `module` and `tag` fields
+
+Finds all contacts who have ALL the module codes provided or ALL the tags provided.
+
+Format: `find [m/all/LIST OF MODULES] [t/all/LIST OF TAGS]`
+
+* Other fields can still be provided with this search mode, and they will still be OR search (but module/ tag will be ALL).
+* This is not case-sensitive.
+* `OR` search is still supported for modules and tags (omit the `all/`).
+
+Examples
+*  `find n/wong m/all/CS2100 CS2103T CS2109S` Returns all contacts who have `wong` in their name OR (take the modules: `CS2100` AND `CS2103T` and `CS2109S`).
+*  `find l/NUS t/all/friends owesMoney smart` Returns all contacts who have the location `NUS` OR (have the tags: `friends` AND `owesMoney` AND `smart`).
+
+#### Type search
+
+Find contacts by type: `Student` `Professor` `Teaching Assistant`
+
+Format: `find [typ/TYPE]`
+
+Only the following are accepted:
+* `stu` for Student
+* `prof` for Professor
+* `ta` for Teaching Assisstant
+* All are case-insensitive
+* More than one type can be provided
+
+Example:
+*  `find typ/stu ta` will return contacts who are students or teaching assistants.
+
+#### Office Hour search
+
+Find contacts by their office hours.
+
+Format: `find [o/OFFICE HOURS]`
+
+* keywords must be in the same format as office hour input. e.g. To find office hour `MONDAY, 03:00 PM - 05:00 PM` enter `find o/1-15:00-2`.
+* More than office hour can be provided.
+* Office hours must be separated by spaces.
+* A full match to each office hour is required.
+
+Example:
+* `find o/1-15:00-2 2-12:00-2` Returns all contacts with office time `MONDAY, 03:00 PM - 05:00 PM` OR `TUESDAY, 12:00 PM - 02:00 PM`.
+
 <div style="page-break-after: always;"></div>
+
+
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### 3.3.2 List contact: `list`
+
+Displays all contacts stored in application.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+After executing find command, only the contacts that matches your input will be displayed. This list command would make the application display all of your stored contacts again.
+</div>
+
+Format: `list`
+
+Example command: `list`
+
+### 3.3.3 Sort contact
+
+Sort the contact list in either ascending `A-Z` or descending `Z-A` order by name or module code.
+
+#### 3.3.3.1 Sort by name
+
+Sort the contact list by name in either ascending `A-Z` or descending `Z-A` order.
+
+Format: `sort A-Z n/name`
+
+Before executing the above command: ![before sorting](images/BeforeSort.png)
+After executing the command: ![after sorting](images/AfterNameAscendingSort.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Contacts are sorted by name in `A-Z` order
+</div>
+
+Format: `sort Z-A n/name`
+
+After executing the command: ![after sorting descending](images/AfterNameDescendingSort.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Contacts are sorted by name in `Z-A` order
+</div>
+
+#### 3.3.3.2 Sort by moduleCode
+
+Sort the contact list by moduleCode in either ascending `A-Z` or descending `Z-A` order.
+
+Format: `sort Z-A m/moduleCode`
+
+After executing the above command: ![after sorting](images/SortModuleCodeAscending.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, lower level modules will appear higher.
+</div>
+
+Format: `sort A-Z m/moduleCode`
+
+After executing the above command: ![after sorting](images/SortModuleCodeDescending.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, higher level modules will appear higher.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3.4 GitHub Command: `github`
@@ -181,3 +332,60 @@ The contact list will be displayed as a pie chart. The pie chart is located to t
 This pie chart shows how many of each type of contact you have, and updates itself whenever the list changes. You can use this to have a quick overview of your social network.
 
 --------------------------------------------------------------------------------------------------------------------
+## 3.6 Fast Template Command
+
+Returns a template with all the fields of a Person on the CLI.
+
+Format: `tt PERSON`
+* PERSON can be `prof`, `student`, or `ta`.
+
+Example:
+* `tt prof` -> the template `prof n/ m/ s/ p/ e/ g/ t/ l/ r/ o/` will be on the CLI.
+
+* `tt student` -> the template `prof n/ m/ p/ e/ g/ t/ l/ git/ y/` will be on the CLI.
+
+--------------------------------------------------------------------------------------------------------------------
+## 3.7 Sharing-Related Commands
+
+Allow users to share the current state of their contact list.
+
+### 3.7.1 Export Contact as CSV
+
+User can export the current state of his/ her contact list into a CSV file.
+
+Format: `export filename`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Filename cannot contain any of `$%&` symbols
+</div>
+
+Examples:
+* export test
+* export myContacts
+
+Upon successfully exporting, users will see the CSV file:
+![after export](images/CSVfile.png)
+
+Also the directory where the exported file is located at will be displayed:
+![file directory](images/ExportSuccessful.png)
+
+--------------------------------------------------------------------------------------------------------------------
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install SoConnect in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action           | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a Person** | `PERSON n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> where PERSON is `prof / student / ta`  <br><br> e.g. Adding student `student n/James Ho m/CS1231 p/12345678 e/jamesho@example.com g/M t/bestfriend t/colleague l/UTown Residences git/jamesho y/2` <br><br> e.g. Adding prof `prof n/Wong Tin Lok m/CS1231S s/Discrete Math p/98765432 e/WongTK@example.com g/M t/greatVoice git/WongExample l/COM2 LT4 r/5 o/2-12:00-2` <br><br> e.g. Adding TA `ta n/Danny m/CS2103T p/67598442 e/Danny@example.com g/M t/Korean l/COM2-0204 git/DannyTA r/5` |
+| **Clear**        | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **List**         | `list`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Help**         | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Template**     | `tt PERSON` where PERSON is `prof / student / ta` <br> e.g., `tt prof`, `tt ta`, `tt student`                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
