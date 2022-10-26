@@ -19,7 +19,6 @@ public class HourPeriod extends StringField implements BookingField {
 
     private final Hour startHour;
     private final Hour endHour;
-    private final String hourPeriodString;
 
     /**
      * Constructs a {@code HourPeriod}.
@@ -30,10 +29,8 @@ public class HourPeriod extends StringField implements BookingField {
         super(hourPeriodString);
         checkArgument(isValidHourPeriod(hourPeriodString), MESSAGE_CONSTRAINTS);
         String[] hours = hourPeriodString.split("-");
-        assert hours.length == 2;
         startHour = new Hour(hours[0]);
         endHour = new Hour(hours[1]);
-        this.hourPeriodString = hourPeriodString;
     }
 
     /**
@@ -71,11 +68,6 @@ public class HourPeriod extends StringField implements BookingField {
                 || (other instanceof HourPeriod // instanceof handles nulls
                 && startHour.equals(((HourPeriod) other).startHour))
                 && endHour.equals(((HourPeriod) other).endHour);
-    }
-
-    @Override
-    public String toString() {
-        return this.hourPeriodString;
     }
 
 }
