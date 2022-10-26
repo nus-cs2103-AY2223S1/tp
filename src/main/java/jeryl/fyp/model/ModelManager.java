@@ -190,6 +190,8 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+        completedStudents.setPredicate(predicate);
+        uncompletedStudents.setPredicate(predicate);
     }
 
     @Override

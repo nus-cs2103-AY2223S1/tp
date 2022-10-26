@@ -51,7 +51,7 @@ public class DeleteDeadlineCommand extends Command {
         }
         Deadline deadlineToDelete = student.getDeadlineList().getDeadlineByRank(Index.fromOneBased(rank)
                 .getZeroBased());
-        student.getDeadlineList().remove(deadlineToDelete);
+        model.deleteDeadline(student, deadlineToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, deadlineToDelete));
     }
 

@@ -5,6 +5,7 @@ import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -87,7 +88,7 @@ public class DeadlineList implements DeadlineListTemplate {
      *  Replaces the contents of this list with {@code replacement}.
      */
     @Override
-    public void setDeadlines(jeryl.fyp.model.student.DeadlineList replacement) {
+    public void setDeadlines(DeadlineList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -122,13 +123,21 @@ public class DeadlineList implements DeadlineListTemplate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof jeryl.fyp.model.student.DeadlineList // instanceof handles nulls
-                && internalList.equals(((jeryl.fyp.model.student.DeadlineList) other).internalList));
+                || (other instanceof DeadlineList // instanceof handles nulls
+                && internalList.equals(((DeadlineList) other).internalList));
     }
 
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "[" + internalList
+                .stream()
+                .map(ddl -> ddl.getDeadlineName().fullDeadlineName)
+                .collect(Collectors.joining(",")) + "]";
     }
 
     /**
@@ -178,7 +187,7 @@ public class DeadlineList implements DeadlineListTemplate {
     public Deadline getDeadlineByRank(Integer rank) {
         requireAllNonNull(rank);
         if (rank > internalList.size()) {
-            throw new DeadlineNotFoundException("Deadline specified not exist!");
+            throw new DeadlineNotFoundException("Deadline specified does not exist!");
         }
         return internalList.get(rank);
     }
