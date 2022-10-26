@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -200,6 +201,16 @@ public class AddStuCommandTest {
 
         @Override
         public void setQuestion(Question target, Question editedQuestion) {
+
+        }
+
+        @Override
+        public void markQuestion(Index index) {
+
+        }
+
+        @Override
+        public void unmarkQuestion(Index index) {
 
         }
 
