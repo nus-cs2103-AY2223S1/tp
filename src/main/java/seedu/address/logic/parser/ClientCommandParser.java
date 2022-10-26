@@ -22,17 +22,17 @@ import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
 import seedu.address.logic.commands.client.SortClientCommand;
 import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
 import seedu.address.logic.commands.client.find.FindClientByNameCommand;
-import seedu.address.logic.commands.client.find.FindClientByPhoneCommand;
+import seedu.address.logic.commands.client.find.FindClientByMobileCommand;
 import seedu.address.logic.commands.client.find.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
+import seedu.address.model.client.predicates.MobileContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -110,9 +110,9 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-        ClientPhone phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        ClientMobile mobile = ClientMobile.EmptyClientMobile.EMPTY_MOBILE;
         if (arePrefixesPresent(argMultimap, PREFIX_MOBILE)) {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_MOBILE).get());
+            mobile = ParserUtil.parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
@@ -120,7 +120,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email, new ArrayList<>());
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, mobile, email, new ArrayList<>());
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
         return new AddClientCommand(clientWithoutModel, projectId);
@@ -145,7 +145,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
         Name newName = null;
         ClientEmail newEmail = null;
-        ClientPhone newPhone = null;
+        ClientMobile newMobile = null;
         ClientId newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL, PREFIX_MOBILE)) {
@@ -158,14 +158,14 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
-            newPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_MOBILE).get());
+            newMobile = ParserUtil.parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
             newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        return new EditClientCommand(newClientId, newName, newEmail, newPhone);
+        return new EditClientCommand(newClientId, newName, newEmail, newMobile);
     }
 
 
@@ -221,7 +221,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             }
 
             //implies arePrefixesPresent(argMultimap, PREFIX_MOBILE) is true
-            return new FindClientByPhoneCommand(new PhoneContainsKeywordsPredicate(
+            return new FindClientByMobileCommand(new MobileContainsKeywordsPredicate(
                     argMultimap.getAllValues(PREFIX_MOBILE)));
 
         } catch (ParseException pe) {

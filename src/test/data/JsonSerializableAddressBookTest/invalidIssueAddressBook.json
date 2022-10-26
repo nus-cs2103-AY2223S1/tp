@@ -5,7 +5,7 @@
     "deadline" : "2022-03-03",
     "client" : {
       "name" : "Alex Yeoh",
-      "phone" : "87438807",
+      "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
       "projects" : [ ]
@@ -15,11 +15,7 @@
   } ],
   "issues" : [ {
     "title" : "Refactor UI Classes",
-<<<<<<< HEAD
     "urgency" : "X",
-=======
-    "priority" : "X",
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "20201",
     "status" : "x",
     "issueId" : "1",

@@ -25,8 +25,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_MOBILE_AMY = "11111111";
+    public static final String VALID_MOBILE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_DEADLINE = "2022-03-05";
@@ -35,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_EMPTY_PROJECT_ID = "2147483647";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_MOBILE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_MOBILE + VALID_PHONE_BOB;
+    public static final String MOBILE_DESC_AMY = " " + PREFIX_MOBILE + VALID_MOBILE_AMY;
+    public static final String MOBILE_DESC_BOB = " " + PREFIX_MOBILE + VALID_MOBILE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String DEADLINE_DESC_DEADLINE = " " + PREFIX_DEADLINE + VALID_DEADLINE;
@@ -44,7 +44,7 @@ public class CommandTestUtil {
     public static final String PROJECT_DESC_PROJECT = " " + PREFIX_PROJECT_ID + VALID_PROJECT_ID;
     public static final String PROJECT_DESC_EMPTY_PROJECT = " " + PREFIX_PROJECT_ID + VALID_EMPTY_PROJECT_ID;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_MOBILE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_MOBILE_DESC = " " + PREFIX_MOBILE + "911a"; // 'a' not allowed in mobiles
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "20 October 2022"; // yyyy-mm-dd format
     public static final String INVALID_REPOSITORY_DESC = " " + PREFIX_REPOSITORY + "Repo"; // username/repository format

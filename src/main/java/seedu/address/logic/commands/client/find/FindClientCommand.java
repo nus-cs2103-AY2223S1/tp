@@ -20,7 +20,7 @@ public abstract class FindClientCommand extends ClientCommand {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_MOBILE + "PHONE "
+            + PREFIX_MOBILE + "MOBILE "
             + "Example: " + COMMAND_WORD + " "
             + COMMAND_FLAG + " "
             + PREFIX_NAME + "John "

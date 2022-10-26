@@ -5,7 +5,7 @@
     "deadline" : "",
     "client" : {
       "name" : "",
-      "phone" : "",
+      "mobile" : "",
       "email" : "",
       "clientId" : "",
       "projects" : [ ]
@@ -18,7 +18,7 @@
     "deadline" : "",
     "client" : {
       "name" : "John Doe",
-      "phone" : "",
+      "mobile" : "",
       "email" : "",
       "clientId" : "1",
       "projects" : [ ]
@@ -31,7 +31,7 @@
     "deadline" : "",
     "client" : {
       "name" : "",
-      "phone" : "",
+      "mobile" : "",
       "email" : "",
       "clientId" : "",
       "projects" : [ ]

@@ -5,7 +5,7 @@
     "deadline" : "2022-03-03",
     "client" : {
       "name" : "A!!",
-      "phone" : "7",
+      "mobile" : "7",
       "email" : "alexcom",
       "clientId" : "1",
       "projects" : [ ]

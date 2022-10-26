@@ -5,18 +5,18 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
+import seedu.address.model.client.predicates.MobileContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
 
 
 /**
- * Represents a class to find and filter client list by phone.
+ * Represents a class to find and filter client list by mobile.
  */
-public class FindClientByPhoneCommand extends FindClientCommand {
+public class FindClientByMobileCommand extends FindClientCommand {
 
-    private final PhoneContainsKeywordsPredicate predicate;
+    private final MobileContainsKeywordsPredicate predicate;
 
-    public FindClientByPhoneCommand(PhoneContainsKeywordsPredicate predicate) {
+    public FindClientByMobileCommand(MobileContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -31,7 +31,7 @@ public class FindClientByPhoneCommand extends FindClientCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindClientByPhoneCommand // instanceof handles nulls
-                && predicate.equals(((FindClientByPhoneCommand) other).predicate)); // state check
+                || (other instanceof FindClientByMobileCommand // instanceof handles nulls
+                && predicate.equals(((FindClientByMobileCommand) other).predicate)); // state check
     }
 }

@@ -185,7 +185,7 @@ Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]
 Examples:
 *  `client -a n/Amy p/1` Adds a client with `CLIENT_NAME` Amy to the `ClientList` and to the project with 
    `PROJECT_ID` 1.
-*  `client -a n/Bob p/2 m/12345678` Adds a client with `CLIENT_NAME` Bob and `CLIENT_PHONE` 12345678 to the 
+*  `client -a n/Bob p/2 m/12345678` Adds a client with `CLIENT_NAME` Bob and `CLIENT_MOBILE` 12345678 to the 
    `ClientList` and to the project with `PROJECT_ID` 2.
 *  `client -a n/Charlie e/charlie@gmail.com p/3` Adds a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` 
    charlie@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 3.
@@ -196,7 +196,7 @@ Examples:
 
 Edits the specified existing client.
 
-Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]…​`
 
 * Edits the client with the specified `CLIENT_ID`.
 * At least one of the optional fields must be provided.
@@ -205,11 +205,11 @@ Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_PHONE] [e/CLIENT_EMAIL]
 Examples:
 *  `client -e c/1 n/Amy` Edits the client with `CLIENT_ID` 1 to have the new `CLIENT_NAME` Amy.
 *  `client -e c/2 n/Bob m/12345678` Edits the client with `CLIENT_ID` 2 to have the new `CLIENT_NAME` Bob 
-   and `CLIENT_PHONE` 91234567.
+   and `CLIENT_MOBILE` 91234567.
 *  `client -e c/3 n/Charlie e/charlie@gmail.com` Edits the client with `CLIENT_ID` 3 to have the new 
    `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
 *  `client -e c/4 n/Dave m/12345678 e/dave@gmail.com` Edits the client with `CLIENT``_ID` 4 to have the new 
-   `CLIENT_NAME` Dave, `CLIENT_PHONE` 12345678 and `CLIENT_EMAIL` dave@gmail.com.
+   `CLIENT_NAME` Dave, `CLIENT_MOBILE` 12345678 and `CLIENT_EMAIL` dave@gmail.com.
 
 ### Deleting a client : `client -d`
 
@@ -234,9 +234,9 @@ Format: `client -l`
 
 Finds and lists all the clients matching the search criteria.
 
-Format: `client -f [n/CLIENT_NAME] [m/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+Format: `client -f [n/CLIENT_NAME] [m/CLIENT_MOBILE] [e/CLIENT_EMAIL]…​`
 
-* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_PHONE` and `CLIENT_EMAIL`.
+* Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_MOBILE` and `CLIENT_EMAIL`.
 * Finds all the clients such that the fields under the client contain at least one word from the keywords provided 
   after each search criteria.
 * The keywords provided must be valid arguments for their respective search criteria.
@@ -247,10 +247,10 @@ Examples:
 * `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and 
   with `CLIENT_EMAIL` amy@gmail.com.
 * `client -f n/Amy e/amy@gmail.com m/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
-  `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_PHONE` 12345678.
+  `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_MOBILE` 12345678.
 * `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
   `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
-  `CLIENT_PHONE` 12345678.
+  `CLIENT_MOBILE` 12345678.
 
 ### Sorting all clients: `client -s`
 

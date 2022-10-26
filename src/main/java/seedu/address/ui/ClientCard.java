@@ -33,7 +33,7 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private Label mobile;
     @FXML
     private Label email;
     @FXML
@@ -48,7 +48,7 @@ public class ClientCard extends UiPart<Region> {
         // id.setText(displayedIndex + ". ");
         name.setText(displayedIndex + ". " + client.getClientName().toString()
                 + " " + client.getClientId().uiRepresentation());
-        phone.setText(client.getClientPhone().uiRepresentation());
+        mobile.setText(client.getClientMobile().uiRepresentation());
         email.setText(client.getClientEmail().uiRepresentation());
         client.getProjects().stream()
                 .sorted(Comparator.comparing(project -> project.getProjectName().toString()))

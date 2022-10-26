@@ -20,20 +20,20 @@ import seedu.address.model.project.ProjectId;
 public class ClientWithoutModel implements Function<Model, Client> {
 
     private final Name name;
-    private final ClientPhone phone;
+    private final ClientMobile mobile;
     private final ClientEmail email;
     private final List<ProjectId> projectIdList;
 
     /**
      * Partially initialise a client without access to a Model object.
      * @param name name of cline
-     * @param phone phone number of client
+     * @param mobile mobile number of client
      * @param email email of client
      * @param projectIdList the list of project ids the client is involved in.
      */
-    public ClientWithoutModel(Name name, ClientPhone phone, ClientEmail email, List<ProjectId> projectIdList) {
+    public ClientWithoutModel(Name name, ClientMobile mobile, ClientEmail email, List<ProjectId> projectIdList) {
         this.name = name;
-        this.phone = phone;
+        this.mobile = mobile;
         this.email = email;
         this.projectIdList = projectIdList;
     }
@@ -45,7 +45,7 @@ public class ClientWithoutModel implements Function<Model, Client> {
             projectList.add(model.getProjectById(pid.getIdInt()));
         }
 
-        Client client = new Client(name, phone, email, projectList, new ClientId(model.generateClientId()));
+        Client client = new Client(name, mobile, email, projectList, new ClientId(model.generateClientId()));
         if (client.isEmpty()) {
             throw new ClientNotFoundException();
         }
@@ -61,7 +61,7 @@ public class ClientWithoutModel implements Function<Model, Client> {
         ClientWithoutModel c = (ClientWithoutModel) o;
         return c == this || (
                 this.name.equals(c.name)
-                        && this.phone.equals(c.phone)
+                        && this.mobile.equals(c.mobile)
                         && this.email.equals(c.email)
                         && this.projectIdList.equals(c.projectIdList));
     }

@@ -14,7 +14,7 @@
                 <Insets top="5" right="5" bottom="5" left="5" />
             </padding>
             <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="mobile" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
             <FlowPane fx:id="projects" />
         </VBox>

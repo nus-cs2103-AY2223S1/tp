@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.model.issue.Title;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectTest;
@@ -19,7 +19,7 @@ import seedu.address.model.project.Repository;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_MOBILE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_REPOSITORY = "Notes";
     private static final String INVALID_DEADLINE = "3rd May 2022";
@@ -27,7 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_URGENCY = "-1";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_MOBILE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_REPOSITORY = "Rachel/Notes";
     private static final String VALID_DEADLINE = "2022-05-03";
@@ -80,26 +80,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseMobile_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMobile((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseMobile_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMobile(INVALID_MOBILE));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        ClientPhone expectedPhone = new ClientPhone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseMobile_validValueWithoutWhitespace_returnsMobile() throws Exception {
+        ClientMobile expectedMobile = new ClientMobile(VALID_MOBILE);
+        assertEquals(expectedMobile, ParserUtil.parseMobile(VALID_MOBILE));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        ClientPhone expectedPhone = new ClientPhone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseMobile_validValueWithWhitespace_returnsTrimmedMobile() throws Exception {
+        String mobileWithWhitespace = WHITESPACE + VALID_MOBILE + WHITESPACE;
+        ClientMobile expectedMobile = new ClientMobile(VALID_MOBILE);
+        assertEquals(expectedMobile, ParserUtil.parseMobile(mobileWithWhitespace));
     }
 
     @Test
@@ -178,35 +178,20 @@ public class ParserUtilTest {
 
     @Test
     public void parseTitle_invalidValue_throwsParseException() {
-<<<<<<< HEAD
         assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
-=======
-        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_DESCRIPTION));
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
     @Test
     public void parseTitle_validValueWithoutWhitespace_returnsTitle() throws Exception {
-<<<<<<< HEAD
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_TITLE));
-=======
-        Title expectedTitle = new Title(VALID_DESCRIPTION);
-        assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_DESCRIPTION));
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
     @Test
     public void parseTitle_validValueWithWhitespace_returnsTitle() throws Exception {
-<<<<<<< HEAD
         String titleWithWhitespace = WHITESPACE + VALID_TITLE + WHITESPACE;
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
-=======
-        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
-        Title expectedTitle = new Title(VALID_DESCRIPTION);
-        assertEquals(expectedTitle, ParserUtil.parseTitle(descriptionWithWhitespace));
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     }
 
     @Test
@@ -226,11 +211,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseProject_invalidValue_throwsParseException() {
-<<<<<<< HEAD
-            assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
-=======
-        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_DESCRIPTION));
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
     }
 
     @Test

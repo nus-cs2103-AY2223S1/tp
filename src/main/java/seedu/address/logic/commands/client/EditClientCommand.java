@@ -13,7 +13,7 @@ import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.ui.Ui;
 
 /**
@@ -44,17 +44,17 @@ public class EditClientCommand extends ClientCommand {
 
     private final Name newName;
     private final ClientEmail newEmail;
-    private final ClientPhone newPhone;
+    private final ClientMobile newMobile;
     private final ClientId clientId;
 
     /**
      * Creates an EditClientCommand to edit the specified {@code Client}
      */
-    public EditClientCommand(ClientId clientId, Name newName, ClientEmail newEmail, ClientPhone newPhone) {
+    public EditClientCommand(ClientId clientId, Name newName, ClientEmail newEmail, ClientMobile newMobile) {
         this.clientId = clientId;
         this.newName = newName;
         this.newEmail = newEmail;
-        this.newPhone = newPhone;
+        this.newMobile = newMobile;
     }
 
     @Override
@@ -72,8 +72,8 @@ public class EditClientCommand extends ClientCommand {
             toEditClient.setEmail(newEmail);
         }
 
-        if (newPhone != null) {
-            toEditClient.setPhone(newPhone);
+        if (newMobile != null) {
+            toEditClient.setMobile(newMobile);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toEditClient));

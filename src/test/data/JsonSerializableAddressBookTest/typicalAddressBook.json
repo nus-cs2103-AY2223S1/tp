@@ -5,7 +5,7 @@
     "deadline" : "2022-03-03",
     "client" : {
       "name" : "Alex Yeoh",
-      "phone" : "87438807",
+      "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
       "projects" : [ ]
@@ -18,7 +18,7 @@
     "deadline" : "2023-01-02",
     "client" : {
       "name" : "Alex Yeoh",
-      "phone" : "87438807",
+      "mobile" : "87438807",
       "email" : "alexyeoh@example.com",
       "clientId" : "1",
       "projects" : [ ]
@@ -31,7 +31,7 @@
     "deadline" : "2023-11-29",
     "client" : {
       "name" : "Bernice Yu",
-      "phone" : "99272758",
+      "mobile" : "99272758",
       "email" : "berniceyu@example.com",
       "clientId" : "2",
       "projects" : [ ]
@@ -44,7 +44,7 @@
     "deadline" : "2022-04-11",
     "client" : {
       "name" : "Charlotte Oliveiro",
-      "phone" : "93210283",
+      "mobile" : "93210283",
       "email" : "charlotte@example.com",
       "clientId" : "3",
       "projects" : [ ]
@@ -57,7 +57,7 @@
     "deadline" : "2022-05-27",
     "client" : {
       "name" : "David Li",
-      "phone" : "91031282",
+      "mobile" : "91031282",
       "email" : "lidavid@example.com",
       "clientId" : "4",
       "projects" : [ ]
@@ -70,7 +70,7 @@
     "deadline" : "2023-02-27",
     "client" : {
       "name" : "Irfan Ibrahim",
-      "phone" : "92492021",
+      "mobile" : "92492021",
       "email" : "irfan@example.com",
       "clientId" : "5",
       "projects" : [ ]
@@ -80,66 +80,42 @@
   } ],
   "issues" : [ {
     "title" : "Refactor UI Classes",
-<<<<<<< HEAD
     "urgency" : "LOW",
-=======
-    "priority" : "LOW",
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "2022-01-01",
     "status" : "false",
     "issueId" : "1",
     "project" : "1"
   }, {
     "title" : "Fix loading screen bug",
-<<<<<<< HEAD
     "urgency" : "MEDIUM",
-=======
-    "priority" : "MEDIUM",
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "2022-10-04",
     "status" : "true",
     "issueId" : "2",
     "project" : "2"
   }, {
     "title" : "Implement filter command",
-<<<<<<< HEAD
     "urgency" : "LOW",
-=======
-    "priority" : "LOW",
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "2022-09-03",
     "status" : "false",
     "issueId" : "3",
     "project" : "2"
   }, {
     "title" : "Update collision logic",
-<<<<<<< HEAD
     "urgency" : "HIGH",
-=======
-    "priority" : "HIGH",
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "2023-07-14",
     "status" : "true",
     "issueId" : "4",
     "project" : "3"
   }, {
     "title" : "Create Developer Guide",
-<<<<<<< HEAD
     "urgency" : "HIGH",
-=======
-    "priority" : "HIGH",
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "2022-02-04",
     "status" : "true",
     "issueId" : "5",
     "project" : "4"
   }, {
     "title" : "Change default behaviour",
-<<<<<<< HEAD
     "urgency" : "MEDIUM",
-=======
-    "priority" : "MEDIUM",
->>>>>>> 26a22639255513998cf6801b7fdff233448cb57b
     "deadline" : "2022-02-19",
     "status" : "false",
     "issueId" : "6",

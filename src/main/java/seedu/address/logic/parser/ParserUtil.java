@@ -12,7 +12,7 @@ import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientMobile;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Urgency;
@@ -114,18 +114,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code ClientPhone}.
+     * Parses a {@code String mobile} into a {@code ClientMobile}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code mobile} is invalid.
      */
-    public static ClientPhone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!ClientPhone.isValidClientPhone(trimmedPhone)) {
-            throw new ParseException(ClientPhone.MESSAGE_CONSTRAINTS);
+    public static ClientMobile parseMobile(String mobile) throws ParseException {
+        requireNonNull(mobile);
+        String trimmedMobile = mobile.trim();
+        if (!ClientMobile.isValidClientMobile(trimmedMobile)) {
+            throw new ParseException(ClientMobile.MESSAGE_CONSTRAINTS);
         }
-        return new ClientPhone(trimmedPhone);
+        return new ClientMobile(trimmedMobile);
     }
 
     /**
