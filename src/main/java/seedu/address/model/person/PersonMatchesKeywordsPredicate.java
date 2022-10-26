@@ -1,12 +1,6 @@
 package seedu.address.model.person;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.tag.Tag;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.Arrays;
 
@@ -18,7 +12,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
-    //This method is used to compute the Levenshtein distance, which
+    // This method is used to compute the Levenshtein distance, which
     // how different two strings are from one another by counting the minimum
     // number of operations (insertions, deletions and substitutions of characters)
     // required to transform one string to another.
@@ -50,7 +44,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
                 else {
                     //else find minimum among the three operations below
                     arr[i][j] = minEdits(arr[i - 1][j - 1]
-                                    + numOfReplacement(str1.charAt(i - 1),str2.charAt(j - 1)),
+                                    + numOfReplacement(str1.charAt(i - 1), str2.charAt(j - 1)),
                             arr[i - 1][j] + 1,
                             arr[i][j - 1] + 1);
                 }
@@ -82,14 +76,14 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean matchesName(Person person) {
-        return findSimilarity(keywords,person.getName().fullName) > 0.5 ||
-                StringUtil.containsWordIgnoreCase(person.getName().fullName, keywords);
+        return findSimilarity(keywords,person.getName().fullName) > 0.5
+                || StringUtil.containsWordIgnoreCase(person.getName().fullName, keywords);
     }
 
     private boolean matchesAddress(Person person) {
         if (person.getAddress().isPresent()) {
-            return findSimilarity(keywords, String.valueOf(person.getAddress().get().value)) > 0.5 ||
-                    StringUtil.containsWordIgnoreCase(String.valueOf(person.getAddress().get().value), keywords);
+            return findSimilarity(keywords, String.valueOf(person.getAddress().get().value)) > 0.5
+                    || StringUtil.containsWordIgnoreCase(String.valueOf(person.getAddress().get().value), keywords);
         } else {
             return false;
         }
@@ -97,22 +91,22 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
 
     private boolean matchesRole(Person person) {
         if (person.getRole().isPresent()) {
-            return findSimilarity(keywords, String.valueOf(person.getRole().get().role)) > 0.5 ||
-                    StringUtil.containsWordIgnoreCase(String.valueOf(person.getRole().get().role), keywords);
+            return findSimilarity(keywords, String.valueOf(person.getRole().get().role)) > 0.5
+                    || StringUtil.containsWordIgnoreCase(String.valueOf(person.getRole().get().role), keywords);
         } else {
             return false;
         }
     }
 
     private boolean matchesGitHubUser(Person person) {
-        return findSimilarity(keywords,person.getGitHubUser().toString()) > 0.5 ||
-                StringUtil.containsWordIgnoreCase(person.getGitHubUser().toString(), keywords);
+        return findSimilarity(keywords,person.getGitHubUser().toString()) > 0.5
+                || StringUtil.containsWordIgnoreCase(person.getGitHubUser().toString(), keywords);
     }
 
     private boolean matchesTags(Person person) {
         Object[] tags = person.getTags().toArray();
-        for (int i = 0; i<tags.length; i++) {
-            if (findSimilarity(keywords,tags[i].toString()) > 0.5 ||
+        for (int i = 0; i < tags.length; i++) {
+            if (findSimilarity(keywords, tags[i].toString()) > 0.5 ||
                     StringUtil.containsWordIgnoreCase(tags[i].toString(), keywords)) {
                 return true;
             }
