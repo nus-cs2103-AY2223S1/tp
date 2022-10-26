@@ -77,7 +77,7 @@ public class GetWardNumberCommandTest {
      */
     private WardNumberPredicate preparePredicate(String userInput) {
         String[] st = userInput.split("\\s+");
-        List<String> wardNumbers = new ArrayList<String>();
+        List<String> wardNumbers = new ArrayList<>();
         for (String i : st) {
             wardNumbers.add(i);
         }

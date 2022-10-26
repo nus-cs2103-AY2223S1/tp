@@ -61,7 +61,7 @@ public class GetCommandParserTest {
 
     @Test
     public void parseCommand_getHospitalWing() throws Exception {
-        List<String> wings = Arrays.asList("south", "north");
+        List<String> wings = Arrays.asList("south");
         GetHospitalWingCommand command = new GetHospitalWingCommand(new HospitalWingContainsKeywordsPredicate(wings));
         assertEquals(parser.parse(GetHospitalWingCommand.HOSPITAL_WING_PREFIX + " "
                 + wings.stream().collect(Collectors.joining(" "))), command);

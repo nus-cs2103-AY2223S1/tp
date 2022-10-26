@@ -81,7 +81,7 @@ public class GetFloorNumberCommandTest {
      */
     private FloorNumberPredicate preparePredicate(String userInput) {
         String[] st = userInput.split("\\s+");
-        List<Integer> floors = new ArrayList<Integer>();
+        List<Integer> floors = new ArrayList<>();
         for (String i : st) {
             Integer floor = Integer.parseInt(i);
             floors.add(floor);

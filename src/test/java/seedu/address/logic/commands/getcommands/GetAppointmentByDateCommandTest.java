@@ -84,7 +84,7 @@ public class GetAppointmentByDateCommandTest {
      */
     private AppointmentByDatePredicate preparePredicate(String userInput) {
         String[] st = userInput.split("\\s+");
-        List<LocalDate> dates = new ArrayList<LocalDate>();
+        List<LocalDate> dates = new ArrayList<>();
         for (String i : st) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.parse(i.trim(), dateTimeFormatter);
