@@ -29,6 +29,7 @@ public class StringUtil {
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        System.out.println(preppedWord);
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
