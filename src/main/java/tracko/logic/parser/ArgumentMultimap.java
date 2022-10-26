@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -40,7 +41,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns all values of {@code prefix}.
+     * Returns all values of {@code ArgumentToken}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
      */
@@ -57,5 +58,15 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix(""))
                 .orElseGet(() -> getValue(new Flag("")).orElse(""));
+    }
+
+    /**
+     * Returns true if at least one flag does not contain empty {@Optional} value in the
+     * {@code ArgumentMultimap}
+     * @param flags flags to be checked for input present
+     * @return true if at least one flag is present in the {@code ArgumentMultimap}
+     */
+    public boolean isAnyFlagPresent(Flag... flags) {
+        return Stream.of(flags).anyMatch(flag -> this.getValue(flag).isPresent());
     }
 }

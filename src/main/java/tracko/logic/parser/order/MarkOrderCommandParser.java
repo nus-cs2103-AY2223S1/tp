@@ -47,13 +47,12 @@ public class MarkOrderCommandParser implements Parser<MarkOrderCommand> {
     }
 
     /**
-     * Returns true if at least one flag does not contain empty {@Optional} value in the given
+     * Returns true if at least one flag does not contain empty {@Optional} value in the
      * {@code ArgumentMultimap}
-     * @param argumentMultimap Hashmap which maps all the flags with corresponding arguments
      * @param flags flags to be checked for input present
-     * @return true if at least one flag is present in the given {@code ArgumentMultimap}
+     * @return true if at least one flag is present in the {@code ArgumentMultimap}
      */
-    private static boolean isAnyFlagPresent(ArgumentMultimap argumentMultimap, Flag... flags) {
+    public static boolean isAnyFlagPresent(ArgumentMultimap argumentMultimap, Flag... flags) {
         return Stream.of(flags).anyMatch(flag -> argumentMultimap.getValue(flag).isPresent());
     }
 }

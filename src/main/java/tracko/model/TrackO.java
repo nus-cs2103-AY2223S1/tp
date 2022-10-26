@@ -64,6 +64,25 @@ public class TrackO implements ReadOnlyTrackO {
         orders.delete(order);
     }
 
+    /**
+     * Marks an order as paid and/or delivered
+     * @param order order to be marked
+     * @param isPaid true when order is to be marked paid
+     * @param isDelivered true when order is to be marked delivered
+     */
+    public void markOrder(Order order, boolean isPaid, boolean isDelivered) {
+        if (isPaid) {
+            order.setPaid();
+        }
+
+        // decreases the quantity of each item delivered in the inventory list according to the quantity delivered
+        if (isDelivered) {
+            items.reduceItems(order);
+
+            order.setDelivered();
+        }
+    }
+
     @Override
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();
