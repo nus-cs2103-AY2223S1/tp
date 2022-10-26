@@ -12,19 +12,19 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Adding a client: `add`](#adding-a-client-add)
+  * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-transaction)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
   * [Creating a remark: `remark`](#creating-a-remark-create)
   * [Deleting a client/transaction/remark: `delete`](#deleting-a-client--delete)
   * [Editing a client/transaction/remark: `edit`](#editing-a-client--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
   * [Filtering buy or sell transactions: `filter`](#filtering-the-address-book-display--filter)
+  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
   * [Listing all clients: `list`](#listing-all-clients--list)
   * [Locating clients by name: `find`](#locating-clients-by-name-find)
+  * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
   * [Viewing help: `help`](#viewing-help--help)
   * [Viewing a client: `view`](#viewing-a-client--view)
-  * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
-  * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
-  * [Creating a transaction: `buy` or `sell` ](#creating-a-transaction-transaction)
   * [Saving the data](#saving-the-data)
   * [Editing the data file](#editing-the-data-file)
   * [Archiving data files `coming in v2.0`](#archiving-data-files-coming-in-v20)
@@ -53,7 +53,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`delete`**`delete 1` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
-   * **`find`**`James` : Finds James in the list of clients, and displays all its details (remark, transactions).
+   * **`find`**`James` : Finds `James` from the list of clients and display all clients with name containing `James`.
 
   * **`clear`** : Deletes all clients with all their contacts and transactions.
 
@@ -102,9 +102,36 @@ Examples:
 * `add n/Alice a/West Coast Park p/9876542 e/alice@gmail.com`
 * `add n/John a/Yishun Street 81 p/9876543 e/john@yahoo.com t/friends t/supplier`
 
+### Creating a Transaction: `buy` or `sell`
+
+Creates a  `buy` or `sell` transaction linked to a client.
+
+Formats:
+
+`buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]`
+
+`sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]`
+
+* The `INDEX` refers to the index number shown in the displayed client list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `QUANTITY` refers to the amount of the goods transacted.
+* The `QUANTITY` should only contain numbers and be at least 1 digit long.
+* The `GOODS` refers to the name of the goods transacted.
+* The `GOODS` should only contain alphanumeric characters, and it should not be blank.
+* The `PRICE` refers to the price of the goods transacted.
+* The `PRICE` should only contain numbers, and it should be at least 1 digit long.
+* The `DATE` refers to the date of the transaction.
+* The `DATE` should only be in the format of DD/MM/YYYY. If no `DATE` is entered,
+  the default date will be the current date that the user enters the transaction.
+
+Examples:
+* `buy 3 q/100 g/apples price/1.5` creates a buy transaction from the 3rd client in the list.
+* `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` creates a sell transaction to the 1st client in
+the list on the 07/11/2000.
+
 ### Clearing all entries : `clear`
 
-Clears all entries from JeeqTracker.
+Clear all entries which include `clients`, `remarks` and `transactions` from JeeqTracker.
 
 Format: `clear`
 
@@ -112,7 +139,7 @@ Format: `clear`
 
 Example:
 
-* `clear` Clears all Client's entries together with the Remarks and Transactions.
+* `clear` clears all Client's entries together with the Remarks and Transactions.
 
 ### Creating a Remark: `remark`
 
@@ -137,14 +164,16 @@ Format: `delete INDEX m/MODE`
 * The `INDEX` refers to the index number shown in the displayed list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `MODE` refers to which entity is being deleted. It must be `client`, `transaction` or `remark`.
-* `view` command must be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application. 
-
+* `view` command must be used before the deletion of `remark` or `transaction` as the deletion can only happen when they are visible in the application.
 
 Examples:
+* `delete 1 m/client` deletes the 1st client in the JeeqTracker.
 * `list` followed by `delete 2 m/client` deletes the 2nd client in the JeeqTracker.
-* `find cold` followed by `delete 1 m/client` deletes the 1st client in the results of the `find` command.
+* `find koh` followed by `delete 1 m/client` deletes the 1st client in the results of the `find` command.
 * `list` followed by `view 2` displays the remarks and transactions of the 2nd client in the JeeqTracker. 
 Applying `delete 3 m/transaction` deletes the 3rd transaction of the client.
+* `find john` followed by `view 1` displays the remarks and transactions of the 1st client of the `find`
+result. Applying `delete 2 m/remark` deletes the 2nd remark of the client.
 
 ### Editing a client / transaction / remark : `edit`
 
@@ -160,10 +189,13 @@ transaction has `[q/QUANTITY] [g/GOODS] [price/PRICE] [d/DATE]`.
 * `view` command must be used before editing `remark` or `transaction` as the edit can only happen when they are visible in the application.
 
 Examples:
-* `edit 1 m/client a/Blk 221 Yishun St 81` replaces the first index client's address with the new input.
-* `edit 5 m/client p/8765432` replaces the fifth index client's phone number with the new input.
+* `edit 1 m/client a/Blk 221 Yishun St 81` replaces the 1st client's address with the new input.
+* `list` followed by `edit 5 m/client a/Blk 333 Clementi Ave 1 p/8765432` replaces the 5th index client's address and phone number with the new inputs.
+* `find lee` followed by `edit 2 m/client e/lee123@gmail.com` replaces the 2nd client's email of the `find` result with the new inputs.
 * `list` followed by `view 2` displays the remarks and transactions of the 2nd client in the JeeqTracker.
 Applying `edit 3 m/transaction price/1.9` edits the price of the 3rd transaction of the client.
+* `find lim` followed by `view 3` displays the remarks and transactions of the 3rd client of the `find` 
+result. Applying `edit 3 m/remark supplier` edits the 3rd remark of the client.
 
 ### Exiting the program : `exit`
 
@@ -171,16 +203,35 @@ Exits the program.
 
 Format: `exit`
 
+* All entries will not be deleted.
+
+Examples:
+* `exit` closes the program.
+
 ### Filtering the transaction display : `filter`
 
 Filters the buy or sell transactions of all the clients.
 
-Format: `filter buy` or `filter sell`
+Format: `filter TYPE`
 
+* The `TYPE` refers to the type of transactions to be displayed. 
+It can only be `buy` or `sell`.
 * If no clients made any transactions, the transaction section will be blank.
 
 Examples:
 * `filter buy` displays all buy transactions.
+* `filter sell` displays all sell transactions.
+
+### Getting the User Guide: `user_guide`
+
+Returns the url to this user guide.
+
+Format: `user_guide`
+
+* Displays a pop-up that contains the url to this user guide.
+
+Examples:
+* `user_guide` returns the url of this user guide.
 
 ### Listing all clients : `list`
 
@@ -212,6 +263,22 @@ Examples:
 * `find John` return clients `John`, `John Lim`, `John Koh`
 * `find Tan` return clients `John Tan`, `Bob Tan`, `Alice Tan`
 
+### Sorting the address book: `sort`
+
+Sorts the specified client's transaction by either the latest transaction or oldest transaction.
+
+Format: `sort INDEX ORDER`
+
+* The `INDEX` refers to the index number shown in the displayed client list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `ORDER` refers to how the transaction will be sorted. It can only be sorted by
+  `oldest` or `latest`.
+* If no clients made any transactions, the transaction section will be blank.
+
+Examples:
+* `sort 1 latest` displays the 1st client transactions sorted by the latest transaction on top.
+* `sort 5 oldest` displays the 5th client transactions sorted by the oldest transaction on top.
+
 ### Viewing help : `help`
 
 `help` returns the list of all commands. `help [COMMAND]` returns the detailed description of that specified command.
@@ -223,13 +290,14 @@ Format: `help` or `help [COMMAND]`
 * The `COMMAND` refers to any valid command that is implemented.
 
 Examples:
-* `help` Shows the list of valid commands.
-* `help find` Shows the description of `find` command.
-* `help add` Shows the description of `add` command.
+* `help` shows the list of valid commands.
+* `help find` shows the description of `find` command.
+* `help add` shows the description of `add` command.
 
 ### Viewing a client : `view`
 
-Displays the remarks and transactions of the specified client.
+Displays the remarks and transactions of the specified client. 
+The client list will be only display the specified client.
 
 Format: `view INDEX`
 
@@ -237,57 +305,8 @@ Format: `view INDEX`
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
-### Getting the User Guide: `user_guide`
-
-Returns the url to this user guide.
-
-Format: `user_guide`
-
-* Displays a pop-up that contains the url to this user guide.
-
 Examples:
-* `user_guide` return the url of this user guide.
-
-### Sorting the address book: `sort`
-
-Sorts the specified client's transaction by either the latest transaction or oldest transaction.
-
-Format: `sort INDEX latest` or `sort INDEX oldest`
-
-* The `INDEX` refers to the index number shown in the displayed client list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* If no clients made any transactions, the transaction section will be blank.
-
-Examples:
-* `sort 1 latest` displays the 1st client transactions sorted by the latest transaction on top.
-* `sort 5 oldest` displays the 5th client transactions sorted by the oldest transaction on top.
-
-### Creating a Transaction: `buy` or `sell`
-
-Creates a  `buy` or `sell` transaction linked to a client.
-
-Formats:
-
-`buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]`
-
-`sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]`
-
-* The `INDEX` refers to the index number shown in the displayed client list. 
-* The `INDEX` **must be a positive integer** 1, 2, 3, …​
-* The `QUANTITY` refers to the amount of the goods transacted.
-* The `QUANTITY` should only contain numbers and be at least 1 digit long.
-* The `GOODS` refers to the name of the goods transacted.
-* The `GOODS` should only contain alphanumeric characters, and it should not be blank.
-* The `PRICE` refers to the price of the goods transacted.
-* The `PRICE` should only contain numbers, and it should be at least 1 digit long.
-* The `DATE` refers to the date of the transaction.
-* The `DATE` should only be in the format of DD/MM/YYYY. If no `DATE` is entered, 
-the default date will be the current date that the user enters the transaction.
-
-Examples:
-* `buy 3 q/100 g/apples price/1.5` Makes a buy transaction from the 3rd client in the list.
-* `sell 1 q/50 g/Chicken price/5.55 d/07/11/2000` Makes a sell transaction to the 1st client in 
-the list on the 07/11/2000.
+* `view 5` displays the remarks and transactions of the client at the 5th index.
 
 ### Saving the data
 
@@ -320,19 +339,20 @@ _Details coming soon ..._
 | Action         | Format, Examples                                                                                                                                       |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                             |
+| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `buy 2 q/100 g/apples price/1.5`                                                         |
 | **Clear**      | `clear`                                                                                                                                                |
- | **Remark**     | `remark INDEX REMARK`<br> e.g., `remark 3 Punctual Buyer`                                                                                              |
 | **Delete**     | `delete INDEX m/MODE`<br> e.g., `delete 3 m/client` or `view 1` followed by `delete 3 m/remark`                                                        |
 | **Edit**       | `edit INDEX m/MODE FIELDS [MORE_FIELDS]...` <br> e.g.,`edit 1 a/Blk 221 Yishun St 81 p/818181` or `view 1` followed by `edit 3 m/transaction g/mango ` |
 | **Exit**       | `exit`                                                                                                                                                 |
+| **Filter**     | `filter TYPE` <br> e.g., `filter sell` or `filter buy`                                                                                                 |
 | **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                |
-| **Filter**     | `filter buy` or `filter sell` <br> e.g., `filter sell`                                                                                                 |
-| **List**       | `list`                                                                                                                                                 |
 | **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                               |
-| **Sort**       | `sort INDEX latest` or `sort INDEX oldest` <br> e.g.,`sort 1 latest`                                                                                   |
-| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `buy 2 q/100 g/apples price/1.5`                                                         |
+| **List**       | `list`                                                                                                                                                 |
+| **Remark**     | `remark INDEX REMARK`<br> e.g., `remark 3 Punctual Buyer`                                                                                              |                                                                     |
 | **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                          |
+| **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                        | |
 | **User Guide** | `user_guide`                                                                                                                                           |
+| **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
                                                                                                                                                                                                                                                              |
 
 
