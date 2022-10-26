@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.masslinkers.testutil.Assert.assertThrows;
 import static seedu.masslinkers.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.masslinkers.testutil.TypicalStudents.BOB;
+import static seedu.masslinkers.testutil.TypicalStudents.BOB_WITHOUT_AI;
 import static seedu.masslinkers.testutil.TypicalStudents.BOB_WITHOUT_INTERESTS;
-import static seedu.masslinkers.testutil.TypicalStudents.BOB_WITHOUT_TENNIS;
 import static seedu.masslinkers.testutil.TypicalStudents.getTypicalMassLinkers;
 
 import java.util.HashSet;
@@ -24,9 +24,9 @@ import seedu.masslinkers.model.student.Student;
 import seedu.masslinkers.testutil.StudentBuilder;
 
 public class DeleteInterestCommandTest {
-    private static final Interest INTEREST_TENNIS = new Interest("tennis");
-    private static final Interest INTEREST_NETFLIX = new Interest("netflix");
-    private static final Interest INTEREST_ANIME = new Interest("anime");
+    private static final Interest INTEREST_AI = new Interest("AI");
+    private static final Interest INTEREST_SWE = new Interest("SWE");
+    private static final Interest INTEREST_ALGO = new Interest("algo");
 
     private static Model model;
 
@@ -59,14 +59,14 @@ public class DeleteInterestCommandTest {
     @Test
     public void execute_deleteOneInterest_success() throws CommandException {
 
-        // adds a test student to model (Bob has interests: tennis, netflix)
+        // adds a test student to model (Bob has interests: AI, SWE)
         Student toAdd = new StudentBuilder(BOB).build();
         model.addStudent(toAdd);
 
         // execute DeleteInterestCommand on the test student
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> interestsToBeDeleted = new HashSet<>();
-        interestsToBeDeleted.add(INTEREST_TENNIS);
+        interestsToBeDeleted.add(INTEREST_AI);
         DeleteInterestCommand commandToExecute = new DeleteInterestCommand(indexLastStudent,
                 interestsToBeDeleted);
         CommandResult commandResult = commandToExecute.execute(model);
@@ -74,7 +74,7 @@ public class DeleteInterestCommandTest {
         Student editedStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
         // expected edited student
-        Student editedStudentExpected = new StudentBuilder(BOB_WITHOUT_TENNIS).build();
+        Student editedStudentExpected = new StudentBuilder(BOB_WITHOUT_AI).build();
 
         assertEquals(String.format(DeleteInterestCommand.MESSAGE_SUCCESS, editedStudent),
                 commandResult.getFeedbackToUser());
@@ -88,15 +88,15 @@ public class DeleteInterestCommandTest {
     @Test
     public void execute_deleteMultipleInterests_success() throws CommandException {
 
-        // adds a test student to model (Bob has interests: tennis, netflix)
+        // adds a test student to model (Bob has interests: AI, SWE)
         Student toAdd = new StudentBuilder(BOB).build();
         model.addStudent(toAdd);
 
         // execute DeleteInterestCommand on the test student
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> interestsToBeDeleted = new HashSet<>();
-        interestsToBeDeleted.add(INTEREST_TENNIS);
-        interestsToBeDeleted.add(INTEREST_NETFLIX);
+        interestsToBeDeleted.add(INTEREST_AI);
+        interestsToBeDeleted.add(INTEREST_SWE);
 
         DeleteInterestCommand commandToExecute = new DeleteInterestCommand(indexLastStudent,
                 interestsToBeDeleted);
@@ -119,14 +119,14 @@ public class DeleteInterestCommandTest {
     @Test
     public void execute_delete1NonExistingInterest_throwsCommandException() {
 
-        // adds a test student to model (Bob has interests: tennis, netflix)
+        // adds a test student to model (Bob has interests: AI, SWE)
         Student toAdd = new StudentBuilder(BOB).build();
         model.addStudent(toAdd);
 
         // execute DeleteInterestCommand on the test student
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> interestsToBeDeleted = new HashSet<>();
-        interestsToBeDeleted.add(INTEREST_ANIME);
+        interestsToBeDeleted.add(INTEREST_ALGO);
 
         try {
             DeleteInterestCommand commandToExecute = new DeleteInterestCommand(indexLastStudent,
@@ -145,15 +145,15 @@ public class DeleteInterestCommandTest {
     @Test
     public void execute_deleteMixedInterests_throwsCommandException() {
 
-        // adds a test student to model (Bob has interests: tennis, netflix)
+        // adds a test student to model (Bob has interests: AI, SWE)
         Student toAdd = new StudentBuilder(BOB).build();
         model.addStudent(toAdd);
 
         // execute DeleteInterestCommand on the test student
         Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
         HashSet<Interest> interestsToBeDeleted = new HashSet<>();
-        interestsToBeDeleted.add(INTEREST_TENNIS);
-        interestsToBeDeleted.add(INTEREST_ANIME);
+        interestsToBeDeleted.add(INTEREST_AI);
+        interestsToBeDeleted.add(INTEREST_ALGO);
 
         try {
             DeleteInterestCommand commandToExecute = new DeleteInterestCommand(indexLastStudent,

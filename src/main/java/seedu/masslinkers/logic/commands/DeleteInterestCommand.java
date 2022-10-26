@@ -22,7 +22,7 @@ public class DeleteInterestCommand extends Command {
             + ": Deletes interest(s) specified from the batchmate as identified by the index number of the"
             + " displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer) INTEREST [MORE_INTERESTS]...\n"
-            + "Example: " + COMMAND_WORD + " 1 tennis netflix";
+            + "Example: " + COMMAND_WORD + " 1 AI SWE";
     public static final String MESSAGE_SUCCESS = "Interest(s) deleted successfully!";
     public static final String MESSAGE_INVALID_INTEREST = "This batchmate does not have all of the interests specified."
             + "\nPlease check the entered interests and try again.";

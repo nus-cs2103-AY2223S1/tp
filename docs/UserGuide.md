@@ -35,10 +35,10 @@ Mass Linkers is a powerful Desktop application tool that provides a centralised 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME t/TELEGRAM [i/INTEREST]` can be used as `n/John Doe t/johnxyz i/baking` or as `n/John Doe t/johnxyz`.
+  e.g `n/NAME t/TELEGRAM [i/INTEREST]` can be used as `n/John Doe t/johnxyz i/AI` or as `n/John Doe t/johnxyz`.
 
 * Items with `...` after them can be used multiple times.<br>
-  e.g. `[i/INTEREST]...` can be used as `i/baking`, `i/baking i/tennis` etc.<br>
+  e.g. `[i/INTEREST]...` can be used as `i/AI`, `i/algo i/SWE` etc.<br>
   e.g. `[MORE_MODULES]...` can be used as `cs2100`, `cs2103t cs2101 cs2105` etc.
 
 * Parameters can be in any order.<br>
@@ -137,8 +137,8 @@ Format: `addInt INDEX INTEREST [MORE_INTERESTS]...`
 * Adds interest(s) to the batchmate at the specific INDEX in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `addInt 1 baking` adds the interest `baking` to the 1st batchmate in the currently displayed list.
-* `addInt 3 baking tennis` adds the interests `baking` and `tennis` to the 3rd batchmate in the currently displayed list.
+* `addInt 1 algo` adds the interest `algo` to the 1st batchmate in the currently displayed list.
+* `addInt 3 database SWE MachineLearning` adds the interests `database`, `SWE` and `MachineLearning` to the 3rd batchmate in the currently displayed list.
 
 ### Delete interests: `deleteInt`
 
@@ -158,12 +158,12 @@ Finds batchmates whose interests contain __all__ the specified interests.
 
 Format: `findInt INTEREST [MORE_INTERESTS]...`
 
-* The search is case-insensitive. e.g. `tennis` will match `Tennis`.
-* Only exact words will be matched. e.g. `tenni` will not match `tennis`.
+* The search is case-insensitive. e.g. `machinelearning` will match `MachineLearning`.
+* Only exact words will be matched. e.g. `sw` will not match `SWE`.
 
 Examples:
-* `findInt baking` returns all batchmates whose interests contain `baking`.
-* `findInt baking tennis` returns all batchmates whose interests contain both `baking` and `tennis`.
+* `findInt AI` returns all batchmates whose interests contain `AI`.
+* `findInt swe security` returns all batchmates whose interests contain both `SWE` and `security`.
 
 ### Deleting a batchmate: `delete`
 
@@ -241,8 +241,8 @@ Format: `mod find MODULE [MORE_MODULES]...`
 * Only full words will be matched. e.g. `cs21` will not return batchmates with the mods `CS2100` and `CS2101`.
 
 Examples:
-* `mod find cs2100` returns batchmates with the module `cs2100`.
-* `mod find cs2101 cs2103t` returns batchmates with both modules `cs2101` and `cs2103t`.
+* `mod find cs2100` returns batchmates with the module `CS2100`.
+* `mod find cs2101 cs2103t` returns batchmates with both modules `CS2101` and `CS2103T`.
 
 ### Find modules taken or taking: `mod find taken` or `mod find taking`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -254,10 +254,10 @@ Finds batchmates who have taken or are taking all the specified modules.
 Format: `mod find taken MODULE [MORE_MODULES]...` or `mod find taking MODULE [MORE_MODULES]...`
 
 Examples:
-* `mod find taken cs2100` returns batchmates who have taken `cs2100`.
-* `mod find taken cs2101 cs2103t` returns batchmates who have taken both `cs2101` and `cs2103t`.
-* `mod find taking cs2100` returns batchmates who are taking `cs2100`.
-* `mod find taking cs2101 cs2103t` returns batchmates who are taking both `cs2101` and `cs2103t`.
+* `mod find taken cs2100` returns batchmates who have taken `CS2100`.
+* `mod find taken cs2101 cs2103t` returns batchmates who have taken both `CS2101` and `CS2103T`.
+* `mod find taking cs2100` returns batchmates who are taking `CS2100`.
+* `mod find taking cs2101 cs2103t` returns batchmates who are taking both `CS2101` and `CS2103T`.
 
 ### Exiting the program : `exit`
 
@@ -308,7 +308,7 @@ Module prefix refers to the first two characters of every module name.
 | **List**                         | `list`                                                                                                                                                                                                       |
 | **Edit**                         | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [i/INTEREST]...`<br> Example: `edit 1 g/john_doe p/91234567 e/johndoe@example.com`                                                          |
 | **Find**                         | `find KEYWORD [MORE_KEYWORDS]...` <br> Example: `find Alex david`                                                                                                                                            |
-| **Add interest**                 | `addInt INDEX INTEREST [MORE_INTERESTS]...` <br> Example: `addInt 3 baking tennis`                                                                                                                           |
+| **Add interest**                 | `addInt INDEX INTEREST [MORE_INTERESTS]...` <br> Example: `addInt 3 algo AI SWE`                                                                                                                             |
 | **Delete interest**              | `deleteInt INDEX INTEREST [MORE_INTERESTS]...` <br> Example: `deleteInt 3 baking tennis`                                                                                                                     |
 | **Find by interest**             | `findInt INTEREST [MORE_INTEREST]...` <br> Example: `findInt baking tennis`                                                                                                                                  |
 | **Delete**                       | `delete INDEX` <br> Example: `delete 2`                                                                                                                                                                      |
