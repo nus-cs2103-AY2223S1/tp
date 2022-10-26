@@ -47,7 +47,7 @@ public class DeletePersonFromMeetingCommandTest {
     @Test
     public void execute_delete_onePerson() {
         String expectedMessage = DeletePersonFromMeetingCommand.MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS;
-        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("0; Carl");
+        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; Carl");
         assertCommandSuccess(command, model, expectedMessage);
         assertEquals(Arrays.asList(ALICE), model.getMeetingList().getMeetingList().get(0).getArrayListPersonToMeet());
     }
@@ -55,7 +55,7 @@ public class DeletePersonFromMeetingCommandTest {
     @Test
     public void execute_delete_twoPersons() {
         String expectedMessage = DeletePersonFromMeetingCommand.MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS;
-        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; Alice, Elle");
+        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("2; Alice, Elle");
         assertCommandSuccess(command, model, expectedMessage);
         assertEquals(Arrays.asList(FIONA), model.getMeetingList().getMeetingList().get(1).getArrayListPersonToMeet());
     }
@@ -63,21 +63,21 @@ public class DeletePersonFromMeetingCommandTest {
     @Test
     public void execute_delete_nonExistentPerson() {
         String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND;
-        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("0; test");
+        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; test");
         assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void execute_delete_moreThanMeetingSize() {
         String expectedMessage = Messages.MESSAGE_INVALID_MEETING_ONLY_ONE_LEFT;
-        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("0; Alice, Carl");
+        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; Alice, Carl");
         assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
     public void execute_delete_samePerson() {
         String expectedMessage = Messages.MESSAGE_INVALID_DUPLICATE_NAMES;
-        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; Alice, Alice");
+        DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("2; Alice, Alice");
         assertCommandFailure(command, model, expectedMessage);
     }
 }
