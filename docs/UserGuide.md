@@ -19,7 +19,8 @@ This section aims to help you navigate the user guide.
 
 1. The next subsection [Section 2.2, Tips for reading the User Guide](#22-tips-for-reading-the-user-guide), provides some tips on reading this document.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
-3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented. 
+3. [Section 4, Features](#4-features) has been provided where the main features and their commands are documented.
+4. [Section 7, Glossary](#7-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
@@ -235,6 +236,7 @@ Format: `aa [INDEX] [d/DATE_AND_TIME] [l/LOCATION]`
 DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
+<br>
 <br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
 </div>
 
@@ -292,8 +294,8 @@ Action | Format, Examples
 
 Term | Meaning 
 --------|------------------
-**Command Line Interface (CLI)** | `A CLI is a text-based user interface that allows users to input commands in the form of text.`
-**Graphical User Interface (GUI)** | `A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.`
-**Command** | `An instruction given by the user that is to be executed.` 
-**Parameter** | `Variables that have been typed by the user that is to be provided to the command to be executed. `
-**Prefix** | `Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)`
+**Command Line Interface (CLI)** | A CLI is a text-based user interface that allows users to input commands in the form of text.
+**Graphical User Interface (GUI)** | A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.
+**Command** | An instruction given by the user that is to be executed. 
+**Parameter** | Variables that have been typed by the user that is to be provided to the command to be executed.
+**Prefix** | Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)
