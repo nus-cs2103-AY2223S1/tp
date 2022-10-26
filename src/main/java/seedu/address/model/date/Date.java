@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Date implements Comparable<Date> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: dd/MM/yyyy";
+    public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
 
     //for checking if valid input date format
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
@@ -30,7 +30,7 @@ public class Date implements Comparable<Date> {
     /**
      * Constructs a {@code Date}.
      *
-     * @param date A valid date.
+     * @param date a valid date.
      */
     public Date(String date) {
         requireNonNull(date);
@@ -43,7 +43,7 @@ public class Date implements Comparable<Date> {
      * Returns true if a given string is a valid Date input.
      * @return boolean
      */
-    //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
+    //Solution below adapted from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test, checkFormatter);
@@ -59,8 +59,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Returns the String representation of the Date in format suitable for storage logging
-     * @return String
+     * Returns the String representation of the Date in a format suitable for storage logging.
+     * @return String the string that will be logged.
      */
     public String toLogFormat() {
         return this.date.format(logFormatter);
