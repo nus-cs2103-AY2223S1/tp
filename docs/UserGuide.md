@@ -19,14 +19,14 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 1. Copy the file to the folder you want to use as the _home folder_ for Friendnancial.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui_old.png)
+   ![Ui](images/Ui_new.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com c/family a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/18-08-2000 t/friends t/owesMoney` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -66,9 +66,9 @@ Friendnancial (Friend) is a **desktop app for managing contacts, optimized for u
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageUpdated.png)
 
 Format: `help`
 
@@ -130,7 +130,7 @@ returns persons whose tag fields contain the specified tag.
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/findAlexDavidResultUpdated.png)
 
 ### Deleting a person : `delete`
 
@@ -191,6 +191,7 @@ Examples:
 * `insurance 1 hi/ ci/`
 * `insurance 2`
 * `insurance 3 hi/ ci/ di/ li/`
+![result for 'insurance hi/ di/ ci/ li/'](images/insuranceUpdate.png)
 
 ### Exiting the program : `exit`
 
@@ -223,3 +224,4 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 | **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                                                             |                                                               
 | **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                         
 | **Help**   | `help`                                                                                                                                            |
+

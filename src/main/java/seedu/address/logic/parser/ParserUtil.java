@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +28,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
-    public static final String DATE_FORMAT_PATTERN = "d-MM-yyyy";
+    public static final String DATE_FORMAT_PATTERN = "d-MM-uuuu";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -107,9 +111,23 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        if (!Birthday.isValidDate(trimmedBirthday)) {
-            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        LocalDate temp;
+
+        try {
+            temp = LocalDate.parse(trimmedBirthday, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
+                    .withResolverStyle(ResolverStyle.STRICT));
+        } catch (DateTimeParseException e) {
+            if (e.getMessage().contains("Invalid")) {
+                throw new ParseException(Birthday.MESSAGE_INVALID_DATE);
+            } else {
+                throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+            }
         }
+
+        if (temp.isAfter(LocalDate.now())) {
+            throw new ParseException(Birthday.MESSAGE_INVALID_BIRTHDAY);
+        }
+
         return new Birthday(trimmedBirthday);
     }
 
