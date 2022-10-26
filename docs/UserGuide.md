@@ -235,6 +235,7 @@ Format: `aa [INDEX] [d/DATE_AND_TIME] [l/LOCATION]`
 DATE_AND_TIME has the format `d-MMM-yyyy hh:mm a` </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed.
+<br>
 <br>Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
 </div>
 
@@ -292,8 +293,8 @@ Action | Format, Examples
 
 Term | Meaning 
 --------|------------------
-**Command Line Interface (CLI)** | `A CLI is a text-based user interface that allows users to input commands in the form of text.`
-**Graphical User Interface (GUI)** | `A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.`
-**Command** | `An instruction given by the user that is to be executed.` 
-**Parameter** | `Variables that have been typed by the user that is to be provided to the command to be executed. `
-**Prefix** | `Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)`
+**Command Line Interface (CLI)** | A CLI is a text-based user interface that allows users to input commands in the form of text.
+**Graphical User Interface (GUI)** | A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.
+**Command** | An instruction given by the user that is to be executed. 
+**Parameter** | Variables that have been typed by the user that is to be provided to the command to be executed.
+**Prefix** | Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)
