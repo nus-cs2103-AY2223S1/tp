@@ -394,19 +394,24 @@ If your changes to the data file makes its format invalid, idENTify will discard
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
+**Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
-**Delete** | `delete INDEX [END_INDEX]`<br> e.g., `delete 3`
+**Delete** | `delete INDEX [END_INDEX]`<br> e.g. `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
-**Book** | `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
+**Book** | `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Group Patients** | `group patients`
-**Group Appointents** | `group appts k/KEY` <br> e.g., `group appts k/mark`
+**Group Appointments** | `group appts k/KEY` <br> e.g. `group appts k/mark`
 **Ungroup** | `ungroup patients` <br> `ungroup appts`
 **Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
 **Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
-**Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
-**Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
-**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g., `edit appts 1 r/Cough`
+**Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g. `cancel 2`
+**History** | Arrow keys <br> e.g. `Up Arrow` key on keyboard
+**Hide Patients** | `hide patients CONDITION` <br> eg. `hide patients t/nose`
+**Hide Appointments** | `hide appts CONDITION` <br> eg. `hide appts s/marked`
+**Unhide Patients** | `unhide patients CONDITION` <br> eg. `unhide patients t/nose`
+**Unhide Appointments** | `unhide appointments CONDITION` <br> eg. `unhide appts r/pain`
+**Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g. `edit patients 1 n/Bernice Yu`
+**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `edit appts 1 r/Cough`
 **List** | `list patients` <br> `list appointments` <br> `list all`
 **Help** | `help`
 **Exit** | `exit`
