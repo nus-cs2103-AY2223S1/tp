@@ -40,10 +40,10 @@ public class MedicationMap {
 
     /**
      * Adds a person's medications to the medication map.
-     * @param person The person whose medications are to be added.
+     * @param patient The person whose medications are to be added.
      */
-    public void addMedicationsOfPatient(Person person) {
-        person.getMedications().forEach(this::add);
+    public void addMedicationsOfPatient(Person patient) {
+        patient.getMedications().forEach(this::add);
     }
 
     /**
