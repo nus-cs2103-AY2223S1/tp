@@ -2,8 +2,8 @@ package paymelah.logic.parser;
 
 import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDEX;
-import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDICES;
 import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDEX_ZERO;
+import static paymelah.logic.commands.CommandTestUtil.INVALID_DEBT_INDICES;
 import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDEX;
 import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDICES;
 import static paymelah.logic.commands.CommandTestUtil.VALID_DEBT_INDICES_REPEAT;
