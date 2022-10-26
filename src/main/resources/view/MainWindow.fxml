@@ -66,22 +66,6 @@
               </VBox>
                   <VBox prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Remarks">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </Label>
-                        <VBox fx:id="remarkList" prefWidth="100.0" style="-fx-border-style: solid hidden solid hidden; -fx-border-color: white;" VBox.vgrow="ALWAYS">
-                           <children>
-                              <StackPane fx:id="remarkListPanelPlaceholder" />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
                         <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Transactions">
                            <font>
                               <Font size="25.0" />
@@ -97,6 +81,22 @@
                            <children>
                               <StackPane fx:id="transactionListPanelPlaceholder" />
                            </children>
+                        </VBox>
+                        <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Remarks">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <VBox fx:id="remarkList" maxHeight="200.0" minHeight="100.0" prefWidth="100.0" style="-fx-border-style: solid hidden solid hidden;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <StackPane fx:id="remarkListPanelPlaceholder" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
                         </VBox>
                      </children>
                   </VBox>

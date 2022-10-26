@@ -1,6 +1,7 @@
 package seedu.address.model.transaction;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.PriceFormatter.formatPrice;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -37,7 +38,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return "$" + price;
+        return formatPrice(this.value());
     }
 
     public double value() {
