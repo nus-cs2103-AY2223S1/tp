@@ -24,7 +24,7 @@ class HelpCommandTest {
                 + "To receive help for a specific command, enter \"help COMMAND_WORD\" "
                 + "in the command box, where COMMAND_WORD is any one of the following:\n"
                 + "exit, help, reset, dec, del, edit, find, inc, list, new, rmk, sort, view, "
-                + "deletetag, listtag, newtag, renametag, tag, untag.\n\n"
+                + "filtertag, deletetag, listtag, newtag, renametag, tag, untag.\n\n"
                 + "For more information please head to:\n"
                 + "https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide";
         assertEquals(helpMessage, HelpCommand.getCommandHelpMessage(CommandType.HELP_COMMAND));
@@ -35,7 +35,7 @@ class HelpCommandTest {
         String generalHelpMessage = "To receive help for a specific command, enter \"help COMMAND_WORD\" "
                 + "in the command box, where COMMAND_WORD is any one of the following:\n"
                 + "exit, help, reset, dec, del, edit, find, inc, list, new, rmk, sort, view, "
-                + "deletetag, listtag, newtag, renametag, tag, untag.\n\n"
+                + "filtertag, deletetag, listtag, newtag, renametag, tag, untag.\n\n"
                 + "For more information please head to:\n"
                 + "https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide";
         assertEquals(generalHelpMessage, HelpCommand.getGeneralHelpMessage());

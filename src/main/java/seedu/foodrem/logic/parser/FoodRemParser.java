@@ -16,6 +16,7 @@ import seedu.foodrem.logic.parser.generalcommandparser.HelpCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.DecrementCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.DeleteCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.EditCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.FilterTagCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.IncrementCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
@@ -70,6 +71,8 @@ public class FoodRemParser {
             return new DeleteCommandParser().parse(arguments);
         case REMARK_COMMAND:
             return new RemarkCommandParser().parse(arguments);
+        case FILTER_TAG_COMMAND:
+            return new FilterTagCommandParser().parse(arguments);
         case NEW_TAG_COMMAND:
             return new NewTagCommandParser().parse(arguments);
         case RENAME_TAG_COMMAND:
