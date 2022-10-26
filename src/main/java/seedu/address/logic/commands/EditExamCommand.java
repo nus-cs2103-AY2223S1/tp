@@ -86,8 +86,8 @@ public class EditExamCommand extends Command {
             if (!isEditedExamOfSameModule && model.isExamLinkedToTask(examToEdit)) {
                 Alert alert =
                         new Alert(Alert.AlertType.CONFIRMATION,
-                                "Do you want to edit the module code as " + "\n" +
-                                        "all the tasks linked to this exam will be unlinked",
+                                "Do you want to edit the module code as " + "\n"
+                                        + "all the tasks linked to this exam will be unlinked",
                                 ButtonType.YES,
                                 ButtonType.NO);
                 alert.setTitle("Confirmation");
@@ -99,7 +99,7 @@ public class EditExamCommand extends Command {
                     return examNotEditAfterConfirmation(model);
                 }
             } else {
-               return editExamWithoutUnlinkingTasks(model, examToEdit, editedExam);
+                return editExamWithoutUnlinkingTasks(model, examToEdit, editedExam);
             }
         } catch (DuplicateExamException e) {
             throw new CommandException(MESSAGE_DUPLICATE_EXAM);
@@ -110,8 +110,8 @@ public class EditExamCommand extends Command {
         model.replaceExam(examToEdit, editedExam, false);
         model.unlinkTasksFromExam(examToEdit);
         model.updateFilteredExamList(PREDICATE_SHOW_ALL_EXAMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n" +
-                "All the tasks previously linked to this exam are now unlinked.");
+        return new CommandResult(String.format(MESSAGE_EDIT_EXAM_SUCCESS, editedExam) + "\n"
+                + "All the tasks previously linked to this exam are now unlinked.");
     }
 
     private CommandResult editExamWithoutUnlinkingTasks(Model model, Exam examToEdit, Exam editedExam) {

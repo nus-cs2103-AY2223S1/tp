@@ -108,8 +108,8 @@ public class DistinctTaskList implements Iterable<Task> {
      */
     public boolean isExamLinkedToTask(Exam exam) {
         requireNonNull(exam);
-        for(int i = 0; i < taskList.size(); i++) {
-            if(taskList.get(i).isLinked() && taskList.get(i).getExam().equals(exam)) {
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).isLinked() && taskList.get(i).getExam().equals(exam)) {
                 return true;
             }
         }
