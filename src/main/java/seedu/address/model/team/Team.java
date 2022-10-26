@@ -20,8 +20,10 @@ public class Team {
 
     public static final String MESSAGE_CONSTRAINTS = "Team names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
     public static final String DESCRIPTION_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+    public static final String DEFAULT_DESCRIPTION = "No description added";
+
     private final String teamName;
     private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
@@ -29,9 +31,21 @@ public class Team {
     private final UniqueLinkList links = new UniqueLinkList();
 
     /**
-     * Constructs an empty team with its name and description.
+     * Constructs a {@code Team}.
      *
-     * @param teamName A valid team name.
+     * @param teamName    A valid team name.
+     */
+    public Team(String teamName) {
+        requireNonNull(teamName);
+        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        this.teamName = teamName;
+        this.description = DEFAULT_DESCRIPTION;
+    }
+
+    /**
+     * Constructs a {@code Team}.
+     *
+     * @param teamName    A valid team name.
      * @param description A valid team description.
      */
     public Team(String teamName, String description) {
@@ -43,20 +57,41 @@ public class Team {
     }
 
     /**
+     * Constructs a {@code Team}.
+     *
+     * @param teamName    A valid team name.
+     * @param description A valid team description.
+     * @param teamMembers A list of persons to be added as members.
+     */
+    public Team(String teamName, String description, List<Person> teamMembers) {
+        this(teamName, description);
+        this.teamMembers.setPersons(teamMembers);
+    }
+
+    /**
      * Constructs a {@code Team}
-     * @param teamName A valid team name
-     * @param description A valid team description
+     *
+     * @param teamName    A valid team name
+     * @param description A valid team description.
      * @param teamMembers A list of persons to be added as members
-     * @param tasks A list of tasks for the team to do
-     * @param links A list of links that the team should keep track of
+     * @param tasks       A list of tasks for the team to do
+     */
+    public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks) {
+        this(teamName, description, teamMembers);
+        this.taskList.setTasks(tasks);
+    }
+
+    /**
+     * Constructs a {@code Team}
+     *
+     * @param teamName    A valid team name
+     * @param description A valid team description.
+     * @param teamMembers A list of persons to be added as members
+     * @param tasks       A list of tasks for the team to do
+     * @param links       A list of links that the team should keep track of
      */
     public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
-        requireNonNull(teamName);
-        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
-        this.teamName = teamName;
-        this.description = description;
-        this.teamMembers.setPersons(teamMembers);
-        this.taskList.setTasks(tasks);
+        this(teamName, description, teamMembers, tasks);
         this.links.setLinks(links);
     }
 
@@ -64,7 +99,7 @@ public class Team {
      * This method creates a default team in TruthTable.
      */
     public static Team createDefaultTeam() {
-        return new Team("default", "A default team created just for you!",
+        return new Team("default", "A default team created just for you",
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
@@ -129,7 +164,8 @@ public class Team {
 
     /**
      * Sets a specified team member as the assignee for the task.
-     * @param task The specified task to be assigned
+     *
+     * @param task   The specified task to be assigned
      * @param person The specified member that task is assigned to
      */
     public void assignTask(Task task, Person person) {
@@ -153,6 +189,7 @@ public class Team {
     public void deleteLink(Link link) {
         links.remove(link);
     }
+
     public ObservableList<Link> getLinkList() {
         return links.asUnmodifiableObservableList();
     }
@@ -204,6 +241,7 @@ public class Team {
 
     /**
      * Returns a string representation of the task list.
+     *
      * @return string representation of task list.
      */
     public String getTasksAsString() {
@@ -220,6 +258,7 @@ public class Team {
 
     /**
      * Returns a map representing the number of tasks assigned to each person.
+     *
      * @return Map of person to number of tasks assigned
      */
     public Map<Person, Integer> getTasksPerPerson() {

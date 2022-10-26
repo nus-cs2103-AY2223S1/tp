@@ -11,15 +11,13 @@ import seedu.address.model.team.Team;
  */
 public class TypicalTeams {
 
-    public static final String NO_DESCRIPTION_ADDED = "No description added";
-
     public static final ArrayList<Person> TYPICAL_MEMBERS = new ArrayList<>(
         Arrays.asList(TypicalPersons.BENSON, TypicalPersons.ALICE));
     public static final ArrayList<Task> TYPICAL_TASKS = new ArrayList<Task>(
         Arrays.asList(TypicalTasks.TASK_1, TypicalTasks.TASK_2));
 
-    public static final Team FIRST = new Team("first", NO_DESCRIPTION_ADDED);
-    public static final Team FIRST_DUPLICATE = new Team("first" , NO_DESCRIPTION_ADDED);
+    public static final Team FIRST = new Team("first", Team.DEFAULT_DESCRIPTION);
+    public static final Team FIRST_DUPLICATE = new Team("first" , Team.DEFAULT_DESCRIPTION);
     public static final Team SECOND = new Team("second",
-            NO_DESCRIPTION_ADDED, TYPICAL_MEMBERS, TYPICAL_TASKS, new ArrayList<>());
+            Team.DEFAULT_DESCRIPTION, TYPICAL_MEMBERS, TYPICAL_TASKS, new ArrayList<>());
 }

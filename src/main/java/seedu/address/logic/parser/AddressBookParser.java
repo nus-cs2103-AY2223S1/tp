@@ -3,48 +3,32 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLinkCommand;
-import seedu.address.logic.commands.AddMemberCommand;
-import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.AddTeamCommand;
-import seedu.address.logic.commands.AssignTaskCommand;
-import seedu.address.logic.commands.ClearCommand;
+import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteLinkCommand;
-import seedu.address.logic.commands.DeleteMemberCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.DeleteTeamCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditLinkCommand;
-import seedu.address.logic.commands.EditTeamCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListMembersCommand;
-import seedu.address.logic.commands.ListTasksCommand;
-import seedu.address.logic.commands.MarkCommand;
-import seedu.address.logic.commands.RandomlyAssignTaskCommand;
-import seedu.address.logic.commands.SetDeadlineCommand;
-import seedu.address.logic.commands.SetTeamCommand;
-import seedu.address.logic.commands.TasksSummaryCommand;
-import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.commands.RootCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Phone;
+import seedu.address.model.team.Task;
+import seedu.address.model.team.Url;
 
 /**
  * Parses user input.
  */
 public class AddressBookParser {
-
-    /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private final CommandLine commandLine = new CommandLine(new RootCommand())
+            .registerConverter(Name.class, new NameConverter())
+            .registerConverter(Email.class, new EmailConverter())
+            .registerConverter(Phone.class, new PhoneConverter())
+            .registerConverter(Address.class, new AddressConverter())
+            .registerConverter(Index.class, new IndexConverter())
+            .registerConverter(Url.class, new UrlConverter())
+            .registerConverter(Task.class, new TaskConverter())
+            .registerConverter(NameContainsKeywordsPredicate.class, new NameContainsKeywordsPredicateConverter());
 
     /**
      * Parses user input into command for execution.
@@ -54,98 +38,26 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+        try {
+            String[] args = ArgumentTokenizer.tokenize(userInput.trim());
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        switch (commandWord) {
+            CommandLine.ParseResult parseResult = commandLine.parseArgs(args);
+            CommandLine.ParseResult commandExecuted = parseResult.subcommand();
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            // Since all commands are defined to be subcommands of RootCommand, there will always be a non-null
+            // subcommand inside the parsed result
+            assert commandExecuted != null;
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            // Deepest subcommand is the actual command executed
+            while (commandExecuted.subcommand() != null) {
+                commandExecuted = commandExecuted.subcommand();
+            }
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case ListMembersCommand.COMMAND_WORD:
-            return new ListMembersCommand();
-
-        case AddMemberCommand.COMMAND_WORD:
-            return new AddMemberCommandParser().parse(arguments);
-
-        case DeleteMemberCommand.COMMAND_WORD:
-            return new DeleteMemberCommandParser().parse(arguments);
-
-        case SetTeamCommand.COMMAND_WORD:
-            return new SetTeamCommandParser().parse(arguments);
-
-        case EditTeamCommand.COMMAND_WORD:
-            return new EditTeamCommandParser().parse(arguments);
-
-        case AddTeamCommand.COMMAND_WORD:
-            return new AddTeamCommandParser().parse(arguments);
-
-        case DeleteTeamCommand.COMMAND_WORD:
-            return new DeleteTeamCommandParser().parse(arguments);
-
-        case ListTasksCommand.COMMAND_WORD:
-            return new ListTasksCommandParser().parse(arguments);
-
-        case TasksSummaryCommand.COMMAND_WORD:
-            return new TasksSummaryCommand();
-
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
-
-        case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteTaskCommandParser().parse(arguments);
-
-        case AssignTaskCommand.COMMAND_WORD:
-            return new AssignTaskCommandParser().parse(arguments);
-
-        case RandomlyAssignTaskCommand.COMMAND_WORD:
-            return new RandomlyAssignTaskCommandParser().parse(arguments);
-
-        case SetDeadlineCommand.COMMAND_WORD:
-            return new SetDeadlineCommandParser().parse(arguments);
-
-        case AddLinkCommand.COMMAND_WORD:
-            return new AddLinkCommandParser().parse(arguments);
-
-        case EditLinkCommand.COMMAND_WORD:
-            return new EditLinkCommandParser().parse(arguments);
-
-        case DeleteLinkCommand.COMMAND_WORD:
-            return new DeleteLinkCommandParser().parse(arguments);
-
-        case MarkCommand.COMMAND_WORD:
-            return new MarkCommandParser().parse(arguments);
-
-        case UnmarkCommand.COMMAND_WORD:
-            return new UnmarkCommandParser().parse(arguments);
-
-        default:
+            return (Command) commandExecuted.commandSpec().userObject();
+        } catch (CommandLine.UnmatchedArgumentException e) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        } catch (CommandLine.PicocliException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
     }
 

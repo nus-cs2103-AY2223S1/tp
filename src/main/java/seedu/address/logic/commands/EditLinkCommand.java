@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.util.List;
 import java.util.Optional;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -20,33 +23,30 @@ import seedu.address.model.team.Url;
 /**
  * Edits the details of an existing link in TruthTable.
  */
+@CommandLine.Command(name = "link")
 public class EditLinkCommand extends Command {
-    public static final String COMMAND_WORD = "edit_link";
+    public static final String COMMAND_WORD = "edit link";
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Edits a current link identified by the index number used in the displayed link list. \n"
                     + "Existing values will be overwritten by the input values. \n"
-                    + "Parameters: INDEX (must be a positive integer) " + "-" + FLAG_NAME_STR + " NAME " + "-"
-                    + FLAG_URL_STR + " PHONE \n" + "Example: " + COMMAND_WORD + " 1 " + "-" + FLAG_NAME_STR
-                    + " \"Google\" " + "-" + FLAG_URL_STR + " https://google.com ";
+                    + "Parameters: INDEX (must be a positive integer) " + FLAG_NAME_STR + " NAME "
+                    + FLAG_URL_STR + " PHONE \n" + "Example: " + COMMAND_WORD + " 1 " + FLAG_NAME_STR
+                    + " \"Google\" " + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
 
-    private final Index index;
+    @CommandLine.Parameters(arity = "1", index = "0")
+    private Index index;
+
+    @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
+    private Arguments arguments;
+
     private final EditLinkDescriptor editLinkDescriptor;
 
-    /**
-     * Creates an EditLinkCommand to edit a {@code Link}.
-     *
-     * @param index              of the link in the filtered link list to edit
-     * @param editLinkDescriptor details to edit the link with
-     */
-    public EditLinkCommand(Index index, EditLinkDescriptor editLinkDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editLinkDescriptor);
-        this.index = index;
-        this.editLinkDescriptor = editLinkDescriptor;
+    public EditLinkCommand() {
+        this.editLinkDescriptor = new EditLinkDescriptor();
     }
 
     /**
@@ -72,6 +72,14 @@ public class EditLinkCommand extends Command {
         }
 
         Link linkToEdit = lastShownList.get(index.getZeroBased());
+
+        if (arguments.name != null) {
+            editLinkDescriptor.setName(arguments.name);
+        }
+        if (arguments.url != null) {
+            editLinkDescriptor.setUrl(arguments.url);
+        }
+
         Link editedLink = createEditedLink(linkToEdit, editLinkDescriptor);
 
         if (!linkToEdit.isSameLink(editedLink) && model.hasLink(editedLink)) {
@@ -81,7 +89,6 @@ public class EditLinkCommand extends Command {
         model.setLink(linkToEdit, editedLink);
         model.updateFilteredLinkList(PREDICATE_SHOW_ALL_LINKS);
         return new CommandResult(String.format(MESSAGE_EDIT_LINK_SUCCESS, editedLink));
-
     }
 
     @Override
@@ -99,6 +106,14 @@ public class EditLinkCommand extends Command {
         // state check
         EditLinkCommand e = (EditLinkCommand) other;
         return index.equals(e.index) && editLinkDescriptor.equals(e.editLinkDescriptor);
+    }
+
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
+        private Name name;
+
+        @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG})
+        private Url url;
     }
 
     /**

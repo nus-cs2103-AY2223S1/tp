@@ -5,15 +5,19 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.LocalDateTimeConverter;
 import seedu.address.model.Model;
 import seedu.address.model.team.Task;
 
 /**
  * Sets a deadline for a specified task.
  */
+@CommandLine.Command(name = "deadline")
 public class SetDeadlineCommand extends Command {
-    public static final String COMMAND_WORD = "set_deadline";
+    public static final String COMMAND_WORD = "set deadline";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets a deadline to the specified existing task.\n"
@@ -24,37 +28,34 @@ public class SetDeadlineCommand extends Command {
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
-    private final int taskIndex;
-    private final LocalDateTime deadline;
 
-    /**
-     * Returns a command that adds a task to the current team.
-     *
-     * @param taskIndex The index of the task to be added.
-     * @param deadline  Deadline of task
-     */
-    public SetDeadlineCommand(int taskIndex, LocalDateTime deadline) {
-        this.taskIndex = taskIndex;
-        this.deadline = deadline;
+    @CommandLine.Parameters(arity = "1")
+    private Index taskIndex;
+
+    @CommandLine.Parameters(arity = "1..2", parameterConsumer = LocalDateTimeConverter.class)
+    private LocalDateTime deadline;
+
+    public SetDeadlineCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> taskList = model.getTeam().getTaskList();
-        if (taskIndex >= taskList.size()) {
-            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex + 1));
+        if (taskIndex.getZeroBased() >= taskList.size()) {
+            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
         }
-        taskList.get(taskIndex).setDeadline(deadline);
+        taskList.get(taskIndex.getZeroBased()).setDeadline(deadline);
         return new CommandResult(String.format(MESSAGE_SET_DEADLINE_SUCCESS,
-                taskList.get(taskIndex).getName(), taskList.get(taskIndex).getDeadlineAsString()));
+                taskList.get(taskIndex.getZeroBased()).getName(),
+                taskList.get(taskIndex.getZeroBased()).getDeadlineAsString()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetDeadlineCommand // instanceof handles nulls
-                && taskIndex == (((SetDeadlineCommand) other).taskIndex))
+                && taskIndex.equals(((SetDeadlineCommand) other).taskIndex))
                 && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
     }
 }

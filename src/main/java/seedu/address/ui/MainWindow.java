@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -23,6 +25,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
+    /** Number of seconds delay before the application closes after running this command */
+    public static final int DELAY_DURATION_SECONDS = 5;
 
     private static final String FXML = "MainWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -94,6 +98,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -179,11 +184,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
+        PauseTransition delay = new PauseTransition(Duration.seconds(DELAY_DURATION_SECONDS));
+        delay.setOnFinished(event -> {
+            GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                    (int) primaryStage.getX(), (int) primaryStage.getY());
+            logic.setGuiSettings(guiSettings);
+            helpWindow.hide();
+            primaryStage.hide();
+        });
+        delay.play();
     }
 
     public PersonListPanel getPersonListPanel() {

@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import picocli.CommandLine;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,37 +19,42 @@ import seedu.address.model.team.Team;
 /**
  * Edits the currently set team.
  */
+@CommandLine.Command(name = "team")
 public class EditTeamCommand extends Command {
-    public static final String COMMAND_WORD = "edit_team";
+    public static final String COMMAND_WORD = "edit team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the current team \n"
             + "Parameters: "
-            + "[-" + FLAG_NAME_STR + " TEAM_NAME] "
-            + "[-" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
+            + "[" + FLAG_NAME_STR + " TEAM_NAME] "
+            + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
             + "Example:\n"
             + "1. " + COMMAND_WORD + " "
-            + "-" + FLAG_NAME_STR + " CS2103T "
-            + "-" + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
+            + FLAG_NAME_STR + " CS2103T "
+            + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
             + "2. " + COMMAND_WORD + " "
-            + "-" + FLAG_NAME_STR + " CS2102 ";
+            + FLAG_NAME_STR + " CS2102 ";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited team: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public static final String MESSAGE_DUPLICATE_TEAM = "This team name already exists in the address book.";
+    @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
+    private Arguments arguments;
+
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
+        private String name;
+
+        @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG})
+        private String description;
+    }
 
     private final EditTeamDescriptor editTeamDescriptor;
 
-    /**
-     * Creates an EditTeamCommand to edit a {@code Team}.
-     *
-     * @param editTeamDescriptor details to edit the link with
-     */
-    public EditTeamCommand(EditTeamDescriptor editTeamDescriptor) {
-        requireNonNull(editTeamDescriptor);
-        this.editTeamDescriptor = editTeamDescriptor;
+    public EditTeamCommand() {
+        this.editTeamDescriptor = new EditTeamDescriptor();
     }
 
     /**
@@ -66,12 +74,17 @@ public class EditTeamCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (arguments.name != null) {
+            editTeamDescriptor.name = arguments.name;
+        }
+        if (arguments.description != null) {
+            editTeamDescriptor.description = arguments.description;
+        }
+
         Team currentTeam = model.getTeam();
         Team editedTeam = createEditedTeam(currentTeam, editTeamDescriptor);
         List<Team> teamList = model.getTeamList();
-        List<Team> teamListCopy = new ArrayList<>();
-        teamListCopy.addAll(teamList);
-
+        List<Team> teamListCopy = new ArrayList<>(teamList);
 
         if ((!editedTeam.isSameTeam(currentTeam)) && (teamListCopy.contains(editedTeam))) {
             throw new CommandException(MESSAGE_DUPLICATE_TEAM);
@@ -83,7 +96,6 @@ public class EditTeamCommand extends Command {
         model.setTeams(teamListCopy);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, editedTeam));
-
     }
 
     @Override
@@ -159,9 +171,10 @@ public class EditTeamCommand extends Command {
             }
 
             // state check
-            EditTeamDescriptor e = (EditTeamDescriptor) other;
+            EditTeamDescriptor descriptor = (EditTeamDescriptor) other;
 
-            return getName().equals(e.getName()) && getDescription().equals(e.getDescription());
+            return getName().equals(descriptor.getName())
+                    && getDescription().equals(descriptor.getDescription());
         }
 
     }
