@@ -3,6 +3,8 @@ layout: page
 title: Viewing Residents
 ---
 
+###### [Back to Menu](../UserGuide.md)
+
 Often times, you may find yourself overloaded with information. These commands can help to include, and exclude
 fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
 
@@ -34,6 +36,8 @@ Note:
 - *(For advanced users!)* The `list` command, as well as the `list /i` and `list /e` extensions, are [*idempotent*](glossary.md#idempotent)
   and [*state-independent*](glossary.md#state-independent). This means that using the `list` command with a set of *(optional)* letters will return the same result regardless of what the current table looks like. Calling the same command again will not change the table view any further.
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Showing only some columns : `showonly`
@@ -61,6 +65,8 @@ Note:
 - You can always `reset` the table to the full, default view at any time!
 - *(For advanced users!)* Notice that `showonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `showonly` may be invalid if the specified columns are not present in the current table view.
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Hiding only some columns : `hideonly`
@@ -87,6 +93,8 @@ Note:
 - You can always `reset` the table to the full, default view at any time!
 - *(For advanced users!)* Notice that `hideonly`, unlike `list /i`, is dependent on the state of the current table. Hence, some calls to `hideonly` may be invalid if the specified columns are not present in the current table view.
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Resetting hidden columns : `reset`
@@ -100,6 +108,8 @@ Format: `reset`
 Note:
 - Any input entered after the `reset` command will be ignored.
 - This command is different from the `list` command in that it does not affect the resident list.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -122,6 +132,8 @@ Examples:
 * `find char li` returns `Charlotte Oliveiro`, `David Li`<br>
   <!--- ![result for 'find alex david'](images/findAlexDavidResult.png) --->
 
+[Back to Top](#back-to-menuuserguidemd)
+
 ---
 
 ### Filtering residents by field : `filter`
@@ -136,5 +148,7 @@ Format: `filter KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
 Examples:
 * `filter h/D g/M` returns residents who are in Draco house, **and** are Male.
 * `filter g/M` returns residents who are male.
+
+[Back to Top](#back-to-menuuserguidemd)
 
 ---

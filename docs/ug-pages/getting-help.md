@@ -3,6 +3,8 @@ layout: page
 title: Getting help
 ---
 
+###### [Back to Menu](../UserGuide.md)
+
 Viewing the command summary from the user guide can be a hassle to some. As an alternative, we have incorporated it
 directly into RC4HDB.
 
@@ -20,3 +22,8 @@ Format: `help`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** You can press the `F1` key on your keyboard to
 open the Help Window immediately! You can also press the `Esc` key on your keyboard to close the Help Window
 if it is open. </div>
+
+[Back to Top](#back-to-menuuserguidemd)
+
+---
+

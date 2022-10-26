@@ -3,6 +3,8 @@ layout: page
 title: Command summary
 ---
 
+###### [Back to Menu](../UserGuide.md)
+
 ## Command summary
 
 We understand that you might be overwhelmed by the number of commands available to you. Though we have provided a summary
@@ -16,7 +18,7 @@ Action | Format, Examples
 **Help** | `help`
 **Exit** | `exit`
 
-<br>
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -29,7 +31,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear**  | `clear`
 
-<br>
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -44,7 +46,7 @@ Action | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Filter** | `filter [/specifier] KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g., `filter /all h/D g/M`
 
-<br>
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -57,7 +59,7 @@ Action | Format, Examples
 **Switch File** | `file switch FILE_NAME` <br> e.g., `file switch rc4_data_2022`
 **Import File** | `import FILE_NAME` <br> e.g., `import students.csv`
 
-<br>
+[Back to Top](#back-to-menuuserguidemd)
 
 ---
 
@@ -71,5 +73,6 @@ Action | Format, Examples
 **Book Venue**   | `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g., `venue book 2 v/Meeting Room tp/8-9 d/TUE`
 **Unbook Venue** | `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g., `venue unbook v/Meeting Room tp/8-9 d/TUE`
 
+[Back to Top](#back-to-menuuserguidemd)
 
-
+---
