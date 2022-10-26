@@ -13,6 +13,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.contact.AddContactCommand;
+import seedu.address.logic.commands.contact.CopyContactEmailCommand;
 import seedu.address.logic.commands.contact.DeleteContactCommand;
 import seedu.address.logic.commands.contact.EditContactCommand;
 import seedu.address.logic.commands.contact.FilterContactCommand;
@@ -32,6 +33,7 @@ import seedu.address.logic.commands.task.SortByDeadlineCommand;
 import seedu.address.logic.commands.task.SortByIdCommand;
 import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.contact.AddContactCommandParser;
+import seedu.address.logic.parser.contact.CopyContactEmailCommandParser;
 import seedu.address.logic.parser.contact.DeleteContactCommandParser;
 import seedu.address.logic.parser.contact.EditContactCommandParser;
 import seedu.address.logic.parser.contact.FilterContactCommandParser;
@@ -84,9 +86,6 @@ public class AddressBookParser {
         case DeleteContactCommand.COMMAND_WORD:
             return new DeleteContactCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
 
@@ -95,6 +94,12 @@ public class AddressBookParser {
 
         case ListContactCommand.COMMAND_WORD:
             return new ListContactCommand();
+
+        case CopyContactEmailCommand.COMMAND_WORD:
+            return new CopyContactEmailCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -175,6 +180,7 @@ public class AddressBookParser {
         case FindContactCommand.COMMAND_WORD:
         case FilterContactCommand.COMMAND_WORD:
         case ListContactCommand.COMMAND_WORD:
+        case CopyContactEmailCommand.COMMAND_WORD:
             return 0;
 
         case ExitCommand.COMMAND_WORD:
