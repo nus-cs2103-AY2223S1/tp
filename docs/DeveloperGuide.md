@@ -637,6 +637,26 @@ Use case ends.
     * Repeat steps until data is correct
       Use case resumes in step 2
 
+**Use case: UC10 - Uploading a Student Picture**
+
+**MSS**
+1. Tutor enters a upload picture command with the index of student.
+2. File chooser is opened.
+3. Tutor selects picture to upload.
+4. Picture is uploaded and saved in images folder.
+5. Use case ends
+
+**Extensions**
+* 1a. GREWZ detects an invalid index.
+  * 1a1. GREWZ responds with an error message.
+  * 1a2. User enters command with corrected index.
+  * Repeat steps until index is correct.
+    Use case resumes in step 2
+
+* 3a. Picture is not of JPG format.
+  * 3a1. GREWZ detects invalid file.
+  * 3a2. GREWZ responds with an error message.
+  Use case ends
 
 *{More to be added}*
 
