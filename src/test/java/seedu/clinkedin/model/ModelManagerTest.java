@@ -73,6 +73,47 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void commitAddressBook_addPerson_returnsTrue() {
+        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).build();
+        ModelManager editableModelManager = new ModelManager(addressBook, new UserPrefs());
+        editableModelManager.commitAddressBook();
+        assertTrue(editableModelManager.canUndoAddressBook());
+    }
+
+    @Test
+    public void undoAddressBook_addPerson_returnsFalse() {
+        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).build();
+        ModelManager editableModelManager = new ModelManager(addressBook, new UserPrefs());
+        editableModelManager.commitAddressBook();
+        editableModelManager.undoAddressBook();
+        assertFalse(editableModelManager.canUndoAddressBook());
+    }
+
+    @Test
+    public void undoAddressBook_initialAddressBook_noChange() {
+        ModelManager actualModelManager = new ModelManager();
+        actualModelManager.undoAddressBook();
+        assertEquals(new AddressBook(), actualModelManager.getAddressBook());
+    }
+
+    @Test
+    public void redoAddressBook_addPerson_returnsFalse() {
+        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).build();
+        ModelManager editableModelManager = new ModelManager(addressBook, new UserPrefs());
+        editableModelManager.commitAddressBook();
+        editableModelManager.undoAddressBook();
+        editableModelManager.redoAddressBook();
+        assertFalse(editableModelManager.canRedoAddressBook());
+    }
+
+    @Test
+    public void redoAddressBook_initialAddressBook_noChange() {
+        ModelManager actualModelManager = new ModelManager();
+        actualModelManager.redoAddressBook();
+        assertEquals(new AddressBook(), actualModelManager.getAddressBook());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
