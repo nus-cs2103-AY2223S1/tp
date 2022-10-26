@@ -1,7 +1,11 @@
 package seedu.address.storage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +16,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractSingleItem;
+import seedu.address.model.item.DisplayItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -22,6 +28,11 @@ import seedu.address.model.task.Task;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_GROUP = "Groups list contains duplicate group(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_INVALID_GROUP_PARENT_COUNT = "Wrong number of group parent.";
+    public static final String MESSAGE_NONEXISTING_UID_PARENT_PAIR =
+            "Uid (%s) does not have a corresponding parent associated.";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
@@ -37,7 +48,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("groups") List<JsonAdaptedGroup> groups,
                                        @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-                                       @JsonProperty("hierarchy") Map<String, List<String>> itemRelationship) {
+                                       @JsonProperty("itemRelationship") Map<String, List<String>> itemRelationship) {
         this.persons.addAll(persons);
         this.groups.addAll(groups);
         this.tasks.addAll(tasks);
@@ -58,17 +69,18 @@ class JsonSerializableAddressBook {
         groups.addAll(groupList.stream().map(JsonAdaptedGroup::new).collect(Collectors.toList()));
         tasks.addAll(taskList.stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
 
-        personList.stream().forEach(person -> itemRelationship.put(
-                UUID.fromString(person.getName().fullName).toString(),
+        personList.forEach(person -> itemRelationship.put(
+                UUID.fromString("Person: " + person.getName().fullName).toString(),
                 person.getParents().stream().map(Object::toString).collect(Collectors.toList())));
 
-        groupList.stream().forEach(group -> itemRelationship.put(
-                UUID.fromString(group.getName().fullName).toString(),
+        groupList.forEach(group -> itemRelationship.put(
+                UUID.fromString("Group: " + group.getName().fullName).toString(),
                 group.getParents().stream().map(Object::toString).collect(Collectors.toList())));
 
-        taskList.stream().forEach(task -> itemRelationship.put(
-                UUID.fromString(task.getName().fullName).toString(),
-                task.getParents().stream().map(Object::toString).collect(Collectors.toList())));
+        taskList.forEach(task -> {
+            String taskUid = UUID.fromString("Task: " + task.getName().fullName).toString();
+            itemRelationship.put(taskUid, List.of(task.getParent().toString()));
+        });
     }
 
     /**
@@ -78,19 +90,77 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        Map<String, Group> builtGroup = new HashMap<>();
+        Map<String, Person> builtPerson = new HashMap<>();
+        Map<String, Task> builtTask = new HashMap<>();
 
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
-            Group group = json
+            builtGroup.put(jsonAdaptedGroup.getUid(), jsonAdaptedGroup.toModelType());
         }
+
+        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            builtPerson.put(jsonAdaptedPerson.getUid(), jsonAdaptedPerson.toModelType());
+        }
+
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+            builtTask.put(jsonAdaptedTask.getUid(), jsonAdaptedTask.toModelType());
+        }
+
+        // Build groups
+        for (Map.Entry<String, Group> pair : builtGroup.entrySet()) {
+            Group group = pair.getValue();
+            List<String> parentUid = itemRelationship.get(pair.getKey());
+            if (parentUid.size() != 1) {
+                throw new IllegalValueException(MESSAGE_INVALID_GROUP_PARENT_COUNT);
+            }
+            group.setParent(builtGroup.get(parentUid.get(0)));
+
+            if (addressBook.hasGroup(group)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_GROUP);
+            }
+            addressBook.addTeam(group);
+        }
+
+        Map<String, AbstractSingleItem> builtSingleItem = new HashMap<>(builtTask);
+        builtSingleItem.putAll(builtGroup);
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
+            List<String> parentUidList = itemRelationship.get(jsonAdaptedPerson.getUid());
+            for (String parentUid : parentUidList) {
+                if (!builtSingleItem.containsKey(parentUid)) {
+                    throw new IllegalValueException(MESSAGE_NONEXISTING_UID_PARENT_PAIR);
+                }
+
+                person.setParent(builtSingleItem.get(parentUid));
+            }
+
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
         }
+
+        Map<String, DisplayItem> builtDisplayItem = new HashMap<>(builtGroup);
+        builtDisplayItem.putAll(builtTask);
+        builtDisplayItem.putAll(builtPerson);
+
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            List<String> parentUidList = itemRelationship.get(jsonAdaptedTask.getUid());
+            for (String parentUid : parentUidList) {
+                if (!builtDisplayItem.containsKey(parentUid)) {
+                    throw new IllegalValueException(MESSAGE_NONEXISTING_UID_PARENT_PAIR);
+                }
+
+                task.setParent(builtDisplayItem.get(parentUid));
+            }
+
+            if (addressBook.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            addressBook.addTask(task);
+        }
         return addressBook;
     }
-
-    private Group groupBuilder(Group )
 }

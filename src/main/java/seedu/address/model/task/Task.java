@@ -145,8 +145,7 @@ public class Task extends AbstractSingleItem {
 
     @Override
     public Set<? extends DisplayItem> getParents() {
-        return Stream.concat(super.getParents().stream(), assignedParents.stream())
-                .collect(Collectors.toSet());
+        return Stream.concat(super.getParents().stream(), assignedParents.stream()).collect(Collectors.toSet());
     }
 
     private void setParentForSingleGrp(AbstractSingleItem o) {

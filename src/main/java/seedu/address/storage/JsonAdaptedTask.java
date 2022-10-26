@@ -2,10 +2,7 @@ package seedu.address.storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -30,16 +27,16 @@ class JsonAdaptedTask extends JsonAdaptedAbstractDisplayItem {
 
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String description,
-                           @JsonProperty("localDateTime") String localDateTime,
-                           @JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                           @JsonProperty("localDateTime") String localDateTime, @JsonProperty("name") String name,
+                           @JsonProperty("uid") String uid, @JsonProperty("tags") List<JsonAdaptedTag> tags,
                            @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
-        super(name, attributes, tags);
+        super(name, uid, attributes, tags);
         this.description = description;
         this.localDateTime = localDateTime;
     }
 
     public JsonAdaptedTask(Task source) {
-        super(source.getName().fullName,
+        super(source.getName().fullName, UUID.fromString("Task: " + source.getName().fullName).toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),

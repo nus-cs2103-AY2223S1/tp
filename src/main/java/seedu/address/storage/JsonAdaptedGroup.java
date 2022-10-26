@@ -1,9 +1,6 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,16 +18,16 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Group's %s field is missing!";
-    public static final String INVALID_FIELD_MESSAGE_FORMAT = "Group's %s field is invalid!";
 
     @JsonCreator
-    public JsonAdaptedGroup(@JsonProperty("name") String name, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+    public JsonAdaptedGroup(@JsonProperty("name") String name, @JsonProperty String uid,
+                            @JsonProperty("tags") List<JsonAdaptedTag> tags,
                             @JsonProperty("attributes") List<JsonAdaptedAbstractAttribute> attributes) {
-        super(name, attributes, tags);
+        super(name, uid, attributes, tags);
     }
 
     public JsonAdaptedGroup(Group source) {
-        super(source.getName().fullName,
+        super(source.getName().fullName, UUID.fromString("Group: " + source.getName().fullName).toString(),
                 source.getAttributes().stream()
                         .map(JsonAdaptedAbstractAttribute::new)
                         .collect(Collectors.toList()),
@@ -63,7 +60,7 @@ class JsonAdaptedGroup extends JsonAdaptedAbstractDisplayItem {
 
         Group group = new Group(modelName.fullName);
         group.setTags(modelTags);
-        modelAttributes.stream().forEach(attribute -> group.addAttribute(attribute));
+        modelAttributes.forEach(attribute -> group.addAttribute(attribute));
         return group;
     }
 }
