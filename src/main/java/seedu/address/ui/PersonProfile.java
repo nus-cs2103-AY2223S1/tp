@@ -14,6 +14,8 @@ import seedu.address.model.person.Person;
  */
 public class PersonProfile extends UiPart<Region> {
 
+    public final Person person;
+
     private static final String FXML = "PersonProfile.fxml";
 
     /**
@@ -23,8 +25,6 @@ public class PersonProfile extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    final public Person person;
 
     @FXML
     private HBox profilePane;
