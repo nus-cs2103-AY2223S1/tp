@@ -7,7 +7,7 @@ import foodwhere.model.Model;
 import foodwhere.model.review.comparator.ReviewsComparatorList;
 
 /**
- * Sort and list all reviews in the address book to the user.
+ * Sort and list all reviews in FoodWhere to the user.
  */
 public class RSortCommand extends Command {
 

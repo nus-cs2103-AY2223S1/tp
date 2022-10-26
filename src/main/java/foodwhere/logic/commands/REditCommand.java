@@ -24,7 +24,7 @@ import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
 
 /**
- * Edits the details of an existing review in the address book.
+ * Edits the details of an existing review in FoodWhere.
  */
 public class REditCommand extends Command {
 
@@ -42,7 +42,7 @@ public class REditCommand extends Command {
 
     public static final String MESSAGE_EDIT_REVIEW_SUCCESS = "Edited Review: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_REVIEW = "This review already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_REVIEW = "This review already exists in FoodWhere.";
 
     private final Index index;
     private final EditReviewDescriptor editReviewDescriptor;

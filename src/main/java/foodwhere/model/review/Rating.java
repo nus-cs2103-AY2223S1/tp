@@ -4,7 +4,7 @@ import static foodwhere.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Review's rating in the address book.
+ * Represents a Review's rating in FoodWhere.
  * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
 public class Rating {

@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 
 /**
- * Represents a Stall's name in the address book.
+ * Represents a Stall's name in FoodWhere.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

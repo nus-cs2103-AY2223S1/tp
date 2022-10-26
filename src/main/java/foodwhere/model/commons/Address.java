@@ -4,7 +4,7 @@ import static foodwhere.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Stall's address in the address book.
+ * Represents a Stall's address in FoodWhere.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

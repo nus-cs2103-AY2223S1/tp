@@ -26,7 +26,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the AddressBook in FoodWhere.
      *
      * @see Model#getAddressBook()
      */

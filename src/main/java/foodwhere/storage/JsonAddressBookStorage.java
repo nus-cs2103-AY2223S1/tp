@@ -15,7 +15,7 @@ import foodwhere.commons.util.JsonUtil;
 import foodwhere.model.ReadOnlyAddressBook;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access FoodWhere data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
