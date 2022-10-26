@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,35 +22,34 @@ import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
- * Deletes a specific debt of a person identified using their respective displayed
- * indexes from the address book.
+ * Unmarks a specific debt of a person identified using their respective displayed
+ * indexes from the address book as paid.
  */
-public class DeleteDebtCommand extends Command {
+public class UnmarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletedebt";
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a specific debt of the person identified by the index number "
-            + "used in the displayed person list.\nThe debt is specified by the index number "
+            + ": Marks a specific debt of the person identified by the index number "
+            + "used in the displayed person list as unpaid. The debt is specified by the index number "
             + "of the debt displayed in the person's debt field. Multiple debts may be specified.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
-            + PREFIX_DEBT + "DEBT_INDEX... (must be a positive integer. multiple indexes must "
-            + "be separated by a space)\n"
+            + PREFIX_DEBT + "DEBT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DEBT + "2 3";
 
-    public static final String MESSAGE_DELETE_DEBT_SUCCESS = "Deleted Debt(s) from: %1$s:\n";
+    public static final String MESSAGE_UNMARK_DEBT_SUCCESS = "Marked Debt(s) as Unpaid from: %1$s:\n";
 
     private final Index debtorIndex;
     private final Set<Index> debtIndexes;
 
     /**
-     * Constructs the given DeleteDebtCommand.
+     * Constructs the given UnmarkCommand.
      *
-     * @param debtorIndex is the index of the {@code Person} in the filtered person list to have a debt deleted
+     * @param debtorIndex is the index of the {@code Person} in the filtered person list to have a debt marked as unpaid
      * @param indexSet is the set of indexes of the {@code Debt}s in the list of debts displayed in the given
      *      person's debt field.
      */
-    public DeleteDebtCommand(Index debtorIndex, Set<Index> indexSet) {
+    public UnmarkCommand(Index debtorIndex, Set<Index> indexSet) {
         requireNonNull(debtorIndex);
         requireNonNull(indexSet);
         this.debtorIndex = debtorIndex;
@@ -68,62 +67,61 @@ public class DeleteDebtCommand extends Command {
 
         Person debtorToUpdate = lastShownList.get(debtorIndex.getZeroBased());
         List<Debt> initialDebts = debtorToUpdate.getDebts().asList();
-        List<Debt> debtsToDelete = new ArrayList<>();
+        Set<Debt> debtsToUnmark = new HashSet<>();
 
         for (Index debtIndex : debtIndexes) {
             requireNonNull(debtIndex);
             if (debtIndex.getOneBased() > initialDebts.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_DEBT_DISPLAYED_INDEX);
             }
-            debtsToDelete.add(initialDebts.get(debtIndex.getZeroBased()));
+            debtsToUnmark.add(initialDebts.get(debtIndex.getZeroBased()));
         }
 
-        Person updatedDebtor = createReducedDebtor(debtorToUpdate, debtsToDelete);
+        Person updatedDebtor = createUpdatedDebtor(debtorToUpdate, debtsToUnmark);
 
-        String result = String.format(MESSAGE_DELETE_DEBT_SUCCESS, updatedDebtor.getName());
+        model.setPerson(debtorToUpdate, updatedDebtor);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        String result = String.format(MESSAGE_UNMARK_DEBT_SUCCESS, updatedDebtor.getName());
         StringBuilder builder = new StringBuilder(result);
 
         int i = 1;
-        for (Debt debt : debtsToDelete) {
+        for (Debt debt : debtsToUnmark) {
             builder.append(i + ". ")
-                    .append(debt.toString())
+                    .append(debt)
                     .append("\n");
             i++;
         }
 
-        model.saveAddressBook();
-        model.saveCommandMessage(builder.toString());
-        model.setPerson(debtorToUpdate, updatedDebtor);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(builder.toString());
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code debtorToReduce}
+     * Creates and returns a {@code Person} with the details of {@code debtorToClear}
      * with no debts.
      *
-     * @param debtorToReduce {@code Person} within addressbook to have the specified {@code Debt}s deleted.
-     * @param debtsToDelete Set of {@code Debt}s to delete from the {@code debtorToReduce}.
-     * @return Person with a reduced {@code DebtList}.
+     * @param debtorToUpdate {@code Person} within addressbook to have the specified {@code Debt}s marked as unpaid.
+     * @param debtsToUnmark Set of {@code Debt}s to unmark from the {@code debtorToUpdate}.
+     * @return Person with a updated {@code DebtList}.
      */
-    private static Person createReducedDebtor(Person debtorToReduce, List<Debt> debtsToDelete) {
-        requireNonNull(debtorToReduce);
-        requireNonNull(debtsToDelete);
+    private static Person createUpdatedDebtor(Person debtorToUpdate, Set<Debt> debtsToUnmark) {
+        requireNonNull(debtorToUpdate);
+        requireNonNull(debtsToUnmark);
 
-        Name name = debtorToReduce.getName();
-        Phone phone = debtorToReduce.getPhone();
-        Telegram telegram = debtorToReduce.getTelegram();
-        Address address = debtorToReduce.getAddress();
-        Set<Tag> tags = debtorToReduce.getTags();
-        DebtList reducedDebts = debtorToReduce.getDebts();
+        Name name = debtorToUpdate.getName();
+        Phone phone = debtorToUpdate.getPhone();
+        Telegram telegram = debtorToUpdate.getTelegram();
+        Address address = debtorToUpdate.getAddress();
+        Set<Tag> tags = debtorToUpdate.getTags();
+        DebtList updatedDebts = debtorToUpdate.getDebts();
 
-        for (Debt paidDebt : debtsToDelete) {
-            assert reducedDebts.contains(paidDebt) : String.format("Debt (%1$s) cannot be found.", paidDebt);
-            reducedDebts = reducedDebts.removeDebt(paidDebt);
+        for (Debt paidDebt : debtsToUnmark) {
+            assert updatedDebts.contains(paidDebt) : String.format("Debt (%1$s) cannot be found.", paidDebt);
+            updatedDebts = updatedDebts.unmarkDebt(paidDebt);
         }
 
 
-        return new Person(name, phone, telegram, address, tags, reducedDebts);
+        return new Person(name, phone, telegram, address, tags, updatedDebts);
     }
 
     @Override
@@ -134,12 +132,12 @@ public class DeleteDebtCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteDebtCommand)) {
+        if (!(other instanceof UnmarkCommand)) {
             return false;
         }
 
         // state check
-        DeleteDebtCommand c = (DeleteDebtCommand) other;
+        UnmarkCommand c = (UnmarkCommand) other;
         return debtorIndex.equals(c.debtorIndex)
                 && debtIndexes.equals(c.debtIndexes);
     }

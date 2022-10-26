@@ -4,11 +4,11 @@ import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.logic.parser.ParserUtil.argumentMultimapToPersonDescriptor;
 
@@ -30,7 +30,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_TELEGRAM, PREFIX_ADDRESS,
                         PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_MONEY, PREFIX_DATE, PREFIX_TIME);
 
         if (!argMultimap.getPreamble().isEmpty()) {

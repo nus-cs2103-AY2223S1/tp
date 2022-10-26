@@ -26,7 +26,7 @@ PayMeLah is a **desktop app for managing the debts your friends owe you, optimiz
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -78,15 +78,15 @@ Format: `help`
 
 Adds a person to PayMeLah.
 
-Format: `add n/<name> p/<phone number> e/<email> a/<address> [t/<tag>]…`
+Format: `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend tele/betsycrowe a/Newgate Prison p/1234567 t/criminal`
 
 ### Adding a debt: `adddebt`
 
@@ -153,7 +153,7 @@ Format: `listdebtors`
 
 Edits an existing person in PayMeLah.
 
-Format: `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`
+Format: `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`
 
 * Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -164,14 +164,14 @@ Format: `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t
 * Cannot be used to modify a person's debts
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 tele/johndoe` Edits the phone number and telegram handle of the 1st person to be `91234567` and `@johndoe` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
 
 Finds persons who match all the given conditions.
 
-Format: `find [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag> ...]
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag> ...]
 [d/<description> ...] [m/<money> ...] [date/<date> ...] [time/<time> ...]`
 
 * Name and Address are case-insensitive partial matches. All other fields are exact matches.
@@ -252,11 +252,11 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 
 Action | Format, Examples
 --------|------------------
-**Add person** | `add n/<name> p/<phone number> e/<email> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add person** | `add n/<name> p/<phone number> tele/<telegram> a/<address> [t/<tag>]…` <br> e.g., `add n/James Ho p/22224444 tele/James_H0 a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Add debt** | `adddebt <person index> d/<description> m/<money>` <br> e.g., `adddebt 3 d/Chicken Rice m/4`
 **Clear** | `clear`
 **Delete** | `delete <index>`<br> e.g., `delete 3`
-**Edit** | `edit <index> [n/<name>] [p/<phone number>] [e/<email>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`
 **Find** | `find <keyword> [<more keywords>]`<br> e.g., `find James Jake`
 **Find debts** | `finddebt <keyword> [<more keywords>]`<br> e.g., `finddebt burger`
 **List** | `list`

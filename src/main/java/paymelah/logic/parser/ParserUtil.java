@@ -4,19 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import paymelah.commons.core.index.Index;
@@ -30,9 +32,9 @@ import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
 import paymelah.model.person.DebtContainsKeywordsPredicate;
 import paymelah.model.person.DebtGreaterEqualAmountPredicate;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 
 /**
@@ -59,19 +61,24 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> oneBasedIndexes} into a {@code Set<Index>} and returns it. Leading and
+     * Parses {@code indices} into a {@code Set<Index>} and returns it. Leading and
      * trailing whitespaces will be trimmed.
      *
-     * @param oneBasedIndexes Collection of String representing valid indexes (non-zero unsigned integer).
-     * @return {@code Set<Index>} of indexes parsed from given String.
-     * @throws ParseException if an index is invalid (not non-zero unsigned integer).
+     * @param indices String of valid indices (non-zero unsigned integer).
+     * @return {@code Set<Index>} of indices parsed from given String.
+     * @throws ParseException if any index is invalid (not non-zero unsigned integer).
      */
-    public static Set<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
-        requireNonNull(oneBasedIndexes);
+    public static Set<Index> parseIndices(String indices) throws ParseException {
+        requireNonNull(indices);
+        String trimmedIndices = indices.trim();
+        List<String> oneBasedIndices = Arrays.stream(trimmedIndices.replaceAll("\\s+", " ")
+                .split(" ")).collect(Collectors.toList());
+
         final Set<Index> indexSet = new HashSet<>();
-        for (String index : oneBasedIndexes) {
+        for (String index : oneBasedIndices) {
             indexSet.add(parseIndex(index));
         }
+
         return indexSet;
     }
 
@@ -121,18 +128,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String telegram} into an {@code Telegram}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code telegram} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTelegram = telegram.trim();
+        if (!Telegram.isValidHandle(trimmedTelegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Telegram(trimmedTelegram);
     }
 
     /**
@@ -351,8 +358,8 @@ public class ParserUtil {
         if (argumentMultimap.getValue(PREFIX_PHONE).isPresent()) {
             personDescriptor.setPhone(ParserUtil.parsePhone(argumentMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (argumentMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            personDescriptor.setEmail(ParserUtil.parseEmail(argumentMultimap.getValue(PREFIX_EMAIL).get()));
+        if (argumentMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
+            personDescriptor.setTelegram(ParserUtil.parseTelegram(argumentMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         if (argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             personDescriptor.setAddress(ParserUtil.parseAddress(argumentMultimap.getValue(PREFIX_ADDRESS).get()));
@@ -438,7 +445,7 @@ public class ParserUtil {
     public static class PersonDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
+        private Telegram telegram;
         private Address address;
         private Set<Tag> tags;
         private Set<Description> descriptions;
@@ -455,7 +462,7 @@ public class ParserUtil {
         public PersonDescriptor(PersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setTelegram(toCopy.telegram);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setDescriptions(toCopy.descriptions);
@@ -468,7 +475,8 @@ public class ParserUtil {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldSet() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, descriptions, monies, dates, times);
+            return CollectionUtil.isAnyNonNull(name, phone, telegram, address,
+                                                tags, descriptions, monies, dates, times);
         }
 
         public void setName(Name name) {
@@ -487,12 +495,12 @@ public class ParserUtil {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
         }
 
         public void setAddress(Address address) {
@@ -605,7 +613,7 @@ public class ParserUtil {
 
             return getName().equals(pd.getName())
                     && getPhone().equals(pd.getPhone())
-                    && getEmail().equals(pd.getEmail())
+                    && getTelegram().equals(pd.getTelegram())
                     && getAddress().equals(pd.getAddress())
                     && getTags().equals(pd.getTags())
                     && getDescriptions().equals(pd.getDescriptions())

@@ -23,16 +23,16 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import paymelah.commons.core.index.Index;
-import paymelah.logic.commands.DeleteDebtCommand;
+import paymelah.logic.commands.MarkCommand;
 
-public class DeleteDebtCommandParserTest {
+public class MarkCommandParserTest {
 
     //private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDebtCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE);
 
-    private DeleteDebtCommandParser parser = new DeleteDebtCommandParser();
+    private MarkCommandParser parser = new MarkCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -65,7 +65,7 @@ public class DeleteDebtCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_DEBT_INDEX, MESSAGE_INVALID_FORMAT); // non-index
         assertParseFailure(parser, "1" + INVALID_DEBT_INDEX_ZERO, MESSAGE_INVALID_FORMAT); // zero index
-        assertParseFailure(parser, "1" + INVALID_DEBT_INDICES, MESSAGE_INVALID_FORMAT); // mix of validity
+        assertParseFailure(parser, "1" + INVALID_DEBT_INDICES, MESSAGE_INVALID_FORMAT); // multiple spacing
     }
 
     @Test
@@ -74,7 +74,7 @@ public class DeleteDebtCommandParserTest {
         String userInput = targetIndex.getOneBased() + VALID_DEBT_INDEX;
 
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_FIRST_DEBT));
-        DeleteDebtCommand expectedCommand = new DeleteDebtCommand(targetIndex, debtIndexSet);
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, debtIndexSet);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -85,7 +85,7 @@ public class DeleteDebtCommandParserTest {
         String userInput = targetIndex.getOneBased() + VALID_DEBT_INDICES;
 
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_FIRST_DEBT, INDEX_SECOND_DEBT, INDEX_THIRD_DEBT));
-        DeleteDebtCommand expectedCommand = new DeleteDebtCommand(targetIndex, debtIndexSet);
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, debtIndexSet);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -96,7 +96,7 @@ public class DeleteDebtCommandParserTest {
         String userInput = targetIndex.getOneBased() + VALID_DEBT_INDICES_REPEAT;
 
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_FIRST_DEBT, INDEX_THIRD_DEBT));
-        DeleteDebtCommand expectedCommand = new DeleteDebtCommand(targetIndex, debtIndexSet);
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, debtIndexSet);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -107,7 +107,7 @@ public class DeleteDebtCommandParserTest {
         String userInput = targetIndex.getOneBased() + INVALID_DEBT_INDEX + VALID_DEBT_INDEX;
 
         Set<Index> debtIndexSet = new HashSet<>(List.of(INDEX_FIRST_DEBT));
-        DeleteDebtCommand expectedCommand = new DeleteDebtCommand(targetIndex, debtIndexSet);
+        MarkCommand expectedCommand = new MarkCommand(targetIndex, debtIndexSet);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
