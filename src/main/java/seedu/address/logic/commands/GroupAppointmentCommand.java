@@ -10,7 +10,7 @@ import seedu.address.model.Key;
 import seedu.address.model.Model;
 
 /**
- * Group all appointments in the address book to the user.
+ * Group all appointments in idENTify to the user.
  */
 public class GroupAppointmentCommand extends Command {
 

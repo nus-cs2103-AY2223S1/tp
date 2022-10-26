@@ -15,7 +15,7 @@ import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredica
 import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
- * Unhides all persons and their appointments in address book whose name contains any of the argument keywords.
+ * Unhides all persons and their appointments in idENTify whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class UnhidePatientsCommand extends Command {

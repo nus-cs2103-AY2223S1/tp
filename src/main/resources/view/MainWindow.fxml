@@ -24,7 +24,7 @@
       </stylesheets>
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="File" styleClass="menuText">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Theme">
