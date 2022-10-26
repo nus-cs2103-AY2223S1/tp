@@ -286,8 +286,8 @@ public class Appointment {
     }
 
     private String getStateIcon() {
-        String markedIcon = "  ✅";
-        String unmarkedIcon = "  ❌";
+        String markedIcon = "X";
+        String unmarkedIcon = " ";
         return isMarked.get() ? markedIcon : unmarkedIcon;
     }
     public String getRecurringStatus() {

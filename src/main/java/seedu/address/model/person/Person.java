@@ -99,9 +99,15 @@ public class Person {
     }
 
     private String getAppointmentsString() {
-        String str = "Currently has %s booked ";
-        str = String.format(str, appointments.size());
-        str += appointments.size() == 1 ? "appointment" : "appointments";
+        String str = "Currently has %s upcoming ";
+        int num = 0;
+        for (Appointment appts : appointments) {
+            if (!appts.isMarked()) {
+                num += 1;
+            }
+        }
+        str = String.format(str, num);
+        str += num == 1 ? "appointment" : "appointments";
         return str;
     }
 

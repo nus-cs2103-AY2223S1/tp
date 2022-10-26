@@ -79,8 +79,9 @@ public class EditPatientCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        updateModelNames(model, personToEdit, editedPerson);
         updatePatients(editedPerson, personToEdit.getAppointments());
+        updateModelNames(model, personToEdit, editedPerson);
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

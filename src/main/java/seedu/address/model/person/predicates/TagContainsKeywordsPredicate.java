@@ -1,6 +1,5 @@
 package seedu.address.model.person.predicates;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -12,22 +11,21 @@ import seedu.address.model.tag.Tag;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class TagContainsKeywordsPredicate implements Predicate<Person> {
-    private final String keywords;
+    private final List<String> keywords;
 
     /**
      * Constructor for the tag predicate.
      * @param keywords
      */
-    public TagContainsKeywordsPredicate(String keywords) {
+    public TagContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
-        List<String> tagKeywords = Arrays.asList(keywords.split(" "));
         Set<Tag> tags = person.getTags();
         for (Tag t: tags) {
-            if (tagKeywords.stream().anyMatch(t.toString()::equalsIgnoreCase)) {
+            if (keywords.stream().anyMatch(t.toString()::equalsIgnoreCase)) {
                 HiddenPredicateSingleton.addToHiddenPersonList(person);
                 return true;
             }

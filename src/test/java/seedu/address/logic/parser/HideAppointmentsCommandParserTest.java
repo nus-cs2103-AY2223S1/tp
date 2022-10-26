@@ -4,6 +4,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HideAppointmentsCommand;
@@ -17,14 +20,18 @@ public class HideAppointmentsCommandParserTest {
 
     @Test
     public void parse_validReasonArgs_returnHideCommand() {
+        List<String> l = new ArrayList<>();
+        l.add("ear");
         assertParseSuccess(parser, " r/ear", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.KEYWORD, "ear")));
+                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.KEYWORD, l)));
     }
 
     @Test
     public void parse_validIsMarkedArgs_returnHideCommand() {
+        List<String> l = new ArrayList<>();
+        l.add("marked");
         assertParseSuccess(parser, " s/marked", new HideAppointmentsCommand(
-                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.IS_MARKED, "marked")));
+                new HideAppointmentPredicate(HideAppointmentPredicate.HideBy.IS_MARKED, l)));
     }
 
     @Test
