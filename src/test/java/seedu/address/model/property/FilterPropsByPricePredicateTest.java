@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.pricerange.property.FilterPropsByPricePredicate;
 import seedu.address.testutil.PropertyBuilder;
 
 

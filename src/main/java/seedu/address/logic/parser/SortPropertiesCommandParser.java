@@ -1,21 +1,21 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+
+import java.util.Comparator;
+
 import seedu.address.logic.commands.SortPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.sortcomparators.Order;
 import seedu.address.logic.sortcomparators.PriceComparator;
 import seedu.address.logic.sortcomparators.PropertyComparator;
 import seedu.address.logic.sortcomparators.PropertyNameComparator;
-import seedu.address.model.pricerange.property.Price;
-import seedu.address.model.pricerange.property.Property;
-import seedu.address.model.pricerange.property.PropertyName;
-
-import java.util.Comparator;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import seedu.address.model.property.Price;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyName;
 
 /**
  * Parses user input to create a {@code SortBuyersCommand}.
@@ -36,7 +36,8 @@ public class SortPropertiesCommandParser extends Parser<SortPropertiesCommand> {
         if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
                 || !isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortPropertiesCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortPropertiesCommand.MESSAGE_USAGE));
         }
 
         Comparator<Property> propertyComparator = null;

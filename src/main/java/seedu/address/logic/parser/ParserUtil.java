@@ -17,10 +17,10 @@ import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
 import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.pricerange.PriceRange;
-import seedu.address.model.pricerange.property.Description;
-import seedu.address.model.pricerange.property.Price;
-import seedu.address.model.pricerange.property.Properties;
-import seedu.address.model.pricerange.property.PropertyName;
+import seedu.address.model.property.Description;
+import seedu.address.model.property.Price;
+import seedu.address.model.property.Properties;
+import seedu.address.model.property.PropertyName;
 
 
 /**

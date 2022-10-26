@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
 import seedu.address.model.buyer.Priority;
-import seedu.address.model.pricerange.property.Owner;
+import seedu.address.model.property.Owner;
 
 /**
  * Jackson-friendly version of {@link Owner}.

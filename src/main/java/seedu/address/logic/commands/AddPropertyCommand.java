@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.pricerange.property.Property;
+import seedu.address.model.property.Property;
 
 /**
  * Adds a property to the address book.

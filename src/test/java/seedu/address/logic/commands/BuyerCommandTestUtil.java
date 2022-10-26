@@ -22,8 +22,8 @@ import seedu.address.model.PersonBook;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.NameContainsKeywordsPredicate;
-import seedu.address.model.pricerange.property.Property;
-import seedu.address.model.pricerange.property.PropertyNameContainsKeywordsPredicate;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**

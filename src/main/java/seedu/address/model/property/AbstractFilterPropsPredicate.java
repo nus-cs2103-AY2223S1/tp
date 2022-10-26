@@ -1,4 +1,4 @@
-package seedu.address.model.pricerange.property;
+package seedu.address.model.property;
 
 import java.util.function.Predicate;
 

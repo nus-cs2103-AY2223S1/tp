@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.FilterBuyerByCharacteristicsPredicate;
 import seedu.address.model.buyer.FilterBuyerByPricePredicate;
-import seedu.address.model.pricerange.property.Property;
+import seedu.address.model.property.Property;
 
 /**
  * Matches a {@code property} to all {@code buyers} that match its attributes.

@@ -1,16 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.getTypicalPersonsBook;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
-
-import org.junit.jupiter.api.BeforeEach;
-
-import javafx.collections.FXCollections;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.ui.PersonListPanel;
-
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -18,12 +8,11 @@ import seedu.address.ui.PersonListPanel;
 public class AddBuyerCommandIntegrationTest {
 
     private Model model;
-
-    @BeforeEach
-    public void setUp() {
-        model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
-        model.setPersonListPanel(new PersonListPanel(FXCollections.observableArrayList()));
-    }
+    //    @BeforeEach
+    //    public void setUp() {
+    //        model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
+    //        model.setPersonListPanel(new PersonListPanel(FXCollections.observableArrayList()));
+    //    }
 
     //    @Test
     //    public void execute_newPerson_success() {

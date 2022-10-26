@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pricerange.property.PropertyNameContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindPropertyCommand object

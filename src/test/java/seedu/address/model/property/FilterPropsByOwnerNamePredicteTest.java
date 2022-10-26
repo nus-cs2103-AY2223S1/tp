@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.buyer.Name;
 import seedu.address.model.buyer.Phone;
-import seedu.address.model.pricerange.property.FilterPropsByOwnerNamePredicate;
-import seedu.address.model.pricerange.property.Owner;
 import seedu.address.testutil.PropertyBuilder;
 
 public class FilterPropsByOwnerNamePredicteTest {

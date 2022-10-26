@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.PropertyBook;
-import seedu.address.model.pricerange.property.Property;
+import seedu.address.model.property.Property;
 
 /**
  * A utility class to help with building PropertyBook objects.

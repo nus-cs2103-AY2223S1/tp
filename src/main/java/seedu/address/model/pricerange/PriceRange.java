@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.DecimalFormat;
 
-import seedu.address.model.pricerange.property.Price;
+import seedu.address.model.property.Price;
 
 /**
  * Represents a Price Range for a property that a buyer can accept.

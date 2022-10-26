@@ -46,7 +46,7 @@ public class BuyerComparator implements Comparator<Buyer> {
     public String toString() {
         if (nameComparator.isPresent()) {
             return nameComparator.get().toString();
-        } else if (priceRangeComparator.isPresent()){
+        } else if (priceRangeComparator.isPresent()) {
             return priceRangeComparator.get().toString();
         } else {
             return priorityComparator.get().toString();

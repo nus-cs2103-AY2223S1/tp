@@ -1,11 +1,11 @@
 package seedu.address.logic.sortcomparators;
 
-import seedu.address.model.buyer.Priority;
-
+import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.buyer.Priority;
+
 
 /**
  * A comparator to compare two Names.

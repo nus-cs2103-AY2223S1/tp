@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * Represents a Priority in the address book.
@@ -12,7 +11,7 @@ import java.util.Comparator;
  */
 public class Priority implements Comparable<Priority> {
 
-    public enum PriorityName {
+    private enum PriorityName {
         HIGH, NORMAL, LOW;
     }
 

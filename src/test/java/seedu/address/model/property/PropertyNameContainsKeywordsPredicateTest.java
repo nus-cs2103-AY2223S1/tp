@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.pricerange.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.testutil.PropertyBuilder;
 
 public class PropertyNameContainsKeywordsPredicateTest {

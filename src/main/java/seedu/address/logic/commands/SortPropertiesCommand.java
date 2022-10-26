@@ -4,12 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
+import java.util.Comparator;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.pricerange.property.Property;
-
-
-import java.util.Comparator;
+import seedu.address.model.property.Property;
 
 /**
  * Sorts the properties list.
