@@ -3,7 +3,7 @@ The REMARKS of an item is a remark/note that the user can add to an item.
 
 ```info
 - REMARKS is a short text with a limit of 1000 chracters
-- REMARKS can contain alphanumeric characters, spaces, and the following symbols: ?'."[]{}()+^$*-,:;@!#%&_=
+- REMARKS can contain alphanumeric characters, spaces, and the following symbols: `?` `'` `.` `"` `[` `]` `{` `}` `(` `)` `+` `^` `$` `*` `-` `,` `:` `;` `@` `!` `#` `%` `&` `_` `=`
 - REMARKS will have leading and trailing spaces trimmed
 ```
 
