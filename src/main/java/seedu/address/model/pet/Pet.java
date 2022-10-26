@@ -24,7 +24,7 @@ public class Pet {
 
     private final UniqueId id;
     private final PetName name;
-    private final Supplier supplier;
+    private Supplier supplier;
     private final Color color;
     private final ColorPattern colorPattern;
     private final DateOfBirth dateOfBirth;
