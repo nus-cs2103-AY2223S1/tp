@@ -185,7 +185,6 @@ The following activity diagram summarises what happens when a student enters a `
     * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
     * Cons: It diminishes the usefulness of being able to search for multiple interests at once if a general search is implemented. The purpose of specifying multiple interests is so that the search results would be specific.
 
-
 ### Mod mark feature
 
 #### Implementation
