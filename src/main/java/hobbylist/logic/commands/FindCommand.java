@@ -8,6 +8,7 @@ import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 
 /**
  * Finds and lists all activities in HobbyList whose name or description contains any of the argument keywords.
+ * Find activities of certain rate.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
