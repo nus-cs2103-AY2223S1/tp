@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE_RANGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Comparator;
 
@@ -13,8 +14,10 @@ import seedu.address.logic.sortcomparators.BuyerComparator;
 import seedu.address.logic.sortcomparators.NameComparator;
 import seedu.address.logic.sortcomparators.Order;
 import seedu.address.logic.sortcomparators.PriceRangeComparator;
+import seedu.address.logic.sortcomparators.PriorityComparator;
 import seedu.address.model.buyer.Buyer;
 import seedu.address.model.buyer.Name;
+import seedu.address.model.buyer.Priority;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
@@ -31,10 +34,11 @@ public class SortBuyersCommandParser extends Parser<SortBuyersCommand> {
     public SortBuyersCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE_RANGE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_NAME, PREFIX_PRICE_RANGE, PREFIX_PRIORITY);
 
-        if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE_RANGE)
-                || !isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE_RANGE)
+        if (areMoreThanOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE_RANGE, PREFIX_PRIORITY)
+                || !isAnyPrefixPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE_RANGE, PREFIX_PRIORITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortBuyersCommand.MESSAGE_USAGE));
         }
@@ -44,13 +48,19 @@ public class SortBuyersCommandParser extends Parser<SortBuyersCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_NAME).get());
             Comparator<Name> nameComparator = new NameComparator(order);
-            buyerComparator = new BuyerComparator(nameComparator, null);
+            buyerComparator = new BuyerComparator(nameComparator, null, null);
         }
 
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
             Comparator<PriceRange> priceRangeComparator = new PriceRangeComparator(order);
-            buyerComparator = new BuyerComparator(null, priceRangeComparator);
+            buyerComparator = new BuyerComparator(null, priceRangeComparator, null);
+        }
+
+        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
+            Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_PRIORITY).get());
+            Comparator<Priority> priorityComparator = new PriorityComparator(order);
+            buyerComparator = new BuyerComparator(null, null, priorityComparator);
         }
 
         return new SortBuyersCommand(buyerComparator);
