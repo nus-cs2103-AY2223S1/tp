@@ -51,10 +51,10 @@ DevEnable is a **desktop app for managing contacts, optimized for use via a Comm
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/client`, `t/client t/deadline` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `client -t PROJECT_ID n/CLIENT_NAME [p/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, `client -t PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [p/CLIENT_CONTACT_NUMBER]` are both acceptable.
+  e.g. if the command specifies `client -t PROJECT_ID n/CLIENT_NAME [m/CLIENT_CONTACT_NUMBER] [e/CLIENT_EMAIL]`, `client -t PROJECT_ID n/CLIENT_NAME [e/CLIENT_EMAIL] [p/CLIENT_CONTACT_NUMBER]` are both acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `m/12341234 m/56785678`, only `m/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -71,19 +71,20 @@ Format: `help`
 
 Adds a project to the list of projects. A unique project ID will be automatically generated.
 
-Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME] [cid/CLIENT_ID] [d/PROJECT_DEADLINE]…​`
+Format: `project -a n/PROJECT_NAME [r/USERNAME/REPO_NAME] [c/CLIENT_ID] [d/PROJECT_DEADLINE]…​`
 
 * Adds the project to the `ProjectList`.
+* * `DEADLINE` must be in the format yyyy-mm-dd
 
 Examples:
 * `project -a n/Coding101` Adds a project with `PROJECT_NAME` Coding101 to the `ProjectList`.
 * `project -a n/MyFavProject r/Jeff/MyFavProject` Adds a project with `PROJECT_NAME` MyFavProject and 
 `USERNAME/REPO_NAME` Jeff/MyFavProject to the `ProjectList`.
-* `project -a n/AnotherProject cid/1` Adds a project with `PROJECT_NAME` AnotherProject to the `ProjectList` and adds a
+* `project -a n/AnotherProject c/1` Adds a project with `PROJECT_NAME` AnotherProject to the `ProjectList` and adds a
 client with `CLIENT_ID` 1 to the project.
-* `project -a n/OneMoreProject cid/1 d/2022-03-07` Adds a project with `PROJECT_NAME` OneMoreProject and `PROJECT_DEADLINE`
+* `project -a n/OneMoreProject c/1 d/2022-03-07` Adds a project with `PROJECT_NAME` OneMoreProject and `PROJECT_DEADLINE`
 2022-03-07 to the `ProjectList` and adds a client with `CLIENT_ID` 1 to the project.
-* `project -a n/LastProject d/2023-10-01 r/Dave/LastProject cid/2` Adds a project with `PROJECT_NAME` LastProject and 
+* `project -a n/LastProject d/2023-10-01 r/Dave/LastProject c/2` Adds a project with `PROJECT_NAME` LastProject and 
 `DEADLINE` 2023-10-01 and `USERNAME/REPO` Dave/LastProject to the `ProjectList` and adds a client with `CLIENT_ID` 2 
 to the project.
 
@@ -91,26 +92,27 @@ to the project.
 
 Edits a specified existing project.
 
-Format: `project -e pid/PROJECT_ID [n/PROJECT_NAME] [r/USERNAME/REPO] [cid/CLIENT_ID] [d/DEADLINE]…​`
+Format: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/USERNAME/REPO] [c/CLIENT_ID] [d/DEADLINE]…​`
 
 * Edits the project with the specified `PROJECT_ID`. The ID refers to the unique ID generated upon adding a project.
   The ID **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* * `DEADLINE` must be in the format yyyy-mm-dd
 
 Examples:
-* `project -e pid/1 n/FirstProject` Edits the project with `PROJECT_ID` 1 to have the new `PROJECT_NAME` FirstProject.
-* `project -e pid/2 r/James/SecondProject` Edits the project with `PROJECT_ID` 2 to have the new `USERNAME/REPO` 
+* `project -e p/1 n/FirstProject` Edits the project with `PROJECT_ID` 1 to have the new `PROJECT_NAME` FirstProject.
+* `project -e p/2 r/James/SecondProject` Edits the project with `PROJECT_ID` 2 to have the new `USERNAME/REPO` 
 James/SecondProject.
-* `project -e pid/3 cid/1 d/2021-12-03` Edits the project with `PROJECT_ID` 3 to have the new client with `CLIENT_ID` 1 
+* `project -e p/3 c/1 d/2021-12-03` Edits the project with `PROJECT_ID` 3 to have the new client with `CLIENT_ID` 1 
 and new `DEADLINE` 2021-12-03.
-* `project -e pid/4 n/ThirdProject d/2022-02-02 r/Jackson/ThirdProject cid/2` Edits the project with `PROJECT_ID` 4 to 
+* `project -e p/4 n/ThirdProject d/2022-02-02 r/Jackson/ThirdProject c/2` Edits the project with `PROJECT_ID` 4 to 
 have the new `PROJECT_NAME` ThirdProject, new `DEADLINE` 2022-02-02, new `USERNAME/REPO` Jackson/ThirdProject and new 
 client with `CLIENT_ID` 2.
 
 ### Deleting a project : `project -d`
 
-Deletes a project from the application.
+Removes the specified existing project.
 
 Format: `project -d PROJECT_ID`
 
@@ -119,6 +121,7 @@ Format: `project -d PROJECT_ID`
 
 Examples:
 * `project -d 1` Deletes project with `PROJECT_ID` 1.
+* `project -d 4` Deletes project with `PROJECT_ID` 4.
 
 ### Listing all projects : `project -l`
 
@@ -146,44 +149,45 @@ Examples:
 
 ### Adding a client : `client -a`
 
-Adds a client to the list of clients and to the specified project.
+Adds a client to the list of clients and to the specified existing project. A unique client ID will be automatically 
+generated.
 
-Format: `client -a n/CLIENT_NAME pid/PROJECT_ID [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+Format: `client -a n/CLIENT_NAME p/PROJECT_ID [m/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 
 * Adds the client to `ClientList` and to the project with the specified `PROJECT_ID`.
 
 Examples:
-*  `client -a n/Amy pid/1` Adds a client with `CLIENT_NAME` Amy to the `ClientList` and to the project with 
+*  `client -a n/Amy p/1` Adds a client with `CLIENT_NAME` Amy to the `ClientList` and to the project with 
    `PROJECT_ID` 1.
-*  `client -a n/Bob pid/2 p/12345678` Adds a client with `CLIENT_NAME` Bob and `CLIENT_PHONE` 12345678 to the 
+*  `client -a n/Bob p/2 m/12345678` Adds a client with `CLIENT_NAME` Bob and `CLIENT_PHONE` 12345678 to the 
    `ClientList` and to the project with `PROJECT_ID` 2.
-*  `client -a n/Charlie e/charlie@gmail.com pid/3` Adds a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` 
+*  `client -a n/Charlie e/charlie@gmail.com p/3` Adds a client with `CLIENT_NAME` Charlie and `CLIENT_EMAIL` 
    charlie@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 3.
-*  `client -a n/Dave p/12345678 e/dave@gmail.com pid/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_PHONE` 
+*  `client -a n/Dave m/12345678 e/dave@gmail.com p/4` Adds a client with `CLIENT_NAME` Dave, `CLIENT_PHONE` 
    12345678 and `CLIENT_EMAIL` dave@gmail.com to the `ClientList` and to the project with `PROJECT_ID` 4.
 
 ### Editing a client : `client -e`
 
-Edits the specified client.
+Edits the specified existing client.
 
-Format: `client -e cid/CLIENT_ID [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+Format: `client -e c/CLIENT_ID [n/CLIENT_NAME] [m/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 
 * Edits the client with the specified `CLIENT_ID`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `client -e cid/1 n/Amy` Edits the client tagged to project with `CLIENT_ID` 1 to have the new `CLIENT_NAME` Amy.
-*  `client -e cid/2 n/Bob p/12345678` Edits the client tagged with `CLIENT_ID` 2 to have the new `CLIENT_NAME` Bob 
+*  `client -e c/1 n/Amy` Edits the client with `CLIENT_ID` 1 to have the new `CLIENT_NAME` Amy.
+*  `client -e c/2 n/Bob m/12345678` Edits the client with `CLIENT_ID` 2 to have the new `CLIENT_NAME` Bob 
    and `CLIENT_PHONE` 91234567.
-*  `client -e cid/3 n/Charlie e/charlie@gmail.com` Edits the client with `PROJECT_ID` 3 to have the new 
+*  `client -e c/3 n/Charlie e/charlie@gmail.com` Edits the client with `CLIENT_ID` 3 to have the new 
    `CLIENT_NAME` Charlie and `CLIENT_EMAIL` charlie@gmail.com.
-*  `client -e cid/4 n/Dave p/12345678 e/dave@gmail.com` Edits the client with `PROJECT_ID` 4 to have the new 
+*  `client -e c/4 n/Dave m/12345678 e/dave@gmail.com` Edits the client with `CLIENT``_ID` 4 to have the new 
    `CLIENT_NAME` Dave, `CLIENT_PHONE` 12345678 and `CLIENT_EMAIL` dave@gmail.com.
 
 ### Deleting a client : `client -d`
 
-Removes the specified client.
+Removes the specified existing client.
 
 Format: `client -d CLIENT_ID`
 
@@ -194,11 +198,17 @@ Examples:
 * `client -d 1` Deletes client with `CLIENT_ID` 1.
 * `client -d 6` Deletes client with `CLIENT_ID` 6.
 
+### Listing all clients : `client -l`
+
+Shows a list of all clients.
+
+Format: `client -l`
+
 ### Finding a client : `client -f`
 
 Finds and lists all the clients matching the search criteria.
 
-Format: `client -f [n/CLIENT_NAME] [p/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
+Format: `client -f [n/CLIENT_NAME] [m/CLIENT_PHONE] [e/CLIENT_EMAIL]…​`
 
 * Finds all the clients with the specified `CLIENT_NAME`, `CLIENT_PHONE` and `CLIENT_EMAIL`.
 * Finds all the clients such that the fields under the client contain at least one word from the keywords provided 
@@ -210,34 +220,63 @@ Examples:
 * `client -f n/Amy Bob` Finds and lists all the clients with the `CLIENT_NAME` contains the word `Amy` or `Bob`.
 * `client -f n/Amy e/amy@gmail.com` Finds and lists all the clients whose `CLIENT_NAME` contains the word `Amy` and 
   with `CLIENT_EMAIL` amy@gmail.com.
-* `client -f n/Amy e/amy@gmail.com p/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
+* `client -f n/Amy e/amy@gmail.com m/12345678` Finds and lists all the clients whose `CLIENT_NAME` contains the word 
   `Amy` and with `CLIENT_EMAIL` amy@gmail.com and with `CLIENT_PHONE` 12345678.
-* `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com p/12345678` Finds and lists all the clients whose 
+* `client -f n/Amy Bob e/amy@gmail.com bobamy@gmail.com m/12345678` Finds and lists all the clients whose 
   `CLIENT_NAME` contains the word `Amy` or `Bob` and with `CLIENT_EMAIL` amy@gmail.com or bobamy@gmail.com and with 
   `CLIENT_PHONE` 12345678.
 
 ### Adding an issue : `issue -a`
 
-Adds an issue to a project.
+Adds an issue to the list of issues and to the issue list in the specified existing project. A unique issue ID will be 
+automatically generated.
 
-Format: `issue -a i/PROJECT_ID …​`
+Format: `issue -a p/PROJECT_ID t/TITLE [d/DEADLINE] [u/URGENCY] …​`
 
-* Tags the issue to the project with the specified `PROJECT_ID`.
+* Adds the issue to the overall `IssueList` and to the `IssueList`of the project with the specified `PROJECT_ID`.
+* `DEADLINE` must be in the format yyyy-mm-dd
+* `URGENCY` must be an integer from 0 to 3, 0 for NONE, 1 for LOW, 2 for MEDIUM and 3 for HIGH
 
 Examples:
-*  `issue -t i/1 ` Tags the project with `PROJECT_ID` 1.
+* `issue -a p/1 t/Fix Ui` Adds an issue with `TITLE` Fix Ui to the overall `IssueList` and to the `IssueList` of the 
+project with `PROJECT_ID` 1.
+* `issue -a p/2 t/Add tests u/2`Adds an issue with `TITLE` Add tests and `URGENCY` MEDIUM(2) to the overall `IssueList`
+and to the `IssueList` of the project with `PROJECT_ID` 2.
+* `issue -a t/Design GUI u/0 d/2022-09-12 p/3` Adds an issue with `TITLE` Design GUI, `URGENCY` NONE(0) and `DEADLINE` 
+2022-09-12 to the overall `IssueList` and to the `IssueList` of the project with `PROJECT_ID` 3.
 
 ### Editing an issue : `issue -e`
 
-Edits the issue for a specific project.
+Edits the specified existing issue.
 
-Format: `issue -e i/PROJECT_ID…​`
+Format: `issue -e i/ISSUE_ID [t/TITLE] [d/DEADLINE] [u/URGENCY]…​`
 
-* Edits the issue of the project with the specified `PROJECT_ID`.
-<!-- TODO: clarify * `DATETIME` must be in the following format: yyyy-mm-dd. -->
+* Edits the issue with the specified `ISSUE_ID`
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input value.
+* `PROJECT_ID` cannot be edited as each issue is created for a specific project
+* `DEADLINE` must be in the format yyyy-mm-dd
+* `URGENCY` must be an integer from 0 to 3, 0 for NONE, 1 for LOW, 2 for MEDIUM and 3 for HIGH
 
 Examples:
-*  `issue -e 1 2022-09-16` Edits the issue of project with `PROJECT_ID` to be 2022-09-16.
+* `issue -e i/1 t/Do DG` Edits the issue with `ISSUE_ID` 1 to have the new `TITLE` Do DG.
+* `issue -e i/2 d/2021-12-20 u/1` Edits the issue with `ISSUE_ID` 2 to have the new `DEADLINE` 2021-12-20 and `URGENCY`
+LOW(1).
+* `issue -e 1/3 u/3 t/Do UG d/2022-01-12` Edits the issue with `ISSUE_ID` 3 to have the new `URGENCY` HIGH(3) and 
+`TITLE` Do UG and `DEADLINE` 2022-01-12.
+
+### Deleting an issue : `issue -d`
+
+Removes the specified existing issue.
+
+Format: `issue -d ISSUE_ID`
+
+* Deletes the issue with the specified `ISSUE_ID`.
+* The ID **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `issue -d 1` Deletes issue with `ISSUE_ID` 1.
+* `issue -d 3` Deletes issue with `ISSUE_ID` 3.
 
 ### Finding an issue : `issue -f`
 
@@ -259,18 +298,6 @@ Examples:
 * `issue -f desc/enhancement pn/DevEnable AB3 p/HIGH LOW` Finds and lists all the issues with `DESCRIPTION` 
   enhancement and `PRIORITY` HIGH or LOW and tied to project with `PROJECT_NAME` DevEnable or AB3.
 * `issue -f s/Incomplete` Finds and lists all the issues with `STATUS` Incomplete. 
-
-### Deleting an issue : `issue -d`
-
-Removes an issue.
-
-Format: `issue -d i/ISSUE_ID p/PROJECT_ID`
-
-* Deletes the issue tagged to the specified project with given `ISSUE_ID` and `PROJECT_ID`.
-* The ID **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `issue -d i/1 p/1` Deletes issue tagged to project with `PROJECT_ID` 1 and `ISSUE_ID` 1.
 
 ### Clearing all entries : `clear`
 
