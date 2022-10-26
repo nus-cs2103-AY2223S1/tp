@@ -190,6 +190,19 @@ public enum CommandType {
                     + getCommandWord() + " 1";
         }
     },
+    FILTER_TAG_COMMAND("filtertag") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Filters all items in FoodRem by the specified tag"
+                    + "\n\n"
+                    + "Format:\n"
+                    + getCommandWord() + " "
+                    + PREFIX_NAME + "NAME\n\n"
+                    + "Example:\n"
+                    + getCommandWord() + " "
+                    + PREFIX_NAME + "Potatoes ";
+        }
+    },
 
     // Tag Commands
     DELETE_TAG_COMMAND("deletetag") {
