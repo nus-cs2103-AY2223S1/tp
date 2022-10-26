@@ -2,9 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSIGNMENT_DETAILS;
-import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 
 import java.util.ArrayList;
@@ -14,12 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.LectureDetails;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.TutorialDetails;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.model.assignmentdetails.AssignmentDetails;
-import seedu.address.model.person.Name;
 
 public class JsonAdaptedModuleTest {
     private static final String INVALID_MODULE_CODE = "CS2103T%";
