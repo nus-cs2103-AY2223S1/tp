@@ -9,18 +9,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.module.Module;
 import seedu.address.testutil.PersonBuilder;
 
 public class ModuleTakenPredicateTest {
 
     @Test
     public void equals() {
-        List<Module> firstPredicateKeywordsList = Collections.singletonList(new Module("CS1101S"));
-        List<Module> secondPredicateKeywordsList = Arrays.asList(
-                new Module("CS1101S"),
-                new Module("MA1521")
-        );
+        List<String> firstPredicateKeywordsList = Collections.singletonList("CS1101S");
+        List<String> secondPredicateKeywordsList = Arrays.asList("CS1101S", "MA1521");
 
         ModuleTakenPredicate firstPredicate = new ModuleTakenPredicate(firstPredicateKeywordsList);
         ModuleTakenPredicate secondPredicate = new ModuleTakenPredicate(secondPredicateKeywordsList);
@@ -47,29 +43,25 @@ public class ModuleTakenPredicateTest {
     public void test_personTakesModules_returnsTrue() {
         // One keyword
         ModuleTakenPredicate predicate = new ModuleTakenPredicate(
-                Collections.singletonList(new Module("CS1101S")));
+                Collections.singletonList("CS1101S"));
         assertTrue(predicate.test(new PersonBuilder().withModules("CS1101S", "CS1231S").build()));
 
         // Multiple keywords
-        predicate = new ModuleTakenPredicate(Arrays.asList(
-                new Module("CS1101S"),
-                new Module("MA1521")
-        ));
+        predicate = new ModuleTakenPredicate(Arrays.asList("CS1101S", "MA1521"));
         assertTrue(predicate.test(new PersonBuilder().withModules("CS1101S", "MA1521").build()));
 
         // Only one matching keyword
-        predicate = new ModuleTakenPredicate(Arrays.asList(
-                new Module("CS1101S"),
-                new Module("IS1103")
-        ));
+        predicate = new ModuleTakenPredicate(Arrays.asList("CS1101S", "IS1103"));
         assertTrue(predicate.test(new PersonBuilder().withModules("CS1101S", "MA1521").build()));
 
         // Mixed-case keywords
-        predicate = new ModuleTakenPredicate(Arrays.asList(
-                new Module("cs1101S"),
-                new Module("Is1103")
-        ));
+        predicate = new ModuleTakenPredicate(Arrays.asList("cs1101S", "Is1103"));
         assertTrue(predicate.test(new PersonBuilder().withModules("CS1101S", "MA1521").build()));
+
+        // Matching substring
+        predicate = new ModuleTakenPredicate(Arrays.asList("1101S"));
+        assertTrue(predicate.test(new PersonBuilder().withModules("CS1101S", "MA1521").build()));
+
     }
 
     @Test
@@ -79,7 +71,11 @@ public class ModuleTakenPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withModules("CS1101S").build()));
 
         // Non-matching keyword
-        predicate = new ModuleTakenPredicate(Collections.singletonList(new Module("CS1101S")));
+        predicate = new ModuleTakenPredicate(Collections.singletonList("CS1101S"));
         assertFalse(predicate.test(new PersonBuilder().withModules("FSC2101").build()));
+
+        // Non-matching substring
+        predicate = new ModuleTakenPredicate(Arrays.asList("2001"));
+        assertFalse(predicate.test(new PersonBuilder().withModules("CS1101S", "MA1521").build()));
     }
 }

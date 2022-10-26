@@ -10,7 +10,6 @@ import java.util.List;
 
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -32,26 +31,26 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         if (searchPrefix.equals(PREFIX_NAME)) {
 
             List<String> strings = argMultimap.getAllValues(PREFIX_NAME);
-            List<String> keywordsSpaceSeperated = new ArrayList<>();
+            List<String> keywordsSpaceSeparated = new ArrayList<>();
             for (String string : strings) {
                 for (String keyword : string.split("\\s+")) {
-                    keywordsSpaceSeperated.add(keyword);
+                    keywordsSpaceSeparated.add(keyword);
                 }
             }
             // ["name", "name name"] -> ["name", "name", "name"]
-            return new FindContactCommand(new NameContainsKeywordsPredicate(keywordsSpaceSeperated));
+            return new FindContactCommand(new NameContainsKeywordsPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
 
             List<String> strings = argMultimap.getAllValues(PREFIX_MODULE);
-            List<Module> modules = new ArrayList<>();
+            List<String> keywordsSpaceSeparated = new ArrayList<>();
             for (String string : strings) {
                 for (String keyword : string.split("\\s+")) {
-                    modules.add(new Module(keyword));
+                    keywordsSpaceSeparated.add(keyword);
                 }
             }
             // ["mod1", "mod2 mod3"] -> ["mod1", "mod2", "mod3"]
-            return new FindContactCommand(new ModuleTakenPredicate(modules));
+            return new FindContactCommand(new ModuleTakenPredicate(keywordsSpaceSeparated));
 
         } else if (searchPrefix.equals(PREFIX_TASK)) {
 

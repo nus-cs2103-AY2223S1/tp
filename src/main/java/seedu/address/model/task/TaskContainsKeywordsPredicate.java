@@ -3,8 +3,6 @@ package seedu.address.model.task;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
@@ -18,7 +16,7 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword));
+                .anyMatch(keyword -> task.getName().fullName.toUpperCase().contains(keyword.toUpperCase()));
     }
 
     @Override

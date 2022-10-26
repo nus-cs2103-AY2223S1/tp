@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.TaskContainsModulesPredicate;
 
@@ -45,12 +44,12 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
             String trimmedModules = argScanner.nextLine().trim();
             String[] modKeywords = trimmedModules.split("\\s+");
-            ArrayList<Module> mods = new ArrayList<>();
+            ArrayList<String> keywords = new ArrayList<>();
             for (String modName : modKeywords) {
-                mods.add(new Module(modName));
+                keywords.add(modName);
             }
 
-            return new FindTaskCommand(new TaskContainsModulesPredicate(mods));
+            return new FindTaskCommand(new TaskContainsModulesPredicate(keywords));
 
         } else {
 
