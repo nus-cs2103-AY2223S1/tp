@@ -23,21 +23,29 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     private static final Appointment appointmentAlex1 =
-            new Appointment("Tinnitus", LocalDateTime.parse("2022-12-10T13:30"), List.of(0, 0, 0), Set.of(Tag.EAR), false);
+            new Appointment("Tinnitus", LocalDateTime.parse("2022-12-10T13:30"),
+                    List.of(0, 0, 0), Set.of(Tag.EAR), false);
     private static final Appointment appointmentAlex2 =
-            new Appointment("Monthly Checkup", LocalDateTime.parse("2022-12-01T10:00"), List.of(0, 1, 0), Collections.emptySet(), false);
+            new Appointment("Monthly Checkup", LocalDateTime.parse("2022-12-01T10:00"),
+                    List.of(0, 1, 0), Collections.emptySet(), false);
     private static final Appointment appointmentBernice1 =
-            new Appointment("Sinus", LocalDateTime.parse("2022-12-15T14:30"), List.of(0, 0, 0), Set.of(Tag.NOSE), false);
+            new Appointment("Sinus", LocalDateTime.parse("2022-12-15T14:30"),
+                    List.of(0, 0, 0), Set.of(Tag.NOSE), false);
     private static final Appointment appointmentBernice2 =
-            new Appointment("Tonsillitis", LocalDateTime.parse("2022-12-11T16:30"), List.of(0, 0, 0), Set.of(Tag.THROAT), false);
+            new Appointment("Tonsillitis", LocalDateTime.parse("2022-12-11T16:30"),
+                    List.of(0, 0, 0), Set.of(Tag.THROAT), false);
     private static final Appointment appointmentCharlotte =
-            new Appointment("Yearly Checkup", LocalDateTime.parse("2023-01-17T10:00"), List.of(1, 0, 0), Collections.emptySet(), false);
+            new Appointment("Yearly Checkup", LocalDateTime.parse("2023-01-17T10:00"),
+                    List.of(1, 0, 0), Collections.emptySet(), false);
     private static final Appointment appointmentDavid1 =
-            new Appointment("COVID", LocalDateTime.parse("2022-10-10T08:30"), List.of(0, 0, 0), Set.of(Tag.THROAT), true);
+            new Appointment("COVID", LocalDateTime.parse("2022-10-10T08:30"),
+                    List.of(0, 0, 0), Set.of(Tag.THROAT), true);
     private static final Appointment appointmentDavid2 =
-            new Appointment("Sore Throat", LocalDateTime.parse("2022-12-13T10:00"), List.of(0, 0, 0), Set.of(Tag.THROAT), false);
+            new Appointment("Sore Throat", LocalDateTime.parse("2022-12-13T10:00"),
+                    List.of(0, 0, 0), Set.of(Tag.THROAT), false);
     private static final Appointment appointmentRoy =
-            new Appointment("Sinus", LocalDateTime.parse("2022-12-28T19:30"), List.of(0, 0, 0), Set.of(Tag.NOSE), false);
+            new Appointment("Sinus", LocalDateTime.parse("2022-12-28T19:30"),
+                    List.of(0, 0, 0), Set.of(Tag.NOSE), false);
 
     public static Person[] getSamplePersons() {
         return new Person[] {

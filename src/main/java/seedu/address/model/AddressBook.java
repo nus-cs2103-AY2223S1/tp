@@ -134,7 +134,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-
+    /**
+     * Adds an appointment to the address book.
+     * The appointment must not already exist in the address book.
+     *
+     * @param a the appointment to add
+     */
     public void addAppointment(Appointment a) {
         requireNonNull(a);
         appointments.add(a);
