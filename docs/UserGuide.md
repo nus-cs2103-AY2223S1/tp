@@ -12,6 +12,7 @@ Gim is a **desktop app for managing gym exercises, optimized for use via a Comma
 * Deleting an exercise **:d**
 * Listing all exercises **:ls**
 * Sorting all exercises **:sort**
+* Viewing all exercises within a time period **:range**
 * Viewing help **:help**
 * Exiting the program **:wq**
 #### Command Summary
@@ -91,6 +92,18 @@ Sorts the list of exercises according to their date of completion, with the late
 
 Format: `:sort`
 
+### Viewing all exercises within a time period : `:range`
+
+Shows a list of all exercises within a date range.
+
+Format (1) : `:range d/<start date> e/<end date>`
+
+Example: `:range d/20/10/2022 e/25/10/2022` shows the exercises done between October 20, 2022 
+and October 25, 2022 (both inclusive)
+
+Format (2) : `:range last/<number of days>`
+
+Example: `:range last/3` shows the exercises done today and the last 3 days
 
 ### Exiting the program : `:wq`
 
@@ -110,14 +123,16 @@ Format: `:wq`
 
 ## Command Summary
 
-| Action              | Format                                           | Examples                |
-|---------------------|--------------------------------------------------|-------------------------|
-| **Add exercise**    | :a n/<exercise> w/<weight(kg)> s/<sets> r/<reps> | :a n/Squat w/60 s/5 r/5 |
-| **Delete exercise** | :d <index>                                       | :d 3                    |
-| **List exercises**  | :ls                                              | :ls                     |
-| **Sort exercises**  | :sort                                            | :sort                   |
-| **Help menu**       | :help                                            | :help                   |
-| **Exit program**    | :wq                                              | :wq                     |
+| Action              | Format                                           | Examples                         |
+|---------------------|--------------------------------------------------|----------------------------------|
+| **Add exercise**    | :a n/<exercise> w/<weight(kg)> s/<sets> r/<reps> | :a n/Squat w/60 s/5 r/5          |
+| **Delete exercise** | :d <index>                                       | :d 3                             |
+| **List exercises**  | :ls                                              | :ls                              |
+| **Sort exercises**  | :sort                                            | :sort                            |
+| **View range (1)**  | :range d/<start_date> e/<end_date>               | :range d/10/10/2022 e/15/10/2022 |
+| **View range (2)**  | :range last/<number_of_days>                     | :range last/3                    |
+| **Help menu**       | :help                                            | :help                            |
+| **Exit program**    | :wq                                              | :wq                              |
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of Terminologies
