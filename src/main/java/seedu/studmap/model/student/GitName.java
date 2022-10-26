@@ -9,11 +9,20 @@ import static seedu.studmap.commons.util.AppUtil.checkArgument;
  */
 public class GitName {
 
+    public static final String NO_GITNAME_STRING = "No GitHub username";
+
     public static final String MESSAGE_CONSTRAINTS = "Github username can be anything";
 
     public static final String VALIDATION_REGEX = "[\\p{all}]*";
 
     public final String value;
+
+    /**
+     * Constructs an empty {@code GitName}.
+     */
+    public GitName() {
+        this.value = "";
+    }
 
     /**
      * Constructs a {@code GitName}.
@@ -30,12 +39,14 @@ public class GitName {
      * Returns true if a given string is a valid git username.
      */
     public static boolean isValidGitName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.isEmpty() || test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return this.value;
+        return this.value.isEmpty()
+                ? NO_GITNAME_STRING
+                : value;
     }
 
     @Override
